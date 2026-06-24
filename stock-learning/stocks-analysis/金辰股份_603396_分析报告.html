@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>金辰股份(603396) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 40px;
+    max-width: 800px; margin: 0 auto; background: #fff;
+  }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 30px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 30px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table {
+    width: 100%; border-collapse: collapse; margin: 10px 0 16px;
+    font-size: 13px;
+  }
+  th, td {
+    border: 1px solid #ddd; padding: 6px 10px; text-align: center;
+  }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box {
+    background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px;
+    margin: 14px 0; font-size: 13px;
+  }
+  .danger-box {
+    background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px;
+    margin: 14px 0; font-size: 13px;
+  }
+  .highlight-box {
+    background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px;
+    margin: 14px 0; font-size: 13px;
+  }
+  .verdict {
+    text-align: center; font-size: 20px; font-weight: bold;
+    padding: 20px; margin: 20px 0; border-radius: 8px;
+  }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer {
+    text-align: center; color: #999; font-size: 11px;
+    margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;
+  }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+  .page-break { page-break-before: always; }
+</style>
+</head>
+<body>
+
+<h1>金辰股份（603396）财务健康分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标）+ N1（常见追问）框架</p>
+<p class="meta">分析日期：2026年6月 | 数据来源：2025年年报</p>
+
+<!-- ============ 基本画像 ============ -->
+<h2>一、公司基本画像</h2>
+
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>营口金辰机械股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>603396.SH</td></tr>
+  <tr><td>所属行业</td><td>光伏设备制造（组件封装设备、电池镀膜设备）</td></tr>
+  <tr><td>2025年营收</td><td>28.31 亿元（同比增长 11.89%）</td></tr>
+  <tr><td>2025年归母净利润</td><td>5,589 万元（同比下降 12.27%）</td></tr>
+  <tr><td>2025年扣非净利润</td><td>4,984 万元（同比下降 24.35%）</td></tr>
+  <tr><td>经营现金流</td><td>5.84 亿元（上年同期-0.67亿）</td></tr>
+  <tr><td>总资产</td><td>49.44 亿元</td></tr>
+  <tr><td>归母净资产</td><td>25.97 亿元</td></tr>
+  <tr><td>资产负债率</td><td>46.23%</td></tr>
+  <tr><td>当前市值</td><td>约 42 亿元</td></tr>
+</table>
+
+<!-- ============ 定量数据总览 ============ -->
+<h2>二、核心财务数据（2025年）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>2025年</th><th>2024年</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>28.31 亿</td><td>25.30 亿</td><td>+11.89%</td><td class="good">✅ 增长</td></tr>
+  <tr><td>毛利率</td><td>24.73%</td><td>26.73%</td><td>-1.98pct</td><td class="bad">❌ 下降</td></tr>
+  <tr><td>销售费用</td><td>9,084 万</td><td>6,746 万</td><td>+34.66%</td><td class="bad">增长远超营收</td></tr>
+  <tr><td>财务费用</td><td>2,769 万</td><td>-1,292 万</td><td>+314%</td><td class="bad">❌ 汇兑损失暴增</td></tr>
+  <tr><td>归母净利润</td><td>5,589 万</td><td>6,370 万</td><td>-12.27%</td><td class="bad">❌ 下滑</td></tr>
+  <tr><td>扣非净利润</td><td>4,984 万</td><td>6,588 万</td><td>-24.35%</td><td class="bad">❌ 大幅下滑</td></tr>
+  <tr><td>净利率</td><td>2.84%</td><td>3.35%</td><td>-0.51pct</td><td class="bad">❌ 极低</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>增收不增利：</strong>营收增长12%，但利润降12%。原因：毛利率下降+销售费用大增+汇兑损失由正转负。每赚100块营收，最后只剩2.84块净利润。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>2025年末</th><th>2024年末</th><th>变化</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td>15.79 亿</td><td>—</td><td>—</td><td class="good">✅ 充裕</td></tr>
+  <tr><td>应收账款</td><td>9.66 亿</td><td>—</td><td>—</td><td class="bad">❌ 是利润17倍</td></tr>
+  <tr><td>存货</td><td>12.76 亿</td><td>22.88 亿</td><td>-44.22%</td><td class="neutral">大幅减少（消耗库存）</td></tr>
+  <tr><td>合同负债</td><td>7.19 亿</td><td>11.52 亿</td><td>-37.55%</td><td class="bad">❌ 订单大幅减少</td></tr>
+  <tr><td>短期借款</td><td>5.28 亿</td><td>—</td><td>—</td><td class="good">货币资金充足覆盖</td></tr>
+  <tr><td>资产负债率</td><td>46.23%</td><td>53.73%</td><td>-7.5pct</td><td class="good">✅ 下降</td></tr>
+</table>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>2025年</th><th>2024年</th><th>同比</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td>5.84 亿</td><td>-0.67 亿</td><td>+967%</td><td class="neutral">⚠ 看似好转，需看原因</td></tr>
+  <tr><td>投资现金流（CFI）</td><td>+1.0 亿</td><td>-2.99 亿</td><td>转正</td><td class="neutral">⚠ 在收缩投资</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td>-1.03 亿</td><td>+9.55 亿</td><td>转负</td><td class="neutral">在还钱</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>CFO 5.84亿的含金量分析：</strong><br>
+  CFO大幅转正，主要是因为"购买商品支付的现金减少"——<strong>公司在消耗库存而不是补货</strong>。存货从23亿降到13亿，释放了10亿现金。<br>
+  <strong>这不是经营改善的信号，而是业务收缩的表现。</strong>如果存货消耗完了，这种CFO改善不可持续。
+</div>
+
+<h3>2.4 关键盈利指标（L2框架）</h3>
+<table>
+  <tr><th>指标</th><th>2025年</th><th>2024年</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td>2.17%</td><td>2.61%</td><td>> 15%</td><td class="bad">❌ 极低</td></tr>
+  <tr><td>毛利率</td><td>24.73%</td><td>26.73%</td><td>稳定或提升</td><td class="bad">❌ 下降</td></tr>
+  <tr><td>净利率</td><td>2.84%</td><td>3.35%</td><td>> 10%</td><td class="bad">❌ 极低</td></tr>
+  <tr><td>营收增长率</td><td>11.89%</td><td>12.39%</td><td>> 10%</td><td class="good">✅ 勉强达标</td></tr>
+  <tr><td>扣非净利润增长</td><td>-24.35%</td><td>-3.50%</td><td>正增长</td><td class="bad">❌ 加速下滑</td></tr>
+  <tr><td>经营现金流/净利润</td><td>5.84亿/0.56亿=10.4</td><td>-0.67亿/0.64亿</td><td>> 1</td><td class="neutral">⚠ 虚高（原因见上）</td></tr>
+  <tr><td>ROE趋势</td><td>2.17%</td><td>2.61%</td><td>> 10%及格</td><td class="bad">❌ 连续2年低于3%</td></tr>
+</table>
+
+<!-- ============ 排雷分析 ============ -->
+<div class="page-break"></div>
+<h2>三、排雷分析（基于 L1+N1+L2 框架）</h2>
+
+<div class="danger-box">
+  <strong>⚠ 总体判断：该股存在多项明显风险，L1 排雷阶段建议排除。</strong>
+  盈利能力极弱，且主业正在收缩。
+</div>
+
+<h3>🔴 雷点一：增收不增利，盈利能力极差</h3>
+<p><strong>依据：L2 盈利指标 + N1 第1条（判断高低标准）</strong></p>
+<table>
+  <tr><th>指标</th><th>金辰股份</th><th>正常标准</th><th>结论</th></tr>
+  <tr><td>ROE</td><td><strong>2.17%</strong></td><td>> 10% 及格 / >15% 优秀</td><td class="bad">❌ 极差</td></tr>
+  <tr><td>净利率</td><td><strong>2.84%</strong></td><td>> 10%</td><td class="bad">❌ 极低</td></tr>
+  <tr><td>扣非利润趋势</td><td><strong>连续两年下滑</strong></td><td>正增长</td><td class="bad">❌ 加速恶化</td></tr>
+</table>
+
+<div class="summary-box">
+  股东每投入100块，一年只赚2.17块，不如存银行（约2%）。且扣非利润连续两年加速下滑（-3.5% → -24.4%），主业在明显恶化。
+</div>
+
+<h3>🔴 雷点二：合同负债大幅下降，订单在萎缩</h3>
+<p><strong>依据：N1 第16条（合同负债速查）</strong></p>
+<table>
+  <tr><th>科目</th><th>2025年末</th><th>2024年末</th><th>变化</th></tr>
+  <tr><td>合同负债（预收款）</td><td>7.19 亿</td><td>11.52 亿</td><td class="bad">❌ -37.55%</td></tr>
+  <tr><td>存货</td><td>12.76 亿</td><td>22.88 亿</td><td class="bad">❌ -44.22%</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>合同负债（预收款）下降37.6%</strong> → 客户预付的定金大幅减少，说明新订单在萎缩。<br>
+  <strong>存货下降44.2%</strong> → 公司在消耗库存而不是补货，进一步印证业务收缩。<br><br>
+  这两个数据结合，说明公司可能在经历光伏行业产能过剩带来的订单下滑。
+</div>
+
+<h3>🔴 雷点三：应收账款是利润的 17 倍</h3>
+<p><strong>依据：N1 第13条（应收账款判断）</strong></p>
+<table>
+  <tr><th>危险信号</th><th>金辰股份</th><th>结论</th></tr>
+  <tr><td><strong>应收账款 / 净利润</strong></td><td><strong>9.66亿 / 0.56亿 = 1725%</strong></td><td class="bad">❌ 极度危险</td></tr>
+  <tr><td>应收账款 / 营收</td><td>9.66亿 / 28.31亿 = 34%</td><td class="neutral">偏高但设备行业可接受</td></tr>
+</table>
+
+<div class="summary-box">
+  应收账款是利润的17倍！一旦坏账准备增加1%（约966万），就能吃掉当年利润的17%。<br>
+  光伏行业2025年产能过剩、不少客户经营困难，坏账风险尤其需要警惕。
+</div>
+
+<h3>🟡 雷点四：现金流改善不可持续</h3>
+<p><strong>依据：N1 第12条 + N1 第12.1条（FCF分析）</strong></p>
+<table>
+  <tr><th>指标</th><th>数据</th><th>评价</th></tr>
+  <tr><td>CFO 5.84亿</td><td>看似很好</td><td class="bad">但主要是因为消耗存货</td></tr>
+  <tr><td>CFI +1.0亿</td><td>投资现金流转正</td><td class="bad">说明在收缩投资而不是扩张</td></tr>
+  <tr><td>存货减少额</td><td>约 10 亿</td><td class="bad">释放现金，但不可持续</td></tr>
+</table>
+
+<div class="summary-box">
+  正常的良性CFO改善应该是"营收增长→利润增长→回款增加"带来的。金辰的CFO改善是"存货减少→少采购→现金多"——这是靠吃老本，吃完就没了。
+</div>
+
+<h3>🟢 正面：短期偿债暂时安全</h3>
+<p><strong>依据：N1 第16条（安全范围速查）</strong></p>
+<table>
+  <tr><th>科目</th><th>判断标准</th><th>金辰股份</th><th>结论</th></tr>
+  <tr><td>货币资金 vs 短期借款</td><td>货币资金 > 短期借款</td><td>15.79亿 > 5.28亿</td><td class="good">✅ 安全</td></tr>
+  <tr><td>资产负债率</td><td>制造业 40-60%</td><td>46.23%</td><td class="good">✅ 正常</td></tr>
+</table>
+
+<!-- ============ 综合诊断 ============ -->
+<div class="page-break"></div>
+<h2>四、综合诊断</h2>
+
+<h3>4.1 与三份报告的对比</h3>
+<table>
+  <tr><th>对比项</th><th>五洲新春 ❌</th><th>金辰股份 ❌</th><th>中材科技 ⚠</th></tr>
+  <tr><td>营收规模</td><td>33 亿</td><td>28 亿</td><td>302 亿</td></tr>
+  <tr><td>净利润</td><td>0.91 亿</td><td>0.56 亿</td><td>18.18 亿</td></tr>
+  <tr><td>ROE</td><td>3.06%</td><td>2.17%</td><td>9.49%</td></tr>
+  <tr><td>营收增长</td><td>+2.4%</td><td>+11.9%</td><td>+25.9%</td></tr>
+  <tr><td>利润趋势</td><td>+0.02%（停滞）</td><td>-12.3%（下滑）</td><td>+104%（翻倍）</td></tr>
+  <tr><td>应收账款/利润</td><td>915% ❌</td><td><strong>1725% ❌❌</strong></td><td>待查 ✅</td></tr>
+  <tr><td>短期偿债</td><td>4亿 vs 9亿 ❌</td><td>16亿 vs 5亿 ✅</td><td>正常 ✅</td></tr>
+  <tr><td>合同负债趋势</td><td>—</td><td>-37.6% ❌</td><td>—</td></tr>
+  <tr><td>经营现金流</td><td>2.37亿 > 利润</td><td>5.84亿（存货消耗）⚠</td><td>54亿 >> 利润 ✅</td></tr>
+  <tr><td>主要问题</td><td>短期偿债+应收</td><td>盈利能力+订单萎缩</td><td>ROE偏低但无硬伤</td></tr>
+  <tr><td><strong>L1排雷结论</strong></td><td><strong>❌ 不通过</strong></td><td><strong>❌ 不通过</strong></td><td><strong>⚠ 基本通过</strong></td></tr>
+</table>
+
+<div class="verdict verdict-bad">
+  L1 排雷结论：不通过 ❌<br>
+  <span style="font-size:14px;">盈利极弱（ROE 2%）、订单萎缩（合同负债-37%）、应收是利润17倍</span>
+</div>
+
+<h3>4.2 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="bad">🔴 严重</td><td>ROE 2.17%，股东回报极差</td><td>L2 盈利指标</td></tr>
+  <tr><td class="bad">🔴 严重</td><td>合同负债-37.6%，订单萎缩</td><td>N1 第16条</td></tr>
+  <tr><td class="bad">🔴 严重</td><td>应收账款是利润17倍</td><td>N1 第13条</td></tr>
+  <tr><td class="bad">🔴 严重</td><td>扣非净利润-24.4%，主业加速恶化</td><td>L1 利润表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>CFO改善靠消耗存货，不可持续</td><td>N1 第12.1条</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>毛利率下降2个百分点</td><td>L2 盈利指标</td></tr>
+</table>
+
+<h3>4.3 如果继续深挖（学习L3-L5后）</h3>
+<div class="highlight-box">
+  <strong>当前的排雷结论是"不通过"，但如果市场在炒光伏设备反转预期：</strong>
+  <ul>
+    <li><strong>L3 估值：</strong>当前市值42亿，PE约75倍——对于一个净利润下滑的公司，这个估值非常高</li>
+    <li><strong>L5 行业：</strong>光伏行业产能过剩何时出清？设备订单何时回暖？这是判断金辰能否反转的关键</li>
+    <li><strong>L4 杜邦：</strong>ROE 2%的拆解——净利率低（2.8%）、周转率也在下降</li>
+  </ul>
+  但按当前所学，仅凭L1+L2就可以把它排掉了。
+</div>
+
+<div class="footer">
+  本报告为学习用途，不构成投资建议。<br>
+  基于 L1（财务三表入门）+ L2（关键财务指标）+ N1（财务三表常见追问）框架分析<br>
+  学习项目：stock-learning
+</div>
+
+</body>
+</html>
