@@ -20,19 +20,35 @@
 
 ## L3 - 估值指标
 
-- 状态：❌ 未开始
-- 得分：-
-- 完成日期：-
-- 错题记录：-
+- 状态：✅ 已完成
+- 得分：概念5题5/6 ✅（1题题目有误已作废）
+- 完成日期：2026-06-24
+- 错题记录：无有效错题（第4题原数据错误已修正）
+- 材料：`materials/L3-valuation.md` ✅
+- 笔记：`notes/N3-valuation.md` ✅（11条估值追问）
 
 ---
 
+## 笔记文件
+
+| 文件 | 内容 | 状态 |
+|------|------|------|
+| `notes/N1-financial-statements.md` | L1精华笔记，19项，按三表分类，标记重要度/前置知识 | ✅ |
+| `notes/N2-key-metrics.md` | L2精华笔记，4条+测验附录 | ✅ |
+| `notes/N3-valuation.md` | L3精华笔记，11条估值常见追问（PE/PB/PS/PCF/PEG/EV/股息） | ✅ |
+| `notes/N4-duPont.md` | L4精华笔记，含权益乘数vsPE、三因子划分标准、三种赚钱模式比较 | ✅ |
+
+## 学习工具
+
+- `.opencode/skills/stock-report-tab/SKILL.md`：Tab式HTML报告生成skill ✅
+- `.opencode.json`：skill权限配置 ✅
+
 ## L4 - 杜邦分析拆解
 
-- 状态：❌ 未开始
-- 得分：-
-- 完成日期：-
-- 错题记录：-
+- 状态：✅ 已完成
+- 得分：概念5题5/5 ✅，案例口头通过 ✅
+- 完成日期：2026-06-26
+- 错题记录：无
 
 ---
 
@@ -51,3 +67,22 @@
 - 得分：-
 - 完成日期：-
 - 错题记录：-
+
+---
+
+## 实战分析报告（全部已升级为Tab+L3格式 ✅）
+
+| 股票 | 代码 | ROE | 判定 |
+|------|------|-----|------|
+| 宁德时代 | 300750 | 24.91% | ✅ verdict-ok |
+| 横店东磁 | 002056 | 17.42% | ✅ verdict-ok |
+| 雅克科技 | 002409 | 12.59% | ⚠ verdict-caution |
+| 中材科技 | 002080 | 9.49% | ⚠ verdict-caution |
+| 金发科技 | 600143 | 6.22% | ⚠ verdict-caution |
+| 皖维高新 | 600063 | 5.12% | ⚠ verdict-caution |
+| 五洲新春 | 603667 | 3.06% | ❌ verdict-bad |
+| 金辰股份 | 603396 | 2.17% | ❌ verdict-bad |
+| 沧州大化 | 600230 | 0.77% | ❌ verdict-bad |
+| 三友化工 | 600409 | 0.65% | ❌ verdict-bad |
+| Suncorp | ASX:SUN | 12.5% | ⚠ verdict-caution（保险adapt框架） |
+| IAG | ASX:IAG | 19.4% | ✅ verdict-ok（保险adapt框架） |
