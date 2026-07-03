@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSL Limited(CSL) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>CSL Limited（CSL）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026年7月 | 数据来源：FY2025 年报 + FY2026H1 中期报告 + Yahoo Finance / Reuters</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>CSL Limited</td></tr>
+  <tr><td>股票代码</td><td>CSL.AX</td></tr>
+  <tr><td>所属行业</td><td>生物技术（血浆制品、疫苗、铁剂/肾病治疗）</td></tr>
+  <tr><td>行业地位</td><td>全球血浆制品龙头（前三），全球第二大流感疫苗供应商</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>A$155.58 亿（+5.1%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>A$30.02 亿（+13.6%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>A$35.61 亿（+28.8%）</strong></td></tr>
+  <tr><td>总资产</td><td>A$394.04 亿</td></tr>
+  <tr><td>归母净资产</td><td>A$193.35 亿</td></tr>
+  <tr><td>ROE（FY2025 报告）</td><td><strong>15.5%</strong></td></tr>
+</table>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">综合L1-L5所有因素（财务健康度、关键指标、估值、杜邦分析、行业分类），基于FY2025完整财年数据打分</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">15.5% ≥ 15%</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">高利润型——净利率19.3%，毛利率51.9%</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">1.19 ≥ 1.0</td></tr>
+  <tr><td>营收增长（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">+5.1% ≥ 5% 但增速放缓（FY2024 +11.2%）</td></tr>
+  <tr><td>利润增长（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">+13.6% ≥ 5%，FY2026指引下降</td></tr>
+  <tr><td>负债率（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">50.9% < 55%</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">现金A$11.4亿覆盖短债，FCF A$18.5亿充足</td></tr>
+  <tr><td>毛利率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">51.9% ≥ 30% 且近三年稳定</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">PE 12.8x（TTM）在合理区间，历史低位</td></tr>
+  <tr><td>自由现金流（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">FCF A$18.5亿持续为正</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">88/100</td><td style="text-align:left">品质优秀（88/100分）</td></tr>
+</table>
+
+<div class="verdict verdict-ok">品质优秀（88/100分）—— 业绩短期承压但核心壁垒未破</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>CSL是澳大利亚最大的生物技术公司，全球血浆制品行业前三强，也是全球第二大流感疫苗供应商。FY2025营收A$155.58亿（+5.1%），净利A$30.02亿（+13.6%），ROE 15.5%，现金生成能力强（CFO A$35.61亿）。公司拥有极高的行业壁垒——血浆供应链（~325个采浆中心）、专利技术和FDA/EUA监管认证。但FY2026年遭遇多重逆风：Seqirus疫苗业务受美国国防部取消流感疫苗强制令冲击，Vifor业绩持续不及预期（Tavneos EU上市许可被CHMP建议撤销），公司下调FY2026指引并计提~US$50亿减值。股价从A$275跌至A$90后反弹至A$122。<br><br>
+  <strong>核心优势：</strong>① 血浆制品全球寡头地位（品牌+牌照+规模三重壁垒），毛利率52%验证定价权；② 经营现金流强劲（A$35.61亿），CFO/净利>1.0真金白银；③ 全球老龄化驱动免疫球蛋白（IG）需求持续增长（中高个位数增速）；④ 估值处于10年低位（PE 12.8x），安全边际改善。<br><br>
+  <strong>核心风险：</strong>① FY2026盈利指引下降（NPATA US$30亿→US$31亿），Tavneos潜在退市；② 净负债A$103.6亿，利息负担重（每季~A$1.05亿）；③ Vifor收购效果远不及预期，已计提大额减值；④ Seqirus增长前景不明朗（美国疫苗市场收缩）。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>A$155.58 亿</td><td>A$148.00 亿</td><td>+5.1%</td><td class="neutral">⚠ 增速放缓</td></tr>
+  <tr><td>毛利</td><td><strong>A$80.79 亿</strong></td><td>A$76.71 亿</td><td><strong>+5.3%</strong></td><td class="good">✅ 增长</td></tr>
+  <tr><td>归母净利润</td><td><strong>A$30.02 亿</strong></td><td>A$26.42 亿</td><td><strong>+13.6%</strong></td><td class="good">✅ 双位数增长</td></tr>
+  <tr><td>毛利率</td><td><strong>51.9%</strong></td><td>51.8%</td><td>+0.1pct</td><td class="good">✅ 稳定</td></tr>
+  <tr><td>净利率</td><td><strong>19.3%</strong></td><td>17.9%</td><td>+1.4pct</td><td class="good">✅ 改善</td></tr>
+  <tr><td>费用率（SG&A+R&D占总收入估算）</td><td><strong>~32%</strong></td><td>~33%</td><td>-1pct</td><td class="neutral">控制在合理范围</td></tr>
+  <tr><td>FY2026H1 营收</td><td>~A$78 亿</td><td>~A$75 亿</td><td>+4%</td><td class="neutral">⚠ 增速继续放缓</td></tr>
+  <tr><td>FY2026H1 净利</td><td>~A$13 亿</td><td>~A$14 亿</td><td>-7%</td><td class="bad">❌ 下降</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>FY2025营收增长5.1%相比FY2024的11.2%明显放缓。毛利率51.9%保持稳定，净利率从17.9%提升至19.3%，费用控制良好。但FY2026H1已出现净利下滑（-7%），管理层指引全年NPATA US$31亿低于FY2025的US$33亿。营收增速放缓+利润率承压是当前主要矛盾。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td><strong>~A$11.4 亿</strong></td><td class="neutral">适中</td></tr>
+  <tr><td>应收账款</td><td><strong>~A$32 亿</strong></td><td class="neutral">占营收20.6%，plasma行业正常</td></tr>
+  <tr><td>存货</td><td><strong>~A$45 亿</strong></td><td class="neutral">血浆行业存货周期较长</td></tr>
+  <tr><td>有形资产（不含商誉/无形资产）</td><td><strong>~A$120 亿</strong></td><td class="bad">商誉及无形资产占比高（~70%总资产）</td></tr>
+  <tr><td>短期有息负债</td><td><strong>~A$25 亿</strong></td><td class="neutral">可覆盖</td></tr>
+  <tr><td>长期有息负债</td><td><strong>~A$90 亿</strong></td><td class="neutral">含Vifor收购债务</td></tr>
+  <tr><td>资产负债率</td><td><strong>50.9%</strong></td><td class="good">✅ 适中</td></tr>
+  <tr><td>净负债</td><td><strong>~A$103.6 亿</strong></td><td class="neutral">净负债/EBITDA ~3.0x</td></tr>
+  <tr><td>归母净资产</td><td>A$193.35 亿</td><td class="good">✅ 同比+11.3%</td></tr>
+  <tr><td>总资产</td><td>A$394.04 亿</td><td class="good">✅ 同比+3.6%</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>CSL资产负债率50.9%在生物技术行业属于合理范围（债务主要来自2022年Vifor收购）。净负债A$103.6亿，净负债/EBITDA约3.0x，处于可接受但偏高区间。需特别注意——商誉及无形资产占比极高（约A$270亿+），FY2026已确认~US$50亿减值，说明Vifor收购的资产价值远低于支付对价。货币资金A$11.4亿偏紧，但经营现金流强劲（A$35.61亿）可支撑运营。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>A$35.61 亿</strong></td><td>A$27.64 亿</td><td class="good">✅ 强劲+28.8%</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><strong>-A$8.50 亿</strong></td><td>-A$12.59 亿</td><td class="good">✅ 资本开支减少</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td><strong>-A$22 亿</strong></td><td>-A$13 亿</td><td class="neutral">⚠ 偿还债务+分红</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>1.19</strong></td><td>1.05</td><td class="good">✅ 现金质量优异</td></tr>
+  <tr><td>自由现金流（FCF）</td><td><strong>~A$27 亿</strong></td><td>~A$15 亿</td><td class="good">✅ 显著改善</td></tr>
+  <tr><td>杠杆FCF（TTM）</td><td><strong>A$18.5 亿</strong></td><td>—</td><td class="good">✅ 持续为正</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>CSL的现金流质量极高——CFO A$35.61亿，CFO/净利1.19，说明利润含金量充足。资本开支从A$12.59亿降至A$8.50亿（+28.8%），自由现金流大幅改善。这是CSL区别于许多高负债生物技术公司的核心优势——它是"真赚钱"的公司，不是"烧钱"的公司。即使FY2026盈利承压，预计FCF仍可覆盖利息支出和分红。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>15.5%</strong></td><td>> 15% 优秀 / > 10% 及格</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>毛利率</td><td><strong>51.9%</strong></td><td>稳定或提升</td><td class="good">✅ 稳定</td></tr>
+  <tr><td>净利率</td><td><strong>19.3%</strong></td><td>> 10%</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>营收增长率</td><td><strong>+5.1%</strong></td><td>> 5% 及格 / > 10% 好</td><td class="neutral">⚠ 增速放缓</td></tr>
+  <tr><td>净利润增长率</td><td><strong>+13.6%</strong></td><td>正增长</td><td class="good">✅ 双位数增长</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>1.19</strong></td><td>> 1</td><td class="good">✅ 现金质量好</td></tr>
+  <tr><td>资产负债率</td><td><strong>50.9%</strong></td><td>生物技术<60%</td><td class="good">✅ 合理</td></tr>
+  <tr><td>分红率</td><td><strong>~48%</strong></td><td>持续分红</td><td class="good">✅ 持续派息</td></tr>
+</table>
+
+<h3>3.2 分业务分析（FY2025年度估算）</h3>
+<table>
+  <tr><th>业务板块</th><th>营收（估算亿USD）</th><th>占比</th><th>同比增长</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td>CSL Behring（血浆）</td><td>~110</td><td>~71%</td><td>~+6%</td><td>~55%</td><td class="good">✅ 核心稳定器</td></tr>
+  <tr><td>CSL Seqirus（疫苗）</td><td>~22</td><td>~14%</td><td>~+2%</td><td>~45%</td><td class="neutral">⚠ 前景不明</td></tr>
+  <tr><td>CSL Vifor（铁剂/肾病）</td><td>~22</td><td>~14%</td><td>~+5%</td><td>~50%</td><td class="bad">❌ 减值风险</td></tr>
+  <tr><td>其他/内部抵销</td><td>~1</td><td>~1%</td><td>—</td><td>—</td><td class="neutral">—</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>CSL是典型"核心稳+两翼飘"格局。<strong>Behring（血浆）</strong>贡献~71%营收，免疫球蛋白（IG）需求全球老龄化趋势确定，中高个位数增速，毛利率55%左右，是公司现金牛和估值锚。<strong>Seqirus（疫苗）</strong>面临美国流感疫苗市场收缩（国防部取消强制令），增长前景不明，管理层已暂停分拆计划。<strong>Vifor（铁剂/肾病）</strong>是2022年以US$117亿收购的"问题资产"——Tavneos EU上市许可被CHMP建议撤销，已计提~US$50亿减值。核心看点：Behring能否维持增长惯性。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="bad">🔴 较高</td><td>FY2026盈利指引下降（NPATA -6%），业绩拐点未现</td><td>FY2026H1中期报告</td></tr>
+  <tr><td class="bad">🔴 较高</td><td>Vifor收购严重不及预期，Tavneos EU退市风险</td><td>CHMP建议 + US$50亿减值</td></tr>
+  <tr><td class="bad">🔴 较高</td><td>Seqirus美国疫苗市场萎缩，增长前景不明</td><td>国防部撤销疫苗强制令</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>净负债A$103.6亿偏高，利息负担重（每季~A$1.05亿）</td><td>L1 资产负债表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>商誉/无形资产占比过高（~70%总资产），减值风险持续</td><td>L1 资产负债表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>营收增速从11.2%降至5.1%，增长引擎减速</td><td>L1 利润表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>CFO A$35.61亿强劲，现金创造能力一流</td><td>L1 现金流量表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>毛利率51.9%且稳定，产品定价权强</td><td>L1 利润表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>全球血浆行业寡头格局，进入壁垒极高</td><td>L5 行业分类</td></tr>
+  <tr><td class="good">🟢 正面</td><td>PE 12.8x处于10年低位，估值已反映悲观预期</td><td>L3 估值</td></tr>
+</table>
+
+<div class="verdict verdict-caution">⚠ L2综合判定：谨慎乐观（ROE 15.5%优秀，但增长放缓和Vifor问题需跟踪）</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>股价（2026.7.3）</td><td><strong>A$121.81</strong></td><td>从A$90低点反弹，较A$275历史高位仍腰斩</td></tr>
+  <tr><td>总市值</td><td><strong>A$583.4 亿</strong></td><td>ASX第10大市值</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>12.84x</strong></td><td>基于EPS A$8.95</td></tr>
+  <tr><td>PE（Forward）</td><td><strong>~12.6x</strong></td><td>基于FY2026E EPS ~A$9.70</td></tr>
+  <tr><td>PE（基于FY2025报告净利）</td><td><strong>~19.4x</strong></td><td>基于EPS A$6.27</td></tr>
+  <tr><td>PB</td><td><strong>2.03x</strong></td><td>基于每股净资产A$60.0（减值后）</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>2.50x</strong></td><td>市销率</td></tr>
+  <tr><td>EV/EBITDA</td><td><strong>9.34x</strong></td><td>企业价值/EBITDA</td></tr>
+  <tr><td>股息率</td><td><strong>3.69%</strong></td><td>基于DPS A$4.26（无franking）</td></tr>
+</table>
+
+<h3>4.2 PE Band估值区间</h3>
+<p style="font-size:13px;color:#666;">ROE 15.5% → 合理PE参考区间：15-25x | FY2026E EPS ≈ A$9.70（一致预期）</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs现价A$121.81</th></tr>
+  <tr><td>悲观（持续恶化）</td><td>10x</td><td>A$97.0</td><td class="bad">-20%</td></tr>
+  <tr><td>保守</td><td>15x</td><td>A$145.5</td><td class="good">+19%</td></tr>
+  <tr><td>中性</td><td>20x</td><td>A$194.0</td><td class="good">+59%</td></tr>
+  <tr><td>券商目标均价</td><td>~14.4x</td><td>A$140.0</td><td class="good">+15%</td></tr>
+  <tr><td>当前价</td><td>~12.6x</td><td>A$121.81</td><td>—</td></tr>
+  <tr><td>历史均值</td><td>~28x</td><td>A$272</td><td>+123%</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值评述：</strong><br>
+  ① 当前PE 12.8x（TTM）处于CSL近10年的历史低位区间；<br>
+  ② 券商一致目标价A$140，有15%上行空间（range A$105-A$201）；<br>
+  ③ 以ROE 15.5%对应的合理PE 15-25x计算，保守合理股价A$145-A$194；<br>
+  ④ PE偏低的原因——市场给CSL的"制造业/低增长"折价（营收增速仅5%），而非"高增长生物科技"溢价；<br>
+  ⑤ 从EV/EBITDA 9.34x看，估值处于全球血浆同行的中等偏低水平。
+</div>
+
+<h3>4.3 历史PE区间（近5年）</h3>
+<table>
+  <tr><th>指标</th><th>数值</th></tr>
+  <tr><td>历史最高PE</td><td>~52x（2020年疫情高峰）</td></tr>
+  <tr><td>近5年80%分位</td><td>~38x</td></tr>
+  <tr><td>近5年50%分位</td><td>~28x</td></tr>
+  <tr><td>近5年20%分位</td><td>~22x</td></tr>
+  <tr><td>历史最低（2026年6月）</td><td>~9.5x（A$90时）</td></tr>
+  <tr><td>当前PE（TTM）</td><td class="good">✅ 12.8x（偏低，历史10%分位以下）</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值总结：</strong>CSL当前PE 12.8x处于近10年最低区间，市场已充分定价了FY2026盈利下降、Vifor减值、Seqirus增长放缓等负面因素。对于一个ROE>15%、毛利率52%、CFO强劲的全球生物技术龙头，12.8x的PE在历史上极为罕见。分歧点在于——这是"价值陷阱"还是"黄金坑"？关键在于FY2027能否实现管理层指引的盈利恢复（血浆利润率重建）。如果FY2027盈利恢复兑现，当前估值具有显著吸引力；如果持续恶化（如Tavneos退市、美国疫苗市场继续萎缩），则不排除进一步下行。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>净利润率</td><td>16.5%</td><td>17.9%</td><td><strong>19.3%</strong></td><td class="good">⬆ 持续提升</td></tr>
+  <tr><td>资产周转率</td><td>0.37</td><td>0.39</td><td><strong>0.39</strong></td><td class="neutral">➡ 稳定</td></tr>
+  <tr><td>权益乘数</td><td>2.30</td><td>2.19</td><td><strong>2.04</strong></td><td class="good">⬇ 杠杆下降</td></tr>
+  <tr><td><strong>ROE</strong></td><td><strong>14.0%</strong></td><td><strong>15.3%</strong></td><td><strong>15.5%</strong></td><td class="good">⬆ 稳中有升</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>6.1%</td><td>7.0%</td><td><strong>7.5%</strong></td><td class="good">⬆ 提升</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>7.9pct</td><td>8.3pct</td><td><strong>8.0pct</strong></td><td class="neutral">➡ 稳定</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：高利润型（净利润率驱动）</strong><br>
+  CSL的ROE 15.5%主要由净利润率（19.3%）驱动，属于典型的高利润型商业模式（毛利率52%+高附加值药品定价权）。资产周转率0.39偏低（生物技术行业特性——需要大量固定资产和流动资产支撑），权益乘数2.04中等。<br><br>
+  <strong>积极变化：</strong>净利润率从16.5%→17.9%→19.3%持续提升，显示了运营杠杆效应和费用管控能力。去杠杆ROA从6.1%升至7.5%，说明去掉杠杆后真实盈利能力在改善。<br><br>
+  <strong>需关注：</strong>周转率仅0.39，大量资产沉淀在应收账款和存货中（血浆行业特性），周转效率提升空间有限。
+</div>
+
+<h3>5.2 分业务杜邦贡献</h3>
+<table>
+  <tr><th>业务板块</th><th>毛利率</th><th>趋势</th><th>对ROE影响</th></tr>
+  <tr><td>CSL Behring（血浆）</td><td>~55%</td><td class="good">稳定</td><td class="good">正向核心贡献</td></tr>
+  <tr><td>CSL Seqirus（疫苗）</td><td>~45%</td><td class="neutral">⬇ 承压中</td><td class="neutral">增长放缓</td></tr>
+  <tr><td>CSL Vifor（铁剂/肾病）</td><td>~50%</td><td class="bad">⬇ 减值拖累</td><td class="bad">负向拖累</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>核心结论：</strong><br>
+  ① ROE 15.5%由高利润率（19.3%）主导，驱动模式健康且可持续；<br>
+  ② 去杠杆ROA 7.5%在生物技术行业中处于良好水平，说明资本回报真实有效；<br>
+  ③ 杠杆从中性偏高（2.30）降至中性（2.04），偿债能力在改善；<br>
+  ④ 净利润率从16.5%→19.3%是ROE提升主因，但利润率进一步提升空间有限（受制于R&D投入和竞争压力）；<br>
+  ⑤ ROE长期提升关键：维持利润率>18% + 适度提升周转率 + 降低财务杠杆风险。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与特征（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：混合型——防御性为主 + 成长性为辅（生物技术–血浆制品）</strong><br>
+  <strong>判断依据：</strong>CSL核心业务（血浆制品~71%营收）属于<strong>防御性行业</strong>——免疫球蛋白（IG）、白蛋白、凝血因子等是慢性病/重症患者的刚需用药，需求与经济周期无关，全球老龄化推动中高个位数稳定增长。但CSL同时涉及<strong>成长性领域</strong>——Seqirus疫苗（技术迭代驱动）和Vifor（铁剂/肾病治疗），以及基因疗法等前沿领域。<br><br>
+  全球血浆制品市场规模约~US$350亿，CSL+Grifols+Takeda三家寡头合计市占率>75%，格局稳定。需求端驱动因素：① 全球老龄化（IG使用量随年龄增长）；② 适应症扩展（IG获批新适应症）；③ 发展中国家渗透率提升。CS5-7%长期增速，防御+成长属性兼具。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th></tr>
+  <tr><td>行业集中度</td><td><strong>高度集中（全球CR3 >70%）</strong>——CSL、Takeda（Shire）、Grifols三家寡头垄断全球血浆制品市场。行业整合已完成，新进入者几乎不可能。</td></tr>
+  <tr><td>监管壁垒</td><td><strong>极高</strong>——血浆采集受各国卫生部门（FDA/EMA/TGA）严格监管，新设采浆中心需多年审批。FDA对血浆制品生产过程的合规要求极高，认证周期3-5年以上。</td></tr>
+  <tr><td>规模壁垒</td><td><strong>极高</strong>——CSL运营全球~325个采浆中心，血浆供应链管理能力无法短期复制。血浆分馏产能、冷链物流网络都是重资产投入，规模效应显著。</td></tr>
+  <tr><td>技术壁垒</td><td><strong>高</strong>——血浆分馏工艺复杂（超过100个步骤），产品质量控制需要数十年经验积累。CSL在重组蛋白和基因疗法领域也有技术储备。</td></tr>
+  <tr><td>品牌壁垒</td><td><strong>中等</strong>——Hizentra（IG）、Berinert、Haegarda等品牌在医生和患者中有较高认可度，新品牌替代需大量学术推广。</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  <strong>阶段：成熟期（核心血浆业务）+ 成长期（Vifor/基因疗法新业务）</strong><br>
+  血浆制品行业整体处于<strong>成熟期</strong>——需求稳定增长（3-7%），格局稳定，竞争集中在成本和供应链效率。CSL作为全球龙头，核心任务是提效+创新。Vifor（铁剂/肾病）和基因疗法业务可以视为<strong>成长期</strong>的新增长极，但目前贡献有限且减值风险高。<br><br>
+  <strong>投资策略重点：</strong>关注血浆利润率是否修复（核心指标）、Vifor能否止亏、管理层是否有资本配置纪律（减少并购、降低杠杆）。
+</div>
+
+<h3>6.4 当前周期位置</h3>
+<div class="summary-box">
+  <strong>C当前周期位置：逆风期（调整底部区域）</strong><br>
+  CSL正处于罕见的"多重逆风"叠加期——FY2026盈利下降、Vifor减值、Seqirus增长放缓、管理层换帅。股价从A$275跌至A$90（-67%）后反弹至A$122，市场正在Price in最坏情景。几个信号值得关注：① PE 12.8x已处于10年最低区间；② 管理层明确FY2027为"恢复年"；③ 股价从A$90反弹表明市场认为最坏时期已过。这类似于2020年疫情初期血浆行业受冲击后的"危机买入"情景。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>防御+成长混合型（血浆）</td><td>PE + EV/EBITDA</td><td>股息率、FCF收益率、营收增速</td><td class="good">✅ 匹配——PE 12.8x+EV/EBITDA 9.3x均合理</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值方法总结：</strong>CSL作为防御+成长混合型公司，最适合用PE和EV/EBITDA估值。当前PE 12.8x处于历史最低区间，EV/EBITDA 9.3x低于全球同行均值（12-15x）。股息率3.69%（无franking）提供了一定的下行保护。核心分歧并非估值方法，而是"盈利底部在哪里"——若FY2027真能恢复增长，当前估值极具吸引力；若继续恶化，则可能进一步压缩估值。应密切关注FY2026年报（2026年8月18日）的最新指引。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>防御+成长混合型（血浆制品+疫苗+铁剂），全球寡头格局，CR3>70%，壁垒极高（监管+规模+技术三重）。<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 15.5%优秀，高利润型杜邦（净利率19.3%主导），CFO/净利1.19现金质量好，FCF A$27亿强劲。<br>
+  <strong>Step 3 - 估值判断：</strong>PE 12.8x处于近10年最低区间，EV/EBITDA 9.3x低于同行均值。券商目标A$140（+15%）。<br>
+  <strong>Step 4 - 风险排查：</strong>FY2026盈利下降（NPATA -6%）、Vifor减值~US$50亿、Tavneos EU退市风险、Seqirus前景不明、净负债A$103.6亿偏高。<br>
+  <strong>Step 5 - 结论：</strong>好公司（ROE>15%优质，壁垒深厚）但短期处于逆风期。当前估值已反映大部分悲观预期，是"好公司遇到了困难"而非"公司变质了"。<br>
+  <strong>Step 6 - 跟踪：</strong>血浆利润率恢复进度、Tavneos EU最终裁决、Seqirus疫苗业务是否继续萎缩、FY2027指引能否确认增长拐点、管理层资本配置策略。
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>血浆制品需求稳定（老龄化刚性需求），全球寡头格局，壁垒极高，长期增速3-7%</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓</td><td>ROE 15.5%达标，毛利率51.9%稳定+提升，CFO/净利1.19>1，FCF强劲</td></tr>
+  <tr><td>③ 好价格</td><td class="good">✓</td><td>PE 12.8x处于历史最低10%分位，PB 2.03x接近5年低点</td></tr>
+</table>
+
+<h3>7.3 三个陷阱排查</h3>
+<div class="danger-box">
+  <strong>☐ 价值陷阱：</strong>⚡ 部分命中——低PE（12.8x）+ 低增长（+5.1%）+ 高负债（A$103.6亿净债）。若FY2027无法恢复增长，当前"便宜"可能不便宜。需密切关注FY2027增长恢复进度。<br>
+  <strong>☐ 周期陷阱：</strong>❌ 未命中——血浆制品需求刚性，非周期行业。但Seqirus疫苗有季节性和政策周期属性，占比仅14%，整体风险可控。<br>
+  <strong>☐ 烧钱陷阱：</strong>❌ 未命中——CFO A$35.61亿强劲，FCF A$27亿持续为正，自我造血能力极强。
+</div>
+
+<h3>7.4 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——从美国人的血浆中提取免疫球蛋白和凝血因子，卖给全球的慢性病患者和血友病患者，赚监管壁垒和规模效应的钱。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——净负债A$103.6亿+利息支出每季~A$1.05亿。如果FY2027盈利恢复证伪，高杠杆+低增长=价值陷阱。另外，Tavneos退市若导致Vifor又一轮减值，商誉持续缩水。<br>
+  3. 如果现在买入，期待的回报来源是什么？——① 血浆利润率恢复到正常水平（FY2027-28）；② PE从12.8x修复到20x均值（EPS恢复+市场信心重建，目标~A$194）；③ 股息率3.69%提供下行保护。最大回报假设：A$90→A$194 = +115%。<br>
+  4. 什么情况下你会坚决卖出？——FY2027指引继续下调（NPATA<US$30亿）/ Tavneos退市导致Vifor大额减值/ 血浆同店增速跌破3%/ 管理层大幅增加债务用于并购。
+</div>
+
+</div></div>
+
+<div class="footer">
+    免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+    数据来源：CSL FY2025年报、FY2026H1中期报告、Yahoo Finance、Google Finance、Reuters、Market Index、券商研报
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>
