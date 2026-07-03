@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三友化工(600409) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>三友化工（600409）财务分析报告</h1>
+<p class="subtitle">基于 L1-L6 框架（财务三表+关键指标+估值+杜邦+行业分类+综合实战）</p>
+<p class="meta">分析日期：2026年6月 | 数据来源：FY2025 年报 + 2026Q1 季报</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>三友化工股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>600409.SH</td></tr>
+  <tr><td>所属行业</td><td>纯碱+粘胶短纤+氯碱+有机硅化工综合</td></tr>
+  <tr><td>行业地位</td><td>国内纯碱/粘胶短纤双龙头，纯碱产能340万吨/年</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>188.31 亿（-11.84%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>0.90 亿（-82.06%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>8.45 亿（-53.22%）</strong></td></tr>
+  <tr><td>总资产</td><td>266.65 亿</td></tr>
+  <tr><td>归母净资产</td><td>138.67 亿</td></tr>
+  <tr><td>ROE</td><td>0.65%</td></tr>
+</table>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">综合L1-L5所有因素，对各维度打分求和</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">0.65% < 5%</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">低利润均衡——净利率0.48%极低+周转0.71中低+杠杆1.92中</td></tr>
+  <tr><td>CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">9.39 ≥ 1.0，但虚高</td></tr>
+  <tr><td>营收增长（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">-11.84%，负增长</td></tr>
+  <tr><td>利润增长（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">-82.06%，利润归零</td></tr>
+  <tr><td>负债率（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">42.42% < 55%</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">尚可</td></tr>
+  <tr><td>毛利率（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">下行趋势</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">PE极高，周期底部</td></tr>
+  <tr><td>FCF（5分）</td><td class="bad" style="font-weight:bold;font-size:15px">3</td><td style="text-align:left">CFO 8.45亿正但下降53%</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">32/100</td><td style="text-align:left">不及格（32/100分）</td></tr>
+</table>
+
+<div class="verdict verdict-bad">不及格（32/100分）</div>
+
+<div class="danger-box">
+  <strong>综合诊断：</strong>三友化工是国内纯碱和粘胶短纤双龙头企业，纯碱产能340万吨/年位居行业前列。然而FY2025公司遭遇严重的周期下行冲击——营收下滑11.84%，归母净利润暴跌82.06%至不足1亿，扣非净利润几乎归零（仅0.05亿），ROE仅0.65%。<br><br>
+  <strong>核心风险：</strong>① 纯碱减利明显，是核心拖累因素；② 氯碱下滑，粘胶短纤虽有改善但不足以弥补；③ 2026Q1已陷入亏损（净利润-0.92亿）；④ 利息保障倍数仅1.70，偿债能力偏弱；⑤ 纯碱、粘胶、氯碱均为强周期产品，缺乏差异化竞争壁垒；⑥ ROE不到1%，资本回报率极低。<br><br>
+  <strong>正面因素：</strong>① 有机硅业务改善，但规模较小尚无法对冲；② 公司资产负债率42.42%尚可，财务结构未严重恶化。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>188.31 亿</td><td>213.62 亿</td><td>-11.84%</td><td class="bad">❌ 下滑</td></tr>
+  <tr><td>归母净利润</td><td><strong>0.90 亿</strong></td><td>5.02 亿</td><td><strong>-82.06%</strong></td><td class="bad">❌ 暴跌</td></tr>
+  <tr><td>扣非净利润</td><td><strong>0.05 亿</strong></td><td>4.58 亿</td><td><strong>-98.91%</strong></td><td class="bad">❌ 几乎归零</td></tr>
+  <tr><td>毛利率</td><td><strong>12.72%</strong></td><td>16.00%</td><td>-3.28pct</td><td class="bad">❌ 明显下滑</td></tr>
+  <tr><td>归母净利率</td><td><strong>0.48%</strong></td><td>2.35%</td><td>-1.87pct</td><td class="bad">❌ 极低</td></tr>
+  <tr><td>研发费用</td><td><strong>6.47 亿</strong></td><td>6.95 亿</td><td>-6.91%</td><td class="neutral">占营收3.43%</td></tr>
+  <tr><td>EPS</td><td><strong>0.0434 元</strong></td><td>0.2430 元</td><td>-82.14%</td><td class="bad">❌ 大幅下降</td></tr>
+  <tr><td>2026Q1 营收</td><td>45.08 亿</td><td>47.65 亿</td><td>-5.40%</td><td class="bad">❌ 继续下滑</td></tr>
+  <tr><td>2026Q1 净利润</td><td><strong>-0.92 亿</strong></td><td>0.15 亿</td><td>—</td><td class="bad">❌ 已亏损</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>利润表解读：</strong>利润表全面恶化。营收下滑11.84%叠加毛利率从16.00%大幅降至12.72%（-3.28pct），导致毛利额大幅缩减。归母净利润从5.02亿暴跌至0.90亿（-82.06%），扣非净利润更是只剩0.05亿。2026Q1已陷入亏损（-0.92亿），表明公司经营仍未触底。研发费用维持6.47亿（占营收3.43%）是少数中性因素。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td><strong>~27 亿（估）</strong></td><td class="neutral">尚可</td></tr>
+  <tr><td>应收账款</td><td><strong>~7 亿（估）</strong></td><td class="neutral">占营收3.7%，合理</td></tr>
+  <tr><td>存货</td><td><strong>~28 亿（估）</strong></td><td class="neutral">占比适中</td></tr>
+  <tr><td>固定资产</td><td><strong>~130 亿（估）</strong></td><td class="neutral">重资产化工企业</td></tr>
+  <tr><td>短期借款</td><td><strong>~35 亿（估）</strong></td><td class="neutral">偏高</td></tr>
+  <tr><td>资产负债率</td><td><strong>42.42%</strong></td><td class="good">✅ 适中</td></tr>
+  <tr><td>归母净资产</td><td>138.67 亿</td><td class="neutral">同比基本持平</td></tr>
+  <tr><td>总资产</td><td>266.65 亿</td><td class="neutral">同比-1.2%</td></tr>
+  <tr><td>利息保障倍数</td><td><strong>1.70</strong></td><td class="bad">❌ 偏低</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>资产负债表解读：</strong>资产负债率42.42%在化工行业中处于合理水平，归母净资产138.67亿未出现明显侵蚀。但需要警惕的是利息保障倍数仅1.70——息税前利润勉强覆盖利息支出，若周期继续下行，偿债压力将明显加大。作为重资产化工企业，固定资产占比较高，折旧压力长期存在。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>8.45 亿</strong></td><td>18.06 亿</td><td class="bad">❌ 大幅下降-53.22%</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><strong>~-10 亿（估）</strong></td><td>-13.5 亿</td><td class="neutral">资本开支收窄</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td><strong>~2 亿（估）</strong></td><td>-3.5 亿</td><td class="neutral">变化不大</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>9.39</strong></td><td>3.60</td><td class="neutral">⚠ 因利润基数极低失真</td></tr>
+  <tr><td>分红</td><td><strong>每10股0.30元</strong></td><td>—</td><td class="neutral">极低</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>经营现金流8.45亿同比大降53.22%，与利润暴跌的方向一致。CFO/净利润高达9.39看似优秀，实因利润基数极低（0.90亿）导致的失真指标——经营现金流中包含了大量折旧摊销等非现金项，实际现金生成能力大幅弱化。投资现金流流出收窄，公司正在压缩资本开支以应对周期低谷。每股分红仅0.30元，已降至极低水平。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>0.65%</strong></td><td>> 15% 优秀 / > 10% 及格</td><td class="bad">❌ 极差</td></tr>
+  <tr><td>毛利率</td><td><strong>12.72%</strong></td><td>稳定或提升</td><td class="bad">❌ 大幅下降3.28pct</td></tr>
+  <tr><td>净利率</td><td><strong>0.48%</strong></td><td>> 10%</td><td class="bad">❌ 极低</td></tr>
+  <tr><td>营收增长率</td><td><strong>-11.84%</strong></td><td>> 10%</td><td class="bad">❌ 负增长</td></tr>
+  <tr><td>扣非增长率</td><td><strong>-98.91%</strong></td><td>正增长</td><td class="bad">❌ 几乎归零</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>9.39</strong></td><td>> 1</td><td class="neutral">⚠ 利润基数极低失真</td></tr>
+  <tr><td>资产负债率</td><td><strong>42.42%</strong></td><td>制造业<60%</td><td class="good">✅ 合理</td></tr>
+  <tr><td>利息保障倍数</td><td><strong>1.70</strong></td><td>> 3</td><td class="bad">❌ 偏低</td></tr>
+</table>
+
+<h3>3.2 板块业务分析（FY2025）</h3>
+<table>
+  <tr><th>业务板块</th><th>表现</th><th>评价</th></tr>
+  <tr><td>纯碱</td><td>减利明显，核心拖累</td><td class="bad">❌ 周期下行核心拖累</td></tr>
+  <tr><td>粘胶短纤</td><td>有改善但不足弥补</td><td class="neutral">⚠ 改善中</td></tr>
+  <tr><td>氯碱</td><td>下滑</td><td class="bad">❌ 下滑</td></tr>
+  <tr><td>有机硅</td><td>改善但规模小</td><td class="neutral">⚠ 正面但贡献有限</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>业务解读：</strong>纯碱是三友化工最大的利润来源，但2025年纯碱价格大幅下跌导致该板块严重拖累整体业绩。粘胶短纤虽有改善，但改善幅度不足以对冲纯碱和氯碱的下滑。有机硅业务有所改善，但规模占比太小，难以对整体产生实质影响。公司面临核心产品全面周期下行的困境，且产品高度同质化、缺乏差异化竞争壁垒。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="bad">🔴 极高</td><td>ROE仅0.65%，远不及格线</td><td>L2 盈利指标</td></tr>
+  <tr><td class="bad">🔴 极高</td><td>扣非净利润0.05亿几乎归零</td><td>L1 利润表</td></tr>
+  <tr><td class="bad">🔴 极高</td><td>归母净利润暴跌82.06%</td><td>L1 利润表</td></tr>
+  <tr><td class="bad">🔴 极高</td><td>2026Q1已陷入亏损</td><td>L1 利润表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>利息保障倍数仅1.70，偿债偏弱</td><td>L1 资产负债表</td></tr>
+  <tr><td class="bad">🔴 极高</td><td>纯碱核心业务强周期，产品无差异化</td><td>L2 业务分析</td></tr>
+  <tr><td class="bad">🔴 极高</td><td>毛利率大幅下降3.28pct</td><td>L1 利润表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>资产负债率42.42%尚可</td><td>L1 资产负债表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>有机硅业务边际改善</td><td>L2 业务分析</td></tr>
+</table>
+
+<div class="verdict verdict-bad">✘ L2综合判定：风险警示（ROE 0.65%，核心业务全面下滑，已进入亏损）</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>股价（2026.6）</td><td><strong>~7.5 元（估）</strong></td><td>周期底部区间</td></tr>
+  <tr><td>总市值</td><td><strong>~155 亿（估）</strong></td><td>基于总股本20.65亿股</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>~175x</strong></td><td>因利润极低已失真</td></tr>
+  <tr><td>PB</td><td><strong>~1.1x</strong></td><td>基于每股净资产~6.71元</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~0.82x</strong></td><td>市销率较低（周期底部特征）</td></tr>
+  <tr><td>股息率</td><td><strong>~0.4%</strong></td><td>基于每股分红0.03元</td></tr>
+</table>
+
+<h3>4.2 PE Band估值区间</h3>
+<p style="font-size:13px;color:#666;">ROE 0.65% → 合理PE参考区间：<8x | 周期底部PE失真，应以PB估值为主要参考</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs现价~7.5元</th></tr>
+  <tr><td>周期底部PE失真</td><td>~175x</td><td>—</td><td class="bad">❌ PE已无参考意义</td></tr>
+  <tr><td>合理PE（低ROE）</td><td><8x</td><td><1.5 元（基于异常利润）</td><td class="neutral">PE法不适用</td></tr>
+  <tr><td>PB参考-净资产</td><td>PB ~1.0x</td><td>~6.7 元</td><td class="neutral">⚠ 接近净资产</td></tr>
+  <tr><td>PB参考-历史底部</td><td>PB ~0.7x</td><td>~4.7 元</td><td class="bad">-37%</td></tr>
+  <tr><td>PB参考-周期中值</td><td>PB ~1.5x</td><td>~10.1 元</td><td>+35%</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>估值分析：</strong><br>
+  ① PE（TTM）~175x，因利润基数极低已完全失真，无法用于估值判断；<br>
+  ② PB ~1.1x，处于历史偏低水平，接近每股净资产6.71元，提供一定安全边际；<br>
+  ③ 以ROE 0.65%对应的合理PE<8x计算，PE法完全不适用；<br>
+  ④ 周期底部应使用PB估值更为合理，参考化工周期股历史底部PB通常在0.7-1.2x之间；<br>
+  ⑤ 当前PB ~1.1x处于历史底部区域但并非极端低位，周期是否真正触底尚待观察；<br>
+  ⑥ 2026Q1已亏损，若周期继续下行，净资产可能进一步被侵蚀。
+</div>
+
+<h3>4.3 历史PB区间</h3>
+<table>
+  <tr><th>指标</th><th>数值</th></tr>
+  <tr><td>PB 历史高位</td><td>~3.5x</td></tr>
+  <tr><td>PB 80%分位</td><td>~2.5x</td></tr>
+  <tr><td>PB 50%分位（中值）</td><td>~1.6x</td></tr>
+  <tr><td>PB 20%分位</td><td>~1.0x</td></tr>
+  <tr><td>PB 历史低位</td><td>~0.6x</td></tr>
+  <tr><td>当前PB</td><td class="neutral">~1.1x（偏低区域）</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值总结：</strong>三友化工处于典型周期底部——PE已失真（~175x），PB ~1.1x处于历史偏低区域。周期底部无法用PE合理估值，PB是更好的参考维度。当前PB 1.1x高于历史最低的0.6x，也略高于20%分位的1.0x，说明市场认为周期尚未完全见底。投资者需密切关注纯碱和粘胶短纤价格走势、2026Q2能否减亏，以及行业供给出清进度。当前股价对价值投资者来说，左侧布局的时机可能尚未成熟——需要看到明确的周期拐点信号。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>净利润率</td><td>~3.1%</td><td><strong>0.48%</strong></td><td class="bad">⬇ 暴跌</td></tr>
+  <tr><td>资产周转率</td><td>~0.69</td><td><strong>0.71</strong></td><td class="neutral">➡ 持平</td></tr>
+  <tr><td>权益乘数</td><td>1.90</td><td><strong>1.92</strong></td><td class="neutral">➡ 稳定</td></tr>
+  <tr><td><strong>ROE</strong></td><td><strong>~4.1%</strong></td><td><strong>0.7%</strong></td><td class="bad">⬇ 暴跌</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>2.1%</td><td><strong>0.3%</strong></td><td class="bad">几乎为零</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>2.0pct</td><td><strong>0.4pct</strong></td><td class="bad">杠杆也救不了</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>赚钱模式判断：全面崩溃型——周期底部深陷</strong><br>
+  三友化工净利润率从3.1%暴跌至0.48%，ROE从4.1%降至0.7%。三个因子全部走弱：净利率归零，周转率停滞，杠杆无法挽救。去掉杠杆后ROA仅0.3%，纯碱和粘胶双龙头正在经历行业最差时刻。<br><br>
+  <strong>2026Q1已亏损：</strong>净利润-0.92亿，如果亏损持续，ROE将转为负值。
+</div>
+
+<div class="summary-box">
+  <strong>核心结论：</strong><br>
+  ① 净利润率从3.1%→0.48%是ROE暴跌的唯一原因——周期下行压缩所有纯碱和粘胶企业的利润空间；<br>
+  ② 2026Q1已亏损-0.92亿，若全年亏损ROE将为负；<br>
+  ③ 唯一的安慰：负债率42%不高，财务结构尚未恶化；<br>
+  ④ 投资逻辑不在于公司本身，而在于纯碱和粘胶价格何时见底回升。
+</div></div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与周期分析（L5框架）</h2>
+
+<div class="summary-box">
+  <strong>行业类型判断：纯周期——基础化工（纯碱+粘胶短纤+氯碱+有机硅）</strong><br>
+  三友化工属于<b>纯周期型</b>行业。纯碱、粘胶短纤、氯碱均为大宗化工品，产品高度同质化，价格由供需关系决定。行业成熟，长期增速≈GDP增速，利润完全靠供需错配驱动。2025年纯碱价格大幅下跌导致公司利润暴跌82%，是典型的周期下行特征。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>内容</th></tr>
+  <tr><td>市场格局</td><td>纯碱行业CR3约40%呈分散竞争，三友产能340万吨/年为国内双龙头之一</td></tr>
+  <tr><td>进入壁垒</td><td>规模壁垒（百亿级投资）、环保壁垒（化工项目审批趋严）、资源壁垒（原盐、石灰石等资源获取）</td></tr>
+  <tr><td>财务验证</td><td>固定资~130亿占总资产49%，重资产特征验证规模壁垒；但毛利率12.72%低于好公司标准，说明成本优势未转化为定价权</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  成熟期——纯碱、粘胶、氯碱均为成熟化工产品，技术路线稳定，需求随宏观经济周期波动。行业增长空间有限，企业之间的竞争主要体现在成本和规模。
+</div>
+
+<h3>6.4 当前周期位置</h3>
+<div class="danger-box">
+  <strong>周期底部（深亏期）</strong><br>
+  ① 2025年净利润暴跌82%至0.90亿，扣非净利润仅0.05亿几乎归零；<br>
+  ② 2026Q1已陷入亏损（-0.92亿），为近年首次单季亏损；<br>
+  ③ 纯碱价格处于周期低位，粘胶短纤虽有改善但不足以弥补；<br>
+  ④ 行业库存处于高位，供给出清尚未完成；<br>
+  ⑤ 投资者需等待纯碱价格见底回升的明确信号，左侧布局需谨慎。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>当前指标</th><th>评价</th></tr>
+  <tr><td>纯周期（化工）</td><td>PB（市净率）</td><td>PB ~1.1x</td><td class="good">✅ 历史偏低区域，接近20%分位（1.0x）</td></tr>
+  <tr><td>PE参考</td><td>周期顶部失真</td><td>PE ~175x</td><td class="bad">❌ 利润极低已完全失真</td></tr>
+  <tr><td>辅助指标</td><td>PS/产能利用率</td><td>PS ~0.82x</td><td class="neutral">⚡ 底部特征</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值方法总结：</strong>周期底部PE已完全失真（~175x），当前应使用PB估值。PB 1.1x接近历史20%分位（1.0x），处于偏低区域，但高于历史极端底部（0.6x）。对于周期股，低PE往往是陷阱（周期顶部利润高估），低PB才是机会（周期底部净资产未被充分定价）。当前策略：等待纯碱价格触底信号，PB跌破1.0x以下或可左侧布局。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战分析（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>周期性行业（纯周期——基础化工），纯碱/粘胶双龙头，行业分散（CR3~40%），规模+环保壁垒<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 0.65%（极低），杜邦"全面崩溃型"（净利率0.48%+周转0.71+杠杆1.92），CFO 8.45亿但利润基数极低失真<br>
+  <strong>Step 3 - 估值判断：</strong>PE ~175x已失真，PB ~1.1x历史偏低（20%分位~1.0x，中值~1.6x），对同行无直接可比<br>
+  <strong>Step 4 - 风险排查：</strong>核心风险：利润几乎归零+2026Q1已亏损+纯碱无差异化壁垒+利息保障倍数仅1.70<br>
+  <strong>Step 5 - 结论：</strong>⛔ 非好公司——ROE极低，周期底部盈利崩溃。⛔ 价格不便宜——PB 1.1x虽低但周期拐点未至<br>
+  <strong>Step 6 - 跟踪：</strong>关键指标：纯碱价格走势、2026Q2能否减亏、行业供给出清进度。卖出信号：行业持续亏损但公司无成本优势
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>检查结果</th><th>说明</th></tr>
+  <tr><td>① 好行业</td><td class="bad">✗</td><td>纯碱/粘胶行业成熟无增长，产品同质化，缺乏差异化空间。需求随宏观波动</td></tr>
+  <tr><td>② 好公司</td><td class="bad">✗</td><td>ROE 0.65%远低于15%优秀线，毛利率下行，CFO/净利失真，但在化工综合领域龙头地位尚可</td></tr>
+  <tr><td>③ 好价格</td><td class="neutral">⚠</td><td>PB 1.1x接近历史低位，但周期底部利润为零，PE已失真。好价格需要PB<1.0x且看到周期拐点信号</td></tr>
+</table>
+
+<h3>7.3 三个陷阱排查</h3>
+<div class="danger-box">
+  <strong>陷阱排查结果：</strong><br><br>
+  ☑ <strong>价值陷阱：</strong>低PE？PE ~175x极高，非低PE。低增长（-82%）+负债率42%尚可 → <b>❌ 不命中</b><br><br>
+  ☑ <strong>周期陷阱：</strong>低PE(~175x)？否，PE极高。但注意：周期顶部特征是低PE+高利润，三友处于周期底部。 → <b>⚠ 注意：当前是周期底部而非顶部，需警惕"抄底过早"的风险而非PE陷阱</b><br><br>
+  ☑ <strong>烧钱陷阱：</strong>高PE（~175x）+ 高增速？负增长，CFO为正 → <b>❌ 不命中</b>
+</div>
+
+<h3>7.4 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？三友化工怎么赚钱？——买原料做纯碱/粘胶，靠产能规模赚加工费。问题在于产品没差异，利润完全看市场行情。<br>
+  2. 你最大的担忧是什么？——纯碱价格何时见底？会不会跌破现金成本？2026全年会不会持续亏损？<br>
+  3. 如果现在买入，期待的回报来源是什么？——赌纯碱周期反转。PB从1.1x修复到1.5x（中值），股价上涨36%。外加周期反转后的利润回归。<br>
+  4. 什么情况下你会坚决卖出？——纯碱价格持续下跌无见底信号 / 公司出现现金流危机 / 发现比三友更好的周期标的。
+</div>
+
+</div></div>
+
+</div></div>
+
+<div class="footer">
+   免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+   数据来源：三友化工2025年年报、2026Q1季报、券商研报、理杏仁
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

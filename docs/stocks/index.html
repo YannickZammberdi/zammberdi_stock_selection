@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>个股报告 – 股票研究笔记</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#333}
+  .wrap{max-width:900px;margin:0 auto;padding:32px 16px}
+  .top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:20px;flex-wrap:wrap;gap:8px}
+  .top h1{font-size:22px;font-weight:700}
+  .top a{font-size:13px;color:#888;text-decoration:none}
+  .top a:hover{color:#333}
+  .toolbar{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+  .toolbar input,.toolbar select{padding:8px 12px;border:1px solid #ddd;border-radius:8px;font-size:13px;background:#fff;outline:none;font-family:inherit}
+  .toolbar input{flex:1;min-width:180px}
+  .toolbar input:focus,.toolbar select:focus{border-color:#888}
+  table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;border:1px solid #eee}
+  th{background:#f8f8f8;padding:10px 12px;font-size:12px;font-weight:600;color:#666;text-align:left;cursor:pointer;user-select:none;white-space:nowrap;border-bottom:1px solid #eee}
+  th:hover{background:#f0f0f0}
+  th .arrow{color:#bbb;margin-left:3px;font-size:11px}
+  td{padding:10px 12px;font-size:13px;border-bottom:1px solid #f5f5f5}
+  tr:hover td{background:#fafafa}
+  tr:last-child td{border-bottom:none}
+  .tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600}
+  .tag-cycle{background:#ffebee;color:#c62828}
+  .tag-mix{background:#fff3e0;color:#e65100}
+  .tag-growth{background:#e8f5e9;color:#2e7d32}
+  .tag-def{background:#e3f2fd;color:#1565c0}
+  .tag-special{background:#f3e5f5;color:#7b1fa2}
+  .count-bar{color:#888;font-size:13px;margin-bottom:12px}
+  .empty{text-align:center;color:#aaa;padding:40px;font-size:14px}
+  .footer{text-align:center;font-size:12px;color:#ccc;margin-top:40px}
+  a{color:#1a73e8;text-decoration:none}
+  a:hover{text-decoration:underline}
+  .code{color:#999;font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <h1>📋 个股报告</h1>
+    <a href="../">← 返回首页</a>
+  </div>
+
+  <div class="toolbar">
+    <input type="text" id="search" placeholder="搜索股票名称或代码…" oninput="render()">
+    <select id="filter" onchange="render()">
+      <option value="">全部类型</option>
+      <option value="混合周期">混合周期</option>
+      <option value="周期性">周期性</option>
+      <option value="成长性">成长性</option>
+      <option value="防御性">防御性</option>
+      <option value="特殊行业">特殊行业</option>
+    </select>
+  </div>
+
+  <div class="count-bar" id="count">共 24 份</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th onclick="sort('name')">股票 <span class="arrow" id="a-name">▼</span></th>
+        <th onclick="sort('code')">代码 <span class="arrow" id="a-code">▲</span></th>
+        <th onclick="sort('type')">L5分类 <span class="arrow" id="a-type">▲</span></th>
+        <th onclick="sort('date')">分析日期 <span class="arrow" id="a-date">▲</span></th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+  <div class="footer">仅限个人研究参考</div>
+</div>
+
+<script>
+const data = [
+  {name:"新和成", code:"002001", type:"混合周期", date:"2026-07", file:"新和成_002001_分析报告.html"},
+  {name:"东方财富", code:"300059", type:"周期性", date:"2026-07", file:"东方财富_300059_分析报告.html"},
+  {name:"中信证券", code:"600030", type:"周期性", date:"2026-07", file:"中信证券_600030_分析报告.html"},
+  {name:"三友化工", code:"600409", type:"周期性", date:"2026-06", file:"三友化工_600409_分析报告.html"},
+  {name:"中材科技", code:"002080", type:"周期性", date:"2026-06", file:"中材科技_002080_分析报告.html"},
+  {name:"五洲新春", code:"603667", type:"周期性", date:"2026-06", file:"五洲新春_603667_分析报告.html"},
+  {name:"沧州大化", code:"600230", type:"周期性", date:"2026-06", file:"沧州大化_600230_分析报告.html"},
+  {name:"牧原股份", code:"002714", type:"周期性", date:"2026-06", file:"牧原股份_002714_分析报告.html"},
+  {name:"皖维高新", code:"600063", type:"周期性", date:"2026-06", file:"皖维高新_600063_分析报告.html"},
+  {name:"金发科技", code:"600143", type:"周期性", date:"2026-06", file:"金发科技_600143_分析报告.html"},
+  {name:"东鹏饮料", code:"605499", type:"成长性", date:"2026-06", file:"东鹏饮料_605499_分析报告.html"},
+  {name:"宁德时代", code:"300750", type:"成长性", date:"2026-06", file:"宁德时代_300750_分析报告.html"},
+  {name:"雅克科技", code:"002409", type:"成长性", date:"2026-06", file:"雅克科技_002409_分析报告.html"},
+  {name:"兆易创新", code:"603986", type:"混合周期", date:"2026-06", file:"兆易创新_603986_分析报告.html"},
+  {name:"德业股份", code:"605117", type:"混合周期", date:"2026-06", file:"德业股份_605117_分析报告.html"},
+  {name:"横店东磁", code:"002056", type:"混合周期", date:"2026-06", file:"横店东磁_002056_分析报告.html"},
+  {name:"盛新锂能", code:"002240", type:"混合周期", date:"2026-06", file:"盛新锂能_002240_分析报告.html"},
+  {name:"福斯特", code:"603806", type:"混合周期", date:"2026-06", file:"福斯特_603806_分析报告.html"},
+  {name:"金辰股份", code:"603396", type:"混合周期", date:"2026-06", file:"金辰股份_603396_分析报告.html"},
+  {name:"阳光电源", code:"300274", type:"混合周期", date:"2026-06", file:"阳光电源_300274_分析报告.html"},
+  {name:"阿尔特", code:"300825", type:"混合周期", date:"2026-06", file:"阿尔特_300825_分析报告.html"},
+  {name:"北京文化", code:"000802", type:"特殊行业", date:"2026-06", file:"北京文化_000802_分析报告.html"},
+  {name:"寒武纪", code:"688256", type:"特殊行业", date:"2026-06-27", file:"寒武纪_688256_分析报告.html"},
+  {name:"伊利股份", code:"600887", type:"防御性", date:"2026-06", file:"伊利股份_600887_分析报告.html"}
+];
+
+let sortKey='date', sortDir=-1;
+
+function typeClass(t){
+  const m={'周期性':'tag-cycle','混合周期':'tag-mix','成长性':'tag-growth','防御性':'tag-def','特殊行业':'tag-special'};
+  return m[t]||'tag-cycle';
+}
+
+function render(){
+  const q=document.getElementById('search').value.trim().toLowerCase();
+  const f=document.getElementById('filter').value;
+  let rows=data.filter(d=>(!q||d.name.includes(q)||d.code.includes(q))&&(!f||d.type===f));
+  const cmp=(a,b)=>{const v=a[sortKey],w=b[sortKey];return v<w?-1:v>w?1:0};
+  rows.sort((a,b)=>cmp(a,b)*sortDir);
+  document.getElementById('count').textContent='共 '+rows.length+' 份';
+  const tbody=document.getElementById('tbody');
+  tbody.innerHTML=rows.map(d=>'<tr><td><a href="'+d.file+'">'+d.name+'</a></td><td class="code">'+d.code+'</td><td><span class="tag '+typeClass(d.type)+'">'+d.type+'</span></td><td style="color:#888">'+d.date+'</td></tr>').join('');
+  if(!rows.length) tbody.innerHTML='<tr><td colspan="4" class="empty">没有匹配的报告</td></tr>';
+}
+
+function sort(k){
+  if(sortKey===k)sortDir*=-1;else{sortKey=k;sortDir=-1}
+  ['name','code','type','date'].forEach(k=>document.getElementById('a-'+k).textContent=k===sortKey?(sortDir<0?'▼':'▲'):'');
+  render();
+}
+
+render();
+</script>
+</body>
+</html>

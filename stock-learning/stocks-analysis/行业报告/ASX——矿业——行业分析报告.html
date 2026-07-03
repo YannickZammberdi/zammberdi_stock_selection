@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ASX——矿业 行业分析报告</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f5f5f5;padding:0;color:#333}
+  .report-wrap{max-width:800px;margin:0 auto;background:#fff}
+  h1{font-size:22px;margin:0;padding:28px 0 4px;text-align:center}
+  h2{font-size:18px;margin:28px 0 12px;border-bottom:2px solid #1a1a1a;padding-bottom:4px}
+  h3{font-size:15px;margin:18px 0 8px}
+  .subtitle{color:#666;font-size:13px;text-align:center;margin-bottom:4px}
+  .meta{color:#999;font-size:12px;text-align:center;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #e0e0e0}
+  .tab-bar{position:sticky;top:0;z-index:10;background:#fff;display:flex;flex-wrap:wrap;border-bottom:2px solid #ddd;gap:0}
+  .tab-btn{padding:10px 14px;cursor:pointer;border:none;background:none;font-size:13px;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+  .tab-btn:hover{color:#333;background:#f9f9f9}
+  .tab-btn.active{color:#1a1a1a;font-weight:700;border-bottom-color:#1a1a1a}
+  .tab-content{display:none}
+  .tab-content.active{display:block}
+  .tab-inner{padding:0 12px}
+  table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:13px}
+  th{background:#f5f5f5;padding:8px 6px;text-align:left;border-bottom:2px solid #ddd;white-space:nowrap;font-weight:600}
+  td{padding:7px 6px;border-bottom:1px solid #eee}
+  tr:nth-child(even) td{background:#fafafa}
+  .summary-box{background:#fffde7;border-left:4px solid #f9a825;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .highlight-box{background:#e3f2fd;border-left:4px solid #1e88e5;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .danger-box{background:#ffebee;border-left:4px solid #e53935;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .verdict{text-align:center;padding:20px;margin:16px 0;border-radius:8px;font-size:18px;font-weight:700}
+  .verdict-ok{background:#e8f5e9;border:2px solid #4caf50;color:#2e7d32}
+  .verdict-caution{background:#fff3e0;border:2px solid #ff9800;color:#e65100}
+  .verdict-bad{background:#ffebee;border:2px solid #e53935;color:#c62828}
+  .score{font-size:36px;display:block;margin-bottom:4px}
+  .pass{color:#2e7d32;font-weight:700}
+  .skip{color:#666;font-style:italic}
+  .tag{display:inline-block;padding:2px 8px;border-radius:3px;font-size:11px;font-weight:700}
+  .tag-red{background:#ffebee;color:#c62828}
+  .tag-green{background:#e8f5e9;color:#2e7d32}
+  .tag-yellow{background:#fff8e1;color:#f57f17}
+  .footer{font-size:11px;color:#aaa;text-align:center;padding:24px 0 8px;border-top:1px solid #eee;margin-top:30px}
+  .card{background:#fafafa;border:1px solid #e0e0e0;border-radius:6px;padding:14px;margin:10px 0;font-size:13px}
+  .flex{display:flex;flex-wrap:wrap;gap:8px}
+  .tbl-wrap{border:1px solid #e0e0e0;border-radius:6px;overflow:hidden;margin:10px 0 18px}
+  .tbl-wrap table{margin:0}
+  .tbl-wrap th{background:#f5f5f5;padding:9px 8px;border-bottom:1px solid #ddd;font-weight:600;font-size:12px}
+  .tbl-wrap td{padding:8px;border-bottom:1px solid #f0f0f0;font-size:13px}
+  .tbl-wrap tr:last-child td{border-bottom:none}
+  .bar-wrap{display:inline-flex;align-items:center;width:60px;height:16px;vertical-align:middle}
+  .bar-bg{background:#eee;border-radius:4px;height:8px;width:100%;overflow:hidden;position:relative}
+  .bar{display:block;height:8px;border-radius:4px}
+  .score-cell{font-weight:700;font-size:15px;text-align:center;white-space:nowrap}
+  .tbl-wrap td,.tbl-wrap th{vertical-align:middle}
+  .metric-h{color:#1565c0;font-weight:700;font-size:13px}
+  .metric-l{color:#c62828;font-weight:700}
+  .metric-m{color:#e65100;font-weight:700}
+  .col-tag{display:inline-block;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600}
+  .col-win{background:#e8f5e9;color:#2e7d32}
+  .col-lose{background:#ffebee;color:#c62828}
+  .col-warn{background:#fff3e0;color:#e65100}
+  .col-info{background:#e3f2fd;color:#1565c0}
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>ASX——矿业 行业分析报告</h1>
+<div class="subtitle">L5分类：纯周期 ｜ 上市公司：~250家（含生产者~150家 + 勘探~200家） ｜ 总市值：~7800亿AUD</div>
+<div class="meta">生成日期：2026-07-03</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l7">L7 量化初筛</button>
+  <button class="tab-btn" data-tab="l8">L8 行业画像</button>
+  <button class="tab-btn" data-tab="l9">L9 竞争格局</button>
+  <button class="tab-btn" data-tab="l10">L10 周期时机</button>
+</div>
+
+<div class="tab-content active" id="tab-summary">
+<div class="tab-inner">
+
+<h2>行业速览</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">项目</th><th>内容</th></tr>
+<tr><td>行业名称</td><td><strong>矿业（Mining）</strong></td></tr>
+<tr><td>市场</td><td>ASX</td></tr>
+<tr><td>L5分类</td><td><span class="col-tag col-lose">纯周期</span> 受全球大宗商品供需周期驱动，利润随价格剧烈波动</td></tr>
+<tr><td>上市公司</td><td>~250家矿企 + ~200家勘探公司，其中符合L7筛选条件 <span class="col-tag col-win">15只</span></td></tr>
+<tr><td>行业总市值</td><td>~7800亿AUD（占ASX总市值约26%）</td></tr>
+<tr><td>产业链利润核心</td><td><span class="col-tag col-win">上游开采</span> ——低成本矿企在商品高价期利润极高（BHP/RIO毛利率60%+）</td></tr>
+<tr><td>生命周期阶段</td><td><span class="col-tag col-warn">成熟期</span> 各子行业均已成熟，新矿山开发周期长（5-10年）</td></tr>
+<tr><td>当前周期位置</td><td><span class="col-tag col-warn">子行业分化</span> 黄金历史高位 ╱ 铁矿石中位 ╱ 锂从底部反弹50%+ ╱ 铜/铀中高位</td></tr>
+</table>
+</div>
+
+<h2>综合评分</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>维度</th><th style="width:60px">得分</th><th>进度</th><th>说明</th></tr>
+<tr>
+  <td>行业规模与空间</td>
+  <td class="score-cell">17/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:85%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">全球最大矿业上市地之一，澳大利亚年矿产品出口~3830亿AUD，TAM超万亿</td>
+</tr>
+<tr>
+  <td>产业链位置</td>
+  <td class="score-cell">11/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:73%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">上游资源端，利润波动大但资源稀缺性提供长期价值支撑</td>
+</tr>
+<tr>
+  <td>竞争格局</td>
+  <td class="score-cell">12/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:60%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">铁矿石寡头，金矿分散，锂矿整合中；商品同质化无品牌溢价</td>
+</tr>
+<tr>
+  <td>增长驱动力</td>
+  <td class="score-cell">12/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:80%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">电气化+AI数据中心+能源转型+避险多重驱动，结构性需求强劲</td>
+</tr>
+<tr>
+  <td>周期位置</td>
+  <td class="score-cell">7/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:47%;background:#f44336"></span></span></span></td>
+  <td style="font-size:12px;color:#555">多数商品处于中高位，黄金创历史新高，需警惕周期顶部风险</td>
+</tr>
+<tr>
+  <td>政策环境</td>
+  <td class="score-cell">10/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:67%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">澳洲矿业政策稳定，但全球去碳化长期利空化石燃料/上下游</td>
+</tr>
+<tr style="background:#fafafa">
+  <td style="font-weight:700;font-size:14px">总分</td>
+  <td style="font-weight:700;font-size:16px;color:#e65100">69/100</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:69%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#e65100;font-weight:600">一般——子行业高度分化，金矿过热需谨慎，锂矿底部复苏值得关注</td>
+</tr>
+</table>
+</div>
+
+<div class="verdict verdict-caution">
+  <span class="score">69</span>
+  一般——子行业高度分化
+</div>
+
+<div class="summary-box">
+  <strong>核心结论</strong><br>
+  ASX矿业是全球最优质的矿业投资池之一。当前各子行业周期位置分化巨大：<strong>黄金</strong>创历史新高（A$4700+/oz），利润丰厚但PB已处高位（NST PB~2.0x）；<strong>铁矿石</strong>中位震荡（~$106/吨），BHP/RIO/FMG分红稳定；<strong>锂矿</strong>从2025年低谷反弹60%+（SC6 ~$2220/t），PLS等已恢复盈利，但距2022年高点仍有空间；<strong>铜/铀</strong>在长期牛市中。综合判断：<span class="col-tag col-warn">子行业分别处理</span>——锂/铜可关注，金矿等回调，铁矿石逢低收股息。
+</div>
+
+<div class="highlight-box">
+  <strong>行业公式</strong><br>
+  收入 = 产量(吨/oz) × 商品价格($/t or $/oz) × AUD/USD汇率<br>
+  核心跟踪指标：1) 铁矿石62% CFR 2) 金价(AUD/oz) 3) 锂辉石SC6价格 4) LME铜价 5) AUD/USD汇率 6) 各矿企AISC成本曲线
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l7">
+<div class="tab-inner">
+
+<h2>筛子调整说明</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:12%">筛子</th><th style="width:35%">标准</th><th>调整说明</th></tr>
+<tr><td>①<span class="col-tag col-info">市值</span></td><td>ASX ≥ 2亿AUD</td><td>ASX小矿企极多，保留2亿门槛以剔除纯勘探壳公司</td></tr>
+<tr><td>②<span class="col-tag col-info">营收</span></td><td>ASX ≥ 1亿AUD</td><td>保留营收门槛，排除无收入或极低收入的公司</td></tr>
+<tr><td>③<span class="col-tag col-info">毛利率</span></td><td><span class="col-tag col-info">跳过此筛</span></td><td>矿业毛利率受大宗价格影响极大，不适合固定阈值</td></tr>
+<tr><td>④<span class="col-tag col-info">ROE</span></td><td>≥5%</td><td>放宽至5%（全球矿企在周期底部ROE常&lt;8%）</td></tr>
+<tr><td>⑤<span class="col-tag col-info">负债率</span></td><td>≤65%</td><td>正常执行，矿业重资产但好公司负债率普遍低（BHP~45%）</td></tr>
+<tr><td>⑥<span class="col-tag col-info">估值</span></td><td>PB历史分位≤80%</td><td>纯周期行业用PB替代PE，高位不追</td></tr>
+</table>
+</div>
+
+<h2>候选池（15只）</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>子行业</th><th>市值</th><th>毛利率</th><th>ROE</th><th>负债率</th><th>PB分位</th><th>通过</th></tr>
+<tr>
+  <td><strong>BHP Group BHP</strong></td>
+  <td><span class="col-tag col-win">多元化</span></td>
+  <td style="font-weight:600">~2460亿</td>
+  <td><span class="col-tag col-win">skip</span></td>
+  <td><span class="col-tag col-win">~20%</span></td>
+  <td>~45%</td>
+  <td><span class="col-tag col-warn">55%</span></td>
+  <td class="pass">5/5</td>
+</tr>
+<tr>
+  <td><strong>Rio Tinto RIO</strong></td>
+  <td><span class="col-tag col-win">多元化</span></td>
+  <td style="font-weight:600">~1800亿</td>
+  <td><span class="col-tag col-win">skip</span></td>
+  <td><span class="col-tag col-win">~18%</span></td>
+  <td>~30%</td>
+  <td><span class="col-tag col-warn">50%</span></td>
+  <td class="pass">5/5</td>
+</tr>
+<tr>
+  <td><strong>Fortescue FMG</strong></td>
+  <td><span class="col-tag col-warn">铁矿石</span></td>
+  <td style="font-weight:600">~600亿</td>
+  <td><span class="col-tag col-win">skip</span></td>
+  <td><span class="col-tag col-win">~25%</span></td>
+  <td>~40%</td>
+  <td><span class="col-tag col-warn">60%</span></td>
+  <td class="pass">5/5</td>
+</tr>
+<tr>
+  <td><strong>Northern Star NST</strong></td>
+  <td><span class="col-tag col-win">金矿</span></td>
+  <td style="font-weight:600">~200亿</td>
+  <td><span class="col-tag col-win">skip</span></td>
+  <td><span class="col-tag col-win">~12%</span></td>
+  <td>~25%</td>
+  <td><span class="col-tag col-lose">75%</span></td>
+  <td class="pass">5/5</td>
+</tr>
+<tr>
+  <td><strong>Evolution Mining EVN</strong></td>
+  <td><span class="col-tag col-win">金矿</span></td>
+  <td style="font-weight:600">~80亿</td>
+  <td><span class="col-tag col-win">skip</span></td>
+  <td><span class="col-tag col-win">~10%</span></td>
+  <td>~20%</td>
+  <td><span class="col-tag col-lose">70%</span></td>
+  <td class="pass">5/5</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>South32 S32</strong></td>
+  <td><span class="col-tag col-info">铜/铝/锌</span></td>
+  <td style="font-weight:600">~150亿</td>
+  <td><span class="col-tag col-win">skip</span></td>
+  <td><span class="col-tag col-win">~8%</span></td>
+  <td>~25%</td>
+  <td><span class="col-tag col-warn">45%</span></td>
+  <td class="pass">5/5</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>Mineral Resources MIN</strong></td>
+  <td><span class="col-tag col-info">锂/铁</span></td>
+  <td style="font-weight:600">~90亿</td>
+  <td><span class="col-tag col-win">skip</span></td>
+  <td><span class="col-tag col-win">~10%</span></td>
+  <td>~35%</td>
+  <td><span class="col-tag col-warn">50%</span></td>
+  <td class="pass">5/5</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>Pilbara Minerals PLS</strong></td>
+  <td><span class="col-tag col-info">锂矿</span></td>
+  <td style="font-weight:600">~70亿</td>
+  <td><span class="col-tag col-win">skip</span></td>
+  <td><span class="col-tag col-warn">~8%</span></td>
+  <td>~15%</td>
+  <td><span class="col-tag col-warn">35%</span></td>
+  <td class="pass">5/5</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>Newmont NEM</strong></td>
+  <td><span class="col-tag col-win">金矿</span></td>
+  <td style="font-weight:600">~200亿</td>
+  <td><span class="col-tag col-win">skip</span></td>
+  <td><span class="col-tag col-win">~10%</span></td>
+  <td>~30%</td>
+  <td><span class="col-tag col-lose">75%</span></td>
+  <td class="pass">5/5</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>Whitehaven Coal WHC</strong></td>
+  <td><span class="col-tag col-warn">煤炭</span></td>
+  <td style="font-weight:600">~60亿</td>
+  <td><span class="col-tag col-win">skip</span></td>
+  <td><span class="col-tag col-win">~15%</span></td>
+  <td>~20%</td>
+  <td><span class="col-tag col-warn">55%</span></td>
+  <td class="pass">5/5</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>IGO Ltd IGO</strong></td>
+  <td><span class="col-tag col-info">锂/镍</span></td>
+  <td style="font-weight:600">~40亿</td>
+  <td><span class="col-tag col-win">skip</span></td>
+  <td><span class="col-tag col-warn">~6%</span></td>
+  <td>~15%</td>
+  <td><span class="col-tag col-warn">30%</span></td>
+  <td class="pass">5/5</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>Paladin Energy PDN</strong></td>
+  <td><span class="col-tag col-info">铀矿</span></td>
+  <td style="font-weight:600">~30亿</td>
+  <td><span class="col-tag col-win">skip</span></td>
+  <td><span class="col-tag col-warn">~5%</span></td>
+  <td>~5%</td>
+  <td><span class="col-tag col-warn">55%</span></td>
+  <td class="pass">5/5</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>Regis Resources RRL</strong></td>
+  <td><span class="col-tag col-warn">金矿</span></td>
+  <td style="font-weight:600">~30亿</td>
+  <td><span class="col-tag col-win">skip</span></td>
+  <td><span class="col-tag col-win">~8%</span></td>
+  <td>~10%</td>
+  <td><span class="col-tag col-warn">60%</span></td>
+  <td class="pass">5/5</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>Liontown Resources LTR</strong></td>
+  <td><span class="col-tag col-info">锂矿</span></td>
+  <td style="font-weight:600">~25亿</td>
+  <td><span class="col-tag col-warn">skip</span></td>
+  <td><span class="col-tag col-lose">负（投产初期）</span></td>
+  <td>~45%</td>
+  <td><span class="col-tag col-warn">40%</span></td>
+  <td class="pass">3/5</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>Gold Road Resources GOR</strong></td>
+  <td><span class="col-tag col-warn">金矿</span></td>
+  <td style="font-weight:600">~20亿</td>
+  <td><span class="col-tag col-win">skip</span></td>
+  <td><span class="col-tag col-win">~8%</span></td>
+  <td>~15%</td>
+  <td><span class="col-tag col-warn">55%</span></td>
+  <td class="pass">5/5</td>
+</tr>
+</table>
+</div>
+
+<h2>观察池</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>卡在哪筛</th><th>备注</th></tr>
+<tr>
+  <td><strong>Liontown LTR</strong></td>
+  <td><span class="col-tag col-lose">④ROE为负</span></td>
+  <td>Kathleen Valley锂矿刚投产，2027年有望转正</td>
+</tr>
+<tr>
+  <td><strong>Sayona Mining SYA</strong></td>
+  <td><span class="col-tag col-lose">②营收&lt;1亿</span> <span class="col-tag col-lose">④ROE为负</span></td>
+  <td>北美锂矿，还在爬坡期</td>
+</tr>
+<tr>
+  <td><strong>Chalice Mining CHN</strong></td>
+  <td><span class="col-tag col-lose">②无营收</span></td>
+  <td>镍铜铂勘探，纯勘探阶段</td>
+</tr>
+<tr>
+  <td><strong>Deterra Royalty DTR</strong></td>
+  <td><span class="col-tag col-lose">①市值&lt;2亿</span></td>
+  <td>权利金公司，矿权到期风险</td>
+</tr>
+<tr>
+  <td><strong>Delta Lithium DLI</strong></td>
+  <td><span class="col-tag col-lose">②营收&lt;1亿</span></td>
+  <td>锂矿勘探，未投产</td>
+</tr>
+</table>
+</div>
+
+<h2>筛除记录</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>筛子</th><th style="width:60px">筛除数</th><th>知名示例</th></tr>
+<tr><td>①市值</td><td style="text-align:center">~220</td><td>大量勘探小矿企市值&lt;2亿AUD</td></tr>
+<tr><td>②营收</td><td style="text-align:center">~50</td><td>无收入勘探公司/已停产小矿</td></tr>
+<tr><td>③毛利率 <span class="col-tag col-info">跳过</span></td><td style="text-align:center">—</td><td>矿业跳过此筛</td></tr>
+<tr><td>④ROE <span class="col-tag col-warn">唯一筛除</span></td><td style="text-align:center">~15</td><td>LTR锂矿投产初期亏损、部分高成本金矿</td></tr>
+<tr><td>⑤负债率</td><td style="text-align:center">~3</td><td>极少数高杠杆矿企（债务融资过度）</td></tr>
+<tr><td>⑥估值（PB分位）</td><td style="text-align:center">0</td><td>当前矿业PB整体处于中位，尚未过热</td></tr>
+<tr style="background:#fffde7"><td><strong>剩余</strong></td><td style="text-align:center;font-weight:700;color:#2e7d32"><strong>15</strong></td><td>—</td></tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <strong>L7筛选结论</strong><br>
+  ASX矿业公司从~450家（含勘探）→15家，筛选力度极大（-97%）。市值筛（①）和营收筛（②）去除了绝大多数勘探期小矿企。剩余15只中：核心关注6只——<strong>BHP/RIO</strong>（多元化分红稳）、<strong>PLS</strong>（锂矿纯弹性标的，PB低分位）、<strong>NST</strong>（金矿龙头，注意高位）、<strong>S32</strong>（铜受益电气化）、<strong>PDN</strong>（核电复兴概念铀矿）。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l8">
+<div class="tab-inner">
+
+<h2>产业链</h2>
+<div class="card" style="font-size:13px;line-height:1.7">
+
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px">
+
+<div style="flex:1.5;min-width:220px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#2e7d32;font-size:14px">上游资源</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">铁矿石</div>
+    <div style="text-align:center;font-size:11px;color:#666">BHP · RIO · FMG · MGH · GRR</div>
+    <div style="margin:8px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">金矿</div>
+    <div style="text-align:center;font-size:11px;color:#666">NST · NEM · EVN · RRL · GOR</div>
+    <div style="margin:8px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">锂矿</div>
+    <div style="text-align:center;font-size:11px;color:#666">PLS · MIN · IGO · LTR</div>
+    <div style="margin:8px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">铜/锌/铀</div>
+    <div style="text-align:center;font-size:11px;color:#666">S32 · PDN · BOE · DYL</div>
+  </div>
+</div>
+
+<div style="flex:1;min-width:180px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#1565c0;font-size:14px">中游加工</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">选矿/精炼</div>
+    <div style="text-align:center;font-size:11px;color:#666">大部分一体化矿企自建<br>少数独立加工商</div>
+    <div style="margin:12px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">运输/物流</div>
+    <div style="text-align:center;font-size:11px;color:#666">铁路/港口（部分自建）<br>第三方物流公司</div>
+  </div>
+</div>
+
+<div style="flex:1;min-width:160px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#c62828;font-size:14px">下游需求</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:8px 6px;text-align:center;font-size:12px"><strong>钢铁厂</strong><br><span style="font-size:10px;color:#666">→ 铁矿石/焦煤</span></div>
+    <div style="margin:8px 0;text-align:center;color:#999;font-size:18px">→</div>
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:8px 6px;text-align:center;font-size:12px"><strong>工业/电气</strong><br><span style="font-size:10px;color:#666">→ 铜/锂/锌</span></div>
+    <div style="margin:8px 0;text-align:center;color:#999;font-size:18px">→</div>
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:8px 6px;text-align:center;font-size:12px"><strong>央行/投资</strong><br><span style="font-size:10px;color:#666">→ 金/银</span></div>
+    <div style="margin:8px 0;text-align:center;color:#999;font-size:18px">→</div>
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:8px 6px;text-align:center;font-size:12px"><strong>核电</strong><br><span style="font-size:10px;color:#666">→ 铀</span></div>
+  </div>
+</div>
+
+</div>
+
+<div style="background:#fffde7;border-left:3px solid #f9a825;padding:8px 12px;font-size:12px;border-radius:0 4px 4px 0">
+  <strong>利润最厚环节：</strong>低成本矿山开采（BHP/RIO/FMG采铁成本~$20/吨 vs 售价~$106，毛利率~80%）<br>
+  <span style="color:#999">中游加工和运输利润薄，矿企倾向于一体化整合（BHP自有铁路+港口）</span>
+</div>
+
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>子行业</th><th>代表公司</th><th>毛利率</th><th>集中度</th><th>议价能力</th></tr>
+<tr>
+  <td><span class="col-tag col-win">铁矿石</span></td>
+  <td>BHP, RIO, FMG</td>
+  <td><span class="col-tag col-win">60-80%</span></td>
+  <td>CR3~70%</td>
+  <td><span class="col-tag col-warn">中——接受普氏指数，但成本优势大</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-win">金矿</span></td>
+  <td>NST, NEM, EVN</td>
+  <td><span class="col-tag col-win">40-55%</span></td>
+  <td>CR3~30%</td>
+  <td><span class="col-tag col-lose">弱——价格接受者</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-info">锂矿</span></td>
+  <td>PLS, MIN, IGO</td>
+  <td><span class="col-tag col-win">30-50%</span></td>
+  <td>CR3~45%</td>
+  <td><span class="col-tag col-lose">弱——价格接受者</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-info">铜矿</span></td>
+  <td>BHP, S32, RIO</td>
+  <td><span class="col-tag col-win">40-60%</span></td>
+  <td>CR5~50%</td>
+  <td><span class="col-tag col-warn">中——南美供给受限支撑价格</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-info">铀矿</span></td>
+  <td>PDN, BOE, DYL</td>
+  <td><span class="col-tag col-warn">20-40%</span></td>
+  <td>CR3~60%</td>
+  <td><span class="col-tag col-warn">中——核电复兴推升需求</span></td>
+</tr>
+</table>
+</div>
+
+<h2>市场规模</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">指标</th><th style="width:25%">数值</th><th>说明</th></tr>
+<tr><td><strong>TAM</strong>（全球矿业产值）</td><td><span class="col-tag col-info" style="font-size:13px">全球~2万亿AUD/年</span></td><td>全球矿业总产值约1.3万亿美元，澳大利亚占~15%</td></tr>
+<tr><td><strong>矿业出口额</strong>（澳大利亚）</td><td><span class="col-tag col-info" style="font-size:13px">~3830亿AUD</span></td><td>澳大利亚最大出口部门，占出口总额~65%</td></tr>
+<tr><td><strong>近年产值增速</strong>（3年CAGR）</td><td><span class="col-tag col-warn">5-10%</span></td><td>金价大涨+锂复苏推动增长，铁矿石基本持平</td></tr>
+</table>
+</div>
+
+<h2>生命周期</h2>
+<div class="summary-box">
+  <strong><span class="col-tag col-warn" style="font-size:14px">成熟期</span></strong><br>
+  ASX矿企大多处于成熟期（除部分锂矿投产初期）。全球矿业资本开支2012年见顶后持续下降，新矿山供给稀缺。长期看：铁矿石需求随中国城镇化放缓，但铜/锂/铀受益于能源转型和AI算力需求。矿业作为整体是典型的"现金牛"行业——低增长但高现金流、高分红。
+</div>
+
+<h2>增长驱动力</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动力</th><th>类型</th><th>可持续性</th><th>量化指标</th></tr>
+<tr>
+  <td>电气化（电动车+新能源）</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长（20年+）</span></td>
+  <td>电动车渗透率、铜/锂需求增速</td>
+</tr>
+<tr>
+  <td>AI/数据中心电力需求</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长（10年+）</span></td>
+  <td>全球数据中心铜需求、核电重启进度</td>
+</tr>
+<tr>
+  <td>央行购金+避险</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>央行黄金储备变化、全球实际利率</td>
+</tr>
+<tr>
+  <td>中国基建/地产复苏</td>
+  <td><span class="col-tag col-lose">周期</span></td>
+  <td><span class="col-tag col-lose">短</span></td>
+  <td>中国钢铁产量、铁矿石进口量</td>
+</tr>
+<tr>
+  <td>全球宽松周期</td>
+  <td><span class="col-tag col-warn">周期</span></td>
+  <td><span class="col-tag col-warn">中短</span></td>
+  <td>美联储利率、美元指数、AUD/USD</td>
+</tr>
+</table>
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l9">
+<div class="tab-inner">
+
+<h2>市场结构</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>市场结构类型</td>
+  <td>铁矿石：<span class="col-tag col-win">寡头垄断</span>；金矿：<span class="col-tag col-warn">垄断竞争</span>；锂矿：<span class="col-tag col-info">整合中</span></td>
+</tr>
+<tr>
+  <td>CR3</td>
+  <td>铁矿石CR3~70%（<span style="color:#2e7d32">↑集中</span>），金矿CR3~30%（<span style="color:#1565c0">→稳定</span>），锂矿CR3~45%（<span style="color:#e65100">↑整合中</span>）</td>
+</tr>
+<tr>
+  <td>格局象限</td>
+  <td>铁矿石：<span class="col-tag col-win">寡头稳定</span>；金矿：<span class="col-tag col-warn">百花齐放</span>；锂矿：<span class="col-tag col-info">赢家通吃（潜力）</span></td>
+</tr>
+<tr>
+  <td>新进入者威胁</td>
+  <td><span class="col-tag col-warn">中</span>（新矿开发需5-10年 + 巨额资本开支 + 政府审批，但高商品价会吸引新供给）</td>
+</tr>
+</table>
+</div>
+
+<h2>竞争壁垒</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>壁垒类型</th><th>强度</th><th>可持续性</th><th>具体表现</th></tr>
+<tr>
+  <td>资源壁垒（矿权+品味）</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长（10年+）</span></td>
+  <td>BHP/RIO/FMG在皮尔巴拉拥有全球最大/品味最高的铁矿石矿权，生产成本~$15-20/吨</td>
+</tr>
+<tr>
+  <td>规模效应</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>BHP年产量2.8亿吨，固定成本摊薄极低；FMG新建矿山资本强度更高</td>
+</tr>
+<tr>
+  <td>基础设施壁垒</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>自建铁路+港口=数百亿AUD投入，新进入者无法复制（皮尔巴拉铁路被三大矿控盘）</td>
+</tr>
+<tr>
+  <td>成本曲线位置</td>
+  <td><span class="col-tag col-win">核心</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>成本曲线第1四分位=商品低价期仍盈利；第4四分位=最先停产。低成本是矿业唯一护城河</td>
+</tr>
+</table>
+</div>
+
+<div class="summary-box">
+  <strong>定价权测试</strong><br>
+  🔹 龙头能涨价吗？<strong>不能</strong>（所有矿企都是价格接受者，按普氏/LME/金价基准定价）<br>
+  🔹 毛利率趋势：铁矿石从2021年高位（~85%）缓慢下降，金矿上升（金价创历史新高），锂矿从底部快速恢复<br>
+  🔹 ROE趋势：BHP/RIO/FMG周期中ROE 15-40%，低谷期ROE 5-10%；金矿ROE稳定在8-15%
+</div>
+
+<h2>驱动力拆解</h2>
+<div class="highlight-box">
+  <strong>行业收入公式</strong><br>
+  收入 = 产量(万吨/万oz) × 商品价格(USD/吨 or USD/oz) × AUD/USD汇率<br><br>
+  当前组合（分品种）：<br>
+  <span style="color:#2e7d32;font-weight:700">铁矿石：量→（中国需求持平）</span> ＋ <span style="color:#e65100;font-weight:700">价→（$106 ~50%分位）</span> ＝ <span class="col-tag col-warn">稳定</span><br>
+  <span style="color:#2e7d32;font-weight:700">黄金：量↑（扩产）</span> ＋ <span style="color:#c62828;font-weight:700">价↑（历史新高$4700+）</span> ＝ <span class="col-tag col-win">繁荣</span><br>
+  <span style="color:#2e7d32;font-weight:700">锂矿：量↑（新矿放量）</span> ＋ <span style="color:#e65100;font-weight:700">价↑（底部反弹60%+）</span> ＝ <span class="col-tag col-info">复苏</span>
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动因子</th><th>最新值</th><th>历史区间</th><th>当前分位</th></tr>
+<tr>
+  <td>铁矿石62% CFR ($/t)</td>
+  <td><span class="col-tag col-warn">~106</span></td>
+  <td>80-240</td>
+  <td><span class="col-tag col-warn">50%</span></td>
+</tr>
+<tr>
+  <td>金价 (AUD/oz)</td>
+  <td><span class="col-tag col-win">~4700</span></td>
+  <td>1500-4800</td>
+  <td><span class="col-tag col-win">95%</span></td>
+</tr>
+<tr>
+  <td>锂辉石SC6 ($/t)</td>
+  <td><span class="col-tag col-info">~2220</span></td>
+  <td>600-6500</td>
+  <td><span class="col-tag col-warn">40%</span></td>
+</tr>
+<tr>
+  <td>LME铜 ($/t)</td>
+  <td><span class="col-tag col-win">~10500</span></td>
+  <td>5000-11000</td>
+  <td><span class="col-tag col-win">80%</span></td>
+</tr>
+<tr>
+  <td>AUD/USD</td>
+  <td><span class="col-tag col-warn">~0.67</span></td>
+  <td>0.55-0.80</td>
+  <td><span class="col-tag col-warn">45%</span></td>
+</tr>
+</table>
+</div>
+
+<h2>成本结构</h2>
+<div class="summary-box">
+  🔹 <strong>类型：</strong><span class="col-tag col-lose">重资产</span>（矿山开发CAPEX极大，固定成本高，折旧高）<br>
+  🔹 <strong>成本敏感性：</strong>大宗商品价格±10% → 矿企利润±30-50%（高经营杠杆）。汇率也是关键——AUD贬值1% → 以AUD计利润约提升1-2%<br>
+  🔹 <strong>盈亏平衡点：</strong>铁矿石~$60-70/吨（低成本矿），金矿~$1200-1600/oz（AISC），锂矿~$800-1200/吨 SC6
+</div>
+
+<h2>竞争格局总结</h2>
+<div class="highlight-box">
+  ASX矿业实质上是一个<strong>"成本曲线的游戏"</strong>——谁在成本曲线最左侧，谁就能在商品低价期赚钱、在商品高价期暴利。铁矿石的BHP/RIO/FMG是全球成本最低的矿企，这意味着即使铁矿石跌到$80/吨（比现价低25%），这三家仍然盈利。金矿格局分散但NST正通过并购整合成为纯金矿龙头。锂矿领域PLS和MIN已证明低成本能力，LTR刚投产需验证。核心判断：<strong>矿业没有品牌溢价，只有成本优势</strong>——只买成本曲线第1-2四分位的矿企。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l10">
+<div class="tab-inner">
+
+<h2>周期位置</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>库存周期阶段</td>
+  <td><span class="col-tag col-warn">子行业高度分化</span>——黄金<span class="col-tag col-lose">繁荣</span>，铁矿石<span class="col-tag col-warn">中位</span>，锂矿<span class="col-tag col-win">复苏</span></td>
+</tr>
+<tr>
+  <td>全球矿业资本开支</td>
+  <td><span class="col-tag col-info">低位（2012年高点后持续下降）</span>新供给不足对商品价格中期形成支撑</td>
+</tr>
+<tr>
+  <td>商品价格分位</td>
+  <td>金价<span class="col-tag col-lose">95%</span> ｜ 铁矿石<span class="col-tag col-warn">50%</span> ｜ 锂矿<span class="col-tag col-win">40%</span> ｜ 铜<span class="col-tag col-lose">80%</span> ｜ 铀<span class="col-tag col-lose">75%</span></td>
+</tr>
+<tr>
+  <td>行业盈利状态</td>
+  <td><span class="col-tag col-win">整体盈利</span> —— BHP/RIO/FMG高利润，金矿历史最好利润，锂矿恢复中</td>
+</tr>
+</table>
+</div>
+
+<div class="danger-box">
+  <strong>⚠ PE悖论检查</strong><br>
+  矿业用PE会严重误导——金矿利润创历史新高时PE极低（NST PE~8x），但恰恰是警惕金价回落的时点。<br>
+  用PB判断：BHP PB~2.5x（55%分位，中位偏高），RIO PB~2.0x（50%分位），PLS PB~1.5x（35%分位，处于低位），NST PB~2.0x（75%分位，偏高）<br>
+  <strong>结论：</strong>锂矿PB低分位最值得关注，金矿PB已高需警惕，铁矿多元化矿企PB中位数可耐心等回调
+</div>
+
+<h2>估值水平</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>估值指标</th><th>行业当前</th><th>历史中位数</th><th>80%分位</th><th>20%分位</th></tr>
+<tr>
+  <td><strong>PB</strong> 铁矿石板块</td>
+  <td><span class="col-tag col-warn">2.0-3.0x</span></td>
+  <td>2.5x</td>
+  <td>4.0x</td>
+  <td>1.2x</td>
+</tr>
+<tr>
+  <td><strong>PB</strong> 金矿板块</td>
+  <td><span class="col-tag col-lose">1.5-2.5x</span></td>
+  <td>1.5x</td>
+  <td>2.5x</td>
+  <td>0.8x</td>
+</tr>
+<tr>
+  <td><strong>PB</strong> 锂矿板块</td>
+  <td><span class="col-tag col-win">1.0-2.0x</span></td>
+  <td>2.0x</td>
+  <td>5.0x</td>
+  <td>0.8x</td>
+</tr>
+</table>
+</div>
+
+<h2>政策环境</h2>
+<div class="summary-box">
+  🔹 <strong>政策方向（澳洲）：</strong><span class="col-tag col-win">稳定偏利好</span>（澳洲政府支持矿业发展，审批流程清晰，基础设施投资鼓励）<br>
+  🔹 <strong>关键政策：</strong><br>
+  &emsp;• 澳洲关键矿产战略（Critical Minerals Strategy）：锂/稀土/铜等获政府资助加速开发<br>
+  &emsp;• 全球去碳化政策：长期利空煤炭（但不影响铁矿石/铜/锂/铀需求）<br>
+  &emsp;• 中国钢铁去产能+地产下行：持续压制铁矿石长期需求<br>
+  &emsp;• 美联储利率政策：降息→弱美元→以美元计价的大宗商品利好<br>
+  🔹 <strong>政策周期位置：</strong><span class="col-tag col-info">中性</span>（澳洲政策稳定，全球宏观偏利好）
+</div>
+
+<h2>买入清单</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:28%">条件</th><th style="width:16%">结果</th><th>备注</th></tr>
+<tr>
+  <td>周期位置：不在繁荣顶点</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td>金矿在顶点，锂矿在底部，铁矿石中位——分化严重</td>
+</tr>
+<tr>
+  <td>估值：PB在历史偏低分位</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td>锂矿PB低分位✅，金矿PB高分位❌，铁矿石PB中位⏸</td>
+</tr>
+<tr>
+  <td>政策：不是收紧期</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>澳洲政策稳定，全球去碳化不影响铜/锂/铀需求</td>
+</tr>
+<tr>
+  <td>格局：龙头壁垒稳固</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>BHP/RIO/FMG成本优势不可复制，金矿NST通过并购巩固地位</td>
+</tr>
+<tr>
+  <td>增长：有可见驱动力</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>电气化+AI+核电复兴=铜/锂/铀结构性需求明确</td>
+</tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <div style="font-size:16px;font-weight:700;margin-bottom:8px">综合判断：<span class="col-tag col-warn" style="font-size:15px">按子行业分别处理</span></div>
+  <div style="margin-bottom:6px">矿业不能一概而论。当前最好的机会在锂矿（周期底部反转）和铀矿（核电复兴结构性增长），铁矿石可作收息配置，黄金等回调。</div>
+  <table style="font-size:12px;margin:6px 0;border:none;background:transparent">
+    <tr><td style="border:none;padding:3px 6px;background:transparent;width:90px;font-weight:600">预期回报</td><td style="border:none;padding:3px 6px;background:transparent">锂矿：锂价从$2220涨到$4000+ = 股价翻倍空间；铀矿：~30-50%；铁矿石：股息4-6%/年</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">仓位建议</td><td style="border:none;padding:3px 6px;background:transparent"><span class="col-tag col-warn">锂矿不超过组合10%，铁矿石收息不超过15%，金矿暂不建仓</span></td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">跟踪指标</td><td style="border:none;padding:3px 6px;background:transparent">铁矿石62% CFR · 金价AUD/oz · SC6锂辉石价 · LME铜价 · AUD/USD · 全球铜/锂库存</td></tr>
+  </table>
+  <div style="margin-top:8px;padding:8px;background:#e8f5e9;border-radius:4px;font-size:12px">
+    <strong>分品种策略：</strong><br>
+    <span class="col-tag col-win">锂矿（PLS/IGO）</span>：PB低分位+锂价从底部复苏+电动车渗透率持续提升，可以考虑逢低建仓<br>
+    <span class="col-tag col-win">铀矿（PDN）</span>：核电复兴长期主题，全球数据中心电力需求推动，小仓位配置<br>
+    <span class="col-tag col-warn">多元化（BHP/RIO）</span>：PB中位，分红稳定（股息率4-5%+Franking Credits），定投式买入<br>
+    <span class="col-tag col-lose">金矿（NST/EVN）</span>：金价历史高位，PB高分位，等回调到PB~1.5x再考虑
+  </div>
+</div>
+
+<h2>卖出信号</h2>
+<div class="danger-box">
+  <strong>出现以下信号考虑卖出：</strong><br>
+  <div style="margin-top:6px">
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px">1</span>
+    中国钢铁产量连续3个月同比降幅>10%（铁矿石需求崩塌）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">2</span>
+    全球经济衰退信号（PMI<45持续季度以上）→ 大宗商品普跌<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">3</span>
+    金价从高点回落>15%（央行停止购金或实际利率大幅转正）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">4</span>
+    AUD/USD大幅升值>0.80（澳洲矿企以AUD计利润被压缩）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">5</span>
+    持有矿企的AISC成本上升>20%（成本失控，利润会被快速侵蚀）
+  </div>
+</div>
+
+</div>
+</div>
+
+<div class="footer">Generated by Industry Analysis · L7-L10 Framework · Stock Selection</div>
+
+</div>
+
+<script>
+var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+var contents = document.querySelectorAll('.tab-content');
+btns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    contents.forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    var tab = btn.getAttribute('data-tab');
+    document.getElementById('tab-' + tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

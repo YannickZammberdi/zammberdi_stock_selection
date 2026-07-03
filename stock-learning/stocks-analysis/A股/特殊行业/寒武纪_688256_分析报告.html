@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>寒武纪(688256) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>寒武纪（688256）财务分析报告</h1>
+<p class="subtitle">基于 L1-L4 框架 + L5（行业分类+周期分析）+ L6（综合实战）</p>
+<p class="meta">分析日期：2026年6月27日 | 数据来源：FY2025 年报 + 2026Q1 季报</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业周期</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>中科寒武纪科技股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>688256.SH</td></tr>
+  <tr><td>所属行业</td><td>AI芯片设计（Fabless模式）</td></tr>
+  <tr><td>行业地位</td><td>国产AI芯片龙头（思元系列）</td></tr>
+  <tr><td>上市板块</td><td>科创板（2020年7月20日上市）</td></tr>
+  <tr><td>CEO/创始人</td><td>陈天石</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>64.97 亿（+453.21%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>20.59 亿（首年盈利，上年-4.52亿）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>-4.98 亿（仍为负值）</strong></td></tr>
+  <tr><td>总资产</td><td>134.38 亿</td></tr>
+  <tr><td>归母净资产</td><td>118.36 亿</td></tr>
+  <tr><td>EPS</td><td>4.93 元</td></tr>
+</table>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">综合L1-L5所有因素（财务健康度、关键指标、估值、杜邦分析、行业分类）</p>
+<table>
+  <tr><th style="width:25%">维度</th><th style="width:10%">权重</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td>15分</td><td class="good" style="font-weight:bold;font-size:15px">12</td><td style="text-align:left">17.40%首次转正，但仅一年数据，持续性待验证</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td>5分</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">高利润型——净利率31.68%高+周转0.64中+杠杆1.14极低</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td>15分</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">-0.24 < 0，经营现金流仍为负值</td></tr>
+  <tr><td>营收增长（10分）</td><td>10分</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+453% ≥ 10%</td></tr>
+  <tr><td>利润增长（10分）</td><td>10分</td><td class="good" style="font-weight:bold;font-size:15px">8</td><td style="text-align:left">从-4.52亿扭亏至+20.59亿，历史性转折</td></tr>
+  <tr><td>负债率（10分）</td><td>10分</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">~12%，远低于安全线40%</td></tr>
+  <tr><td>短期偿债（10分）</td><td>10分</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">货币资金充足，几乎零有息负债</td></tr>
+  <tr><td>毛利率（10分）</td><td>10分</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">55.15%呈下降趋势（从62%→55%），竞争加剧</td></tr>
+  <tr><td>估值 PE（10分）</td><td>10分</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">PE 337x极度昂贵，远超行业合理均值</td></tr>
+  <tr><td>自由现金流（5分）</td><td>5分</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">FCF为负，经营现金流仍不能覆盖运营</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td>100分</td><td style="font-size:16px">62/100</td><td style="text-align:left">转型中——经营质量尚可，但高估值+负现金流是硬伤</td></tr>
+</table>
+
+<div class="verdict verdict-caution">VERDICT-CAUTION（投机级 | 62/100分）</div>
+
+<div class="summary-box">
+  <strong>核心矛盾：</strong>寒武纪FY2025实现历史性扭亏为盈（净利20.59亿，营收+453%），摘掉"U"标签，是中国AI芯片国产化的标志性企业。但当前PE 337倍、PB 71倍的估值已将未来3-5年的高增长"price in"。存货暴增178%、经营现金流仍为负值、客户集中度88.66%、营收增速明显放缓（从+40x降至+4.5x再降至+1.6x）构成四大风险信号。<br><br>
+  <strong>正面因素：</strong>① FY2025首年盈利是里程碑事件；② 营收高增长（2026Q1 +160%）仍在延续；③ 毛利率55.15%健康，净利率31.68%；④ 几乎零负债，资产负债表干净；⑤ 国家AI芯片战略核心标的；⑥ 首年分红传递管理层信心。<br><br>
+  <strong>负面风险：</strong>① PE 337倍处于极度昂贵区间；② CFO仍为负值，盈利现金含量不足；③ 存货49.44亿（+178%）+存货跌价2.46亿（Q1单季）；④ 前5客户占88.66%收入，高度集中；⑤ 增长斜率急剧放缓；⑥ 面临华为Ascend和英伟达H20的双重竞争压力。
+</div>
+
+<h2>季度营收与利润趋势</h2>
+<table>
+  <tr><th>季度</th><th>营收（亿）</th><th>环比</th><th>同比</th><th>净利润（亿）</th><th>评价</th></tr>
+  <tr><td>2025 Q1</td><td>11.11</td><td>—</td><td>+4,990%（低基数）</td><td>3.55</td><td>起步季度</td></tr>
+  <tr><td>2025 Q2</td><td>17.69</td><td>+59.2%</td><td>—</td><td>6.83</td><td class="good">加速放量</td></tr>
+  <tr><td>2025 Q3</td><td>17.27</td><td>-2.4%</td><td>—</td><td>5.67</td><td>略有回落</td></tr>
+  <tr><td>2025 Q4</td><td>18.90</td><td>+9.4%</td><td>+91%</td><td>4.55</td><td class="bad">增速放缓至+91%</td></tr>
+  <tr><td>2026 Q1</td><td>28.85</td><td>+52.6%</td><td>+159.6%</td><td>10.13</td><td class="good">重回高增长轨道</td></tr>
+</table>
+
+<h2>FY2025 同比年度对比</h2>
+<table>
+  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>FY2025 vs FY2023</th></tr>
+  <tr><td>营收（亿）</td><td>7.09</td><td>11.75</td><td>64.97</td><td class="good">+8.2x</td></tr>
+  <tr><td>归母净利润（亿）</td><td>-8.60</td><td>-4.52</td><td>+20.59</td><td class="good">扭亏</td></tr>
+  <tr><td>扣非净利润（亿）</td><td>-9.83</td><td>-8.49</td><td>+17.04（估）</td><td class="good">扭亏</td></tr>
+  <tr><td>毛利率</td><td>~68%</td><td>~62%</td><td>55.15%</td><td class="bad">-13pct（趋势向下）</td></tr>
+  <tr><td>研发费用率</td><td>~157%</td><td>~91.3%</td><td>~17.99%</td><td class="good">大幅优化</td></tr>
+  <tr><td>经营现金流（亿）</td><td>-7.90</td><td>-16.18</td><td>-4.98</td><td class="neutral">改善但仍为负</td></tr>
+  <tr><td>存货（亿）</td><td>—</td><td>17.78</td><td>49.44</td><td class="bad">暴增178%</td></tr>
+  <tr><td>总资产（亿）</td><td>—</td><td>67.19</td><td>134.38</td><td class="good">翻倍</td></tr>
+</table>
+
+<h2>产品线营收结构（FY2025）</h2>
+<table>
+  <tr><th>产品线</th><th>营收（亿）</th><th>占比</th><th>毛利率</th><th>同比增速</th><th>评价</th></tr>
+  <tr><td>云端智能芯片及加速卡</td><td>64.77</td><td>99.70%</td><td>55.22%</td><td class="good">爆发式</td><td>绝对主力产品</td></tr>
+  <tr><td>边缘智能芯片及加速卡</td><td>~0.13（估）</td><td>~0.20%</td><td>—</td><td>低增长</td><td class="neutral">尚未形成规模</td></tr>
+  <tr><td>IP授权及软件</td><td>~0.07（估）</td><td>~0.10%</td><td>—</td><td>低增长</td><td class="neutral">可忽略</td></tr>
+  <tr><td><strong>合计</strong></td><td><strong>64.97</strong></td><td><strong>100%</strong></td><td><strong>55.15%</strong></td><td><strong>+453%</strong></td><td></td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>产品结构极度单一的风险：</strong>99.7%的收入来自云端AI芯片，整个公司就是"一款产品打天下"。优点是放量时爆发力极强，缺点是任何竞争压力、技术换代或客户流失都将对公司造成系统性冲击。对比英伟达，其产品线覆盖GPU、数据中心网络、自动驾驶、专业可视化等多个领域，抗风险能力远强于寒武纪。
+</div>
+
+<h2>估值与市场表现</h2>
+<table>
+  <tr><th>市场指标</th><th>数值</th><th>综合评价</th></tr>
+  <tr><td>股价（2026.6.26）</td><td>~1,458元</td><td>52周区间349-1,540元，接近历史高位</td></tr>
+  <tr><td>总市值</td><td>~9,160亿</td><td>在A股半导体中排名前三</td></tr>
+  <tr><td>PE（TTM）</td><td>~337x</td><td class="bad">极度高估，全球科技股中最高之一</td></tr>
+  <tr><td>PE（动态FY2025）</td><td>~226x</td><td class="bad">仍远超合理区间</td></tr>
+  <tr><td>PB</td><td>~71x</td><td class="bad">极端水平，PB在A股科创50中最高</td></tr>
+  <tr><td>PS（TTM）</td><td>~140x</td><td class="bad">约英伟达（PS~30x）的4.7倍</td></tr>
+  <tr><td>PEG（基于2026E +100%净利增速）</td><td>~2.26x</td><td class="bad">PEG>>1.0，严重高估</td></tr>
+</table>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td><strong>64.97 亿</strong></td><td>11.75 亿</td><td>+453.21%</td><td class="good">✅ 爆发式增长</td></tr>
+  <tr><td>归母净利润</td><td><strong>20.59 亿</strong></td><td>-4.52 亿</td><td>扭亏为盈</td><td class="good">✅ 里程碑</td></tr>
+  <tr><td>扣非净利润</td><td><strong>17.04 亿（估）</strong></td><td>-8.49 亿</td><td>扭亏为盈</td><td class="good">✅ 核心盈利转正</td></tr>
+  <tr><td>毛利率</td><td><strong>55.15%</strong></td><td>~62%</td><td>-7pct</td><td class="neutral">⚠ 略有下降</td></tr>
+  <tr><td>归母净利率</td><td><strong>31.68%</strong></td><td>负值</td><td>转正</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>研发费用</td><td><strong>11.69 亿</strong></td><td>10.73 亿</td><td>+8.9%</td><td class="neutral">费率从91.3%降至17.99%</td></tr>
+  <tr><td>研发费用率</td><td><strong>17.99%</strong></td><td>91.3%</td><td>-73.3pct</td><td class="good">✅ 规模效应显现</td></tr>
+  <tr><td>2026Q1 营收</td><td><strong>28.85 亿</strong></td><td>11.11 亿</td><td>+159.56%</td><td class="good">✅ 持续高增长</td></tr>
+  <tr><td>2026Q1 净利润</td><td><strong>10.13 亿</strong></td><td>3.55 亿</td><td>+185.04%</td><td class="good">✅ 盈利加速</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>FY2025是寒武纪的历史转折点——营收从11.75亿爆发至64.97亿（+453%），归母净利润从-4.52亿扭亏至+20.59亿。研发费用率从91.3%骤降至17.99%，规模效应极为显著。2026Q1延续强劲势头，营收+160%、净利+185%。但需警惕毛利率从62%降至55.15%，以及Q4单季增速明显放缓（同比仅+91%，远低于前三季度）。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>FY2024</th><th>变化</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td><strong>~50 亿（估）</strong></td><td>—</td><td>—</td><td class="good">✅ 充裕</td></tr>
+  <tr><td>存货</td><td><strong>49.44 亿</strong></td><td>17.78 亿</td><td>+178%</td><td class="bad">❌ 暴增，红色警报</td></tr>
+  <tr><td>应收账款</td><td><strong>~20 亿（估）</strong></td><td>—</td><td>—</td><td class="neutral">⚠ 需关注回款</td></tr>
+  <tr><td>总资产</td><td><strong>134.38 亿</strong></td><td>67.19 亿</td><td>+100%</td><td class="good">✅ 翻倍增长</td></tr>
+  <tr><td>归母净资产</td><td><strong>118.36 亿</strong></td><td>54.28 亿</td><td>+118%</td><td class="good">✅ 含增发融资</td></tr>
+  <tr><td>有息负债</td><td><strong>极低（~0）</strong></td><td>极低</td><td>—</td><td class="good">✅ 几乎零负债</td></tr>
+  <tr><td>资产负债率</td><td><strong>~12%</strong></td><td>~19%</td><td>-7pct</td><td class="good">✅ 极低</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>资产负债表关键警报：存货暴增178%！</strong><br>
+  存货从17.78亿飙升至49.44亿（+178%），占总资产比例高达36.8%。2026Q1单季存货跌价损失已达2.46亿。对于AI芯片这类技术迭代极快的产品，大量囤货面临技术淘汰风险。如果产品迭代（思元700等）导致旧款芯片贬值，减值压力将显著侵蚀利润。
+</div>
+
+<div class="highlight-box">
+  <strong>资产负债表正面：</strong>总资产翻倍至134.38亿（含股权融资增厚净资产），资产负债率仅12%，几乎零有息负债。在A股科技公司中属于最安全的负债结构之一。归母净资产118.36亿提供了充足的安全垫。
+</div>
+
+<h3>2.3 季度利润明细（FY2025逐季）</h3>
+<table>
+  <tr><th>项目</th><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th><th>全年</th></tr>
+  <tr><td>营收（亿）</td><td>11.11</td><td>17.69</td><td>17.27</td><td>18.90</td><td>64.97</td></tr>
+  <tr><td>营收占比</td><td>17.1%</td><td>27.2%</td><td>26.6%</td><td>29.1%</td><td>100%</td></tr>
+  <tr><td>净利润（亿）</td><td>3.55</td><td>6.83</td><td>5.67</td><td>4.55</td><td>20.59</td></tr>
+  <tr><td>净利润率</td><td>31.95%</td><td>38.61%</td><td>32.83%</td><td>24.07%</td><td>31.68%</td></tr>
+  <tr><td>营收环比增速</td><td>—</td><td>+59.2%</td><td>-2.4%</td><td>+9.4%</td><td>—</td></tr>
+  <tr><td>营收同比增速</td><td>+4,990%</td><td>—</td><td>—</td><td>+91%</td><td>+453%</td></tr>
+  <tr><td>净利润环比</td><td>—</td><td>+92.4%</td><td>-17.0%</td><td>-19.8%</td><td>—</td></tr>
+  <tr><td>毛利率（估）</td><td>~58%</td><td>~56%</td><td>~54%</td><td>~53%</td><td>55.15%</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>季度数据揭示的关键趋势：</strong><br>
+  ① <strong>Q2是业绩顶峰：</strong>净利润率38.61%为全年最高，Q3-Q4利润率持续下降；<br>
+  ② <strong>毛利率逐季下滑：</strong>从Q1的~58%降至Q4的~53%，全年下降5pct，竞争加剧信号；<br>
+  ③ <strong>Q4利润异常：</strong>营收创新高（18.90亿）但净利润仅4.55亿（全年最低），可能受存货跌价/研发加计等因素影响；<br>
+  ④ <strong>2026Q1强劲反弹：</strong>营收28.85亿、净利10.13亿，均创单季新高，但需持续观察。
+</div>
+
+<h3>2.4 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>变化</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>-4.98 亿</strong></td><td>-16.18 亿</td><td>改善11.20亿</td><td class="bad">❌ 仍为负值</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><strong>-6.30 亿（估）</strong></td><td>—</td><td>—</td><td class="neutral">⚠ 扩产投资</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td><strong>~+30 亿（估）</strong></td><td>—</td><td>—</td><td class="good">✅ 股权融资支撑</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>-0.24</strong></td><td>负利润</td><td>—</td><td class="bad">❌ 极其糟糕</td></tr>
+  <tr><td>自由现金流（FCF）</td><td><strong>-11.28 亿（估）</strong></td><td>—</td><td>—</td><td class="bad">❌ 仍严重为负</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>现金流是最大的隐忧：</strong>尽管FY2025实现20.59亿净利润，但经营现金流仍为-4.98亿。这意味着盈利是"纸面"上的——大量收入以应收账款或存货形式存在，而非真实现金流入。CFO/净利润-0.24，现金含量极低。公司目前靠股权融资维持现金流，这在牛市行情下可行，但一旦市场环境恶化，将面临流动性压力。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>17.40%</strong></td><td>> 15% 优秀 / > 10% 及格</td><td class="good">✅ 优秀（首年转正）</td></tr>
+  <tr><td>毛利率</td><td><strong>55.15%</strong></td><td>稳定或提升</td><td class="neutral">⚠ 下降7pct</td></tr>
+  <tr><td>净利率</td><td><strong>31.68%</strong></td><td>> 10%</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>营收增长率</td><td><strong>+453.21%</strong></td><td>> 10%</td><td class="good">✅ 爆发式</td></tr>
+  <tr><td>经营现金流</td><td><strong>-4.98 亿</strong></td><td>为正</td><td class="bad">❌ 仍为负</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>-0.24</strong></td><td>> 1</td><td class="bad">❌ 极差</td></tr>
+  <tr><td>资产负债率</td><td><strong>~12%</strong></td><td>芯片设计<40%</td><td class="good">✅ 极低</td></tr>
+  <tr><td>研发费用率</td><td><strong>17.99%</strong></td><td>AI芯片10-25%</td><td class="good">✅ 合理</td></tr>
+</table>
+
+<h3>3.2 分业务分析（FY2025）</h3>
+<table>
+  <tr><th>业务板块</th><th>营收（亿）</th><th>占比</th><th>毛利率</th><th>增长</th><th>评价</th></tr>
+  <tr><td>云端产品线（AI芯片）</td><td><strong>64.77</strong></td><td>99.7%</td><td><strong>55.22%</strong></td><td>爆发式</td><td class="good">✅ 绝对主力</td></tr>
+  <tr><td>边缘产品线</td><td>极小</td><td>~0.2%</td><td>—</td><td>缓慢</td><td class="neutral">可忽略</td></tr>
+  <tr><td>IP授权及软件</td><td>极小</td><td>~0.1%</td><td>—</td><td>—</td><td class="neutral">可忽略</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>寒武纪的业务结构极度单一——云端AI芯片贡献99.7%的收入，边缘计算和IP授权几乎可以忽略。这种"单品打天下"的模式在爆发期能实现极致增长，但风险也非常集中：一旦核心产品（思元系列）遭遇竞争或技术换代，公司将面临灭顶之灾。毛利率55.22%健康，但相比FY2024的~62%有明显下滑。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="bad">🔴 极高</td><td>估值PE 337倍，极度透支未来增长</td><td>L3 估值</td></tr>
+  <tr><td class="bad">🔴 极高</td><td>经营现金流-4.98亿，盈利无现金支撑</td><td>L1 现金流量表</td></tr>
+  <tr><td class="bad">🔴 极高</td><td>存货49.44亿+178%，跌价风险巨大</td><td>L1 资产负债表</td></tr>
+  <tr><td class="bad">🔴 较高</td><td>前5大客户收入占比88.66%，客户过度集中</td><td>L2 业务风险</td></tr>
+  <tr><td class="bad">🔴 较高</td><td>营收增速急剧放缓（+40x→+4.5x→+1.6x）</td><td>L2 增长趋势</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>毛利率从62%降至55.15%，竞争在加剧</td><td>L1 利润表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>华为Ascend 910B/910C竞争压力持续加大</td><td>L5 竞争格局</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>2026Q1存货跌价损失2.46亿侵蚀利润</td><td>L2 资产质量</td></tr>
+  <tr><td class="good">🟢 正面</td><td>FY2025首年盈利，摘掉"U"标签</td><td>L1 利润表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>营收增长453%（FY2025）+160%（2026Q1）</td><td>L2 增长</td></tr>
+  <tr><td class="good">🟢 正面</td><td>资产负债率仅12%，几乎零负债</td><td>L1 资产负债表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>首年分红6.32亿（30.71%派现率）</td><td>L2 分红政策</td></tr>
+</table>
+
+<h3>3.4 盈利质量深度分析</h3>
+<table>
+  <tr><th>盈利质量指标</th><th>FY2025</th><th>健康阈值</th><th>评价</th></tr>
+  <tr><td>CFO/净利润</td><td>-0.24</td><td>> 1.0</td><td class="bad">❌ 极差，利润无现金支撑</td></tr>
+  <tr><td>净现比（经营净现金/营收）</td><td>-7.7%</td><td>> 5%</td><td class="bad">❌ 每元收入反而消耗现金</td></tr>
+  <tr><td>营收现金含量（销售商品收到现金/营收）</td><td>~85%（估）</td><td>> 100%</td><td class="neutral">⚠ 存在赊销</td></tr>
+  <tr><td>非经常性损益占比</td><td>~17%（估）</td><td>< 10%</td><td class="neutral">⚠ 政府补贴等占比较高</td></tr>
+  <tr><td>研发资本化率</td><td>~0%（假设全部费用化）</td><td>可调</td><td class="good">✅ 费用化处理，利润质量较高</td></tr>
+  <tr><td>应收账款/营收</td><td>~30%（估）</td><td>< 20%</td><td class="neutral">⚠ 偏高</td></tr>
+  <tr><td>存货/营收</td><td>76.1%</td><td>< 30%</td><td class="bad">❌ 极高，远超健康水平</td></tr>
+  <tr><td>减值损失/净利润</td><td>~12%（Q1已达2.46亿）</td><td>< 5%</td><td class="bad">❌ 减值侵蚀利润严重</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>盈利质量综合评分：差（2/10）</strong><br>
+  寒武纪FY2025的20.59亿净利润从多个维度看"含金量"偏低：CFO为负说明利润停留在应收账款或存货层面而非现金；存货/营收高达76.1%远超健康水平；减值损失已开始显著侵蚀利润（2026Q1单季2.46亿）。在当前阶段，投资者应更多关注"现金利润"而非"会计利润"。
+</div>
+
+<h3>3.5 排雷细化：客户集中度风险</h3>
+<table>
+  <tr><th>风险维度</th><th>寒武纪</th><th>行业正常水平</th><th>风险等级</th></tr>
+  <tr><td>前5大客户收入占比</td><td><strong>88.66%</strong></td><td>< 50%</td><td class="bad">🔴 极高</td></tr>
+  <tr><td>第一大客户占比</td><td><strong>~40-50%（估）</strong></td><td>< 20%</td><td class="bad">🔴 极高</td></tr>
+  <tr><td>前5供应商占比</td><td>~80%（估，台积电代工）</td><td>< 50%</td><td class="bad">🔴 极高</td></tr>
+  <tr><td>客户行业集中度</td><td>互联网/云厂商为主</td><td>分散</td><td class="neutral">🟡 中等</td></tr>
+  <tr><td>国产替代依赖性</td><td>极高（制裁政策是利好）</td><td>不依赖</td><td class="neutral">🟡 双刃剑</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>客户集中度88.66%意味着什么？</strong><br>
+  如果第一大客户（可能是字节跳动或阿里云）的订单减少30%，寒武纪的营收将直接下降12-15%，利润可能出现大幅波动。这种客户集中度在初创型科技公司中常见，但对投资者而言是巨大隐患——你不能将"几个大客户的需求"等同于"真实的市场需求"。一旦主要客户自研芯片（如阿里平头哥、百度昆仑）或转投华为，寒武纪的营收基础将受到严重冲击。
+</div>
+
+<h3>3.6 增长质量分析：增速趋势与隐忧</h3>
+<table>
+  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>2026Q1</th></tr>
+  <tr><td>营收（亿）</td><td>7.09</td><td>11.75</td><td>64.97</td><td>28.85</td></tr>
+  <tr><td>营收增速</td><td>—</td><td>+65.7%</td><td>+453.2%</td><td>+159.6%</td></tr>
+  <tr><td>净利润（亿）</td><td>-8.60</td><td>-4.52</td><td>+20.59</td><td>+10.13</td></tr>
+  <tr><td>存货（亿）</td><td>—</td><td>17.78</td><td>49.44</td><td>~55（估）</td></tr>
+  <tr><td>存货增速</td><td>—</td><td>—</td><td>+178%</td><td>持续增长</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>核心发现：增长斜率急剧放缓 + 存货堆积</strong><br>
+  寒武纪的营收增速从FY2024的+65.7%飙升至FY2025的+453.2%（低基数+大客户集中放量），但2026Q1已放缓至+159.6%。FY2025全年的453%增长主要靠Q1-Q2的爆发（基数极低），Q4单季增速已降至+91%。更令人担忧的是存货增速（+178%）远超营收增速（+91%→+160%），说明产品动销可能存在压力——公司可能在"压货"以维持增长数字。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>股价（2026.6.26）</td><td><strong>~1,458 元</strong></td><td>52周区间：349-1,540元</td></tr>
+  <tr><td>总市值</td><td><strong>~9,160 亿</strong></td><td>总股本6.28亿股</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>~337x</strong></td><td>极度高估</td></tr>
+  <tr><td>PE（动态/FY2025）</td><td><strong>~226x</strong></td><td>仍极高</td></tr>
+  <tr><td>PB</td><td><strong>~71x</strong></td><td>市净率极端</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~140x</strong></td><td>市销率极高</td></tr>
+  <tr><td>PEG（FY2025增速）</td><td><strong>~0.50</strong></td><td>基于+453%增速，但不可持续</td></tr>
+  <tr><td>PEG（2026E增速~+100%）</td><td><strong>~2.26</strong></td><td style="color:#c0392b">严重高估（PEG>>1.0）</td></tr>
+  <tr><td>52周最低</td><td><strong>349 元</strong></td><td>2025年低点</td></tr>
+  <tr><td>52周最高</td><td><strong>1,540 元</strong></td><td>2026年高点</td></tr>
+</table>
+
+<h3>4.2 估值场景分析</h3>
+<p style="font-size:13px;color:#666;">假设2026E净利润约40-50亿，2027E约60-80亿。以下为多情景估值推演：</p>
+<table>
+  <tr><th>情景</th><th>2026E净利</th><th>PE假设</th><th>对应市值</th><th>对应股价</th><th>距当前涨跌</th></tr>
+  <tr><td>极度乐观（AI泡沫延续）</td><td>45亿</td><td>250x</td><td>11,250亿</td><td>1,791元</td><td class="good">+22.8%</td></tr>
+  <tr><td>乐观（高增长持续）</td><td>45亿</td><td>150x</td><td>6,750亿</td><td>1,075元</td><td class="bad">-26.3%</td></tr>
+  <tr><td>中性（增速回归理性）</td><td>45亿</td><td>100x</td><td>4,500亿</td><td>717元</td><td class="bad">-50.8%</td></tr>
+  <tr><td>悲观（竞争加剧）</td><td>35亿</td><td>70x</td><td>2,450亿</td><td>390元</td><td class="bad">-73.3%</td></tr>
+  <tr><td>极度悲观（戴维斯双杀）</td><td>30亿</td><td>50x</td><td>1,500亿</td><td>239元</td><td class="bad">-83.6%</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>估值核心结论：已将未来3-5年增长Price In</strong><br>
+  即使2026年净利润达到45亿（再翻倍以上），按当前市值9,160亿计算，对应PE仍高达204倍。即使是极度乐观的AI泡沫延续场景，股价上行空间也仅22.8%。而在中性至悲观场景下，下行空间高达50%-80%。主要风险是"戴维斯双杀"——增速放缓（盈利增速从+453%降至+100%以下）叠加PE中枢下移（从300x向100x甚至50x回归）。
+</div>
+
+<h3>4.3 估值方法论讨论</h3>
+<table>
+  <tr><th>估值方法</th><th>适用性</th><th>结论</th></tr>
+  <tr><td>PE估值（市盈率）</td><td class="bad">不适用</td><td>PE 337倍无意义，仅在持续200%+增长的极端情形下才有参考价值</td></tr>
+  <tr><td>PEG估值</td><td class="neutral">有条件适用</td><td>PEG = 2.26（基于+100%增速预期），远高于1.0合理上限</td></tr>
+  <tr><td>PS估值（市销率）</td><td class="neutral">参考</td><td>PS约140x，比英伟达（~30x）高4倍以上，需极高增速支撑</td></tr>
+  <tr><td>PB估值（市净率）</td><td class="bad">不适用</td><td>PB 71x，芯片设计公司轻资产特征导致PB失真</td></tr>
+  <tr><td>DCF现金流折现</td><td class="bad">不适用</td><td>经营现金流负值，无法进行DCF估值</td></tr>
+  <tr><td>可比公司分析</td><td class="neutral">参考</td><td>对比英伟达PS~30-35x，寒武纪PS~140x溢价约4倍</td></tr>
+</table>
+
+<h3>4.4 市值情景对应的净利润要求</h3>
+<p style="font-size:13px;color:#666;">当前市值约9,160亿。不同PE水平下，需要多少净利润才能"支撑"当前市值？</p>
+<table>
+  <tr><th>PE假设</th><th>所需净利润</th><th>相当于当前（20.59亿）的倍数</th><th>能否实现？</th></tr>
+  <tr><td>50x（正常成长股）</td><td>183.2 亿</td><td>8.9x</td><td class="bad">需营收~550亿，极难</td></tr>
+  <tr><td>70x（高成长溢价）</td><td>130.9 亿</td><td>6.4x</td><td class="bad">需营收~400亿，3-5年后可能</td></tr>
+  <tr><td>100x（超高成长）</td><td>91.6 亿</td><td>4.4x</td><td class="neutral">需营收~275亿，可能性存在</td></tr>
+  <tr><td>150x（极端高成长）</td><td>61.1 亿</td><td>3.0x</td><td class="neutral">2026E估40-50亿，尚需2年</td></tr>
+  <tr><td>200x（泡沫区域）</td><td>45.8 亿</td><td>2.2x</td><td class="good">2026E有可能达到</td></tr>
+  <tr><td>当前PE 337x</td><td>27.2 亿（实际20.59亿）</td><td>1.0x</td><td class="bad">当前利润远不足以支撑</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值锚定核心结论：</strong>当前市值9,160亿隐含的假设是——即使给予200倍的极端PE，也需要至少45亿净利润（vs FY2025的20.59亿），这意味着净利润需要在1-2年内再翻1.2倍以上。如果PE回归到100倍（仍远高于A股平均水平），则需要净利润达到91.6亿——这需要营收突破250-300亿。以当前增长趋势，这可能需要3-5年。换句话说，<strong>当前股价已经price in了未来3-5年的增长。</strong>
+</div>
+
+<h3>4.5 PS估值视角</h3>
+<table>
+  <tr><th>情景</th><th>PS假设</th><th>2026E营收</th><th>对应市值</th><th>对应股价</th></tr>
+  <tr><td>极端乐观（AI泡沫）</td><td>120x</td><td>130亿</td><td>15,600亿</td><td>2,484元</td></tr>
+  <tr><td>当前水平</td><td>~70x（基于2026E）</td><td>130亿</td><td>9,100亿</td><td>1,450元</td></tr>
+  <tr><td>合理偏高</td><td>40x</td><td>130亿</td><td>5,200亿</td><td>828元</td></tr>
+  <tr><td>合理中枢</td><td>25x</td><td>130亿</td><td>3,250亿</td><td>518元</td></tr>
+  <tr><td>保守（对标NVDA）</td><td>15x</td><td>130亿</td><td>1,950亿</td><td>311元</td></tr>
+</table>
+
+<div class="summary-box">
+  PS视角同样显示：即使是基于2026E的高增长预期（营收130亿），以对标英伟达的PS 30x计算，合理市值仅~3,900亿（股价~621元）。当前PS ~70x（基于2026E）仍然溢价显著。
+</div>
+
+<h3>4.6 可比公司估值对标</h3>
+<table>
+  <tr><th>公司</th><th>市场</th><th>市值</th><th>PS（TTM）</th><th>PE（TTM）</th><th>营收增速</th></tr>
+  <tr><td>英伟达 NVDA</td><td>美股</td><td>~30万亿RMB</td><td>~30x</td><td>~60x</td><td>+78%</td></tr>
+  <tr><td>寒武纪 688256</td><td>A股</td><td>~9,160亿RMB</td><td>~140x</td><td>~337x</td><td>+453%</td></tr>
+  <tr><td>海光信息 688041</td><td>A股</td><td>~4,800亿</td><td>~45x</td><td>~120x</td><td>+38%</td></tr>
+  <tr><td>中科曙光 603019</td><td>A股</td><td>~2,500亿</td><td>~5x</td><td>~30x</td><td>+25%</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值总结：</strong>寒武纪当前的估值体系建立在极其苛刻的增长预期之上。PS 140x是英伟达的近5倍，PE 337倍意味着即使2026年业绩再翻倍，动态PE仍高达~170倍。在A股市场的"AI信仰"溢价下，短期可能维持高估值，但从中长期价值投资角度看，安全边际严重不足。投资寒武纪本质上是押注"中国AI芯片国产化"的高赔率期权，而非价值投资。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>净利润率</td><td>负值（亏损）</td><td><strong>31.68%</strong></td><td class="good">⬆ 扭亏为盈</td></tr>
+  <tr><td>资产周转率</td><td>~0.17（估）</td><td><strong>0.64</strong></td><td class="good">⬆ 大幅提升</td></tr>
+  <tr><td>权益乘数</td><td>~1.24（估）</td><td><strong>1.14</strong></td><td class="good">⬇ 杠杆降低</td></tr>
+  <tr><td><strong>ROE</strong></td><td><strong>负值</strong></td><td><strong>17.40%</strong></td><td class="good">⬆ 首年转正</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>负值</td><td><strong>20.3%</strong></td><td class="good">⬆ 优秀</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>负值</td><td><strong>-2.9pct</strong></td><td class="good">✅ 杠杆为负（现金多）</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：超高利润率驱动型（类似高端消费品/软件模式）</strong><br>
+  31.68%的净利率是ROE的核心驱动力，资产周转率0.64中等偏上（对芯片设计公司而言不错），权益乘数1.14极低（几乎无杠杆）。ROE 17.4%中，去杠杆后ROA高达20.3%，说明公司不依赖杠杆就能创造可观回报——这在A股科技公司中相当罕见。<br><br>
+  <strong>与FY2024对比：</strong>ROE从亏损到17.4%的飞跃主要归功于净利率的扭亏为盈（从负值→31.68%）和周转率的显著提升（从~0.17→0.64）。权益乘数从1.24降至1.14（偿还债务+增发融资），杠杆进一步降低，财务更加稳健。
+</div>
+
+<h3>5.2 杜邦三因子拆解详解</h3>
+
+<h3>因子一：净利润率 31.68%</h3>
+<table>
+  <tr><th>子项</th><th>金额（亿）</th><th>占营收比</th></tr>
+  <tr><td>营业收入</td><td>64.97</td><td>100.00%</td></tr>
+  <tr><td>营业成本</td><td>-29.14</td><td>-44.85%</td></tr>
+  <tr><td>毛利润</td><td>35.83</td><td>55.15%</td></tr>
+  <tr><td>研发费用</td><td>-11.69</td><td>-17.99%</td></tr>
+  <tr><td>销售+管理+财务费用</td><td>-5.72（估）</td><td>-8.80%</td></tr>
+  <tr><td>其他收益（政府补贴等）</td><td>+3.55（估）</td><td>+5.46%</td></tr>
+  <tr><td>信用+资产减值</td><td>-2.46（估，Q1已2.46）</td><td>-3.79%</td></tr>
+  <tr><td>净利润</td><td>20.59</td><td>31.68%</td></tr>
+</table>
+
+<p style="font-size:13px;color:#666;">净利率31.68%在A股科技股中属于顶尖水平，但需要注意：① 政府补贴等非经常性损益贡献了相当比例；② 存货跌价损失在FY2025尚未充分体现（2026Q1单季已达2.46亿）；③ 研发费用率从91.3%骤降至17.99%贡献了大部分利润改善，后续下降空间有限。</p>
+
+<h3>因子二：资产周转率 0.64</h3>
+<table>
+  <tr><th>子项</th><th>FY2025</th><th>说明</th></tr>
+  <tr><td>总资产</td><td>134.38 亿</td><td>同比+100%</td></tr>
+  <tr><td>总资产周转率</td><td><strong>0.64</strong></td><td>每1元资产产生0.64元收入</td></tr>
+  <tr><td>存货周转天数</td><td><strong>~310天（估）</strong></td><td class="bad">极慢！需1年才能卖完库存</td></tr>
+  <tr><td>应收账款周转天数</td><td>~90天（估）</td><td>合理</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>关键警报：存货周转天数高达~310天！</strong><br>
+  按FY2025平均存货~33.6亿和营业成本29.14亿计算，存货周转天数约420天（存货/日均成本）。即使按年末存货49.44亿和最新季度数据推算，也高达约300天以上。这意味着寒武纪的产品从入库到卖出需要将近一年——对于AI芯片（技术迭代周期12-18个月）来说，这个周转速度存在巨大的技术淘汰风险。
+</div>
+
+<h3>因子三：权益乘数 1.14（低杠杆）</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>资产负债率</td><td>~12%</td><td class="good">✅ A股科技股最低水平之一</td></tr>
+  <tr><td>有息负债率</td><td>~0%</td><td class="good">✅ 几乎无息负债</td></tr>
+  <tr><td>权益乘数</td><td>1.14</td><td class="good">✅ 极低杠杆</td></tr>
+  <tr><td>现金短债覆盖</td><td>远超1x</td><td class="good">✅ 无短债压力</td></tr>
+</table>
+
+<h3>5.3 杜邦纵向对比（FY2025 vs 未来稳态）</h3>
+<p style="font-size:13px;color:#666;">将FY2025的杜邦指标与"理想成熟AI芯片公司"的稳态指标进行对比，评估正常化空间：</p>
+<table>
+  <tr><th>指标</th><th>寒武纪 FY2025</th><th>AI芯片成熟期标杆</th><th>正常化方向</th><th>对ROE影响</th></tr>
+  <tr><td>净利润率</td><td>31.68%</td><td>20-25%（竞争加剧后）</td><td class="bad">↓ 向下回归</td><td>负面</td></tr>
+  <tr><td>资产周转率</td><td>0.64</td><td>0.8-1.0（规模效应后）</td><td class="good">↑ 向上改善</td><td>正面</td></tr>
+  <tr><td>权益乘数</td><td>1.14</td><td>1.3-1.5（适度加杠杆）</td><td class="neutral">↑ 可能加杠杆</td><td>中性略正</td></tr>
+  <tr><td><strong>ROE</strong></td><td>17.40%</td><td><strong>15-25%</strong></td><td class="neutral">大体稳定</td><td>—</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>正常化路径推演：</strong><br>
+  FY2025的31.68%净利率并不具备长期可持续性——随着竞争加剧，净利率可能逐步回归至20-25%区间（这对ROE是负面因素）。但资产周转率将从0.64提升至0.8-1.0（规模效应+存货消化），权益乘数可能适度提升至1.3-1.5（增加研发投入的适度债务融资）。两者抵消后，<strong>ROE有可能稳定在15-25%的"优秀"区间</strong>——但这需要公司成功消化存货、维持市场份额、并且不陷入价格战。
+</div>
+
+<h3>5.4 杜邦视角的"好生意"特征验证</h3>
+<table>
+  <tr><th>好生意标准</th><th>寒武纪数据</th><th>判定</th></tr>
+  <tr><td>净利率 > 15%</td><td>31.68%</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>毛利率 > 50%</td><td>55.15%</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>轻资产模式（周转率 > 0.5）</td><td>0.64</td><td class="good">✅ 满足</td></tr>
+  <tr><td>低杠杆（权益乘数 < 1.5）</td><td>1.14</td><td class="good">✅ 极低</td></tr>
+  <tr><td>高ROE（> 15%）</td><td>17.40%</td><td class="good">✅ 首年即达标</td></tr>
+  <tr><td>ROA > 10%</td><td>20.3%</td><td class="good">✅ 极其优秀</td></tr>
+  <tr><td>正经营现金流</td><td>-4.98亿</td><td class="bad">❌ 仍为负</td></tr>
+  <tr><td>利润真实现（CFO/净利 > 1）</td><td>-0.24</td><td class="bad">❌ 严重不达标</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>好生意特征符合度：6/8 —— 表面"好生意"，但现金流问题致命</strong><br>
+  杜邦指标显示寒武纪在盈利能力、资产效率和财务结构上都符合"好生意"特征。但现金流指标（CFO为负、CFO/净利润-0.24）是一票否决因素——一家不能产生正向经营现金流的公司，无论会计利润多高，都不是真正的好生意。FY2025的ROE更像"会计ROE"而非"现金ROE"。
+</div>
+
+<h3>5.5 杜邦核心结论</h3>
+<div class="summary-box">
+  <strong>寒武纪杜邦分析揭示的本质：</strong><br><br>
+  <strong>1. 盈利模式：超高利润率 + 低杠杆 + 中等周转。净利率31.68%是ROE的绝对核心驱动，这在A股科技公司中极为罕见（可与茅台媲美净利率水平）。</strong><br><br>
+  <strong>2. 最亮眼：</strong>ROA 20.3%说明公司不依赖杠杆也能获得高回报，这是优秀商业模式的特征。<br><br>
+  <strong>3. 最大隐患：</strong>存货周转天数~310天（甚至更长），对于AI芯片这种快速迭代的产品来说风险极高。FY2025的利润很大程度上是"纸面利润"——卖出芯片所确认的利润，而仓库里还有近50亿的芯片等待出售。<br><br>
+  <strong>4. 估值矛盾：</strong>杜邦分析显示公司的经营质量不错（高ROA、低杠杆），但PE 337倍的估值完全无视了这些基本面信号——市场不是在做价值投资，而是在为"中国AI芯片第一股"的稀缺性和前景支付超高溢价。<br><br>
+  <strong>5. 可持续性关键：</strong>能否维持高净利率（31.68%）取决于：① 竞争格局是否恶化（华为Ascend）；② 产品迭代能否维持高定价；③ 存货减值风险是否释放。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与周期分析（L5框架）</h2>
+
+<h3>6.1 行业属性与生命周期定位</h3>
+<table>
+  <tr><th>维度</th><th>分类</th><th>说明</th></tr>
+  <tr><td>行业大类</td><td>半导体设计（Fabless）</td><td>无晶圆厂，专注芯片设计</td></tr>
+  <tr><td>细分赛道</td><td>AI训练/推理芯片</td><td>云端AI加速芯片，对标NVIDIA GPU</td></tr>
+  <tr><td>生命周期阶段</td><td>初创亏损期→高速成长期（过渡阶段）</td><td>FY2025首年盈利，标志进入新阶段</td></tr>
+  <tr><td>行业属性</td><td>成长型+战略资产型</td><td>AI浪潮受益者+国产芯片战略标的</td></tr>
+  <tr><td>技术迭代周期</td><td>12-18个月</td><td>AI芯片快速迭代，旧款快速贬值</td></tr>
+  <tr><td>周期性</td><td>弱周期（但受制裁政策影响大）</td><td>AI资本开支周期+中美科技博弈周期</td></tr>
+</table>
+
+<h3>6.2 成长生命周期：从亏损到盈利的拐点</h3>
+<table>
+  <tr><th>阶段</th><th>时间</th><th>特征</th><th>营收</th><th>盈利</th></tr>
+  <tr><td>① 初创研发期</td><td>2016-2020</td><td>纯投入，无商业化收入</td><td>~0</td><td>巨额亏损</td></tr>
+  <tr><td>② 早期商业化</td><td>2021-2023</td><td>小规模出货，政府项目为主</td><td>2-7亿</td><td>持续亏损</td></tr>
+  <tr><td>③ 放量转折点</td><td>2024-2025</td><td>大客户突破，营收暴增</td><td>11.75→64.97亿</td><td>FY2025扭亏</td></tr>
+  <tr><td>④ 高速成长（当前）</td><td>2025-2027E</td><td>规模效应显现，争夺市场份额</td><td>65→150亿+</td><td>盈利持续扩大</td></tr>
+  <tr><td>⑤ 成熟稳态（未来愿景）</td><td>2028+</td><td>市占率稳定，利润率正常化</td><td>200亿+</td><td>净利率回归20%左右</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>寒武纪正处于"亏损→成长"的历史性拐点阶段（Stage ③→④）。</strong><br>
+  FY2025实现首年盈利是中国AI芯片产业的重要里程碑。但需要注意：历史上很多芯片公司在扭亏后的1-2年内再次陷入亏损（因竞争加剧或产品换代）。寒武纪要真正走向"稳态成长"，还需要证明：①增长可持续；②存货可消化；③现金流转正。
+</div>
+
+<h3>6.3 竞争格局深度分析</h3>
+<table>
+  <tr><th>竞争者</th><th>产品</th><th>制程</th><th>算力对比</th><th>生态</th><th>威胁等级</th></tr>
+  <tr><td>英伟达 NVIDIA</td><td>H100/H200/B200</td><td>4nm</td><td>绝对领先</td><td>CUDA生态无可撼动</td><td class="bad">🔴 长期最大威胁</td></tr>
+  <tr><td>华为海思</td><td>昇腾910B/910C</td><td>7nm</td><td>与思元590接近</td><td>CANN生态快速成长</td><td class="bad">🔴 直接竞争对手</td></tr>
+  <tr><td>寒武纪思元</td><td>思元590/700</td><td>7nm</td><td>国内一流</td><td>Cambricon Neuware</td><td>—</td></tr>
+  <tr><td>海光信息</td><td>深算系列</td><td>7nm</td><td>偏低</td><td>x86兼容</td><td class="neutral">🟡 间接竞争</td></tr>
+  <tr><td>景嘉微/壁仞等</td><td>通用GPU</td><td>—</td><td>早期</td><td>不成熟</td><td class="good">🟢 暂不构成威胁</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>竞争格局核心判断：</strong><br>
+  <strong>与英伟达的竞争：</strong>目前不在同一个维度。英伟达H100/B200在训练算力上领先2-3代，且CUDA生态护城河极深。寒武纪目前主要受益于"英伟达被限制对华出口高端芯片"的政策红利。<br><br>
+  <strong>与华为海思的竞争：</strong>这是最关键的竞争。华为昇腾910系列与思元590在推理性能上接近，且华为拥有更强的品牌、渠道和政企关系。目前寒武纪在互联网客户（阿里、百度等）有优势，华为在政务、运营商市场占优。<br><br>
+  <strong>竞争格局展望：</strong>短期内（1-2年），受益于国产替代大潮，两者均可获得高速增长。中期（3-5年），国内AI芯片市场可能逐步整合，低端竞争者将被淘汰，形成"华为+寒武纪"双寡头格局。
+</div>
+
+<h3>6.4 行业周期与政策周期叠加</h3>
+<table>
+  <tr><th>周期类型</th><th>当前位置</th><th>对寒武纪的影响</th></tr>
+  <tr><td>全球半导体周期</td><td>上行中后期（AI驱动）</td><td class="good">正面——AI资本开支持续扩张</td></tr>
+  <tr><td>AI资本开支周期</td><td>全球AI军备竞赛早期</td><td class="good">强烈正面——云厂商资本开支持续增长</td></tr>
+  <tr><td>中美科技博弈周期</td><td>持续升级（出口管制加强）</td><td class="good">正面——国产替代加速</td></tr>
+  <tr><td>科创板/A股科技牛市</td><td>AI概念牛市（2025-2026）</td><td class="neutral">双刃剑——高估值支撑但也意味泡沫风险</td></tr>
+  <tr><td>产品迭代周期</td><td>思元590放量→700即将推出</td><td class="neutral">需关注过渡期旧款减值风险</td></tr>
+</table>
+
+<h3>6.5 核心矛盾：情绪股 vs 成长股的转型评估</h3>
+
+<div class="danger-box">
+  <strong>核心诊断：寒武纪正处于"情绪股→成长股"的转型过程中</strong><br><br>
+  <strong>情绪股阶段（2020-2024）：</strong>上市后因"AI芯片第一股"的光环获得超高关注度，但连续亏损、营收规模小、估值完全脱离基本面。股价主要由市场情绪和概念炒作驱动。<br><br>
+  <strong>转型催化（FY2025）：</strong>首年盈利是转型的关键催化剂。营收突破60亿、净利率31.68%、摘掉"U"标签——这些基本面变化使"成长股"的叙事开始变得可信。<br><br>
+  <strong>当前评价（2026.6）：转型进行中，但尚未完成。</strong>PE 337倍仍然是典型的情绪股估值水平。真正的成长股估值应当在PE 30-80倍区间（取决于增速）。
+</div>
+
+<h3>6.6 情景分析：三阶段推演</h3>
+
+<table>
+  <tr><th>情景</th><th>概率</th><th>2026E营收</th><th>2026E净利</th><th>2027E净利</th><th>估值逻辑</th><th>目标股价</th></tr>
+  <tr><td><strong>乐观（AI叙事延续）</strong></td><td>~25%</td><td>130-150亿</td><td>45-50亿</td><td>70-80亿</td><td>PE 200x（溢价维持）</td><td>1,500-1,800元</td></tr>
+  <tr><td><strong>中性（增速正常化）</strong></td><td>~50%</td><td>110-130亿</td><td>35-42亿</td><td>50-60亿</td><td>PE 100-150x（均值回归）</td><td>700-1,000元</td></tr>
+  <tr><td><strong>悲观（戴维斯双杀）</strong></td><td>~25%</td><td>85-100亿</td><td>25-30亿</td><td>30-40亿</td><td>PE 50-80x（杀估值+杀业绩）</td><td>250-500元</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>情景分析结论：</strong><br><br>
+  <strong>乐观情景（赔率+22.8%）：</strong>AI牛市持续、业绩继续超预期、市场维持极高估值容忍度。股价可能略高于当前水平，但上行空间已有限。<br><br>
+  <strong>中性情景（赔率-30%至-50%）：</strong>增速逐步正常化（+80-100%），市场对AI的审美疲劳导致PE中枢下移至100-150倍。股价面临显著回调。<br><br>
+  <strong>悲观情景（赔率-70%至-83%）：</strong>竞争加剧（华为、英伟达H20）+存货暴雷+增速放缓至50%以下，触发"戴维斯双杀"——PE从300倍杀到50倍，盈利下调，股价从1,458跌至300-400元附近（接近52周低点349元）。<br><br>
+  <strong>赔率评估：</strong>上涨空间约20%（乐观），下跌空间50-80%（中性/悲观）。风险回报比极差，约1:3至1:4。
+</div>
+
+<h3>6.7 给投资者的关键问题清单</h3>
+<table>
+  <tr><th style="width:5%">#</th><th style="width:40%">关键问题</th><th style="width:20%">对估值的影响</th><th>当前答案</th></tr>
+  <tr><td>1</td><td>营收增速能维持+100%多久？</td><td>决定PE是否可维持200x+</td><td class="neutral">已放缓至+160%，趋势向下</td></tr>
+  <tr><td>2</td><td>存货49亿能否被市场消化？</td><td>减值将直接侵蚀利润</td><td class="bad">存货增长远超营收，信号不乐观</td></tr>
+  <tr><td>3</td><td>经营现金流何时转正？</td><td>决定"纸面利润"还是真实盈利</td><td class="bad">FY2025仍为-4.98亿，2026Q1不确定</td></tr>
+  <tr><td>4</td><td>客户88.66%集中度风险如何化解？</td><td>单一客户流失即业绩崩塌</td><td class="bad">几乎没有改善迹象</td></tr>
+  <tr><td>5</td><td>华为昇腾的竞争压力是否在加大？</td><td>影响市占率和毛利率</td><td class="neutral">竞争加剧但市场也在扩张</td></tr>
+  <tr><td>6</td><td>英伟达H20中国特供版的影响？</td><td>直接威胁云端芯片需求</td><td class="bad">H20持续升级，压力上升</td></tr>
+  <tr><td>7</td><td>思元700能否接棒590维持增长？</td><td>产品迭代成功与否决定长期前景</td><td class="neutral">尚未验证</td></tr>
+  <tr><td>8</td><td>当前股价是否已经Price In了未来3年增长？</td><td>核心估值问题</td><td class="bad"><strong>是的，已充分price in乐观预期</strong></td></tr>
+</table>
+
+<h3>6.8 SWOT分析</h3>
+<table>
+  <tr><th style="width:50%;background:#e8f4e8">优势 (Strengths)</th><th style="width:50%;background:#fde8e8">劣势 (Weaknesses)</th></tr>
+  <tr>
+    <td style="text-align:left;vertical-align:top">
+      • 国内AI芯片设计龙头，先发优势明显<br>
+      • 思元系列产品性能国内一流<br>
+      • 毛利率55%+，净利率32%，盈利能力强<br>
+      • 几乎零负债，财务安全性极高<br>
+      • 营收处于高速增长期（+453%→+160%）<br>
+      • 研发团队实力强（中科院背景）
+    </td>
+    <td style="text-align:left;vertical-align:top">
+      • 产品线单一（云端芯片占99.7%）<br>
+      • 经营现金流持续为负<br>
+      • 存货暴增178%，减值风险巨大<br>
+      • 客户集中度88.66%，议价能力弱<br>
+      • 营收增速急剧放缓<br>
+      • 生态建设远落后于英伟达CUDA
+    </td>
+  </tr>
+  <tr>
+    <th style="background:#e8f4f8">机会 (Opportunities)</th>
+    <th style="background:#fef8e8">威胁 (Threats)</th>
+  </tr>
+  <tr>
+    <td style="text-align:left;vertical-align:top">
+      • 全球AI算力需求爆发式增长<br>
+      • 美国对华芯片出口管制持续加码（利好国产替代）<br>
+      • 国内智算中心大规模建设<br>
+      • 互联网大厂"国产芯片替代"战略推进<br>
+      • 思元700等下一代产品打开新增长空间<br>
+      • 政策持续支持芯片产业
+    </td>
+    <td style="text-align:left;vertical-align:top">
+      • 华为昇腾910C/D持续迭代，竞争白热化<br>
+      • 英伟达H20中国特供版性能持续提升<br>
+      • 大客户自研芯片（阿里平头哥、百度昆仑）<br>
+      • 技术迭代快（12-18个月），产品淘汰风险<br>
+      • A股市场风格切换（AI牛市退潮）<br>
+      • 科创板解禁减持压力
+    </td>
+  </tr>
+</table>
+
+<h3>6.9 波特五力模型分析</h3>
+<table>
+  <tr><th>竞争力量</th><th>强度</th><th>说明</th></tr>
+  <tr><td>行业内竞争</td><td class="bad">🔴 激烈</td><td>华为海思昇腾系列直接竞争，英伟达H20间接竞争，AI芯片赛道拥挤度上升</td></tr>
+  <tr><td>潜在进入者</td><td class="neutral">🟡 中等</td><td>AI芯片设计门槛极高（资金+人才+生态），但互联网巨头（字节、阿里）正在自研</td></tr>
+  <tr><td>替代品威胁</td><td class="bad">🔴 较高</td><td>FPGA、ASIC（TPU类）、以及国产GPU等均可替代，替代品选择增多</td></tr>
+  <tr><td>供应商议价力</td><td class="bad">🔴 极高</td><td>台积电是唯一先进制程代工厂，寒武纪缺乏议价能力；EDA工具受美制裁风险</td></tr>
+  <tr><td>客户议价力</td><td class="bad">🔴 极高</td><td>前5客户占88.66%，大客户拥有极高议价能力，可能要求降价或延长账期</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>波特五力综合：4/5力量为不利方向</strong><br>
+  寒武纪面临的竞争格局十分严峻——五个竞争力量中有四个（行业内竞争、替代品、供应商、客户）处于"高威胁"水平。唯一相对有利的是潜在进入者门槛较高，但这个优势也在被互联网大厂的自研芯片努力所侵蚀。在这种竞争环境下，维持当前55%毛利率和32%净利率的难度将逐年加大。
+</div>
+
+<h3>6.10 关键催化因素与风险因素清单</h3>
+<table>
+  <tr><th>类型</th><th>因素</th><th>发生概率</th><th>影响程度</th><th>时间窗口</th></tr>
+  <tr><td class="good">📈 催化</td><td>思元700芯片性能超越华为昇腾910C</td><td>低（20%）</td><td>极大（+50%以上涨幅）</td><td>2026H2</td></tr>
+  <tr><td class="good">📈 催化</td><td>更多互联网大客户导入（美团、拼多多等）</td><td>中（50%）</td><td>较大（+20-30%）</td><td>2026-2027</td></tr>
+  <tr><td class="good">📈 催化</td><td>美国进一步收紧AI芯片出口管制</td><td>高（70%）</td><td>较大（+15-25%）</td><td>持续</td></tr>
+  <tr><td class="good">📈 催化</td><td>经营现金流提前转正</td><td>中（40%）</td><td>中等（+10-15%）</td><td>2026H2-2027</td></tr>
+  <tr><td class="bad">📉 风险</td><td>华为昇腾抢占主要互联网客户份额</td><td>中（50%）</td><td>较大（-30-50%）</td><td>2026-2027</td></tr>
+  <tr><td class="bad">📉 风险</td><td>存货大规模减值暴雷（>10亿损失）</td><td>中高（60%）</td><td>较大（-20-40%）</td><td>2026H2</td></tr>
+  <tr><td class="bad">📉 风险</td><td>大客户减少订单/自研芯片替代</td><td>中（30%）</td><td>极大（-50%以上）</td><td>2027+</td></tr>
+  <tr><td class="bad">📉 风险</td><td>AI牛市退潮，板块整体估值下杀</td><td>高（60%）</td><td>较大（-30-60%）</td><td>2026-2027</td></tr>
+  <tr><td class="bad">📉 风险</td><td>英伟达H20大幅降价/性能升级</td><td>中（40%）</td><td>中等（-15-25%）</td><td>2026H2</td></tr>
+</table>
+
+<h3>6.11 行业周期总评</h3>
+
+<div class="verdict verdict-caution">L5综合判定：成长型+战略资产型 | 从"亏损→成长"过渡中 | 赔率不具吸引力</div>
+
+<div class="highlight-box">
+  <strong>行业周期分析的最终思考：</strong><br><br>
+  寒武纪是一家在正确赛道（AI芯片）、正确时机（AI爆发+国产替代）的公司。FY2025首年盈利是真实能力的验证。从这个角度看，它不仅仅是一个概念股。<br><br>
+  问题在于市场已经"提前奖励"了它——9,160亿市值、337倍PE——这个定价已经充分反映了未来3-5年的乐观预期。即使公司持续高增长，投资者的回报空间也已经相当有限（乐观~+20%）。<br><br>
+  <strong>当前投资寒武纪，不是在"发现价值"，而是在"为确定性的高估值买单，赌不确定性的持续高增长"。</strong>对于长线价值投资者，这不是一个有吸引力的风险回报比。对于趋势交易者，在AI牛市主题尚在时可能仍有短线机会，但需时刻警惕"戴维斯双杀"的尾部风险。<br><br>
+  <strong>一句话总结：好公司，好赛道，但太贵了。</strong>
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>成长初期/情绪→成长过渡型，AI芯片设计（Fabless），国产AI芯片龙头，技术+政策壁垒极高。<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 17.4%首年转正，超高利润型（净利率31.68%），但CFO仍为-4.98亿，现金含量极差。<br>
+  <strong>Step 3 - 估值判断：</strong>PE 337x极度昂贵，PS 140x是英伟达4.7倍，市场已price in未来3-5年增长。<br>
+  <strong>Step 4 - 风险排查：</strong>存货49.44亿+178%暴增、CFO为负、前5客户88.66%集中、增速从+453%降至+160%。<br>
+  <strong>Step 5 - 结论：</strong>好公司初步验证（首年盈利+高毛利），但价格极度危险，风险回报比1:3至1:4。<br>
+  <strong>Step 6 - 跟踪：</strong>看CFO何时转正、存货能否消化、思元700迭代、大客户是否流失。
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>AI芯片行业爆发增长，国产替代政策红利，长期空间巨大</td></tr>
+  <tr><td>② 好公司</td><td class="neutral">⚠</td><td>ROE 17.4%>15%达标，毛利率55%下降趋势，但CFO为负（一票否决因素）</td></tr>
+  <tr><td>③ 好价格</td><td class="bad">✗</td><td>PE 337x极度昂贵，PS 140x远超英伟达，PEG 2.26>1.0严重高估</td></tr>
+</table>
+
+<h3>7.3 三个陷阱排查</h3>
+<div class="danger-box">
+  <strong>☐ 价值陷阱：</strong>❌ 未命中——高PE+高增长，与价值陷阱（低PE+低增长）相反。<br>
+  <strong>☐ 周期陷阱：</strong>❌ 未命中——AI芯片兼具成长和弱周期属性，非传统周期股。<br>
+  <strong>☐ 烧钱陷阱：</strong>🔴 高度命中——高PE（337x）+高营收增速（+160%）但CFO仍为-4.98亿，靠股权融资续命。
+</div>
+
+<h3>7.4 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——做AI芯片（训练+推理）卖给数据中心/运营商/政府——赚国产替代+AI算力爆发的"趋势钱"。目前还没稳定盈利，估值靠想象空间撑。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——CFO持续为负，公司什么时候能自己造血？PE 337x和PS 70+的估值能撑多久？华为昇腾的竞争压力？<br>
+  3. 如果现在买入，期待的回报来源是什么？——赌中国AI芯片的国产替代大趋势——如果寒武纪能像英伟达一样统治一个细分市场，现在的市值是起点。但这是极高风险的投资。<br>
+  4. 什么情况下你会坚决卖出？——营收增速明显放缓(&lt;30%) / 无法实现稳定盈利 / 大客户流失 / 技术路线被超越 / 国产替代政策生变。
+</div>
+
+</div></div>
+
+<div class="footer">
+     免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+     数据来源：寒武纪2025年年报、2026Q1季报、券商研报、理杏仁、公开市场数据
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

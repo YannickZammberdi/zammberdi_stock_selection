@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>A股——光伏 行业分析报告</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f5f5f5;padding:0;color:#333}
+  .report-wrap{max-width:800px;margin:0 auto;background:#fff}
+  h1{font-size:22px;margin:0;padding:28px 0 4px;text-align:center}
+  h2{font-size:18px;margin:28px 0 12px;border-bottom:2px solid #1a1a1a;padding-bottom:4px}
+  h3{font-size:15px;margin:18px 0 8px}
+  .subtitle{color:#666;font-size:13px;text-align:center;margin-bottom:4px}
+  .meta{color:#999;font-size:12px;text-align:center;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #e0e0e0}
+  .tab-bar{position:sticky;top:0;z-index:10;background:#fff;display:flex;flex-wrap:wrap;border-bottom:2px solid #ddd;gap:0}
+  .tab-btn{padding:10px 14px;cursor:pointer;border:none;background:none;font-size:13px;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+  .tab-btn:hover{color:#333;background:#f9f9f9}
+  .tab-btn.active{color:#1a1a1a;font-weight:700;border-bottom-color:#1a1a1a}
+  .tab-content{display:none}
+  .tab-content.active{display:block}
+  .tab-inner{padding:0 12px}
+  table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:13px}
+  th{background:#f5f5f5;padding:8px 6px;text-align:left;border-bottom:2px solid #ddd;white-space:nowrap;font-weight:600}
+  td{padding:7px 6px;border-bottom:1px solid #eee}
+  tr:nth-child(even) td{background:#fafafa}
+  .summary-box{background:#fffde7;border-left:4px solid #f9a825;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .highlight-box{background:#e3f2fd;border-left:4px solid #1e88e5;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .danger-box{background:#ffebee;border-left:4px solid #e53935;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .verdict{text-align:center;padding:20px;margin:16px 0;border-radius:8px;font-size:18px;font-weight:700}
+  .verdict-ok{background:#e8f5e9;border:2px solid #4caf50;color:#2e7d32}
+  .verdict-caution{background:#fff3e0;border:2px solid #ff9800;color:#e65100}
+  .verdict-bad{background:#ffebee;border:2px solid #e53935;color:#c62828}
+  .score{font-size:36px;display:block;margin-bottom:4px}
+  .pass{color:#2e7d32;font-weight:700}
+  .skip{color:#666;font-style:italic}
+  .tag{display:inline-block;padding:2px 8px;border-radius:3px;font-size:11px;font-weight:700}
+  .tag-red{background:#ffebee;color:#c62828}
+  .tag-green{background:#e8f5e9;color:#2e7d32}
+  .tag-yellow{background:#fff8e1;color:#f57f17}
+  .footer{font-size:11px;color:#aaa;text-align:center;padding:24px 0 8px;border-top:1px solid #eee;margin-top:30px}
+  .card{background:#fafafa;border:1px solid #e0e0e0;border-radius:6px;padding:14px;margin:10px 0;font-size:13px}
+  .flex{display:flex;flex-wrap:wrap;gap:8px}
+  .tbl-wrap{border:1px solid #e0e0e0;border-radius:6px;overflow:hidden;margin:10px 0 18px}
+  .tbl-wrap table{margin:0}
+  .tbl-wrap th{background:#f5f5f5;padding:9px 8px;border-bottom:1px solid #ddd;font-weight:600;font-size:12px}
+  .tbl-wrap td{padding:8px;border-bottom:1px solid #f0f0f0;font-size:13px}
+  .tbl-wrap tr:last-child td{border-bottom:none}
+  .bar-wrap{display:inline-flex;align-items:center;width:60px;height:16px;vertical-align:middle}
+  .bar-bg{background:#eee;border-radius:4px;height:8px;width:100%;overflow:hidden;position:relative}
+  .bar{display:block;height:8px;border-radius:4px}
+  .score-cell{font-weight:700;font-size:15px;text-align:center;white-space:nowrap}
+  .tbl-wrap td,.tbl-wrap th{vertical-align:middle}
+  .metric-h{color:#1565c0;font-weight:700;font-size:13px}
+  .metric-l{color:#c62828;font-weight:700}
+  .metric-m{color:#e65100;font-weight:700}
+  .col-tag{display:inline-block;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600}
+  .col-win{background:#e8f5e9;color:#2e7d32}
+  .col-lose{background:#ffebee;color:#c62828}
+  .col-warn{background:#fff3e0;color:#e65100}
+  .col-info{background:#e3f2fd;color:#1565c0}
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>A股——光伏 行业分析报告</h1>
+<div class="subtitle">L5分类：混合周期 ｜ 上市公司：~109只 ｜ 总市值：~3万亿</div>
+<div class="meta">生成日期：2026-07-01</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l7">L7 量化初筛</button>
+  <button class="tab-btn" data-tab="l8">L8 行业画像</button>
+  <button class="tab-btn" data-tab="l9">L9 竞争格局</button>
+  <button class="tab-btn" data-tab="l10">L10 周期时机</button>
+</div>
+
+<div class="tab-content active" id="tab-summary">
+<div class="tab-inner">
+
+<h2>行业速览</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">项目</th><th>内容</th></tr>
+<tr><td>行业名称</td><td><strong>光伏</strong></td></tr>
+<tr><td>市场</td><td>A股</td></tr>
+<tr><td>L5分类</td><td><span class="col-tag col-warn">混合周期</span> 长期成长逻辑 + 短期产能周期底部</td></tr>
+<tr><td>上市公司</td><td>~109只，其中符合L7筛选条件 <span class="col-tag col-win">10只</span></td></tr>
+<tr><td>行业总市值</td><td>~3万亿</td></tr>
+<tr><td>产业链利润核心</td><td><span class="col-tag col-win">逆变器环节</span> 阳光电源/德业等毛利率30-40%</td></tr>
+<tr><td>生命周期阶段</td><td><span class="col-tag col-warn">洗牌期</span> 产能过剩→价格战→出清→未来盈利修复</td></tr>
+<tr><td>当前周期位置</td><td><span class="col-tag col-lose">衰退/萧条</span> 全行业大面积亏损，产能利用率&lt;40%</td></tr>
+</table>
+</div>
+
+<h2>综合评分</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>维度</th><th style="width:60px">得分</th><th>进度</th><th>说明</th></tr>
+<tr>
+  <td>行业规模与空间</td>
+  <td class="score-cell">16/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:80%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">全球能源转型大趋势确定，TAM大，渗透率仍有提升空间</td>
+</tr>
+<tr>
+  <td>产业链位置</td>
+  <td class="score-cell">6/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:40%;background:#f44336"></span></span></span></td>
+  <td style="font-size:12px;color:#555">主链全亏损，仅逆变器/辅材/设备盈利</td>
+</tr>
+<tr>
+  <td>竞争格局</td>
+  <td class="score-cell">8/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:40%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">主链价格战泥潭，逆变器/胶膜格局较好</td>
+</tr>
+<tr>
+  <td>增长驱动力</td>
+  <td class="score-cell">9/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:60%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">长期驱动力强，短期增速承压</td>
+</tr>
+<tr>
+  <td>周期位置</td>
+  <td class="score-cell">10/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:67%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">深度周期底部，价格和盈利均在低位，等待拐点</td>
+</tr>
+<tr>
+  <td>政策环境</td>
+  <td class="score-cell">8/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:53%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">短期利空（取消出口退税），中长期利好</td>
+</tr>
+<tr style="background:#fafafa">
+  <td style="font-weight:700;font-size:14px">总分</td>
+  <td style="font-weight:700;font-size:16px;color:#e65100">57/100</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:57%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#e65100;font-weight:600">一般——谨慎关注，等待周期拐点信号</td>
+</tr>
+</table>
+</div>
+
+<div class="verdict verdict-caution">
+  <span class="score">57</span>
+  一般——谨慎关注
+</div>
+
+<div class="summary-box">
+  <strong>核心结论</strong><br>
+  光伏正处于史上最严重的产能过剩周期底部。主产业链（硅料/硅片/电池/组件）全行业亏损，但逆变器和辅材环节仍在赚钱。当前不是行业最佳买入时机，但已接近周期底部——2026年下半年有望出现盈利拐点。建议用"混合周期"框架分析：关注逆势盈利的逆变器/辅材龙头（阳光电源、德业股份、福斯特），主链标的等待产能出清信号后再入场。
+</div>
+
+<div class="highlight-box">
+  <strong>行业公式</strong><br>
+  收入 = 装机量(GW) × 组件价格(元/W) × 各环节分润比例<br>
+  关键指标：1) 硅料价格 2) 组件招标价 3) 行业开工率 4) 光伏新增装机量 5) 逆变器/辅材毛利率
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l7">
+<div class="tab-inner">
+
+<h2>筛子调整说明</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:12%">筛子</th><th style="width:35%">标准</th><th>调整说明</th></tr>
+<tr><td>①<span class="col-tag col-info">市值</span></td><td>主板≥50亿 / 创业板科创板≥30亿</td><td>光伏大量小公司，保留创业板/科创板≥30亿门槛</td></tr>
+<tr><td>②<span class="col-tag col-info">营收</span></td><td>主板≥10亿 / 创业板科创板≥3亿</td><td>设备/辅材公司营收较小，保留≥3亿</td></tr>
+<tr><td>③<span class="col-tag col-lose">毛利率</span></td><td>制造业≥15%</td><td><strong>最残酷的筛</strong>——主链全亏，逆变器/辅材通过</td></tr>
+<tr><td>④<span class="col-tag col-info">ROE</span></td><td>≥8%</td><td>正常执行，亏损ROE为负的剔除</td></tr>
+<tr><td>⑤<span class="col-tag col-info">负债率</span></td><td>制造业≤65%</td><td>正常执行，光伏重资产公司负债偏高需留意</td></tr>
+<tr><td>⑥<span class="col-tag col-info">估值</span></td><td>PE历史分位≤70%</td><td>当前PE普遍偏低（业绩低谷），全部通过</td></tr>
+</table>
+</div>
+
+<h2>候选池（10只）</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>环节</th><th>市值</th><th>毛利率</th><th>ROE</th><th>负债率</th><th>PE分位</th><th>通过</th></tr>
+<tr>
+  <td><strong>阳光电源</strong> 300274</td>
+  <td><span class="col-tag col-win">逆变器</span></td>
+  <td style="font-weight:600">3151亿</td>
+  <td><span class="col-tag col-win">31.8%</span></td>
+  <td><span class="col-tag col-win">~30%</span></td>
+  <td>58%</td>
+  <td>30-40%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>德业股份</strong> 605117</td>
+  <td><span class="col-tag col-win">逆变器</span></td>
+  <td style="font-weight:600">1198亿</td>
+  <td><span class="col-tag col-win">~40%</span></td>
+  <td><span class="col-tag col-win">~25%</span></td>
+  <td>40%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>迈为股份</strong> 300751</td>
+  <td><span class="col-tag col-info">设备</span></td>
+  <td>~400亿</td>
+  <td><span class="col-tag col-win">~45%</span></td>
+  <td>~15%</td>
+  <td>35%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>福斯特</strong> 603806</td>
+  <td><span class="col-tag col-warn">辅材</span></td>
+  <td>~400亿</td>
+  <td>~20%</td>
+  <td>~12%</td>
+  <td style="color:#2e7d32;font-weight:600">25%</td>
+  <td>30-40%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>正泰电器</strong> 601877</td>
+  <td><span class="col-tag col-warn">电站</span></td>
+  <td>~600亿</td>
+  <td>~25%</td>
+  <td>~15%</td>
+  <td>55%</td>
+  <td>30-40%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>先导智能 300450</td>
+  <td><span class="col-tag col-info">设备</span></td>
+  <td>~500亿</td>
+  <td>~35%</td>
+  <td>~15%</td>
+  <td>45%</td>
+  <td>30-40%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>锦浪科技 300763</td>
+  <td><span class="col-tag col-win">逆变器</span></td>
+  <td>~450亿</td>
+  <td>~35%</td>
+  <td>~10%</td>
+  <td>45%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>福莱特 601865</td>
+  <td><span class="col-tag col-warn">辅材</span></td>
+  <td>~350亿</td>
+  <td>~15%</td>
+  <td>~10%</td>
+  <td>45%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>太阳能 000591</td>
+  <td><span class="col-tag col-warn">电站</span></td>
+  <td>~200亿</td>
+  <td>~40%</td>
+  <td>~8%</td>
+  <td>60%</td>
+  <td>30-40%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>横店东磁 002056</td>
+  <td><span class="col-tag col-warn">综合</span></td>
+  <td>~300亿</td>
+  <td>~20%</td>
+  <td>~12%</td>
+  <td>40%</td>
+  <td>20-30%</td>
+  <td class="pass">6/6</td>
+</tr>
+</table>
+</div>
+
+<h2>观察池</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>卡在哪筛</th><th>备注</th></tr>
+<tr>
+  <td><strong>隆基绿能</strong> 601012</td>
+  <td><span class="col-tag col-lose">③毛利率~5%</span> <span class="col-tag col-lose">④ROE负</span></td>
+  <td>主链龙头，等待行业反转信号可重新评估</td>
+</tr>
+<tr>
+  <td><strong>通威股份</strong> 600438</td>
+  <td><span class="col-tag col-lose">③毛利率&lt;5%</span> <span class="col-tag col-lose">④ROE负</span></td>
+  <td>硅料+电池龙头，产能出清后可能反弹</td>
+</tr>
+<tr>
+  <td><strong>晶科能源</strong> 688223</td>
+  <td><span class="col-tag col-lose">③毛利率&lt;5%</span> <span class="col-tag col-lose">④ROE负</span></td>
+  <td>组件出货第一，关注BC技术路线进展</td>
+</tr>
+<tr>
+  <td><strong>天合光能</strong> 688599</td>
+  <td><span class="col-tag col-lose">③毛利率&lt;5%</span> <span class="col-tag col-lose">④ROE负</span></td>
+  <td>组件+分布式龙头，储能业务布局</td>
+</tr>
+<tr>
+  <td><strong>晶澳科技</strong> 002459</td>
+  <td><span class="col-tag col-lose">③毛利率&lt;5%</span> <span class="col-tag col-lose">④ROE负</span></td>
+  <td>组件龙头，连续亏损中</td>
+</tr>
+<tr>
+  <td><strong>大全能源</strong> 688303</td>
+  <td><span class="col-tag col-lose">③毛利率&lt;5%</span> <span class="col-tag col-lose">④ROE负</span></td>
+  <td>纯硅料标的，等待行业出清</td>
+</tr>
+</table>
+</div>
+
+<h2>筛除记录</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>筛子</th><th style="width:60px">筛除数</th><th>知名示例</th></tr>
+<tr><td>①市值</td><td style="text-align:center">~59</td><td>大量光伏小票，市值&lt;30亿</td></tr>
+<tr><td>②营收</td><td style="text-align:center">~10</td><td>部分纯概念壳公司、小型电站运营商</td></tr>
+<tr><td>③毛利率 <span class="col-tag col-lose">最严</span></td><td style="text-align:center">~25</td><td>隆基绿能、通威股份、晶科能源、天合光能、晶澳科技、大全能源、合盛硅业、阿特斯</td></tr>
+<tr><td>④ROE</td><td style="text-align:center">~5</td><td>毛利率已过筛但ROE&lt;8%的公司</td></tr>
+<tr><td>⑤负债率</td><td style="text-align:center">0</td><td>逆变器/辅材环节负债率普遍健康</td></tr>
+<tr><td>⑥估值</td><td style="text-align:center">0</td><td>当前PE低位，全部通过</td></tr>
+<tr style="background:#fffde7"><td><strong>剩余</strong></td><td style="text-align:center;font-weight:700;color:#2e7d32"><strong>10</strong></td><td>—</td></tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <strong>L7筛选结论</strong><br>
+  109→10，筛选力度非常大（-91%）。最严厉的是毛利率筛（主链全行业亏损导致大量明星股被淘汰）和市值筛（大量小票被排除）。剩余10只集中在逆变器、辅材、设备和电站运营环节。核心关注5只：阳光电源、德业股份、迈为股份、福斯特、正泰电器。主链观察池的隆基/通威等需等待行业反转信号。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l8">
+<div class="tab-inner">
+
+<h2>产业链</h2>
+<div class="card" style="font-size:13px;line-height:1.7">
+
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px">
+
+<div style="flex:1.2;min-width:200px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#2e7d32;font-size:14px">上游原材料</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">工业硅</div>
+    <div style="text-align:center;font-size:11px;color:#666">合盛硅业</div>
+    <div style="margin:10px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">硅料</div>
+    <div style="text-align:center;font-size:11px;color:#666">通威股份 · 大全能源 · 协鑫科技</div>
+  </div>
+</div>
+
+<div style="flex:2;min-width:280px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#1565c0;font-size:14px">中游制造</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+
+    <div style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap">
+      <div style="flex:1;min-width:60px;background:#ffebee;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">硅片</div>
+        <div style="font-size:10px;color:#666">隆基·中环</div>
+      </div>
+      <div style="font-size:20px;color:#999;line-height:36px">→</div>
+      <div style="flex:1;min-width:60px;background:#ffebee;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">电池片</div>
+        <div style="font-size:10px;color:#666">通威·爱旭·钧达</div>
+      </div>
+      <div style="font-size:20px;color:#999;line-height:36px">→</div>
+      <div style="flex:1;min-width:60px;background:#ffebee;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">组件</div>
+        <div style="font-size:10px;color:#666">隆基·晶科·天合·晶澳</div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:11px;color:#c62828;margin-bottom:10px">▲ 主链四环节毛利率均&lt;5%，全行业亏损</div>
+
+    <div style="margin:6px 0 4px;font-weight:600;font-size:12px;color:#1565c0">辅材</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">光伏玻璃<br><span style="font-size:10px;color:#666">福莱特</span></div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">胶膜<br><span style="font-size:10px;color:#666">福斯特</span></div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">边框/接线盒</div>
+    </div>
+
+    <div style="margin:8px 0 4px;font-weight:600;font-size:12px;color:#1565c0">逆变器+储能</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">阳光电源</div>
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">德业股份</div>
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">锦浪科技</div>
+    </div>
+
+    <div style="margin:8px 0 4px;font-weight:600;font-size:12px;color:#1565c0">光伏设备</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <div style="flex:1;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">迈为股份<br><span style="font-size:10px;color:#666">HJT设备</span></div>
+      <div style="flex:1;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">先导智能<br><span style="font-size:10px;color:#666">锂电+光伏</span></div>
+      <div style="flex:1;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">晶盛机电<br><span style="font-size:10px;color:#666">硅片设备</span></div>
+    </div>
+  </div>
+</div>
+
+<div style="flex:1;min-width:160px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#c62828;font-size:14px">下游应用</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:10px 8px;text-align:center;font-weight:600;font-size:13px">光伏电站</div>
+    <div style="text-align:center;font-size:11px;color:#666">太阳能 · 正泰电器</div>
+    <div style="margin:10px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#f5f5f5;border:1px solid #ccc;border-radius:4px;padding:10px 8px;text-align:center;font-weight:600;font-size:13px">终端用户</div>
+    <div style="text-align:center;font-size:11px;color:#666">电网 · 企业 · 家庭</div>
+  </div>
+</div>
+
+</div>
+
+<div style="background:#fffde7;border-left:3px solid #f9a825;padding:8px 12px;font-size:12px;border-radius:0 4px 4px 0">
+  <strong>利润最厚环节：</strong>逆变器（毛利率30-40%）→ 光伏设备（35-45%）→ 电站运营（40-50%）
+  <br><span style="color:#999">主链各环节当前毛利率均&lt;5%，全行业大面积亏损</span>
+</div>
+
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>环节</th><th>代表公司</th><th>毛利率</th><th>集中度</th><th>议价能力</th></tr>
+<tr>
+  <td><span class="col-tag col-lose">硅料</span></td>
+  <td>通威、大全、协鑫</td>
+  <td><span class="col-tag col-lose">&lt;5%</span></td>
+  <td>CR5~60%</td>
+  <td><span class="col-tag col-lose">弱</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-lose">硅片</span></td>
+  <td>隆基、TCL中环、弘元</td>
+  <td><span class="col-tag col-lose">&lt;5%</span></td>
+  <td>CR3~70%</td>
+  <td><span class="col-tag col-lose">弱</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-lose">电池</span></td>
+  <td>通威、爱旭、钧达</td>
+  <td><span class="col-tag col-lose">&lt;5%</span></td>
+  <td>CR5~45%</td>
+  <td><span class="col-tag col-lose">弱</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-lose">组件</span></td>
+  <td>晶科、隆基、天合、晶澳</td>
+  <td><span class="col-tag col-lose">&lt;5%</span></td>
+  <td>CR5~65%</td>
+  <td><span class="col-tag col-lose">弱</span></td>
+</tr>
+<tr style="background:#fafafa">
+  <td><span class="col-tag col-warn">胶膜</span></td>
+  <td>福斯特、海优新材</td>
+  <td><span class="col-tag col-warn">15-20%</span></td>
+  <td>CR3~70%</td>
+  <td><span class="col-tag col-warn">中</span></td>
+</tr>
+<tr style="background:#fafafa">
+  <td><span class="col-tag col-warn">玻璃</span></td>
+  <td>福莱特、信义光能</td>
+  <td><span class="col-tag col-warn">15-20%</span></td>
+  <td>CR2~65%</td>
+  <td><span class="col-tag col-warn">中</span></td>
+</tr>
+<tr style="background:#fafafa">
+  <td><span class="col-tag col-win">逆变器</span></td>
+  <td>阳光电源、德业、锦浪</td>
+  <td><span class="col-tag col-win">30-40%</span></td>
+  <td>CR3~60%</td>
+  <td><span class="col-tag col-win">强</span></td>
+</tr>
+<tr style="background:#fafafa">
+  <td><span class="col-tag col-win">设备</span></td>
+  <td>迈为、先导、晶盛</td>
+  <td><span class="col-tag col-win">35-45%</span></td>
+  <td>CR3~50%</td>
+  <td><span class="col-tag col-win">强</span></td>
+</tr>
+<tr style="background:#fafafa">
+  <td><span class="col-tag col-info">电站</span></td>
+  <td>太阳能、正泰</td>
+  <td><span class="col-tag col-win">40-50%</span></td>
+  <td>分散</td>
+  <td><span class="col-tag col-warn">中</span></td>
+</tr>
+</table>
+</div>
+
+<h2>市场规模</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">指标</th><th style="width:25%">数值</th><th>说明</th></tr>
+<tr><td><strong>TAM</strong>（总可触达市场）</td><td><span class="col-tag col-info" style="font-size:13px">全球~1.5万亿/年</span></td><td>按全球~650GW装机×0.7元/W + 储能等配套</td></tr>
+<tr><td><strong>当前渗透率</strong></td><td>~10%（发电量占比）</td><td>光伏占全球发电量约10%，仍有~5倍理论空间</td></tr>
+<tr><td><strong>近年增速</strong>（3年CAGR）</td><td><span class="col-tag col-warn">25-30%</span></td><td>但2026年预计首次负增长（国内-20%+）</td></tr>
+</table>
+</div>
+
+<h2>生命周期</h2>
+<div class="summary-box">
+  <strong><span class="col-tag col-warn" style="font-size:14px">洗牌期</span></strong><br>
+  判断依据：产能供给远超需求（供需比&gt;2:1）；价格战导致全行业大面积亏损；政策从"鼓励扩张"转向"规范治理"（反内卷+能耗标准）；大量企业退出（2025年超50家，2026年预计30余家）；技术路线快速迭代（PERC→TOPCon→BC）。洗牌出清后若需求持续增长，将进入新一轮成长周期。
+</div>
+
+<h2>增长驱动力</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动力</th><th>类型</th><th>可持续性</th><th>量化指标</th></tr>
+<tr>
+  <td>全球能源转型（碳中和）</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长（20年+）</span></td>
+  <td>各国可再生能源占比目标</td>
+</tr>
+<tr>
+  <td>光伏发电经济性（平价上网）</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长（持续提升）</span></td>
+  <td>LCOE对比火电/气电</td>
+</tr>
+<tr>
+  <td>储能配比提升（光伏+储能）</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-warn">中长</span></td>
+  <td>储能成本下降曲线、配储比例</td>
+</tr>
+<tr>
+  <td>新兴市场增量（中东/印度/非洲）</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-warn">中长</span></td>
+  <td>新兴市场装机增速</td>
+</tr>
+<tr>
+  <td>技术迭代换机需求（P型→N型→BC）</td>
+  <td><span class="col-tag col-warn">结构/周期</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>新型组件渗透率、设备订单</td>
+</tr>
+</table>
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l9">
+<div class="tab-inner">
+
+<h2>市场结构</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>市场结构类型</td>
+  <td>主链：<span class="col-tag col-lose">完全竞争（价格战）</span>；逆变器/辅材：<span class="col-tag col-win">寡头垄断</span></td>
+</tr>
+<tr>
+  <td>CR3</td>
+  <td>组件CR5~65%（<span style="color:#2e7d32">↑集中</span>），逆变器CR3~60%（<span style="color:#1565c0">→稳定</span>），胶膜CR3~70%（<span style="color:#1565c0">→稳定</span>）</td>
+</tr>
+<tr>
+  <td>格局象限</td>
+  <td>主链：<span class="col-tag col-lose">价格战泥潭</span>；逆变器/辅材：<span class="col-tag col-win">寡头稳定</span>；设备：<span class="col-tag col-info">技术驱动</span></td>
+</tr>
+<tr>
+  <td>新进入者威胁</td>
+  <td><span class="col-tag col-lose">大</span>（跨界进入者多，产能建设周期短，同质化严重）</td>
+</tr>
+</table>
+</div>
+
+<h2>竞争壁垒</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>壁垒类型</th><th>强度</th><th>可持续性</th><th>具体表现</th></tr>
+<tr>
+  <td>品牌+全球渠道（逆变器）</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>阳光电源全球逆变器出货第一，德业在户用储能市场品牌强，海外渠道建设需3-5年</td>
+</tr>
+<tr>
+  <td>规模+成本优势（辅材/硅料）</td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>福斯特胶膜全球份额~50%，规模效应显著；通威硅料成本行业领先</td>
+</tr>
+<tr>
+  <td>技术壁垒（设备/电池路线）</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-warn">中短</span></td>
+  <td>迈为在HJT设备领域领先，但技术路线存在不确定性；BC技术快速迭代</td>
+</tr>
+<tr>
+  <td>客户粘性（逆变器/胶膜）</td>
+  <td><span class="col-tag col-warn">中强</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>逆变器认证周期长（1-2年），胶膜与组件厂长期绑定</td>
+</tr>
+</table>
+</div>
+
+<div class="summary-box">
+  <strong>定价权测试</strong><br>
+  🔹 龙头能涨价吗？<strong>主链不能</strong>（产能严重过剩，任何涨价都会丢失份额）／ <strong>逆变器能</strong>（品牌溢价存在，但整体价格也在下行）<br>
+  🔹 毛利率趋势：主链持续下降（2022年30%→2025年&lt;5%），逆变器稳定（30-35%），辅材承压中<br>
+  🔹 ROE趋势：主链为负，逆变器/辅材稳定下降
+</div>
+
+<h2>驱动力拆解</h2>
+<div class="highlight-box">
+  <strong>行业收入公式</strong><br>
+  收入 = 全球新增装机量(GW) × 各环节单价 × 份额<br><br>
+  当前组合：<span style="color:#2e7d32;font-weight:700">量 ↑</span>（增速放缓） ＋ <span style="color:#c62828;font-weight:700">价 ↓</span>（暴跌） ＝ <span class="col-tag col-warn">以价换量，量升价跌</span>
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动因子</th><th>最新值</th><th>历史区间</th><th>当前分位</th></tr>
+<tr>
+  <td>硅料价格（万元/吨）</td>
+  <td><span class="col-tag col-lose">3.5-4.5</span></td>
+  <td>4-300</td>
+  <td><span class="col-tag col-lose">5%</span></td>
+</tr>
+<tr>
+  <td>组件价格（元/W）</td>
+  <td><span class="col-tag col-lose">0.6-0.7</span></td>
+  <td>0.6-2.2</td>
+  <td><span class="col-tag col-lose">5%</span></td>
+</tr>
+<tr>
+  <td>全球新增装机（GW）</td>
+  <td><span class="col-tag col-win">~580</span></td>
+  <td>130-580</td>
+  <td><span class="col-tag col-win">100%</span></td>
+</tr>
+<tr>
+  <td>行业平均开工率</td>
+  <td><span class="col-tag col-lose">&lt;40%</span></td>
+  <td>40-90%</td>
+  <td><span class="col-tag col-lose">10%</span></td>
+</tr>
+</table>
+</div>
+
+<h2>成本结构</h2>
+<div class="summary-box">
+  🔹 <strong>类型：</strong>主链——<span class="col-tag col-lose">重资产</span>（固定成本高，折旧压力大）；逆变器/辅材——<span class="col-tag col-info">中资产</span><br>
+  🔹 <strong>成本敏感性：</strong>硅料/硅片营收±10% → 利润±30-50%（高经营杠杆）<br>
+  🔹 <strong>盈亏平衡点：</strong>硅料需产能利用率&gt;60%，组件需&gt;50%才能盈亏平衡，当前开工率&lt;40%全行业亏损
+</div>
+
+<h2>竞争格局总结</h2>
+<div class="highlight-box">
+  光伏行业正经历<strong>"冰火两重天"</strong>——主链（硅料/硅片/电池/组件）陷入价格战泥潭，五大组件龙头2025年合计净亏约345亿元，谁都没有定价权，靠规模和成本优势硬撑。逆势赚钱的只有逆变器（阳光电源2025年净利134亿逆势增长）、辅材（福斯特胶膜全球份额~50%稳赚）和设备（迈为技术路线领先）。当前格局的核心矛盾不是"谁最强"，而是<strong>"谁能活到行业反转"</strong>——现金流和负债率是关键。主链的终局可能是CR3达到70-80%的寡头格局，但在此之前还有大量企业要倒下。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l10">
+<div class="tab-inner">
+
+<h2>周期位置</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>库存周期阶段</td>
+  <td><span class="col-tag col-lose">衰退/萧条</span>（底部区域，但尚未确认拐点）</td>
+</tr>
+<tr>
+  <td>产能利用率</td>
+  <td><span class="col-tag col-lose">&lt;40%</span>（历史区：40-90%，当前处于历史最低）</td>
+</tr>
+<tr>
+  <td>产品价格分位</td>
+  <td>硅料<span class="col-tag col-lose">5%分位</span>，组件<span class="col-tag col-lose">5%分位</span>（均在历史最低区间）</td>
+</tr>
+<tr>
+  <td>行业盈利状态</td>
+  <td><span class="col-tag col-lose">大面积亏损</span>（22家光伏上市公司2026Q1合计亏损超105亿）</td>
+</tr>
+</table>
+</div>
+
+<div class="danger-box">
+  <strong>⚠ PE悖论检查</strong><br>
+  主链公司：当前PE为负（亏损），不适用PE估值<br>
+  逆变器/辅材：PE 20-30x，处于历史中低分位（业绩低谷时PE反而偏高）<br>
+  PB视角：主链PB已跌至历史低位（隆基PB 1.2x，通威PB 1.0x）<br>
+  <strong>警告：</strong>主链PE极低甚至为负并非买入信号——这是典型的周期股陷阱。盈利拐点未到之前，低PE可能变成价值毁灭。关注<strong>PB和产能出清进度</strong>比PE更重要。
+</div>
+
+<h2>估值水平</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>估值指标</th><th>行业当前</th><th>历史中位数</th><th>80%分位</th><th>20%分位</th></tr>
+<tr>
+  <td><strong>PE</strong>（逆变器/辅材）</td>
+  <td><span class="col-tag col-info">20-30x</span></td>
+  <td>30-40x</td>
+  <td>50x+</td>
+  <td>20x</td>
+</tr>
+<tr>
+  <td><strong>PB</strong>（主链）</td>
+  <td><span class="col-tag col-lose">1.0-1.5x</span></td>
+  <td>2.5-3.5x</td>
+  <td>5-6x</td>
+  <td>1.0-1.5x</td>
+</tr>
+</table>
+</div>
+
+<h2>政策环境</h2>
+<div class="summary-box">
+  🔹 <strong>政策方向：</strong><span class="col-tag col-warn">短期偏空→中期偏多</span>（"先立后破"式出清）<br>
+  🔹 <strong>关键政策：</strong><br>
+  &emsp;• 2026年4月1日起取消光伏出口退税（短期利空，长期利好——倒逼行业从价格战转向价值战）<br>
+  &emsp;• 多晶硅能耗新标（强制关停不达标产能，预计有效产能减少16-31%）<br>
+  &emsp;• 分布式光伏"以荷定容"政策转向（限制无序扩张）<br>
+  &emsp;• "反内卷"行业自律公约（头部企业联合设成本红线）<br>
+  🔹 <strong>政策周期位置：</strong><span class="col-tag col-lose">收紧期</span>（出清落后产能）→预计2026H2进入<span class="col-tag col-info">中性期</span>
+</div>
+
+<h2>买入清单</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:28%">条件</th><th style="width:16%">结果</th><th>备注</th></tr>
+<tr>
+  <td>周期位置：不在繁荣顶点</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>在底部附近，不是顶点</td>
+</tr>
+<tr>
+  <td>估值：PB/PE在历史偏低分位</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>主链PB极低，逆变器PE中低</td>
+</tr>
+<tr>
+  <td>政策：不是收紧期</td>
+  <td style="text-align:center"><span class="col-tag col-lose">❌</span></td>
+  <td>当前政策偏紧（出清阶段），预计2026H2转中性</td>
+</tr>
+<tr>
+  <td>格局：龙头壁垒稳固</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td>逆变器/辅材龙头壁垒稳，主链龙头仍在亏损</td>
+</tr>
+<tr>
+  <td>增长：有可见驱动力</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>长期驱动力确定，短期增速承压</td>
+</tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <div style="font-size:16px;font-weight:700;margin-bottom:8px">综合判断：<span class="col-tag col-warn" style="font-size:15px">等待</span></div>
+  <div style="margin-bottom:6px">不是买入的最佳时机，但进入观察窗口</div>
+  <table style="font-size:12px;margin:6px 0;border:none;background:transparent">
+    <tr><td style="border:none;padding:3px 6px;background:transparent;width:90px;font-weight:600">预期回报</td><td style="border:none;padding:3px 6px;background:transparent">产能出清后的估值修复 + 业绩反转</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">仓位建议</td><td style="border:none;padding:3px 6px;background:transparent"><span class="col-tag col-warn">不超过组合15%</span>（周期底部不确定性大）</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">跟踪指标</td><td style="border:none;padding:3px 6px;background:transparent">硅料价 · 组件招标价 · 开工率 · 装机量同比 · 经营现金流</td></tr>
+  </table>
+  <div style="margin-top:8px;padding:8px;background:#e8f5e9;border-radius:4px;font-size:12px">
+    <strong>买入策略：</strong><br>
+    <span class="col-tag col-win">逆变器/辅材龙头</span>（阳光电源/德业/福斯特）：当前已逆势盈利，估值合理时分批建仓<br>
+    <span class="col-tag col-lose">主链龙头</span>（隆基/通威/晶科）：等待三大信号——①硅料价回升至5万+企稳；②开工率回升至50%+；③经营现金流转正
+  </div>
+</div>
+
+<h2>卖出信号</h2>
+<div class="danger-box">
+  <strong>出现以下信号考虑卖出：</strong><br>
+  <div style="margin-top:6px">
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px">1</span>
+    硅料价格快速反弹至8万+（产能出清不彻底，复产导致供给再次过剩）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">2</span>
+    政策再次转向鼓励扩张（如补贴重新放开，导致新一轮扩产潮）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">3</span>
+    技术路线出现颠覆性变化（如钙钛矿量产成本大幅低于晶硅，现有产能价值归零）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">4</span>
+    逆变器/辅材毛利率连续两季下降超过5个百分点
+  </div>
+</div>
+
+</div>
+</div>
+
+<div class="footer">Generated by Industry Analysis · L7-L10 Framework · Stock Selection</div>
+
+</div>
+
+<script>
+var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+var contents = document.querySelectorAll('.tab-content');
+btns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    contents.forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    var tab = btn.getAttribute('data-tab');
+    document.getElementById('tab-' + tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

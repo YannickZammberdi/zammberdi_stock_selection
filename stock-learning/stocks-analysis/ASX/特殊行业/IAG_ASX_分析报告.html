@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IAG (Insurance Australia Group) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>Insurance Australia Group（IAG）ASX: IAG 财务分析报告</h1>
+<p class="subtitle">基于 L1（保险三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026年6月 | 数据来源：FY2025 年报（截至2025年6月30日）</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 保险三表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>Insurance Australia Group Limited</td></tr>
+  <tr><td>股票代码</td><td>ASX: IAG</td></tr>
+  <tr><td>所属行业</td><td>一般保险（General Insurance）</td></tr>
+  <tr><td>核心品牌</td><td>NRMA, CGU, Swann, SGIO, SGIC</td></tr>
+  <tr><td>行业地位</td><td>澳洲最大一般保险集团之一，车险+家财险领先</td></tr>
+  <tr><td>FY2025 GWP</td><td><strong>$17,106m（+4.3%）</strong></td></tr>
+  <tr><td>FY2025 NPAT</td><td><strong>$1,359m（+51.3%）</strong></td></tr>
+  <tr><td>总资产</td><td>$26,309m</td></tr>
+  <tr><td>净资产（Equity）</td><td>$7,329m</td></tr>
+  <tr><td>ROE</td><td><strong>19.4%</strong></td></tr>
+</table>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">综合L1财务健康度、L2关键指标和L3估值水平，对各维度打分求和</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">19.4% ≥ 15%</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">高承保利润型——UITR 17.5%优秀，D/E 36%低杠杆</td></tr>
+  <tr><td>承保利润质量（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">UITR 17.5%远超目标</td></tr>
+  <tr><td>GWP增长（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">+4.3%，0%-5%</td></tr>
+  <tr><td>NPAT增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+51.3% ≥ 15%</td></tr>
+  <tr><td>负债率 D/E（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">36% < 40%</td></tr>
+  <tr><td>资本充足率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">CET1 $3.94B充裕</td></tr>
+  <tr><td>承保利润率 UITR（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">17.5%优秀</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">PE 17.4x合理</td></tr>
+  <tr><td>保险现金流（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">NPAT $1,359m强劲</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">94/100</td><td style="text-align:left">品质优秀（94/100分）</td></tr>
+</table>
+
+<div class="verdict verdict-ok">品质优秀（94/100分）</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>IAG是澳洲一般保险龙头，FY2025交出强劲答卷。保险利润率（UITR）跳升至17.5%，远超管理层目标10-12%上限，主要受益于保费定价改善、理赔成本控制和自然灾损低于预算。NPAT $1,359m（+51.3%）部分受疫情相关业务中断赔付（BI）储备释放推动。ROE 19.4%在澳洲保险业处于顶级水平。资产负债端，CET1 $3.94B非常充裕，债务/权益比仅36%。FY2026指引保险利润$1,450-1,650m（margin 14-16%）预示有望延续高景气。<br><br>
+  <strong>核心优势：</strong>① UITR 17.5%远超目标——定价纪律和理赔管理出色；② ROE 19.4%领先同业；③ 资产负债率低，CET1充足，资本实力雄厚；④ 多元品牌覆盖澳洲全境。<br><br>
+  <strong>核心风险：</strong>① 费用率上升（+0.4pct）需跟踪；② 自然灾损虽然当前低于预算，但气候变化带来不确定性；③ 竞争加剧可能压缩定价空间；④ PE 17.4x已反映部分好转预期。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心保险财务数据（FY2025）</h2>
+
+<h3>2.1 利润表（保险专用科目）</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>Gross Written Premium (GWP)</td><td><strong>$17,106m</strong></td><td>$16,405m</td><td>+4.3%</td><td class="good">✅ 稳健增长</td></tr>
+  <tr><td>Net Earned Premium</td><td><strong>$9,984m</strong></td><td>$9,248m</td><td>+8.0%</td><td class="good">✅ 高于GWP增速</td></tr>
+  <tr><td>Net Claims Expense</td><td>$6,326m</td><td>$6,148m</td><td>+2.9%</td><td class="good">✅ 赔付可控</td></tr>
+  <tr><td>Commission Expense</td><td>$909m</td><td>$831m</td><td>+9.4%</td><td class="neutral">随保费增长</td></tr>
+  <tr><td>Administration Expense</td><td>$1,470m</td><td>$1,273m</td><td>+15.5%</td><td class="neutral">⚠ 费用率上升</td></tr>
+  <tr><td>Natural Peril Costs</td><td><strong>$1,088m</strong></td><td>—</td><td>$195m below allowance</td><td class="good">✅ 低于预算</td></tr>
+  <tr><td>Underwriting Profit</td><td><strong>$1,279m</strong></td><td>$982m</td><td>+30.2%</td><td class="good">✅ 强劲</td></tr>
+  <tr><td>Net Investment Income (Shareholder)</td><td><strong>$403m</strong></td><td>$286m</td><td>+40.9%</td><td class="good">✅ 投资收益大增</td></tr>
+  <tr><td>Insurance Profit</td><td><strong>$1,743m</strong></td><td>$1,438m</td><td>+21.2%</td><td class="good">✅ 主要利润来源</td></tr>
+  <tr><td>NPAT</td><td><strong>$1,359m</strong></td><td>$898m</td><td><strong>+51.3%</strong></td><td class="good">✅ 大幅增长</td></tr>
+  <tr><td>EPS</td><td><strong>$0.57</strong></td><td>$0.37</td><td>+51.4%</td><td class="good">✅</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读（保险视角）：</strong>不同于普通工业企业，保险公司的收入核心是GWP和净已赚保费。IAG的GWP增长4.3%属中速增长（反映定价改善而非量的大幅扩张）。承保利润$1,279m（+30.2%）是业绩主引擎，受益于UITR从15.6%跃升至17.5%。自然灾损$1,088m低于预算$195m，是利润率超预期的关键原因。净投资收益$403m（+40.9%）受益于利率和股市环境改善。NPAT增长51.3%部分含BI储备释放的一次性效应，需关注核心承保利润持续性。
+</div>
+
+<h3>2.2 资产负债表（保险专用结构）</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>现金及短期投资</td><td><strong>$2,253m</strong></td><td class="good">✅ 流动性充裕</td></tr>
+  <tr><td>应收账款</td><td>—</td><td class="good">保费收入先收后支，应收少</td></tr>
+  <tr><td>Claims Reserve（赔付准备金）</td><td><strong>$13,846m</strong></td><td class="neutral">保险业核心负债</td></tr>
+  <tr><td>其他负债</td><td>$5,134m</td><td class="neutral">—</td></tr>
+  <tr><td>总负债</td><td>$18,980m</td><td class="neutral">—</td></tr>
+  <tr><td>债务（Debt）</td><td><strong>$2,637m</strong></td><td class="good">✅ 债务水平低</td></tr>
+  <tr><td>Net Assets（Equity）</td><td><strong>$7,329m</strong></td><td class="good">✅ 净资产雄厚</td></tr>
+  <tr><td>Net Tangible Assets</td><td><strong>$7,220m</strong></td><td class="good">✅ 无形资产极少</td></tr>
+  <tr><td>Total Assets</td><td>$26,309m</td><td class="good">✅</td></tr>
+  <tr><td>Debt/Equity</td><td><strong>36%</strong></td><td class="good">✅ 低杠杆</td></tr>
+  <tr><td>CET1 Capital</td><td><strong>$3,940m</strong></td><td class="good">✅ 非常充裕</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读（保险视角）：</strong>保险公司最大的负债是赔付准备金（Claims Reserve）$13,846m，占负债73%，反映未来理赔义务。现金及短期投资$2,253m保障日常赔付流动性。IAG财务结构非常健康——债务/权益仅36%，远低于一般工业企业。CET1 $3,940m远超监管要求，资本充足。Net Tangible Assets与净资产几乎一致（$7,220m vs $7,329m），说明商誉极少，资产质量真实。
+</div>
+
+<h3>2.3 现金流量表（保险视角）</h3>
+<table>
+  <tr><th>特性</th><th>说明</th><th>评价</th></tr>
+  <tr><td>CFO/经营性现金流</td><td>保费在先/赔付在后，天然正现金流</td><td class="good">✅ 行业特性</td></tr>
+  <tr><td>CFO vs NPAT</td><td>保险行业CFO通常>NPAT（预收保费）</td><td class="good">✅ 正常</td></tr>
+  <tr><td>投资现金流（CFI）</td><td>保险资金投资于债券/股票等</td><td class="neutral">匹配负债</td></tr>
+  <tr><td>分红支付</td><td>FY2025 全年分红31cps</td><td class="good">✅ +14.8%</td></tr>
+  <tr><td>分红率</td><td>~55% payout</td><td class="good">✅ 合理可持续</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读（保险视角）：</strong>保险公司的现金流模式与工业企业完全不同——保费收入在理赔支出之前发生，因此经营现金流通常是正的，且往往显著高于净利润。IAG FY2025支付31cps全年分红（+14.8%），payout ratio约55%，兼顾了股东回报与资本留存。FY2026指引保险利润$1,450-1,650m，隐含现金流依然强劲。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 保险关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>目标/行业基准</th><th>评价</th></tr>
+  <tr><td>UITR（报告保险利润率）</td><td><strong>17.5%</strong></td><td>管理目标 10-12%</td><td class="good">✅ 远超目标</td></tr>
+  <tr><td>Underlying UITR</td><td><strong>15.5%</strong></td><td>去自然灾损后</td><td class="good">✅ 强韧</td></tr>
+  <tr><td>Expense Ratio</td><td>上升0.4pct</td><td>平稳或下降</td><td class="neutral">⚠ 需关注</td></tr>
+  <tr><td>ROE</td><td><strong>19.4%</strong></td><td>>15% 优秀</td><td class="good">✅ 顶级</td></tr>
+  <tr><td>GWP Growth</td><td><strong>+4.3%</strong></td><td>保费定价驱动</td><td class="good">✅ 定价改善</td></tr>
+  <tr><td>Net Earned Premium Growth</td><td><strong>+8.0%</strong></td><td>高于GWP增长</td><td class="good">✅ 结构优化</td></tr>
+  <tr><td>NPAT Growth</td><td><strong>+51.3%</strong></td><td>含BI释放效应</td><td class="neutral">⚠ 含一次性因素</td></tr>
+  <tr><td>CET1 Capital</td><td><strong>$3,940m</strong></td><td>APRA监管要求</td><td class="good">✅ 非常强劲</td></tr>
+  <tr><td>Debt/Equity</td><td><strong>36%</strong></td><td>保险<50%</td><td class="good">✅ 低杠杆</td></tr>
+</table>
+
+<h3>3.2 保险业务关键变量分析</h3>
+<table>
+  <tr><th>变量维度</th><th>FY2025 状态</th><th>评价</th></tr>
+  <tr><td>保费定价（Rate Adequacy）</td><td>车险/家财险持续提价</td><td class="good">✅ 保费充足</td></tr>
+  <tr><td>理赔成本（Claims Cost）</td><td>控制良好，净赔付+2.9%</td><td class="good">✅ 低于保费增速</td></tr>
+  <tr><td>自然灾损（Natural Perils）</td><td>$1,088m 低于预算$195m</td><td class="good">✅ 气候条件利好</td></tr>
+  <tr><td>费用结构</td><td>管理费用+15.5%，费用率+0.4pct</td><td class="neutral">⚠ 需跟踪</td></tr>
+  <tr><td>再保险安排</td><td>合理分散风险</td><td class="good">✅ 稳健</td></tr>
+  <tr><td>投资收益</td><td>股东投资+40.9%至$403m</td><td class="good">✅ 市场环境利好</td></tr>
+  <tr><td>赔付准备金充足性</td><td>Claims Reserve $13,846m</td><td class="good">✅ 充足</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>保险业务解读：</strong>IAG的承保周期目前处于"硬市场"阶段——保费定价持续改善，理赔控制得力，自然灾损低于正常水平。UITR 17.5%远超10-12%的管理目标区间上限，反映出行业环境利好+IAG自身运营卓越。当前关注重点是费用率上升趋势（+0.4pct）——若持续上升将侵蚀承保利润率。FY2026指引UITR 14-16%预示管理层认为利润率将从17.5%高点温和回落，但仍属健康水平。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="good">🟢 正面</td><td>UITR 17.5%远超目标，承保利润强劲</td><td>L2 保险关键指标</td></tr>
+  <tr><td class="good">🟢 正面</td><td>CET1 $3.94B非常充裕</td><td>L1 资产负债表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>自然灾损低于预算$195m</td><td>L1 利润表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>Debt/Equity 36%，财务结构安全</td><td>L1 资产负债表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>ROE 19.4%，澳洲保险顶级水平</td><td>L2 盈利指标</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>费用率上升0.4pct</td><td>L2 保险业务分析</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>NPAT含BI释放一次性效应，核心利润增速约20%</td><td>L1 利润表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>FY2026指引UITR 14-16%低于当前的17.5%</td><td>L1 利润表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>气候变化增加自然灾损不确定性</td><td>外部风险</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>竞争加剧可能影响定价能力</td><td>行业风险</td></tr>
+</table>
+
+<div class="verdict verdict-ok">✅ L2综合判定：优秀（UITR 17.5%，ROE 19.4%，资本充足，风险可控）</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>股价（约）</td><td><strong>A$7.98</strong></td><td>2025年股价区间~A$6.5-8.5</td></tr>
+  <tr><td>总市值</td><td><strong>~$18.7B AUD</strong></td><td>~120亿人民币</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>~17.4x</strong></td><td>基于FY2025 EPS $0.57</td></tr>
+  <tr><td>PE（调整后剔除BI释放）</td><td><strong>~15.6x</strong></td><td>核心EPS ~$0.51</td></tr>
+  <tr><td>PE（2026E）</td><td><strong>~14.5x</strong></td><td>基于分析师一致预期EPS ~$0.55</td></tr>
+  <tr><td>PB</td><td><strong>~2.6x</strong></td><td>基于BVPS ~$3.07</td></tr>
+  <tr><td>股息率（Grossed-up）</td><td><strong>~3.9%</strong></td><td>40% franked，31cps</td></tr>
+  <tr><td>Dividend Yield（cash）</td><td>~3.9%</td><td>$0.31 / $7.98</td></tr>
+</table>
+
+<h3>4.2 PE Band估值区间（保险适用）</h3>
+<p style="font-size:13px;color:#666;">ROE 19.4% → 合理PE参考区间：15-25x | FY2026E EPS ≈ $0.55 | 保险行业历史PE 12-22x</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs现价 A$7.98</th></tr>
+  <tr><td>熊市/周期低谷</td><td>12x</td><td>A$6.60</td><td class="bad">-17%</td></tr>
+  <tr><td>保守</td><td>15x</td><td>A$8.25</td><td class="neutral">+3%</td></tr>
+  <tr><td>中性（ROE 19.4%）</td><td>18x</td><td>A$9.90</td><td class="good">+24%</td></tr>
+  <tr><td>乐观（优质溢价）</td><td>22x</td><td>A$12.10</td><td class="good">+52%</td></tr>
+  <tr><td>极端乐观</td><td>25x</td><td>A$13.75</td><td class="good">+72%</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值区间解读：</strong>当前PE 17.4x处于保险行业历史PE区间（12-22x）的中位偏上水平。以ROE 19.4%衡量，IAG估值合理——高ROE资产在成熟市场中值得享有溢价。PE 17.4x对应ROE 19.4%，P/B ~2.6x，P/B = ROE×(1-d)/ (r-g)，隐含市场对长期ROE约16-18%的合理预期。FY2026E PE ~14.5x（基于EPS $0.55）显示当前估值并未过度透支。<br><br>
+  <strong>关键判断：</strong>当前估值处于"合理偏高但不极端"区间——既不是明显低估（如PE <12x 的周期低谷），也不是泡沫（如PE >25x）。对于稳健型投资者，17.4x PE在ROE 19.4%的支撑下具有配置价值，但需关注FY2026指引UITR 14-16%预示利润率回落——若实现则将支撑EPS $0.50-0.55，对应PE 15-16x，回到更具安全边际的区间。
+</div>
+
+<h3>4.3 历史PE区间（保险行业参考）</h3>
+<table>
+  <tr><th>指标</th><th>数值</th></tr>
+  <tr><td>PE历史区间（保险）</td><td>12x - 22x</td></tr>
+  <tr><td>行业均值中枢</td><td>~16x</td></tr>
+  <tr><td>高ROE溢价顶部</td><td>~22x（ROE>18%时）</td></tr>
+  <tr><td>周期低谷</td><td>10-12x（大灾年）</td></tr>
+  <tr><td>当前PE（TTM）</td><td><strong>~17.4x</strong>（中位偏上）</td></tr>
+  <tr><td>当前PE（2026E）</td><td><strong>~14.5x</strong>（低于中枢）</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值总结：</strong>IAG FY2025业绩亮眼——UITR 17.5%大幅超越目标，ROE 19.4%同业领先，资本充足。当前PE 17.4x虽不便宜，但以高ROE衡量合理。保险业务的特点决定其估值应关注承保周期位置——当前IAG处于承保利润高峰（UITR 17.5%），市场已部分预期了FY2026利润率回落（指引14-16%）。若2026年实现UITR 15%+，EPS $0.50-0.55，当前股价对应PE回落至14.5-16x区间，对长期投资者具备吸引力。主要观察变量：① 自然灾损是否回归均值；② 费用率能否企稳；③ 竞争格局变化。建议在UITR回落至14-15%区间、PE压缩至14x以下时重点考虑。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架·保险适应）</h2>
+
+<h3>5.1 杜邦拆解表（保险版）</h3>
+<table>
+  <tr><th>保险杜邦指标</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>承保利润率（UITR）</td><td>~14.0%</td><td><strong>17.5%</strong></td><td class="good">⬆ 大幅提升</td></tr>
+  <tr><td>资产周转率（GWP/总资产）</td><td>~0.60</td><td><strong>0.65</strong></td><td class="good">⬆ 提升</td></tr>
+  <tr><td>权益乘数（总资产/权益）</td><td>3.5</td><td><strong>3.59</strong></td><td class="neutral">稳定（保险业正常）</td></tr>
+  <tr><td><strong>ROE</strong></td><td><strong>~13.5%</strong></td><td><strong>19.4%</strong></td><td class="good">⬆ 大幅提升</td></tr>
+  <tr><td>去杠杆ROA（UITR×周转）</td><td>8.4%</td><td><strong>11.4%</strong></td><td class="good">⬆ 提升</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>5.1pct</td><td><strong>8.0pct</strong></td><td class="neutral">保险业杠杆贡献正常</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：高承保利润型——保险中的优质模式</strong><br>
+  IAG的UITR 17.5%远超目标区间10-12%，承保利润是核心驱动力。D/E 36%在保险业算低杠杆（CET1充裕）。去掉杠杆后ROA 11.4%，说明即使不考虑杠杆，基础回报也非常优秀。<br><br>
+  <strong>保险杜邦特点：</strong>保险公司天然高杠杆（权益乘数3.5~3.6），但IAG的承保利润率足以覆盖杠杆风险，与"高杠杆掩盖低利润"的危险模式不同。
+</div>
+
+<div class="summary-box">
+  <strong>核心结论：</strong><br>
+  ① ROE从13.5%升至19.4%，主因UITR大幅改善（14%→17.5%），承保利润强劲；<br>
+  ② 去杠杆ROA 11.4%在保险业极为优秀，真实回报高；<br>
+  ③ 保险杠杆是行业特性，但CET1充裕（$3.94B），资本安全性好；<br>
+  ④ 需关注：UITR能否维持高位（管理层指引2026回落至14-16%）。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与特征（L5框架·保险适应）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：防御型+金融特殊行业（一般保险）</strong><br>
+  <strong>判断依据：</strong>IAG属于澳洲一般保险行业（General Insurance），是典型的防御型金融股。保险需求与经济发展水平正相关，车险、家财险等是刚性需求，不受经济周期显著影响。行业特征：① 先收保费后赔付的现金流模式天然正现金流；② 承保利润受自然灾损、监管政策、定价周期影响；③ 资本充足率受APRA严格监管。<br><br>
+  <strong>保险特有的驱动因素：</strong>GWP增长（定价+数量）、承保利润率（UITR）、自然灾损控制、投资收益（利率环境）、再保险成本。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th></tr>
+  <tr><td>行业集中度</td><td><strong>高度集中</strong>——澳洲一般保险市场CR3>70%，IAG、Suncorp、QBE三家占据绝大部分份额。新进入者极难突破品牌信任和渠道网络。</td></tr>
+  <tr><td>监管牌照壁垒</td><td><strong>极高</strong>——APRA监管要求严格，保险牌照申请流程漫长、资本金要求高。这是行业最核心的进入壁垒。</td></tr>
+  <tr><td>品牌与信任壁垒</td><td><strong>强</strong>——NRMA（新州）、CGU（商业保险）、Swann（摩托车）等品牌在各自细分市场有极高的认知度和客户粘性。保险本质是"卖信任"，品牌积累需要数十年。</td></tr>
+  <tr><td>规模与数据壁垒</td><td><strong>强</strong>——大规模保单池提供更精准的精算定价，理赔数据积累形成数据飞轮——规模越大，定价越准，成本越低。</td></tr>
+  <tr><td>分销渠道壁垒</td><td><strong>中等</strong>——线下经纪+线上直销双渠道布局完善，但数字化正在降低渠道门槛。</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  <strong>阶段：成熟期——行业格局稳定，龙头地位明确</strong><br>
+  澳洲一般保险市场是一个成熟市场，增速与GDP增速相近（GWP增速通常3-6%）。IAG作为百年企业，市场地位稳固，核心任务是提升承保效率（控制理赔成本、优化费用率）和资本配置（分红+回购）。<br><br>
+  <strong>投资策略重点：</strong>关注承保周期位置（UITR趋势）、资本充足率、股息增长持续性。
+</div>
+
+<h3>6.4 当前周期位置</h3>
+<div class="highlight-box">
+  <strong>周期位置：硬市场（承保利润高峰）</strong><br>
+  IAG当前处于"硬市场"周期——保费定价持续改善，UITR 17.5%远超10-12%目标区间上沿。本轮承保利润高企的背景：① 疫情后车险/家财险大幅提价；② 自然灾损低于历史均值（FY2025低于预算$195m）；③ 再保险市场供给收紧推高保费。FY2026指引UITR 14-16%预示利润率将温和回落但仍处健康水平。<br><br>
+  <strong>高风险提示：</strong>承保利润处于高峰时需警惕均值回归——自然灾损回归正常或再保险成本上升将压缩UITR。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>一般保险</td><td>PB（保险定价锚）</td><td>PE/UITR/CET1</td><td class="good">✅ PB 2.6x合理（ROE 19.4%支撑），PE 17.4x中位偏上</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值方法总结：</strong>保险公司的核心估值方法是PB（因为保险公司最大的价值是"承保能力"，体现在净资产上），PE作为辅助。IAG当前PB 2.6x对应ROE 19.4%，隐含市场对长期ROE 16-18%的预期。PE 17.4x处于12-22x历史区间的中位偏上，但以ROE 19.4%的高资本效率衡量，估值合理。当前PE中已部分price in了UITR从17.5%回落到14-16%的预期，安全边际尚可。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<div class="summary-box">
+  <strong>六步法总结</strong><br><br>
+  <strong>Step 1 - 行业定位：</strong>防御型+金融特殊行业（一般保险），澳洲市场高度集中（CR3>70%），监管牌照+品牌+规模三重壁垒。<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 19.4%（顶级），高承保利润型（UITR 17.5%），D/E 36%低杠杆，CET1 $3.94B充裕。<br>
+  <strong>Step 3 - 估值判断：</strong>PE 17.4x（TTM）处于行业历史中位偏上，PB 2.6x对应ROE 19.4%合理，FY2026E PE ~14.5x吸引力增强。<br>
+  <strong>Step 4 - 风险排查：</strong>费用率上升（+0.4pct）、自然灾损均值回归风险、UITR从17.5%回落（FY2026指引14-16%）。<br>
+  <strong>Step 5 - 结论：</strong>品质优秀（94/100）——ROE 19.4%在澳洲保险业顶级，UITR 17.5%远超目标。估值合理，是稳健的防御型配置。<br>
+  <strong>Step 6 - 跟踪：</strong>UITR能否维持14%+、费用率趋势、自然灾损是否回归均值、CET1水平。
+</div>
+
+<h3>好公司三要素检查</h3>
+<table>
+  <tr><th style="width:25%">要素</th><th>检查结果</th></tr>
+  <tr><td>① 好行业——需求稳定or增长，壁垒高，格局好</td><td class="good">✅ 一般保险是刚性需求，CR3>70%高度集中，牌照+品牌壁垒极深</td></tr>
+  <tr><td>② 好公司——ROE>15%，毛利率稳定或提升，CFO>净利润</td><td class="good">✅ ROE 19.4% ✓, UITR 17.5%远超目标 ✓, 保险天然正现金流 ✓</td></tr>
+  <tr><td>③ 好价格——PE/PB历史偏低分位，PEG<1.5</td><td class="good">✅ PE 17.4x处于历史中位偏上，但FY2026E PE ~14.5x低于中枢，PB 2.6x对应高ROE合理</td></tr>
+</table>
+
+<h3>三个陷阱排查</h3>
+<div class="highlight-box">
+  ✅ 未命中价值陷阱——ROE 19.4%强劲，非低增长+高负债组合<br>
+  ⚠ 需警惕周期陷阱——UITR 17.5%处于高峰，需关注FY2026指引回落至14-16%的节奏<br>
+  ✅ 未命中烧钱陷阱——保险天然正现金流，CFO充裕
+</div>
+
+<h3>讨论问题</h3>
+<div class="summary-box">
+  阅读报告后可以聊这些：<br><br>
+  1. 这笔生意你看懂了吗？一句话说清IAG怎么赚钱？<br>
+  2. UITR 17.5%还能维持多久？自然灾损均值回归会带来多大冲击？<br>
+  3. IAG vs Suncorp——你选哪个？为什么？<br>
+  4. 什么情况下你会坚决卖出IAG？
+</div>
+
+</div></div>
+
+<div class="footer">
+   免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+   数据来源：IAG FY2025 Annual Report, APRA, 分析师一致预期
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

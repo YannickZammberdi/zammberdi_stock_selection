@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中信证券(600030) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>中信证券（600030）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026年7月 | 数据来源：FY2025 年报 + 2026Q1 季报</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>中信证券股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>600030.SH / 6030.HK</td></tr>
+  <tr><td>所属行业</td><td>证券（纯周期——资本市场强周期，业绩与市场成交高度相关）</td></tr>
+  <tr><td>行业地位</td><td>中国综合实力最强的证券公司，A股券商龙头，投行/经纪/资管/自营多项业务稳居行业第一</td></tr>
+  <tr><td>FY2025 营业收入</td><td><strong>748.54 亿（+28.79%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>300.76 亿（+38.58%，历史新高）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>741.04 亿（-57.06%，但绝对值仍可观）</strong></td></tr>
+  <tr><td>总资产</td><td>2.08 万亿（首次突破2万亿）</td></tr>
+  <tr><td>归母净资产</td><td>3,199.30 亿</td></tr>
+  <tr><td>ROE（加权）</td><td>10.59%</td></tr>
+</table>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">综合L1-L5所有因素（财务健康度、关键指标、估值、杜邦分析、行业分类），对各维度打分求和。注：券商行业高负债率为正常经营特性，已做适当调整。</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="neutral" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">10.59%，≥10%</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">高利润型——净利率40.2%，盈利质量高</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">2.46 ≥ 1.0，利润含金量极高</td></tr>
+  <tr><td>营收增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+28.79% ≥ 10%</td></tr>
+  <tr><td>利润增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+38.58% ≥ 15%</td></tr>
+  <tr><td>负债率（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">名义79.16%，剔除客户资金后~77%，券商行业偏高（调整后得分）</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">流动性覆盖率138%，净资本210%，极其充裕</td></tr>
+  <tr><td>毛利率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">轻资产模式，各业务毛利率高且稳定</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">PE 14.5x，近5年分位~2%，处于历史极低区间</td></tr>
+  <tr><td>自由现金流（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">CFO持续为正，FCF充裕</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">89/100</td><td style="text-align:left">品质优秀（89/100分）</td></tr>
+</table>
+
+<div class="verdict verdict-ok">品质优秀（89/100分）</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>中信证券是中国综合实力最强的券商龙头——2025年归母净利润首次突破300亿元，ROE 10.59%为近5年最高。公司投行、经纪、资管、自营等各条业务线全面领先，境内股权融资市占率24.36%稳居第一，华夏基金AUM持续扩张，中信国际净利润同比+72%成为重要增长引擎。2026Q1单季净利102亿首次突破百亿，业绩持续高增长。<br><br>
+  <strong>核心优势：</strong>① 全业务线龙头——投行/经纪/资管/自营/国际业务均列行业前茅，综合实力无可匹敌；② 品牌+客户壁垒——托管客户资产超15万亿，客户数超1,700万户，粘性极强；③ 风控稳健——净资本/各项风险准备210%，流动性覆盖率138%，风险指标远高于监管要求；④ 估值极低——PE 14.5x近5年分位仅2%，PB 1.38x处于历史中低分位。<br><br>
+  <strong>核心风险：</strong>① 强周期属性——业绩高度依赖市场成交额和指数表现，2025Q4净利环比-30%体现周期波动；② 杠杆持续上升——剔除客户资金后杠杆4.8倍接近2021年最高水平，自营规模9583亿，市场下跌时风险暴露；③ 经纪市占率承压——2026Q1经纪收入增速（+47.8%）弱于市场成交增速（+69.3%），面临互联网券商竞争；④ 行业降费趋势——公募基金费率改革、投行IPO费率下行持续压缩盈利空间。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>748.54 亿</td><td>581.19 亿</td><td>+28.79%</td><td class="good">✅ 高增长，创历史新高</td></tr>
+  <tr><td>归母净利润</td><td><strong>300.76 亿</strong></td><td>217.04 亿</td><td><strong>+38.58%</strong></td><td class="good">✅ 历史新高</td></tr>
+  <tr><td>扣非净利润</td><td><strong>303.03 亿</strong></td><td>215.66 亿</td><td><strong>+40.51%</strong></td><td class="good">✅ 高于归母净利</td></tr>
+  <tr><td>净利率</td><td><strong>40.18%</strong></td><td>37.34%</td><td>+2.84pct</td><td class="good">✅ 提升</td></tr>
+  <tr><td>经纪业务净收入</td><td><strong>147.53 亿</strong></td><td>107.13 亿</td><td>+37.71%</td><td class="good">✅ 受益市场活跃</td></tr>
+  <tr><td>投行业务净收入</td><td><strong>63.36 亿</strong></td><td>41.59 亿</td><td>+52.34%</td><td class="good">✅ IPO市占率第一</td></tr>
+  <tr><td>资管业务净收入</td><td><strong>121.77 亿</strong></td><td>105.06 亿</td><td>+15.90%</td><td class="good">✅ 稳健增长</td></tr>
+  <tr><td>2025Q1 营收</td><td>164.32 亿</td><td>—</td><td>—</td><td>—</td></tr>
+  <tr><td>2025Q2 营收</td><td>166.95 亿</td><td>—</td><td>—</td><td>—</td></tr>
+  <tr><td>2025Q3 营收</td><td>230.19 亿</td><td>—</td><td>—</td><td>—</td></tr>
+  <tr><td>2025Q4 营收</td><td>187.08 亿</td><td>—</td><td>—</td><td>—</td></tr>
+  <tr><td>2025Q4 净利润</td><td><strong>66.92 亿</strong></td><td>47.44 亿</td><td><strong>+41.03%</strong></td><td class="good">✅ 同比高增，环比-30%</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>营收748.54亿（+28.8%）、净利300.76亿（+38.6%）均创历史新高，利润增速高于营收增速，反映经营杠杆效应。各业务线全面增长：自营收入240.40亿（+24%）为最大收入来源，经纪+37.7%（受益日均成交2.05万亿），投行+52.3%（A股股权融资市占率24.36%第一）。2026Q1净利102.16亿（+54.6%），首次单季突破百亿，增长势头持续强劲。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>总资产</td><td><strong>20,819.03 亿</strong></td><td class="good">✅ 首次突破2万亿，+21.7%</td></tr>
+  <tr><td>交易性金融资产</td><td><strong>9,583 亿（估）</strong></td><td class="neutral">自营投资规模较大</td></tr>
+  <tr><td>融出资金（两融）</td><td><strong>大幅增加（+50%）</strong></td><td class="good">✅ 两融市占率提升</td></tr>
+  <tr><td>归母净资产</td><td><strong>3,199.30 亿</strong></td><td class="good">✅ 同比+9.15%</td></tr>
+  <tr><td>资产负债率（名义）</td><td><strong>79.16%</strong></td><td class="neutral">剔除客户资金后~77%</td></tr>
+  <tr><td>净资本</td><td><strong>1,571.46 亿</strong></td><td class="good">✅ 同比+10.3%</td></tr>
+  <tr><td>风险覆盖率</td><td><strong>210.46%</strong></td><td class="good">✅ 远高于监管>100%</td></tr>
+  <tr><td>流动性覆盖率</td><td><strong>137.80%</strong></td><td class="good">✅ 充裕</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>总资产2.08万亿首破2万亿，杠杆（剔除客户资金后4.8倍）接近2021年最高水平。风险控制指标全面健康——风险覆盖率210%、流动性覆盖率138%、净稳定资金率125%，均大幅高于监管红线。净资本1,571亿奠定扩张基础。核心关注点是自营金融资产规模近万亿，市场波动时可能对净资产产生较大影响。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>741.04 亿</strong></td><td>1,725.63 亿</td><td class="neutral">⚠ 同比下降57%</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><strong>-69.89 亿</strong></td><td>-742.64 亿</td><td class="good">✅ 大幅改善</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td><strong>550.83 亿</strong></td><td>-153.62 亿</td><td class="neutral">增加债券融资</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>2.46</strong></td><td>7.95</td><td class="good">✅ 持续>1</td></tr>
+  <tr><td>资本开支</td><td><strong>较小</strong></td><td>—</td><td class="good">✅ 轻资产模式</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>CFO 741亿同比-57%看似下降，但2024年基数极高（1,726亿），2025年CFO仍处历史高位。CFO/净利润2.46，利润含金量极好。CFI从-743亿大幅改善至-70亿，投资支出减少。筹资活动净流入551亿，公司2025年发行较多债券主动加杠杆。整体现金流极为健康——2026Q1经营活动现金流净额同比增长240.86%，进一步改善。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE（加权）</td><td><strong>10.59%</strong></td><td>券商>10%优秀</td><td class="good">✅ 近5年最高</td></tr>
+  <tr><td>净利率</td><td><strong>40.18%</strong></td><td>行业领先</td><td class="good">✅ 大幅领先同业</td></tr>
+  <tr><td>营收增长率</td><td><strong>+28.79%</strong></td><td>> 10%</td><td class="good">✅ 高增长</td></tr>
+  <tr><td>利润增长率</td><td><strong>+38.58%</strong></td><td>> 15%</td><td class="good">✅ 优质增长</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>2.46</strong></td><td>> 1</td><td class="good">✅ 利润含金量极高</td></tr>
+  <tr><td>资产负债率</td><td><strong>79.16%</strong></td><td>券商<80%可接受</td><td class="neutral">⚠ 处于上限</td></tr>
+  <tr><td>分红率</td><td><strong>35.73%</strong></td><td>每10股派4.10元</td><td class="good">✅ 历史最高分红</td></tr>
+</table>
+
+<h3>3.2 分业务分析（2025年度）</h3>
+<table>
+  <tr><th>业务板块</th><th>营收（亿）</th><th>占比</th><th>同比</th><th>评价</th></tr>
+  <tr><td>证券投资（自营）</td><td>240.40</td><td>37.69%</td><td>+23.95%</td><td class="good">✅ 最大收入来源</td></tr>
+  <tr><td>经纪业务</td><td>147.53</td><td>25.96%</td><td>+37.71%</td><td class="good">✅ 受益市场活跃</td></tr>
+  <tr><td>资产管理</td><td>121.77</td><td>17.99%</td><td>+15.90%</td><td class="good">✅ 华夏基金驱动</td></tr>
+  <tr><td>其他</td><td>76.85</td><td>12.05%</td><td>—</td><td class="neutral">含其他收入</td></tr>
+  <tr><td>证券承销（投行）</td><td>63.36</td><td>6.32%</td><td>+52.34%</td><td class="good">✅ 市占率第一</td></tr>
+  <tr><td>利息净收入</td><td>16.30</td><td>—</td><td>+50.44%</td><td class="good">✅ 两融驱动</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>中信证券业务结构均衡——自营（38%）+经纪（26%）+资管（18%）+投行（6%）全面领先。2025年投行业务A股股权融资市占率24.36%（第一），债券承销规模2.21万亿（第一）。华夏基金净利润24亿（+11%），中信资管AUM 1.76万亿（市场第一）。中信国际净利润同比+72%至9亿美元，占净利润比重提升至21.7%，国际化战略成效显著。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="neutral">🟡 中等</td><td>自营规模近万亿，市场下跌风险敞口大</td><td>交易性金融资产9583亿，占资产46%</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>经营杠杆接近历史最高水平（4.8倍）</td><td>剔除客户资金杠杆率提升至4.8x</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>经纪市占率面临互联网券商竞争压力</td><td>增速弱于市场成交增速</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>Q4业绩环比-30%，周期波动明显</td><td>Q3净利96.2亿→Q4净利66.9亿</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>行业降费趋势压缩盈利空间</td><td>公募费率改革、IPO费率下行</td></tr>
+  <tr><td class="good">🟢 正面</td><td>归母净利润创历史新高（300.76亿）</td><td>L1 利润表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>CFO/净利润2.46，利润含金量极高</td><td>L1 现金流量表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>投行和资管全面行业第一，护城河深</td><td>L2 分业务分析</td></tr>
+  <tr><td class="good">🟢 正面</td><td>风控指标大幅优于监管要求</td><td>风险覆盖率210%，流动性覆盖率138%</td></tr>
+  <tr><td class="good">🟢 正面</td><td>国际化加速，中信国际净利占比21.7%</td><td>L2 分业务分析</td></tr>
+</table>
+
+<div class="verdict verdict-ok">✅ L2综合判定：品质优秀（龙头地位稳固，盈利质量高，风控稳健）</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>股价（2026.7.1）</td><td><strong>29.47 元</strong></td><td>近一年区间23.23-32.53元</td></tr>
+  <tr><td>总市值</td><td><strong>~4,367 亿</strong></td><td>总股本148.21亿股</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>~14.5x</strong></td><td>基于TTM EPS约2.03元</td></tr>
+  <tr><td>PE（TTM扣非）</td><td><strong>~14.3x</strong></td><td>扣非口径</td></tr>
+  <tr><td>PE（2026E）</td><td><strong>~13.1x</strong></td><td>券商一致预期EPS ~2.23-2.25元</td></tr>
+  <tr><td>PB</td><td><strong>~1.38x</strong></td><td>基于每股净资产21.59元（2025末）</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~5.8x</strong></td><td>市销率</td></tr>
+  <tr><td>股息率</td><td><strong>~1.39%</strong></td><td>每10股派4.10元，历史最高分红</td></tr>
+</table>
+
+<h3>4.2 PE Band估值区间</h3>
+<p style="font-size:13px;color:#666;">ROE 10.59% → 合理PE参考区间：10-18x | 2026E一致预期EPS ≈ 2.23元</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs现价29.47元</th></tr>
+  <tr><td>悲观（市场转弱）</td><td>10x</td><td>22.3 元</td><td class="bad">-24%</td></tr>
+  <tr><td>保守</td><td>13x</td><td>29.0 元</td><td class="neutral">-2%</td></tr>
+  <tr><td>中性（基准）</td><td>15x</td><td>33.5 元</td><td class="good">+14%</td></tr>
+  <tr><td>乐观（市场持续活跃）</td><td>18x</td><td>40.1 元</td><td class="good">+36%</td></tr>
+  <tr><td>当前价</td><td>~14.5x</td><td>29.47 元</td><td>—</td></tr>
+  <tr><td>历史高位（2015年）</td><td>50x</td><td>111.5 元</td><td>+278%</td></tr>
+</table>
+
+<h3>4.3 历史PE区间（亿牛网数据）</h3>
+<table>
+  <tr><th>指标</th><th>数值</th></tr>
+  <tr><td>PE（TTM）近10年最大值</td><td>35.95x（2020年）</td></tr>
+  <tr><td>PE（TTM）近5年80%分位</td><td>~20x</td></tr>
+  <tr><td>PE（TTM）近5年50%分位</td><td>~16x</td></tr>
+  <tr><td>PE（TTM）近5年20%分位</td><td>~13x</td></tr>
+  <tr><td>PE（TTM）近5年最小值</td><td>11.01x（2022年）</td></tr>
+  <tr><td>当前PE（TTM）</td><td class="good">~14.5x（近5年分位~2%，极低位）</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值总结：</strong>中信证券当前PE 14.5x处于近5年分位仅~2%的极低位，PB 1.38x处于中低分位（~49%）。以ROE 10.59%对应的合理PE 10-18x区间来看，当前估值处于中枢偏低位置。<br><br>
+  中性情景下（2026E EPS 2.23元，PE 15x），合理股价33.5元（+14%）。当前价29.47元具有较好的安全边际——即使市场转弱（PE 10x），下行空间也仅~24%。而如果市场活跃度持续（PE 18x），上行空间可达+36%。<br><br>
+  <strong>核心变量：</strong>市场日均成交额和指数表现是中信证券估值和业绩的核心驱动。2026年市场日均成交2万亿以上时，当前估值极具吸引力；若市场大幅萎缩至1.5万亿以下，则可能面临短期回调。但作为行业龙头，中信证券在周期底部时估值收缩有限，适合作为券商板块的底仓配置。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>净利润率</td><td>35.6%</td><td>37.3%</td><td><strong>40.2%</strong></td><td class="good">⬆ 持续提升</td></tr>
+  <tr><td>资产周转率（剔除客户资金）</td><td>4.5%</td><td>4.6%</td><td><strong>5.3%</strong></td><td class="good">⬆ 提升</td></tr>
+  <tr><td>权益乘数（剔除客户资金）</td><td>4.17x</td><td>4.17x</td><td><strong>4.34x</strong></td><td class="neutral">⬆ 杠杆略升</td></tr>
+  <tr><td><strong>ROE（杜邦推算）</strong></td><td><strong>~7.8%</strong></td><td><strong>~8.1%</strong></td><td><strong>~9.4%</strong></td><td class="good">⬆ 持续提升</td></tr>
+  <tr><td>ROE（加权平均，官方）</td><td>7.81%</td><td>8.10%</td><td><strong>10.59%</strong></td><td class="good">⬆ 历史新高</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转率）</td><td>1.60%</td><td>1.72%</td><td><strong>2.13%</strong></td><td class="good">⬆ 提升</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>6.2pct</td><td>6.4pct</td><td><strong>7.3pct</strong></td><td class="neutral">⬆ 杠杆贡献加大</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：高利润型（净利率40%为核心驱动）+ 适度杠杆型</strong><br>
+  中信证券净利润率40.2%在券商中处于顶尖水平（行业平均~30%），体现了龙头券商在品牌溢价、高附加值业务（投行、资管）方面的优势。剔除客户资金后资产周转率5.3%持续提升（营收增速>资产增速），权益乘数4.34倍在行业中属中等水平。<br><br>
+  <strong>亮点：</strong>去杠杆ROA从1.60%提升至2.13%（+33%），说明去掉杠杆后真实经营效率也在显著改善——这是最健康的信号。净利率从35.6%→40.2%（+4.6pct）是ROE提升的最大贡献者。<br><br>
+  <strong>与同业对比：</strong>中信证券的净利率（40%）显著高于中小券商（~20-30%），去杠杆ROA（2.13%）也领先同业，龙头溢价明显。
+</div>
+
+<h3>5.2 分业务杜邦贡献</h3>
+<table>
+  <tr><th>业务板块</th><th>净利率（估）</th><th>趋势</th><th>对ROE影响</th></tr>
+  <tr><td>证券投资（自营）</td><td>随市场波动</td><td class="good">⬆ 2026Q1自营收入116.79亿占比50%</td><td class="good">最大弹性来源</td></tr>
+  <tr><td>经纪业务</td><td>~40-50%</td><td class="good">⬆ 成交活跃带动</td><td class="good">稳定贡献</td></tr>
+  <tr><td>资产管理（华夏基金等）</td><td>~30-40%</td><td class="good">⬆ AUM持续增长</td><td class="good">轻资产稳定贡献</td></tr>
+  <tr><td>投资银行</td><td>~40-50%</td><td class="good">⬆ 市占率第一</td><td class="good">高利润率业务</td></tr>
+  <tr><td>国际业务（中信国际）</td><td>~20%</td><td class="good">⬆ 净利+72%占比21.7%</td><td class="good">增长新引擎</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>核心结论：</strong><br>
+  ① ROE 10.59%靠"高净利率（40%）+低周转（5.3%）+中杠杆（4.34x）"实现，核心驱动是净利率持续提升；<br>
+  ② 去杠杆ROA从1.60%→2.13%（+33%），说明经营效率在真实改善，这是最积极的信号；<br>
+  ③ 杠杆贡献7.3pct，但杠杆水平并不极端（4.34x vs 行业~3-5x），风险可控；<br>
+  ④ 收入结构均衡——自营/经纪/资管/投行/国际五轮驱动，比纯靠自营的券商更稳健；<br>
+  ⑤ ROE提升关键：维持市场活跃度保持周转率提升+高利润率业务占比提升（投行+资管+国际）
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与特征（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：纯周期行业（证券）</strong><br>
+  <strong>判断依据：</strong>证券行业具有典型强周期属性——业绩与资本市场成交额、指数走势、IPO融资额高度正相关。2025年日均成交额2.05万亿（+69.8%），中信证券净利即增长38.6%；2025Q4市场回落，单季净利环比-30%。行业长期增速≈GDP增速+直接融资占比提升（年均~5-8%），但短期波动极大。<br><br>
+  <strong>周期长度：</strong>通常3-5年一轮（熊→牛→熊），受货币政策、监管政策、经济基本面多重影响。2024-2025年为上行周期，当前处于周期中段偏上位置。<br><br>
+  <strong>地位差异：</strong>中信证券作为龙头，在周期底部抗风险能力远强于中小券商，具备"逆周期扩张"能力（如在市场低迷时收购、增加人员）。过去5年ROE从7.81%→10.59%，体现市占率持续提升的阿尔法。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th></tr>
+  <tr><td>行业集中度</td><td><strong>偏低但持续集中</strong>——券商CR5约30%，CR10约50%，远低于美国（CR5>70%）。监管鼓励头部券商做大做强，"扶优限劣"政策下集中度将持续提升。</td></tr>
+  <tr><td>牌照壁垒</td><td><strong>极高</strong>——证券/投行/资管/两融等核心业务均需监管部门审批，新设券商门槛极高。中信证券是全牌照券商。</td></tr>
+  <tr><td>资本壁垒</td><td><strong>极高</strong>——净资本1,571亿，行业第一。净资本直接决定业务规模上限（两融、自营、科创板跟投等）。</td></tr>
+  <tr><td>品牌/客户壁垒</td><td><strong>强</strong>——托管客户资产超15万亿，客户1,700万户，大型国企/机构客户粘性极强。</td></tr>
+  <tr><td>人才/技术壁垒</td><td><strong>中等偏强</strong>——投行、资管等业务高度依赖核心人才团队，中信证券薪酬体系在行业中具备竞争力。</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  <strong>阶段：成熟期（国内证券业务）+ 成长期（国际化/财富管理转型）</strong><br>
+  国内证券经纪/投行/资管等传统业务已进入成熟期，行业增速趋缓。但中信证券通过市占率持续提升（阿尔法）获得超越行业的增长。国际化业务（中信国际净利占比21.7%）和财富管理转型（金融产品保有超8,000亿）仍处于成长期，提供增量空间。<br><br>
+  <strong>投资策略重点：</strong>跟踪市场日均成交额（周期位置）、股权融资规模（投行景气度）、中信国际利润贡献（国际化进展）、华夏基金AUM增长（资管业务）。
+</div>
+
+<h3>6.4 当前周期位置</h3>
+<div class="summary-box">
+  <strong>当前周期位置：周期中段偏上</strong><br>
+  2025年日均股基成交额2.05万亿（+69.8%），处于较高水平。2026Q1市场日均成交~2.6万亿进一步活跃。中信证券PE 14.5x处于历史低分位（周期中段PE适中），PB 1.38x处于中低分位。<br><br>
+  <strong>周期位置判断：</strong>市场处于活跃期但并非最狂热阶段（2025年日均2.05万亿 vs 2015年高峰~1.2万亿，但当前市场体量更大）。中信证券PE/PB并未出现"周期顶部PE极低"的典型特征，估值仍有上行空间。但需警惕市场从活跃转向低迷时的业绩回落风险。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>证券（纯周期）</td><td>PB（底部参考）+ PE（动态）</td><td>市场成交额、两融规模、股权融资规模</td><td class="good">✅ 匹配——PB 1.38x中低分位+PE 14.5x极低分位，反映市场未过度乐观</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值方法总结：</strong>对于纯周期券商股，PB更适合底部估值参考（中信证券PB历史最低0.92x），PE更适合跟随市场情绪动态评估。当前PB 1.38x距历史低点0.92x仍有~50%下行空间（极端熊市情景），但距历史中枢1.4x基本持平。PE 14.5x处于近5年2%分位的极低水平——这提供了较好的安全边际，但前提是2026年业绩不能大幅下滑。综合看，当前估值处于"合理偏低"水平，适合作为券商底仓配置。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>纯周期（证券），行业集中度偏低但持续集中，牌照+资本+品牌三重壁垒，龙头地位稳固。<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 10.59%（近5年最高），高利润型杜邦（净利率40%），CFO/净利2.46含金量极高，FCF充裕。<br>
+  <strong>Step 3 - 估值判断：</strong>PE 14.5x（近5年分位~2%），PB 1.38x（中低分位），PEG~0.5，估值极具吸引力。<br>
+  <strong>Step 4 - 风险排查：</strong>自营规模近万亿（市场下跌风险）、杠杆接近历史最高、经纪市占率承压、行业降费趋势。<br>
+  <strong>Step 5 - 结论：</strong>好公司（龙头+全牌照+高壁垒）+ 好价格（PE/PB均处历史低分位），适合作为券商底仓配置。<br>
+  <strong>Step 6 - 跟踪：</strong>跟踪日均成交额、两融余额、股权融资规模、中信国际利润占比、华夏基金AUM。
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="neutral">⚠</td><td>证券行业强周期，长期增长依赖直接融资占比提升（慢变量），但短期波动极大</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓</td><td>ROE 10.59%>10%，净利率40%行业顶尖，CFO/净利2.46，龙头护城河极深</td></tr>
+  <tr><td>③ 好价格</td><td class="good">✓</td><td>PE 14.5x近5年分位~2%，PB 1.38x中低分位，PEG~0.5，低估明显</td></tr>
+</table>
+
+<h3>7.3 三个陷阱排查</h3>
+<div class="danger-box">
+  <strong>☐ 价值陷阱：</strong>❌ 未命中——PE 14.5x虽然低但并非无增长（+38%净利增速），价值陷阱典型特征（低PE+低增长+高负债）不匹配。<br>
+  <strong>☐ 周期陷阱：</strong>🔴 部分命中——作为纯周期券商股，低PE可能反映的是周期顶部而非价值低估。但当前PE 14.5x处于近5年2%分位的极低水平，且市场活跃度仍好（日均成交2万亿+），并非典型的"周期顶部PE极低"情景。当前更像是周期中段，估值合理偏低。<br>
+  <strong>☐ 烧钱陷阱：</strong>❌ 未命中——CFO/净利2.46，FCF持续为正，资本开支极低，轻资产模式。
+</div>
+
+<h3>7.4 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——中信证券通过投行帮企业融资（收承销费）、通过经纪帮股民交易（收佣金）、通过资管帮客户理财（收管理费）、通过自营用自己的钱投资（赚投资收益）——本质是资本市场的"综合金融超市"。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——自营规模近万亿，占资产46%，如果市场大幅下跌20%，自营可能亏损近千亿。另一个担忧是杠杆已接近历史最高，继续加杠杆的空间有限。<br>
+  3. 如果现在买入，期待的回报来源是什么？——期待市场活跃度持续（日均成交2万亿+），推动业绩继续增长（2026E净利333亿+10.9%）；同时估值从14.5x修复至18x+，带来戴维斯双击。分红率35.7%创历史最高，股息率1.4%也在改善。<br>
+  4. 什么情况下你会坚决卖出？——日均成交额持续萎缩至1.5万亿以下 / 自营业务出现大额亏损 / 监管政策重大收紧 / 权益市场进入趋势性熊市。
+</div>
+
+</div></div>
+
+<div class="footer">
+   免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+   数据来源：中信证券2025年年报、2026Q1季报、券商研报、亿牛网、理杏仁
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

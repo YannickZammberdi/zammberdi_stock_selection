@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中材科技(002080) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>中材科技（002080）财务分析报告</h1>
+<p class="subtitle">基于 L1-L6 框架（财务三表+关键指标+估值+杜邦+行业分类+综合实战）</p>
+<p class="meta">分析日期：2026年6月 | 数据来源：FY2025 年报</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>中材科技股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>002080.SZ</td></tr>
+  <tr><td>所属行业</td><td>新材料制造（玻纤、风电叶片、锂膜、复合材料）</td></tr>
+  <tr><td>实际控制人</td><td>中国建材集团（央企）</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>301.95 亿（+25.90%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>18.18 亿（+103.82%）</strong></td></tr>
+  <tr><td>FY2025 扣非净利润</td><td><strong>12.83 亿（+234.52%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>54.02 亿（+50.05%）</strong></td></tr>
+  <tr><td>总资产</td><td>655.91 亿</td></tr>
+  <tr><td>归母净资产</td><td>199.11 亿</td></tr>
+  <tr><td>ROE</td><td>9.49%（上年4.82%）</td></tr>
+</table>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">综合L1-L5所有因素，对各维度打分求和</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">9.49%，≥5%</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="bad" style="font-weight:bold;font-size:15px">1</td><td style="text-align:left">高杠杆型——净利率6%低+周转0.46低+杠杆3.29高</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">2.97 ≥ 1.0</td></tr>
+  <tr><td>营收增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+25.90% ≥ 10%</td></tr>
+  <tr><td>利润增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+103.82% ≥ 15%</td></tr>
+  <tr><td>负债率（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">56.79%，55%-70%区间</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">央企背景融资成本低，基本覆盖</td></tr>
+  <tr><td>毛利率（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">~18.9%改善中，≥15%水平</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">PE合理，偏离<30%</td></tr>
+  <tr><td>自由现金流（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">FCF约17亿转正</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">71/100</td><td style="text-align:left">一般关注（71/100分）</td></tr>
+</table>
+
+<div class="verdict verdict-caution">一般关注（71/100分）</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>中材科技是中国建材集团旗下的新材料平台，主营玻纤、风电叶片和锂膜三大业务。FY2025营收突破300亿大关（+25.9%），归母净利润18.18亿（+103.8%），业绩强劲反弹。ROE从4.82%大幅修复至9.49%，但仍未达到15%优秀线。玻纤受益于景气回升量价齐升，风电叶片受益于装机需求旺盛（36GW），锂膜受益于新能源渗透率提升。央企背书融资成本低，利息保障倍数从3.20提升至5.89。<br><br>
+  <strong>核心优势：</strong>① 央企背景融资成本低，信用背书强；② 三大业务均处于景气上行周期；③ CFO 54亿/净利润2.97倍，现金质量极好；④ FCF约17亿转正，自造血能力恢复；⑤ 扣非+235%，盈利质量大幅改善。<br><br>
+  <strong>核心风险：</strong>① ROE 9.49%仍偏低，资本回报效率一般；② 存货+36%增速超营收+25.9%，需关注去化；③ 负债率56.79%接近央企上限；④ 非经常性损益贡献约5.35亿（占利润30%）。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>301.95 亿</td><td>239.83 亿</td><td>+25.90%</td><td class="good">✅ 高增长</td></tr>
+  <tr><td>归母净利润</td><td><strong>18.18 亿</strong></td><td>8.92 亿</td><td><strong>+103.82%</strong></td><td class="good">✅ 翻倍增长</td></tr>
+  <tr><td>扣非净利润</td><td><strong>12.83 亿</strong></td><td>3.84 亿</td><td><strong>+234.52%</strong></td><td class="good">✅ 大幅改善</td></tr>
+  <tr><td>毛利率</td><td><strong>~18.9%</strong></td><td>—</td><td>—</td><td class="neutral">⚠ 偏低（制造业属性）</td></tr>
+  <tr><td>归母净利率</td><td><strong>~6.0%</strong></td><td>~3.7%</td><td>+2.3pct</td><td class="good">✅ 改善</td></tr>
+  <tr><td>期间费用率</td><td><strong>~12%</strong></td><td>—</td><td>—</td><td class="neutral">合理</td></tr>
+  <tr><td>研发投入</td><td><strong>17.69 亿</strong></td><td>13.12 亿</td><td>+34.79%</td><td class="good">✅ 重视研发</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>营收首次突破300亿大关，归母净利翻倍至18.18亿。扣非净利润从3.84亿→12.83亿（+235%），说明主业盈利质量显著改善。但需注意：非经常性损益约5.35亿（占利润30%），主要来自政府补助和资产处置收益。毛利率~18.9%在新材料制造中属于中等偏低（受玻纤、叶片等重资产行业特征影响），但净利率已从3.7%提升至6%，盈利能力在改善通道中。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td>—（充裕）</td><td class="good">✅ 央企背书流动性无忧</td></tr>
+  <tr><td>存货</td><td><strong>~48.9 亿（+36%）</strong></td><td class="neutral">⚠ 增速超营收</td></tr>
+  <tr><td>短期借款</td><td><strong>~26 亿</strong></td><td class="neutral">可覆盖</td></tr>
+  <tr><td>长期借款</td><td><strong>~97 亿</strong></td><td class="neutral">偏高但央企背书</td></tr>
+  <tr><td>资产负债率</td><td><strong>56.79%</strong></td><td class="neutral">⚠ 接近央企上限</td></tr>
+  <tr><td>归母净资产</td><td><strong>199.11 亿</strong></td><td class="good">✅ 稳健增厚</td></tr>
+  <tr><td>利息保障倍数</td><td><strong>5.89</strong></td><td>上年3.20</td><td class="good">✅ 改善明显</td></tr>
+  <tr><td>总资产</td><td><strong>655.91 亿</strong></td><td class="good">✅ 同比+13.6%</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>负债率56.79%处于央企偏高水平，但中国建材集团信用背书强，融资成本低。利息保障倍数从3.20提升至5.89，偿债能力明显改善。存货48.9亿同比+36%，增速超过营收增速（+25.9%），需关注后续去化情况。长期借款~97亿主要投向风电叶片和锂膜产能建设，属于战略性扩产。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>54.02 亿</strong></td><td>36.00 亿</td><td class="good">✅ 同比+50%</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><strong>-36.97 亿</strong></td><td>—</td><td class="neutral">扩产持续投入</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>2.97</strong></td><td>~4.04</td><td class="good">✅ 现金质量优秀</td></tr>
+  <tr><td>自由现金流（FCF）</td><td><strong>~17 亿</strong></td><td>—</td><td class="good">✅ 转正</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>CFO 54.02亿同比+50%，CFO/净利润2.97倍，现金回收质量极好。FCF约17亿（CFO 54亿-资本开支~37亿）转正，说明公司在高速扩张的同时已实现自给自足，不再依赖外部输血。这是与雅克科技（FCF为负）的重要区别——中材科技的扩张是"有质量的扩张"。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>9.49%</strong></td><td>> 15% 优秀 / > 10% 及格</td><td class="neutral">⚠ 偏低但改善中</td></tr>
+  <tr><td>毛利率</td><td><strong>~18.9%</strong></td><td>稳定或提升</td><td class="neutral">⚠ 偏低（行业特征）</td></tr>
+  <tr><td>净利率</td><td><strong>~6.0%</strong></td><td>> 10%</td><td class="neutral">⚠ 改善但未达标</td></tr>
+  <tr><td>营收增长率</td><td><strong>+25.90%</strong></td><td>> 10%</td><td class="good">✅ 高增长</td></tr>
+  <tr><td>扣非增长率</td><td><strong>+234.52%</strong></td><td>正增长</td><td class="good">✅ 大幅改善</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>2.97</strong></td><td>> 1</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>资产负债率</td><td><strong>56.79%</strong></td><td>央企<60%</td><td class="neutral">⚠ 接近上限</td></tr>
+  <tr><td>利息保障倍数</td><td><strong>5.89</strong></td><td>> 3</td><td class="good">✅ 安全</td></tr>
+  <tr><td>FCF</td><td><strong>~17 亿</strong></td><td>为正</td><td class="good">✅ 转正</td></tr>
+</table>
+
+<h3>3.2 三大业务板块</h3>
+<table>
+  <tr><th>业务板块</th><th>行业景气度</th><th>成长逻辑</th><th>评价</th></tr>
+  <tr><td>玻纤</td><td>景气回升</td><td>量价齐升，产能利用率提高</td><td class="good">✅ 周期向上</td></tr>
+  <tr><td>风电叶片</td><td>需求旺盛</td><td>2025年装机36GW，双馈+海风增量</td><td class="good">✅ 高景气</td></tr>
+  <tr><td>锂膜（锂电池隔膜）</td><td>快速增长</td><td>新能源渗透率持续提升</td><td class="good">✅ 成长赛道</td></tr>
+</table>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="neutral">🟡 中等</td><td>ROE 9.49%仍偏低，资本回报效率一般</td><td>L2 盈利指标</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>存货增速（+36%）>营收增速（+25.9%）</td><td>L1 资产负债表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>资产负债率56.79%，接近央企60%红线</td><td>L1 资产负债表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>非经常性损益占利润30%，扣非/归母=71%</td><td>L1 利润表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>毛利率~18.9%偏低，重资产属性折旧压力大</td><td>L1 利润表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>营收利润双高增长，扣非+235%质量改善</td><td>L1 利润表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>FCF转正，自造血能力恢复</td><td>L1 现金流量表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>CFO 54亿，现金回收质量优秀</td><td>L1 现金流量表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>央企背书，融资成本低</td><td>股东背景</td></tr>
+  <tr><td class="good">🟢 正面</td><td>三大业务均处景气上行周期</td><td>行业分析</td></tr>
+</table>
+
+<div class="verdict verdict-caution">⚠ L2综合判定：谨慎关注（ROE 9.49%偏低但改善趋势明确，现金质量优秀）</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>总市值</td><td><strong>~250 亿（估算）</strong></td><td>基于行业可比估值</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>~13.8x</strong></td><td>基于归母净利18.18亿</td></tr>
+  <tr><td>PE（扣非）</td><td><strong>~19.5x</strong></td><td>基于扣非净利12.83亿</td></tr>
+  <tr><td>PB</td><td><strong>~1.26x</strong></td><td>基于净资产199.11亿</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~0.83x</strong></td><td>基于营收301.95亿</td></tr>
+  <tr><td>PCF</td><td><strong>~4.6x</strong></td><td>基于CFO 54.02亿</td></tr>
+</table>
+
+<h3>4.2 PE Band估值区间</h3>
+<p style="font-size:13px;color:#666;">ROE 9.49% → 合理PE参考区间：10-18x | 2026E一致预期EPS ≈ 0.80元（估算）</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs估算现价~15元</th></tr>
+  <tr><td>悲观</td><td>8x</td><td>6.4 元</td><td class="bad">-57%</td></tr>
+  <tr><td>保守</td><td>10x</td><td>8.0 元</td><td class="bad">-47%</td></tr>
+  <tr><td>中性（合理）</td><td>15x</td><td>12.0 元</td><td class="neutral">-20%</td></tr>
+  <tr><td>乐观</td><td>18x</td><td>14.4 元</td><td class="neutral">-4%</td></tr>
+  <tr><td>当前（扣非PE）</td><td>~19.5x</td><td>~15.6 元</td><td>—</td></tr>
+  <tr><td>行业溢价</td><td>22x</td><td>17.6 元</td><td class="good">+13%</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值分析：</strong><br>
+  ① 基于归母净利18.18亿，PE ~13.8x，处于合理偏低区间；<br>
+  ② 基于扣非净利12.83亿，PE ~19.5x，处于合理区间上沿；<br>
+  ③ ROE 9.49%对应的合理PE为10-18x，当前扣非PE 19.5x略高于合理区间，但考虑到三大业务均处于景气上行周期，可给予一定溢价；<br>
+  ④ PB 1.26x处于历史低位，安全边际较高；<br>
+  ⑤ PS 0.83x对于新材料制造龙头来说偏低，表明市场尚未充分定价其成长性。
+</div>
+
+<h3>4.3 估值总结</h3>
+<table>
+  <tr><th>指标</th><th>数值</th></tr>
+  <tr><td>PE（TTM归母）</td><td>~13.8x（合理偏低）</td></tr>
+  <tr><td>PE（TTM扣非）</td><td>~19.5x（合理区间上沿）</td></tr>
+  <tr><td>PB</td><td>~1.26x（历史低位）</td></tr>
+  <tr><td>ROE</td><td>9.49%（偏低但改善趋势明确）</td></tr>
+  <tr><td>合理PE（基于ROE）</td><td>10-18x</td></tr>
+  <tr><td>2026E一致预期EPS</td><td>~0.80元</td></tr>
+  <tr><td>中性估值（15x PE）</td><td>~12元</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值总结：</strong>中材科技是与五洲新春、金辰股份截然不同的故事——当前PE 13.8x（基于归母利润）估值合理，PB 1.26x处于历史低位，PS 0.83x对于新材料龙头有安全边际。ROE虽仅9.49%未达15%优秀线，但修复趋势明确，三大业务（玻纤+风电叶片+锂膜）均处景气上行周期。央企背景+CFO/净利润2.97+ FCF转正，基本面扎实。对于追求稳健的投资者，当前估值具备一定吸引力，建议关注2026年ROE能否突破10%+进一步提升估值中枢。风险点在于存货增速>营收和负债率偏高，需持续跟踪。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>净利润率</td><td>~3.7%</td><td><strong>6.02%</strong></td><td class="good">⬆ 大幅提升</td></tr>
+  <tr><td>资产周转率</td><td>0.37</td><td><strong>0.46</strong></td><td class="good">⬆ 提升24%</td></tr>
+  <tr><td>权益乘数</td><td>~2.96</td><td><strong>3.29</strong></td><td class="neutral">杠杆较高</td></tr>
+  <tr><td><strong>ROE</strong></td><td><strong>4.8%</strong></td><td><strong>9.5%</strong></td><td class="good">⬆ 近乎翻倍</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>1.4%</td><td><strong>2.8%</strong></td><td class="neutral">⬆ 改善但仍低</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>3.4pct</td><td><strong>6.7pct</strong></td><td class="neutral">杠杆放大效应明显</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：高杠杆型（周期修复中）</strong><br>
+  中材科技净利润率6.02%偏低，周转率0.46低，权益乘数3.29极高。去掉杠杆后ROA仅2.8%，ROE 9.5%中杠杆贡献了6.7pct。公司是典型的央企重资产模式——靠低成本融资放大回报。<br><br>
+  <strong>值得注意的变化：</strong>净利润率从3.7%→6.02%（+63%），周转率从0.37→0.46（+24%），两个因子同步改善说明玻纤+风电叶片景气回升带来真实好转。但去掉杠杆后ROA仍然不高。
+</div>
+
+<div class="summary-box">
+  <strong>核心结论：</strong><br>
+  ① ROE从4.8%升至9.5%是景气驱动的修复，非结构性改善；<br>
+  ② 杠杆3.29（负债率57%）在央企中属正常水平，融资成本低是优势；<br>
+  ③ 去掉杠杆后ROA仅2.8%，说明资产回报效率一般；<br>
+  ④ 持续关注：三大业务（玻纤/风电/锂膜）能否延续景气上行。
+</div></div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与周期分析（L5框架）</h2>
+
+<div class="summary-box">
+  <strong>行业类型判断：纯周期——新材料制造（玻纤+风电叶片+锂膜）</strong><br>
+  中材科技属于<b>纯周期型</b>行业。玻纤、风电叶片和锂膜均与宏观经济和下游资本开支紧密相关，下游需求随经济周期波动。但三个业务板块的周期并非完全同步——玻纤受建筑/交通周期影响，风电受政策周期驱动，锂膜随新能源渗透率增长，这在一定程度上分散了单一周期风险。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>内容</th></tr>
+  <tr><td>市场格局</td><td>玻纤CR3约60%（中国巨石+泰山玻纤+重庆国际），中材为第二大股东；风电叶片CR3约70%，中材为龙头；锂膜竞争激烈</td></tr>
+  <tr><td>进入壁垒</td><td>技术壁垒（配方和工艺）、规模壁垒（窑炉投入>10亿）、客户认证壁垒（风电/锂电认证周期长）、央企背书</td></tr>
+  <tr><td>财务验证</td><td>研发投入17.69亿（+35%），壁垒在持续强化；毛利率~18.9%偏低但三大业务同步改善；CFO 54亿验证客户关系稳定</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  成熟期——玻纤为成熟行业，风电叶片处于装机高峰期，锂膜处于快速成长中。整体处于成熟偏成长的混合阶段，但周期属性仍然是主导。
+</div>
+
+<h3>6.4 当前周期位置</h3>
+<div class="highlight-box">
+  <strong>周期景气回升中</strong><br>
+  ① FY2025营收+25.9%，归母净利+103.8%，扣非+234.5%，三项指标均显示景气上行；<br>
+  ② 玻纤受益于量价齐升，产能利用率提高，行业供需格局改善；<br>
+  ③ 风电叶片受益于2025年装机36GW，双馈+海风增量带来结构性需求；<br>
+  ④ 锂膜受益于新能源渗透率持续提升，但行业竞争加剧导致价格承压；<br>
+  ⑤ 整体判断：处于周期上行中期，景气度有望延续至2026-2027年。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>当前指标</th><th>评价</th></tr>
+  <tr><td>纯周期（制造）</td><td>PB + 周期均值PE</td><td>PB ~1.26x, PE ~13.8x</td><td class="good">✅ PB历史低位，PE合理偏低</td></tr>
+  <tr><td>辅助指标</td><td>PS/PCF</td><td>PS ~0.83x, PCF ~4.6x</td><td class="good">✅ 均处于低位</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值方法总结：</strong>中材科技处于周期上行阶段，PE和PB均有参考价值。PB 1.26x处于历史低位，PE 13.8x（基于归母利润）在合理偏低区间。当前估值对景气上行的定价不够充分，若三大业务景气度延续，估值有修复空间。但需注意ROE仅9.49%偏低，合理PE中枢在10-18x，当前扣非PE 19.5x略偏高。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战分析（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>周期性行业（纯周期——新材料制造），玻纤/风电叶片/锂膜三大业务，央企中国建材控股，技术+规模+认证壁垒<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 9.49%（偏低下改善中），杜邦"高杠杆型"（净利率6%+周转0.46+杠杆3.29），CFO 54亿/净利2.97倍含金量极高<br>
+  <strong>Step 3 - 估值判断：</strong>PE ~13.8x（归母）合理偏低，PB ~1.26x历史低位，PS ~0.83x偏低。与同行比有安全边际<br>
+  <strong>Step 4 - 风险排查：</strong>核心风险：ROE仍低+存货增速>营收+负债率56.79%接近央企上限+非经常性损益占利润30%<br>
+  <strong>Step 5 - 结论：</strong>✅ 好公司？一般——央企背景+CFO优质+FCF转正+三大业务景气上行，但ROE偏低。✅ 价格合理偏低——PE 13.8x合理，PB 1.26x历史低位<br>
+  <strong>Step 6 - 跟踪：</strong>关键指标：ROE能否突破10%+、存货去化速度、三大业务景气度延续性。卖出信号：行业景气度反转/负债率突破60%
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>检查结果</th><th>说明</th></tr>
+  <tr><td>① 好行业</td><td class="neutral">⚠</td><td>新材料制造整体是周期行业，但风电和锂膜有成长性，玻纤成熟。央企背景提供稳定性</td></tr>
+  <tr><td>② 好公司</td><td class="neutral">⚠</td><td>ROE 9.49%低于15%优秀线但改善趋势明确，CFO 54亿质量优秀，央企背书融资成本低，但杠杆过高</td></tr>
+  <tr><td>③ 好价格</td><td class="good">✓</td><td>PE 13.8x合理偏低，PB 1.26x历史低位，PS 0.83x偏低，具备安全边际</td></tr>
+</table>
+
+<h3>7.3 三个陷阱排查</h3>
+<div class="danger-box">
+  <strong>陷阱排查结果：</strong><br><br>
+  ☑ <strong>价值陷阱：</strong>低PE（13.8x）+ 低增长？营收+25.9%，利润+104%，非低增长。负债率56.79%偏高但不致命 → <b>❌ 不命中</b><br><br>
+  ☑ <strong>周期陷阱：</strong>低PE（13.8x）+ 周期顶点？当前处于景气上行中期而非顶部，三大业务景气有望延续 → <b>❌ 不命中（需持续跟踪景气拐点）</b><br><br>
+  ☑ <strong>烧钱陷阱：</strong>高PE？否，PE 13.8x不高。高增速？是。CFO 54亿 >> 净利润 → <b>❌ 不命中</b>
+</div>
+
+<h3>7.4 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？中材科技怎么赚钱？——央企爸爸给钱+技术，做玻纤、风电叶片、锂膜，靠产能规模和央企信用赚钱。<br>
+  2. 你最大的担忧是什么？——ROE 9.49%偏低，去掉杠杆后ROA仅2.8%。三大业务景气周期会不会同步见顶？<br>
+  3. 如果现在买入，期待的回报来源是什么？——景气延续带来的利润增长+PB从1.26x修复到2.0x+央企改革红利。<br>
+  4. 什么情况下你会坚决卖出？——ROE持续低于8%/存货恶化/负债率突破60%/风电装机大幅下滑。
+</div>
+
+</div></div>
+
+</div></div>
+
+<div class="footer">
+   免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+   数据来源：中材科技2025年年报、券商研报
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

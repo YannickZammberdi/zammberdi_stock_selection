@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lincoln Minerals(LML) 勘探公司分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>Lincoln Minerals（ASX:LML）勘探公司分析报告</h1>
+<p class="subtitle">勘探公司专属框架——矿权组合评估 + 财务健康度 + 催化剂时间线 + L5（行业分类）+ L6（综合实战）</p>
+<p class="meta">分析日期：2026年6月26日 | 数据来源：ASX公告、公司年报、季报</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="projects">矿权组合</button>
+  <button class="tab-btn" data-tab="financial">财务状况</button>
+  <button class="tab-btn" data-tab="catalysts">催化剂与风险</button>
+  <button class="tab-btn disabled">L4</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>Lincoln Minerals Limited</td></tr>
+  <tr><td>股票代码</td><td>ASX:LML</td></tr>
+  <tr><td>股价（2026.6.26）</td><td>A$0.011（52周范围：$0.004–$0.021）</td></tr>
+  <tr><td>总市值</td><td>~A$2,870万</td></tr>
+  <tr><td>已发行股份</td><td>26.05亿股（+即将增发2.58亿股）</td></tr>
+  <tr><td>股价1年表现</td><td>+110%</td></tr>
+  <tr><td>Beta</td><td>3.31（极高波动）</td></tr>
+  <tr><td>现金头寸（2026.3）</td><td>A$107万（+5月增发融资$310万）</td></tr>
+  <tr><td>总资产</td><td>~A$750万</td></tr>
+  <tr><td>净资产</td><td>~A$720万</td></tr>
+  <tr><td>总负债</td><td>~A$30万（零有息负债）</td></tr>
+</table>
+
+<h2>二、勘探公司综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">针对勘探阶段公司的六维评估框架</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>矿权质量（25分）</td><td class="neutral" style="font-weight:bold;font-size:15px">14</td><td style="text-align:left">石墨矿有JORC资源+PFS（NPV10=$1.14亿），铜矿有7km矿化带但尚在早期</td></tr>
+  <tr><td>管理团队（15分）</td><td class="neutral" style="font-weight:bold;font-size:15px">8</td><td style="text-align:left">CEO Chris Wilcox经验一般，董事会近期引入战略投资者董事</td></tr>
+  <tr><td>财务健康（20分）</td><td class="neutral" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">零负债是亮点，但现金跑道短(~12个月)，融资后约15-18个月</td></tr>
+  <tr><td>催化剂强度（20分）</td><td class="neutral" style="font-weight:bold;font-size:15px">12</td><td style="text-align:left">Minbrie铜矿钻探2026年6月启动，8月出结果——重大催化</td></tr>
+  <tr><td>大宗商品前景（10分）</td><td class="good" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">铜+石墨受益于电气化趋势，但石墨价格低迷</td></tr>
+  <tr><td>风险收益比（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">3</td><td style="text-align:left">极高稀释(26亿股)+极大波动+Beta 3.31，下行保护极弱</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">54/100</td><td style="text-align:left">投机级（54/100分）</td></tr>
+</table>
+
+<div class="verdict verdict-caution">投机级（54/100分）——高风险的铜矿勘探赌注</div>
+
+<div class="summary-box">
+  <strong>综合评估：</strong>Lincoln Minerals是一家多资产勘探公司，核心催化剂是Minbrie铜矿钻探（2026年6月启动，8月出结果）。公司最成熟的资产是Kookaburra石墨矿（JORC资源12.8Mt @ 7.6% TGC，PFS NPV10 $1.14亿），但石墨目前价格低迷，难以独立融资开发。铜矿方面，历史钻孔BUDD192打出29.5m @ 0.8% Cu、7.5% Pb、1.9% Zn、9g/t Ag的矿化段，但这是宽度未校准的见矿厚度（apparent width），且距当时已15年未追踪。最近重测历史岩心确认了7km矿化走向，但资源量尚未定义。<br><br>
+  <strong>核心亮点：</strong>① 零负债，资产负债表干净；② 铜矿项目具备"发现"潜力（district-scale system）；③ 近期$310万配股融资为钻探提供了资金保障；④ 股价从低位$0.004反弹110%，市场关注度上升。<br><br>
+  <strong>核心风险：</strong>① 股本26亿股+增发后近29亿股，极度稀释；② 失败率极高——勘探公司中成功转为生产商的概率<1%；③ 现金跑道仍然偏短（即便融资后约15-18个月）；④ 矿产在南澳Eyre Peninsula，原住民土地权审批风险；⑤ 石墨价格持续低迷压制Kookaburra项目估值。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-projects"><div class="tab-inner">
+
+<h2>三、矿权组合评估</h2>
+
+<h3>3.1 Minbrie铜矿项目（核心催化剂）</h3>
+<table>
+  <tr><th style="width:25%">指标</th><th>内容</th></tr>
+  <tr><td>位置</td><td>南澳Eyre Peninsula，Gawler Craton成矿省</td></tr>
+  <tr><td>矿权面积</td><td>17km靶向地层走向</td></tr>
+  <tr><td>确认矿化</td><td>7km走向连续矿化（2025年重测确认）</td></tr>
+  <tr><td>发现钻孔BUDD192</td><td>29.5m @ 0.8% Cu, 7.5% Pb, 1.9% Zn, 9.0 g/t Ag（apparent width）</td></tr>
+  <tr><td>主靶区</td><td>Eagle Ridge（1.7km未经测试走向）</td></tr>
+  <tr><td>当前活动</td><td>2026年6月启动空气芯钻探（至少40孔）</td></tr>
+  <tr><td>预计出结果</td><td>2026年8月</td></tr>
+  <tr><td>后续计划</td><td>若结果正面，2H2026跟进RC/金刚石钻探</td></tr>
+  <tr><td>历史钻探密度</td><td>85%未打到目标矿化层位，仅16%做了贱金属化验</td></tr>
+  <tr><td>成矿类比</td><td>IOCG型（与Olympic Dam同属Gawler Craton）</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>评价：</strong>Minbrie处于早期勘探阶段（从铁矿勘查铜矿），最吸引人的是BUDD192孔的高品位多金属矿化段，加上Gawler Craton的IOCG成矿潜力。但需要注意：(1) 见矿厚度为apparent width，真实厚度可能更小；(2) 从见矿到JORC资源再到开发，通常需要5-10年；(3) 2026年8月的钻探结果决定了短期方向——如果结果不好，股价可能暴跌。
+</div>
+
+<h3>3.2 Kookaburra石墨矿（最成熟资产）</h3>
+<table>
+  <tr><th style="width:25%">指标</th><th>内容</th></tr>
+  <tr><td>JORC资源总量</td><td>12.84Mt @ 7.57% TGC，含97.3万吨石墨</td></tr>
+  <tr><td>高级资源（Measured）</td><td>1.00Mt @ 11.77% TGC（高品位核心）</td></tr>
+  <tr><td>采矿租约</td><td>ML6460（已有采矿权）</td></tr>
+  <tr><td>PFS结果</td><td>NPV10 A$1.14亿，capex $2,900万，16年矿山寿命</td></tr>
+  <tr><td>EBITDA利润率</td><td>42%（PFS预估）</td></tr>
+  <tr><td>提纯测试</td><td>纯度>99.95% TGC，达到锂电池负极标准</td></tr>
+  <tr><td>战略合作</td><td>与SCN Canada Inc签订合作（小型模块化核反应堆石墨）</td></tr>
+  <tr><td>基础设施</td><td>靠近公路、铁路、港口、高压电</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>评价：</strong>Kookaburra是Lincoln最"真实"的资产——有JORC资源、有采矿权、有PFS。但石墨市场当前供给过剩（中国主导），价格低迷，$2,900万的融资难度很大。与StarCore Nuclear的合作短期内难以产生收入。该项目更像是"期权价值"——等石墨市场转暖后再开发。
+</div>
+
+<h3>3.3 其他资产</h3>
+<table>
+  <tr><th>项目</th><th>资源</th><th>阶段</th><th>评价</th></tr>
+  <tr><td>Eyre磁铁矿</td><td>12亿吨 @ 26% Fe</td><td>早期</td><td class="neutral">规模大但品位低，需绿钢铁需求拉动</td></tr>
+  <tr><td>Eyre铀矿组合</td><td>多个靶区</td><td>极早期</td><td class="neutral">铀价上行期有潜在价值</td></tr>
+</table>
+
+</div></div>
+
+<div class="tab-content" id="tab-financial"><div class="tab-inner">
+
+<h2>四、财务状况分析</h2>
+
+<h3>4.1 现金与资本结构</h3>
+<table>
+  <tr><th style="width:30%">指标</th><th>数值</th><th>评价</th></tr>
+  <tr><td>现金（2026.3.31）</td><td>A$107万</td><td class="neutral">偏低</td></tr>
+  <tr><td>5月配股融资</td><td>A$310万（@$0.012/股）</td><td class="good">补充了现金</td></tr>
+  <tr><td>预计现金（融资后）</td><td>~A$380-400万</td><td class="neutral">仅够12-18个月</td></tr>
+  <tr><td>总负债</td><td>~A$30万</td><td class="good">零有息负债</td></tr>
+  <tr><td>年化现金消耗</td><td>~A$150-200万</td><td class="neutral">已大幅缩减</td></tr>
+  <tr><td>现金跑道</td><td>~15-18个月（融资后）</td><td class="neutral">仍需再融资</td></tr>
+  <tr><td>已发行股份</td><td>26.05亿股</td><td class="bad">极度稀释</td></tr>
+  <tr><td>增发股份（待批）</td><td>2.58亿股（Tranche 2）</td><td class="bad">进一步稀释</td></tr>
+  <tr><td>期权</td><td>1.29亿份（行权价$0.015）</td><td class="neutral">潜在稀释</td></tr>
+  <tr><td>完全稀释股数</td><td>~29.9亿股</td><td class="bad">巨额股本</td></tr>
+</table>
+
+<h3>4.2 现金消耗趋势</h3>
+<table>
+  <tr><th>财年</th><th>经营现金流</th><th>勘探支出</th><th>总消耗</th><th>年末现金</th></tr>
+  <tr><td>FY2023</td><td>-A$362万</td><td>-A$75万</td><td>~-$440万</td><td>A$116万</td></tr>
+  <tr><td>FY2024</td><td>-A$269万</td><td>-A$50万</td><td>~-$320万</td><td>A$257万</td></tr>
+  <tr><td>FY2025（估）</td><td>-A$228万</td><td>-A$40万</td><td>~-$270万</td><td>A$62万</td></tr>
+  <tr><td>9MFY2026实际</td><td>-$165万</td><td>-$25万</td><td>~-$190万</td><td>A$107万</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>财务解读：</strong>公司处于典型的"勘探公司财务周期"——现金消耗逐年缩减（从FY2023的$440万降到目前的年化~$250万），但公司从未实现正经营现金流。2026年5月的$310万配股为Minbrie钻探提供了资金，但钻探完后的现金余量非常有限。公司需要继续融资（配股、可转债或引入战略投资者）才能维持运营。<br><br>
+  <strong>关键问题：</strong>26亿股的股本意味着即使股价$0.011，市值也近$2,900万，但公司只有$400万现金和几个早期勘探项目。每股市值中约85-90%是"故事溢价"而非资产价值。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-catalysts"><div class="tab-inner">
+
+<h2>五、催化剂时间线与风险评估</h2>
+
+<h3>5.1 近期催化剂</h3>
+<table>
+  <tr><th>时间</th><th>事件</th><th>影响</th><th>概率</th></tr>
+  <tr><td>2026年6月</td><td>Minbrie空气芯钻探启动（40孔）</td><td class="good">已开始，中性</td><td>100%</td></tr>
+  <tr><td>2026年7月</td><td>股东大会审批Tranche 2配股</td><td class="neutral">通过概率高</td><td>90%</td></tr>
+  <tr><td>2026年8月</td><td>Minbrie首批化验结果</td><td class="good">最核心催化</td><td>待定</td></tr>
+  <tr><td>2026年H2</td><td>若正面，跟进攻坚钻探（RC/金刚石）</td><td class="neutral">第二轮催化</td><td>30-50%</td></tr>
+  <tr><td>2026下半年</td><td>Kookaburra石墨合作进展</td><td class="neutral">低影响</td><td>低</td></tr>
+  <tr><td>2026年底</td><td>需再融资</td><td class="bad">大概率稀释</td><td>70-80%</td></tr>
+</table>
+
+<h3>5.2 风险评估矩阵</h3>
+<table>
+  <tr><th>风险类别</th><th>风险描述</th><th>等级</th><th>对冲/缓解</th></tr>
+  <tr><td>勘探失败</td><td>Minbrie钻探结果不理想</td><td class="bad">🔴 高</td><td>多元化矿权组合，但短期影响不可避免</td></tr>
+  <tr><td>股权稀释</td><td>26亿股→近30亿股，未来还需融资</td><td class="bad">🔴 高</td><td>每股价值持续被摊薄</td></tr>
+  <tr><td>流动性风险</td><td>日成交额通常<$20万，难以大额进出</td><td class="neutral">🟡 中</td><td>等待钻探结果时持仓需耐心</td></tr>
+  <tr><td>石墨价格低迷</td><td>全球石墨供给过剩压制Kookaburra价值</td><td class="neutral">🟡 中</td><td>依赖电动车需求复苏</td></tr>
+  <tr><td>审批/所有权</td><td>南澳原住民土地权审批</td><td class="neutral">🟡 中</td><td>已获批准开始钻探</td></tr>
+  <tr><td>关键人物风险</td><td>小型勘探公司高管变动</td><td class="neutral">🟡 中</td><td>新引入战略投资者董事会成员</td></tr>
+  <tr><td>商品价格波动</td><td>铜价大幅下跌影响项目经济性</td><td class="neutral">🟡 中</td><td>铜长期需求看涨（电气化）</td></tr>
+  <tr><td>竞争性项目</td><td>Gawler Craton其他铜矿项目竞争资金</td><td class="neutral">🟢 低</td><td>南澳矿业友好政策</td></tr>
+</table>
+
+<h3>5.3 情景分析</h3>
+<table>
+  <tr><th>情景</th><th>触发条件</th><th>目标股价</th><th>概率</th></tr>
+  <tr><td class="good">乐观</td><td>Minbrie钻探确认高品位厚矿体，资源量可定义</td><td>$0.03-0.05</td><td>10-15%</td></tr>
+  <tr><td class="neutral">中性</td><td>钻探见矿但品位/厚度一般，需进一步钻探</td><td>$0.008-0.015</td><td>40-50%</td></tr>
+  <tr><td class="bad">悲观</td><td>钻探结果不理想，市场失去信心</td><td><$0.005</td><td>35-40%</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>投资结论：</strong>LML是一只高风险的勘探投机股。公司拥有"不错的故事"——Gawler Craton上的铜矿发现潜力+石墨矿期权价值。但极度稀释的股本（26亿股+）、短现金跑道、以及勘探行业极低的成功率，使其只适合风险承受能力极强的投机者。2026年8月的Minbrie钻探结果是关键分水岭——好则可能翻倍，差则可能腰斩。<br><br>
+  <strong>适合谁：</strong>能承受本金全部损失的投机者，仓位建议不超过总组合的1-2%。<br>
+  <strong>不适合谁：</strong>所有价值投资者、成长投资者、以及任何需要确定性的资金。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与特征（L5框架·勘探矿业适应）</h2>
+
+<div class="summary-box">
+  <strong>行业类型：高风险勘探期（非标准L1-L4框架适用）</strong><br>
+  Lincoln Minerals属于勘探期矿业公司（Exploration-stage Mining），不适用于标准L1-L4财务分析框架。其评估框架为：项目管线进度 + 现金跑道（burn rate）+ 矿权基础（资源量）+ 股权稀释风险。<br><br>
+  <strong>行业本质：</strong>勘探公司是"实物期权"——每个钻探项目相当于一个看涨期权，投入勘探资金换取潜在的资源发现。绝大多数勘探项目（>99%）最终无法转为生产矿山，投资回报呈高度偏态分布——少数成功项目带来巨大回报，多数项目血本无归。
+</div>
+
+<h3>6.1 项目管线进度（核心价值驱动）</h3>
+<table>
+  <tr><th>项目</th><th>阶段</th><th>资源量</th><th>关键里程碑</th><th>时间</th></tr>
+  <tr><td>Minbrie铜矿</td><td>早期勘探（空气芯钻探）</td><td>尚无JORC资源</td><td>首批化验结果</td><td>2026年8月</td></tr>
+  <tr><td>Kookaburra石墨</td><td>已获采矿权+PFS完成</td><td>12.84Mt @ 7.6% TGC</td><td>融资/战略合作</td><td>待石墨市场转暖</td></tr>
+  <tr><td>Eyre磁铁矿</td><td>极早期</td><td>12亿吨 @ 26% Fe</td><td>无近期计划</td><td>—</td></tr>
+  <tr><td>Eyre铀矿</td><td>极早期</td><td>无资源量</td><td>无近期计划</td><td>—</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>项目管线评估：</strong>Minbrie铜矿是目前的核心催化剂——2026年6月启动钻探，8月出结果。若结果正面，公司价值可能翻倍；若不理想，股价可能暴跌。Kookaburra石墨是"安全网"资产（有JORC资源+PFS，价值~A$1.14亿 NPV10），但目前石墨价格低迷，无法独立融资开发。
+</div>
+
+<h3>6.2 现金跑道（Burn Rate）</h3>
+<table>
+  <tr><th>指标</th><th>数值</th><th>评价</th></tr>
+  <tr><td>现金（2026年3月）</td><td>A$107万</td><td class="neutral">偏紧</td></tr>
+  <tr><td>5月配股融资</td><td>A$310万（@$0.012/股）</td><td class="good">补充了现金</td></tr>
+  <tr><td>融资后现金估算</td><td>~A$380-400万</td><td class="neutral">仅够12-18个月</td></tr>
+  <tr><td>年化现金消耗</td><td>~A$150-200万</td><td class="neutral">已大幅缩减</td></tr>
+  <tr><td>零有息负债</td><td>✅ 资产负债表干净</td><td class="good">正面</td></tr>
+  <tr><td>未来融资需求</td><td>若钻探结果正面需追加RC/金刚石钻探</td><td class="bad">大概率需再融资</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>现金跑道风险：</strong>即便融资后，现金跑道仅12-18个月。如果Minbrie钻探结果正面，公司需要跟进更昂贵的RC/金刚石钻探，现金消耗将加速，大概率需要再次融资。如果结果不理想，公司可能无法独立融资续命。Burn rate是勘探公司最重要的财务指标之一。
+</div>
+
+<h3>6.3 矿权基础与估值（每盎司资源量价值）</h3>
+<table>
+  <tr><th>估值方法</th><th>适用性</th><th>当前值</th><th>评价</th></tr>
+  <tr><td>PE（市盈率）</td><td class="bad">❌ 不适用</td><td>无盈利</td><td class="bad">无法使用</td></tr>
+  <tr><td>PB（市净率）</td><td class="neutral">⚠ 参考有限</td><td>PB ~4.0x</td><td class="neutral">账面价值主要是现金和矿权</td></tr>
+  <tr><td>EV/Resource oz</td><td class="good">✅ 勘探公司标准</td><td>石墨: EV/吨资源 ~A$23/T</td><td class="neutral">同行对比: 石墨勘探公司通常A$10-50/T</td></tr>
+  <tr><td>市值/现金</td><td class="neutral">⚠ 辅助参考</td><td>市值/现金 ~7.6x</td><td class="bad">85-90%市值是"故事溢价"</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值总结：</strong>对于勘探期矿业公司，传统PE/PB估值不适用。最常用的估值方法是EV/Resource oz（每资源量单位的企业价值）。LML的Kookaburra石墨矿按EV/吨~A$23/T，在同行中合理偏低。但LML的核心价值不在石墨而在铜矿——Minbrie铜矿尚无JORC资源量，完全无法估值，本质是"彩票"——赌的是发现大矿。当前市值~A$2,870万中，现金仅~$400万，其余~$2,470万是勘探项目的"故事溢价"。
+</div>
+
+<h3>6.4 股权稀释风险</h3>
+<table>
+  <tr><th>指标</th><th>数值</th><th>评价</th></tr>
+  <tr><td>已发行股份（当前）</td><td>26.05亿股</td><td class="bad">极高</td></tr>
+  <tr><td>增发Tranche 2（待批）</td><td>2.58亿股</td><td class="bad">进一步稀释</td></tr>
+  <tr><td>期权</td><td>1.29亿份（@$0.015）</td><td class="neutral">潜在稀释</td></tr>
+  <tr><td>完全稀释股数</td><td>~29.9亿股</td><td class="bad">极度稀释</td></tr>
+  <tr><td>股价</td><td>A$0.011</td><td class="neutral">仙股</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>股权稀释风险：</strong>26亿股→近30亿股的股本在ASX勘探公司中也属于极度稀释的级别。每次融资都大幅摊薄现有股东权益。$310万融资即增发2.58亿股（+10%），意味着每筹集$100万需要稀释约3.5%的股权。若钻探结果正面后需要$500-1000万跟进钻探，将进一步大幅稀释。这是投资勘探公司最大的隐性成本。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架·勘探公司适应）</h2>
+
+<div class="summary-box">
+  <strong>六步法总结</strong><br><br>
+  <strong>Step 1 - 行业定位：</strong>高风险勘探期，非标准L1-L4适用。本质是"实物期权"——投入勘探资金换取发现潜力。<br>
+  <strong>Step 2 - 项目管线评估：</strong>核心项目Minbrie铜矿（早期勘探，2026年8月钻探结果）；Kookaburra石墨（有JORC资源+PFS，但石墨价格低迷）。<br>
+  <strong>Step 3 - 现金跑道：</strong>融资后现金~$380-400万，12-18个月跑道。零负债是唯一财务亮点。<br>
+  <strong>Step 4 - 风险排查：</strong>极度股权稀释（26亿→30亿股）、勘探失败率高（>99%）、现金跑道偏短。<br>
+  <strong>Step 5 - 结论：</strong>投机级（54/100）。高风险的铜矿勘探赌注。2026年8月钻探结果是关键分水岭。<br>
+  <strong>Step 6 - 跟踪：</strong>Minbrie钻探结果（8月）、现金余额、股权稀释进度、石墨市场变化。
+</div>
+
+<h3>好公司三要素检查（勘探公司适用版）</h3>
+<table>
+  <tr><th style="width:25%">要素</th><th>检查结果</th></tr>
+  <tr><td>① 好行业——大宗商品长期需求向好</td><td class="neutral">⚠ 铜受益于电气化长期趋势，石墨受益于新能源车，但勘探行业本身成功率极低</td></tr>
+  <tr><td>② 好公司——管理团队+矿权质量+现金管理</td><td class="neutral">⚠ 管理团队经验一般，矿权有亮点（BUDD192高品位见矿），零负债但现金短</td></tr>
+  <tr><td>③ 好价格——合理估值+安全边际</td><td class="bad">❌ 无法用传统估值，市值中85-90%是故事溢价，极度稀释压制每股价值</td></tr>
+</table>
+
+<h3>三个陷阱排查（勘探公司适用版）</h3>
+<div class="danger-box">
+  ☑ 勘探陷阱——Minbrie铜矿钻探结果若不及预期，股价可能腰斩（35-40%概率）<br>
+  ☑ 稀释陷阱——26亿→30亿股，未来还需融资，每股价值持续被摊薄<br>
+  ☑ 现金陷阱——现金跑道仅12-18个月，若钻探后需跟进，大概率需再融资
+</div>
+
+<h3>讨论问题</h3>
+<div class="summary-box">
+  阅读报告后可以聊这些：<br><br>
+  1. 勘探公司的投资逻辑是什么？和普通股票有什么本质不同？<br>
+  2. 26亿股 vs A$2,870万市值——这个"故事溢价"你愿意支付吗？<br>
+  3. 2026年8月的钻探结果——你赌正面还是负面？<br>
+  4. 什么样的勘探公司你才愿意投资？（项目阶段？管理团队？现金跑道？）
+</div>
+
+</div></div>
+
+<div class="footer">
+   免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+   数据来源：Lincoln Minerals ASX公告、2025年年报、2026年季报、公司官网
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

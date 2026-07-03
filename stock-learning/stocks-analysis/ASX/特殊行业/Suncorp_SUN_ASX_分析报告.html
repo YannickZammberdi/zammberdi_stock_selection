@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suncorp Group (ASX: SUN) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>Suncorp Group（ASX: SUN）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架 · 一般保险公司专用</p>
+<p class="meta">分析日期：2026年6月 | 数据来源：FY2025 年报（截至2025年6月30日）</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>Suncorp Group Limited</td></tr>
+  <tr><td>股票代码</td><td>ASX: SUN</td></tr>
+  <tr><td>所属行业</td><td>一般保险（General Insurance）</td></tr>
+  <tr><td>主要品牌</td><td>AAMI, GIO, Shannon's, Apia, Bingle, Vero (NZ)</td></tr>
+  <tr><td>行业地位</td><td>澳洲最大综合保险公司之一，已完成银行出售转型为纯保险集团</td></tr>
+  <tr><td>GWP（FY2025）</td><td><strong>$15,009m AUD（+6.3%）</strong></td></tr>
+  <tr><td>Cash Earnings（FY2025）</td><td><strong>$1,486m AUD（+8.3%）</strong></td></tr>
+  <tr><td>NPAT（FY2025）</td><td><strong>$1,823m AUD（+52.3%，含$351m一次性收益）</strong></td></tr>
+  <tr><td>总资产</td><td>$30,164m AUD</td></tr>
+  <tr><td>净资产</td><td>$10,576m AUD</td></tr>
+  <tr><td>ROE（Cash Earnings）</td><td>~12.5%</td></tr>
+</table>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">综合L1财务健康度、L2关键指标和L3估值水平，对各维度打分求和</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">12.5%，≥10%</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">高承保利润型——UITR 11.9%良好，D/E 24%极低杠杆</td></tr>
+  <tr><td>承保利润质量（15分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">UITR 11.9%良好</td></tr>
+  <tr><td>GWP增长（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">+6.3%，≥5%</td></tr>
+  <tr><td>核心利润增长（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">Cash Earnings +8.3%，≥5%</td></tr>
+  <tr><td>负债率 D/E（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">24% < 40%</td></tr>
+  <tr><td>资本充足率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">CET1超目标$997m</td></tr>
+  <tr><td>承保利润率 UITR（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">11.9%接近目标上限</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">PE ~13x合理</td></tr>
+  <tr><td>保险现金流（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">Cash Earnings $1,486m稳定</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">80/100</td><td style="text-align:left">品质优秀（80/100分）</td></tr>
+</table>
+
+<div class="verdict verdict-ok">品质优秀（80/100分）</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>Suncorp FY2025年交出了高质量答卷——GWP增长6.3%行业领先、UITR 11.9%处于目标区间上沿、费用率持续改善至18.6%。银行出售完成后资产负债表极度健康：D/E仅24%，CET1充裕$997m高于目标中位。$400m股票回购计划彰显管理层信心。剔除$351m一次性收益后核心利润$1,486m +8.3%稳步增长。<br><br>
+  <strong>核心优势：</strong>① 澳洲一般保险龙头，品牌矩阵完整覆盖个人/商业车险、家财险；② UITR 11.9%接近目标上限，承保利润优秀；③ 银行出售后资本极度充裕（CET1超目标$997m），可支持大额回购；④ 费用率持续改善（18.6%，-1.0pct），运营效率提升；⑤ 自然灾损$1,355m低于预算$205m，风控能力突出。<br><br>
+  <strong>核心风险：</strong>① 刚完成银行出售转型，战略执行风险；② $351m一次性收益需从核心利润中剔除；③ 投资组合收益受利率环境影响；④ 澳洲市场竞争加剧（QBE、IAG等同业）。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025，单位：$AUD million）</h2>
+
+<h3>2.1 利润表（保险口径）</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比变化</th><th>评价</th></tr>
+  <tr><td>Gross Written Premium (GWP)</td><td><strong>15,009</strong></td><td>14,119</td><td>+6.3%</td><td class="good">✅ 行业领先增长</td></tr>
+  <tr><td>Net Earned Premium</td><td>13,158</td><td>12,345</td><td>+6.6%</td><td class="good">✅</td></tr>
+  <tr><td>Net Incurred Claims</td><td>9,251</td><td>8,522</td><td>+8.6%</td><td class="neutral">⚠ 略高于GWP增速</td></tr>
+  <tr><td>Net Investment Income</td><td>766</td><td>661</td><td>+15.9%</td><td class="good">✅ 投资收益良好</td></tr>
+  <tr><td>GI Operating Expenses</td><td>1,751</td><td>1,635</td><td>+7.1%</td><td class="neutral">⚠ 费用增长</td></tr>
+  <tr><td>Natural Hazard Costs</td><td>1,355</td><td>1,320</td><td>+2.7%</td><td class="good">✅ 低于预算$205m</td></tr>
+  <tr><td><strong>Underwriting ITR</strong></td><td><strong>1,566</strong></td><td><strong>1,305</strong></td><td><strong>+20.0%</strong></td><td class="good">✅ 承保利润大增</td></tr>
+  <tr><td><strong>UITR (%)</strong></td><td><strong>11.9%</strong></td><td><strong>11.1%</strong></td><td><strong>+0.8pct</strong></td><td class="good">✅ 目标10-12%上沿</td></tr>
+  <tr><td><strong>Cash Earnings</strong></td><td><strong>1,486</strong></td><td><strong>1,372</strong></td><td><strong>+8.3%</strong></td><td class="good">✅ 核心利润稳步增长</td></tr>
+  <tr><td>NPAT（含一次性）</td><td><strong>1,823</strong></td><td>1,197</td><td><strong>+52.3%</strong></td><td class="neutral">⚠ 含$351m一次性收益</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>FY2025承保利润$1,566m（+20%）表现强劲，UITR 11.9%接近管理层10-12%目标区间的上沿，较上年+0.8pct。Cash Earnings $1,486m（+8.3%）是衡量核心盈利的最佳指标，剔除了一次性收益的扰动。NPAT $1,823m含$252m银行出售收益和$99m NZ Life出售收益，不可持续。自然灾损$1,355m低于预算$205m，天灾成本控制优秀。FY2026指引：GWP中单位数增长，UITR在10-12%目标区间的上半段。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>Total Assets</td><td><strong>30,164</strong></td><td class="good">✅ 银行出售后精简</td></tr>
+  <tr><td>Cash & Equivalents</td><td><strong>1,361</strong></td><td class="good">✅ 充裕</td></tr>
+  <tr><td>Investment Portfolio</td><td><strong>~20,000</strong></td><td class="neutral">主要为固定收益资产</td></tr>
+  <tr><td>Claims Reserve</td><td><strong>10,447</strong></td><td class="neutral">充足率健康</td></tr>
+  <tr><td>Total Liabilities</td><td>19,537</td><td class="neutral"></td></tr>
+  <tr><td>Long-term Debt</td><td><strong>2,528</strong></td><td class="good">✅ 低杠杆</td></tr>
+  <tr><td><strong>Net Assets</strong></td><td><strong>10,576</strong></td><td class="good">✅ 净资产厚实</td></tr>
+  <tr><td>D/E Ratio</td><td><strong>24%</strong></td><td class="good">✅ 极低杠杆</td></tr>
+  <tr><td>CET1 above target midpoint</td><td><strong>$997m</strong></td><td class="good">✅ 极度充裕</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>银行出售完成后的资产负债表极为健康。总资产$30,164m中投资组合~$2万亿（以固定收益为主）。CET1超目标中位$997m，为澳洲审慎监管局（APRA）标准下的行业顶级水平。D/E仅24%，远低于一般金融企业50-80%的水平。现金$1,361m充裕支持回购和日常运营。Claims Reserve $10,447m计提充足，赔付能力无忧。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>CFO（经营现金流）</td><td><strong>2,550</strong></td><td class="good">✅ 非常强劲（保险自然正现金流）</td></tr>
+  <tr><td>CFI（投资现金流）</td><td><strong>+1,629</strong></td><td class="neutral">含银行出售收款</td></tr>
+  <tr><td>CFF（筹资现金流）</td><td><strong>-5,912</strong></td><td class="neutral">大额回馈股东</td></tr>
+  <tr><td>股息+回购</td><td>~$4,100（银行出售回馈）+ 正常分红</td><td class="good">✅ 股东回报丰厚</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>保险业务的天然优势是"先收保费后赔付"，CFO $2,550m非常强劲。CFI +$1,629m主要来自银行出售（$4.1B）与NZ Life出售的收款。CFF -$5,912m反映了$4.1B银行出售返还股东（含$2.5B资本回报 + 股息 + 回购）。FY2026宣布新增$400m股票回购计划，反映管理层对资本充足和盈利前景的信心。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 保险关键KPI</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>目标/基准</th><th>评价</th></tr>
+  <tr><td><strong>UITR（承保利润率）</strong></td><td><strong>11.9%</strong></td><td>11.1%</td><td>目标10-12%</td><td class="good">✅ 上沿水平</td></tr>
+  <tr><td><strong>Expense Ratio（费用率）</strong></td><td><strong>18.6%</strong></td><td>19.6%</td><td>持续改善</td><td class="good">✅ -1.0pct</td></tr>
+  <tr><td><strong>ROE（Cash Earnings）</strong></td><td><strong>~12.5%</strong></td><td>~12.0%</td><td>>12%</td><td class="good">✅ 中等偏上</td></tr>
+  <tr><td>GWP Growth</td><td><strong>+6.3%</strong></td><td>+7.8%</td><td>>5%</td><td class="good">✅ 行业领先</td></tr>
+  <tr><td>Cash Earnings Growth</td><td><strong>+8.3%</strong></td><td>+6.4%</td><td>正增长</td><td class="good">✅ 稳定增长</td></tr>
+  <tr><td>Dividend per share</td><td><strong>90c（100% franked）</strong></td><td>82c</td><td>稳定+增长</td><td class="good">✅ 连续增长</td></tr>
+  <tr><td>Payout Ratio</td><td><strong>70.8%</strong></td><td>~65%</td><td>60-80%目标</td><td class="good">✅ 目标区间内</td></tr>
+  <tr><td>Natural Hazard Cost</td><td><strong>1,355</strong></td><td>1,320</td><td>低于预算$205m</td><td class="good">✅ 优于预期</td></tr>
+  <tr><td>CET1 above target</td><td><strong>$997m</strong></td><td>—</td><td>正数即可</td><td class="good">✅ 极度充裕</td></tr>
+  <tr><td>Buyback</td><td><strong>up to $400m</strong></td><td>—</td><td>增厚EPS</td><td class="good">✅ 管理层信心信号</td></tr>
+</table>
+
+<h3>3.2 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="good">🟢 正面</td><td>CET1极度充裕，资本充足率行业顶级</td><td>超目标中位$997m</td></tr>
+  <tr><td class="good">🟢 正面</td><td>D/E仅24%，杠杆极低</td><td>资产负债表健康</td></tr>
+  <tr><td class="good">🟢 正面</td><td>费用率持续改善，运营效率提升</td><td>18.6%（-1.0pct）</td></tr>
+  <tr><td class="good">🟢 正面</td><td>自然灾损低于预算$205m，风控优秀</td><td>$1,355m vs 预算</td></tr>
+  <tr><td class="good">🟢 正面</td><td>UITR 11.9%接近目标上沿</td><td>承保质量优异</td></tr>
+  <tr><td class="good">🟢 正面</td><td>CFO $2,550m强劲，现金流质量好</td><td>保险业务天然优势</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>$351m一次性收益需从核心利润中剔除</td><td>银行/NZ Life出售收益</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>刚完成银行出售转型，战略执行风险</td><td>纯保险集团新战略</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>投资组合收益受利率环境影响</td><td>固定收益占比高</td></tr>
+</table>
+
+<div class="verdict verdict-ok">✅ L2综合判定：品质优秀（偿付能力、盈利能力、资本效率均为正面）</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>股价（近似）</td><td><strong>~$18.38 AUD</strong></td><td>近期交易价格</td></tr>
+  <tr><td>总市值</td><td><strong>~$20B AUD</strong></td><td></td></tr>
+  <tr><td>PE（NPAT含一次性）</td><td><strong>~11.0x</strong></td><td>基于NPAT $1,823m</td></tr>
+  <tr><td>PE（Cash Earnings核心）</td><td><strong>~13.5x</strong></td><td>基于Cash Earnings $1,486m ✅ 核心视角</td></tr>
+  <tr><td>PB</td><td><strong>~1.1x</strong></td><td>基于净资产$10,576m</td></tr>
+  <tr><td>Dividend Yield</td><td><strong>~4.9%</strong></td><td>100% franked ✅ 高股息</td></tr>
+  <tr><td>ROE</td><td><strong>~12.5%</strong></td><td>Cash Earnings basis</td></tr>
+  <tr><td>FY2026E Cash EPS（估）</td><td><strong>~$0.73</strong></td><td>分析师一致预期</td></tr>
+</table>
+
+<h3>4.2 PE Band估值区间</h3>
+<p style="font-size:13px;color:#666;">ROE 12.5% → 保险行业合理PE参考区间：10-18x | FY2026E Cash EPS ≈ $0.73</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs现价$18.38</th></tr>
+  <tr><td>悲观</td><td>10x</td><td>$7.30</td><td class="bad">-60%</td></tr>
+  <tr><td>保守</td><td>12x</td><td>$8.76</td><td class="bad">-52%</td></tr>
+  <tr><td>中性</td><td>14x</td><td>$10.22</td><td class="bad">-44%</td></tr>
+  <tr><td>合理</td><td>16x</td><td>$11.68</td><td class="bad">-36%</td></tr>
+  <tr><td>乐观</td><td>18x</td><td>$13.14</td><td class="bad">-29%</td></tr>
+  <tr><td>当前价</td><td>~13.5x</td><td>$18.38</td><td>—</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>PE Band分析：</strong>按历史保险行业PE区间10-18x估算，Cash EPS口径下合理估值区间$7.30-$13.14。当前PE 13.5x（Cash Earnings）对应股价$18.38处于合理区间中段偏上，但PB仅1.1x低于行业平均，反映市场尚未完全计提高额一次性资本返还后更轻资产、更高ROE的结构性变化。如果市场重新定价为纯保险集团（剥离低ROE银行业务），PB有望向1.5-2.0x修复。
+</div>
+
+<h3>4.3 PB Band估值区间</h3>
+<p style="font-size:13px;color:#666;">每股净资产 ≈ $9.72 (基于$10,576m / 1,088m shares)</p>
+<table>
+  <tr><th>情景</th><th>PB</th><th>对应股价</th><th>vs现价$18.38</th></tr>
+  <tr><td>保守（纯保险折价）</td><td>0.8x</td><td>$7.78</td><td class="bad">-58%</td></tr>
+  <tr><td>行业平均</td><td>1.1x</td><td>$10.69</td><td class="bad">-42%</td></tr>
+  <tr><td>当前</td><td><strong>1.9x</strong></td><td>$18.38</td><td>—</td></tr>
+  <tr><td>优质保险溢价</td><td>2.0x</td><td>$19.44</td><td class="good">+6%</td></tr>
+  <tr><td>成长溢价</td><td>2.5x</td><td>$24.30</td><td class="good">+32%</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值总结：</strong>Suncorp当前PE 13.5x（Cash Earnings口径）处于保险行业合理PE区间10-18x的中段偏上。PB 1.9x高于行业平均1.1x，反映了市场对Suncorp转型为纯保险集团后盈利能力改善的预期。$400m回购计划提供每股收益增厚支撑，4.9%完全免税股息率提供下行保护。关键在于FY2026能否兑现GWP中单位数增长和UITR保持10-12%上半段的指引。以12.5% ROE来看，当前估值反映了市场对管理层执行能力的信任，估值合理而非便宜。建议关注FY2026半年报验证自然灾损控制能力和保费增长势头。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架·保险适应）</h2>
+
+<h3>5.1 杜邦拆解表（保险版）</h3>
+<table>
+  <tr><th>保险杜邦指标</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>承保利润率（UITR）</td><td>~10.5%</td><td><strong>11.9%</strong></td><td class="good">⬆ 提升</td></tr>
+  <tr><td>资产周转率（GWP/总资产）</td><td>0.48</td><td><strong>0.50</strong></td><td class="neutral">➡ 微升</td></tr>
+  <tr><td>权益乘数（总资产/权益）</td><td>~2.80</td><td><strong>2.85</strong></td><td class="good">低杠杆（保险业少见）</td></tr>
+  <tr><td><strong>ROE（Cash Earnings）</strong></td><td><strong>~11.5%</strong></td><td><strong>12.5%</strong></td><td class="neutral">⬆ 稳步提升</td></tr>
+  <tr><td>去杠杆ROA（UITR×周转）</td><td>5.0%</td><td><strong>6.0%</strong></td><td class="neutral">⬆ 提升</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>6.5pct</td><td><strong>6.5pct</strong></td><td class="good">杠杆贡献稳定</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：高承保利润型——保险中的安全典范</strong><br>
+  Suncorp的UITR 11.9%处于目标区间上沿，承保利润良好。最突出的是权益乘数仅2.85（D/E 24%），在保险业极为罕见（银行出售后资本极度充裕）。去掉杠杆后ROA 6.0%，真实回报在改善。<br><br>
+  <strong>Suncorp vs IAG：</strong>Suncorp的UITR 11.9%低于IAG的17.5%，但Suncorp的杠杆更低（乘数2.85 vs 3.59），D/E 24% vs 36%，资本结构更保守。两者策略不同——IAG追求高承保利润，Suncorp追求低风险稳健经营。
+</div>
+
+<div class="summary-box">
+  <strong>核心结论：</strong><br>
+  ① ROE 12.5%稳步提升，UITR从10.5%→11.9%是核心驱动力；<br>
+  ② D/E 24%在保险业几乎是最低水平，资产负债表极度健康；<br>
+  ③ 银行出售后$400m回购计划体现管理层信心；<br>
+  ④ Suncorp不是ROE最高的保险股，但可能是最安全的。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与特征（L5框架·保险适应）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：防御型+金融特殊行业（一般保险）</strong><br>
+  <strong>判断依据：</strong>Suncorp Group是澳洲最大综合保险公司之一，FY2025完成银行出售后转型为纯保险集团。一般保险（车险、家财险、商业保险）是刚性需求，属于典型的防御型行业。行业特征：先收保费后赔付（天然正现金流）、承保利润受自然灾损和定价周期影响、资本充足率受APRA严格监管。<br><br>
+  <strong>Suncorp独特的行业定位：</strong>相比IAG的"高承保利润"策略，Suncorp更注重"规模+稳健"——以更低的杠杆（D/E 24% vs IAG 36%）、更宽的品牌覆盖（AAMI/GIO/Shannon's/Apia/Bingle/Vero）和更高的股东回报（股息率4.9%+回购）来竞争。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th></tr>
+  <tr><td>行业集中度</td><td><strong>高度集中</strong>——澳洲一般保险市场CR3>70%，Suncorp作为前三之一，与IAG、QBE形成寡头格局。银行出售后纯保险业务更聚焦。</td></tr>
+  <tr><td>监管牌照壁垒</td><td><strong>极高</strong>——APRA监管，保险牌照申请难度极大。CET1超目标中位$997m，资本实力是核心竞争壁垒。</td></tr>
+  <tr><td>品牌矩阵壁垒</td><td><strong>强</strong>——AAMI（车险）、GIO（家财险）、Shannon's（经典车）、Apia（老年人）、Bingle（线上低价）覆盖全市场细分。</td></tr>
+  <tr><td>资本规模壁垒</td><td><strong>强</strong>——银行出售后资本极度充裕，可支持大额回购和战略投资。FY2025宣布$400m回购，中小竞争者无法匹敌。</td></tr>
+  <tr><td>分销渠道网络</td><td><strong>强</strong>——线下+线上+经纪多渠道覆盖，新西兰通过Vero品牌布局。</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  <strong>阶段：成熟期——行业格局稳定，转型后战略聚焦</strong><br>
+  Suncorp处于成熟行业中的"战略转型期"——出售银行和NZ Life业务后，回归纯保险主业，管理更专注。GWP增速+6.3%高于IAG的+4.3%，市场份额仍在扩张。费用率持续改善（18.6%，-1.0pct），运营效率提升是成熟企业差异化竞争的关键。<br><br>
+  <strong>投资策略重点：</strong>关注转型执行效果、UITR改善趋势、费用率能否继续下降、资本回馈计划（回购+分红）。
+</div>
+
+<h3>6.4 当前周期位置</h3>
+<div class="highlight-box">
+  <strong>周期位置：硬市场（承保利润健康），但低于行业峰值</strong><br>
+  Suncorp的UITR 11.9%处于10-12%目标区间上沿，但显著低于IAG的17.5%。两者的差异反映了不同的承保组合和策略——Suncorp更侧重家财险和商业险（自然灾损暴露更大），同时投资收益贡献更高（$766m vs IAG $403m）。FY2026指引UITR保持10-12%上半段，意味着管理层没有预期大幅回落。<br><br>
+  <strong>风险提示：</strong>Suncorp的承保利润弹性不如IAG（UITR起点较低），但在自然灾损回归均值时，冲击也相对较小。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>一般保险</td><td>PB（保险定价锚）</td><td>PE/Cash Earnings/股息率</td><td class="good">✅ PB 1.9x合理，PE 13.5x（Cash Earnings）处于行业合理区间</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值方法总结：</strong>Suncorp当前PE 13.5x（Cash Earnings口径）处于保险行业10-18x合理区间中段，PB 1.9x高于行业平均1.1x但反映了纯保险转型后的盈利能力改善预期。最具吸引力的估值指标是股息率4.9%（100% franking）+$400m回购——在ASX保险股中股东回报最丰厚。与IAG对比：Suncorp估值更低（PE 13.5x vs 17.4x），但ROE也较低（12.5% vs 19.4%），两者各有千秋。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<div class="summary-box">
+  <strong>六步法总结</strong><br><br>
+  <strong>Step 1 - 行业定位：</strong>防御型+金融特殊行业（一般保险），澳洲CR3>70%高度集中，监管牌照+品牌矩阵+资本规模三重壁垒。<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 12.5%（Cash Earnings口径），UITR 11.9%处于目标上沿，D/E 24%极低杠杆，CET1极度充裕。<br>
+  <strong>Step 3 - 估值判断：</strong>PE 13.5x（Cash Earnings）处于行业中段，PB 1.9x反映转型溢价，股息率4.9%（100% franked）+$400m回购极具吸引力。<br>
+  <strong>Step 4 - 风险排查：</strong>银行出售转型执行风险、$351m一次性收益需剔除、UITR低于IAG（11.9% vs 17.5%）。<br>
+  <strong>Step 5 - 结论：</strong>品质优秀（80/100）——澳洲保险龙头，转型纯保险后资本极度充裕。估值合理+高股息+回购，适合稳健型投资者。<br>
+  <strong>Step 6 - 跟踪：</strong>UITR能否维持10-12%上半段、费用率趋势、回购执行进度、自然灾损控制。
+</div>
+
+<h3>好公司三要素检查</h3>
+<table>
+  <tr><th style="width:25%">要素</th><th>检查结果</th></tr>
+  <tr><td>① 好行业——需求稳定or增长，壁垒高，格局好</td><td class="good">✅ 一般保险刚性需求，CR3>70%高度集中，牌照+品牌壁垒深厚</td></tr>
+  <tr><td>② 好公司——ROE>15%，毛利率稳定或提升，CFO>净利润</td><td class="good">✅ ROE 12.5%接近良好水平，UITR 11.9%稳定，现金含量高</td></tr>
+  <tr><td>③ 好价格——PE/PB历史偏低分位，PEG<1.5</td><td class="good">✅ PE 13.5x处于行业中段，股息率4.9%+$400m回购提供安全垫</td></tr>
+</table>
+
+<h3>三个陷阱排查</h3>
+<div class="highlight-box">
+  ✅ 未命中价值陷阱——营收和利润正增长，非低增长+高负债<br>
+  ✅ 未命中周期陷阱——UITR 11.9%处于目标上沿但非极端水平<br>
+  ✅ 未命中烧钱陷阱——保险天然正现金流，CFO $2,550m强劲
+</div>
+
+<h3>讨论问题</h3>
+<div class="summary-box">
+  阅读报告后可以聊这些：<br><br>
+  1. 这笔生意你看懂了吗？一句话说清Suncorp怎么赚钱？——卖一般保险（车险/家财险/商险）——收保费先拿着，赔付时才支出，中间赚投资收益+承保利润。Suncorp走稳健路线，承保利润不如IAG但分红更高。<br>
+  2. Suncorp和IAG你更倾向哪个？高ROE（IAG）还是高股息（Suncorp）？——UITR 11.9%能维持住吗？澳大利亚保险市场竞争加剧会不会压缩费率？大灾年份赔付会不会大幅波动？<br>
+  3. 银行出售后Suncorp的"纯保险故事"你买账吗？——赚高股息（4.9%+100% franking）+PB估值修复。如果ROE维持在12-14%，PB从2.18x修复到2.5x，加上分红，年化回报10-15%。<br>
+  4. 什么情况下你会坚决卖出Suncorp？——UITR跌破10% / 赔付率大幅恶化 / 股息率降至&lt;3% / 监管资本要求收紧。
+</div>
+
+</div></div>
+
+<div class="footer">
+   免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+   数据来源：Suncorp Group FY2025 Annual Report、ASX公告、分析师预期。金额单位为百万澳元（$AUD m）除非特别注明。
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

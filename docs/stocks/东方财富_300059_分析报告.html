@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>东方财富(300059) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>东方财富（300059）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026年7月 | 数据来源：FY2025 年报 + 2026Q1 季报</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>东方财富信息股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>300059.SZ</td></tr>
+  <tr><td>所属行业</td><td>互联网金融+证券（混合周期——证券周期属性+互联网成长属性）</td></tr>
+  <tr><td>行业地位</td><td>国内领先的互联网财富管理平台，"东方财富网"为核心构建生态圈，旗下东方财富证券为头部互联网券商，天天基金为国内基金销售龙头之一</td></tr>
+  <tr><td>FY2025 营业总收入</td><td><strong>160.68 亿（+38.46%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>120.85 亿（+25.75%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>-102.22 亿（证券行业特性，受金融资产配置影响）</strong></td></tr>
+  <tr><td>总资产</td><td>3,929.34 亿</td></tr>
+  <tr><td>归母净资产</td><td>918.75 亿</td></tr>
+  <tr><td>ROE（加权）</td><td>14.03%</td></tr>
+</table>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">综合L1-L5所有因素（财务健康度、关键指标、估值、杜邦分析、行业分类），对各维度打分求和。注：证券行业CFO受金融资产交易影响大、高负债率为行业特性，已做适当调整。</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="neutral" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">14.03%，≥10%</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">高利润型——净利率75.21%，超高利润率驱动</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="bad" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">CFO/净利-0.85，证券行业特性（调整后得分），2026Q1 CFO已转正至304亿</td></tr>
+  <tr><td>营收增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+38.46% ≥ 10%</td></tr>
+  <tr><td>利润增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+25.75% ≥ 15%</td></tr>
+  <tr><td>负债率（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">名义76.62%，剔除代理买卖证券款后约63.5%，券商特性偏高</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">货币资金1,242.83亿远超短期有息负债410.73亿</td></tr>
+  <tr><td>毛利率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">传统业务毛利率~84.5%，稳定且高</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">PE ~26x，历史分位~20%，在合理偏低区间</td></tr>
+  <tr><td>自由现金流（5分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">FCF为负，但券商CFO波动大，2026Q1已大幅改善</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">74/100</td><td style="text-align:left">一般关注（74/100分）</td></tr>
+</table>
+
+<div class="verdict verdict-caution">一般关注（74/100分）</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>东方财富是国内领先的互联网财富管理平台，旗下东方财富证券+天天基金形成强大的流量变现闭环。FY2025营收增长38.5%、净利增长25.7%，受益于资本市场回暖。ROE 14.03%在券商中处于中上水平，净利率75%超高显示了互联网平台的轻资产和高附加值特性。<br><br>
+  <strong>核心优势：</strong>① 用户流量壁垒——东方财富网日活千万级，用户粘性极高，获客成本远低于传统券商；② 证券业务高弹性——2025年证券营收+47.6%，股基交易额38.46万亿，充分受益于市场活跃度提升；③ 天天基金龙头地位——非货基保有量7,701亿（+26%），基金销售额2.61万亿超越2021年峰值；④ 资产结构健康——货币资金1,242亿，流动性极其充裕。<br><br>
+  <strong>核心风险：</strong>① 业绩强周期——高度依赖市场成交量和基金销售热度，2025Q4单季净利已同比-16%；② 经纪市占率承压——2026Q1经纪收入增速（+46.5%）弱于市场成交额增速（+69.3%），份额或在下滑；③ 自营业务波动——2026Q1投资收益同比-30%，债券市场波动拖累；④ 估值弹性已部分反映——当前PE 26x处于历史中低分位，但若市场转弱，业绩和估值可能双杀。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业总收入</td><td>160.68 亿</td><td>116.04 亿</td><td>+38.46%</td><td class="good">✅ 高增长</td></tr>
+  <tr><td>归母净利润</td><td><strong>120.85 亿</strong></td><td>96.10 亿</td><td><strong>+25.75%</strong></td><td class="good">✅ 稳健增长</td></tr>
+  <tr><td>扣非净利润</td><td><strong>116.54 亿</strong></td><td>92.53 亿</td><td><strong>+25.94%</strong></td><td class="good">✅ 与净利同步</td></tr>
+  <tr><td>毛利率（传统业务）</td><td><strong>~84.5%</strong></td><td>~84.6%</td><td>基本持平</td><td class="good">✅ 高且稳定</td></tr>
+  <tr><td>归母净利率</td><td><strong>75.21%</strong></td><td>82.81%</td><td>-7.60pct</td><td class="neutral">⚠ 下降（营收结构变化）</td></tr>
+  <tr><td>期间费用率</td><td><strong>~18.75%</strong></td><td>~21.60%</td><td>-2.85pct</td><td class="good">✅ 费用率下降</td></tr>
+  <tr><td>2025Q1 营收</td><td>34.86 亿</td><td>—</td><td>—</td><td>—</td></tr>
+  <tr><td>2025Q2 营收</td><td>33.71 亿</td><td>—</td><td>—</td><td>—</td></tr>
+  <tr><td>2025Q3 营收</td><td>47.33 亿</td><td>—</td><td>—</td><td>—</td></tr>
+  <tr><td>2025Q4 营收</td><td>44.79 亿</td><td>43.00 亿</td><td>+4.14%</td><td class="neutral">⚠ 增速放缓</td></tr>
+  <tr><td>2025Q4 净利润</td><td><strong>29.87 亿</strong></td><td>35.68 亿</td><td><strong>-16.28%</strong></td><td class="bad">❌ Q4同比下滑</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>营收增长38.5%表现优异，主要驱动力是证券业务（+47.6%）受益于2025年市场成交活跃。净利率从82.8%降至75.2%，主要因为证券业务（低利润率）占比从73%提升至78%，拉低了整体净利率（证券业净利率~70%，信息技术服务业净利率~100%）。Q4净利29.87亿同比-16.3%，Q4市场成交有所回落，Q4基数较高。2026Q1营收50.31亿（+44.3%）、净利润37.38亿（+37.7%），重回高增长。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td><strong>1,242.83 亿</strong></td><td class="good">✅ 极其充裕</td></tr>
+  <tr><td>结算备付金</td><td><strong>195.77 亿</strong></td><td class="neutral">正常水平</td></tr>
+  <tr><td>融出资金（两融）</td><td><strong>808.47 亿</strong></td><td class="good">✅ 同比+37%，两融市占率提升</td></tr>
+  <tr><td>交易性金融资产</td><td><strong>1,095.05 亿</strong></td><td class="neutral">自营投资规模扩大</td></tr>
+  <tr><td>应收账款</td><td><strong>9.21 亿</strong></td><td class="good">✅ 占比极低</td></tr>
+  <tr><td>短期借款</td><td><strong>70.14 亿</strong></td><td class="neutral">+26.8%</td></tr>
+  <tr><td>应付短期融资券</td><td><strong>340.59 亿</strong></td><td class="neutral">+114%（主动负债扩张）</td></tr>
+  <tr><td>代理买卖证券款</td><td><strong>1,410.82 亿</strong></td><td class="neutral">客户保证金（非真正负债）</td></tr>
+  <tr><td>资产负债率（名义）</td><td><strong>76.62%</strong></td><td class="neutral">剔除代理买卖证券后约63.5%</td></tr>
+  <tr><td>归母净资产</td><td><strong>918.75 亿</strong></td><td class="good">✅ 同比+13.81%</td></tr>
+  <tr><td>总资产</td><td><strong>3,929.34 亿</strong></td><td class="good">✅ 同比+28.25%</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>东方财富资产结构以流动性资产为主——货币资金+结算备付金+融出资金+交易性金融资产占总资产83%。剔除代理买卖证券款（客户保证金）后的真实负债率约63.5%，对券商而言处于合理水平。货币资金1242.83亿极其充裕，短期偿债无虞。2025年末应付短期融资券增至340.59亿（+114%），公司主动加杠杆扩张业务。净资产918.75亿，资本实力持续增强。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>-102.22 亿</strong></td><td>445.88 亿</td><td class="bad">❌ 大幅转负</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><strong>29.97 亿</strong></td><td>-63.92 亿</td><td class="good">✅ 转正</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td><strong>240.13 亿</strong></td><td>125.40 亿</td><td class="neutral">⚠ 发行债券增加</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>-0.85</strong></td><td>4.64</td><td class="bad">❌ 大幅波动</td></tr>
+  <tr><td>资本开支</td><td><strong>较小（轻资产）</strong></td><td>—</td><td class="good">✅ 互联网轻资产模式</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>2025年CFO为-102.22亿，主要原因是"为交易目的而持有的金融工具净增加额"从6.38亿暴增至280.67亿，以及代理买卖证券款净额变化。这是证券公司经营现金流的特有现象——牛市期间券商增加自营投资和两融规模，导致CFO为负，不代表经营恶化。2026Q1 CFO已大幅转正至304.33亿（同比+766%），说明CFO的季节性和业务波动性极强。东方财富是典型的轻资产互联网平台，资本开支极小，自由现金流（经调整后）实际很强。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE（加权）</td><td><strong>14.03%</strong></td><td>券商>10%优秀</td><td class="good">✅ 券商中上水平</td></tr>
+  <tr><td>净利率</td><td><strong>75.21%</strong></td><td>行业特性超高</td><td class="good">✅ 互联网平台优势</td></tr>
+  <tr><td>营收增长率</td><td><strong>+38.46%</strong></td><td>随市场周期波动</td><td class="good">✅ 受益牛市高增</td></tr>
+  <tr><td>利润增长率</td><td><strong>+25.75%</strong></td><td>> 10%</td><td class="good">✅ 高增长</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>-0.85</strong></td><td>券商行业波动大</td><td class="bad">❌ 短期为负</td></tr>
+  <tr><td>资产负债率（调整后）</td><td><strong>~63.5%</strong></td><td>券商<80%</td><td class="neutral">⚠ 偏高但合理</td></tr>
+  <tr><td>分红率</td><td><strong>~0.48%（股息率）</strong></td><td>每10股派1元</td><td class="neutral">偏低，券商再投资需求</td></tr>
+</table>
+
+<h3>3.2 分业务分析（2025年度）</h3>
+<table>
+  <tr><th>业务板块</th><th>营收（亿）</th><th>占比</th><th>同比</th><th>毛利率（估）</th><th>评价</th></tr>
+  <tr><td>证券服务（经纪+两融+自营）</td><td>125.35</td><td>78.02%</td><td>+47.59%</td><td>~70%</td><td class="good">✅ 高增长核心</td></tr>
+  <tr><td>金融电子商务（天天基金）</td><td>31.82</td><td>19.80%</td><td>+11.99%</td><td>93.01%</td><td class="good">✅ 超高毛利</td></tr>
+  <tr><td>金融数据服务</td><td>2.40</td><td>1.50%</td><td>+25.18%</td><td>—</td><td class="good">✅ 增长中</td></tr>
+  <tr><td>其他</td><td>1.10</td><td>0.68%</td><td>+42.03%</td><td>—</td><td class="neutral">体量小</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>证券服务是绝对核心（78%营收），2025年受益于市场活跃，股基交易额38.46万亿。天天基金身为基金代销龙头，非货基保有量7,701亿（+26%），毛利率93%极高。两大业务形成"牛市戴维斯双击"——市场好时证券业务交易量和基金销售额双升。<br><br>
+  <strong>子公司表现：</strong>东方财富证券净利润88.78亿（净利率~65%），天天基金净利润1.80亿（净利率~5.6%，基金代销为高流水低利润模式）。天天基金营收32.03亿增长12%，但净利润仅1.80亿，反映了基金代销行业的激烈竞争（费率持续下行）。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="bad">🔴 较高</td><td>Q4净利润同比-16.3%，2025H2市场转弱影响明显</td><td>L1 利润表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>经纪市占率承压——2026Q1收入增速弱于市场成交增速</td><td>券商研报/季报</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>自营投资收益波动——2026Q1投资收益同比-30%</td><td>2026Q1 季报</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>应付短期融资券从159亿暴增至341亿，主动杠杆上升</td><td>L1 资产负债表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>CFO大幅波动（-102亿），自营投资规模骤增影响现金流</td><td>L1 现金流量表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>天天基金净利润率低（5.6%），基金代销费率持续承压</td><td>L2 分业务分析</td></tr>
+  <tr><td class="good">🟢 正面</td><td>营收和净利润连续高增长（近3年CAGR营收~20%，净利~21%）</td><td>L2 盈利指标</td></tr>
+  <tr><td class="good">🟢 正面</td><td>货币资金1,242亿极其充裕，流动性无虞</td><td>L1 资产负债表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>天天基金非货保有量7,701亿（+26%），龙头地位稳固</td><td>L2 分业务分析</td></tr>
+  <tr><td class="good">🟢 正面</td><td>互联网轻资产模式，资本开支极低</td><td>L1 现金流量表</td></tr>
+</table>
+
+<div class="verdict verdict-caution">⚠ L2综合判定：谨慎关注（ROE 14.03%尚可，业务弹性大但周期性强）</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>股价（2026.7.1）</td><td><strong>21.45 元</strong></td><td>近一年区间17.22-29.36元</td></tr>
+  <tr><td>总市值</td><td><strong>~3,391 亿</strong></td><td>总股本158.22亿股</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>25.89x</strong></td><td>基于近12个月EPS ~0.83元</td></tr>
+  <tr><td>PE（TTM扣非）</td><td><strong>26.83x</strong></td><td>基于扣非口径</td></tr>
+  <tr><td>PE（2026E）</td><td><strong>~22-24x</strong></td><td>券商一致预期EPS ~0.88-0.96元</td></tr>
+  <tr><td>PB</td><td><strong>3.55x</strong></td><td>基于每股净资产6.05元（2026Q1）</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>21.1x</strong></td><td>市销率偏高（券商通常看PB/PE）</td></tr>
+  <tr><td>股息率</td><td><strong>~0.47%</strong></td><td>每10股派1.00元</td></tr>
+</table>
+
+<h3>4.2 PE Band估值区间</h3>
+<p style="font-size:13px;color:#666;">ROE 14.03%（券商）→ 合理PE参考区间：15-25x | 2026E一致预期EPS ≈ 0.88-0.96元</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs现价21.45元</th></tr>
+  <tr><td>悲观（市场转熊）</td><td>15x</td><td>13.2-14.4 元</td><td class="bad">-33%~-38%</td></tr>
+  <tr><td>保守</td><td>20x</td><td>17.6-19.2 元</td><td class="neutral">-10%~-18%</td></tr>
+  <tr><td>中性（基准）</td><td>25x</td><td>22.0-24.0 元</td><td class="good">+3%~+12%</td></tr>
+  <tr><td>乐观（市场持续活跃）</td><td>30x</td><td>26.4-28.8 元</td><td class="good">+23%~+34%</td></tr>
+  <tr><td>当前价</td><td>~26x</td><td>21.45 元</td><td>—</td></tr>
+  <tr><td>历史高位</td><td>59x</td><td>52-57 元</td><td>+142%~+166%</td></tr>
+</table>
+
+<h3>4.3 历史PE区间（理杏仁数据）</h3>
+<table>
+  <tr><th>指标</th><th>数值</th></tr>
+  <tr><td>PE（TTM扣非）最大值</td><td>58.86x</td></tr>
+  <tr><td>PE（TTM扣非）80%分位</td><td>37.59x</td></tr>
+  <tr><td>PE（TTM扣非）50%分位</td><td>29.26x</td></tr>
+  <tr><td>PE（TTM扣非）20%分位</td><td>25.43x</td></tr>
+  <tr><td>PE（TTM扣非）最小值</td><td>19.37x</td></tr>
+  <tr><td>当前PE（TTM扣非）</td><td class="neutral">~26.8x（约20%分位附近）</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值总结：</strong>东方财富当前PE ~26x、PB 3.55x，均处于历史中低分位（PE约20%分位、PB约29%分位）。相比同行（券商行业PE中位数~19x、PB中位数~1.3x），东方财富享受明显溢价，这合理反映了其互联网平台的流量壁垒和成长性。<br><br>
+  中性情景下（2026E EPS 0.88-0.96元，PE 25x），合理股价22-24元，与当前价21.45元基本匹配。乐观情景（市场持续活跃，PE 30x）目标价26-29元。悲观情景（市场转弱，PE 15x）风险区间13-14元。<br><br>
+  <strong>关键变量：</strong>市场日均成交额和基金销售量是东方财富业绩和估值的核心驱动。若2026年日均成交额维持2万亿以上，当前估值合理偏低；若市场大幅缩量，则面临业绩与估值双杀风险。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>净利润率</td><td>73.94%</td><td>82.81%</td><td><strong>75.21%</strong></td><td class="neutral">⬇ 下降（业务结构变化）</td></tr>
+  <tr><td>资产周转率</td><td>0.046</td><td>0.038</td><td><strong>0.041</strong></td><td class="neutral">➡ 极低，基本持平</td></tr>
+  <tr><td>权益乘数</td><td>3.33</td><td>3.80</td><td><strong>4.28</strong></td><td class="neutral">⬆ 杠杆持续上升</td></tr>
+  <tr><td><strong>ROE</strong></td><td><strong>11.94%</strong></td><td><strong>12.64%</strong></td><td><strong>14.03%</strong></td><td class="good">⬆ 连续提升</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>3.42%</td><td>3.15%</td><td><strong>3.08%</strong></td><td class="bad">⬇ 微降</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>8.52pct</td><td>9.49pct</td><td><strong>10.95pct</strong></td><td class="neutral">⬆ 杠杆贡献加大</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：超高利润型 + 高杠杆型（金融企业标准模式）</strong><br>
+  东方财富净利润率75.21%在A股所有公司中名列前茅，体现了互联网平台"一次建设、持续变现"的边际成本极低特性。但资产周转率仅0.041（券商持有大量金融资产和融出资金，资产重），权益乘数4.28（券商行业特性）。<br><br>
+  ROE提升的核心动力：净利率虽有下降但维持高位，同时杠杆从3.33提升至4.28（+28.5%），杠杆贡献了10.95个百分点的ROE。<br><br>
+  <strong>需要警惕的变化：</strong>去杠杆ROA仅3.08%且在缓慢下降，说明去掉杠杆后真实资产回报一般。ROE的提升主要靠加杠杆而非经营效率改善。在监管鼓励券商加杠杆的背景下可以理解，但需关注杠杆的持续性和风险边界。
+</div>
+
+<h3>5.2 分业务杜邦贡献</h3>
+<table>
+  <tr><th>业务板块</th><th>净利率（估）</th><th>趋势</th><th>对ROE影响</th></tr>
+  <tr><td>证券服务</td><td>~70%（子公司净利率~65%）</td><td class="good">⬆ 受益市场活跃，收入高增</td><td class="good">核心正向</td></tr>
+  <tr><td>金融电子商务（天天基金）</td><td>~5.6%</td><td class="neutral">费率承压，净利率低</td><td class="neutral">高流水低利润</td></tr>
+  <tr><td>金融数据服务</td><td>高毛利</td><td class="good">⬆ +25%增长</td><td class="good">正向但体量小</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>核心结论：</strong><br>
+  ① ROE 14.03%靠"超高净利率（75%）+极低周转（0.041）+高杠杆（4.28）"实现，是典型的金融企业杜邦结构；<br>
+  ② 去杠杆ROA仅3.08%，真实资产回报一般，需要靠杠杆放大才能获得可观ROE；<br>
+  ③ 积极面：ROE从11.94%→14.03%连续三年提升，净利率虽降但维持高位，杠杆运用合理；<br>
+  ④ 风险面：去杠杆ROA在下降（3.42%→3.08%），若净利率继续下行（证券占比提升），ROE承压；<br>
+  ⑤ ROE提升关键：市场持续活跃→营收增速>资产增速→周转率回升。杠杆已较高，不宜再加。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与特征（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：混合周期（证券周期属性 + 互联网成长属性）</strong><br>
+  <strong>判断依据：</strong>东方财富核心业务——证券经纪&两融具有强周期属性，业绩与市场成交额高度相关（2025年日均成交额大幅提升驱动业绩高增）；但另一方面，公司作为"互联网财富管理平台"，持续享受流量增长和市占率提升的成长红利。天天基金的基金代销业务也随市场周期波动，但长期看中国居民财富从存款向基金转移的趋势提供了成长动力。<br><br>
+  <strong>周期属性：</strong>证券市场成交额与指数高度相关——2025年市场活跃则业绩大增，Q4市场回落则净利同比-16%。<br>
+  <strong>成长属性：</strong>东方财富证券市占率长期提升（股基交易额市占率从2015年的~1%升至当前~3%+），天天基金保有量持续创新高。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th></tr>
+  <tr><td>行业集中度</td><td><strong>证券行业集中度偏低但持续提升</strong>——国内券商CR5约30%，CR10约50%，远低于美国。东方财富在互联网证券细分领域是绝对龙头。</td></tr>
+  <tr><td>品牌壁垒</td><td><strong>极强</strong>——"东方财富网"是中文财经领域第一品牌，日活千万级，用户信任度高，品牌认知度难以复制。</td></tr>
+  <tr><td>用户规模/网络效应</td><td><strong>极强</strong>——东方财富网+股吧+Choice+天天基金构成完整的财富管理生态圈，用户从看资讯→讨论→交易→买基金的转化链成熟。</td></tr>
+  <tr><td>牌照壁垒</td><td><strong>强</strong>——持有证券、期货、基金销售等核心金融牌照，新进入者获取成本极高。</td></tr>
+  <tr><td>技术壁垒</td><td><strong>中等偏强</strong>——妙想大模型AI赋能各条线，技术投入持续加大。</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  <strong>阶段：成熟期早期（证券业务）+ 成长期（天天基金/金融数据/AI赋能）</strong><br>
+  证券经纪业务已进入成熟期（行业增速放缓，竞争格局稳定），但东方财富凭借互联网优势在成熟赛道中持续获取份额。天天基金处于成长中期——基金代销行业仍有渗透率提升空间（中国居民基金配置比例相比美国仍有较大差距）。AI+金融数据业务处于成长期早期，妙想大模型赋能各产品线。<br><br>
+  <strong>投资策略重点：</strong>跟踪市场日均成交额（证券业务弹性）、天天基金保有量变化（代销业务景气度）、AI赋能带来的用户变现效率提升。
+</div>
+
+<h3>6.4 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>证券（混合周期）</td><td>PB + PE</td><td>市场成交额、两融规模、基金保有量</td><td class="good">✅ 匹配——PB 3.55x（29%分位）+ PE 26x（20%分位），均处中低分位</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值方法总结：</strong>东方财富兼具"证券周期股"和"互联网成长股"双重属性。作为周期股，当前PB 3.55x处于历史中低分位，但相比传统券商（PB 1.0-1.5x）明显溢价——这溢价来自其互联网平台属性。作为成长股，PE 26x对应2026E增速~27%（券商一致预期），PEG约1.0，估值合理。核心判断依据是市场景气度——若2026年日均成交额维持2万亿以上，当前估值具备安全边际。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>混合周期（证券+互联网金融），互联网证券龙头，品牌+用户规模+牌照三重复合壁垒，行业格局稳定但市占率仍在提升。<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 14.03%（券商中上），超高利润型杜邦（净利率75%），CFO因行业特性波动大（2026Q1已大幅改善至+304亿）。<br>
+  <strong>Step 3 - 估值判断：</strong>PE 26x（20%分位）、PB 3.55x（29%分位），均处历史中低分位，中性情景下合理。<br>
+  <strong>Step 4 - 风险排查：</strong>Q4净利同比-16%（市场转弱风险）、经纪市占率承压、自营投资收益波动。<br>
+  <strong>Step 5 - 结论：</strong>好公司（流量壁垒+品牌+牌照），当前估值合理偏低（PEG~1.0），但强周期属性要求关注市场景气度。<br>
+  <strong>Step 6 - 跟踪：</strong>跟踪市场日均成交额、天天基金保有量、两融市占率、投资收益趋势。
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>互联网财富管理赛道持续增长，居民财富从存款/房产向基金/股票转移的大趋势确定</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓</td><td>ROE 14.03%>10%，净利率75%极高，CFO长期健康（2026Q1已转正），品牌壁垒极强</td></tr>
+  <tr><td>③ 好价格</td><td class="good">✓</td><td>PE 26x历史分位~20%，PB 3.55x历史分位~29%，PEG~1.0，估值合理偏低</td></tr>
+</table>
+
+<h3>7.3 三个陷阱排查</h3>
+<div class="danger-box">
+  <strong>☐ 价值陷阱：</strong>❌ 未命中——PE 26x并不低，增长也尚可（+25~38%），与价值陷阱（低PE+低增长）特征不同。<br>
+  <strong>☐ 周期陷阱：</strong>🔴 部分命中——东方财富是强周期股，当前PE看似合理（26x），但若市场转熊导致业绩大幅下降，当前PE可能被动升高。需区分"周期底部PE高是机会，周期顶部PE低是风险"。当前市场活跃度尚可（2026Q1日均成交2.6万亿），处于周期中段偏上位置。<br>
+  <strong>☐ 烧钱陷阱：</strong>❌ 未命中——轻资产模式，资本开支极低，CFO长期看健康（2026Q1已转正）。
+</div>
+
+<h3>7.4 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——东方财富通过"东方财富网"聚集海量股民流量，然后通过东方财富证券（收佣金+两融利息）和天天基金（卖基金收管理费分成）变现，赚流量+牌照的钱。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——市场成交额如果大幅萎缩，业绩将双杀。2025Q4净利已同比-16%是一个警示信号。另一个担忧是经纪市占率是否见顶（2026Q1收入增速弱于市场）。<br>
+  3. 如果现在买入，期待的回报来源是什么？——期待市场活跃度持续（日均成交维持2万亿+），推动证券业务和基金代销双增长。当前PE 26x偏低分位，估值修复+业绩增长带来戴维斯双击。<br>
+  4. 什么情况下你会坚决卖出？——日均成交额持续萎缩至1.5万亿以下 / 经纪市占率连续2个季度下滑 / 天天基金保有量大幅缩水 / 监管政策重大收紧。
+</div>
+
+</div></div>
+
+<div class="footer">
+   免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+   数据来源：东方财富2025年年报、2026Q1季报、券商研报、理杏仁
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

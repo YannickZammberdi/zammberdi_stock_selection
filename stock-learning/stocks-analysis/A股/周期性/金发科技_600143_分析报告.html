@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>金发科技(600143) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>金发科技（600143）财务分析报告</h1>
+<p class="subtitle">基于 L1-L6 框架（财务三表+关键指标+估值+杜邦+行业分类+综合实战）</p>
+<p class="meta">分析日期：2026年6月 | 数据来源：FY2025 年报 + 2026Q1 季报</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>金发科技股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>600143.SH</td></tr>
+  <tr><td>所属行业</td><td>改性塑料+绿色石化+新材料</td></tr>
+  <tr><td>行业地位</td><td>全球改性塑料龙头</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>653.96 亿（+8.07%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>11.50 亿（+39.44%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>59.04 亿（+107.52%）</strong></td></tr>
+  <tr><td>总资产</td><td>640.68 亿</td></tr>
+  <tr><td>归母净资产</td><td>194.71 亿</td></tr>
+  <tr><td>ROE</td><td>6.22%</td></tr>
+</table>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">综合L1-L5所有因素，对各维度打分求和</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">6.22%，≥5%</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="bad" style="font-weight:bold;font-size:15px">1</td><td style="text-align:left">高杠杆型——净利率1.76%极低+周转1.02中+杠杆3.29极高</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">5.13 ≥ 1.0</td></tr>
+  <tr><td>营收增长（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">+8.07%，≥5%</td></tr>
+  <tr><td>利润增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+39.44% ≥ 15%</td></tr>
+  <tr><td>负债率（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">64.58%，55%-70%区间</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">货币资金43.44亿 << 短期有息73.98亿，缺口~30亿</td></tr>
+  <tr><td>毛利率（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">13.33%改善中，≥10%水平</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">PE ~16x，偏高<50%</td></tr>
+  <tr><td>自由现金流（5分）</td><td class="bad" style="font-weight:bold;font-size:15px">3</td><td style="text-align:left">CFO充裕但资本开支大，偶有波动</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">53/100</td><td style="text-align:left">不及格（53/100分）</td></tr>
+</table>
+
+<div class="verdict verdict-bad">不及格（53/100分）</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>金发科技是全球改性塑料龙头，营收规模653.96亿（+8%）稳健增长，归母净利润11.50亿（+39%）增速亮眼，CFO 59.04亿同比翻倍（+107.5%），经营性现金流大幅改善。但ROE仅6.22%处于偏低水平，净利率仅1.76%极为微薄，毛利率13.33%虽改善但绝对值仍低。短期偿债压力突出——短期有息负债合计73.98亿远超货币资金43.44亿，缺口约30亿。<br><br>
+  <strong>核心优势：</strong>① 全球改性塑料龙头，行业地位稳固；② CFO大幅改善至59亿（+107.5%），CFO/净利润5.13倍；③ 扣非净利润+57.78%，盈利质量改善；④ 毛利率提升2.02pct至13.33%，边际改善趋势明确。<br><br>
+  <strong>核心风险：</strong>① ROE仅6.22%，资本回报率低；② 净利率1.76%极薄，抗风险能力弱；③ 短期偿债缺口约30亿，流动性压力大；④ 应收账款84.33亿+存货79.16亿合计占流动资产61%，营运资金压力大；⑤ 资产负债率64.58%偏高。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>653.96 亿</td><td>605.12 亿</td><td>+8.07%</td><td class="good">✅ 稳健增长</td></tr>
+  <tr><td>归母净利润</td><td><strong>11.50 亿</strong></td><td>8.25 亿</td><td><strong>+39.44%</strong></td><td class="good">✅ 较快增长</td></tr>
+  <tr><td>扣非净利润</td><td><strong>10.65 亿</strong></td><td>6.75 亿</td><td><strong>+57.78%</strong></td><td class="good">✅ 高速增长</td></tr>
+  <tr><td>毛利率</td><td><strong>13.33%</strong></td><td>11.31%</td><td>+2.02pct</td><td class="good">✅ 改善明显</td></tr>
+  <tr><td>归母净利率</td><td><strong>1.76%</strong></td><td>1.36%</td><td>+0.40pct</td><td class="bad">❌ 仍极薄</td></tr>
+  <tr><td>利息保障倍数</td><td><strong>2.49</strong></td><td>—</td><td>—</td><td class="neutral">⚠ 偏低</td></tr>
+  <tr><td>2026Q1 净利</td><td>—</td><td>—</td><td>+23.72%</td><td class="good">✅ 延续增长</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>营收+8%稳健增长，归母净利+39%较快增长，扣非+58%高速增长，盈利能力改善趋势明显。毛利率从11.31%提升至13.33%（+2.02pct），但净利率仅1.76%，费用负担沉重。利息保障倍数2.49偏低，偿债覆盖能力一般。2026Q1净利+23.72%延续改善态势，但绝对值仍偏低。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td><strong>43.44 亿</strong></td><td class="neutral">⚠ 偏紧</td></tr>
+  <tr><td>应收账款</td><td><strong>84.33 亿</strong></td><td class="bad">❌ 占营收12.9%，偏高</td></tr>
+  <tr><td>存货</td><td><strong>79.16 亿</strong></td><td class="neutral">占资产12.4%，偏高</td></tr>
+  <tr><td>短期借款</td><td><strong>45.37 亿</strong></td><td class="neutral">—</td></tr>
+  <tr><td>一年内到期非流动负债</td><td><strong>28.61 亿</strong></td><td class="neutral">—</td></tr>
+  <tr><td>短期有息合计</td><td><strong>73.98 亿</strong></td><td class="bad">❌ &gt;&gt; 货币资金43.44亿，缺口30亿</td></tr>
+  <tr><td>长期借款</td><td><strong>159.20 亿</strong></td><td class="neutral">⚠ 有息负债规模大</td></tr>
+  <tr><td>资产负债率</td><td><strong>64.58%</strong></td><td class="bad">❌ 偏高</td></tr>
+  <tr><td>应收+存货/流动资产</td><td><strong>~61%</strong></td><td class="bad">❌ 占比过高</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>资产负债表风险提示：</strong><br>
+  ① 短期有息负债73.98亿远超货币资金43.44亿，短期资金缺口约30亿，流动性压力大；<br>
+  ② 应收账款84.33亿+存货79.16亿合计163.49亿，占流动资产约61%，营运资金被大量占用；<br>
+  ③ 长期借款159.20亿，总有息负债规模超233亿，财务费用负担沉重；<br>
+  ④ 资产负债率64.58%偏高，且利息保障倍数仅2.49，偿债覆盖能力偏弱。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>59.04 亿</strong></td><td>28.46 亿</td><td class="good">✅ 大幅改善+107.5%</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><strong>-23.04 亿</strong></td><td>—</td><td class="neutral">⚠ 资本开支持续</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td><strong>-27.15 亿</strong></td><td>—</td><td class="good">✅ 偿还债务</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>5.13</strong></td><td>3.45</td><td class="good">✅ 现金含量极高</td></tr>
+  <tr><td>自由现金流（FCF）</td><td><strong>~35.76 亿</strong></td><td>—</td><td class="good">✅ 正向</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>CFO 59.04亿同比翻倍（+107.5%），是本次财报最大亮点。CFO/净利润高达5.13倍，盈利现金含量极高（主因是折旧摊销和营运资本改善）。FCF约35.76亿为正，表明经营现金流能覆盖资本开支。但筹资现金流-27.15亿表明公司在偿还债务，叠加短期偿债缺口30亿，再融资需求依然迫切。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>6.22%</strong></td><td>> 15% 优秀 / > 10% 及格</td><td class="bad">❌ 偏低</td></tr>
+  <tr><td>毛利率</td><td><strong>13.33%</strong></td><td>稳定或提升</td><td class="good">✅ 改善+2.02pct</td></tr>
+  <tr><td>净利率</td><td><strong>1.76%</strong></td><td>> 10%</td><td class="bad">❌ 极薄</td></tr>
+  <tr><td>营收增长率</td><td><strong>+8.07%</strong></td><td>> 10%</td><td class="neutral">⚠ 略低</td></tr>
+  <tr><td>扣非增长率</td><td><strong>+57.78%</strong></td><td>正增长</td><td class="good">✅ 高速增长</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>5.13</strong></td><td>> 1</td><td class="good">✅ 极高</td></tr>
+  <tr><td>资产负债率</td><td><strong>64.58%</strong></td><td>制造业<60%</td><td class="bad">❌ 偏高</td></tr>
+  <tr><td>分红率</td><td><strong>44.75%</strong></td><td>> 30%</td><td class="good">✅ 适中</td></tr>
+</table>
+
+<h3>3.2 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="bad">🔴 较高</td><td>短期偿债缺口约30亿（短期有息73.98亿 &gt; 货币资金43.44亿）</td><td>L1 资产负债表</td></tr>
+  <tr><td class="bad">🔴 较高</td><td>净利率仅1.76%极薄，利润空间极小</td><td>L2 盈利指标</td></tr>
+  <tr><td class="bad">🔴 较高</td><td>应收84亿+存货79亿合计163亿占流动资产61%，营运资金被大量占用</td><td>L1 资产负债表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>资产负债率64.58%偏高，利息保障倍数仅2.49</td><td>L1 资产负债表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>ROE 6.22%偏低，资本回报不理想</td><td>L2 盈利指标</td></tr>
+  <tr><td class="good">🟢 正面</td><td>CFO大幅改善至59亿（+107.5%），CFO/净利润5.13倍</td><td>L1 现金流量表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>扣非净利润+57.78%，盈利质量持续改善</td><td>L1 利润表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>毛利率+2.02pct，边际改善趋势明确</td><td>L2 盈利指标</td></tr>
+  <tr><td class="good">🟢 正面</td><td>2026Q1净利+23.72%，增长延续</td><td>L1 利润表</td></tr>
+</table>
+
+<div class="verdict verdict-caution">⚠ L2综合判定：谨慎关注（ROE 6.22%偏低，短期偿债压力突出）</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>PE（TTM）</td><td><strong>~15x</strong></td><td>基于2025 EPS ~0.27元</td></tr>
+  <tr><td>PB</td><td><strong>~1.2x</strong></td><td>基于每股净资产~4.55元</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~0.25x</strong></td><td>市销率极低</td></tr>
+  <tr><td>股息率</td><td><strong>~3.0%</strong></td><td>基于44.75%分红率</td></tr>
+</table>
+
+<h3>4.2 PE Band估值区间</h3>
+<p style="font-size:13px;color:#666;">ROE 6.22% → 合理PE参考区间：&lt;10x | 2026E一致预期EPS ≈ 0.30元（估）</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>市值（亿）</th></tr>
+  <tr><td>悲观</td><td>5x</td><td>1.50 元</td><td>~39</td></tr>
+  <tr><td>保守（合理）</td><td>8x</td><td>2.40 元</td><td>~62</td></tr>
+  <tr><td>中性</td><td>12x</td><td>3.60 元</td><td>~93</td></tr>
+  <tr><td>当前</td><td>15x</td><td>4.50 元</td><td>~117</td></tr>
+  <tr><td>券商目标价</td><td>25x</td><td>7.50 元</td><td>~194</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>估值风险提示：</strong><br>
+  ① 以ROE 6.22%对应的合理PE &lt;10x匡算，当前PE ~15x已高于合理估值上限；<br>
+  ② 净利率仅1.76%，盈利空间极薄，估值安全边际不足；<br>
+  ③ 短期偿债缺口30亿构成现金流压力，若利率上行将进一步侵蚀本就微薄的利润；<br>
+  ④ 券商目标价7.5元对应PE ~25x，隐含对盈利大幅改善的乐观预期，需谨慎看待；<br>
+  ⑤ 若2026年扣非增长趋势延续，ROE逐步回升至8%以上，估值修复有一定空间。
+</div>
+
+<h3>4.3 历史PE区间（参考）</h3>
+<table>
+  <tr><th>指标</th><th>数值</th></tr>
+  <tr><td>PE（TTM）历史高位</td><td>~40x</td></tr>
+  <tr><td>PE（TTM）历史中位数</td><td>~18x</td></tr>
+  <tr><td>PE（TTM）历史低位</td><td>~8x</td></tr>
+  <tr><td>当前PE（TTM）</td><td>~15x（略低于历史中位数）</td></tr>
+</table>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>净利润率</td><td>~1.19%</td><td><strong>1.76%</strong></td><td class="neutral">⬆ 微升，仍极低</td></tr>
+  <tr><td>资产周转率</td><td>~0.87</td><td><strong>1.02</strong></td><td class="good">⬆ 提升17%</td></tr>
+  <tr><td>权益乘数</td><td>~3.10</td><td><strong>3.29</strong></td><td class="bad">⬆ 杠杆持续上升</td></tr>
+  <tr><td><strong>ROE</strong></td><td><strong>~3.2%</strong></td><td><strong>6.2%</strong></td><td class="neutral">⬆ 改善但仍在低位</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>1.0%</td><td><strong>1.8%</strong></td><td class="bad">极低，改善有限</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>2.2pct</td><td><strong>4.4pct</strong></td><td class="neutral">杠杆贡献过半</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>赚钱模式判断：高杠杆型——需要警惕</strong><br>
+  金发科技净利润率1.76%极薄，几乎不赚钱；资产周转率1.02中等；权益乘数3.29极高（负债率~65%）。去掉杠杆后ROA仅1.8%，ROE 6.2%中超过70%由杠杆贡献。<br><br>
+  <strong>核心问题：</strong>公司是"微利+高杠杆"模式——每100元营收只赚1.76元，却用了3.29倍的杠杆。一旦营收下滑或融资成本上升，微薄的利润会被利息吃掉。
+</div>
+
+<div class="summary-box">
+  <strong>核心结论：</strong><br>
+  ① ROE从3.2%升至6.2%有改善，但绝对值仍低；<br>
+  ② 净利润率1.76%是根本问题，杠杆放大了脆弱性；<br>
+  ③ 短期偿债缺口30亿是最大风险——杠杆高+流动性差=危险组合；<br>
+  ④ 改善关键在于提升净利率（产品结构升级），而非继续加杠杆。
+</div></div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与周期分析（L5框架）</h2>
+
+<div class="summary-box">
+  <strong>行业类型判断：纯周期——改性塑料+绿色石化+新材料</strong><br>
+  金发科技属于<b>纯周期型</b>行业。改性塑料和石化产品价格与原油价格、下游需求（汽车、家电、电子）高度相关，利润随经济周期波动。全球改性塑料龙头地位稳固，但净利率仅1.76%极薄，验证了行业竞争激烈、利润空间微薄的特征。行业成熟，增长随GDP同步。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>内容</th></tr>
+  <tr><td>市场格局</td><td>全球改性塑料龙头，国内CR3约30%呈分散竞争，金发市占率领先</td></tr>
+  <tr><td>进入壁垒</td><td>规模壁垒（营收654亿）、技术壁垒（2,000+配方）、客户认证壁垒（车企认证周期2-3年）、资金壁垒</td></tr>
+  <tr><td>财务验证</td><td>营收653.96亿验证规模壁垒真实；CFO 59亿（+107.5%）验证客户关系稳定；但净利率1.76%说明壁垒未能转化为定价权，毛利率13.33%改善中</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  成熟期——改性塑料是成熟行业，金发已做到全球龙头。新材料（可降解塑料、特种工程塑料）处于成长期，但占比尚小。
+</div>
+
+<h3>6.4 当前周期位置</h3>
+<div class="highlight-box">
+  <strong>周期底部改善中</strong><br>
+  ① FY2025营收+8%，归母净利+39%，扣非+58%，改善趋势明确；<br>
+  ② 毛利率从11.31%提升至13.33%（+2.02pct），边际改善；<br>
+  ③ CFO大幅改善至59亿（+107.5%），经营质量好转；<br>
+  ④ 但净利率仅1.76%仍极薄，短期偿债缺口~30亿是最大隐患；<br>
+  ⑤ 2026Q1净利+23.72%延续改善，但幅度放缓。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>当前指标</th><th>评价</th></tr>
+  <tr><td>纯周期（化工）</td><td>PB + 周期调整PE</td><td>PB ~1.2x, PE ~15x</td><td class="neutral">⚡ PB低但PE偏高</td></tr>
+  <tr><td>合理PE（ROE 6.22%）</td><td><10x</td><td>当前PE ~15x</td><td class="bad">❌ 高于合理区间</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值方法总结：</strong>PB 1.2x接近历史低位，PS 0.25x极低，说明市场对微利+高杠杆模式的定价非常谨慎。PE 15x对应ROE 6.22%略高，但若扣非增长趋势延续、ROE逐步回升至8%+，估值有修复空间。当前估值反映了一定安全边际，但短期偿债压力是核心制约因素。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战分析（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>周期性行业（纯周期——改性塑料+石化），全球改性塑料龙头，规模+技术+认证壁垒，净利率极薄（1.76%）<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 6.22%（偏低），杜邦"高杠杆型"（净利率1.76%+周转1.02+杠杆3.29），CFO 59亿/净利5.13倍含金量极高<br>
+  <strong>Step 3 - 估值判断：</strong>PE ~15x（高于合理<10x），PB ~1.2x历史低位，PS ~0.25x极低。CFO充裕但短期偿债存缺口<br>
+  <strong>Step 4 - 风险排查：</strong>核心风险：短期偿债缺口~30亿+净利率1.76%极薄+负债率64.58%偏高+应收84亿+存货79亿占流动资产61%<br>
+  <strong>Step 5 - 结论：</strong>⚠ 一般公司——全球龙头地位+CFO大幅改善+利润增长，但ROE偏低+净利率极薄+流动性压力。⚠ 价格有安全边际——PB 1.2x低+PS 0.25x极低，但PE 15x偏高<br>
+  <strong>Step 6 - 跟踪：</strong>关键指标：ROE能否持续提升、短期偿债能力变化、净利率能否改善。卖出信号：营收下滑/现金流恶化/债务违约
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>检查结果</th><th>说明</th></tr>
+  <tr><td>① 好行业</td><td class="neutral">⚠</td><td>改性塑料行业成熟，竞争激烈，净利率极薄。但龙头地位稳固，且新材料有成长空间</td></tr>
+  <tr><td>② 好公司</td><td class="neutral">⚠</td><td>ROE 6.22%偏低，CFO提质改善明显，全球龙头地位+毛利率改善趋势，但高杠杆+低净利率是硬伤</td></tr>
+  <tr><td>③ 好价格</td><td class="neutral">⚠</td><td>PB 1.2x低+PS 0.25x极低提供安全边际，但PE 15x高于ROE对应的合理<10x</td></tr>
+</table>
+
+<h3>7.3 三个陷阱排查</h3>
+<div class="danger-box">
+  <strong>陷阱排查结果：</strong><br><br>
+  ☑ <strong>价值陷阱：</strong>低PE？PE 15x非极低。低增长？营收+8%，利润+39%，增长尚可。负债率64.58%偏高+短期偿债缺口30亿 → <b>⚠ 注意：高负债+短期流动性紧张可能构成"压力型价值陷阱"</b><br><br>
+  ☑ <strong>周期陷阱：</strong>低PE（15x）+ 周期位置？处于周期底部改善中，非顶部 → <b>❌ 不命中</b><br><br>
+  ☑ <strong>烧钱陷阱：</strong>高PE？否，PE 15x。高增速？利润+39%算高。CFO 59亿 >> 净利 → <b>❌ 不命中</b>
+</div>
+
+<h3>7.4 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？金发科技怎么赚钱？——买塑料原料改性后卖给车企/家电厂。赚的是配方技术和规模效应的加工费，每100元只赚1.76元。<br>
+  2. 你最大的担忧是什么？——短期借款45亿+一年内到期29亿=74亿，但账上只有43亿现金。这30亿缺口怎么补？<br>
+  3. 如果现在买入，期待的回报来源是什么？——净利率从1.76%提升到3%的利润翻倍+PB从1.2x修复到2.0x+龙头估值溢价。<br>
+  4. 什么情况下你会坚决卖出？——短期偿债危机爆发/营收下滑/净利率下降/ROE持续低于5%。
+</div>
+
+</div></div>
+
+</div></div>
+
+<div class="footer">
+   免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+   数据来源：金发科技2025年年报、2026Q1季报、券商研报、理杏仁
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

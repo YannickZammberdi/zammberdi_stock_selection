@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>福斯特(603806) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>福斯特（603806）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026年6月 | 数据来源：FY2025 年报 + 2026Q1 季报</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>杭州福斯特应用材料股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>603806.SH</td></tr>
+  <tr><td>所属行业</td><td>光伏封装材料（胶膜全球龙头）+ 电子材料（感光干膜+铝塑膜）</td></tr>
+  <tr><td>行业地位</td><td>全球光伏胶膜市占率~50%，连续多年全球第一，超过第2-4名总和</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>154.91 亿（-19.10%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td class="bad"><strong>7.70 亿（-41.14%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>14.62 亿（-66.68%）</strong></td></tr>
+  <tr><td>总资产</td><td>206.19 亿</td></tr>
+  <tr><td>归母净资产</td><td>164.41 亿</td></tr>
+  <tr><td>ROE</td><td class="bad">4.68%（周期低谷）</td></tr>
+</table>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">综合L1-L5所有因素，以FY2025为主、结合周期底部分位判断，对各维度打分求和</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">4.68% < 5%，周期低谷</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="bad" style="font-weight:bold;font-size:15px">1</td><td style="text-align:left">低利润+高周转+极低杠杆，ROE偏低</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">14.62/7.70=1.90 远超1.0</td></tr>
+  <tr><td>营收增长（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">-19.1%，价跌量平</td></tr>
+  <tr><td>利润增长（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">-41.14%，行业价格战</td></tr>
+  <tr><td>负债率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">19.52% < 40%，极其稳健</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">流动比率14.4，现金极其充裕</td></tr>
+  <tr><td>毛利率（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">10.96% ≥ 10%但大幅下滑</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">PE(TTM) 65x极度过高；2026E PE 30x偏高但周期底部可理解</td></tr>
+  <tr><td>自由现金流（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">CFO 14.62亿，持续为正</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px" class="bad">49/100</td><td style="text-align:left">不及格（49/100分）——周期低谷，核心指标恶化；但龙头地位稳固，财务极其健康</td></tr>
+</table>
+
+<div class="verdict verdict-bad">不及格（49/100分）——FY2025深度周期低谷，但公司质地优秀，需区分"公司差"与"行业周期差"</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>福斯特是全球光伏胶膜领域无可争议的绝对龙头（市占率~50%），FY2025受光伏全产业链产能过剩+价格战影响，营收-19.1%、净利-41.14%，ROE降至4.68%。但公司是行业唯二持续盈利的企业，在行业普遍亏损的情况下展现了极强的抗周期能力。核心优势在于：全球第一的市占率+极强的成本控制+极其健康的资产负债表（负债率仅19.5%）。2026年随着光伏产能出清和上游价格回升，公司盈利有望修复（一致预期2026E净利16.75亿，+117%）。此外，电子材料（感光干膜）正成为第二增长曲线，2025年营收+15%，国内市占率提升至15%。<br><br>
+  <strong>核心优势：</strong>① 全球光伏胶膜市占率50%+，超过2-4名总和，绝对统治力；② 资产负债率仅19.5%，流动比率14.4，财务极度健康；③ CFO/净利1.90，现金质量极高；④ 电子材料（感光干膜）国产替代加速，第二曲线初现。<br><br>
+  <strong>核心风险：</strong>① 光伏产能过剩持续，胶膜毛利率被压缩至10.46%，何时见底未知；② 营收连续两年下滑（-15%→-19%），趋势未扭转；③ 应收账款/净利润达559%，回款压力大；④ PE(TTM) 65x，周期底部估值反而最高——典型的"周期股PE悖论"。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>154.91 亿</td><td>191.47 亿</td><td class="bad">-19.10%</td><td class="bad">❌ 价跌量平</td></tr>
+  <tr><td>归母净利润</td><td class="bad"><strong>7.70 亿</strong></td><td>13.08 亿</td><td class="bad"><strong>-41.14%</strong></td><td class="bad">❌ 大幅下降</td></tr>
+  <tr><td>扣非净利润</td><td class="bad"><strong>6.71 亿</strong></td><td>12.83 亿</td><td class="bad"><strong>-47.65%</strong></td><td class="bad">❌ 主业承压</td></tr>
+  <tr><td>毛利率</td><td><strong>10.96%</strong></td><td>14.75%</td><td>-3.79pct</td><td class="bad">❌ 大幅压缩</td></tr>
+  <tr><td>归母净利率</td><td><strong>4.97%</strong></td><td>6.83%</td><td>-1.86pct</td><td class="bad">❌ 下降</td></tr>
+  <tr><td>三费占比</td><td><strong>2.41%</strong></td><td>1.87%</td><td>+28.91%</td><td class="good">✅ 费用控制优异</td></tr>
+  <tr><td>2025Q4 营收</td><td>37.03 亿</td><td>39.73 亿</td><td>-6.80%</td><td class="neutral">⚠ 降幅收窄</td></tr>
+  <tr><td>2025Q4 净利</td><td>0.82 亿</td><td>0.50 亿</td><td><strong>+65.70%</strong></td><td class="good">✅ 拐点信号</td></tr>
+  <tr><td>2026Q1 营收</td><td>33.73 亿</td><td>36.24 亿</td><td>-6.95%</td><td class="neutral">⚠ 仍在下降</td></tr>
+  <tr><td>2026Q1 净利</td><td>3.12 亿</td><td>4.01 亿</td><td>-22.27%</td><td class="neutral">⚠ 环比+280%</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>FY2025营收154.91亿（-19.1%），主因胶膜售价随光伏产业链降价而大幅下调（出货量28.1亿平与2024年基本持平）。净利7.70亿（-41.1%），毛利率从14.75%压缩至10.96%。积极信号：① Q4净利0.82亿同比+65.7%，盈利拐点初现；② 三费占比仅2.41%，费用控制行业顶级；③ 2026Q1净利3.12亿环比Q4的0.82亿大增280%，盈利修复趋势确认。但营收仍在下降（Q1 -6.95%），行业见底仍需观察。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td><strong>减少52%（投资理财增加）</strong></td><td class="good">✅ 实际充裕</td></tr>
+  <tr><td>交易性金融资产</td><td><strong>+101%（理财产品增加）</strong></td><td class="good">✅ 现金管理</td></tr>
+  <tr><td>应收账款</td><td><strong>体量较大（占净利559%）</strong></td><td class="bad">❌ 回款压力</td></tr>
+  <tr><td>存货</td><td><strong>+31.24%（备货增加）</strong></td><td class="neutral">正常备货</td></tr>
+  <tr><td>短期借款</td><td><strong>-100%（全部归还）</strong></td><td class="good">✅ 零短债</td></tr>
+  <tr><td>合同负债</td><td><strong>+46.22%（预收款增加）</strong></td><td class="good">✅ 订单恢复</td></tr>
+  <tr><td>资产负债率</td><td class="good"><strong>19.52%</strong></td><td class="good">✅ 极其稳健</td></tr>
+  <tr><td>流动比率</td><td class="good"><strong>14.40</strong></td><td class="good">✅ 极高</td></tr>
+  <tr><td>速动比率</td><td class="good"><strong>12.88</strong></td><td class="good">✅ 极高</td></tr>
+  <tr><td>归母净资产</td><td>164.41 亿（+0.17%）</td><td class="good">✅ 基本稳定</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>福斯特的资产负债表是A股最健康的之一。资产负债率仅19.52%，无短期借款，流动比率14.4——意味着每1元流动负债对应14.4元流动资产覆盖。货币资金虽减少（转向理财产品），但交易性金融资产翻倍，总现金等价物充裕。唯一需关注的是应收账款体量较大（占净利559%），但考虑客户为晶科、隆基、天合等头部组件厂，坏账风险可控。合同负债+46%预示订单在恢复。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>14.62 亿</strong></td><td>43.89 亿</td><td class="neutral">⚠ 下降66.68%</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><strong>-29.38 亿</strong></td><td>-34.39 亿</td><td class="neutral">产能建设+理财</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td><strong>-11.12 亿</strong></td><td>-12.31 亿</td><td class="neutral">分红+还债</td></tr>
+  <tr><td>CFO/净利润</td><td class="good"><strong>1.90</strong></td><td>3.36</td><td class="good">✅ 极好</td></tr>
+  <tr><td>自由现金流（FCF）</td><td><strong>正</strong></td><td>正</td><td class="good">✅ 持续为正</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>CFO 14.62亿虽同比大幅下降（-66.68%），但仍是净利润7.70亿的1.9倍，利润含金量极好。下降主因：公司销售收款以"账期+承兑汇票"为主而原材料采购需"款到发货"，加上营收规模下降。CFI -29.38亿含理财产品投资和泰国/越南产能建设。CFF -11.12亿主要为分红。整体看，公司现金流足以覆盖资本开支和分红，财务自主造血能力强。FY2025现金分红预计约5亿（此前年度持续分红）。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td class="bad"><strong>4.68%</strong></td><td>> 15% 优秀</td><td class="bad">❌ 周期低谷</td></tr>
+  <tr><td>毛利率</td><td class="bad"><strong>10.96%</strong></td><td>稳定或提升</td><td class="bad">❌ 大幅下降</td></tr>
+  <tr><td>净利率</td><td class="bad"><strong>4.97%</strong></td><td>> 10%</td><td class="bad">❌ 偏低</td></tr>
+  <tr><td>营收增长率</td><td class="bad"><strong>-19.10%</strong></td><td>> 10%</td><td class="bad">❌ 负增长</td></tr>
+  <tr><td>扣非增长率</td><td class="bad"><strong>-47.65%</strong></td><td>正增长</td><td class="bad">❌ 大幅下滑</td></tr>
+  <tr><td>CFO/净利润</td><td class="good"><strong>1.90</strong></td><td>> 1</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>资产负债率</td><td class="good"><strong>19.52%</strong></td><td>制造业<60%</td><td class="good">✅ 极低</td></tr>
+  <tr><td>分红率</td><td><strong>~65%</strong></td><td>持续分红</td><td class="good">✅ 持续高分红</td></tr>
+</table>
+
+<h3>3.2 分业务分析（FY2025）</h3>
+<table>
+  <tr><th>业务板块</th><th>营收（亿）</th><th>占比</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td>光伏胶膜</td><td>139.63</td><td>90.1%</td><td>-20.23%</td><td>10.46%</td><td class="bad">❌ 价格战承压</td></tr>
+  <tr><td>光伏背板</td><td>2.88</td><td>1.9%</td><td>-52.45%</td><td>偏低</td><td class="bad">❌ 量价齐跌</td></tr>
+  <tr><td>感光干膜（电子材料）</td><td>6.82</td><td>4.4%</td><td><strong>+15.05%</strong></td><td><strong>23.94%</strong></td><td class="good">✅ 第二曲线</td></tr>
+  <tr><td>铝塑膜</td><td>1.41</td><td>0.9%</td><td>+6.25%</td><td>—</td><td class="neutral">培育中</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>福斯特的核心业务光伏胶膜（营收占比90%）FY2025承压严重——出货量28.1亿平持平，但售价大幅下降导致营收-20%、毛利率压缩至10.46%。不过公司在行业普遍亏损下仍能保持盈利，体现了绝对龙头的成本优势。电子材料（感光干膜）是亮点：营收6.82亿+15%，毛利率24%远高于胶膜，国内市占率提升至15%，已进入深南电路、东山精密、鹏鼎控股等头部PCB企业供应链。非光伏业务占比从~5%提升至7.15%，结构持续优化。海外营收占比26.9%（+7pct），泰国+越南产能陆续投产。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="bad">🔴 较高</td><td>营收连续两年下滑（-15%→-19%），趋势未扭转</td><td>光伏产能过剩仍在继续</td></tr>
+  <tr><td class="bad">🔴 较高</td><td>毛利率从14.75%压缩至10.96%，盈利空间大幅收窄</td><td>胶膜价格战未见底</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>应收账款/净利润达559%，回款压力大</td><td>客户账期长+承兑汇票</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>ROE从18%降至4.68%，资本回报率大幅下降</td><td>行业周期+资产扩张</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>新业务（聚酯薄膜等）亏损拖累利润</td><td>特种薄膜及POE树脂投资亏损</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>海外贸易壁垒风险（美国/印度本土保护政策）</td><td>海外产能泰国/越南布局中</td></tr>
+  <tr><td class="good">🟢 正面</td><td>全球光伏胶膜市占率50%+，绝对龙头地位稳固</td><td>超过第2-4名总和</td></tr>
+  <tr><td class="good">🟢 正面</td><td>资产负债率19.52%，无短期借款，财务极度健康</td><td>A股制造业最低水平之一</td></tr>
+  <tr><td class="good">🟢 正面</td><td>CFO/净利1.90，盈利质量极高</td><td>14.62亿vs 7.70亿</td></tr>
+  <tr><td class="good">🟢 正面</td><td>电子材料（感光干膜）高速增长，毛利率24%远高于主业</td><td>国产替代逻辑清晰</td></tr>
+  <tr><td class="good">🟢 正面</td><td>海外营收占比升至26.9%，海外毛利率显著高于国内</td><td>全球化布局见效</td></tr>
+</table>
+
+<div class="verdict verdict-bad">L2综合判定：FY2025全面承压（盈利指标恶化+负增长），但龙头地位+财务健康+电子材料亮眼，需区分"周期差"与"公司差"</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>股价（2026.6）</td><td><strong>~18.74 元</strong></td><td>近一年随光伏板块持续调整</td></tr>
+  <tr><td>总市值</td><td><strong>~503 亿</strong></td><td>总股本~26.86亿</td></tr>
+  <tr><td>PE（TTM）</td><td class="bad"><strong>~65x</strong></td><td>基于2025 EPS 0.30元，周期底部PE极高</td></tr>
+  <tr><td>PE（2026E）</td><td><strong>~30x</strong></td><td>基于一致预期EPS ~0.64元</td></tr>
+  <tr><td>PE（2027E）</td><td><strong>~22x</strong></td><td>基于一致预期EPS ~0.87元</td></tr>
+  <tr><td>PB</td><td><strong>~3.06x</strong></td><td>基于BPS 6.12元</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~3.25x</strong></td><td>基于营收154.91亿</td></tr>
+  <tr><td>股息率</td><td><strong>~1.0%</strong></td><td>基于每股分红~0.2元（估）</td></tr>
+</table>
+
+<h3>4.2 PE Band估值区间（周期底部PE失效，用PB辅助）</h3>
+<p style="font-size:13px;color:#666;">周期底部PE极高是正常现象（利润被压缩）。2026E一致预期EPS≈0.64元。合理PE参考：周期中位20-25x</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs现价18.74元</th></tr>
+  <tr><td>悲观（产能过剩持续）</td><td>15x</td><td>9.6 元</td><td class="bad">-49%</td></tr>
+  <tr><td>保守（弱修复）</td><td>20x</td><td>12.8 元</td><td class="bad">-32%</td></tr>
+  <tr><td>中性（正常修复）</td><td>25x</td><td>16.0 元</td><td class="bad">-15%</td></tr>
+  <tr><td>乐观（强修复+成长溢价）</td><td>30x</td><td>19.2 元</td><td class="neutral">+2%</td></tr>
+  <tr><td>当前价（隐含PE）</td><td>~30x</td><td>18.74 元</td><td>—</td></tr>
+  <tr><td>券商目标（太平洋证券）</td><td>~33x</td><td>~21 元</td><td>+12%</td></tr>
+</table>
+
+<h3>4.3 历史PE/PB区间</h3>
+<table>
+  <tr><th>指标</th><th>PE（TTM）</th><th>PB</th></tr>
+  <tr><td>历史高位（2021年光伏牛市）</td><td>~50x</td><td>~8x</td></tr>
+  <tr><td>80%分位</td><td>~40x</td><td>~6x</td></tr>
+  <tr><td>50%分位（中位）</td><td>~28x</td><td>~4.5x</td></tr>
+  <tr><td>20%分位</td><td>~18x</td><td>~3x</td></tr>
+  <tr><td>历史低位（2018年低谷）</td><td>~12x</td><td>~2x</td></tr>
+  <tr><td>当前</td><td class="bad">~65x（超历史高位）</td><td>3.06x（20%分位附近）</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>估值风险警示（周期股PE悖论）：</strong><br>
+  ① PE(TTM) 65x看起来"极贵"，但这是周期股底部利润压缩的结果——福斯特在行业最差时仍有7.7亿利润，一旦行业修复，PE将快速消化至20-30x；<br>
+  ② PB 3.06x处于历史20%分位附近，接近周期底部——对于资产负债率仅19.5%的轻资产制造龙头，3x PB提供了较好的安全垫；<br>
+  ③ 核心矛盾：当前估值反映了市场对"公司能否熬过周期、龙头地位是否稳固"的定价。若光伏行业在2026-2027年完成产能出清，福斯特作为唯一市占率50%的龙头，盈利将率先修复。当前估值已计入了一定的底部预期，但尚未体现修复溢价。<br>
+  ④ 对于周期投资者，当前PB 3x是关注区间；对于价值投资者，需等待盈利拐点确认后更安全的右侧买点。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>净利润率</td><td>8.19%</td><td>6.83%</td><td class="bad"><strong>4.97%</strong></td><td class="bad">⬇ 持续压缩</td></tr>
+  <tr><td>资产周转率</td><td>1.03</td><td>0.90</td><td><strong>0.75</strong></td><td class="bad">⬇ 营收下降</td></tr>
+  <tr><td>权益乘数</td><td>1.40</td><td>1.29</td><td><strong>1.25</strong></td><td class="good">⬇ 降杠杆</td></tr>
+  <tr><td><strong>ROE</strong></td><td><strong>~12%</strong></td><td><strong>~8%</strong></td><td class="bad"><strong>4.68%</strong></td><td class="bad">⬇ 趋势下降</td></tr>
+  <tr><td>去杠杆ROA</td><td>8.4%</td><td>6.1%</td><td class="bad">3.7%</td><td class="bad">⬇ 下降</td></tr>
+  <tr><td>杠杆贡献</td><td>3.6pct</td><td>1.9pct</td><td>1.0pct</td><td class="bad">⬇ 杠杆贡献弱</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：低利润+高周转+极低杠杆型</strong><br>
+  福斯特的杜邦特征独特：净利率4.97%（低）+ 周转率0.75（中偏高）+ 权益乘数1.25（极低）。ROE 4.68%中，去杠杆ROA 3.7%，杠杆仅贡献1pct。公司本质上靠"薄利多销+高周转"赚钱——自建设备、规模化生产、原材料集中采购带来的成本优势使其在行业中即使毛利率仅10.96%也能盈利，而竞争对手毛利率为负。<br><br>
+  <strong>趋势分析：</strong>ROE从2023年~12%降至2025年4.68%，三大驱动因子全面走弱。净利润率从8.19%缩至4.97%（价格战），周转率从1.03降至0.75（营收下降），权益乘数从1.40降至1.25（主动降负债）。但公司的核心竞争力（全球50%市占率）并未受损，ROE的修复取决于行业供需格局的改善。
+</div>
+
+<h3>5.2 资产回报效率</h3>
+<table>
+  <tr><th>指标</th><th>福斯特FY2025</th><th>历史中位（2023）</th></tr>
+  <tr><td>每元总资产产生净利</td><td class="bad">0.037元</td><td>0.084元</td></tr>
+  <tr><td>去杠杆ROA</td><td class="bad">3.7%</td><td>8.4%</td></tr>
+  <tr><td>净利率</td><td>4.97%</td><td>8.19%</td></tr>
+  <tr><td>总资产周转率</td><td>0.75</td><td>1.03</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>核心结论：</strong><br>
+  ① FY2025 ROE 4.68%是公司近年来最低水平，主因光伏行业产能过剩导致利润率压缩和周转下降；<br>
+  ② 去杠杆ROA 3.7%表明即使排除极低负债率的干扰，公司资产回报也在明显下降；<br>
+  ③ 但需要区分"周期性恶化"与"结构性恶化"——福斯特的全球50%市占率未变，成本优势未失，ROE下降是行业周期的结果而非公司竞争力的丧失；<br>
+  ④ ROE修复路径：① 光伏产能出清→胶膜涨价→净利率回升至8%+；② 营收恢复增长→周转率回到0.9+。两者共振时，ROE有望回到12%+；<br>
+  ⑤ 积极信号：Q4 2025利润同比+65.7%和2026Q1环比+280%已暗示盈利拐点正在出现。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与特征（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：混合周期（光伏封装材料——胶膜）</strong><br>
+  <strong>判断依据：</strong>光伏行业具有典型的"混合周期"特征：长期看有成长性（全球能源转型驱动，光伏装机量CAGR~20%），但阶段性供需错配导致剧烈周期波动。2023-2025年，光伏全产业链产能过剩引发惨烈的价格战，福斯特的胶膜业务虽出货量持平但售价大幅下降。与纯周期（钢铁/煤炭）不同，光伏行业长期仍有确定性增长——2030年全球光伏新增装机预计达1000GW+（2025年~600GW），胶膜作为刚性辅材需求将同步增长。<br><br>
+  <strong>周期特征：</strong>胶膜行业经历了两轮周期：2020-2022年（供不应求/高毛利）→ 2023-2025年（产能过剩/价格战）。当前处于周期底部区域，行业正经历产能出清，二三线企业普遍亏损，福斯特凭借成本优势成为少数仍在盈利的企业。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th></tr>
+  <tr><td>行业集中度</td><td><strong>高度集中，持续优化</strong>——福斯特全球市占率~50%（超过2-4名总和），CR3（福斯特+斯威克+海优新材）>75%。随着产能出清，二三线企业退出，龙头集中度将持续提升。</td></tr>
+  <tr><td>规模壁垒</td><td><strong>极强</strong>——胶膜行业规模效应显著。福斯特产能超30亿平，规模优势带来的采购议价能力（光伏树脂采购价低于同行）、自制设备降本（自己生产部分生产线）、生产良率领先，使其在毛利率10%时仍能盈利，而竞争对手毛利率为负。</td></tr>
+  <tr><td>技术壁垒</td><td><strong>中等偏强</strong>——N型电池（TOPCon/HJT）对胶膜性能要求更高，POE/EPE胶膜占比从30%提升至50%。福斯特POE类产品出货占比50%，并已推出转光胶膜、0BB胶膜等新品。但胶膜本质上属于配方型产品，技术迭代为渐进式。</td></tr>
+  <tr><td>客户壁垒</td><td><strong>极强</strong>——光伏组件客户认证周期12-24个月，绑定后切换成本高。福斯特已覆盖晶科、隆基、天合等全球前十大组件厂，是它们的主要甚至是独家供应商。</td></tr>
+  <tr><td>品牌壁垒</td><td><strong>强</strong>——福斯特品牌在光伏封装领域等同于"品质保证"，组件厂在做产品认证时优先选择福斯特。</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  <strong>阶段：成熟期中的周期波动——龙头集中度提升阶段（行业整合期）</strong><br>
+  光伏胶膜行业整体已进入成熟期（渗透率>50%），但技术仍在演进（N型、钙钛矿等）。当前行业正处于"产能出清+格局优化"的关键阶段——福斯特凭借成本优势在行业低谷期保持盈利，而竞争对手持续亏损被迫退出。这个阶段对龙头反而是有利的：行业出清后竞争格局改善，福斯特的市占率和议价权有望进一步提升。<br><br>
+  <strong>投资策略重点：</strong>关注① 光伏行业产能出清节奏（何时二三线企业大规模停产）；② 胶膜价格和毛利率触底信号；③ 福斯特在POE/EPE等高端胶膜中的份额提升；④ 电子材料（感光干膜）放量进度。
+</div>
+
+<h3>6.4 当前周期位置</h3>
+<div class="highlight-box">
+  <strong>周期位置判断：周期底部区域，出清进行中</strong><br>
+  光伏产业链价格在2024-2025年经历了大幅下跌，目前处于历史低位。胶膜毛利率已从2023年~15%压缩至~10%，接近福斯特的成本底线。行业信号：① 头部组件厂普遍亏损（隆基、天合等）；② 二三线胶膜企业毛利率为负；③ 上游光伏树脂价格企稳回升。历史经验表明，当行业龙头毛利率被压缩至极限时，往往意味着周期底部临近。<br><br>
+  <strong>投资启示：</strong>福斯特作为穿越周期的龙头，在周期底部时PB 2-3x是历史低估区间，当前PB 3.06x处于底部区域但尚未进入"极端低估"。适合左侧布局的周期投资者关注，但需承担"底部持续时间不确定"的等待成本。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>混合周期（光伏辅材龙头）</td><td>PB（底部）+ PE（盈利修复后）</td><td>胶膜毛利率、市占率变化、竞争对手退出情况</td><td class="neutral">⚠ 部分匹配——PB 3x在底部区间，但PE 65x需用2026E来看</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值方法总结：</strong>福斯特正确的估值方式是"周期底部看PB，盈利修复看PE"。当前PB 3.06x处于历史20%分位附近，底部特征明显。2026E PE ~30x看似偏高，但若盈利修复至一致预期16.75亿（+117%），PE将快速降至合理区间（20-25x）。核心判断：当前估值已充分反映了周期低谷，但尚未计入修复溢价。对于能承受周期波动的投资者，PB 3x是值得关注的区域。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>混合周期（光伏胶膜），全球市占率50%绝对龙头，规模+客户壁垒极高，正经历产能出清。<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 4.68%（周期低谷），杜邦三因子全面走弱；但CFO/净利1.90极好，负债率19.52%极其健康。<br>
+  <strong>Step 3 - 估值判断：</strong>PE(TTM) 65x周期底部"虚高"；PB 3.06x在历史20%分位；2026E PE ~30x等待盈利修复。<br>
+  <strong>Step 4 - 风险排查：</strong>营收连续两年下滑、毛利率持续压缩、应收账款/净利559%偏高、新业务亏损拖累。<br>
+  <strong>Step 5 - 结论：</strong>好公司（全球龙头+财务健康+现金充裕）但遭遇行业差周期。当前价格PB 3x有安全垫但需等盈利拐点确认。<br>
+  <strong>Step 6 - 跟踪：</strong>① 胶膜毛利率是否企稳回升；② 2026H1出货量和价格趋势；③ 感光干膜营收能否突破10亿；④ 竞争对手退出情况。
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>光伏长期成长确定+行业出清后集中度提升利好龙头。但短期周期波动大，需选时</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓</td><td>全球市占率50%+，成本优势碾压对手，负债率19.5%，CFO/净利1.90。公司质地顶级，但ROE被周期拉低</td></tr>
+  <tr><td>③ 好价格</td><td class="neutral">⚠</td><td>PB 3.06x在历史低位但非极端低估。需判断行业何时见底，左侧等待可能需要时间</td></tr>
+</table>
+
+<h3>7.3 三个陷阱排查</h3>
+<div class="danger-box">
+  <strong>☐ 价值陷阱：</strong>🔴 高度命中——PE(TTM) 65x看似"贵"，但利润处于周期底部导致PE虚高。本质上是"低PE+低增长+高负债"的反面——是"高PE+低增长+极低负债"。核心问题是营收下滑趋势未扭转，若行业持续低迷，当前估值可能仍在下行通道中。<br>
+  <strong>☐ 周期陷阱：</strong>🔴 高度命中——典型的周期股底部特征：PE极高（65x）而PB较低（3x）。投资者容易因"PE太贵"而错过底部，或因"PB便宜"而抄底在半山腰。正确做法是关注行业产能出清进度，而非PE高低。<br>
+  <strong>☐ 烧钱陷阱：</strong>❌ 未命中——CFO 14.62亿远超净利润7.70亿，自有造血能力极强。负债率19.5%且无短期借款，不存在烧钱风险。
+</div>
+
+<h3>7.4 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——把EVA/POE粒子加工成透明薄膜卖给光伏组件厂，赚"加工费+规模效应"的钱。卖得比所有人便宜还有得赚，靠的就是规模大、设备自己造、品控好。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——营收连续两年下降（-15%→-19%），且毛利率还在10%附近挣扎。如果光伏行业出清还需要1-2年，公司虽然不会被熬死但股价可能继续震荡。另外应收559%的利润占比让人担心回款。<br>
+  3. 如果现在买入，期待的回报来源是什么？——① 行业出清后毛利率修复到15%+，利润翻倍，PE从65x降到25x（赚盈利修复的钱）；② 感光干膜成为真正的第二曲线，3-5年后贡献20%+利润。<br>
+  4. 什么情况下你会坚决卖出？——光伏行业出清后福斯特的市占率反而下降（龙头地位动摇）/ 胶膜毛利率跌破8%且看不到修复希望 / 应收账款出现大规模坏账 / 电子材料业务扩张失败连续亏损。
+</div>
+
+</div></div>
+
+<div class="footer">
+    免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+    数据来源：福斯特2025年年报、2026Q1季报、券商研报（太平洋证券、申万宏源、光大证券）
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

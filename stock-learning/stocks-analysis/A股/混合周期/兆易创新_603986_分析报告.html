@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>兆易创新(603986) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>兆易创新（603986）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026年6月 | 数据来源：FY2025 年报 + 2026Q1 季报</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>兆易创新科技集团股份有限公司（GigaDevice）</td></tr>
+  <tr><td>股票代码</td><td>603986.SH</td></tr>
+  <tr><td>所属行业</td><td>集成电路设计（Fabless）——存储芯片+MCU+传感器</td></tr>
+  <tr><td>行业地位</td><td>NOR Flash全球第2（中国第1）、SLC NAND全球第6（中国第1）、MCU全球第8（中国第1）、利基DRAM全球第7</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>92.03 亿（+25.12%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>16.48 亿（+49.47%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>21.29 亿（+4.74%）</strong></td></tr>
+  <tr><td>总资产</td><td>213.97 亿</td></tr>
+  <tr><td>归母净资产</td><td>190.08 亿</td></tr>
+  <tr><td>ROE（加权）</td><td>9.30%（FY2025）/ ~15-20% TTM（含2026Q1爆发）</td></tr>
+</table>
+
+<div class="highlight-box" style="border-left-color:#8e44ad;">
+  <strong>关键转折——2026Q1业绩爆发：</strong><br>
+  2026Q1营收41.88亿（同比+119%，环比+77%），归母净利14.61亿（同比+523%，环比+159%），毛利率57.08%（vs FY2025全年40.22%）——单季净利已接近FY2025全年16.48亿的水平。主因：与长鑫科技DRAM关联交易大幅放量（2026年预计57.11亿 vs 2025年实际11.82亿），存储芯片量价齐升。
+</div>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">综合L1-L5所有因素打分求和（基于FY2025年报数据，标注TTM处用最新）</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="neutral" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">FY2025加权9.30%（TTM约15-20%取10分）</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">高利润型——净利率17.91%+极低杠杆1.126</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">1.29 ≥ 1.0，现金质量好</td></tr>
+  <tr><td>营收增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+25.12% ≥ 10%</td></tr>
+  <tr><td>利润增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">扣非+42.57% ≥ 15%</td></tr>
+  <tr><td>负债率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">10.16%，远低于40%</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">货币资金91.86亿 >> 短借2.00亿</td></tr>
+  <tr><td>毛利率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">40.22%≥30%且同比+2.22pct提升</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">2026E PE~125x，远超合理区间（<10x）</td></tr>
+  <tr><td>自由现金流（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">CFO 21.29亿，Fabless轻资产FCF充裕</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">85/100</td><td style="text-align:left">品质良好（85/100分）——业务面健康，唯PE极高</td></tr>
+</table>
+
+<div class="verdict verdict-ok">品质良好（85/100分）—— 基本面健康+成长确定性强，但估值已充分定价</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>兆易创新是中国Fabless IC设计龙头，全球唯一在NOR Flash、SLC NAND、利基DRAM、MCU四大领域均排名前十的芯片公司。FY2025营收92亿（+25%），扣非净利14.69亿（+43%），体现存储周期回升+产品结构优化。2026Q1业绩爆发（营收+119%、净利+523%），DRAM业务进入放量期（长鑫科技关联交易从11.82亿→57.11亿），公司正处于"从NOR Flash龙头向存储平台级公司跃迁"的关键拐点。<br><br>
+  <strong>核心优势：</strong>① NOR Flash全球第2+国产MCU第1的双轮驱动，基本面扎实；② DRAM业务爆发——长鑫科技合作在2026年全面放量，2026Q1毛利率已跳升至57%；③ 零有息负债+91.86亿现金+10.16%负债率，资产负债表极其健康；④ Fabless轻资产模式，FCF转化率高；⑤ 存储芯片国产替代+AI端侧需求，长期成长逻辑清晰。<br><br>
+  <strong>核心风险：</strong>① PE极高——840元股价对应FY2026E一致预期PE~125x，已反映极高增长预期；② 存储芯片强周期——若存储价格回落，业绩和估值将双杀（FY2022沪指2440点时PE仅20x）；③ MCU毛利率35.82%仍在底部，复苏滞后于存储；④ 当前股价单日成交431亿（A股第一），筹码拥挤度极高，短期波动风险大。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025 + 2026Q1）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>2026Q1</th><th>Q1同比</th></tr>
+  <tr><td>营业收入</td><td><strong>92.03 亿</strong></td><td>73.56 亿</td><td>+25.12%</td><td><strong>41.88 亿</strong></td><td><strong>+119%</strong></td></tr>
+  <tr><td>归母净利润</td><td><strong>16.48 亿</strong></td><td>11.03 亿</td><td><strong>+49.47%</strong></td><td><strong>14.61 亿</strong></td><td><strong>+523%</strong></td></tr>
+  <tr><td>扣非净利润</td><td><strong>14.69 亿</strong></td><td>10.30 亿</td><td><strong>+42.57%</strong></td><td>—</td><td>—</td></tr>
+  <tr><td>毛利率</td><td><strong>40.22%</strong></td><td>37.99%</td><td>+2.22pct</td><td><strong>57.08%</strong></td><td>+19.64pct</td></tr>
+  <tr><td>归母净利率</td><td><strong>17.91%</strong></td><td>14.99%</td><td>+2.92pct</td><td><strong>35.16%</strong></td><td>+22.60pct</td></tr>
+  <tr><td>Q1 营收</td><td>19.09 亿</td><td>16.60 亿</td><td>+15.00%</td><td colspan="2">—</td></tr>
+  <tr><td>Q2 营收</td><td>22.41 亿</td><td>18.53 亿</td><td>+20.92%</td><td colspan="2">—</td></tr>
+  <tr><td>Q3 营收</td><td>26.81 亿</td><td>21.25 亿</td><td>+26.19%</td><td colspan="2">—</td></tr>
+  <tr><td>Q4 营收</td><td>23.72 亿</td><td>17.07 亿</td><td>+39.00%</td><td colspan="2">—</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>利润表解读：</strong>FY2025营收逐季加速（Q1+15%→Q4+39%），体现存储芯片周期上行。全年毛利率40.22%同比+2.22pct，但2026Q1已跳升至57.08%——DRAM放量带来的结构性改善远大于涨价效应。净利率从14.99%→17.91%→35.16%（2026Q1），盈利曲线正在变得极其陡峭。Q4归母净利5.65亿（+109%）已显著加速，而2026Q1单季14.61亿接近全年16.48亿——这是典型的"业绩拐点年"特征。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td><strong>91.86 亿</strong></td><td class="good">✅ 极为充裕</td></tr>
+  <tr><td>应收账款</td><td><strong>1.93 亿</strong></td><td class="good">✅ 占营收2.1%，极低</td></tr>
+  <tr><td>存货</td><td><strong>30.66 亿</strong></td><td class="neutral">占资产14.3%，同比+30.67%（备货）</td></tr>
+  <tr><td>短期借款</td><td><strong>2.00 亿</strong></td><td class="good">✅ 几乎为零</td></tr>
+  <tr><td>长期借款</td><td><strong>0</strong></td><td class="good">✅ 零长期债务</td></tr>
+  <tr><td>资产负债率</td><td><strong>10.16%</strong></td><td class="good">✅ 极低</td></tr>
+  <tr><td>归母净资产</td><td>190.08 亿</td><td class="good">✅ 同比+15.21%</td></tr>
+  <tr><td>总资产</td><td>213.97 亿</td><td class="good">✅ 同比+11.27%</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>这是A股最"干净"的资产负债表之一。货币资金91.86亿占总资产43%，应收账款仅1.93亿（回款极快），短期借款2亿（几乎可忽略），长期借款为零——资产负债率仅10.16%。存货30.66亿同比+30.67%是主动备货行为（为DRAM放量备货+存储涨价预期囤货），而非产品滞销。净现金状态（现金91.86亿-总债务2亿=89.86亿净现金）意味着公司有极强的抗周期能力和并购扩张潜力。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>21.29 亿</strong></td><td>20.32 亿</td><td class="good">✅ +4.74%</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>1.29</strong></td><td>1.84</td><td class="good">✅ 现金质量好</td></tr>
+  <tr><td>自由现金流（FCF）</td><td><strong>充裕</strong></td><td>—</td><td class="good">✅ Fabless轻资产</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>CFO 21.29亿是净利润的1.29倍，现金质量良好但不如FY2024的1.84（主因存货增加占用了现金——从23.5亿增至30.66亿）。Fabless公司几乎不需要自建晶圆厂，capex主要投向IP授权和EDA工具，FCF通常远高于净利润。91.86亿现金储备+几乎零负债+强劲的CFO，使公司具备了"进可攻（并购）、退可守（熬过周期底部）"的财务弹性。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>2026Q1</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE（加权）</td><td><strong>9.30%</strong></td><td>~15-20%（TTM估）</td><td>> 15% 优秀</td><td class="neutral">⚠ FY2025偏低，但拐点已至</td></tr>
+  <tr><td>毛利率</td><td><strong>40.22%</strong></td><td><strong>57.08%</strong></td><td>稳定或提升</td><td class="good">✅ 大幅改善</td></tr>
+  <tr><td>净利率</td><td><strong>17.91%</strong></td><td><strong>35.16%</strong></td><td>> 10%</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>营收增长率</td><td><strong>+25.12%</strong></td><td>+119%</td><td>> 10%</td><td class="good">✅ 高增长</td></tr>
+  <tr><td>扣非增长率</td><td><strong>+42.57%</strong></td><td>—</td><td>> 15%</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>1.29</strong></td><td>—</td><td>> 1</td><td class="good">✅ 良好</td></tr>
+  <tr><td>资产负债率</td><td><strong>10.16%</strong></td><td>—</td><td>< 40%</td><td class="good">✅ 极低</td></tr>
+  <tr><td>分红率</td><td><strong>31.88%</strong></td><td>—</td><td>持续分红</td><td class="good">✅ 合理</td></tr>
+</table>
+
+<h3>3.2 分业务分析（FY2025）</h3>
+<table>
+  <tr><th>业务板块</th><th>营收（亿）</th><th>占比</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td>存储芯片</td><td>65.66</td><td>71.34%</td><td><strong>+26.41%</strong></td><td><strong>42.84%</strong></td><td class="good">✅ 核心引擎</td></tr>
+  <tr><td>微控制器（MCU）</td><td>19.10</td><td>20.75%</td><td><strong>+12.98%</strong></td><td><strong>35.82%</strong></td><td class="neutral">⚠ 价格仍在底部</td></tr>
+  <tr><td>传感器</td><td>3.89</td><td>4.23%</td><td><strong>-13.15%</strong></td><td>19.57%</td><td class="bad">❌ 下滑</td></tr>
+  <tr><td>模拟产品</td><td>3.33</td><td>3.62%</td><td><strong>+2,052%</strong></td><td>36.96%</td><td class="good">✅ 收购放量</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>存储芯片（营收占比71.34%）是绝对核心——NOR Flash全球第2份额18.5%+SLC NAND中国第1+利基DRAM通过长鑫合作加速放量。2025H2存储涨价周期启动，2026Q1毛利率已跳升至57.08%，主要来自DRAM贡献。MCU（占比20.75%）全球第8/中国第1，69个系列超700款产品，出货量创新高但价格仍处周期底部，有望在2026H2跟随存储复苏。传感器同比下降（14%），模拟产品因收购苏州赛芯同比暴增2052%。<br><br>
+  <strong>最大看点：</strong>长鑫科技合作——2026年关联交易额度57.11亿（2025年仅11.82亿），DRAM业务从"试水"到"放量"。DDR4 8Gb/GDDR等新产品已在2025H2开始贡献。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="bad">🔴 较高</td><td>PE 125x（2026E）远超合理估值</td><td>L3 估值</td></tr>
+  <tr><td class="bad">🔴 较高</td><td>存储周期强beta——价格回落=业绩估值双杀</td><td>L5 行业分析</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>存货30.66亿同比+30.67%，需关注跌价风险</td><td>L1 资产负债表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>MCU毛利率35.82%同比下降0.92pct，底部尚未确认</td><td>L2 分业务分析</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>传感器业务-13%下滑，拖累整体增速</td><td>L2 分业务分析</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>单日成交431亿A股第一，筹码拥挤波动剧烈</td><td>L3 市场数据</td></tr>
+  <tr><td class="good">🟢 正面</td><td>净现金89.86亿，零流动性风险</td><td>L1 资产负债表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>存储芯片全球竞争格局改善（海外大厂退出）</td><td>L2 行业分析</td></tr>
+  <tr><td class="good">🟢 正面</td><td>2026Q1毛利率57.08%跳升，盈利质量质变</td><td>L1 利润表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>DRAM放量确定性高（长鑫关联交易57亿）</td><td>L2 业务分析</td></tr>
+</table>
+
+<div class="verdict verdict-ok">✅ L2综合判定：基本面健康（高增长+净现金+毛利率改善），存储周期上行+DRAM放量是核心驱动</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>股价（2026.6.29）</td><td><strong>840.00 元</strong></td><td>盘中创历史新高846.66元</td></tr>
+  <tr><td>总市值</td><td><strong>~5,895 亿</strong></td><td>A股+港股总市值</td></tr>
+  <tr><td>PE（TTM，含2026Q1）</td><td><strong>~205x</strong></td><td>基于TTM净利~28.74亿</td></tr>
+  <tr><td>PE（FY2025）</td><td><strong>~357x</strong></td><td>基于FY2025净利16.48亿</td></tr>
+  <tr><td>PE（2026E一致预期）</td><td><strong>~125x</strong></td><td>基于一致预期EPS 6.70元</td></tr>
+  <tr><td>PE（2027E一致预期）</td><td><strong>~101x</strong></td><td>基于一致预期EPS 8.28元</td></tr>
+  <tr><td>PB</td><td><strong>~23.8x</strong></td><td>基于每股净资产~35.3元</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~64x</strong></td><td>市销率</td></tr>
+  <tr><td>股息率</td><td><strong>~0.09%</strong></td><td>基于每股分红0.75元</td></tr>
+</table>
+
+<h3>4.2 PE Band估值区间</h3>
+<p style="font-size:13px;color:#666;">ROE 9.30%（FY2025）→ 合理PE < 10x | 但2026E存储周期+DRAM放量将大幅推高ROE | 2026E一致预期EPS ≈ 6.70元</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs现价840元</th></tr>
+  <tr><td>极端保守（周期底部）</td><td>20x</td><td>134 元</td><td class="bad">-84%</td></tr>
+  <tr><td>历史中位（牛熊均值）</td><td>50x</td><td>335 元</td><td class="bad">-60%</td></tr>
+  <tr><td>券商乐观目标（国盛）</td><td>77x</td><td>841 元</td><td class="good">持平</td></tr>
+  <tr><td>当前价</td><td>125x</td><td>840 元</td><td>—</td></tr>
+  <tr><td>历史80%分位</td><td>159x</td><td>1,066 元</td><td>+27%</td></tr>
+  <tr><td>历史最大值</td><td>303x</td><td>2,030 元</td><td>+142%</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>估值风险警示：</strong><br>
+  ① 当前PE（2026E）~125x，虽然存储周期上行+DRAM放量推高EPS预期，但估值仍处于极高水平；<br>
+  ② 用最乐观的EPS预测10.97元（国盛证券），PE仍达77x——仅与券商目标价基本持平；<br>
+  ③ 存储芯片是强周期行业——若DRAM价格在2027年回落，EPS预期将从6.70元大幅下调，届时PE将膨胀至更高（即"业绩降+估值降"双杀）；<br>
+  ④ FY2022行业低谷时PE曾降至20x，考虑到当前市值已近6000亿，周期底部对应的合理价值可能远低于现价。
+</div>
+
+<h3>4.3 历史PE区间（上市以来）</h3>
+<table>
+  <tr><th>指标</th><th>PE值</th></tr>
+  <tr><td>历史最大值</td><td>302.76（2024-07）</td></tr>
+  <tr><td>历史80%分位</td><td>159.21</td></tr>
+  <tr><td>历史中位数</td><td>116.17</td></tr>
+  <tr><td>历史20%分位</td><td>69.14</td></tr>
+  <tr><td>历史最小值</td><td>20.16（2022年周期底部）</td></tr>
+  <tr><td>当前PE（2026E）</td><td class="neutral" style="font-weight:bold">~125x（中位值附近）</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值总结：</strong>兆易创新是典型的"周期成长股估值困境"——好的时候极好（2026Q1毛利率57%、净利爆发），差的时候PE可以跌到20x。当前125x 2026E PE处于历史中位附近，但远超传统价值框架。核心矛盾：① 一致预期2026E净利46.54亿（+183%）已经非常乐观，如果DRAM放量不及预期，EPS预期将大幅下修；② 但反过来看，如果存储涨价+DRAM放量超预期，2026净利可能达到60-70亿，则当前PE可压缩至80-100x。这是一只"极高预期定价"的股票——不是在买当前价值，而是在买2027-2028年的DRAM放量+MCU复苏。对于风险承受能力强的成长投资者，当前的价格赌的是"存储超级周期"的持续性；对于价值投资者，安全边际严重不足。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2024</th><th>FY2025</th><th>2026Q1（年化估）</th><th>趋势</th></tr>
+  <tr><td>净利润率</td><td>14.99%</td><td><strong>17.91%</strong></td><td>~35%</td><td class="good">⬆ 大幅提升</td></tr>
+  <tr><td>资产周转率</td><td>0.38</td><td><strong>0.43</strong></td><td>~0.78</td><td class="good">⬆ 加速提升</td></tr>
+  <tr><td>权益乘数</td><td>1.15</td><td><strong>1.126</strong></td><td>~1.12</td><td class="neutral">➡ 极低且稳定</td></tr>
+  <tr><td><strong>ROE（加权）</strong></td><td><strong>6.94%</strong></td><td><strong>9.30%</strong></td><td><strong>~30%+</strong></td><td class="good">⬆ 拐点确立</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>5.70%</td><td><strong>7.70%</strong></td><td>~27%</td><td class="good">⬆ 经营质量质变</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>1.24pct</td><td><strong>1.60pct</strong></td><td>~3pct</td><td class="neutral">极低杠杆贡献</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：高利润+极低杠杆型</strong><br>
+  兆易创新以17.91-35%的高净利润率为核心驱动，权益乘数仅1.126（净现金状态），0.43的资产周转率偏低（Fabless公司资产以现金+存货为主）。去掉杠杆后的ROA仍有7.70%（2026Q1年化~27%），说明经营质量有质的飞跃。<br><br>
+  <strong>ROE提升的驱动力：</strong><br>
+  ① 净利润率从14.99%→17.91%（FY2025）→~35%（2026Q1）——这是ROE提升最核心的驱动。毛利率从40.22%→57.08%是最直接的推手（DRAM放量+存储涨价），费用率也被摊薄；<br>
+  ② 资产周转率从0.38→0.43（FY2025）→~0.78（2026Q1年化）——营收增速远超资产增速，轻资产模型优势凸显；<br>
+  ③ 权益乘数1.126几乎不变——ROE提升完全是经营改善驱动，不加一分钱杠杆，这才是真正"高质量增长"。
+</div>
+
+<h3>5.2 分业务杜邦贡献</h3>
+<table>
+  <tr><th>业务板块</th><th>毛利率</th><th>趋势</th><th>对ROE影响</th></tr>
+  <tr><td>存储芯片</td><td>42.84%</td><td class="good">⬆ +2.57pct提升+DRAM放量</td><td class="good">第一驱动力</td></tr>
+  <tr><td>微控制器（MCU）</td><td>35.82%</td><td class="neutral">⬇ -0.92pct（底部）</td><td class="neutral">拖累但占比20%</td></tr>
+  <tr><td>传感器</td><td>19.57%</td><td class="bad">⬇ -13.15%收入下滑</td><td class="bad">拉低整体利润率</td></tr>
+  <tr><td>模拟产品</td><td>36.96%</td><td class="good">⬆ +26.43pct改善</td><td class="good">增量贡献</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>核心结论：</strong><br>
+  ① ROE 9.30%（FY2025）偏低的原因是FY2025尚处于存储周期早期恢复阶段，净利润率17.91%虽已改善但绝对额还不够大；<br>
+  ② 2026Q1年化ROE已达30%+——驱动因子是净利润率翻倍（35%）和周转率提升（~0.78），这是最健康可持续的ROE提升模式；<br>
+  ③ 极低杠杆（1.126）意味着公司完全没有使用财务杠杆来美化ROE——ROE的增长是真实的经营成果；<br>
+  ④ 存货30.66亿（+30.67%）在杜邦中会拖累周转率，但如果存储涨价持续，存货本身会成为利润放大器（低价存货高价卖出）；<br>
+  ⑤ 展望2026-2027，若DRAM放量+MCU复苏双轮驱动，ROE有望稳定在20-30%区间，届时当前的估值压力将得到缓解。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与特征（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：兼有周期性和成长性——半导体（存储芯片+MCU）</strong><br>
+  <strong>判断依据：</strong>兆易创新属于纯正的半导体行业，兼有：<br>
+  <strong>① 强周期性：</strong>存储芯片（营收占比71%）是半导体中周期最强的品类——受供需关系、资本开支、库存周期三重影响。过去5年经历了FY2021历史高峰→FY2022-2023周期低谷→FY2024-2025周期回升的完整周期。FY2022行业低谷时PE跌至20x，FY2024高点PE达303x。<br>
+  <strong>② 强成长性：</strong>长期受国产替代（NOR Flash/DRAM/MCU三大领域国产化率提升）+AI端侧需求（AI手机/PC/AIoT对存储和MCU的需求爆发）+海外大厂退出（存储IDM退出2D NAND/利基DRAM）三重驱动。<br><br>
+  <strong>分类定位：</strong>周期性为主导（核心收入来源存储芯片价格/供需周期波动大），成长性为长趋势（国产替代+AI驱动渗透率提升）。判断为"强周期+强成长"的混合型——即"涨的时候既受益于周期涨价又受益于国产替代量增"，跌的时候"价格下跌但量不一定跌"。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th></tr>
+  <tr><td>行业集中度</td><td><strong>细分市场高度集中</strong>——NOR Flash全球CR3>70%（华邦/旺宏/兆易），兆易份额18.5%全球第2；MCU市场极度分散（全球CR5~50%，兆易份额1.2%排第8），但国产MCU龙头地位稳固（国内第1）。</td></tr>
+  <tr><td>技术壁垒</td><td><strong>极高</strong>——NOR Flash 45nm量产能力全球领先；SLC NAND自研制程；DRAM与长鑫深度绑定；MCU 69个系列700+款产品覆盖Arm/RISC-V双架构。Fabless模式的核心壁垒在"设计能力+生态建设"。</td></tr>
+  <tr><td>客户壁垒</td><td><strong>中等</strong>——存储芯片客户覆盖华为、中兴、小米等，认证周期长（消费类6-12月，工业类12-24月），替换成本高但不如软件平台型公司强。</td></tr>
+  <tr><td>生态壁垒（MCU）</td><td><strong>强</strong>——MCU的竞争本质是生态竞争（开发工具、社区、软件兼容性）。兆易MCU兼容ST（意法半导体）生态，降低客户转换成本，但同时也面临ST生态的竞争。</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  <strong>阶段：成长期（存储芯片）+ 成长期早期（DRAM/模拟）</strong><br>
+  NOR Flash和SLC NAND已进入稳定成长期（全球市场份额持续提升）。利基DRAM正处于"从0到1"的爆发期——通过长鑫科技合作快速切入千亿级DRAM市场，2026E关联交易57.11亿意味着DRAM将成为第二增长曲线。MCU处于国产替代的成长期早期——全球份额仅1.2%但中国第1，受益于"中国MCU市场1000亿+国产化率提升"的长期趋势。<br><br>
+  <strong>投资策略重点：</strong>关注存储周期位置（DRAM价格趋势）、MCU毛利率触底反弹信号、长鑫合作DRAM放量节奏、AI端侧需求对NOR Flash的拉动。
+</div>
+
+<h3>6.4 当前周期位置</h3>
+<div class="highlight-box">
+  <strong>周期位置：上行初中期——存储涨价+DRAM放量双重共振</strong><br>
+  存储芯片自FY2024下半年起进入上行周期，FY2025全年毛利率40.22%（+2.22pct）已确认复苏。2026Q1毛利率跳升至57.08%，叠加DRAM放量（关联交易从11.82亿→57.11亿），正处于"周期上行×增量放量"的双击阶段。通常存储上行周期持续6-8个季度，当前处于第3-4季度，如果AI需求驱动超预期，周期可能延长至8-10季度。但需密切关注存储价格走势——若下游需求不及预期或供给端大量复产，周期拐点可能提前。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>周期成长（半导体）</td><td>PB（周期底部） + PE（上行期）</td><td>毛利率趋势、存货天数、DRAM现货价格</td><td class="neutral">⚠ 当前PE 125x处于上行期合理估值区间上限</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值方法总结：</strong>对于兆易创新这样的周期成长股，不能用单一估值方法。在周期底部（如FY2022 PE 20x/PB 3-4x）用PB估值（安全边际角度）或正常化PE（周期平均利润）；在上行周期（当前）用PE+跟踪价格趋势。2026E PE 125x从历史上看处于中位水平（历史中位116x），但绝对估值仍然很高。关键决胜点是：存储上行周期还能走多久（决定了2026-2027E EPS能否达到甚至超过一致预期）。如果存储超级周期成立（AI驱动），2027E PE可降至~80x，估值压力将大幅缓解；如果周期在2026H2见顶，EPS不及预期+PE收缩=双杀。PB 23.8x说明市场已为极高的ROE（30%+）定价——完全不是"便宜"的股票，而是"如果一切按计划走就合理，稍有差池就贵"的状态。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>混合周期型（半导体存储），强周期+强成长，技术壁垒极高，兆易NOR Flash全球第2。<br>
+  <strong>Step 2 - 财务体检：</strong>FY2025 ROE 9.3%偏低但2026Q1年化已超30%，高利润+极低杠杆型杜邦，CFO/净利1.29。<br>
+  <strong>Step 3 - 估值判断：</strong>2026E PE~125x处于历史中位，存储周期上行+DRAM放量支撑，但安全边际不足。<br>
+  <strong>Step 4 - 风险排查：</strong>PE极高、存储强周期（FY2022 PE曾跌至20x）、存货30.66亿+31%、筹码拥挤度极高。<br>
+  <strong>Step 5 - 结论：</strong>好公司（净现金89.86亿+毛利率57%跳升+DRAM放量），但价格极贵——赌的是存储超级周期。<br>
+  <strong>Step 6 - 跟踪：</strong>看DRAM价格趋势、长鑫关联交易执行进度、MCU毛利率触底反弹信号。
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>半导体国产替代+AI端侧需求，存储芯片长期空间大，但周期性波动强</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓</td><td>FY2025 ROE 9.3%偏低但2026Q1年化>30%，毛利率40%-57%大幅改善，净现金89.86亿</td></tr>
+  <tr><td>③ 好价格</td><td class="bad">✗</td><td>2026E PE~125x远超合理区间，PEG>1.0，周期底部PE曾仅20x</td></tr>
+</table>
+
+<h3>7.3 三个陷阱排查</h3>
+<div class="danger-box">
+  <strong>☐ 价值陷阱：</strong>❌ 未命中——低PE不适用（当前PE极高）。<br>
+  <strong>☐ 周期陷阱：</strong>🔴 高度命中——存储芯片强周期行业，当前处于上行中期，一旦价格回落PE将从125x飙升，业绩估值双杀。<br>
+  <strong>☐ 烧钱陷阱：</strong>❌ 未命中——CFO 21.29亿>净利16.48亿，净现金89.86亿，不烧钱。
+</div>
+
+<h3>7.4 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——设计存储芯片（NOR Flash/DRAM）卖给手机/汽车/IoT厂商——赚周期反转的钱。存储芯片价格涨的时候利润弹性极大。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——存储周期能持续多久？DRAM放量能否如期兑现？PE 125x已经把周期反转定价了多少？<br>
+  3. 如果现在买入，期待的回报来源是什么？——赌存储周期上行 + DRAM新业务放量。如果利润从FY2025的~4亿增长到FY2028的30亿+，即使PE回落到30x，仍有较大空间。<br>
+  4. 什么情况下你会坚决卖出？——存储价格见顶回落 / DRAM量产进度不及预期 / 营收增速明显放缓 / 毛利率从50%+高位回落。
+</div>
+
+</div></div>
+
+<div class="footer">
+   免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+   数据来源：兆易创新FY2025年报、2026Q1季报、券商研报、理杏仁、同花顺
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

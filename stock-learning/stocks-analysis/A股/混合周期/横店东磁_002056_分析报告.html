@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>横店东磁(002056) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>横店东磁（002056）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）框架</p>
+<p class="meta">分析日期：2026年6月 | 数据来源：FY2025 年报 + 2026Q1 季报</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>横店集团东磁股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>002056.SZ</td></tr>
+  <tr><td>所属行业</td><td>磁材+新能源（光伏组件+磁性材料+锂电池+器件）</td></tr>
+  <tr><td>行业地位</td><td>全球磁性材料龙头</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>225.86 亿（+21.70%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>18.51 亿（+1.34%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>32.58 亿（-7.50%）</strong></td></tr>
+  <tr><td>总资产</td><td>274.27 亿</td></tr>
+  <tr><td>归母净资产</td><td>106.28 亿</td></tr>
+  <tr><td>ROE</td><td>17.42%</td></tr>
+</table>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">综合L1-L5所有因素（财务健康度、关键指标、估值、杜邦驱动质量、行业分类），对各维度打分求和</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">17.42% ≥ 15%</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="neutral" style="font-weight:bold;font-size:15px">3</td><td style="text-align:left">均衡驱动型——净利率8.2%低+周转0.82中+杠杆2.58高</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">1.76 ≥ 1.0</td></tr>
+  <tr><td>营收增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+21.70% ≥ 10%</td></tr>
+  <tr><td>利润增长（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">+1.34%，处于0%-5%区间</td></tr>
+  <tr><td>负债率（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">~61%，处于55%-70%区间</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">货币资金92.86亿 >> 短期借款16.10亿</td></tr>
+  <tr><td>毛利率（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">17.8%但同比下降2pct，≥10%水平</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">PE ~17x，处于ROE对应合理区间15-25x内</td></tr>
+  <tr><td>自由现金流（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">FCF ~18.68亿，持续为正</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">80/100</td><td style="text-align:left">品质优秀（80/100分）</td></tr>
+</table>
+
+<div class="verdict verdict-ok">品质优秀（80/100分）</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>横店东磁是全球磁性材料龙头，同时布局光伏组件和锂电池，"磁材+新能源"双轮驱动。FY2025营收增长21.7%表现亮眼，但归母净利润仅增长1.34%，呈"增收不增利"特征。ROE 17.42%处于优秀水平，但毛利率从19.8%下滑至17.8%，净利率仅8.2%，Q4利润骤降55.72%需高度警惕。<br><br>
+  <strong>核心优势：</strong>① 全球磁性材料龙头地位稳固（毛利率28.14%且同比提升）；② ROE 17.42%优秀，股东回报水平高；③ 现金流充沛（CFO 32.58亿，CFO/净利润1.76）；④ 货币资金92.86亿，短期偿债无忧。<br><br>
+  <strong>核心风险：</strong>① 增收不增利——营收+21.7%但净利仅+1.34%，毛利率下滑2pct；② Q4净利润同比-55.72%、扣非-62.48%，恶化显著；③ 存货58.70亿规模较大，减值风险不可忽视；④ 光伏业务毛利率15.25%且持续下滑，美国双反调查构成外部不确定性。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>225.86 亿</td><td>185.60 亿</td><td>+21.70%</td><td class="good">✅ 高增长</td></tr>
+  <tr><td>归母净利润</td><td><strong>18.51 亿</strong></td><td>18.27 亿</td><td><strong>+1.34%</strong></td><td class="neutral">⚠ 几乎停滞</td></tr>
+  <tr><td>扣非净利润</td><td><strong>17.61 亿</strong></td><td>16.72 亿</td><td><strong>+5.34%</strong></td><td class="neutral">⚠ 微增</td></tr>
+  <tr><td>毛利率</td><td><strong>17.80%</strong></td><td>19.80%</td><td>-2.00pct</td><td class="bad">❌ 明显下降</td></tr>
+  <tr><td>归母净利率</td><td><strong>8.20%</strong></td><td>9.84%</td><td>-1.64pct</td><td class="neutral">适中</td></tr>
+  <tr><td>期间费用率</td><td><strong>~5.1%</strong></td><td>—</td><td>—</td><td class="good">✅ 费用控制好</td></tr>
+  <tr><td>Q4 营收</td><td>50.25 亿</td><td>49.77 亿</td><td>+0.96%</td><td class="neutral">⚠ 几乎持平</td></tr>
+  <tr><td>Q4 净利润</td><td><strong>3.99 亿</strong></td><td>9.01 亿</td><td><strong>-55.72%</strong></td><td class="bad">❌ 骤降</td></tr>
+  <tr><td>Q4 扣非</td><td><strong>2.95 亿</strong></td><td>7.86 亿</td><td><strong>-62.48%</strong></td><td class="bad">❌ 大幅恶化</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>营收增长21.7%表现强劲，但净利仅增长1.34%，扣非增长5.34%，典型"增收不增利"。毛利率从19.8%降至17.8%（-2pct），净利率从9.84%降至8.2%。Q4单季净利润3.99亿同比-55.72%，扣非-62.48%，恶化严重。费用率仅5.1%控制良好，利润下滑主因是毛利率压缩和可能的资产减值。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td><strong>92.86 亿</strong></td><td class="good">✅ 非常充裕</td></tr>
+  <tr><td>存货</td><td><strong>58.70 亿</strong></td><td class="neutral">规模较大，关注减值</td></tr>
+  <tr><td>短期借款</td><td><strong>16.10 亿</strong></td><td class="good">✅ 远低于货币资金</td></tr>
+  <tr><td>长期借款</td><td><strong>0.01 亿</strong></td><td class="good">✅ 几乎无长期有息债</td></tr>
+  <tr><td>资产负债率</td><td><strong>~61%</strong></td><td class="neutral">⚠ 偏高</td></tr>
+  <tr><td>归母净资产</td><td>106.28 亿</td><td class="good">✅ 同比+12.5%</td></tr>
+  <tr><td>总资产</td><td>274.27 亿</td><td class="good">✅ 同比+15.7%</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>横店东磁负债率~61%偏高，但结构健康——货币资金92.86亿远覆盖短期借款16.10亿（长期借款几乎为零），短期流动性极其充裕。存货58.70亿占资产21.4%偏高，需关注光伏产业链价格波动导致的减值风险。无长期有息负债的资本结构在制造业中极为罕见，财务安全性高。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>32.58 亿</strong></td><td>35.22 亿</td><td class="neutral">⚠ 同比-7.50%</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><strong>-33.78 亿</strong></td><td>—</td><td class="neutral">⚠ 大额资本开支</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td><strong>-9.39 亿</strong></td><td>—</td><td class="good">✅ 偿还债务</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>1.76</strong></td><td>1.93</td><td class="good">✅ 现金质量优秀</td></tr>
+  <tr><td>自由现金流（FCF）</td><td><strong>~18.68 亿</strong></td><td>—</td><td class="good">✅ 正向</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>CFO 32.58亿虽同比微降7.5%，但绝对额仍非常优秀。CFO/净利润1.76倍，盈利现金含量极高。CFI -33.78亿显示公司仍在积极扩产投资。FCF约18.68亿为正值，说明经营现金流足以覆盖资本开支。CFF -9.39亿表明公司偿还了部分债务，财务策略偏保守。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>17.42%</strong></td><td>> 15% 优秀 / > 10% 及格</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>毛利率</td><td><strong>17.80%</strong></td><td>稳定或提升</td><td class="bad">❌ 下滑2pct</td></tr>
+  <tr><td>净利率</td><td><strong>8.20%</strong></td><td>> 10%</td><td class="neutral">⚠ 偏低</td></tr>
+  <tr><td>营收增长率</td><td><strong>+21.70%</strong></td><td>> 10%</td><td class="good">✅ 高增长</td></tr>
+  <tr><td>扣非增长率</td><td><strong>+5.34%</strong></td><td>正增长</td><td class="neutral">⚠ 增速远低于营收</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>1.76</strong></td><td>> 1</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>资产负债率</td><td><strong>~61%</strong></td><td>制造业<60%</td><td class="neutral">⚠ 略高</td></tr>
+  <tr><td>分红率</td><td><strong>55-60%</strong></td><td>> 30%</td><td class="good">✅ 慷慨</td></tr>
+</table>
+
+<h3>3.2 分业务分析（2025年度）</h3>
+<table>
+  <tr><th>业务板块</th><th>营收（亿）</th><th>占比</th><th>毛利率</th><th>毛利率变化</th><th>评价</th></tr>
+  <tr><td>光伏组件</td><td>—</td><td>最大</td><td><strong>15.25%</strong></td><td>-3.49pct</td><td class="bad">❌ 下滑严重</td></tr>
+  <tr><td>磁性材料</td><td>—</td><td>核心</td><td><strong>28.14%</strong></td><td>+0.82pct</td><td class="good">✅ 稳中有升</td></tr>
+  <tr><td>锂电池</td><td>—</td><td>成长</td><td><strong>15.38%</strong></td><td>+2.72pct</td><td class="good">✅ 改善明显</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>磁性材料（毛利率28.14%+0.82pct）是公司基本盘，全球龙头地位稳固；锂电池毛利率15.38%（+2.72pct）改善趋势良好；光伏组件毛利率仅15.25%且持续下滑（-3.49pct），拖累整体盈利能力。整体毛利率下降主因是低毛利的光伏业务占比提升和光伏组件本身盈利恶化。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="neutral">🟡 中等</td><td>增收不增利——营收+21.7%但净利仅+1.34%</td><td>L2 盈利指标</td></tr>
+  <tr><td class="bad">🔴 较高</td><td>Q4净利润-55.72%、扣非-62.48%，恶化趋势严重</td><td>L1 利润表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>存货58.70亿占总资产21.4%，减值风险不可忽视</td><td>L1 资产负债表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>美国双反调查构成外部政策不确定性</td><td>L2 外部风险</td></tr>
+  <tr><td class="good">🟢 正面</td><td>ROE 17.42%优秀，股东回报水平高</td><td>L2 盈利指标</td></tr>
+  <tr><td class="good">🟢 正面</td><td>磁性材料毛利率28.14%持续提升，龙头地位稳固</td><td>L2 分业务分析</td></tr>
+  <tr><td class="good">🟢 正面</td><td>货币资金92.86亿远覆盖短期债务，财务安全</td><td>L1 资产负债表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>CFO/净利润1.76，现金流质量优秀</td><td>L1 现金流量表</td></tr>
+</table>
+
+<div class="verdict verdict-ok">✓ L2综合判定：优秀（ROE 17.42%，但需关注盈利质量下滑）</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>总市值</td><td><strong>~320 亿（估）</strong></td><td>A股磁材+新能源板块</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>~17.3x</strong></td><td>基于2025 EPS ~1.72元</td></tr>
+  <tr><td>PB</td><td><strong>~3.0x</strong></td><td>基于每股净资产~9.88元</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~1.4x</strong></td><td>市销率适中</td></tr>
+  <tr><td>股息率</td><td><strong>~3.2%</strong></td><td>基于55-60%分红率</td></tr>
+</table>
+
+<h3>4.2 PE Band估值区间</h3>
+<p style="font-size:13px;color:#666;">ROE 17.42% → 合理PE参考区间：15-25x | 2026E一致预期EPS ≈ 2.00元（估）</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>市值（亿）</th></tr>
+  <tr><td>保守</td><td>10x</td><td>20.0 元</td><td>~215</td></tr>
+  <tr><td>合理保守</td><td>15x</td><td>30.0 元</td><td>~323</td></tr>
+  <tr><td>中性</td><td>20x</td><td>40.0 元</td><td>~430</td></tr>
+  <tr><td>乐观</td><td>25x</td><td>50.0 元</td><td>~538</td></tr>
+  <tr><td>历史高位</td><td>30x</td><td>60.0 元</td><td>~645</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值总结：</strong>以ROE 17.42%对应的合理PE 15-25x匡算，当前PE ~17x处于合理偏低区间。公司拥有全球磁性材料龙头地位、优秀现金流、高分红率（55-60%）等正确定价因子。但需警惕Q4利润骤降趋势延续、光伏业务持续恶化对整体盈利的拖累。若2026年盈利改善，当前估值具备一定安全边际；若Q4恶化成为常态，则存在估值下修风险。
+</div>
+
+<h3>4.3 历史PE区间（参考）</h3>
+<table>
+  <tr><th>指标</th><th>数值</th></tr>
+  <tr><td>PE（TTM）历史高位</td><td>~35x</td></tr>
+  <tr><td>PE（TTM）历史中枢</td><td>~20x</td></tr>
+  <tr><td>PE（TTM）历史低位</td><td>~10x</td></tr>
+  <tr><td>当前PE（TTM）</td><td>~17x（处于中枢偏下）</td></tr>
+</table>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>净利润率</td><td>9.84%</td><td><strong>8.20%</strong></td><td class="bad">⬇ 下降1.64pct</td></tr>
+  <tr><td>资产周转率</td><td>0.78</td><td><strong>0.82</strong></td><td class="good">⬆ 提升5%</td></tr>
+  <tr><td>权益乘数</td><td>2.51</td><td><strong>2.58</strong></td><td class="neutral">⬆ 杠杆略升</td></tr>
+  <tr><td><strong>ROE</strong></td><td><strong>~19.3%</strong></td><td><strong>17.4%</strong></td><td class="bad">⬇ 下降1.9pct</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>7.7%</td><td><strong>6.7%</strong></td><td class="bad">⬇ 下降1.0pct</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>11.6pct</td><td><strong>10.7pct</strong></td><td class="neutral">⬇ 下降0.9pct</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：均衡驱动型（偏杠杆）</strong><br>
+  横店东磁不属于典型的三种模式之一——净利润率8.2%偏低，周转率0.82中等，权益乘数2.58偏高。ROE 17.4%中，去掉杠杆后的基础回报（ROA）仅6.7%，杠杆贡献了10.7个百分点。公司本质上是"中等运营效率 + 较高杠杆"的组合。<br><br>
+  <strong>值得注意的变化：</strong>净利润率从9.84%降至8.20%（-1.64pct）是ROE下降的主因，而周转率反而从0.78提升至0.82，说明资产运营效率在改善。去杠杆ROA从7.7%降至6.7%，说明剔除杠杆后真实回报在下降。
+</div>
+
+<h3>5.2 分业务杜邦贡献</h3>
+<table>
+  <tr><th>业务板块</th><th>毛利率</th><th>趋势</th><th>对ROE影响</th></tr>
+  <tr><td>磁性材料（基本盘）</td><td>28.14%</td><td class="good">⬆ +0.82pct</td><td class="good">正向贡献</td></tr>
+  <tr><td>光伏组件（最大板块）</td><td>15.25%</td><td class="bad">⬇ -3.49pct</td><td class="bad">核心拖累</td></tr>
+  <tr><td>锂电池（成长业务）</td><td>15.38%</td><td class="good">⬆ +2.72pct</td><td class="good">正向改善</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>核心结论：</strong><br>
+  ① ROE从~19%降至17.4%，主因净利润率下降（增收不增利），而非运营效率恶化；<br>
+  ② 资产周转率提升（0.78→0.82）说明新投产能正在产生效益，是积极信号；<br>
+  ③ 权益乘数2.58（负债率~61%）偏高但短期偿债无虞（现金92.86亿>>短借16亿）；<br>
+  ④ 去掉杠杆后ROA仅6.7%，说明公司的"真实回报"并不高，ROE的光鲜很大程度上靠杠杆放大；<br>
+  ⑤ 改善关键：提升净利率（尤其光伏业务的盈利修复）或降低杠杆。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类（L5框架）</h2>
+
+<div class="summary-box">
+  <strong>行业类型判断：混合周期型（成长+周期）</strong><br>
+  横店东磁横跨两大行业：磁性材料（消费电子/新能源车配套，稳定增长）和光伏（有长期能源转型需求，但产能严重过剩，周期波动剧烈）。整体上属于混合周期——有长期成长逻辑（磁材+新能源双轮驱动），但阶段性受光伏供需周期压制。<br><br>
+  <strong>两维定位：</strong>光伏业务 = 成长→周期过渡中（产能过剩驱动周期化）；磁性材料 = 防御+成熟（全球龙头，需求稳定）。公司整体呈"分裂"特征——不同业务处在不同象限。
+</div>
+
+<h3>6.1 行业集中度与壁垒</h3>
+<table>
+  <tr><th>业务</th><th>集中度</th><th>壁垒类型</th><th>壁垒强度</th></tr>
+  <tr><td>磁性材料</td><td>全球高度集中（横店东磁全球龙头）</td><td>规模+技术壁垒</td><td class="good">强——近50年积累，全球客户认证周期长</td></tr>
+  <tr><td>光伏组件</td><td>极度分散（CR5<30%）</td><td>规模壁垒（资本开支大）</td><td class="neutral">弱——同质化竞争，价格战激烈</td></tr>
+  <tr><td>锂电池（小动力）</td><td>中度集中</td><td>技术+渠道壁垒</td><td class="neutral">中等——改善趋势明显</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>壁垒的财务验证：</strong><br>
+  ✅ 磁性材料毛利率28.14%且同比+0.82pct，ROE 17.42%，CFO/净利润1.76 → 数据确认壁垒真实存在<br>
+  ❌ 光伏组件毛利率15.25%且同比-3.49pct → 无壁垒，纯粹的成本+规模竞争<br>
+  ✅ 整体CFO/净利润>1，ROE>15%，现金充裕 → 公司整体财务质量过硬，但光伏业务没有壁垒拖累了整体盈利
+</div>
+
+<h3>6.2 生命周期阶段</h3>
+<table>
+  <tr><th>业务</th><th>阶段</th><th>判断依据</th></tr>
+  <tr><td>磁性材料</td><td>成熟期</td><td>全球格局稳定，龙头地位明确，营收稳健增长</td></tr>
+  <tr><td>光伏组件</td><td>成长期→成熟期过渡</td><td>全球需求仍在增长，但产能严重过剩，行业洗牌中</td></tr>
+  <tr><td>锂电池（小动力）</td><td>成长期</td><td>毛利率+2.72pct改善明显，仍在爬坡</td></tr>
+</table>
+
+<h3>6.3 当前周期位置</h3>
+<div class="danger-box">
+  <strong>光伏处于周期底部区域：</strong>全球光伏组件产能严重过剩，组件价格持续下跌，行业普遍亏损或微利。横店东磁光伏毛利率仅15.25%且仍在下降，反映行业竞争激烈。美国双反调查进一步增加了不确定性。但能在这个阶段仍维持正利润和正现金流，说明公司成本控制相对优秀。<br><br>
+  <strong>磁性材料处于稳定期：</strong>不受光伏周期影响，需求来自新能源车、消费电子等，毛利率稳定在28%+，是公司的利润稳定器。
+</div>
+
+<h3>6.4 估值方法匹配</h3>
+<table>
+  <tr><th>业务</th><th>适用估值</th><th>当前对应值</th><th>评价</th></tr>
+  <tr><td>整体公司</td><td>PE（兼有消费+制造属性）</td><td>~17x</td><td class="good">合理偏低</td></tr>
+  <tr><td>光伏业务（拖累项）</td><td>PB（周期底部看资产）</td><td>整体PB ~3.0x</td><td class="neutral">偏高（含磁材溢价）</td></tr>
+  <tr><td>磁性材料（优质资产）</td><td>PE（稳定盈利）</td><td>若单独估值可给20-25x</td><td class="good">被光伏拖累估值</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>综合结论：</strong>横店东磁是一个"优质磁材龙头 + 光伏周期拖累"的组合体。磁材业务（毛利率28%+稳定）是真正的价值所在，而光伏业务是目前业绩的最大拖累。当前PE 17x处于合理偏低区间，但估值受光伏业务压制——如果光伏业务见底回升，估值有修复空间；如果继续恶化，则可能进一步拖累整体业绩。<br><br>
+  <strong>核心跟踪指标：</strong>光伏毛利率何时企稳、Q4利润下滑是否延续、磁性材料毛利率能否维持28%+
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<div class="summary-box">
+  <strong>六步法总结</strong><br><br>
+  <strong>Step 1 - 行业定位：</strong>混合周期型。磁材（防御+成熟，全球龙头）+ 光伏（成长→周期过渡，产能过剩）。磁材壁垒强（毛利率28%+稳定），光伏无壁垒。<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 17.42%（优秀），均衡驱动型（偏杠杆，权益乘数2.58），CFO/净利1.76（现金质量好）。但增收不增利，净利率8.2%偏低。<br>
+  <strong>Step 3 - 估值判断：</strong>PE ~17x，处于历史中枢偏下。ROE对应合理区间15-25x，当前估值合理偏低。<br>
+  <strong>Step 4 - 风险排查：</strong>Q4净利-55.72%恶化严重，存货58.70亿减值风险，光伏业务持续拖累，美国双反调查。<br>
+  <strong>Step 5 - 结论：</strong>优质磁材龙头+光伏周期拖累的混合体。公司本身质地优秀（80/100），但当前盈利受光伏压制。如果看好光伏见底+磁材稳增，当前估值有安全边际。<br>
+  <strong>Step 6 - 跟踪：</strong>光伏毛利率何时企稳、Q4利润下滑是否延续、磁材毛利率能否维持28%+。
+</div>
+
+<h3>好公司三要素检查</h3>
+<table>
+  <tr><th style="width:25%">要素</th><th>检查结果</th></tr>
+  <tr><td>① 好行业——需求稳定or增长，壁垒高，格局好</td><td class="neutral">⚠ 一半一半——磁材行业好，光伏行业差</td></tr>
+  <tr><td>② 好公司——ROE>15%，毛利率稳定或提升，CFO>净利润</td><td class="good">✅ ROE 17.42% ✓, CFO/净利1.76 ✓, 但毛利率下滑2pct</td></tr>
+  <tr><td>③ 好价格——PE/PB历史偏低分位，PEG<1.5</td><td class="good">✅ PE 17x处于中枢偏下，PEG ≈ 0.8</td></tr>
+</table>
+
+<h3>三个陷阱排查</h3>
+<div class="highlight-box">
+  ✅ 未命中价值陷阱——低PE+低增长+高负债：PE 17x合理，营收增长21.7%不低<br>
+  ⚠ 需警惕周期陷阱——低PE+周期顶点：PE 17x不是极低，光伏处于底部而非顶部，风险可控<br>
+  ✅ 未命中烧钱陷阱——CFO/净利1.76，FCF为正
+</div>
+
+<h3>讨论问题</h3>
+<div class="summary-box">
+  阅读报告后可以聊这些：<br><br>
+  1. 这笔生意你看懂了吗？一句话说清横店东磁怎么赚钱？——做磁性材料（全球龙头）+ 光伏组件 + 锂电池——磁材稳定赚利润（毛利率28%），光伏和锂电是增长业务。问题是光伏拖累了整体利润，等光伏见底后磁材+锂电双轮驱动。<br>
+  2. 你最大的担忧是什么？Q4利润骤降还是光伏持续恶化？——Q4净利-55.72%是暂时性还是趋势性的？光伏业务毛利率15.25%且还在降，什么时候见底？<br>
+  3. 如果现在买入，你期待的回报来源是什么？光伏见底修复还是磁材稳定增长？——赌光伏组件业务见底修复 + 磁材稳定增长 + PE从17x修复到22x。如果光伏毛利率企稳，利润弹性会很大。<br>
+  4. 什么情况下你会坚决卖出？——Q4恶化成为常态 / 光伏毛利率跌破12% / 磁材毛利率跌破25% / CFO大幅下降。
+</div>
+
+</div></div>
+
+<div class="footer">
+   免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+   数据来源：横店东磁2025年年报、2026Q1季报、券商研报、理杏仁
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>宁德时代(300750) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>宁德时代（300750）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026年6月 | 数据来源：FY2025 年报 + 2026Q1 季报</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>宁德时代新能源科技股份有限公司（CATL）</td></tr>
+  <tr><td>股票代码</td><td>300750.SZ</td></tr>
+  <tr><td>所属行业</td><td>锂电池制造（动力电池+储能电池）</td></tr>
+  <tr><td>行业地位</td><td>动力电池全球第一（连续8年），储能全球第一（连续5年）</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>4,237 亿（+17.04%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>722 亿（+42.28%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>1,332 亿（+37.35%）</strong></td></tr>
+  <tr><td>总资产</td><td>9,748 亿</td></tr>
+  <tr><td>归母净资产</td><td>3,371 亿</td></tr>
+  <tr><td>ROE</td><td>24.91%</td></tr>
+</table>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">综合L1-L5所有因素（财务健康度、关键指标、估值、杜邦分析、行业分类），对各维度打分求和</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">24.91% ≥ 15%</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">高利润型为主——净利率17%高+周转0.43低+权益乘数2.89高</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">1.84 ≥ 1.0</td></tr>
+  <tr><td>营收增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+17.04% ≥ 10%</td></tr>
+  <tr><td>利润增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+42.28% ≥ 15%</td></tr>
+  <tr><td>负债率（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">65.4%，55%-70%区间</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">货币资金~1,900亿 >> 短期借款122亿</td></tr>
+  <tr><td>毛利率（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">24.5%稳定，≥15%水平</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">PE ~21x，合理区间20-30x内</td></tr>
+  <tr><td>自由现金流（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">FCF ~1,032亿，持续为正</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">90/100</td><td style="text-align:left">品质优秀（90/100分）</td></tr>
+</table>
+
+<div class="verdict verdict-ok">品质优秀（90/100分）</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>宁德时代是全球动力电池和储能电池双料冠军，连续8年动力电池全球第一、连续5年储能全球第一。FY2025营收4,237亿（+17%）稳中有进，归母净利润722亿（+42%），利润增速远超营收，规模效应显著。ROE 24.91%处于顶级水平，毛利率24.5%稳定，CFO 1,332亿极其充沛。2026Q1营收增速进一步加速至+52%，景气度持续上行。<br><br>
+  <strong>核心优势：</strong>① ROE 24.91%顶级，盈利能力卓越；② 全球动力电池市占率~37%，行业绝对龙头；③ CFO 1,332亿极其充沛，CFO/净利润1.84倍；④ 2026Q1营收+52%、净利+49%加速增长；⑤ 研发投入222亿（5.2%），技术壁垒持续加深。<br><br>
+  <strong>核心风险：</strong>① 资产负债率65.4%偏高，固定资产1,500亿+在建349亿资产偏重；② 预计负债942亿（质保计提）金额巨大，但非实际债务；③ H股上市带来~3.5%稀释效应；④ PE TTM ~21x处于历史低位，但绝对估值仍中等偏高。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>4,237 亿</td><td>3,620 亿</td><td>+17.04%</td><td class="good">✅ 稳健增长</td></tr>
+  <tr><td>归母净利润</td><td><strong>722 亿</strong></td><td>507 亿</td><td><strong>+42.28%</strong></td><td class="good">✅ 高速增长</td></tr>
+  <tr><td>扣非净利润</td><td><strong>645 亿</strong></td><td>450 亿</td><td><strong>+43.37%</strong></td><td class="good">✅ 高速增长</td></tr>
+  <tr><td>毛利率</td><td><strong>24.50%</strong></td><td>24.44%</td><td>+0.06pct</td><td class="good">✅ 稳定</td></tr>
+  <tr><td>归母净利率</td><td><strong>17.04%</strong></td><td>14.00%</td><td>+3.04pct</td><td class="good">✅ 大幅提升</td></tr>
+  <tr><td>研发费用</td><td><strong>222 亿</strong></td><td>—</td><td>占营收5.2%</td><td class="good">✅ 高研发投入</td></tr>
+  <tr><td>销售费用</td><td>116 亿</td><td>—</td><td>—</td><td class="neutral">费率2.7%</td></tr>
+  <tr><td>管理费用</td><td>260 亿</td><td>—</td><td>—</td><td class="neutral">费率6.1%</td></tr>
+  <tr><td>财务费用</td><td><strong>-65 亿</strong></td><td>—</td><td>负（利息收入）</td><td class="good">✅ 利息净收入</td></tr>
+  <tr><td>2026Q1 营收</td><td><strong>1,291 亿</strong></td><td>849 亿</td><td><strong>+52%</strong></td><td class="good">✅ 加速增长</td></tr>
+  <tr><td>2026Q1 净利</td><td><strong>207 亿</strong></td><td>139 亿</td><td><strong>+49%</strong></td><td class="good">✅ 加速增长</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>营收+17%稳健增长，归母净利+42%高速增长，利润增速显著高于营收，体现规模效应和经营杠杆。毛利率24.50%稳定，净利率从14%提升至17%（+3pct），盈利能力持续提升。2026Q1营收增速飙升至+52%，净利+49%，景气度加速上行。研发投入222亿（5.2%）为长期技术领先奠定基础。财务费用-65亿为利息净收入，现金管理能力出色。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td><strong>~1,900 亿</strong></td><td class="good">✅ 极其充裕</td></tr>
+  <tr><td>应收账款</td><td><strong>~850 亿</strong></td><td class="neutral">占营收20%，合理</td></tr>
+  <tr><td>存货</td><td><strong>~550 亿</strong></td><td class="neutral">占资产5.6%，适中</td></tr>
+  <tr><td>固定资产</td><td><strong>1,500 亿</strong></td><td class="neutral">重资产模式</td></tr>
+  <tr><td>在建工程</td><td><strong>349 亿</strong></td><td class="neutral">持续扩产</td></tr>
+  <tr><td>商誉</td><td><strong>8.3 亿</strong></td><td class="good">✅ 仅0.08%，极低</td></tr>
+  <tr><td>短期借款</td><td><strong>122 亿</strong></td><td class="good">✅ 占比极低</td></tr>
+  <tr><td>长期借款</td><td><strong>762 亿</strong></td><td class="neutral">有息负债主体</td></tr>
+  <tr><td>合同负债</td><td><strong>456 亿</strong></td><td class="good">✅ 客户预付款，显示需求</td></tr>
+  <tr><td>预计负债</td><td><strong>942 亿</strong></td><td class="neutral">质保计提，非债务</td></tr>
+  <tr><td>资产负债率</td><td><strong>65.4%</strong></td><td class="neutral">⚠ 偏高但有息占比低</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>资产负债率65.4%表面偏高，但结构健康——货币资金~1,900亿极其充裕，有息负债（短期122亿+长期762亿）合计884亿远低于货币资金，净现金状态。预计负债942亿为产品质量保证金计提，并非实际债务。合同负债456亿为下游客户预付款，反映订单需求旺盛。商誉仅8.3亿（0.08%），无大规模商誉减值风险。固定资产1,500亿+在建349亿表明公司处于重资产扩张期。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>1,332 亿</strong></td><td>970 亿</td><td class="good">✅ 极其充沛+37%</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><strong>~-300 亿</strong></td><td>—</td><td class="neutral">⚠ 资本开支较大</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>1.84</strong></td><td>1.91</td><td class="good">✅ 现金质量顶级</td></tr>
+  <tr><td>自由现金流（FCF）</td><td><strong>~1,032 亿</strong></td><td>—</td><td class="good">✅ 极其充裕</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>CFO 1,332亿同比+37%，绝对额和增速均极其优秀。CFO/净利润1.84倍，盈利现金含量顶级。FCF约1,032亿（CFO - CFI），即使扣除资本开支仍有超千亿自由现金流，造血能力极强。充沛的现金流使公司具备持续高分红（2025分红304亿，分红率50%）和再投资的能力。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>24.91%</strong></td><td>> 15% 优秀 / > 10% 及格</td><td class="good">✅ 顶级</td></tr>
+  <tr><td>毛利率</td><td><strong>24.50%</strong></td><td>稳定或提升</td><td class="good">✅ 稳定</td></tr>
+  <tr><td>净利率</td><td><strong>17.04%</strong></td><td>> 10%</td><td class="good">✅ 优秀且提升中</td></tr>
+  <tr><td>营收增长率</td><td><strong>+17.04%</strong></td><td>> 10%</td><td class="good">✅ 稳增</td></tr>
+  <tr><td>扣非增长率</td><td><strong>+43.37%</strong></td><td>正增长</td><td class="good">✅ 高速增长</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>1.84</strong></td><td>> 1</td><td class="good">✅ 顶级</td></tr>
+  <tr><td>资产负债率</td><td><strong>65.4%</strong></td><td>制造业<60%</td><td class="neutral">⚠ 略高但有息占比低</td></tr>
+  <tr><td>分红率</td><td><strong>50%</strong></td><td>> 30%</td><td class="good">✅ 慷慨</td></tr>
+</table>
+
+<h3>3.2 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="neutral">🟡 中等</td><td>资产负债率65.4%偏高，固定资产1,500亿资产偏重</td><td>L1 资产负债表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>预计负债942亿金额巨大（但为质保计提非实际债务）</td><td>L1 资产负债表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>H股上市带来约3.5%稀释效应</td><td>L2 股权结构</td></tr>
+  <tr><td class="good">🟢 正面</td><td>ROE 24.91%顶级，盈利能力卓越</td><td>L2 盈利指标</td></tr>
+  <tr><td class="good">🟢 正面</td><td>CFO 1,332亿极其充沛，FCF超千亿</td><td>L1 现金流量表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>净利率从14%提升至17%，盈利能力持续改善</td><td>L1 利润表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>2026Q1营收+52%加速增长，订单需求旺盛</td><td>L1 利润表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>商誉仅8.3亿（0.08%），无减值风险</td><td>L1 资产负债表</td></tr>
+</table>
+
+<div class="verdict verdict-ok">✓ L2综合判定：优秀（ROE 24.91%顶级，盈利能力和现金流均为顶级水平）</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>PE（TTM）</td><td><strong>~21x</strong></td><td>历史低位（最高曾168x）</td></tr>
+  <tr><td>PEG</td><td><strong>&lt; 0.5</strong></td><td>基于2026E增速</td></tr>
+  <tr><td>PB</td><td><strong>~4.5x</strong></td><td>基于每股净资产</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~3.6x</strong></td><td>市销率</td></tr>
+  <tr><td>股息率</td><td><strong>~2.4%</strong></td><td>基于50%分红率</td></tr>
+</table>
+
+<h3>4.2 PE Band估值区间</h3>
+<p style="font-size:13px;color:#666;">ROE 24.91% → 合理PE参考区间：20-30x | 2026E一致预期EPS ≈ 13元</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>市值（万亿）</th></tr>
+  <tr><td>保守</td><td>15x</td><td>195 元</td><td>~0.86</td></tr>
+  <tr><td>合理保守</td><td>20x</td><td>260 元</td><td>~1.14</td></tr>
+  <tr><td>中性</td><td>25x</td><td>325 元</td><td>~1.43</td></tr>
+  <tr><td>乐观</td><td>30x</td><td>390 元</td><td>~1.71</td></tr>
+  <tr><td>历史高位</td><td>60x</td><td>780 元</td><td>~3.43</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值总结：</strong>宁德时代当前PE ~21x处于历史最低区间（历史最高曾达168x），PEG &lt; 0.5极具性价比。以ROE 24.91%对应的合理PE 20-30x匡算，当前估值处于合理偏低水平。2026Q1营收增速+52%表明公司仍处高景气周期，净利率持续提升趋势有望延续。作为全球动力电池和储能双料龙头，技术壁垒深厚、现金流极其充沛、2026H2有望受益于欧洲电动化加速，当前估值具备吸引力。主要关注点为H股稀释和行业产能过剩格局下的价格竞争。
+</div>
+
+<h3>4.3 历史PE区间</h3>
+<table>
+  <tr><th>指标</th><th>数值</th></tr>
+  <tr><td>PE（TTM）历史最大值</td><td>168x</td></tr>
+  <tr><td>PE（TTM）历史中位数</td><td>~45x</td></tr>
+  <tr><td>PE（TTM）历史最小值</td><td>~15x</td></tr>
+  <tr><td>当前PE（TTM）</td><td>~21x（接近历史低位）</td></tr>
+  <tr><td>2026E PE（一致预期）</td><td>~18x</td></tr>
+</table>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>净利润率</td><td>14.00%</td><td><strong>17.04%</strong></td><td class="good">⬆ 提升3.04pct</td></tr>
+  <tr><td>资产周转率</td><td>0.37</td><td><strong>0.43</strong></td><td class="good">⬆ 提升16%</td></tr>
+  <tr><td>权益乘数</td><td>—</td><td><strong>2.89</strong></td><td class="neutral">较高（负债率65.4%）</td></tr>
+  <tr><td><strong>ROE</strong></td><td><strong>~19.7%</strong></td><td><strong>24.9%</strong></td><td class="good">⬆ 大幅提升</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>5.2%</td><td><strong>7.3%</strong></td><td class="good">⬆ 提升2.1pct</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>14.5pct</td><td><strong>17.6pct</strong></td><td class="neutral">杠杆放大效应显著</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：高利润偏杠杆型</strong><br>
+  宁德时代净利润率17.04%优秀（行业领先），但周转率0.43偏低（重资产），权益乘数2.89偏高。去掉杠杆后ROA 7.3%，杠杆贡献了17.6pct。公司本质上是"高利润率+高杠杆"的组合——利润率高靠技术和规模优势，杠杆高是因为持续扩产。好在货币资金极度充裕，偿债无忧。<br><br>
+  <strong>值得注意的变化：</strong>净利润率从14%升至17%，周转率从0.37升至0.43，去杠杆ROA从5.2%升至7.3%——三个指标全面改善，是"增利又增效"的健康增长。
+</div>
+
+<div class="summary-box">
+  <strong>核心结论：</strong><br>
+  ① ROE从~19.7%升至24.9%，净利率提升和周转率改善双轮驱动，质量高；<br>
+  ② 去掉杠杆后ROA从5.2%→7.3%，真实回报在提升，不是虚胖；<br>
+  ③ 杠杆2.89较高但货币资金远覆盖有息负债，短期风险可控；<br>
+  ④ 优秀ROE不依赖单一因子，三因子全面改善，趋势健康；<br>
+  ⑤ 关注点：资产偏重（固定资产1,500亿+在建349亿），若需求放缓可能导致周转率再次下降。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与特征（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：成长性行业（新能源电池-动力电池+储能）</strong><br>
+  <strong>判断依据：</strong>全球新能源汽车渗透率仍在提升（中国~40%，海外仍<20%），储能市场处于爆发初期（全球储能装机CAGR>50%）。宁德时代连续8年动力电池全球第一（市占率~37%），连续5年储能全球第一。行业核心增长驱动力：① 电动化趋势不可逆转（各国禁燃时间表）；② 储能需求爆发（风电光伏配套+电网调峰）；③ 电池成本持续下降刺激终端需求。<br><br>
+  <strong>成长属性：</strong>营收从FY2020~500亿增长到FY2025 4,237亿（5年8.5倍），ROE长期>20%，属于典型的"万亿赛道+龙头公司"组合。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th></tr>
+  <tr><td>行业集中度</td><td><strong>高度集中且持续提升</strong>——动力电池CR3（宁德+比亚迪+中创新航）>70%，宁德时代市占率~37%稳居第一。储能电池CR3>60%。行业正从"群雄逐鹿"进入"寡头竞争"阶段，中小厂商加速出清。</td></tr>
+  <tr><td>技术壁垒</td><td><strong>极高</strong>——宁德时代研发投入222亿（5.2%），钠离子电池、凝聚态电池、换电等前瞻技术储备深厚。专利数量行业领先，CTP/CTC等结构创新持续领先对手1-2年。</td></tr>
+  <tr><td>规模壁垒</td><td><strong>极强</strong>——全球最大电池制造商，产能规模效应带来成本优势（毛利率24.5%>行业平均）。对上游材料的议价能力极强，碳酸锂等原材料锁价能力强。</td></tr>
+  <tr><td>客户壁垒</td><td><strong>强</strong>——与宝马、奔驰、特斯拉、蔚来、理想等主流车企深度绑定，认证周期12-24个月，客户粘性高。麒麟电池等差异化产品增强不可替代性。</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  <strong>阶段：成长期中段</strong><br>
+  动力电池行业处于"渗透率从30%向60%迈进"的成长期中段。储能行业处于"渗透率从3%向20%迈进"的成长期早期。宁德时代作为双料龙头，同时受益于两个万亿级市场的增长。<br><br>
+  <strong>投资策略重点：</strong>关注全球电动化渗透率趋势、储能业务增速（目前占比~20%且高速增长）、新技术量产进度（钠电、固态电池）、海外市场拓展（欧洲/美国建厂进度）。
+</div>
+
+<h3>6.4 成长股成色检验（四步法）</h3>
+<table>
+  <tr><th>步骤</th><th>检验内容</th><th>数据</th><th>判定</th></tr>
+  <tr><td>① 营收</td><td>有没有实在的生意？</td><td>营收4,237亿+17.04%，绝对额和增速均为顶级</td><td class="good">✅ 过关</td></tr>
+  <tr><td>② 毛利率</td><td>产品竞争力如何？</td><td>毛利率24.5%稳定（同比+0.06pct），行业领先</td><td class="good">✅ 过关</td></tr>
+  <tr><td>③ CFO</td><td>能不能自己造血？</td><td>CFO 1,332亿+37%，CFO/净利1.84，极其充沛</td><td class="good">✅ 过关</td></tr>
+  <tr><td>④ PS</td><td>梦想溢价多少？</td><td>PS 3.6x远低于成长股预警线10x，估值合理</td><td class="good">✅ 过关</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>四步法结论：</strong>宁德时代全部过关——营收体量巨大且持续增长、毛利率稳定、现金流极其充沛、PS仅3.6x远低于预警线。这是"真成长股"而非"情绪成长股"的典型特征。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>成长型（新能源电池）</td><td>PE + PEG</td><td>PS（成长阶段）、营收增速、毛利率趋势</td><td class="good">✅ 匹配——PE 21x合理偏低，PEG<0.5</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值方法总结：</strong>宁德时代作为高成长龙头，PE 21x+PEG<0.5的组合极具性价比。PS 3.6x验证了估值并未泡沫化。毛利率24.5%稳定+CFO/净利1.84顶级+ROE 24.91%优秀——这三个核心指标均表明公司的成长是"高质量成长"。当前估值处于历史最低区间（历史PE中位数~45x），安全边际充足。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>成长性（新能源电池），动力电池+储能双料全球第一，技术+规模壁垒极高。<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 24.91%优秀，高利润偏杠杆型杜邦，CFO/净利1.84现金质量顶级。<br>
+  <strong>Step 3 - 估值判断：</strong>PE 21x处于历史最低区间，PEG<0.5极具性价比，PS 3.6x合理。<br>
+  <strong>Step 4 - 风险排查：</strong>负债率65.4%偏高但净现金状态，固定资产1,500亿资产偏重，H股稀释~3.5%。<br>
+  <strong>Step 5 - 结论：</strong>好公司（全球龙头+顶级现金+高ROE）+好价格（PE历史低位+PEG<0.5），强烈可买入。<br>
+  <strong>Step 6 - 跟踪：</strong>看全球电动化渗透率、储能增速、海外建厂进度、毛利率趋势。
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>新能源+储能双万亿赛道，渗透率仍有翻倍空间，格局清晰龙头稳固</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓</td><td>ROE 24.91%>15%，毛利率24.5%稳定，CFO/净利1.84>1，全球市占率37%</td></tr>
+  <tr><td>③ 好价格</td><td class="good">✓</td><td>PE 21x在历史底部（中位45x），PEG<0.5<1.5，PS 3.6x合理</td></tr>
+</table>
+
+<h3>7.3 三个陷阱排查</h3>
+<div class="highlight-box">
+  <strong>☐ 价值陷阱：</strong>❌ 未命中——低PE（21x）但高ROE（24.9%）+高增长（+17%营收/+42%净利），非价值陷阱。<br>
+  <strong>☐ 周期陷阱：</strong>❌ 未命中——锂电池虽受原材料价格周期影响，但宁德作为龙头可通过技术和规模优势平滑周期。<br>
+  <strong>☐ 烧钱陷阱：</strong>❌ 未命中——CFO 1,332亿>>净利722亿，FCF超千亿，完全不烧钱。
+</div>
+
+<h3>7.4 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——挖锂做电池卖给车企和储能电站——全球动力电池37%市占率，靠规模优势（成本比对手低10-20%）+技术领先（CTP/钠离子/凝聚态）赚钱。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——全球电动化渗透率能不能继续提升？储能增速会不会放缓？海外建厂（匈牙利/美国）的政治风险？固态电池会不会颠覆现有技术路线？<br>
+  3. 如果现在买入，期待的回报来源是什么？——全球电动化渗透率从~40%到70%+的长期趋势 + 储能第二增长曲线爆发 + PE从21x（历史底部）修复到35x（中值）的估值回归。<br>
+  4. 什么情况下你会坚决卖出？——全球电动化趋势逆转 / 市占率跌破30% / 毛利率连续下滑跌破20% / 应收账款坏账大规模爆发。
+</div>
+
+</div></div>
+
+<div class="footer">
+   免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+   数据来源：宁德时代2025年年报、2026Q1季报、券商研报、理杏仁
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阿尔特(300825) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>阿尔特（300825）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026年6月 | 数据来源：FY2025 年报 + 2026Q1 季报</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>阿尔特汽车技术股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>300825.SZ</td></tr>
+  <tr><td>所属行业</td><td>专业技术服务业（汽车整车独立研发设计）</td></tr>
+  <tr><td>行业地位</td><td>A股唯一独立汽车设计上市公司；国内独立汽车设计龙头</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>9.75 亿（+0.43%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>-2.50 亿（亏损扩大 88.40%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>-0.99 亿（由正转负）</strong></td></tr>
+  <tr><td>总资产</td><td>31.52 亿</td></tr>
+  <tr><td>归母净资产</td><td>20.33 亿</td></tr>
+  <tr><td>ROE</td><td class="bad"><strong>-11.80%</strong></td></tr>
+</table>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">综合L1-L5所有因素（财务健康度、关键指标、估值、杜邦分析、行业分类），对各维度打分求和</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">-11.80%，连续两年亏损，ROE为负</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">亏损状态，靠高杠杆也无用，负ROE</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">CFO -0.99亿 / 净利 -2.50亿，双负无法判断含金量</td></tr>
+  <tr><td>营收增长（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">+0.43%，基本零增长</td></tr>
+  <tr><td>利润增长（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">亏损扩大 88.40%</td></tr>
+  <tr><td>负债率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">33.75% < 40%，偏低</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">货币资金2.15亿 < 短期借款2.21亿，缺口约2.8%<30%</td></tr>
+  <tr><td>毛利率（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">6.17%，极低且大幅下降（2023年~30%）</td></tr>
+  <tr><td>估值（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">PE为负无意义，PB 2.47处于历史18.1%分位偏低，但亏损状态下较难判断</td></tr>
+  <tr><td>自由现金流（5分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">CFO为负，FCF持续为负</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">22/100</td><td style="text-align:left">不及格（22/100分）</td></tr>
+</table>
+
+<div class="verdict verdict-bad">不及格（22/100分）</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>阿尔特是国内唯一A股上市的独立汽车设计公司，FY2025营收9.75亿基本停滞，归母净亏损2.50亿（亏损扩大88.4%）。核心问题是主营业务盈利能力急剧恶化——毛利率从2021年的39.18%降至6.17%，资产减值损失高达1.49亿。公司正处于战略转型阵痛期：国内汽车设计竞争加剧，传统客户（燃油车）需求萎缩，新能源车设计业务虽然占主导（80.94%）但毛利率仅8.64%，核心零部件业务亏损。积极方面是海外业务增长63.24%，以及公司向ODM和新能源动力总成方向转型的布局，但短期财务数据非常难看。<br><br>
+  <strong>核心风险：</strong>① 毛利率崩塌至6.17%，主营业务盈利能力极弱；② 连续两年亏损，且亏损加速扩大；③ 资产减值1.49亿暴雷，资产质量承压；④ CFO由正转负，短期借款翻倍至2.21亿，流动性压力增加。<br><br>
+  <strong>核心机会：</strong>① 海外业务+63%，全球汽车研发向中国转移趋势利好；② AI赋能汽车研发（太乙/御风工具）提升效率；③ 新能源动力总成（芜湖阿尔特）布局打开第二增长曲线；④ PB处于历史低位（18.1%分位），若基本面反转有估值修复空间。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>9.75 亿</td><td>9.71 亿</td><td>+0.43%</td><td class="neutral">⚠ 停滞</td></tr>
+  <tr><td>归母净利润</td><td class="bad"><strong>-2.50 亿</strong></td><td>-1.33 亿</td><td class="bad"><strong>-88.40%</strong></td><td class="bad">❌ 亏损扩大</td></tr>
+  <tr><td>扣非净利润</td><td class="bad"><strong>-2.77 亿</strong></td><td>-1.40 亿</td><td class="bad"><strong>-97.33%</strong></td><td class="bad">❌ 亏损扩大</td></tr>
+  <tr><td>毛利率</td><td class="bad"><strong>6.17%</strong></td><td>20.64%</td><td class="bad">-14.47pct</td><td class="bad">❌ 急剧下降</td></tr>
+  <tr><td>归母净利率</td><td class="bad"><strong>-25.67%</strong></td><td>-13.68%</td><td class="bad">-11.99pct</td><td class="bad">❌ 深度亏损</td></tr>
+  <tr><td>期间费用率</td><td><strong>~27.7%</strong></td><td>~22.4%</td><td>+5.3pct</td><td class="bad">❌ 费用率攀升</td></tr>
+  <tr><td>2025Q1 营收</td><td>2.69 亿</td><td>2.52 亿</td><td>+6.51%</td><td class="neutral">⚠ 微增</td></tr>
+  <tr><td>2025Q2 营收</td><td>2.54 亿</td><td>1.76 亿</td><td>+44.32%</td><td class="good">✅ 低基数增长</td></tr>
+  <tr><td>2025Q3 营收</td><td>2.13 亿</td><td>2.07 亿</td><td>+2.90%</td><td class="neutral">⚠ 持平</td></tr>
+  <tr><td>2025Q4 营收</td><td>2.39 亿</td><td>3.36 亿</td><td>-28.87%</td><td class="bad">❌ 大幅下滑</td></tr>
+  <tr><td>2025Q4 净利润</td><td class="bad"><strong>-0.99 亿</strong></td><td>-0.40 亿</td><td class="bad">-147.50%</td><td class="bad">❌ Q4重亏</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>利润表解读：</strong>营收几乎零增长（+0.43%），但毛利率从20.64%崩跌至6.17%，是亏损扩大的核心原因。毛利率崩跌主因：① 汽车行业价格战传导至上游设计服务；② 低毛利的新能源车设计占比持续提升（从83.4%→>90%）；③ 核心零部件业务毛利率-21.44%持续拖累。此外，资产减值损失1.49亿（主要是存货跌价+合同资产减值）是利润表最大"地雷"。Q4单季营收同比-28.87%，净亏损0.99亿，趋势没有改善迹象。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td><strong>2.15 亿</strong></td><td class="bad">❌ 同比下降22.23%</td></tr>
+  <tr><td>应收账款</td><td><strong>2.91 亿</strong></td><td class="neutral">占营收29.8%，偏高</td></tr>
+  <tr><td>存货</td><td><strong>2.28 亿</strong></td><td class="bad">❌ 含大额跌价准备</td></tr>
+  <tr><td>短期借款</td><td class="bad"><strong>2.21 亿</strong></td><td class="bad">❌ 大幅+148.60%（从0.89亿暴增）</td></tr>
+  <tr><td>长期借款</td><td><strong>0.52 亿</strong></td><td class="neutral">同比下降34.58%</td></tr>
+  <tr><td>资产负债率</td><td><strong>33.75%</strong></td><td class="good">✅ 偏低</td></tr>
+  <tr><td>归母净资产</td><td>20.33 亿</td><td class="bad">❌ 同比-11.04%（亏损侵蚀）</td></tr>
+  <tr><td>总资产</td><td>31.52 亿</td><td class="neutral">同比-3.89%</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>正面是负债率仅33.75%，在A股中偏低，且没有有息债券负担。但隐忧明显：① 货币资金2.15亿 vs 短期借款2.21亿，已经不能完全覆盖，流动性偏紧；② 短期借款一年内从0.89亿暴增到2.21亿（+148.6%），说明公司日常经营需要靠借款维持；③ 净资产因连续亏损从24.50亿（2023）降至20.33亿，两年蒸发4.17亿；④ 应收账款2.91亿占营收29.8%，应收/收入比偏高，客户回款偏慢。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td class="bad"><strong>-0.99 亿</strong></td><td>2.39 亿</td><td class="bad">❌ 由正转负-141.29%</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><strong>-0.23 亿</strong></td><td>-0.52 亿</td><td class="neutral">资本开支收缩</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td><strong>0.88 亿</strong></td><td>-1.27 亿</td><td class="neutral">靠借款补充现金</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>—</b></td><td>—</td><td class="bad">❌ 双负，无法判断</td></tr>
+  <tr><td>自由现金流（FCF）</td><td class="bad"><strong>负值</strong></td><td>正值</td><td class="bad">❌ 失血状态</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>现金流解读：</strong>经营现金流由正转负是最危险的信号之一——2024年CFO还有2.39亿，2025年就变成-0.99亿，说明公司已经无法通过日常经营"造血"。CFO转负的原因：① 利润亏损（-2.50亿）；② 存货/合同资产增加占压资金；③ 应付账款/合同负债减少。筹资活动靠短期借款维持，但这不是可持续的。如果公司不能尽快恢复造血能力，流动性风险将持续累积。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td class="bad"><strong>-11.80%</strong></td><td>> 15% 优秀 / > 10% 及格</td><td class="bad">❌ 深度亏损</td></tr>
+  <tr><td>毛利率</td><td class="bad"><strong>6.17%</strong></td><td>稳定或提升</td><td class="bad">❌ 从~30%急剧崩塌</td></tr>
+  <tr><td>净利率</td><td class="bad"><strong>-25.67%</strong></td><td>> 10%</td><td class="bad">❌ 深度亏损</td></tr>
+  <tr><td>营收增长率</td><td><strong>+0.43%</strong></td><td>> 10%</td><td class="neutral">⚠ 零增长</td></tr>
+  <tr><td>扣非增长率</td><td class="bad"><strong>-97.33%</strong></td><td>正增长</td><td class="bad">❌ 亏损扩大</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>—</strong></td><td>> 1</td><td class="bad">❌ 双负</td></tr>
+  <tr><td>资产负债率</td><td><strong>33.75%</strong></td><td>服务业<50%</td><td class="good">✅ 偏低安全</td></tr>
+  <tr><td>分红率</td><td><strong>0%</strong></td><td>持续分红</td><td class="bad">❌ 不分配</td></tr>
+</table>
+
+<h3>3.2 分业务分析（2025年度）</h3>
+<table>
+  <tr><th>业务板块</th><th>营收（亿）</th><th>占比</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td>新能源汽车整车设计</td><td>7.89</td><td>80.94%</td><td>~+20%</td><td><strong>8.64%</strong></td><td class="bad">❌ 毛利极低</td></tr>
+  <tr><td>燃油汽车整车设计</td><td>1.18</td><td>12.06%</td><td>-6.84%</td><td><strong>6.36%</strong></td><td class="bad">❌ 萎缩+低毛利</td></tr>
+  <tr><td>核心零部件</td><td>0.62</td><td>6.35%</td><td>+918%</td><td class="bad"><strong>-21.44%</strong></td><td class="bad">❌ 烧钱业务</td></tr>
+  <tr><td>其他业务</td><td>0.06</td><td>0.65%</td><td>—</td><td>-35.49%</td><td class="bad">❌</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>公司收入高度集中于新能源汽车整车设计（80.94%），这部分毛利率仅8.64%，远低于同行（传统汽车设计公司毛利率通常在20-30%）。燃油车设计继续萎缩（-6.84%），核心零部件业务营收增长918%（从0.06亿到0.62亿）但毛利率-21.44%，卖一件亏一件。综合来看，公司所有业务板块的盈利能力都在恶化，本质上是在"增收不增利"甚至"增收反减利"。
+</div>
+
+<h3>3.3 分地区分析</h3>
+<table>
+  <tr><th>地区</th><th>营收（亿）</th><th>占比</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td>境内</td><td>7.95</td><td>81.48%</td><td>-7.65%</td><td><strong>8.05%</strong></td><td class="bad">❌ 下滑+低毛利</td></tr>
+  <tr><td>境外</td><td>1.81</td><td>18.52%</td><td class="good">+63.24%</td><td class="bad"><strong>-2.10%</strong></td><td class="neutral">⚠ 高增长但亏损</td></tr>
+</table>
+
+<p style="font-size:13px;color:#666;margin-bottom:8px">境外业务增长63%是亮点，但毛利率为-2.10%，说明海外项目目前还是"赔本赚吆喝"。如果海外项目能逐步实现盈利，将是公司重要的增长引擎。</p>
+
+<h3>3.4 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="bad">🔴 高</td><td>连续两年大幅亏损，亏损加速扩大</td><td>归母净利润-2.50亿，亏损扩大88.4%</td></tr>
+  <tr><td class="bad">🔴 高</td><td>毛利率从~30%崩塌至6.17%</td><td>行业竞争加剧，设计费压价严重</td></tr>
+  <tr><td class="bad">🔴 高</td><td>CFO由正转负（2.39亿→-0.99亿）</td><td>经营造血能力丧失</td></tr>
+  <tr><td class="bad">🔴 高</td><td>资产减值损失1.49亿暴雷</td><td>存货跌价+合同资产减值</td></tr>
+  <tr><td class="neutral">🟡 中</td><td>短期借款暴增148.6%至2.21亿</td><td>超过货币资金2.15亿，流动性偏紧</td></tr>
+  <tr><td class="neutral">🟡 中</td><td>核心零部件毛利率-21.44%</td><td>战略业务仍在烧钱阶段</td></tr>
+  <tr><td class="neutral">🟡 中</td><td>营收零增长（+0.43%）</td><td>扩产投资未见营收回报</td></tr>
+  <tr><td class="good">🟢 正面</td><td>海外业务+63.24%</td><td>海外布局初显成效</td></tr>
+  <tr><td class="good">🟢 正面</td><td>资产负债率33.75%偏低</td><td>财务结构尚可，有加杠杆空间</td></tr>
+  <tr><td class="good">🟢 正面</td><td>AI赋能研发战略（太乙/御风工具）</td><td>有望提升设计效率和竞争力</td></tr>
+</table>
+
+<div class="verdict verdict-bad">❌ L2综合判定：财务基本面恶化（连续亏损+毛利率崩塌+CFO转负）</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<p style="font-size:13px;color:#666;margin-bottom:8px">注：公司FY2025亏损，PE为负值无参考意义，以PB为主要估值参考</p>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>股价（2026.6.26）</td><td><strong>~15.47 元</strong></td><td>近期波动14-16元区间</td></tr>
+  <tr><td>总市值</td><td><strong>~77.7 亿</strong></td><td>总股本4.95亿</td></tr>
+  <tr><td>PE（TTM）</td><td class="bad"><strong>—（负值）</strong></td><td>亏损状态下无意义</td></tr>
+  <tr><td>PE（2025）</td><td class="bad"><strong>—（负值）</strong></td><td>基于EPS -0.51元</td></tr>
+  <tr><td>PB</td><td><strong>~3.67x</strong></td><td>基于每股净资产~4.11元（2026Q1）</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~7.97x</strong></td><td>市销率偏高（营收仅9.75亿）</td></tr>
+  <tr><td>股息率</td><td><strong>0%</strong></td><td>连续两年不分配</td></tr>
+</table>
+
+<h3>4.2 PE Band估值区间（参考性有限）</h3>
+<p style="font-size:13px;color:#666;">因连续亏损，PE为负值，PE Band失去参考意义。对于亏损股，投资者更关注市净率（PB）和市销率（PS）。</p>
+<table>
+  <tr><th>指标</th><th>数值</th><th>vs历史</th></tr>
+  <tr><td>PB当前</td><td><strong>2.47x（2026.6.5市值69亿时）</strong></td><td>历史18.1%分位，偏低</td></tr>
+  <tr><td>PB最高（2021.9）</td><td>7.21x</td><td>—</td></tr>
+  <tr><td>PB最低（2024.2）</td><td>1.56x</td><td>—</td></tr>
+  <tr><td>PS当前</td><td><strong>~7.97x</strong></td><td>对营收9.75亿而言偏高</td></tr>
+</table>
+
+<h3>4.3 历史PB区间</h3>
+<table>
+  <tr><th>指标</th><th>数值</th></tr>
+  <tr><td>PB 最大值</td><td>7.21x（2021-09-15）</td></tr>
+  <tr><td>PB 80%分位</td><td>~4.20x</td></tr>
+  <tr><td>PB 50%分位</td><td>~3.10x</td></tr>
+  <tr><td>PB 20%分位</td><td>~2.20x</td></tr>
+  <tr><td>PB 最小值</td><td>1.56x（2024-02-05）</td></tr>
+  <tr><td>当前PB</td><td class="neutral">~2.47-3.67x（取决于股价）</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值总结：</strong>阿尔特作为亏损股，传统PE估值法无效。从PB角度看，当前2.47-3.67x处于历史18.1%-中等分位，不能说极度低估也不能说贵。从PS角度，7.97x对一家营收零增长、毛利率仅6.17%的公司来说偏高。对于亏损的反转型公司，估值取决于：① 能否尽快扭亏；② 海外业务能否放量盈利；③ 新能源动力总成业务能否打开局面。在基本面没有实质改善之前，当前估值缺乏安全边际，建议以PB<2x（接近历史最低）为观察买点，或等待毛利率恢复至15%以上时再评估。
+</div>
+
+<div class="danger-box">
+  <strong>重要提示：</strong>亏损股的PE/PB估值都可能具有欺骗性。看起来PB低（如1.56x）可能是因为净资产本身在持续减值。2025年减值1.49亿已经侵蚀了净资产，如果盈利不能改善，净资产还会继续缩水，PB的安全边际可能并不真实。
+</div>
+
+<h3>4.4 历史PE区间（仅作参考，亏损期失效）</h3>
+<table>
+  <tr><th>年份</th><th>平均PE</th><th>最高PE</th><th>最低PE</th><th>状态</th></tr>
+  <tr><td>2021（盈利）</td><td>63.3x</td><td>82.8x</td><td>50.7x</td><td class="good">盈利期</td></tr>
+  <tr><td>2022（盈利）</td><td>38.7x</td><td>53.7x</td><td>25.4x</td><td class="good">盈利期</td></tr>
+  <tr><td>2023（微利）</td><td>121.8x</td><td>427.6x</td><td>29.4x</td><td class="neutral">微利</td></tr>
+  <tr><td>2024（亏损）</td><td>315.7x</td><td>1620.9x</td><td>143.1x</td><td class="bad">亏损PE失真</td></tr>
+  <tr><td>2025（亏损）</td><td>1379.2x</td><td>1680.3x</td><td>1123.0x</td><td class="bad">亏损PE失真</td></tr>
+</table>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>净利润率</td><td>0.42%</td><td>-13.68%</td><td class="bad"><strong>-25.67%</strong></td><td class="bad">⬇ 急剧恶化</td></tr>
+  <tr><td>资产周转率</td><td>0.25</td><td>0.30</td><td><strong>0.31</strong></td><td class="neutral">➡ 基本持平</td></tr>
+  <tr><td>权益乘数</td><td>1.35</td><td>1.41</td><td><strong>1.51</strong></td><td class="neutral">⬆ 杠杆略升</td></tr>
+  <tr><td><strong>ROE</strong></td><td><strong>1.50%</strong></td><td class="bad"><strong>-5.60%</strong></td><td class="bad"><strong>-11.80%</strong></td><td class="bad">⬇ 深度恶化</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>0.1%</td><td>-4.1%</td><td class="bad"><strong>-8.0%</strong></td><td class="bad">⬇</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>1.4pct</td><td>-1.5pct</td><td class="bad"><strong>-3.8pct</strong></td><td class="bad">⬇ 杠杆放大亏损</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>核心问题：</strong>ROE从2023年的+1.50%跌至2025年的-11.80%，三年恶化的根因是净利润率从微利变为深度亏损。资产周转率0.31次（偏低，设计服务行业资产较轻），权益乘数1.51（杠杆不高）。杜邦拆解一目了然——问题出在赚钱能力（利润率），不是杠杆也不是周转。<br><br>
+  <strong>去杠杆ROA为-8.0%</strong>，意味着每投入1元总资产，公司净亏损0.08元。即便去掉杠杆，公司的基础回报率也是深度负值。
+</div>
+
+<h3>5.2 赚钱模式判断</h3>
+<div class="highlight-box">
+  <strong>模式：高利润型（历史上）→ 亏损型（当前）</strong><br>
+  历史上（2021年以前），阿尔特毛利率在35-39%，净利率在15-20%，是典型的高利润型轻资产模式（技术服务业）。但近三年毛利率快速下滑：2023年~20.64% → 2024年~20.64% → 2025年6.17%，已跌至盈亏平衡线以下。目前公司处于亏损状态，谈不上任何赚钱模式。<br><br>
+  <strong>核心结论：</strong>毛利率是公司一切问题的根源。毛利率从39%跌到6%，意味着公司失去了定价能力。原因：① 汽车行业内卷，整车厂降本压价传导到设计环节；② 新能源车设计虽然占比高，但竞争激烈，公司缺乏差异化壁垒；③ 核心零部件业务还在"烧钱换市场"阶段。
+</div>
+
+<h3>5.3 资产回报效率</h3>
+<table>
+  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>总资产周转率</td><td>0.25</td><td>0.30</td><td>0.31</td><td class="neutral">偏低（轻资产服务型）</td></tr>
+  <tr><td>每元资产产生净利润</td><td>0.001元</td><td>-0.047元</td><td class="bad">-0.083元</td><td class="bad">❌ 亏损</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>杜邦分析核心结论：</strong><br>
+  ① ROE从+1.5%→-5.6%→-11.8%，逐年加速恶化，趋势非常危险；<br>
+  ② 根因是净利润率崩跌（利润率从盈利转为深度亏损），而不是杠杆或周转问题；<br>
+  ③ 毛利率6.17%是核心矛盾——只要毛利率不能修复到15%以上，公司就无法盈利；<br>
+  ④ 资产周转率0.31偏低，但作为设计服务公司，这不是关键问题；<br>
+  ⑤ ROE扭亏的关键：恢复毛利率（>15%）+控制费用率（<25%）+减少资产减值。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与特征（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：混合周期型（专业技术服务业-汽车研发设计）</strong><br>
+  <strong>判断依据：</strong>阿尔特所在的汽车设计行业兼具周期性和成长性特征。<br><br>
+  <strong>周期性一面：</strong>汽车行业本身有3-5年的产品周期和宏观经济周期。整车厂销量下滑时会压缩研发投入，直接影响设计公司的订单量。阿尔特FY2025营收零增长，Q4同比-28.87%，反映了整车客户在价格战压力下缩减研发预算的周期性冲击。<br><br>
+  <strong>成长性一面：</strong>① 全球汽车研发向中国转移趋势（中国工程师红利）；② 新能源车新车型爆发式推出，设计需求增加；③ 独立汽车设计公司替代整车厂自研的趋势（外包化）。公司境外收入+63.24%验证了这一成长逻辑。<br><br>
+  <strong>综上：</strong>属于<strong>混合周期型</strong>——有长期成长逻辑（中国汽车设计全球竞争力提升），但受制于短期周期波动（汽车行业价格战内卷）。当前处于周期底部（行业低谷期）和战略转型期。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th></tr>
+  <tr><td>行业集中度</td><td><strong>分散且正在集中</strong>——国内独立汽车设计公司数量多但规模小，阿尔特是唯一A股上市的独立设计公司，具备融资和品牌优势。行业正在洗牌，中小设计公司在价格战中被淘汰，有利于头部公司集中。</td></tr>
+  <tr><td>技术壁垒</td><td><strong>中等</strong>——汽车设计需要整车级系统能力和项目经验积累，但技术门槛并非不可逾越。核心壁垒是"经验曲线"和"客户信任"。</td></tr>
+  <tr><td>客户壁垒</td><td><strong>中等</strong>——一旦进入整车厂的供应商体系，有较高的切换成本。公司已服务本田、一汽、东风、日产、三菱等客户。</td></tr>
+  <tr><td>人才壁垒</td><td><strong>中等</strong>——需要大量有经验的工程师，但人员流动率较高。</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  <strong>阶段：成长初期（新能源设计）→ 成熟期（传统燃油设计）→ 转型阵痛期</strong><br>
+  公司的传统燃油车设计业务已进入成熟期（营收萎缩），新能源车设计业务仍在成长期（占营收81%但毛利率低），核心零部件业务处于导入期（-21.44%毛利率）。整体来看，公司处于"新旧动能转换"的阵痛期——新业务尚未盈利，老业务在萎缩。<br><br>
+  <strong>投资策略重点：</strong>关注毛利率能否企稳回升、海外业务能否实现盈利、芜湖新能源动力总成项目的商业化进展、AI赋能设计工具降本增效的效果。
+</div>
+
+<h3>6.4 当前周期位置</h3>
+<div class="danger-box">
+  <strong>周期位置：行业低谷期（汽车行业价格战持续，设计服务被压价）</strong><br>
+  中国汽车行业正经历史无前例的价格战，整车厂（尤其是新能源）普遍亏损，传导至上游设计服务环节就是压价、压付款周期。设计行业的"口红效应"（经济不好时品牌反而更愿意外包设计）并未出现，因为整车厂连自己的研发团队都在优化。<br><br>
+  但"周期底部"也意味着：① 竞争对手在退出，头部公司有望获得更多份额；② 海外业务（日本、欧洲客户）受中国价格战影响小，且中国设计性价比优势明显；③ 一旦汽车行业价格战趋缓，设计利润率有望修复。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>混合周期型（亏损期）</td><td>PB / PS</td><td>毛利率趋势、在手订单、海外营收增速</td><td class="neutral">⚠ 需结合基本面反转信号</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值方法总结：</strong>亏损期的混合周期型公司，PE完全失效。当前应以PB为主要估值锚点（历史18.1%分位偏低），配合PS和毛利率趋势判断。核心观察指标：① 毛利率是否站稳并回升（>10%是第一个信号，>15%是确认信号）；② 海外营收增速（>50%且毛利率转正）；③ 在手订单金额（2025H1为8.75亿，需关注趋势）。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>混合周期型（汽车研发设计），行业集中度低且正在集中，技术/客户壁垒中等，当前处于周期底部+转型阵痛期。<br>
+  <strong>Step 2 - 财务体检：</strong>ROE -11.80%深度亏损，毛利率从39%崩至6.17%，CFO由正转负（-0.99亿），资产减值1.49亿暴雷，财务基本面恶化严重。<br>
+  <strong>Step 3 - 估值判断：</strong>PE为负无意义。PB 2.47-3.67x处于历史低-中分位，PS 7.97x对营收零增长公司偏高，缺乏安全边际。<br>
+  <strong>Step 4 - 风险排查：</strong>连续两年大幅亏损、毛利率崩塌、CFO转负、短期借款暴增、大额资产减值——五个红灯。<br>
+  <strong>Step 5 - 结论：</strong>当前不是好公司（亏损），也不是好价格（PB不算极度低估）。属于"困境反转型"投资标的，但反转信号尚未出现。<br>
+  <strong>Step 6 - 跟踪：</strong>毛利率是否企稳、海外业务能否盈利、在手订单趋势、PB是否接近1.56x历史低位、CFO能否转正。
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="neutral">⚠ 中性</td><td>汽车研发设计有长期外包趋势，但短期受价格战冲击大</td></tr>
+  <tr><td>② 好公司</td><td class="bad">✗</td><td>ROE -11.80%、毛利率6.17%、CFO为负——三者全部不合格</td></tr>
+  <tr><td>③ 好价格</td><td class="neutral">⚠ 不确定</td><td>PB在历史低位附近，但亏损状态下的净资产有进一步减值风险</td></tr>
+</table>
+
+<h3>7.3 三个陷阱排查</h3>
+<div class="danger-box">
+  <strong>☐ 价值陷阱：</strong>🔴 高度命中——低PE（但为负值）+ 零增长 + 高负债（短期借款暴增）。看起来PB低（2.47x），但因为公司在亏损且资产在减值，这个"便宜"可能是陷阱。<br>
+  <strong>☐ 周期陷阱：</strong>🟡 部分命中——汽车设计行业有周期性，当前正处于行业低谷（价格战压缩利润率）。但公司自身的问题（毛利率从39%跌到6%）已经超出了正常周期波动的范围。<br>
+  <strong>☐ 烧钱陷阱：</strong>🔴 高度命中——亏损 + CFO为负 + 短期借款暴增（+148.6%），公司正在"烧钱续命"。核心零部件业务-21.44%毛利率更是典型的烧钱换市场。
+</div>
+
+<h3>7.4 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——帮整车厂设计汽车收设计费，赚技术和人工服务费的钱。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——毛利率6.17%。如果公司最核心的赚钱能力只剩7分钱毛利，那不管什么海外增长、AI赋能都是空谈。毛利率不恢复，一切免谈。<br>
+  3. 如果现在买入，期待的回报来源是什么？——赌困境反转：① 汽车价格战结束，毛利率修复；② 海外业务规模效应显现扭亏；③ 新能源动力总成业务突破。但这个"赌"的确定性很低。<br>
+  4. 什么情况下你会坚决卖出？——不需要卖，因为你根本不应该在基本面恶化时买入。观察点：毛利率持续<10% / CFO继续为负 / 净资产跌破18亿 / PB>4x。
+</div>
+
+</div></div>
+
+<div class="footer">
+   免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+   数据来源：阿尔特2025年年报、2026Q1季报、券商研报、亿牛网、理杏仁
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

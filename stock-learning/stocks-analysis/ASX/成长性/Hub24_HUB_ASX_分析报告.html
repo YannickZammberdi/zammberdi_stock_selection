@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hub24(HUB:ASX) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>Hub24（HUB:ASX）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026年6月 | 数据来源：FY2025 年报（截至2025年6月）</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>HUB24 Limited</td></tr>
+  <tr><td>股票代码</td><td>HUB（ASX：澳大利亚证券交易所）</td></tr>
+  <tr><td>所属行业</td><td>金融服务——财富管理平台（SaaS型平台）</td></tr>
+  <tr><td>行业地位</td><td>澳大利亚#1净流入平台（连续8+季度），市场份额9.3%，#6最大平台</td></tr>
+  <tr><td>财年</td><td>7月1日–6月30日（FY2025 = 2024年7月–2025年6月）</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>A$4.066 亿（+24%）</strong></td></tr>
+  <tr><td>FY2025 Underlying NPAT</td><td><strong>A$0.978 亿（+44%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流（估）</td><td><strong>~A$1.59 亿</strong></td></tr>
+  <tr><td>总资产</td><td>A$6.624 亿</td></tr>
+  <tr><td>净资产</td><td>A$5.299 亿</td></tr>
+  <tr><td>ROE（TTM）</td><td><strong>~19.7%</strong></td></tr>
+  <tr><td>平台资产（FUA）</td><td><strong>A$1,364 亿（+30%）</strong></td></tr>
+</table>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">综合L1-L3所有因素（财务健康度、关键指标、估值），对各维度打分求和</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">19.7%（TTM），超过15%门槛</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">高利润型——净利率~20%+极低杠杆+轻资产高FCF转化</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">~1.63-2.0x，现金质量极高（UEBITDA→OCF转化率98%）</td></tr>
+  <tr><td>营收增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+24% ≥ 10%</td></tr>
+  <tr><td>利润增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">Underlying NPAT +44% ≥ 15%</td></tr>
+  <tr><td>负债率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">11.5%，远低于40%（净现金状态）</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">货币资金A$1.148亿 >> 短期有息负债~A$0.03亿</td></tr>
+  <tr><td>毛利率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">平台型SaaS，毛利率~65-80%高毛利</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">PE 54x远超合理区间（15-25x），历史估值虽持续高企但当前仍贵</td></tr>
+  <tr><td>自由现金流（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">FCF A$1.437亿，FCF margin 35.7%，极优秀</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">90/100</td><td style="text-align:left">品质优秀（90/100分）——业务面满分，唯估值偏高</td></tr>
+</table>
+
+<div class="verdict verdict-ok">品质优秀（90/100分）—— ROE 19.7%+高增长+净现金+FCF margin 36%，ASX顶级平台型公司</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>Hub24是澳大利亚财富管理行业的颠覆者——通过技术驱动的投资平台为财务顾问提供服务，连续8个季度净流入行业第一。FY2025营收增长24%，Underlying NPAT增长44%，FCF margin高达35.7%，体现出典型的SaaS平台规模效应。平台资产管理规模(FUA)达A$1,364亿（+30%），市场份额从8.7%升至9.3%，持续从传统平台（如BT/AMP）手中抢份额。<br><br>
+  <strong>核心优势：</strong>① 平台商业模式极好——AUM-based收入每季复利增长，边际成本趋近于零；② 净现金状态（现金A$1.148亿 > 总债务A$0.59亿），零流动性风险；③ 连续8+季度净流入#1，粘性极强（顾问转换平台成本高）；④ FCF margin 35.7%+ROE 19.7%，资本效率在ASX金融股中顶级；⑤ FY2027平台FUA目标A$1,480-1,620亿，增长可见度高。<br><br>
+  <strong>核心风险：</strong>① PE 54x远超传统价值框架的合理区间（ROE 19.7%对应15-25x），即使考虑到ASX科技溢价仍偏高；② 竞争加剧——Netwealth、Macquarie等对手也在争夺顾问平台市场；③ 估值依赖增长持续——若FUA增速放缓至15%以下，估值有大幅收缩风险；④ 澳股市场整体下行将直接影响FUA和平台收入。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营收（客户收入）</td><td><strong>A$4.066 亿</strong></td><td>A$3.28 亿</td><td><strong>+24%</strong></td><td class="good">✅ 高增长</td></tr>
+  <tr><td>Underlying NPAT</td><td><strong>A$0.978 亿</strong></td><td>A$0.678 亿</td><td><strong>+44%</strong></td><td class="good">✅ 利润率提升</td></tr>
+  <tr><td>Statutory NPAT</td><td><strong>A$0.795 亿</strong></td><td>A$0.472 亿</td><td><strong>+68.6%</strong></td><td class="good">✅ 大幅改善</td></tr>
+  <tr><td>集团EBITDA</td><td><strong>A$1.624 亿</strong></td><td>A$1.18 亿</td><td><strong>+38%</strong></td><td class="good">✅ 规模效应</td></tr>
+  <tr><td>经营利润率</td><td><strong>24.6%</strong></td><td>17.9%</td><td>+6.7pct</td><td class="good">✅ 显著提升</td></tr>
+  <tr><td>净利率（Statutory）</td><td><strong>19.7%</strong></td><td>14.4%</td><td>+5.3pct</td><td class="good">✅ 高利润率</td></tr>
+  <tr><td>稀释EPS（Statutory）</td><td>A$0.96</td><td>A$0.56</td><td>+69.8%</td><td class="good">✅</td></tr>
+  <tr><td>稀释EPS（Underlying）</td><td>A$1.178</td><td>A$0.81</td><td>+45%</td><td class="good">✅</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>Hub24体现出典型的SaaS平台规模效应——营收+24%的同时，EBITDA和NPAT增速（38-68%）远超营收增速。经营利润率从17.9%跃升至24.6%（+670bps），净利率从14.4%升至19.7%（+530bps）。Statutory NPAT高于Underlying的差异来自收购相关摊销费用。核心驱动是平台FUA持续增长——从A$1,050亿增至A$1,364亿（+30%），AUM-based收入产生复利效应。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td><strong>A$1.148 亿</strong></td><td class="good">✅ 充裕</td></tr>
+  <tr><td>商誉及无形资产</td><td><strong>A$4.301 亿</strong></td><td class="neutral">占资产65%，主要来自收购（Class等）</td></tr>
+  <tr><td>总负债</td><td><strong>A$1.325 亿</strong></td><td class="good">✅ 极低</td></tr>
+  <tr><td>总债务（含租赁）</td><td><strong>A$0.59 亿</strong></td><td class="good">✅ 几乎无债</td></tr>
+  <tr><td>净资产</td><td>A$5.299 亿</td><td class="good">✅ 稳健</td></tr>
+  <tr><td>资产负债率</td><td><strong>11.5%</strong></td><td class="good">✅ 极低</td></tr>
+  <tr><td>每股净资产</td><td>A$6.56</td><td class="good">✅ 稳健增长</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>Hub24的资产负债表极其健康——净现金状态（现金A$1.148亿 > 总债务A$0.59亿），资产负债率仅11.5%。这是典型SaaS平台公司的财务特征：轻资产运营、几乎没有生产性固定资产、高FCF、零净债务。商誉及无形资产A$4.301亿占资产65%，主要是历年收购Class、NowInfinity、myprosperity等科技公司形成的，但收购后的协同效应已体现在营收和利润增速上。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（OCF，估）</td><td><strong>~A$1.59 亿</strong></td><td>A$1.18 亿</td><td class="good">✅ UEBITDA→OCF转化率98%</td></tr>
+  <tr><td>资本开支</td><td><strong>~A$0.15 亿</strong></td><td>~A$0.30 亿</td><td class="good">✅ 轻资产极低</td></tr>
+  <tr><td>自由现金流（FCF）</td><td><strong>A$1.437 亿</strong></td><td>A$0.869 亿</td><td class="good">✅ +65.3%</td></tr>
+  <tr><td>FCF Margin</td><td><strong>35.7%</strong></td><td>26.5%</td><td class="good">✅ 极优秀</td></tr>
+  <tr><td>OCF/Underlying NPAT</td><td><strong>~1.63</strong></td><td>~1.74</td><td class="good">✅ 现金质量极好</td></tr>
+  <tr><td>分红支付率</td><td><strong>44.4%</strong></td><td>~40%</td><td class="good">✅ 留足再投资</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>Hub24的现金流是这家公司最亮眼的指标。UEBITDA→OCF转化率98%，意味着几乎每一块钱的EBITDA都变成了现金——这在ASX上市公司中极为罕见。FCF A$1.437亿（+65%），FCF Margin 35.7%堪比顶级SaaS公司。资本开支仅A$0.15亿（营收的0.37%），说明这是一个真正的轻资产平台——核心投入是工程师的工资和服务器费用，没有工厂或设备折旧。分红支付率44.4%，留有充足资金支持有机增长和收购。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE（TTM）</td><td><strong>19.7%</strong></td><td>> 15% 优秀</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>经营利润率</td><td><strong>24.6%</strong></td><td>稳定或提升</td><td class="good">✅ +6.7pct提升</td></tr>
+  <tr><td>净利率（Statutory）</td><td><strong>19.7%</strong></td><td>> 10%</td><td class="good">✅ 高利润率</td></tr>
+  <tr><td>营收增长率</td><td><strong>+24%</strong></td><td>> 10%</td><td class="good">✅ 高增长</td></tr>
+  <tr><td>NPAT增长率（Underlying）</td><td><strong>+44%</strong></td><td>> 15%</td><td class="good">✅ 超额增长</td></tr>
+  <tr><td>FCF Margin</td><td><strong>35.7%</strong></td><td>> 15%</td><td class="good">✅ 顶级</td></tr>
+  <tr><td>资产负债率</td><td><strong>11.5%</strong></td><td>< 40%</td><td class="good">✅ 极低</td></tr>
+  <tr><td>分红率</td><td><strong>44.4%</strong></td><td>持续分红</td><td class="good">✅ 合理</td></tr>
+</table>
+
+<h3>3.2 分业务分析（FY2025）</h3>
+<table>
+  <tr><th>业务板块</th><th>营收（A$M）</th><th>占比</th><th>同比</th><th>EBITDA</th><th>EBITDA Margin</th><th>评价</th></tr>
+  <tr><td>Platform（核心平台）</td><td>323.3</td><td>79.5%</td><td><strong>+28%</strong></td><td>142.9</td><td>44.2%</td><td class="good">✅ 核心引擎</td></tr>
+  <tr><td>Tech Solutions（Class等）</td><td>77.1</td><td>19.0%</td><td><strong>+9%</strong></td><td>27.2</td><td>35.3%</td><td class="good">✅ 稳定增长</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>Platform业务是Hub24的核心（营收占比79.5%，EBITDA占比88%），增长28%驱动整体。平台商业模式的工作原理：顾问将客户资产托管在Hub24平台，Hub24按AUM收取年化费率（~0.3-0.5%），收入随FUA增长而增长。关键驱动力：① 净流入——FY2025创纪录A$198亿净流入（含A$40亿大单迁移）；② 市场增值——ASX上涨推高FUA；③ 加息环境下平台现金收益增加。Tech Solutions（Class超级基金软件、NowInfinity信托设立平台）增长9%较平稳，但具有高粘性，是顾问生态的重要组成部分。<br><br>
+  <strong>核心KPI——平台FUA：</strong>A$1,364亿（+30%），其中净流入A$198亿创纪录，FY2027目标A$1,480-1,620亿。活跃顾问数从5,097增至5,549（Q3 FY2026），持续渗透市场。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="neutral">🟡 中等</td><td>PE 54x远超传统估值框架</td><td>L3 估值</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>商誉A$4.301亿占资产65%，若收购标的业绩不及预期存在减值风险</td><td>L1 资产负债表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>行业竞争加剧（Netwealth/Macquarie持续投入平台建设）</td><td>L2 行业分析</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>FUA增长依赖ASX市场表现，熊市将显著拖累FUA和收入</td><td>L2 业务模式</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>一致预期FY2026 EPS增速~37.5%，若低于预期估值承压</td><td>L3 估值</td></tr>
+  <tr><td class="good">🟢 正面</td><td>净现金状态，零流动性风险</td><td>L1 资产负债表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>连续8+季度净流入#1，平台粘性极强</td><td>L2 业务数据</td></tr>
+  <tr><td class="good">🟢 正面</td><td>FCF Margin 35.7%，ASX顶级水平</td><td>L1 现金流量表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>ROE 19.7%+净利率19.7%高资本效率</td><td>L2 盈利指标</td></tr>
+  <tr><td class="good">🟢 正面</td><td>分红连续3年增长，100% franking</td><td>L2 分红</td></tr>
+</table>
+
+<div class="verdict verdict-ok">✅ L2综合判定：顶级品质（高增长+高FCF+净现金+ROE优秀），商业模式极好</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>股价（2026.6.26）</td><td><strong>A$69.89</strong></td><td>52周区间A$74.92–A$122.03（已跌破52周低点）</td></tr>
+  <tr><td>总市值</td><td><strong>A$57.1 亿</strong></td><td>~A$5.71B</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>~54.4x</strong></td><td>基于TTM EPS ~A$1.28</td></tr>
+  <tr><td>PE（FY2026E）</td><td><strong>~43.1x</strong></td><td>基于一致预期EPS A$1.62</td></tr>
+  <tr><td>PB</td><td><strong>~10.5x</strong></td><td>基于每股净资产A$6.56</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~12.6x</strong></td><td>市销率</td></tr>
+  <tr><td>P/FCF</td><td><strong>~36.1x</strong></td><td>基于FCF A$1.437亿</td></tr>
+  <tr><td>股息率</td><td><strong>~1.03%</strong></td><td>TTM分红A$0.72/股</td></tr>
+</table>
+
+<h3>4.2 PE Band估值区间</h3>
+<p style="font-size:13px;color:#666;">ROE 19.7% → 合理PE参考区间：15-25x（传统框架）| 但ASX优质SaaS通常享受溢价 | FY2026E一致预期EPS ≈ A$1.62</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs现价A$69.89</th></tr>
+  <tr><td>保守（传统价值）</td><td>20x</td><td>A$32.4</td><td class="bad">-54%</td></tr>
+  <tr><td>中性合理</td><td>30x</td><td>A$48.6</td><td class="bad">-30%</td></tr>
+  <tr><td>成长溢价</td><td>45x</td><td>A$72.9</td><td class="good">+4%</td></tr>
+  <tr><td>券商目标价</td><td>~62x</td><td>A$100.74</td><td class="good">+44%</td></tr>
+  <tr><td>当前价</td><td>~43x</td><td>A$69.89</td><td>—</td></tr>
+  <tr><td>历史中位</td><td>~83x</td><td>A$134.5</td><td>+92%</td></tr>
+  <tr><td>历史高位</td><td>173x</td><td>A$280.3</td><td>+301%</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值分析：</strong><br>
+  ① 当前PE 54.4x处于公司5年历史低位（中位数~83x），但传统价值框架下依然很贵；<br>
+  ② 对于15-25%增速的SaaS公司，PEG 2.2-3.6x——在ASX科技股中属于合理水平；<br>
+  ③ 券商一致目标价A$100.74（62x FY2026E PE），较现价仍有44%上行空间；<br>
+  ④ PB 10.5x对于净资产中65%是商誉的公司来说偏高，但SaaS公司通常用PE而非PB估值；<br>
+  ⑤ 当前价格已从高点A$122腰斩至A$70，回调幅度超过40%，估值泡沫已大幅消化；<br>
+  ⑥ 关键估值锚定：FUA增速。若FUA保持25%+增长，45-55x PE可持续；若降至15%以下，PE可能收缩至30x。
+</div>
+
+<h3>4.3 历史PE区间（5年FY-end）</h3>
+<table>
+  <tr><th>指标</th><th>PE值</th></tr>
+  <tr><td>历史最大值</td><td>173x（FY2021）</td></tr>
+  <tr><td>历史中位数</td><td>~83x</td></tr>
+  <tr><td>当前PE（TTM）</td><td class="good" style="font-weight:bold">~54x（5年低位附近）</td></tr>
+  <tr><td>历史最小值</td><td>56.5x（FY2023）</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值总结：</strong>Hub24是一个"完美业务+高估值"的典型。从业务面看，SaaS平台模式+高增长+高FCF+净现金几乎无可挑剔，90/100的分数当之无愧。但从估值面看，PE 54x虽然处于自身历史低位区间，但放在传统价值框架中仍然昂贵。对于成长型投资者，当前价格从高点A$122回调42%至A$70，已消化了大量估值泡沫，FY2026E PE 43x对应24%的营收增速和38%的EPS增速，PEG~1.1x——在ASX高增长SaaS中已具备吸引力。但对于价值投资者，ROE 19.7%对应合理PE 15-25x的安全边际要求差距过大。<br><br>
+  <strong>催化剂：</strong>① FY2026年报（2026年8月18日）——FUA是否继续高增长；② Australia Super等大型养老金迁移至平台趋势加速；③ Class交叉销售深化。回调后的Hub24性价比已显著改善，但仓位大小应取决于对ASX科技估值的容忍度。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>净利润率（Statutory）</td><td>14.4%</td><td><strong>19.6%</strong></td><td class="good">⬆ 大幅+5.2pct</td></tr>
+  <tr><td>净利润率（Underlying）</td><td>~20.7%</td><td><strong>24.1%</strong></td><td class="good">⬆ +3.4pct</td></tr>
+  <tr><td>资产周转率</td><td>0.53</td><td><strong>0.61</strong></td><td class="good">⬆ +15%提升</td></tr>
+  <tr><td>权益乘数</td><td>1.20</td><td><strong>1.25</strong></td><td class="neutral">➡ 极低杠杆，几乎不变</td></tr>
+  <tr><td><strong>ROE（Statutory）</strong></td><td><strong>~9.2%</strong></td><td><strong>15.0%</strong></td><td class="good">⬆ 大幅提升</td></tr>
+  <tr><td><strong>ROE（Underlying）</strong></td><td><strong>~13.2%</strong></td><td><strong>18.5%</strong></td><td class="good">⬆ +5.3pct</td></tr>
+  <tr><td>去杠杆ROA（Statutory）</td><td>7.6%</td><td><strong>12.0%</strong></td><td class="good">⬆ 大幅提升</td></tr>
+  <tr><td>杠杆贡献（Statutory ROE-ROA）</td><td>1.6pct</td><td><strong>3.0pct</strong></td><td class="neutral">低杠杆低贡献</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：高利润+极低杠杆型</strong><br>
+  Hub24以19.6-24.1%的高净利润率为核心驱动，权益乘数仅1.25（净现金状态），0.61的资产周转率在SaaS平台中也属正常（AUM-based收入不依赖高频资产周转）。这是最理想的赚钱模式之一——高利润率说明产品有定价权或高附加值，低杠杆说明不依赖债务。去掉杠杆后的ROA仍有12.0%（Statutory），说明即使完全剔除杠杆，资产回报效率依然出色。<br><br>
+  <strong>ROE提升的驱动力（FY2024→FY2025）：</strong><br>
+  ① 净利润率从14.4%→19.6%（Statutory）是核心驱动——规模效应下费用率降低，FUA增长摊薄固定成本；<br>
+  ② 资产周转率从0.53→0.61——FUA增长（+30%）拉动营收增速（+24%）远超总资产增速（+6.4%），轻资产模型优势凸显；<br>
+  ③ 权益乘数仅从1.20→1.25——几乎无杠杆，ROE增长完全来自经营改善而非加杠杆。<br><br>
+  <strong>分业务对比：</strong>Platform业务EBITDA Margin 44.2%（营收占比79.5%）是ROE的核心引擎，Tech Solutions EBITDA Margin 35.3%为辅助。
+</div>
+
+<h3>5.2 分业务杜邦贡献</h3>
+<table>
+  <tr><th>业务板块</th><th>营收占比</th><th>EBITDA Margin</th><th>趋势</th><th>对ROE影响</th></tr>
+  <tr><td>Platform（核心平台）</td><td>79.5%</td><td>44.2%</td><td class="good">⬆ +28%增长</td><td class="good">核心利润引擎</td></tr>
+  <tr><td>Tech Solutions（Class等）</td><td>19.0%</td><td>35.3%</td><td class="good">➡ +9%稳定</td><td class="good">稳定贡献</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>核心结论：</strong><br>
+  ① Hub24的财务模型是高利润（净利率~20%）+低杠杆（净现金）+轻资产（周转率0.61但持续提升）的SaaS黄金组合；<br>
+  ② FY2025 ROE的提升完全来自经营质量改善（利润率+周转率），而非加杠杆——这是最健康的ROE提升模式；<br>
+  ③ 去掉杠杆后的ROA 12.0%说明资产回报效率在ASX金融股中属于顶级水平；<br>
+  ④ 权益乘数1.25意味着公司有大量空间可以加杠杆来提升ROE（如果管理层选择），但净现金状态本身就是竞争优势（具备收购能力）；<br>
+  ⑤ ROE未来提升的关键驱动力：FUA增速（目前25-30%）+利润率继续改善（经营利润率目前24.6%，目标看30%+）。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与特征（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：成长性行业（金融科技-财富管理SaaS平台）</strong><br>
+  <strong>判断依据：</strong>Hub24属于ASX分类中的"Tech/Growth"板块，是典型的高成长SaaS公司。核心增长逻辑：① 澳洲财富管理行业正在从传统银行系平台（BT/AMP等）向独立平台大规模迁移，Hub24作为#1净流入平台持续收割份额；② 澳洲养老保障体系（Superannuation）强制缴纳比例持续提升（从9.5%→12%），推动整体财富管理市场自然增长；③ 平台FUA FY2025达A$1,364亿（+30%），收入随FUA复利增长。<br><br>
+  <strong>成长性体现：</strong>FY2025营收+24%、Underlying NPAT+44%、FCF+65%、FUA+30%——量价齐升的高成长阶段。连续8+季度净流入行业第一，市场份额从8.7%→9.3%→目标10%+。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th></tr>
+  <tr><td>行业集中度</td><td><strong>中等集中，集中趋势中</strong>——澳洲投资平台CR5>70%，但Hub24作为#6正快速增长（市场份额8.7%→9.3%→目标10%+）。平台市场正经历"从分散到集中"的整合期，头部独立平台受益。</td></tr>
+  <tr><td>转换成本壁垒</td><td><strong>极高</strong>——财务顾问将客户资产从一个平台迁移到另一个平台，涉及大量的行政工作、税务报告处理、客户沟通。一旦顾问选择了Hub24平台，几乎不会轻易更换。这是Hub24最深的护城河。</td></tr>
+  <tr><td>监管合规壁垒</td><td><strong>强</strong>——澳洲金融服务牌照（AFSL）要求严格，平台需要满足资本充足率、客户资金隔离、合规报告等要求，新进入者门槛极高。</td></tr>
+  <tr><td>数据网络效应</td><td><strong>中等</strong>——更多顾问使用Hub24→平台积累更多数据→开发更好的功能→吸引更多顾问。目前已覆盖5,500+活跃顾问。</td></tr>
+  <tr><td>规模经济</td><td><strong>强</strong>——平台技术开发成本是固定的，FUA增长带来收入增加但边际成本极低。FY2025经营利润率+670bps就是规模效应的直接证明。</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  <strong>阶段：成长期中段——高增长+利润率快速提升</strong><br>
+  Hub24处于典型SaaS公司的"规模化阶段"——营收增速20-30%, EBIT利润率快速提升（从17.9%→24.6%），FCF强劲增长。标志性的"Rule of 40"指标（增速+利润率）高达24+24.6=48.6，超过SaaS行业公认的40%健康线。FUA A$1,364亿对比澳洲财富管理市场总量~A$3.5万亿，渗透率仅~3.9%，成长空间仍然广阔。<br><br>
+  <strong>投资策略重点：</strong>关注FUA增速（目标25%+）、净流入趋势（是否持续行业第一）、经营利润率提升路径（目标30%+）、Tech Solutions交叉销售。
+</div>
+
+<h3>6.4 当前周期位置</h3>
+<div class="highlight-box">
+  <strong>周期位置：成长扩张周期——独立平台替代传统平台的加速期</strong><br>
+  Hub24的业务不受宏观经济周期显著影响（财富管理是长期趋势驱动的慢变量），更多受行业结构性迁移周期驱动。当前澳洲财富管理行业正处于"从银行系平台到独立平台"的大迁移中期，Hub24作为独立平台的头部玩家正处于加速成长阶段。即便ASX市场下跌，平台现金收益（cash account interest）反而受益于高利率环境。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>SaaS/成长股</td><td>PE+PS</td><td>FUA增速、FCF Margin、经营利润率</td><td class="neutral">⚠ PE 54x在ASX成长股中已显著回调（历史中位83x），PEG~1.1x</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值方法总结：</strong>Hub24作为SaaS型成长股，PE是主要估值方法，但传统价值框架下的合理PE区间（ROE 19.7%对应15-25x）显然不适用于高成长SaaS。市场通常用PEG来评估——当前FY2026E PE 43x对应EPS增速38%，PEG~1.1x，在ASX高增长SaaS中合理。核心估值锚定是FUA增速（若维持25%+则45-55x PE可持续）和经营利润率（若从24.6%升至30%+则提升估值天花板）。当前股价从A$122回调至A$70（-42%），已消化了大部分估值泡沫，处于5年估值低位区间的下沿。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<div class="summary-box">
+  <strong>六步法总结</strong><br><br>
+  <strong>Step 1 - 行业定位：</strong>成长性行业（财富管理SaaS平台），中等集中度（CR5>70%向头部集中），极高转换成本+监管牌照+规模经济三重壁垒。<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 19.7%（优秀），高利润型（净利率~20%）+极低杠杆（权益乘数1.25），CFO/净利~1.63（现金质量极好），FCF margin 35.7%。<br>
+  <strong>Step 3 - 估值判断：</strong>PE 54x（TTM）处于5年历史低位但绝对估值仍高，PEG~1.1x（基于FY2026E）在ASX成长股中合理。<br>
+  <strong>Step 4 - 风险排查：</strong>PE估值溢价过高、FUA增速放缓导致估值收缩、竞争加剧（Netwealth/Macquarie）、商誉减值风险。<br>
+  <strong>Step 5 - 结论：</strong>业务面顶级（90/100），但PE 54x远超传统价值区间。成长型投资者可关注回调后的机会，价值投资者应回避。<br>
+  <strong>Step 6 - 跟踪：</strong>FUA增速（>25%为健康）、经营利润率（目标30%+）、净流入市场份额（是否持续#1）。
+</div>
+
+<h3>好公司三要素检查</h3>
+<table>
+  <tr><th style="width:25%">要素</th><th>检查结果</th></tr>
+  <tr><td>① 好行业——需求稳定or增长，壁垒高，格局好</td><td class="good">✅ 财富管理行业长期受益于澳洲养老体系强制储蓄增长，平台迁移趋势明确，转换成本极高</td></tr>
+  <tr><td>② 好公司——ROE>15%，毛利率稳定或提升，CFO>净利润</td><td class="good">✅ ROE 19.7% ✓, 毛利率~65-80%高且稳定 ✓, CFO/净利~1.63 ✓</td></tr>
+  <tr><td>③ 好价格——PE/PB历史偏低分位，PEG<1.5</td><td class="neutral">⚠ PE 54x远超传统价值区间15-25x，但PEG~1.1x在ASX成长股中合理，历史低位区附近</td></tr>
+</table>
+
+<h3>三个陷阱排查</h3>
+<div class="highlight-box">
+  ✅ 未命中价值陷阱——非低PE+低增长组合，营收增长24%强劲<br>
+  ✅ 未命中周期陷阱——成长型SaaS不受经济周期显著影响<br>
+  ✅ 未命中烧钱陷阱——FCF margin 35.7%，现金流极强
+</div>
+
+<h3>讨论问题</h3>
+<div class="summary-box">
+  阅读报告后可以聊这些：<br><br>
+  1. 这笔生意你看懂了吗？一句话说清Hub24怎么赚钱？<br>
+  2. FUA增长是Hub24的核心驱动力——你能判断未来2-3年FUA增速会维持25%+还是放缓？<br>
+  3. PE 54x vs ROE 19.7%——你愿意为这个"完美业务"支付多少溢价？<br>
+  4. 什么情况下你会坚决卖出Hub24？
+</div>
+
+</div></div>
+
+<div class="footer">
+   免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+   数据来源：HUB24 FY2025年报、ASX公告、StockAnalysis、券商研报。所有金额单位为澳元(AUD)。
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

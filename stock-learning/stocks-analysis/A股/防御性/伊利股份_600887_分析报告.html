@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>伊利股份(600887) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>伊利股份（600887）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026年6月 | 数据来源：FY2025 年报</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>内蒙古伊利实业集团股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>600887.SH</td></tr>
+  <tr><td>所属行业</td><td>乳制品（食品饮料）</td></tr>
+  <tr><td>行业地位</td><td>中国乳业绝对龙头——液态奶/冷饮市占率第一，婴幼儿奶粉份额18.3%跃居全国第一，成人奶粉份额25%稳居第一</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>1,159.31 亿（+0.13%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>115.65 亿（+36.82%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>143.44 亿（-34.02%）</strong></td></tr>
+  <tr><td>总资产</td><td>1,520.99 亿</td></tr>
+  <tr><td>归母净资产</td><td>546.56 亿</td></tr>
+  <tr><td>ROE</td><td><strong>21.16%</strong></td></tr>
+</table>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">综合L1-L5所有因素（财务健康度、关键指标、估值、杜邦分析、行业分类），对各维度打分求和</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">21.16%，远超15%门槛</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="neutral" style="font-weight:bold;font-size:15px">3</td><td style="text-align:left">均衡偏杠杆型——净利率10.0%中+周转0.76中+杠杆2.78偏高</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">1.24 ≥ 1.0，现金质量优秀</td></tr>
+  <tr><td>营收增长（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">+0.13%，接近零增长</td></tr>
+  <tr><td>利润增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">扣非+84.13% ≥ 15%，FY2024低基数下的修复</td></tr>
+  <tr><td>负债率（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">61.51%偏高一——高于55%</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">货币资金194.95亿<短借456.31亿，缺口57%</td></tr>
+  <tr><td>毛利率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">34.58%≥30%且同比+0.70pct提升</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">PE 12.7x低于合理区间，低估</td></tr>
+  <tr><td>自由现金流（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">CFO 143亿强劲，FCF充裕</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">76/100</td><td style="text-align:left">品质尚可（76/100分）</td></tr>
+</table>
+
+<div class="verdict verdict-ok">品质尚可（76/100分）—— ROE 21.16%优秀+估值低估+高分红，但营收停滞+高短债</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>伊利股份是中国乳业绝对龙头，FY2025体现"利润修复年"特征——营收几乎零增长（+0.13%），但扣非净利暴增84%至110.68亿，净利率首次突破10%创历史新高。核心驱动力来自：原奶成本下降+产品结构优化（奶粉占比升至28.3%+冷饮+12.6%）+费用管控。<br><br>
+  <strong>核心优势：</strong>① ROE 21.16%重回优秀水平，乳业顶级回报率；② 婴幼儿奶粉份额18.3%跃居全国第一，第二增长曲线成型；③ 净利率首次突破10%，盈利拐点确认；④ 分红率75.48%，股息率5.69%高股息防御价值；⑤ 当前PE 12.7x处于近10年2.5%分位，估值深度低估。<br><br>
+  <strong>核心风险：</strong>① 营收停滞——液态奶业务同比-6.11%，行业量缩价减压力大；② 短期借款456.31亿远高于货币资金194.95亿，短期偿债压力突出；③ CFO同比-34%，主因上年同期有预收款一次性回流的高基数；④ 2026E一致预期净利增速仅+5.6%，盈利修复红利释放后增速将显著放缓。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业总收入</td><td><strong>1,159.31 亿</strong></td><td>1,157.80 亿</td><td><strong>+0.13%</strong></td><td class="neutral">⚠ 营收停滞</td></tr>
+  <tr><td>归母净利润</td><td><strong>115.65 亿</strong></td><td>84.53 亿</td><td><strong>+36.82%</strong></td><td class="good">✅ 大幅修复</td></tr>
+  <tr><td>扣非净利润</td><td><strong>110.68 亿</strong></td><td>60.11 亿</td><td><strong>+84.13%</strong></td><td class="good">✅ 超预期</td></tr>
+  <tr><td>毛利率</td><td><strong>34.58%</strong></td><td>33.88%</td><td>+0.70pct</td><td class="good">✅ 稳中有升</td></tr>
+  <tr><td>归母净利率</td><td><strong>10.0%</strong></td><td>7.30%</td><td>+2.70pct</td><td class="good">✅ 创历史新高</td></tr>
+  <tr><td>期间费用率</td><td><strong>~18.1%</strong></td><td>22.0%</td><td>-3.9pct</td><td class="good">✅ 管控有效</td></tr>
+  <tr><td>25Q1 营收</td><td>330.18 亿</td><td>325.79 亿</td><td>+1.35%</td><td class="neutral">⚠ 微增</td></tr>
+  <tr><td>25Q2 营收</td><td>289.2 亿</td><td>273.1 亿</td><td>+5.9%</td><td class="good">✅</td></tr>
+  <tr><td>25Q3 营收</td><td>~286.3 亿</td><td>290.4 亿</td><td>-1.4%</td><td class="neutral">⚠</td></tr>
+  <tr><td>25Q4 营收</td><td><strong>252.96 亿</strong></td><td>266.64 亿</td><td><strong>-5.12%</strong></td><td class="bad">❌ 明显下滑</td></tr>
+  <tr><td>25Q4 净利润</td><td><strong>11.39 亿</strong></td><td>-24.16 亿</td><td><strong>扭亏</strong></td><td class="good">✅ 大幅改善</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>FY2025是典型的"利润修复年"——营收仅+0.13%几乎零增长，但扣非净利润暴增84%。主因：① 原奶成本持续低位运行，毛利率同比+0.70pct；② 产品结构优化——高毛利的奶粉（占比28.3%）和冷饮（占比8.5%）增长对冲液态乳下滑；③ 费用管控效果显著，费用率降3.9pct。Q4营收同比-5.12%是隐忧，但Q4净利润从上年亏损24.16亿扭亏至盈利11.39亿，主业盈利能力实质性改善。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td><strong>194.95 亿</strong></td><td class="good">✅ 充裕</td></tr>
+  <tr><td>应收账款</td><td><strong>29.87 亿</strong></td><td class="good">✅ 占营收2.6%，合理</td></tr>
+  <tr><td>存货</td><td><strong>108.23 亿</strong></td><td class="neutral">占资产7.1%，较合理</td></tr>
+  <tr><td>短期借款</td><td><strong>456.31 亿</strong></td><td class="bad">❌ 显著偏高</td></tr>
+  <tr><td>长期借款</td><td><strong>4.72 亿</strong></td><td class="good">✅ 几乎为零</td></tr>
+  <tr><td>资产负债率</td><td><strong>61.51%</strong></td><td class="neutral">⚠ 偏高（同比-1.4pct）</td></tr>
+  <tr><td>归母净资产</td><td>546.56 亿</td><td class="good">✅ 同比+3.4%</td></tr>
+  <tr><td>总资产</td><td>1,520.99 亿</td><td class="good">✅ 同比-1.05%</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>资产负债表整体稳健——应收账款仅29.87亿（营收的2.6%），显示回款能力良好。主要风险点是短期借款456.31亿，远超货币资金194.95亿。但需要理解背景：伊利作为乳业龙头，大量短期借款是用于日常经营的流动资金管理（如季节性采购原奶），且与上游牧场形成"供应链金融"生态。另外，2025年资产负债率从62.91%降至61.51%已改善，长期借款仅4.72亿，暂无长期偿债压力。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>143.44 亿</strong></td><td>217.40 亿</td><td class="neutral">⚠ -34.02%（高基数）</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><strong>—</strong></td><td>—</td><td class="neutral">扩产投资中</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td><strong>—</strong></td><td>—</td><td class="neutral">高分红+还债</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>1.24</strong></td><td>2.57</td><td class="good">✅ >1.0现金质量好</td></tr>
+  <tr><td>自由现金流（FCF）</td><td><strong>充裕</strong></td><td>—</td><td class="good">✅ 制造中偏轻资产</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>CFO 143.44亿是净利润的1.24倍，现金质量依然优秀。同比-34%的主要原因是2024年有一次性预收款回流（原奶价格下行期，下游经销商集中采购）导致高基数。2025年回归正常水平。公司每年资本开支约60-80亿（牧场建设+产能升级），FCF仍为正值。股息支付率75.48%（全年分红87.29亿），现金流足够覆盖。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>21.16%</strong></td><td>> 15% 优秀</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>毛利率</td><td><strong>34.58%</strong></td><td>稳定或提升</td><td class="good">✅ +0.70pct提升</td></tr>
+  <tr><td>净利率</td><td><strong>10.0%</strong></td><td>> 10%</td><td class="good">✅ 首次突破10%</td></tr>
+  <tr><td>营收增长率</td><td><strong>+0.13%</strong></td><td>> 5%</td><td class="bad">❌ 接近零增长</td></tr>
+  <tr><td>扣非增长率</td><td><strong>+84.13%</strong></td><td>> 15%</td><td class="good">✅ 低基数下超高速</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>1.24</strong></td><td>> 1</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>资产负债率</td><td><strong>61.51%</strong></td><td>消费品<60%</td><td class="neutral">⚠ 略偏高</td></tr>
+  <tr><td>分红率</td><td><strong>75.48%</strong></td><td>> 30%</td><td class="good">✅ 慷慨高分红</td></tr>
+</table>
+
+<h3>3.2 分业务分析（2025年度）</h3>
+<table>
+  <tr><th>业务板块</th><th>营收（亿）</th><th>占比</th><th>同比</th><th>评价</th></tr>
+  <tr><td>液体乳</td><td>704.22</td><td>60.9%</td><td><strong>-6.11%</strong></td><td class="bad">❌ 核心下滑</td></tr>
+  <tr><td>奶粉及奶制品</td><td>327.69</td><td>28.3%</td><td><strong>+10.42%</strong></td><td class="good">✅ 第二曲线</td></tr>
+  <tr><td>冷饮产品</td><td>98.22</td><td>8.5%</td><td><strong>+12.63%</strong></td><td class="good">✅ 稳健增长</td></tr>
+  <tr><td>其他产品</td><td>~15.3</td><td>1.3%</td><td><strong>+112.3%</strong></td><td class="good">✅ 高基数倍增</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>伊利正经历"液态乳萎缩+奶粉崛起"的结构性转型。液态乳（60.9%占比）同比-6.11%是营收停滞的主因——行业受人口结构变化+消费降级+竞品白牌冲击三重压力。但奶粉业务（占比28.3%）增速+10.42%，婴幼儿奶粉份额18.3%跃居全国第一（超越外资品牌），成人奶粉25%稳居第一——这是伊利最大的结构性亮点。冷饮+12.63%稳健增长。安慕希等常温酸奶份额继续提升。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="bad">🔴 较高</td><td>液态乳营收同比-6.11%，核心业务持续萎缩</td><td>L2 分业务分析</td></tr>
+  <tr><td class="bad">🔴 较高</td><td>短期借款456亿远超货币资金195亿，短期流动性偏紧</td><td>L1 资产负债表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>营收增速+0.13%，接近零增长</td><td>L2 盈利指标</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>CFO同比-34%，虽有高基数因素但仍需关注</td><td>L1 现金流量表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>2026E一致预期净利增速仅+5.6%，盈利修复红利释放后放缓</td><td>L3 估值</td></tr>
+  <tr><td class="good">🟢 正面</td><td>ROE 21.16%重回优秀水平</td><td>L2 盈利指标</td></tr>
+  <tr><td class="good">🟢 正面</td><td>奶粉跃居全国第一，第二曲线确立</td><td>L2 分业务分析</td></tr>
+  <tr><td class="good">🟢 正面</td><td>净利率10%创历史新高，盈利能力实质改善</td><td>L1 利润表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>分红率75.48%，股息率5.69%高股息防御</td><td>L2 分红</td></tr>
+  <tr><td class="good">🟢 正面</td><td>PE 12.7x处于近10年2.5%分位，深度低估</td><td>L3 估值</td></tr>
+</table>
+
+<div class="verdict verdict-ok">✅ L2综合判定：优质龙头（ROE优秀+奶粉崛起+高分红+低估），但营收停滞是核心关注点</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>股价（2026.6.22）</td><td><strong>24.63 元</strong></td><td>近一年区间22.12~30.45元</td></tr>
+  <tr><td>总市值</td><td><strong>1,557.94 亿</strong></td><td>总股本63.25亿股</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>12.7x</strong></td><td>基于2025 EPS 1.83元</td></tr>
+  <tr><td>PE（2026E）</td><td><strong>~12.7x</strong></td><td>基于一致预期EPS 1.94元</td></tr>
+  <tr><td>PB</td><td><strong>~2.72x</strong></td><td>基于每股净资产8.64元</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~1.34x</strong></td><td>市销率</td></tr>
+  <tr><td>股息率（静态）</td><td><strong>~5.69%</strong></td><td>基于全年分红1.38元/股</td></tr>
+</table>
+
+<h3>4.2 PE Band估值区间</h3>
+<p style="font-size:13px;color:#666;">ROE 21.16% → 合理PE参考区间：20-30x | 2026E一致预期EPS ≈ 1.94元</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs现价24.63元</th></tr>
+  <tr><td>悲观</td><td>15x</td><td>29.1 元</td><td class="good">+18%</td></tr>
+  <tr><td>保守</td><td>20x</td><td>38.8 元</td><td class="good">+58%</td></tr>
+  <tr><td>中性</td><td>25x</td><td>48.5 元</td><td class="good">+97%</td></tr>
+  <tr><td>乐观</td><td>30x</td><td>58.2 元</td><td class="good">+136%</td></tr>
+  <tr><td>当前价</td><td>12.7x</td><td>24.63 元</td><td>—</td></tr>
+  <tr><td>近10年均值</td><td>~16.7x</td><td>32.4 元</td><td>+32%</td></tr>
+  <tr><td>近10年高位</td><td>26.5x</td><td>51.4 元</td><td>+109%</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值分析：</strong><br>
+  ① 当前PE 12.7x处于近10年约2.5%分位（历史最低区间），显著低于均值16.7x；<br>
+  ② ROE 21.16%对应的合理PE 20-30x，当前PE 12.7x低于合理区间下限，明显低估；<br>
+  ③ 2026E PE仍为12.7x，PEG约2.3（因一致预期增速仅+5.6%），增速低压制估值；<br>
+  ④ 但PE 12.7x + 股息率5.69%的组合，在A股消费龙头中极具安全边际；<br>
+  ⑤ 估值低的核心原因是营收零增长+高短债，市场对其"价值陷阱"有担忧。
+</div>
+
+<h3>4.3 历史PE区间（近10年）</h3>
+<table>
+  <tr><th>指标</th><th>PE值</th></tr>
+  <tr><td>历史最大值</td><td>26.47（2020年）</td></tr>
+  <tr><td>历史80%分位</td><td>21.62</td></tr>
+  <tr><td>历史50%分位（中位）</td><td>16.65</td></tr>
+  <tr><td>历史20%分位</td><td>14.57</td></tr>
+  <tr><td>历史最小值</td><td>11.12</td></tr>
+  <tr><td>当前PE（TTM）</td><td class="good" style="font-weight:bold">12.70（近10年2.5%分位）</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值总结：</strong>伊利股份当前PE 12.7x处于近10年最低区间（2.5%分位），PB 2.72x同样处于历史低位。ROE 21.16%对应合理PE 20-30x，当前估值明显低估。但市场给予低估值的原因值得深思：① 液态乳行业面临量价双杀压力；② 短期借款456亿的流动性隐忧；③ 一致预期2026年净利增速仅+5.6%。<br><br>
+  伊利当前处于"盈利修复已完成、增长新引擎待验证"的过渡期。对于价值投资者，5.69%的高股息+低PE提供了安全垫；对于成长投资者，需等待液态乳企稳信号或奶粉超预期。催化剂：① 奶粉份额持续提升；② 液态乳降幅收窄；③ 短债结构优化（如发行长期债券置换短期借款）。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>净利润率</td><td>7.30%</td><td><strong>10.0%</strong></td><td class="good">⬆ 大幅+2.7pct</td></tr>
+  <tr><td>资产周转率</td><td>0.75</td><td><strong>0.76</strong></td><td class="neutral">➡ 基本持平</td></tr>
+  <tr><td>权益乘数</td><td>2.91</td><td><strong>2.78</strong></td><td class="good">⬇ 杠杆下降（去风险）</td></tr>
+  <tr><td><strong>ROE</strong></td><td><strong>15.89%</strong></td><td><strong>21.16%</strong></td><td class="good">⬆ 大幅提升+5.27pct</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>5.48%</td><td><strong>7.60%</strong></td><td class="good">⬆ 提升</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>10.41pct</td><td><strong>13.56pct</strong></td><td class="neutral">⬆ 杠杆放大效应略升</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：均衡偏杠杆型</strong><br>
+  伊利以10.0%的中等净利润率为基础，叠加0.76的中等周转率和2.78的偏高杠杆，共同驱动21.16%的优秀ROE。拆解来看：<br><br>
+  <strong>ROE提升的驱动力（FY2024→FY2025）：</strong><br>
+  ① 净利润率从7.30%→10.0%（+2.7pct）是ROE提升的最核心驱动。原奶成本下降+产品结构优化（奶粉占比升至28.3%）+费用管控（费用率降3.9pct），三者叠加使净利率跨越10%里程碑。<br>
+  ② 资产周转率从0.75→0.76基本持平——营收几乎零增长限制了周转率的提升空间。<br>
+  ③ 权益乘数从2.91→2.78下降——公司正在适度去杠杆（资产负债率从62.91%→61.51%），虽然杠杆降低会拉低ROE，但提升财务安全性。<br><br>
+  <strong>核心结论：</strong>伊利的ROE提升是"净利率改善驱动"的健康模式——不是靠加杠杆（实际上在去杠杆），也不是靠惊人的周转率，而是实打实的盈利能力提升。去掉杠杆后的ROA从5.48%升至7.60%，说明资产回报效率在真实改善。但杠杆贡献仍然很高（13.56pct），净利率10%在消费品中仅属中等——如果净利率能进一步提升到12-15%，ROE将更具可持续性。
+</div>
+
+<h3>5.2 分业务杜邦贡献</h3>
+<table>
+  <tr><th>业务板块</th><th>毛利率</th><th>趋势</th><th>对ROE影响</th></tr>
+  <tr><td>液体乳</td><td>~31%</td><td class="bad">⬇ -6.11%下滑</td><td class="bad">拖累营收和利润</td></tr>
+  <tr><td>奶粉及奶制品</td><td>~44%</td><td class="good">⬆ +10.42%增长</td><td class="good">正向核心（高毛利+高增长）</td></tr>
+  <tr><td>冷饮产品</td><td>~39%</td><td class="good">⬆ +12.63%增长</td><td class="good">正向贡献</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>核心结论：</strong><br>
+  ① ROE 21.16%是"净利率改善驱动"的健康模式，FY2024→FY2025净利率从7.3%→10.0%贡献了绝大部分ROE提升；<br>
+  ② 去掉杠杆后ROA 7.60%在A股食品饮料中属于中等偏上，仍有提升空间；<br>
+  ③ 资产周转率0.76近两年基本持平——近零增长的营收环境限制了周转率提升；<br>
+  ④ 权益乘数2.78在消费品中偏高（短期借款456亿是主因），H股上市或长期债券置换有望降低；<br>
+  ⑤ 奶粉业务是结构改善的关键——如果奶粉占比能从28%提升到35%以上，整体净利率有望突破12%，推动ROE迈向25%+。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与特征（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：防御性行业（必选消费-乳制品）</strong><br>
+  <strong>判断依据：</strong>乳制品是典型必选消费——无论经济周期如何，牛奶、酸奶、奶粉等是日常刚需。伊利FY2025营收1,159亿几乎零增长（+0.13%），恰恰体现了防御性特征（不跟经济一起跌，但也不怎么涨）。但奶粉业务（占比28.3%）通过国产替代和高端化赋予了一定的成长属性——婴幼儿奶粉份额18.3%跃居全国第一，属于"防御为主+弱成长"的混合型行业。<br><br>
+  <strong>防御性体现：</strong>需求刚性（婴幼儿口粮+家庭日常消费）、高频低客单价、品牌忠诚度强、现金流稳定。<br>
+  <strong>成长性体现：</strong>奶粉国产替代（从外资手中抢份额）+品类创新（奶酪、功能性乳品）+渗透率提升（三四线市场）。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th></tr>
+  <tr><td>行业集中度</td><td><strong>双寡头格局</strong>——CR2（伊利+蒙牛）>60%，液态奶市场高度集中。奶粉市场CR5~50%，伊利份额18.3%跃居第一。行业已过整合期，进入稳定竞争阶段。</td></tr>
+  <tr><td>奶源壁垒</td><td><strong>强</strong>——伊利拥有自建+合作牧场覆盖全国主要奶源带（内蒙古、黑龙江、河北等），上游控制力强。原奶自给率超40%，新进入者难以复制。</td></tr>
+  <tr><td>品牌壁垒</td><td><strong>极强</strong>——伊利品牌沉淀超过30年，"奥运品质"背书。安慕希、畅意、金领冠等子品牌均为品类第一，消费者信任度高。</td></tr>
+  <tr><td>渠道壁垒</td><td><strong>强</strong>——终端网点覆盖数百万个，下沉至县乡市场。冷链物流体系完善，三四线城市渗透率持续提升。</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  <strong>阶段：成熟期（液态奶）+ 成长期（奶粉/奶酪）</strong><br>
+  液态奶（营收占比60.9%）已进入量缩阶段（人口结构变化+消费降级），行业整体增速趋近于零。但奶粉业务（占比28.3%）仍处于成长期——国产替代空间大（外资仍占高端市场较大份额）+婴幼儿奶粉高端化趋势。冷饮（占比8.5%）和奶酪（新品类）也有成长空间。<br><br>
+  <strong>投资策略重点：</strong>关注奶粉份额提升速度（能否到20%+）、液态奶降幅收窄（从-6%收窄至-3%甚至企稳）、分红率持续性（75%分红率能否维持）。
+</div>
+
+<h3>6.4 当前周期位置</h3>
+<div class="highlight-box">
+  <strong>周期位置：浅周期下行末端——原奶成本周期底部+需求企稳</strong><br>
+  乳制品具有弱周期性（原奶价格周期）。FY2023-FY2024经历了原奶价格下行+液态奶需求萎缩的"双重压力期"，FY2025净利率修复表明最坏时刻已过。当前原奶价格处于低位稳定，液态奶降幅有望收窄，奶粉+冷饮持续增长。一致性预期2026E营收+4.8%、净利+5.6%，增速虽低但已企稳。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>防御性消费（乳制品）</td><td>PE + 股息率</td><td>ROE、毛利率、营收增速</td><td class="good">✅ 匹配——PE 12.7x低估+股息率5.69%有安全垫</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值方法总结：</strong>伊利作为防御性消费龙头，PE和股息率是最合适的估值指标。当前PE 12.7x处于近10年2.5%分位，股息率5.69%，是A股消费股中罕见的"低估+高分红"组合。但需要理解：市场给予低PE是因为营收零增长+高短债的组合确实让投资者担忧"价值陷阱"。核心跟踪指标：① 液态奶月度零售数据（判断降幅是否收窄）；② 短期借款变化（若通过长期债券置换则消除流动性隐忧）；③ 奶粉市场份额季度更新（验证第二增长曲线）。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>防御性必选消费（乳制品），双寡头CR2>60%，伊利品牌+奶源+渠道三重壁垒极强。<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 21.16%优秀，均衡偏杠杆型杜邦，CFO/净利1.24现金质量好。<br>
+  <strong>Step 3 - 估值判断：</strong>PE 12.7x处于近10年2.5%分位，深度低估，股息率5.69%高安全垫。<br>
+  <strong>Step 4 - 风险排查：</strong>营收零增长（+0.13%），液态奶-6%下滑，短期借款456亿>货币资金195亿。<br>
+  <strong>Step 5 - 结论：</strong>好公司（ROE+品牌+高分红确认），好价格（PE历史底部+高股息），但营收停滞需警惕价值陷阱。<br>
+  <strong>Step 6 - 跟踪：</strong>看液态奶降幅是否收窄、奶粉份额提升速度、短债结构优化进度。
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="neutral">⚠</td><td>乳制品刚需但液态奶量缩，奶粉成长性好，行业整体格局稳定</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓</td><td>ROE 21.16%>15%，毛利率34.58%提升，CFO/净利1.24>1</td></tr>
+  <tr><td>③ 好价格</td><td class="good">✓</td><td>PE 12.7x在历史2.5%分位，PEG 2.3虽偏高但股息率5.69%提供安全垫</td></tr>
+</table>
+
+<h3>7.3 三个陷阱排查</h3>
+<div class="danger-box">
+  <strong>☐ 价值陷阱：</strong>🟡 局部命中——低PE（12.7x）+低营收增长（+0.13%）+高负债（61.5%），但ROE 21%和高分红部分化解。<br>
+  <strong>☐ 周期陷阱：</strong>❌ 未命中——乳制品为弱周期行业，原奶价格周期影响可控。<br>
+  <strong>☐ 烧钱陷阱：</strong>❌ 未命中——CFO 143亿覆盖净利115亿，FCF充裕。
+</div>
+
+<h3>7.4 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——养牛+做乳制品卖给全国超市/便利店——赚品牌和渠道的钱。伊利和蒙牛双寡头格局，定价权稳定。问题是乳制品市场饱和了，增长只能靠提价和产品升级。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——营收几乎零增长（+0.13%），公司还能怎么长大？乳制品人均消费量已经很高，靠结构升级（高端白奶/奶酪）的空间够大吗？<br>
+  3. 如果现在买入，期待的回报来源是什么？——赌估值修复（PE 12.7x处于10年2.5%分位，历史中值25x）+ 稳定的高分红。即使不增长，PE从12.7x修复到20x也有57%空间。<br>
+  4. 什么情况下你会坚决卖出？——营收连续负增长 / 毛利率跌破30% / 蒙牛发起价格战 / 分红率大幅下降。
+</div>
+
+</div></div>
+
+<div class="footer">
+   免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+   数据来源：伊利股份2025年年报、券商研报、理杏仁
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

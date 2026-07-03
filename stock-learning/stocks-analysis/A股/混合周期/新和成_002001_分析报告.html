@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新和成(002001) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>新和成（002001）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026年7月 | 数据来源：FY2025 年报 + 2026Q1 季报</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>浙江新和成股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>002001.SZ</td></tr>
+  <tr><td>所属行业</td><td>精细化工（营养品/香精香料/高分子新材料/原料药）</td></tr>
+  <tr><td>行业地位</td><td>全球四大维生素生产商之一；全球蛋氨酸龙头；国内精细化工百强榜首</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>222.51 亿（+2.97%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>67.64 亿（+15.26%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>87.97 亿（+24.38%）</strong></td></tr>
+  <tr><td>总资产</td><td>456.06 亿</td></tr>
+  <tr><td>归母净资产</td><td>328.06 亿</td></tr>
+  <tr><td>ROE</td><td>21.87%</td></tr>
+</table>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">综合L1-L5所有因素（财务健康度、关键指标、估值、杜邦分析、行业分类），对各维度打分求和</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">21.87% ≥ 15%</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">高利润型——净利率30.57%极高，权益乘数1.39偏低</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">1.30 ≥ 1.0，现金质量优秀</td></tr>
+  <tr><td>营收增长（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">+2.97% ≥ 0%，但增速偏低</td></tr>
+  <tr><td>利润增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+15.26% ≥ 15%</td></tr>
+  <tr><td>负债率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">28.07% < 40%，极低</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">货币资金充裕，CFO 87.97亿极强，无短期偿债压力</td></tr>
+  <tr><td>毛利率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">44.67% ≥ 30%且同比提升6.94pct</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">PE 13.7x低于合理区间20-30x（ROE>20%），估值偏低</td></tr>
+  <tr><td>自由现金流（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">CFO 87.97亿极强，FCF持续为正</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">94/100</td><td style="text-align:left">品质优秀（94/100分）</td></tr>
+</table>
+
+<div class="verdict verdict-ok">品质优秀（94/100分）</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>新和成是全球精细化工龙头，世界四大维生素生产商之一。公司以"化工+"和"生物+"双平台驱动，营养品（VA/VE/蛋氨酸）、香精香料、高分子新材料三大板块协同发展。FY2025营收222.51亿（+2.97%），归母净利67.64亿（+15.26%），净利率高达30.57%，ROE 21.87%，在化工行业中属于顶级盈利水平。资产负债率仅28.07%，CFO 87.97亿极其强劲，财务状况极为健康。<br><br>
+  <strong>核心优势：</strong>① ROE 21.87%，净利率30.57%，盈利能力卓越；② CFO 87.97亿，CFO/净利1.30，现金质量极优；③ 资产负债率仅28.07%，财务极其稳健；④ 蛋氨酸量价齐升+新材料放量，成长动能充足。<br><br>
+  <strong>核心风险：</strong>① 营收增速仅2.97%偏低，维生素板块受价格周期影响大；② Q4净利14.43亿同比-23.18%，Q4业绩承压；③ 2026Q1净利18.27亿同比-2.80%，维生素价格回落拖累；④ 在建项目投资规模大（尼龙/香精香料等），未来资本开支压力。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>222.51 亿</td><td>216.10 亿</td><td>+2.97%</td><td class="neutral">⚠ 低增长</td></tr>
+  <tr><td>归母净利润</td><td><strong>67.64 亿</strong></td><td>58.69 亿</td><td><strong>+15.26%</strong></td><td class="good">✅ 稳健增长</td></tr>
+  <tr><td>扣非净利润</td><td><strong>67.38 亿</strong></td><td>58.29 亿</td><td><strong>+15.59%</strong></td><td class="good">✅ 与归母一致（利润质量高）</td></tr>
+  <tr><td>毛利率</td><td><strong>44.67%</strong></td><td>41.77%</td><td>+2.90pct</td><td class="good">✅ 大幅提升</td></tr>
+  <tr><td>归母净利率</td><td><strong>30.57%</strong></td><td>27.16%</td><td>+3.41pct</td><td class="good">✅ 极高水平</td></tr>
+  <tr><td>期间费用率</td><td><strong>3.72%</strong></td><td>4.46%</td><td>-0.74pct</td><td class="good">✅ 费用控制优秀</td></tr>
+  <tr><td>2025Q1 营收</td><td>54.40 亿</td><td>45.00 亿</td><td>+20.91%</td><td class="good">✅ 高增长</td></tr>
+  <tr><td>2025Q2 营收</td><td>56.61 亿</td><td>53.47 亿</td><td>+5.89%</td><td class="neutral">⚠ 放缓</td></tr>
+  <tr><td>2025Q3 营收</td><td>55.41 亿</td><td>59.35 亿</td><td>-6.64%</td><td class="bad">❌ 下滑</td></tr>
+  <tr><td>2025Q4 营收</td><td>56.09 亿</td><td>58.28 亿</td><td>-3.75%</td><td class="bad">❌ 下滑</td></tr>
+  <tr><td>2025Q4 净利润</td><td><strong>14.43 亿</strong></td><td>18.79 亿</td><td><strong>-23.18%</strong></td><td class="bad">❌ 明显下降</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>利润表解读：</strong>营收微增2.97%，但利润增长15.26%，利润增速远高于营收增速——核心原因是毛利率从41.77%大幅提升至44.67%（+2.90pct），净利率从27.16%提升至30.57%。盈利能力提升主要得益于营养品板块（蛋氨酸量价齐升）和香精香料的利润率改善。Q4净利14.43亿同比-23.18%，与核心产品蛋氨酸、维生素E价格在Q4触底相关。三费占比仅3.72%，费用管控能力极为出色。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>货币资金+交易性金融资产</td><td><strong>~262 亿（估）</strong></td><td class="good">✅ 极其充裕</td></tr>
+  <tr><td>应收账款</td><td><strong>~30 亿（估）</strong></td><td class="good">占营收13.5%，正常</td></tr>
+  <tr><td>存货</td><td><strong>~42 亿（估）</strong></td><td class="neutral">占资产9.2%，适中</td></tr>
+  <tr><td>短期借款</td><td><strong>很低（估）</strong></td><td class="good">✅ 有息负债率约20%</td></tr>
+  <tr><td>长期借款</td><td><strong>有限（在建项目用）</strong></td><td class="good">可控</td></tr>
+  <tr><td>资产负债率</td><td><strong>28.07%</strong></td><td class="good">✅ 极低</td></tr>
+  <tr><td>归母净资产</td><td>328.06 亿</td><td class="good">✅ 同比+11.87%</td></tr>
+  <tr><td>总资产</td><td>456.06 亿</td><td class="good">✅ 同比+6.09%</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>资产负债率仅28.07%，在化工行业中属于极低水平。公司自上市以来累计融资64.52亿，累计分红185.70亿（分红融资比2.87倍），是典型的"现金奶牛"型企业。货币资金极其充裕，叠加CFO 87.97亿，财务极其稳健。公司在建项目（蛋氨酸扩产、香精香料、尼龙新材料等）资金有充分保障，无需过度依赖外部融资。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>87.97 亿</strong></td><td>70.73 亿</td><td class="good">✅ 极强+24.38%</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><strong>净流入（大额存单到期）</strong></td><td>—</td><td class="neutral">大额存单到期赎回所致</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td><strong>净流出（分红增加）</strong></td><td>—</td><td class="good">✅ 现金分红回报股东</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>1.30</strong></td><td>1.21</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>自由现金流（FCF）</td><td><strong>持续为正</strong></td><td>—</td><td class="good">✅ 优秀</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>CFO 87.97亿堪称"印钞机"级别——相当于每天产生约2400万经营现金流。CFO/净利润高达1.30，说明利润的现金含量极高，远超1.0的健康线。公司处于成熟盈利期，经营现金流完全覆盖投资和分红需求，是典型的"现金奶牛+适度扩张"模式。2025年现金分红约30.68亿（含中期+末期），分红比例约45%，既回报了股东，又保留了足够发展资金。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>21.87%</strong></td><td>> 15% 优秀</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>毛利率</td><td><strong>44.67%</strong></td><td>稳定或提升</td><td class="good">✅ 同比+2.90pct，趋势向好</td></tr>
+  <tr><td>净利率</td><td><strong>30.57%</strong></td><td>> 10%</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>营收增长率</td><td><strong>+2.97%</strong></td><td>> 10%</td><td class="neutral">⚠ 偏低（受维生素周期影响）</td></tr>
+  <tr><td>利润增长率</td><td><strong>+15.26%</strong></td><td>正增长</td><td class="good">✅ 稳健</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>1.30</strong></td><td>> 1</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>资产负债率</td><td><strong>28.07%</strong></td><td>制造业<60%</td><td class="good">✅ 极低</td></tr>
+  <tr><td>分红率</td><td><strong>~45%</strong></td><td>持续分红</td><td class="good">✅ 优秀（累计分红185.70亿）</td></tr>
+</table>
+
+<h3>3.2 分业务分析（2025年度估算）</h3>
+<table>
+  <tr><th>业务板块</th><th>营收（亿）</th><th>占比</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td>营养品（维生素/蛋氨酸）</td><td>~147.8</td><td>~66.4%</td><td>-1.8%</td><td><strong>47.8%</strong></td><td class="good">✅ 毛利率大幅改善</td></tr>
+  <tr><td>香精香料</td><td>~41.5</td><td>~18.6%</td><td>+6%</td><td><strong>~53%</strong></td><td class="good">✅ 高毛利稳定增长</td></tr>
+  <tr><td>高分子新材料</td><td>21.15</td><td>9.5%</td><td>+26.17%</td><td><strong>~28%</strong></td><td class="good">✅ 高增长核心引擎</td></tr>
+  <tr><td>原料药及其他</td><td>~12.1</td><td>~5.4%</td><td>+20%</td><td>~15%</td><td class="neutral">业务培育期</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>新和成三大业务各具特色——① 营养品（营收占比~66%）是基本盘，虽然蛋氨酸、维生素价格有周期波动，但公司凭借全球龙头的规模优势和产业链一体化，毛利率从43.18%大幅提升至47.8%；② 香精香料（~19%）是高毛利稳定器，毛利率~53%，与维生素业务高度协同（共用柠檬醛等中间体）；③ 高分子新材料（~9.5%）是未来增长引擎，PPS、尼龙66等产品受益于国产替代和新能源需求，2025年营收增长26%，后续天津尼龙项目投产后将成为重要增长点。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="neutral">🟡 中等</td><td>营收增速仅2.97%，增长放缓</td><td>L1 利润表 — 维生素价格回落影响</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>Q4净利同比-23.18%，Q4业绩明显走弱</td><td>L1 利润表 — 产品价格Q4触底</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>2026Q1净利同比-2.80%，短期承压</td><td>L1 利润表 — 维生素价格下跌</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>巨额在建项目（尼龙/香精等）投资压力</td><td>L5 行业 — 未来3年资本开支大</td></tr>
+  <tr><td class="good">🟢 正面</td><td>ROE 21.87%，盈利能力卓越</td><td>L2 盈利指标</td></tr>
+  <tr><td class="good">🟢 正面</td><td>CFO 87.97亿，现金质量极优</td><td>L1 现金流量表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>资产负债率仅28.07%，财务极其稳健</td><td>L1 资产负债表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>累计分红185.70亿，分红融资比2.87倍</td><td>L2 — 股东回报优秀</td></tr>
+  <tr><td class="good">🟢 正面</td><td>PE仅~13.7x，估值偏低</td><td>L3 估值</td></tr>
+  <tr><td class="good">🟢 正面</td><td>蛋氨酸量价齐升+新材料放量，成长确定性强</td><td>L2 分业务</td></tr>
+</table>
+
+<div class="verdict verdict-ok">✅ L2综合判定：品质优秀（ROE 21.87%，CFO强劲，财务健康，估值合理偏低）</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>股价（2026.7.1）</td><td><strong>~30.22 元</strong></td><td>PE 13.7x 处于历史偏低水平</td></tr>
+  <tr><td>总市值</td><td><strong>~928 亿</strong></td><td>按30.73亿总股本</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>13.7x</strong></td><td>基于2025 EPS 2.21元</td></tr>
+  <tr><td>PE（TTM扣非）</td><td><strong>13.6x</strong></td><td>基于扣非EPS 2.20元</td></tr>
+  <tr><td>PE（2026E）</td><td><strong>~11.7x</strong></td><td>基于券商一致预期EPS ~2.59元</td></tr>
+  <tr><td>PB</td><td><strong>2.61x</strong></td><td>基于每股净资产10.67元</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>4.2x</strong></td><td>市销率合理</td></tr>
+  <tr><td>PCF</td><td><strong>10.9x</strong></td><td>基于CFO 87.97亿</td></tr>
+  <tr><td>股息率</td><td><strong>~2.6%</strong></td><td>基于每10股派8元</td></tr>
+</table>
+
+<h3>4.2 PE Band估值区间</h3>
+<p style="font-size:13px;color:#666;">ROE 21.87% → 合理PE参考区间：20-30x | 2026E一致预期EPS ≈ 2.59元</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs现价30.22元</th></tr>
+  <tr><td>悲观</td><td>12x</td><td>31.1 元</td><td class="neutral">+3%</td></tr>
+  <tr><td>保守</td><td>15x</td><td>38.9 元</td><td class="good">+29%</td></tr>
+  <tr><td>中性（合理）</td><td>20x</td><td>51.8 元</td><td class="good">+71%</td></tr>
+  <tr><td>券商目标（国泰海通）</td><td>~17.5x</td><td>45.2 元</td><td class="good">+50%</td></tr>
+  <tr><td>当前价</td><td>11.7x</td><td>30.2 元</td><td>—</td></tr>
+  <tr><td>历史高位（2021年）</td><td>~30x</td><td>77.7 元</td><td class="good">+157%</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值优势提示：</strong><br>
+  ① 当前PE 13.7x处于历史偏低分位，远低于ROE 21.87%对应的合理PE 20-30x；<br>
+  ② 2026E PE仅11.7x，PEG不到1（利润增速>15%，PE<12x），明显低估；<br>
+  ③ 券商目标价45.22元（国泰海通）~54.23元（东方证券），距现价有50-79%上行空间；<br>
+  ④ PB 2.61x，对于ROE 21.87%的公司来说，PB合理偏低（PB/ROE=0.12）；<br>
+  ⑤ 股息率~2.6%，在化工股中属于较高水平，提供了安全垫。
+</div>
+
+<h3>4.3 历史PE区间</h3>
+<table>
+  <tr><th>指标</th><th>数值</th></tr>
+  <tr><td>PE（TTM）最大值（2021）</td><td>~30x</td></tr>
+  <tr><td>PE（TTM）80%分位</td><td>~22x</td></tr>
+  <tr><td>PE（TTM）50%分位</td><td>~17x</td></tr>
+  <tr><td>PE（TTM）20%分位</td><td>~13x</td></tr>
+  <tr><td>PE（TTM）最小值</td><td>~10x</td></tr>
+  <tr><td>当前PE（TTM）</td><td class="good">~13.7x（接近20%分位，偏低）</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值总结：</strong>新和成是一家"高ROE+低负债+强现金流+合理估值"的优质化工龙头。当前PE仅13.7x，处于历史偏低分位，对于ROE 21.87%的公司来说明显低估。2026年蛋氨酸价格大幅上涨（年初至4月涨幅195%），维生素价格也同步回升，2026年业绩有望大幅增长。以2026E一致预期EPS 2.59元、合理PE 20x计算，目标价51.8元，当前价30.22元有71%上行空间。是典型的高性价比优质化工龙头。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>净利润率</td><td>17.89%</td><td>27.16%</td><td><strong>30.57%</strong></td><td class="good">⬆ 大幅提升</td></tr>
+  <tr><td>资产周转率</td><td>0.39</td><td>0.50</td><td><strong>0.49</strong></td><td class="neutral">➡ 稳定</td></tr>
+  <tr><td>权益乘数</td><td>1.58</td><td>1.47</td><td><strong>1.39</strong></td><td class="good">⬇ 杠杆下降</td></tr>
+  <tr><td><strong>ROE（杜邦）</strong></td><td><strong>~11.0%</strong></td><td><strong>~20.0%</strong></td><td><strong>~20.8%</strong></td><td class="good">⬆ 高位稳定</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>6.98%</td><td>13.58%</td><td><strong>14.98%</strong></td><td class="good">⬆ 持续提升</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>4.02pct</td><td>6.42pct</td><td><strong>5.82pct</strong></td><td class="neutral">⬇ 杠杆贡献降低</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：高利润型（典型卓越盈利模式）</strong><br>
+  新和成的ROE驱动模式极其健康——净利率30.57%极高，周转率0.49中等，权益乘数1.39偏低。ROE主要由高利润率贡献（占ROE的72%），而非依靠杠杆，这是最优质的盈利模式。<br><br>
+  <strong>关键发现：</strong>去杠杆ROA从2023年的6.98%跃升至2025年的14.98%，说明去掉杠杆后公司的真实基础回报率在快速提升，这是利润率持续改善的直接结果。同时权益乘数从1.58降至1.39，杠杆在降低但ROE从11%升至20.8%，堪称教科书级的盈利改善。
+</div>
+
+<h3>5.2 分业务杜邦贡献</h3>
+<table>
+  <tr><th>业务板块</th><th>毛利率</th><th>趋势</th><th>对ROE影响</th></tr>
+  <tr><td>营养品（维生素/蛋氨酸）</td><td>47.8%</td><td class="good">⬆ +4.6pct</td><td class="good">核心贡献者</td></tr>
+  <tr><td>香精香料</td><td>~53%</td><td class="good">稳定提升</td><td class="good">高毛利稳定器</td></tr>
+  <tr><td>高分子新材料</td><td>~28%</td><td class="good">⬆ 爬坡中</td><td class="good">未来增长引擎</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>核心结论：</strong><br>
+  ① ROE 21.87%主要由高利润率驱动（净利率30.57%），属于最优秀的高利润型盈利模式；<br>
+  ② 去杠杆ROA从6.98%→14.98%，去掉杠杆后的真实回报翻倍，说明盈利改善是实质性的；<br>
+  ③ 权益乘数从1.58降至1.39，杠杆在降低，财务更安全，但ROE仍在提升；<br>
+  ④ ROE驱动结构：利润贡献~72% + 周转贡献~17% + 杠杆贡献~11%，非常均衡健康；<br>
+  ⑤ 未来ROE提升关键：新材料营收占比提升（目前仅9.5%），有望提升整体周转率和利润率。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与特征（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：混合周期型（精细化工）</strong><br>
+  <strong>判断依据：</strong>新和成所处的精细化工行业兼具周期性和成长性双重特征——① 营养品（维生素/蛋氨酸）属于典型周期性业务，价格随供需周期大幅波动（2017-2018年VA价格暴涨、2022-2023年低迷、2024-2025年再次上行），周期长度约3-4年；② 香精香料业务相对稳定，受周期影响小；③ 高分子新材料处于快速成长期，受益于国产替代和新能源需求，成长性突出。<br><br>
+  <strong>核心判断：</strong>公司整体属于"以周期为底、成长为翼"的混合周期型企业。维生素周期提供了利润弹性，香精香料提供了稳定性，新材料提供了成长性。三者的组合使公司比纯周期化工企业具有更强的抗周期能力。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th></tr>
+  <tr><td>行业集中度</td><td><strong>极高</strong>——全球VA CR5=77%，VE CR5=92%，蛋氨酸CR4>80%。新和成是全球四大维生素生产商之一、全球蛋氨酸龙头。集中度极高的格局对龙头极为有利，定价权强。</td></tr>
+  <tr><td>技术壁垒</td><td><strong>极高</strong>——精细化工合成工艺复杂，新和成拥有从基础原料到终端产品的全产业链，柠檬醛-芳樟醇-VE产业链一体化是其核心壁垒。公司拥有有效专利800多项，研发人员2800余人。</td></tr>
+  <tr><td>规模壁垒</td><td><strong>极强</strong>——固体蛋氨酸30万吨/年+液体蛋氨酸18万吨/年（折纯）+ VA/VE全球前列产能，巨额资本投入构筑了难以逾越的规模壁垒。</td></tr>
+  <tr><td>客户壁垒</td><td><strong>强</strong>——全球100多个国家和地区客户，饲料添加剂/食品添加剂领域的认证周期长、客户粘性高。</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  <strong>阶段：成熟期（营养品）+ 成长期（新材料）</strong><br>
+  营养品业务（营收占比~66%）处于成熟期——维生素和蛋氨酸是成熟大宗产品，需求稳健增长（全球饲料添加剂需求增速约3-5%），但价格具有周期波动特征。投资逻辑在于周期底部布局、顶部兑现。<br><br>
+  高分子新材料（营收占比~9.5%但仍快速提升）处于成长期——PPS、尼龙66等产品受益于国产替代和新能源、电器等领域需求增长，2025年营收增长26%，是公司最确定的成长引擎。<br><br>
+  <strong>投资策略重点：</strong>关注蛋氨酸价格走势（2026年大幅上涨）、天津尼龙项目推进进度、香精香料新产能释放节奏。
+</div>
+
+<h3>6.4 当前周期位置</h3>
+<div class="highlight-box">
+  <strong>当前周期位置：周期底部回升阶段</strong><br>
+  2025Q4是维生素和蛋氨酸的价格底部（Q4净利同比-23%为近年低点），2026年初以来蛋氨酸价格暴涨（年初至4月涨幅195%），维生素VA/VE价格也大幅回升（VA年内涨86%，VE涨110%）。公司在2025年盈利已经不错的背景下（67.64亿），2026年有望受益于产品价格上涨实现更大的利润弹性。<br><br>
+  <strong>周期判断：</strong>当前处于"周期底部→回升"的转折阶段，正是周期股投资的较好时机。PE仅13.7x处于低位，随着利润修复有望迎来戴维斯双击。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>混合周期型（精细化工龙头）</td><td>PE为主，PB为辅</td><td>毛利率趋势、产能利用率、产品价格走势</td><td class="good">✅ 匹配——PE 13.7x + PB 2.61x，均处于偏低水平</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值方法总结：</strong>新和成是精细化工龙头，兼具周期性和成长性，估值应综合PE和PB。当前PE 13.7x处于历史偏低分位（20%分位附近），PB 2.61x对应ROE 21.87%性价比极高。对于周期回升阶段的化工龙头，PE低+产品价格上涨是最理想的投资情景。以2026年一致预期净利润79.81亿计算，当前PE仅11.7x，具有显著安全边际。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>混合周期型（精细化工），全球维生素/蛋氨酸行业CR5极高，技术+规模壁垒极强。<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 21.87%优秀，高利润型杜邦，CFO/净利1.30卓越，负债率28%极低。<br>
+  <strong>Step 3 - 估值判断：</strong>PE 13.7x处于历史偏低分位，低于ROE对应的合理PE 20-30x，被低估。<br>
+  <strong>Step 4 - 风险排查：</strong>营收增速仅2.97%偏低，Q4利润下滑，维生素价格周期波动，在建项目资产开支大。<br>
+  <strong>Step 5 - 结论：</strong>好公司（ROE>15%，CFO强劲，低杠杆）+ 好价格（PE 13.7x偏低），值得重点关注。<br>
+  <strong>Step 6 - 跟踪：</strong>看蛋氨酸/维生素价格走势、2026年盈利弹性、新材料营收占比提升、在建项目进度。
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>精细化工行业需求稳健，维生素/蛋氨酸集中度极高，龙头定价权强；新材料受益于国产替代</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓</td><td>ROE 21.87%>15%，毛利率44.67%稳定提升，CFO/净利1.30>1，全部达标</td></tr>
+  <tr><td>③ 好价格</td><td class="good">✓</td><td>PE 13.7x在历史偏低分位，2026E PE仅11.7x，PEG<0.8，明显低估</td></tr>
+</table>
+
+<h3>7.3 三个陷阱排查</h3>
+<div class="summary-box">
+  <strong>☐ 价值陷阱：</strong>❌ 未命中——低PE（13.7x）但利润正增长（+15.26%）且零负债压力，不是价值陷阱。<br>
+  <strong>☐ 周期陷阱：</strong>⚠ 部分命中——需注意公司在周期底部时利润可能大幅下滑（如2023年净利27亿比2024年58亿），当前周期处于底部回升阶段，只要不在周期顶部以PE最低时买入即可。<br>
+  <strong>☐ 烧钱陷阱：</strong>❌ 未命中——CFO 87.97亿极强，FCF持续为正，不是烧钱型公司。
+</div>
+
+<h3>7.4 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——把维生素、蛋氨酸等精细化工品卖给全球饲料/食品企业，赚规模优势和产业链一体化的钱。本质是"化工领域的台积电"——用技术和规模构筑成本壁垒。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——营收增速仅2.97%，如果2026年蛋氨酸涨价带来的收入弹性不及预期，成长性会打折扣。另外新材料占比仍低（9.5%），短期还撑不起第二增长曲线的估值逻辑。<br>
+  3. 如果现在买入，期待的回报来源是什么？——① 蛋氨酸/维生素涨价带来的2026年利润弹性（一致预期79.81亿，+18%）；② PE从13.7x修复至合理20x的估值提升空间（+46%）；③ 新材料成长带来的长期价值提升。<br>
+  4. 什么情况下你会坚决卖出？——蛋氨酸价格大幅回落 / PE超过25x透支合理估值 / 新材料项目进度严重不及预期 / 负债率大幅攀升。
+</div>
+
+</div></div>
+
+<div class="footer">
+   免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+   数据来源：新和成2025年年报、2026Q1季报、券商研报、东方财富、中财网
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

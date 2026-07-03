@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>A股——证券 行业分析报告</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f5f5f5;padding:0;color:#333}
+  .report-wrap{max-width:800px;margin:0 auto;background:#fff}
+  h1{font-size:22px;margin:0;padding:28px 0 4px;text-align:center}
+  h2{font-size:18px;margin:28px 0 12px;border-bottom:2px solid #1a1a1a;padding-bottom:4px}
+  h3{font-size:15px;margin:18px 0 8px}
+  .subtitle{color:#666;font-size:13px;text-align:center;margin-bottom:4px}
+  .meta{color:#999;font-size:12px;text-align:center;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #e0e0e0}
+  .tab-bar{position:sticky;top:0;z-index:10;background:#fff;display:flex;flex-wrap:wrap;border-bottom:2px solid #ddd;gap:0}
+  .tab-btn{padding:10px 14px;cursor:pointer;border:none;background:none;font-size:13px;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+  .tab-btn:hover{color:#333;background:#f9f9f9}
+  .tab-btn.active{color:#1a1a1a;font-weight:700;border-bottom-color:#1a1a1a}
+  .tab-content{display:none}
+  .tab-content.active{display:block}
+  .tab-inner{padding:0 12px}
+  table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:13px}
+  th{background:#f5f5f5;padding:8px 6px;text-align:left;border-bottom:2px solid #ddd;white-space:nowrap;font-weight:600}
+  td{padding:7px 6px;border-bottom:1px solid #eee}
+  tr:nth-child(even) td{background:#fafafa}
+  .summary-box{background:#fffde7;border-left:4px solid #f9a825;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .highlight-box{background:#e3f2fd;border-left:4px solid #1e88e5;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .danger-box{background:#ffebee;border-left:4px solid #e53935;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .verdict{text-align:center;padding:20px;margin:16px 0;border-radius:8px;font-size:18px;font-weight:700}
+  .verdict-ok{background:#e8f5e9;border:2px solid #4caf50;color:#2e7d32}
+  .verdict-caution{background:#fff3e0;border:2px solid #ff9800;color:#e65100}
+  .verdict-bad{background:#ffebee;border:2px solid #e53935;color:#c62828}
+  .score{font-size:36px;display:block;margin-bottom:4px}
+  .pass{color:#2e7d32;font-weight:700}
+  .skip{color:#666;font-style:italic}
+  .tag{display:inline-block;padding:2px 8px;border-radius:3px;font-size:11px;font-weight:700}
+  .tag-red{background:#ffebee;color:#c62828}
+  .tag-green{background:#e8f5e9;color:#2e7d32}
+  .tag-yellow{background:#fff8e1;color:#f57f17}
+  .footer{font-size:11px;color:#aaa;text-align:center;padding:24px 0 8px;border-top:1px solid #eee;margin-top:30px}
+  .card{background:#fafafa;border:1px solid #e0e0e0;border-radius:6px;padding:14px;margin:10px 0;font-size:13px}
+  .flex{display:flex;flex-wrap:wrap;gap:8px}
+  .tbl-wrap{border:1px solid #e0e0e0;border-radius:6px;overflow:hidden;margin:10px 0 18px}
+  .tbl-wrap table{margin:0}
+  .tbl-wrap th{background:#f5f5f5;padding:9px 8px;border-bottom:1px solid #ddd;font-weight:600;font-size:12px}
+  .tbl-wrap td{padding:8px;border-bottom:1px solid #f0f0f0;font-size:13px}
+  .tbl-wrap tr:last-child td{border-bottom:none}
+  .tbl-wrap td,.tbl-wrap th{vertical-align:middle}
+  .bar-wrap{display:inline-flex;align-items:center;width:60px;height:16px;vertical-align:middle}
+  .bar-bg{background:#eee;border-radius:4px;height:8px;width:100%;overflow:hidden;position:relative}
+  .bar{display:block;height:8px;border-radius:4px}
+  .score-cell{font-weight:700;font-size:15px;text-align:center;white-space:nowrap}
+  .col-tag{display:inline-block;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600}
+  .col-win{background:#e8f5e9;color:#2e7d32}
+  .col-lose{background:#ffebee;color:#c62828}
+  .col-warn{background:#fff3e0;color:#e65100}
+  .col-info{background:#e3f2fd;color:#1565c0}
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>A股——证券 行业分析报告</h1>
+<div class="subtitle">L5分类：纯周期 ｜ 上市公司：~42家 ｜ 总市值：~3万亿</div>
+<div class="meta">生成日期：2026-07-01</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l7">L7 量化初筛</button>
+  <button class="tab-btn" data-tab="l8">L8 行业画像</button>
+  <button class="tab-btn" data-tab="l9">L9 竞争格局</button>
+  <button class="tab-btn" data-tab="l10">L10 周期时机</button>
+</div>
+
+<div class="tab-content active" id="tab-summary">
+<div class="tab-inner">
+
+<h2>行业速览</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">项目</th><th>内容</th></tr>
+<tr><td>行业名称</td><td><strong>证券</strong></td></tr>
+<tr><td>市场</td><td>A股</td></tr>
+<tr><td>L5分类</td><td><span class="col-tag col-lose">纯周期</span> 与股市成交额高度正相关，3-5年周期</td></tr>
+<tr><td>上市公司</td><td>~42家单一证券业务上市券商，其中符合L7条件 <span class="col-tag col-win">28家</span></td></tr>
+<tr><td>行业总市值</td><td>~3万亿</td></tr>
+<tr><td>产业链利润核心</td><td><span class="col-tag col-warn">自营投资</span> 贡献~40%营收 &gt; 经纪 ~25% &gt; 投行 &gt; 资管 &gt; 信用</td></tr>
+<tr><td>生命周期阶段</td><td><span class="col-tag col-info">成熟期</span> 行业格局稳定，靠市场周期吃饭</td></tr>
+<tr><td>当前周期位置</td><td><span class="col-tag col-win">复苏/繁荣初期</span> 成交活跃，ROE提升，估值极低</td></tr>
+</table>
+</div>
+
+<h2>综合评分</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>维度</th><th style="width:60px">得分</th><th>进度</th><th>说明</th></tr>
+<tr>
+  <td>行业规模与空间</td>
+  <td class="score-cell">14/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:70%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">直接融资占比提升大趋势明确，但行业增长依赖成交额</td>
+</tr>
+<tr>
+  <td>产业链位置</td>
+  <td class="score-cell">11/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:73%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">资本市场枢纽角色，政策支持"培育一流投行"</td>
+</tr>
+<tr>
+  <td>竞争格局</td>
+  <td class="score-cell">12/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:60%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">CR10~60%但同质化严重，并购重组正加速格局优化</td>
+</tr>
+<tr>
+  <td>增长驱动力</td>
+  <td class="score-cell">10/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:67%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">财富管理+海外+科创三重催化，但本质仍是周期驱动</td>
+</tr>
+<tr>
+  <td>周期位置</td>
+  <td class="score-cell">12/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:80%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">PB/PE均处于近10年最低分位（5-7%），性价比极高</td>
+</tr>
+<tr>
+  <td>政策环境</td>
+  <td class="score-cell">13/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:87%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">"金融强国"战略+创业板改革+耐心资本，政策持续利好</td>
+</tr>
+<tr style="background:#fafafa">
+  <td style="font-weight:700;font-size:14px">总分</td>
+  <td style="font-weight:700;font-size:16px;color:#2e7d32">72/100</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:72%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#2e7d32;font-weight:600">良好——高ROE+低PB错配窗口，估值修复空间大</td>
+</tr>
+</table>
+</div>
+
+<div class="verdict verdict-ok">
+  <span class="score">72</span>
+  良好——当前处于战略性布局窗口
+</div>
+
+<div class="summary-box">
+  <strong>核心结论</strong><br>
+  证券行业正处在"高ROE+低PB"的历史性错配窗口。2026Q1行业ROE年化已达8.5%，但PB仅1.12x（近10年5.9%分位），PE 14.57x（6.7%分位），近三成个股破净。A股日均成交额站上2.5万亿、两融余额2.9万亿创历史新高，基本面极为强劲。股价与基本面的"剪刀差"主要受资金面压制（宽基ETF净流出、再融资担忧），但压制因素正边际减弱。用纯周期框架分析：当前处于PB极低+盈利上升的黄金区间，建议积极关注头部券商。
+</div>
+
+<div class="highlight-box">
+  <strong>行业公式</strong><br>
+  收入 ≈ 日均成交额 × 佣金率 + 两融余额 × 利差 + 自营投资收益率 × 投资规模 + IPO规模 × 承销费率<br>
+  关键指标：1) A股日均成交额 2) 两融余额 3) IPO规模 4) 自营投资收益率 5) PB历史分位
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l7">
+<div class="tab-inner">
+
+<h2>筛子调整说明</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:12%">筛子</th><th style="width:35%">标准</th><th>调整说明</th></tr>
+<tr><td>①<span class="col-tag col-info">市值</span></td><td>主板≥50亿</td><td>42家上市券商市值均在100亿以上，全部通过</td></tr>
+<tr><td>②<span class="col-tag col-info">营收</span></td><td>主板≥10亿</td><td>证券行业营收体量普遍50亿+，全部通过</td></tr>
+<tr><td>③<span class="col-tag col-info">毛利率</span></td><td>金融/银行跳过</td><td><span class="col-tag col-info">跳过此筛</span>（核心看ROE替代）</td></tr>
+<tr><td>④<span class="col-tag col-warn">ROE</span></td><td>≥8%</td><td>2026Q1年化ROE 7.4%，部分头部&gt;10%，尾部&lt;5%</td></tr>
+<tr><td>⑤<span class="col-tag col-info">负债率</span></td><td>金融/银行跳过</td><td><span class="col-tag col-info">跳过此筛</span>（券商高杠杆经营是常态）</td></tr>
+<tr><td>⑥<span class="col-tag col-info">估值</span></td><td>PB历史分位≤80%</td><td>当前PB在近10年5.9%分位，全部通过</td></tr>
+</table>
+</div>
+
+<h2>候选池（28只·首批14只）</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>市值</th><th>ROE</th><th>PB</th><th>PB分位</th><th>通过</th></tr>
+<tr>
+  <td><strong>中信证券</strong> 600030</td>
+  <td style="font-weight:600">~5000亿</td>
+  <td><span class="col-tag col-win">~10%</span></td>
+  <td>~1.4x</td>
+  <td><span class="col-tag col-win">~20%</span></td>
+  <td class="pass">5/5</td>
+</tr>
+<tr>
+  <td><strong>东方财富</strong> 300059</td>
+  <td style="font-weight:600">~4000亿</td>
+  <td><span class="col-tag col-win">~15%</span></td>
+  <td>~4.5x</td>
+  <td>~30%</td>
+  <td class="pass">5/5</td>
+</tr>
+<tr>
+  <td><strong>华泰证券</strong> 601688</td>
+  <td>~2500亿</td>
+  <td><span class="col-tag col-win">~10%</span></td>
+  <td>~1.1x</td>
+  <td><span class="col-tag col-win">~10%</span></td>
+  <td class="pass">5/5</td>
+</tr>
+<tr>
+  <td><strong>广发证券</strong> 000776</td>
+  <td>~2000亿</td>
+  <td>~9%</td>
+  <td>~1.0x</td>
+  <td><span class="col-tag col-win">~8%</span></td>
+  <td class="pass">5/5</td>
+</tr>
+<tr>
+  <td><strong>招商证券</strong> 600999</td>
+  <td>~1800亿</td>
+  <td><span class="col-tag col-win">~10%</span></td>
+  <td>~1.2x</td>
+  <td>~15%</td>
+  <td class="pass">5/5</td>
+</tr>
+<tr>
+  <td><strong>国泰海通</strong> 601211</td>
+  <td>~2500亿</td>
+  <td>~9%</td>
+  <td>~1.0x</td>
+  <td><span class="col-tag col-win">~5%</span></td>
+  <td class="pass">5/5</td>
+</tr>
+<tr>
+  <td><strong>中金公司</strong> 601995</td>
+  <td>~2000亿</td>
+  <td>~8%</td>
+  <td>~1.3x</td>
+  <td>~15%</td>
+  <td class="pass">5/5</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>中国银河 601881</td><td>~1800亿</td><td>~9%</td><td>~1.1x</td><td>~10%</td><td class="pass">5/5</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>申万宏源 000166</td><td>~1500亿</td><td>~8%</td><td>~1.0x</td><td>~5%</td><td class="pass">5/5</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>东方证券 600958</td><td>~1200亿</td><td>~8%</td><td>~1.0x</td><td>~5%</td><td class="pass">5/5</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>兴业证券 601377</td><td>~1000亿</td><td>~8%</td><td>~1.0x</td><td>~8%</td><td class="pass">5/5</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>长江证券 000783</td><td>~800亿</td><td>~8%</td><td>~1.0x</td><td>~10%</td><td class="pass">5/5</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>国信证券 002736</td><td>~1200亿</td><td>~9%</td><td>~1.1x</td><td>~10%</td><td class="pass">5/5</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>方正证券 601901</td><td>~800亿</td><td>~7%</td><td>~1.0x</td><td>~10%</td><td class="pass">5/5</td>
+</tr>
+</table>
+</div>
+<p style="font-size:12px;color:#666">注：另有国金证券、财通证券、东吴证券、浙商证券、东兴证券、华安证券、国元证券、西南证券、长城证券、华西证券、天风证券、财达证券、中原证券、华林证券等14家通过全部筛子。</p>
+
+<h2>观察池</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>卡在哪筛</th><th>备注</th></tr>
+<tr>
+  <td><strong>太平洋证券</strong></td>
+  <td><span class="col-tag col-lose">④ROE连续&lt;5%</span></td>
+  <td>长期低ROE，资本回报效率差</td>
+</tr>
+<tr>
+  <td><strong>哈投股份</strong></td>
+  <td><span class="col-tag col-lose">④ROE连续&lt;5%</span></td>
+  <td>主营非纯券商，兼营热电等</td>
+</tr>
+<tr>
+  <td><strong>锦龙股份</strong></td>
+  <td><span class="col-tag col-lose">④ROE亏损</span></td>
+  <td>控股中山证券，经营持续承压</td>
+</tr>
+</table>
+</div>
+
+<h2>筛除记录</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>筛子</th><th style="width:60px">筛除数</th><th>知名示例</th></tr>
+<tr><td>①市值</td><td style="text-align:center">0</td><td>42家上市券商市值均&gt;50亿</td></tr>
+<tr><td>②营收</td><td style="text-align:center">0</td><td>全部&gt;10亿</td></tr>
+<tr><td>③毛利率 <span class="col-tag col-info">跳过</span></td><td style="text-align:center">—</td><td>金融行业不适用</td></tr>
+<tr><td>④ROE <span class="col-tag col-warn">唯一筛除</span></td><td style="text-align:center">~14</td><td>太平洋、哈投、锦龙等长期低ROE/亏损</td></tr>
+<tr><td>⑤负债率 <span class="col-tag col-info">跳过</span></td><td style="text-align:center">—</td><td>金融行业不适用</td></tr>
+<tr><td>⑥估值</td><td style="text-align:center">0</td><td>PB均在历史低位，全部通过</td></tr>
+<tr style="background:#fffde7"><td><strong>剩余</strong></td><td style="text-align:center;font-weight:700;color:#2e7d32"><strong>~28</strong></td><td>—</td></tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <strong>L7筛选结论</strong><br>
+  42→28，筛选力度中等（因为跳过了毛利率和负债率两个筛子）。ROE是最关键的区分维度：头部券商ROE 8-15%，尾部长期<5%。证券行业最大的问题是业务同质化，ROE差距主要来自自营投资能力和财富管理规模。当前PB极低意味着绝大多数上市券商都处于估值洼地，但龙头（中信/华泰/东方财富）的溢价尚未充分体现。L7候选池偏大（28只），建议用第七筛——市占率趋势和ROE稳定性进一步压缩到8-10只。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l8">
+<div class="tab-inner">
+
+<h2>产业链</h2>
+<div class="card" style="font-size:13px;line-height:1.7">
+
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px">
+
+<div style="flex:1;min-width:180px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#1565c0;font-size:14px">核心业务</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div><span class="tag tag-blue" style="display:inline-block;width:70px;text-align:center;background:#e3f2fd;color:#1565c0;font-size:11px">~25%</span> 经纪+财富管理</div>
+    <div style="font-size:11px;color:#666;margin:2px 0 6px 74px">佣金·席位费·投顾</div>
+    <div><span class="tag tag-blue" style="display:inline-block;width:70px;text-align:center;background:#e3f2fd;color:#1565c0;font-size:11px">~10%</span> 投资银行</div>
+    <div style="font-size:11px;color:#666;margin:2px 0 6px 74px">承销保荐·跟投</div>
+    <div><span class="tag tag-orange" style="display:inline-block;width:70px;text-align:center;background:#fff3e0;color:#e65100;font-size:11px">~40%</span> 自营投资</div>
+    <div style="font-size:11px;color:#666;margin:2px 0 6px 74px">方向性·做市</div>
+    <div><span class="tag tag-blue" style="display:inline-block;width:70px;text-align:center;background:#e3f2fd;color:#1565c0;font-size:11px">~12%</span> 资管+公募</div>
+    <div style="font-size:11px;color:#666;margin:2px 0 6px 74px">主动管理·通道</div>
+    <div><span class="tag tag-blue" style="display:inline-block;width:70px;text-align:center;background:#e3f2fd;color:#1565c0;font-size:11px">~8%</span> 信用业务</div>
+    <div style="font-size:11px;color:#666;margin:2px 0 0 74px">两融·股票质押</div>
+  </div>
+</div>
+
+<div style="flex:1;min-width:160px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#2e7d32;font-size:14px">资金/产品来源</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:8px">• 散户保证金</div>
+    <div style="margin-bottom:8px">• 两融资金（券商+银行）</div>
+    <div style="margin-bottom:8px">• IPO/再融资项目</div>
+    <div style="margin-bottom:8px">• 债券发行</div>
+    <div style="margin-bottom:8px">• 自有资金（净资产）</div>
+    <div style="margin-bottom:8px">• 衍生品对冲</div>
+    <div style="margin-bottom:8px">• 集合/单一资管</div>
+    <div style="margin-bottom:8px">• 公募基金（AUM）</div>
+  </div>
+</div>
+
+<div style="flex:1;min-width:140px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#c62828;font-size:14px">服务对象</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:8px">• 个人投资者</div>
+    <div style="margin-bottom:8px">• 机构投资者（公募/私募）</div>
+    <div style="margin-bottom:8px">• 上市公司</div>
+    <div style="margin-bottom:8px">• 政府/城投</div>
+    <div style="margin-bottom:8px">• 高净值客户</div>
+    <div style="margin-bottom:8px">• 融资客户</div>
+    <div style="margin-bottom:8px">• 质押客户</div>
+  </div>
+</div>
+
+</div>
+
+<div style="background:#fffde7;border-left:3px solid #f9a825;padding:8px 12px;font-size:12px;border-radius:0 4px 4px 0">
+  <strong>利润最厚环节：</strong>自营投资（高弹性）→ 财富管理（持续增长）→ 投行（跟投浮盈）
+  <br><span style="color:#999">注：各业务毛利不可比（自营为投资收益、经纪为佣金净收入）</span>
+</div>
+
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>业务线</th><th>代表公司</th><th>收入占比</th><th>集中度</th><th>壁垒</th></tr>
+<tr>
+  <td><span class="col-tag col-info">经纪+财富</span></td>
+  <td>东方财富、华泰、中信</td>
+  <td>~25%</td>
+  <td>CR10~45%</td>
+  <td>流量/网点/APP</td>
+</tr>
+<tr>
+  <td><span class="col-tag col-info">投资银行</span></td>
+  <td>中信、中金、华泰</td>
+  <td>~10%</td>
+  <td>CR10~65%</td>
+  <td>项目资源+定价</td>
+</tr>
+<tr>
+  <td><span class="col-tag col-warn">自营投资</span></td>
+  <td>中信、华泰、中金</td>
+  <td><strong>~40%</strong></td>
+  <td>CR10~55%</td>
+  <td>投研+风控</td>
+</tr>
+<tr>
+  <td><span class="col-tag col-info">资管+公募</span></td>
+  <td>东方、广发、中信</td>
+  <td>~12%</td>
+  <td>CR10~50%</td>
+  <td>品牌+业绩</td>
+</tr>
+<tr>
+  <td><span class="col-tag col-info">信用业务</span></td>
+  <td>中信、华泰、银河</td>
+  <td>~8%</td>
+  <td>CR10~40%</td>
+  <td>资金成本</td>
+</tr>
+</table>
+</div>
+
+<h2>市场规模</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">指标</th><th style="width:25%">数值</th><th>说明</th></tr>
+<tr><td><strong>TAM</strong>（总可触达市场）</td><td><span class="col-tag col-info" style="font-size:13px">~7000亿/年</span></td><td>2025年全行业营收，2026年有望继续增长</td></tr>
+<tr><td><strong>直接融资占比</strong></td><td>~30%（增量占比）</td><td>对比美国~80%，提升空间大，但速度慢</td></tr>
+<tr><td><strong>近年增速</strong>（3年CAGR）</td><td><span class="col-tag col-win">~15%</span></td><td>2023-2026年受益于成交额放大和政策改革</td></tr>
+</table>
+</div>
+
+<h2>生命周期</h2>
+<div class="summary-box">
+  <strong><span class="col-tag col-info" style="font-size:14px">成熟期（强周期波动）</span></strong><br>
+  判断依据：行业格局稳定，龙头地位基本确立；收入与市场成交额高度相关（β属性极强）；业务同质化严重，价格战（佣金率持续下降）是常态；政策推动差异化发展（并购重组+国际化），但短期难以改变周期特性。虽然"金融强国"带来长期增长空间，但行业本质仍是"靠天吃饭"的周期股。
+</div>
+
+<h2>增长驱动力</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动力</th><th>类型</th><th>可持续性</th><th>量化指标</th></tr>
+<tr>
+  <td>资本市场扩容（注册制+直接融资提升）</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>IPO规模、直接融资占比</td>
+</tr>
+<tr>
+  <td>居民财富向权益资产迁移</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>公募AUM、投顾客户数</td>
+</tr>
+<tr>
+  <td>市场成交额放大（流动性+赚钱效应）</td>
+  <td><span class="col-tag col-lose">周期</span></td>
+  <td><span class="col-tag col-warn">中短</span></td>
+  <td>A股日均成交额、换手率</td>
+</tr>
+<tr>
+  <td>国际化/海外业务扩张</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>海外收入占比、跨境业务规模</td>
+</tr>
+<tr>
+  <td>并购重组+行业集中度提升</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>CR10变化、并购案例</td>
+</tr>
+</table>
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l9">
+<div class="tab-inner">
+
+<h2>市场结构</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>市场结构类型</td>
+  <td><span class="col-tag col-warn">垄断竞争</span> 头部集中但同质化严重，"大而不强"</td>
+</tr>
+<tr>
+  <td>CR3</td>
+  <td>CR3~25%（<span style="color:#2e7d32">↑趋势</span> 并购重组加速集中，但速度慢）</td>
+</tr>
+<tr>
+  <td>格局象限</td>
+  <td><span class="col-tag col-warn">百花齐放</span>→<span class="col-tag col-win">寡头化初期</span>（并购案例增多，如国泰+海通）</td>
+</tr>
+<tr>
+  <td>新进入者威胁</td>
+  <td><span class="col-tag col-warn">中</span>（外资券商放开+互联网平台跨界，但牌照壁垒仍在）</td>
+</tr>
+</table>
+</div>
+
+<h2>竞争壁垒</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>壁垒类型</th><th>强度</th><th>可持续性</th><th>具体表现</th></tr>
+<tr>
+  <td>牌照壁垒</td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>券商牌照审批收紧，但已发放较多；外资开放趋势下牌照价值下降</td>
+</tr>
+<tr>
+  <td>客户规模+品牌</td>
+  <td><span class="col-tag col-win">中强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>中信机构客户基础、东方财富散户流量、华泰APP月活第一</td>
+</tr>
+<tr>
+  <td>资本规模</td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>净资本决定业务上限（自营/做市/两融），龙头资本优势明显</td>
+</tr>
+<tr>
+  <td>投研能力</td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>投行定价+自营投资+资管业绩均依赖研究，但人员流动大</td>
+</tr>
+</table>
+</div>
+
+<div class="summary-box">
+  <strong>定价权测试</strong><br>
+  🔹 龙头能涨价吗？<span class="col-tag col-lose">不能</span>（佣金率持续下降，从万3到万1.5再到万1）<br>
+  🔹 但财富管理转型（投顾收费）和国际化可提升非佣金收入占比<br>
+  🔹 ROE趋势：<span class="col-tag col-win">上升中</span>（2024Q1 4.3%→2026Q1 7.4%，受益于市场活跃）<br>
+  🔹 ROE分化：头部&gt;10% vs 尾部&lt;5%，差距在拉大
+</div>
+
+<h2>驱动力拆解</h2>
+<div class="highlight-box">
+  <strong>行业收入公式</strong><br>
+  收入 = A股日均成交额(ADT) × 佣金率 + 两融余额 × 利差 + 投资规模 × 投资收益率 + 承销规模 × 费率<br><br>
+  当前组合：<span style="color:#2e7d32;font-weight:700">ADT ↑</span>（2.58万亿）+ <span style="color:#c62828;font-weight:700">佣金率 ↓</span>＝ 量升价跌，但量增大幅抵消价跌<br>
+  两融 <span style="color:#2e7d32;font-weight:700">↑</span>（2.9万亿创新高）＋ 自营 <span style="color:#2e7d32;font-weight:700">↑</span>（科创跟投浮盈）＝ <span class="col-tag col-win">多重驱动共振</span>
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动因子</th><th>最新值</th><th>历史区间</th><th>当前分位</th></tr>
+<tr>
+  <td>A股日均成交额</td>
+  <td><span class="col-tag col-win">~2.58万亿</span></td>
+  <td>0.5-3.5万亿</td>
+  <td><span class="col-tag col-win">~85%</span></td>
+</tr>
+<tr>
+  <td>两融余额</td>
+  <td><span class="col-tag col-win">~2.9万亿</span></td>
+  <td>0.8-3.2万亿</td>
+  <td><span class="col-tag col-win">~90%</span></td>
+</tr>
+<tr>
+  <td>IPO规模（年化）</td>
+  <td><span class="col-tag col-win">~5000亿</span></td>
+  <td>1000-7000亿</td>
+  <td><span class="col-tag col-win">~70%</span></td>
+</tr>
+<tr>
+  <td>行业ROE（年化）</td>
+  <td>~7.4%</td>
+  <td>3-15%</td>
+  <td><span class="col-tag col-warn">~50%</span></td>
+</tr>
+</table>
+</div>
+
+<h2>成本结构</h2>
+<div class="summary-box">
+  🔹 <strong>类型：</strong><span class="col-tag col-info">轻资产</span>（人力成本为主）——但自营业务需占用大量资本<br>
+  🔹 <strong>成本敏感性：</strong>营收±10% → 利润±15-20%（固定成本为人力+IT系统，变动成本为佣金分成+奖金）<br>
+  🔹 <strong>盈亏平衡点：</strong>A股日均成交额约1万亿覆盖固定成本（2026年2.58万亿，远高于盈亏线）
+</div>
+
+<h2>竞争格局总结</h2>
+<div class="highlight-box">
+  证券行业正处于<strong>"格局优化+盈利上升+估值极低"</strong>的三重窗口。中信证券凭借全业务链领先（投行第一+自营第一+资管前三）稳坐龙头，华泰证券以科技驱动财富管理和投行并进，东方财富以互联网流量优势在零售端独树一帜，中金公司深耕机构业务和投行。行业最大变化是并购重组加速（国泰+海通合并是标志性事件），预计未来3年CR10将从60%提升至70%+。当前ROE提升但PB不涨的核心矛盾在于市场对牛市持续性的怀疑——需要连续2-3个季度业绩超预期来打破"盈利见顶"的固化判断。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l10">
+<div class="tab-inner">
+
+<h2>周期位置</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>库存周期阶段</td>
+  <td><span class="col-tag col-win">复苏期→繁荣初期</span>（A股成交活跃，流动性充裕）</td>
+</tr>
+<tr>
+  <td>市场成交额分位</td>
+  <td><span class="col-tag col-win">~85%</span>（日均2.58万亿，处于历史高位）</td>
+</tr>
+<tr>
+  <td>两融余额分位</td>
+  <td><span class="col-tag col-win">~90%</span>（2.9万亿创新高）</td>
+</tr>
+<tr>
+  <td>行业盈利状态</td>
+  <td><span class="col-tag col-win">利润丰厚</span>且持续改善（2026Q1净利+16.6%）</td>
+</tr>
+</table>
+</div>
+
+<div class="danger-box">
+  <strong>⚠ PE悖论检查</strong><br>
+  当前行业PE：~14.57x ｜ PB：~1.12x<br>
+  PE分位：6.7%（近10年） ｜ PB分位：5.9%（近10年）<br>
+  <strong>结论：没有PE悖论。</strong>证券行业虽然是周期股，但当前处于利润上升期，PE低是合理的（利润好），而非周期顶部的"低PE陷阱"。关键在于<strong>PB处于极低分位（5.9%）</strong>，说明市场对行业资产质量的定价极度悲观——这与当前ROE持续改善的基本面严重背离。这是典型的<strong>"高ROE+低PB"错配</strong>，属于配置机会而非陷阱。
+</div>
+
+<h2>估值水平</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>估值指标</th><th>行业当前</th><th>历史中位数</th><th>80%分位</th><th>20%分位</th></tr>
+<tr>
+  <td><strong>PE</strong></td>
+  <td><span class="col-tag col-lose">~14.6x</span></td>
+  <td>~25x</td>
+  <td>~40x</td>
+  <td>~15x</td>
+</tr>
+<tr>
+  <td><strong>PB</strong></td>
+  <td><span class="col-tag col-lose">~1.12x</span></td>
+  <td>~1.8x</td>
+  <td>~2.5x</td>
+  <td>~1.2x</td>
+</tr>
+</table>
+</div>
+
+<h2>政策环境</h2>
+<div class="summary-box">
+  🔹 <strong>政策方向：</strong><span class="col-tag col-win">强烈利好</span><br>
+  🔹 <strong>关键政策：</strong><br>
+  &emsp;• "金融强国"战略写入中央金融工作会议（最高级别政策信号）<br>
+  &emsp;• "十五五"规划纲要：深化资本市场投融资综合改革，壮大耐心资本<br>
+  &emsp;• 2026年4月创业板深化改革（投行+跟投增厚利润，做市拓展）<br>
+  &emsp;• 中长期资金入市政策（养老金/险资/外资持续流入）<br>
+  &emsp;• 行业并购重组鼓励政策（国泰+海通合并是催化）<br>
+  🔹 <strong>政策周期位置：</strong><span class="col-tag col-win">宽松期/改革红利期</span>
+</div>
+
+<h2>买入清单</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:28%">条件</th><th style="width:16%">结果</th><th>备注</th></tr>
+<tr>
+  <td>周期位置：不在繁荣顶点</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td>成交额和两融处于历史高位，但ROE仅7.4%（远未到15%+的历史峰值），上行空间仍存</td>
+</tr>
+<tr>
+  <td>估值：PB/PE在历史偏低分位</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>PB 5.9%分位，PE 6.7%分位，均处于近10年最低区间</td>
+</tr>
+<tr>
+  <td>政策：不是收紧期</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>政策全面利好（金融强国+资本市场改革+耐心资本）</td>
+</tr>
+<tr>
+  <td>格局：龙头壁垒稳固</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>中信/华泰/东方财富各有所长，壁垒可持续</td>
+</tr>
+<tr>
+  <td>增长：有可见驱动力</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>科创跟投浮盈+财富管理+海外扩张三重催化</td>
+</tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <div style="font-size:16px;font-weight:700;margin-bottom:8px">综合判断：<span class="col-tag col-win" style="font-size:15px">可以买入</span></div>
+  <div style="margin-bottom:6px">当前是证券行业战略性布局窗口</div>
+  <table style="font-size:12px;margin:6px 0;border:none;background:transparent">
+    <tr><td style="border:none;padding:3px 6px;background:transparent;width:90px;font-weight:600">预期回报</td><td style="border:none;padding:3px 6px;background:transparent">估值修复（PB 1.12x→1.5-1.7x）+ 业绩增长（ROE持续提升）</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">仓位建议</td><td style="border:none;padding:3px 6px;background:transparent"><span class="col-tag col-warn">组合占比10-20%</span>（周期属性，需控制仓位）</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">跟踪指标</td><td style="border:none;padding:3px 6px;background:transparent">ADT · 两融 · ROE · 科创跟投 · 资金面</td></tr>
+  </table>
+  <div style="margin-top:8px;padding:8px;background:#e8f5e9;border-radius:4px;font-size:12px">
+    <strong>买入策略：</strong><br>
+    <span class="col-tag col-win">头部龙头</span>（中信/华泰）：PE 10-12x，PB&lt;1.2x，安全边际足<br>
+    <span class="col-tag col-win">特色标的</span>（东方财富/广发）：零售财富管理龙头+资管优势<br>
+    <span class="col-tag col-win">并购受益</span>（国泰海通/中金）：行业整合直接受益者
+  </div>
+</div>
+
+<h2>卖出信号</h2>
+<div class="danger-box">
+  <strong>出现以下信号考虑卖出：</strong><br>
+  <div style="margin-top:6px">
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px">1</span>
+    A股日均成交额跌破1.5万亿持续1个月（市场降温）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">2</span>
+    PB回升至历史中位数1.8x以上（估值修复到位）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">3</span>
+    政策转向收紧（如严查配资/杠杆、提高印花税等）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">4</span>
+    佣金率加速下降（跌破万1，行业价格战加剧）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">5</span>
+    头部券商ROE连续两季环比下滑
+  </div>
+</div>
+
+</div>
+</div>
+
+<div class="footer">Generated by Industry Analysis · L7-L10 Framework · Stock Selection</div>
+
+</div>
+
+<script>
+var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+var contents = document.querySelectorAll('.tab-content');
+btns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    contents.forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    var tab = btn.getAttribute('data-tab');
+    document.getElementById('tab-' + tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

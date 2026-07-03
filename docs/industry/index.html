@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>行业报告 – 股票研究笔记</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#333}
+  .wrap{max-width:800px;margin:0 auto;padding:32px 16px}
+  .top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:20px;flex-wrap:wrap;gap:8px}
+  .top h1{font-size:22px;font-weight:700}
+  .top a{font-size:13px;color:#888;text-decoration:none}
+  .top a:hover{color:#333}
+  .toolbar{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+  .toolbar input,.toolbar select{padding:8px 12px;border:1px solid #ddd;border-radius:8px;font-size:13px;background:#fff;outline:none;font-family:inherit}
+  .toolbar input{flex:1;min-width:180px}
+  .toolbar input:focus,.toolbar select:focus{border-color:#888}
+  table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;border:1px solid #eee}
+  th{background:#f8f8f8;padding:10px 12px;font-size:12px;font-weight:600;color:#666;text-align:left;cursor:pointer;user-select:none;white-space:nowrap;border-bottom:1px solid #eee}
+  th:hover{background:#f0f0f0}
+  th .arrow{color:#bbb;margin-left:3px;font-size:11px}
+  td{padding:10px 12px;font-size:13px;border-bottom:1px solid #f5f5f5}
+  tr:hover td{background:#fafafa}
+  tr:last-child td{border-bottom:none}
+  .tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600}
+  .tag-cycle{background:#ffebee;color:#c62828}
+  .tag-mix{background:#fff3e0;color:#e65100}
+  .tag-growth{background:#e8f5e9;color:#2e7d32}
+  .tag-def{background:#e3f2fd;color:#1565c0}
+  .tag-val{background:#f3e5f5;color:#7b1fa2}
+  .count-bar{color:#888;font-size:13px;margin-bottom:12px}
+  .empty{text-align:center;color:#aaa;padding:40px;font-size:14px}
+  .footer{text-align:center;font-size:12px;color:#ccc;margin-top:40px}
+  a{color:#1a73e8;text-decoration:none}
+  a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <h1>📊 行业报告</h1>
+    <a href="../">← 返回首页</a>
+  </div>
+
+  <div class="toolbar">
+    <input type="text" id="search" placeholder="搜索行业名称…" oninput="render()">
+    <select id="filter" onchange="render()">
+      <option value="">全部类型</option>
+      <option value="混合周期">混合周期</option>
+      <option value="纯周期">纯周期</option>
+    </select>
+  </div>
+
+  <div class="count-bar" id="count">共 3 份</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th onclick="sort('name')">行业名称 <span class="arrow" id="a-name">▼</span></th>
+        <th onclick="sort('type')">L5分类 <span class="arrow" id="a-type">▲</span></th>
+        <th onclick="sort('date')">日期 <span class="arrow" id="a-date">▲</span></th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+  <div class="footer">仅限个人研究参考</div>
+</div>
+
+<script>
+const data = [
+  {name:"光伏", type:"混合周期", date:"2026-07-01", file:"A股——光伏——行业分析报告.html"},
+  {name:"化工新材料", type:"混合周期", date:"2026-07-01", file:"A股——化工新材料——行业分析报告.html"},
+  {name:"证券", type:"纯周期", date:"2026-07-01", file:"A股——证券——行业分析报告.html"}
+];
+
+let sortKey='date', sortDir=-1;
+
+function typeClass(t){
+  const m={'纯周期':'tag-cycle','混合周期':'tag-mix','成长型':'tag-growth','防御性':'tag-def','价值型':'tag-val'};
+  return m[t]||'tag-cycle';
+}
+
+function render(){
+  const q=document.getElementById('search').value.trim().toLowerCase();
+  const f=document.getElementById('filter').value;
+  let rows=data.filter(d=>(!q||d.name.includes(q)||d.file.includes(q))&&(!f||d.type===f));
+  const cmp=(a,b)=>{const v=a[sortKey],w=b[sortKey];return v<w?-1:v>w?1:0};
+  rows.sort((a,b)=>cmp(a,b)*sortDir);
+  document.getElementById('count').textContent='共 '+rows.length+' 份';
+  const tbody=document.getElementById('tbody');
+  tbody.innerHTML=rows.map(d=>'<tr><td><a href="'+d.file+'">'+d.name+'</a></td><td><span class="tag '+typeClass(d.type)+'">'+d.type+'</span></td><td style="color:#888">'+d.date+'</td></tr>').join('');
+  if(!rows.length) tbody.innerHTML='<tr><td colspan="3" class="empty">没有匹配的报告</td></tr>';
+}
+
+function sort(k){
+  if(sortKey===k)sortDir*=-1;else{sortKey=k;sortDir=-1}
+  ['name','type','date'].forEach(k=>document.getElementById('a-'+k).textContent=k===sortKey?(sortDir<0?'▼':'▲'):'');
+  render();
+}
+
+render();
+</script>
+</body>
+</html>

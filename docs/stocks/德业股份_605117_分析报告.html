@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>德业股份(605117) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>德业股份（605117）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026年6月 | 数据来源：FY2025 年报 + 2026Q1 业绩预告</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>宁波德业科技股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>605117.SH</td></tr>
+  <tr><td>所属行业</td><td>新能源（光伏逆变器+储能逆变器+储能电池包）/ 环境电器</td></tr>
+  <tr><td>行业地位</td><td>全球户用储能逆变器收入排名第一（2024年，Frost & Sullivan），全球户用储能系统收入前五</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>122.24 亿（+9.08%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>31.71 亿（+7.11%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>39.86 亿（+18.40%）</strong></td></tr>
+  <tr><td>总资产</td><td>~199 亿（负债率48.11%）</td></tr>
+  <tr><td>归母净资产</td><td>~102.5 亿（BPS 11.35元）</td></tr>
+  <tr><td>ROE</td><td><strong>~31%（加权）</strong></td></tr>
+</table>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">综合L1-L5所有因素，对各维度打分求和</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">~31%远超15%优秀线</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">高利润型——净利率25.92%，储能逆变器毛利率51%</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">39.86/31.71=1.26 ≥ 1.0</td></tr>
+  <tr><td>营收增长（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">+9.08%≥5%但<10%</td></tr>
+  <tr><td>利润增长（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">+7.11%≥5%</td></tr>
+  <tr><td>负债率（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">48.11% < 55%</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">CFO 39.86亿强劲，现金资产健康</td></tr>
+  <tr><td>毛利率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">38.13%≥30%，核心产品毛利率51%稳定</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">PE(TTM) 41x偏高；2026E PE ~24x，PEG<0.5合理</td></tr>
+  <tr><td>自由现金流（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">CFO 39.86亿，FCF持续为正</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px" class="good">88/100</td><td style="text-align:left">品质优秀（88/100分）</td></tr>
+</table>
+
+<div class="verdict verdict-ok">品质优秀（88/100分）——全球逆变器龙头，高ROE+高毛利+强现金流</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>德业股份是全球户用储能逆变器领域的隐形冠军（2024年收入全球第一），从家电零部件企业成功转型为新能源光储龙头。FY2025营收122.24亿（+9.08%），净利31.71亿（+7.11%），ROE约31%。核心产品储能逆变器毛利率高达51.1%，经营现金流39.86亿为净利润的1.26倍，盈利质量极佳。2026Q1预告净利11-12亿（+55-70%），创单季历史新高，受益于全球地缘政治催生的储能需求爆发。<br><br>
+  <strong>核心优势：</strong>① 全球户用储能逆变器市占率第一，品牌+渠道壁垒深厚；② 储能逆变器毛利率51%，定价能力强；③ CFO/净利1.26，利润含金量极高；④ 2026Q1净利润同比+55-70%，高增长持续。<br><br>
+  <strong>核心风险：</strong>① 光伏逆变器业务同比-7.21%，组串式逆变器需求走弱；② 储能电池包毛利率从41.3%降至31.81%（-9.49pct），竞争加剧；③ 外销占比80%，汇率波动影响；④ PE(TTM) 41x，估值处于历史偏高位置。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>122.24 亿</td><td>112.06 亿</td><td>+9.08%</td><td class="good">✅ 稳健增长</td></tr>
+  <tr><td>归母净利润</td><td><strong>31.71 亿</strong></td><td>29.60 亿</td><td><strong>+7.11%</strong></td><td class="good">✅ 持续增长</td></tr>
+  <tr><td>扣非净利润</td><td><strong>30.35 亿</strong></td><td>28.05 亿</td><td><strong>+8.20%</strong></td><td class="good">✅ 主业稳健</td></tr>
+  <tr><td>毛利率</td><td><strong>38.13%</strong></td><td>39.77%</td><td>-1.64pct</td><td class="neutral">⚠ 小幅下降</td></tr>
+  <tr><td>归母净利率</td><td><strong>25.92%</strong></td><td>26.41%</td><td>-0.49pct</td><td class="good">✅ 稳定高净利率</td></tr>
+  <tr><td>三费占比</td><td><strong>4.38%</strong></td><td>3.83%</td><td>+0.55pct</td><td class="good">✅ 费用控制优秀</td></tr>
+  <tr><td>2025Q4 营收</td><td>33.77 亿</td><td>31.90 亿</td><td>+5.86%</td><td class="good">✅ 稳健</td></tr>
+  <tr><td>2025Q4 净利</td><td>8.24 亿</td><td>7.21 亿</td><td>+14.30%</td><td class="good">✅ 加速</td></tr>
+  <tr><td>2026Q1 净利（预告）</td><td><strong>11-12 亿</strong></td><td>7.05 亿</td><td><strong>+55-70%</strong></td><td class="good">✅ 爆发式增长</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>利润表解读：</strong>FY2025营收和净利双双增长，净利率25.92%处于A股顶尖水平。三费占比仅4.38%（研发费用4.6亿单独核算，若计入则约8.9%），费用管控能力极强。储能业务（逆变器+电池包）合计营收90.5亿，占新能源收入89%。2026Q1单季净利11-12亿创历史新高，主因地缘政治波动催生全球储能需求爆发。需要注意：毛利率从39.77%降至38.13%，主要因低毛利率的储能电池包（31.81%）占比快速提升拖累整体。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td><strong>大幅增加（+86%，理财到期赎回）</strong></td><td class="good">✅ 流动性充裕</td></tr>
+  <tr><td>应收票据及账款</td><td><strong>增加（商业承兑+银行承兑汇票增加）</strong></td><td class="neutral">随营收正常增长</td></tr>
+  <tr><td>存货</td><td><strong>增加31.24%（备货+发出商品）</strong></td><td class="neutral">业务扩张正常</td></tr>
+  <tr><td>短期借款</td><td><strong>+226.92%（票据贴现+银行贷款）</strong></td><td class="neutral">⚠ 短债增加需关注</td></tr>
+  <tr><td>合同负债</td><td><strong>+81.43%（预收货款）</strong></td><td class="good">✅ 订单充足</td></tr>
+  <tr><td>资产负债率</td><td><strong>48.11%</strong></td><td class="good">✅ 适中</td></tr>
+  <tr><td>固定资产</td><td><strong>+58%（在建工程转固）</strong></td><td class="neutral">扩产进行中</td></tr>
+  <tr><td>在建工程</td><td><strong>-45.34%（完工转固）</strong></td><td class="good">✅ 产能落地</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>资产负债率48.11%适中。亮点是合同负债大增81.43%（预收款增加），反映订单饱满。货币资金大幅增加（理财到期赎回），现金储备充裕。短债增加226.92%需关注，但公司经营现金流强劲（39.86亿），短期偿债无虞。固定资产+58%（马来西亚+慈溪生产基地建设），扩产节奏清晰。整体资产负债表健康，属于"扩张型"财务结构。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>39.86 亿</strong></td><td>33.67 亿</td><td class="good">✅ 强劲+18.40%</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><strong>-1.77 亿</strong></td><td>-18.05 亿</td><td class="good">✅ 流出大幅减少</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td><strong>-18.12 亿</strong></td><td>-6.60 亿</td><td class="neutral">分红增加</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>1.26</strong></td><td>1.14</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>自由现金流（FCF）</td><td><strong>充裕为正</strong></td><td>充裕</td><td class="good">✅ 持续为正</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>经营现金流39.86亿，是净利润的1.26倍，盈利质量极高——这意味着公司的每一分净利润都有扎实的现金支撑，不是"纸面利润"。投资现金流从-18.05亿大幅收窄至-1.77亿（理财到期赎回所致，实际资本开支仍在进行）。筹资现金流-18.12亿反映公司大量分红（全年分红27.4亿，占净利86%）——高比例分红本身就是现金充裕的信号。FY2025现金分红总额27.4亿，股息支付率86%，股东回报慷慨。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td class="good"><strong>~31%</strong></td><td>> 15% 优秀</td><td class="good">✅ 卓越</td></tr>
+  <tr><td>毛利率</td><td><strong>38.13%</strong></td><td>稳定或提升</td><td class="good">✅ 高且稳定</td></tr>
+  <tr><td>净利率</td><td class="good"><strong>25.92%</strong></td><td>> 10%</td><td class="good">✅ 极高</td></tr>
+  <tr><td>营收增长率</td><td><strong>+9.08%</strong></td><td>> 10%</td><td class="neutral">⚠ 接近达标</td></tr>
+  <tr><td>扣非增长率</td><td><strong>+8.20%</strong></td><td>正增长</td><td class="good">✅ 稳健</td></tr>
+  <tr><td>CFO/净利润</td><td class="good"><strong>1.26</strong></td><td>> 1</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>资产负债率</td><td><strong>48.11%</strong></td><td>制造业<60%</td><td class="good">✅ 合理</td></tr>
+  <tr><td>分红率</td><td class="good"><strong>86%</strong></td><td>持续分红</td><td class="good">✅ 极其慷慨</td></tr>
+</table>
+
+<h3>3.2 分业务分析（FY2025）</h3>
+<table>
+  <tr><th>业务板块</th><th>营收（亿）</th><th>占比</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td>储能逆变器</td><td>52.17</td><td>42.7%</td><td>+18.92%</td><td><strong>51.10%</strong></td><td class="good">✅ 核心利润来源</td></tr>
+  <tr><td>储能电池包</td><td>38.32</td><td>31.4%</td><td><strong>+56.34%</strong></td><td>31.81%</td><td class="good">✅ 高增长主力</td></tr>
+  <tr><td>光伏逆变器</td><td>10.54</td><td>8.6%</td><td>-7.21%</td><td>32.11%</td><td class="neutral">⚠ 阶段性走弱</td></tr>
+  <tr><td>热交换器</td><td>9.38</td><td>7.7%</td><td>-52.03%</td><td>7.71%</td><td class="bad">❌ 持续收缩</td></tr>
+  <tr><td>除湿机</td><td>8.05</td><td>6.6%</td><td>-16.91%</td><td>29.72%</td><td class="neutral">⚠ 下降</td></tr>
+  <tr><td>太阳能空调</td><td>2.41</td><td>2.0%</td><td>+15.57%</td><td>31.82%</td><td class="good">✅ 增长</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>德业已从传统家电企业成功转型为新能源龙头。新能源业务（逆变器+电池包）营收占比约83%，贡献了绝大部分利润。储能逆变器是利润核心（毛利率51.1%），储能电池包是增长核心（+56%）。传统热交换器业务收缩52%（空调行业景气下行），但占比已降至7.7%，对整体影响有限。公司在全球150+国家开展业务，外销占比80%，全球化布局成功。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="neutral">🟡 中等</td><td>储能电池包毛利率从41.3%降至31.81%（-9.49pct）</td><td>竞争加剧，降价压力</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>光伏逆变器营收同比-7.21%</td><td>组串式逆变器需求走弱</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>短期借款+226.92%，短债增加</td><td>票据贴现+银行贷款增加</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>外销占比80%，汇率波动风险</td><td>人民币升值将压缩利润</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>PE(TTM) 41x处于历史偏高分位</td><td>估值在历史高位</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>马来西亚+慈溪基地建设期，ROE因资产扩张而下降</td><td>加权平均ROE已开始下滑</td></tr>
+  <tr><td class="good">🟢 正面</td><td>全球户用储能逆变器收入排名第一</td><td>Frost & Sullivan认证</td></tr>
+  <tr><td class="good">🟢 正面</td><td>CFO/净利1.26，盈利质量极高</td><td>现金流远超净利润</td></tr>
+  <tr><td class="good">🟢 正面</td><td>FY2025现金分红27.4亿，分红率86%</td><td>股东回报慷慨</td></tr>
+  <tr><td class="good">🟢 正面</td><td>2026Q1净利预增55-70%，创单季新高</td><td>业绩加速增长</td></tr>
+  <tr><td class="good">🟢 正面</td><td>合同负债+81.43%，订单充足</td><td>未来收入确定性高</td></tr>
+</table>
+
+<div class="verdict verdict-ok">✅ L2综合判定：品质优秀（ROE 31%，毛利率38%，CFO/净利1.26，全A股顶尖水平）</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>股价（2026.6）</td><td><strong>~144.50 元</strong></td><td>近一年区间49.18-153.56元</td></tr>
+  <tr><td>总市值</td><td><strong>~1,314 亿</strong></td><td>总股本~9.09亿</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>~41x</strong></td><td>基于2025 EPS 3.51元</td></tr>
+  <tr><td>PE（2026E）</td><td><strong>~24x</strong></td><td>基于一致预期EPS ~6.05元</td></tr>
+  <tr><td>PE（2027E）</td><td><strong>~19x</strong></td><td>基于一致预期EPS ~7.56元</td></tr>
+  <tr><td>PB</td><td><strong>~12.7x</strong></td><td>基于BPS 11.35元</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~10.7x</strong></td><td>基于营收122.24亿</td></tr>
+  <tr><td>PEG（2026E）</td><td><strong>~0.35</strong></td><td>PE 24x / 增速70%</td></tr>
+  <tr><td>股息率</td><td><strong>~1.2%</strong></td><td>基于每股分红~1.8元</td></tr>
+</table>
+
+<h3>4.2 PE Band估值区间</h3>
+<p style="font-size:13px;color:#666;">高利润型成长股，ROE~31% → 合理PE 25-35x。2026E一致预期EPS≈6.05元</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs现价144.5元</th></tr>
+  <tr><td>悲观（储能需求走弱）</td><td>15x</td><td>90.8 元</td><td class="bad">-37%</td></tr>
+  <tr><td>保守（正常增长）</td><td>20x</td><td>121.0 元</td><td class="bad">-16%</td></tr>
+  <tr><td>中性（当前估值）</td><td>24x</td><td>145.2 元</td><td class="neutral">~持平</td></tr>
+  <tr><td>乐观（高增长溢价）</td><td>30x</td><td>181.5 元</td><td>+26%</td></tr>
+  <tr><td>券商目标（光大证券）</td><td>~28x</td><td>~170 元</td><td>+18%</td></tr>
+  <tr><td>历史高位</td><td>~50x</td><td>~302 元</td><td>+109%</td></tr>
+</table>
+
+<h3>4.3 历史PE区间</h3>
+<table>
+  <tr><th>指标</th><th>PE（TTM）</th><th>PB</th></tr>
+  <tr><td>历史高位（2026年）</td><td>~50x</td><td>~15x</td></tr>
+  <tr><td>80%分位</td><td>~45x</td><td>~12x</td></tr>
+  <tr><td>50%分位（中位）</td><td>~35x</td><td>~10x</td></tr>
+  <tr><td>20%分位</td><td>~20x</td><td>~6x</td></tr>
+  <tr><td>历史低位（2024年熊市）</td><td>~12x</td><td>~4x</td></tr>
+  <tr><td>当前</td><td class="neutral">~41x（高于中位）</td><td>12.7x（高于中位）</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值总结：</strong>德业股份当前PE(TTM) 41x处于历史偏高分位（高于50%分位35x）。但以2026E一致预期看，PE仅24x，PEG低至0.35，对于一家ROE 31%、净利率26%、2026Q1增速55%+的公司来说并不贵。市场分歧在于：当前高增速（地缘政治驱动）是短期脉冲还是长期趋势？<br><br>
+  <strong>多角度评估：</strong><br>
+  • PEG估值：0.35 < 1 → 便宜（但需利润增速持续）<br>
+  • PB-ROE框架：12.7x PB对应31% ROE → 合理（高ROE支撑高PB）<br>
+  • PS估值：10.7x对122亿营收 → 偏高（但对高利润率公司可接受）<br><br>
+  <strong>核心判断：</strong>当前估值反映了市场对公司2026年高增长的预期。若2026年净利达55-60亿（同比+73-89%），PE将快速消化至22-24x，估值合理。风险在于地缘政治溢价消退后储能需求增速放缓。对于长期投资者，当前价格不算便宜但可接受；对于短期交易者，需关注已近一年高点的获利回吐风险。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>净利润率</td><td>26.41%</td><td><strong>25.92%</strong></td><td class="neutral">➡ 基本稳定</td></tr>
+  <tr><td>资产周转率</td><td>~0.65</td><td><strong>~0.61</strong></td><td class="neutral">➡ 略降（扩产资产增加）</td></tr>
+  <tr><td>权益乘数</td><td>~1.85</td><td><strong>~1.93</strong></td><td class="neutral">➡ 略升</td></tr>
+  <tr><td><strong>ROE</strong></td><td><strong>~32%</strong></td><td><strong>~31%</strong></td><td class="neutral">➡ 基本持平</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>17.2%</td><td><strong>15.8%</strong></td><td class="neutral">➡ 略降</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>14.8pct</td><td><strong>15.2pct</strong></td><td class="neutral">➡ 稳定</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：高利润型（顶尖水平）</strong><br>
+  德业股份的杜邦特征极其清晰——净利润率25.92%是核心驱动因素，远超A股制造业平均水平（5-10%）。资产周转率0.61中等偏上（轻资产+高周转），权益乘数1.93适中（不过度依赖杠杆）。三项指标均衡优秀，属于典型的"高利润+中周转+中杠杆"组合，ROE 31%是A股前1%的水平。<br><br>
+  <strong>关键变化：</strong>去杠杆ROA从17.2%降至15.8%（-1.4pct），主因资产周转率从0.65降至0.61（马来西亚/慈溪基地建设拉高了总资产基数）。产能投产后周转率有望回升。
+</div>
+
+<h3>5.2 资产回报效率</h3>
+<table>
+  <tr><th>指标</th><th>德业股份</th><th>同行参考</th></tr>
+  <tr><td>每元总资产产生净利</td><td class="good"><strong>0.16元</strong></td><td>阳光电源~0.08元，锦浪科技~0.10元</td></tr>
+  <tr><td>去杠杆ROA</td><td class="good"><strong>15.8%</strong></td><td>A股制造业平均<8%</td></tr>
+  <tr><td>净利率</td><td class="good"><strong>25.92%</strong></td><td>逆变器行业平均15-20%</td></tr>
+  <tr><td>总资产周转率</td><td><strong>0.61</strong></td><td>逆变器行业0.5-0.8</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>核心结论：</strong><br>
+  ① ROE ~31%由"高利润率（25.92%）+ 中周转（0.61）+ 中杠杆（1.93）"共同驱动，三个因子均衡健康；<br>
+  ② 去掉杠杆后真实资产回报率（ROA）15.8%，在A股制造业中属于顶尖水平，说明公司核心竞争力不依赖杠杆；<br>
+  ③ 每1元总资产能产生0.16元净利润，资产回报效率极高；<br>
+  ④ 积极面：净利润率稳定在26%左右，证明产品竞争力强；<br>
+  ⑤ 关注点：周转率可能继续小幅下降（产能扩张期），但投产后有望回升。ROE短期目标维持>25%即为优秀。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与特征（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：成长性行业（新能源-光伏逆变器+储能）</strong><br>
+  <strong>判断依据：</strong>德业股份所处的光储逆变器行业处于高速成长期。全球碳中和目标+能源安全焦虑（地缘政治驱动）催生光伏和储能需求爆发式增长。根据Frost & Sullivan数据，全球户用储能逆变器市场2024-2030年CAGR预计超过25%。公司2026Q1净利增长55-70%，远超GDP增速，属于典型的高成长赛道。<br><br>
+  <strong>成长驱动力：</strong>① 全球能源转型（可再生能源占比提升）；② 地缘政治导致的能源安全焦虑（欧洲/中东/乌克兰）；③ 储能度电成本下降带来的经济性提升；④ 各国储能补贴政策加持。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th></tr>
+  <tr><td>行业集中度</td><td><strong>中度集中，正在集中</strong>——全球逆变器CR5（华为、阳光电源、锦浪、德业、古瑞瓦特）>60%。户用储能逆变器市场德业排名第一。行业正经历"品牌化+渠道化"整合，头部企业集中度持续提升。</td></tr>
+  <tr><td>品牌壁垒</td><td><strong>极强</strong>——户用逆变器面向终端消费者，品牌认知是核心购买因素。德业在南非市占率第一、中东前五、欧洲前五，品牌护城河正在形成。</td></tr>
+  <tr><td>渠道壁垒</td><td><strong>极强</strong>——全球150+国家的经销商网络是多年积累的结果。新进入者建立同等渠道需要3-5年。德业在波兰、罗马尼亚、黎巴嫩等市场深耕多年。</td></tr>
+  <tr><td>技术壁垒</td><td><strong>中等偏强</strong>——逆变器核心技术在拓扑结构、算法、效率优化方面，德业的三电平SVPWM、低压储能逆变器等有明显差异化优势。但技术迭代快，需持续研发投入。</td></tr>
+  <tr><td>规模/成本壁垒</td><td><strong>强</strong>——德业从家电制造积累了供应链管理和精益生产经验，在逆变器制造上有显著成本优势。产能扩张（马来西亚+慈溪）将进一步强化规模壁垒。</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  <strong>阶段：成长期中段——行业渗透率快速提升，但竞争格局尚未定型</strong><br>
+  全球户用储能渗透率仍较低（欧洲~15%、美国<10%、新兴市场<5%），市场空间巨大。行业正处于"从导入期向成长期切换"的阶段——产品已通过经济性验证，大量新玩家涌入，但头部企业开始凭借品牌+渠道建立护城河。德业在这个阶段选择"全球扩张+产品线延伸"策略。<br><br>
+  <strong>投资策略重点：</strong>关注① 全球储能渗透率提升速度；② 公司在新兴市场（中东、东南亚、中亚）的扩张进展；③ 储能电池包毛利率能否企稳；④ 工商储产品（125kW逆变器）能否成为第二增长曲线。
+</div>
+
+<h3>6.4 成长股成色检验（四步法）</h3>
+<table>
+  <tr><th>步骤</th><th>检验内容</th><th>数据</th><th>判定</th></tr>
+  <tr><td>① 营收</td><td>有没有实在的生意？</td><td>营收122.24亿（+9.08%），体量大</td><td class="good">✅ 过关</td></tr>
+  <tr><td>② 毛利率</td><td>产品竞争力如何？</td><td>38.13%整体，储能逆变器51.10%极高壁垒</td><td class="good">✅ 过关</td></tr>
+  <tr><td>③ CFO</td><td>能不能自己造血？</td><td>CFO 39.86亿，CFO/净利1.26，极其健康</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>④ PS</td><td>梦想溢价多少？</td><td>PS 10.7x（基于FY2025），PS（2026E）~6.5x</td><td class="neutral">⚠ 偏高但可接受</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>四步法结论：</strong>营收过关（122亿体量+全球布局）、毛利率过关（核心产品51%）、CFO优秀（1.26倍净利）、PS前瞻值6.5x尚可。德业股份是"真成长股"且现金流质量极佳，不是靠烧钱维持增长的伪成长股。PS 10.7x对高利润率（26%）公司来说虽偏高但合理。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>成长型（光储逆变器）</td><td>PE + PEG</td><td>毛利率趋势、营收增速、CFO质量</td><td class="good">✅ 匹配——PEG 0.35显示合理</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值方法总结：</strong>作为高利润型成长股，PE+PEG是正确估值方式。当前PE(TTM) 41x看似偏高，但2026E PE ~24x + PEG 0.35的组合对高ROE（31%）公司具有吸引力。核心假设是2026年净利增速能否达到55-70%。若能实现，当前估值合理偏低；若增速不及预期（如仅20-30%），PEG将升至1+，估值失去吸引力。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>成长型（光储逆变器），全球渗透率仍低（<15%），品牌+渠道壁垒高，集中度正在提升。<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 31%卓越，高利润型杜邦（净利率26%），CFO/净利1.26极其健康，FCF持续为正。<br>
+  <strong>Step 3 - 估值判断：</strong>PE(TTM) 41x处于历史偏高分位；但2026E PE 24x + PEG 0.35合理。PB 12.7x有高ROE支撑。<br>
+  <strong>Step 4 - 风险排查：</strong>电池包毛利率-9.49pct加速下降、短债+227%、PE在历史高位、外销80%汇率风险。<br>
+  <strong>Step 5 - 结论：</strong>好公司（ROE 31%+净利率26%+CFO/净利1.26）+ 好行业（储能渗透率提升）。价格合理偏高（2026E PE 24x可接受但TTM 41x需消化）。<br>
+  <strong>Step 6 - 跟踪：</strong>① 储能电池包毛利率能否企稳 ② 2026年净利能否达55亿+ ③ 工商储新品放量进度 ④ 地缘政治溢价是否消退。
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>光储行业长期受益于能源转型+能源安全，渗透率仍有数倍空间</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓</td><td>ROE 31%优秀，毛利率38%稳定，CFO/净利1.26优秀</td></tr>
+  <tr><td>③ 好价格</td><td class="neutral">⚠</td><td>PE(TTM) 41x偏高，但2026E PE 24x+PEG 0.35合理。等待回调可能更好</td></tr>
+</table>
+
+<h3>7.3 三个陷阱排查</h3>
+<div class="danger-box">
+  <strong>☐ 价值陷阱：</strong>❌ 未命中——高ROE+高毛利+高CFO，与低PE+低增长的价值陷阱完全相反。<br>
+  <strong>☐ 周期陷阱：</strong>🟡 部分命中——储能行业确实有周期性（补贴政策波动、地缘政治影响），但公司的全球市场分布+持续技术迭代降低了单一市场周期风险。当前的"高景气"部分由地缘政治突发事件驱动，若中东局势缓和，增速可能回落。<br>
+  <strong>☐ 烧钱陷阱：</strong>❌ 未命中——CFO 39.86亿远超净利润31.71亿，造血能力极强。高分红率86%更是现金充裕的铁证。
+</div>
+
+<h3>7.4 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——做储能逆变器和电池包卖给全球家庭和商户，赚品牌溢价+渠道分销的钱。核心壁垒是"产品力+全球渠道+品牌认知"。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——储能电池包毛利率一年内从41%降到32%（-9.5pct），如果继续下降到25%以下，整体毛利率将被大幅拖累。另外PE 41x买的话，业绩稍有不及预期就会杀估值。<br>
+  3. 如果现在买入，期待的回报来源是什么？——赚2026年业绩高增长（55-70%）的钱，PE从41x消化到24x后，持有到2027年看PE回到30x+业绩继续增长，实现戴维斯双击。<br>
+  4. 什么情况下你会坚决卖出？——储能电池包毛利率跌破25% / 2026Q2单季净利同比增速<30% / 全球储能补贴政策大幅退坡 / PB跌破8x（意味着市场逻辑变了）。
+</div>
+
+</div></div>
+
+<div class="footer">
+    免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+    数据来源：德业股份2025年年报、2026Q1业绩预告、券商研报（光大证券、国联民生、东方财富证券）
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

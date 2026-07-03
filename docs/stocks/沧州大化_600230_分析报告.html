@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>沧州大化(600230) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>沧州大化（600230）财务分析报告</h1>
+<p class="subtitle">基于 L1-L6 框架（财务三表+关键指标+估值+杜邦+行业分类+综合实战）</p>
+<p class="meta">分析日期：2026年6月 | 数据来源：FY2025 年报 + 2026Q1 季报</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>沧州大化股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>600230.SH</td></tr>
+  <tr><td>所属行业</td><td>TDI（甲苯二异氰酸酯）+ PC（聚碳酸酯）+ 烧碱</td></tr>
+  <tr><td>行业地位</td><td>TDI和PC合计贡献近七成营收，强周期大宗化工品</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>45.63 亿（-10.01%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>0.31 亿（+11.23%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>1.40 亿（-65.93%）</strong></td></tr>
+  <tr><td>总资产</td><td>58.97 亿</td></tr>
+  <tr><td>归母净资产</td><td>40.06 亿</td></tr>
+  <tr><td>ROE</td><td>0.77%</td></tr>
+</table>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">综合L1-L5所有因素，对各维度打分求和</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">0.77% < 5%</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="bad" style="font-weight:bold;font-size:15px">1</td><td style="text-align:left">低利润低杠杆——净利率0.68%极低+周转0.77中低+杠杆1.47低</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">4.52 ≥ 1.0，但虚高</td></tr>
+  <tr><td>营收增长（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">-10.01%，负增长</td></tr>
+  <tr><td>利润增长（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">+11.23%但基数极低</td></tr>
+  <tr><td>负债率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">~32% < 40%</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">一年内到期负债暴增9518%至3.11亿</td></tr>
+  <tr><td>毛利率（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">7.44% < 10%</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">PE极高</td></tr>
+  <tr><td>自由现金流（5分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">CFO下降65.93%</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">33/100</td><td style="text-align:left">不及格（33/100分）</td></tr>
+</table>
+
+<div class="verdict verdict-bad">不及格（33/100分）</div>
+
+<div class="danger-box">
+  <strong>综合诊断：</strong>沧州大化是一家以TDI和PC为核心的化工企业，两者合计贡献近七成营收。FY2025营收下滑10.01%，归母净利润仅0.31亿（虽然同比+11.23%，但基数极低）。ROE仅0.77%，远低于及格线。<br><br>
+  <strong>核心风险：</strong>① ROE 0.77%和净利率0.79%，盈利能力极弱；② Q4单季净利润-0.17亿已出现亏损；③ 一年内到期负债从323万暴增至3.11亿（+9518%），短期偿债压力骤增；④ CFO下降65.93%，现金流大幅恶化；⑤ TDI价格创四年新低，PC产能过剩严重；⑥ 均为强周期大宗化工品，缺乏差异化竞争壁垒。<br><br>
+  <strong>正面因素：</strong>① 毛利率7.44%同比微升0.81pct，边际改善；② 资产负债率~32%偏低，财务结构尚可；③ 财务费用仅126万（-80.43%），债务成本控制较好。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>45.63 亿</td><td>50.71 亿</td><td>-10.01%</td><td class="bad">❌ 下滑</td></tr>
+  <tr><td>归母净利润</td><td><strong>0.31 亿</strong></td><td>0.28 亿</td><td><strong>+11.23%</strong></td><td class="neutral">⚠ 低基数微增</td></tr>
+  <tr><td>扣非净利润</td><td><strong>0.33 亿</strong></td><td>0.25 亿</td><td><strong>+29.61%</strong></td><td class="neutral">⚠ 低基数微增</td></tr>
+  <tr><td>毛利率</td><td><strong>7.44%</strong></td><td>6.63%</td><td>+0.81pct</td><td class="neutral">⚠ 微升但仍极低</td></tr>
+  <tr><td>归母净利率</td><td><strong>0.79%</strong></td><td>0.64%</td><td>+0.15pct</td><td class="bad">❌ 极低</td></tr>
+  <tr><td>研发费用</td><td><strong>1.38 亿</strong></td><td>1.42 亿</td><td>-2.82%</td><td class="neutral">占营收3.02%</td></tr>
+  <tr><td>财务费用</td><td><strong>126 万</strong></td><td>644 万</td><td>-80.43%</td><td class="good">✅ 大幅下降</td></tr>
+  <tr><td>EPS</td><td><strong>0.0745 元</strong></td><td>0.0670 元</td><td>+11.19%</td><td class="neutral">低基数</td></tr>
+  <tr><td>Q4单季净利润</td><td><strong>-0.17 亿</strong></td><td>—</td><td>—</td><td class="bad">❌ 已亏损</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>利润表解读：</strong>营收下滑10.01%，归母净利润0.31亿同比+11.23%看似改善，实际因上年基数仅0.28亿。毛利率7.44%同比微升0.81pct，但仍处于极低水平——TDI和PC价格均处于历史低位。最令人担忧的是Q4单季净利润-0.17亿，表明公司在2025年Q4已陷入亏损，且大概率2026年仍将持续承压。财务费用仅126万（-80.43%），表明公司债务负担较轻，是少数亮点。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td><strong>~10 亿（估）</strong></td><td class="good">✅ 较充裕</td></tr>
+  <tr><td>应收账款</td><td><strong>~1.5 亿（估）</strong></td><td class="good">占营收3.3%，合理</td></tr>
+  <tr><td>存货</td><td><strong>~5.5 亿（估）</strong></td><td class="neutral">占比适中</td></tr>
+  <tr><td>固定资产</td><td><strong>~35 亿（估）</strong></td><td class="neutral">重资产化工企业</td></tr>
+  <tr><td>一年内到期负债</td><td><strong>3.11 亿</strong></td><td class="bad">❌ 暴增+9518%</td></tr>
+  <tr><td>资产负债率</td><td><strong>~32%</strong></td><td class="good">✅ 偏低</td></tr>
+  <tr><td>归母净资产</td><td>40.06 亿</td><td class="good">✅ 稳定</td></tr>
+  <tr><td>总资产</td><td>58.97 亿</td><td class="neutral">同比基本持平</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>资产负债表解读：</strong>资产负债率~32%偏低，在化工行业中属于较稳健水平。但最值得警惕的信号是一年内到期负债从323万暴增至3.11亿（+9518%），意味着大量长期借款即将到期，短期偿债压力骤增。虽然货币资金~10亿可以覆盖，但若经营持续亏损，可能面临流动性压力。归母净资产40.06亿，资产质量尚可。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>1.40 亿</strong></td><td>4.11 亿</td><td class="bad">❌ 大幅下降-65.93%</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><strong>~-1.5 亿（估）</strong></td><td>-2.8 亿</td><td class="neutral">资本开支收窄</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td><strong>~0.3 亿（估）</strong></td><td>-1.2 亿</td><td class="neutral">变化不大</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>4.52</strong></td><td>14.68</td><td class="neutral">⚠ 含折旧摊销失真</td></tr>
+  <tr><td>分红</td><td><strong>每10股0.23元</strong></td><td>—</td><td class="neutral">分红率30.86%（极低基数）</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>经营现金流仅1.40亿，同比大降65.93%，与利润下滑趋势一致。CFO/净利润4.52看似较高，实际因净利润基数极低（0.31亿），经营现金流中含大量折旧摊销等非现金项目。投资现金流流出收窄，公司缩减了资本开支。每股分红0.23元、分红率30.86%，在周期底部仍保持分红意愿。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>0.77%</strong></td><td>> 15% 优秀 / > 10% 及格</td><td class="bad">❌ 极差</td></tr>
+  <tr><td>毛利率</td><td><strong>7.44%</strong></td><td>稳定或提升</td><td class="bad">❌ 极低毛利</td></tr>
+  <tr><td>净利率</td><td><strong>0.79%</strong></td><td>> 10%</td><td class="bad">❌ 极低</td></tr>
+  <tr><td>营收增长率</td><td><strong>-10.01%</strong></td><td>> 10%</td><td class="bad">❌ 负增长</td></tr>
+  <tr><td>扣非增长率</td><td><strong>+29.61%</strong></td><td>正增长</td><td class="neutral">⚠ 低基数</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>4.52</strong></td><td>> 1</td><td class="neutral">⚠ 基数失真</td></tr>
+  <tr><td>资产负债率</td><td><strong>~32%</strong></td><td>制造业<60%</td><td class="good">✅ 偏低稳健</td></tr>
+  <tr><td>一年内到期负债</td><td><strong>3.11 亿</strong></td><td>应可控</td><td class="bad">❌ 暴增95倍</td></tr>
+</table>
+
+<h3>3.2 业务分析（FY2025）</h3>
+<table>
+  <tr><th>业务板块</th><th>表现</th><th>评价</th></tr>
+  <tr><td>TDI</td><td>价格创四年新低，营收下滑</td><td class="bad">❌ 核心拖累</td></tr>
+  <tr><td>PC（聚碳酸酯）</td><td>产能过剩，价格低迷</td><td class="bad">❌ 持续承压</td></tr>
+  <tr><td>烧碱</td><td>表现相对稳定</td><td class="neutral">⚠ 中性</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>业务解读：</strong>TDI和PC合计贡献近七成营收，但两大核心产品均面临严峻的行业困境——TDI价格创四年新低，PC产能过剩严重导致价格持续低迷。烧碱业务表现相对稳定但规模有限，无法对冲核心产品的下滑。所有产品均为强周期大宗化工品，缺乏差异化竞争壁垒，公司议价能力弱。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="bad">🔴 极高</td><td>ROE仅0.77%，远不及格线</td><td>L2 盈利指标</td></tr>
+  <tr><td class="bad">🔴 极高</td><td>净利率0.79%，盈利能力极弱</td><td>L1 利润表</td></tr>
+  <tr><td class="bad">🔴 极高</td><td>Q4单季已亏损（-0.17亿）</td><td>L1 利润表</td></tr>
+  <tr><td class="bad">🔴 极高</td><td>一年内到期负债暴增95倍至3.11亿</td><td>L1 资产负债表</td></tr>
+  <tr><td class="bad">🔴 极高</td><td>CFO下降65.93%，现金流恶化</td><td>L1 现金流量表</td></tr>
+  <tr><td class="bad">🔴 极高</td><td>TDI价格创四年新低+PC产能过剩</td><td>L2 业务分析</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>毛利率7.44%处于制造业极低水平</td><td>L1 利润表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>资产负债率~32%偏低稳健</td><td>L1 资产负债表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>财务费用仅126万（-80.43%）</td><td>L1 利润表</td></tr>
+</table>
+
+<div class="verdict verdict-bad">✘ L2综合判定：风险警示（ROE 0.77%，Q4已亏损，债务到期压力骤增）</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>股价（2026.6）</td><td><strong>~18 元（估）</strong></td><td>周期底部区间</td></tr>
+  <tr><td>总市值</td><td><strong>~60 亿（估）</strong></td><td>基于总股本3.33亿股</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>~60x</strong></td><td>因利润极低已失真</td></tr>
+  <tr><td>PB</td><td><strong>~1.0x</strong></td><td>基于每股净资产~12.03元</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~1.3x</strong></td><td>市销率偏低（周期底部特征）</td></tr>
+  <tr><td>股息率</td><td><strong>~0.13%</strong></td><td>基于每股分红0.023元</td></tr>
+</table>
+
+<h3>4.2 PE Band估值区间</h3>
+<p style="font-size:13px;color:#666;">ROE 0.77% → 合理PE参考区间：<8x | 周期底部PE失真，应以PB估值为主要参考</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs现价~18元</th></tr>
+  <tr><td>周期底部PE失真</td><td>~60x</td><td>—</td><td class="bad">❌ PE已无参考意义</td></tr>
+  <tr><td>合理PE（低ROE）</td><td><8x</td><td><4 元（基于异常利润）</td><td class="neutral">PE法不适用</td></tr>
+  <tr><td>PB参考-净资产</td><td>PB ~1.0x</td><td>~12.0 元</td><td class="bad">-33%</td></tr>
+  <tr><td>PB参考-历史底部</td><td>PB ~0.7x</td><td>~8.4 元</td><td class="bad">-53%</td></tr>
+  <tr><td>PB参考-周期中值</td><td>PB ~1.5x</td><td>~18.0 元</td><td>持平</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>估值分析：</strong><br>
+  ① PE（TTM）~60x，因利润基数极低已失真，无法用于估值判断；<br>
+  ② PB ~1.0x处于净资产附近，接近历史底部区域；<br>
+  ③ 以ROE 0.77%对应的合理PE<8x计算，PE法完全不适用；<br>
+  ④ 周期底部应使用PB估值，参考化工周期股历史底部PB通常在0.7-1.2x之间；<br>
+  ⑤ 当前PB ~1.0x处于历史偏低位置，若以历史中值PB ~1.5x估算，股价有50%上行空间；<br>
+  ⑥ 但需警惕：TDI价格尚未见底、PC过剩短期难以缓解、一年内到期负债暴增，周期拐点未至。
+</div>
+
+<h3>4.3 历史PB区间</h3>
+<table>
+  <tr><th>指标</th><th>数值</th></tr>
+  <tr><td>PB 历史高位</td><td>~5.5x</td></tr>
+  <tr><td>PB 80%分位</td><td>~3.0x</td></tr>
+  <tr><td>PB 50%分位（中值）</td><td>~1.5x</td></tr>
+  <tr><td>PB 20%分位</td><td>~0.9x</td></tr>
+  <tr><td>PB 历史低位</td><td>~0.6x</td></tr>
+  <tr><td>当前PB</td><td class="neutral">~1.0x（偏低区域）</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值总结：</strong>沧州大化处于周期底部区域——PE已失真（~60x），PB ~1.0x在净资产附近徘徊。周期底部适用PB估值，当前PB 1.0x接近20%分位（0.9x），低于历史中值（1.5x），说明市场对TDI和PC行业前景持悲观态度。主要催化剂在于TDI价格能否触底反弹，但2025Q4已亏损叠加一年内到期负债暴增95倍，公司基本面仍在恶化。建议持续跟踪TDI价格走势和2026年半年报表现，PB<0.8x以下或可考虑左侧布局。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>净利润率</td><td>~0.56%</td><td><strong>0.68%</strong></td><td class="neutral">➡ 极低位微升</td></tr>
+  <tr><td>资产周转率</td><td>~0.72</td><td><strong>0.77</strong></td><td class="neutral">➡ 微升</td></tr>
+  <tr><td>权益乘数</td><td>1.47</td><td><strong>1.47</strong></td><td class="good">低杠杆</td></tr>
+  <tr><td><strong>ROE</strong></td><td><strong>~0.6%</strong></td><td><strong>0.8%</strong></td><td class="bad">几乎为零</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>0.4%</td><td><strong>0.5%</strong></td><td class="bad">趋近于零</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>0.2pct</td><td><strong>0.3pct</strong></td><td class="good">杠杆极低但也没必要</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>赚钱模式判断：全面低迷型——周期底部特征</strong><br>
+  沧州大化净利润率0.68%趋近于零，周转率0.77偏低，权益乘数1.47低。ROE 0.8%几乎等同于无收益。公司唯一的优点是杠杆低（负债率32%），但在利润率为零的情况下，低杠杆只是让亏损慢一点。<br><br>
+  <strong>周期特征：</strong>公司是典型的强周期化工品企业（TDI+PC），当前处于周期底部。TDI价格四年新低、PC产能过剩——等周期反转而非靠自身经营改善。
+</div>
+
+<div class="summary-box">
+  <strong>核心结论：</strong><br>
+  ① ROE 0.8%几乎为0，周期底部特征明显——不是公司问题，是行业问题；<br>
+  ② 财务结构中唯一的亮点：负债率32%，权益乘数1.47，穿越周期没问题；<br>
+  ③ 短期风险：一年内到期负债从323万暴增至3.11亿（+9518%），需关注偿还能力；<br>
+  ④ 投资逻辑不是看杜邦，而是看TDI价格何时反弹。
+</div></div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与周期分析（L5框架）</h2>
+
+<div class="summary-box">
+  <strong>行业类型判断：纯周期——基础化工（TDI+PC+烧碱）</strong><br>
+  沧州大化属于<b>纯周期型</b>行业。TDI、PC和烧碱均为大宗化工品，产品同质化严重，价格完全由供需决定。TDI价格处于四年新低，PC产能过剩严重——两大核心产品均处于周期低谷。行业成熟，无长期增长动力，利润靠供需错配驱动。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>内容</th></tr>
+  <tr><td>市场格局</td><td>TDI行业CR3约50%（万华+沧州大化+上海科思创），PC行业CR5约60%但产能严重过剩</td></tr>
+  <tr><td>进入壁垒</td><td>规模壁垒（TDI装置投资>20亿）、技术壁垒（光气法工艺许可证）、安全环保壁垒</td></tr>
+  <tr><td>财务验证</td><td>毛利率7.44%极低，验证了行业低谷；固定资产~35亿占总资产59%，重资产特征显著；但ROE 0.77%说明壁垒未能阻止资本回报归零</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  成熟期——TDI和PC均为成熟化工产品，技术路线成熟，全球产能充裕。烧碱为传统化工品，增长空间有限。
+</div>
+
+<h3>6.4 当前周期位置</h3>
+<div class="danger-box">
+  <strong>周期底部（深度亏损边缘）</strong><br>
+  ① 2025年营收-10%，归母净利仅0.31亿（Q4单季已亏损-0.17亿）；<br>
+  ② TDI价格创四年新低，PC产能过剩短期难以缓解；<br>
+  ③ 一年内到期负债从323万暴增至3.11亿（+9518%），短期偿债压力骤增；<br>
+  ④ 唯一的安慰是资产负债率~32%偏低，财务结构尚未恶化；<br>
+  ⑤ 周期拐点的核心信号：TDI价格何时触底反弹。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>当前指标</th><th>评价</th></tr>
+  <tr><td>纯周期（化工）</td><td>PB（市净率）</td><td>PB ~1.0x</td><td class="good">✅ 接近净资产，历史偏低</td></tr>
+  <tr><td>PE参考</td><td>周期顶部失真</td><td>PE ~60x</td><td class="bad">❌ 利润极低失真</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值方法总结：</strong>PE ~60x已失真，PB ~1.0x是当前唯一有效的估值指标。PB站在净资产边缘，接近20%分位（0.9x），低于历史中值（1.5x）。周期底部PB<1时往往是最佳买入时机，但前提是公司能穿越周期——沧州大化负债率32%偏低，财务状况允许。核心催化剂：TDI价格反弹。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战分析（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>周期性行业（纯周期——基础化工），TDI+PC+烧碱，行业中等集中，规模+环保壁垒，利润完全靠产品价格驱动<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 0.77%（几乎为零），杜邦"全面低迷型"（净利率0.68%+周转0.77+杠杆1.47），CFO 1.40亿含折旧失真<br>
+  <strong>Step 3 - 估值判断：</strong>PE ~60x失真，PB ~1.0x接近净资产（20%分位~0.9x，中值~1.5x），处于历史偏低区域<br>
+  <strong>Step 4 - 风险排查：</strong>核心风险：Q4已亏损+一年内到期负债暴增95倍+CFO下降66%+TDI价格四年新低+PC产能过剩<br>
+  <strong>Step 5 - 结论：</strong>⛔ 非好公司——ROE 0.77%，利润微薄，Q4已亏损。⚠ 价格有安全边际——PB 1.0x接近净资产，但周期拐点未至<br>
+  <strong>Step 6 - 跟踪：</strong>关键指标：TDI价格走势、一年内到期负债偿还情况、2026半年报盈亏。买入信号：TDI价格触底反弹
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>检查结果</th><th>说明</th></tr>
+  <tr><td>① 好行业</td><td class="bad">✗</td><td>TDI/PC行业成熟过剩，产品同质化，价格竞争激烈。长期无成长，利润取决于供需</td></tr>
+  <tr><td>② 好公司</td><td class="bad">✗</td><td>ROE 0.77%极低，毛利率7.44%制造业极低水平。唯一的优点是负债率32%偏低</td></tr>
+  <tr><td>③ 好价格</td><td class="neutral">⚠</td><td>PB 1.0x接近净资产，历史偏低。但周期拐点不确定，若持续亏损净资产会被侵蚀</td></tr>
+</table>
+
+<h3>7.3 三个陷阱排查</h3>
+<div class="danger-box">
+  <strong>陷阱排查结果：</strong><br><br>
+  ☑ <strong>价值陷阱：</strong>低PE？PE ~60x非低PE。低增长（营收-10%）+负债率32%低+现金流恶化 → <b>❌ 不命中（但基本面确实差）</b><br><br>
+  ☑ <strong>周期陷阱：</strong>低PE？否，PE极高。周期底部（TDI四年新低）但PB 1.0x有一定安全边际 → <b>⚠ 注意：周期底部特征是"高PE+低PB"，当前符合。风险在于买在底部半山腰</b><br><br>
+  ☑ <strong>烧钱陷阱：</strong>高PE（~60x）+ 负增长 + CFO 1.4亿为正 → <b>❌ 不命中</b>
+</div>
+
+<h3>7.4 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？沧州大化怎么赚钱？——买甲苯做TDI和PC卖给下游家具/汽车厂。赚的是加工费和周期的钱。<br>
+  2. 你最大的担忧是什么？——TDI价格什么时候见底？一年内到期负债暴增95倍，还债压力大不大？<br>
+  3. 如果现在买入，期待的回报来源是什么？——赌TDI周期反转。PB从1.0x修复到1.5x（中值），股价涨50%。<br>
+  4. 什么情况下你会坚决卖出？——TDI价格持续新低/一年内到期负债无法偿还/2026年持续亏损扩大。
+</div>
+
+</div></div>
+
+</div></div>
+
+<div class="footer">
+  免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+  数据来源：沧州大化2025年年报、2026Q1季报、券商研报、理杏仁
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>
