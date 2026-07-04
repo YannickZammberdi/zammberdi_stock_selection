@@ -62,6 +62,7 @@ body (bg:#f5f5f5, padding:0)
 - verdict: 居中圆角框, verdict-ok(绿)/verdict-caution(橙)/verdict-bad(红)
 - 评分表加在verdict上方，左列为维度名，右列为得分和说明，总分行加粗
 - h1/title无margin水平值, subtitle/meta居中
+- meta中日期统一使用 `YYYY-MM-DD` 格式（如 `分析日期：2026-06-29`），精确到日
 
 ### JS交互
 

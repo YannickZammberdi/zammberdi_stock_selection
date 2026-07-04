@@ -732,7 +732,7 @@ btns.forEach(function(btn) {
 - `materials/L9-competition-drivers.md` — L9竞争格局与驱动力
 - `materials/L10-cycle-policy-timing.md` — L10周期政策与时机
 - `notes/N7-screening.md` — 实战案例：A股光伏行业109→10的全流程
-- `stocks-analysis/A股行业全景图.md` — A股行业分布
-- `stocks-analysis/ASX行业全景图.md` — ASX行业分布
+- `stock-learning/stocks-analysis/A股行业全景图.md` — A股行业分布
+- `stock-learning/stocks-analysis/ASX行业全景图.md` — ASX行业分布
 - `stocks-analysis/行业报告/{市场}——{行业名}——行业分析报告.html` — 行业分析报告
 - `stocks-analysis/行业报告/{市场}——{行业名}——{股票简称}_{代码}_分析报告.html` — L1-L6个股报告

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>行业报告 – 股票研究笔记</title>
+<title>ASX行业报告 – 股票研究笔记</title>
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#333}
@@ -39,8 +39,8 @@
 <body>
 <div class="wrap">
   <div class="top">
-    <h1>📊 行业报告</h1>
-    <a href="../">← 返回首页</a>
+    <h1>📊 ASX行业报告</h1>
+    <a href="../">← 返回ASX首页</a>
   </div>
 
   <div class="toolbar">
@@ -48,14 +48,11 @@
     <select id="filter" onchange="render()">
       <option value="">全部类型</option>
       <option value="纯周期">纯周期</option>
-      <option value="混合周期">混合周期</option>
       <option value="成长型">成长型</option>
-      <option value="防御性">防御性</option>
-      <option value="价值型">价值型</option>
     </select>
   </div>
 
-  <div class="count-bar" id="count">共 3 份</div>
+  <div class="count-bar" id="count">共 2 份</div>
 
   <table>
     <thead>
@@ -73,9 +70,8 @@
 
 <script>
 const data = [
-  {name:"证券", type:"纯周期", score:72, date:"2026-07-01", file:"A股——证券——行业分析报告.html"},
-  {name:"化工新材料", type:"混合周期", score:70, date:"2026-07-01", file:"A股——化工新材料——行业分析报告.html"},
-  {name:"光伏", type:"混合周期", score:57, date:"2026-07-01", file:"A股——光伏——行业分析报告.html"}
+  {name:"矿业", type:"纯周期", score:70, date:"2026-07-03", file:"ASX——矿业——行业分析报告.html"},
+  {name:"医疗", type:"成长型", score:69, date:"2026-07-03", file:"ASX——医疗——行业分析报告.html"}
 ];
 
 let sortKey='score', sortDir=-1;

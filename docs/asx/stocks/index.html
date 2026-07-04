@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>行业报告 – 股票研究笔记</title>
+<title>ASX个股报告 – 股票研究笔记</title>
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#333}
-  .wrap{max-width:800px;margin:0 auto;padding:32px 16px}
+  .wrap{max-width:960px;margin:0 auto;padding:32px 16px}
   .top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:20px;flex-wrap:wrap;gap:8px}
   .top h1{font-size:22px;font-weight:700}
   .top a{font-size:13px;color:#888;text-decoration:none}
@@ -28,42 +28,41 @@
   .tag-mix{background:#fff3e0;color:#e65100}
   .tag-growth{background:#e8f5e9;color:#2e7d32}
   .tag-def{background:#e3f2fd;color:#1565c0}
-  .tag-val{background:#f3e5f5;color:#7b1fa2}
+  .tag-special{background:#f3e5f5;color:#7b1fa2}
   .count-bar{color:#888;font-size:13px;margin-bottom:12px}
   .empty{text-align:center;color:#aaa;padding:40px;font-size:14px}
   .footer{text-align:center;font-size:12px;color:#ccc;margin-top:40px}
   a{color:#1a73e8;text-decoration:none}
   a:hover{text-decoration:underline}
+  .code{color:#999;font-size:12px}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="top">
-    <h1>📊 行业报告</h1>
-    <a href="../">← 返回首页</a>
+    <h1>📋 ASX个股报告</h1>
+    <a href="../">← 返回ASX首页</a>
   </div>
 
   <div class="toolbar">
-    <input type="text" id="search" placeholder="搜索行业名称…" oninput="render()">
+    <input type="text" id="search" placeholder="搜索股票名称或代码…" oninput="render()">
     <select id="filter" onchange="render()">
       <option value="">全部类型</option>
-      <option value="纯周期">纯周期</option>
-      <option value="混合周期">混合周期</option>
-      <option value="成长型">成长型</option>
-      <option value="防御性">防御性</option>
-      <option value="价值型">价值型</option>
+      <option value="成长性">成长性</option>
+      <option value="特殊行业">特殊行业</option>
     </select>
   </div>
 
-  <div class="count-bar" id="count">共 3 份</div>
+  <div class="count-bar" id="count">共 5 份</div>
 
   <table>
     <thead>
       <tr>
-        <th onclick="sort('name')">行业名称 <span class="arrow" id="a-name">▼</span></th>
+        <th onclick="sort('name')">股票 <span class="arrow" id="a-name">▼</span></th>
+        <th onclick="sort('code')">代码 <span class="arrow" id="a-code">▲</span></th>
         <th onclick="sort('type')">L5分类 <span class="arrow" id="a-type">▲</span></th>
         <th onclick="sort('score')" style="text-align:center">评分 <span class="arrow" id="a-score">▼</span></th>
-        <th onclick="sort('date')">日期 <span class="arrow" id="a-date">▲</span></th>
+        <th onclick="sort('date')">分析日期 <span class="arrow" id="a-date">▲</span></th>
       </tr>
     </thead>
     <tbody id="tbody"></tbody>
@@ -73,9 +72,11 @@
 
 <script>
 const data = [
-  {name:"证券", type:"纯周期", score:72, date:"2026-07-01", file:"A股——证券——行业分析报告.html"},
-  {name:"化工新材料", type:"混合周期", score:70, date:"2026-07-01", file:"A股——化工新材料——行业分析报告.html"},
-  {name:"光伏", type:"混合周期", score:57, date:"2026-07-01", file:"A股——光伏——行业分析报告.html"}
+  {name:"IAG (Insurance Australia)", code:"IAG", type:"特殊行业", score:94, date:"2026-06-29", file:"IAG_ASX_分析报告.html"},
+  {name:"Hub24", code:"HUB", type:"成长性", score:90, date:"2026-06-29", file:"Hub24_HUB_ASX_分析报告.html"},
+  {name:"CSL", code:"CSL", type:"成长性", score:88, date:"2026-07-03", file:"CSL_CSL_分析报告.html"},
+  {name:"Suncorp", code:"SUN", type:"特殊行业", score:80, date:"2026-06-29", file:"Suncorp_SUN_ASX_分析报告.html"},
+  {name:"Lincoln Minerals", code:"LML", type:"特殊行业", score:54, date:"2026-06-29", file:"Lincoln_Minerals_LML_ASX_分析报告.html"}
 ];
 
 let sortKey='score', sortDir=-1;
@@ -84,29 +85,32 @@ function scoreClass(s){
   if(s>=80) return 'tag-growth';
   if(s>=60) return 'tag-mix';
   if(s>=40) return 'tag-cycle';
-  return 'tag-val';
+  return 'tag-special';
 }
 
 function typeClass(t){
-  const m={'纯周期':'tag-cycle','混合周期':'tag-mix','成长型':'tag-growth','防御性':'tag-def','价值型':'tag-val'};
+  const m={'周期性':'tag-cycle','混合周期':'tag-mix','成长性':'tag-growth','防御性':'tag-def','特殊行业':'tag-special'};
   return m[t]||'tag-cycle';
 }
 
 function render(){
   const q=document.getElementById('search').value.trim().toLowerCase();
   const f=document.getElementById('filter').value;
-  let rows=data.filter(d=>(!q||d.name.includes(q)||d.file.includes(q))&&(!f||d.type===f));
+  let rows=data.filter(d=>(!q||d.name.toLowerCase().includes(q)||d.code.toLowerCase().includes(q))&&(!f||d.type===f));
   const cmp=(a,b)=>{const v=a[sortKey],w=b[sortKey];return v<w?-1:v>w?1:0};
   rows.sort((a,b)=>cmp(a,b)*sortDir);
   document.getElementById('count').textContent='共 '+rows.length+' 份';
   const tbody=document.getElementById('tbody');
-  tbody.innerHTML=rows.map(d=>'<tr><td><a href="'+d.file+'">'+d.name+'</a></td><td><span class="tag '+typeClass(d.type)+'">'+d.type+'</span></td><td style="text-align:center"><span class="tag '+scoreClass(d.score)+'" style="min-width:32px;display:inline-block">'+d.score+'</span></td><td style="color:#888">'+d.date+'</td></tr>').join('');
-  if(!rows.length) tbody.innerHTML='<tr><td colspan="4" class="empty">没有匹配的报告</td></tr>';
+  tbody.innerHTML=rows.map(d=>{
+    const sc = d.score;
+    return '<tr><td><a href="'+d.file+'">'+d.name+'</a></td><td class="code">'+d.code+'</td><td><span class="tag '+typeClass(d.type)+'">'+d.type+'</span></td><td style="text-align:center"><span class="tag '+scoreClass(sc)+'" style="min-width:32px;display:inline-block">'+sc+'</span></td><td style="color:#888">'+d.date+'</td></tr>';
+  }).join('');
+  if(!rows.length) tbody.innerHTML='<tr><td colspan="5" class="empty">没有匹配的报告</td></tr>';
 }
 
 function sort(k){
   if(sortKey===k)sortDir*=-1;else{sortKey=k;sortDir=-1}
-  ['name','type','score','date'].forEach(k=>document.getElementById('a-'+k).textContent=k===sortKey?(sortDir<0?'▼':'▲'):'');
+  ['name','code','type','score','date'].forEach(k=>document.getElementById('a-'+k).textContent=k===sortKey?(sortDir<0?'▼':'▲'):'');
   render();
 }
 
