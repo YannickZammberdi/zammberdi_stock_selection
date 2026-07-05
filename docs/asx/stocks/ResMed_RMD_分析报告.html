@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ResMed（RMD）财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>ResMed（RMD）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026-07-05 | 数据来源：FY2025 10-K年报（截至2025.6.30）+ FY2026 Q3 10-Q（截至2026.3.31）+ 券商一致预期</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>ResMed Inc.</td></tr>
+  <tr><td>股票代码</td><td>RMD（NYSE）/ RMD（ASX，10 CDIs = 1 NYSE share）</td></tr>
+  <tr><td>所属行业</td><td>医疗设备——睡眠呼吸暂停（CPAP/APAP 设备、面罩、云软件）</td></tr>
+  <tr><td>行业地位</td><td>全球睡眠呼吸暂停治疗龙头（~40%份额），Connected Health SaaS领先者</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>$5,146M USD（+10%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>$1,401M USD（+37%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>$1,752M USD</strong></td></tr>
+  <tr><td>总资产</td><td>$8,174M USD</td></tr>
+  <tr><td>归母净资产</td><td>$5,968M USD</td></tr>
+  <tr><td>ROE</td><td>23.5%</td></tr>
+</table>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">综合L1-L5所有因素（财务健康度、关键指标、估值、杜邦分析、行业分类），对各维度打分求和</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">23.5% ≥ 15%</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">高利润型（净利率27%+中高周转+低杠杆）</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">1.25 ≥ 1.0</td></tr>
+  <tr><td>营收增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+10% ≥ 10%</td></tr>
+  <tr><td>利润增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+37%（含legal settlement，Non-GAAP +19%）≥ 15%</td></tr>
+  <tr><td>负债率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">27% < 40%</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">现金$1,209M >> 短期有息负债$163M</td></tr>
+  <tr><td>毛利率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">59.4%（同比+270bps，持续提升）</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">~19x PE（基于FY2025 GAAP EPS），合理偏低</td></tr>
+  <tr><td>自由现金流（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">FCF ~$1.66B，持续为正且充裕</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">100/100</td><td style="text-align:left">品质优秀（100/100分）</td></tr>
+</table>
+
+<div class="verdict verdict-ok">品质优秀（100/100分）</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>ResMed 是全球睡眠呼吸暂停（OSA）治疗的绝对龙头，拥有从 CPAP/APAP 设备、面罩配件到云端管理软件的完整产品矩阵。FY2025 营收 $5.15B（+10%），毛利率 59.4% 持续改善，营业利润率 32.7%，ROE 23.5%。公司受益于老龄化+肥胖率上升+Philips Respironics 召回后市场格局改善的三重结构性驱动力，增长稳健且利润率持续提升。FY2026 前三季度延续 11% 收入增长和毛利率扩张趋势。<br><br>
+  <strong>核心优势：</strong>① 全球 OSA 治疗龙头（~40% 份额），品牌+临床数据+医生偏好构筑极深护城河；② 毛利率 59.4%→FY2026 61%+ 持续提升，规模效应显著；③ 零杠杆运营（净现金 $550M+），资产负债表极强；④ 面罩配件每 3-6 月替换一次，形成自然经常性收入（占收入 ~36%），加上 SaaS 软件（~12%）。<br><br>
+  <strong>核心风险：</strong>① GLP-1 减肥药可能减少 OSA 患者数量（结构性威胁）；② 营收增速 10% 左右，不是高成长股，但 PE ~19x 也已经反映了合理预期；③ 商誉+无形资产 $3.5B（占总资产 43%），收购整合风险；④ ASX 股价从 $45.25 高点跌至 $27.75（-39%），技术面偏弱。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025年度，截至2025.6.30）</h2>
+<p style="font-size:12px;color:#999">注：ResMed 为美国上市公司（NYSE），报表货币为 USD。ASX CDI 转换：10 CDIs = 1 NYSE Share</p>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>$5,146M</td><td>$4,685M</td><td>+9.8%</td><td class="good">✅ 稳健增长</td></tr>
+  <tr><td>毛利润</td><td><strong>$3,055M</strong></td><td>$2,655M</td><td>+15.1%</td><td class="good">✅ 毛利率 59.4%</td></tr>
+  <tr><td>营业利润</td><td><strong>$1,685M</strong></td><td>$1,320M</td><td>+27.7%</td><td class="good">✅ 运营杠杆显著</td></tr>
+  <tr><td>净利润（GAAP）</td><td><strong>$1,401M</strong></td><td>$1,021M</td><td><strong>+37.2%</strong></td><td class="good">✅ 高增长</td></tr>
+  <tr><td>Non-GAAP 净利润</td><td><strong>$1,407M</strong></td><td>$1,139M</td><td><strong>+23.5%</strong></td><td class="good">✅ 核心利润增长强劲</td></tr>
+  <tr><td>毛利率</td><td><strong>59.4%</strong></td><td>56.7%</td><td>+270bps</td><td class="good">✅ 大幅改善</td></tr>
+  <tr><td>营业利润率（GAAP）</td><td><strong>32.7%</strong></td><td>28.2%</td><td>+450bps</td><td class="good">✅ 持续提升</td></tr>
+  <tr><td>净利率（GAAP）</td><td><strong>27.2%</strong></td><td>21.8%</td><td>+540bps</td><td class="good">✅ 显著提升</td></tr>
+  <tr><td>SG&A 费用率</td><td><strong>~20%</strong></td><td>~20%</td><td>持平</td><td class="neutral">规模效应被投资抵消</td></tr>
+  <tr><td>R&D 费用率</td><td><strong>~6.5%</strong></td><td>~6.5%</td><td>持平</td><td class="good">✅ 投入稳定</td></tr>
+  <tr><td>GAAP 摊薄 EPS</td><td><strong>$9.51</strong></td><td>$6.92</td><td>+37.4%</td><td class="good">✅</td></tr>
+  <tr><td>Non-GAAP 摊薄 EPS</td><td><strong>$9.55</strong></td><td>$7.72</td><td>+23.7%</td><td class="good">✅</td></tr>
+  <tr><td>FY2026 Q1 营收</td><td>$1,336M</td><td>$1,225M</td><td>+9.1%</td><td class="good">✅ 持续增长</td></tr>
+  <tr><td>FY2026 Q2 营收</td><td>$1,423M</td><td>$1,282M</td><td>+11.0%</td><td class="good">✅ 加速</td></tr>
+  <tr><td>FY2026 Q3 营收</td><td>$1,431M</td><td>$1,292M</td><td>+10.8%</td><td class="good">✅ 稳健</td></tr>
+  <tr><td>FY2026 前三季度净利</td><td><strong>$1,140M</strong></td><td>$1,021M</td><td>+11.6%</td><td class="good">✅ 持续</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>ResMed 的利润表呈现出清晰的"运营杠杆"模型——营收增长 10% 带来营业利润增长 28%，利润率持续扩张。毛利率从 56.7%→59.4%（+270bps）主要来自制造成本优化和组件成本下降，FY2026 进一步升至 61%+。Non-GAAP 净利润增长 23.5% 反映了健康的经营趋势。FY2026 前三季度延续 11% 的营收增长和利润率提升趋势，11月 F2026 Q4（截至 6.30.2026）将于 8月6日公布。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>现金及现金等价物</td><td><strong>$1,209M</strong></td><td>$238M</td><td class="good">✅ 大幅增加</td></tr>
+  <tr><td>应收账款</td><td><strong>$939M</strong></td><td>$837M</td><td class="good">✅ 占营收 18%，合理</td></tr>
+  <tr><td>存货</td><td><strong>$928M</strong></td><td>$822M</td><td class="neutral">占营收 18%，适中</td></tr>
+  <tr><td>流动资产合计</td><td><strong>$3,506M</strong></td><td>$2,358M</td><td class="good">✅ 流动性强</td></tr>
+  <tr><td>商誉+无形资产</td><td><strong>$3,512M</strong></td><td>$3,328M</td><td class="neutral">占总资产 43%，偏高</td></tr>
+  <tr><td>总资产</td><td><strong>$8,174M</strong></td><td>$6,872M</td><td class="good">✅</td></tr>
+  <tr><td>短期借款+一年内到期LTD</td><td><strong>$163M</strong></td><td>$393M</td><td class="good">✅ 大幅下降</td></tr>
+  <tr><td>长期借款</td><td><strong>$658M</strong></td><td>$697M</td><td class="good">✅ 逐步偿还</td></tr>
+  <tr><td>总负债</td><td><strong>$2,207M</strong></td><td>$2,008M</td><td class="good">✅ 低负债</td></tr>
+  <tr><td>资产负债率</td><td><strong>27.0%</strong></td><td>29.2%</td><td class="good">✅ 持续改善</td></tr>
+  <tr><td>归母净资产</td><td><strong>$5,968M</strong></td><td>$4,864M</td><td class="good">✅ 同比+22.7%</td></tr>
+  <tr><td>净有息负债</td><td><strong>-$388M（净现金）</strong></td><td>$853M（净负债）</td><td class="good">✅ 从净负债转为净现金</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>FY2025 资产负债表发生质变——现金从 $238M 激增至 $1,209M（主要是经营现金流强劲驱动），同期债务从 $1,090M 降至 $821M，公司从净负债 $853M 转为净现金 $388M。流动比率 3.44x，资产负债表在所有指标上都达到了"教科书级"水平。唯一需要关注的是商誉+无形资产 $3.5B（占总资产 43%），来自历次收购（Brightree、MatrixCare 等），但考虑到这些 SaaS 业务贡献 ~$660M 年收入和稳定的经常性现金流，减值风险不高。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>$1,752M</strong></td><td>$1,401M</td><td class="good">✅ 强劲 +25%</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><strong>-$200M（估）</strong></td><td>-$270M</td><td class="good">✅ 资本开支温和</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td><strong>-$926M</strong></td><td>-$1,690M</td><td class="good">✅ 持续回购+还债</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>1.25</strong></td><td>1.37</td><td class="good">✅ 利润含金量极高</td></tr>
+  <tr><td>资本开支（CapEx）</td><td><strong>~$90M</strong></td><td>~$99M</td><td class="good">✅ 仅占营收 1.7%</td></tr>
+  <tr><td>自由现金流（FCF）</td><td><strong>~$1,662M</strong></td><td>~$1,302M</td><td class="good">✅ 充裕</td></tr>
+  <tr><td>FCF/营收</td><td><strong>32.3%</strong></td><td>27.8%</td><td class="good">✅ 极高利润率</td></tr>
+  <tr><td>股票回购</td><td><strong>$300M</strong></td><td>$590M</td><td class="good">✅ 持续回馈股东</td></tr>
+  <tr><td>分红</td><td><strong>$234M</strong></td><td>$220M</td><td class="good">✅ 持续增长</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>ResMed 的现金流模型是典型的"现金牛"：CFO $1,752M 远超净利润 $1,401M（CFO/净利 1.25），CapEx 仅占营收 1.7%（轻资产制造+软件业务）。FCF $1,662M 对应当前市值 ~$43B AUD（~$29B USD），FCF 收益率 ~5.7%。公司用富余现金持续回购股票（FY2025 $300M）和增加分红（FY2025 +13%），同时偿还了大部分债务。FY2026 Q3 现金进一步增至 ~$1.5B+。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>23.5%</strong></td><td>> 15% 优秀 / > 10% 及格</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>毛利率</td><td><strong>59.4%</strong></td><td>稳定或提升</td><td class="good">✅ +270bps，持续改善</td></tr>
+  <tr><td>净利率</td><td><strong>27.2%</strong></td><td>> 10%</td><td class="good">✅ 极高</td></tr>
+  <tr><td>营收增长率</td><td><strong>+9.8%</strong></td><td>> 10%</td><td class="good">✅ 接近 10%</td></tr>
+  <tr><td>Non-GAAP 利润增长</td><td><strong>+23.5%</strong></td><td>> 15%</td><td class="good">✅ 高质量增长</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>1.25</strong></td><td>> 1</td><td class="good">✅ 现金质量极好</td></tr>
+  <tr><td>资产负债率</td><td><strong>27.0%</strong></td><td>制造业<60%</td><td class="good">✅ 偏低</td></tr>
+  <tr><td>分红率</td><td><strong>~17%（占GAAP净利）</strong></td><td>持续分红</td><td class="good">✅ 14年连续增长</td></tr>
+</table>
+
+<h3>3.2 分业务分析（FY2025）</h3>
+<table>
+  <tr><th>业务板块</th><th>营收占比</th><th>FY2025 增长</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td>CPAP/APAP 设备（Devices）</td><td>~52%</td><td>~+8%</td><td>~55%（估）</td><td class="good">✅ 核心现金流来源</td></tr>
+  <tr><td>面罩+配件（Masks & Accessories）</td><td>~36%</td><td>~+11%</td><td>~65%（估）</td><td class="good">✅ 高毛利消耗品，经常性收入</td></tr>
+  <tr><td>Residential Care Software</td><td>~12%</td><td>~+5%</td><td>~70%（估，SaaS）</td><td class="good">✅ 稳定增长，高毛利</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>ResMed 的业务模型是"设备+耗材+软件"三级火箭：① 设备（52%）—— AirSense 11 系列是市场标杆，每次新设备发布拉动一轮替换周期。FY2025 受益于飞利浦伟康（Philips Respironics）持续停产/召回后的市场份额转移；② 面罩配件（36%）—— 每 3-6 个月替换一次，是天然的经常性收入，毛利率 65%+。患者对特定面罩有品牌偏好，切换成本高；③ 软件（12%）—— Brightree/MatrixCare 是 Residential Care SaaS，稳定的经常性收入，毛利率 70%+。整体看，~48% 的收入具有经常性属性（配件+软件），且设备收入受更新换代支撑，波动性较低。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="neutral">🟡 中等</td><td>GLP-1 减肥药潜在威胁</td><td>Novo Nordisk/Wegovy 等 GLP-1 药物可能减少 OSA 患者基数。ResMed 正布局"药物+设备"联合疗法，但长期影响不确定</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>商誉+无形资产 $3.5B（43% 总资产）</td><td>L1 资产负债表——主要来自 Brightree/MatrixCare 等收购，减值风险低但需关注</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>营收增速~10%，非高成长</td><td>L2 盈利指标——10% 增长稳健但算不上高成长，若市场风格切换可能面临估值中枢下移</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>FY2025 GAAP 净利+37%含一次性收益</td><td>$33M 法律和解收益，Non-GAAP 净利增长 23.5% 更反映真实经营趋势</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>ASX 股价从高点回落 39%</td><td>$45.25 → $27.75，技术面偏弱。可能反映 GLP-1 担忧 + 市场整体风险偏好下降</td></tr>
+  <tr><td class="good">🟢 正面</td><td>净现金状态，零财务风险</td><td>L1 资产负债表——$1.2B 现金 >> $821M 总债务</td></tr>
+  <tr><td class="good">🟢 正面</td><td>FCF 收益率 ~5.7%，价值凸显</td><td>L1 现金流量表——FCF $1.66B vs 市值 $29B USD</td></tr>
+  <tr><td class="good">🟢 正面</td><td>持续回购+分红，股东回报明确</td><td>FY2025 回购 $300M + 分红 $234M，合计 $534M</td></tr>
+  <tr><td class="good">🟢 正面</td><td>Philips 退出后竞争格局优化</td><td>飞利浦伟康因呼吸机召回事件持续停产，ResMed 是主要受益者</td></tr>
+</table>
+
+<div class="verdict verdict-ok">✅ L2综合判定：财务面优秀，核心风险可控</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+<p style="font-size:12px;color:#999">注：RMD 在 ASX 以 CDI 形式交易（10 CDIs = 1 NYSE share）。以下估值以 ASX CDI 价格 AUD $27.75 为基础，财务数据以 USD 报告</p>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>ASX CDI 股价（2026.6）</td><td><strong>$27.75 AUD</strong></td><td>52周范围 $25.50 - $45.25</td></tr>
+  <tr><td>NYSE 等效股价</td><td><strong>~$277.50 AUD / ~$183 USD</strong></td><td>10 CDIs = 1 share</td></tr>
+  <tr><td>总市值（ASX）</td><td><strong>~$43B AUD</strong></td><td>ASX 第24大</td></tr>
+  <tr><td>总市值（NYSE）</td><td><strong>~$29B USD</strong></td><td></td></tr>
+  <tr><td>PE（FY2025 GAAP）</td><td><strong>~19.3x</strong></td><td>基于 EPS $9.51 USD / CDI $1.441 AUD</td></tr>
+  <tr><td>PE（FY2025 Non-GAAP）</td><td><strong>~19.2x</strong></td><td>基于 Non-GAAP EPS $9.55 USD</td></tr>
+  <tr><td>PE（FY2026E 一致预期）</td><td><strong>~17-18x</strong></td><td>基于 FY2026E EPS ~$10.50-11.00</td></tr>
+  <tr><td>PB</td><td><strong>~4.6x</strong></td><td>基于每股净资产 $62.3 USD（~$93 AUD/share → $9.30/CDI）</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~5.6x</strong></td><td>基于 TTM 收入 ~$5.6B USD</td></tr>
+  <tr><td>EV/EBIT</td><td><strong>~15x</strong></td><td>基于 FY2025 EBIT $1,685M</td></tr>
+  <tr><td>FCF 收益率</td><td><strong>~5.7%</strong></td><td>FCF $1,662M / 市值 $29B USD</td></tr>
+  <tr><td>股息率</td><td><strong>~0.9%</strong></td><td>年分红 ~$2.40 USD/share → ~$0.24/CDI AUD</td></tr>
+</table>
+
+<h3>4.2 PE Band 估值区间</h3>
+<p style="font-size:13px;color:#666;">ROE 23.5% → 合理PE参考区间：20-30x（优质医疗设备龙头） | FY2026E GAAP EPS ≈ $10.80（估）</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应 ASX CDI 股价</th><th>vs 现价 $27.75</th></tr>
+  <tr><td>悲观（增长放缓+GLP-1冲击）</td><td>14x</td><td>$20.20</td><td class="bad">-27%</td></tr>
+  <tr><td>保守（防御估值）</td><td>17x</td><td>$24.50</td><td class="bad">-12%</td></tr>
+  <tr><td>中性（合理估值中枢）</td><td>22x</td><td>$31.70</td><td class="good">+14%</td></tr>
+  <tr><td>券商目标</td><td>~25x</td><td>$36.00</td><td class="good">+30%</td></tr>
+  <tr><td>当前价</td><td>~19x</td><td>$27.75</td><td>—</td></tr>
+  <tr><td>历史高位（2024-25）</td><td>~32x</td><td>$45.25</td><td>+63%</td></tr>
+</table>
+
+<h3>4.3 历史 PE 区间（基于 Non-GAAP EPS）</h3>
+<table>
+  <tr><th>指标</th><th>数值</th></tr>
+  <tr><td>PE 最大值（2024-25 AI/医疗设备炒作期）</td><td>~32x</td></tr>
+  <tr><td>PE 80% 分位</td><td>~28x</td></tr>
+  <tr><td>PE 50% 分位（历史中位数）</td><td>~24x</td></tr>
+  <tr><td>PE 20% 分位</td><td>~20x</td></tr>
+  <tr><td>PE 最小值（2022 利率上升期）</td><td>~18x</td></tr>
+  <tr><td>当前 PE（FY2025 Non-GAAP）</td><td class="neutral">~19x（历史 20% 分位附近）</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值总结：</strong>当前 PE ~19x 处于历史 20% 分位以下，接近历史最低水平。与 FY2020-2021 期间 PE 30-35x 相比，估值大幅压缩。主要原因：① GLP-1 减肥药对 OSA 治疗的潜在威胁；② 高利率环境下成长股估值整体承压；③ 营收增速~10%，市场不再给予超额成长溢价。<br><br>
+  <strong>与同行对比：</strong>PE ~19x 低于 Cobham/Cooper（~22x）、强生医疗（~24x），但高于 Baxter（~15x）。考虑到 ResMed 的行业龙头地位、持续利润率提升、净现金状态和 5.7% 的 FCF 收益率，当前估值在历史底部区间。对于长期投资者，若相信 OSA 治疗需求持续增长且 GLP-1 威胁可控，当前 PE ~19x 提供了不错的安全边际。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>净利润率</td><td>21.2%</td><td>21.8%</td><td><strong>27.2%</strong></td><td class="good">⬆ 显著提升</td></tr>
+  <tr><td>资产周转率</td><td>0.68</td><td>0.68</td><td><strong>0.63</strong></td><td class="neutral">⬇ 略降（现金大增）</td></tr>
+  <tr><td>权益乘数</td><td>1.53</td><td>1.41</td><td><strong>1.37</strong></td><td class="good">⬇ 杠杆持续降低</td></tr>
+  <tr><td><strong>ROE</strong></td><td><strong>21.7%</strong></td><td><strong>22.3%</strong></td><td><strong>23.5%</strong></td><td class="good">⬆ 持续提升</td></tr>
+  <tr><td>去杠杆 ROA（净利率×周转）</td><td>14.4%</td><td>14.8%</td><td><strong>17.1%</strong></td><td class="good">⬆ 基础回报提升</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>7.3pct</td><td>7.5pct</td><td><strong>6.4pct</strong></td><td class="good">⬇ 不依赖杠杆</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：高利润型——医疗设备龙头的典型杜邦画像</strong><br>
+  ResMed 的杜邦分析极其健康：净利润率 27.2%（高利润）+ 资产周转率 0.63（中偏低，因现金大量积累压低·分母）+ 权益乘数 1.37（低杠杆）。<br><br>
+  ROE 23.5% 的驱动结构：净利率贡献 17.1%（去掉杠杆的 ROA）+ 杠杆贡献仅 6.4pct。这意味着公司去掉所有杠杆后的基础回报率仍有 17.1%，这是真正由生意质量驱动的回报，不依赖任何财务杠杆。利润率的持续提升（21.2%→27.2%）是 ROE 提升的第一驱动力。
+</div>
+
+<h3>5.2 去杠杆 ROA 分析</h3>
+<table>
+  <tr><th>指标</th><th>ResMed</th><th>CSL（对比）</th><th>典型医疗设备</th></tr>
+  <tr><td>净利润率</td><td>27.2%</td><td>~18%</td><td>15-20%</td></tr>
+  <tr><td>资产周转率</td><td>0.63</td><td>~0.35</td><td>0.5-0.7</td></tr>
+  <tr><td>去杠杆 ROA</td><td><strong>17.1%</strong></td><td>~6.3%</td><td>8-12%</td></tr>
+  <tr><td>权益乘数</td><td>1.37</td><td>~3.5</td><td>1.5-2.5</td></tr>
+  <tr><td>ROE</td><td><strong>23.5%</strong></td><td>~22%</td><td>15-22%</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>核心结论：</strong>ResMed 的 ROE 是"真功夫型"——23.5% 中 17.1% 来自经营本身（去杠杆 ROA），仅 6.4pct 来自杠杆。对比 CSL（ROE ~22% 但权益乘数 3.5，去杠杆 ROA 仅 ~6%），ResMed 的 ROE 质量更高，抗风险能力更强。过去三年 ROE 从 21.7%→22.3%→23.5%，核心驱动力是利润率提升（21.2%→27.2%）。<br><br>
+  <strong>未来 ROE 展望：</strong>提升的关键在于资金运用效率——如果公司将 $1.2B 超额现金用于更有意义的并购或加大回购，资产周转率将从 0.63 提升，ROE 有望突破 25%。但当前保守的现金管理也是一种审慎。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>判定：成长性行业（医疗设备——睡眠呼吸暂停治疗）</strong><br>
+  <strong>判断依据：</strong>ResMed 处于"老龄化+肥胖率上升+OSA诊断率提升"三重复合增长赛道。全球 OSA 患者约 10 亿人，目前仅 ~20% 获得诊断，治疗渗透率更低。行业增速 ~8-10%（有机），加上 Philips 退出后的份额转移，ResMed 可实现 ~10% 营收增长。不属于纯周期（医疗需求刚性），也不属于高成长（增速稳定在 8-12%），属于"稳健成长型"——增速不高但确定性极强。<br><br>
+  <strong>Note：</strong>ResMed 是美股（NYSE）ASX CDI 二次上市的美国公司（Delaware 注册），主业在全球（69%  Americas），不受澳洲经济周期影响。汇率风险（USD/AUD）是 ASX 投资者的特有考量因素。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th></tr>
+  <tr><td>市场格局</td><td><span class="good">双寡头→单龙头</span>——全球 OSA 设备 CR2（ResMed + Philips Respironics）> 80%。Philips 因 2021 年呼吸机召回事件持续停产/退市（规模 ~$5B 营收），ResMed 是最大受益者，市占率从 ~35% 升至 ~40%+。新进入者威胁极低（FDA 审批周期 2-3 年 + 临床数据壁垒）。</td></tr>
+  <tr><td>核心壁垒</td><td>① 30 年临床数据积累——医生/医院对 ResMed 设备的熟悉度和信任度极高；② FDA 510(k) 认证——任何新竞争者需 2-3 年审批；③ 面罩专利壁垒——AirFit/ AirTouch 系列有强专利保护，患者难以切换品牌；④ 规模经济——年产数百万台设备，成本优势显著；⑤ Connected Health 生态系统——AirView/SmartStart 等云平台锁定用户。</td></tr>
+  <tr><td>转换成本</td><td><span class="good">极高</span>——患者习惯特定面罩佩戴感，医生习惯特定设备的临床数据解读。医院/睡眠中心的设备库存+培训也构成转换障碍。</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  <strong>阶段：成熟成长期</strong><br>
+  ResMed 不是初创公司（成立 36 年），也不是衰退行业（OSA 治疗市场仍在扩大）。公司处于"成熟龙头+持续渗透"阶段——行业已建立稳固格局（双寡头→单龙头），公司通过产品迭代（AirSense 11→下一代）、市场渗透（新兴市场+诊断率提升）、品类扩展（软件/心脏病学）维持 8-12% 增长。这类似于"稳定成长的现金牛"定位——不像 SaaS 那样高速增长，但确定性远高于 SaaS。核心矛盾不是"能否增长"而是"GLP-1 是否颠覆 OSA 治疗"。
+</div>
+
+<h3>6.4 估值方法匹配</h3>
+<table>
+  <tr><th>公司类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>医疗设备龙头</td><td>PE（盈利成熟）</td><td>FCF Yield、毛利率趋势、ROE</td><td class="good">✅ 匹配——PE ~19x，FCF Yield ~5.7%</td></tr>
+</table>
+
+<h3>6.5 成长股成色检验（四步法）</h3>
+<table>
+  <tr><th>步骤</th><th>检验内容</th><th>数据</th><th>判定</th></tr>
+  <tr><td>① 营收</td><td>有没有实在的生意？</td><td>营收 $5.15B，+10% 增长稳健，体量大且真实</td><td class="good">✅ 过关</td></tr>
+  <tr><td>② 毛利率</td><td>产品竞争力如何？</td><td>毛利率 59.4%+且持续提升（+270bps）</td><td class="good">✅ 强竞争力</td></tr>
+  <tr><td>③ CFO</td><td>能不能自己造血？</td><td>CFO $1,752M，CFO/净利 1.25，远超标准</td><td class="good">✅ 造血能力极强</td></tr>
+  <tr><td>④ PS</td><td>梦想溢价多少？</td><td>PS 5.6x——远低于 SaaS 公司的 10-20x</td><td class="good">✅ 估值合理</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>四步法结论：</strong>四项全过，ResMed 是"真·稳健成长型"公司。营收庞大（$5.15B）且增长真实（10%），毛利率高且提升（59.4%），现金流极其充裕（CFO/净利 1.25），PS 5.6x 估值合理。四步法确认：这不是一家"依靠故事撑估值"的公司，而是一家靠实实在在的产品和现金流撑起的龙头。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>医疗设备（OSA 睡眠呼吸暂停），全球双寡头→单龙头格局，极高壁垒（FDA+品牌+专利），成熟成长期，需求刚需增长（老龄化+肥胖率）。<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 23.5% 优秀，杜邦高利润型（27.2%净利率+0.63周转+1.37杠杆），CFO/净利 1.25，FCF 收益率 5.7%，财务面接近满分。<br>
+  <strong>Step 3 - 估值判断：</strong>PE ~19x（历史 20% 分位），PS 5.6x，FCF Yield 5.7%。估值处于历史底部区间，提供了良好的安全边际。<br>
+  <strong>Step 4 - 风险排查：</strong>核心风险是 GLP-1 结构性威胁+商誉占比较高（43%）。财务风险极低（净现金 $388M）。<br>
+  <strong>Step 5 - 结论：</strong>好公司（全球龙头 × 极高壁垒 × 高质量财务数据）× 好价格（PE ~19x 在历史低位）= 值得买入。<br>
+  <strong>Step 6 - 跟踪：</strong>FY2026 Q4 业绩（8月6日）、毛利率趋势、GLP-1 对 OSA 处方量的实际影响、Philips 是否会回归市场。
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>OSA 治疗需求刚需且持续增长（老龄化+肥胖），双寡头格局稳定，壁垒极高</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓</td><td>ROE 23.5% > 15%，毛利率 59.4% 持续提升，CFO/净利 1.25 > 1.0</td></tr>
+  <tr><td>③ 好价格</td><td class="good">✓</td><td>PE ~19x 处于历史 20% 分位，PEG ~1.9，FCF Yield 5.7%</td></tr>
+</table>
+
+<h3>7.3 三个陷阱排查</h3>
+<div class="danger-box">
+  ☐ 低PE + 低增长 + 高负债 = <strong>价值陷阱</strong> → 不命中（PE ~19x 低+增长 10% 非低增长+零净负债）<br>
+  ☐ 低PE + 周期顶点 = <strong>周期陷阱</strong> → 不命中（非周期行业，OSA 需求刚性不受经济周期影响）<br>
+  ☐ 高PE + 高增速但现金流为负 = <strong>烧钱陷阱</strong> → 不命中（PE ~19x 正常 + 增速 ~10% 非高增速 + CFO/净利 1.25 现金流极好）
+</div>
+
+<div class="summary-box">
+  <strong>最终判断：</strong><br>
+  ResMed 是三个陷阱都不命中的"真·价值成长股"——好行业 ✓ × 好公司 ✓ × 好价格 ✓。三个条件全部满足的情况在目前市场环境中并不多见。<br><br>
+  核心投资逻辑：PE ~19x（历史低位）+ FCF Yield 5.7%（有安全边际）+ ROE 23.5%（高质量回报）+ 全球 OSA 龙头（壁垒极高）+ 8-12% 稳定增长（确定性较强）。主要不确定因素是 GLP-1 的长期影响——如果减肥药证明能显著减少 OSA 患者对 CPAP 的依赖，ResMed 的增长故事将受到结构性影响；但如果 GLP-1 + CPAP 联合疗法成为标准方案，ResMed 甚至可能受益于患者基数的扩大。<br><br>
+  <strong>结论：三要素全满足的好机会。当前 PE ~19x 提供了足够的安全边际来应对 GLP-1 的不确定性。建议在 FY2026 Q4 业绩公布前建立初始仓位，止损设在 $24 AUD（PE ~16x，对应 GLP-1 worst case scenario）。</strong>
+</div>
+
+<h3>7.4 讨论问题（阅读引导）</h3>
+<ol>
+  <li><strong>这笔生意你看懂了吗？</strong> ResMed 卖的是"睡个好觉"——CPAP 机器 + 面罩 + 云端管理软件。OSA 患者不治疗会大幅增加心脑血管疾病风险，所以这是刚需（不是锦上添花）。公司赚的是设备一次性销售+面罩每 3-6 月持续替换+云软件订阅费的钱。</li>
+  <li><strong>你最大的担忧是什么？</strong> GLP-1 减肥药。如果 Wegovy/Zepbound 等药能显著减肥并从根本上减少 OSA 患者数量，ResMed 的"渗透率提升"故事就要重写。好消息是临床数据初步表明 CPAP + GLP-1 联合使用效果最好，而非替代关系。</li>
+  <li><strong>如果现在买入，期待的回报来源是什么？</strong> ① 10% 的营收增长驱动 EPS ~12% CAGR；② PE 从 19x 回归历史中枢 24x（+26% 估值修复）；③ 合计年化回报 ~15-20%。无需依赖任何"奇迹"假设，只要公司继续做它一直在做的事。</li>
+  <li><strong>什么情况下你会坚决卖出？</strong> ① GLP-1 临床试验证明药物可替代 CPAP（结构性颠覆）；② 毛利率连续两个季度下降（+270bps 的趋势逆转）；③ Philips 重返市场并恢复竞争力；④ PE 重新涨到 30x 以上（估值不再有安全边际）。</li>
+</ol>
+
+</div></div>
+
+<div class="footer">
+  免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+  数据来源：ResMed FY2025 10-K（SEC）、FY2026 Q3 10-Q、券商一致预期、ASX市场数据
+</div>
+
+</div>
+
+<script>
+var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+var contents = document.querySelectorAll('.tab-content');
+btns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    contents.forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    var tab = btn.getAttribute('data-tab');
+    document.getElementById('tab-' + tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

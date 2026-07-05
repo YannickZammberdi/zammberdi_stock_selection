@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ASX——IT服务 行业分析报告</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f5f5f5;padding:0;color:#333}
+  .report-wrap{max-width:800px;margin:0 auto;background:#fff}
+  h1{font-size:22px;margin:0;padding:28px 0 4px;text-align:center}
+  h2{font-size:18px;margin:28px 0 12px;border-bottom:2px solid #1a1a1a;padding-bottom:4px}
+  h3{font-size:15px;margin:18px 0 8px}
+  .subtitle{color:#666;font-size:13px;text-align:center;margin-bottom:4px}
+  .meta{color:#999;font-size:12px;text-align:center;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #e0e0e0}
+  .tab-bar{position:sticky;top:0;z-index:10;background:#fff;display:flex;flex-wrap:wrap;border-bottom:2px solid #ddd;gap:0}
+  .tab-btn{padding:10px 14px;cursor:pointer;border:none;background:none;font-size:13px;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+  .tab-btn:hover{color:#333;background:#f9f9f9}
+  .tab-btn.active{color:#1a1a1a;font-weight:700;border-bottom-color:#1a1a1a}
+  .tab-content{display:none}
+  .tab-content.active{display:block}
+  .tab-inner{padding:0 12px}
+  table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:13px}
+  th{background:#f5f5f5;padding:8px 6px;text-align:left;border-bottom:2px solid #ddd;white-space:nowrap;font-weight:600}
+  td{padding:7px 6px;border-bottom:1px solid #eee}
+  tr:nth-child(even) td{background:#fafafa}
+  .summary-box{background:#fffde7;border-left:4px solid #f9a825;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .highlight-box{background:#e3f2fd;border-left:4px solid #1e88e5;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .danger-box{background:#ffebee;border-left:4px solid #e53935;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .verdict{text-align:center;padding:20px;margin:16px 0;border-radius:8px;font-size:18px;font-weight:700}
+  .verdict-ok{background:#e8f5e9;border:2px solid #4caf50;color:#2e7d32}
+  .verdict-caution{background:#fff3e0;border:2px solid #ff9800;color:#e65100}
+  .verdict-bad{background:#ffebee;border:2px solid #e53935;color:#c62828}
+  .score{font-size:36px;display:block;margin-bottom:4px}
+  .pass{color:#2e7d32;font-weight:700}
+  .skip{color:#666;font-style:italic}
+  .tag{display:inline-block;padding:2px 8px;border-radius:3px;font-size:11px;font-weight:700}
+  .tag-red{background:#ffebee;color:#c62828}
+  .tag-green{background:#e8f5e9;color:#2e7d32}
+  .tag-yellow{background:#fff8e1;color:#f57f17}
+  .footer{font-size:11px;color:#aaa;text-align:center;padding:24px 0 8px;border-top:1px solid #eee;margin-top:30px}
+  .card{background:#fafafa;border:1px solid #e0e0e0;border-radius:6px;padding:14px;margin:10px 0;font-size:13px}
+  .flex{display:flex;flex-wrap:wrap;gap:8px}
+  .tbl-wrap{border:1px solid #e0e0e0;border-radius:6px;overflow:hidden;margin:10px 0 18px}
+  .tbl-wrap table{margin:0}
+  .tbl-wrap th{background:#f5f5f5;padding:9px 8px;border-bottom:1px solid #ddd;font-weight:600;font-size:12px}
+  .tbl-wrap td{padding:8px;border-bottom:1px solid #f0f0f0;font-size:13px}
+  .tbl-wrap tr:last-child td{border-bottom:none}
+  .tbl-wrap td,.tbl-wrap th{vertical-align:middle}
+  .bar-wrap{display:inline-flex;align-items:center;width:60px;height:16px;vertical-align:middle}
+  .bar-bg{background:#eee;border-radius:4px;height:8px;width:100%;overflow:hidden}
+  .bar{display:block;height:8px;border-radius:4px}
+  .score-cell{font-weight:700;font-size:15px;text-align:center;white-space:nowrap}
+  .col-tag{display:inline-block;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600}
+  .col-win{background:#e8f5e9;color:#2e7d32}
+  .col-lose{background:#ffebee;color:#c62828}
+  .col-warn{background:#fff3e0;color:#e65100}
+  .col-info{background:#e3f2fd;color:#1565c0}
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>ASX——IT服务 行业分析报告</h1>
+<div class="subtitle">L5分类：混合周期（价值+成长）｜ 上市公司：~25只 ｜ 总市值：~100亿AUD</div>
+<div class="meta">生成日期：2026-07-05</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l7">L7 量化初筛</button>
+  <button class="tab-btn" data-tab="l8">L8 行业画像</button>
+  <button class="tab-btn" data-tab="l9">L9 竞争格局</button>
+  <button class="tab-btn" data-tab="l10">L10 周期时机</button>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     总结论 Tab
+     ═══════════════════════════════════════════════════ -->
+<div class="tab-content active" id="tab-summary">
+<div class="tab-inner">
+
+<h2>行业速览</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">项目</th><th>内容</th></tr>
+<tr><td>行业名称</td><td><strong>IT服务</strong>（含IT咨询/系统集成/云服务/分销/数据中心服务）</td></tr>
+<tr><td>市场</td><td>ASX（澳大利亚证券交易所）</td></tr>
+<tr><td>L5分类</td><td><span class="col-tag col-warn">混合周期</span> 长期数字化转型驱动（结构），短期受企业IT预算周期影响（周期）</td></tr>
+<tr><td>上市公司</td><td>~25只，其中符合L7筛选条件<span class="col-tag col-win">5只</span></td></tr>
+<tr><td>行业总市值</td><td>~100亿AUD（占ASX科技板块~8%）</td></tr>
+<tr><td>产业链利润核心</td><td><span class="col-tag col-win">云托管/管理服务</span> 毛利率20-30%，粘性高；分销毛利率最低（8-12%）但现金流好</td></tr>
+<tr><td>生命周期阶段</td><td><span class="col-tag col-warn">成熟转型期</span> 传统硬件转售在萎缩，云服务/托管服务/AI咨询在增长</td></tr>
+<tr><td>当前周期位置</td><td><span class="col-tag col-lose">企业IT支出谨慎期</span> 高利率环境下企业推迟IT项目，但AI/网络安全支出刚性</td></tr>
+</table>
+</div>
+
+<h2>综合评分</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>维度</th><th style="width:60px">得分</th><th>进度</th><th>说明</th></tr>
+<tr>
+  <td>行业规模与空间</td>
+  <td class="score-cell">13/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:65%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">澳洲IT服务市场2026年~383亿AUD，CAGR 18.9%，空间大但竞争激烈</td>
+</tr>
+<tr>
+  <td>产业链位置</td>
+  <td class="score-cell">8/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:53%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">处于产业链中游，上游受制于供应商（Microsoft/AWS等），下游受制于客户预算</td>
+</tr>
+<tr>
+  <td>竞争格局</td>
+  <td class="score-cell">10/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:50%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">高度分散，大量小型IT服务商竞争，头部公司（DTL/DDR/MAQ）有一定规模优势</td>
+</tr>
+<tr>
+  <td>增长驱动力</td>
+  <td class="score-cell">9/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:60%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">云迁移+AI落地+网络安全需求驱动，但增长受IT预算周期影响</td>
+</tr>
+<tr>
+  <td>周期位置</td>
+  <td class="score-cell">10/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:67%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">DTL从52周高点$10.20回调至$9.80，PE 31.8x处于合理区间</td>
+</tr>
+<tr>
+  <td>政策环境</td>
+  <td class="score-cell">10/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:67%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">澳洲政府加大数字化+网络安全投入，政府客户占比高的IT服务公司受益</td>
+</tr>
+<tr style="background:#fafafa">
+  <td style="font-weight:700;font-size:14px">总分</td>
+  <td style="font-weight:700;font-size:16px;color:#2e7d32">60/100</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:60%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555;font-weight:600">中等——稳健型选择，估值合理，可作为防御性配置</td>
+</tr>
+</table>
+</div>
+
+<div class="verdict verdict-caution">
+  <span class="score">60</span>
+  中等——稳健配置，精选龙头
+</div>
+
+<div class="summary-box">
+  <strong>核心结论</strong><br>
+  ASX IT服务行业与SaaS科技板块的本质区别在于：IT服务公司赚的是"人力+转售"的钱（毛利率15-25%），而非SaaS的"产品+订阅"钱（毛利率50-90%）。这意味着它们的估值更低（PE 15-32x vs SaaS 50-70x）、波动更小（beta < 1）、且有分红。当前行业受益于云迁移、AI落地和网络安全三大结构性需求，但短期受企业IT预算紧缩影响。<strong>适合追求稳健+股息+低估值的投资者，不适合追求高增长的投资者</strong>。核心标的：Data#3（DTL，PE 31.8x，股息2.74%）、Dicker Data（DDR）、Macquarie Tech（MAQ）。
+</div>
+
+<div class="highlight-box">
+  <strong>行业公式</strong><br>
+  收入 = 项目制收入 + 托管/管理服务月费（MRR） + 软硬件转售差价<br>
+  关键指标：1) 经常性收入占比 2) 政府/企业客户占比 3) 毛利率趋势 4) 在手订单 5) 供应商关系（Microsoft/AWS等级）
+</div>
+
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     L7 Tab
+     ═══════════════════════════════════════════════════ -->
+<div class="tab-content" id="tab-l7">
+<div class="tab-inner">
+
+<h2>筛子调整说明</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:12%">筛子</th><th style="width:35%">标准</th><th>调整说明</th></tr>
+<tr><td>①<span class="col-tag col-info">市值</span></td><td>ASX ≥ 2亿AUD</td><td>IT服务行业大量微型公司，保留此门槛</td></tr>
+<tr><td>②<span class="col-tag col-info">营收</span></td><td>ASX ≥ 1亿AUD</td><td>正常执行</td></tr>
+<tr><td>③<span class="col-tag col-warn">毛利率</span></td><td>消费/贸易≥10%</td><td>IT服务含硬件转售业务（毛利率8-12%），放宽至≥10%</td></tr>
+<tr><td>④<span class="col-tag col-info">ROE</span></td><td>≥8%保留</td><td>IT服务行业整体ROE尚可（DTL 9.1%），正常执行</td></tr>
+<tr><td>⑤<span class="col-tag col-info">负债率</span></td><td>≤65%</td><td>IT服务轻资产行业，负债率普遍偏低</td></tr>
+<tr><td>⑥<span class="col-tag col-info">估值</span></td><td>PE历史分位≤70%</td><td>IT服务PE普遍15-32x，低于SaaS，分位检查</td></tr>
+</table>
+</div>
+
+<h2>候选池（5只）</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>环节</th><th>市值</th><th>毛利率</th><th>ROE</th><th>负债率</th><th>PE/PB分位</th><th>通过</th></tr>
+<tr>
+  <td><strong>Data#3</strong> DTL</td>
+  <td><span class="col-tag col-win">IT服务+云</span></td>
+  <td style="font-weight:600">~15.3亿AUD</td>
+  <td><span class="col-tag col-warn">~18%</span></td>
+  <td><span class="col-tag col-win">9.1%</span></td>
+  <td>15%</td>
+  <td>PE 31.8x / 55%分位</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>Dicker Data</strong> DDR</td>
+  <td><span class="col-tag col-warn">IT分销</span></td>
+  <td style="font-weight:600">~12亿AUD</td>
+  <td><span class="col-tag col-warn">~11%</span></td>
+  <td><span class="col-tag col-win">~15%</span></td>
+  <td>~40%</td>
+  <td>PE ~18x / 40%分位</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>Macquarie Tech</strong> MAQ</td>
+  <td><span class="col-tag col-win">数据中心+云</span></td>
+  <td>~15亿AUD</td>
+  <td><span class="col-tag col-win">~40%</span></td>
+  <td><span class="col-tag col-win">~10%</span></td>
+  <td>~50%</td>
+  <td>PE ~25x / 45%分位</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>Hansen Technologies HSN</td>
+  <td><span class="col-tag col-win">计费SaaS+服务</span></td>
+  <td>~5亿AUD</td>
+  <td><span class="col-tag col-win">~45%</span></td>
+  <td><span class="col-tag col-warn">~7%</span></td>
+  <td>~35%</td>
+  <td>PE ~20x / 40%分位</td>
+  <td class="pass">5/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>Objective Corp OCL</td>
+  <td><span class="col-tag col-info">政府软件</span></td>
+  <td>~8亿AUD</td>
+  <td><span class="col-tag col-win">~55%</span></td>
+  <td><span class="col-tag col-win">~20%</span></td>
+  <td>~25%</td>
+  <td>PE ~35x / 60%分位</td>
+  <td class="pass">6/6</td>
+</tr>
+</table>
+</div>
+
+<h2>观察池</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>卡在哪筛</th><th>备注</th></tr>
+<tr>
+  <td><strong>UWL</strong> UWL</td>
+  <td><span class="col-tag col-lose">①市值<2亿AUD</span></td>
+  <td>小型云服务商，营收增长快但规模不足</td>
+</tr>
+<tr>
+  <td><strong>8Common</strong> 8CO</td>
+  <td><span class="col-tag col-lose">②营收<1亿AUD</span></td>
+  <td>采购软件+服务，营收太小</td>
+</tr>
+<tr>
+  <td><strong>RPMGlobal</strong> RUL</td>
+  <td><span class="col-tag col-lose">③毛利率<10%</span></td>
+  <td>采矿IT服务，利润率极低</td>
+</tr>
+</table>
+</div>
+
+<h2>筛除记录</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>筛子</th><th style="width:60px">筛除数</th><th>知名示例</th></tr>
+<tr><td>①市值</td><td style="text-align:center">~12</td><td>大量IT服务微盘股（<2亿AUD）</td></tr>
+<tr><td>②营收</td><td style="text-align:center">~5</td><td>小型IT咨询/服务商</td></tr>
+<tr><td>③毛利率 <span class="col-tag col-warn">最严格</span></td><td style="text-align:center">~3</td><td>纯硬件转售公司毛利率<10%</td></tr>
+<tr><td>④ROE</td><td style="text-align:center">0</td><td>头部公司ROE均达标</td></tr>
+<tr><td>⑤负债率</td><td style="text-align:center">0</td><td>轻资产行业，负债率低</td></tr>
+<tr><td>⑥估值</td><td style="text-align:center">0</td><td>PE普遍合理</td></tr>
+<tr style="background:#fffde7"><td><strong>剩余</strong></td><td style="text-align:center;font-weight:700;color:#2e7d32"><strong>5</strong></td><td>—</td></tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <strong>L7筛选结论</strong><br>
+  25→5，筛选力度中等（-80%）。IT服务行业不像SaaS那样有大量亏损公司，所以ROE筛几乎不淘汰人。最严格的是市值筛（大量微型IT服务商）和毛利率筛（纯转售商毛利率太低）。DTL和DDR是最典型的IT服务/分销公司，MAQ是数据中心+云服务龙头，HSN和OCL更偏SaaS产品型。核心关注：<strong>DTL（IT服务+云转售）、DDR（IT分销龙头）、MAQ（数据中心稀缺标的）</strong>。
+</div>
+
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     L8 Tab
+     ═══════════════════════════════════════════════════ -->
+<div class="tab-content" id="tab-l8">
+<div class="tab-inner">
+
+<h2>产业链</h2>
+<div class="card" style="font-size:13px;line-height:1.7">
+
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px">
+
+<div style="flex:1;min-width:160px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#1565c0;font-size:14px">上游供应商</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#e3f2fd;border-radius:4px;padding:8px 6px;text-align:center;font-weight:600;font-size:13px">云平台</div>
+    <div style="text-align:center;font-size:11px;color:#666">Microsoft Azure · AWS · GCP</div>
+    <div style="margin:8px 0;text-align:center;color:#999;font-size:16px">↓</div>
+    <div style="margin-bottom:6px;background:#e3f2fd;border-radius:4px;padding:8px 6px;text-align:center;font-weight:600;font-size:13px">硬件厂商</div>
+    <div style="text-align:center;font-size:11px;color:#666">Dell · HPE · Cisco · Lenovo</div>
+    <div style="margin:8px 0;text-align:center;color:#999;font-size:16px">↓</div>
+    <div style="margin-bottom:6px;background:#e3f2fd;border-radius:4px;padding:8px 6px;text-align:center;font-weight:600;font-size:13px">软件厂商</div>
+    <div style="text-align:center;font-size:11px;color:#666">Microsoft · Adobe · VMware</div>
+  </div>
+</div>
+
+<div style="flex:2;min-width:280px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#2e7d32;font-size:14px">中游IT服务</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+
+    <div style="margin:6px 0 4px;font-weight:600;font-size:12px;color:#1565c0">IT分销（转售）</div>
+    <div style="display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap">
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:8px 6px;text-align:center;font-size:12px">
+        <div style="font-weight:700">Dicker Data</div>
+        <div style="font-size:10px;color:#666">ASX最大IT分销商</div>
+      </div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:8px 6px;text-align:center;font-size:12px">
+        <div style="font-weight:700">Ingram Micro</div>
+        <div style="font-size:10px;color:#666">全球最大（未上市）</div>
+      </div>
+    </div>
+
+    <div style="margin:6px 0 4px;font-weight:600;font-size:12px;color:#2e7d32">IT服务+云集成</div>
+    <div style="display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap">
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:8px 6px;text-align:center;font-size:12px">
+        <div style="font-weight:700">Data#3</div>
+        <div style="font-size:10px;color:#666">云服务+安全+咨询</div>
+      </div>
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:8px 6px;text-align:center;font-size:12px">
+        <div style="font-weight:700">兼松通信</div>
+        <div style="font-size:10px;color:#666">日本系IT服务</div>
+      </div>
+    </div>
+
+    <div style="margin:6px 0 4px;font-weight:600;font-size:12px;color:#c62828">数据中心+云托管</div>
+    <div style="display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap">
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:8px 6px;text-align:center;font-size:12px">
+        <div style="font-weight:700">Macquarie Tech</div>
+        <div style="font-size:10px;color:#666">数据中心+云+安全</div>
+      </div>
+    </div>
+
+    <div style="margin:6px 0 4px;font-weight:600;font-size:12px;color:#1565c0">行业SaaS+服务</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <div style="flex:1;background:#e3f2fd;border-radius:4px;padding:8px 6px;text-align:center;font-size:12px">
+        <div style="font-weight:700">Hansen Tech</div>
+        <div style="font-size:10px;color:#666">电信计费+SaaS</div>
+      </div>
+      <div style="flex:1;background:#e3f2fd;border-radius:4px;padding:8px 6px;text-align:center;font-size:12px">
+        <div style="font-weight:700">Objective Corp</div>
+        <div style="font-size:10px;color:#666">政府内容管理</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div style="flex:1;min-width:150px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#c62828;font-size:14px">下游客户</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:12px">政府/教育</div>
+    <div style="text-align:center;font-size:11px;color:#666">联邦+州政府、大学</div>
+    <div style="margin:6px 0;text-align:center;color:#999;font-size:16px">↓</div>
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:12px">企业</div>
+    <div style="text-align:center;font-size:11px;color:#666">银行/保险/矿业/零售</div>
+    <div style="margin:6px 0;text-align:center;color:#999;font-size:16px">↓</div>
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:12px">中小企业</div>
+    <div style="text-align:center;font-size:11px;color:#666">通过经销商间接服务</div>
+  </div>
+</div>
+
+</div>
+
+<div style="background:#fffde7;border-left:3px solid #f9a825;padding:8px 12px;font-size:12px;border-radius:0 4px 4px 0">
+  <strong>利润最厚环节：</strong>数据中心/云托管服务（毛利率30-40%）→ IT咨询/安全服务（20-30%）→ 软件转售（12-18%）→ 硬件分销（8-12%）
+  <br><span style="color:#999">IT服务行业的毛利率远低于SaaS——本质上是"卖人头+卖产品"的生意，人力成本占收入60-70%。向云托管/管理服务转型是提升利润率的关键</span>
+</div>
+
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>环节</th><th>代表公司</th><th>毛利率</th><th>集中度</th><th>议价能力</th></tr>
+<tr>
+  <td><span class="col-tag col-warn">IT分销</span></td>
+  <td>DDR</td>
+  <td><span class="col-tag col-warn">8-12%</span></td>
+  <td>CR2~60%</td>
+  <td><span class="col-tag col-lose">弱</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-warn">IT服务+云</span></td>
+  <td>DTL</td>
+  <td><span class="col-tag col-warn">15-20%</span></td>
+  <td>分散</td>
+  <td><span class="col-tag col-warn">中</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-win">数据中心+云</span></td>
+  <td>MAQ</td>
+  <td><span class="col-tag col-win">35-45%</span></td>
+  <td>CR3~60%</td>
+  <td><span class="col-tag col-win">强</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-win">政府/企业软件</span></td>
+  <td>OCL·HSN</td>
+  <td><span class="col-tag col-win">45-60%</span></td>
+  <td>细分寡头</td>
+  <td><span class="col-tag col-win">强</span></td>
+</tr>
+</table>
+</div>
+
+<h2>市场规模</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">指标</th><th style="width:25%">数值</th><th>说明</th></tr>
+<tr><td><strong>TAM</strong>（总可触达市场）</td><td><span class="col-tag col-info">澳洲IT服务~383亿AUD</span></td><td>含云服务、IT咨询、系统集成、网络安全、数据中心</td></tr>
+<tr><td><strong>当前渗透率</strong></td><td>云迁移~40-50%</td><td>澳洲企业云迁移仍在进行中，混合云+AI是下一波</td></tr>
+<tr><td><strong>近年增速</strong>（3年CAGR）</td><td><span class="col-tag col-win">~18.9%</span></td><td>云服务+网络安全+AI咨询驱动高增长</td></tr>
+</table>
+</div>
+
+<h2>生命周期</h2>
+<div class="summary-box">
+  <strong><span class="col-tag col-warn">成熟转型期</span></strong><br>
+  判断依据：传统IT硬件转售业务在逐年萎缩（毛利下降、竞争加剧），但云服务/托管服务/网络安全/AI咨询等新业务高速增长。行业整体已成熟（存在40年+的老牌公司DTL/MAQ），但正经历从"卖盒子"到"卖服务"的结构性转型。龙头公司能否成功转型决定了未来5年的增长差异。DTL在FY25营收增长23.2%，主要来自云服务和托管服务。
+</div>
+
+<h2>增长驱动力</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动力</th><th>类型</th><th>可持续性</th><th>量化指标</th></tr>
+<tr>
+  <td>云迁移（On-prem → Cloud）</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长（5-10年）</span></td>
+  <td>澳洲云渗透率、Azure/AWS营收增速</td>
+</tr>
+<tr>
+  <td>AI落地咨询+实施</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>AI项目数、Copilot seat部署量</td>
+</tr>
+<tr>
+  <td>网络安全支出刚性</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>澳洲网络安全支出增速（~15%+）</td>
+</tr>
+<tr>
+  <td>政府数字化转型</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>政府IT预算增速</td>
+</tr>
+<tr>
+  <td>企业IT预算周期</td>
+  <td><span class="col-tag col-lose">周期</span></td>
+  <td><span class="col-tag col-lose">短</span></td>
+  <td>RBA利率、澳洲商业信心指数</td>
+</tr>
+</table>
+</div>
+
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     L9 Tab
+     ═══════════════════════════════════════════════════ -->
+<div class="tab-content" id="tab-l9">
+<div class="tab-inner">
+
+<h2>市场结构</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>市场结构类型</td>
+  <td><span class="col-tag col-warn">分散竞争（分销+IT服务）</span>+ <span class="col-tag col-win">寡头垄断（数据中心）</span></td>
+</tr>
+<tr>
+  <td>CR3</td>
+  <td>IT分销CR2~60%（DDR+Ingram Micro澳洲）；数据中心CR3~60%（NXT+MAQ+Equinix）；IT服务CR5<20%（极其分散）</td>
+</tr>
+<tr>
+  <td>格局象限</td>
+  <td><span class="col-tag col-warn">高度分散，差异化困难</span>——IT服务本质上高度同质化，竞争靠客户关系和响应速度</td>
+</tr>
+<tr>
+  <td>新进入者威胁</td>
+  <td><span class="col-tag col-lose">大</span>（IT服务行业进入门槛低，大量小型IT公司可以参与竞争）</td>
+</tr>
+</table>
+</div>
+
+<h2>竞争壁垒</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>壁垒类型</th><th>强度</th><th>可持续性</th><th>具体表现</th></tr>
+<tr>
+  <td>供应商认证+等级（Microsoft/AWS）</td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>DTL是唯一入选Microsoft全球咨询委员会的澳洲公司，拥有最高等级Azure认证，新进入者难以获得</td>
+</tr>
+<tr>
+  <td>政府/大企业客户关系</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>政府IT采购有框架协议（3-5年期），更换供应商成本高；DTL/MAQ在政府市场深耕20年+</td>
+</tr>
+<tr>
+  <td>规模效应（分销）</td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>DDR的仓储物流网络需要大量资金投入，但规模优势有限</td>
+</tr>
+<tr>
+  <td>数据中心物理壁垒</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>MAQ/NXT的数据中心需要3-5年审批+数亿AUD投资，物理壁垒极高</td>
+</tr>
+</table>
+</div>
+
+<div class="summary-box">
+  <strong>定价权测试</strong><br>
+  🔹 龙头能涨价吗？<span class="col-tag col-lose">不能</span> IT服务市场竞争激烈，涨价会失去客户；但数据中心有定价权（供需紧张）<br>
+  🔹 毛利率趋势：DTL稳定（18%附近），DDR承压（硬件分销毛利率逐年下降），MAQ上升（规模效应）<br>
+  🔹 ROE趋势：DTL 9.1%稳定，DDR 15%良好，MAQ 10%在改善
+</div>
+
+<h2>驱动力拆解</h2>
+<div class="highlight-box">
+  <strong>行业收入公式</strong><br>
+  收入 = 企业IT总支出 × 外包渗透率 × 各公司份额<br><br>
+  当前组合：<span style="color:#2e7d32;font-weight:700">量 ↑</span>（云/AI/安全需求增加） ＋ <span style="color:#c62828;font-weight:700">价 →↓</span>（硬件分销毛利率降，服务费率持平） ＝ <span class="col-tag col-warn">量升价平，收入靠业务结构升级</span>
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动因子</th><th>最新值</th><th>历史区间</th><th>当前分位</th></tr>
+<tr>
+  <td>澳洲企业IT支出增速</td>
+  <td><span class="col-tag col-warn">~5-8%</span></td>
+  <td>2-15%</td>
+  <td><span class="col-tag col-warn">50%</span></td>
+</tr>
+<tr>
+  <td>DTL经常性收入占比</td>
+  <td><span class="col-tag col-win">~45%</span></td>
+  <td>30-50%</td>
+  <td><span class="col-tag col-win">75%</span></td>
+</tr>
+<tr>
+  <td>DDR毛利率</td>
+  <td><span class="col-tag col-lose">~11%</span></td>
+  <td>10-14%</td>
+  <td><span class="col-tag col-lose">25%</span></td>
+</tr>
+<tr>
+  <td>RBA现金利率</td>
+  <td><span class="col-tag col-lose">3.85-4.10%</span></td>
+  <td>0.10-4.35%</td>
+  <td><span class="col-tag col-lose">85%</span></td>
+</tr>
+</table>
+</div>
+
+<h2>成本结构</h2>
+<div class="summary-box">
+  🔹 <strong>类型：</strong>IT服务/分销——<span class="col-tag col-info">轻资产</span>（人力+采购成本占大头）；数据中心——<span class="col-tag col-lose">重资产</span><br>
+  🔹 <strong>成本敏感性：</strong>人力成本占IT服务收入60-70%，人员利用率是关键；硬件分销成本敏感度极高，毛利率波动1个点影响利润10%+<br>
+  🔹 <strong>盈亏平衡点：</strong>IT服务公司的盈亏平衡取决于人员利用率，通常需要>70%才能盈利
+</div>
+
+<h2>竞争格局总结</h2>
+<div class="highlight-box">
+  ASX IT服务行业的核心特征是<strong>"三低一高"</strong>——低毛利率（10-20%）、低壁垒（除了数据中心）、低估值（PE 15-32x）、高分散度（CR5<20%）。这与SaaS形成鲜明对比。但市场上仍然有值得关注的公司：<strong>DTL</strong>凭借与Microsoft的深度绑定（唯一入选全球咨询委员会的澳洲公司）和政府客户关系，在分散市场中建立了差异化优势；<strong>DDR</strong>是澳洲最大IT分销商，规模效应带来稳定现金流；<strong>MAQ</strong>的数据中心业务在AI时代具有稀缺性和强定价权。整体而言，这不是一个"买龙头就赢"的行业，需要逐个公司分析其转型能力和客户粘性。
+</div>
+
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     L10 Tab
+     ═══════════════════════════════════════════════════ -->
+<div class="tab-content" id="tab-l10">
+<div class="tab-inner">
+
+<h2>周期位置</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>企业IT支出周期</td>
+  <td><span class="col-tag col-warn">谨慎期</span> 高利率环境下企业推迟非必要IT项目，但云/安全/AI等刚性支出仍在增长</td>
+</tr>
+<tr>
+  <td>DTL营收增速</td>
+  <td><span class="col-tag col-win">~23%</span>（FY25，高于市场平均6.1%）</td>
+</tr>
+<tr>
+  <td>IT服务板块PE</td>
+  <td><span class="col-tag col-warn">~18-32x</span></td>
+</tr>
+<tr>
+  <td>行业盈利状态</td>
+  <td><span class="col-tag col-win">整体盈利</span> 头部公司全部盈利，且多有分红</td>
+</tr>
+</table>
+</div>
+
+<div class="danger-box">
+  <strong>⚠ 周期敏感性分析</strong><br>
+  IT服务行业受宏观经济影响比SaaS更大——企业IT预算在高利率环境下易被削减。<br>
+  DTL当前PE 31.8x（TTM），52周区间$6.42-$10.20，当前$9.80靠近顶部。<br>
+  与SaaS公司的区别：IT服务公司估值受利率影响较小（PE仅18-32x，beta 0.88），但如果澳洲经济衰退导致IT预算大幅缩减，营收增速可能腰斩。
+</div>
+
+<h2>估值水平</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>估值指标</th><th>行业当前</th><th>历史中位数</th><th>80%分位</th><th>20%分位</th></tr>
+<tr>
+  <td><strong>PE</strong>（DTL）</td>
+  <td><span class="col-tag col-warn">31.8x</span></td>
+  <td>25-30x</td>
+  <td>35x</td>
+  <td>18x</td>
+</tr>
+<tr>
+  <td><strong>PE</strong>（DDR）</td>
+  <td><span class="col-tag col-win">~18x</span></td>
+  <td>15-20x</td>
+  <td>25x</td>
+  <td>12x</td>
+</tr>
+<tr>
+  <td><strong>PE</strong>（MAQ）</td>
+  <td><span class="col-tag col-warn">~25x</span></td>
+  <td>20-28x</td>
+  <td>30x</td>
+  <td>15x</td>
+</tr>
+</table>
+</div>
+
+<h2>政策环境</h2>
+<div class="summary-box">
+  🔹 <strong>政策方向：</strong><span class="col-tag col-win">利好</span>（澳洲政府加大对网络安全+数字化的投资）<br>
+  🔹 <strong>关键政策：</strong><br>
+  &emsp;• 澳洲联邦政府2026年网络安全预算增加~$2B（利好DTL/MAQ的政府客户业务）<br>
+  &emsp;• 数据本地化法规（推动企业使用澳洲数据中心，利好MAQ/NXT）<br>
+  &emsp;• 中小企业云迁移补贴（联邦政府SMB数字化激励计划）<br>
+  🔹 <strong>政策周期位置：</strong><span class="col-tag col-win">宽松期</span>（政府IT支出扩张周期）
+</div>
+
+<h2>买入清单</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:28%">条件</th><th style="width:16%">结果</th><th>备注</th></tr>
+<tr>
+  <td>周期位置：不在IT开支繁荣顶点</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>当前属于谨慎期而非顶点，下行风险可控</td>
+</tr>
+<tr>
+  <td>估值：PE在合理偏低分位</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td>DTL PE 31.8x略高于历史中位数，DDR 18x处于低位</td>
+</tr>
+<tr>
+  <td>政策：政府IT支出扩张</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>网络安全+数字化预算增长确定性强</td>
+</tr>
+<tr>
+  <td>格局：龙头有差异化优势</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>DTL的Microsoft深度绑定+政府框架独特；MAQ数据中心稀缺</td>
+</tr>
+<tr>
+  <td>增长：有可见驱动力</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>云迁移+AI+网络安全三重驱动</td>
+</tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <div style="font-size:16px;font-weight:700;margin-bottom:8px">综合判断：<span class="col-tag col-win" style="font-size:15px">可以买入（精选标的）</span></div>
+  <div style="margin-bottom:6px">IT服务板块整体估值合理、有分红、波动小。适合作为组合中的防御性配置，但需要精选有差异化优势的公司。</div>
+  <table style="font-size:12px;margin:6px 0;border:none;background:transparent">
+    <tr><td style="border:none;padding:3px 6px;background:transparent;width:90px;font-weight:600">预期回报</td><td style="border:none;padding:3px 6px;background:transparent">营收增长10-15% + 股息2-4% = 年化总回报~12-18%</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">仓位建议</td><td style="border:none;padding:3px 6px;background:transparent"><span class="col-tag col-win">不超过组合10-15%</span>（作为防御+股息配置）</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">跟踪指标</td><td style="border:none;padding:3px 6px;background:transparent">DTL经常性收入占比 · DDR毛利率 · 政府IT预算 · Azure/AWS澳洲增速</td></tr>
+  </table>
+  <div style="margin-top:8px;padding:8px;background:#e8f5e9;border-radius:4px;font-size:12px">
+    <strong>买入策略：</strong><br>
+    <span class="col-tag col-win">核心推荐（DTL）</span>：PE 25-28x时建仓（当前31.8x偏高，等待回调至$8-9）。经常性收入占比持续提升+政府客户黏性强+Microsoft AI Copilot催化剂<br>
+    <span class="col-tag col-win">价值型（DDR）</span>：PE 15-18x区间买入，股息率4-5%时配置<br>
+    <span class="col-tag col-win">稀缺型（MAQ）</span>：AI数据中心需求爆发式增长，PB<2x时作为中长期配置
+  </div>
+</div>
+
+<h2>卖出信号</h2>
+<div class="danger-box">
+  <strong>出现以下信号考虑卖出：</strong><br>
+  <div style="margin-top:6px">
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px">1</span>
+    DTL连续两季营收增速<10%（增长失速信号，说明云转型遇到瓶颈）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">2</span>
+    DDR毛利率跌破10%（硬件分销利润被进一步压缩）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">3</span>
+    Microsoft/AWS澳洲云增速大幅放缓（行业整体需求降温）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">4</span>
+    澳洲联邦政府削减IT预算（政策面利空）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">5</span>
+    DTL管理层指引连续两次下调
+  </div>
+</div>
+
+</div>
+</div>
+
+<div class="footer">Generated by Industry Analysis · L7-L10 Framework · Stock Selection</div>
+
+</div>
+
+<script>
+var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+var contents = document.querySelectorAll('.tab-content');
+btns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    contents.forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    var tab = btn.getAttribute('data-tab');
+    document.getElementById('tab-' + tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

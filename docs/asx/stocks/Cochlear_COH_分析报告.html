@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cochlear（COH）财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>Cochlear（COH）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026-07-05 | 数据来源：FY2025 年报（截至2025.6.30）+ HY2026 半年报（截至2025.12.31）+ 券商一致预期</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>Cochlear Limited</td></tr>
+  <tr><td>股票代码</td><td>COH.AX</td></tr>
+  <tr><td>所属行业</td><td>医疗设备——人工耳蜗（Cochlear Implant）+ 骨导助听 + 声学植入</td></tr>
+  <tr><td>行业地位</td><td>全球人工耳蜗绝对龙头（~60%+ 份额），技术壁垒极高</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>$2,356M AUD（+4%）</strong></td></tr>
+  <tr><td>FY2025 法定净利润</td><td><strong>$389M AUD（+9%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>$238M AUD</strong></td></tr>
+  <tr><td>总资产</td><td>$2,825M AUD</td></tr>
+  <tr><td>归母净资产</td><td>$1,950M AUD</td></tr>
+  <tr><td>ROE</td><td>~20%</td></tr>
+</table>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">综合L1-L5所有因素（财务健康度、关键指标、估值、杜邦分析、行业分类），对各维度打分求和</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">~20% ≥ 15%</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">高利润型（净利率~17% + 中等周转 + 低杠杆）</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="bad" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">0.61 < 0.7（FY25存货+应收大幅增加，暂压低CFO）</td></tr>
+  <tr><td>营收增长（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">+4% < 5%（增长明显放缓）</td></tr>
+  <tr><td>利润增长（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">法定+9% ≥ 5%，但Underlying +1%</td></tr>
+  <tr><td>负债率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">31% < 40%</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">现金 $276M >> 短期借款 $0</td></tr>
+  <tr><td>毛利率（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">74% 高但下降1ppt（→HY26 73%）</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">~21x PE（基于FY25 EPS $5.94），合理偏低</td></tr>
+  <tr><td>自由现金流（5分）</td><td class="neutral" style="font-weight:bold;font-size:15px">3</td><td style="text-align:left">FCF $122M 正但同比-57%，波动加大</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">76/100</td><td style="text-align:left">一般关注（76/100分）</td></tr>
+</table>
+
+<div class="verdict verdict-caution">一般关注（76/100分）</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>Cochlear 是全球人工耳蜗市场的绝对霸主（~60% 份额），拥有极深的技术护城河。FY2025 营收 $2.36B（+4%），毛利率 74%，ROE 20%。2025 年 6 月推出的 Nucleus Nexa 系统是全球首款智能人工耳蜗（可升级固件），技术领先优势进一步扩大。但公司正经历增长减速——从 FY23/24 的 15%+ 营收增长降至 FY25 的 4%，HY26 仅 +1%，叠加毛利率下降趋势和现金流恶化，导致股价从 $319 暴跌至 ~$104（-67%）。<br><br>
+  <strong>核心优势：</strong>① 全球人工耳蜗龙头（~60% 份额），技术壁垒极高（30 年 R&D + FDA 认证 + 外科医生培训生态）；② 毛利率 74% 水平优秀，定价能力强；③ 净现金 $276M，资产负债表健康；④ 新 Nexa 系统是 20 年研发成果，有望驱动升级替换周期。<br><br>
+  <strong>核心风险：</strong>① 增长急剧减速——FY25 +4% / HY26 +1%，远低于历史趋势 10-15%；② 毛利率从 75% 降至 73-74%，新兴市场低毛利业务占比提升；③ FY25 FCF 从 $283M 腰斩至 $122M（存货+应收大幅增加），现金流质量恶化；④ 竞争风险——Advanced Bionics（Sonova）和 MED-EL 持续追赶，国内人工耳蜗企业也在渗透。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025年度，截至2025.6.30）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>$2,356M</td><td>$2,262M</td><td>+4.2%</td><td class="neutral">⚠ 增长放缓</td></tr>
+  <tr><td>毛利润</td><td><strong>$1,743M</strong></td><td>$1,696M</td><td>+2.8%</td><td class="neutral">毛利率下降</td></tr>
+  <tr><td>营业费用</td><td><strong>$1,222M</strong></td><td>$1,191M</td><td>+2.6%</td><td class="neutral">控制尚可</td></tr>
+  <tr><td>EBIT（Underlying）</td><td><strong>$521M</strong></td><td>$505M</td><td>+3.3%</td><td class="neutral">低增长</td></tr>
+  <tr><td>法定净利润</td><td><strong>$389M</strong></td><td>$357M</td><td><strong>+9.0%</strong></td><td class="neutral">Underlying +1%</td></tr>
+  <tr><td>Underlying 净利润</td><td><strong>$392M</strong></td><td>$387M</td><td><strong>+1.3%</strong></td><td class="bad">⬇ 几乎停滞</td></tr>
+  <tr><td>毛利率</td><td><strong>74%</strong></td><td>75%</td><td>-1ppt</td><td class="neutral">轻微下降</td></tr>
+  <tr><td>EBIT 利润率（U/L）</td><td><strong>22.1%</strong></td><td>22.3%</td><td>-0.2ppt</td><td class="neutral">基本持平</td></tr>
+  <tr><td>法定净利率</td><td><strong>16.5%</strong></td><td>15.8%</td><td>+0.7ppt</td><td class="neutral">基本持平</td></tr>
+  <tr><td>R&D 费用率</td><td><strong>~12%</strong></td><td>~12%</td><td>持平</td><td class="good">✅ 持续投入</td></tr>
+  <tr><td>摊薄 EPS</td><td><strong>$5.94</strong></td><td>$5.44</td><td>+9.2%</td><td class="neutral">eps增长一般</td></tr>
+  <tr><td>HY26 营收</td><td>$1,176M</td><td>$1,170M</td><td>+0.5%</td><td class="bad">⬇ 几乎零增长</td></tr>
+  <tr><td>HY26 法定净利润</td><td><strong>$162M</strong></td><td>$205M</td><td><strong>-21%</strong></td><td class="bad">⬇ 大幅下滑</td></tr>
+  <tr><td>HY26 Underlying NPAT</td><td><strong>$195M</strong></td><td>$214M</td><td><strong>-9%</strong></td><td class="bad">⬇ 下滑</td></tr>
+  <tr><td>FY26 指引（Underlying NPAT）</td><td colspan="2" style="text-align:left">$435-460M（下限指引）</td><td>+11-17% vs FY25</td><td class="neutral">⚠ H2 依赖新Nexa放量</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>Cochlear 正经历罕见的增长减速。FY25 营收 +4%（Constant Currency +3%）是近年最低增速，HY26 更是降至 +1%（CC -2%），Nexa 新产品的合同签约时间超出了预期。毛利率从 75% 降至 74%（HY26 进一步降至 73%），主因是低毛利新兴市场业务占比提升和成都新工厂产能爬坡拖累。法定净利润 +9% 主要靠一次性项目支撑，Underlying +1% 显示核心盈利几乎没有增长。R&D 投入占营收 12% 维持高水准，这对长期竞争力是好事，但短期压制利润率。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>HY2026（Dec 2025）</th><th>评价</th></tr>
+  <tr><td>现金</td><td><strong>$276M</strong></td><td>$187M</td><td class="good">✅ 仍充裕但下降</td></tr>
+  <tr><td>应收账款</td><td><strong>$586M</strong></td><td>$550M</td><td class="neutral">占营收 25%，偏高</td></tr>
+  <tr><td>存货</td><td><strong>$499M</strong></td><td>$566M</td><td class="bad">⬇ 持续增加（新产+安全库存）</td></tr>
+  <tr><td>流动资产合计</td><td><strong>$1,417M</strong></td><td>$1,373M</td><td class="good">✅ 充裕</td></tr>
+  <tr><td>总资产</td><td><strong>$2,825M</strong></td><td>$2,794M</td><td class="good">✅</td></tr>
+  <tr><td>短期借款</td><td><strong>$0</strong></td><td>$0</td><td class="good">✅ 零短期借款</td></tr>
+  <tr><td>长期借款（租赁负债为主）</td><td><strong>$236M</strong></td><td>$200M</td><td class="good">✅ 运营租赁为主</td></tr>
+  <tr><td>总负债</td><td><strong>$875M</strong></td><td>$856M</td><td class="good">✅ 偏低</td></tr>
+  <tr><td>资产负债率</td><td><strong>31.0%</strong></td><td>30.6%</td><td class="good">✅ 健康</td></tr>
+  <tr><td>归母净资产</td><td><strong>$1,950M</strong></td><td>$1,938M</td><td class="good">✅</td></tr>
+  <tr><td>净现金</td><td><strong>$276M</strong></td><td>$173M</td><td class="neutral">⚠ 持续下降</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>Cochlear 的资产负债表仍然健康——负债率 31%，零短期借款，净现金 $276M（HY26 降至 $173M 因存货占用增加）。但令人关注的是营运资金的急剧膨胀：存货从 $311M（FY23）→ $392M（FY24）→ $499M（FY25）→ $566M（HY26），2 年增长 82%，远超营收增速。管理层解释为 Nexa 新产品备货 + 提高关键组件安全库存。应收账款 $586M 也从 FY23 的 $438M 增长 34%。这些营运资金的占用直接导致 FCF 大幅下降，是当前最需要跟踪的指标。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>$238M</strong></td><td>$389M</td><td class="bad">❌ -39%</td></tr>
+  <tr><td>资本开支（CapEx）</td><td><strong>-$103M</strong></td><td>-$90M</td><td class="neutral">⚠ 加大投资</td></tr>
+  <tr><td>自由现金流（FCF）</td><td><strong>$122M</strong></td><td>$283M</td><td class="bad">❌ -57%</td></tr>
+  <tr><td>CFO/法定净利润</td><td><strong>0.61</strong></td><td>1.09</td><td class="bad">❌ 恶化</td></tr>
+  <tr><td>营运资金变动</td><td><strong>-$219M</strong></td><td>-$79M</td><td class="bad">❌ 大幅流出</td></tr>
+  <tr><td>FCF/营收</td><td><strong>5.2%</strong></td><td>12.5%</td><td class="bad">❌ 减半</td></tr>
+  <tr><td>分红支出</td><td><strong>-$278M</strong></td><td>-$246M</td><td class="neutral">超过FCF</td></tr>
+  <tr><td>股票回购</td><td><strong>-$28M</strong></td><td>-$43M</td><td class="neutral">规模不大</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>现金流解读——核心警示：</strong>FY25 CFO $238M 同比大降 39%，FCF $122M 腰斩，是本次分析中最需要关注的信号。直接原因是营运资金大增 $219M（存货 +$108M + 应收 +$89M + 应付减少等）。这意味着公司的"现金转化周期"在显著恶化：FY24 每 $1 净利润产生 $1.09 经营现金流，FY25 仅 $0.61。值得关注的是：FY25 分红 $278M 已经超过 FCF $122M 的两倍，公司动用现金储备来发放红利。HY26 情况类似——FCF 可能依然承压。关键要看 FY26 H2 Nexa 放量后，存货和应收能否开始消化。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>~20%</strong></td><td>> 15% 优秀</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>毛利率</td><td><strong>74%</strong></td><td>稳定或提升</td><td class="neutral">⚠ 从75%降至74%，HY26 73%</td></tr>
+  <tr><td>净利率（Underlying）</td><td><strong>16.6%</strong></td><td>> 10%</td><td class="good">✅ 良好</td></tr>
+  <tr><td>营收增长率</td><td><strong>+4.2%</strong></td><td>> 10%</td><td class="bad">❌ 低于标准</td></tr>
+  <tr><td>Underlying 利润增长</td><td><strong>+1.3%</strong></td><td>> 15%</td><td class="bad">❌ 几乎停滞</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>0.61</strong></td><td>> 1</td><td class="bad">❌ 恶化</td></tr>
+  <tr><td>资产负债率</td><td><strong>31.0%</strong></td><td>制造业<60%</td><td class="good">✅ 健康</td></tr>
+  <tr><td>分红率</td><td><strong>72%（占U/L净利）</strong></td><td>持续分红</td><td class="neutral">⚠ 超出FCF</td></tr>
+</table>
+
+<h3>3.2 分业务分析（FY2025）</h3>
+<table>
+  <tr><th>业务板块</th><th>FY25 营收</th><th>占比</th><th>增长</th><th>毛利率（估）</th><th>评价</th></tr>
+  <tr><td>Cochlear Implants（植入体）</td><td>~$1,400M</td><td>~59%</td><td>~+5%</td><td>~76%</td><td class="good">✅ 核心，Nexa 新驱动</td></tr>
+  <tr><td>Services（服务/处理器升级）</td><td>~$550M</td><td>~23%</td><td>~-2%</td><td>~72%</td><td class="bad">❌ 下滑</td></tr>
+  <tr><td>Acoustics（声学植入+Baha）</td><td>~$400M</td><td>~17%</td><td>~+8%</td><td>~70%</td><td class="good">✅ 增长较好</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>Cochlear 的三条业务线呈"两强一弱"格局。植入体（59%）是核心——Nexa 系统是全球首款可固件升级的智能人工耳蜗，技术上大幅领先对手（Advanced Bionics / MED-EL），临床反馈极佳。Acoustics（17% +8%）是增长亮点——Baha 骨导系统在新兴市场和儿童患者中渗透率提升。Services（23% -2%）是主要拖累——处理器升级周期拉长，患者延缓升级。区域上看，发达市场（美/欧/澳）增长稳健，新兴市场（中/印/拉美）虽然增速快但毛利率较低，是整体毛利率下降的主因之一。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="bad">🔴 较高</td><td>增长急剧放缓——FY25 +4%，HY26 +1%</td><td>L1 利润表——历史增长 10-15%，当前趋势显著降速</td></tr>
+  <tr><td class="bad">🔴 较高</td><td>FCF 大幅恶化——$283M→$122M（-57%）</td><td>L1 现金流量表——存货+应收占用大量资金</td></tr>
+  <tr><td class="bad">🔴 较高</td><td>CFO/净利从 1.09 降至 0.61，现金质量恶化</td><td>L1 现金流量表——每 1 元净利润仅收回 0.61 元现金</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>毛利率从 75% 降至 73%（HY26）</td><td>L1 利润表——新兴市场占比提升和成都工厂拖累</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>存货 2 年增长 82%（$311M→$566M）</td><td>L1 资产负债表——远超营收增速，消化进度需跟踪</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>分红率 72% 已超过 FCF，动用现金储备</td><td>L1 现金流量表——长期看不可持续</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>外汇风险——AUD/USD 每变动 1c → NPAT ~$3M</td><td>HY26 报告——AUD 走强对盈利有压制</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>股价从 $319 暴跌至 $104（-67%）</td><td>市场已极度悲观，但也意味着高估值风险已释放</td></tr>
+  <tr><td class="good">🟢 正面</td><td>全球龙头地位稳固（~60% 份额），壁垒极高</td><td>L5 行业分类</td></tr>
+  <tr><td class="good">🟢 正面</td><td>Nexa 新技术领先，2026 H2 有望驱动增长恢复</td><td>L2 业务分析</td></tr>
+  <tr><td class="good">🟢 正面</td><td>净现金状态，资产负债表健康</td><td>L1 资产负债表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>PE~21x 已跌至历史低位，安全边际提高</td><td>L3 估值</td></tr>
+</table>
+
+<div class="verdict verdict-caution">⚠ L2综合判定：核心盈利指标优秀（ROE 20%+毛利率74%），但增长&现金流双减速，需关注 FY26 H2 能否扭转</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>股价（2026.6）</td><td><strong>$104.45 AUD</strong></td><td>52周范围 $88.74 - $319.56</td></tr>
+  <tr><td>总市值</td><td><strong>~$6.8B AUD</strong></td><td>ASX 第108位，vs 一年前 ~$21B</td></tr>
+  <tr><td>PE（FY2025 GAAP）</td><td><strong>~17.6x</strong></td><td>基于 EPS $5.94 AUD</td></tr>
+  <tr><td>PE（FY2025 Underlying）</td><td><strong>~17.4x</strong></td><td>基于 Underlying EPS ~$6.00</td></tr>
+  <tr><td>PE（FY2026E 指引下限）</td><td><strong>~15.5x</strong></td><td>基于 NPAT $435M → EPS $6.65</td></tr>
+  <tr><td>PB</td><td><strong>~3.5x</strong></td><td>基于每股净资产 $29.80</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~2.9x</strong></td><td>基于 TTM 收入 ~$2.34B</td></tr>
+  <tr><td>EV/EBIT</td><td><strong>~12.6x</strong></td><td>基于 FY25 Underlying EBIT $521M</td></tr>
+  <tr><td>FCF 收益率</td><td><strong>~1.8%</strong></td><td>基于 FY25 FCF $122M，偏低</td></tr>
+  <tr><td>股息率</td><td><strong>~4.1%</strong></td><td>基于年分红 $4.30，85% 已缴税</td></tr>
+</table>
+
+<h3>4.2 PE Band 估值区间</h3>
+<p style="font-size:13px;color:#666;">ROE ~20% → 合理PE参考区间 20-30x（优质医疗设备龙头） | FY26E Underlying NPAT 指引下限 $435M → EPS ~$6.65</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs 现价 $104.45</th></tr>
+  <tr><td>悲观（增长不恢复+竞争加剧）</td><td>14x</td><td>$77.0</td><td class="bad">-26%</td></tr>
+  <tr><td>保守（合理偏低）</td><td>18x</td><td>$99.0</td><td class="bad">-5%</td></tr>
+  <tr><td>中性（合理估值中枢）</td><td>23x</td><td>$126.5</td><td class="good">+21%</td></tr>
+  <tr><td>券商目标</td><td>~25x</td><td>$137.5</td><td class="good">+32%</td></tr>
+  <tr><td>当前价</td><td>~18x</td><td>$104.5</td><td>—</td></tr>
+  <tr><td>历史高位（2024-25）</td><td>~55x</td><td>$319.6</td><td>+206%</td></tr>
+</table>
+
+<h3>4.3 历史 PE 区间（基于 Underlying EPS）</h3>
+<table>
+  <tr><th>指标</th><th>数值</th></tr>
+  <tr><td>PE 最大值（2024-25 AI/医疗炒作期）</td><td>~55x</td></tr>
+  <tr><td>PE 80% 分位</td><td>~42x</td></tr>
+  <tr><td>PE 50% 分位（历史中位数）</td><td>~35x</td></tr>
+  <tr><td>PE 20% 分位</td><td>~28x</td></tr>
+  <tr><td>PE 最小值（当前）</td><td>~17x</td></tr>
+  <tr><td>当前 PE（FY25 U/L）</td><td class="good">~17x（历史最低）</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值总结：</strong>Cochlear 的估值经历了史无前例的压缩——从 PE 55x 跌至 17x，市值从 $21B 缩水至 ~$7B，蒸发了 ~$14B。当前 PE 17x 不仅是历史最低，也远低于全球医疗设备龙头的常规估值（20-30x）。这种"戴维斯双杀"的幅度（PE 55x→17x + EPS 增长停滞）在医疗设备龙头股中极其罕见。<br><br>
+  <strong>核心矛盾：</strong>当前的低 PE 究竟是"机会"还是"价值陷阱"？取决于增长能否恢复。如果 FY26 H2 Nexa 放量成功、收入恢复 8-10% 增长、FCF 正常化，当前 17x PE 将是极好的买入点。如果增长继续在 4% 或以下、毛利率持续下滑、FCF 无法改善，17x PE 可能就是"合理偏低"而非"低估"。市场显然在赌后一种情况——股价 $104 约等于市场不相信 FY26 的 $435-460M 指引能实现。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>净利润率（法定）</td><td>15.5%</td><td>15.8%</td><td><strong>16.5%</strong></td><td class="good">⬆ 略微提升</td></tr>
+  <tr><td>资产周转率</td><td>0.76</td><td>0.79</td><td><strong>0.83</strong></td><td class="good">⬆ 提升（分母增长放缓）</td></tr>
+  <tr><td>权益乘数</td><td>1.45</td><td>1.49</td><td><strong>1.45</strong></td><td class="neutral">➡ 基本持平</td></tr>
+  <tr><td><strong>ROE（法定）</strong></td><td><strong>17.1%</strong></td><td><strong>19.4%</strong></td><td><strong>20.0%</strong></td><td class="good">⬆ 持续提升</td></tr>
+  <tr><td>去杠杆 ROA（净利率×周转）</td><td>11.8%</td><td>12.5%</td><td><strong>13.7%</strong></td><td class="good">⬆ 基础回报提升</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>5.3pct</td><td>6.9pct</td><td><strong>6.3pct</strong></td><td class="neutral">➡</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：高利润型——典型的高壁垒医疗设备公司</strong><br>
+  Cochlear 的杜邦结构稳健：净利润率 16.5%（高利润）+ 资产周转率 0.83（中高）+ 权益乘数 1.45（低杠杆）。ROE 20% 中，去杠杆后的基础回报（ROA）13.7% 是主体，杠杆仅贡献 6.3pct。<br><br>
+  值得注意的是：FY23→FY25，ROE 从 17.1% 持续提升至 20.0%，但主要驱动力不是利润率（仅从 15.5%→16.5%），而是资产周转率从 0.76 提升至 0.83——这反映在营收低增长背景下，资产扩张速度也慢。杠杆保持稳定。整体看 ROE 质量良好，但与 23.5%+ 的顶级水平（ResMed、PME）还有差距。
+</div>
+
+<h3>5.2 去杠杆 ROA 分析</h3>
+<table>
+  <tr><th>指标</th><th>Cochlear</th><th>ResMed（对比）</th><th>典型医疗设备</th></tr>
+  <tr><td>净利润率</td><td>16.5%</td><td>27.2%</td><td>15-20%</td></tr>
+  <tr><td>资产周转率</td><td>0.83</td><td>0.63</td><td>0.5-0.7</td></tr>
+  <tr><td>去杠杆 ROA</td><td><strong>13.7%</strong></td><td>17.1%</td><td>8-12%</td></tr>
+  <tr><td>ROE</td><td><strong>20.0%</strong></td><td>23.5%</td><td>15-22%</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>核心结论：</strong>Cochlear 的 ROE 质量良好（20%）但不算顶级。与 ResMed（ROE 23.5%、净利率 27.2%）相比，Cochlear 的净利率明显更低（16.5% vs 27.2%），原因包括：① R&D 投入更高（12% vs 6.5%）；② 产品包含硬件（植入体成本较高 vs ResMed 软件边际成本几乎为零）；③ 新兴市场低毛利业务占比更高。不过 Cochlear 的资产周转率（0.83）远高于 ResMed（0.63），一定程度弥补了利润率差距。<br><br>
+  <strong>展望：</strong>FY26 H2 随着 Nexa 放量和新兴市场合同陆续落地，营收增长有望恢复至 8-10%，届时 ROE 有望回升至 22%+。但如果毛利率继续下滑（73%→更低），ROE 提升空间将受限。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>判定：成长性行业（医疗设备——人工耳蜗）</strong><br>
+  <strong>判断依据：</strong>人工耳蜗（Cochlear Implant）市场具备三大结构性增长驱动：① 全球老龄化——60 岁以上人口听力损失发生率 >30%；② 适应症扩展——从重度耳聋扩展到中度听力损失，潜在患者基数扩大 ~5 倍；③ 新兴市场渗透——中国、印度等国家的医保覆盖和植入率持续提升。全球人工耳蜗植入量年增速 ~8-10%，但 Cochlear 近年增速低于行业（FY25 +4%），部分因自身产品周期节奏和合同延迟，部分因竞争变化。<br><br>
+  <strong>与 ASX 医疗板块对比：</strong>不同于 ResMed（消费级设备+软件）、CSL（血浆生物科技）和 PME（纯 SaaS），Cochlear 是"高壁垒硬件+外科手术植入+术后服务"的重资产模式，增长更接近传统医疗设备。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th></tr>
+  <tr><td>市场格局</td><td><span class="good">高度集中，Cochlear 领导</span>——全球人工耳蜗市场 CR3 > 95%（Cochlear ~60%，Advanced Bionics/Sonova ~20%，MED-EL ~15%）。Cochlear 自 1980 年代以来一直是绝对领导者。</td></tr>
+  <tr><td>核心壁垒</td><td>① 30+ 年临床数据积累——全球已植入超过 75 万例，产品安全性和有效性有长期实证；② FDA + CE + TGA 认证——任何新进入者需 3-5 年审批周期；③ 外科医生培训生态——全球数千名耳外科医生接受过 Cochlear 手术培训，更换品牌需要重新学习；④ 专利集群——数千项专利覆盖从电极阵列到信号处理的各个环节；⑤ 品牌与信任——患者和医生对 Cochlear 品牌的信任是无形资产。</td></tr>
+  <tr><td>竞争动态</td><td><span class="neutral">格局稳定但有新变化</span>——Advanced Bionics（Sonova 旗下）近年追赶势头不错，国内市场出现国产品牌（诺尔康、科利耳），但短期内撼动 Cochlear 的可能性低。</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  <strong>阶段：成熟成长期——龙头地位稳固但面临增长拐点</strong><br>
+  Cochlear 处于"成熟龙头+创新驱动新周期"的节点——传统产品线增长放缓（FY25 +4%），但 Nexa 智能植入体（全球首款可固件升级）有望开启新一轮升级替代浪潮。全球人工耳蜗植入率仍极低（重症患者中~10% 接受植入），长期空间巨大。核心问题：当前的增长减速是"产品周期切换的正常波动"还是"结构性放缓的开始"？FY26 H2 是验证的关键窗口。
+</div>
+
+<h3>6.4 估值方法匹配</h3>
+<table>
+  <tr><th>公司类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>医疗设备龙头</td><td>PE（盈利稳定）</td><td>FCF Yield、营收增速趋势、ROE</td><td class="good">✅ 匹配——PE 17x + ROE 20%</td></tr>
+</table>
+
+<h3>6.5 成长股成色检验（四步法）</h3>
+<table>
+  <tr><th>步骤</th><th>检验内容</th><th>数据</th><th>判定</th></tr>
+  <tr><td>① 营收</td><td>有没有实在的生意？</td><td>营收 $2.36B，+4% 增长尚可但明显放缓，体量大且真实</td><td class="neutral">⚠ 规模够大，增速不足</td></tr>
+  <tr><td>② 毛利率</td><td>产品竞争力如何？</td><td>毛利率 74%（顶级水平但微降）</td><td class="good">✅ 强竞争力</td></tr>
+  <tr><td>③ CFO</td><td>能不能自己造血？</td><td>CFO $238M / 净利 $389M = 0.61，短期恶化</td><td class="bad">❌ 暂时不合格</td></tr>
+  <tr><td>④ PS</td><td>梦想溢价多少？</td><td>PS 2.9x——非常合理，远低于预警线</td><td class="good">✅ 估值合理</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>四步法结论：</strong>毛利率和PS两项过关，营收增速偏弱，CFO暂时恶化。Cochlear 不是"伪成长股"（它的技术和市场领先地位真实），但在增长和现金流的短期表现上确实遇到了瓶颈。四步法提醒我们：不要只看到 ROE 20%+ 和毛利率 74% 就下判断，增长和现金流趋势同样重要。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>医疗设备（人工耳蜗），全球龙头（~60%份额），极高壁垒（FDA+外科培训+30年临床数据），成熟成长期。<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 20% 良好，高利润型杜邦（16.5%净利率+0.83周转），但 CFO/净利 0.61 大幅恶化 + FCF $122M 腰斩，现金质量堪忧。<br>
+  <strong>Step 3 - 估值判断：</strong>PE 17x（历史最低！），PS 2.9x，股息率 4.1%。估值已反映极端悲观预期。但 FCF 收益率仅 1.8% 偏低。<br>
+  <strong>Step 4 - 风险排查：</strong>核心风险：增长放缓（+4%）+ 现金流恶化（-$219M 营运资金占用）+ 毛利率下降（75%→73%）。财务风险低（零债务）。<br>
+  <strong>Step 5 - 结论：</strong>好公司（全球龙头 × 极高壁垒）× 便宜价格（PE 17x 历史最低）= 如果增长恢复就是机会，如果增长继续恶化就是价值陷阱。<br>
+  <strong>Step 6 - 跟踪：</strong>FY2026 年报（8月18日）、Nexa 合同签约进度、存货消化情况、毛利率趋势、FCF 恢复进度。
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>听力植入刚需（老龄化+新兴市场扩展），CR3 > 95% 极高集中度，壁垒极深</td></tr>
+  <tr><td>② 好公司</td><td class="neutral">⚠</td><td>ROE 20% >15% ✓，毛利率 74% 稳定但下降 ⚠，CFO/净利 0.61 < 1.0 ✗</td></tr>
+  <tr><td>③ 好价格</td><td class="good">✓</td><td>PE 17x 历史最低分位，PEG ~1.2（基于 FY26E 指引），但 FCF 收益率仅 1.8%</td></tr>
+</table>
+
+<h3>7.3 三个陷阱排查</h3>
+<div class="danger-box">
+  ☐ 低PE + 低增长 + 高负债 = <strong>价值陷阱</strong> → <strong>⚠ 部分命中</strong>（PE 17x 低 + 营收增长 4% 偏低 + 负债率 31% 不高但 FCF 恶化需警惕）<br>
+  ☐ 低PE + 周期顶点 = <strong>周期陷阱</strong> → 不命中（非周期行业，听力植入为刚需）<br>
+  ☐ 高PE + 高增速但现金流为负 = <strong>烧钱陷阱</strong> → 不命中（PE 17x 不高）
+</div>
+
+<div class="summary-box">
+  <strong>最终判断：</strong><br>
+  Cochlear 正处于"价值陷阱"的边缘——低 PE（17x）但低增长（4%），这是价值陷阱的典型特征。与经典价值陷阱不同：Cochlear 负债率低（31%），且龙头壁垒极高，不是"濒临破产的夕阳企业"。但增长停滞+现金流恶化确实让其处于危险的模糊地带。<br><br>
+  两个情景概率评估：<br>
+  <strong>情景A（60%）：</strong>Nexa 放量正常，FY26 H2 增长恢复至 8-10%，FCF 正常化，市场重新给予 25x PE→股价 $160-180（+50-70%）。<br>
+  <strong>情景B（40%）：</strong>Nexa 合同继续延迟，增长维持 4-5%，毛利率降至 72%，FCF 持续恶化→市场给予 14-15x PE→股价 $75-85（-20-30%）。<br><br>
+  <strong>结论：不急于买，等 FY26 年报（8月18日）验证。如果年报显示 Nexa 放量 + FCF 改善 + 8%+ 营收增长，则积极买入（PE 17x 是送钱）。如果低于预期，继续观察。</strong>
+</div>
+
+<h3>7.4 讨论问题（阅读引导）</h3>
+<ol>
+  <li><strong>这笔生意你看懂了吗？</strong> Cochlear 卖的是"听见声音"——植入体做手术植入（一次性）、体外处理器（每 5-7 年升级）、配件/服务（持续）。支付方主要是政府医保和商业保险，患者自付比例低。这是一个"高价低频+持续服务"的模式。</li>
+  <li><strong>你最大的担忧是什么？</strong> 增长去哪儿了？FY22 +8%、FY23 +17%、FY24 +15%、FY25 +4%。如果 FY26 也只有 5%，那过去的 15%+ 可能是疫情后复苏的一次性红利，而非长期趋势。此外，$219M 的营运资金流出需要合理解释，不能每年都说是"库存备货"。</li>
+  <li><strong>如果现在买入，期待的回报来源是什么？</strong> 核心赌注是"Nexa 产品周期驱动增长恢复至 8-10% + 市场重新给予 25x PE"。如果这个假设成立，年化回报 ~30%+。如果增速只有 5%，PE 维持 17x，回报 ~5%（股息率 4% + 增长 5% - 估值不变 = ~9%）。</li>
+  <li><strong>什么情况下你会坚决卖出？</strong> FY26 年报营收增长 < 5%、FCF 继续为负或 < $150M、毛利率跌破 72%、股息削减、管理层下调长期目标。</li>
+</ol>
+
+</div></div>
+
+<div class="footer">
+  免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+  数据来源：Cochlear FY2025 年报、HY2026 半年报、ASX 市场数据、券商一致预期
+</div>
+
+</div>
+
+<script>
+var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+var contents = document.querySelectorAll('.tab-content');
+btns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    contents.forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    var tab = btn.getAttribute('data-tab');
+    document.getElementById('tab-' + tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
