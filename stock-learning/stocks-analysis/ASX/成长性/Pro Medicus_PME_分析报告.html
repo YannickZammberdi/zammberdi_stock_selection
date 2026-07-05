@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pro Medicus（PME）财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>Pro Medicus（PME）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026-07-05 | 数据来源：FY2025 年报 + HY2026 半年报 + 券商一致预期</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>Pro Medicus Limited</td></tr>
+  <tr><td>股票代码</td><td>PME.AX</td></tr>
+  <tr><td>所属行业</td><td>医疗影像SaaS（Health Imaging Software）</td></tr>
+  <tr><td>行业地位</td><td>澳洲医疗影像SaaS龙头，北美市场快速渗透（~10%美国市场），全球领先的云PACS提供商</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>$213.0M AUD（+31.9%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>$115.2M AUD（+39.2%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>$111.3M AUD</strong></td></tr>
+  <tr><td>总资产</td><td>~$320M AUD（估）</td></tr>
+  <tr><td>净资产</td><td>~$290M AUD（估，无任何负债）</td></tr>
+  <tr><td>ROE</td><td>~41%（FY2025）</td></tr>
+</table>
+
+<h2>综合评分（百分制）</h2>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">~41%，远超15%标准</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">高利润型+轻资产高周转，ROE质量极优</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">$111.3M / $115.2M = 0.97，接近1.0，纯利润型公司现金质量优秀</td></tr>
+  <tr><td>营收增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+31.9% ≥ 10%</td></tr>
+  <tr><td>利润增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+39.2% ≥ 15%</td></tr>
+  <tr><td>负债率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">0%负债，零债务，满格</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">$210.7M现金，零短期借款</td></tr>
+  <tr><td>毛利率水平与趋势（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">~90%，极高水平且稳定</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">PE ~75x（含一次性收益）/ 正常化PE ~66x，严重偏高</td></tr>
+  <tr><td>自由现金流（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">FCF持续为正，FY25约$108M</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">90/100</td><td style="text-align:left">品质优秀（90/100分），但估值是最大的减分项</td></tr>
+</table>
+
+<div class="verdict verdict-ok">品质优秀（90/100分）</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>Pro Medicus是一台"印钞机"——90%毛利率、41% ROE、零负债、营收利润双20%+增长、CFO几乎等于净利润。本质是医疗影像领域的垄断型SaaS，Visage平台的客户替换成本极高（5-10年合同），新签合同已锁定未来$948M收入。<br><br>
+  <strong>核心优势：</strong>① 90%毛利率+74% EBIT margin，全行业顶级；② 零负债+$210M现金，资产负债表完美；③ 北美市场仅渗透~10%，成长空间大；④ 5-10年合同锁定收入，能见度极高。<br><br>
+  <strong>核心风险：</strong>① 估值极度昂贵——PE ~66x（正常化），远超合理区间；② 客户高度集中（约20-30家大型医疗集团），大单波动影响股价；③ 技术路线被颠覆风险（AI影像诊断可能改变行业格局）。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025年度，截至2025.6.30）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>$213.0M</td><td>$161.5M</td><td>+31.9%</td><td class="good">✅ 高速增长</td></tr>
+  <tr><td>毛利润</td><td><strong>$212.7M</strong></td><td>$161.2M</td><td>+32.0%</td><td class="good">✅ 毛利率~99.9%</td></tr>
+  <tr><td>净利润（报告）</td><td><strong>$115.2M</strong></td><td>$82.8M</td><td><strong>+39.2%</strong></td><td class="good">✅ 高速增长</td></tr>
+  <tr><td>基础EBIT（营业利润）</td><td><strong>$157.7M</strong></td><td>$112.3M</td><td><strong>+40.5%</strong></td><td class="good">✅ 利润率74%</td></tr>
+  <tr><td>毛利率</td><td><strong>~99.9%</strong></td><td>~99.8%</td><td>持平</td><td class="good">✅ 软件业务几乎零成本</td></tr>
+  <tr><td>EBIT利润率</td><td><strong>74.0%</strong></td><td>69.5%</td><td>+4.5pct</td><td class="good">✅ 持续提升</td></tr>
+  <tr><td>报告净利率</td><td><strong>54.1%</strong></td><td>51.3%</td><td>+2.8pct</td><td class="good">✅ 极高且提升</td></tr>
+  <tr><td>HY2025 营收</td><td>$97.2M</td><td>$73.7M</td><td>+31.9%</td><td class="good">✅</td></tr>
+  <tr><td>HY2026 营收</td><td><strong>$124.8M</strong></td><td>$97.2M</td><td><strong>+28.4%</strong></td><td class="good">✅ 持续高增</td></tr>
+  <tr><td>HY2026 基础PBT</td><td><strong>$90.7M</strong></td><td>$69.9M</td><td>+29.7%</td><td class="good">✅ margin 72.6%</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>PME是典型的高利润型SaaS——软件几乎没有边际成本（毛利率~99.9%），费用主要是人员工资（$24.8M/HY）。74%的EBIT margin意味着每赚$1收入，$0.74是营业利润。FY2025净利润$115.2M中税率约29.5%（澳洲公司税30%），实际税负合理。HY2026基础PBT $90.7M（剔除4D Medical投资的一次性公允价值收益），增长29.7%——高基数下增速依然强劲。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>现金及金融资产</td><td><strong>$210.7M</strong></td><td class="good">✅ 极充裕，占总资产~66%</td></tr>
+  <tr><td>应收账款</td><td>~$50M（估）</td><td class="good">✅ 占营收~23%，合理</td></tr>
+  <tr><td>无形资产</td><td>~$40M（估）</td><td class="neutral">软件平台资本化</td></tr>
+  <tr><td>总资产</td><td><strong>~$320M（估）</strong></td><td class="good">✅ 轻资产</td></tr>
+  <tr><td>短期借款</td><td><strong>$0</strong></td><td class="good">✅ 零债务</td></tr>
+  <tr><td>长期借款</td><td><strong>$0</strong></td><td class="good">✅ 零债务</td></tr>
+  <tr><td>资产负债率</td><td><strong>~0%</strong></td><td class="good">✅ 完美</td></tr>
+  <tr><td>净资产</td><td><strong>~$290M（估）</strong></td><td class="good">✅ 净现金状态</td></tr>
+  <tr><td>净有形资产/股</td><td><strong>$2.26</strong></td><td>FY24: $1.61</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>堪称"教科书级"的资产负债表——零负债、$210M现金（占总资产66%）、公司处于净现金状态。$10M投资4D Medical（Hybrid debt/equity），虽有公允价值波动但不影响核心业务。PME完全依靠内生现金流运营，不需要任何外部融资。HY2026现金进一步增至$221.8M。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>$111.3M</strong></td><td>~$82M</td><td class="good">✅ 强劲</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><strong>-$3.5M</strong></td><td>—</td><td class="good">✅ 轻资产，投资极少</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>0.97</strong></td><td>~0.99</td><td class="good">✅ 利润含金量极高</td></tr>
+  <tr><td>自由现金流（FCF）</td><td><strong>~$108M</strong></td><td>~$80M</td><td class="good">✅ 持续为正且快速增长</td></tr>
+  <tr><td>分红支出</td><td><strong>$49.1M</strong></td><td>—</td><td class="good">✅ 持续分红且增长</td></tr>
+  <tr><td>FCF/营收</td><td><strong>~51%</strong></td><td>~50%</td><td class="good">✅ 极高FCF利润率</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>PME的现金流模式是"SaaS的终极形态"——CFO几乎等于净利润（0.97x），FCF/营收~51%，意味着每赚$1营收就产生$0.51的自由现金。与A股科技公司最大的区别：PME不需要持续投入大量资本开支，FY2025资本支出仅约$3.5M（占营收1.6%）。现金主要用于分红（$49.1M）和少量投资（$10M 4D Medical）。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>~41%</strong></td><td>> 15% 优秀</td><td class="good">✅ 顶级水平</td></tr>
+  <tr><td>毛利率</td><td><strong>~99.9%</strong></td><td>稳定或提升</td><td class="good">✅ 极致</td></tr>
+  <tr><td>净利率</td><td><strong>54.1%</strong></td><td>> 10%</td><td class="good">✅ 极高</td></tr>
+  <tr><td>营收增长率</td><td><strong>+31.9%</strong></td><td>> 10%</td><td class="good">✅ 高速增长</td></tr>
+  <tr><td>基础利润增长率</td><td><strong>+40.5%</strong></td><td>> 15%</td><td class="good">✅ 高速增长</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>0.97</strong></td><td>> 0.7</td><td class="good">✅ 利润含金量高</td></tr>
+  <tr><td>资产负债率</td><td><strong>~0%</strong></td><td>制造业<60%</td><td class="good">✅ 完美</td></tr>
+  <tr><td>分红率</td><td><strong>55c/股（~43%）</strong></td><td>持续分红</td><td class="good">✅ 健康分红</td></tr>
+</table>
+
+<h3>3.2 分业务分析（FY2025）</h3>
+<table>
+  <tr><th>业务类型</th><th>金额</th><th>占比</th><th>说明</th></tr>
+  <tr><td>Transaction/Usage（按使用收费）</td><td>~$158M</td><td>~74%</td><td class="good">✅ 核心收入，随扫描量增长</td></tr>
+  <tr><td>License/Implementation（许可+实施）</td><td>~$26M</td><td>~12%</td><td class="good">✅ 新客户/新模块的一次性收入</td></tr>
+  <tr><td>Maintenance/Support（维护）</td><td>~$12M</td><td>~6%</td><td class="good">✅ 稳定经常性收入</td></tr>
+  <tr><td>其他（服务/AI等）</td><td>~$17M</td><td>~8%</td><td class="neutral">来自4D Medical等投资</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>PME~80%收入来自Transaction（每扫描一次收一次费），这种模式的好处是：① 客户越用付越多，收入随扫描量自然增长；② 无续约风险（客户已深度嵌入工作流程）；③ 5年最低合同额$948M提供了极强的收入能见度。北美收入占比~85%+，且增速（+35.8%）高于澳洲本土（+4.9%）。新推的心脏病学模块（Cardiology）是全栈+1的增值扩展，已有UC Health等客户采用。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="bad">🔴 较高</td><td>PE ~75x严重高估，远超合理区间</td><td>L3 估值</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>客户集中度较高（~20-30家医疗集团）</td><td>单个大合同（如Trinity $520M）影响重大</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>$149M 4D Medical投资公允价值波动</td><td>HY2026这笔非现金收益贡献了大部分报告利润增长</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>营收增速从32%降至28%（HY2026）</td><td>高基数下增速自然放缓，但趋势需关注</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>ASX科技板块整体估值压缩风险</td><td>YTD -24%，1年-39%，大环境不利</td></tr>
+  <tr><td class="good">🟢 正面</td><td>零负债+$220M现金，资产负债表完美</td><td>L1 资产负债表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>74% EBIT利润率且持续提升</td><td>L2 盈利指标</td></tr>
+  <tr><td class="good">🟢 正面</td><td>5年最低合同额$948M</td><td>收入能见度极高</td></tr>
+  <tr><td class="good">🟢 正面</td><td>北美市场仅渗透~10%</td><td>巨大成长空间</td></tr>
+</table>
+
+<div class="verdict verdict-ok">✅ L2综合判定：财务面顶级，唯一硬伤是估值</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>股价（2026.6.19）</td><td><strong>$172.80 AUD</strong></td><td>52周范围 $107.75 - $336.00</td></tr>
+  <tr><td>总市值</td><td><strong>$17.5B AUD（175亿）</strong></td><td>ASX科技第二大市值</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>~75x</strong></td><td>含4D Medical一次性收益</td></tr>
+  <tr><td>PE（正常化TTM）</td><td><strong>~66x</strong></td><td>剔除4D Medical收益后</td></tr>
+  <tr><td>PE（FY2026E）</td><td><strong>~55-60x</strong></td><td>基于一致预期EPS ~$1.50</td></tr>
+  <tr><td>PB</td><td><strong>~60x</strong></td><td>轻资产SaaS，PB不适用</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~73x</strong></td><td>基于TTM收入$240M</td></tr>
+  <tr><td>PS（FY2025）</td><td><strong>~82x</strong></td><td>基于FY2025收入$213M</td></tr>
+  <tr><td>EV/EBIT</td><td><strong>~90x</strong></td><td>基于FY2025 EBIT $157.7M</td></tr>
+  <tr><td>股息率</td><td><strong>0.37%</strong></td><td>基于年分红64c/股</td></tr>
+</table>
+
+<h3>4.2 PE Band估值区间</h3>
+<p style="font-size:13px;color:#666;">ROE 41% → 优质SaaS合理PE参考区间30-50x | FY2026E基础EPS ≈ $1.50（剔除非经常性）</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs现价$172.80</th></tr>
+  <tr><td>悲观</td><td>30x</td><td>$45.0</td><td class="bad">-74%</td></tr>
+  <tr><td>保守</td><td>40x</td><td>$60.0</td><td class="bad">-65%</td></tr>
+  <tr><td>中性</td><td>50x</td><td>$75.0</td><td class="bad">-57%</td></tr>
+  <tr><td>券商目标</td><td>~65x</td><td>$180.4</td><td class="good">+4%</td></tr>
+  <tr><td>当前价</td><td>~66x</td><td>$172.8</td><td>—</td></tr>
+  <tr><td>历史高位</td><td>~150x</td><td>$336.0</td><td>+94%</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>估值风险警示：</strong><br>
+  ① PS 82x是什么概念？每$1营收对应$82市值。WTC PS ~20x，XRO PS ~10x，PME的PS是同行4-8倍；<br>
+  ② 正常化PE ~66x，虽低于历史峰值~150x，但仍远超30-50x的合理区间；<br>
+  ③ 市值$175亿 vs 营收$2.13亿——不赚钱的AI概念股都不一定有这么高的PS；<br>
+  ④ $336→$107的跌幅（-68%）说明一旦市场环境变化，高估值踩踏极其惨烈；<br>
+  ⑤ 仅"~10%的美国市场渗透率"这个故事支撑$175亿市值，每个百分点渗透率价值$17.5亿。
+</div>
+
+<h3>4.3 历史PE区间（正常化）</h3>
+<table>
+  <tr><th>指标</th><th>数值</th></tr>
+  <tr><td>PE（正常化）最大值</td><td>~150x（2025年中AI炒作峰值）</td></tr>
+  <tr><td>PE（正常化）80%分位</td><td>~80x</td></tr>
+  <tr><td>PE（正常化）50%分位</td><td>~55x</td></tr>
+  <tr><td>PE（正常化）20%分位</td><td>~40x</td></tr>
+  <tr><td>PE（正常化）最小值</td><td>~30x（2022年利率上升期）</td></tr>
+  <tr><td>当前PE（正常化）</td><td class="neutral">~66x（50-60%分位）</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值总结：</strong>PME是ASX上质量最高的公司之一——90%毛利率、74% EBIT margin、41% ROE、零负债、30%+增长。但估值是另一个故事：PS 82x、PE 66x意味着市场已经将未来5-7年的增长全部price in。以券商目标价$180.44看，当前价基本合理——前提是公司能持续维持25%+的增长。$175亿市值对应~6-7倍FY2025营收，本质上市场在为一个"未来每年赚$2-3亿"的公司提前买单。如果增长放缓（例如降到15-20%），PE将从66x向50x回归，对应~25%下行空间。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>净利润率</td><td>51.3%</td><td><strong>54.1%</strong></td><td class="good">⬆ +2.8pct</td></tr>
+  <tr><td>资产周转率</td><td>~0.55</td><td><strong>~0.67</strong></td><td class="good">⬆ 提升</td></tr>
+  <tr><td>权益乘数</td><td>~1.0</td><td><strong>~1.0</strong></td><td class="good">➡ 零杠杆</td></tr>
+  <tr><td><strong>ROE</strong></td><td><strong>~37%</strong></td><td><strong>~41%</strong></td><td class="good">⬆ 提升</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>~28%</td><td><strong>~36%</strong></td><td class="good">⬆ 显著提升</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>~9pct</td><td><strong>~5pct</strong></td><td class="good">⬇ 改善（不依赖杠杆）</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式：纯高利润型——SaaS的终极形态</strong><br>
+  PME的杜邦分解极其漂亮：净利润率54%（极高）+ 资产周转率0.67（轻资产高效）+ 杠杆1.0（零负债）。<br>
+  ROE 41% = 54% × 0.67 × 1.0，几乎完全靠利润率驱动，没有任何水分。<br>
+  与A股科技公司对比：A股半导体公司ROE 12%多靠杠杆（权益乘数2x+），PME的41% ROE是纯靠生意模式本身。
+</div>
+
+<h3>5.2 去杠杆ROA分析</h3>
+<table>
+  <tr><th>指标</th><th>PME</th><th>WTC（对比）</th><th>典型SaaS</th></tr>
+  <tr><td>净利润率</td><td>54.1%</td><td>~25%</td><td>15-25%</td></tr>
+  <tr><td>资产周转率</td><td>~0.67</td><td>~0.5</td><td>0.3-0.6</td></tr>
+  <tr><td>去杠杆ROA</td><td><strong>~36%</strong></td><td>~12.5%</td><td>5-15%</td></tr>
+  <tr><td>ROE</td><td><strong>~41%</strong></td><td>~12%</td><td>10-25%</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>杜邦核心结论：</strong>PME的ROE是A股消费医疗股的水平（片仔癀~25%、茅台~30%），但作为一家SaaS公司达到41%非常罕见。关键在于：净利率54%——说明产品或服务有极强定价权和极低边际成本；周转率0.67——轻资产模型，几乎没有固定资产占压资金。去掉杠杆后的ROA仍有36%，说明回报全是生意模式本身带来的，不是靠借钱堆出来的。这是杜邦分析能给出的最高评价之一。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>判定：成长型（SaaS）</strong><br>
+  判断依据：PME属于企业级医疗影像SaaS，行业特征完全符合成长型定义——营收增速25-35%、市场渗透率低（~10%）、全球化扩张逻辑清晰。<br>
+  与A股科技明显不同：PME几乎不受国内政策/经济周期影响（85%+收入来自北美），美元的强弱才是核心变量。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th></tr>
+  <tr><td>市场格局</td><td><span class="good">细分垄断</span>——全球医疗影像SaaS市场高度集中，PME在Cloud PACS细分占据领导地位</td></tr>
+  <tr><td>核心壁垒</td><td>① 25年积累的Visage影像平台——FDA认证+临床验证，替代风险极高<br>② 5-10年合同锁定——客户替换PME需要重新FDA审批，周期2-3年<br>③ 网络效应——医院/医生已习惯Visage工作流，换系统等于重新培训所有放射科医生<br>④ 品牌+口碑——北美前20大医疗集团中多家采用</td></tr>
+  <tr><td>新进入者</td><td><span class="good">威胁小</span>——FDA审批周期2-3年+临床验证成本极高，大公司（GE/Siemens/Philips）虽有资本但缺乏纯云原生架构</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="summary-box">
+  <strong>成长期中段</strong><br>
+  PME处于"加速渗透"的成长期中段——北美市场仅覆盖~10%（空间大），且产品从"单一影像"扩展到"全栈（Viewer+Workflow+Archive）+ Cardiology+AI"（客单价提升）。不同于A股光伏那种产能过剩式的"洗牌期"，PME的成长是健康的内生增长——每年签更多合同、现有客户用更多模块、扫描量自然增长。
+</div>
+
+<h3>6.4 估值方法匹配</h3>
+<table>
+  <tr><th>公司类型</th><th>首选估值</th><th>PME当前</th><th>评价</th></tr>
+  <tr><td>成长型SaaS</td><td>PS / EV/EBIT / PEG</td><td>PS 82x / EV/EBIT 90x</td><td class="bad">❌ 严重高于SaaS合理PS 10-20x</td></tr>
+  <tr><td>PE（盈利后）</td><td>PE 30-50x</td><td>PE 66x</td><td class="neutral">⚠ 偏高30-50%</td></tr>
+  <tr><td>PEG</td><td>PEG < 1.5</td><td>PEG ~2.3x</td><td class="bad">❌ 价格远超增长</td></tr>
+</table>
+
+<h3>6.5 成长股成色检验（四步验证）</h3>
+<table>
+  <tr><th>步骤</th><th>验证项</th><th>结果</th></tr>
+  <tr><td>Step 1 - 营收真实性</td><td>营收是否实在、大于$20亿？增速>20%？</td><td class="good">✅ $2.13亿营收，+32%增速。体量不大但模式健康，客户实际在付钱使用</td></tr>
+  <tr><td>Step 2 - 毛利率竞争力</td><td>是否>30%且稳定？</td><td class="good">✅ ~99.9%，软件行业的极致</td></tr>
+  <tr><td>Step 3 - 现金流造血</td><td>CFO是否为正且在改善？</td><td class="good">✅ CFO $111M，接近净利润，持续改善</td></tr>
+  <tr><td>Step 4 - PS梦想溢价</td><td>PS是否<10合理？</td><td class="bad">❌ PS 82x远高于"纯投机"阈值50x——市场为梦想支付了极高溢价</td></tr>
+</table>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  Step 1 - 行业定位：医疗影像SaaS，细分垄断格局，高壁垒（FDA+10年合同），成长期<br>
+  Step 2 - 财务体检：ROE 41%顶级水平，杜邦高利润型（54%净利率+零杠杆），CFO接近净利润<br>
+  Step 3 - 估值判断：PE 66x / PS 82x，处于历史50-60%分位，偏高但未到极端<br>
+  Step 4 - 风险排查：核心风险是估值+客户集中度+AI颠覆可能性，财务面零风险<br>
+  Step 5 - 结论：好公司（ASX顶级质量）× 好价格（否，PE 66x太贵）= 等待<br>
+  Step 6 - 跟踪指标：新签合同额、美国渗透率、Cardiology模块采用情况、RBA利率
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>检查项</th><th>结果</th></tr>
+  <tr><td>① 好行业</td><td>需求稳定or增长，壁垒高，格局好</td><td class="good">✅ 医疗影像SaaS，刚需+高壁垒+寡头格局</td></tr>
+  <tr><td>② 好公司</td><td>ROE>15%，毛利率稳定提升，CFO>净利润</td><td class="good">✅ ROE 41%，毛利率99.9%，CFO 0.97x净利</td></tr>
+  <tr><td>③ 好价格</td><td>PE在历史偏低分位，PEG<1.5</td><td class="bad">❌ PE 66x偏高，PEG ~2.3x > 1.5</td></tr>
+</table>
+
+<h3>7.3 三个陷阱排查</h3>
+<div class="danger-box">
+  ☐ 低PE + 低增长 + 高负债 = <strong>价值陷阱</strong> → 不命中（PE高、增长高、零负债）<br>
+  ☐ 低PE + 周期顶点 = <strong>周期陷阱</strong> → 不命中（非周期行业，PE高）<br>
+  ☑ 高PE + 高增速但现金流为负 = <strong>烧钱陷阱</strong> → <strong>⚠ 部分命中</strong>（PE高、增速高，但CFO/净利润=0.97不是负，只是PS 82x意味着增长预期极高，一旦放缓会面临严重的估值压缩）
+</div>
+
+<div class="summary-box">
+  <strong>最终判断：</strong><br>
+  PME是ASX上生意模式最好的公司之一——90%毛利率、41% ROE、零负债、30%+增长、北美市场仅渗透10%。如果只看生意本身，这是教科书级的投资标的。<br><br>
+  但<strong>价格是硬伤</strong>：PS 82x、PE 66x意味着市场已经将"未来5年每年30%增长"的完美剧本完全定价。一旦发生以下情况之一，估值将遭受重大打击：① 增速降至20%以下；② RBA/美联储继续加息；③ AI影像诊断技术路线变化。<br><br>
+  <strong>结论：品质优秀，但价格太贵。等待PS < 30x或PE < 40x时再认真考虑。</strong>
+</div>
+
+<h3>7.4 讨论问题（阅读引导）</h3>
+<ol>
+  <li><strong>这笔生意你看懂了吗？</strong> PME卖的不是软件许可，而是"每做一次CT/MRI扫描收一次钱"——医院用得越多付得越多，而PME的边际成本几乎为零。</li>
+  <li><strong>你最大的担忧是什么？</strong> PS 82x意味着市场已经将未来5-7年的所有好消息都price in了，容错率极低。</li>
+  <li><strong>如果现在买入，期待的回报来源是什么？</strong> 只能靠业绩增长消化估值——年化~25%的营收增长需要3-4年才能把PS降到30x的合理水平。指望估值扩张不现实。</li>
+  <li><strong>什么情况下你会坚决卖出？</strong> 增速降至15%以下、美国大客户签约明显放缓、出现颠覆性技术替代Visage平台、或PE重新冲上100x以上。</li>
+</ol>
+
+</div></div>
+
+<div class="footer">Generated by Stock Analysis · L1-L6 Framework · Stock Selection</div>
+
+</div>
+
+<script>
+var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+var contents = document.querySelectorAll('.tab-content');
+btns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    contents.forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    var tab = btn.getAttribute('data-tab');
+    document.getElementById('tab-' + tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,430 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>呈和科技(688625) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>呈和科技（688625）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026-07-03 | 数据来源：FY2025 年报 + 2026Q1 季报 + 券商研报</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>呈和科技股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>688625.SH</td></tr>
+  <tr><td>所属行业</td><td>化学原料和化学制品制造业（塑料助剂 + 高端电子材料）</td></tr>
+  <tr><td>行业地位</td><td>国内成核剂/合成水滑石龙头，国产替代领军企业</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>9.77 亿（+11.94%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>2.76 亿（+10.20%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>2.84 亿（+33.77%）</strong></td></tr>
+  <tr><td>总资产</td><td>30.68 亿</td></tr>
+  <tr><td>归母净资产</td><td>15.15 亿</td></tr>
+  <tr><td>ROE</td><td>18.32%</td></tr>
+</table>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">综合L1-L5所有因素（财务健康度、关键指标、估值、杜邦分析、行业分类），对各维度打分求和</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">18.32% ≥ 15%，优秀</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">高利润型——净利率28.22%，高毛利+稳健费用控制</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">1.03 ≥ 1.0，现金覆盖利润</td></tr>
+  <tr><td>营收增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+11.94% ≥ 10%</td></tr>
+  <tr><td>利润增长（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">归母+10.20%，≥5%</td></tr>
+  <tr><td>负债率（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">50.94% < 55%</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">货币资金4.67亿 < 短期借款8.54亿，缺口较大但经营现金流强劲</td></tr>
+  <tr><td>毛利率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">45.02% ≥ 30%且稳定</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">PE(TTM) ~75x，远超合理区间（ROE 18%→15-25x）</td></tr>
+  <tr><td>自由现金流（5分）</td><td class="neutral" style="font-weight:bold;font-size:15px">3</td><td style="text-align:left">CFO强劲但CAPEX扩张期，FCF约零</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">76/100</td><td style="text-align:left">一般关注（76/100分）——基本面扎实，估值压力大</td></tr>
+</table>
+
+<div class="verdict verdict-caution">一般关注（76/100分）</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>呈和科技是国内成核剂/合成水滑石龙头，连续多年营收净利双增，毛利率45%+，经营现金流持续优于净利润，盈利质量极高。公司正从传统塑料助剂向高端电子材料（聚苯醚树脂、高频阻燃剂）战略跃升，打开第二增长曲线。当前核心矛盾：基本面优秀（ROE 18%+毛利率45%+CFO全覆盖）但估值极贵（PE 75x），安全边际不足。<br><br>
+  <strong>核心优势：</strong>① 成核剂国产替代龙头，国产替代率仅30%，成长空间大；② 连续十年营收净利双位数增长，业绩确定性强；③ 经营现金流持续优于净利润，利润含金量高；④ 战略布局AI电子材料，已批量供应头部CCL厂商。<br><br>
+  <strong>核心风险：</strong>① PE(TTM) ~75x，估值严重偏高，透支未来2-3年增长；② 短期债务8.54亿 > 货币资金4.67亿，短期偿债有缺口；③ 电子材料新业务尚在培育期，放量节奏不确定；④ 流通市值小，股价波动大。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>9.77 亿</td><td>8.82 亿</td><td>+11.94%</td><td class="good">✅ 稳健增长</td></tr>
+  <tr><td>归母净利润</td><td><strong>2.76 亿</strong></td><td>2.50 亿</td><td><strong>+10.20%</strong></td><td class="good">✅ 稳健增长</td></tr>
+  <tr><td>扣非净利润</td><td><strong>2.64 亿</strong></td><td>2.42 亿</td><td><strong>+10.08%</strong></td><td class="good">✅ 与净利润匹配</td></tr>
+  <tr><td>毛利率</td><td><strong>45.02%</strong></td><td>42.97%</td><td>+2.05pct</td><td class="good">✅ 提升，成本控制好</td></tr>
+  <tr><td>归母净利率</td><td><strong>28.22%</strong></td><td>28.38%</td><td>-0.16pct</td><td class="good">✅ 高位稳定</td></tr>
+  <tr><td>期间费用率</td><td><strong>~9.9%</strong></td><td>~8.8%</td><td>+1.1pct</td><td class="neutral">⚠ 略升（研发投入增加）</td></tr>
+  <tr><td>2025Q4 营收</td><td>2.37 亿</td><td>2.25 亿</td><td>+5.54%</td><td class="neutral">⚠ Q4偏弱</td></tr>
+  <tr><td>2025Q4 净利润</td><td><strong>0.48 亿</strong></td><td>0.52 亿</td><td><strong>-8.31%</strong></td><td class="bad">❌ Q4利润同比下滑</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>营收净利双增，毛利率提升至45.02%，高盈利韧性延续。Q4单季净利润同比-8.31%，但2026Q1已回升至+26.20%，季节性波动正常。期间费用率略有上升，主因研发投入增加（电子材料新业务）。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td><strong>4.67 亿</strong></td><td class="bad">❌ 下降较多（一年内到期非流动资产到期）</td></tr>
+  <tr><td>应收账款</td><td><strong>2.47 亿</strong></td><td class="good">✅ 占营收25%，控制良好</td></tr>
+  <tr><td>存货</td><td><strong>1.02 亿</strong></td><td class="neutral">⚠ 略增至3.3%总资产</td></tr>
+  <tr><td>短期借款</td><td><strong>8.54 亿</strong></td><td class="good">✅ 从13.93亿大幅压降</td></tr>
+  <tr><td>长期借款</td><td><strong>0.50 亿</strong></td><td class="good">✅ 极少</td></tr>
+  <tr><td>资产负债率</td><td><strong>50.94%</strong></td><td class="good">✅ 从58.6%显著下降</td></tr>
+  <tr><td>归母净资产</td><td>15.15 亿</td><td class="good">✅ 同比+11.35%</td></tr>
+  <tr><td>总资产</td><td>30.68 亿</td><td class="neutral">⚠ 同比-6.22%（一年内到期非流动资产到期）</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>资产负债率从58.6%降至50.9%，短期借款从13.93亿大幅压降至8.54亿，财务结构持续优化。货币资金下降主因"一年内到期的非流动资产"从11.30亿降至2.04亿（理财到期）。短期借款仍高于货币资金，但经营现金流强劲（2.84亿），实际偿债压力可控。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>2.84 亿</strong></td><td>2.12 亿</td><td class="good">✅ 强劲增长+33.77%</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><strong>-2.65 亿</strong></td><td>-2.42 亿</td><td class="neutral">⚠ 资本开支维持高位</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td><strong>-1.93 亿</strong></td><td>+4.37 亿</td><td class="good">✅ 减少融资依赖</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>1.03</strong></td><td>0.85</td><td class="good">✅ ≥1.0，利润含金量高</td></tr>
+  <tr><td>自由现金流（FCF）</td><td><strong>≈0</strong></td><td>-0.30 亿</td><td class="neutral">⚠ CAPEX吸收全部CFO</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>CFO 2.84亿同比+33.77%，覆盖净利润，利润是真金白银。FCF约零——公司处扩产期，资本开支吸收全部经营现金流，属成长型公司正常特征。CFF从+4.37亿转负（-1.93亿），说明公司减少外部融资依赖，财务自主性增强。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>18.32%</strong></td><td>> 15% 优秀 / > 10% 及格</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>毛利率</td><td><strong>45.02%</strong></td><td>稳定或提升</td><td class="good">✅ +2.05pct 提升</td></tr>
+  <tr><td>净利率</td><td><strong>28.22%</strong></td><td>> 15%</td><td class="good">✅ 极佳</td></tr>
+  <tr><td>营收增长率</td><td><strong>+11.94%</strong></td><td>> 10%</td><td class="good">✅ 双位数增长</td></tr>
+  <tr><td>利润增长率</td><td><strong>+10.20%</strong></td><td>> 10%</td><td class="good">✅ 达标</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>1.03</strong></td><td>> 1</td><td class="good">✅ 达标</td></tr>
+  <tr><td>资产负债率</td><td><strong>50.94%</strong></td><td>制造业<60%</td><td class="good">✅ 合理</td></tr>
+  <tr><td>分红率</td><td><strong>~15%</strong></td><td>持续分红</td><td class="bad">❌ 偏低，扩产期可理解</td></tr>
+</table>
+
+<h3>3.2 分业务分析（2025年度）</h3>
+<table>
+  <tr><th>业务板块</th><th>营收（亿）</th><th>占比</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td>成核剂</td><td>5.96</td><td>61%</td><td>+16.58%</td><td>~48%</td><td class="good">✅ 核心利润来源，量价齐升</td></tr>
+  <tr><td>合成水滑石</td><td>~1.50</td><td>15%</td><td>~+15%</td><td>~40%</td><td class="good">✅ 稳定增长</td></tr>
+  <tr><td>其他助剂/贸易</td><td>~1.30</td><td>13%</td><td>—</td><td>—</td><td class="neutral">配套业务</td></tr>
+  <tr><td>海外业务</td><td>2.63</td><td>27%</td><td>+52.61%</td><td>—</td><td class="good">✅ 高增长亮点，欧洲中东突破</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>成核剂是核心利润来源（毛利率~48%），量价齐升验证国产替代逻辑。海外业务增长52.61%是最大亮点——公司正加快建立欧洲、中东本地化销售网络。合成水滑石稳步增长，电子材料（聚苯醚树脂+高频阻燃剂）虽尚未单独列报，但已批量供应头部CCL厂商，是未来核心看点。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="neutral">🟡 中等</td><td>货币资金4.67亿 < 短期借款8.54亿</td><td>L1 资产负债表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>Q4净利润同比-8.31%，单季走弱</td><td>L1 利润表</td></tr>
+  <tr><td class="bad">🔴 较高</td><td>PE(TTM) 75x，远超合理区间，历史80%分位以上</td><td>L3 估值</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>分红率仅15%，偏低</td><td>L2 盈利指标</td></tr>
+  <tr><td class="good">🟢 正面</td><td>ROE 18.32%优秀，连续十年营收净利双增</td><td>L2 盈利指标</td></tr>
+  <tr><td class="good">🟢 正面</td><td>毛利率45%+持续提升，成本控制优秀</td><td>L1 利润表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>CFO 2.84亿 > 净利润2.76亿，利润真金白银</td><td>L1 现金流量表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>资产负债率从58.6%降至50.9%，显著优化</td><td>L1 资产负债表</td></tr>
+</table>
+
+<div class="verdict verdict-caution">⚠ L2综合判定：优秀基本盘（ROE 18%+毛利45%+CFO全覆盖），估值是唯一硬伤</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>股价（2026-06-26）</td><td><strong>92.00 元</strong></td><td>近期从115元回调</td></tr>
+  <tr><td>总市值</td><td><strong>241.51 亿</strong></td><td>流通市值~241亿</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>~75.2x</strong></td><td>基于2025 EPS 1.49元</td></tr>
+  <tr><td>PE（TTM扣非）</td><td><strong>~80.7x</strong></td><td>偏高</td></tr>
+  <tr><td>PE（2026E）</td><td><strong>~50x</strong></td><td>基于券商一致预期EPS ~1.84</td></tr>
+  <tr><td>PB</td><td><strong>~13.9x</strong></td><td>基于每股净资产8.05元</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~24.7x</strong></td><td>市销率极高</td></tr>
+  <tr><td>股息率</td><td><strong>~0.3%</strong></td><td>中期分红每10股2.3元</td></tr>
+</table>
+
+<h3>4.2 PE Band估值区间</h3>
+<p style="font-size:13px;color:#666;">ROE 18% → 合理PE参考区间：15-25x | 2026E一致预期EPS ≈ 1.84元</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs现价92元</th></tr>
+  <tr><td>悲观</td><td>15x</td><td>27.6 元</td><td class="bad">-70%</td></tr>
+  <tr><td>保守</td><td>25x</td><td>46.0 元</td><td class="bad">-50%</td></tr>
+  <tr><td>中性（历史中位数）</td><td>44x</td><td>81.0 元</td><td class="bad">-12%</td></tr>
+  <tr><td>券商目标</td><td>~45x</td><td>~82 元</td><td class="bad">-11%</td></tr>
+  <tr><td>当前价</td><td>~50x（2026E）</td><td>92.0 元</td><td>—</td></tr>
+  <tr><td>历史高位</td><td>60x+</td><td>110+ 元</td><td class="good">+20%</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>估值风险警示：</strong><br>
+  ① 当前PE(TTM) 75x处于历史80%分位以上，显著偏高；<br>
+  ② 券商目标价~82元（45x 2026E PE），仍低于现价92元；<br>
+  ③ 以ROE 18%对应的合理PE 15-25x计算，合理股价仅28-46元；<br>
+  ④ 成长股市场给予溢价，但PS 24.7x已进入预警区（>20x），PEG~4.9严重偏高；<br>
+  ⑤ 2026Q1利润+26%印证增长，但当前估值已充分预期。
+</div>
+
+<h3>4.3 历史PE区间</h3>
+<table>
+  <tr><th>指标</th><th>数值</th></tr>
+  <tr><td>PE（TTM）最大值</td><td>~110x（2025年高点）</td></tr>
+  <tr><td>PE（TTM）80%分位</td><td>~65x</td></tr>
+  <tr><td>PE（TTM）50%分位（中位数）</td><td>~44x</td></tr>
+  <tr><td>PE（TTM）20%分位</td><td>~32x</td></tr>
+  <tr><td>PE（TTM）最小值</td><td>~20x（2024年低点）</td></tr>
+  <tr><td>当前PE（TTM）</td><td class="bad">~75x > 80%分位</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值总结：</strong>呈和科技是国产替代优质标的——成核剂龙头、海外高增、电子材料布局打开空间。但PE(TTM) 75x已处于历史80%分位以上，即使以2026E PE看~50x仍显著高于合理区间。当前估值已充分反映国产替代和电子材料转型预期。建议在PE回落至40x以下（对应股价~75元）时关注，届时兼具安全边际与成长弹性。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>净利润率</td><td>27.85%</td><td>28.38%</td><td><strong>28.22%</strong></td><td class="good">✅ 高位稳定</td></tr>
+  <tr><td>资产周转率</td><td>0.28</td><td>0.27</td><td><strong>0.31</strong></td><td class="good">✅ 提升14.8%</td></tr>
+  <tr><td>权益乘数</td><td>2.52</td><td>2.42</td><td><strong>2.04</strong></td><td class="good">✅ 持续降杠杆</td></tr>
+  <tr><td><strong>ROE</strong></td><td><strong>19.60%</strong></td><td><strong>19.43%</strong></td><td><strong>18.32%</strong></td><td class="neutral">➡ 微降（降杠杆所致）</td></tr>
+  <tr><td>去杠杆ROA</td><td>7.80%</td><td>7.66%</td><td><strong>8.75%</strong></td><td class="good">✅ 提升</td></tr>
+  <tr><td>杠杆贡献</td><td>11.80pct</td><td>11.77pct</td><td><strong>9.57pct</strong></td><td class="good">✅ 杠杆依赖下降</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：高利润型 ✅</strong><br>
+  净利率28.22%是核心驱动力，资产周转率0.31偏低（化工行业特征），权益乘数2.04持续下降。ROE 18.32%完全由高利润率驱动，是最高质量的盈利模式。<br><br>
+  <strong>积极变化：</strong>周转率从0.27提升至0.31（+14.8%），说明新产能投产后开始贡献营收。去杠杆ROA从7.66%升至8.75%，资产真实回报效率在提升。杠杆贡献从11.77pct降至9.57pct，盈利更"纯"了。
+</div>
+
+<h3>5.2 分业务杜邦贡献</h3>
+<table>
+  <tr><th>业务板块</th><th>毛利率</th><th>趋势</th><th>对ROE影响</th></tr>
+  <tr><td>成核剂</td><td>~48%</td><td class="good">稳定高毛利</td><td class="good">正向核心</td></tr>
+  <tr><td>合成水滑石</td><td>~40%</td><td class="good">稳定</td><td class="good">稳定贡献</td></tr>
+  <tr><td>海外业务</td><td>—</td><td class="good">⬆ +52.61%高增</td><td class="good">规模效应可期</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>核心结论：</strong><br>
+  ① ROE 18.32%靠"高利润型"驱动，净利率28%行业顶尖，这是最健康的杜邦模式——赚技术的钱，不靠加杠杆；<br>
+  ② ROE从19.6%微降至18.3%，主因权益乘数从2.52降至2.04（扩产增厚净资产+还债降杠杆），属于良性下降，真实资产回报率（ROA）反而在提升；<br>
+  ③ 周转率从0.27升至0.31是积极信号，若后续电子材料放量带动周转突破0.35，ROE有望重回20%+；<br>
+  ④ 整体评价：高质量、可持续的盈利模式，A股中属于稀缺的"真赚钱"公司。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与特征（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：成长性行业（塑料助剂-成核剂/合成水滑石 + 电子材料）</strong><br>
+  <strong>判断依据：</strong>呈和科技所处的高分子材料助剂行业，核心增长驱动力来自国产替代（成核剂国产化率仅30%）和下游塑料高性能化长期趋势。中国成核剂市场约50亿规模，国内企业份额仍在快速提升中。海外业务+52.61%验证产品全球竞争力。公司连续十年营收净利双增，成长路径清晰。<br><br>
+  <strong>非周期理由：</strong>虽然化工行业有周期性，但成核剂下游是塑料改性（消费品/汽车/电子），需求刚性较强。公司毛利率45%稳定未大幅波动，进一步佐证弱周期属性。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th></tr>
+  <tr><td>行业集中度</td><td><strong>较高集中度</strong>——国内成核剂CR3 ~60-70%，呈和科技为国内龙头。全球市场仍由美利肯、艾迪科主导，国产替代空间大。</td></tr>
+  <tr><td>技术壁垒</td><td><strong>高</strong>——成核剂毛利率~48%验证技术壁垒。配方+合成工艺需要长期积累，复制难度大。</td></tr>
+  <tr><td>客户壁垒</td><td><strong>中高</strong>——塑料改性厂对助剂供应商认证周期1-2年，切换成本高，进入后粘性极强。</td></tr>
+  <tr><td>海外合规壁垒</td><td><strong>中等</strong>——需通过FDA/REACH等国际认证，新进入者需时间积累。</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  <strong>阶段：成长期</strong><br>
+  国产替代率30%（远未饱和），行业增速10-15%，公司营收CAGR ~15%。海外市场刚起步（+52.61%），电子材料新业务（聚苯醚树脂、高频阻燃剂）尚在培育期。成长空间充裕，远未触及天花板。<br><br>
+  <strong>投资策略重点：</strong>关注成核剂国内市占率提升、海外扩张进度、电子材料量产节奏。
+</div>
+
+<h3>6.4 成长股成色检验（四步法）</h3>
+<table>
+  <tr><th>步骤</th><th>检验内容</th><th>数据</th><th>判定</th></tr>
+  <tr><td>① 营收</td><td>有没有实在的生意？</td><td>营收9.77亿+11.94%，体量真实</td><td class="good">✅ 过关</td></tr>
+  <tr><td>② 毛利率</td><td>产品竞争力如何？</td><td>毛利率45.02%且持续提升</td><td class="good">✅ 过关</td></tr>
+  <tr><td>③ CFO</td><td>能不能自己造血？</td><td>CFO 2.84亿+33.77%，CFO>净利润</td><td class="good">✅ 过关</td></tr>
+  <tr><td>④ PS</td><td>梦想溢价多少？</td><td>PS 24.7x > 20预警线</td><td class="bad">❌ 溢价极高</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>四步法结论：</strong>前三步全✅——营收真实、毛利率高、能自我造血，是真成长股。但PS 24.7x已进入预警区，市场给了极高的"梦想溢价"。核心矛盾是质地好但太贵。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>成长型（塑料助剂+电子材料）</td><td>PS + PEG</td><td>PE（盈利后）、营收增速、毛利率趋势</td><td class="bad">❌ 不匹配——PS 24.7x远超预警线，PEG ~4.9太贵</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值方法总结：</strong>呈和科技作为成长股，PS 24.7x远超10x合理线和20x预警线，PEG ~4.9远高于1.5。营收+11.94%增速尚可但不足以支撑如此高的PS，市场定价隐含了极高成长预期（未来3年利润翻倍）。对于成长投资者，关键在于判断2026-2028年利润CAGR能否维持25%+——若能，则当前PE可被时间消化；若增速降回15%以下，则面临双杀。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>成长性（塑料助剂+电子材料），国产替代空间大，技术壁垒高，龙头地位稳固。<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 18.32%优秀，高利润型杜邦，CFO/净利1.03达标准，FCF约零（扩产期正常）。<br>
+  <strong>Step 3 - 估值判断：</strong>PE(TTM) 75x处于历史80%分位以上，PS 24.7x进入预警区，缺少安全边际。<br>
+  <strong>Step 4 - 风险排查：</strong>短期债务>货币资金、电子材料放量节奏不确定、PE极度过高。<br>
+  <strong>Step 5 - 结论：</strong>好公司✅（高ROE+高毛利+高CFO），但价格✗（PE 75x远超合理区间）。<br>
+  <strong>Step 6 - 跟踪：</strong>看电子材料营收占比提升、海外扩张进度、FCF转正时点、PE回落至40x以下。
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✅</td><td>国产替代空间大（成核剂仅30%），长期成长确定</td></tr>
+  <tr><td>② 好公司</td><td class="good">✅</td><td>ROE 18.32%>15%，毛利率45%且提升，CFO/净利1.03</td></tr>
+  <tr><td>③ 好价格</td><td class="bad">❌</td><td>PE 75x远超合理15-25x，PS 24.7x进入预警区，PEG 4.9>1.5</td></tr>
+</table>
+
+<h3>7.3 三个陷阱排查</h3>
+<div class="danger-box">
+  <strong>☐ 价值陷阱：</strong>❌ 未命中——高PE+高增长+高毛利，与低PE低增长的价值陷阱相反。<br>
+  <strong>☐ 周期陷阱：</strong>❌ 未命中——成核剂弱周期，国产替代驱动为主。<br>
+  <strong>☐ 烧钱陷阱：</strong>⚠️ 部分命中——高PE（75x）+增速（+12%）但FCF≈0，不过CFO>净利润（2.84亿>2.76亿），非典型烧钱模式。公司在扩产期，CAPEX高是阶段性特征。
+</div>
+
+<h3>7.4 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——做成核剂和水滑石卖给塑料厂，提高塑料性能（透明度/强度），赚技术壁垒+国产替代的钱。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——PE 75x对应11.9%增速，PEG~4.9太贵了。如果增速跌到个位数，股价可能腰斩。短期债务8.54亿>货币资金4.67亿，需看经营现金流能否持续强劲。<br>
+  3. 如果现在买入，期待的回报来源是什么？——赌国产替代加速+电子材料放量推动利润翻倍，消化当前高估值。核心条件是2026-2028年利润CAGR保持25%+。<br>
+  4. 什么情况下你会坚决卖出？——营收增速跌破10% / 毛利率趋势性下滑 / 电子材料进展不及预期 / 行业竞争加剧导致份额下降。
+</div>
+
+</div></div>
+
+<div class="footer">
+    免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+    数据来源：呈和科技2025年年报、2026Q1季报、券商研报、理杏仁
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>
