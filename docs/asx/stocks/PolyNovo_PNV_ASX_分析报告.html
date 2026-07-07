@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PolyNovo (PNV) 财务分析报告</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: "Microsoft YaHei","PingFang SC","Helvetica Neue",Arial,sans-serif; color: #1a1a1a; line-height: 1.8; padding: 0; background: #f5f5f5; }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar { position: sticky; top: 0; z-index: 100; display: flex; background: #fff; border-bottom: 2px solid #ddd; overflow-x: auto; white-space: nowrap; }
+  .tab-btn { flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer; border: none; background: #f5f5f5; color: #666; border-right: 1px solid #ddd; transition: all 0.2s; }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 { font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 2px solid #1a1a1a; }
+  h3 { font-size: 15px; margin: 18px 0 8px; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>PolyNovo（PNV）财务分析报告</h1>
+<p class="subtitle">L1 三张报表 + L2 关键指标+排雷 + L3 估值 + L4 杜邦分析 + L5 行业分类 + L6 综合实战</p>
+<p class="meta">分析日期：2026-07-07 | 数据源：PNV FY2025 年报（截至2025.6.30）+ 市场数据 | 代码：PNV.ASX</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>PolyNovo Limited</td></tr>
+  <tr><td>股票代码</td><td>PNV.ASX</td></tr>
+  <tr><td>行业类型</td><td>医疗设备（可降解合成聚合物——烧伤创面修复/重建手术）</td></tr>
+  <tr><td>行业地位</td><td>全球NovoSorb BTM人工皮肤技术领导者，唯一可降解合成真皮替代物</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>A$1.292 亿（+23.3%）</strong></td></tr>
+  <tr><td>FY2025 净利润</td><td><strong>A$1,321 万（+151.2%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>~A$800-1,000 万（估）</strong></td></tr>
+  <tr><td>总资产</td><td>~A$1.3 亿</td></tr>
+  <tr><td>净资产</td><td>~A$8,300 万</td></tr>
+  <tr><td>ROE</td><td>~16%（FY2024: ~7%）</td></tr>
+</table>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">综合L1-L5所有因素打分（高成长医疗设备，FY2025首次实现显著盈利）</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">~16%≥15%，受益于毛利率~70%+</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">高利润型——医药器械典型特征，高毛利低杠杆</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">~0.8（估），资金用于销售团队扩张和新厂建设，在合理范围</td></tr>
+  <tr><td>营收增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+23.3%，连续多年20%+增长</td></tr>
+  <tr><td>利润增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+151.2%，从拐点进入盈利爆发期</td></tr>
+  <tr><td>负债率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">~35%，医疗设备公司低负债</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">现金A$3,350万，几乎零有息负债</td></tr>
+  <tr><td>毛利率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">~70%+，高壁垒技术平台的典型特征</td></tr>
+  <tr><td>估值 PE（10分）</td><td style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">PE 71x严重偏高，但Forward PE 47x和PEG 1.75在成长医疗设备中可接受</td></tr>
+  <tr><td>自由现金流（5分）</td><td style="font-weight:bold;font-size:15px">3</td><td style="text-align:left">新厂建设中FCF短期为负，建成后有望改善</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">87/100</td><td style="text-align:left">品质优秀（87/100分）</td></tr>
+</table>
+
+<div class="verdict verdict-ok">品质优秀（87/100分）</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>PolyNovo 是全球唯一拥有可降解合成真皮替代物（NovoSorb BTM）的公司，用于烧伤创面修复和重建手术。FY2025是里程碑之年——商业销售A$1.186亿（+28.9%），NPAT A$1,321万（+151.2%），首次实现显著盈利。美国市场+28.7%，46个国家销售网络，新产品NovoSorb MTX成功上市。第三工厂建设中，PMA（FDA上市前批准）提交在即。<br><br>
+  <strong>核心优势：</strong>① NovoSorb技术平台全球独家，400+篇临床文献支撑，循证壁垒高；② 营收连续多年20%+高增长，盈利拐点已过；③ 毛利率~70%+验证技术护城河；④ 新适应症拓展空间大（疝气修复/软组织增强/重建手术）。<br><br>
+  <strong>核心风险：</strong>① PE 71x估值极高，复苏已被充分定价；② 股价从A$1.665高点跌至A$0.98（-41%），波动性大（Beta 1.33）；③ 暂未分红，依赖股权融资历史；④ BOA/Acting CEO过渡期管理不确定性。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025 / 截至2025.6.30）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>商业销售</td><td><strong>A$1.186 亿</strong></td><td>A$9,204 万</td><td class="good">+28.9%</td><td class="good">✅ 高增长</td></tr>
+  <tr><td>BARDA 收入</td><td>A$861 万</td><td>A$1,115 万</td><td>-22.8%</td><td class="neutral">临床推进中</td></tr>
+  <tr><td>总收入</td><td><strong>A$1.292 亿</strong></td><td>A$1.048 亿</td><td class="good">+23.3%</td><td class="good">✅ 高增长</td></tr>
+  <tr><td>EBITDA</td><td><strong>A$1,124 万</strong></td><td>A$364 万</td><td class="good">+209.3%</td><td class="good">✅ 大幅改善</td></tr>
+  <tr><td>NPAT（净利润）</td><td><strong>A$1,321 万</strong></td><td>A$526 万</td><td class="good">+151.2%</td><td class="good">✅ 盈利爆发</td></tr>
+  <tr><td>净利率</td><td><strong>10.2%</strong></td><td>5.0%</td><td>+5.2pct</td><td class="good">✅ 显著改善</td></tr>
+  <tr><td>EPS</td><td><strong>1.91c</strong></td><td>0.76c</td><td class="good">+151%</td><td class="good">✅ 大幅提升</td></tr>
+  <tr><td>DPS</td><td>0</td><td>0</td><td>—</td><td class="neutral">未分红</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>FY2025是PNV的盈利拐点年——商业销售+28.9%持续高增长，美国市场贡献A$8,840万（占总收入68%）。净利率从5%提升至10.2%，经营杠杆开始释放。BARDA收入下降是正常波动（临床试验进度相关），不反映商业基本面。关键亮点：单位销售量+40%＞销售金额+28.9% = 单价略降但放量加速，预示市场渗透加深。
+</div>
+
+<h3>2.2 分区域销售</h3>
+<table>
+  <tr><th>区域</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>占比</th><th>评价</th></tr>
+  <tr><td>美国</td><td><strong>A$8,840 万</strong></td><td>A$6,870 万</td><td class="good">+28.7%</td><td>68%</td><td class="good">✅ 核心引擎</td></tr>
+  <tr><td>其他地区（ROW）</td><td><strong>A$3,030 万</strong></td><td>A$2,340 万</td><td class="good">+29.6%</td><td>23%</td><td class="good">✅ 高增长</td></tr>
+  <tr><td>BARDA 临床</td><td>A$861 万</td><td>A$1,115 万</td><td>-22.8%</td><td>7%</td><td class="neutral">过渡性</td></tr>
+  <tr><td>其他收入</td><td>A$188 万</td><td>A$151 万</td><td>—</td><td>1%</td><td class="neutral">—</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>区域解读：</strong>美国68%是核心市场，FDA注册优势显著。ROW 29.6%增长覆盖46个国家（新增5国）。MTX新产品（A$670万）在美国成功上市，为FY2026-27提供增量。日本市场刚签约合作伙伴，尚未贡献实质收入。印度市场+73%但基数小。
+</div>
+
+<h3>2.3 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td><strong>A$3,350 万</strong></td><td class="good">✅ 充裕</td></tr>
+  <tr><td>有息负债</td><td><strong>~零</strong></td><td class="good">✅ 无负债</td></tr>
+  <tr><td>总资产</td><td><strong>~A$1.3 亿</strong></td><td class="neutral">新厂建设增加固定资产</td></tr>
+  <tr><td>净资产</td><td><strong>~A$8,300 万</strong></td><td class="good">✅ 扎实</td></tr>
+  <tr><td>资产负债率</td><td><strong>~35%</strong></td><td class="good">✅ 低</td></tr>
+  <tr><td>存货</td><td>~A$1,500-2,000 万</td><td class="neutral">正常经营需要</td></tr>
+  <tr><td>应收</td><td>~A$2,500-3,000 万</td><td class="neutral">医院账期偏长</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>PNV财务稳健——A$3,350万现金+零有息负债。第三工厂建设接近完工（预计2025年12月），资本开支高峰期即将过去。Chairman明确表示FY2026后大规模资本开支将结束，经营现金流将显著改善。目前资产负债率~35%，几乎没有偿债压力。
+</div>
+
+<h3>2.4 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025（估）</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>~A$800-1,000 万</strong></td><td class="good">✅ 正，但低于净利</td></tr>
+  <tr><td>CFO / 净利润</td><td><strong>~0.6-0.8</strong></td><td class="neutral">增长期公司特征</td></tr>
+  <tr><td>资本开支（capex）</td><td><strong>~A$1,500-2,000 万</strong></td><td class="bad">❌ 第三工厂建设高峰</td></tr>
+  <tr><td>FCF（自由现金流）</td><td><strong>~-A$500-1,000 万</strong></td><td class="bad">❌ 暂时为负</td></tr>
+  <tr><td>现金余额</td><td><strong>A$3,350 万</strong></td><td class="good">✅ 足以支撑</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>FY2025的CFO估计A$800-1,000万，低于净利A$1,321万，反映增长期公司常见特征——营运资本占用（应收+存货增长快于营收）。第三工厂资本开支是短期现金消耗主因。Chairman已表示FY2026后capex将正常化，届时经营现金流有望大幅改善。A$3,350万现金足以支撑当前运营，后续无需融资。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>~16%</strong></td><td>> 15% 优秀</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>毛利率</td><td><strong>~70%+</strong></td><td>稳定或提升</td><td class="good">✅ 高毛利</td></tr>
+  <tr><td>净利率</td><td><strong>10.2%</strong></td><td>> 10%</td><td class="good">✅ 达标且快速改善</td></tr>
+  <tr><td>营收增长率</td><td><strong>+23.3%</strong></td><td>> 10%</td><td class="good">✅ 高增长</td></tr>
+  <tr><td>利润增长率</td><td><strong>+151.2%</strong></td><td>> 15%</td><td class="good">✅ 盈利爆发</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>~0.6-0.8</strong></td><td>> 1.0</td><td class="neutral">⚠ 增长期低于1可接受</td></tr>
+  <tr><td>资产负债率</td><td><strong>~35%</strong></td><td>医疗设备<50%</td><td class="good">✅ 低</td></tr>
+  <tr><td>分红率</td><td><strong>0%</strong></td><td>成长公司可不分红</td><td class="neutral">合理，再投资阶段</td></tr>
+</table>
+
+<h3>3.2 产品线分析</h3>
+<table>
+  <tr><th>产品/驱动</th><th>FY2025</th><th>占比</th><th>同比</th><th>毛利率估</th><th>前景</th></tr>
+  <tr><td>NovoSorb BTM（烧伤创面）</td><td>~A$1.05 亿</td><td>81%</td><td>~+25%</td><td>~70%</td><td class="good">✅ 核心现金牛，美国烧伤市场份额持续提升</td></tr>
+  <tr><td>NovoSorb MTX（新产品）</td><td>~A$670 万</td><td>5%</td><td>N/A（新产品）</td><td>~65%</td><td class="good">✅ FY2024 Q4美上市，成长迅猛</td></tr>
+  <tr><td>BARDA 临床</td><td>A$861 万</td><td>7%</td><td>-22.8%</td><td>N/A</td><td class="neutral">过渡性，PMA提交后结束</td></tr>
+  <tr><td>塑料/重建手术（BTM拓展）</td><td>增长中</td><td>新</td><td>N/A</td><td>~70%</td><td class="good">✅ 适应症拓展，潜力大</td></tr>
+  <tr><td>疝气修复/软组织（在研）</td><td>0</td><td>0%</td><td>N/A</td><td>N/A</td><td class="neutral">早期，长期期权</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>产品线解读：</strong>NovoSorb BTM是核心产品，美国烧伤市场份额持续扩大。MTX是FY2025的增量贡献者（A$670万），目标市场为更广泛的外科手术。PMA提交（计划2025年底）是下一个催化剂——获批后BTM将从"510(k) cleared"升级为"PMA approved"，这是质的飞跃，可直接面对竞争对手Integra的PMA产品。疝气修复/软组织增强是2026+的长期增长期权。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="neutral">🟡 中等</td><td>PE 71x估值极高，当前股价自高点已回落-41%</td><td>L3 估值</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>Acting CEO过渡期，管理层不确定性</td><td>CEO Robyn Elliott为临时代理</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>CFO/净利仅0.6-0.8，增长期现金流质量待改善</td><td>L1 现金流量表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>营收依赖美国市场（68%），单一市场集中风险</td><td>L2 区域分析</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>FCF为负，第三工厂建设后有待转正</td><td>L1 现金流量表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>不支付股息，纯成长博弈型投资</td><td>L2 分红率</td></tr>
+  <tr><td class="good">🟢 正面</td><td>营收连续多年20%+增长，盈利拐点已过</td><td>L1 利润表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>毛利率~70%，技术壁垒高</td><td>L2 产品分析</td></tr>
+  <tr><td class="good">🟢 正面</td><td>零有息负债，A$3,350万现金充足</td><td>L1 资产负债表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>PMA提交在即（2025年底），注册催化剂即将落地</td><td>外部信息</td></tr>
+  <tr><td class="good">🟢 正面</td><td>单位销量+40% > 收入+28.9%，市场渗透正在加速</td><td>L2 关键指标</td></tr>
+</table>
+
+<div class="verdict verdict-ok">✅ L2综合判定：优秀（ROE 16%+营收23%增长+毛利率70%+零负债），但估值偏高</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平（2026年7月）</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>股价</td><td><strong>A$0.98</strong></td><td>52周范围 A$0.865-1.665（自高点-41%）</td></tr>
+  <tr><td>总市值</td><td><strong>~A$6.8 亿</strong></td><td>ASX医疗设备中盘</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>~71x</strong></td><td>基于FY2025 EPS 1.91c</td></tr>
+  <tr><td>Forward PE（FY2026E）</td><td><strong>~47x</strong></td><td>基于一致预期EPS ~2.7c</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~5.0x</strong></td><td>市销率</td></tr>
+  <tr><td>PB</td><td><strong>~8.3x</strong></td><td>基于每股净资产 ~A$0.12</td></tr>
+  <tr><td>PEG（5年）</td><td><strong>~1.75x</strong></td><td>PEG略高于1.5x安全线</td></tr>
+  <tr><td>Beta</td><td><strong>1.33</strong></td><td>高波动</td></tr>
+  <tr><td>股息率</td><td><strong>0%</strong></td><td>不分红</td></tr>
+  <tr><td>分析师目标</td><td><strong>A$1.70</strong></td><td>共识评级 Strong Buy</td></tr>
+</table>
+
+<h3>4.2 PE Band估值区间</h3>
+<p style="font-size:13px;color:#666;">FY2026E一致预期EPS ~2.7c | 成长性医疗设备合理PE 25-50x</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs现价 A$0.98</th></tr>
+  <tr><td>悲观（增长放缓至15%）</td><td>25x FY2026E</td><td>A$0.68</td><td class="bad">-31%</td></tr>
+  <tr><td>保守</td><td>35x FY2026E</td><td>A$0.95</td><td>-3%</td></tr>
+  <tr><td>中性</td><td>45x FY2026E</td><td>A$1.22</td><td class="good">+24%</td></tr>
+  <tr><td>券商目标</td><td>~63x FY2026E</td><td>A$1.70</td><td class="good">+73%</td></tr>
+  <tr><td>当前价</td><td>47x FY2026E</td><td>A$0.98</td><td>—</td></tr>
+  <tr><td>历史高位</td><td>~100x+（FY2024）</td><td>A$1.67</td><td class="good">+70%</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值解读：</strong>PE 71x（TTM）极高，但Forward PE 47x已经大幅收敛。PEG 1.75x略高于1.5x安全线。对比全球同类成长型医疗设备公司（Integra Lifesciences PE ~35x, Smith+Nephew PE ~25x），PNV的估值溢价来自：① NovoSorb技术平台的全球独特性；② PMA批准催化剂；③ 高增长（+29%商业销售）。当前A$0.98距52周高点A$1.665已回落41%，一部分估值泡沫已挤出。
+</div>
+
+<h3>4.3 估值总结</h3>
+<div class="summary-box">
+  <strong>估值总结：</strong>PNV当前A$0.98对应FY2026E PE 47x和PEG 1.75x，在ASX成长股中处于中等偏贵水平。公司基本面优秀（ROE 16%+营收增长23%+毛利率70%），但估值已部分反映了增长预期。关键看FY2026是否能维持25%+的营收增速——若能，35-50x PE区间合理，当前价有上行空间；若增速放缓至15-20%，估值将面临向30-35x PE的收缩。券商共识目标A$1.70（+73%）偏乐观。以35x FY2026E PE为安全边际参考，A$0.68-0.95是较好的建仓区间。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>净利润率</td><td>5.0%</td><td><strong>10.2%</strong></td><td class="good">⬆ 大幅提升（盈利拐点）</td></tr>
+  <tr><td>资产周转率（营收/总资产）</td><td>0.85x</td><td><strong>0.99x</strong></td><td class="good">⬆ 提升（新厂投产前）</td></tr>
+  <tr><td>权益乘数（总资产/净资产）</td><td>1.55x</td><td><strong>1.57x</strong></td><td class="neutral">➡ 基本持平</td></tr>
+  <tr><td><strong>ROE</strong></td><td><strong>~6.6%</strong></td><td><strong>~15.9%</strong></td><td class="good">⬆ 大幅改善</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>4.2%</td><td><strong>10.1%</strong></td><td class="good">⬆ 翻倍</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>~2.4pct</td><td><strong>~5.8pct</strong></td><td class="good">正常水平</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：高利润型（医疗设备的典型特征）</strong><br>
+  ROE从6.6%→15.9%的核心驱动力是净利润率翻倍（5.0%→10.2%），这是经营杠杆释放的结果——营收增长23%而固定成本并未同比例增长。<br><br>
+  <strong>关键观察：</strong>权益乘数仅1.55-1.57x，说明不靠杠杆；去杠杆ROA 10.1%已经是优秀的水平。这是典型的"高利润+低杠杆"高质量ROE结构——每1元资产产生10.1c净利润，乘以~1.57x杠杆后得到15.9% ROE。这种ROE的抗风险能力强（经济下行时去杠杆ROA不会崩塌）。
+</div>
+
+<h3>5.2 核心结论</h3>
+<div class="summary-box">
+  <strong>核心结论：</strong><br>
+  ① ROE 15.9%的质量很高——高利润型（~70%毛利率）+ 低杠杆（1.57x权益乘数），不存在财务扭曲；<br>
+  ② 去杠杆ROA 10.1%是FY2024（4.2%）的2.4倍，说明业务已进入盈利快速改善通道；<br>
+  ③ 随着营收继续增长（+23%）而固定费用增幅放缓，净利率有望从10.2%向15%+提升，带动ROE向20%+迈进；<br>
+  ④ 第三工厂投产后短期拉低周转率，但产能释放后长期将支撑更高的营收规模。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与特征（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：成长性（医疗设备——烧伤创面修复/重建手术）</strong><br>
+  <strong>判断依据：</strong><br><br>
+  ① 全球烧伤创面修复市场规模约A$50亿+AUD，年增速6-8%；NovoSorb BTM是其中唯一的可降解合成真皮替代物，竞品Integra为动物源性（猪胶原），BTM的合成材料优势（无传染病风险、无需二次植皮手术）正在推动快速替代。<br><br>
+  ② 塑料/重建手术适应症拓展将目标市场扩大3-5倍——瘢痕修复、糖尿病足溃疡、软组织重建等是更大的市场。<br><br>
+  ③ 疝气修复/软组织增强为长期期权——全球疝气修复市场规模~A$200亿，虽尚在早期，但NovoSorb的生物相容性和可降解特性具有差异化优势。<br><br>
+  <strong>成长属性：</strong>FY2025商业销售+28.9%，单位销量+40%，连续多年20%+增长——典型高成长医疗设备公司。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th></tr>
+  <tr><td>行业集中度</td><td><strong>小众但PNV占优</strong>——全球合成真皮替代物市场仅PNV（NovoSorb BTM）和Integra（Integra Dermal Regeneration Template）两个主要玩家。Integra是动物源性（猪胶原），PNV是合成可降解聚合物——两者在临床上被视为替代而非完全竞争。</td></tr>
+  <tr><td>技术壁垒</td><td><strong>极高</strong>——NovoSorb专利家族覆盖聚合物组成、制造工艺、临床应用，有效期至2030年代后期。新的竞争者需要10年+研发周期和大量临床数据。400+篇同行评审文献构成循证壁垒。</td></tr>
+  <tr><td>注册壁垒</td><td><strong>极高</strong>——FDA 510(k) cleared（BTM）、PMA提交中（目标2025年底）。在全球46个国家获得注册。注册时间线和临床要求构成显著进入壁垒。</td></tr>
+  <tr><td>客户壁垒</td><td><strong>强</strong>——烧伤外科医生使用习惯一旦建立（学习BTM的操作流程），切换成本高。临床培训+手术技术支持关系粘性强。</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  <strong>阶段：成长期早期（从"技术验证"进入"商业放量"）</strong><br>
+  PNV经历了从技术研发（2010s）→ 临床验证（2018-2022）→ 商业化起步（2023-2024）→ 盈利拐点（FY2025）的完整周期。当前处于"商业放量+盈利改善"阶段。<br><br>
+  <strong>投资策略重点：</strong>① 美国销售团队扩张效果（从~100人到130人）；② 新产品MTX的放量曲线；③ PMA批准进度；④ 新适应症（疝气/软组织）的开发进展。
+</div>
+
+<h3>6.4 成长股成色检验（四步法）</h3>
+<table>
+  <tr><th>步骤</th><th>检验内容</th><th>数据</th><th>判定</th></tr>
+  <tr><td>① 营收</td><td>有没有实在的生意？</td><td>营收A$1.29亿+23.3%，单位销量+40%</td><td class="good">✅ 过关</td></tr>
+  <tr><td>② 毛利率</td><td>产品竞争力如何？</td><td>毛利率~70%+，技术壁垒高</td><td class="good">✅ 过关</td></tr>
+  <tr><td>③ CFO</td><td>能不能自己造血？</td><td>CFO约A$800-1,000万为正，但低于净利</td><td class="neutral">⚠ 勉强过关</td></tr>
+  <tr><td>④ PS</td><td>梦想溢价多少？</td><td>PS 5.0x，<10x合理区间</td><td class="good">✅ 过关</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>四步法结论：</strong>PNV是典型的"真成长股"——有实在的营收和产品，高毛利率（~70%）验证了技术壁垒。CFO虽低于净利但为正，增长期可以接受。PS 5.0x在成长型医疗设备中并不极端（同类公司PS通常在5-10x）。FY2026增长持续性是美国销售团队扩张和MTX放量的函数。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>成长型（医疗设备）</td><td>PS + PEG</td><td>营收增速、毛利率趋势、CFO质量</td><td class="good">✅ 匹配——PS 5.0x合理，PEG 1.75略偏高</td></tr>
+</table>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>成长性（医疗设备-烧伤创面/重建），全球唯一的合成可降解真皮替代物，技术壁垒极高。<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 16%（从6.6%大幅改善），高利润型杜邦（~70%毛利率），CFO/净利~0.8略低于1但可接受。<br>
+  <strong>Step 3 - 估值判断：</strong>PE 71x(TTM)极高，Forward PE 47x偏贵，PEG 1.75x略高。PS 5.0x在成长医疗设备中合理。<br>
+  <strong>Step 4 - 风险排查：</strong>PE估值溢价、Acting CEO过渡、美国市场集中（68%）、FCF暂时为负。<br>
+  <strong>Step 5 - 结论：</strong>好公司（真成长+高壁垒+盈利拐点），当前价合理偏贵，但自高点-41%后风险已释放一部分。<br>
+  <strong>Step 6 - 跟踪：</strong>FY2026H1营收增速是否维持25%+、PMA提交进度、MTX放量情况、新CEO任命。
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>全球烧伤创面修复+重建手术市场结构性增长，合成替代动物源是大趋势</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓</td><td>ROE 16%+毛利率70%+全球独家技术+零负债——符合好公司标准</td></tr>
+  <tr><td>③ 好价格</td><td class="neutral">⚠</td><td>Forward PE 47x偏贵，但PEG 1.75和PS 5.0x尚在成长股容忍范围</td></tr>
+</table>
+
+<h3>7.3 三个陷阱排查</h3>
+<div class="danger-box">
+  <strong>☐ 价值陷阱：</strong>❌ 未命中——高PE+高营收增长+强毛利率，与价值陷阱特征相反。<br>
+  <strong>☐ 周期陷阱：</strong>❌ 未命中——医疗设备是抗周期行业，烧伤手术需求不随经济周期波动。<br>
+  <strong>☐ 烧钱陷阱：</strong>⚠ 部分命中风险——高PE（71x）+高增速（+23%）且CFO低于净利，但CFO为正且现金A$3,350万可支撑，不属于典型烧钱陷阱。
+</div>
+
+<h3>7.4 管理层与治理</h3>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力</td><td class="neutral">需观察</td><td>Acting CEO Dr Robyn Elliott，原为首席医疗官，技术型背景，但CEO交接期带来不确定性</td></tr>
+  <tr><td>股权结构</td><td class="good">强</td><td>无控股股东，管理层持股合理，利益基本一致</td></tr>
+  <tr><td>资本配置</td><td class="good">合理</td><td>聚焦核心业务（NovoSorb平台），第三工厂投资必要，暂不分红合理</td></tr>
+  <tr><td>CEO交接风险</td><td class="neutral">需关注</td><td>找到永久CEO是FY2026关键事项之一</td></tr>
+</table>
+
+<h3>7.5 盈利可持续性</h3>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠什么？</td><td>量+价混合</td><td>单位销量+40% > 收入+28.9% → 量驱动为主</td></tr>
+  <tr><td>涨价能力</td><td class="good">能</td><td>NovoSorb BTM临床价值高，相对Integra有差异化优势，医院议价能力有限</td></tr>
+  <tr><td>大客户集中度</td><td>分散</td><td>46个国家数百家医院，无单一客户依赖</td></tr>
+  <tr><td>政策依赖度</td><td>中</td><td>FDA/TGA注册是必需品，但烧伤治疗属刚需，医保覆盖稳定</td></tr>
+</table>
+
+<h3>7.6 关键变量敏感性</h3>
+<div class="summary-box">
+  <strong>变量1: 美国营收增速</strong><br>
+  乐观: 销售团队扩张+MTX放量 → 增速30%+ → EPS 3.2c+<br>
+  中性: 现有团队效率提升 → 增速25% → EPS 2.7c<br>
+  悲观: 竞争加剧+医院采购收紧 → 增速15% → EPS 2.2c<br><br>
+  <strong>变量2: PMA批准进度</strong><br>
+  乐观: 2026年获批 → 估值重估（PE从45x→60x），股价+30%+<br>
+  中性: 2027年获批 → 维持当前估值<br>
+  悲观: 被要求补充临床数据 → 推迟1-2年 → PE收缩至30-35x，股价-25%
+</div>
+
+<h3>7.7 前景展望</h3>
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. NovoSorb MTX放量——新产品的目标市场（重建手术）是烧伤的2-3倍<br>
+  2. PMA批准——从510(k)升级为PMA，直接挑战Integra，市场份额加速提升<br>
+  3. 新厂建成——资本开支高峰过后FCF转正，利润率持续改善<br><br>
+  <strong>负向拖累：</strong><br>
+  1. CEO过渡期——永久CEO未定，战略延续性待观察<br>
+  2. 美国医院预算压力——高利率环境下医院资本开支可能收紧<br>
+  3. 汇率波动——美国收入68%，AUD走强将压缩AUD收入
+</div>
+
+<h3>7.8 三情景简表</h3>
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>FY2026E EPS</th><th>PE区间</th><th>预期股价</th></tr>
+  <tr><td>乐观</td><td>营收+30%+PMA获批+FCF转正</td><td>3.0-3.5c</td><td>50-60x</td><td>A$1.50-2.10</td></tr>
+  <tr style="background:#f0faf0"><td>中性</td><td>营收+25%+正常运营</td><td>2.5-2.8c</td><td>40-50x</td><td>A$1.00-1.40</td></tr>
+  <tr><td>悲观</td><td>营收+15%+PMA推迟</td><td>2.0-2.3c</td><td>30-35x</td><td>A$0.60-0.80</td></tr>
+</table>
+<p style="font-size:13px;color:#666;margin:6px 0">概率判断：中性 50%，乐观 25%，悲观 25%</p>
+
+<h3>7.9 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——PolyNovo做一种"合成人造皮肤"，烧伤后贴上能不感染、不排异、慢慢被身体吸收，比猪皮做的竞品更好用，卖给全球烧伤科医生赚钱。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——2026年底股价腰斩（从A$1.67到A$0.98）说明什么？是合理的估值修正还是市场在预警基本面变化？CFO/净利0.6-0.8是不是隐藏了应收风险？<br>
+  3. 如果现在买入，期待的回报来源是什么？——营收继续25%+高增长驱动EPS从1.9c到4c+，PMA获批催生估值重估，3年目标A$1.50-2.00（50-100%回报）。<br>
+  4. 什么情况下你会坚决卖出？——营收增速连续两季跌破20% / PMA被FDA拒绝 / 新CEO战略方向大幅调整 / 核心临床数据出现严重不良事件。
+</div>
+
+</div></div>
+
+<div class="footer">
+  免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+  数据来源：PolyNovo FY2025 Annual Report、Stock Analysis、Yahoo Finance、ASX Announcements
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

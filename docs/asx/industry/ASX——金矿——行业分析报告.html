@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ASX——金矿 行业分析报告</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f5f5f5;padding:0;color:#333}
+  .report-wrap{max-width:800px;margin:0 auto;background:#fff}
+  h1{font-size:22px;margin:0;padding:28px 0 4px;text-align:center}
+  h2{font-size:18px;margin:28px 0 12px;border-bottom:2px solid #1a1a1a;padding-bottom:4px}
+  h3{font-size:15px;margin:18px 0 8px}
+  .subtitle{color:#666;font-size:13px;text-align:center;margin-bottom:4px}
+  .meta{color:#999;font-size:12px;text-align:center;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #e0e0e0}
+  .tab-bar{position:sticky;top:0;z-index:10;background:#fff;display:flex;flex-wrap:wrap;border-bottom:2px solid #ddd;gap:0}
+  .tab-btn{padding:10px 14px;cursor:pointer;border:none;background:none;font-size:13px;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+  .tab-btn:hover{color:#333;background:#f9f9f9}
+  .tab-btn.active{color:#1a1a1a;font-weight:700;border-bottom-color:#1a1a1a}
+  .tab-content{display:none}
+  .tab-content.active{display:block}
+  .tab-inner{padding:0 12px}
+  table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:13px}
+  th{background:#f5f5f5;padding:8px 6px;text-align:left;border-bottom:2px solid #ddd;white-space:nowrap;font-weight:600}
+  td{padding:7px 6px;border-bottom:1px solid #eee}
+  tr:nth-child(even) td{background:#fafafa}
+  .summary-box{background:#fffde7;border-left:4px solid #f9a825;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .highlight-box{background:#e3f2fd;border-left:4px solid #1e88e5;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .danger-box{background:#ffebee;border-left:4px solid #e53935;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .verdict{text-align:center;padding:20px;margin:16px 0;border-radius:8px;font-size:18px;font-weight:700}
+  .verdict-ok{background:#e8f5e9;border:2px solid #4caf50;color:#2e7d32}
+  .verdict-caution{background:#fff3e0;border:2px solid #ff9800;color:#e65100}
+  .verdict-bad{background:#ffebee;border:2px solid #e53935;color:#c62828}
+  .score{font-size:36px;display:block;margin-bottom:4px}
+  .pass{color:#2e7d32;font-weight:700}
+  .skip{color:#666;font-style:italic}
+  .tag{display:inline-block;padding:2px 8px;border-radius:3px;font-size:11px;font-weight:700}
+  .tag-red{background:#ffebee;color:#c62828}
+  .tag-green{background:#e8f5e9;color:#2e7d32}
+  .tag-yellow{background:#fff8e1;color:#f57f17}
+  .footer{font-size:11px;color:#aaa;text-align:center;padding:24px 0 8px;border-top:1px solid #eee;margin-top:30px}
+  .card{background:#fafafa;border:1px solid #e0e0e0;border-radius:6px;padding:14px;margin:10px 0;font-size:13px}
+  .flex{display:flex;flex-wrap:wrap;gap:8px}
+  .tbl-wrap{border:1px solid #e0e0e0;border-radius:6px;overflow:hidden;margin:10px 0 18px}
+  .tbl-wrap table{margin:0}
+  .tbl-wrap th{background:#f5f5f5;padding:9px 8px;border-bottom:1px solid #ddd;font-weight:600;font-size:12px}
+  .tbl-wrap td{padding:8px;border-bottom:1px solid #f0f0f0;font-size:13px}
+  .tbl-wrap tr:last-child td{border-bottom:none}
+  .tbl-wrap td,.tbl-wrap th{vertical-align:middle}
+  .bar-wrap{display:inline-flex;align-items:center;width:60px;height:16px;vertical-align:middle}
+  .bar-bg{background:#eee;border-radius:4px;height:8px;width:100%;overflow:hidden}
+  .bar{display:block;height:8px;border-radius:4px}
+  .score-cell{font-weight:700;font-size:15px;text-align:center;white-space:nowrap}
+  .col-tag{display:inline-block;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600}
+  .col-win{background:#e8f5e9;color:#2e7d32}
+  .col-lose{background:#ffebee;color:#c62828}
+  .col-warn{background:#fff3e0;color:#e65100}
+  .col-info{background:#e3f2fd;color:#1565c0}
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>ASX——金矿 行业分析报告</h1>
+<div class="subtitle">L5分类：纯周期 ｜ 上市公司：~168只（GICS Gold） ｜ 总市值：~3,500亿AUD</div>
+<div class="meta">生成日期：2026-07-07</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l7">L7 量化初筛</button>
+  <button class="tab-btn" data-tab="l8">L8 行业画像</button>
+  <button class="tab-btn" data-tab="l9">L9 竞争格局</button>
+  <button class="tab-btn" data-tab="l10">L10 周期时机</button>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     总结论 Tab
+     ═══════════════════════════════════════════════════ -->
+<div class="tab-content active" id="tab-summary">
+<div class="tab-inner">
+
+<h2>行业速览</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">项目</th><th>内容</th></tr>
+<tr><td>行业名称</td><td><strong>金矿（Gold Mining）</strong></td></tr>
+<tr><td>市场</td><td>ASX</td></tr>
+<tr><td>L5分类</td><td><span class="col-tag col-win">纯周期</span> 全球定价商品，利润随金价大幅波动</td></tr>
+<tr><td>上市公司</td><td>~168只（GICS Gold），其中符合L7筛选条件<span class="col-tag col-win">6只</span></td></tr>
+<tr><td>行业总市值</td><td>~3,500亿AUD（含NEM双上市）</td></tr>
+<tr><td>产业链利润核心</td><td><span class="col-tag col-win">金矿开采（上游）</span> 金价-AISC差价决定利润</td></tr>
+<tr><td>生命周期阶段</td><td><span class="col-tag col-warn">成熟期</span> 全球金矿产量增速放缓但价格中枢上移</td></tr>
+<tr><td>当前周期位置</td><td><span class="col-tag col-lose">调整期</span> 2026Q2金价回调14%，从历史高点回落</td></tr>
+</table>
+</div>
+
+<h2>综合评分</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>维度</th><th style="width:60px">得分</th><th>进度</th><th>说明</th></tr>
+<tr>
+  <td>行业规模与空间</td>
+  <td class="score-cell">15/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:75%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">全球第二大黄金生产国，年产量~340吨，ASX拥有全球最丰富的金矿上市池</td>
+</tr>
+<tr>
+  <td>产业链位置</td>
+  <td class="score-cell">12/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:80%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">纯上游开采，利润直接挂钩金价；无下游加工环节的弹性</td>
+</tr>
+<tr>
+  <td>竞争格局</td>
+  <td class="score-cell">14/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:70%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">NST+EVN双寡头占据>40%产值，但大量小矿企分散，格局不及铁矿石集中</td>
+</tr>
+<tr>
+  <td>增长驱动力</td>
+  <td class="score-cell">10/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:67%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">长期看央行购金+去美元化+避险需求，短期受加息预期压制</td>
+</tr>
+<tr>
+  <td>周期位置</td>
+  <td class="score-cell">10/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:67%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">2025年大涨70%后Q2回调14%，当前处于回调中段，非底部也非顶部</td>
+</tr>
+<tr>
+  <td>政策环境</td>
+  <td class="score-cell">11/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:73%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">澳洲矿业政策稳定，西澳矿业审批高效；全球央行购金提供结构性支撑</td>
+</tr>
+<tr style="background:#fafafa">
+  <td style="font-weight:700;font-size:14px">总分</td>
+  <td style="font-weight:700;font-size:16px;color:#e65100">72/100</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:72%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555;font-weight:600">值得关注</td>
+</tr>
+</table>
+</div>
+
+<div class="verdict verdict-caution">
+  <span class="score">72</span>
+  值得关注——等待更好的入场时机
+</div>
+
+<div class="summary-box">
+  <strong>核心结论</strong><br>
+  ASX金矿是全球最优质的黄金投资池之一。澳洲是全球第二大产金国，拥有NST、EVN两家世界级纯金矿商，以及PRU、GMD等优质中型生产商。2025年黄金牛市（+70%）后Q2 2026出现大幅回调（-14%），当前金价~A$5,800-6,000/oz，远高于各大矿商AISC（$2,600-2,800/oz），行业整体盈利仍然丰厚但较2025年高点明显压缩。<br><br>
+  <strong>核心判断：</strong>黄金长期牛市逻辑未破（央行购金、去美元化、地缘政治风险），但短期面临"higher-for-longer"利率压力。当前不适合满仓冲，适合采用"分批建仓+定投"策略，在回调中逐步积累优质标的。对持有VAS的投资者来说，金矿股是VAS中低配（VAS金矿权重不到3%）的优质补充，可提供与大盘低相关的多元化收益。
+</div>
+
+<div class="highlight-box">
+  <strong>行业公式</strong><br>
+  盈利 = （金价 - AISC）× 产量<br>
+  关键指标：金价（AUD/oz）、AISC（All-In Sustaining Cost）、产量指引、资源量/储量更新、净现金/负债<br>
+  <strong>核心跟踪：</strong>①美元金价 ②AUD/USD汇率 ③美联储利率路径 ④全球央行购金量 ⑤矿商AISC趋势
+</div>
+
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     L7 Tab
+     ═══════════════════════════════════════════════════ -->
+<div class="tab-content" id="tab-l7">
+<div class="tab-inner">
+
+<h2>筛子调整说明</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:12%">筛子</th><th style="width:35%">标准</th><th>调整说明</th></tr>
+<tr><td>①<span class="col-tag col-info">市值</span></td><td>≥2亿AUD</td><td>ASX标准，168只金矿股中约90%被筛除</td></tr>
+<tr><td>②<span class="col-tag col-info">营收</span></td><td>≥1亿AUD</td><td>ASX标准，排除未投产的勘探公司</td></tr>
+<tr><td>③<span class="col-tag col-info">毛利率</span></td><td>跳过此筛</td><td><span class="col-tag col-info">ASX矿业跳过毛利率筛</span></td></tr>
+<tr><td>④<span class="col-tag col-warn">ROE</span></td><td>≥5%保留</td><td>矿业ROE放宽到5%，排除长期资本毁灭型公司</td></tr>
+<tr><td>⑤<span class="col-tag col-info">负债率</span></td><td>跳过此筛</td><td><span class="col-tag col-info">金矿公司常有项目融资负债，经营风险更关键</span></td></tr>
+<tr><td>⑥<span class="col-tag col-info">估值</span></td><td>PB历史分位≤80%</td><td>周期股用PB替代PE，高位不追</td></tr>
+</table>
+</div>
+
+<h2>候选池（6只）</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>环节</th><th>市值</th><th>AISC</th><th>ROE</th><th>负债率</th><th>PB分位</th><th>通过</th></tr>
+<tr>
+  <td><strong>Northern Star NST</strong></td>
+  <td><span class="col-tag col-win">大型产金</span></td>
+  <td style="font-weight:600">$290亿</td>
+  <td><span class="col-tag col-warn">$2,709/oz</span></td>
+  <td><span class="col-tag col-win">~15%</span></td>
+  <td>~25%</td>
+  <td><span class="col-tag col-warn">65%</span></td>
+  <td class="pass">4/4</td>
+</tr>
+<tr>
+  <td><strong>Evolution Mining EVN</strong></td>
+  <td><span class="col-tag col-win">大型产金</span></td>
+  <td style="font-weight:600">$260亿</td>
+  <td><span class="col-tag col-warn">$2,650/oz</span></td>
+  <td><span class="col-tag col-win">~12%</span></td>
+  <td>~30%</td>
+  <td><span class="col-tag col-warn">70%</span></td>
+  <td class="pass">4/4</td>
+</tr>
+<tr>
+  <td><strong>Perseus Mining PRU</strong></td>
+  <td><span class="col-tag col-win">中型产金</span></td>
+  <td>$68亿</td>
+  <td><span class="col-tag col-win">US$1,680/oz</span></td>
+  <td><span class="col-tag col-win">~18%</span></td>
+  <td>~5%</td>
+  <td><span class="col-tag col-win">40%</span></td>
+  <td class="pass">4/4</td>
+</tr>
+<tr>
+  <td><strong>Genesis Minerals GMD</strong></td>
+  <td><span class="col-tag col-win">中型产金</span></td>
+  <td>$62亿</td>
+  <td><span class="col-tag col-win">$2,614/oz</span></td>
+  <td><span class="col-tag col-win">~20%</span></td>
+  <td>~0%</td>
+  <td><span class="col-tag col-warn">55%</span></td>
+  <td class="pass">4/4</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>Ramelius Resources RMS</td>
+  <td><span class="col-tag col-warn">中型产金</span></td>
+  <td>$25亿</td>
+  <td><span class="col-tag col-warn">$2,750/oz</span></td>
+  <td><span class="col-tag col-win">~10%</span></td>
+  <td>~15%</td>
+  <td><span class="col-tag col-win">45%</span></td>
+  <td class="pass">4/4</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>Regis Resources RRL</td>
+  <td><span class="col-tag col-warn">中型产金</span></td>
+  <td>$20亿</td>
+  <td><span class="col-tag col-warn">$2,800/oz</span></td>
+  <td><span class="col-tag col-win">~8%</span></td>
+  <td>~20%</td>
+  <td><span class="col-tag col-win">35%</span></td>
+  <td class="pass">4/4</td>
+</tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <strong>L7筛选结论</strong><br>
+  168只金矿股经4道筛子（市值+营收+ROE+PB估值）仅剩6只核心候选。金矿行业两极分化极严重：~90%公司因市值<2亿或未投产被筛除，剩余10%中又有一半因ROE<5%或PB估值过高被剔除。最终6只候选池全是已投产、有正现金流、估值相对合理的成熟金矿生产商。<br><br>
+  <strong>特别注意：</strong>NEM（Newmont）虽然是全球最大金矿公司（市值~A$1,620亿），但主要上市地为NYSE，ASX为CDI挂牌，且其PB分位偏高（>80%），故未列入主要候选池。适合作为美股仓位而非ASX仓位配置。
+</div>
+
+<h2>筛除记录</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>筛子</th><th style="width:60px">筛除数</th><th>知名示例</th></tr>
+<tr><td>①市值 < 2亿AUD</td><td style="text-align:center">~130只</td><td>大量勘探期小矿企（DTR, PNR, FFM等）</td></tr>
+<tr><td>②营收 < 1亿AUD</td><td style="text-align:center">~20只</td><td>De Grey Mining DEG（开发阶段，未投产）</td></tr>
+<tr><td>③毛利率</td><td style="text-align:center"><span class="col-tag col-info">跳过</span></td><td>矿业不适用毛利率筛</td></tr>
+<tr><td>④ROE < 5%</td><td style="text-align:center">~8只</td><td>Westgold WGX（ROE偏低），St Barbara SBM</td></tr>
+<tr><td>⑤负债率</td><td style="text-align:center"><span class="col-tag col-info">跳过</span></td><td>矿业不适用负债率筛</td></tr>
+<tr><td>⑥PB历史分位 > 80%</td><td style="text-align:center">~4只</td><td>Newmont NEM（PB分位偏高），Gold Road GOR</td></tr>
+<tr style="background:#fffde7"><td><strong>剩余</strong></td><td style="text-align:center;font-weight:700;color:#2e7d32"><strong>6只</strong></td><td>NST, EVN, PRU, GMD, RMS, RRL</td></tr>
+</table>
+</div>
+
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     L8 Tab
+     ═══════════════════════════════════════════════════ -->
+<div class="tab-content" id="tab-l8">
+<div class="tab-inner">
+
+<h2>产业链</h2>
+<div class="card" style="font-size:13px;line-height:1.7">
+
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px">
+
+<div style="flex:1;min-width:160px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#c62828;font-size:14px">上游勘探</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">矿产勘探/绿地项目</div>
+    <div style="text-align:center;font-size:11px;color:#666">DEG, GGP, BGL, PDI</div>
+    <div style="margin:10px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">矿山开发/建设</div>
+    <div style="text-align:center;font-size:11px;color:#666">BGL, DEG, SX2</div>
+  </div>
+</div>
+
+<div style="flex:2;min-width:280px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#1565c0;font-size:14px">中游开采</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap">
+      <div style="flex:1;min-width:80px;background:#e8f5e9;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">露天开采</div>
+        <div style="font-size:10px;color:#666">NST(KCGM), EVN</div>
+      </div>
+      <div style="font-size:20px;color:#999;line-height:36px">→</div>
+      <div style="flex:1;min-width:80px;background:#e8f5e9;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">地下开采</div>
+        <div style="font-size:10px;color:#666">NST(Pogo), PRU</div>
+      </div>
+      <div style="font-size:20px;color:#999;line-height:36px">→</div>
+      <div style="flex:1;min-width:80px;background:#e8f5e9;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">加工/选冶</div>
+        <div style="font-size:10px;color:#666">NST, EVN, RMS</div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:11px;color:#1565c0;margin-bottom:10px">▲ 此环节产生最大利润（金价-AISC）</div>
+
+    <div style="margin:6px 0 4px;font-weight:600;font-size:12px;color:#1565c0">辅助/服务环节</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">矿业设备/耗材</div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">矿山服务</div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">地质/咨询</div>
+    </div>
+  </div>
+</div>
+
+<div style="flex:1;min-width:160px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#c62828;font-size:14px">下游销售</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:10px 8px;text-align:center;font-weight:600;font-size:13px">黄金精炼/销售</div>
+    <div style="text-align:center;font-size:11px;color:#666">Perth Mint, ABC Refinery</div>
+    <div style="margin:10px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#f5f5f5;border:1px solid #ccc;border-radius:4px;padding:10px 8px;text-align:center;font-weight:600;font-size:13px;color:#333">终端需求</div>
+    <div style="text-align:center;font-size:11px;color:#666">央行储备(30%) | 珠宝(40%) | 投资(25%) | 工业(5%)</div>
+  </div>
+</div>
+
+</div>
+
+<div style="background:#fffde7;border-left:3px solid #f9a825;padding:8px 12px;font-size:12px;border-radius:0 4px 4px 0">
+  <strong>利润最厚环节：</strong>矿山开采运营（中游）——金矿公司的核心竞争力在于低成本开采。成本控制（AISC）比金价本身对盈利能力的影响更大。<br>
+  <span style="color:#999">注意：金矿产业链极短，上游勘探风险极高，下游精炼属于低利润加工环节，真正创造价值的是"低成本把金子从地下挖出来"这个环节。</span>
+</div>
+
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>环节</th><th>代表公司</th><th>毛利率</th><th>集中度</th><th>议价能力</th></tr>
+<tr>
+  <td><span class="col-tag col-lose">勘探/开发</span></td>
+  <td>DEG, BGL, GGP</td>
+  <td><span class="col-tag col-lose">负值（无营收）</span></td>
+  <td>极度分散</td>
+  <td><span class="col-tag col-lose">无</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-win">矿山开采</span></td>
+  <td>NST, EVN, PRU</td>
+  <td><span class="col-tag col-win">30-50%（取决于金价）</span></td>
+  <td>NST+EVN占~40%产值</td>
+  <td><span class="col-tag col-win">强（金价接受者）</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-warn">精炼/销售</span></td>
+  <td>Perth Mint</td>
+  <td><span class="col-tag col-warn">2-5%</span></td>
+  <td>高度集中</td>
+  <td><span class="col-tag col-lose">弱</span></td>
+</tr>
+</table>
+</div>
+
+<h2>市场规模</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">指标</th><th style="width:25%">数值</th><th>说明</th></tr>
+<tr><td><strong>TAM</strong>（全球黄金市场）</td><td><span class="col-tag col-info">~US$18万亿（存量）</span></td><td>~20万吨地上存量，年新产~3,600吨</td></tr>
+<tr><td><strong>澳洲年产量</strong></td><td>~340吨（2025-26）</td><td>全球第二，仅次于中国，预计2026-27升至369吨</td></tr>
+<tr><td><strong>近年金价增速（3年CAGR）</strong></td><td><span class="col-tag col-win">~15%</span></td><td>2023-2026年，受益于央行购金+去美元化趋势</td></tr>
+<tr><td><strong>ASX金矿总市值</strong></td><td><span class="col-tag col-info">~3,500亿AUD</span></td><td>占ASX总市值~12%，仅次于银行和多元化矿业</td></tr>
+</table>
+</div>
+
+<h2>生命周期</h2>
+<div class="summary-box">
+  <strong><span class="col-tag col-warn">成熟期</span>（但处于超级价格周期中）</strong><br>
+  全球黄金开采技术已非常成熟，行业没有颠覆性技术变革。澳洲金矿品位长期下降（从1990年代的~5g/t降至现在的~1.5g/t），但金价上涨完全抵消了品位下降的影响。<br><br>
+  行业当前的核心特征不是"成长"而是"价值重估"——在金价上涨推动下，矿商现金流暴增、负债率下降、分红提升。这是一个<strong>价格驱动的利润周期</strong>，而非产量驱动的成长故事。
+</div>
+
+<h2>增长驱动力</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动力</th><th>类型</th><th>可持续性</th><th>量化指标</th></tr>
+<tr>
+  <td>全球央行购金（去美元化）</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长（5-10年+）</span></td>
+  <td>央行季度购金量（吨）</td>
+</tr>
+<tr>
+  <td>实际利率下行/降息预期</td>
+  <td><span class="col-tag col-lose">周期</span></td>
+  <td><span class="col-tag col-warn">中（1-3年）</span></td>
+  <td>美国实际利率、Fed Funds Rate</td>
+</tr>
+<tr>
+  <td>地缘政治避险需求</td>
+  <td><span class="col-tag col-warn">结构+周期</span></td>
+  <td><span class="col-tag col-warn">中（3-5年）</span></td>
+  <td>全球冲突指数、VIX</td>
+</tr>
+<tr>
+  <td>AUD/USD汇率弱势</td>
+  <td><span class="col-tag col-lose">周期</span></td>
+  <td><span class="col-tag col-warn">中（1-3年）</span></td>
+  <td>AUD/USD汇率</td>
+</tr>
+<tr>
+  <td>矿商产量增长（并购+扩产）</td>
+  <td><span class="col-tag col-win">结构（个股）</span></td>
+  <td><span class="col-tag col-warn">中（2-5年）</span></td>
+  <td>产量指引、资源量/储量增长</td>
+</tr>
+</table>
+</div>
+
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     L9 Tab
+     ═══════════════════════════════════════════════════ -->
+<div class="tab-content" id="tab-l9">
+<div class="tab-inner">
+
+<h2>市场结构</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>市场结构类型</td>
+  <td><span class="col-tag col-warn">垄断竞争</span> 双寡头（NST+EVN）领跑 + 大量中小型矿企</td>
+</tr>
+<tr>
+  <td>CR3（前3大产值占比）</td><td>~50%（NST: 25%, EVN: 20%, PRU: 5%）</td>
+</tr>
+<tr>
+  <td>格局象限</td>
+  <td><span class="col-tag col-warn">分层竞争</span> 龙头靠规模和成本优势，小矿企靠高品位/低AISC生存</td>
+</tr>
+<tr>
+  <td>新进入者威胁</td>
+  <td><span class="col-tag col-win">小</span> 极高资本门槛+审批周期7-10年+技术壁垒</td>
+</tr>
+</table>
+</div>
+
+<div class="summary-box">
+  <strong>ASX金矿分层格局</strong><br>
+  <strong>第一梯队（市值>200亿AUD）：</strong>NST、EVN —— 年产量100万oz+，多矿区运营，机构重仓<br>
+  <strong>第二梯队（市值50-100亿AUD）：</strong>PRU、GMD —— 高增长，低成本，资产负债表干净<br>
+  <strong>第三梯队（市值20-50亿AUD）：</strong>RMS、RRL、WGX、GOR —— 区域性运营，中等规模<br>
+  <strong>第四梯队（<20亿AUD）：</strong>DEG、BGL、KCN、SBM等 —— 开发/早期生产阶段，高风险<br>
+  <strong>勘探层：</strong>100+只微盘勘探公司 —— 极低成功率，不适合L1-L6框架
+</div>
+
+<h2>竞争壁垒</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>壁垒类型</th><th>强度</th><th>可持续性</th><th>具体表现</th></tr>
+<tr>
+  <td>矿权/资源量壁垒</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长（10年+）</span></td>
+  <td>优质矿权有限，NST拥有~89Moz资源量，新发现成本极高</td>
+</tr>
+<tr>
+  <td>资本壁垒</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>新建金矿需10-30亿AUD资本开支，审批7-10年</td>
+</tr>
+<tr>
+  <td>运营经验壁垒</td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>优秀矿山管理团队稀缺，但可被竞业挖角</td>
+</tr>
+<tr>
+  <td>成本控制能力</td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>AISC差异显著，但技术可复制</td>
+</tr>
+</table>
+</div>
+
+<div class="summary-box">
+  <strong>定价权测试</strong><br>
+  🔹 龙头能涨价吗？<span class="col-tag col-lose">不能</span> 理由：金矿公司是价格接受者，金价由全球市场决定<br>
+  🔹 毛利率趋势：<span class="col-tag col-warn">跟随金价波动</span> 2025年高，2026Q2回落<br>
+  🔹 ROE趋势：<span class="col-tag col-warn">跟随金价波动</span> 2025年15-25%，2026年可能回落至10-15%
+</div>
+
+<h2>驱动力拆解</h2>
+<div class="highlight-box">
+  <strong>行业收入公式</strong><br>
+  收入 = 产量（oz） × 金价（AUD/oz）<br><br>
+  当前组合：<span style="color:#c62828;font-weight:700">量 →</span> ＋ <span style="color:#c62828;font-weight:700">价 ↓</span> ＝ <span class="col-tag col-warn">量稳价跌</span><br><br>
+  <strong>利润公式：</strong>利润 = （金价 - AISC）× 产量<br>
+  金价$6,000/oz - AISC $2,700/oz = 每盎司利润 $3,300（仍为健康水平，但较2025年高点$5,000+/oz明显压缩）
+</div>
+
+<h2>成本结构</h2>
+<div class="summary-box">
+  🔹 <strong>类型：</strong><span class="col-tag col-lose">重资产</span> 矿山设备、选厂、尾矿库等固定投资巨大<br>
+  🔹 <strong>成本敏感性：</strong>AISC中约40%为人工+能源成本，20%为耗材（炸药、钢球等），澳元汇率直接影响成本<br>
+  🔹 <strong>盈亏平衡点：</strong>澳洲金矿全行业平均AISC ~$2,600-2,800/oz，当前金价仍在其2倍以上，安全垫充足
+</div>
+
+<h2>竞争格局总结</h2>
+<div class="highlight-box">
+  ASX金矿的竞争格局可以概括为"两头大中间小"：NST和EVN两个龙头凭借规模优势和资产组合独占鳌头，但远未达到寡头垄断的程度（合计~45%市值）。中间层PRU、GMD正在快速追赶，而100+只小矿企几乎可以忽略不计。<br><br>
+  核心护城河不是技术或品牌，而是<strong>低成本矿权+运营效率</strong>。谁能在金价低迷时保持低AISC，谁就能穿越周期。NST的KCGM Super Pit（全球最大露天金矿之一）和EVN的Cowal/Red Lake是核心资产，难以复制。
+</div>
+
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     L10 Tab
+     ═══════════════════════════════════════════════════ -->
+<div class="tab-content" id="tab-l10">
+<div class="tab-inner">
+
+<h2>周期位置</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>黄金价格周期阶段</td>
+  <td><span class="col-tag col-warn">回调期（牛市中继回调）</span> 2025年暴涨70%后2026Q2回调14%，从$7,700回落至~$5,800-6,000 AUD/oz</td>
+</tr>
+<tr>
+  <td>金价vs行业AISC</td>
+  <td><span class="col-tag col-win">仍远高于成本线</span> 金价$6,000 vs AISC $2,700，利润率~55%（健康但非暴利）</td>
+</tr>
+<tr>
+  <td>行业盈利状态</td>
+  <td><span class="col-tag col-win">全面盈利</span> 所有候选池公司在当前金价下均盈利</td>
+</tr>
+<tr>
+  <td>市场情绪</td>
+  <td><span class="col-tag col-warn">恐惧/谨慎</span> Q2回调后投资者从狂热转为观望，VIX维持高位</td>
+</tr>
+</table>
+</div>
+
+<div class="danger-box">
+  <strong>⚠ PE悖论检查</strong><br>
+  行业PE（以NST为代表）：当前~17.2x ｜ 过去5年PE区间：12x - 28x<br>
+  PE分位：~55% ｜ PB分位：~65%<br>
+  说明：PE/PB均处于历史中位，不算便宜也不算贵。黄金股PE在金价下跌时容易快速走高（盈利下降），这是正常的周期特征而非价值陷阱。更适合用PB估值。
+</div>
+
+<h2>估值水平（候选池汇总）</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>估值指标</th><th>行业平均</th><th>历史中位数</th><th>80%分位</th><th>20%分位</th></tr>
+<tr>
+  <td><strong>PE（TTM）</strong></td>
+  <td><span class="col-tag col-warn">16x</span></td>
+  <td>18x</td><td>25x</td><td>12x</td>
+</tr>
+<tr>
+  <td><strong>PB</strong></td>
+  <td><span class="col-tag col-warn">2.2x</span></td>
+  <td>2.0x</td><td>3.0x</td><td>1.2x</td>
+</tr>
+<tr>
+  <td><strong>EV/EBITDA</strong></td>
+  <td><span class="col-tag col-warn">8x</span></td>
+  <td>9x</td><td>13x</td><td>5x</td>
+</tr>
+</table>
+</div>
+
+<h2>政策环境</h2>
+<div class="summary-box">
+  🔹 <strong>政策方向：</strong><span class="col-tag col-win">利好</span><br>
+  🔹 <strong>关键因素：</strong><br>
+  &emsp;• 澳洲矿业政策稳定，西澳州政府支持矿业开发<br>
+  &emsp;• 全球央行（中国、印度、波兰等）持续增持黄金，2025年购金量创~1,000吨新高<br>
+  &emsp;• 美联储"higher-for-longer"利率抑制金价短期表现<br>
+  &emsp;• AUD/USD若持续弱势（当前~0.688），对澳元计价金价构成支撑<br>
+  🔹 <strong>政策周期位置：</strong><span class="col-tag col-warn">中性期</span> 货币政策紧缩末期但尚未转向宽松
+</div>
+
+<h2>买入清单</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:28%">条件</th><th style="width:16%">结果</th><th>备注</th></tr>
+<tr>
+  <td>周期位置：不在繁荣顶点</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td>自$7,700高点已回调~22%，但可能尚未见底。黄金牛市中20-30%的回调是正常现象</td>
+</tr>
+<tr>
+  <td>估值：PB在历史偏低分位</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td>PB 2.2x处于历史中位（60%分位），不算低估。PRU（40%分位）相对便宜</td>
+</tr>
+<tr>
+  <td>政策：不是收紧期</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>澳洲矿业政策稳定，无限制性政策风险</td>
+</tr>
+<tr>
+  <td>格局：龙头壁垒稳固</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>NST/EVN矿权质量高、运营经验强、新进入者难</td>
+</tr>
+<tr>
+  <td>增长：有可见驱动力</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>央行购金+去美元化为长期结构支撑，短期利率压力终将消退</td>
+</tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <div style="font-size:16px;font-weight:700;margin-bottom:8px">综合判断：<span class="col-tag col-warn" style="font-size:15px">分批建仓，等待更佳买点</span></div>
+  <div style="margin-bottom:6px">金矿长期牛市逻辑完好，但短期面临利率高企和金价回调的双重压力。当前PB/PB处于历史中位，非最佳买入时机但也不极端昂贵。建议采用"分批建仓+价格定投"策略，在回调中逐步积累仓位。</div>
+  <table style="font-size:12px;margin:6px 0;border:none;background:transparent">
+    <tr><td style="border:none;padding:3px 6px;background:transparent;width:90px;font-weight:600">预期回报</td><td style="border:none;padding:3px 6px;background:transparent">金价恢复+产量增长+股息（主要NST/EVN有~2-3% franking credit股息）</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">仓位建议</td><td style="border:none;padding:3px 6px;background:transparent"><span class="col-tag col-warn">组合的5-10%（作为VAS的补充）</span></td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">跟踪指标</td><td style="border:none;padding:3px 6px;background:transparent">金价AUD/oz、美联储会议、央行购金数据、各公司季度产量和AISC</td></tr>
+  </table>
+  <div style="margin-top:8px;padding:8px;background:#e8f5e9;border-radius:4px;font-size:12px">
+    <strong>买入策略：</strong><br>
+    <span class="col-tag col-win">核心仓位（60%）</span>：NST（首选）+ EVN（次选）—— 流动性好、机构覆盖充分、股息稳定<br>
+    <span class="col-tag col-win">卫星仓位（40%）</span>：PRU（低估值+无负债）或 GMD（高增长+零负债）<br>
+    <span class="col-tag col-info">定投策略</span>：金价每跌$300-500 AUD/oz加一次仓，分3-5次建仓完毕
+  </div>
+</div>
+
+<h2>卖出信号</h2>
+<div class="danger-box">
+  <strong>出现以下信号考虑卖出：</strong><br>
+  <div style="margin-top:6px">
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px">1</span>
+    AISC持续上升接近金价（利润率<20%）—— 成本失控信号<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">2</span>
+    全球央行从净买入转为净卖出黄金 —— 去美元化趋势逆转<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">3</span>
+    PB分位升破80%（当前60%）+ 金价处于历史高点 —— 周期顶部信号<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">4</span>
+    个股层面：资源量/储量连续2年下降、股息削减、管理层频繁变动
+  </div>
+</div>
+
+</div>
+</div>
+
+<div class="footer">Generated by Industry Analysis · L7-L10 Framework · Stock Selection</div>
+
+</div>
+
+<script>
+var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+var contents = document.querySelectorAll('.tab-content');
+btns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    contents.forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    var tab = btn.getAttribute('data-tab');
+    document.getElementById('tab-' + tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

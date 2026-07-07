@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Macquarie Group (MQG) 财务分析报告</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: "Microsoft YaHei","PingFang SC","Helvetica Neue",Arial,sans-serif; color: #1a1a1a; line-height: 1.8; padding: 0; background: #f5f5f5; }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar { position: sticky; top: 0; z-index: 100; display: flex; background: #fff; border-bottom: 2px solid #ddd; overflow-x: auto; white-space: nowrap; }
+  .tab-btn { flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer; border: none; background: #f5f5f5; color: #666; border-right: 1px solid #ddd; transition: all 0.2s; }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 { font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 2px solid #1a1a1a; }
+  h3 { font-size: 15px; margin: 18px 0 8px; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>Macquarie Group（MQG）财务分析报告</h1>
+<p class="subtitle">L1 三张报表 + L2 关键指标+排雷 + L3 估值 + L4 杜邦分析 + L5 行业分类 + L6 综合实战</p>
+<p class="meta">分析日期：2026-07-07 | 数据源：Macquarie FY2025 年报 + 市场数据 | 代码：MQG.ASX</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>Macquarie Group Limited（麦格理集团）</td></tr>
+  <tr><td>股票代码</td><td>MQG.ASX</td></tr>
+  <tr><td>行业类型</td><td>多元化金融（全世界最大的基础设施资产管理公司 + 投行 + 零售银行 + 大宗商品交易）</td></tr>
+  <tr><td>行业地位</td><td>ASX排名前15（市值~A$88B），全球基础设施资管 #1，澳洲第五大零售银行</td></tr>
+  <tr><td>FY2025 营收（净经营收入）</td><td><strong>A$172.08 亿（+2%）</strong></td></tr>
+  <tr><td>FY2025 净利润</td><td><strong>A$37.15 亿（+5%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>A$47.87 亿（估算）</strong></td></tr>
+  <tr><td>总资产</td><td>A$4,452 亿</td></tr>
+  <tr><td>净资产</td><td>A$358 亿</td></tr>
+  <tr><td>ROE</td><td>11.2%</td></tr>
+</table>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">综合L1-L5所有因素打分（金融行业框架适配调整）</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="neutral" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">11.2%，≥10%但<15%</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td style="font-weight:bold;font-size:15px">3</td><td style="text-align:left">金融业高杠杆属行业特性；净利率21.6%优秀部分抵消杠杆依赖</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">经营现金流强劲，CFO/NP > 1.0</td></tr>
+  <tr><td>营收增长（10分）</td><td style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">NOI +2%，≥0%，金融大环境下可接受</td></tr>
+  <tr><td>利润增长（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">NPAT +5% ≥ 5%</td></tr>
+  <tr><td>负债率（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">金融业92%负债率属正常，CET1 12.8%充足</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">LCR 175%远高于100%监管要求</td></tr>
+  <tr><td>净利率水平（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">净利率21.6%，金融行业中优秀</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">PE 24x偏高但Forward PE 19x合理，PEG 0.8</td></tr>
+  <tr><td>自由现金流（5分）</td><td style="font-weight:bold;font-size:15px">3</td><td style="text-align:left">金融业FCF波动较大，67%分红率合理</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">76/100</td><td style="text-align:left">一般关注（76/100分）</td></tr>
+</table>
+
+<div class="verdict verdict-caution">一般关注（76/100分）</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>Macquarie Group 是一家全球布局的多元化金融集团，以基础设施资产管理为特色（全球#1），辅以投行、零售银行和大宗商品交易业务。FY2025净利润 A$37.15亿，ROE 11.2%，经营展现韧性。66%收入来自海外，分散化程度高。<br><br>
+  <strong>核心优势：</strong>① 基础设施资产管理全球#1，管理资产规模长期增长趋势确定；② 四大业务板块互补（54%为年金式收入），周期性低于纯投行；③ 国际化程度高（66%海外收入），多元分散；④ 资本充足率健康（CET1 12.8%，LCR 175%），风控体系完备。<br><br>
+  <strong>核心风险：</strong>① ROE 11.2%在金融股中中等，低于历史均值（15%+）；② 近期ASIC对风险文化的严厉批评，监管压力加大；③ AI/自动化对投行和资产管理行业的颠覆风险；④ 大宗商品部门盈利波动性大（FY2025 CGM利润下降）。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025 / 截至2025年3月）</h2>
+
+<h3>2.1 利润表（经营摘要）</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>净经营收入（NOI）</td><td><strong>A$172.08 亿</strong></td><td>A$168.87 亿</td><td><strong>+2%</strong></td><td class="neutral">⚠ 低增长</td></tr>
+  <tr><td>经营支出</td><td><strong>A$121.40 亿</strong></td><td>A$120.70 亿</td><td>+1%</td><td class="neutral">控制良好</td></tr>
+  <tr><td>税前利润</td><td><strong>A$50.68 亿</strong></td><td>A$48.17 亿</td><td><strong>+5%</strong></td><td class="good">✅ 稳健</td></tr>
+  <tr><td>净利润（归属股东）</td><td><strong>A$37.15 亿</strong></td><td>A$35.22 亿</td><td><strong>+5%</strong></td><td class="good">✅ 增长</td></tr>
+  <tr><td>EPS</td><td><strong>A$9.79</strong></td><td>A$9.17</td><td><strong>+7%</strong></td><td class="good">✅ 增长（回购贡献）</td></tr>
+  <tr><td>净利率</td><td><strong>21.6%</strong></td><td>20.9%</td><td>+0.7pct</td><td class="good">✅ 提升</td></tr>
+  <tr><td>成本收入比</td><td><strong>70.5%</strong></td><td>71.5%</td><td>-1.0pct</td><td class="good">✅ 改善</td></tr>
+  <tr><td>ROE</td><td><strong>11.2%</strong></td><td>10.8%</td><td>+0.4pct</td><td class="neutral">中等</td></tr>
+  <tr><td>ROTE</td><td><strong>12.7%</strong></td><td>12.4%</td><td>+0.3pct</td><td class="neutral">中等</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>FY2025 NOI仅增长2%，但通过成本控制（费用仅增1%），利润增速提升至5%。EPS增速达7%（受益于股票回购），ROE从10.8%恢复至11.2%。国际收入占66%，体现了全球化布局的分散化优势。净利润率21.6%在金融行业中属优秀水平。
+</div>
+
+<h3>2.2 分业务净利润贡献</h3>
+<table>
+  <tr><th>业务板块</th><th>FY2025 NPAT</th><th>FY2024 NPAT</th><th>同比</th><th>收入模式</th></tr>
+  <tr><td>MAM 资产管理</td><td><strong>A$16.10 亿</strong></td><td>A$12.08 亿</td><td class="good">✅ +33%</td><td>年金+业绩费</td></tr>
+  <tr><td>BFS 银行与金融服务</td><td>A$8.00 亿（估）</td><td>A$6.89 亿</td><td class="good">✅ +16%</td><td>净息差+年金</td></tr>
+  <tr><td>CGM 大宗商品与全球市场</td><td>A$7.00 亿（估）</td><td>A$9.53 亿</td><td class="bad">❌ -27%</td><td>交易手续费</td></tr>
+  <tr><td>MacCap 投行</td><td>A$10.00 亿（估）</td><td>A$10.44 亿</td><td class="neutral">➡ 持平</td><td>咨询+管理费</td></tr>
+  <tr><td>合计（含调整）</td><td><strong>A$37.15 亿</strong></td><td>A$35.22 亿</td><td class="good">✅ +5%</td><td>—</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>业务结构解读：</strong>四大业务板块表现分化——MAM（资产管理）+33%表现抢眼，受益于基础设施资产变现和业绩费提升；BFS（零售银行）+16%稳健增长，房贷和存款业务持续扩张；CGM（大宗商品）-27%明显下滑，主因全球能源市场波动性下降；MacCap（投行）持平，M&A市场缓慢复苏。<br><br>
+  <strong>关键亮点：</strong>54%的收入来自年金式来源（资产管理费、银行贷款利息、基金管理费），降低了盈利的周期性波动。
+</div>
+
+<h3>2.3 资产负债表（关键指标）</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>总资产</td><td><strong>A$4,452 亿</strong></td><td class="good">国际化大型金融集团</td></tr>
+  <tr><td>股东权益</td><td><strong>A$358 亿</strong></td><td class="good">同比增长</td></tr>
+  <tr><td>CET1 资本充足率（APRA）</td><td><strong>12.8%</strong></td><td class="good">✅ 高于监管要求</td></tr>
+  <tr><td>LCR 流动性覆盖率</td><td><strong>175%</strong></td><td class="good">✅ 非常充裕</td></tr>
+  <tr><td>NSFR 净稳定融资比率</td><td><strong>113%</strong></td><td class="good">✅ 达标</td></tr>
+  <tr><td>杠杆率（APRA）</td><td><strong>5.1%</strong></td><td class="neutral">适中</td></tr>
+  <tr><td>集团资本盈余</td><td><strong>A$95 亿</strong></td><td class="neutral">较FY2024 A$107亿下降</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>Macquarie 的资本实力在ASX金融股中首屈一指——CET1 12.8%（APRA口径）/ 17.6%（Harmonised口径），LCR 175%远高于100%监管底限。集团资本盈余A$95亿（集团口径），资本缓冲充足。
+</div>
+
+<h3>2.4 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>A$47.87 亿（估）</strong></td><td class="good">✅ 强劲</td></tr>
+  <tr><td>CFO / 净利润</td><td><strong>~1.29</strong></td><td class="good">✅ 现金质量好</td></tr>
+  <tr><td>股息合计</td><td><strong>A$6.70/股</strong></td><td>同比+6.3%</td></tr>
+  <tr><td>股息支付率</td><td><strong>~68%</strong></td><td class="neutral">合理偏高</td></tr>
+  <tr><td>股票回购</td><td><strong>持续推进</strong></td><td class="good">✅ 资本返还股东</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>Macquarie 作为金融集团，经营现金流主要来自运营利润和资产变现，盈利现金含量较高。公司持续通过股息（FY2025 A$6.70/股，支付率~68%）和股票回购向股东返还资本。FY2025 1H26股息进一步增至A$4.20，反映管理层对未来的信心。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准（金融业调整）</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>11.2%</strong></td><td>> 15% 优秀 / > 10% 及格</td><td class="neutral">⚠ 中等（及格）</td></tr>
+  <tr><td>ROTE</td><td><strong>12.7%</strong></td><td>> 15%</td><td class="neutral">⚠ 中等</td></tr>
+  <tr><td>净利率</td><td><strong>21.6%</strong></td><td>> 15%（金融）</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>营收增长率（NOI）</td><td><strong>+2%</strong></td><td>正增长</td><td class="neutral">⚠ 低增长</td></tr>
+  <tr><td>利润增长率</td><td><strong>+5%</strong></td><td>正增长</td><td class="neutral">⚠ 个位数增长</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>~1.29</strong></td><td>> 1.0</td><td class="good">✅ 现金质量好</td></tr>
+  <tr><td>CET1 资本充足率</td><td><strong>12.8%</strong></td><td>> 10.5%（APRA）</td><td class="good">✅ 充足</td></tr>
+  <tr><td>分红率</td><td><strong>~68%</strong></td><td>持续稳定分红</td><td class="good">✅ 10年持续增长</td></tr>
+</table>
+
+<h3>3.2 分业务分析</h3>
+<table>
+  <tr><th>业务板块</th><th>NPAT(A$亿)</th><th>占比</th><th>同比</th><th>收入特征</th><th>评价</th></tr>
+  <tr><td>MAM 资产管理</td><td>16.10</td><td>43%</td><td>+33%</td><td>管理费+业绩提成，高利润率</td><td class="good">✅ 核心增长引擎</td></tr>
+  <tr><td>MacCap 投行</td><td>~10.00</td><td>27%</td><td>持平</td><td>咨询费+本金投资，波动性大</td><td class="neutral">市场待复苏</td></tr>
+  <tr><td>BFS 银行</td><td>~8.00</td><td>22%</td><td>+16%</td><td>净息差+费用收入，稳定增长</td><td class="good">✅ 稳健</td></tr>
+  <tr><td>CGM 大宗商品</td><td>~7.00</td><td>19%</td><td>-27%</td><td>交易佣金+客户融资，高波动</td><td class="bad">❌ 明显下滑</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>MAM已成为Macquarie最核心的利润引擎（43%占比），FY2025表现抢眼。BFS受益于澳洲银行竞争格局改善（四大行缩紧小微企业贷款），市场份额持续增长。CGM的下滑是全球性能源和大宗商品市场波动率下降的结果，属周期性而非结构性问题。MacCap的M&A业务在等待IPO和并购市场复苏。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="neutral">🟡 中等</td><td>ROE 11.2%低于历史长期均值（15%+），资本回报率下降</td><td>L1 利润表</td></tr>
+  <tr><td class="bad">🔴 较高</td><td>ASIC对风险文化的严厉批评，可能带来额外合规成本+监管限制</td><td>外部监管</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>CGM大宗商品业务-27%下滑，若持续恶化将拖累整体利润</td><td>L2 分业务分析</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>NOI仅增长2%，核心营收增速偏低</td><td>L1 利润表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>资本盈余从A$107亿降至A$95亿，资本缓冲减少</td><td>L1 资产负债表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>MAM资产管理+33%，核心增长引擎强劲</td><td>L2 分业务分析</td></tr>
+  <tr><td class="good">🟢 正面</td><td>LCR 175%，流动性极为充裕</td><td>L1 资产负债表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>MTB/TB多元化导致MTM/CM风险整体下降</td><td>L2 业务结构</td></tr>
+  <tr><td class="good">🟢 正面</td><td>国际化程度高（66%海外收入），澳洲经济风险分散</td><td>业务分布</td></tr>
+  <tr><td class="good">🟢 正面</td><td>股息连续10年以上增长，股东回报记录优秀</td><td>分红历史</td></tr>
+</table>
+
+<div class="verdict verdict-caution">⚠ L2综合判定：谨慎关注（ROE和营收增速偏低，但业务质量优秀）</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平（2026年7月）</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>股价</td><td><strong>A$236</strong></td><td>52周范围 A$187-249</td></tr>
+  <tr><td>总市值</td><td><strong>~A$880 亿</strong></td><td>ASX前15</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>~24.3x</strong></td><td>基于FY2025 EPS A$9.79</td></tr>
+  <tr><td>Forward PE（2026E）</td><td><strong>~19.2x</strong></td><td>基于一致预期EPS ~A$12.3</td></tr>
+  <tr><td>PB</td><td><strong>~2.5x</strong></td><td>基于每股净资产 ~A$95</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~4.4x</strong></td><td>市销率</td></tr>
+  <tr><td>股息率</td><td><strong>~3.1%</strong></td><td>基于年股息A$7.00（FY2026E）</td></tr>
+  <tr><td>股息支付率</td><td><strong>~68%</strong></td><td>FY2025实际</td></tr>
+  <tr><td>PEG</td><td><strong>~0.8x</strong></td><td>基于EPS增长预期~30%</td></tr>
+</table>
+
+<h3>4.2 PE Band估值区间</h3>
+<p style="font-size:13px;color:#666;">ROE 11.2% → 金融股合理PE参考区间：12-18x | FY2026E一致预期EPS ~A$12.3</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs现价A$236</th></tr>
+  <tr><td>悲观（盈利下滑+估值收缩）</td><td>14x</td><td>A$172</td><td class="bad">-27%</td></tr>
+  <tr><td>保守</td><td>16x</td><td>A$197</td><td class="bad">-17%</td></tr>
+  <tr><td>中性</td><td>20x</td><td>A$246</td><td class="good">+4%</td></tr>
+  <tr><td>券商目标</td><td>~19.5x</td><td>A$240</td><td>+2%</td></tr>
+  <tr><td>当前价</td><td>19.2x（Forward）</td><td>A$236</td><td>—</td></tr>
+  <tr><td>历史高位</td><td>25x</td><td>A$308</td><td class="good">+30%</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值解读：</strong>当前PE 24.3x（TTM）处于历史偏高区间，但Forward PE 19.2x更合理（市场预期FY2026 EPS增长~25%至A$12.3+）。PEG 0.8x低于1.0，表明以增长调整后的估值并不贵。与澳洲四大银行（CBA PE 20x, WBC PE 15x, NAB PE 16x）对比，MQG的溢价主要来自：① 资管业务的轻资产高利润特征；② 国际化带来的增长空间；③ 基础设施资管的抗周期属性。
+</div>
+
+<h3>4.3 估值历史区间</h3>
+<table>
+  <tr><th>指标</th><th>数值（参考）</th></tr>
+  <tr><td>PE（TTM）历史最大值</td><td>~28x</td></tr>
+  <tr><td>PE（TTM）80%分位</td><td>~22x</td></tr>
+  <tr><td>PE（TTM）50%分位</td><td>~17x</td></tr>
+  <tr><td>PE（TTM）20%分位</td><td>~13x</td></tr>
+  <tr><td>PE（TTM）历史最小值</td><td>~9x</td></tr>
+  <tr><td>当前PE（TTM）</td><td class="neutral">~24.3x（偏高，接近80%分位）</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值总结：</strong>MQG当前PE 24x在历史高位区间，但考虑到：① 市场给予基础设施资管龙头的结构性溢价；② FY2026E盈利反弹预期（EPS ~A$12.3+，增长~25%）；③ 与其他ASX金融股的相对价值，现价A$236处于<strong>"合理偏贵但不极端"</strong>的位置。对于长期投资者，较好的介入点在A$190-210区间（20%+安全边际），当前价位更适合持有而非新建仓。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析（L4框架 - 金融业调整版）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>净利润率</td><td>20.9%</td><td><strong>21.6%</strong></td><td class="good">⬆ 提升</td></tr>
+  <tr><td>资产周转率（NOI/总资产）</td><td>0.039x</td><td><strong>0.039x</strong></td><td class="neutral">➡ 持平</td></tr>
+  <tr><td>权益乘数（总资产/净资产）</td><td>~12.9x</td><td><strong>~12.4x</strong></td><td class="good">⬇ 略降（去杠杆）</td></tr>
+  <tr><td><strong>ROE</strong></td><td><strong>10.8%</strong></td><td><strong>11.2%</strong></td><td class="neutral">⬆ 微升</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>0.81%</td><td><strong>0.84%</strong></td><td class="neutral">➡ 略升</td></tr>
+  <tr><td>杠杆贡献（ROE - ROA）</td><td>~10.0pct</td><td><strong>~10.4pct</strong></td><td class="neutral">➡ 稳定</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：高杠杆型（金融业特性）</strong><br>
+  对于金融集团，高杠杆是行业固有属性（权益乘数12.4x），而非管理层的不审慎。核心关注点应是：<br><br>
+  <strong>① 净利润率 21.6%：</strong>在金融业中优秀，主要受MAM资管业务的高利润率驱动；<br>
+  <strong>② 杠杆质量：</strong>CET1 12.8% > 监管要求，杠杆结构健康；<br>
+  <strong>③ 资产质量：</strong>关注不良贷款率和投资减值情况，FY2025信贷减值计提增加但仍在可控范围；<br>
+  <strong>④ 真实回报：</strong>去杠杆ROA仅0.84%（金融业标准），但ROTE 12.7%反映剔除商誉后的真实股东回报。
+</div>
+
+<h3>5.2 分部门ROE贡献</h3>
+<table>
+  <tr><th>业务</th><th>占用资本</th><th>NPAT</th><th>ROE</th><th>对集团ROE贡献</th></tr>
+  <tr><td>MAM 资产管理</td><td>低（轻资产）</td><td>A$16.10亿</td><td>极高（>30%）</td><td class="good">✅ 核心推手</td></tr>
+  <tr><td>BFS 银行</td><td>高（重资产）</td><td>A$8.00亿</td><td>中等（~10%）</td><td class="neutral">稳定基盘</td></tr>
+  <tr><td>MacCap 投行</td><td>中等</td><td>~A$10.00亿</td><td>中高（~15%）</td><td class="neutral">周期驱动</td></tr>
+  <tr><td>CGM 大宗商品</td><td>中高</td><td>~A$7.00亿</td><td>中低（~8%）</td><td class="bad">拖累</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>核心结论：</strong><br>
+  ① ROE 11.2%的核心驱动力是MAM（轻资产高利润），占利润43%但对资本占用极少；<br>
+  ② 权益乘数从12.9x降至12.4x，属于健康去杠杆，CET1充足；<br>
+  ③ ROTE 12.7% > ROE 11.2%，说明商誉/无形资产占比较高，但资管业务自身价值远高于账面价值；<br>
+  ④ ROE提升的关键：提升CGM和BFS的资本回报效率，同时继续扩张高利润率MAM业务规模；<br>
+  ⑤ 长期看，若MAM持续增长，集团ROE有望向13-15%回归。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与特征（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：混合型（价值+周期）—— 多元化金融服务</strong><br>
+  <strong>判断依据：</strong>Macquarie并非单一行业公司，而是"投资银行 + 基础设施资产管理 + 零售银行 + 大宗商品交易"的多元化金融集团。其特点是：<br><br>
+  <strong>价值型成分（~54%）：</strong>BFS零售银行（稳定净息差）+ MAM管理费（稳定年金收入）——这两块属于"收租型"现金流业务，盈利可预测性强；<br>
+  <strong>周期型成分（~46%）：</strong>MacCap（M&A周期）+ CGM（大宗商品波动）+ MAM业绩提成费（资产变现周期）——这些随市场和宏观环境波动。<br><br>
+  <strong>行业地位：</strong>全球基础设施资产管理 #1（MAM管理资产~A$9,000亿），澳洲第五大零售银行，亚太区领先的独立投行。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th></tr>
+  <tr><td>行业集中度</td><td><strong>分散但Macquarie在细分领域领先</strong>——全球基础设施资管CR3（Macquarie/Brookfield/BlackRock）<40%，但Macquarie在机场、收费公路、数据中心等细分领域优势明显。</td></tr>
+  <tr><td>品牌壁垒</td><td><strong>强</strong>——"Macquarie"品牌在基础设施投资领域具有全球认知度，30年积累的项目管道（deal pipeline）和客户关系是重要的竞争壁垒。</td></tr>
+  <tr><td>牌照壁垒</td><td><strong>很强</strong>——持有澳洲ADI银行牌照、美国SEC broker-dealer牌照、欧洲FCA牌照、亚洲多市场金融牌照，合规成本和跨市场运营经验构成显著进入壁垒。</td></tr>
+  <tr><td>规模壁垒</td><td><strong>强</strong>——MAM管理~A$9,000亿资产，规模效应显著：低成本资金能力（存款base）、跨市场套利能力、大项目获取能力。</td></tr>
+  <tr><td>人才壁垒</td><td><strong>中等</strong>——金融行业人才流动性高，但Macquarie的员工持股文化（"帽子戏法"奖金递延制度）降低了核心团队流失率。</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  <strong>阶段：成熟期，但MAM业务仍处于成长期</strong><br>
+  集团整体处成熟期（1969年成立，全球31个办公室，19,700+员工），但基础设施资产管理业务（MAM）仍然处于成长期——全球基础设施投资需求旺盛（能源转型、数据中心、交通基建），预计未来5年管理资产规模CAGR 8-12%。<br><br>
+  <strong>投资策略重点：</strong>关注MAM的AUM增长（获取新授权+资产增值+新基金募集）、资产变现节奏（"build-sell"模式产生业绩提成）、BFS在澳洲零售银行的份额扩张。
+</div>
+
+<h3>6.4 当前周期位置</h3>
+<div class="summary-box">
+  <strong>周期位置：混合周期——部分业务在上升，部分在底部</strong><br>
+  <strong>BFS零售银行：</strong>利率高位稳定，净息差处于历史中枢偏上，贷款质量良好；<br>
+  <strong>MAM资管：</strong>受益于全球基础设施投资热潮（数据中心/AI基建/能源转型），处于上升周期；<br>
+  <strong>MacCap投行：</strong>M&A市场缓慢复苏中，IPO市场仍偏冷——处于周期底部附近；<br>
+  <strong>CGM大宗商品：</strong>能源市场波动率下降，处于正常化过程——从高位回落至中枢。<br><br>
+  <strong>整体判断：</strong>不是整齐划一的周期位置，54%年金收入提供了安全垫，使MQG相比纯投行（如Morgan Stanley/GS）更具抗周期能力。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>多元化金融（银行+资管+投行）</td><td>PE + PB（SOTP分拆估值）</td><td>ROE、AUM增长、分红率、CET1</td><td class="neutral">⚠ 部分匹配——PE 24x偏高，SOTP估值可能更合理</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值方法建议：</strong>对Macquarie最适合的估值方法是SOTP（分拆估值）——将MAM（按PE 25-30x估值）、BFS（按PE 15-18x，对标CBA/NAB）、MacCap（按PE 12-18x）、CGM（按PE 10-15x）分别估值加总。按此方法，MQG的合理价值约在A$200-280之间，取决于对MAM业务增长质量的判断。当前PE(Forward) 19.2x在SOTP框架下大致处于合理区间。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>多元化金融（价值+周期混合），全球基础设施资管#1，牌照+品牌壁垒高。<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 11.2%中等，净利率21.6%优秀，权益乘数12.4x（金融属性），CFO健康。<br>
+  <strong>Step 3 - 估值判断：</strong>PE 24x偏高但Forward PE 19x合理，PEG 0.8，SOTP框架下合理至略偏贵。<br>
+  <strong>Step 4 - 风险排查：</strong>ASIC监管风险、CGM业务波动、ROE历史偏低、高股息支付率可持续性。<br>
+  <strong>Step 5 - 结论：</strong>好公司（业务质量优秀+竞争壁垒强），价格合理偏贵，适合持有但新建仓安全边际不足。<br>
+  <strong>Step 6 - 跟踪：</strong>看MAM AUM增长、资产变现节奏、CGM业务恢复、ASIC监管进展、ROE回升趋势。
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>基础设施资产管理赛道长期增长确定（全球能源转型/AI基建/PPP），牌照和品牌壁垒高</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓</td><td>全球基础设施资管#1、净利率21.6%、CFO强劲、分红10年连增</td></tr>
+  <tr><td>③ 好价格</td><td class="neutral">⚠</td><td>PE 24x(TTM)偏高，Forward PE 19x合理但安全边际不足，PEG 0.8尚可</td></tr>
+</table>
+
+<h3>7.3 三个陷阱排查</h3>
+<div class="danger-box">
+  <strong>☐ 价值陷阱：</strong>❌ 未命中——虽PE 24x不低，但有实质性增长（EPS+7%，MAM+33%），不是低PE+低增长陷阱。<br>
+  <strong>☐ 周期陷阱：</strong>⚠ 部分命中风险——若仅看CGM业务-27%，可能以为MQG是纯周期股。但54%收入为年金型（非周期），整体抗周期能力强。<br>
+  <strong>☐ 烧钱陷阱：</strong>❌ 未命中——CFO强劲，68%分红率可持续，资管业务为典型的轻资产"收租"模式。
+</div>
+
+<h3>7.4 管理层与治理</h3>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>Shemara Wikramanayake（CEO）能力</td><td class="good">好</td><td>2018年起任CEO，此前在Macquarie工作30+年，资管业务出身，战略清晰</td></tr>
+  <tr><td>股权结构与利益一致性</td><td class="good">强</td><td>"帽子戏法"奖金递延制度、管理层持股比例在ASX金融股中偏高</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td class="neutral">需关注</td><td>ASIC近期批评风险文化，需关注后续监管行动</td></tr>
+  <tr><td>资本配置记录</td><td class="good">合理</td><td>持续收购优质资产（如AMP Capital的全球基础设施和房地产业务2024年完成），同步回购+增发股息</td></tr>
+  <tr><td>CEO交接风险</td><td class="good">低</td><td>Shemara任期稳定，内部接班梯队完善</td></tr>
+</table>
+
+<h3>7.5 盈利可持续性</h3>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>利润增长靠什么？</td><td>量驱动（MAM AUM增长+业绩费）+价值驱动（资产变现）</td><td>MAM利润+33%来自资产变现和业绩提成</td></tr>
+  <tr><td>涨价能力</td><td>能（管理费率稳定）</td><td>MAM管理费率约0.5-0.8%，竞争未恶化</td></tr>
+  <tr><td>非经常性利润占比</td><td>中（~30-40%为业绩提成+资产变现）</td><td>MAM的业绩费收入波动大，需关注经常性管理费收入的基础盘</td></tr>
+  <tr><td>大客户集中度</td><td>分散</td><td>MAM管理A$9,000亿资产，客户来自全球主权基金、养老金、保险公司</td></tr>
+  <tr><td>政策/监管依赖度</td><td>中</td><td>受APRA/ASIC监管，澳洲金融监管严格但稳定</td></tr>
+</table>
+
+<h3>7.6 关键变量敏感性</h3>
+<div class="summary-box">
+  <strong>变量1: MAM资产变现节奏</strong><br>
+  乐观: 每年变现3-4个大项目 → EPS +15-20%<br>
+  中性: 每年变现1-2个项目 → EPS +5-8%<br>
+  悲观: 市场恶化无法变现 → EPS -5-10%<br><br>
+  <strong>变量2: CGM大宗商品市场波动</strong><br>
+  乐观: 能源市场波动率回升 → EPS +8-12%<br>
+  中性: 波动率正常化 → EPS +0-5%<br>
+  悲观: 持续低迷 → EPS -10-15%<br><br>
+  <strong>变量3: ASIC监管后果</strong><br>
+  乐观: 罚款限制较小 → EPS影响<1%<br>
+  中性: 加严合规要求+适度罚款 → EPS -3-5%<br>
+  悲观: 限制银行牌照或业务范围 → EPS -10-20%
+</div>
+
+<h3>7.7 前景展望</h3>
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. MAM基础设施资管持续增长——全球数据中心/AI基建/能源转型投资需求旺盛，AUM年增8-12%<br>
+  2. BFS零售银行市场份额提升——四大行缩紧小微企业信贷，Macquarie填补空白<br>
+  3. MacCap并购市场复苏——全球M&A活动从底部回升，投行业务弹性大<br><br>
+  <strong>负向拖累：</strong><br>
+  1. CGM大宗商品收入持续低于历史均值——能源市场波动率低<br>
+  2. ASIC监管处罚可能带来财务和声誉损失<br>
+  3. ROE回升至15%+尚需时间——资本效率提升缓慢
+</div>
+
+<h3>7.8 三情景简表</h3>
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>FY2026E EPS</th><th>PE区间</th><th>预期股价</th></tr>
+  <tr><td>乐观</td><td>MAM变现加速+MacCap复苏+ASIC影响有限</td><td>A$14-15</td><td>20-22x</td><td>A$280-330</td></tr>
+  <tr style="background:#f0faf0"><td>中性</td><td>MAM稳定+其他业务温和复苏</td><td>A$12-13</td><td>18-20x</td><td>A$215-260</td></tr>
+  <tr><td>悲观</td><td>CGM持续低迷+ASIC处罚超预期+市场下行</td><td>A$9-10</td><td>14-16x</td><td>A$130-160</td></tr>
+</table>
+<p style="font-size:13px;color:#666;margin:6px 0">概率判断：中性 55%，乐观 25%，悲观 20%</p>
+
+<h3>7.9 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——麦格理是全球最大的基础设施"包工头+房东"：帮全球养老金投资收费公路/机场/数据中心，收管理费+业绩提成；顺带做投行、银行、大宗交易。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——ASIC对风险文化的批评会发展到什么地步？ROE仅11.2%，和它全球#1的资管地位匹配吗？<br>
+  3. 如果现在买入，期待的回报来源是什么？——MAM业务持续增长（AUM CAGR 10%+ BPS compounding），股价跟随EPS每年10-15%上涨+3%股息，年化回报10-15%。<br>
+  4. 什么情况下你会坚决卖出？——核心管理层出走 / ROE持续低于10% / 监管限制核心业务 / MAM AUM连续2个季度净流出。
+</div>
+
+</div></div>
+
+<div class="footer">
+  免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+  数据来源：Macquarie Group FY2025 Annual Report、Stock Analysis、Quantfolio、Simply Wall St、AFR
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

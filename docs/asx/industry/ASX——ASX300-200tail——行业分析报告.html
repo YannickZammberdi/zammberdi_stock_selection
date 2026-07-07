@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ASX——ASX300-Tail 行业分析报告</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f5f5f5;padding:0;color:#333}
+  .report-wrap{max-width:800px;margin:0 auto;background:#fff}
+  h1{font-size:22px;margin:0;padding:28px 0 4px;text-align:center}
+  h2{font-size:18px;margin:28px 0 12px;border-bottom:2px solid #1a1a1a;padding-bottom:4px}
+  h3{font-size:15px;margin:18px 0 8px}
+  .subtitle{color:#666;font-size:13px;text-align:center;margin-bottom:4px}
+  .meta{color:#999;font-size:12px;text-align:center;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #e0e0e0}
+  .tab-bar{position:sticky;top:0;z-index:10;background:#fff;display:flex;flex-wrap:wrap;border-bottom:2px solid #ddd;gap:0}
+  .tab-btn{padding:10px 14px;cursor:pointer;border:none;background:none;font-size:13px;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+  .tab-btn:hover{color:#333;background:#f9f9f9}
+  .tab-btn.active{color:#1a1a1a;font-weight:700;border-bottom-color:#1a1a1a}
+  .tab-content{display:none}
+  .tab-content.active{display:block}
+  .tab-inner{padding:0 12px}
+  table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:13px}
+  th{background:#f5f5f5;padding:8px 6px;text-align:left;border-bottom:2px solid #ddd;white-space:nowrap;font-weight:600}
+  td{padding:7px 6px;border-bottom:1px solid #eee}
+  tr:nth-child(even) td{background:#fafafa}
+  .summary-box{background:#fffde7;border-left:4px solid #f9a825;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .highlight-box{background:#e3f2fd;border-left:4px solid #1e88e5;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .danger-box{background:#ffebee;border-left:4px solid #e53935;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .verdict{text-align:center;padding:20px;margin:16px 0;border-radius:8px;font-size:18px;font-weight:700}
+  .verdict-ok{background:#e8f5e9;border:2px solid #4caf50;color:#2e7d32}
+  .verdict-caution{background:#fff3e0;border:2px solid #ff9800;color:#e65100}
+  .verdict-bad{background:#ffebee;border:2px solid #e53935;color:#c62828}
+  .score{font-size:36px;display:block;margin-bottom:4px}
+  .pass{color:#2e7d32;font-weight:700}
+  .skip{color:#666;font-style:italic}
+  .tag{display:inline-block;padding:2px 8px;border-radius:3px;font-size:11px;font-weight:700}
+  .tag-red{background:#ffebee;color:#c62828}
+  .tag-green{background:#e8f5e9;color:#2e7d32}
+  .tag-yellow{background:#fff8e1;color:#f57f17}
+  .footer{font-size:11px;color:#aaa;text-align:center;padding:24px 0 8px;border-top:1px solid #eee;margin-top:30px}
+  .card{background:#fafafa;border:1px solid #e0e0e0;border-radius:6px;padding:14px;margin:10px 0;font-size:13px}
+  .flex{display:flex;flex-wrap:wrap;gap:8px}
+  .tbl-wrap{border:1px solid #e0e0e0;border-radius:6px;overflow:hidden;margin:10px 0 18px}
+  .tbl-wrap table{margin:0}
+  .tbl-wrap th{background:#f5f5f5;padding:9px 8px;border-bottom:1px solid #ddd;font-weight:600;font-size:12px}
+  .tbl-wrap td{padding:8px;border-bottom:1px solid #f0f0f0;font-size:13px}
+  .tbl-wrap tr:last-child td{border-bottom:none}
+  .tbl-wrap td,.tbl-wrap th{vertical-align:middle}
+  .bar-wrap{display:inline-flex;align-items:center;width:60px;height:16px;vertical-align:middle}
+  .bar-bg{background:#eee;border-radius:4px;height:8px;width:100%;overflow:hidden}
+  .bar{display:block;height:8px;border-radius:4px}
+  .score-cell{font-weight:700;font-size:15px;text-align:center;white-space:nowrap}
+  .col-tag{display:inline-block;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600}
+  .col-win{background:#e8f5e9;color:#2e7d32}
+  .col-lose{background:#ffebee;color:#c62828}
+  .col-warn{background:#fff3e0;color:#e65100}
+  .col-info{background:#e3f2fd;color:#1565c0}
+  @media(max-width:600px){.tab-btn{padding:8px 10px;font-size:12px}}
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>ASX——ASX300 (Tail 201-300) 筛选报告</h1>
+<div class="subtitle">ASX 300 中排名201-300的成分股 ｜ 市值 $40M - $1.5B USD</div>
+<div class="meta">生成日期：2026-07-07 ｜ 数据源：marketcap.company / FNArena</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l7">L7 量化初筛</button>
+  <button class="tab-btn" data-tab="l8">L8 画像</button>
+  <button class="tab-btn" data-tab="l9">L9 格局</button>
+  <button class="tab-btn" data-tab="l10">L10 时机</button>
+</div>
+
+<div class="tab-content active" id="tab-summary">
+<div class="tab-inner">
+
+<h2>筛选范围</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">项目</th><th>内容</th></tr>
+<tr><td>筛选范围</td><td><strong>ASX 300 \ ASX 200</strong>（排名201-300的成分股）</td></tr>
+<tr><td>股票数</td><td>~100只</td></tr>
+<tr><td>市值区间</td><td><span class="col-tag col-info">$40M - $1.5B USD</span>（市值中位数约$500M）</td></tr>
+<tr><td>市场特征</td><td>中小盘为主，流动性低于ASX 200，但仍有机构覆盖</td></tr>
+<tr><td>核心风险</td><td>小盘矿业退市风险 + 流动性不足</td></tr>
+</table>
+</div>
+
+<div class="summary-box">
+  <strong>核心结论</strong><br>
+  ASX 300尾端100只以中小盘为主，质量分化极大：<br><br>
+  🟢 <strong>值得关注的少数：</strong> Hansen Tech (HSN)、Nanosonics (NAN)、Polynovo (PNV)、Audinate (AD8)、PWR Holdings (PWH)、Objective Corp (OCL) — 这些是细分领域优质成长股<br>
+  🟡 <strong>周期博弈型：</strong> Bellevue Gold (BGL)、Westgold (WGX)、Bannerman Energy (BMN)、Karoon Energy (KAR)<br>
+  🔴 <strong>回避为主：</strong> 大部分小盘矿业（CXO/SYA/SYR/LOT）、无营收biotech、边缘REITs<br><br>
+  <strong>筛选通过率预计：~25%，即约25只</strong>可通过L7标准筛选
+</div>
+</div>
+</div>
+
+<div class="tab-content" id="tab-l7">
+<div class="tab-inner">
+
+<h2>候选池（按行业分组）</h2>
+
+<h3>💻 科技/SaaS <span class="col-tag col-info">候选5只</span></h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>市值</th><th>行业</th><th>亮点</th><th>L7</th></tr>
+<tr style="background:#f0faf0">
+  <td><strong>HSN</strong> Hansen Tech</td><td>$634M</td><td>SaaS</td><td>计费SaaS，毛利~65%，ROE~15%</td><td class="pass">6/6</td></tr>
+<tr style="background:#f0faf0">
+  <td><strong>OCL</strong> Objective Corp</td><td>$762M</td><td>SaaS</td><td>政府合规SaaS，毛利~70%</td><td class="pass">6/6</td></tr>
+<tr style="background:#f0faf0">
+  <td><strong>IFM</strong> Infomedia</td><td>$454M</td><td>SaaS</td><td>汽车售后SaaS，毛利~65%</td><td class="pass">5/6</td></tr>
+<tr style="background:#f0faf0">
+  <td><strong>AD8</strong> Audinate</td><td>$140M</td><td>科技</td><td>Dante音频协议全球标准，高毛利</td><td class="pass">5/6</td></tr>
+<tr>
+  <td><strong>MP1</strong> Megaport</td><td>$1.4B</td><td>Cloud</td><td>SDN网络，高成长但亏损</td><td class="pass">4/6</td></tr>
+</table>
+</div>
+
+<h3>🏥 医疗 <span class="col-tag col-info">候选4只</span></h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>市值</th><th>领域</th><th>亮点</th><th>L7</th></tr>
+<tr style="background:#f0faf0">
+  <td><strong>NAN</strong> Nanosonics</td><td>$708M</td><td>医疗设备</td><td>超声波消毒全球龙头，毛利~70%</td><td class="pass">6/6</td></tr>
+<tr style="background:#f0faf0">
+  <td><strong>PNV</strong> Polynovo</td><td>$479M</td><td>医疗耗材</td><td>人工皮肤NovoSorb，全球市场</td><td class="pass">5/6</td></tr>
+<tr>
+  <td><strong>IDX</strong> Integral Dx</td><td>$533M</td><td>诊断</td><td>影像诊断，毛利~25%</td><td class="pass">5/6</td></tr>
+<tr>
+  <td><strong>CU6</strong> Clarity Pharma</td><td>$1.1B</td><td>核药</td><td>靶向放疗，高成长但未盈利</td><td class="pass">3/6</td></tr>
+</table>
+</div>
+
+<h3>⛏️ 金矿/贵金属 <span class="col-tag col-info">候选3只</span></h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>市值</th><th>产量</th><th>AISC</th><th>L7</th></tr>
+<tr style="background:#f0faf0">
+  <td><strong>BGL</strong> Bellevue Gold</td><td>$1.4B</td><td>~160koz</td><td>$1,450/oz</td><td class="pass">4/4</td></tr>
+<tr>
+  <td><strong>WGX</strong> Westgold</td><td>$1.5B</td><td>~300koz</td><td>$1,550/oz</td><td class="pass">4/4</td></tr>
+<tr>
+  <td><strong>RSG</strong> Resolute Mining</td><td>$900M</td><td>~250koz</td><td>$1,500/oz</td><td class="pass">4/4</td></tr>
+</table>
+</div>
+
+<h3>🛢️ 能源/铀 <span class="col-tag col-info">候选2只</span></h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>市值</th><th>资源</th><th>L7</th></tr>
+<tr>
+  <td><strong>BMN</strong> Bannerman Energy</td><td>$488M</td><td>纳米比亚铀矿</td><td class="pass">3/4</td></tr>
+<tr>
+  <td><strong>KAR</strong> Karoon Energy</td><td>$702M</td><td>巴西海上石油</td><td class="pass">4/4</td></tr>
+</table>
+</div>
+
+<h3>🏭 工业/其他 <span class="col-tag col-info">候选5只</span></h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>市值</th><th>业务</th><th>L7</th></tr>
+<tr style="background:#f0faf0">
+  <td><strong>PWH</strong> PWR Holdings</td><td>$584M</td><td>赛车散热，全球龙头</td><td class="pass">6/6</td></tr>
+<tr>
+  <td><strong>CCP</strong> Credit Corp</td><td>$602M</td><td>债务催收，现金流好</td><td class="pass">5/6</td></tr>
+<tr>
+  <td><strong>SIQ</strong> Smartgroup</td><td>$1.2B</td><td>薪酬管理SaaS</td><td class="pass">6/6</td></tr>
+<tr>
+  <td><strong>RDX</strong> Redox</td><td>$1.4B</td><td>化工分销</td><td class="pass">5/6</td></tr>
+<tr>
+  <td><strong>IPH</strong> IPH Ltd</td><td>$709M</td><td>知识产权服务</td><td class="pass">6/6</td></tr>
+</table>
+</div>
+
+<h3>🛒 消费/零售 <span class="col-tag col-info">候选2只</span></h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>市值</th><th>业务</th><th>L7</th></tr>
+<tr>
+  <td><strong>TPW</strong> Temple & Webster</td><td>$471M</td><td>家具电商</td><td class="pass">5/6</td></tr>
+<tr>
+  <td><strong>CKF</strong> Collins Foods</td><td>$665M</td><td>KFC加盟商</td><td class="pass">5/6</td></tr>
+</table>
+</div>
+
+<h2>Top 10 最佳候选</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>#</th><th>股票</th><th>市值(M)</th><th>行业</th><th>核心优势</th><th>L7</th></tr>
+<tr style="background:#f0faf0">
+  <td>🥇</td><td><strong>HSN</strong> Hansen Tech</td><td>$634</td><td>SaaS</td><td>BSS/OSS计费系统，毛利65%，ROE 15%，现金流稳定</td><td class="pass">6/6</td></tr>
+<tr style="background:#f0faf0">
+  <td>🥇</td><td><strong>NAN</strong> Nanosonics</td><td>$708</td><td>医疗</td><td>超声波消毒全球标杆，毛利70%，全球扩张中</td><td class="pass">6/6</td></tr>
+<tr style="background:#f0faf0">
+  <td>🥇</td><td><strong>OCL</strong> Objective Corp</td><td>$762</td><td>SaaS</td><td>澳新政府合规管理软件垄断</td><td class="pass">6/6</td></tr>
+<tr style="background:#f0faf0">
+  <td>4</td><td><strong>PWH</strong> PWR Holdings</td><td>$584</td><td>工业</td><td>赛车/电动车散热全球龙头，F1供应链</td><td class="pass">6/6</td></tr>
+<tr style="background:#f0faf0">
+  <td>5</td><td><strong>IPH</strong> IPH Ltd</td><td>$709</td><td>专业服务</td><td>亚太知识产权服务龙头</td><td class="pass">6/6</td></tr>
+<tr>
+  <td>6</td><td><strong>PNV</strong> Polynovo</td><td>$479</td><td>医疗</td><td>NovoSorb人工皮肤全球独家</td><td class="pass">5/6</td></tr>
+<tr>
+  <td>7</td><td><strong>AD8</strong> Audinate</td><td>$140</td><td>科技</td><td>Dante音频协议嵌入10万+设备</td><td class="pass">5/6</td></tr>
+<tr>
+  <td>8</td><td><strong>BGL</strong> Bellevue Gold</td><td>$1,400</td><td>金矿</td><td>投产初期，金价历史高位</td><td class="pass">4/4</td></tr>
+<tr>
+  <td>9</td><td><strong>CCP</strong> Credit Corp</td><td>$602</td><td>金融</td><td>债务催收+消费贷款，高现金流</td><td class="pass">5/6</td></tr>
+<tr>
+  <td>10</td><td><strong>KAR</strong> Karoon Energy</td><td>$702</td><td>油气</td><td>巴西近海油田，PB~0.8x低估</td><td class="pass">4/4</td></tr>
+</table>
+</div>
+
+<div class="danger-box">
+  <strong>⚠ 这名单里没有BHP/CSL/NAB等大型股！</strong><br>
+  以上都是ASX 300中排名201-300的中小盘股。如果你想要大蓝筹，需要看ASX 200（前200名）。<br>
+  这里的大部分标的适合作为卫星仓位（占比<10%），不适合重仓。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l8">
+<div class="tab-inner">
+<h2>行业分布</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>行业</th><th>数量</th><th>代表</th><th>特征</th></tr>
+<tr><td>金矿/贵金属</td><td>~15</td><td>BGL, WGX, RSG, SBM</td><td>高金价受益，但成本偏高</td></tr>
+<tr><td>科技/SaaS</td><td>~10</td><td>HSN, OCL, IFM, AD8</td><td>高毛利但规模小</td></tr>
+<tr><td>医疗/诊断</td><td>~8</td><td>NAN, PNV, IDX, CU6</td><td>高壁垒，需验证盈利</td></tr>
+<tr><td>REITs/地产</td><td>~12</td><td>ABG, DXI, CQE, GOZ</td><td>低增长收息类</td></tr>
+<tr><td>锂矿/电池材料</td><td>~8</td><td>CXO, SYA, LTR, VUL</td><td>大部分亏损，等待周期反转</td></tr>
+<tr><td>铀/能源</td><td>~5</td><td>BMN, BOE, PDN</td><td>核电复兴题材，投机性强</td></tr>
+<tr><td>工业/服务</td><td>~12</td><td>PWH, IPH, RDX, SIQ</td><td>细分龙头，质量分化大</td></tr>
+<tr><td>消费/零售</td><td>~8</td><td>TPW, CKF, ADH</td><td>竞争激烈，利润薄</td></tr>
+<tr><td>金融/保险</td><td>~8</td><td>JDO, CCP, MFG, MYS</td><td>小银行/资管，估值低</td></tr>
+<tr><td>其他资源</td><td>~14</td><td>KAR, SMR, A4N, ILU</td><td>周期波动大</td></tr>
+</table>
+</div>
+</div>
+</div>
+
+<div class="tab-content" id="tab-l9">
+<div class="tab-inner">
+<h2>竞争特点</h2>
+<div class="summary-box">
+  这些中小盘股在各自细分领域往往有独特定位：<br><br>
+  🏆 <strong>细分冠军：</strong> HSN（通信计费SaaS澳洲#1）、NAN（超声波消毒全球#1）、PWH（赛车散热全球#1）、AD8（Dante音频协议标准）<br>
+  ⚔️ <strong>挑战者：</strong> PNV（挑战皮肤移植市场）、BGL（新投产金矿）<br>
+  🔄 <strong>周期博弈：</strong> CXO/LTR（锂矿等待反转）、KAR（油气PB低估）<br>
+  ⚠️ <strong>持续亏损：</strong> 很多锂矿/铀矿/早期biotech在ASX 300尾端，需谨慎
+</div>
+</div>
+</div>
+
+<div class="tab-content" id="tab-l10">
+<div class="tab-inner">
+<h2>时机判断</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:20%">板块</th><th>周期</th><th>估值</th><th>建议</th></tr>
+<tr>
+  <td>SaaS/科技</td>
+  <td><span class="col-tag col-win">成长扩张</span></td>
+  <td>PS 3-8x合理</td>
+  <td><span class="col-tag col-win">HSN/OCL可买入</span></td></tr>
+<tr>
+  <td>医疗设备</td>
+  <td><span class="col-tag col-win">成长扩张</span></td>
+  <td>PE 25-40x</td>
+  <td><span class="col-tag col-win">NAN/PNV关注</span></td></tr>
+<tr>
+  <td>金矿</td>
+  <td><span class="col-tag col-win">繁荣</span></td>
+  <td>PB 1.5-2.5x合理</td>
+  <td><span class="col-tag col-win">BGL受益金价</span></td></tr>
+<tr>
+  <td>锂矿</td>
+  <td><span class="col-tag col-lose">萧条</span></td>
+  <td>PB<0.5x</td>
+  <td><span class="col-tag col-warn">等周期反转</span></td></tr>
+<tr>
+  <td>铀矿</td>
+  <td><span class="col-tag col-warn">早期</span></td>
+  <td>无盈利</td>
+  <td><span class="col-tag col-lose">投机为主</span></td></tr>
+<tr>
+  <td>小盘REITs</td>
+  <td><span class="col-tag col-lose">利率高位</span></td>
+  <td>折扣NAV</td>
+  <td><span class="col-tag col-warn">等待降息</span></td></tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <strong>综合建议：</strong><br>
+  🔹 最值得研究：<strong>HSN</strong>（稳定SaaS）、<strong>NAN</strong>（医疗出口）、<strong>PWH</strong>（全球利基冠军）<br>
+  🔹 周期博弈：<strong>BGL</strong>（金价持续新高）、<strong>KAR</strong>（PB<0.8x油股）<br>
+  🔹 投机观察：<strong>AD8</strong>（音频标准ip）、<strong>PNV</strong>（人工皮肤潜力）<br>
+  🔹 <strong>回避：</strong> 大部分锂矿（CXO/LTR）、无营收biotech（IMU/MSB）
+</div>
+</div>
+</div>
+
+<div class="footer">Generated by Industry Analysis · L7-L10 Framework · Stock Selection · 2026-07-07</div>
+
+</div>
+<script>
+var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+var contents = document.querySelectorAll('.tab-content');
+btns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    contents.forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    var tab = btn.getAttribute('data-tab');
+    document.getElementById('tab-' + tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ASX——ASX200-300 行业分析报告</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f5f5f5;padding:0;color:#333}
+  .report-wrap{max-width:800px;margin:0 auto;background:#fff}
+  h1{font-size:22px;margin:0;padding:28px 0 4px;text-align:center}
+  h2{font-size:18px;margin:28px 0 12px;border-bottom:2px solid #1a1a1a;padding-bottom:4px}
+  h3{font-size:15px;margin:18px 0 8px}
+  .subtitle{color:#666;font-size:13px;text-align:center;margin-bottom:4px}
+  .meta{color:#999;font-size:12px;text-align:center;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #e0e0e0}
+  .tab-bar{position:sticky;top:0;z-index:10;background:#fff;display:flex;flex-wrap:wrap;border-bottom:2px solid #ddd;gap:0}
+  .tab-btn{padding:10px 14px;cursor:pointer;border:none;background:none;font-size:13px;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+  .tab-btn:hover{color:#333;background:#f9f9f9}
+  .tab-btn.active{color:#1a1a1a;font-weight:700;border-bottom-color:#1a1a1a}
+  .tab-content{display:none}
+  .tab-content.active{display:block}
+  .tab-inner{padding:0 12px}
+  table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:13px}
+  th{background:#f5f5f5;padding:8px 6px;text-align:left;border-bottom:2px solid #ddd;white-space:nowrap;font-weight:600}
+  td{padding:7px 6px;border-bottom:1px solid #eee}
+  tr:nth-child(even) td{background:#fafafa}
+  .summary-box{background:#fffde7;border-left:4px solid #f9a825;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .highlight-box{background:#e3f2fd;border-left:4px solid #1e88e5;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .danger-box{background:#ffebee;border-left:4px solid #e53935;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .verdict{text-align:center;padding:20px;margin:16px 0;border-radius:8px;font-size:18px;font-weight:700}
+  .verdict-ok{background:#e8f5e9;border:2px solid #4caf50;color:#2e7d32}
+  .verdict-caution{background:#fff3e0;border:2px solid #ff9800;color:#e65100}
+  .verdict-bad{background:#ffebee;border:2px solid #e53935;color:#c62828}
+  .score{font-size:36px;display:block;margin-bottom:4px}
+  .pass{color:#2e7d32;font-weight:700}
+  .skip{color:#666;font-style:italic}
+  .tag{display:inline-block;padding:2px 8px;border-radius:3px;font-size:11px;font-weight:700}
+  .tag-red{background:#ffebee;color:#c62828}
+  .tag-green{background:#e8f5e9;color:#2e7d32}
+  .tag-yellow{background:#fff8e1;color:#f57f17}
+  .footer{font-size:11px;color:#aaa;text-align:center;padding:24px 0 8px;border-top:1px solid #eee;margin-top:30px}
+  .card{background:#fafafa;border:1px solid #e0e0e0;border-radius:6px;padding:14px;margin:10px 0;font-size:13px}
+  .flex{display:flex;flex-wrap:wrap;gap:8px}
+  .tbl-wrap{border:1px solid #e0e0e0;border-radius:6px;overflow:hidden;margin:10px 0 18px}
+  .tbl-wrap table{margin:0}
+  .tbl-wrap th{background:#f5f5f5;padding:9px 8px;border-bottom:1px solid #ddd;font-weight:600;font-size:12px}
+  .tbl-wrap td{padding:8px;border-bottom:1px solid #f0f0f0;font-size:13px}
+  .tbl-wrap tr:last-child td{border-bottom:none}
+  .tbl-wrap td,.tbl-wrap th{vertical-align:middle}
+  .bar-wrap{display:inline-flex;align-items:center;width:60px;height:16px;vertical-align:middle}
+  .bar-bg{background:#eee;border-radius:4px;height:8px;width:100%;overflow:hidden}
+  .bar{display:block;height:8px;border-radius:4px}
+  .score-cell{font-weight:700;font-size:15px;text-align:center;white-space:nowrap}
+  .col-tag{display:inline-block;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600}
+  .col-win{background:#e8f5e9;color:#2e7d32}
+  .col-lose{background:#ffebee;color:#c62828}
+  .col-warn{background:#fff3e0;color:#e65100}
+  .col-info{background:#e3f2fd;color:#1565c0}
+  @media(max-width:600px){.tab-btn{padding:8px 10px;font-size:12px}}
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>ASX——ASX200-300 全市场筛选报告</h1>
+<div class="subtitle">L5框架全市场扫描 ｜ 覆盖~300只成分股 ｜ 总市值~3万亿AUD</div>
+<div class="meta">生成日期：2026-07-07 ｜ 数据源：S&P/ASX 200-300 成分股 + 公开财报</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l7">L7 量化初筛</button>
+  <button class="tab-btn" data-tab="l8">L8 行业画像</button>
+  <button class="tab-btn" data-tab="l9">L9 竞争格局</button>
+  <button class="tab-btn" data-tab="l10">L10 周期时机</button>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     总结论 Tab
+     ═══════════════════════════════════════════════════ -->
+<div class="tab-content active" id="tab-summary">
+<div class="tab-inner">
+
+<h2>市场速览</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">项目</th><th>内容</th></tr>
+<tr><td>市场</td><td><strong>ASX（澳大利亚证券交易所）</strong></td></tr>
+<tr><td>筛选范围</td><td>S&P/ASX 200 + ASX 300 成分股，约 <strong>300只</strong></td></tr>
+<tr><td>总市值</td><td>~3万亿 AUD（ASX 300）</td></tr>
+<tr><td>核心特征</td><td>金融+矿业占 <span class="col-tag col-info">~59%</span> 市值，高分红文化，机构主导</td></tr>
+<tr><td>Franking Credits</td><td><span class="col-tag col-win">澳洲特有股息退税</span>，实际税后回报提升1-3%</td></tr>
+<tr><td>L7候选池</td><td>~<strong>180只</strong>通过全部或部分筛子（市值门槛即淘汰~30%）</td></tr>
+<tr><td>核心候选（5/6筛以上）</td><td><span class="col-tag col-win">~60只</span> 分布在银行/矿业/医疗/科技/消费</td></tr>
+<tr><td>当前市场周期</td><td><span class="col-tag col-warn">周期中段偏下</span> RBA利率4.35%高位，通胀回落中</td></tr>
+</table>
+</div>
+
+<h2>综合评分</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>维度</th><th style="width:60px">得分</th><th>进度</th><th>说明</th></tr>
+<tr>
+  <td>市场广度与深度</td>
+  <td class="score-cell">18/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:90%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">ASX 300覆盖全球顶级矿企/银行，质量高但行业集中</td>
+</tr>
+<tr>
+  <td>行业多样性</td>
+  <td class="score-cell">10/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:67%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">金融+矿业占6成，科技/医疗占比低但质量高</td>
+</tr>
+<tr>
+  <td>筛选后候选质量</td>
+  <td class="score-cell">16/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:80%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">龙头公司财务健康，ROE普遍>10%，分红稳定</td>
+</tr>
+<tr>
+  <td>估值合理性</td>
+  <td class="score-cell">10/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:67%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">银行PE~16-27x，矿业PB~2-4x，部分成长股估值偏高</td>
+</tr>
+<tr>
+  <td>周期位置</td>
+  <td class="score-cell">9/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:60%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">RBA加息周期尾声，矿业盈利高位回落，银行净息差承压</td>
+</tr>
+<tr>
+  <td>分红与股东回报</td>
+  <td class="score-cell">13/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:87%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">ASX高分红文化+Franking Credits，实际回报优异</td>
+</tr>
+<tr style="background:#fafafa">
+  <td style="font-weight:700;font-size:14px">总分</td>
+  <td style="font-weight:700;font-size:16px;color:#e65100">76/100</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:76%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555;font-weight:600">整体质量良好，但需区分行业分别对待</td>
+</tr>
+</table>
+</div>
+
+<div class="verdict verdict-caution">
+  <span class="score">76</span>
+  整体可投，但需精选行业和个股
+</div>
+
+<div class="summary-box">
+  <strong>核心结论</strong><br>
+  ASX市场整体质量较高，但不是"一键买入"就能赚钱的市场。<br><br>
+  <strong>值得重点关注的赛道：</strong><br>
+  🟢 <strong>银行（Big 4）</strong> — 高股息+Franking Credits，PB~1.5-3.6x，但CBA估值偏高<br>
+  🟢 <strong>矿业巨头（BHP/RIO/FMG）</strong> — 全球定价权，当前盈利高位但PB合理<br>
+  🟢 <strong>医疗龙頭（CSL/COH/RMD）</strong> — 全球竞争力强，长期成长确定<br>
+  🟢 <strong>科技SaaS（WTC/XRO/TNE）</strong> — 高毛利高成长，但估值不便宜<br>
+  🟢 <strong>防御收息（WOW/TCL/AGL）</strong> — 股息率3-5%+Franking Credits<br><br>
+  <strong>需要谨慎的：</strong><br>
+  🔴 小盘矿业（<20亿AUD）退市率极高，不适合L1-L6<br>
+  🔴 锂矿/铀矿等纯周期底部票，需PB极低时再考虑<br>
+  🔴 零售板块消费承压，WOW/COL同店增长放缓
+</div>
+
+<div class="highlight-box">
+  <strong>ASX配置公式</strong><br>
+  回报 = 股息（Big 4银行/防御股） + 周期弹性（BHP/RIO） + 成长（CSL/WTC）<br><br>
+  关键指标：RBA利率、AUD/USD汇率、铁矿石/金价、银行净息差
+</div>
+
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     L7 Tab
+     ═══════════════════════════════════════════════════ -->
+<div class="tab-content" id="tab-l7">
+<div class="tab-inner">
+
+<h2>筛子调整说明（按行业类型）</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:12%">筛子</th><th style="width:30%">ASX通用标准</th><th>按行业调整</th></tr>
+<tr>
+  <td>①<span class="col-tag col-info">市值</span></td>
+  <td>ASX ≥<strong>2亿</strong>AUD</td>
+  <td>全市场统一，ASX 300成分股基本满足</td>
+</tr>
+<tr>
+  <td>②<span class="col-tag col-info">营收</span></td>
+  <td>ASX ≥<strong>1亿</strong>AUD</td>
+  <td>ASX 300中~90%满足；勘探期矿企/早期生物科技跳过</td>
+</tr>
+<tr>
+  <td>③<span class="col-tag col-info">毛利率</span></td>
+  <td>制造业/科技≥15%，消费≥20%</td>
+  <td><span class="col-tag col-info">矿业/金融跳过</span>；科技SaaS普遍60-80%高毛利</td>
+</tr>
+<tr>
+  <td>④<span class="col-tag col-warn">ROE</span></td>
+  <td>≥8%</td>
+  <td><span class="col-tag col-info">矿业放宽≥5%</span>；成长初期亏损股跳过，用PS估值</td>
+</tr>
+<tr>
+  <td>⑤<span class="col-tag col-info">负债率</span></td>
+  <td>制造业≤65%，公用≤70%</td>
+  <td><span class="col-tag col-info">银行/保险跳过</span>；REITs关注FFO/负债率</td>
+</tr>
+<tr>
+  <td>⑥<span class="col-tag col-info">估值</span></td>
+  <td>PE分位≤70%/PB分位≤80%/PS≤10x</td>
+  <td>银行/矿业用<span class="col-tag col-info">PB</span>；科技用PE/PB；亏损成长用PS</td>
+</tr>
+</table>
+</div>
+
+<h2>按行业候选池</h2>
+
+<!-- 金融-银行 -->
+<h3>🏦 金融·银行 <span class="col-tag col-info">~8只，候选6只</span></h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>市值(B)</th><th>ROE</th><th>PB</th><th>通过</th><th>评级</th></tr>
+<tr style="background:#f0faf0">
+  <td><strong>CBA</strong> 联邦银行</td><td>$272B</td><td><span class="col-tag col-win">13.8%</span></td><td>3.6x</td><td class="pass">4/4</td><td><span class="col-tag col-warn">估值偏贵</span></td></tr>
+<tr style="background:#f0faf0">
+  <td><strong>NAB</strong> 国民银行</td><td>$116B</td><td><span class="col-tag col-win">11.6%</span></td><td>2.0x</td><td class="pass">4/4</td><td><span class="col-tag col-win">首选</span></td></tr>
+<tr style="background:#f0faf0">
+  <td><strong>WBC</strong> 西太平洋银行</td><td>$120B</td><td><span class="col-tag col-win">9.6%</span></td><td>1.7x</td><td class="pass">4/4</td><td><span class="col-tag col-win">PB低估</span></td></tr>
+<tr style="background:#f0faf0">
+  <td><strong>ANZ</strong> 澳新银行</td><td>$105B</td><td><span class="col-tag col-win">10.4%</span></td><td>1.5x</td><td class="pass">4/4</td><td><span class="col-tag col-win">PB最低</span></td></tr>
+<tr>
+  <td><strong>MQG</strong> 麦格理集团</td><td>$95B</td><td><span class="col-tag col-win">~15%</span></td><td>2.5x</td><td class="pass">4/4</td><td><span class="col-tag col-win">精品投行</span></td></tr>
+<tr>
+  <td><strong>BEN</strong> 本迪戈银行</td><td>$6B</td><td><span class="col-tag col-warn">~8%</span></td><td>1.2x</td><td class="pass">3/4</td><td><span class="col-tag col-warn">偏小</span></td></tr>
+</table>
+</div>
+
+<!-- 金融-保险 -->
+<h3>🛡️ 金融·保险 <span class="col-tag col-info">~10只，候选5只</span></h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>市值(B)</th><th>ROE</th><th>PE/PB</th><th>通过</th><th>评级</th></tr>
+<tr style="background:#f0faf0">
+  <td><strong>QBE</strong> QBE保险</td><td>$36B</td><td><span class="col-tag col-win">~12%</span></td><td>PE 12x</td><td class="pass">4/4</td><td><span class="col-tag col-win">低估</span></td></tr>
+<tr style="background:#f0faf0">
+  <td><strong>SUN</strong> 盛氏保险</td><td>$22B</td><td><span class="col-tag col-win">~10%</span></td><td>PB 1.6x</td><td class="pass">4/4</td><td><span class="col-tag col-win">分红稳定</span></td></tr>
+<tr style="background:#f0faf0">
+  <td><strong>IAG</strong> IAG保险</td><td>$15B</td><td><span class="col-tag col-win">~9%</span></td><td>PE 17x</td><td class="pass">4/4</td><td><span class="col-tag col-win">可关注</span></td></tr>
+<tr>
+  <td><strong>MPL</strong> Medibank</td><td>$12B</td><td><span class="col-tag col-win">~20%</span></td><td>PE 22x</td><td class="pass">4/4</td><td><span class="col-tag col-warn">估值中性</span></td></tr>
+<tr>
+  <td><strong>NWL</strong> Netwealth</td><td>$8B</td><td><span class="col-tag col-win">~15%</span></td><td>PE 95x</td><td class="pass">3/4</td><td><span class="col-tag col-lose">估值极高</span></td></tr>
+</table>
+</div>
+
+<!-- 矿业综合 -->
+<h3>⛏️ 矿业·综合 <span class="col-tag col-info">~20只，候选8只</span></h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>市值(B)</th><th>ROE</th><th>PB</th><th>通过</th><th>评级</th></tr>
+<tr style="background:#f0faf0">
+  <td><strong>BHP</strong> 必和必拓</td><td>$312B</td><td><span class="col-tag col-win">~25%</span></td><td>3.2x</td><td class="pass">4/4</td><td><span class="col-tag col-win">全球矿王</span></td></tr>
+<tr style="background:#f0faf0">
+  <td><strong>RIO</strong> 力拓</td><td>$288B</td><td><span class="col-tag col-win">~22%</span></td><td>2.8x</td><td class="pass">4/4</td><td><span class="col-tag col-win">铜铁双优</span></td></tr>
+<tr style="background:#f0faf0">
+  <td><strong>FMG</strong> 福特斯库</td><td>$61B</td><td><span class="col-tag col-win">~28%</span></td><td>2.1x</td><td class="pass">4/4</td><td><span class="col-tag col-win">铁矿石弹性</span></td></tr>
+<tr>
+  <td><strong>S32</strong> 南32</td><td>$16B</td><td><span class="col-tag col-warn">~6%</span></td><td>0.9x</td><td class="pass">4/4</td><td><span class="col-tag col-win">PB<1x</span></td></tr>
+<tr>
+  <td><strong>BSL</strong> BlueScope钢</td><td>$15B</td><td><span class="col-tag col-warn">~7%</span></td><td>1.2x</td><td class="pass">4/4</td><td><span class="col-tag col-warn">周期底部</span></td></tr>
+<tr>
+  <td><strong>ORI</strong> Orica</td><td>$10B</td><td><span class="col-tag col-win">~12%</span></td><td>2.0x</td><td class="pass">4/4</td><td><span class="col-tag col-win">矿业服务</span></td></tr>
+<tr>
+  <td><strong>MIN</strong> Mineral Res.</td><td>$12B</td><td><span class="col-tag col-lose">负</span></td><td>1.5x</td><td class="pass">3/4</td><td><span class="col-tag col-lose">锂矿亏损</span></td></tr>
+</table>
+</div>
+
+<!-- 金矿 -->
+<h3>🥇 金矿 <span class="col-tag col-info">~10只，候选5只</span></h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>市值(B)</th><th>ROE</th><th>PB</th><th>通过</th><th>评级</th></tr>
+<tr style="background:#f0faf0">
+  <td><strong>NST</strong> Northern Star</td><td>$16B</td><td><span class="col-tag col-win">~10%</span></td><td>2.1x</td><td class="pass">4/4</td><td><span class="col-tag col-win">ASX金矿龙头</span></td></tr>
+<tr style="background:#f0faf0">
+  <td><strong>EVN</strong> Evolution Mining</td><td>$10B</td><td><span class="col-tag col-win">~8%</span></td><td>1.8x</td><td class="pass">4/4</td><td><span class="col-tag col-win">金价受益</span></td></tr>
+<tr>
+  <td><strong>RMS</strong> Ramelius</td><td>$3B</td><td><span class="col-tag col-win">~15%</span></td><td>2.5x</td><td class="pass">4/4</td><td><span class="col-tag col-win">低成本</span></td></tr>
+<tr>
+  <td><strong>RRL</strong> Regis Resources</td><td>$2B</td><td><span class="col-tag col-warn">~5%</span></td><td>1.2x</td><td class="pass">3/4</td><td><span class="col-tag col-warn">ROE偏低</span></td></tr>
+</table>
+</div>
+
+<!-- 油气 -->
+<h3>🛢️ 油气 <span class="col-tag col-info">~10只，候选4只</span></h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>市值(B)</th><th>ROE</th><th>PB</th><th>通过</th><th>评级</th></tr>
+<tr style="background:#f0faf0">
+  <td><strong>WDS</strong> Woodside</td><td>$40B</td><td><span class="col-tag col-win">~12%</span></td><td>1.8x</td><td class="pass">4/4</td><td><span class="col-tag col-win">高股息</span></td></tr>
+<tr style="background:#f0faf0">
+  <td><strong>STO</strong> Santos</td><td>$25B</td><td><span class="col-tag col-win">~10%</span></td><td>1.3x</td><td class="pass">4/4</td><td><span class="col-tag col-win">LNG弹性</span></td></tr>
+<tr>
+  <td><strong>BPT</strong> Beach Energy</td><td>$3B</td><td><span class="col-tag col-warn">~5%</span></td><td>0.8x</td><td class="pass">3/4</td><td><span class="col-tag col-warn">小盘</span></td></tr>
+</table>
+</div>
+
+<!-- 医疗 -->
+<h3>🏥 医疗 <span class="col-tag col-info">~15只，候选8只</span></h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>市值(B)</th><th>毛利率</th><th>ROE</th><th>通过</th><th>评级</th></tr>
+<tr style="background:#f0faf0">
+  <td><strong>CSL</strong> 血液制品</td><td>$95B</td><td><span class="col-tag col-win">~50%</span></td><td><span class="col-tag col-win">~25%</span></td><td class="pass">6/6</td><td><span class="col-tag col-win">全球龙头</span></td></tr>
+<tr style="background:#f0faf0">
+  <td><strong>RMD</strong> ResMed</td><td>$39B</td><td><span class="col-tag col-win">~58%</span></td><td><span class="col-tag col-win">~20%</span></td><td class="pass">6/6</td><td><span class="col-tag col-win">睡眠呼吸</span></td></tr>
+<tr style="background:#f0faf0">
+  <td><strong>COH</strong> Cochlear</td><td>$20B</td><td><span class="col-tag col-win">~72%</span></td><td><span class="col-tag col-win">~15%</span></td><td class="pass">6/6</td><td><span class="col-tag col-win">人工耳蜗垄断</span></td></tr>
+<tr style="background:#f0faf0">
+  <td><strong>PME</strong> Pro Medicus</td><td>$15B</td><td><span class="col-tag col-win">~85%</span></td><td><span class="col-tag col-win">~35%</span></td><td class="pass">6/6</td><td><span class="col-tag col-win">医疗IT高毛利</span></td></tr>
+<tr>
+  <td><strong>SHL</strong> Sonic Healthcare</td><td>$15B</td><td><span class="col-tag col-warn">~12%</span></td><td><span class="col-tag col-win">~10%</span></td><td class="pass">5/6</td><td><span class="col-tag col-warn">毛利率偏低</span></td></tr>
+<tr>
+  <td><strong>RHC</strong> Ramsay Health</td><td>$12B</td><td><span class="col-tag col-warn">~10%</span></td><td><span class="col-tag col-win">~8%</span></td><td class="pass">5/6</td><td><span class="col-tag col-warn">负债率高</span></td></tr>
+<tr>
+  <td><strong>FPH</strong> Fisher & Paykel</td><td>$18B</td><td><span class="col-tag col-win">~55%</span></td><td><span class="col-tag col-win">~12%</span></td><td class="pass">6/6</td><td><span class="col-tag col-win">呼吸设备</span></td></tr>
+</table>
+</div>
+
+<!-- 科技 -->
+<h3>💻 科技/SaaS <span class="col-tag col-info">~20只，候选6只</span></h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>市值(B)</th><th>毛利率</th><th>ROE</th><th>通过</th><th>评级</th></tr>
+<tr style="background:#f0faf0">
+  <td><strong>WTC</strong> WiseTech</td><td>$30B</td><td><span class="col-tag col-win">~75%</span></td><td><span class="col-tag col-win">~12%</span></td><td class="pass">6/6</td><td><span class="col-tag col-win">物流SaaS龙头</span></td></tr>
+<tr style="background:#f0faf0">
+  <td><strong>XRO</strong> Xero</td><td>$20B</td><td><span class="col-tag col-win">~85%</span></td><td><span class="col-tag col-win">~10%</span></td><td class="pass">6/6</td><td><span class="col-tag col-win">会计SaaS</span></td></tr>
+<tr>
+  <td><strong>TNE</strong> TechnologyOne</td><td>$8B</td><td><span class="col-tag col-win">~65%</span></td><td><span class="col-tag col-win">~25%</span></td><td class="pass">6/6</td><td><span class="col-tag col-win">ERP SaaS</span></td></tr>
+<tr>
+  <td><strong>HUB</strong> Hub24</td><td>$5B</td><td><span class="col-tag col-win">~55%</span></td><td><span class="col-tag col-win">~15%</span></td><td class="pass">6/6</td><td><span class="col-tag col-win">财富平台</span></td></tr>
+<tr>
+  <td><strong>CAR</strong> Car Group</td><td>$8B</td><td><span class="col-tag col-win">~70%</span></td><td><span class="col-tag col-win">~18%</span></td><td class="pass">6/6</td><td><span class="col-tag col-win">汽车广告</span></td></tr>
+<tr>
+  <td><strong>CPU</strong> Computershare</td><td>$15B</td><td><span class="col-tag col-warn">~18%</span></td><td><span class="col-tag col-win">~15%</span></td><td class="pass">5/6</td><td><span class="col-tag col-warn">毛利率偏低</span></td></tr>
+</table>
+</div>
+
+<!-- 消费零售 -->
+<h3>🛒 零售/消费 <span class="col-tag col-info">~15只，候选5只</span></h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>市值(B)</th><th>毛利率</th><th>ROE</th><th>通过</th><th>评级</th></tr>
+<tr>
+  <td><strong>WES</strong> Wesfarmers</td><td>$97B</td><td><span class="col-tag col-win">~35%</span></td><td><span class="col-tag col-win">~18%</span></td><td class="pass">6/6</td><td><span class="col-tag col-win">综合零售龙头</span></td></tr>
+<tr>
+  <td><strong>WOW</strong> Woolworths</td><td>$40B</td><td><span class="col-tag col-win">~28%</span></td><td><span class="col-tag col-win">~15%</span></td><td class="pass">6/6</td><td><span class="col-tag col-win">超市防御</span></td></tr>
+<tr>
+  <td><strong>COL</strong> Coles</td><td>$25B</td><td><span class="col-tag col-win">~26%</span></td><td><span class="col-tag col-win">~14%</span></td><td class="pass">6/6</td><td><span class="col-tag col-win">超市防御</span></td></tr>
+<tr>
+  <td><strong>JBH</strong> JB Hi-Fi</td><td>$8B</td><td><span class="col-tag col-warn">~22%</span></td><td><span class="col-tag col-win">~25%</span></td><td class="pass">6/6</td><td><span class="col-tag col-win">消费电子</span></td></tr>
+<tr>
+  <td><strong>EDV</strong> Endeavour</td><td>$12B</td><td><span class="col-tag col-warn">~22%</span></td><td><span class="col-tag col-win">~10%</span></td><td class="pass">6/6</td><td><span class="col-tag col-warn">酒类承压</span></td></tr>
+</table>
+</div>
+
+<!-- 电信/公用 -->
+<h3>📡 电信·公用·基建 <span class="col-tag col-info">~25只，候选8只</span></h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>市值(B)</th><th>ROE</th><th>负债率</th><th>通过</th><th>评级</th></tr>
+<tr>
+  <td><strong>TLS</strong> Telstra</td><td>$45B</td><td><span class="col-tag col-win">~12%</span></td><td>~55%</td><td class="pass">6/6</td><td><span class="col-tag col-win">电信防御+股息</span></td></tr>
+<tr>
+  <td><strong>TCL</strong> Transurban</td><td>$40B</td><td><span class="col-tag col-warn">~6%</span></td><td><span class="col-tag col-lose">~70%</span></td><td class="pass">5/6</td><td><span class="col-tag col-warn">高负债收息</span></td></tr>
+<tr>
+  <td><strong>ORG</strong> Origin Energy</td><td>$18B</td><td><span class="col-tag col-win">~10%</span></td><td>~50%</td><td class="pass">6/6</td><td><span class="col-tag col-win">公用+能源</span></td></tr>
+<tr>
+  <td><strong>AGL</strong> AGL Energy</td><td>$10B</td><td><span class="col-tag col-win">~15%</span></td><td>~45%</td><td class="pass">6/6</td><td><span class="col-tag col-win">电力</span></td></tr>
+<tr>
+  <td><strong>APA</strong> APA Group</td><td>$14B</td><td><span class="col-tag col-warn">~7%</span></td><td><span class="col-tag col-lose">~70%</span></td><td class="pass">4/6</td><td><span class="col-tag col-warn">高负债管输</span></td></tr>
+<tr>
+  <td><strong>SYD</strong> 悉尼机场</td><td>$25B</td><td><span class="col-tag col-warn">~5%</span></td><td><span class="col-tag col-lose">~75%</span></td><td class="pass">4/6</td><td><span class="col-tag col-warn">高负债</span></td></tr>
+<tr>
+  <td><strong>AZJ</strong> Aurizon</td><td>$10B</td><td><span class="col-tag col-win">~12%</span></td><td>~60%</td><td class="pass">6/6</td><td><span class="col-tag col-win">铁路货运</span></td></tr>
+</table>
+</div>
+
+<!-- REITs -->
+<h3>🏢 REITs <span class="col-tag col-info">~20只，候选5只（修正框架）</span></h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>市值(B)</th><th>FFO yield</th><th>负债率</th><th>评级</th></tr>
+<tr>
+  <td><strong>GMG</strong> Goodman Group</td><td>$64B</td><td><span class="col-tag col-warn">~3%</span></td><td>~30%</td><td><span class="col-tag col-win">工业REITs全球龙头</span></td></tr>
+<tr>
+  <td><strong>SCG</strong> Scentre Group</td><td>$20B</td><td><span class="col-tag col-win">~5.5%</span></td><td>~40%</td><td><span class="col-tag col-win">购物中心</span></td></tr>
+<tr>
+  <td><strong>GPT</strong> GPT Group</td><td>$10B</td><td><span class="col-tag col-win">~5%</span></td><td>~35%</td><td><span class="col-tag col-win">办公+零售</span></td></tr>
+<tr>
+  <td><strong>MGR</strong> Mirvac</td><td>$10B</td><td><span class="col-tag col-win">~4.5%</span></td><td>~35%</td><td><span class="col-tag col-win">多元化</span></td></tr>
+<tr>
+  <td><strong>VCX</strong> Vicinity</td><td>$10B</td><td><span class="col-tag col-win">~5%</span></td><td>~38%</td><td><span class="col-tag col-win">购物中心</span></td></tr>
+</table>
+</div>
+<div class="summary-box">
+  <strong>REITs说明：</strong> 标准L7不直接适用，改用P/FFO+负债率+出租率。GMG估值偏高但增长确定。零售REITs受消费影响，工业/物流REITs受益电商。
+</div>
+
+<!-- 其他 -->
+<h3>🎰 博彩·媒体·其他 <span class="col-tag col-info">~20只，候选8只</span></h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>市值(B)</th><th>毛利率</th><th>ROE</th><th>通过</th><th>评级</th></tr>
+<tr>
+  <td><strong>ALL</strong> Aristocrat</td><td>$40B</td><td><span class="col-tag col-win">~60%</span></td><td><span class="col-tag col-win">~35%</span></td><td class="pass">6/6</td><td><span class="col-tag col-win">全球博彩龙头</span></td></tr>
+<tr>
+  <td><strong>REA</strong> REA Group</td><td>$25B</td><td><span class="col-tag col-win">~85%</span></td><td><span class="col-tag col-win">~30%</span></td><td class="pass">6/6</td><td><span class="col-tag col-win">房产广告垄断</span></td></tr>
+<tr>
+  <td><strong>BXB</strong> Brambles</td><td>$20B</td><td><span class="col-tag col-win">~40%</span></td><td><span class="col-tag col-win">~20%</span></td><td class="pass">6/6</td><td><span class="col-tag col-win">物流托盘全球</span></td></tr>
+<tr>
+  <td><strong>ALL</strong> Aristocrat</td><td>$40B</td><td><span class="col-tag col-win">~60%</span></td><td><span class="col-tag col-win">~35%</span></td><td class="pass">6/6</td><td><span class="col-tag col-win">老虎机全球</span></td></tr>
+<tr>
+  <td><strong>QAN</strong> Qantas</td><td>$15B</td><td><span class="col-tag col-warn">~12%</span></td><td><span class="col-tag col-win">~15%</span></td><td class="pass">5/6</td><td><span class="col-tag col-warn">毛利率偏低</span></td></tr>
+<tr>
+  <td><strong>AMC</strong> Amcor</td><td>$15B</td><td><span class="col-tag col-warn">~18%</span></td><td><span class="col-tag col-win">~15%</span></td><td class="pass">5/6</td><td><span class="col-tag col-warn">包装行业</span></td></tr>
+</table>
+</div>
+
+<h2>跨行业最佳候选池（Top 20）</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>排名</th><th>股票</th><th>行业</th><th>市值(B)</th><th>ROE</th><th>核心优势</th><th>L7通过</th></tr>
+<tr style="background:#f0faf0"><td>🥇</td><td><strong>CSL</strong></td><td>医疗</td><td>$95B</td><td><span class="col-tag col-win">~25%</span></td><td>全球血浆龙头，壁垒极高</td><td class="pass">6/6</td></tr>
+<tr style="background:#f0faf0"><td>🥇</td><td><strong>BHP</strong></td><td>矿业</td><td>$312B</td><td><span class="col-tag col-win">~25%</span></td><td>全球最大矿企，多元化资源</td><td class="pass">4/4</td></tr>
+<tr style="background:#f0faf0"><td>🥇</td><td><strong>NAB</strong></td><td>银行</td><td>$116B</td><td><span class="col-tag col-win">~11.6%</span></td><td>Big4中最优估值PB~2x</td><td class="pass">4/4</td></tr>
+<tr style="background:#f0faf0"><td>🥇</td><td><strong>WES</strong></td><td>零售</td><td>$97B</td><td><span class="col-tag col-win">~18%</span></td><td>综合零售Bunnings独大</td><td class="pass">6/6</td></tr>
+<tr style="background:#f0faf0"><td>🥇</td><td><strong>WTC</strong></td><td>SaaS</td><td>$30B</td><td><span class="col-tag col-win">~12%</span></td><td>全球货代SaaS垄断</td><td class="pass">6/6</td></tr>
+<tr><td>6</td><td><strong>REA</strong></td><td>媒体</td><td>$25B</td><td><span class="col-tag col-win">~30%</span></td><td>澳洲房产广告垄断</td><td class="pass">6/6</td></tr>
+<tr><td>7</td><td><strong>COH</strong></td><td>医疗</td><td>$20B</td><td><span class="col-tag col-win">~15%</span></td><td>人工耳蜗全球垄断</td><td class="pass">6/6</td></tr>
+<tr><td>8</td><td><strong>ALL</strong></td><td>博彩</td><td>$40B</td><td><span class="col-tag col-win">~35%</span></td><td>老虎机全球第二</td><td class="pass">6/6</td></tr>
+<tr><td>9</td><td><strong>RMD</strong></td><td>医疗</td><td>$39B</td><td><span class="col-tag col-win">~20%</span></td><td>睡眠呼吸全球领先</td><td class="pass">6/6</td></tr>
+<tr><td>10</td><td><strong>ANZ</strong></td><td>银行</td><td>$105B</td><td><span class="col-tag col-win">~10.4%</span></td><td>Big4中PB最低1.5x</td><td class="pass">4/4</td></tr>
+<tr><td>11</td><td><strong>WBC</strong></td><td>银行</td><td>$120B</td><td><span class="col-tag col-win">~9.6%</span></td><td>PB 1.7x低于净资产</td><td class="pass">4/4</td></tr>
+<tr><td>12</td><td><strong>RIO</strong></td><td>矿业</td><td>$288B</td><td><span class="col-tag col-win">~22%</span></td><td>铜+铁矿双优</td><td class="pass">4/4</td></tr>
+<tr><td>13</td><td><strong>XRO</strong></td><td>SaaS</td><td>$20B</td><td><span class="col-tag col-win">~10%</span></td><td>会计SaaS全球扩张</td><td class="pass">6/6</td></tr>
+<tr><td>14</td><td><strong>WOW</strong></td><td>零售</td><td>$40B</td><td><span class="col-tag col-win">~15%</span></td><td>超市防御+股息</td><td class="pass">6/6</td></tr>
+<tr><td>15</td><td><strong>QBE</strong></td><td>保险</td><td>$36B</td><td><span class="col-tag col-win">~12%</span></td><td>PE仅12x，全球保险</td><td class="pass">4/4</td></tr>
+<tr><td>16</td><td><strong>TCL</strong></td><td>基建</td><td>$40B</td><td><span class="col-tag col-warn">~6%</span></td><td>收费公路垄断+股息</td><td class="pass">5/6</td></tr>
+<tr><td>17</td><td><strong>NST</strong></td><td>金矿</td><td>$16B</td><td><span class="col-tag col-win">~10%</span></td><td>ASX金矿首选</td><td class="pass">4/4</td></tr>
+<tr><td>18</td><td><strong>PME</strong></td><td>医疗IT</td><td>$15B</td><td><span class="col-tag col-win">~35%</span></td><td>毛利率85%，净利率极高</td><td class="pass">6/6</td></tr>
+<tr><td>19</td><td><strong>MQG</strong></td><td>投行</td><td>$95B</td><td><span class="col-tag col-win">~15%</span></td><td>精品投行全球布局</td><td class="pass">4/4</td></tr>
+<tr><td>20</td><td><strong>TNE</strong></td><td>SaaS</td><td>$8B</td><td><span class="col-tag col-win">~25%</span></td><td>澳洲ERP龙头</td><td class="pass">6/6</td></tr>
+</table>
+</div>
+
+<h2>筛除记录（按行业统计）</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>行业</th><th>ASX 300约数</th><th>筛除主因</th><th>候选</th></tr>
+<tr><td>银行/金融</td><td>~25</td><td>估值偏高（CBA）、规模偏小</td><td>~15</td></tr>
+<tr><td>矿业（综合+金+锂+油）</td><td>~60</td><td>锂矿亏损、勘探期无营收</td><td>~20</td></tr>
+<tr><td>医疗</td><td>~15</td><td>RHC负债率高</td><td>~8</td></tr>
+<tr><td>科技/SaaS</td><td>~25</td><td>亏损成长股需PS验证</td><td>~8</td></tr>
+<tr><td>零售/消费</td><td>~20</td><td>部分消费股营收下滑</td><td>~8</td></tr>
+<tr><td>电信/公用/基建</td><td>~30</td><td>高负债率淘汰部分基建</td><td>~12</td></tr>
+<tr><td>REITs</td><td>~55</td><td>修正框架，关注FFO/负债率</td><td>~15</td></tr>
+<tr><td>博彩/媒体/其他</td><td>~30</td><td>margin低的媒体股</td><td>~15</td></tr>
+<tr><td>小盘/勘探/早期</td><td>~60</td><td>大部分不满足L7</td><td>~5</td></tr>
+<tr style="background:#fffde7"><td><strong>合计ASX 300</strong></td><td><strong>~300</strong></td><td>—</td><td><strong style="color:#2e7d32">~106</strong></td></tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <strong>L7筛选结论</strong><br>
+  ASX 300中约106只通过L7基本筛选（占~35%）。主要集中在：<br>
+  🥇 <strong>银行Big 4</strong>（NAB/ANZ/WBC PB低估，CBA偏贵）<br>
+  🥇 <strong>医疗龙頭</strong>（CSL/COH/RMD/PME全面通过）<br>
+  🥇 <strong>科技SaaS</strong>（WTC/XRO/TNE/HUB高毛利高ROE）<br>
+  🥇 <strong>矿业巨头</strong>（BHP/RIO/FMG/NST全球定价权）<br>
+  🥇 <strong>防御收息</strong>（WOW/COL/TCL/AGL股息稳定）<br><br>
+  注意：锂矿板块当前大部分亏损（PLS/IGO/MIN），ROE筛不过，用PS看可能仍有价值。<br>
+  小盘矿业（<20亿）和勘探期公司不适合标准L1-L6框架。
+</div>
+
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     L8 Tab
+     ═══════════════════════════════════════════════════ -->
+<div class="tab-content" id="tab-l8">
+<div class="tab-inner">
+
+<h2>ASX 200-300 全市场产业链</h2>
+<div class="card" style="font-size:13px;line-height:1.7">
+
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px">
+
+<div style="flex:1;min-width:200px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#e65100;font-size:14px">上游资源</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:4px;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:12px">铁矿石<br><span style="font-weight:400;font-size:11px;color:#666">BHP/RIO/FMG</span></div>
+    <div style="margin-bottom:4px;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:12px">金矿<br><span style="font-weight:400;font-size:11px;color:#666">NST/EVN/RMS</span></div>
+    <div style="margin-bottom:4px;background:#ffebee;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:12px">锂矿（亏损）<br><span style="font-weight:400;font-size:11px;color:#666">PLS/IGO/MIN</span></div>
+    <div style="margin:4px 0;text-align:center;color:#999;font-size:16px">↓</div>
+    <div style="background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:12px">油气<br><span style="font-weight:400;font-size:11px;color:#666">WDS/STO/BPT</span></div>
+    <div style="margin:4px 0;text-align:center;color:#999;font-size:16px">↓</div>
+    <div style="background:#fffde7;border:1px solid #ccc;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:12px">稀土/铀<br><span style="font-weight:400;font-size:11px;color:#666">LYC/PDN</span></div>
+  </div>
+</div>
+
+<div style="flex:2;min-width:280px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#1565c0;font-size:14px">中游·服务·制造</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap">
+      <div style="flex:1;min-width:80px;background:#e3f2fd;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">钢铁</div>
+        <div style="font-size:10px;color:#666">BSL</div>
+      </div>
+      <div style="flex:1;min-width:80px;background:#e3f2fd;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">化工</div>
+        <div style="font-size:10px;color:#666">ORI/AMC</div>
+      </div>
+      <div style="flex:1;min-width:80px;background:#e3f2fd;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">建材</div>
+        <div style="font-size:10px;color:#666">JHX/BLD</div>
+      </div>
+    </div>
+    <div style="margin:6px 0 4px;font-weight:600;font-size:12px;color:#1565c0">服务支撑层</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px;font-weight:600">矿业服务<br><span style="font-weight:400;font-size:10px;color:#666">MSV/SDV</span></div>
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px;font-weight:600">物流<br><span style="font-weight:400;font-size:10px;color:#666">BXB/QUB/QAN</span></div>
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px;font-weight:600">IT服务<br><span style="font-weight:400;font-size:10px;color:#666">CPU/NXT</span></div>
+    </div>
+  </div>
+</div>
+
+<div style="flex:1;min-width:180px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#c62828;font-size:14px">下游终端</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:4px;background:#ffebee;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:12px">银行·金融<br><span style="font-weight:400;font-size:11px;color:#666">CBA/NAB/ANZ/WBC</span></div>
+    <div style="margin-bottom:4px;background:#ffebee;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:12px">零售·消费<br><span style="font-weight:400;font-size:11px;color:#666">WOW/COL/WES</span></div>
+    <div style="margin-bottom:4px;background:#ffebee;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:12px">医疗<br><span style="font-weight:400;font-size:11px;color:#666">CSL/COH/RMD</span></div>
+    <div style="margin-bottom:4px;background:#f5f5f5;border:1px solid #ccc;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:12px">科技SaaS<br><span style="font-weight:400;font-size:11px;color:#666">WTC/XRO/TNE</span></div>
+    <div style="margin:6px 0;text-align:center;color:#999;font-size:16px">↓</div>
+    <div style="background:#f5f5f5;border:1px solid #ccc;border-radius:4px;padding:8px 8px;text-align:center;font-weight:600;font-size:13px">终端用户</div>
+    <div style="text-align:center;font-size:11px;color:#666">全球市场（矿业/医疗/SaaS）<br>澳洲本地（银行/零售/公用）</div>
+  </div>
+</div>
+
+</div>
+
+<div style="background:#fffde7;border-left:3px solid #f9a825;padding:8px 12px;font-size:12px;border-radius:0 4px 4px 0">
+  <strong>利润最厚环节：</strong>SaaS（WTC/XRO/TNE毛利率65-85%）> 医疗科技（PME 85%/COH 72%）> 矿业（BHP/RIO ~40-60%）> 银行（~40-50%净息差相关）
+  <br><span style="color:#999">注意：ASX利润分布不均匀，60%利润来自金融+矿业，但SaaS和医疗增速更快</span>
+</div>
+
+</div>
+
+<h2>市场规模</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">指标</th><th style="width:25%">数值</th><th>说明</th></tr>
+<tr><td><strong>ASX总市值</strong></td><td><span class="col-tag col-info">~3万亿AUD</span></td><td>全球第6大交易所，亚太第3</td></tr>
+<tr><td><strong>ASX 300市值</strong></td><td><span class="col-tag col-info">~2.1万亿AUD</span></td><td>占ASX总市值~85%</td></tr>
+<tr><td><strong>金融板块占比</strong></td><td>~33%</td><td>银行+保险+多元化金融</td></tr>
+<tr><td><strong>矿业板块占比</strong></td><td>~26%</td><td>铁矿石/金/铜/锂/油气</td></tr>
+<tr><td><strong>医疗板块</strong></td><td>~6%</td><td>CSL/COH/RMD全球竞争力强</td></tr>
+<tr><td><strong>科技板块</strong></td><td>~3%</td><td>WTC/XRO/TNE高毛利但权重低</td></tr>
+<tr><td><strong>近年成交额</strong></td><td>~60亿AUD/日</td><td>机构主导，流动性集中在ASX 50</td></tr>
+</table>
+</div>
+
+<h2>生命周期</h2>
+<div class="summary-box">
+  <strong><span class="col-tag col-warn">成熟市场 + 结构性成长</span></strong><br>
+  ASX整体是成熟市场，但内部生命周期差异大：<br>
+  🟢 <strong>成长早期：</strong>锂矿/铀矿（导入期）、氢能/清洁能源<br>
+  🟡 <strong>快速成长：</strong>医疗科技（PME/COH）、SaaS（WTC/XRO）<br>
+  🟠 <strong>成熟洗牌：</strong>银行（Big4稳定，REITs整合）<br>
+  🔴 <strong>成熟/衰退：</strong>电信（TLS增速低）、传统零售<br>
+  🟢 <strong>周期波动：</strong>矿业（3-8年供需周期）+ 油气
+</div>
+
+<h2>增长驱动力</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动力</th><th>类型</th><th>可持续性</th><th>量化指标</th></tr>
+<tr>
+  <td>全球资源需求(中国/印度)</td>
+  <td><span class="col-tag col-warn">周期</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>铁矿石/金价/铜价</td>
+</tr>
+<tr>
+  <td>老龄化+医疗支出</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>CSL血浆量/COH手术量</td>
+</tr>
+<tr>
+  <td>数字化转型/SaaS</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>WTC ARR/XRO订阅数</td>
+</tr>
+<tr>
+  <td>高净值+养老金</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>养老金余额/HUB平台资产</td>
+</tr>
+<tr>
+  <td>澳洲人口增长</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">中</span></td>
+  <td>人口增速/住房需求</td>
+</tr>
+</table>
+</div>
+
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     L9 Tab
+     ═══════════════════════════════════════════════════ -->
+<div class="tab-content" id="tab-l9">
+<div class="tab-inner">
+
+<h2>市场结构（跨行业对比）</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:20%">行业</th><th>市场结构</th><th>CR3</th><th>格局象限</th><th>新进入者</th></tr>
+<tr>
+  <td><strong>银行</strong></td>
+  <td><span class="col-tag col-win">寡头垄断</span></td>
+  <td>Big 4 ~75%</td>
+  <td><span class="col-tag col-win">赢家通吃</span></td>
+  <td><span class="col-tag col-win">小</span></td>
+</tr>
+<tr>
+  <td><strong>矿业</strong></td>
+  <td><span class="col-tag col-warn">寡头垄断</span></td>
+  <td>BHP/RIO/FMG ~65%</td>
+  <td><span class="col-tag col-win">成本领先</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+</tr>
+<tr>
+  <td><strong>医疗设备</strong></td>
+  <td><span class="col-tag col-win">寡头/垄断</span></td>
+  <td>COH~70%(耳蜗)</td>
+  <td><span class="col-tag col-win">赢家通吃</span></td>
+  <td><span class="col-tag col-win">小</span></td>
+</tr>
+<tr>
+  <td><strong>SaaS</strong></td>
+  <td><span class="col-tag col-warn">垄断竞争</span></td>
+  <td>WTC/REA各自细分>50%</td>
+  <td><span class="col-tag col-win">细分龙头</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+</tr>
+<tr>
+  <td><strong>超市零售</strong></td>
+  <td><span class="col-tag col-win">双寡头</span></td>
+  <td>WOW/COL ~65%</td>
+  <td><span class="col-tag col-win">稳定双雄</span></td>
+  <td><span class="col-tag col-win">小</span></td>
+</tr>
+<tr>
+  <td><strong>保险</strong></td>
+  <td><span class="col-tag col-warn">寡头竞争</span></td>
+  <td>QBE/SUN/IAG ~50%</td>
+  <td><span class="col-tag col-warn">百花齐放</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+</tr>
+<tr>
+  <td><strong>REITs</strong></td>
+  <td><span class="col-tag col-warn">垄断竞争</span></td>
+  <td>GMG/SCG/GPT ~25%</td>
+  <td><span class="col-tag col-warn">百花齐放</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+</tr>
+</table>
+</div>
+
+<h2>竞争壁垒</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>壁垒类型</th><th>强度</th><th>可持续性</th><th>代表行业</th></tr>
+<tr>
+  <td>监管牌照</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>银行（APRA监管）、机场、收费公路</td>
+</tr>
+<tr>
+  <td>资源禀赋</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>BHP/RIO/FMG矿山位置、CSL血浆网络</td>
+</tr>
+<tr>
+  <td>专利/技术</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>COH人工耳蜗专利、PME医疗影像</td>
+</tr>
+<tr>
+  <td>品牌/用户习惯</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>WOW/COL超市品牌、REA房产搜索</td>
+</tr>
+<tr>
+  <td>网络效应</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>REA（买家+卖家）、CAR（dealer+买家）</td>
+</tr>
+<tr>
+  <td>规模效应</td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>Big 4银行、BHP/RIO矿业</td>
+</tr>
+</table>
+</div>
+
+<div class="summary-box">
+  <strong>定价权测试</strong><br>
+  🔹 <strong>银行：</strong>龙头能涨价吗？<span class="col-tag col-win">部分能</span> CBA有定价权，其它竞争激烈<br>
+  🔹 <strong>矿业：</strong><span class="col-tag col-lose">不能</span> 全球定价，ASX矿业公司是价格接受者<br>
+  🔹 <strong>医疗：</strong><span class="col-tag col-win">能</span> COH/CSL全球定价权强<br>
+  🔹 <strong>SaaS：</strong><span class="col-tag col-win">能</span> WTC/REA订阅收费，涨价能力强<br>
+  🔹 <strong>超市：</strong><span class="col-tag col-warn">有限</span> WOW/COL竞争激烈，但有成本转嫁能力
+</div>
+
+<h2>驱动力拆解</h2>
+<div class="highlight-box">
+  <strong>ASX整体收入公式</strong><br>
+  收入 = <strong style="color:#2e7d32">全球资源价格（量↑/价↑）</strong> + <strong style="color:#1565c0">澳洲消费+金融（量稳/价稳）</strong> + <strong style="color:#2e7d32">全球医疗+SaaS出口（量↑/价↑）</strong><br><br>
+  当前组合：<span style="color:#2e7d32;font-weight:700">矿业量 ↓ 价 ↓</span> ＋ <span style="color:#2e7d32;font-weight:700">银行量稳价稳</span> ＋ <span style="color:#2e7d32;font-weight:700">医疗SaaS量↑价↑</span> ＝ <span class="col-tag col-warn">分化明显</span>
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动因子</th><th>最新值</th><th>历史区间</th><th>当前分位</th><th>趋势</th></tr>
+<tr>
+  <td>铁矿石价格(62% CFR)</td>
+  <td><span class="col-tag col-lose">~$100</span></td>
+  <td>$80-230</td>
+  <td><span class="col-tag col-warn">~35%</span></td>
+  <td>📉 中国需求放缓</td>
+</tr>
+<tr>
+  <td>金价(AUD/oz)</td>
+  <td><span class="col-tag col-win">~$3,500</span></td>
+  <td>$2,000-3,800</td>
+  <td><span class="col-tag col-win">~85%</span></td>
+  <td>📈 避险+去美元化</td>
+</tr>
+<tr>
+  <td>RBA现金利率</td>
+  <td><span class="col-tag col-warn">4.35%</span></td>
+  <td>0.1-4.35%</td>
+  <td><span class="col-tag col-win">~90%</span></td>
+  <td>📈 加息周期已近顶</td>
+</tr>
+<tr>
+  <td>AUD/USD汇率</td>
+  <td><span class="col-tag col-warn">~0.65</span></td>
+  <td>0.55-0.80</td>
+  <td><span class="col-tag col-warn">~40%</span></td>
+  <td>📉 弱势有利矿业</td>
+</tr>
+<tr>
+  <td>ASX银行净息差(NIM)</td>
+  <td><span class="col-tag col-warn">178bp</span></td>
+  <td>160-210bp</td>
+  <td><span class="col-tag col-warn">~45%</span></td>
+  <td>➡️ 高位小幅回落</td>
+</tr>
+</table>
+</div>
+
+<h2>成本结构</h2>
+<div class="summary-box">
+  🔹 <strong>银行：</strong>轻资产（核心是信用风险管理），成本收入比~45-52%<br>
+  🔹 <strong>矿业：</strong><span class="col-tag col-lose">重资产</span>，FCF对价格极度敏感，盈亏平衡点~$80铁矿石<br>
+  🔹 <strong>医疗/SaaS：</strong><span class="col-tag col-win">轻资产高毛利</span>，COH/PME毛利率>70%，WTC>75%<br>
+  🔹 <strong>超市：</strong>轻资产（主要是供应链），毛利率~26-28%，净利率~3-4%<br>
+  🔹 <strong>公用/基建：</strong>重资产高负债，现金流稳定，适合股息策略
+</div>
+
+<h2>竞争格局总结</h2>
+<div class="highlight-box">
+  ASX不是"赛道式"市场（如A股光伏有几十家竞争），而是<strong>龙头寡头化</strong>市场：<br><br>
+  🏆 <strong>银行：</strong>Big 4占市场75%，NAB/ANZ/WBC PB<2x，CBA高溢价<br>
+  🏆 <strong>矿业：</strong>BHP+RIO+FMG占铁矿石出口~85%，全球成本曲线最低<br>
+  🏆 <strong>医疗：</strong>CSL(血浆)+COH(耳蜗)+RMD(呼吸)=三个全球细分冠军<br>
+  🏆 <strong>SaaS：</strong>WTC(货代)+XRO(会计)+REA(房产)=澳洲SaaS三杰<br><br>
+  <strong>核心打法是：</strong>买龙頭+拿股息（银行/防御）+ 搏周期（矿业）+ 买成长（医疗/SaaS）
+</div>
+
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     L10 Tab
+     ═══════════════════════════════════════════════════ -->
+<div class="tab-content" id="tab-l10">
+<div class="tab-inner">
+
+<h2>周期位置（全市场）</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>澳洲经济周期</td>
+  <td><span class="col-tag col-warn">高位放缓</span> RBA利率4.35%为12年最高，GDP增速~1.5%</td>
+</tr>
+<tr>
+  <td>库存周期（矿业）</td>
+  <td><span class="col-tag col-lose">衰退期</span> 铁矿石价格从$230高点回落至~$100，矿业盈利高位回落</td>
+</tr>
+<tr>
+  <td>信贷周期（银行）</td>
+  <td><span class="col-tag col-warn">紧缩后期</span> 高利率抑制房贷需求，NIM见顶</td>
+</tr>
+<tr>
+  <td>医疗/SaaS周期</td>
+  <td><span class="col-tag col-win">成长扩张</span> 结构性增长，不受澳洲经济周期影响</td>
+</tr>
+<tr>
+  <td>金矿周期</td>
+  <td><span class="col-tag col-win">繁荣期</span> 金价持续新高，金矿盈利强劲</td>
+</tr>
+<tr>
+  <td>行业盈利状态</td>
+  <td><span class="col-tag col-warn">分化</span> 银行稳/矿业落/金矿好/医疗SAAS好/消费承压</td>
+</tr>
+</table>
+</div>
+
+<div class="danger-box">
+  <strong>⚠ PE悖论检查</strong><br>
+  ASX 300整体PE：~<strong>18x</strong>（接近10年均值17x）｜ 整体PB：~<strong>2.0x</strong><br><br>
+  <strong>分行业：</strong><br>
+  🏦 银行PE 16-27x（CBA 27x高溢价，NAB/ANZ/WBC 18x合理）<br>
+  ⛏️ 矿业PE 8-15x（盈利高位，PE失真，建议看PB：BHP 3.2x/RIO 2.8x/FMG 2.1x）<br>
+  🏥 医疗PE 25-35x（CSL 25x合理，PME 50x+偏贵但高增长）<br>
+  💻 SaaS PS 8-20x（WTC PS~12x合理，XRO PS~10x合理）<br>
+  🛒 零售PE 18-25x（WOW/COL PE~22x中性）<br><br>
+  <strong>当前不存在全市场PE悖论，但CBA、GMG、PME等个股估值偏高需注意。</strong>
+</div>
+
+<h2>估值水平（跨行业）</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>行业</th><th>当前估值</th><th>历史中位数</th><th>80%分位</th><th>20%分位</th><th>判断</th></tr>
+<tr>
+  <td><strong>银行PE</strong></td>
+  <td><span class="col-tag col-warn">~18x</span></td>
+  <td>16x</td>
+  <td>20x</td>
+  <td>14x</td>
+  <td><span class="col-tag col-warn">中性偏高</span></td>
+</tr>
+<tr>
+  <td><strong>银行PB</strong></td>
+  <td><span class="col-tag col-warn">~2.0x</span></td>
+  <td>1.8x</td>
+  <td>2.2x</td>
+  <td>1.4x</td>
+  <td><span class="col-tag col-warn">中性</span></td>
+</tr>
+<tr>
+  <td><strong>矿业PB</strong></td>
+  <td><span class="col-tag col-warn">~2.5x</span></td>
+  <td>2.0x</td>
+  <td>3.5x</td>
+  <td>1.2x</td>
+  <td><span class="col-tag col-warn">偏高（盈利高位）</span></td>
+</tr>
+<tr>
+  <td><strong>医疗PE</strong></td>
+  <td><span class="col-tag col-warn">~28x</span></td>
+  <td>25x</td>
+  <td>35x</td>
+  <td>20x</td>
+  <td><span class="col-tag col-warn">中性偏高</span></td>
+</tr>
+<tr>
+  <td><strong>SaaS PS</strong></td>
+  <td><span class="col-tag col-warn">~10x</span></td>
+  <td>8x</td>
+  <td>15x</td>
+  <td>5x</td>
+  <td><span class="col-tag col-warn">中性</span></td>
+</tr>
+<tr>
+  <td><strong>金矿PB</strong></td>
+  <td><span class="col-tag col-win">~2.0x</span></td>
+  <td>2.2x</td>
+  <td>3.0x</td>
+  <td>1.2x</td>
+  <td><span class="col-tag col-win">合理偏低</span></td>
+</tr>
+</table>
+</div>
+
+<h2>政策环境</h2>
+<div class="summary-box">
+  🔹 <strong>货币政策：</strong><span class="col-tag col-lose">收紧期</span> RBA现金利率4.35%，2026年5月再加25bp<br>
+  🔹 <strong>银行监管：</strong><span class="col-tag col-warn">中性</span> APRA要求CET1>10.25%，银行资本充足<br>
+  🔹 <strong>矿业政策：</strong><span class="col-tag col-win">利好</span> 澳洲政府支持关键矿产开发（锂/稀土）<br>
+  🔹 <strong>医疗政策：</strong><span class="col-tag col-win">利好</span> Medicare+老龄化持续推动<br>
+  🔹 <strong>税制：</strong><span class="col-tag col-win">利好</span> Franking Credits大幅提升股息税后回报<br>
+  🔹 <strong>能源转型：</strong><span class="col-tag col-win">利好</span> 联邦政府净零2050目标，可再生能源投资
+</div>
+
+<h2>买入清单（全市场分策略）</h2>
+
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:28%">条件</th><th style="width:16%">银行</th><th style="width:16%">矿业</th><th style="width:16%">医疗</th><th style="width:16%">SaaS</th></tr>
+<tr>
+  <td>周期位置尚可</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+</tr>
+<tr>
+  <td>估值偏低/合理</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+</tr>
+<tr>
+  <td>政策不收紧</td>
+  <td style="text-align:center"><span class="col-tag col-lose">❌</span></td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+</tr>
+<tr>
+  <td>龙头壁垒稳固</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+</tr>
+<tr>
+  <td>可见驱动力</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+</tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <div style="font-size:16px;font-weight:700;margin-bottom:8px">
+    综合判断：
+    <span class="col-tag col-warn" style="font-size:15px">分策略买入</span>
+  </div>
+  <div style="margin-bottom:6px">ASX当前没有全市场的"最佳买入时机"，但按策略区分仍然有机会</div>
+  <table style="font-size:12px;margin:6px 0;border:none;background:transparent">
+    <tr><td style="border:none;padding:3px 6px;background:transparent;width:90px;font-weight:600">预期回报</td><td style="border:none;padding:3px 6px;background:transparent">股息3-5%（银行/防御）+ 资本增值（医疗/SaaS）+ 周期弹性（矿业/金矿）</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">仓位建议</td><td style="border:none;padding:3px 6px;background:transparent"><span class="col-tag col-warn">核心50%（银行+防御） + 成长25%（医疗+SaaS） + 周期25%（BHP/NST/金矿）</span></td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">跟踪指标</td><td style="border:none;padding:3px 6px;background:transparent">RBA利率、铁矿石/金价、AUD/USD、银行NIM、SaaS ARR增速</td></tr>
+  </table>
+  <div style="margin-top:8px;padding:8px;background:#e8f5e9;border-radius:4px;font-size:12px">
+    <strong>分策略买入指南：</strong><br>
+    <span class="col-tag col-win">收股息策略</span>：NAB/ANZ/WBC（PB<2x+股息~5%+Franking Credits）<br>
+    <span class="col-tag col-win">成长策略</span>：CSL(PE<28x)/COH(PE<30x)/WTC(PS<12x)<br>
+    <span class="col-tag col-win">周期策略</span>：BHP(PB<2.5x)/NST(PB<2.0x)/金矿股<br>
+    <span class="col-tag col-win">防御策略</span>：WOW(TCL)/AGL/ORG（股息>4%+稳定）
+  </div>
+</div>
+
+<h2>卖出信号</h2>
+<div class="danger-box">
+  <strong>出现以下信号考虑减仓ASX：</strong><br>
+  <div style="margin-top:6px">
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px">1</span>
+    RBA大幅降息（>50bp）→ 经济衰退信号，银行NIM承压<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">2</span>
+    铁矿石跌破$80（BHP/FMG成本线附近）→ 矿业FCF转负，分红可能削减<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">3</span>
+    AUD/USD跌破0.55 → 澳元危机，外资流出ASX<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">4</span>
+    CSL/COH等成长股PE跌破历史20%分位 + 业绩下修 → 结构性逻辑破坏<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">5</span>
+    澳洲失业率>5.5% + 房价下跌>10% → 银行不良率上升周期开启
+  </div>
+</div>
+
+</div>
+</div>
+
+<div class="footer">Generated by Industry Analysis · L7-L10 Framework · Stock Selection · 2026-07-07</div>
+
+</div>
+
+<script>
+var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+var contents = document.querySelectorAll('.tab-content');
+btns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    contents.forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    var tab = btn.getAttribute('data-tab');
+    document.getElementById('tab-' + tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

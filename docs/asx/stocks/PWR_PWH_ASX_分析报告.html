@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PWR Holdings (PWH) 财务分析报告</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: "Microsoft YaHei","PingFang SC","Helvetica Neue",Arial,sans-serif; color: #1a1a1a; line-height: 1.8; padding: 0; background: #f5f5f5; }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar { position: sticky; top: 0; z-index: 100; display: flex; background: #fff; border-bottom: 2px solid #ddd; overflow-x: auto; white-space: nowrap; }
+  .tab-btn { flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer; border: none; background: #f5f5f5; color: #666; border-right: 1px solid #ddd; transition: all 0.2s; }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 { font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 2px solid #1a1a1a; }
+  h3 { font-size: 15px; margin: 18px 0 8px; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>PWR Holdings（PWH）财务分析报告</h1>
+<p class="subtitle">L1 三张报表 + L2 关键指标+排雷 + L3 估值 + L4 杜邦分析 + L5 行业分类 + L6 综合实战</p>
+<p class="meta">分析日期：2026-07-07 | 数据源：PWR FY2025 年报（截至2025.6.30）+ 市场数据 | 代码：PWH.ASX</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>PWR Holdings Limited</td></tr>
+  <tr><td>股票代码</td><td>PWH.ASX</td></tr>
+  <tr><td>行业类型</td><td>高端热管理（赛车/航空/军用/电动车的散热系统）</td></tr>
+  <tr><td>行业地位</td><td>全球赛车散热#1（F1/NASCAR/Supercars），全球高端热管理利基龙头</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>A$1.301 亿（-6.7%）</strong></td></tr>
+  <tr><td>FY2025 净利润</td><td><strong>A$977 万（-60.6%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>A$3,469 万（-11.5%）</strong></td></tr>
+  <tr><td>总资产</td><td>~A$1.55 亿</td></tr>
+  <tr><td>净资产</td><td>~A$1.05 亿</td></tr>
+  <tr><td>ROE</td><td>9.3%（FY2024: 27.6%）</td></tr>
+</table>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">综合L1-L5所有因素打分（FY2025为过渡年，大量一次性因素压低盈利）</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">9.3%≥5%，但远低于历史均值~25%</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">高利润型——历史毛利率~55%，净利率正常~15%+</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">3.54，现金质量极好</td></tr>
+  <tr><td>营收增长（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">-6.7%，受工厂搬迁+大单完结影响</td></tr>
+  <tr><td>利润增长（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">-60.6%，一次性因素叠加</td></tr>
+  <tr><td>负债率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">~32%，极低</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">现金充裕，几乎无有息负债</td></tr>
+  <tr><td>毛利率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">历史~55%，FY2025受搬迁影响估计~50%（仍≥30%）</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">PE 78x极高但Forward 45x，PEG 1.2，部分反映FY2026复苏预期</td></tr>
+  <tr><td>自由现金流（5分）</td><td style="font-weight:bold;font-size:15px">3</td><td style="text-align:left">CFO强劲，但资本开支拖累FCF，正常年份为正</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">62/100</td><td style="text-align:left">一般关注（62/100分）——FY2025为过渡低点</td></tr>
+</table>
+
+<div class="verdict verdict-caution">一般关注（62/100分）</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>PWR Holdings 是全球赛车散热系统#1，也是新兴航空/防务热管理和EV热管理的利基龙头。FY2025是典型的"过渡年"——搬迁新工厂（Stapylton）+两个OEM大单完结+飓风Alfred冲击，导致营收-6.7%、利润-60.6%。但现金流极为健康（CFO A$3,469万，现金转化率136%），预示基本面未坏。核心增长引擎（赛车+航空/防务）仍在增长（+4%/+28%）。<br><br>
+  <strong>核心优势：</strong>① 全球赛车散热#1，F1/NASCAR关系不可替代，客户粘性极高；② 毛利率~55%验证技术壁垒和定价权；③ 极低负债率~32%，资产负债表干净；④ 航空/防务+28%高增长，EV热管理为长期新赛道。<br><br>
+  <strong>核心风险：</strong>① FY2025 ROE仅9.3%，盈利处于低点；② PE 78x（TTM）严重偏高，复苏预期已部分price in；③ 营收规模仅A$1.3亿，小盘股流动性有限；④ OEM业务依赖大单，收入波动性大。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025 / 截至2025.6.30）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td><strong>A$1,301 万</strong></td><td>A$1,394 万</td><td>-6.7%</td><td class="bad">❌ 下降</td></tr>
+  <tr><td>EBITDA</td><td><strong>A$2,545 万</strong></td><td>A$4,519 万</td><td>-43.7%</td><td class="bad">❌ 大幅下降</td></tr>
+  <tr><td>EBITDA 利润率</td><td>19.6%</td><td>32.4%</td><td>-12.8pct</td><td class="bad">❌ 下降</td></tr>
+  <tr><td>净利润（NPAT）</td><td><strong>A$977 万</strong></td><td>A$2,481 万</td><td>-60.6%</td><td class="bad">❌ 大幅下降</td></tr>
+  <tr><td>净利率</td><td>7.5%</td><td>17.8%</td><td>-10.3pct</td><td class="bad">❌ 下降</td></tr>
+  <tr><td>基本 EPS</td><td><strong>9.71c</strong></td><td>24.69c</td><td>-60.7%</td><td class="bad">❌ 下降</td></tr>
+  <tr><td>DPS（全年）</td><td><strong>4.0c</strong></td><td>14.0c</td><td>-71.4%</td><td class="bad">❌ 大幅削减</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>FY2025是PWR上市以来最糟糕的一年——营收-6.7%，利润-60.6%。但仔细拆解后并非基本面恶化：① 工厂从原址搬迁至Stapylton新厂，产生搬迁中断成本和额外折旧；② 两个OEM大合同结束（属已知事件）；③ 飓风Alfred导致停产数周。赛车（+4%）和航空/防务（+28%）仍在增长，核心业务没坏。
+</div>
+
+<h3>2.2 分业务营收</h3>
+<table>
+  <tr><th>板块</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>占比</th><th>评价</th></tr>
+  <tr><td>赛车（Motorsports）</td><td>A$5,718 万</td><td>A$5,495 万</td><td class="good">+4%</td><td>44%</td><td class="good">✅ 核心稳定增长</td></tr>
+  <tr><td>航空/防务（A&D）</td><td>A$2,687 万</td><td>A$2,105 万</td><td class="good">+28%</td><td>21%</td><td class="good">✅ 高增长引擎</td></tr>
+  <tr><td>OEM</td><td>A$2,803 万</td><td>A$3,674 万</td><td class="bad">-24%</td><td>22%</td><td class="bad">❌ 大单完结</td></tr>
+  <tr><td>售后（Aftermarket）</td><td>A$1,621 万</td><td>A$1,947 万</td><td class="bad">-17%</td><td>12%</td><td class="neutral">折扣调整</td></tr>
+  <tr><td>其他/新兴技术</td><td>A$1,139 万</td><td>A$1,210 万</td><td>-6%</td><td>9%</td><td class="neutral">持平</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>赛车（44%）是现金牛——F1/NASCAR/Supercars的散热需求稳定，每年随赛车数量微增4-5%。航空/防务（21%）+28%是关键亮点——军事和航天领域的热管理需求爆发（电子设备散热、导弹散热等）。OEM（22%）下降是大合同自然到期，属正常波动而非竞争丢单。
+</div>
+
+<h3>2.3 资产负债表（关键指标）</h3>
+<table>
+  <tr><th>科目</th><th>FY2025（估）</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td><strong>~A$3,000 万</strong></td><td class="good">✅ 充裕</td></tr>
+  <tr><td>有息负债</td><td><strong>~A$500 万</strong></td><td class="good">✅ 几乎无负债</td></tr>
+  <tr><td>净资产</td><td><strong>~A$1.05 亿</strong></td><td class="good">✅ 扎实</td></tr>
+  <tr><td>资产负债率</td><td><strong>~32%</strong></td><td class="good">✅ 非常低</td></tr>
+  <tr><td>存货</td><td>适中</td><td class="neutral">管理得当</td></tr>
+  <tr><td>应收</td><td>适中</td><td class="neutral">正常</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>PWR的资产负债表是ASX小盘股中最干净的之一——几乎零有息负债、现金充裕、资产负债率仅32%。新工厂Stapylton已完成搬迁并开始折旧，未来资本开支需求将正常化。这种财务实力让公司在行业低谷期有能力继续投资而不需融资。
+</div>
+
+<h3>2.4 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO，除利息税）</td><td><strong>A$3,469 万</strong></td><td>A$3,871 万</td><td class="good">✅ -11.5%，仍强劲</td></tr>
+  <tr><td>CFO / EBITDA 转化率</td><td><strong>136%</strong></td><td>86%</td><td class="good">✅ 极好</td></tr>
+  <tr><td>CFO / 净利润</td><td><strong>3.54</strong></td><td>1.56</td><td class="good">✅ 现金质量顶尖</td></tr>
+  <tr><td>资本开支</td><td><strong>~A$2,000-2,500 万（估）</strong></td><td>~A$1,200 万</td><td class="neutral">新工厂投资高峰期</td></tr>
+  <tr><td>FCF（自由现金流）</td><td><strong>~A$1,000-1,500 万（估）</strong></td><td>~A$2,700 万</td><td class="neutral">仍为正，但下降</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>尽管利润大幅下降，PWR的现金流依然非常健康——CFO A$3,469万，现金转化率136%（FY2024为86%），说明利润下降主要是非现金项目（折旧增加）和营运资本变动所致。FCF虽下降但仍为正，新工厂投资完成后将改善。这在ASX小盘制造股中极为罕见。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>9.3%</strong></td><td>> 15% 优秀 / > 10% 及格</td><td class="bad">❌ 低于及格线（过渡年）</td></tr>
+  <tr><td>毛利率（历史）</td><td><strong>~55%</strong></td><td>稳定或提升</td><td class="good">✅ 高毛利</td></tr>
+  <tr><td>净利率</td><td><strong>7.5%</strong></td><td>> 10%</td><td class="bad">❌ 过渡年偏低</td></tr>
+  <tr><td>营收增长率</td><td><strong>-6.7%</strong></td><td>> 10%</td><td class="bad">❌ 负增长</td></tr>
+  <tr><td>利润增长率</td><td><strong>-60.6%</strong></td><td>正增长</td><td class="bad">❌ 大幅下降</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>3.54</strong></td><td>> 1</td><td class="good">✅ 远超标准</td></tr>
+  <tr><td>资产负债率</td><td><strong>~32%</strong></td><td>制造业<60%</td><td class="good">✅ 极低</td></tr>
+  <tr><td>分红率</td><td><strong>41%</strong></td><td>可持续分红</td><td class="neutral">⚠ 削减（过渡年可理解）</td></tr>
+</table>
+
+<h3>3.2 分业务深度分析</h3>
+<table>
+  <tr><th>业务板块</th><th>营收(A$万)</th><th>占比</th><th>同比</th><th>毛利率估</th><th>评价</th><th>前景</th></tr>
+  <tr><td>赛车（Motorsports）</td><td>5,718</td><td>44%</td><td>+4%</td><td>~55%</td><td class="good">✅ 现金牛</td><td>稳定增长</td></tr>
+  <tr><td>航空/防务（A&D）</td><td>2,687</td><td>21%</td><td>+28%</td><td>~50%</td><td class="good">✅ 高增长</td><td>核心驱动力</td></tr>
+  <tr><td>OEM</td><td>2,803</td><td>22%</td><td>-24%</td><td>~30%</td><td class="bad">❌ 下滑</td><td>大单节奏波动</td></tr>
+  <tr><td>售后（Aftermarket）</td><td>1,621</td><td>12%</td><td>-17%</td><td>~50%</td><td class="neutral">⚠ 调整</td><td>折扣结构调整</td></tr>
+  <tr><td>新兴技术/其他</td><td>1,139</td><td>9%</td><td>-6%</td><td>~40%</td><td class="neutral">投入期</td><td>EV热管理长期潜力</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>赛车44%是基本盘，每辆F1/NASCAR都需要PWR散热器，Switch成本极高（涉及整车散热系统重新设计）。航空/防务21%是未来3年核心增长引擎——全球军备升级+电子设备散热需求爆发。OEM 22%的下滑是合同周期而非竞争力问题。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="bad">🔴 较高</td><td>FY2025 ROE 9.3%，盈利能力大幅下滑</td><td>L1 利润表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>营收规模仅A$1.3亿，小盘股流动性有限</td><td>市值~A$8.7亿，日均成交~A$100万</td></tr>
+  <tr><td class="bad">🔴 较高</td><td>PE 78x（TTM）严重偏高，复苏预期已price in</td><td>L3 估值</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>OEM大单模式导致收入波动</td><td>L2 分业务分析</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>新工厂折旧增加将持续压低短期利润率</td><td>L1 D&A从A$1,013万增至A$1,199万</td></tr>
+  <tr><td class="good">🟢 正面</td><td>赛车业务全球#1，F1/NASCAR关系不可替代</td><td>L2 竞争壁垒</td></tr>
+  <tr><td class="good">🟢 正面</td><td>航空/防务+28%高增长，军工热管理赛道扩大</td><td>L2 分业务</td></tr>
+  <tr><td class="good">🟢 正面</td><td>CFO/净利润 3.54，现金质量顶尖</td><td>L1 现金流量表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>资产负债率32%，几乎零有息负债</td><td>L1 资产负债表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>现金转化率136%，远超行业平均</td><td>L1 现金流量表</td></tr>
+</table>
+
+<div class="verdict verdict-caution">⚠ L2综合判定：过渡年低点，但核心质地未坏，关注FY2026复苏</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平（2026年7月）</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>股价</td><td><strong>A$8.60</strong></td><td>52周范围 A$6.07-10.21</td></tr>
+  <tr><td>总市值</td><td><strong>~A$8.7 亿</strong></td><td>ASX 300尾段</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>~78x</strong></td><td>基于FY2025 EPS 9.71c</td></tr>
+  <tr><td>Forward PE（FY2026E）</td><td><strong>~45x</strong></td><td>基于一致预期 EPS ~19c</td></tr>
+  <tr><td>PE（FY2027E）</td><td><strong>~30x</strong></td><td>基于恢复至历史均值 EPS ~28c</td></tr>
+  <tr><td>PB</td><td><strong>~8.3x</strong></td><td>基于每股净资产 ~A$1.04</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~6.0x</strong></td><td>市销率</td></tr>
+  <tr><td>股息率</td><td><strong>~0.5%</strong></td><td>基于年股息 4.0c</td></tr>
+  <tr><td>PEG（5年）</td><td><strong>~1.2x</strong></td><td>PEG尚可</td></tr>
+  <tr><td>Beta</td><td><strong>0.87</strong></td><td>低于市场</td></tr>
+</table>
+
+<h3>4.2 PE Band估值区间</h3>
+<p style="font-size:13px;color:#666;">FY2026E一致预期EPS ~19c | 合理PE参考：成长性利基制造商20-30x</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs现价 A$8.60</th></tr>
+  <tr><td>悲观（复苏不及预期）</td><td>20x FY2026E</td><td>A$3.80</td><td class="bad">-56%</td></tr>
+  <tr><td>保守</td><td>25x FY2026E</td><td>A$4.75</td><td class="bad">-45%</td></tr>
+  <tr><td>中性</td><td>35x FY2026E</td><td>A$6.65</td><td class="bad">-23%</td></tr>
+  <tr><td>券商目标</td><td>~50x FY2026E</td><td>A$9.79</td><td class="good">+14%</td></tr>
+  <tr><td>当前价</td><td>45x FY2026E</td><td>A$8.60</td><td>—</td></tr>
+  <tr><td>乐观（强劲复苏）</td><td>55x FY2026E</td><td>A$10.45</td><td class="good">+22%</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>估值风险警示：</strong><br>
+  ① PE（TTM）78x严重偏高，已包含FY2026-27强劲复苏的预期；<br>
+  ② 即使以FY2026E Forward PE 45x计算，仍高于ASX成长股均值（30-35x）；<br>
+  ③ 以35x合理PE计算，当前A$8.60对应FY2026E EPS需达24.6c（需+153%增长）才合理；<br>
+  ④ 若FY2026复苏不及预期，估值有大幅收缩风险（45x→30x = -33%）。
+</div>
+
+<h3>4.3 估值总结</h3>
+<div class="highlight-box">
+  <strong>估值总结：</strong>PWR当前估值反映了市场对其FY2026-27复苏的乐观预期。公司质地优秀（全球利基龙头+高毛利+零负债+强现金流），但PE 78x/TTM提供了极低的安全边际。对于长期投资者，A$6-7（35x FY2026E EPS，接近ASX成长股合理估值）是较好的介入区间。当前价位A$8.60更像是持有等待而非新建仓的位置——赌的是FY2026复苏能兑现甚至超预期。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>净利润率</td><td>17.8%</td><td><strong>7.5%</strong></td><td class="bad">⬇ 大幅下降</td></tr>
+  <tr><td>资产周转率（营收/总资产）</td><td>1.00x</td><td><strong>0.84x</strong></td><td class="bad">⬇ 下降</td></tr>
+  <tr><td>权益乘数（总资产/净资产）</td><td>1.55x</td><td><strong>1.48x</strong></td><td class="good">⬇ 略降（去杠杆）</td></tr>
+  <tr><td><strong>ROE</strong></td><td><strong>~27.6%</strong></td><td><strong>9.3%</strong></td><td class="bad">⬇ 大幅下降</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>17.8%</td><td><strong>6.3%</strong></td><td class="bad">⬇ 大幅下降</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>~9.8pct</td><td><strong>~3.0pct</strong></td><td class="neutral">正常</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：高利润型（利基制造商的典型特征）</strong><br>
+  正常年份（FY2024），ROE 27.6%拆解为：17.8%净利润率 × 1.00x周转 × 1.55x杠杆 → 利润率是核心驱动力。<br>
+  FY2025的ROE崩塌（27.6%→9.3%）主因是净利润率从17.8%骤降至7.5%（搬迁成本+大单完结+折旧增加），叠加周转率从1.00降至0.84（新工厂投产但营收未同步增长）。<br><br>
+  <strong>关键观察：</strong>权益乘数仅1.48-1.55x，说明PWR不是靠杠杆赚钱——ROE质量高。杠杆贡献仅3-10pct，绝大部分回报来自经营本身。去掉杠杆后的ROA 6.3%（FY2025）虽然低，但正常年份可达17.8%（2024），属于制造业顶尖水平。
+</div>
+
+<h3>5.2 核心结论</h3>
+<div class="summary-box">
+  <strong>核心结论：</strong><br>
+  ① ROE从27.6%降至9.3%，是过渡性下降而非结构性问题——搬迁完成+大单更替后有望恢复；<br>
+  ② 正常年份PWR是典型的高利润型+低杠杆型优质制造股，ROE质量在ASX名列前茅；<br>
+  ③ 去杠杆ROA 17.8%（FY2024）说明公司的赚钱能力不依赖负债，每股1元资产能产生~18c净利润；<br>
+  ④ ROE恢复的关键：① Stapylton工厂产能利用率提升→周转率回到1.0+；② OEM新大单补位→营收恢复增长；③ 折旧费用不再加速增长→利润率修复。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与特征（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：成长性（利基制造——赛车/航空/防务热管理）</strong><br>
+  <strong>判断依据：</strong>PWR所处的高端热管理行业有几个关键特征：<br><br>
+  ① 赛车散热是"存量+微增"市场——全球赛车数量稳定，每年增长4-5%，PWR全球#1的份额稳固；<br>
+  ② 航空/防务热管理是"结构性成长"赛道——军备升级（电子战系统散热）、航天商业化（卫星散热）、AI数据中心液冷等新需求爆发，预计CAGR 15-20%+；<br>
+  ③ EV热管理是"长期期权"——电动车热管理（电池冷却）是千亿级市场，PWR已布局但营收贡献尚小；<br>
+  ④ OEM业务有周期性（大单节奏）但不构成纯周期属性。<br><br>
+  <strong>成长属性：</strong>FY2025虽是过渡年，但核心的增长叙事（赛车微增4%+航空+28%+EV长期期权）未变。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th></tr>
+  <tr><td>行业集中度</td><td><strong>全球赛车散热：高度集中（PWR#1）</strong>——F1 10支车队中有9支使用PWR散热器，NASCAR大部分车队也是PWR客户。航空/防务热管理分散，PWR是新兴玩家但增长快。</td></tr>
+  <tr><td>技术壁垒</td><td><strong>极高</strong>——赛车散热器需要同时满足极端温度、振动、空间限制三大要求，设计经验需10年+积累。F1级别的计算流体动力学（CFD）模拟能力不是短期能建立的。</td></tr>
+  <tr><td>客户壁垒</td><td><strong>极高</strong>——F1合同通常3-5年，更换散热器供应商涉及整车散热系统重新设计，成本极高。客户粘性是PWR最深的护城河。</td></tr>
+  <tr><td>制造壁垒</td><td><strong>中等偏强</strong>——新Stapylton工厂专为高端散热器制造设计，自动化和精密制造能力需要大量资本投入。</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  <strong>阶段：成长期（赛车成熟+航空爆发+EV早期）</strong><br>
+  赛车业务处于"成熟期"（4-5%稳定增长），航空/防务处于"爆发期"（+28%增长，军工热管理需求激增），EV热管理处于"导入期"（布局但尚未贡献实质利润）。<br><br>
+  <strong>投资策略重点：</strong>关注航空/防务占比提升（目标从21%→30%+）、OEM新大单获取、EV热管理商业化进展。
+</div>
+
+<h3>6.4 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>成长型（利基制造）</td><td>PE + PEG</td><td>营收增速、毛利率趋势、CFO质量</td><td class="neutral">⚠ PE 78x TTM严重偏高，Forward 45x仍需高增长验证</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值方法总结：</strong>PWR作为成长型利基制造商，PE和PEG是主要估值工具。当前TTM PE 78x无意义（过渡年利润低点），参考Forward PE 45x更合理。以PEG 1.2x评估（基于5年EPS CAGR ~20%），估值在"中等偏贵"区间。与ASX其他成长股对比：Hub24 (PE ~50x, PEG 1.5x) 和 Technology One (PE ~45x, PEG 1.8x)，PWR的PEG相对合理。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>成长性（高端热管理利基），全球赛车散热#1，航空/防务+28%高增长，客户壁垒极高。<br>
+  <strong>Step 2 - 财务体检：</strong>FY2025 ROE 9.3%是低点，正常年份~25%+。高利润型杜邦，CFO/净利3.54，零净负债。<br>
+  <strong>Step 3 - 估值判断：</strong>PE(TTM) 78x极贵，Forward PE 45x偏贵，PEG 1.2x尚可——复苏预期已部分price in。<br>
+  <strong>Step 4 - 风险排查：</strong>过渡年盈利低点、小盘流动性、PE偏高、OEM大单波动、新厂折旧压力。<br>
+  <strong>Step 5 - 结论：</strong>好公司（全球利基龙头+强壁垒+零负债+强现金流），当前价格偏贵，更适合持有而非新建仓。<br>
+  <strong>Step 6 - 跟踪：</strong>FY2026H1结果（2026年2月）验证复苏；看航空/防务增速是否保持20%+；OEM新大单获取情况。
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>赛车散热壁垒极高、航空/防务热管理结构性增长、EV热管理长期期权</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓</td><td>全球#1份额+毛利率~55%+CFO/净利3.54+零负债——纵然过渡年也满足好公司标准</td></tr>
+  <tr><td>③ 好价格</td><td class="bad">✗</td><td>PE 78x(TTM)/45x(Forward)均偏高，未提供足够安全边际</td></tr>
+</table>
+
+<h3>7.3 三个陷阱排查</h3>
+<div class="danger-box">
+  <strong>☐ 价值陷阱：</strong>❌ 未命中——虽然利润下降，但有实质性成长（航空+28%，赛车+4%），有定价权和高毛利率。<br>
+  <strong>☐ 周期陷阱：</strong>⚠ 部分命中风险——OEM大单节奏有周期性，但仅占22%收入，赛车和航空是结构性增长。<br>
+  <strong>☐ 烧钱陷阱：</strong>❌ 未命中——CFO/净利3.54，现金转化率136%，典型的"赚钱机器"。
+</div>
+
+<h3>7.4 管理层与治理</h3>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力</td><td class="good">好</td><td>CEO Kees Weel在PWR任职15年+，从赛车工程师做到CEO，行业经验深厚</td></tr>
+  <tr><td>股权结构</td><td class="good">强</td><td>管理层持股较高，利益高度一致</td></tr>
+  <tr><td>资本配置</td><td class="good">合理</td><td>新工厂投资是扩大产能的必要投入，分红随利润调整合理</td></tr>
+  <tr><td>CEO交接风险</td><td class="good">低</td><td>团队稳定，内部晋升文化</td></tr>
+</table>
+
+<h3>7.5 盈利可持续性</h3>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是靠价？</td><td>量驱动+新产品驱动</td><td>航空/防务市场扩展+EV新品类</td></tr>
+  <tr><td>涨价能力</td><td class="good">能</td><td>赛车客户粘性极高，定价权强；航空军品标准利润率</td></tr>
+  <tr><td>大客户集中度</td><td>分散</td><td>F1 10支车队+多个航空客户，分散化</td></tr>
+  <tr><td>政策依赖度</td><td>低</td><td>无补贴依赖，军品受国防预算影响但长期趋势向上</td></tr>
+</table>
+
+<h3>7.6 关键变量敏感性</h3>
+<div class="summary-box">
+  <strong>变量1: 航空/防务增速</strong><br>
+  乐观: 维持30%+增长 → FY2026E EPS 25c+<br>
+  中性: 20-25%增长（全球军备升级正常化） → FY2026E EPS 18-20c<br>
+  悲观: 增速降至10%（国防预算收紧） → FY2026E EPS 14-16c<br><br>
+  <strong>变量2: Stapylton新厂产能利用率</strong><br>
+  乐观: 2年内满产 → 毛利率恢复至55%+<br>
+  中性: 3年爬坡 → 毛利率逐步恢复至50%+<br>
+  悲观: 订单不及预期 → 折旧持续拖累利润率
+</div>
+
+<h3>7.7 前景展望</h3>
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. 航空/防务+28%延续——全球军事装备热管理需求（电子战、雷达、导弹冷却）处于爆发期<br>
+  2. Stapylton新厂产能释放——搬迁完成后效率将逐步提升，固定成本摊薄<br>
+  3. OEM新大单补位——现有客户新项目推进中，预计FY2026-27恢复<br><br>
+  <strong>负向拖累：</strong><br>
+  1. D&A从A$1,013万→A$1,199万，将持续影响短期利润率<br>
+  2. 售后市场折扣结构调整可能需要时间消化<br>
+  3. 全球宏观经济不确定性可能影响赛车/航空终端需求
+</div>
+
+<h3>7.8 三情景简表</h3>
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>FY2026E EPS</th><th>PE区间</th><th>预期股价</th></tr>
+  <tr><td>乐观</td><td>航空+30%+OEM新单+毛利率回升</td><td>22-25c</td><td>35-40x</td><td>A$7.70-10.00</td></tr>
+  <tr style="background:#f0faf0"><td>中性</td><td>航空+20%+毛利率稳定+OEM持平</td><td>17-19c</td><td>30-35x</td><td>A$5.10-6.65</td></tr>
+  <tr><td>悲观</td><td>复苏不及预期+毛利率继续承压</td><td>13-15c</td><td>25-30x</td><td>A$3.25-4.50</td></tr>
+</table>
+<p style="font-size:13px;color:#666;margin:6px 0">概率判断：中性 50%，乐观 30%，悲观 20%</p>
+
+<h3>7.9 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——PWR是F1赛车的"散热器制造商"，靠给最顶尖的赛车做散热器积累了顶尖热管理技术，然后延伸到航空/防务/EV，赚技术壁垒的钱。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——PE 78x对应FY2025 EPS 9.71c，如果FY2026复苏达不到市场预期的19c+，双杀风险极大（EPS下降+PE收缩）。<br>
+  3. 如果现在买入，期待的回报来源是什么？——赌FY2026-27盈利强劲复苏（EPS从9.71c回到25c+），PE维持在35-45x，股价从A$8.60涨到A$11-13。本质是"过渡年后的均值回归"交易。<br>
+  4. 什么情况下你会坚决卖出？——FY2026H1营收仍无改善 / 航空/防务增速跌破15% / 毛利率持续低于45% / 客户流失（F1车队换供应商）。
+</div>
+
+</div></div>
+
+<div class="footer">
+  免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+  数据来源：PWR Holdings FY2025 Annual Report、Stock Analysis、TradingView、Yahoo Finance
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>
