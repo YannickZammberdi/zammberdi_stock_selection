@@ -48,11 +48,12 @@
     <select id="filter" onchange="render()">
       <option value="">全部类型</option>
       <option value="纯周期">纯周期</option>
+      <option value="混合周期">混合周期</option>
       <option value="成长型">成长型</option>
     </select>
   </div>
 
-  <div class="count-bar" id="count">共 5 份</div>
+  <div class="count-bar" id="count">共 8 份</div>
 
   <table>
     <thead>
@@ -74,7 +75,10 @@ const data = [
   {name:"医疗", type:"成长型", score:69, date:"2026-07-03", file:"ASX——医疗——行业分析报告.html"},
   {name:"科技", type:"成长型", score:67, date:"2026-07-04", file:"ASX——科技——行业分析报告.html"},
   {name:"IT服务", type:"成长型", score:60, date:"2026-07-04", file:"ASX——IT服务——行业分析报告.html"},
-  {name:"在线广告", type:"成长型", score:76, date:"2026-07-06", file:"ASX——在线广告——行业分析报告.html"}
+  {name:"在线广告", type:"成长型", score:76, date:"2026-07-06", file:"ASX——在线广告——行业分析报告.html"},
+  {name:"金矿", type:"纯周期", score:72, date:"2026-07-07", file:"ASX——金矿——行业分析报告.html"},
+  {name:"ASX200-300全市场", type:"混合周期", score:76, date:"2026-07-07", file:"ASX——ASX200-300——行业分析报告.html"},
+  {name:"ASX300-Tail筛选", type:"混合周期", score:55, date:"2026-07-07", file:"ASX——ASX300-200tail——行业分析报告.html"}
 ];
 
 let sortKey='score', sortDir=-1;
