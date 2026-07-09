@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>A股——食品饮料 行业分析报告</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f5f5f5;padding:0;color:#333}
+  .report-wrap{max-width:800px;margin:0 auto;background:#fff}
+  h1{font-size:22px;margin:0;padding:28px 0 4px;text-align:center}
+  h2{font-size:18px;margin:28px 0 12px;border-bottom:2px solid #1a1a1a;padding-bottom:4px}
+  h3{font-size:15px;margin:18px 0 8px}
+  .subtitle{color:#666;font-size:13px;text-align:center;margin-bottom:4px}
+  .meta{color:#999;font-size:12px;text-align:center;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #e0e0e0}
+  .tab-bar{position:sticky;top:0;z-index:10;background:#fff;display:flex;flex-wrap:wrap;border-bottom:2px solid #ddd;gap:0}
+  .tab-btn{padding:10px 14px;cursor:pointer;border:none;background:none;font-size:13px;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+  .tab-btn:hover{color:#333;background:#f9f9f9}
+  .tab-btn.active{color:#1a1a1a;font-weight:700;border-bottom-color:#1a1a1a}
+  .tab-content{display:none}
+  .tab-content.active{display:block}
+  .tab-inner{padding:0 12px}
+  table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:13px}
+  th{background:#f5f5f5;padding:8px 6px;text-align:left;border-bottom:2px solid #ddd;white-space:nowrap;font-weight:600}
+  td{padding:7px 6px;border-bottom:1px solid #eee}
+  tr:nth-child(even) td{background:#fafafa}
+  .summary-box{background:#fffde7;border-left:4px solid #f9a825;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .highlight-box{background:#e3f2fd;border-left:4px solid #1e88e5;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .danger-box{background:#ffebee;border-left:4px solid #e53935;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .verdict{text-align:center;padding:20px;margin:16px 0;border-radius:8px;font-size:18px;font-weight:700}
+  .verdict-ok{background:#e8f5e9;border:2px solid #4caf50;color:#2e7d32}
+  .verdict-caution{background:#fff3e0;border:2px solid #ff9800;color:#e65100}
+  .verdict-bad{background:#ffebee;border:2px solid #e53935;color:#c62828}
+  .score{font-size:36px;display:block;margin-bottom:4px}
+  .pass{color:#2e7d32;font-weight:700}
+  .skip{color:#666;font-style:italic}
+  .tag{display:inline-block;padding:2px 8px;border-radius:3px;font-size:11px;font-weight:700}
+  .tag-red{background:#ffebee;color:#c62828}
+  .tag-green{background:#e8f5e9;color:#2e7d32}
+  .tag-yellow{background:#fff8e1;color:#f57f17}
+  .footer{font-size:11px;color:#aaa;text-align:center;padding:24px 0 8px;border-top:1px solid #eee;margin-top:30px}
+  .card{background:#fafafa;border:1px solid #e0e0e0;border-radius:6px;padding:14px;margin:10px 0;font-size:13px}
+  .flex{display:flex;flex-wrap:wrap;gap:8px}
+  .tbl-wrap{border:1px solid #e0e0e0;border-radius:6px;overflow:hidden;margin:10px 0 18px}
+  .tbl-wrap table{margin:0}
+  .tbl-wrap th{background:#f5f5f5;padding:9px 8px;border-bottom:1px solid #ddd;font-weight:600;font-size:12px}
+  .tbl-wrap td{padding:8px;border-bottom:1px solid #f0f0f0;font-size:13px}
+  .tbl-wrap tr:last-child td{border-bottom:none}
+  .bar-wrap{display:inline-flex;align-items:center;width:60px;height:16px;vertical-align:middle}
+  .bar-bg{background:#eee;border-radius:4px;height:8px;width:100%;overflow:hidden;position:relative}
+  .bar{display:block;height:8px;border-radius:4px}
+  .score-cell{font-weight:700;font-size:15px;text-align:center;white-space:nowrap}
+  .tbl-wrap td,.tbl-wrap th{vertical-align:middle}
+  .metric-h{color:#1565c0;font-weight:700;font-size:13px}
+  .metric-l{color:#c62828;font-weight:700}
+  .metric-m{color:#e65100;font-weight:700}
+  .col-tag{display:inline-block;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600}
+  .col-win{background:#e8f5e9;color:#2e7d32}
+  .col-lose{background:#ffebee;color:#c62828}
+  .col-warn{background:#fff3e0;color:#e65100}
+  .col-info{background:#e3f2fd;color:#1565c0}
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>A股——食品饮料 行业分析报告</h1>
+<div class="subtitle">L5分类：防御型（白酒偏价值型） ｜ 上市公司：~120家 ｜ 总市值：~5万亿</div>
+<div class="meta">生成日期：2026-07-09</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l7">L7 量化初筛</button>
+  <button class="tab-btn" data-tab="l8">L8 行业画像</button>
+  <button class="tab-btn" data-tab="l9">L9 竞争格局</button>
+  <button class="tab-btn" data-tab="l10">L10 周期时机</button>
+</div>
+
+<div class="tab-content active" id="tab-summary">
+<div class="tab-inner">
+
+<h2>行业速览</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">项目</th><th>内容</th></tr>
+<tr><td>行业名称</td><td><strong>食品饮料</strong>（含白酒、乳制品、调味品、啤酒、饮料、休闲食品、餐饮供应链等）</td></tr>
+<tr><td>市场</td><td>A股（主板为主，少量创业板/科创板）</td></tr>
+<tr><td>L5分类</td><td><span class="col-tag col-info">防御型</span> 必选消费韧性较强，白酒偏价值型</td></tr>
+<tr><td>上市公司</td><td>~120只，其中通过L7筛选 <span class="col-tag col-win">~30只</span></td></tr>
+<tr><td>行业总市值</td><td>~5万亿（茅台~2万亿+五粮液~5000亿+伊利~1800亿+海天~2000亿+其他）</td></tr>
+<tr><td>产业链利润核心</td><td><span class="col-tag col-win">品牌溢价环节</span> 高端白酒（茅台80-90%毛利率）> 调味品（40-50%）> 乳制品（30-40%）</td></tr>
+<tr><td>生命周期阶段</td><td><span class="col-tag col-warn">成熟期</span> 总量见顶，存量竞争，行业集中度持续提升</td></tr>
+<tr><td>当前周期位置</td><td><span class="col-tag col-lose">底部区域</span> 经历5年调整，估值创20年新低，基金持仓历史低位，26Q1营收利润双双转正</td></tr>
+</table>
+</div>
+
+<h2>综合评分</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>维度</th><th style="width:60px">得分</th><th>进度</th><th>说明</th></tr>
+<tr>
+  <td>行业规模与空间</td>
+  <td class="score-cell">14/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:70%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">TAM大（社零~47万亿），但总量增速低（社零+1.4%），存量竞争为主</td>
+</tr>
+<tr>
+  <td>产业链位置</td>
+  <td class="score-cell">12/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:80%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">品牌消费品直接面对C端，定价权强，渠道变革中龙头优势凸显</td>
+</tr>
+<tr>
+  <td>竞争格局</td>
+  <td class="score-cell">15/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:75%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">白酒/调味品/乳制品格局优（CR3高），休闲食品/饮料格局仍在优化</td>
+</tr>
+<tr>
+  <td>增长驱动力</td>
+  <td class="score-cell">8/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:53%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">短期缺乏增长动力（消费力弱），长期靠集中度提升+结构升级</td>
+</tr>
+<tr>
+  <td>周期位置</td>
+  <td class="score-cell">12/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:80%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">估值20年最低，基金持仓历史低位，行业基本面26Q1已触底转正</td>
+</tr>
+<tr>
+  <td>政策环境</td>
+  <td class="score-cell">10/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:67%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">消费刺激政策持续出台（以旧换新/消费券），但效果待观察</td>
+</tr>
+<tr style="background:#fafafa">
+  <td style="font-weight:700;font-size:14px">总分</td>
+  <td style="font-weight:700;font-size:16px;color:#e65100">71/100</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:71%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#e65100;font-weight:600">一般——估值极具吸引力，但需要基本面验证</td>
+</tr>
+</table>
+</div>
+
+<div class="verdict verdict-caution">
+  <span class="score">71</span>
+  一般——值得关注（估值底部，等待催化）
+</div>
+
+<div class="summary-box">
+  <strong>核心结论</strong><br>
+  食品饮料正处于<strong>20年一遇的估值底部</strong>——PE~18x（近10年平均31x），相对全A估值创20年新低，基金持仓降至2015年以来最低。基本面在经历2021-2025年连续5年调整后，2026Q1营收+3.6%、利润+3.6%双双转正，白酒降幅收窄（-0.7%），大众品复苏更明显。<br><br>
+  但"便宜 ≠ 马上涨"——当前消费力依然疲软（社零+1.4%），白酒批价低位震荡，板块缺乏短期催化。这是典型的"左侧"机会：估值极度安全（茅台PE~22x、伊利PE~13x、五粮液PE~15x），但需要等待经济复苏和CPI回升来验证业绩拐点。建议用<strong>防御型框架</strong>分析，重点选确定性强的行业龙头和高股息标的。
+</div>
+
+<div class="highlight-box">
+  <strong>行业公式</strong><br>
+  消费品收入 = 销量 × 单价（均价） × 渠道覆盖率<br>
+  关键指标：1) CPI/食品CPI 2) 社零增速 3) 白酒批价 4) 原奶/大豆/糖等原料价格 5) 居民消费信心指数
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l7">
+<div class="tab-inner">
+
+<h2>筛子调整说明</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:12%">筛子</th><th style="width:35%">标准</th><th>调整说明</th></tr>
+<tr><td>①<span class="col-tag col-info">市值</span></td><td>主板≥50亿</td><td>食品饮料大部分主板上市，保留标准</td></tr>
+<tr><td>②<span class="col-tag col-info">营收</span></td><td>≥10亿</td><td>消费品营收规模普遍较大，10亿为合理下限</td></tr>
+<tr><td>③<span class="col-tag col-info">毛利率</span></td><td>消费≥20%</td><td>消费行业标准，品牌消费品毛利率普遍较高</td></tr>
+<tr><td>④<span class="col-tag col-info">ROE</span></td><td>≥8%</td><td>消费品盈利模式成熟，α强的公司ROE高</td></tr>
+<tr><td>⑤<span class="col-tag col-info">负债率</span></td><td>≤65%</td><td>消费品多为轻资产，负债率低</td></tr>
+<tr><td>⑥<span class="col-tag col-info">估值</span></td><td>PE历史分位≤70%</td><td>当前板块PE处于历史低位，大部分能通过</td></tr>
+</table>
+</div>
+
+<h2>候选池（30只）</h2>
+
+<h3 style="font-size:14px;margin:16px 0 6px;color:#1565c0">白酒（高端+区域龙头）</h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>环节</th><th>市值</th><th>毛利率</th><th>ROE</th><th>负债率</th><th>PE/分位</th><th>通过</th></tr>
+<tr>
+  <td><strong>贵州茅台</strong> 600519</td>
+  <td><span class="col-tag col-win">高端白酒</span></td>
+  <td style="font-weight:600">~2万亿</td>
+  <td><span class="col-tag col-win">~92%</span></td>
+  <td><span class="col-tag col-win">~30%</span></td>
+  <td>20%</td>
+  <td>22x (10%)</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>五粮液</strong> 000858</td>
+  <td><span class="col-tag col-win">高端白酒</span></td>
+  <td style="font-weight:600">~5000亿</td>
+  <td><span class="col-tag col-win">~75%</span></td>
+  <td><span class="col-tag col-win">~18%</span></td>
+  <td>20%</td>
+  <td>15x (5%)</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>泸州老窖</strong> 000568</td>
+  <td><span class="col-tag col-win">高端白酒</span></td>
+  <td>~2500亿</td>
+  <td><span class="col-tag col-win">~88%</span></td>
+  <td><span class="col-tag col-win">~25%</span></td>
+  <td>30%</td>
+  <td>15x (5%)</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>山西汾酒</strong> 600809</td>
+  <td><span class="col-tag col-win">次高端</span></td>
+  <td>~3000亿</td>
+  <td><span class="col-tag col-win">~75%</span></td>
+  <td><span class="col-tag col-win">~28%</span></td>
+  <td>30%</td>
+  <td>18x (10%)</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>洋河股份</strong> 002304</td>
+  <td><span class="col-tag col-info">区域白酒</span></td>
+  <td>~1500亿</td>
+  <td><span class="col-tag col-win">~73%</span></td>
+  <td><span class="col-tag col-warn">~12%</span></td>
+  <td>25%</td>
+  <td>13x (3%)</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>古井贡酒</strong> 000596</td>
+  <td><span class="col-tag col-info">区域白酒</span></td>
+  <td>~1200亿</td>
+  <td><span class="col-tag col-win">~78%</span></td>
+  <td><span class="col-tag col-win">~18%</span></td>
+  <td>30%</td>
+  <td>18x (15%)</td>
+  <td class="pass">6/6</td>
+</tr>
+</table>
+</div>
+
+<h3 style="font-size:14px;margin:16px 0 6px;color:#1565c0">乳制品+调味品+食品综合</h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>环节</th><th>市值</th><th>毛利率</th><th>ROE</th><th>负债率</th><th>PE/分位</th><th>通过</th></tr>
+<tr>
+  <td><strong>伊利股份</strong> 600887</td>
+  <td><span class="col-tag col-info">乳制品</span></td>
+  <td style="font-weight:600">~1800亿</td>
+  <td><span class="col-tag col-win">~38%</span></td>
+  <td><span class="col-tag col-win">~18%</span></td>
+  <td>55%</td>
+  <td>13x (5%)</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>海天味业</strong> 603288</td>
+  <td><span class="col-tag col-win">调味品</span></td>
+  <td style="font-weight:600">~2000亿</td>
+  <td><span class="col-tag col-win">~42%</span></td>
+  <td><span class="col-tag col-win">~20%</span></td>
+  <td>25%</td>
+  <td>30x (30%)</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>安井食品</strong> 603345</td>
+  <td><span class="col-tag col-win">餐饮供应链</span></td>
+  <td>~400亿</td>
+  <td><span class="col-tag col-win">~25%</span></td>
+  <td><span class="col-tag col-win">~15%</span></td>
+  <td>25%</td>
+  <td>20x (20%)</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>双汇发展</strong> 000895</td>
+  <td><span class="col-tag col-info">肉制品</span></td>
+  <td>~1000亿</td>
+  <td><span class="col-tag col-warn">~20%</span></td>
+  <td><span class="col-tag col-win">~20%</span></td>
+  <td>35%</td>
+  <td>15x (15%)</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>安琪酵母</strong> 600298</td>
+  <td><span class="col-tag col-info">食品原料</span></td>
+  <td>~350亿</td>
+  <td><span class="col-tag col-win">~30%</span></td>
+  <td><span class="col-tag col-win">~12%</span></td>
+  <td>35%</td>
+  <td>18x (20%)</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>中炬高新</strong> 600872</td>
+  <td><span class="col-tag col-info">调味品</span></td>
+  <td>~300亿</td>
+  <td><span class="col-tag col-win">~35%</span></td>
+  <td><span class="col-tag col-warn">~10%</span></td>
+  <td>30%</td>
+  <td>22x (25%)</td>
+  <td class="pass">5/6</td>
+</tr>
+</table>
+</div>
+
+<h3 style="font-size:14px;margin:16px 0 6px;color:#1565c0">饮料+啤酒+休闲食品</h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>环节</th><th>市值</th><th>毛利率</th><th>ROE</th><th>负债率</th><th>PE/分位</th><th>通过</th></tr>
+<tr>
+  <td><strong>东鹏饮料</strong> 605499</td>
+  <td><span class="col-tag col-win">功能饮料</span></td>
+  <td>~1200亿</td>
+  <td><span class="col-tag col-win">~43%</span></td>
+  <td><span class="col-tag col-win">~30%</span></td>
+  <td>40%</td>
+  <td>35x (50%)</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>青岛啤酒</strong> 600600</td>
+  <td><span class="col-tag col-info">啤酒</span></td>
+  <td>~1000亿</td>
+  <td><span class="col-tag col-win">~40%</span></td>
+  <td><span class="col-tag col-win">~15%</span></td>
+  <td>45%</td>
+  <td>22x (25%)</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>燕京啤酒</strong> 000729</td>
+  <td><span class="col-tag col-info">啤酒</span></td>
+  <td>~350亿</td>
+  <td><span class="col-tag col-warn">~42%</span></td>
+  <td><span class="col-tag col-win">~8%</span></td>
+  <td>30%</td>
+  <td>25x (35%)</td>
+  <td class="pass">5/6</td>
+</tr>
+<tr>
+  <td><strong>盐津铺子</strong> 002847</td>
+  <td><span class="col-tag col-win">休闲食品</span></td>
+  <td>~200亿</td>
+  <td><span class="col-tag col-win">~35%</span></td>
+  <td><span class="col-tag col-win">~18%</span></td>
+  <td>35%</td>
+  <td>20x (30%)</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>天味食品</strong> 603317</td>
+  <td><span class="col-tag col-info">复合调味料</span></td>
+  <td>~200亿</td>
+  <td><span class="col-tag col-win">~35%</span></td>
+  <td><span class="col-tag col-win">~12%</span></td>
+  <td>20%</td>
+  <td>25x (35%)</td>
+  <td class="pass">5/6</td>
+</tr>
+<tr>
+  <td><strong>养元饮品</strong> 603156</td>
+  <td><span class="col-tag col-info">植物蛋白</span></td>
+  <td>~350亿</td>
+  <td><span class="col-tag col-win">~48%</span></td>
+  <td><span class="col-tag col-win">~15%</span></td>
+  <td>20%</td>
+  <td>15x (10%)</td>
+  <td class="pass">6/6</td>
+</tr>
+</table>
+</div>
+
+<h2>观察池</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>卡在哪筛</th><th>备注</th></tr>
+<tr>
+  <td><strong>新乳业</strong> 002946</td>
+  <td><span class="col-tag col-warn">④ROE~6%</span></td>
+  <td>区域乳企整合者，业绩改善中，奶价拐点后有望修复</td>
+</tr>
+<tr>
+  <td><strong>洽洽食品</strong> 002557</td>
+  <td><span class="col-tag col-warn">③毛利率~18%</span></td>
+  <td>瓜子+坚果龙头，原料成本压制毛利率，关注成本回落</td>
+</tr>
+<tr>
+  <td><strong>绝味食品</strong> 603517</td>
+  <td><span class="col-tag col-warn">⑥PE分位~75%</span></td>
+  <td>卤味连锁龙头，单店营收承压，估值偏高</td>
+</tr>
+<tr>
+  <td><strong>涪陵榨菜</strong> 002507</td>
+  <td><span class="col-tag col-warn">③毛利率~15%</span></td>
+  <td>青菜头成本波动影响毛利率，提价能力有待恢复</td>
+</tr>
+</table>
+</div>
+
+<h2>筛除记录</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>筛子</th><th style="width:60px">筛除数</th><th>知名示例</th></tr>
+<tr><td>①市值&lt;50亿</td><td style="text-align:center">~25</td><td>大量小市值食品公司（地方食品/小零食）</td></tr>
+<tr><td>②营收&lt;10亿</td><td style="text-align:center">~20</td><td>小品类食品公司、初创消费品</td></tr>
+<tr><td>③毛利率&lt;20%</td><td style="text-align:center">~18</td><td>榨菜（涪陵）、瓜子（洽洽）、低端肉制品等受原料成本压制</td></tr>
+<tr><td>④ROE&lt;8%</td><td style="text-align:center">~12</td><td>亏损或微利的地方酒企、经营不善的食品公司</td></tr>
+<tr><td>⑤负债率&gt;65%</td><td style="text-align:center">~8</td><td>部分高杠杆扩张的消费品公司</td></tr>
+<tr><td>⑥PE分位&gt;70%</td><td style="text-align:center">~7</td><td>部分被炒高的零食/饮料标的</td></tr>
+<tr style="background:#fffde7"><td><strong>剩余</strong></td><td style="text-align:center;font-weight:700;color:#2e7d32"><strong>~30</strong></td><td>—</td></tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <strong>L7筛选结论</strong><br>
+  120→30，筛选力度~75%。食品饮料整体财务质量较高（高毛利+高ROE+低负债是消费品典型特征）。核心关注三大方向：<strong>①高端白酒</strong>（茅台/五粮液/老窖/汾酒，PE 15-22x历史底部，股息率3-4%）；<strong>②大众品龙头</strong>（伊利PE 13x/海天PE 30x/安井PE 20x，业绩最先复苏）；<strong>③高成长赛道</strong>（东鹏饮料/盐津铺子，增速20%+但估值相对较高）。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l8">
+<div class="tab-inner">
+
+<h2>产业链</h2>
+<div class="card" style="font-size:13px;line-height:1.7">
+
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px">
+
+<div style="flex:1.2;min-width:200px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#2e7d32;font-size:14px">上游 原材料</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:4px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">粮食/高粱/小麦</div>
+    <div style="margin:6px 0;text-align:center;color:#999;font-size:14px">↓</div>
+    <div style="margin-bottom:4px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">原奶/大豆/糖/棕榈油</div>
+    <div style="margin:6px 0;text-align:center;color:#999;font-size:14px">↓</div>
+    <div style="margin-bottom:4px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">包材（玻璃/纸箱/塑料）</div>
+    <div style="text-align:center;font-size:10px;color:#666;margin-top:4px">原料成本占营收30-60%不等</div>
+  </div>
+</div>
+
+<div style="flex:2;min-width:280px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#1565c0;font-size:14px">中游 制造/品牌</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+
+    <div style="margin-bottom:6px;font-weight:600;font-size:12px;color:#1565c0">白酒酿造</div>
+    <div style="display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap">
+      <div style="flex:1;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">茅台·五粮液<br><span style="font-size:10px;color:#666">高端定位</span></div>
+      <div style="flex:1;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">汾酒·老窖<br><span style="font-size:10px;color:#666">次高端+区域</span></div>
+      <div style="flex:1;background:#f5f5f5;border:1px solid #ddd;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">地产品牌<br><span style="font-size:10px;color:#666">区域竞争</span></div>
+    </div>
+
+    <div style="margin-bottom:6px;font-weight:600;font-size:12px;color:#1565c0">大众食品制造</div>
+    <div style="display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap">
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">乳制品加工<br><span style="font-size:10px;color:#666">伊利·蒙牛</span></div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">调味品酿造<br><span style="font-size:10px;color:#666">海天·中炬</span></div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">速冻/预制菜<br><span style="font-size:10px;color:#666">安井·三全</span></div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">饮料/啤酒<br><span style="font-size:10px;color:#666">东鹏·青啤</span></div>
+    </div>
+
+    <div style="margin-bottom:6px;font-weight:600;font-size:12px;color:#1565c0">渠道流通</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <div style="flex:1;background:#f5f5f5;border:1px solid #ddd;border-radius:4px;padding:5px 8px;text-align:center;font-size:11px">传统经销/KA</div>
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:5px 8px;text-align:center;font-size:11px">电商/直播</div>
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:5px 8px;text-align:center;font-size:11px">社区团购/量贩零食</div>
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:5px 8px;text-align:center;font-size:11px">餐饮端（B2B）</div>
+    </div>
+  </div>
+</div>
+
+<div style="flex:1;min-width:160px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#c62828;font-size:14px">下游 消费场景</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:4px;background:#e3f2fd;border-radius:4px;padding:8px 8px;text-align:center;font-size:12px">居民日常消费（必选）</div>
+    <div style="margin:6px 0;text-align:center;color:#999;font-size:14px">↓</div>
+    <div style="margin-bottom:4px;background:#e8f5e9;border-radius:4px;padding:8px 8px;text-align:center;font-size:12px">餐饮/宴席（可选）</div>
+    <div style="margin:6px 0;text-align:center;color:#999;font-size:14px">↓</div>
+    <div style="margin-bottom:4px;background:#ffebee;border-radius:4px;padding:8px 8px;text-align:center;font-size:12px">商务/礼品（可选）</div>
+  </div>
+</div>
+
+</div>
+
+<div style="background:#fffde7;border-left:3px solid #f9a825;padding:8px 12px;font-size:12px;border-radius:0 4px 4px 0">
+  <strong>利润最厚环节：</strong>品牌消费品（高端白酒毛利率75-92% > 调味品40-50% > 饮料40-45% > 乳制品30-38%）
+  <br><span style="color:#999">品牌溢价是食品饮料行业最大的护城河，渠道变革中龙头优势在扩大</span>
+</div>
+
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>子行业</th><th>代表公司</th><th>毛利率</th><th>集中度</th><th>议价能力</th></tr>
+<tr>
+  <td><span class="col-tag col-win">高端白酒</span></td>
+  <td>茅台、五粮液、泸州老窖</td>
+  <td><span class="col-tag col-win">75-92%</span></td>
+  <td>CR3~60%</td>
+  <td><span class="col-tag col-win">极强</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-info">次高端白酒</span></td>
+  <td>汾酒、洋河、古井</td>
+  <td><span class="col-tag col-win">70-78%</span></td>
+  <td>CR5~40%</td>
+  <td><span class="col-tag col-win">强</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-info">调味品</span></td>
+  <td>海天味业、中炬高新</td>
+  <td><span class="col-tag col-win">35-42%</span></td>
+  <td>CR5~25%（酱油）</td>
+  <td><span class="col-tag col-warn">中强</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-info">乳制品</span></td>
+  <td>伊利股份、蒙牛乳业</td>
+  <td><span class="col-tag col-warn">30-38%</span></td>
+  <td>CR2~43%</td>
+  <td><span class="col-tag col-warn">中等</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-info">啤酒</span></td>
+  <td>青岛啤酒、燕京啤酒</td>
+  <td><span class="col-tag col-win">40-45%</span></td>
+  <td>CR5~70%</td>
+  <td><span class="col-tag col-warn">中等</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-win">功能饮料</span></td>
+  <td>东鹏饮料</td>
+  <td><span class="col-tag col-win">43-45%</span></td>
+  <td>CR2~60%</td>
+  <td><span class="col-tag col-win">强</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-info">休闲食品</span></td>
+  <td>盐津铺子、洽洽食品</td>
+  <td><span class="col-tag col-warn">20-35%</span></td>
+  <td>分散</td>
+  <td><span class="col-tag col-warn">中等</span></td>
+</tr>
+</table>
+</div>
+
+<h2>市场规模</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">指标</th><th style="width:25%">数值</th><th>说明</th></tr>
+<tr><td><strong>TAM</strong>（中国食品饮料市场）</td><td><span class="col-tag col-info">~6万亿/年</span></td><td>含白酒/乳制品/调味品/饮料等，社零中占比约13%</td></tr>
+<tr><td><strong>白酒</strong>（规模以上企业）</td><td>~5724亿营收（2025）</td><td>产量354.9万千升（高峰的约1/4），利润1884亿</td></tr>
+<tr><td><strong>近年增速</strong>（3年CAGR）</td><td><span class="col-tag col-lose">~-2%至0%</span></td><td>2021-2025连续5年调整，26Q1转正（+3.6%）</td></tr>
+<tr><td><strong>人均消费量</strong></td><td>人均食品支出占可支配收入~30%</td><td>消费升级中长期趋势不变，短期受收入预期压制</td></tr>
+</table>
+</div>
+
+<h2>生命周期</h2>
+<div class="summary-box">
+  <strong><span class="col-tag col-warn" style="font-size:14px">成熟期（存量竞争+集中度提升）</span></strong><br>
+  食品饮料整体处于成熟期——总量增长趋近于0甚至负增长（白酒产量降至高峰的1/4），但龙头通过品牌+渠道+规模优势持续获取市场份额。子行业分化：<br>
+  - 高端白酒：<span class="col-tag col-win">品牌壁垒极高，量价齐升逻辑仍在</span>（茅台仍供不应求）<br>
+  - 调味品：<span class="col-tag col-warn">成熟期，集中度仍有提升空间</span>（酱油CR5仅25%）<br>
+  - 乳制品：<span class="col-tag col-warn">成熟期，双寡头格局稳定</span>（CR2~43%）<br>
+  - 功能饮料/零食：<span class="col-tag col-win">成长期，品类红利仍在</span>（东鹏饮料收入增速22%）
+</div>
+
+<h2>增长驱动力</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动力</th><th>类型</th><th>可持续性</th><th>量化指标</th></tr>
+<tr>
+  <td>消费升级（高端化）</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>白酒吨价提升、高端产品占比、均价趋势</td>
+</tr>
+<tr>
+  <td>集中度提升（龙头收割）</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-warn">中长</span></td>
+  <td>CR3/CR5的变化趋势</td>
+</tr>
+<tr>
+  <td>CPI回升+提价周期</td>
+  <td><span class="col-tag col-warn">周期</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>食品CPI、PPI原料成本传导</td>
+</tr>
+<tr>
+  <td>新渠道红利（量贩/直播/出海）</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>量贩零食门店增速、电商渗透率</td>
+</tr>
+<tr>
+  <td>消费刺激政策</td>
+  <td><span class="col-tag col-warn">周期</span></td>
+  <td><span class="col-tag col-lose">短</span></td>
+  <td>消费券规模、以旧换新政策</td>
+</tr>
+</table>
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l9">
+<div class="tab-inner">
+
+<h2>市场结构</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>市场结构类型</td>
+  <td><span class="col-tag col-win">金字塔型</span>——高端白酒寡头垄断（CR3~60%），大众品双寡头/垄断竞争</td>
+</tr>
+<tr>
+  <td>CR3（高端白酒）</td>
+  <td><span class="col-tag col-win">~60%</span>（茅台+五粮液+泸州老窖在高端价位段几乎垄断）</td>
+</tr>
+<tr>
+  <td>CR2（乳制品）</td>
+  <td><span class="col-tag col-win">~43%</span>（伊利+蒙牛双寡头格局稳定）</td>
+</tr>
+<tr>
+  <td>CR5（酱油）</td>
+  <td><span class="col-tag col-warn">~25%</span>（对比美国40%、日本44%，仍有提升空间）</td>
+</tr>
+<tr>
+  <td>新进入者威胁</td>
+  <td><span class="col-tag col-lose">低（白酒）</span> 品牌+工艺+窖池壁垒极高<br><span class="col-tag col-win">高（零食/饮料）</span> 低门槛，新品牌层出不穷</td>
+</tr>
+</table>
+</div>
+
+<h2>竞争壁垒</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>壁垒类型</th><th>强度</th><th>可持续性</th><th>具体表现</th></tr>
+<tr>
+  <td>品牌壁垒</td>
+  <td><span class="col-tag col-win">极高</span></td>
+  <td><span class="col-tag col-win">极长</span></td>
+  <td>茅台品牌价值不可复制，百年来形成的消费者心智占位，提价权远超成本增长</td>
+</tr>
+<tr>
+  <td>渠道网络壁垒</td>
+  <td><span class="col-tag col-win">高</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>海天/伊利等覆盖全国数百万终端网点，新品牌难以短期追赶</td>
+</tr>
+<tr>
+  <td>规模/成本壁垒</td>
+  <td><span class="col-tag col-warn">中高</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>伊利原奶采购规模效应、海天酱油发酵池规模带来的成本优势</td>
+</tr>
+<tr>
+  <td>工艺/配方壁垒</td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>白酒酿造工艺（茅台12987工艺）/酱油发酵工艺，可复制难度大</td>
+</tr>
+<tr>
+  <td>监管/安全壁垒</td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>食品安全监管趋严，小企业合规成本上升</td>
+</tr>
+</table>
+</div>
+
+<div class="summary-box">
+  <strong>定价权测试</strong><br>
+  🔹 高端白酒（茅台/五粮液）：<strong>极强的定价权</strong>——茅台出厂价1539远低于批价~1700+，有千元以上提价空间。五粮液/老窖虽然批价承压但品牌力仍在<br>
+  🔹 大众品（伊利/海天）：<strong>中等定价权</strong>——伊利2025年净利率9.96%创历史新高，证明龙头能在弱市优化盈利结构；海天在调味品中保持定价话语权<br>
+  🔹 毛利率趋势：高端白酒稳定（茅台92%），大众品受原料成本波动影响（洽洽瓜子毛利受葵花籽成本压制，涪陵榨菜受青菜头成本影响）<br>
+  🔹 ROE趋势：龙头ROE稳定在高位（茅台30%/海天20%/伊利18%），但区域酒企和中小食品公司ROE下滑
+</div>
+
+<h2>驱动力拆解</h2>
+<div class="highlight-box">
+  <strong>行业收入公式</strong><br>
+  消费品收入 = 品类总规模 × 品牌市占率 × (单价 + 结构升级)<br><br>
+  当前组合：<span style="color:#e65100;font-weight:700">量 →</span>（总量见底，降幅收窄） ＋ <span style="color:#1565c0;font-weight:700">价 →</span>（CPI温和回升，提价不易） ＝ <span class="col-tag col-warn">量价均在底部</span>
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动因子</th><th>最新值</th><th>历史区间</th><th>当前分位</th></tr>
+<tr>
+  <td>CPI（整体）</td>
+  <td><span class="col-tag col-warn">~+0.3%</span></td>
+  <td>-1% ~ +5%</td>
+  <td><span class="col-tag col-lose">~20%</span></td>
+</tr>
+<tr>
+  <td>社零总额增速</td>
+  <td><span class="col-tag col-lose">+1.4%</span></td>
+  <td>-8% ~ +35%</td>
+  <td><span class="col-tag col-lose">~10%</span></td>
+</tr>
+<tr>
+  <td>白酒产量（万千升）</td>
+  <td><span class="col-tag col-lose">~354.9</span></td>
+  <td>350-1350</td>
+  <td><span class="col-tag col-lose">~5%</span></td>
+</tr>
+<tr>
+  <td>飞天茅台批价（元/瓶）</td>
+  <td><span class="col-tag col-warn">~1700</span></td>
+  <td>1500-3000+</td>
+  <td><span class="col-tag col-warn">~30%</span></td>
+</tr>
+<tr>
+  <td>食品CPI</td>
+  <td><span class="col-tag col-lose">~-1%</span></td>
+  <td>-3% ~ +15%</td>
+  <td><span class="col-tag col-lose">~15%</span></td>
+</tr>
+</table>
+</div>
+
+<h2>成本结构</h2>
+<div class="summary-box">
+  🔹 <strong>类型：</strong>白酒——<span class="col-tag col-info">轻资产</span>（粮食成本占比低，品牌+渠道是核心资产）；大众品——<span class="col-tag col-info">中资产</span>（原材料成本占比40-60%，规模效应显著）<br>
+  🔹 <strong>成本敏感性：</strong>高端白酒对原料价格极不敏感（高粱成本占茅台营收&lt;3%），但大众品对原奶/大豆/白糖等价格高度敏感（伊利原奶成本占营收~50%）<br>
+  🔹 <strong>规模效应：</strong>大众品龙头有显著的规模效应——伊利净利率9.96%创历史新高，海天净利率~25%在调味品中一骑绝尘
+</div>
+
+<h2>竞争格局总结</h2>
+<div class="highlight-box">
+  食品饮料正处于<strong>"存量竞争+集中度提升"</strong>的阶段，行业总量见底下强者恒强的趋势明显。高端白酒的格局最优——茅台/五粮液/老窖品牌护城河极深，即使行业调整4年，茅台仍保持92%毛利率+30% ROE。大众品中，伊利在乳制品、海天在调味品中分别确立了领导者地位，份额在逆势中仍在提升。最大的风险不是竞争（龙头被挑战），而是<strong>宏观消费力何时恢复</strong>——当前茅台批价~1700远低于高点，社零增速仅1.4%，消费信心处于低位。格局和品牌都没问题，缺的是"催化剂"——CPI回升和居民收入预期改善。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l10">
+<div class="tab-inner">
+
+<h2>周期位置</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>库存周期阶段</td>
+  <td><span class="col-tag col-lose">去库存尾声</span> 白酒合同负债占比合理，渠道库存逐步回归理性，26Q1营收降幅收窄至-0.7%</td>
+</tr>
+<tr>
+  <td>产能利用率</td>
+  <td>白酒：<span class="col-tag col-lose">~50%</span>（规模以上企业产量仅高峰的1/4，中小产能大量出清）；大众品：<span class="col-tag col-info">~75%</span>（正常水平）</td>
+</tr>
+<tr>
+  <td>产品价格分位</td>
+  <td>茅台批价<span class="col-tag col-warn">~30%分位</span>（从高点3000+回落至~1700），五粮液批价<span class="col-tag col-lose">~20%分位</span></td>
+</tr>
+<tr>
+  <td>行业盈利状态</td>
+  <td><span class="col-tag col-warn">底部企稳</span> 2025年利润深度下滑，26Q1利润+3.6%转正，白酒-1.7%降幅大幅收窄</td>
+</tr>
+</table>
+</div>
+
+<div class="danger-box">
+  <strong>⚠ PE悖论检查</strong><br>
+  食品饮料不是周期股，PE低就是真实的"低估"——茅台PE 22x处于上市以来10%分位，五粮液PE 15x处于5%分位，伊利PE 13x处于5%分位。这些公司的盈利能力和品牌壁垒没有根本性变化，PE低反映了市场的悲观情绪而非基本面恶化。<br><br>
+  <strong>PB视角：</strong>白酒PB 3.9x，较历史高点14x已压缩72%，但仍高于2014年底部2.1x。茅台PB 5.7x vs 2014年2.7x。但考虑到当前盈利质量（茅台ROE 30%）远高于2014年（~25%），当前PB的合理性更高。<br><br>
+  <strong>结论：这不是价值陷阱——这是真正的"便宜"。</strong>但便宜不意味着立刻涨，需要等待宏观经济复苏确认。
+</div>
+
+<h2>估值水平</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>估值指标</th><th>当前值</th><th>历史中位数</th><th>80%分位</th><th>20%分位</th></tr>
+<tr>
+  <td><strong>食品饮料PE</strong></td>
+  <td><span class="col-tag col-lose">~18x</span></td>
+  <td>~31x</td>
+  <td>~42x</td>
+  <td>~22x</td>
+</tr>
+<tr>
+  <td><strong>白酒PE</strong></td>
+  <td><span class="col-tag col-lose">~18x</span></td>
+  <td>~30x</td>
+  <td>~45x</td>
+  <td>~20x</td>
+</tr>
+<tr>
+  <td><strong>茅台PE</strong></td>
+  <td><span class="col-tag col-lose">~22x</span></td>
+  <td>~35x</td>
+  <td>~50x</td>
+  <td>~25x</td>
+</tr>
+<tr>
+  <td><strong>五粮液PE</strong></td>
+  <td><span class="col-tag col-lose">~15x</span></td>
+  <td>~28x</td>
+  <td>~40x</td>
+  <td>~18x</td>
+</tr>
+<tr>
+  <td><strong>伊利PE</strong></td>
+  <td><span class="col-tag col-lose">~13x</span></td>
+  <td>~22x</td>
+  <td>~32x</td>
+  <td>~15x</td>
+</tr>
+</table>
+</div>
+
+<h2>政策环境</h2>
+<div class="summary-box">
+  🔹 <strong>政策方向：</strong><span class="col-tag col-info">中性偏多</span>（消费刺激政策持续出台，但效果待观察）<br>
+  🔹 <strong>关键政策：</strong><br>
+  &emsp;• 各地方政府持续发放消费券（餐饮/零售领域）<br>
+  &emsp;• "以旧换新"政策间接拉动消费信心<br>
+  &emsp;• 消费贷款补贴政策，降低居民消费融资成本<br>
+  &emsp;• 多地出台白酒产业支持政策（贵州/四川/山西等）<br>
+  &emsp;• 食品安全监管趋严，利好龙头企业<br>
+  🔹 <strong>政策周期位置：</strong><span class="col-tag col-info">呵护期</span>（经济弱复苏背景下，消费刺激政策持续加码）
+</div>
+
+<h2>买入清单</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:28%">条件</th><th style="width:16%">结果</th><th>备注</th></tr>
+<tr>
+  <td>估值：历史低位区间</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>PE 13-22x处于历史5-10%分位，20年估值底部</td>
+</tr>
+<tr>
+  <td>基本面：业绩触底</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>26Q1营收+3.6%利润+3.6%转正，白酒降幅收窄</td>
+</tr>
+<tr>
+  <td>政策：方向有利</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠</span></td>
+  <td>消费刺激政策持续但力度和效果待验证</td>
+</tr>
+<tr>
+  <td>格局：龙头壁垒稳固</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>品牌+渠道+规模壁垒极深</td>
+</tr>
+<tr>
+  <td>催化剂：可见的催化</td>
+  <td style="text-align:center"><span class="col-tag col-lose">❌</span></td>
+  <td>短期缺乏明确催化（社零弱、消费信心低）</td>
+</tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <div style="font-size:16px;font-weight:700;margin-bottom:8px">综合判断：<span class="col-tag col-warn" style="font-size:15px">等待（左侧底部分批建仓）</span></div>
+  <div style="margin-bottom:6px">食品饮料处于20年一遇的估值底部，基本面已触底（26Q1转正），但短期缺乏上涨催化剂——消费力依然疲软、白酒批价低位震荡、基金仍在减持。这是典型的"左侧"机会：估值极度安全，但需要耐心等待宏观经济复苏来验证业绩拐点。</div>
+  <table style="font-size:12px;margin:6px 0;border:none;background:transparent">
+    <tr><td style="border:none;padding:3px 6px;background:transparent;width:90px;font-weight:600">预期回报</td><td style="border:none;padding:3px 6px;background:transparent">估值修复（PE从18x回到25x）+ 业绩温和增长 = 3-5年翻倍级别的空间</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">仓位建议</td><td style="border:none;padding:3px 6px;background:transparent"><span class="col-tag col-info">不超过组合20%</span>（左侧机会需要分批建仓，不要一次性重仓）</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">跟踪指标</td><td style="border:none;padding:3px 6px;background:transparent">CPI/食品CPI · 社零增速 · 飞天茅台批价 · 居民消费信心指数 · 白酒动销数据</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">股息率参考</td><td style="border:none;padding:3px 6px;background:transparent">茅台~3.5% · 五粮液~4.5% · 伊利~5.2% · 双汇~6%（高股息提供安全垫）</td></tr>
+  </table>
+  <div style="margin-top:8px;padding:8px;background:#e8f5e9;border-radius:4px;font-size:12px">
+    <strong>买入策略（分段标注）：</strong><br>
+    <span class="col-tag col-win">第一段（核心底仓）</span> 贵州茅台+伊利股份：估值极低（PE 22x/13x）+ 股息率3.5-5.2% + 确定性最高，作为底仓配置<br>
+    <span class="col-tag col-warn">第二段（等待CPI拐点）</span> 五粮液/泸州老窖：CPI回升+批价企稳后加仓，白酒弹性最大<br>
+    <span class="col-tag col-info">第三段（观察）</span> 安井食品/海天味业：验证餐饮复苏持续性后再入场<br>
+    <span class="col-tag col-info">第四段（小仓位）</span> 东鹏饮料/盐津铺子：高成长赛道，估值合理时分批建仓
+  </div>
+</div>
+
+<h2>卖出信号</h2>
+<div class="danger-box">
+  <strong>出现以下信号考虑卖出：</strong><br>
+  <div style="margin-top:6px">
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px">1</span>
+    食品饮料PE修复至30x+（估值回到合理区间上方）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">2</span>
+    茅台批价跌破1500元（行业基本面恶化）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">3</span>
+    龙头公司连续2季营收增速低于预期（复苏被证伪）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">4</span>
+    出现食品安全等系统性黑天鹅事件
+  </div>
+</div>
+
+</div>
+</div>
+
+<div class="footer">报告生成日期：2026-07-09 | 数据来源：广发证券/平安证券/华福证券、国家统计局、今日酒价、公司年报 | 本报告不构成投资建议</div>
+
+</div>
+
+<script>
+var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+var contents = document.querySelectorAll('.tab-content');
+btns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    contents.forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    var tab = btn.getAttribute('data-tab');
+    document.getElementById('tab-' + tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

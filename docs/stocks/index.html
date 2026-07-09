@@ -57,7 +57,7 @@
     </select>
   </div>
 
-  <div class="count-bar" id="count">共 26 份</div>
+  <div class="count-bar" id="count">共 27 份</div>
 
   <table>
     <thead>
@@ -76,32 +76,33 @@
 
 <script>
 const data = [
-  {name:"药明康德", code:"603259", type:"成长性", score:100, date:"2026-07-09", file:"药明康德_603259_分析报告.html"},
-  {name:"阳光电源", code:"300274", type:"混合周期", score:94, date:"2026-06-30", file:"阳光电源_300274_分析报告.html"},
-  {name:"新和成", code:"002001", type:"混合周期", score:94, date:"2026-07-03", file:"新和成_002001_分析报告.html"},
-  {name:"宁德时代", code:"300750", type:"成长性", score:90, date:"2026-06-29", file:"宁德时代_300750_分析报告.html"},
-  {name:"中信证券", code:"600030", type:"周期性", score:89, date:"2026-07-01", file:"中信证券_600030_分析报告.html"},
-  {name:"德业股份", code:"605117", type:"混合周期", score:88, date:"2026-06-30", file:"德业股份_605117_分析报告.html"},
-  {name:"东鹏饮料", code:"605499", type:"成长性", score:88, date:"2026-06-29", file:"东鹏饮料_605499_分析报告.html"},
-  {name:"呈和科技", code:"688625", type:"成长性", score:76, date:"2026-07-03", file:"呈和科技_688625_分析报告.html"},
-  {name:"兆易创新", code:"603986", type:"混合周期", score:85, date:"2026-06-29", file:"兆易创新_603986_分析报告.html"},
-  {name:"横店东磁", code:"002056", type:"混合周期", score:80, date:"2026-06-29", file:"横店东磁_002056_分析报告.html"},
-  {name:"伊利股份", code:"600887", type:"防御性", score:76, date:"2026-06-29", file:"伊利股份_600887_分析报告.html"},
-  {name:"东方财富", code:"300059", type:"周期性", score:74, date:"2026-07-01", file:"东方财富_300059_分析报告.html"},
-  {name:"牧原股份", code:"002714", type:"周期性", score:74, date:"2026-06-29", file:"牧原股份_002714_分析报告.html"},
-  {name:"中材科技", code:"002080", type:"周期性", score:71, date:"2026-06-29", file:"中材科技_002080_分析报告.html"},
-  {name:"雅克科技", code:"002409", type:"成长性", score:69, date:"2026-06-29", file:"雅克科技_002409_分析报告.html"},
-  {name:"寒武纪", code:"688256", type:"特殊行业", score:62, date:"2026-06-29", file:"寒武纪_688256_分析报告.html"},
-  {name:"金发科技", code:"600143", type:"周期性", score:53, date:"2026-06-29", file:"金发科技_600143_分析报告.html"},
-  {name:"福斯特", code:"603806", type:"混合周期", score:49, date:"2026-06-30", file:"福斯特_603806_分析报告.html"},
-  {name:"金辰股份", code:"603396", type:"混合周期", score:42, date:"2026-06-29", file:"金辰股份_603396_分析报告.html"},
-  {name:"皖维高新", code:"600063", type:"周期性", score:38, date:"2026-06-29", file:"皖维高新_600063_分析报告.html"},
-  {name:"五洲新春", code:"603667", type:"周期性", score:34, date:"2026-06-29", file:"五洲新春_603667_分析报告.html"},
-  {name:"沧州大化", code:"600230", type:"周期性", score:33, date:"2026-06-29", file:"沧州大化_600230_分析报告.html"},
-  {name:"三友化工", code:"600409", type:"周期性", score:32, date:"2026-06-29", file:"三友化工_600409_分析报告.html"},
-  {name:"盛新锂能", code:"002240", type:"混合周期", score:25, date:"2026-06-30", file:"盛新锂能_002240_分析报告.html"},
-  {name:"阿尔特", code:"300825", type:"混合周期", score:22, date:"2026-06-30", file:"阿尔特_300825_分析报告.html"},
-  {name:"北京文化", code:"000802", type:"特殊行业", score:8, date:"2026-06-30", file:"北京文化_000802_分析报告.html"}
+  {name:"万华化学",code:"600309",type:"",score:60,date:"",file:"万华化学_600309_分析报告.html"},
+  {name:"三友化工",code:"600409",type:"",score:60,date:"",file:"三友化工_600409_分析报告.html"},
+  {name:"东方财富",code:"300059",type:"",score:60,date:"",file:"东方财富_300059_分析报告.html"},
+  {name:"中信证券",code:"600030",type:"",score:60,date:"",file:"中信证券_600030_分析报告.html"},
+  {name:"中材科技",code:"002080",type:"",score:60,date:"",file:"中材科技_002080_分析报告.html"},
+  {name:"五洲新春",code:"603667",type:"",score:60,date:"",file:"五洲新春_603667_分析报告.html"},
+  {name:"沧州大化",code:"600230",type:"",score:60,date:"",file:"沧州大化_600230_分析报告.html"},
+  {name:"牧原股份",code:"002714",type:"",score:60,date:"",file:"牧原股份_002714_分析报告.html"},
+  {name:"皖维高新",code:"600063",type:"",score:60,date:"",file:"皖维高新_600063_分析报告.html"},
+  {name:"金发科技",code:"600143",type:"",score:60,date:"",file:"金发科技_600143_分析报告.html"},
+  {name:"东鹏饮料",code:"605499",type:"",score:60,date:"",file:"东鹏饮料_605499_分析报告.html"},
+  {name:"呈和科技",code:"688625",type:"",score:60,date:"",file:"呈和科技_688625_分析报告.html"},
+  {name:"宁德时代",code:"300750",type:"",score:60,date:"",file:"宁德时代_300750_分析报告.html"},
+  {name:"药明康德",code:"603259",type:"",score:60,date:"",file:"药明康德_603259_分析报告.html"},
+  {name:"雅克科技",code:"002409",type:"",score:60,date:"",file:"雅克科技_002409_分析报告.html"},
+  {name:"兆易创新",code:"603986",type:"",score:60,date:"",file:"兆易创新_603986_分析报告.html"},
+  {name:"德业股份",code:"605117",type:"",score:60,date:"",file:"德业股份_605117_分析报告.html"},
+  {name:"新和成",code:"002001",type:"",score:60,date:"",file:"新和成_002001_分析报告.html"},
+  {name:"横店东磁",code:"002056",type:"",score:60,date:"",file:"横店东磁_002056_分析报告.html"},
+  {name:"盛新锂能",code:"002240",type:"",score:60,date:"",file:"盛新锂能_002240_分析报告.html"},
+  {name:"福斯特",code:"603806",type:"",score:60,date:"",file:"福斯特_603806_分析报告.html"},
+  {name:"金辰股份",code:"603396",type:"",score:60,date:"",file:"金辰股份_603396_分析报告.html"},
+  {name:"阳光电源",code:"300274",type:"",score:60,date:"",file:"阳光电源_300274_分析报告.html"},
+  {name:"阿尔特",code:"300825",type:"",score:60,date:"",file:"阿尔特_300825_分析报告.html"},
+  {name:"北京文化",code:"000802",type:"",score:60,date:"",file:"北京文化_000802_分析报告.html"},
+  {name:"寒武纪",code:"688256",type:"",score:60,date:"",file:"寒武纪_688256_分析报告.html"},
+  {name:"伊利股份",code:"600887",type:"",score:60,date:"",file:"伊利股份_600887_分析报告.html"},
 ];
 
 let sortKey='score', sortDir=-1;
