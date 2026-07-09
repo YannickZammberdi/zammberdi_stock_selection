@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>A股——创新药 行业分析报告</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f5f5f5;padding:0;color:#333}
+  .report-wrap{max-width:800px;margin:0 auto;background:#fff}
+  h1{font-size:22px;margin:0;padding:28px 0 4px;text-align:center}
+  h2{font-size:18px;margin:28px 0 12px;border-bottom:2px solid #1a1a1a;padding-bottom:4px}
+  h3{font-size:15px;margin:18px 0 8px}
+  .subtitle{color:#666;font-size:13px;text-align:center;margin-bottom:4px}
+  .meta{color:#999;font-size:12px;text-align:center;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #e0e0e0}
+  .tab-bar{position:sticky;top:0;z-index:10;background:#fff;display:flex;flex-wrap:wrap;border-bottom:2px solid #ddd;gap:0}
+  .tab-btn{padding:10px 14px;cursor:pointer;border:none;background:none;font-size:13px;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+  .tab-btn:hover{color:#333;background:#f9f9f9}
+  .tab-btn.active{color:#1a1a1a;font-weight:700;border-bottom-color:#1a1a1a}
+  .tab-content{display:none}
+  .tab-content.active{display:block}
+  .tab-inner{padding:0 12px}
+  table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:13px}
+  th{background:#f5f5f5;padding:8px 6px;text-align:left;border-bottom:2px solid #ddd;white-space:nowrap;font-weight:600}
+  td{padding:7px 6px;border-bottom:1px solid #eee}
+  tr:nth-child(even) td{background:#fafafa}
+  .summary-box{background:#fffde7;border-left:4px solid #f9a825;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .highlight-box{background:#e3f2fd;border-left:4px solid #1e88e5;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .danger-box{background:#ffebee;border-left:4px solid #e53935;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .verdict{text-align:center;padding:20px;margin:16px 0;border-radius:8px;font-size:18px;font-weight:700}
+  .verdict-ok{background:#e8f5e9;border:2px solid #4caf50;color:#2e7d32}
+  .verdict-caution{background:#fff3e0;border:2px solid #ff9800;color:#e65100}
+  .verdict-bad{background:#ffebee;border:2px solid #e53935;color:#c62828}
+  .score{font-size:36px;display:block;margin-bottom:4px}
+  .pass{color:#2e7d32;font-weight:700}
+  .skip{color:#666;font-style:italic}
+  .tag{display:inline-block;padding:2px 8px;border-radius:3px;font-size:11px;font-weight:700}
+  .tag-red{background:#ffebee;color:#c62828}
+  .tag-green{background:#e8f5e9;color:#2e7d32}
+  .tag-yellow{background:#fff8e1;color:#f57f17}
+  .footer{font-size:11px;color:#aaa;text-align:center;padding:24px 0 8px;border-top:1px solid #eee;margin-top:30px}
+  .card{background:#fafafa;border:1px solid #e0e0e0;border-radius:6px;padding:14px;margin:10px 0;font-size:13px}
+  .flex{display:flex;flex-wrap:wrap;gap:8px}
+  .tbl-wrap{border:1px solid #e0e0e0;border-radius:6px;overflow:hidden;margin:10px 0 18px}
+  .tbl-wrap table{margin:0}
+  .tbl-wrap th{background:#f5f5f5;padding:9px 8px;border-bottom:1px solid #ddd;font-weight:600;font-size:12px}
+  .tbl-wrap td{padding:8px;border-bottom:1px solid #f0f0f0;font-size:13px}
+  .tbl-wrap tr:last-child td{border-bottom:none}
+  .bar-wrap{display:inline-flex;align-items:center;width:60px;height:16px;vertical-align:middle}
+  .bar-bg{background:#eee;border-radius:4px;height:8px;width:100%;overflow:hidden;position:relative}
+  .bar{display:block;height:8px;border-radius:4px}
+  .score-cell{font-weight:700;font-size:15px;text-align:center;white-space:nowrap}
+  .tbl-wrap td,.tbl-wrap th{vertical-align:middle}
+  .metric-h{color:#1565c0;font-weight:700;font-size:13px}
+  .metric-l{color:#c62828;font-weight:700}
+  .metric-m{color:#e65100;font-weight:700}
+  .col-tag{display:inline-block;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600}
+  .col-win{background:#e8f5e9;color:#2e7d32}
+  .col-lose{background:#ffebee;color:#c62828}
+  .col-warn{background:#fff3e0;color:#e65100}
+  .col-info{background:#e3f2fd;color:#1565c0}
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>A股——创新药 行业分析报告</h1>
+<div class="subtitle">L5分类：成长型 ｜ 上市公司：~60+家 ｜ 总市值：~2万亿</div>
+<div class="meta">生成日期：2026-07-09</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l7">L7 量化初筛</button>
+  <button class="tab-btn" data-tab="l8">L8 行业画像</button>
+  <button class="tab-btn" data-tab="l9">L9 竞争格局</button>
+  <button class="tab-btn" data-tab="l10">L10 周期时机</button>
+</div>
+
+<div class="tab-content active" id="tab-summary">
+<div class="tab-inner">
+
+<h2>行业速览</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">项目</th><th>内容</th></tr>
+<tr><td>行业名</td><td><strong>创新药</strong></td></tr>
+<tr><td>市场</td><td>A股（科创板+主板）</td></tr>
+<tr><td>L5分类</td><td><span class="col-tag col-win">成长型</span> 长期成长逻辑强劲</td></tr>
+<tr><td>上市公司数</td><td>~60+家（纯正创新药标的）</td></tr>
+<tr><td>总市值</td><td>~2万亿</td></tr>
+<tr><td>产业链利润核心</td><td><span class="col-tag col-win">研发+销售</span>（毛利率80-90%）</td></tr>
+<tr><td>生命周期</td><td><span class="col-tag col-win">成长期</span></td></tr>
+<tr><td>当前周期位置</td><td><span class="col-tag col-win">复苏早期（政策底已现，BD爆发）</span></td></tr>
+</table>
+</div>
+
+<h2>综合评分</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>维度</th><th style="width:60px">得分</th><th>进度</th><th>说明</th></tr>
+<tr>
+  <td>行业规模与空间</td>
+  <td class="score-cell">18/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:90%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">中国创新药占比仅15%（vs美国60%），渗透率提升空间极大</td>
+</tr>
+<tr>
+  <td>产业链位置</td>
+  <td class="score-cell">12/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:80%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">研发+销售利润厚，但研发投入大、成功率低</td>
+</tr>
+<tr>
+  <td>竞争格局</td>
+  <td class="score-cell">12/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:60%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">赛道竞争激烈，但龙头格局渐清晰（恒瑞/百济双雄）</td>
+</tr>
+<tr>
+  <td>增长驱动力</td>
+  <td class="score-cell">14/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:93%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">创新+出海+老龄化三轮驱动强劲</td>
+</tr>
+<tr>
+  <td>周期位置</td>
+  <td class="score-cell">12/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:80%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">估值历史低位，BD爆发，基本面触底回升</td>
+</tr>
+<tr>
+  <td>政策环境</td>
+  <td class="score-cell">13/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:87%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">集采豁免+基药目录纳入创新药+医保谈判市场化</td>
+</tr>
+<tr style="background:#fafafa">
+  <td style="font-weight:700;font-size:14px">总分</td>
+  <td style="font-weight:700;font-size:16px;color:#2e7d32">81/100</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:81%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#2e7d32;font-weight:600">良好，可重点关注</td>
+</tr>
+</table>
+</div>
+
+<div class="verdict verdict-ok">
+  <span class="score">81</span>
+  良好，可重点关注
+</div>
+
+<div class="summary-box">
+  <strong>核心结论</strong><br>
+  创新药是中国医药行业最值得关注的子赛道。2025年A股Biopharma/Biotech板块首次实现全面盈利（27家合计净利14亿），2026Q1营收同比增长35.4%，BD交易爆发（Q1总额614亿美元）。政策端，创新药集采豁免、国家基本药物目录纳入创新药、医保谈判趋于市场化。估值端，PE 28.96处于历史低位。<strong>当前是创新药板块的"盈利兑现+估值修复"双击窗口。</strong>
+</div>
+
+<div class="highlight-box">
+  <strong>行业公式</strong><br>
+  创新药收入 = 已上市产品放量 × 医保后价格 + BD首付款/里程碑 + 海外授权收入<br>
+  关键跟踪指标：临床进展（III期/NDA）、医保纳入、海外BD交易、在手订单
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l7">
+<div class="tab-inner">
+
+<h2>筛选调整说明</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:12%">筛子</th><th style="width:35%">标准</th><th>调整理由</th></tr>
+<tr><td>①<span class="col-tag col-info">市值</span></td><td>≥30亿（科创）/ ≥50亿（主板）</td><td>创新药多在科创板上市</td></tr>
+<tr><td>②<span class="col-tag col-info">营收</span></td><td>≥1亿</td><td>部分早期创新药营收极小但管线有价值，放到1亿</td></tr>
+<tr><td>③<span class="col-tag col-win">毛利率</span></td><td>≥50%</td><td>创新药毛利率普遍在70-90%，50%为最低容忍线</td></tr>
+<tr><td>④<span class="col-tag skip">ROE</span></td><td><strong>跳过</strong>（或≥-10%）</td><td>亏损创新药研发费用高压低ROE，跳过此筛</td></tr>
+<tr><td>⑤<span class="col-tag col-info">负债率</span></td><td>≤50%</td><td>创新药多为轻资产，负债率普遍低</td></tr>
+<tr><td>⑥<span class="col-tag col-info">估值</span></td><td>PE历史分位≤70%，或PS≤15x（亏损）</td><td>对亏损公司用PS替代PE</td></tr>
+</table>
+</div>
+
+<h2>候选池（通过≥5/6）</h2>
+
+<h3>第一梯队：Pharma转型（盈利稳健+创新占比提升）</h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>环节</th><th>市值</th><th>毛利率</th><th>ROE</th><th>负债率</th><th>估值</th><th>通过</th></tr>
+<tr>
+  <td><strong>恒瑞医药</strong> 600276</td>
+  <td><span class="col-tag col-win">创新药</span></td>
+  <td style="font-weight:600">3601亿</td>
+  <td><span class="col-tag col-win">85%</span></td>
+  <td><span class="col-tag col-win">15%</span></td>
+  <td>15%</td>
+  <td>PE~48x(分位50%)</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>复星医药</strong> 600196</td>
+  <td><span class="col-tag col-warn">综合</span></td>
+  <td>800亿+</td>
+  <td><span class="col-tag col-win">50%</span></td>
+  <td>8%</td>
+  <td>45%</td>
+  <td>PE~25x</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>科伦药业</strong> 002422</td>
+  <td>创新+仿制</td>
+  <td>400亿+</td>
+  <td><span class="col-tag col-win">55%</span></td>
+  <td>6%</td>
+  <td>40%</td>
+  <td>PE~20x</td>
+  <td class="pass">5/6</td>
+</tr>
+<tr>
+  <td><strong>华东医药</strong> 000963</td>
+  <td>综合</td>
+  <td>700亿+</td>
+  <td><span class="col-tag col-win">60%</span></td>
+  <td><span class="col-tag col-win">12%</span></td>
+  <td>35%</td>
+  <td>PE~18x</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>海思科</strong> 002653</td>
+  <td><span class="col-tag col-win">创新药</span></td>
+  <td>300亿+</td>
+  <td><span class="col-tag col-win">70%</span></td>
+  <td>8%</td>
+  <td>30%</td>
+  <td>PE~35x</td>
+  <td class="pass">6/6</td>
+</tr>
+</table>
+</div>
+
+<h3>第二梯队：Biotech（高增长，部分刚扭亏）</h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>环节</th><th>市值</th><th>毛利率</th><th>ROE</th><th>负债率</th><th>估值</th><th>通过</th></tr>
+<tr>
+  <td><strong>百济神州</strong> 688235</td>
+  <td><span class="col-tag col-win">创新药</span></td>
+  <td style="font-weight:600">3435亿</td>
+  <td><span class="col-tag col-win">83%</span></td>
+  <td>转正~4%</td>
+  <td>35%</td>
+  <td>PS~10x</td>
+  <td class="pass">5/6</td>
+</tr>
+<tr>
+  <td><strong>艾力斯</strong> 688578</td>
+  <td><span class="col-tag col-win">创新药</span></td>
+  <td>500亿+</td>
+  <td><span class="col-tag col-win">85%</span></td>
+  <td><span class="col-tag col-win">12%</span></td>
+  <td>20%</td>
+  <td>PE~35x</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>荣昌生物</strong> 688331</td>
+  <td><span class="col-tag col-info">ADC</span></td>
+  <td>360亿</td>
+  <td><span class="col-tag col-win">75%</span></td>
+  <td>转正</td>
+  <td>30%</td>
+  <td>PS~15x</td>
+  <td class="pass">5/6</td>
+</tr>
+<tr>
+  <td><strong>贝达药业</strong> 300558</td>
+  <td>靶向药</td>
+  <td>270亿</td>
+  <td><span class="col-tag col-win">90%</span></td>
+  <td>6%</td>
+  <td>25%</td>
+  <td>PE~50x</td>
+  <td class="pass">5/6</td>
+</tr>
+<tr>
+  <td><strong>君实生物</strong> 688180</td>
+  <td>PD-1</td>
+  <td>400亿</td>
+  <td><span class="col-tag col-win">70%</span></td>
+  <td>扭亏</td>
+  <td>30%</td>
+  <td>PS~12x</td>
+  <td>4/6</td>
+</tr>
+<tr>
+  <td><strong>诺诚健华</strong> 688428</td>
+  <td><span class="col-tag col-win">创新药</span></td>
+  <td>150亿+</td>
+  <td><span class="col-tag col-win">80%</span></td>
+  <td>4%</td>
+  <td>15%</td>
+  <td>PS~8x</td>
+  <td class="pass">5/6</td>
+</tr>
+<tr>
+  <td><strong>百利天恒</strong> 688506</td>
+  <td><span class="col-tag col-info">ADC</span></td>
+  <td>1089亿</td>
+  <td><span class="col-tag col-win">60%</span></td>
+  <td>亏损</td>
+  <td>20%</td>
+  <td>PS~30x</td>
+  <td>4/6</td>
+</tr>
+<tr>
+  <td><strong>信达生物</strong> 1801.HK</td>
+  <td><span class="col-tag col-win">创新药</span></td>
+  <td>1425亿</td>
+  <td><span class="col-tag col-win">80%</span></td>
+  <td>转正</td>
+  <td>35%</td>
+  <td>PS~8x</td>
+  <td class="pass">5/6(港股)</td>
+</tr>
+<tr>
+  <td><strong>迪哲医药</strong> 688192</td>
+  <td><span class="col-tag col-win">创新药</span></td>
+  <td>100亿+</td>
+  <td>亏损</td>
+  <td>亏损</td>
+  <td>15%</td>
+  <td>PS~20x</td>
+  <td>4/6</td>
+</tr>
+<tr>
+  <td><strong>亚虹医药</strong> 688176</td>
+  <td><span class="col-tag col-win">创新药</span></td>
+  <td>80亿+</td>
+  <td>亏损</td>
+  <td>亏损</td>
+  <td>10%</td>
+  <td>PS~30x</td>
+  <td>3/6</td>
+</tr>
+</table>
+</div>
+
+<h2>观察池</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>卡在哪</th><th>备注</th></tr>
+<tr>
+  <td><strong>百利天恒</strong> 688506</td>
+  <td><span class="col-tag col-lose">ROE亏损</span> <span class="col-tag col-warn">PS偏高</span></td>
+  <td>单管线双抗ADC，市值1000亿+但营收仅25亿，波动大</td>
+</tr>
+<tr>
+  <td><strong>君实生物</strong> 688180</td>
+  <td><span class="col-tag col-lose">营收偏低</span> <span class="col-tag col-lose">ROE亏损</span></td>
+  <td>PD-1出海有看点，Q1亏损大幅收窄</td>
+</tr>
+<tr>
+  <td><strong>迪哲医药</strong> 688192</td>
+  <td><span class="col-tag col-lose">营收极低</span> <span class="col-tag col-lose">亏损</span></td>
+  <td>管线价值待验证</td>
+</tr>
+</table>
+</div>
+
+<h2>筛除记录</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>筛子</th><th style="width:60px">筛除数</th><th>知名示例</th></tr>
+<tr><td>①市值&lt;30亿</td><td style="text-align:center">~10+</td><td>微盘创新药</td></tr>
+<tr><td>②营收&lt;1亿</td><td style="text-align:center">~5+</td><td>极早期无营收公司</td></tr>
+<tr><td>③毛利率&lt;50%</td><td style="text-align:center">~5+</td><td>纯仿制药转型企业</td></tr>
+<tr><td>④ROE跳过</td><td style="text-align:center">—</td><td>创新药亏损视为正常</td></tr>
+<tr><td>⑤负债率&gt;50%</td><td style="text-align:center">~3+</td><td>少数高杠杆</td></tr>
+<tr><td>⑥估值过高</td><td style="text-align:center">~8+</td><td>PS&gt;15x的管线故事股</td></tr>
+<tr style="background:#fffde7"><td><strong>剩余</strong></td><td style="text-align:center;font-weight:700;color:#2e7d32"><strong>~20只</strong></td><td>通过≥4/6筛</td></tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <strong>L7筛选结论</strong><br>
+  60+只创新药标的 → 6道筛子（ROE跳过）→ 约20只通过。中国创新药行业正在经历"从投入期到兑现期"的转折——2025年板块首次全面盈利，2026Q1营收增35%。<strong>核心关注：恒瑞（创新药占比58%+87亿研发）、百济（全球化验证）、艾力斯（伏美替尼放量高增）、药明康德（PE15x在手订单597亿）。</strong>
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l8">
+<div class="tab-inner">
+
+<h2>产业链</h2>
+<div class="card" style="font-size:13px;line-height:1.7">
+
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px">
+
+<div style="flex:1.2;min-width:200px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#2e7d32;font-size:14px">上游（研发平台）</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">靶点发现/化合物筛选</div>
+    <div style="margin:8px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">CRO临床前试验</div>
+    <div style="text-align:center;font-size:11px;color:#666">药明康德·康龙化成·泰格医药</div>
+    <div style="margin:8px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">ADC平台技术</div>
+  </div>
+</div>
+
+<div style="flex:2;min-width:280px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#1565c0;font-size:14px">中游（制造+临床）</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#e3f2fd;border-radius:4px;padding:8px;text-align:center;font-weight:600;font-size:13px">创新药研发+生产</div>
+    <div style="text-align:center;font-size:11px;color:#666;margin-bottom:8px">恒瑞·百济·艾力斯·荣昌</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px">
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 4px;text-align:center;font-size:12px">小分子靶向药<br><span style="font-size:10px;color:#666">EGFR,BTK等</span></div>
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:6px 4px;text-align:center;font-size:12px">大分子抗体<br><span style="font-size:10px;color:#666">PD-1·ADC·双抗</span></div>
+    </div>
+  </div>
+</div>
+
+<div style="flex:1;min-width:160px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#c62828;font-size:14px">下游（销售）</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:8px;text-align:center;font-weight:600;font-size:12px">医院/医生处方</div>
+    <div style="margin:6px 0;text-align:center;color:#999;font-size:16px">↓</div>
+    <div style="margin-bottom:6px;background:#fff8e1;border-radius:4px;padding:8px;text-align:center;font-weight:600;font-size:12px">医保谈判/商保</div>
+    <div style="margin:6px 0;text-align:center;color:#999;font-size:16px">↓</div>
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:8px;text-align:center;font-weight:600;font-size:12px">海外BD授权</div>
+  </div>
+</div>
+
+</div>
+
+<div style="background:#fffde7;border-left:3px solid #f9a825;padding:8px 12px;font-size:12px;border-radius:0 4px 4px 0">
+  <strong>利润最厚环节：</strong>研发+销售（品牌创新药毛利率80-93%）
+</div>
+
+</div>
+
+<h2>市场规模</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">维度</th><th>数据</th></tr>
+<tr><td>全球抗体药市场</td><td>2543亿美元(2024)→4579亿美元(2030)</td></tr>
+<tr><td>中国抗体药市场</td><td>1312亿元(2024)→3964亿元(2030)</td></tr>
+<tr><td>ADC市场规模(全球)</td><td>150-190亿美元(2025)→570亿美元(2032)</td></tr>
+<tr><td>中国创新药BD交易</td><td>2025全年1356亿美元，2026Q1达614亿美元（+66%）</td></tr>
+<tr><td>A股Biotech板块营收</td><td>732亿元(2025)+32.6%</td></tr>
+<tr><td>创新药占比(中国医药市场)</td><td>~15%（vs美国~60%）</td></tr>
+</table>
+</div>
+
+<h2>生命周期</h2>
+<div class="summary-box">
+  <strong><span class="col-tag col-win" style="font-size:14px">成长期</span></strong>——从"投入期"进入"兑现期"：<br>
+  - 单抗：<span class="col-tag col-warn">成熟期</span>（渗透率高但稳定增长）<br>
+  - ADC：<span class="col-tag col-win">快速成长期</span>（规模爆发式增长，CAGR 60%+）<br>
+  - 双抗：<span class="col-tag col-info">早期成长期</span>（规模尚小但增速极高，CAGR 88%）<br>
+  - 细胞治疗：<span class="col-tag col-info">导入期</span>（商业化早期）
+</div>
+
+<h2>增长驱动力</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动力</th><th>类型</th><th>可持续性</th><th>量化指标</th></tr>
+<tr>
+  <td>创新药国内渗透率提升</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>创新药占医药市场比(15%→提升)</td>
+</tr>
+<tr>
+  <td>出海BD授权爆发</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-warn">中长</span></td>
+  <td>BD交易总额(2026Q1为614亿美元)</td>
+</tr>
+<tr>
+  <td>老龄化+疾病谱变化</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">极长</span></td>
+  <td>60+人口占比</td>
+</tr>
+<tr>
+  <td>医保/商保支付改善</td>
+  <td><span class="col-tag col-warn">政策</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>创新药纳入基药目录</td>
+</tr>
+<tr>
+  <td>FDA/EMA海外获批</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>海外获批数量</td>
+</tr>
+</table>
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l9">
+<div class="tab-inner">
+
+<h2>市场结构</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>内容</th></tr>
+<tr>
+  <td>结构类型</td>
+  <td><span class="col-tag col-info">分层竞争型</span>（恒瑞/百济头部双雄，中层专业化，底层Biotech）</td>
+</tr>
+<tr>
+  <td>CR2(创新药收入)</td>
+  <td>~25%（恒瑞163亿+百济378亿）</td>
+</tr>
+<tr>
+  <td>格局象限</td>
+  <td>恒瑞：<span class="col-tag col-win">研发厚度+商业化（明星）</span>；百济：<span class="col-tag col-win">国际化+全球化临床（明星）</span></td>
+</tr>
+<tr>
+  <td>新进入者威胁</td>
+  <td><span class="col-tag col-warn">中高</span>（Biotech持续涌现，并购活跃）</td>
+</tr>
+</table>
+</div>
+
+<h2>竞争壁垒</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>壁垒类型</th><th>强度</th><th>可持续性</th><th>具体表现</th></tr>
+<tr>
+  <td>技术壁垒(专利)</td>
+  <td><span class="col-tag col-win">极高</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>创新药专利保护期20年+</td>
+</tr>
+<tr>
+  <td>临床数据壁垒</td>
+  <td><span class="col-tag col-win">高</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>III期临床数据不可复制</td>
+</tr>
+<tr>
+  <td>审批壁垒</td>
+  <td><span class="col-tag col-win">高</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>NMPA/FDA审批周期长</td>
+</tr>
+<tr>
+  <td>品牌/渠道壁垒</td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>医生处方习惯+学术推广</td>
+</tr>
+<tr>
+  <td>资金壁垒</td>
+  <td><span class="col-tag col-win">极高</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>新药研发平均10年+10亿美元</td>
+</tr>
+</table>
+</div>
+
+<div class="summary-box">
+  <strong>定价权测试</strong><br>
+  龙头创新药有定价权（恒瑞肿瘤药毛利率93%），但定价受医保谈判约束。<strong>定价权从强到弱：独家创新药 &gt; Me-better &gt; Me-too仿创 &gt; 仿制药。</strong> 当前趋势是医保对真正创新药给予溢价（集采豁免）。
+</div>
+
+<h2>驱动力拆解</h2>
+<div class="highlight-box">
+  <strong>行业收入公式</strong><br>
+  创新药收入 = 患者数 × 渗透率 × 年治疗费用（医保后价格）<br><br>
+  当前组合：<span style="color:#2e7d32;font-weight:700">量 ↑</span>（渗透率提升）＋ <span style="color:#1565c0;font-weight:700">价 →</span>（医保谈判降价趋缓，BD出海高价）＝ <span class="col-tag col-win">量升价稳，盈利拐点已现</span>
+</div>
+
+<h2>竞争格局总结</h2>
+<div class="highlight-box">
+  中国创新药进入<strong>"1.5时代"</strong>——从me-too向first-in-class过渡。恒瑞在研发厚度和商业化上断层领先，百济在全球化上领先。ADC赛道竞争最激烈（全球1381项临床试验），但中国企业在差异化靶点和对外授权上具有优势。<strong>未来3年竞争焦点：管线分化期，有数据验证 vs 纯故事讲估值。</strong>
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l10">
+<div class="tab-inner">
+
+<h2>周期位置</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>状态</th></tr>
+<tr>
+  <td>行业基本周期</td>
+  <td><span class="col-tag col-win">复苏早期（盈利拐点已现）</span></td>
+</tr>
+<tr>
+  <td>A股Biotech板块盈利</td>
+  <td><span class="col-tag col-win">2025年首次全面盈利（27家合计14亿）</span></td>
+</tr>
+<tr>
+  <td>BD交易</td>
+  <td><span class="col-tag col-win">爆发期（2026Q1同比+66%）</span></td>
+</tr>
+<tr>
+  <td>公募基金医药重仓</td>
+  <td><span class="col-tag col-warn">8.9%（环比+1.0pct，低配）</span></td>
+</tr>
+<tr>
+  <td>PE估值</td>
+  <td><span class="col-tag col-win">28.96（低于中位数38.56，20-30%分位）</span></td>
+</tr>
+</table>
+</div>
+
+<div class="danger-box">
+  <strong>⚠ PE悖论检查</strong><br>
+  创新药PE偏高≠贵：研发投入费用化压低当期利润，PE高是行业正常特征。<strong>真正要看的是管线价值和BD潜力。</strong> 对于亏损创新药，用PS（市销率）或管线折现估值更合理。
+</div>
+
+<h2>估值水平</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>指标</th><th>当前</th><th>中位数</th><th>80%分位</th><th>20%分位</th></tr>
+<tr>
+  <td>PE(医药生物)</td>
+  <td><span class="col-tag col-info">28.96</span></td>
+  <td>38.56</td>
+  <td>~50</td>
+  <td>~25</td>
+</tr>
+<tr>
+  <td>PB(医药生物)</td>
+  <td><span class="col-tag col-info">2.66</span></td>
+  <td>2.39</td>
+  <td>~4.0</td>
+  <td>~2.0</td>
+</tr>
+<tr>
+  <td>恒瑞PE</td>
+  <td><span class="col-tag col-warn">~48x</span></td>
+  <td>—</td>
+  <td>—</td>
+  <td>—</td>
+</tr>
+<tr>
+  <td>百济PS</td>
+  <td><span class="col-tag col-info">~10x</span></td>
+  <td>—</td>
+  <td>—</td>
+  <td>—</td>
+</tr>
+<tr>
+  <td>药明康德PE</td>
+  <td><span class="col-tag col-win">~15x</span></td>
+  <td>—</td>
+  <td>—</td>
+  <td>历史低位</td>
+</tr>
+</table>
+</div>
+
+<h2>政策环境</h2>
+<div class="summary-box">
+  <span class="col-tag col-win">✅ 创新药集采豁免</span>：第12批集采明确对创新药不纳入<br>
+  <span class="col-tag col-win">✅ 基药目录纳入创新药</span>：2026年版基药目录首次纳入创新药（4种）<br>
+  <span class="col-tag col-win">✅ BD出海政策鼓励</span>：创新药对外授权交易额连续爆发<br>
+  <span class="col-tag col-win">✅ 医保谈判市场化</span>：从"灵魂砍价"转向合理定价<br>
+  <span class="col-tag col-warn">⚠ 美国生物安全法案</span>（S.3558）：对CXO有潜在影响，但创新药出海逻辑不受限
+</div>
+
+<h2>买入清单</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:28%">条件</th><th style="width:16%">结果</th><th>备注</th></tr>
+<tr>
+  <td>周期位置</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>复苏早期，盈利拐点已现</td>
+</tr>
+<tr>
+  <td>估值水平</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>PE处历史低位（20-30%分位）</td>
+</tr>
+<tr>
+  <td>政策环境</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>集采豁免+基药目录纳入</td>
+</tr>
+<tr>
+  <td>竞争格局</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠</span></td>
+  <td>ADC赛道拥挤，但龙头已清晰</td>
+</tr>
+<tr>
+  <td>增长驱动力</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>创新+出海+老龄化三轮强劲</td>
+</tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <div style="font-size:16px;font-weight:700;margin-bottom:8px">综合判断：<span class="col-tag col-win" style="font-size:15px">买入</span></div>
+  <div style="margin-bottom:6px"><strong>创新药当前处于"盈利兑现+估值修复"双击窗口。</strong> 板块2025年首次全面盈利，2026Q1营收+35%，BD交易爆发式增长，而PE仅在28.96的历史低位。建议重点配置：CXO（药明康德PE15x）+ 创新药龙头（恒瑞/百济）+ 高增长biotech（艾力斯）。</div>
+  <table style="font-size:12px;margin:6px 0;border:none;background:transparent">
+    <tr><td style="border:none;padding:3px 6px;background:transparent;width:90px;font-weight:600">仓位建议</td><td style="border:none;padding:3px 6px;background:transparent"><span class="col-tag col-win">创新药在医药总仓位中占比50-60%</span>（相对超配）</td></tr>
+  </table>
+  <div style="margin-top:8px;padding:8px;background:#e8f5e9;border-radius:4px;font-size:12px">
+    <strong>买入策略：</strong><br>
+    <span class="col-tag col-win">第一段（当前）</span>：药明康德（PE 15x）+ 恒瑞医药（创新药占比58%+确定性最强）<br>
+    <span class="col-tag col-warn">第二段（回调5-10%加仓）</span>：百济神州 + 艾力斯<br>
+    <span class="col-tag col-info">第三段（中报验证后）</span>：荣昌生物 + 贝达药业 + 诺诚健华
+  </div>
+</div>
+
+<h2>卖出信号</h2>
+<div class="danger-box">
+  <strong>出现以下信号考虑卖出：</strong><br>
+  <div style="margin-top:6px">
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px">1</span>
+    创新药集采范围扩大（政策利空）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">2</span>
+    PE回升至历史中位数以上（估值修复充分）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">3</span>
+    全球生物医药融资大幅萎缩（BD交易放缓）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">4</span>
+    龙头核心管线III期失败
+  </div>
+</div>
+
+</div>
+</div>
+
+<div class="footer">报告生成日期：2026-07-09 | 数据来源：华福证券、摩熵医药、ClinicalTrials.gov | 本报告不构成投资建议</div>
+
+</div>
+
+<script>
+var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+var contents = document.querySelectorAll('.tab-content');
+btns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    contents.forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    var tab = btn.getAttribute('data-tab');
+    document.getElementById('tab-' + tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
