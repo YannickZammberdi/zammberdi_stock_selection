@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BHP Group Limited (BHP) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>BHP Group Limited（BHP）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026-07-09 | 数据来源：FY2025 年报 + FY2025 Results Presentation + StockAnalysis / Yahoo Finance</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>BHP Group Limited</td></tr>
+  <tr><td>股票代码</td><td>BHP.AX</td></tr>
+  <tr><td>所属行业</td><td>多元化矿业（铁矿石、铜、煤炭、钾肥）</td></tr>
+  <tr><td>行业类型</td><td><strong>纯周期股</strong>（多元化大宗商品开采）</td></tr>
+  <tr><td>行业地位</td><td>全球第一大矿业公司（市值），铁矿石全球前三，铜全球前五</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>US$512.62 亿（-8%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>US$90.19 亿（+14%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>US$186.92 亿（-10%）</strong></td></tr>
+  <tr><td>总资产</td><td>US$1,087.90 亿</td></tr>
+  <tr><td>归母净资产</td><td>~US$480 亿</td></tr>
+  <tr><td>ROE（FY2025）</td><td><strong>~22.0%</strong></td></tr>
+</table>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">采用周期股评分体系（纯周期股-多元化矿业），综合穿越周期ROE、成本位置、负债安全垫、行业格局、周期位置、PB估值、FCF、分红记录</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>穿越周期ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">5年平均ROE ~28%（2021-2025），远超12%阈值。即使含2016亏损的10年均值也有~20%。全球矿业中顶级回报水平</td></tr>
+  <tr><td>成本位置（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">WAIO连续6年全球最低成本主要铁矿生产商。Escondida成本下降18%，整体单位成本同比-4.7%。成本曲线Top quartile确认</td></tr>
+  <tr><td>负债安全垫（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">净负债/EBITDA=0.50x，经营现金流US$187亿远覆盖利息和固定支出，资产负债表极强</td></tr>
+  <tr><td>行业格局与产能周期（10分）</td><td class="good" style="font-weight:bold;font-size:15px">8</td><td style="text-align:left">铁矿全球寡头格局（Vale/Rio/BHP CR3>65%），铜矿多元化布局降低风险。钾肥（Jansen）打开新增长曲线</td></tr>
+  <tr><td>周期位置（15分）</td><td class="neutral" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">铜处于强周期（US$4.25/lb，受益于电气化/AI数据中心），铁矿/煤从高点回落但仍在盈利区间。整体中周期偏上</td></tr>
+  <tr><td>估值 PB vs 历史（15分）</td><td class="neutral" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">PB ~3.7x处于5年历史50-70%分位。矿企PB估值偏高反映ROE强劲，但进一步扩张空间有限</td></tr>
+  <tr><td>现金生成能力 FCF（10分）</td><td class="good" style="font-weight:bold;font-size:15px">8</td><td style="text-align:left">FCF US$89亿（CFO US$187亿 - Capex US$98亿），即使在商品下行周期也能维持正FCF，现金转化率极高</td></tr>
+  <tr><td>分红/回购历史（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">穿越周期维持稳定分红，55% payout ratio。FY2025 DPS 110 US cps，近10年仅2016年削减过一次</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">81/100</td><td style="text-align:left">品质优秀——全球顶级矿业资产组合，成本优势+财务纪律+分红记录均为行业标杆</td></tr>
+</table>
+
+<div class="verdict verdict-ok">品质优秀（81/100）—— 世界级资产+极致成本优势+强劲现金流，但PB估值处于历史偏高区间</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>BHP是全球最大的多元化矿业公司，FY2025实现创纪录的铜和铁矿石产量，营收US$512.62亿。铜业务EBITDA US$123亿（+44%）贡献集团45%利润，成功对冲了铁矿石（-24%）和煤炭（-75%）的价格下跌。公司连续20年保持EBITDA利润率>50%（FY2025 53%），这在周期性行业中极为罕见。WAIO连续6年蝉联全球最低成本主要铁矿生产商，Escondida铜矿单位成本下降18%。资本配置纪律严格——55% payout ratio的股息政策、资产负债表净负债/EBITDA仅0.50x。当前面临的主要矛盾是商品价格周期位置和估值位置——铜的强周期支撑了利润，但PB已处于历史偏高区间。<br><br>
+  <strong>核心优势：</strong>① 世界级资产组合——铁矿（全球最低成本）+ 铜（59% EBITDA利润率）+ 钾肥（Jansen未来增长点），多元化降低单一商品风险；② 极致成本控制——WAIO全球最低成本、Escondida成本-18%、整体单位成本-4.7%；③ 资本配置纪律——55% payout ratio，穿越周期维持分红，近10年仅2016年削减一次；④ 铜业务处于长期结构性利好（电气化+AI数据中心+电网投资），45%利润占比且仍在提升。<br><br>
+  <strong>核心风险：</strong>① 铁矿价格风险——铁矿石占集团53% EBITDA，中国房地产长期下行+全球贸易保护主义升温可能压制需求。US$1/t铁矿石价格变动影响EBITDA US$2.32亿；② 估值偏高——PB ~3.7x处于5年历史高位，股价已反映大量乐观预期；③ 成本通胀——澳洲劳动力成本、能源成本持续上涨；④ 地缘政治与税收——智利/澳洲税务政策变化、资源税上升风险（有效税率含royalty已高达44.6%）。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、利润表（FY2025 vs FY2024）</h2>
+<table>
+  <tr><th style="width:30%">项目（US$百万）</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业总收入</td><td>51,262</td><td>55,658</td><td class="bad">-8%</td><td class="neutral">铁矿/煤价跌，铜价涨部分对冲</td></tr>
+  <tr><td>EBITDA（Underlying）</td><td>25,978</td><td>29,016</td><td class="bad">-10%</td><td class="neutral">利润率53%仍强劲</td></tr>
+  <tr><td>DD&A</td><td>5,540</td><td>5,471</td><td class="neutral">+1%</td><td></td></tr>
+  <tr><td>EBIT</td><td>19,464</td><td>17,537</td><td class="good">+11%</td><td class="good">含资产减值减少</td></tr>
+  <tr><td>净利息费用</td><td>1,111</td><td>1,489</td><td class="good">-25%</td><td class="good">债务管理改善</td></tr>
+  <tr><td>税前利润</td><td>18,353</td><td>16,048</td><td class="good">+14%</td><td></td></tr>
+  <tr><td>所得税费用</td><td>6,130</td><td>5,210</td><td class="bad">+18%</td><td class="bad">税率37.2%↑</td></tr>
+  <tr><td>royalty相关税</td><td>1,080</td><td>1,237</td><td class="good">-13%</td><td></td></tr>
+  <tr><td>归母净利润</td><td>9,019</td><td>7,897</td><td class="good">+14%</td><td class="good">减值减少贡献</td></tr>
+  <tr><td>Underlying NPAT</td><td>10,157</td><td>13,660</td><td class="bad">-26%</td><td class="neutral">核心利润趋势下行</td></tr>
+  <tr><td>EPS（US cps）</td><td>177.8</td><td>155.8</td><td class="good">+14%</td><td></td></tr>
+  <tr><td>Underlying EPS（US cps）</td><td>200.2</td><td>269.5</td><td class="bad">-26%</td><td class="neutral">反映真实经营趋势</td></tr>
+  <tr><td>DPS（US cps）</td><td>110</td><td>146</td><td class="bad">-25%</td><td class="neutral">payout 55%</td></tr>
+</table>
+<div class="highlight-box">
+  <strong>利润表解读：</strong>营收下降8%主因铁矿石价格同比跌19%和煤炭价格跌27%，但铜价上涨7%+创纪录产量提供了关键缓冲。归母净利润+14%主要受益于上年同期的高减值基数（Samarco dam failure相关）。更反映真实经营趋势的Underlying NPAT下降26%至US$101.57亿，体现了大宗商品价格周期回落的压力。有效税率（含royalty）升至44.6%，BHP的税负在矿业中偏高。
+</div>
+
+<h2>三、资产负债表（截至FY2025末）</h2>
+<table>
+  <tr><th style="width:30%">项目（US$百万）</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td>~10,000</td><td>~12,500</td><td class="neutral">略降因资本开支增加</td></tr>
+  <tr><td>总资产</td><td>108,790</td><td>102,362</td><td class="neutral">+6%</td></tr>
+  <tr><td>总负债</td><td>~56,572</td><td>~52,400</td><td class="neutral">+8%</td></tr>
+  <tr><td>净资产（含NCI）</td><td>52,218</td><td>49,962</td><td class="good">+5%</td></tr>
+  <tr><td>总债务</td><td>~22,924</td><td>~21,620</td><td class="neutral">+6%增长项目融资</td></tr>
+  <tr><td>净债务</td><td>12,924</td><td>9,120</td><td class="neutral">+42%</td></tr>
+  <tr><td>净负债/EBITDA</td><td>0.50x</td><td>0.31x</td><td class="good">仍极低</td></tr>
+  <tr><td>负债率</td><td>~52%</td><td>~51%</td><td class="neutral">稳定（行业正常）</td></tr>
+</table>
+<div class="summary-box">
+  <strong>资产负债表解读：</strong>BHP拥有全球矿业中最强的资产负债表之一。净负债/EBITDA仅0.50x，即使在行业低迷期也有充足的财务灵活性。净债务从US$91亿增至US$129亿，主要因资本开支增加（US$98亿，含Vicuna铜矿合资US$21亿），但绝对水平仍然极低。接近US$100亿的现金储备为穿越下一轮商品周期提供了充分保障。
+</div>
+
+<h2>四、现金流量表</h2>
+<table>
+  <tr><th style="width:30%">项目（US$百万）</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td>18,692</td><td>20,665</td><td class="bad">-10%</td><td class="neutral">利润下降传导</td></tr>
+  <tr><td>资本开支（Capex）</td><td>-9,794</td><td>-9,273</td><td class="neutral">+6%</td><td class="neutral">增长项目投资</td></tr>
+  <tr><td>自由现金流（FCF）</td><td>8,898</td><td>11,392</td><td class="bad">-22%</td><td class="neutral">仍非常强劲</td></tr>
+  <tr><td>股息支付</td><td>-5,600</td><td>-7,400</td><td class="good">-24%</td><td class="neutral">payout 55%</td></tr>
+  <tr><td>收购（Vicuna等）</td><td>-2,100</td><td>-</td><td>-</td><td class="neutral">铜增长战略</td></tr>
+</table>
+<div class="summary-box">
+  <strong>现金流解读：</strong>BHP的现金生成能力堪称矿业界的「印钞机」——FY2025经营现金流US$187亿，FCF US$89亿。即使扣除US$98亿资本开支和US$56亿股息后，仍实现正向自由现金流。过去16年中15年CFO>US$150亿，周期穿越能力极强。FY2025自由现金流虽同比下降22%，但这更多反映商品价格正常化而非运营恶化。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>五、关键指标表</h2>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>FY2023</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td>~22.0%</td><td>~19.7%</td><td>~29.4%</td><td>>15%</td><td class="good">5年平均~28%，顶级水平</td></tr>
+  <tr><td>EBITDA利润率</td><td>53%</td><td>54%</td><td>57%</td><td>>30%</td><td class="good">连续20年>50%，行业标杆</td></tr>
+  <tr><td>净利率</td><td>~17.6%</td><td>~14.2%</td><td>~21.1%</td><td>>15%</td><td class="good">含高税率后仍优秀</td></tr>
+  <tr><td>营收增长</td><td>-8%</td><td>+3%</td><td>-16%</td><td>>10%</td><td class="bad">周期下行中，价格驱动</td></tr>
+  <tr><td>利润增长（Underlying）</td><td>-26%</td><td>+10%</td><td>-37%</td><td>>15%</td><td class="bad">周期股利润波动大</td></tr>
+  <tr><td>CFO/净利润</td><td>2.07x</td><td>2.62x</td><td>2.42x</td><td>>1.0</td><td class="good">现金含量极高</td></tr>
+  <tr><td>负债率</td><td>~52%</td><td>~51%</td><td>~49%</td><td><40-65%</td><td class="good">合理，且净负债率极低</td></tr>
+  <tr><td>分红率（净利润）</td><td>~55%</td><td>~60%</td><td>~75%</td><td>可持续</td><td class="good">CAF框架下纪律严明</td></tr>
+  <tr><td>ROCE（Underlying）</td><td>20.6%</td><td>27.2%</td><td>30.1%</td><td>>15%</td><td class="good">行业顶级</td></tr>
+</table>
+
+<h2>六、分业务分析</h2>
+<h3>6.1 按商品（Underlying EBITDA）</h3>
+<table>
+  <tr><th>商品</th><th>EBITDA（US$亿）</th><th>集团占比</th><th>EBITDA利润率</th><th>同比</th><th>评价</th></tr>
+  <tr><td>铜</td><td>123</td><td>45%</td><td>59%</td><td class="good">+44%</td><td>创纪录产量+铜价走强+成本↓18%</td></tr>
+  <tr><td>铁矿石</td><td>144</td><td>53%</td><td>63%</td><td class="bad">-24%</td><td>价格跌19%拖累，但产量创新高</td></tr>
+  <tr><td>煤炭</td><td>6</td><td>2%</td><td>11%</td><td class="bad">-75%</td><td>煤价深度回调，业务大幅萎缩</td></tr>
+  <tr><td>集团合计</td><td>260</td><td>100%</td><td>53%</td><td class="bad">-10%</td><td>铜的强劲对冲了铁矿/煤的下滑</td></tr>
+</table>
+
+<h3>6.2 核心商品产量与价格</h3>
+<table>
+  <tr><th>商品</th><th>FY2025产量</th><th>同比</th><th>平均实现价</th><th>同比</th><th>历史评价</th></tr>
+  <tr><td>铜</td><td>2,017 kt（创纪录）</td><td class="good">+8%</td><td>US$4.25/lb</td><td class="good">+7%</td><td>量价齐升，电气化长期需求</td></tr>
+  <tr><td>铁矿石（WAIO）</td><td>263 Mt（创纪录）</td><td class="good">+1%</td><td>US$82.13/wmt</td><td class="bad">-19%</td><td>量增但价跌，中国需求放缓</td></tr>
+  <tr><td>炼焦煤（BMA）</td><td>18.0 Mt</td><td class="bad">-19%</td><td>US$193.82/t</td><td class="bad">-27%</td><td>价格大幅回落</td></tr>
+  <tr><td>动力煤（NSWEC）</td><td>15.0 Mt</td><td class="neutral">-2%</td><td>US$107.80/t</td><td class="bad">-11%</td><td>长期下行趋势</td></tr>
+</table>
+
+<h2>七、排雷清单</h2>
+<table>
+  <tr><th>风险项</th><th>严重程度</th><th>依据</th></tr>
+  <tr><td>中国房地产/钢铁需求下行</td><td class="neutral">中风险</td><td>铁矿石占EBITDA 53%，中国房地产新开工持续下滑压制需求</td></tr>
+  <tr><td>商品价格周期下行</td><td class="neutral">中风险</td><td>Underlying NPAT US$102亿较FY2024（US$137亿）已下降26%，若铁矿/US$60将大幅下滑</td></tr>
+  <tr><td>估值偏高风险</td><td class="neutral">中风险</td><td>PB ~3.7x处于历史偏高区间，股价已定价乐观预期，若商品价格逆转下行空间较大</td></tr>
+  <tr><td>税收/资源税风险</td><td class="neutral">中风险</td><td>有效税率含royalty 44.6%，澳洲/智利政府加税趋势（PRRT改革等）</td></tr>
+  <tr><td>钾肥项目执行风险</td><td class="neutral">中风险</td><td>Jansen potash US$57亿投资，2026末投产，钾肥价格低迷可能影响回报</td></tr>
+  <tr><td>资产负债风险</td><td class="good">低风险</td><td>净负债/EBITDA 0.50x，US$100亿现金，极低</td></tr>
+</table>
+<div class="summary-box">
+  <strong>正面项：</strong>① 铜占比从29%升至45%，组合优化降低对铁矿依赖；② 连续20年EBITDA利润率>50%，运营执行力行业最强；③ 严格的CAF资本配置框架，确保投资纪律；④ Vicuna铜矿（全球最大铜矿发现之一）提供2030后增长。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>八、当前估值水平</h2>
+<table>
+  <tr><th style="width:30%">指标</th><th style="width:25%">当前值</th><th>备注</th></tr>
+  <tr><td>股价（A$）</td><td>~A$57.0</td><td>2026-07-09</td></tr>
+  <tr><td>总市值</td><td>A$2,920 亿（~US$1,950亿）</td><td></td></tr>
+  <tr><td>PE（TTM）</td><td>~20.7x</td><td>周期股PE失真仅供参考</td></tr>
+  <tr><td>Forward PE（FY2026E）</td><td>~15.9x</td><td>分析师一致预期</td></tr>
+  <tr><td>PB</td><td>~3.7x</td><td>周期股核心指标，处于历史高位</td></tr>
+  <tr><td>EV/EBITDA</td><td>~13.4x</td><td></td></tr>
+  <tr><td>股息率</td><td>~3.0%</td><td>完全franked</td></tr>
+  <tr><td>Payout ratio</td><td>~55%</td><td>CAF框架下限</td></tr>
+</table>
+
+<h2>九、PB Band 区间（周期股专用）</h2>
+<table>
+  <tr><th>情景</th><th>PB</th><th>对应股价（A$）</th><th>涨跌幅</th></tr>
+  <tr><td>历史底部（2016商品低谷~1.2x）</td><td>1.2x</td><td>A$19</td><td class="bad">-67%</td></tr>
+  <tr><td>20%分位</td><td>~1.8x</td><td>A$28</td><td class="bad">-51%</td></tr>
+  <tr><td>5年均值（~2.8x）</td><td>2.8x</td><td>A$44</td><td class="bad">-23%</td></tr>
+  <tr><td>当前</td><td>~3.7x</td><td>A$57</td><td>-</td></tr>
+  <tr><td>历史高位（2023~5.0x）</td><td>5.0x</td><td>A$78</td><td class="good">+37%</td></tr>
+</table>
+
+<h2>十、历史PB区间（近5年）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">注：BHP的PB因高ROE（~22%）和低折旧资产结构，长期高于其他矿企。区间判断已考虑结构性溢价。</p>
+<table>
+  <tr><th>统计值</th><th>PB</th><th>对应股价（A$）</th></tr>
+  <tr><td>最大值（2023铜/煤高峰期）</td><td>~5.0x</td><td>A$78</td></tr>
+  <tr><td>80%分位</td><td>~4.0x</td><td>A$63</td></tr>
+  <tr><td>50%分位（中位）</td><td>~3.0x</td><td>A$47</td></tr>
+  <tr><td>当前</td><td>~3.7x</td><td>A$57</td></tr>
+  <tr><td>20%分位</td><td>~2.0x</td><td>A$31</td></tr>
+  <tr><td>最小值（2016商品低谷）</td><td>~1.2x</td><td>A$19</td></tr>
+</table>
+
+<h2>十一、PE区间（周期股备注：PE失真）</h2>
+<p style="font-size:13px;color:#c0392b;margin-bottom:8px">⚠ 周期股PE受商品价格影响极大，以下数据仅供参考，估值以PB为准。</p>
+<table>
+  <tr><th>统计值</th><th>PE</th><th>对应股价（A$）</th></tr>
+  <tr><td>80%分位</td><td>>25x</td><td>A$70+</td></tr>
+  <tr><td>50%分位</td><td>~16x</td><td>A$47</td></tr>
+  <tr><td>当前（TTM）</td><td>~20.7x</td><td>A$57</td></tr>
+  <tr><td>20%分位</td><td>~10x</td><td>A$30</td></tr>
+  <tr><td>最小值（FY2022高峰）</td><td>~5x</td><td>A$15（当时商品周期顶部）</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值总结：</strong>当前PB ~3.7x处于5年历史50-70%分位。BHP因其超高ROE（~22%）理应享受PB溢价，但当前估值已部分透支了乐观预期。对于周期股而言，在PB处于历史中上位时介入，需要商品价格维持当前水平（至少不再恶化）才能获得合理回报。如果在PB<2.5x时（对应股价~A$40以下）介入，安全边际将显著提升。<strong>综合评价：估值偏高——好公司但当前不是好价格。</strong>
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>十二、杜邦拆解表</h2>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>FY2023</th><th>趋势</th></tr>
+  <tr><td>净利润率（归母/营收）</td><td>~17.6%</td><td>~14.2%</td><td>~21.1%</td><td class="neutral">↑↓随商品价格波动</td></tr>
+  <tr><td>资产周转率</td><td>0.47x</td><td>0.54x</td><td>0.57x</td><td class="neutral">资本开支增加拉低周转</td></tr>
+  <tr><td>权益乘数</td><td>~2.08x</td><td>~2.05x</td><td>~1.96x</td><td class="neutral">杠杆略升</td></tr>
+  <tr><td>ROE（净利润率×周转率×乘数）</td><td>~22.0%</td><td>~19.7%</td><td>~29.4%</td><td class="neutral">完全随商品周期波动但绝对值优秀</td></tr>
+</table>
+
+<h2>十三、赚钱模式判断</h2>
+<div class="highlight-box">
+  <strong>赚钱模式：高利润型（成本领先+商品价格驱动）</strong><br>
+  BHP的盈利模式是双重驱动：① 成本领先——WAIO是全球最低成本铁矿，Escondida成本持续下降，构筑了即使在商品低谷也能盈利的护城河；② 商品价格——铜和铁矿石的全球统一定价。BHP的独特之处在于其多元化组合（铁矿提供规模、铜提供成长、钾肥提供未来）和极致成本控制，使其ROE长期高于同业。资产周转率0.47x在矿业中属于正常水平，权益乘数2.08x反映了矿业重资产的特性。
+</div>
+
+<h2>十四、去杠杆ROA</h2>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>FY2023</th></tr>
+  <tr><td>净利润率</td><td>~17.6%</td><td>~14.2%</td><td>~21.1%</td></tr>
+  <tr><td>资产周转率</td><td>0.47x</td><td>0.54x</td><td>0.57x</td></tr>
+  <tr><td>ROA（去掉杠杆）</td><td>~8.3%</td><td>~7.7%</td><td>~12.0%</td></tr>
+  <tr><td>评价</td><td class="good">优秀</td><td class="good">优秀</td><td class="good">优秀</td></tr>
+</table>
+<div class="summary-box">
+  <strong>杜邦核心结论：</strong>BHP的ROE主要由高净利润率驱动（体现了成本领先+商品定价），资产周转率在矿业中偏上（铁矿石大规模运营效率高），杠杆水平适中。即使去掉杠杆的ROA也达到~8-12%，远优于Woodside（~4-6%），体现了BHP资产的更高质量和运营效率。核心关注变量仍是商品价格（尤其铁矿石和铜），以及资本开支回报率（Jansen钾肥和Vicuna铜矿是未来5年ROE走向的关键变量）。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>十五、行业类型判断</h2>
+<div class="summary-box">
+  <strong>行业类型：纯周期股 — 多元化矿业（Diversified Mining）</strong><br>
+  <strong>判断依据：</strong>
+  <ul>
+    <li>BHP主营铁矿石、铜、煤炭等大宗商品的开采与销售，全部产品为全球统一定价的大宗商品</li>
+    <li>纯周期行业特征：利润随工业大宗商品价格剧烈波动（FY2022 Underlying NPAT US$213亿 → FY2023 US$160亿 → FY2024 US$137亿 → FY2025 US$102亿），持续下行趋势</li>
+    <li>但BHP的多元化组合（铁/铜/煤）使其比单一商品矿企更具抗周期能力——FY2025铜贡献45%利润，有效对冲了铁矿/煤的下滑</li>
+  </ul>
+  <strong>评分体系选择：</strong>采用周期股评分体系（PE失真改用PB、ROE取多周期均值、增加周期位置/成本位置维度）
+</div>
+
+<h2>十六、行业集中度与壁垒</h2>
+<table>
+  <tr><th>维度</th><th>评估</th></tr>
+  <tr><td>市场集中度</td><td><strong>铁矿石：高集中度</strong>——Vale/Rio Tinto/BHP CR3 >65%全球海运市场份额。<strong>铜：中等集中度</strong>——CR5 ~40%，但优质铜矿越来越稀缺。<strong>煤炭：中等</strong>——随BHP出售Blackwater/Daunia，暴露降低。</td></tr>
+  <tr><td>进入壁垒</td><td class="good">极高——① 资源获取壁垒：优质矿山资源已被头部企业占据，新进入者需巨资勘探+10年以上开发周期；② 资本壁垒：大型矿山开发需US$50-200亿；③ 运营壁垒：深井采矿、选矿、物流需要数十年积累的经验；④ 环保/ESG壁垒：新项目审批越来越严。</td></tr>
+  <tr><td>BHP的护城河</td><td>① 全球最低成本铁矿（成本优势持续>6年）；② 资产组合多样性（4种核心商品）；③ 资产负债表提供的反周期并购能力（2011收购、2022整合、2024收购Vicuna 50%）。</td></tr>
+</table>
+
+<h2>十七、生命周期阶段</h2>
+<div class="summary-box">
+  <strong>生命周期：成熟期（铁矿/煤）+ 成长期（铜/钾肥）</strong><br>
+  铁矿石和煤炭业务处于成熟期，现金流稳定但增长有限。铜业务处于成长阶段（创纪录产量+电气化长期需求）。钾肥（Jansen项目2026底投产）处于导入/成长期，提供未来5-10年的新增量。整体看，BHP正从"铁矿为主"转向"铜+钾肥驱动"的新增长周期。
+</div>
+
+<h2>十八、当前周期位置</h2>
+<div class="highlight-box">
+  <strong>周期位置：中周期（内部结构分化）</strong><br>
+  <ul>
+    <li><strong>铜：强周期（偏顶部）</strong>——US$4.25/lb处于历史高位，受益于电气化+AI数据中心需求+COMEX-LME价差套利。但Forward curve预示潜在回落</li>
+    <li><strong>铁矿石：中周期偏下</strong>——US$82/wmt从2021高点（>$200）大幅回落，但仍在成本曲线之上。中国钢铁需求长期下行趋势</li>
+    <li><strong>煤炭：弱周期（接近底部）</strong>——价格从2022年高点暴跌，BMA已接近盈亏平衡线</li>
+    <li>整体判断：铜的强劲使集团周期位置好于纯铁矿企业。BHP处于"中周期偏上"位置——比Woodside（中周期）更强，但非极端低估时机</li>
+  </ul>
+</div>
+
+<h2>十九、估值方法匹配</h2>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>周期型（多元化矿业）</td><td>PB</td><td>EV/EBITDA、股息率</td><td class="good">✅ 市场主要用PB和EV/EBITDA</td></tr>
+</table>
+<div class="danger-box">
+  <strong>⚠ 注意：</strong>BHP当前PE 20.7x在周期股中看起来"贵"，但需注意这是利润从高峰期回落后的正常化PE。2022年利润高峰期PE仅5x（表面"便宜"），当前利润下降了~50%。周期股永远看PB和周期位置，当前PB 3.7x处于偏高位置，意味着市场已充分定价了铜的乐观预期和BHP的优质资产。安全边际有限。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>二十、六步法总结</h2>
+<div class="summary-box">
+  <p><strong>Step 1 - 行业定位：</strong>纯周期股（多元化矿业），铁矿高集中度+铜结构性增长，行业壁垒极高</p>
+  <p><strong>Step 2 - 财务体检：</strong>ROE~22%（5年平均~28%），EBITDA利润率53%（连续20年>50%），CFO/净利2.07x，现金质量极好</p>
+  <p><strong>Step 3 - 估值判断：</strong>PB 3.7x处于5年历史50-70%分位，EV/EBITDA 13.4x，估值偏高</p>
+  <p><strong>Step 4 - 风险排查：</strong>核心风险——中国铁矿需求下行、商品价格持续走弱、估值已反映乐观预期</p>
+  <p><strong>Step 5 - 结论：</strong>世界级公司（✓好公司），成本优势+资本纪律+分红记录均为顶级。但当前PB偏高（不是好价格）</p>
+  <p><strong>Step 6 - 跟踪：</strong>核心指标——铁矿石价格（62% CFR）、铜价（LME）、中国房地产/基建数据、Jansen投产进度</p>
+</div>
+
+<h2>二十一、好公司三要素</h2>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="neutral">⭕</td><td>矿业是纯周期行业，价格波动大。但铜的长期需求（电气化+AI+电网）提供了结构性增长，铁矿偏中性。整体不算"好行业"但BHP在行业中的位置极好</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓</td><td>ROE 22%（远超15%）、EBITDA利润率53%（远好于同业）、CFO/净利>2.0、连续20年利润率>50%。全球矿业运营标杆</td></tr>
+  <tr><td>③ 好价格</td><td class="bad">✗</td><td>PB 3.7x处于历史高位，市场已充分定价了铜的乐观情景。低于PB 2.5x（~A$40）时安全边际更好</td></tr>
+</table>
+
+<h2>二十二、风险评估</h2>
+
+<h3>22.1 三个陷阱排查</h3>
+<div class="danger-box">
+  <strong>☐ 低PE + 低增长 + 高负债 = 价值陷阱</strong> → 未命中（PE 20.7x不低，负债极低）<br>
+  <strong>☐ 低PE + 周期顶点 = 周期陷阱</strong> → <strong>⚠ 关注</strong>（周期股评分体系中已通过"周期位置+PB估值"维度覆盖）。当前非周期顶点（铁矿在回落，铜在强周期），但PB高企需警惕。<br>
+  <strong>☐ 高PE + 高增速但现金流为负 = 烧钱陷阱</strong> → 未命中（CFO US$187亿极强）
+</div>
+
+<h3>22.2 管理层与治理</h3>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力与履历</td><td class="good">好</td><td>CEO Mike Henry（2020上任）连续多年实现运营目标，行业经验丰富</td></tr>
+  <tr><td>资本配置纪律</td><td class="good">好</td><td>CAF框架严格执行——先投资增长（ROCE>10%），剩余回馈股东。Vicuna收购价合理</td></tr>
+  <tr><td>ESG与风险管理</td><td class="neutral">一般</td><td>Samarco dam failure（2015）仍是历史污点，但近年在安全管理上显著改善</td></tr>
+  <tr><td>股权结构</td><td class="good">强</td><td>机构持股为主，澳洲/英国双重上市，治理规范</td></tr>
+</table>
+
+<h3>22.3 盈利可持续性</h3>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是靠价？</td><td>价格驱动（周期属性）</td><td>收入与商品价格高度正相关。FY2025产量创新高但营收-8%，因价格下跌</td></tr>
+  <tr><td>成本优势能否持续？</td><td class="good">能</td><td>WAIO连续6年最低成本并非偶然——资源优势+基础设施+运营经验共同构筑</td></tr>
+  <tr><td>非经常性利润占比</td><td class="good">低</td><td>Underlying vs Reported差异主要来自Samarco拨备和镍矿暂停</td></tr>
+  <tr><td>商品多元化效果</td><td class="good">有效</td><td>铜占比45%成功对冲铁矿/煤下跌。组合的抗周期能力优于单一商品矿企</td></tr>
+</table>
+
+<h3>22.4 关键变量敏感性</h3>
+<p><strong>变量1：铁矿石价格（62% CFR China）</strong></p>
+<ul>
+  <li>乐观（US$100+）：中国刺激政策+供给约束 → EBITDA ~US$300亿+，EPS ~US$2.5+</li>
+  <li>中性（US$75-90）：供需平衡+中国钢铁产量缓慢下降 → EBITDA ~US$260亿，EPS ~US$2.0</li>
+  <li>悲观（US$55-65）：中国房地产持续下行+全球衰退 → EBITDA ~US$200亿，EPS ~US$1.4</li>
+</ul>
+<p><strong>变量2：铜价（LME）</strong></p>
+<ul>
+  <li>乐观（US$5.0+/lb）：电气化加速+AI数据中心建设+矿山供给不足 → 铜EBITDA >US$150亿</li>
+  <li>中性（US$4.0-4.5/lb）：现有水平维持 → 铜EBITDA ~US$120亿</li>
+  <li>悲观（US$3.0-3.5/lb）：全球衰退+矿山供给恢复 → 铜EBITDA ~US$80亿</li>
+</ul>
+
+<h2>二十三、前景展望</h2>
+
+<h3>23.1 未来1-3年核心驱动</h3>
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. 铜业务持续扩大——Escondida扩产+Copper SA增长+Vicuna（2030），铜从EBITDA 45%向50%+迈进<br>
+  2. Jansen钾肥投产——预计2026底首产，打开农业肥料新赛道，长期贡献稳定现金流<br>
+  3. 资本开支高峰后将迎来FCF释放——Capex总额已明确US$110亿/年封顶，2028年后进入回落期<br><br>
+  <strong>负向拖累：</strong><br>
+  1. 铁矿石长期需求下行——中国钢铁产量已见顶，粗钢产量进入长期下降通道<br>
+  2. 煤炭业务持续萎缩——出售Blackwater/Daunia后，煤炭贡献已降至2%，未来可能进一步剥离<br>
+  3. 有效税率上升趋势——澳洲PRRT改革+智利铜矿税改，税率压力持续（FY2025含royalty已44.6%）
+</div>
+
+<h3>23.2 三情景简表</h3>
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>EPS（US$）</th><th>PB区间</th><th>预期股价（A$）</th></tr>
+  <tr><td>乐观（25%）</td><td>铜价维持US$4.5+，铁矿US$90+，Jansen顺利投产</td><td>~US$2.5-3.0</td><td>4.0-5.0x</td><td>A$65-78</td></tr>
+  <tr><td>中性（50%）</td><td>铜US$4.0-4.5，铁矿US$75-90，全球经济软着陆</td><td>~US$1.8-2.2</td><td>3.0-3.5x</td><td>A$45-55</td></tr>
+  <tr><td>悲观（25%）</td><td>铜US$3.5，铁矿US$60，全球衰退/中国硬着陆</td><td>~US$1.2-1.5</td><td>2.0-2.5x</td><td>A$32-40</td></tr>
+</table>
+<p style="font-size:13px;color:#666">概率判断：中性50%，乐观25%，悲观25%。当前价格（A$57）隐含中性偏乐观预期，下行空间约20-40%，上行空间约15-35%。风险回报比一般。</p>
+
+<h2>二十四、讨论问题</h2>
+<div class="summary-box">
+  <p>讨论问题（阅读后可以聊这些）：</p>
+  <p>1. BHP当前最大的价值来源是铜还是铁矿石？如果铜价维持US$4.5而铁矿跌至US$70，BHP的利润会怎么变？</p>
+  <p>2. PB 3.7x买入BHP和PB 1.0x买入Woodside，哪个赔率更好？考虑到ROE差异，BHP的PB溢价合理吗？</p>
+  <p>3. Jansen钾肥（US$57亿投资）在钾肥价格低迷的环境下，算不算资本错配？</p>
+  <p>4. 如果看好铜的长期需求（电气化+AI），是买BHP（多元化折价）还是买纯铜矿股（如Freeport/Glencore）更纯粹？</p>
+</div>
+
+</div></div>
+
+<div class="footer">
+  <p>本报告仅供参考，不构成投资建议。数据来源：BHP FY2025年报、StockAnalysis、Yahoo Finance、Morningstar。分析日期：2026-07-09。</p>
+</div>
+
+</div>
+
+<script>
+var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+var contents = document.querySelectorAll('.tab-content');
+btns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    contents.forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    var tab = btn.getAttribute('data-tab');
+    document.getElementById('tab-' + tab).classList.add('active');
+  });
+});
+</script>
+
+</body>
+</html>

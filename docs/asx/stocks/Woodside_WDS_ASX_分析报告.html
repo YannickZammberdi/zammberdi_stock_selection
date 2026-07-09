@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Woodside Energy Group Ltd (WDS) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>Woodside Energy Group Ltd（WDS）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026-07-09 | 数据来源：FY2025 年报 + Q4 2025 报告 + StockAnalysis / Yahoo Finance</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>Woodside Energy Group Ltd</td></tr>
+  <tr><td>股票代码</td><td>WDS.AX</td></tr>
+  <tr><td>所属行业</td><td>Oil & Gas（能源）</td></tr>
+  <tr><td>行业类型</td><td><strong>纯周期股</strong>（油气-上游生产）</td></tr>
+  <tr><td>行业地位</td><td>澳洲最大独立油气生产商，全球LNG主要供应商</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>US$129.84 亿（-1%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>US$27.18 亿（-24%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>US$71.92 亿（+23%）</strong></td></tr>
+  <tr><td>总资产</td><td>US$665.01 亿</td></tr>
+  <tr><td>归母净资产</td><td>US$359.14 亿</td></tr>
+  <tr><td>ROE（TTM）</td><td><strong>~7.2%</strong></td></tr>
+</table>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">采用周期股评分体系（纯周期股-油气行业），综合穿越周期ROE、成本位置、负债安全垫、行业格局、周期位置、PB估值、FCF、分红记录</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>穿越周期ROE（15分）</td><td class="neutral" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">5年平均ROE ~8.1%（2021-2025），≥8%取10分。但含2022年异常高点，真实穿越周期能力中等</td></tr>
+  <tr><td>成本位置（15分）</td><td class="neutral" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">生产成本~US$20.8/boe，全球油气行业中上水平（优于深水/油砂，但高于中东国家公司）</td></tr>
+  <tr><td>负债安全垫（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">净负债/EBITDA=0.86x（极低），货币资金US$57亿可覆盖1年以上固定支出，资产负债表非常健康</td></tr>
+  <tr><td>行业格局与产能周期（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">6</td><td style="text-align:left">澳洲LNG集中度高（NWS/Pluto/Wheatstone三巨头），但全球LNG供给未来3年大幅增加（Qatar扩产+美国LNG），竞争加剧</td></tr>
+  <tr><td>周期位置（15分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">当前中周期——油价~US$70-80区间波动，行业尚可盈利但远非暴利。较2022年高点明显回落，但未至底部亏损状态</td></tr>
+  <tr><td>估值 PB vs 历史（15分）</td><td class="neutral" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">PB ~1.0x，5年均值~1.2x，当前处于30-50%分位，略低于历史中枢但非极端低估</td></tr>
+  <tr><td>现金生成能力 FCF（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">6</td><td style="text-align:left">FY2025 FCF US$18.9亿（资本开支US$47亿高峰期），FY2024 FCF为负。经营现金流强劲（US$72亿）但成长性资本开支大</td></tr>
+  <tr><td>分红/回购历史（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">穿越周期维持分红。FY2025全年派息112 US cps（~5% yield），即使在2020年亏损时也未大幅削减</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">69/100</td><td style="text-align:left">一般关注——周期中游位置+稳健资产负债表，PB合理但缺乏催化剂</td></tr>
+</table>
+
+<div class="verdict verdict-caution">一般关注（69/100）—— 资产负债表强健，但周期位置中游+新供给压力限制上行空间</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>Woodside是澳洲最大的独立油气生产商，FY2025实现创纪录产量198.8百万桶油当量，营收US$129.84亿。受益于Pluto LNG和NWS Project的高可靠运营以及Sangomar达产，经营现金流强劲达US$71.92亿。但受油价和LNG价格从2022年高点持续回落影响，利润同比下滑24%（NPAT US$27.18亿）。公司在周期高位完成了Scarborough（2026年末首船LNG）和Louisiana LNG的投资决策，当前处于大规模资本开支期末端，FCF正在改善但尚未完全释放。资产负债表极为健康（净负债/EBITDA 0.86x），为穿越周期提供了厚实的安全垫。<br><br>
+  <strong>核心优势：</strong>① 世界级资产组合——NWS/Pluto LNG基础设施寿命长、运营成本低，Sangomar已稳定达产；② 资产负债表极强——净负债/EBITDA <1x，现金US$57亿，极低融资风险；③ 经营现金流强劲（US$72亿），即便在商品价格走弱环境下仍维持高现金生成能力；④ 长期股东回报记录良好——上市以来持续派息，当前股息率~5%。<br><br>
+  <strong>核心风险：</strong>① 商品价格下行——全球LNG供给（Qatar扩产、美国LNG出口）将在2027-2029年集中释放，可能压低LNG价格；② 成长性项目回报不确定——Scarborough（~US$120亿投资）和Louisiana LNG（~US$175亿）投资规模巨大，最终回报取决于5-10年后的价格环境；③ 大资本开支期导致FCF波动剧烈，FY2024 FCF曾为负；④ 能源转型长期风险——全球脱碳趋势对化石燃料需求的潜在压制。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、利润表（FY2025 vs FY2024）</h2>
+<table>
+  <tr><th style="width:30%">项目（US$百万）</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业总收入</td><td>12,984</td><td>13,179</td><td class="bad">-1%</td><td class="neutral">产量增但价格跌</td></tr>
+  <tr><td>生产成本</td><td>4,135</td><td>3,772</td><td class="bad">+10%</td><td class="neutral">Sangomar并表新增成本</td></tr>
+  <tr><td>DD&A（折旧摊销）</td><td>5,388</td><td>4,762</td><td class="bad">+13%</td><td class="neutral">新项目投产增加</td></tr>
+  <tr><td>EBIT</td><td>3,889</td><td>4,514</td><td class="bad">-14%</td><td class="bad">价格走弱挤压</td></tr>
+  <tr><td>净利息费用</td><td>~412</td><td>~454</td><td class="good">-9%</td><td class="good">债务管理良好</td></tr>
+  <tr><td>税前利润</td><td>~3,480</td><td>~4,060</td><td class="bad">-14%</td><td class="neutral"></td></tr>
+  <tr><td>所得税费用</td><td>~762</td><td>~487</td><td class="bad">+57%</td><td class="bad">有效税率21.9%←18.3%</td></tr>
+  <tr><td>归母净利润</td><td>2,718</td><td>3,573</td><td class="bad">-24%</td><td class="bad">价格+税率双杀</td></tr>
+  <tr><td>Underlying NPAT</td><td>2,649</td><td>2,880</td><td class="bad">-8%</td><td class="neutral">核心利润更具可比性</td></tr>
+  <tr><td>EPS（US cps）</td><td>143.4</td><td>188.5</td><td class="bad">-24%</td><td class="bad"></td></tr>
+  <tr><td>DPS（US cps）</td><td>112</td><td>122</td><td class="bad">-8%</td><td class="neutral">派息率78%偏高</td></tr>
+</table>
+<div class="highlight-box">
+  <strong>利润表解读：</strong>Woodside FY2025营收小幅下降1%至US$129.84亿，主要受平均实现价格下跌5%（US$60.2/boe ← US$63.4/boe）拖累。创纪录产量（198.8 MMboe）提供了量的支撑但不足以对冲价格下行。净利润下降24%至US$27.18亿，除价格因素外，有效税率从18.3%升至21.9%也是一大拖累。剔除一次性因素的Underlying NPAT下降8%至US$26.49亿，更准确反映核心经营趋势。
+</div>
+
+<h2>三、资产负债表（截至FY2025末）</h2>
+<table>
+  <tr><th style="width:30%">项目（US$百万）</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td>5,712</td><td>3,923</td><td class="good">现金充裕 ↑46%</td></tr>
+  <tr><td>应收账款</td><td>1,751</td><td>2,390</td><td class="good">↓27%回款改善</td></tr>
+  <tr><td>存货</td><td>693</td><td>684</td><td class="neutral">基本持平</td></tr>
+  <tr><td>流动资产合计</td><td>8,622</td><td>7,563</td><td class="good">+14%</td></tr>
+  <tr><td>物业/厂房/设备（PP&E）</td><td>47,983</td><td>43,927</td><td class="neutral">Scarborough在建增加</td></tr>
+  <tr><td>无形资产</td><td>5,643</td><td>5,547</td><td class="neutral">稳定</td></tr>
+  <tr><td>总资产</td><td>66,501</td><td>61,264</td><td class="neutral">+9%</td></tr>
+  <tr><td>短期借款</td><td>1,841</td><td>2,185</td><td class="good">↓16%</td></tr>
+  <tr><td>应付账款</td><td>2,635</td><td>2,493</td><td class="neutral">+6%</td></tr>
+  <tr><td>长期借款</td><td>11,181</td><td>9,007</td><td class="neutral">+24%为Scarborough融资</td></tr>
+  <tr><td>总负债</td><td>26,658</td><td>25,111</td><td class="neutral">+6%</td></tr>
+  <tr><td>归母净资产</td><td>35,914</td><td>35,399</td><td class="good">+1%</td></tr>
+  <tr><td>总负债率</td><td>40.1%</td><td>41.0%</td><td class="good">略降</td></tr>
+  <tr><td>净负债</td><td>8,010</td><td>7,697</td><td class="neutral">小幅上升</td></tr>
+  <tr><td>净负债/EBITDA</td><td>0.86x</td><td>0.83x</td><td class="good">极低</td></tr>
+</table>
+<div class="summary-box">
+  <strong>资产负债表解读：</strong>Woodside的资产负债表是ASX能源板块中最强之一。净负债/EBITDA仅0.86x，远低于行业警戒线（3x）。现金US$57亿为应对大宗商品下行提供了厚实的流动性缓冲。负债率40.1%处于健康水平，且大部分长期债务期限结构合理。需要注意长期借款增加US$22亿主要是为Scarborough项目融资，随着项目投产后FCF释放，去杠杆轨迹清晰。
+</div>
+
+<h2>四、现金流量表</h2>
+<table>
+  <tr><th style="width:30%">项目（US$百万）</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td>7,192</td><td>5,847</td><td class="good">+23%</td><td class="good">营运资金改善</td></tr>
+  <tr><td>资本开支（Capex）</td><td>-4,703</td><td>-8,104</td><td class="good">-42%</td><td class="good">2024为BHP合并高峰期</td></tr>
+  <tr><td>自由现金流（FCF）</td><td>1,889</td><td>-293</td><td class="good">扭正</td><td class="good">现金流拐点</td></tr>
+  <tr><td>收购/处置</td><td>-</td><td>66</td><td>-</td><td></td></tr>
+  <tr><td>股息支付</td><td>-2,012</td><td>-2,449</td><td class="good">-18%</td><td class="neutral">派息率仍高</td></tr>
+  <tr><td>净融资</td><td>~-1,406</td><td>~-2,842</td><td>-</td><td></td></tr>
+  <tr><td>现金净变动</td><td>+1,789</td><td>-2,261</td><td class="good">转正</td><td class="good"></td></tr>
+</table>
+<div class="summary-box">
+  <strong>现金流解读：</strong>FY2025是Woodside现金流的转折年份——经营现金流强劲增长23%至US$72亿（营运资金改善），资本开支从2024年的高峰（US$81亿，含BHP整合）降至US$47亿，FCF自2023年以来首次转正（US$18.9亿）。当前处于大规模资本开支末期（Scarborough接近完工、Louisiana LNG决策后刚启动），预计2027年后FCF将大幅释放。当前股息US$20亿超过FCF US$18.9亿，派息率~105%从FCF角度看略高，但CFO覆盖倍数充足（~3.6x）。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>五、关键指标表</h2>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>FY2023</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td>~7.2%</td><td>~10.2%</td><td>~4.8%</td><td>>15%</td><td class="bad">周期股需看穿越周期均值（~8%）</td></tr>
+  <tr><td>毛利率</td><td>~68%</td><td>~71%</td><td>~67%</td><td>>30%</td><td class="good">高毛利率但需注意商品价格波动</td></tr>
+  <tr><td>净利率</td><td>~20.9%</td><td>~27.1%</td><td>~11.9%</td><td>>15%</td><td class="good">周期股净利率波动大</td></tr>
+  <tr><td>营收增长</td><td>-1%</td><td>-6%</td><td>-17%</td><td>>10%</td><td class="bad">周期下行中，量增但价跌</td></tr>
+  <tr><td>利润增长</td><td>-24%</td><td>+115%</td><td>-74%</td><td>>15%</td><td class="bad">周期股利润波动剧烈无意义</td></tr>
+  <tr><td>CFO/净利润</td><td>2.65x</td><td>1.64x</td><td>3.70x</td><td>>1.0</td><td class="good">现金含量极高</td></tr>
+  <tr><td>负债率</td><td>40.1%</td><td>41.0%</td><td>36.5%</td><td><40%</td><td class="neutral">略高于40%但净负债率极低</td></tr>
+  <tr><td>分红率（净利润）</td><td>~74%</td><td>~69%</td><td>~69%</td><td>可持续</td><td class="neutral">偏高但CFO支撑充足</td></tr>
+</table>
+
+<h2>六、分业务分析</h2>
+<h3>6.1 按产品类别（生产量占比）</h3>
+<table>
+  <tr><th>产品</th><th>产量占比</th><th>FY2025 产量（MMboe）</th><th>FY2024 产量（MMboe）</th><th>增长</th><th>备注</th></tr>
+  <tr><td>LNG</td><td>~45%</td><td>~89</td><td>~87</td><td class="neutral">+2%</td><td>Pluto+NWS核心资产稳定</td></tr>
+  <tr><td>原油与凝析油</td><td>~35%</td><td>~70</td><td>~69</td><td class="good">+1%</td><td>Sangomar贡献增量</td></tr>
+  <tr><td>管道气</td><td>~15%</td><td>~30</td><td>~28</td><td class="good">+7%</td><td>Bass Strait等国内气</td></tr>
+  <tr><td>NGLs</td><td>~5%</td><td>~10</td><td>~10</td><td class="neutral">持平</td><td></td></tr>
+</table>
+
+<h3>6.2 按区域（FY2024 营收数据）</h3>
+<table>
+  <tr><th>区域</th><th>营收（US$百万）</th><th>占比</th><th>增长</th><th>备注</th></tr>
+  <tr><td>亚太</td><td>8,445</td><td>64%</td><td class="neutral">-</td><td>日本/韩国/中国为主要LNG买家</td></tr>
+  <tr><td>美洲</td><td>2,462</td><td>19%</td><td class="neutral">-</td><td>GoM油田</td></tr>
+  <tr><td>欧洲</td><td>2,272</td><td>17%</td><td class="neutral">-</td><td>LNG现货</td></tr>
+</table>
+
+<h2>七、排雷清单</h2>
+<table>
+  <tr><th>风险项</th><th>严重程度</th><th>依据</th></tr>
+  <tr><td>商品价格下行风险</td><td class="bad">高风险</td><td>LNG供给集中释放（2027-2029），若油价跌至US$60以下将大幅压缩利润</td></tr>
+  <tr><td>大型项目执行风险</td><td class="neutral">中风险</td><td>Louisiana LNG US$175亿投资规模巨大，FID后建设周期长，成本超支风险</td></tr>
+  <tr><td>资产负债风险</td><td class="good">低风险</td><td>净负债/EBITDA <1x，US$57亿现金，几乎无流动性风险</td></tr>
+  <tr><td>能源转型长期风险</td><td class="neutral">中风险</td><td>全球脱碳政策持续推进，长期看化石燃料需求增速放缓甚至下降</td></tr>
+  <tr><td>地缘政治风险</td><td class="neutral">中风险</td><td>Senegal（Sangomar）运营风险，中美关系影响LNG贸易流向</td></tr>
+  <tr><td>股息可持续性</td><td class="neutral">中风险</td><td>当前FCF略低于股息支出，若商品价格继续下行可能需要削减分红</td></tr>
+</table>
+<div class="summary-box">
+  <strong>正面项：</strong>① 经营现金流的现金转化率极高（CFO/净利>2.5x）；② 生产成本控制优秀（US$20.8/boe）；③ 资产组合多元化（LNG+石油+管道气）；④ 管理层资本配置纪律改善（2025年资本开支高峰已过）。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>八、当前估值水平</h2>
+<table>
+  <tr><th style="width:30%">指标</th><th style="width:25%">当前值</th><th>备注</th></tr>
+  <tr><td>股价（A$）</td><td>A$28.87</td><td>2026-07-09</td></tr>
+  <tr><td>总市值</td><td>A$549 亿（~US$370亿）</td><td></td></tr>
+  <tr><td>PE（TTM）</td><td>14.0x</td><td>周期股PE失真仅供参考</td></tr>
+  <tr><td>Forward PE（FY2026E）</td><td>~11.3x</td><td>分析师一致预期EPS ~US$1.94</td></tr>
+  <tr><td>PB</td><td>~1.0x</td><td>周期股核心估值指标</td></tr>
+  <tr><td>PS</td><td>~3.1x</td><td></td></tr>
+  <tr><td>PCF</td><td>~5.6x</td><td>经营现金流支撑</td></tr>
+  <tr><td>股息率</td><td>~5.9%</td><td>完全franked</td></tr>
+  <tr><td>EV/EBITDA</td><td>~8.3x</td><td></td></tr>
+</table>
+
+<h2>九、PB Band 区间（周期股专用）</h2>
+<table>
+  <tr><th>情景</th><th>PB</th><th>对应股价（A$）</th><th>涨跌幅</th></tr>
+  <tr><td>历史底部（2015-2020均值~0.7x）</td><td>0.7x</td><td>A$20</td><td class="bad">-31%</td></tr>
+  <tr><td>20%分位</td><td>0.85x</td><td>A$24</td><td class="bad">-17%</td></tr>
+  <tr><td>当前</td><td>1.00x</td><td>A$29</td><td>-</td></tr>
+  <tr><td>5年均值（~1.2x）</td><td>1.20x</td><td>A$35</td><td class="good">+20%</td></tr>
+  <tr><td>历史高位（2022峰值~1.5x）</td><td>1.50x</td><td>A$43</td><td class="good">+49%</td></tr>
+</table>
+
+<h2>十、历史PB区间（近5年）</h2>
+<table>
+  <tr><th>统计值</th><th>PB</th><th>对应股价（A$）</th></tr>
+  <tr><td>最大值</td><td>~1.5x</td><td>A$43</td></tr>
+  <tr><td>80%分位</td><td>~1.3x</td><td>A$38</td></tr>
+  <tr><td>50%分位（中位）</td><td>~1.1x</td><td>A$32</td></tr>
+  <tr><td>20%分位</td><td>~0.85x</td><td>A$24</td></tr>
+  <tr><td>当前</td><td>~1.0x</td><td>A$29</td></tr>
+  <tr><td>最小值</td><td>~0.6x</td><td>A$17</td></tr>
+</table>
+
+<h2>十一、PE区间（周期股备注：PE失真）</h2>
+<p style="font-size:13px;color:#c0392b;margin-bottom:8px">⚠ 周期股PE受商品价格影响极大，以下数据仅供参考，估值以PB为准。</p>
+<table>
+  <tr><th>统计值</th><th>PE</th><th>对应股价（A$）</th></tr>
+  <tr><td>最大值（2020亏损）</td><td>N/A</td><td>N/A</td></tr>
+  <tr><td>80%分位</td><td>~25x</td><td>A$50+</td></tr>
+  <tr><td>50%分位（中位）</td><td>~15x</td><td>A$30</td></tr>
+  <tr><td>当前（TTM）</td><td>14.0x</td><td>A$28.87</td></tr>
+  <tr><td>20%分位</td><td>~8x</td><td>A$16</td></tr>
+  <tr><td>最小值（2022高峰）</td><td>~5x</td><td>A$10（当时油价~US$120）</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值总结：</strong>当前PB ~1.0x处于5年历史30-50%分位，略低于均值但非极端低估。对于周期股而言，当前估值反映的是"中周期定价"——市场既没有定价衰退（如PB 0.7x的周期底部），也没有反映繁荣（如PB 1.3x+的周期顶部）。考虑到全球LNG产能将在2027年后集中释放，商品价格承压概率较大，当前PB的估值安全边际一般。综合评价：<strong>估值合理但缺乏催化剂</strong>。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>十二、杜邦拆解表</h2>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>FY2023</th><th>趋势</th></tr>
+  <tr><td>净利润率</td><td>~20.9%</td><td>~27.1%</td><td>~11.9%</td><td class="neutral">↑↓随价格波动</td></tr>
+  <tr><td>资产周转率（总资产）</td><td>0.20x</td><td>0.22x</td><td>0.24x</td><td class="neutral">新资产投产后逐步提升</td></tr>
+  <tr><td>权益乘数</td><td>1.67x</td><td>1.69x</td><td>1.57x</td><td class="neutral">稳定</td></tr>
+  <tr><td>ROE（净利润率×周转率×乘数）</td><td>~7.0%</td><td>~10.1%</td><td>~4.5%</td><td class="neutral">完全随商品周期波动</td></tr>
+</table>
+
+<h2>十三、赚钱模式判断</h2>
+<div class="highlight-box">
+  <strong>赚钱模式：高利润型（商品价格驱动）</strong><br>
+  Woodside属于典型的大宗商品生产商，利润率完全取决于国际油气价格。FY2025净利润率~20.9%看似不错，但FY2023仅11.9%、FY2020曾巨亏，反映了纯周期股的本质特征——高利润来源于高油价/高气价，而非结构性竞争优势。资产周转率低（0.20x）是因为上游油气是重资产行业，每1元资产对应的收入有限。权益乘数1.67x适中，杠杆水平健康。
+</div>
+
+<h2>十四、去杠杆ROA</h2>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>FY2023</th></tr>
+  <tr><td>净利润率</td><td>20.9%</td><td>27.1%</td><td>11.9%</td></tr>
+  <tr><td>资产周转率</td><td>0.20x</td><td>0.22x</td><td>0.24x</td></tr>
+  <tr><td>ROA（去掉杠杆）</td><td>~4.2%</td><td>~6.0%</td><td>~2.9%</td></tr>
+  <tr><td>评价</td><td class="neutral">偏低</td><td class="good">一般</td><td class="bad">低</td></tr>
+</table>
+<div class="summary-box">
+  <strong>杜邦核心结论：</strong>Woodside的ROE完全由净利润率（商品价格）驱动，资产周转率和杠杆水平相对稳定。穿越周期看，ROA约3-6%在大宗商品企业中属于中等水平——相比中海油（高利润率+低成本）偏低，但相比美国页岩油企业相当。核心关注变量：商品价格走势。策略上应关注PB而非PE，在PB低时逆向布局。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>十五、行业类型判断</h2>
+<div class="summary-box">
+  <strong>行业类型：纯周期股 — 油气上游生产（Oil & Gas E&P）</strong><br>
+  <strong>判断依据：</strong>
+  <ul>
+    <li>Woodside主营油气勘探与生产（E&P），全部收入来源于原油、LNG、管道气的销售，产品为全球统一定价的大宗商品</li>
+    <li>纯周期行业特征：① 价格完全受全球供需格局驱动，公司没有定价权；② 利润随油价/气价剧烈波动（FY2022 NPAT US$65亿 → FY2023 NPAT US$17亿 → FY2025 US$27亿）；③ 行业长期增速≈GDP增速，增长主要靠并购和资源替换</li>
+    <li>公司当前处于大规模资本开支末期（Scarborough即将投产、Louisiana LNG已FID），属于典型的周期股"投资换增长"模式</li>
+  </ul>
+  <strong>评分体系选择：</strong>采用周期股评分体系（PE失真改用PB、ROE取多周期均值、增加周期位置/成本位置维度）
+</div>
+
+<h2>十六、行业集中度与壁垒</h2>
+<table>
+  <tr><th>维度</th><th>评估</th></tr>
+  <tr><td>市场集中度</td><td>全球集中度适中——LNG市场CR3（Qatar/壳牌/道达尔）约35%，澳洲LNG市场CR3（Woodside/Chevron/Shell）>70%高度集中。但全球油气是充分竞争的大宗商品市场。</td></tr>
+  <tr><td>进入壁垒</td><td class="good">较高——① 上游资源获取（勘探开采权）受各国政府严格监管；② 资本壁垒极高（大型LNG项目~US$100-200亿）；③ 技术和运营壁垒（深水/液化技术需多年积累）；④ 长期照付不议合同（LNG购销协议通常15-20年）</td></tr>
+  <tr><td>Woodside的核心优势</td><td>① 澳洲西北大陆架成熟基础设施（NWS/Pluto），已运营30年+，生产成本相对可控；② 与亚洲买家（日本/韩国/中国）的长期合约关系；③ 项目执行力强（Sangomar按期投产达产）</td></tr>
+</table>
+
+<h2>十七、生命周期阶段</h2>
+<div class="summary-box">
+  <strong>生命周期：成熟期（核心资产成熟）+ 成长期（新项目扩展）</strong><br>
+  核心资产NWS/Pluto处于成熟期（稳定产出、现金流充裕），Scarborough（2026投产）和Louisiana LNG（2030+）提供增量成长。整体看，Woodside处于"老资产现金流哺育新资产建设"的阶段，符合大型油气公司的典型生命周期特征。
+</div>
+
+<h2>十八、当前周期位置</h2>
+<div class="highlight-box">
+  <strong>周期位置：中周期</strong><br>
+  <ul>
+    <li>当前布伦特原油~US$70-80区间，较2022年高点（US$120+）明显回落，但远高于大多数油企的盈亏平衡线（US$35-45）</li>
+    <li>LNG市场：俄乌战争后的供给紧张已缓解，JKM现货价格从2022年峰值US$70/mmbtu回落至~US$10-12/mmbtu，回归合理水平</li>
+    <li>行业状态：企业普遍盈利但利润在收窄，产能投资仍在继续（Qatar NFE、美国LNG扩建），尚未到收缩或亏损阶段</li>
+    <li>周期位置评分：7/15分（中周期，非底部非顶部）—— 非逆向布局的理想时机但也非退出时机</li>
+  </ul>
+</div>
+
+<h2>十九、估值方法匹配</h2>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>周期型（油气）</td><td>PB（底部）</td><td>EV/EBITDA、股息率</td><td class="good">✅ 市场主要用PB和EV/EBITDA</td></tr>
+</table>
+<div class="danger-box">
+  <strong>⚠ 注意：</strong>周期股切忌用低PE作为买入理由。Woodside在2022年高油价时PE低至~5x（表面上"便宜"），但随即在2023年利润腰斩。当前PE 14x看起来比2022年贵，但实际是由于利润正常化而非估值扩张。周期股永远看PB和周期位置，而非PE。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>二十、六步法总结</h2>
+<div class="summary-box">
+  <p><strong>Step 1 - 行业定位：</strong>纯周期股（油气上游），全球充分竞争市场，澳洲LNG集中度高但缺乏定价权</p>
+  <p><strong>Step 2 - 财务体检：</strong>资产负债表极强（净负债/EBITDA 0.86x），CFO/净利2.65x现金流质量好，但ROE随油价波动（穿越周期均值~8%）</p>
+  <p><strong>Step 3 - 估值判断：</strong>PB 1.0x处于30-50%分位，EV/EBITDA ~8.3x，估值合理但非极端低估</p>
+  <p><strong>Step 4 - 风险排查：</strong>核心风险——商品价格下行（LNG供给2027-2029集中释放）；大型项目执行风险（Louisiana LNG US$175亿）</p>
+  <p><strong>Step 5 - 结论：</strong>好公司（⭕一般）——资产负债表优秀但商业模式受制于商品周期。当前非极端好价格——PB中等偏下但周期位置中游</p>
+  <p><strong>Step 6 - 跟踪：</strong>核心指标——布伦特油价、JKM LNG现货价、Scarborough投产进度、Louisiana LNG资本开支</p>
+</div>
+
+<h2>二十一、好公司三要素</h2>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="neutral">⭕</td><td>油气行业长期需求仍在但增速放缓，能源转型是结构性逆风。纯周期属性决定利润不可预测，非"好行业"定义</td></tr>
+  <tr><td>② 好公司</td><td class="neutral">⭕</td><td>资产负债表优秀、运营执行力强、成本控制良好。但穿越周期ROE仅~8%且完全被动接受价格，护城河不深</td></tr>
+  <tr><td>③ 好价格</td><td class="neutral">⭕</td><td>PB 1.0x低于均值但非极端（历史底部0.6-0.7x）。需商品价格配合才能获得超额收益，当前价格赔率一般</td></tr>
+</table>
+
+<h2>二十二、风险评估</h2>
+
+<h3>22.1 三个陷阱排查</h3>
+<div class="danger-box">
+  <strong>☐ 低PE + 低增长 + 高负债 = 价值陷阱</strong> → 未命中（负债极低，非低PE陷阱）<br>
+  <strong>☐ 低PE + 周期顶点 = 周期陷阱</strong> → <strong>⚠ 部分命中</strong>（周期股评分体系中已通过"周期位置+PB估值"维度覆盖）。当前PE 14x处于周期中值而非极低，不构成经典周期陷阱。但如果油价大幅下跌至US$60以下，当前PB 1.0x可能也还有下行空间。<br>
+  <strong>☐ 高PE + 高增速但现金流为负 = 烧钱陷阱</strong> → 未命中（CFO强劲）
+</div>
+
+<h3>22.2 管理层与治理</h3>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力与履历</td><td class="good">好</td><td>CEO Meg O'Neill（2021上任）有30年+行业经验，Sangomar按期投产证明执行能力</td></tr>
+  <tr><td>股权结构</td><td class="good">强</td><td>机构持股为主（~70%），管理层持股合理（CEO ~100万股），利益一致性良好</td></tr>
+  <tr><td>资本配置记录</td><td class="neutral">一般</td><td>BHP油气业务整合顺利，但Louisiana LNG US$175亿投资规模引发市场对回报率的担忧</td></tr>
+  <tr><td>股息政策</td><td class="good">好</td><td>坚持派息80%下限政策，2025年维持112 US cps，穿越周期保持分红</td></tr>
+</table>
+
+<h3>22.3 盈利可持续性</h3>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是靠价？</td><td>价格驱动（纯周期）</td><td>收入与油/气价格高度正相关，产量增长（+3%）只能部分对冲价格下跌（-5%）</td></tr>
+  <tr><td>涨价能否持续？</td><td>不能</td><td>大宗商品价格由全球供需决定，公司无定价权</td></tr>
+  <tr><td>非经常性利润占比</td><td class="good">低</td><td>Underlying NPAT vs NPAT差异小（US$26.5亿 vs US$27.2亿）</td></tr>
+  <tr><td>大客户集中度</td><td class="neutral">中</td><td>亚洲长协客户分散化（日本/韩国/中国多家），但区域集中度高</td></tr>
+  <tr><td>政策/监管依赖度</td><td class="neutral">中</td><td>澳洲资源税（PRRT）、环保审批、碳排放成本均在上升</td></tr>
+</table>
+
+<h3>22.4 关键变量敏感性</h3>
+<p><strong>变量1：布伦特原油价格</strong></p>
+<ul>
+  <li>乐观（US$85+）：地缘溢价+OPEC+减产支撑 → EPS ~US$2.2+，目标PB 1.2x → 股价A$35+</li>
+  <li>中性（US$70-80）：供需平衡 → EPS ~US$1.8-2.0，PB维持1.0x → 股价A$28-32</li>
+  <li>悲观（US$55-65）：全球需求放缓+新产能释放 → EPS ~US$1.2-1.5，PB下降至0.8x → 股价A$22-25</li>
+</ul>
+<p><strong>变量2：LNG价格（JKM现货）</strong></p>
+<ul>
+  <li>乐观：冬季寒冷+亚洲需求强劲 → JKM>$15/mmbtu，LNG利润贡献大幅增加</li>
+  <li>中性：正常气候条件 → JKM $10-12/mmbtu，长协价格主导（与油价挂钩）</li>
+  <li>悲观：暖冬+全球天然气供给过剩（2027年Qatar+美国项目投产） → JKM <$8/mmbtu</li>
+</ul>
+
+<h2>二十三、前景展望</h2>
+
+<h3>23.1 未来1-3年核心驱动</h3>
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. Scarborough投产（2026末首船LNG）——从资本开支转为现金流贡献，预计2027年开始贡献显著FCF<br>
+  2. 资本开支高峰已过——FY2025 Capex US$47亿已较FY2024 US$81亿大幅下降，FCF进入释放期<br>
+  3. 资产负债表优化——净负债/EBITDA <1x，有空间通过回购/增派息回报股东<br><br>
+  <strong>负向拖累：</strong><br>
+  1. 全球LNG供给2027-2029集中释放——Qatar North Field Expansion、美国LNG项目大规模投产可能压低气价<br>
+  2. Louisiana LNG US$175亿投资——建设周期长（2025-2030+），回报时间远且存在不确定性<br>
+  3. 全球能源转型——ESG投资偏见、碳税成本上升、政策支持可再生能源等因素可能压低油气股估值
+</div>
+
+<h3>23.2 三情景简表</h3>
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>EPS预估（US$）</th><th>PB区间</th><th>预期股价（A$）</th></tr>
+  <tr><td>乐观（30%）</td><td>油价US$85+，LNG需求强劲，Scarborough顺利投产</td><td>~US$2.2-2.5</td><td>1.2-1.3x</td><td>A$35-40</td></tr>
+  <tr><td>中性（45%）</td><td>油价US$70-80，LNG供需基本平衡</td><td>~US$1.8-2.0</td><td>1.0-1.1x</td><td>A$28-33</td></tr>
+  <tr><td>悲观（25%）</td><td>油价US$55-65，LNG供给过剩</td><td>~US$1.2-1.5</td><td>0.7-0.8x</td><td>A$20-24</td></tr>
+</table>
+<p style="font-size:13px;color:#666">概率判断：中性45%，乐观30%，悲观25%。当前价格（A$28.87）反映中性偏乐观预期，下行空间约20-30%，上行空间约20-40%。</p>
+
+<h2>二十四、讨论问题</h2>
+<div class="summary-box">
+  <p>讨论问题（阅读后可以聊这些）：</p>
+  <p>1. 油气行业在未来10年的能源结构中扮演什么角色？你相信"最后需求"理论还是加速淘汰？</p>
+  <p>2. Woodside PB 1.0x买入，需要油价在什么水平才能获得满意回报？你预期的年化回报是多少？</p>
+  <p>3. Louisiana LNG（US$175亿）是增长机会还是价值毁灭？如果油价长期US$70，该项目的ROE能到多少？</p>
+  <p>4. 什么情况下你会卖出？—— 油价跌破US$60？PB涨到1.3x以上？还是持有到Scarborough投产兑现后再评估？</p>
+</div>
+
+</div></div>
+
+<div class="footer">
+  <p>本报告仅供参考，不构成投资建议。数据来源：Woodside FY2025年报、StockAnalysis、Yahoo Finance。分析日期：2026-07-09。</p>
+</div>
+
+</div>
+
+<script>
+var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+var contents = document.querySelectorAll('.tab-content');
+btns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    contents.forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    var tab = btn.getAttribute('data-tab');
+    document.getElementById('tab-' + tab).classList.add('active');
+  });
+});
+</script>
+
+</body>
+</html>
