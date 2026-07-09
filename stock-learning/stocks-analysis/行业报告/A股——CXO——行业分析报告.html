@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>A股——CXO 行业分析报告</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f5f5f5;padding:0;color:#333}
+  .report-wrap{max-width:800px;margin:0 auto;background:#fff}
+  h1{font-size:22px;margin:0;padding:28px 0 4px;text-align:center}
+  h2{font-size:18px;margin:28px 0 12px;border-bottom:2px solid #1a1a1a;padding-bottom:4px}
+  h3{font-size:15px;margin:18px 0 8px}
+  .subtitle{color:#666;font-size:13px;text-align:center;margin-bottom:4px}
+  .meta{color:#999;font-size:12px;text-align:center;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #e0e0e0}
+  .tab-bar{position:sticky;top:0;z-index:10;background:#fff;display:flex;flex-wrap:wrap;border-bottom:2px solid #ddd;gap:0}
+  .tab-btn{padding:10px 14px;cursor:pointer;border:none;background:none;font-size:13px;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+  .tab-btn:hover{color:#333;background:#f9f9f9}
+  .tab-btn.active{color:#1a1a1a;font-weight:700;border-bottom-color:#1a1a1a}
+  .tab-content{display:none}
+  .tab-content.active{display:block}
+  .tab-inner{padding:0 12px}
+  table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:13px}
+  th{background:#f5f5f5;padding:8px 6px;text-align:left;border-bottom:2px solid #ddd;white-space:nowrap;font-weight:600}
+  td{padding:7px 6px;border-bottom:1px solid #eee}
+  tr:nth-child(even) td{background:#fafafa}
+  .summary-box{background:#fffde7;border-left:4px solid #f9a825;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .highlight-box{background:#e3f2fd;border-left:4px solid #1e88e5;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .danger-box{background:#ffebee;border-left:4px solid #e53935;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .verdict{text-align:center;padding:20px;margin:16px 0;border-radius:8px;font-size:18px;font-weight:700}
+  .verdict-ok{background:#e8f5e9;border:2px solid #4caf50;color:#2e7d32}
+  .verdict-caution{background:#fff3e0;border:2px solid #ff9800;color:#e65100}
+  .verdict-bad{background:#ffebee;border:2px solid #e53935;color:#c62828}
+  .score{font-size:36px;display:block;margin-bottom:4px}
+  .pass{color:#2e7d32;font-weight:700}
+  .skip{color:#666;font-style:italic}
+  .tag{display:inline-block;padding:2px 8px;border-radius:3px;font-size:11px;font-weight:700}
+  .tag-red{background:#ffebee;color:#c62828}
+  .tag-green{background:#e8f5e9;color:#2e7d32}
+  .tag-yellow{background:#fff8e1;color:#f57f17}
+  .footer{font-size:11px;color:#aaa;text-align:center;padding:24px 0 8px;border-top:1px solid #eee;margin-top:30px}
+  .card{background:#fafafa;border:1px solid #e0e0e0;border-radius:6px;padding:14px;margin:10px 0;font-size:13px}
+  .flex{display:flex;flex-wrap:wrap;gap:8px}
+  .tbl-wrap{border:1px solid #e0e0e0;border-radius:6px;overflow:hidden;margin:10px 0 18px}
+  .tbl-wrap table{margin:0}
+  .tbl-wrap th{background:#f5f5f5;padding:9px 8px;border-bottom:1px solid #ddd;font-weight:600;font-size:12px}
+  .tbl-wrap td{padding:8px;border-bottom:1px solid #f0f0f0;font-size:13px}
+  .tbl-wrap tr:last-child td{border-bottom:none}
+  .bar-wrap{display:inline-flex;align-items:center;width:60px;height:16px;vertical-align:middle}
+  .bar-bg{background:#eee;border-radius:4px;height:8px;width:100%;overflow:hidden;position:relative}
+  .bar{display:block;height:8px;border-radius:4px}
+  .score-cell{font-weight:700;font-size:15px;text-align:center;white-space:nowrap}
+  .tbl-wrap td,.tbl-wrap th{vertical-align:middle}
+  .metric-h{color:#1565c0;font-weight:700;font-size:13px}
+  .metric-l{color:#c62828;font-weight:700}
+  .metric-m{color:#e65100;font-weight:700}
+  .col-tag{display:inline-block;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600}
+  .col-win{background:#e8f5e9;color:#2e7d32}
+  .col-lose{background:#ffebee;color:#c62828}
+  .col-warn{background:#fff3e0;color:#e65100}
+  .col-info{background:#e3f2fd;color:#1565c0}
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>A股——CXO 行业分析报告</h1>
+<div class="subtitle">L5分类：成长型 ｜ 上市公司：~30+家 ｜ 总市值：~6000亿</div>
+<div class="meta">生成日期：2026-07-09</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l7">L7 量化初筛</button>
+  <button class="tab-btn" data-tab="l8">L8 行业画像</button>
+  <button class="tab-btn" data-tab="l9">L9 竞争格局</button>
+  <button class="tab-btn" data-tab="l10">L10 周期时机</button>
+</div>
+
+<div class="tab-content active" id="tab-summary">
+<div class="tab-inner">
+
+<h2>行业速览</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">项目</th><th>内容</th></tr>
+<tr><td>行业名称</td><td><strong>CXO（医药研发外包，含CRO/CDMO）</strong></td></tr>
+<tr><td>市场</td><td>A股（主板+创业板+科创板）</td></tr>
+<tr><td>L5分类</td><td><span class="col-tag col-win">成长型</span> 全球外包率持续提升+中国工程师红利</td></tr>
+<tr><td>上市公司</td><td>~30+家，其中通过L7筛选 <span class="col-tag col-win">~18只</span></td></tr>
+<tr><td>行业总市值</td><td>~6000亿（药明康德2798亿+康龙化成800亿+泰格600亿+凯莱英400亿+其他）</td></tr>
+<tr><td>产业链位置</td><td><span class="col-tag col-info">中游服务</span> 创新药的"卖水人"——不承担新药失败风险</td></tr>
+<tr><td>生命周期阶段</td><td><span class="col-tag col-win">成长期</span> 全球外包率~45%，中国凭借工程师红利获取全球份额</td></tr>
+<tr><td>当前周期位置</td><td><span class="col-tag col-win">景气加速</span> 2025年营收960亿+12%，净利243亿+87%；2026Q1+18%</td></tr>
+</table>
+</div>
+
+<h2>综合评分</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>维度</th><th style="width:60px">得分</th><th>进度</th><th>说明</th></tr>
+<tr>
+  <td>行业规模与空间</td>
+  <td class="score-cell">17/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:85%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">全球CXO市场~1500亿美元，中国渗透率仍在提升</td>
+</tr>
+<tr>
+  <td>产业链位置</td>
+  <td class="score-cell">14/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:93%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">"卖水人"逻辑稳定，不承担新药失败风险，旱涝保收</td>
+</tr>
+<tr>
+  <td>竞争格局</td>
+  <td class="score-cell">14/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:70%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">药明康德一家独大（CR1~30%），细分赛道差异化</td>
+</tr>
+<tr>
+  <td>增长驱动力</td>
+  <td class="score-cell">14/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:93%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">全球研发投入+外包率提升+中国工程师红利</td>
+</tr>
+<tr>
+  <td>周期位置</td>
+  <td class="score-cell">13/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:87%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">景气度明确加速，在手订单饱满</td>
+</tr>
+<tr>
+  <td>政策环境</td>
+  <td class="score-cell">10/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:67%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">美生物安全法案(S.3558)潜在风险，但影响可控</td>
+</tr>
+<tr style="background:#fafafa">
+  <td style="font-weight:700;font-size:14px">总分</td>
+  <td style="font-weight:700;font-size:16px;color:#2e7d32">82/100</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:82%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#2e7d32;font-weight:600">良好，可重点关注</td>
+</tr>
+</table>
+</div>
+
+<div class="verdict verdict-ok">
+  <span class="score">82</span>
+  良好，可重点关注
+</div>
+
+<div class="summary-box">
+  <strong>核心结论</strong><br>
+  CXO是中国医药产业链中<strong>确定性最高的赛道</strong>——作为创新药的"卖水人"，不承担新药失败风险，享受全球研发投入增长+外包率提升+中国工程师红利三重驱动。2025年板块营收960亿+12%，净利243亿+87%；2026Q1营收250亿+18%，净利59亿+22%，景气度明确加速。药明康德PE仅15x（历史低位），在手订单597.7亿，是当前A股最值得关注的标的之一。主要风险是美国生物安全法案，但对龙头影响可控。
+</div>
+
+<div class="highlight-box">
+  <strong>行业公式</strong><br>
+  CXO收入 = 全球医药研发投入 × 外包渗透率 × 中国CXO全球市占率<br>
+  关键跟踪：在手订单增速、全球生物医药融资额、资本开支、美国生物安全法案进展
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l7">
+<div class="tab-inner">
+
+<h2>筛选调整说明</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:12%">筛子</th><th style="width:35%">标准</th><th>调整理由</th></tr>
+<tr><td>①<span class="col-tag col-info">市值</span></td><td>≥30亿</td><td>CXO多是创业板/科创板</td></tr>
+<tr><td>②<span class="col-tag col-info">营收</span></td><td>≥5亿</td><td>CXO普遍有稳定收入流</td></tr>
+<tr><td>③<span class="col-tag col-info">毛利率</span></td><td>≥30%</td><td>CXO是服务型行业，30%为合理下限</td></tr>
+<tr><td>④<span class="col-tag col-info">ROE</span></td><td>≥8%</td><td>CXO盈利模式成熟，大多能达标</td></tr>
+<tr><td>⑤<span class="col-tag col-info">负债率</span></td><td>≤50%</td><td>CXO轻资产，负债率普遍低</td></tr>
+<tr><td>⑥<span class="col-tag col-info">估值</span></td><td>PE历史分位≤70%且≥15x</td><td>CXO普遍盈利，用PE合理</td></tr>
+</table>
+</div>
+
+<h2>候选池（通过≥5/6）</h2>
+
+<h3 style="font-size:14px;margin:16px 0 6px;color:#1565c0">第一梯队：综合CXO巨头</h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>环节</th><th>市值</th><th>毛利率</th><th>ROE</th><th>负债率</th><th>PE/分位</th><th>通过</th></tr>
+<tr>
+  <td><strong>药明康德</strong> 603259</td>
+  <td><span class="col-tag col-info">全链条CXO</span></td>
+  <td style="font-weight:600">2798亿</td>
+  <td><span class="col-tag col-win">50%</span></td>
+  <td><span class="col-tag col-win">18%</span></td>
+  <td>30%</td>
+  <td>15x(20%)</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>康龙化成</strong> 300759</td>
+  <td><span class="col-tag col-info">全链条CXO</span></td>
+  <td style="font-weight:600">800亿</td>
+  <td><span class="col-tag col-win">45%</span></td>
+  <td><span class="col-tag col-win">10%</span></td>
+  <td>25%</td>
+  <td>25x(35%)</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>泰格医药</strong> 300347</td>
+  <td><span class="col-tag col-info">临床CRO</span></td>
+  <td style="font-weight:600">600亿</td>
+  <td><span class="col-tag col-win">40%</span></td>
+  <td><span class="col-tag col-win">8%</span></td>
+  <td>20%</td>
+  <td>30x(40%)</td>
+  <td class="pass">6/6</td>
+</tr>
+</table>
+</div>
+
+<h3 style="font-size:14px;margin:16px 0 6px;color:#1565c0">第二梯队：细分CDMO</h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>环节</th><th>市值</th><th>毛利率</th><th>ROE</th><th>负债率</th><th>PE/分位</th><th>通过</th></tr>
+<tr>
+  <td><strong>凯莱英</strong> 002821</td>
+  <td><span class="col-tag col-info">小分子CDMO</span></td>
+  <td>400亿</td>
+  <td><span class="col-tag col-win">48%</span></td>
+  <td><span class="col-tag col-win">12%</span></td>
+  <td>20%</td>
+  <td>20x(25%)</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>九洲药业</strong> 603456</td>
+  <td><span class="col-tag col-info">CDMO</span></td>
+  <td>200亿+</td>
+  <td><span class="col-tag col-win">40%</span></td>
+  <td><span class="col-tag col-win">12%</span></td>
+  <td>25%</td>
+  <td>18x</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>博腾股份</strong> 300363</td>
+  <td><span class="col-tag col-info">CDMO</span></td>
+  <td>150亿+</td>
+  <td><span class="col-tag col-win">42%</span></td>
+  <td><span class="col-tag col-win">8%</span></td>
+  <td>30%</td>
+  <td>22x</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>皓元医药</strong> 688131</td>
+  <td><span class="col-tag col-info">分子砌块+CDMO</span></td>
+  <td>80亿+</td>
+  <td><span class="col-tag col-win">50%</span></td>
+  <td><span class="col-tag col-win">8%</span></td>
+  <td>20%</td>
+  <td>25x</td>
+  <td class="pass">5/6</td>
+</tr>
+</table>
+</div>
+
+<h3 style="font-size:14px;margin:16px 0 6px;color:#1565c0">第三梯队：细分CRO/安评</h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>环节</th><th>市值</th><th>毛利率</th><th>ROE</th><th>负债率</th><th>PE/分位</th><th>通过</th></tr>
+<tr>
+  <td><strong>昭衍新药</strong> 603127</td>
+  <td><span class="col-tag col-info">安评CRO</span></td>
+  <td>100亿+</td>
+  <td><span class="col-tag col-win">45%</span></td>
+  <td><span class="col-tag col-win">8%</span></td>
+  <td>15%</td>
+  <td>25x</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>美迪西</strong> 688202</td>
+  <td><span class="col-tag col-info">临床前CRO</span></td>
+  <td>80亿+</td>
+  <td><span class="col-tag col-win">42%</span></td>
+  <td><span class="col-tag col-win">8%</span></td>
+  <td>15%</td>
+  <td>28x</td>
+  <td class="pass">5/6</td>
+</tr>
+<tr>
+  <td><strong>药石科技</strong> 300725</td>
+  <td><span class="col-tag col-info">分子砌块</span></td>
+  <td>60亿+</td>
+  <td><span class="col-tag col-win">45%</span></td>
+  <td><span class="col-tag col-win">8%</span></td>
+  <td>15%</td>
+  <td>30x</td>
+  <td class="pass">5/6</td>
+</tr>
+</table>
+</div>
+
+<h3 style="font-size:14px;margin:16px 0 6px;color:#1565c0">第四梯队：上游试剂/耗材</h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>环节</th><th>市值</th><th>毛利率</th><th>ROE</th><th>负债率</th><th>PE/分位</th><th>通过</th></tr>
+<tr>
+  <td><strong>百诚医药</strong> 301096</td>
+  <td><span class="col-tag col-info">药学CRO</span></td>
+  <td>60亿+</td>
+  <td><span class="col-tag col-win">55%</span></td>
+  <td><span class="col-tag col-win">10%</span></td>
+  <td>20%</td>
+  <td>20x</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>阳光诺和</strong> 688621</td>
+  <td><span class="col-tag col-info">药学CRO</span></td>
+  <td>50亿+</td>
+  <td><span class="col-tag col-win">50%</span></td>
+  <td><span class="col-tag col-win">10%</span></td>
+  <td>15%</td>
+  <td>22x</td>
+  <td class="pass">5/6</td>
+</tr>
+</table>
+</div>
+
+<h2>观察池</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>卡在哪</th><th>备注</th></tr>
+<tr>
+  <td><strong>药明生物</strong> 2269.HK</td>
+  <td><span class="col-tag col-warn">港股</span></td>
+  <td>A股无直接标的，港股可参考</td>
+</tr>
+<tr>
+  <td><strong>金斯瑞</strong> 1548.HK</td>
+  <td><span class="col-tag col-warn">港股</span></td>
+  <td>细胞基因治疗CDMO</td>
+</tr>
+</table>
+</div>
+
+<h2>筛除记录</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>筛子</th><th style="width:60px">筛除数</th><th>知名示例</th></tr>
+<tr><td>①市值<30亿</td><td style="text-align:center">~5+</td><td>微盘CXO/试剂</td></tr>
+<tr><td>②营收<5亿</td><td style="text-align:center">~7+</td><td>极早期小CXO</td></tr>
+<tr><td>③毛利率<30%</td><td style="text-align:center">~3+</td><td>低端医药中间体</td></tr>
+<tr><td>④ROE<8%</td><td style="text-align:center">~5+</td><td>部分亏损CXO</td></tr>
+<tr><td>⑤负债率>50%</td><td style="text-align:center">~2+</td><td>高杠杆扩张企业</td></tr>
+<tr><td>⑥PE历史分位>70%</td><td style="text-align:center">~3+</td><td>高估值小CXO</td></tr>
+<tr style="background:#fffde7"><td><strong>剩余</strong></td><td style="text-align:center;font-weight:700;color:#2e7d32"><strong>~18</strong></td><td>通过≥5/6筛</td></tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <strong>L7筛选结论</strong><br>
+  30+只CXO标的 → 6道筛子 → 约18只通过（60%通过率，远高于全医药的8%）。CXO板块整体质量较高，盈利模式和财务指标普遍优秀。<strong>核心排序：药明康德(PE15x/在手订单597亿) > 凯莱英(小分子CDMO+新兴业务70%增长) > 康龙化成(全链条) > 泰格医药(临床CRO龙头)。</strong>
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l8">
+<div class="tab-inner">
+
+<h2>产业链</h2>
+<div class="card" style="font-size:13px;line-height:1.7">
+
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px">
+
+<div style="flex:1;min-width:180px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#2e7d32;font-size:14px">上游（试剂/设备/人力）</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:4px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">科研试剂/耗材</div>
+    <div style="text-align:center;font-size:10px;color:#666">阿拉丁·泰坦科技</div>
+    <div style="margin:6px 0;text-align:center;color:#999;font-size:14px">↓</div>
+    <div style="margin-bottom:4px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">实验动物/安评服务</div>
+    <div style="text-align:center;font-size:10px;color:#666">昭衍新药</div>
+    <div style="margin:6px 0;text-align:center;color:#999;font-size:14px">↓</div>
+    <div style="margin-bottom:4px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">工程师/科学家人才</div>
+  </div>
+</div>
+
+<div style="flex:2;min-width:280px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#1565c0;font-size:14px">中游（CXO服务）</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+
+    <div style="margin-bottom:6px;font-weight:600;font-size:12px;color:#1565c0">临床前CRO</div>
+    <div style="display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap">
+      <div style="flex:1;background:#e3f2fd;border-radius:4px;padding:5px 6px;text-align:center;font-size:11px">美迪西<br><span style="font-size:10px;color:#666">药物发现</span></div>
+      <div style="flex:1;background:#e3f2fd;border-radius:4px;padding:5px 6px;text-align:center;font-size:11px">昭衍新药<br><span style="font-size:10px;color:#666">安评</span></div>
+    </div>
+
+    <div style="margin-bottom:6px;font-weight:600;font-size:12px;color:#1565c0">CDMO（工艺开发/生产）</div>
+    <div style="display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap">
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:11px">小分子CDMO<br><span style="font-size:10px;color:#666">凯莱英·九洲·博腾</span></div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:11px">大分子/ADC CDMO<br><span style="font-size:10px;color:#666">药明生物·康龙</span></div>
+    </div>
+
+    <div style="margin-bottom:6px;font-weight:600;font-size:12px;color:#1565c0">临床CRO</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <div style="flex:1;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">泰格医药</div>
+      <div style="flex:1;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">药明康德临床部</div>
+    </div>
+  </div>
+</div>
+
+<div style="flex:1;min-width:160px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#c62828;font-size:14px">下游（创新药企）</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:4px;background:#ffebee;border-radius:4px;padding:8px 8px;text-align:center;font-size:12px">Biotech/Biopharma</div>
+    <div style="text-align:center;font-size:10px;color:#666">客户（客户群）</div>
+    <div style="margin:6px 0;text-align:center;color:#999;font-size:14px">↓</div>
+    <div style="margin-bottom:4px;background:#f5f5f5;border:1px solid #ccc;border-radius:4px;padding:8px 8px;text-align:center;font-size:12px">Pharma转型企业</div>
+    <div style="margin:6px 0;text-align:center;color:#999;font-size:14px">↓</div>
+    <div style="margin-bottom:4px;background:#ffebee;border-radius:4px;padding:8px 8px;text-align:center;font-size:12px">跨国药企中国研发中心</div>
+  </div>
+</div>
+
+</div>
+
+<div style="background:#fffde7;border-left:3px solid #f9a825;padding:8px 12px;font-size:12px;border-radius:0 4px 4px 0">
+  CXO处于<strong>"中间人"</strong>位置，连接上游研发资源与下游药企需求。
+</div>
+
+</div>
+
+<h2>市场规模</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">维度</th><th>数据</th></tr>
+<tr><td>全球CXO市场规模</td><td><span class="col-tag col-info">~1500亿美元(2025)</span></td></tr>
+<tr><td>中国CXO市场规模</td><td><span class="col-tag col-info">~960亿人民币(2025)</span></td></tr>
+<tr><td>中国CXO营收增速</td><td><span class="col-tag col-win">2025年+12%，2026Q1+18%（加速）</span></td></tr>
+<tr><td>全球研发外包渗透率</td><td>~45%（中国~35% vs 印度~25% vs 欧美~50%）</td></tr>
+<tr><td>全球研发投入</td><td><span class="col-tag col-info">~2500亿美元(2025)</span>，~3-5%年增长</td></tr>
+</table>
+</div>
+
+<h2>生命周期</h2>
+<div class="summary-box">
+  <strong><span class="col-tag col-win" style="font-size:14px">成长期中期</span></strong><br>
+  判断依据：全球外包率持续提升（目前~45%），中国凭借工程师红利+临床资源优势正在获取全球份额。细分来说：<br>
+  - 小分子CDMO：<span class="col-tag col-warn">成熟期</span>（竞争加剧，但龙头稳健）<br>
+  - 大分子/ADC CDMO：<span class="col-tag col-win">快速成长期</span>（高壁垒+高增长）<br>
+  - 临床CRO：<span class="col-tag col-win">成长期</span>（中国临床试验数量全球第二）<br>
+  - 安评/临床前：<span class="col-tag col-warn">成熟期</span>（增速放缓）
+</div>
+
+<h2>增长驱动力</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动力</th><th>类型</th><th>可持续性</th><th>量化指标</th></tr>
+<tr>
+  <td>全球研发投入增长</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>全球医药研发投入~3-5%年增</td>
+</tr>
+<tr>
+  <td>外包渗透率提升</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">中长</span></td>
+  <td>渗透率45%→提升空间</td>
+</tr>
+<tr>
+  <td>中国工程师红利</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>中国CRO成本仅为欧美30-50%</td>
+</tr>
+<tr>
+  <td>ADC/双抗等新技术</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>ADC CDMO需求爆发</td>
+</tr>
+<tr>
+  <td>Biotech融资回暖</td>
+  <td><span class="col-tag col-warn">周期</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>全球生物医药融资额</td>
+</tr>
+</table>
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l9">
+<div class="tab-inner">
+
+<h2>市场结构</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>市场结构类型</td>
+  <td><span class="col-tag col-info">金字塔型</span>（药明康德一家独大，第二梯队差异化竞争）</td>
+</tr>
+<tr>
+  <td>CR1（药明康德）</td>
+  <td><span class="col-tag col-info">~30%</span>（全链条综合优势）</td>
+</tr>
+<tr>
+  <td>CR3</td>
+  <td><span class="col-tag col-info">~45%</span>（药明+康龙+泰格）</td>
+</tr>
+<tr>
+  <td>格局象限</td>
+  <td>药明康德：全链条一体化（行业标准制定者）；凯莱英：小分子CDMO专家；泰格：临床CRO专家</td>
+</tr>
+</table>
+</div>
+
+<h2>竞争壁垒</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>壁垒类型</th><th>强度</th><th>可持续性</th><th>具体表现</th></tr>
+<tr>
+  <td>客户粘性</td>
+  <td><span class="col-tag col-win">极高</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>CXO更换供应商成本高，药明康德客户留存率>95%</td>
+</tr>
+<tr>
+  <td>规模/成本壁垒</td>
+  <td><span class="col-tag col-win">高</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>龙头产能规模优势，成本控制能力强</td>
+</tr>
+<tr>
+  <td>技术壁垒</td>
+  <td><span class="col-tag col-win">高</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>ADC/双抗/细胞治疗CDMO技术门槛高</td>
+</tr>
+<tr>
+  <td>品牌/监管壁垒</td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>FDA/NMPA认证体系，合规壁垒</td>
+</tr>
+<tr>
+  <td>人才壁垒</td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>优质的化学/生物人才资源</td>
+</tr>
+</table>
+</div>
+
+<div class="summary-box">
+  <strong>定价权测试</strong><br>
+  CXO定价权<strong>中等</strong>。龙头可以通过技术溢价（如ADC CDMO溢价30-50%）获得超额利润，但低端小分子CDMO同质化竞争价格承压。药明康德毛利率50%+，在行业中处于较高水平。
+</div>
+
+<h2>驱动力拆解</h2>
+<div class="highlight-box">
+  <strong>行业收入公式</strong><br>
+  CXO收入 = 全球研发投入 × 外包率 × 中国市占率<br><br>
+  当前量价组合：<span style="color:#2e7d32;font-weight:700">量 ↑↑</span>（全球订单向中国转移）＋ <span style="color:#1565c0;font-weight:700">价 →</span>（基本稳定）＝ <span class="col-tag col-win">量价配合</span>
+</div>
+
+<h2>成本结构</h2>
+<div class="summary-box">
+  CXO是<strong>中重资产+人才密集型</strong>——主要成本来自人员薪酬（50-60%）、折旧（10-15%）、原材料（15-20%）。药明康德资本开支率（CAPEX/营收）~15%，属于合理扩张节奏。
+</div>
+
+<h2>竞争格局总结</h2>
+<div class="highlight-box">
+  药明康德凭借全链条一体化（从药物发现到商业化生产）建立了断层的竞争优势。第二梯队各有特色：凯莱英在连续性反应/绿色化学上领先，泰格在临床CRO上国内第一，康龙化成在实验室化学上布局广泛。<strong>核心风险是同质化竞争压低报价，但ADC/双抗等高端CDMO需求爆发提供了新的溢价空间。</strong>
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l10">
+<div class="tab-inner">
+
+<h2>周期位置</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">维度</th><th style="width:22%">状态</th><th>色标</th></tr>
+<tr>
+  <td>行业景气周期</td>
+  <td>加速期（2026Q1营收+18%）</td>
+  <td><span class="col-tag tag-green">景气上行</span></td>
+</tr>
+<tr>
+  <td>在手订单趋势</td>
+  <td>药明康德597亿（历史最高）</td>
+  <td><span class="col-tag tag-green">锁定增长</span></td>
+</tr>
+<tr>
+  <td>全球生物医药融资</td>
+  <td>2025年146.8亿美元+回温</td>
+  <td><span class="col-tag tag-yellow">回暖中</span></td>
+</tr>
+<tr>
+  <td>CXO板块PE</td>
+  <td>药明康德15x（历史20%分位）</td>
+  <td><span class="col-tag tag-green">低估</span></td>
+</tr>
+<tr>
+  <td>公募基金医药重仓</td>
+  <td>8.9%（仍低配）</td>
+  <td><span class="col-tag tag-yellow">低配</span></td>
+</tr>
+</table>
+</div>
+
+<div class="danger-box">
+  <strong>⚠ PE悖论检查</strong><br>
+  CXO PE低与创新药不同——CXO盈利稳定，PE低是真正的"低估值"，不是价值陷阱。药明康德PE 15x、凯莱英PE 20x、康龙化成PE 25x，在全球同行业中处于显著低估水平（对比LabCorp PE~35x, IQVIA PE~30x）。
+</div>
+
+<h2>估值水平（A股CXO vs 全球同业）</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>公司</th><th style="width:50px">PE</th><th style="width:50px">EV/EBITDA</th><th style="width:80px">市值</th><th>对比</th></tr>
+<tr>
+  <td><strong>药明康德</strong></td>
+  <td><span class="col-tag col-win">15x</span></td>
+  <td>~10x</td>
+  <td>2798亿</td>
+  <td><span class="col-tag col-win">全球最低估值CXO龙头</span></td>
+</tr>
+<tr>
+  <td><strong>凯莱英</strong></td>
+  <td><span class="col-tag col-win">20x</span></td>
+  <td>~13x</td>
+  <td>400亿</td>
+  <td><span class="col-tag col-warn">明显低于Lonza(PE~30x)</span></td>
+</tr>
+<tr>
+  <td><strong>康龙化成</strong></td>
+  <td><span class="col-tag col-warn">25x</span></td>
+  <td>~16x</td>
+  <td>800亿</td>
+  <td>合理偏低</td>
+</tr>
+<tr>
+  <td><strong>泰格医药</strong></td>
+  <td><span class="col-tag col-warn">30x</span></td>
+  <td>~18x</td>
+  <td>600亿</td>
+  <td>合理</td>
+</tr>
+<tr>
+  <td>LabCorp（美国）</td>
+  <td><span class="col-tag col-info">35x</span></td>
+  <td>~22x</td>
+  <td>—</td>
+  <td>同业参考</td>
+</tr>
+<tr>
+  <td>IQVIA（美国）</td>
+  <td><span class="col-tag col-info">30x</span></td>
+  <td>~20x</td>
+  <td>—</td>
+  <td>同业参考</td>
+</tr>
+<tr>
+  <td>Lonza（瑞士）</td>
+  <td><span class="col-tag col-info">30x</span></td>
+  <td>~20x</td>
+  <td>—</td>
+  <td>同业参考</td>
+</tr>
+</table>
+</div>
+
+<h2>政策环境</h2>
+<div class="summary-box">
+  ✅ <strong>中国政策鼓励创新药</strong> — 间接利好CXO<br><br>
+  ⚠ <strong>美国生物安全法案(S.3558)</strong> — 若通过将限制美国药企与部分中国CXO合作。当前法案仍在审议中，药明康德被点名。但华大基因/H公司已有前例，药明康德也在做应对（拆分WuXi ATU等）。<br><br>
+  ✅ <strong>全球产能向亚洲转移</strong> — 大趋势不变，中国工程师红利持续<br><br>
+  ✅ <strong>ADC/双抗等新模态爆发</strong> — 催生大量CDMO需求
+</div>
+
+<h2>买入清单</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:28%">条件</th><th style="width:16%">结果</th><th>备注</th></tr>
+<tr>
+  <td>周期位置：景气加速</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>2026Q1营收+18%，净利+22%</td>
+</tr>
+<tr>
+  <td>估值水平：历史低位</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>药明康德PE 15x全球最低，其他也在历史低位</td>
+</tr>
+<tr>
+  <td>政策环境：可控风险</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠</span></td>
+  <td>生物安全法案是尾部风险</td>
+</tr>
+<tr>
+  <td>竞争格局：龙头稳固</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>龙头地位稳固，格局清晰</td>
+</tr>
+<tr>
+  <td>增长驱动力：三轮驱动</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>研发投入+外包率+工程师红利</td>
+</tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <div style="font-size:16px;font-weight:700;margin-bottom:8px">综合判断：<span class="col-tag col-win" style="font-size:15px">买入</span></div>
+  <div style="margin-bottom:6px">CXO是当前A股性价比最高的赛道之一。药明康德PE 15x（全球CXO最低估值），在手订单597亿（锁定2-3年收入），毛利率持续提升（Q1达50.4%）。板块整体景气加速（2026Q1营收+18%），且公募基金仍低配。<strong>主要关注生物安全法案进展，但即使最坏情况发生，龙头也有应对预案。</strong></div>
+  <table style="font-size:12px;margin:6px 0;border:none;background:transparent">
+    <tr><td style="border:none;padding:3px 6px;background:transparent;width:90px;font-weight:600">仓位建议</td><td style="border:none;padding:3px 6px;background:transparent">CXO在医药总仓位中占比 <span class="col-tag col-win">20-30%</span>，当前可以超配药明康德</td></tr>
+  </table>
+  <div style="margin-top:8px;padding:8px;background:#e8f5e9;border-radius:4px;font-size:12px">
+    <strong>买入策略：</strong><br>
+    <span class="col-tag col-win">第一段(当前)</span> 药明康德：PE 15x，历史20%分位，在手订单597亿<br>
+    <span class="col-tag col-warn">第二段(等待)</span> 凯莱英：新兴业务增速70%，等待估值消化<br>
+    <span class="col-tag col-info">第三段(观察)</span> 康龙化成/泰格：景气确认后加仓
+  </div>
+</div>
+
+<h2>卖出信号</h2>
+<div class="danger-box">
+  <strong>出现以下信号考虑卖出：</strong><br>
+  <div style="margin-top:6px">
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px">1</span>
+    美国生物安全法案正式通过并限制药明康德<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">2</span>
+    药明康德在手订单增速放缓至<10%<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">3</span>
+    全球生物医药融资连续2季下滑<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">4</span>
+    龙头毛利率持续下滑（反映竞争加剧）
+  </div>
+</div>
+
+</div>
+</div>
+
+<div class="footer">报告生成日期：2026-07-09 | 数据来源：华福证券、公司年报、ClinicalTrials.gov | 本报告不构成投资建议</div>
+
+</div>
+
+<script>
+var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+var contents = document.querySelectorAll('.tab-content');
+btns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    contents.forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    var tab = btn.getAttribute('data-tab');
+    document.getElementById('tab-' + tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
