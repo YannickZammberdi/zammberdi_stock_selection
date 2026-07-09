@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>药明康德(603259) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>药明康德（603259）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026-07-09 | 数据来源：FY2025 年报 + 2026Q1 季报</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>无锡药明康德新药开发股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>603259.SH / 2359.HK</td></tr>
+  <tr><td>所属行业</td><td>CXO（医药研发外包）</td></tr>
+  <tr><td>L5分类</td><td><strong>成长型（非周期股）</strong></td></tr>
+  <tr><td>行业地位</td><td>全球CXO龙头，中国最大、全球第二的医药研发服务平台</td></tr>
+  <tr><td>FY2025营收</td><td><strong>454.6亿（+15.8%，持续经营+21.4%）</strong></td></tr>
+  <tr><td>FY2025归母净利润</td><td><strong>191.5亿（+102.7%）</strong></td></tr>
+  <tr><td>FY2025扣非净利润</td><td><strong>132.4亿（+32.6%）</strong></td></tr>
+  <tr><td>FY2025经营现金流</td><td><strong>172亿（+38.7%）</strong></td></tr>
+  <tr><td>总资产</td><td>1031亿（2025年末）</td></tr>
+  <tr><td>归母净资产</td><td>~820亿</td></tr>
+  <tr><td>ROE(扣非)</td><td><strong>~16%</strong></td></tr>
+  <tr><td>2026Q1在手订单</td><td><strong>597.7亿（+23.6%）</strong></td></tr>
+</table>
+<p style="font-size:13px;color:#666;margin:4px 0 12px;">行业类型标注：<strong>非周期股</strong>（成长型），采用非周期股评分体系</p>
+
+<h2>综合评分（非周期股评分体系）</h2>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">扣非ROE ~16% ≥ 15%</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">高利润型——净利率~37%，权益乘数1.3</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">CFO 172亿 / 扣非净利132亿 = 1.3 ≥ 1.0</td></tr>
+  <tr><td>营收增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">持续经营+21.4% ≥ 10%</td></tr>
+  <tr><td>利润增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">扣非+32.6% ≥ 15%</td></tr>
+  <tr><td>负债率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">21.08% < 40%，极低</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">货币资金351亿 >> 短期借款60亿，极其充裕</td></tr>
+  <tr><td>毛利率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">50.4% ≥ 30%且持续提升</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">PE(扣非TTM) ~15x，近5年5.6%分位，显著低于合理区间</td></tr>
+  <tr><td>FCF（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">CFO 172亿 - CAPEX ~35亿 = 137亿自由现金流，持续为正</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">100/100</td><td style="text-align:left">品质优秀（100/100分）</td></tr>
+</table>
+
+<div class="verdict verdict-ok">品质优秀（100/100分）</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>药明康德作为全球CXO龙头，FY2025实现营收454.6亿（持续经营+21.4%），扣非净利润132.4亿（+32.6%），经营现金流172亿（+38.7%），各项指标全面优秀。2026Q1营收加速至+39.4%（持续经营），在手订单597.7亿锁定2-3年收入，业绩确定性极强。<br><br>
+  <strong>核心优势：</strong>① 全球CXO龙头，全链条CRDMO模式不可复制，客户留存率>95%；② 在手订单597.7亿（+23.6%），覆盖2-3年收入，业绩确定性极强；③ 盈利质量极优：CFO>净利润，FCF持续137亿+，资产负债率仅21%；④ PE 15x处于历史底部，全球CXO中估值最低。<br><br>
+  <strong>核心风险：</strong>① 美国生物安全法案(S.3558)：若通过将限制部分美国客户合作，但已做应对（剥离ATU等）；② Q1营收含部分汇率和一次性因素，需关注持续性；③ 全球生物医药融资若大幅萎缩→影响前端业务；④ 大客户集中度风险（但实际分散）。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025 + 2026Q1）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>项目</th><th>FY2025</th><th>同比</th><th>2026Q1</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>454.6亿</td><td>+15.8%</td><td>124.36亿</td><td>+28.8%</td><td class="good">持续经营+39.4%，加速增长</td></tr>
+  <tr><td>持续经营收入</td><td>—</td><td>+21.4%</td><td>—</td><td>+39.4%</td><td class="good">核心主业增速亮眼</td></tr>
+  <tr><td>归母净利润</td><td>191.5亿</td><td>+102.7%</td><td>46.52亿</td><td>+26.7%</td><td class="neutral">含非经常性收益（出售联营股权）</td></tr>
+  <tr><td>扣非净利润</td><td>132.4亿</td><td>+32.6%</td><td>42.76亿</td><td>+83.6%</td><td class="good">核心利润高增</td></tr>
+  <tr><td>毛利率</td><td>47.64%</td><td>+6.16pct</td><td>50.4%</td><td>+8.4pct</td><td class="good">持续改善</td></tr>
+  <tr><td>净利率(扣非)</td><td>29.1%</td><td>—</td><td>34.4%</td><td>—</td><td class="good">盈利能力极强</td></tr>
+  <tr><td>三费占比</td><td>10.4%</td><td>—</td><td>9.3%</td><td>—</td><td class="good">控制良好</td></tr>
+  <tr><td>Q4营收</td><td>126.0亿</td><td>—</td><td>—</td><td>—</td><td class="neutral">季节性正常</td></tr>
+  <tr><td>Q4净利润(扣非)</td><td>37.2亿</td><td>—</td><td>—</td><td>—</td><td class="neutral">Q4正常</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>利润表解读：</strong>2025年营收增速15.8%受到ATU出售等业务剥离影响，持续经营业务实际增长21.4%更能反映核心主业增速。2026Q1营收加速至+28.8%（持续经营+39.4%），毛利率首次突破50%大关达50.4%，扣非净利润+83.6%，盈利能力全面加速提升。三费占比从10.4%降至9.3%，费用控制优秀。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>项目</th><th>FY2025末</th><th>2026Q1末</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td>351亿</td><td>359亿</td><td class="good">极其充裕</td></tr>
+  <tr><td>应收账款</td><td>72.6亿</td><td>77.0亿</td><td class="neutral">正常水平</td></tr>
+  <tr><td>存货</td><td>89.9亿</td><td>99.7亿</td><td class="neutral">随在手订单增长</td></tr>
+  <tr><td>短期借款</td><td>59.9亿</td><td>59.8亿</td><td class="good">极低</td></tr>
+  <tr><td>长期借款</td><td>~15亿</td><td>~15亿</td><td class="good">极低</td></tr>
+  <tr><td>总负债</td><td>~290亿</td><td>~226亿</td><td class="good">下降趋势</td></tr>
+  <tr><td>净资产</td><td>~740亿</td><td>~848亿</td><td class="good">强劲增长</td></tr>
+  <tr><td>资产负债率</td><td>28.1%</td><td>21.08%</td><td class="good">极低</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>公司资产负债率从28.1%进一步降至21.08%，在医药行业属于极低水平。货币资金359亿远超短期借款59.8亿，短期流动性极其充裕。净资产从740亿增长至848亿，体现了强劲的内生增长能力。整体财务结构极其健康，几乎无债务风险。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>项目</th><th>FY2025</th><th>2026Q1</th><th>评价</th></tr>
+  <tr><td>CFO</td><td>172.0亿</td><td>35.96亿</td><td class="good">极其强劲</td></tr>
+  <tr><td>CFI</td><td>-19.5亿</td><td>-53.5亿</td><td class="neutral">Q1投资支出增加（理财+产能建设）</td></tr>
+  <tr><td>CFF</td><td>+11.2亿</td><td>-0.75亿</td><td class="good">融资活动净额较小</td></tr>
+  <tr><td>CFO/扣非净利</td><td>1.30</td><td>0.84</td><td class="good">年度>1，满足100%真金白银</td></tr>
+  <tr><td>FCF(CFO-CAPEX)</td><td>137亿+</td><td>~24亿</td><td class="good">现金流极其健康</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>CFO 172亿是扣非净利润的1.3倍，意味着每1元利润对应1.3元现金流入，利润含金量极为扎实。FCF（自由现金流）137亿+，说明公司不仅盈利能力极强，还有充足的现金用于分红、回购和投资。Q1 CFI支出增加主因理财配置和产能建设，是主动管理行为而非被迫烧钱。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>公司值</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE(扣非)</td><td><strong>~16%</strong></td><td>> 15%</td><td class="good">优秀</td></tr>
+  <tr><td>毛利率</td><td><strong>50.4%</strong></td><td>> 40%</td><td class="good">优秀，持续提升</td></tr>
+  <tr><td>净利率(扣非)</td><td><strong>34.4%</strong></td><td>> 15%</td><td class="good">极高</td></tr>
+  <tr><td>营收增速</td><td><strong>21.4%</strong>(持续经营)</td><td>> 10%</td><td class="good">优秀</td></tr>
+  <tr><td>利润增速(扣非)</td><td><strong>+32.6%</strong></td><td>> 15%</td><td class="good">优秀</td></tr>
+  <tr><td>CFO/净利</td><td><strong>1.30</strong></td><td>> 1</td><td class="good">现金质量极优</td></tr>
+  <tr><td>负债率</td><td><strong>21.08%</strong></td><td>< 40%</td><td class="good">极低</td></tr>
+  <tr><td>分红率</td><td><strong>~30%</strong></td><td>持续分红</td><td class="neutral">适中</td></tr>
+</table>
+
+<h3>3.2 分业务分析（2025年度）</h3>
+<table>
+  <tr><th>业务板块</th><th>营收</th><th>占比</th><th>增速</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td>化学业务</td><td>364.7亿</td><td>80%</td><td>+25.5%</td><td>52.8%</td><td class="good">核心引擎，小分子D&M +80.1%</td></tr>
+  <tr><td>测试业务</td><td>40.4亿</td><td>9%</td><td>+4.7%</td><td>35.5%</td><td class="neutral">稳健</td></tr>
+  <tr><td>生物学业务</td><td>26.8亿</td><td>6%</td><td>+5.2%</td><td>36.7%</td><td class="neutral">稳健</td></tr>
+  <tr><td>TIDES(多肽/寡核苷酸)</td><td>23.8亿(Q1)</td><td>—</td><td>+6.1%</td><td>—</td><td class="good">全年指引~40%增长</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>化学业务是绝对核心（营收占比80%），增速高达25.5%，其中小分子D&M业务增速+80.1%表现极其亮眼。TIDES业务（多肽/寡核苷酸）受益于GLP-1药物需求爆发，全年指引~40%增长，是未来2年主要增长引擎。测试和生物学业务增速较慢但保持稳健。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="bad">🔴 危险</td><td>美国生物安全法案(S.3558)：潜在限制美国客户合作</td><td>需持续关注法案进展</td></tr>
+  <tr><td class="neutral">🟡 关注</td><td>2025年归母净利润含大额非经常性收益（出售联营股权）</td><td>需看扣非</td></tr>
+  <tr><td class="neutral">🟡 关注</td><td>短期借款59.8亿有所增加</td><td>幅度可控，但仍需跟踪</td></tr>
+  <tr><td class="good">🟢 正面</td><td>资产负债率21%极低</td><td>财务极其健康</td></tr>
+  <tr><td class="good">🟢 正面</td><td>CFO持续>净利润</td><td>利润含金量极高</td></tr>
+  <tr><td class="good">🟢 正面</td><td>在手订单597.7亿锁定2-3年</td><td>业绩确定性极强</td></tr>
+  <tr><td class="good">🟢 正面</td><td>毛利率持续提升</td><td>产品结构持续优化</td></tr>
+</table>
+
+<div class="verdict verdict-ok">✅ L2综合判定：无重大排雷项，财务极其健康</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>值</th><th>备注</th></tr>
+  <tr><td>股价(约)</td><td><strong>96元</strong></td><td>2026年7月</td></tr>
+  <tr><td>总市值</td><td><strong>~2800亿</strong></td><td>A+H合计</td></tr>
+  <tr><td>PE(TTM 扣非)</td><td><strong>~15x</strong></td><td>近5年5.6%分位</td></tr>
+  <tr><td>PE(2026E)</td><td><strong>~16x</strong></td><td>基于一致预期</td></tr>
+  <tr><td>PB</td><td><strong>3.62</strong></td><td>分位49%</td></tr>
+  <tr><td>PS</td><td><strong>~6x</strong></td><td>对于+39%增速合理偏低</td></tr>
+  <tr><td>股息率</td><td><strong>~1%</strong></td><td>适中</td></tr>
+</table>
+
+<h3>4.2 PE Band估值区间（非周期股用PE）</h3>
+<p style="font-size:13px;color:#666;">ROE>15%→合理PE参考区间：15-25x | 2026E一致预期EPS ≈ 6.0-6.5元</p>
+<table>
+  <tr><th>情景</th><th>PE取值</th><th>对应股价</th><th>vs现价96元</th></tr>
+  <tr><td>悲观(历史20%分位)</td><td>12x</td><td>72元</td><td class="bad">-25%</td></tr>
+  <tr><td>保守(近5年5.6%分位=当前)</td><td>15x</td><td>96元</td><td class="neutral">—</td></tr>
+  <tr><td>中性(合理PE)</td><td>20x</td><td>128元</td><td class="good">+33%</td></tr>
+  <tr><td>券商目标(光大)</td><td>18x</td><td>115元</td><td class="good">+20%</td></tr>
+  <tr><td>当前价</td><td>—</td><td>96元</td><td>—</td></tr>
+  <tr><td>历史高位(近5年80%分位)</td><td>25x</td><td>160元</td><td class="good">+67%</td></tr>
+</table>
+
+<h3>4.3 历史PE分位（近5年扣非PE）</h3>
+<table>
+  <tr><th>区间</th><th>最大值</th><th>80%分位</th><th>50%分位</th><th>20%分位</th><th>最小值</th><th>当前</th></tr>
+  <tr><td>PE扣非</td><td>25x</td><td>20x</td><td>17x</td><td>13x</td><td>11x</td><td class="good">15x</td></tr>
+  <tr><td>PE分位</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>近5年5.6%分位</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值总结：</strong>药明康德PE(扣非TTM) ~15x，处于近5年5.6%分位，是上市以来最低估值区域之一。对比全球同业（LabCorp PE 35x, IQVIA PE 30x, Lonza PE 30x），药明康德估值折价超过50%。<strong>当前估值显著低估，具备安全边际。</strong>
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表（近三年趋势）</h3>
+<table>
+  <tr><th>年份</th><th>净利润率</th><th>资产周转率</th><th>权益乘数</th><th>ROE</th><th>评价</th></tr>
+  <tr><td>2023</td><td>22%</td><td>0.5x</td><td>1.3x</td><td>~14%</td><td>正常水平</td></tr>
+  <tr><td>2024</td><td>24%</td><td>0.5x</td><td>1.3x</td><td>~16%</td><td>改善</td></tr>
+  <tr><td>2025(扣非)</td><td>29.1%</td><td>0.44x</td><td>1.39x</td><td>~16%</td><td>利润率显著提升</td></tr>
+</table>
+<p style="font-size:12px;color:#888;">Note: 2025扣非净利润率=132.4亿/454.6亿=29.1%；资产周转率=454.6/1031=0.44x；权益乘数=1/(1-28%)=1.39</p>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：高利润型</strong><br>
+  净利率29.1%（扣非）处于极高水平，权益乘数1.39（低杠杆），属于最优质的"高利润型"赚钱模式。<strong>不靠杠杆，全靠真本事赚钱。</strong>
+</div>
+
+<h3>5.2 去杠杆ROA</h3>
+<div class="highlight-box">
+  净利率 × 周转率 = 29.1% × 0.44 = <strong>12.8%</strong><br>
+  意味着去掉杠杆后每1元资产产生0.128元净利润，回报水平极高。
+</div>
+
+<h3>5.3 杜邦核心结论</h3>
+<div class="summary-box">
+  <strong>药明康德的ROE驱动纯粹来自高利润率（29.1%），低杠杆（1.39x），健康可持续。</strong>近3年利润率持续提升（22%→24%→29%），反映CRDMO模式下临床后期项目占比提高带来的结构性毛利率改善。<strong>这是典型的好公司杜邦画像。</strong>
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与特征（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：成长型（非周期股）</strong><br>
+  <strong>判断依据：</strong>CXO行业受益于全球医药研发投入增长+外包渗透率提升+中国工程师红利，具有长期结构性增长逻辑。药明康德作为全球龙头，行业增长β+份额提升α双击。<br><br>
+  <strong>非周期属性：</strong>医药研发外包与药企研发投入高度相关，而大型药企的研发预算具有刚性，即使在经济下行期也不会大幅削减。因此CXO呈现弱周期甚至非周期特征。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th></tr>
+  <tr><td>市场格局</td><td><strong>药明康德CR1~30%，CR3~45%</strong>，龙头地位稳固，国内无实质对手</td></tr>
+  <tr><td>核心壁垒</td><td><strong>极高</strong>——客户粘性极高（留存率>95%）、全链条一体化的CRDMO能力不可复制、规模成本优势</td></tr>
+  <tr><td>客户壁垒</td><td><strong>极强</strong>——全球6000+活跃客户，涵盖Top 20药企中的19家</td></tr>
+  <tr><td>技术壁垒</td><td><strong>高</strong>——CGT CDMO、ADC CDMO、多肽合成等领域技术领先</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  <strong>阶段：成长期</strong><br>
+  中国CXO渗透率仍有提升空间（目前~35% vs 欧美~50%），ADC/双抗/多肽等新技术催生新需求。药明康德在多个新兴赛道（TIDES、CGT）布局领先，有望享受新一波技术红利。
+</div>
+
+<h3>6.4 成长股成色检验（四步法）</h3>
+<table>
+  <tr><th>步骤</th><th>检验内容</th><th>数据</th><th>判定</th></tr>
+  <tr><td>① 营收</td><td>有没有实在的生意？</td><td>454.6亿营收，持续经营+21.4%增速</td><td class="good">✅ 过关</td></tr>
+  <tr><td>② 毛利率</td><td>产品竞争力如何？</td><td>50.4%且持续提升</td><td class="good">✅ 过关</td></tr>
+  <tr><td>③ CFO</td><td>能不能自己造血？</td><td>CFO 172亿 >> 净利润，自我造血能力极强</td><td class="good">✅ 过关</td></tr>
+  <tr><td>④ PS</td><td>梦想溢价多少？</td><td>PS ~6x，对于持续经营+39.4%增长的龙头，估值合理偏低</td><td class="good">✅ 过关</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>四步法结论：</strong>营收、毛利率、CFO、PS全部过关。药明康德是典型的"真成长股"——有实在的生意、有竞争力的产品、极强的自我造血能力、估值合理。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>成长型（非周期）</td><td>PE</td><td>PS（增速高时）、PEG、FCF</td><td class="good">✅ 匹配——CXO盈利稳定，PE可直接使用。当前PE 15x处于历史底部区间</td></tr>
+</table>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>成长型CXO龙头，全球第二，客户粘性极高。<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 16%，高利润型，CFO/净利1.30，极其健康。<br>
+  <strong>Step 3 - 估值判断：</strong>PE 15x（近5年5.6%分位），全球CXO最低估值。<br>
+  <strong>Step 4 - 风险排查：</strong>美国生物安全法案是主要风险，但已做应对。<br>
+  <strong>Step 5 - 结论：</strong>好公司（✓）+ 好价格（✓）= 值得买入。<br>
+  <strong>Step 6 - 跟踪：</strong>在手订单增速、生物安全法案进展、毛利率趋势。
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>CXO行业成长期，全球研发投入+外包率提升+工程师红利</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓</td><td>ROE 16%，毛利率50%+持续提升，CFO>净利润</td></tr>
+  <tr><td>③ 好价格</td><td class="good">✓</td><td>PE 15x近5年5.6%分位，全球CXO最低估值，PEG<0.5</td></tr>
+</table>
+
+<h3>7.3 三个陷阱排查</h3>
+<div class="danger-box">
+  <strong>☐ 低PE+低增长+高负债=价值陷阱</strong> → ❌ 未命中（高增长+极低负债）<br>
+  <strong>☐ 低PE+周期顶点=周期陷阱</strong> → ❌ 未命中（CXO非典型周期行业）<br>
+  <strong>☐ 高PE+高增速但CFO为负=烧钱陷阱</strong> → ❌ 未命中（PE低+CFO>净利润）
+</div>
+
+<h3>7.4 风险评估</h3>
+
+<h3>7.4.1 管理层与治理</h3>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力</td><td class="good">好</td><td>创始人Ge Li（李革）行业领袖，管理层稳定</td></tr>
+  <tr><td>股权结构</td><td class="good">强</td><td>管理层持股比例合理，港股+A股双重上市</td></tr>
+  <tr><td>关联交易</td><td class="good">无</td><td>治理透明度高</td></tr>
+  <tr><td>资本配置</td><td class="good">合理</td><td>持续投入产能建设，适时分拆子公司(WuXi XDC)</td></tr>
+</table>
+
+<h3>7.4.2 盈利可持续性</h3>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是价？</td><td>量驱动</td><td>在手订单+23.6%，分子数持续增加</td></tr>
+  <tr><td>涨价能否持续？</td><td class="good">能</td><td>技术溢价（ADC CDMO溢价30-50%）</td></tr>
+  <tr><td>非经常性利润占比</td><td class="neutral">中</td><td>2025年含大额非经常，但扣非增速32.6%</td></tr>
+  <tr><td>大客户集中度</td><td class="good">分散</td><td>全球6000+活跃客户，无单一客户依赖</td></tr>
+  <tr><td>政策依赖度</td><td class="neutral">中</td><td>美国生物安全法案需关注</td></tr>
+</table>
+
+<h3>7.5 前景展望</h3>
+
+<h3>7.5.1 正向驱动</h3>
+<div class="highlight-box">
+  1. GLP-1及相关多肽药物需求爆发→TIDES业务全年指引~40%增长<br>
+  2. ADC/双抗CDMO需求爆发→新产能提前建设<br>
+  3. 在手订单597.7亿→业绩确定性极强
+</div>
+
+<h3>7.5.2 负向拖累</h3>
+<div class="summary-box">
+  1. 美国生物安全法案(S.3558)潜在影响美国客户合作<br>
+  2. 前端业务（Discovery）受全球生物医药融资额影响
+</div>
+
+<h3>7.5.3 三情景简表</h3>
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>EPS(2026E)</th><th>PE区间</th><th>预期股价</th></tr>
+  <tr><td class="good">乐观</td><td>生物安全法案不通过+订单持续高增</td><td>6.5元</td><td>20x</td><td>130元</td></tr>
+  <tr><td class="neutral">中性</td><td>法案悬而未决+正常增长</td><td>6.0元</td><td>18x</td><td>108元</td></tr>
+  <tr><td class="bad">悲观</td><td>法案通过+部分客户流失</td><td>5.0元</td><td>12x</td><td>60元</td></tr>
+</table>
+<p style="font-size:13px;color:#666;">概率判断：中性50%，乐观30%，悲观20%</p>
+
+<h3>7.6 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 美国生物安全法案到底有多大影响？药明康德的应对策略（剥离ATU等）够吗？<br>
+  2. 当前PE 15x是全球CXO最低估值，这个折价合理性如何？<br>
+  3. 如果现在买入，核心回报来源是估值修复（PE从15x到20x）还是盈利增长？<br>
+  4. 什么情况下你会清仓？——生物安全法案通过、在手订单增速转负、毛利率趋势向下
+</div>
+
+</div></div>
+
+<div class="footer">
+   免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+   数据来源：药明康德FY2025年报 + 2026Q1季报
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>
