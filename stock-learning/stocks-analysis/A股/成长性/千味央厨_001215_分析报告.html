@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>千味央厨(001215) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>千味央厨（001215）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026-07-12 | 数据来源：FY2025 年报 + 2026Q1 季报</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>郑州千味央厨食品股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>001215.SZ</td></tr>
+  <tr><td>所属行业</td><td>速冻食品制造（餐饮供应链 B2B）</td></tr>
+  <tr><td>行业地位</td><td>国内餐饮供应链速冻面米制品龙头，油条品类市占率领先</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>18.99 亿（+1.64%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>0.64 亿（-24.04%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>2.10 亿（+58.16%）</strong></td></tr>
+  <tr><td>总资产</td><td>24.15 亿</td></tr>
+  <tr><td>归母净资产</td><td>18.36 亿</td></tr>
+  <tr><td>ROE</td><td>3.39%</td></tr>
+</table>
+
+<p style="font-size:13px;color:#666;margin:4px 0 2px"><strong>行业类型：非周期股（消费行业——速冻食品餐饮供应链）</strong></p>
+<p style="font-size:13px;color:#666;margin-bottom:8px">采用非周期股评分体系（消费行业属于非周期，按成长/防御/价值统一框架评分）</p>
+
+<h2>综合评分（百分制）</h2>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">3.39%，< 5%</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="neutral" style="font-weight:bold;font-size:15px">3</td><td style="text-align:left">均衡偏周转型——净利率3.37%低+周转0.79中等+杠杆1.32低</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">3.31 ≥ 1.0，现金质量极高</td></tr>
+  <tr><td>营收增长（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">+1.64%，≥ 0%但偏低</td></tr>
+  <tr><td>利润增长（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">-24.04%，负增长</td></tr>
+  <tr><td>负债率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">24.04% < 40%，极低</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">货币资金4.47亿 >> 短期借款0.66亿，充裕覆盖</td></tr>
+  <tr><td>毛利率（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">22.71% ≥ 15%，但微降0.94pct</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">PE ~59x严重偏高，ROE 3.39%合理PE < 10x</td></tr>
+  <tr><td>自由现金流（5分）</td><td class="neutral" style="font-weight:bold;font-size:15px">3</td><td style="text-align:left">FCF约-0.18亿，小幅为负，但历史看偶尔为负</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">52/100</td><td style="text-align:left">不及格（52/100分）</td></tr>
+</table>
+
+<div class="verdict verdict-bad">不及格（52/100分）</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>千味央厨是国内餐饮供应链速冻面米制品龙头，油条等核心单品市占率高，FY2025 营收微增1.64%但净利润下降24%，主因餐饮行业需求疲软、竞争加剧和线上推广费用增加。公司财务结构极为稳健（负债率24%、货币资金充裕），经营现金流大幅改善（+58%）至2.10亿，利润含金量极高（CFO/净利3.31）。但ROE仅3.39%、利润负增长、估值偏高（PE ~59x），在消费板块中性价比一般。<br><br>
+  <strong>核心优势：</strong>① 餐饮供应链龙头地位稳固，大客户（百胜/华莱士/海底捞等）深度绑定（188家，+8.7%）；② 财务极度健康——负债率24%、现金充裕、无重大偿债风险；③ 经营现金流2.10亿同比+58%，CFO/净利3.31，利润含金量极高；④ 2026Q1营收同比+23.83%明显复苏，拐点信号出现。<br><br>
+  <strong>核心风险：</strong>① ROE仅3.39%，资本回报率极低；② 净利润连续两年大幅下滑（2024 -37.7%，2025 -24%），盈利承压；③ 主食类、小食类核心品类收入下滑（分别-2.8%、-7.4%）；④ 估值PE ~59x，对应低增长低ROE严重偏高。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>18.99 亿</td><td>18.68 亿</td><td>+1.64%</td><td class="neutral">⚠ 微增</td></tr>
+  <tr><td>归母净利润</td><td><strong>0.64 亿</strong></td><td>0.84 亿</td><td><strong>-24.04%</strong></td><td class="bad">❌ 大幅下滑</td></tr>
+  <tr><td>扣非净利润</td><td><strong>0.62 亿</strong></td><td>0.83 亿</td><td><strong>-24.62%</strong></td><td class="bad">❌ 大幅下滑</td></tr>
+  <tr><td>毛利率</td><td><strong>22.71%</strong></td><td>23.65%</td><td>-0.94pct</td><td class="neutral">⚠ 小幅下降</td></tr>
+  <tr><td>归母净利率</td><td><strong>3.35%</strong></td><td>4.48%</td><td>-1.13pct</td><td class="bad">❌ 偏低</td></tr>
+  <tr><td>期间费用率</td><td><strong>16.87%</strong></td><td>16.24%</td><td>+0.63pct</td><td class="neutral">⚠ 略升</td></tr>
+  <tr><td>2025Q1 营收</td><td>4.70 亿</td><td>4.63 亿</td><td>+1.50%</td><td class="neutral">持平</td></tr>
+  <tr><td>2025Q2 营收</td><td>4.15 亿</td><td>4.29 亿</td><td>-3.14%</td><td class="bad">❌ 下滑</td></tr>
+  <tr><td>2025Q3 营收</td><td>4.92 亿</td><td>4.72 亿</td><td>+4.30%</td><td class="neutral">⚠ 微增</td></tr>
+  <tr><td>2025Q4 营收</td><td>5.21 亿</td><td>5.05 亿</td><td>+3.28%</td><td class="neutral">⚠ 微增</td></tr>
+  <tr><td>2025Q4 净利润</td><td><strong>0.10 亿</strong></td><td>0.24 亿</td><td><strong>-58.8%</strong></td><td class="bad">❌ 大幅下降</td></tr>
+  <tr><td>2026Q1 营收</td><td>5.83 亿</td><td>4.70 亿</td><td>+23.83%</td><td class="good">✅ 强劲复苏</td></tr>
+  <tr><td>2026Q1 净利润</td><td>0.23 亿</td><td>0.21 亿</td><td>+5.40%</td><td class="neutral">⚠ 微增</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>FY2025营收18.99亿仅微增1.64%，餐饮行业整体需求疲软是主因。利润端压力更大——归母净利润0.64亿同比-24%，Q4单季净利仅0.10亿（同比-58.8%）。毛利率从23.65%降至22.71%（-0.94pct），销售费用率从5.40%升至5.98%（线上推广增加）。积极信号是2026Q1营收同比+23.83%，春节+低基数下强劲反弹，净利+5.4%止跌回正。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td><strong>4.47 亿</strong></td><td class="good">✅ 充裕</td></tr>
+  <tr><td>应收账款</td><td><strong>1.20 亿</strong></td><td class="good">✅ 占营收6.3%，合理偏低</td></tr>
+  <tr><td>存货</td><td><strong>2.55 亿</strong></td><td class="good">✅ 占资产10.6%，正常</td></tr>
+  <tr><td>短期借款</td><td><strong>0.66 亿</strong></td><td class="good">✅ 极少，几乎无短债压力</td></tr>
+  <tr><td>长期借款</td><td><strong>~0.78 亿（2024末）→0.28亿（2025中）</strong></td><td class="good">✅ 持续降杠杆</td></tr>
+  <tr><td>资产负债率</td><td><strong>24.04%</strong></td><td class="good">✅ 极低</td></tr>
+  <tr><td>归母净资产</td><td>18.36 亿</td><td class="good">✅ 同比+0.79%</td></tr>
+  <tr><td>总资产</td><td>24.15 亿</td><td class="good">✅ 同比+4.04%</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>千味央厨的资产负债表堪称"教科书级别"的稳健——负债率仅24.04%，货币资金4.47亿远超短期借款0.66亿，基本没有短期偿债压力。应收账款仅1.20亿（占营收6.3%），回款能力强。存货2.55亿合理（速冻食品保质期短、周转快）。总资产24.15亿中净资产占18.36亿（76%），权益厚实。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>2.10 亿</strong></td><td>1.33 亿</td><td class="good">✅ 大幅改善+58.16%</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><strong>-2.29 亿</strong></td><td>-1.71 亿</td><td class="neutral">⚠ 资本开支2.28亿</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td><strong>-0.12 亿</strong></td><td>-0.02 亿</td><td class="neutral">⚠ 回购股份支出</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>3.31</strong></td><td>1.59</td><td class="good">✅ 利润含金量极高</td></tr>
+  <tr><td>自由现金流（FCF）</td><td><strong>-0.18 亿</strong></td><td>-0.38 亿</td><td class="neutral">⚠ 仍为负但改善</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>CFO 2.10亿同比+58%，是最大亮点——说明公司主业造血能力很强（CFO/净利3.31），利润下滑但现金流入反而大增，验证了应收账款控制和存货管理做得好。资本开支2.28亿（扩产+设备投入）导致FCF小幅为负-0.18亿，但较2024年的-0.38亿明显收窄。筹资现金流为负主要是回购股份（约0.50亿回购+0.70亿注销）。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>3.39%</strong></td><td>> 15% 优秀 / > 10% 及格</td><td class="bad">❌ 远不及格</td></tr>
+  <tr><td>毛利率</td><td><strong>22.71%</strong></td><td>稳定或提升</td><td class="neutral">⚠ 微降0.94pct</td></tr>
+  <tr><td>净利率</td><td><strong>3.35%</strong></td><td>> 10%</td><td class="bad">❌ 偏低</td></tr>
+  <tr><td>营收增长率</td><td><strong>+1.64%</strong></td><td>> 10%</td><td class="bad">❌ 低速增长</td></tr>
+  <tr><td>扣非增长率</td><td><strong>-24.62%</strong></td><td>正增长</td><td class="bad">❌ 负增长</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>3.31</strong></td><td>> 1</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>资产负债率</td><td><strong>24.04%</strong></td><td>制造业<60%</td><td class="good">✅ 极低</td></tr>
+  <tr><td>分红率</td><td><strong>0%（2025不派息，回购注销视为分红~170%）</strong></td><td>持续分红</td><td class="neutral">⚠ 2025年不派现金红利</td></tr>
+</table>
+
+<h3>3.2 分业务分析（2025年度）</h3>
+<table>
+  <tr><th>业务板块</th><th>营收（亿）</th><th>占比</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td>主食类（油条/蒸煎饺等）</td><td>8.88</td><td>46.75%</td><td>-2.82%</td><td><strong>25.02%</strong></td><td class="neutral">⚠ 核心品类下滑</td></tr>
+  <tr><td>小食类</td><td>4.06</td><td>21.40%</td><td>-7.38%</td><td>20.67%</td><td class="bad">❌ 明显下滑</td></tr>
+  <tr><td>烘焙甜品类</td><td>4.22</td><td>22.25%</td><td>+15.64%</td><td>20.57%</td><td class="good">✅ 高增长</td></tr>
+  <tr><td>冷冻调理菜肴类及其他</td><td>1.67</td><td>8.81%</td><td>+18.09%</td><td>17.76%</td><td class="good">✅ 增长</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>产品结构正在优化——传统主食（油条/蒸煎饺）和小食（芝麻球/地瓜丸等）受餐饮景气度拖累下滑，但烘焙甜品（蛋挞皮/华夫饼等）和冷冻调理菜肴（酸菜鱼/水煮肉片等预制菜）高增长，新品类正逐步成为第二增长曲线。2025年直营渠道+11%，大客户增至188家；经销渠道-6.19%，竞争激烈。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="bad">🔴 较高</td><td>归母净利润连续两年大幅下滑（-37.7%→-24.0%）</td><td>L1 利润表</td></tr>
+  <tr><td class="bad">🔴 较高</td><td>ROE 3.39%极低，资本回报率远不及格</td><td>L2 关键指标</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>核心品类主食/小食收入下滑，基本盘承压</td><td>L2 分业务分析</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>净利率仅3.35%，盈利能力薄弱</td><td>L1 利润表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>PE 59x极高，估值透支</td><td>L3 估值</td></tr>
+  <tr><td class="good">🟢 正面</td><td>CFO 2.10亿同比+58%，现金造血能力极强</td><td>L1 现金流量表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>资产负债率24%，财务极度稳健</td><td>L1 资产负债表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>2026Q1营收+23.83%，复苏势头明显</td><td>L1 利润表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>烘焙甜品+冷冻调理菜肴高增长，结构优化</td><td>L2 分业务分析</td></tr>
+  <tr><td class="good">🟢 正面</td><td>大客户增至188家，直营渠道+11.08%</td><td>年报</td></tr>
+</table>
+
+<div class="verdict verdict-bad">⚠ L2综合判定：不及格（ROE 3.39%、利润负增长，但财务健康、现金流优秀）</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>股价（2026.6.26）</td><td><strong>39.17 元</strong></td><td>涨停，近期震荡</td></tr>
+  <tr><td>总市值</td><td><strong>~38 亿</strong></td><td>流通市值~38亿</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>~58.8x</strong></td><td>基于2025 EPS 0.66元</td></tr>
+  <tr><td>PE（TTM扣非）</td><td><strong>~60.7x</strong></td><td>基于扣非EPS 0.64元</td></tr>
+  <tr><td>PE（2026E）</td><td><strong>~44x</strong></td><td>基于一致预期EPS ~0.89元</td></tr>
+  <tr><td>PB</td><td><strong>~2.05x</strong></td><td>基于每股净资产18.90元</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~2.0x</strong></td><td>市销率</td></tr>
+  <tr><td>PCF</td><td><strong>~18.1x</strong></td><td>基于CFO 2.10亿</td></tr>
+  <tr><td>股息率</td><td><strong>0%</strong></td><td>2025年不派发现金红利</td></tr>
+</table>
+
+<h3>4.2 PE Band估值区间</h3>
+<p style="font-size:13px;color:#666;">ROE 3.39% → 合理PE参考区间：< 10x | 2026E一致预期EPS ≈ 0.89元</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs现价39.17元</th></tr>
+  <tr><td>悲观</td><td>5x</td><td>4.5 元</td><td class="bad">-89%</td></tr>
+  <tr><td>保守</td><td>10x</td><td>8.9 元</td><td class="bad">-77%</td></tr>
+  <tr><td>中性</td><td>20x</td><td>17.8 元</td><td class="bad">-55%</td></tr>
+  <tr><td>券商目标（中位）</td><td>46x</td><td>40.9 元</td><td class="neutral">+4%</td></tr>
+  <tr><td>当前价</td><td>~44x</td><td>39.2 元</td><td>—</td></tr>
+  <tr><td>历史高位</td><td>83x</td><td>73.9 元</td><td>+89%</td></tr>
+</table>
+
+<h3>4.3 历史PE区间</h3>
+<table>
+  <tr><th>指标</th><th>数值</th></tr>
+  <tr><td>PE（TTM）最大值</td><td>83.2x</td></tr>
+  <tr><td>PE（TTM）80%分位</td><td>60.1x</td></tr>
+  <tr><td>PE（TTM）50%分位</td><td>38.9x</td></tr>
+  <tr><td>PE（TTM）20%分位</td><td>24.1x</td></tr>
+  <tr><td>PE（TTM）最小值</td><td>15.4x</td></tr>
+  <tr><td>当前PE（TTM）</td><td class="bad">~58.8x（约80%分位，偏高）</td></tr>
+</table>
+<p style="font-size:13px;color:#666;">数据来源：理杏仁，上市以来（2021年9月至今）历史PE分位</p>
+
+<div class="danger-box">
+  <strong>估值风险警示：</strong><br>
+  ① 当前PE ~59x处于历史80%分位附近，仍属偏高区域；<br>
+  ② 以ROE 3.39%对应的合理PE <10x计算，合理股价仅<9元，现价严重透支；<br>
+  ③ 券商2026E一致预期PE ~44x对应目标价~40元，仅略高于现价，上行空间有限；<br>
+  ④ 2025年净利率仅3.35%且利润负增长，无法支撑当前估值水平；<br>
+  ⑤ 但PS仅2.0x在食品行业中不算极端，市场给予"餐饮供应链复苏+新品类增长"的预期溢价。
+</div>
+
+<div class="highlight-box">
+  <strong>估值总结：</strong>千味央厨当前PE ~59x，以传统PE估值法看严重高估。但食品行业常用PS估值——PS 2.0x在速冻食品板块中处于中等水平（安井食品PS ~2.5x，三全食品PS ~1.5x）。市场实际上是用"2026年复苏预期"来定价——若2026年净利润恢复到~0.87亿（一致预期），PE将降至~44x；若2027年进一步恢复至~1.04亿，PE降至~37x。公司的核心矛盾在于：低ROE（3.39%）是否能随着餐饮复苏显著改善？2026Q1营收+23.83%是乐观信号，但净利率能否从3.35%回升至4-5%是关键。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>净利润率</td><td>7.06%</td><td>4.48%</td><td><strong>3.35%</strong></td><td class="bad">⬇ 持续下降</td></tr>
+  <tr><td>资产周转率</td><td>1.05</td><td>0.80</td><td><strong>0.79</strong></td><td class="neutral">➡ 基本持平</td></tr>
+  <tr><td>权益乘数</td><td>1.49</td><td>1.27</td><td><strong>1.32</strong></td><td class="neutral">➡ 稳定低杠杆</td></tr>
+  <tr><td><strong>ROE</strong></td><td><strong>11.90%</strong></td><td><strong>4.80%</strong></td><td><strong>3.39%</strong></td><td class="bad">⬇ 大幅下滑</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>7.41%</td><td>3.58%</td><td><strong>2.65%</strong></td><td class="bad">⬇ 持续下降</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>4.49pct</td><td>1.22pct</td><td><strong>0.74pct</strong></td><td class="neutral">⬇ 杠杆贡献小</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：均衡偏周转型（低利润+中等周转+低杠杆）</strong><br>
+  千味央厨的ROE驱动模式是典型"薄利多销"的食品制造逻辑——净利率3.35%低，靠周转率0.79（食品行业中中等）来支撑。权益乘数1.32极低，说明公司几乎不依赖杠杆。去掉杠杆后ROA仅2.65%，资本回报效率很低。<br><br>
+  <strong>最大问题：</strong>净利率从2023年的7.06%持续下滑至3.35%（三年腰斩），这是ROE崩溃（从11.9%→3.39%）的根本原因。餐饮行业需求疲软+竞争加剧导致费用率上升、毛利率下降，最终侵蚀了利润空间。
+</div>
+
+<h3>5.2 去杠杆ROA</h3>
+<table>
+  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th></tr>
+  <tr><td>净利润率</td><td>7.06%</td><td>4.48%</td><td>3.35%</td></tr>
+  <tr><td>资产周转率</td><td>1.05</td><td>0.80</td><td>0.79</td></tr>
+  <tr><td><strong>去杠杆ROA</strong></td><td><strong>7.41%</strong></td><td><strong>3.58%</strong></td><td><strong>2.65%</strong></td></tr>
+  <tr><td>同行参考</td><td colspan="3">安井食品ROA ~8%（FY2024）、三全食品ROA ~5%（FY2024）</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>资产回报效率警示：</strong>每1元总资产仅产生0.027元的净利润，低于行业中位数。安井食品FY2024 ROA约8%、三全约5%，千味央厨的资产回报效率在速冻食品板块中处于较低水平。核心原因是净利率太低（3.35% vs 安井~9%、三全~5%）。
+</div>
+
+<div class="summary-box">
+  <strong>核心结论：</strong><br>
+  ① ROE崩溃路径：净利率7.06%→4.48%→3.35%是罪魁祸首，周转率和杠杆变化不大；<br>
+  ② 公司赚钱模式为"低利润+中周转+低杠杆"，去掉杠杆后ROA仅2.65%，资本回报效率低；<br>
+  ③ 与同行相比，净利率处于行业较低水平（安井~9%、三全~5%），毛利率差距不大但费用率偏高；<br>
+  ④ 改善关键：净利率能否从3.35%回升——需要收入增长摊薄固定费用（产能利用率提升），以及费用管控（2026Q1管理费率已明显下降）；<br>
+  ⑤ 若净利率恢复到5%，ROE可达~5.2%（仍偏低）；恢复到7%，ROE可达~7.3%（及格），但回到2023年11.9%水平难度较大。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与特征（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：消费行业（速冻食品制造——餐饮供应链B2B）→ 防御型（兼具一定成长性）</strong><br>
+  <strong>判断依据：</strong>千味央厨所处的速冻食品制造属于食品加工业，需求端受餐饮行业景气度影响，但长期来看"餐饮供应链标准化"趋势确定（餐饮企业降本增效需求推动中央厨房/预制菜渗透率提升）。行业属性上：① 非周期性——食品是必选消费，不存在明显宏观经济周期；② 防御性强——经济下行期人们减少外出就餐但速冻食品在家消费可能增加；③ 有一定成长性——中国餐饮供应链标准化率仍低（<10%），长期渗透空间大。<br><br>
+  <strong>非周期股 → 采用非周期股评分体系</strong>
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th></tr>
+  <tr><td>行业集中度</td><td><strong>分散但正在集中</strong>——速冻面米制品行业CR3 < 30%（安井、三全、千味央厨），行业参与者众多（区域性小厂为主），但龙头通过规模优势（产能+渠道）在加速集中。</td></tr>
+  <tr><td>规模壁垒</td><td><strong>中等偏强</strong>——速冻食品需要冷链物流和中央工厂投入，千味央厨在全国布局产能（河南/上海/广东等），规模效应明显。</td></tr>
+  <tr><td>客户壁垒</td><td><strong>强</strong>——大客户（百胜中国、华莱士、海底捞等）认证周期长、切换成本高，一旦进入供应链粘性很强。2025年大客户188家，直营收入+11%。</td></tr>
+  <tr><td>品牌与研发壁垒</td><td><strong>中等</strong>——"油条"品类市占率领先，但整体品牌认知度不如安井/三全（公司主要做B端，C端品牌力弱）。定制化研发能力是核心竞争力。</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  <strong>阶段：成熟期早期（餐饮供应链标准化渗透率提升阶段）</strong><br>
+  中国餐饮供应链标准化率仍低（<10%），对比美国（~60%）和日本（~50%），长期渗透空间大。但行业增速已从高增长阶段放缓——千味央厨2019-2023年营收CAGR ~15%（2021上市后），2024-2025年增速降至0-2%。当前处于"从跑马圈地到精细化运营"的过渡期：核心品类（油条等）市占率已高、增速放缓；新品类（烘焙/预制菜）高增长但体量尚小。<br><br>
+  <strong>投资策略重点：</strong>关注大客户拓展节奏（直营渠道增长）、新品类放量速度（烘焙甜品+冷冻调理菜肴）、净利率能否筑底回升。
+</div>
+
+<h3>6.4 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>消费（食品制造）</td><td>PE + PS</td><td>毛利率、ROE、品牌力</td><td class="neutral">⚠ PE 59x偏高，PS 2.0x中等</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值方法总结：</strong>作为速冻食品消费股，市场应以PE为主、PS为辅进行估值。当前PE ~59x处于历史80%分位，远高于上市以来均值~42x，估值溢价明显。但PS 2.0x在食品板块中处于中等水平——这意味着市场暂时容忍低利润率，主要博弈"2026年利润修复"逻辑。2026Q1营收+23.83%验证了复苏预期，关键看后续净利润率能否从3.35%回升。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>消费行业（速冻食品B2B），分散但正在集中，客户壁垒强（大客户认证粘性），行业长期渗透空间大但短期增速放缓。<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 3.39%极低，低利润+中周转+低杠杆杜邦型，但CFO/净利3.31优秀，现金质量极高，资产负债表极度稳健。<br>
+  <strong>Step 3 - 估值判断：</strong>PE ~59x偏高（历史80%分位），PS 2.0x中等，市场以"利润修复预期"定价，对应当年PE ~44x。<br>
+  <strong>Step 4 - 风险排查：</strong>净利润连降两年、核心品类收入下滑、净利率仅3.35%、PE估值透支。<br>
+  <strong>Step 5 - 结论：</strong>好行业（餐饮供应链长期趋势确定）+ 好公司（龙头地位+财务健康）但当前盈利能力差（ROE 3.39%），价格偏贵（PE 59x）——<strong>可纳入关注但非买入时机</strong>。<br>
+  <strong>Step 6 - 跟踪：</strong>看净利率能否回升至5%+、烘焙甜品增速能否维持>15%、2026中报营收增速能否>10%。
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>餐饮供应链标准化长期确定，速冻食品渗透率提升空间大（<10%→对标美日50%+）</td></tr>
+  <tr><td>② 好公司</td><td class="neutral">⚠ 待验证</td><td>ROE 3.39% < 15%未达标，毛利率22.71%微降，但CFO/净利3.31极好，财务健康</td></tr>
+  <tr><td>③ 好价格</td><td class="bad">✗</td><td>PE 59x偏高（历史80%分位），对应低ROE/低增长，安全边际不足</td></tr>
+</table>
+
+<h3>7.3 三个陷阱排查</h3>
+<div class="danger-box">
+  <strong>☐ 价值陷阱：</strong>🔴 部分命中——低增长（营收+1.64%）+ 低ROE（3.39%）+ 低负债（24%）≠ 典型价值陷阱（高负债才危险），但低增长+低ROE是价值陷阱前兆。<br>
+  <strong>☐ 周期陷阱：</strong>❌ 未命中——消费品非周期，不存在周期顶部问题。<br>
+  <strong>☐ 烧钱陷阱：</strong>❌ 未命中——高PE（59x）+低增速（+1.64%）但CFO极好（2.10亿），赚钱而非烧钱。
+</div>
+
+<h3>7.4 管理层与治理风险</h3>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力与履历</td><td>好</td><td>董事长孙剑行业经验丰富，公司从思念食品独立后专注B端餐饮供应链，战略清晰</td></tr>
+  <tr><td>股权结构与利益一致性</td><td>强</td><td>实际控制人李伟（思念食品创始人）持股比例高，管理层持股，利益绑定</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td>无</td><td>未发现重大关联交易问题、监管处罚或诉讼</td></tr>
+  <tr><td>资本配置记录</td><td>合理</td><td>IPO融资后主要用于扩产（产能布局合理），2025年回购注销0.70亿+回购0.50亿积极回馈股东</td></tr>
+  <tr><td>CEO交接/关键人员变动</td><td>无风险</td><td>管理层稳定，无重大人员变动</td></tr>
+</table>
+
+<h3>7.5 盈利可持续性</h3>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是靠价？</td><td>量驱动</td><td>公司增长靠大客户数量增加（+8.7%）和新品类放量，而非提价（食品竞争激烈提价难）</td></tr>
+  <tr><td>涨价能否持续？</td><td>需观察</td><td>B端客户对价格敏感，提价空间有限，但可通过产品结构升级（高附加值新品）提升均价</td></tr>
+  <tr><td>非经常性利润占比</td><td>低</td><td>2025年非经常性损益11万，占净利润~1.8%，利润质量纯正</td></tr>
+  <tr><td>大客户/大项目集中度</td><td>集中</td><td>第一大客户（百胜中国）营收3.44亿，占总营收18.2%，前五大客户集中度较高</td></tr>
+  <tr><td>政策/监管依赖度</td><td>低</td><td>食品安全监管是常态，无特殊政策依赖</td></tr>
+</table>
+
+<h3>7.6 关键变量敏感性</h3>
+<p style="font-size:13px;font-weight:bold;margin-top:10px;">变量1: 餐饮行业复苏节奏（收入端）</p>
+<p style="font-size:13px;margin-left:16px;">
+  乐观: 餐饮消费持续回暖，2026年营收+12% → EPS ~0.95元<br>
+  中性: 餐饮弱复苏，2026年营收+8% → EPS ~0.89元（一致预期）<br>
+  悲观: 餐饮再次走弱，2026年营收+3% → EPS ~0.75元
+</p>
+<p style="font-size:13px;font-weight:bold;margin-top:10px;">变量2: 竞争格局与利润率</p>
+<p style="font-size:13px;margin-left:16px;">
+  乐观: 行业竞争趋缓 + 费用管控见效，净利率回升至5% → EPS ~1.05元<br>
+  中性: 竞争持续但规模效应显现，净利率回升至4% → EPS ~0.89元<br>
+  悲观: 线上推广费用继续高增 + 价格战，净利率降至2.5% → EPS ~0.65元
+</p>
+<p style="font-size:13px;font-weight:bold;margin-top:10px;">变量3: 烘焙甜品/预制菜新品类放量</p>
+<p style="font-size:13px;margin-left:16px;">
+  乐观: 烘焙甜品增速>25%，预制菜增速>30%，成为重要增长极<br>
+  中性: 烘焙+15%，预制菜+18%，稳步增长（当前趋势）<br>
+  悲观: 新品类竞争加剧，增速降至个位数，增长故事证伪
+</p>
+
+<h3>7.7 未来1-3年核心驱动</h3>
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. 餐饮消费复苏 — 2026Q1营收+23.83%已现拐点，若餐饮持续回暖，收入端弹性大<br>
+  2. 新品类高增长 — 烘焙甜品+15.64%、冷冻调理菜肴+18.09%，产品结构持续优化<br>
+  3. 大客户拓展 — 直营渠道+11%，大客户增至188家，深度绑定百胜/华莱士等头部餐饮<br><br>
+  <strong>负向拖累：</strong><br>
+  1. 行业竞争加剧 — 速冻食品行业参与者众多（安井/三全/惠发等），价格战风险持续<br>
+  2. 费用率居高不下 — 线上推广（C端新零售）投入大，侵蚀利润率<br>
+  3. 大客户集中风险 — 百胜中国占营收18.2%，单一客户依赖风险
+</div>
+
+<h3>7.8 三情景简表</h3>
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>EPS预估</th><th>PE区间</th><th>预期回报</th></tr>
+  <tr><td>乐观</td><td>餐饮强劲复苏+净利率回升至5%</td><td>1.05 元</td><td>35-45x</td><td>37-67元（+100%）</td></tr>
+  <tr><td>中性</td><td>餐饮弱复苏+净利率4%</td><td>0.89 元</td><td>40-50x</td><td>36-45元（+15%）</td></tr>
+  <tr><td>悲观</td><td>餐饮持续低迷+竞争加剧</td><td>0.65 元</td><td>30-40x</td><td>20-26元（-40%）</td></tr>
+</table>
+<p style="font-size:13px;color:#666;">概率判断：中性50%，乐观25%，悲观25%</p>
+
+<h3>7.9 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——做油条/蛋挞皮等速冻食品卖给肯德基/华莱士等餐饮连锁，赚规模生产和供应链服务的钱。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——ROE 3.39%！一家食品制造龙头ROE不能持续低于5%，要么是行业出了问题，要么是公司竞争力出了问题。净利率从7%腰斩到3.35%才是核心矛盾。<br>
+  3. 如果现在买入，期待的回报来源是什么？——赌餐饮复苏带来收入加速（2026Q1已验证）+ 净利率回升（费用管控+规模效应）+ 估值从PE 59x修复到合理区间。但向上弹性取决于利润率修复速度。<br>
+  4. 什么情况下你会坚决卖出？——营收增速跌破5% / 净利率进一步降至<3% / 大客户流失 / 行业价格战全面爆发。
+</div>
+
+</div></div>
+
+<div class="footer">
+   免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+   数据来源：千味央厨2025年年报、2026Q1季报、券商研报（中泰/国信/华西/国联民生等）、理杏仁
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>
