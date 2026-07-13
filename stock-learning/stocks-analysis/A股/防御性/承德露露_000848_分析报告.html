@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>承德露露(000848) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>承德露露（000848）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026-07-13 | 数据来源：FY2025 年报 + 2026Q1 季报</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>承德露露股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>000848.SZ</td></tr>
+  <tr><td>所属行业</td><td>软饮料（植物蛋白饮料）</td></tr>
+  <tr><td>行业地位</td><td>国内最大杏仁露生产企业，市场占有率>90%</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>31.74 亿（-3.46%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>6.27 亿（-5.87%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>10.12 亿（+60.58%）</strong></td></tr>
+  <tr><td>总资产</td><td>53.12 亿</td></tr>
+  <tr><td>归母净资产</td><td>34.90 亿</td></tr>
+  <tr><td>ROE</td><td>18.10%</td></tr>
+</table>
+
+<p style="font-size:13px;color:#666;margin:8px 0"><strong>行业类型：非周期股（防御型消费）</strong> — 采用非周期股评分体系</p>
+
+<h2>综合评分（百分制）</h2>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">18.10% ≥ 15%</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">高利润型——净利率19.76%+周转率0.60+杠杆1.52</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">1.61 ≥ 1.0</td></tr>
+  <tr><td>营收增长（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">-3.46%，首次负增长</td></tr>
+  <tr><td>利润增长（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">-5.87%，负增长</td></tr>
+  <tr><td>负债率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">34.28% < 40%</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">货币资金40.32亿，远覆盖短期负债</td></tr>
+  <tr><td>毛利率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">44.74% ≥ 30%，基本稳定</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">PE ~12x，低于ROE对应的合理区间15-25x</td></tr>
+  <tr><td>自由现金流（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">FCF持续为正，多年稳定4-6亿</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">80/100</td><td style="text-align:left">品质优秀（80/100分）</td></tr>
+</table>
+
+<div class="verdict verdict-ok">品质优秀（80/100分）</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>承德露露是杏仁露细分赛道的绝对霸主（市占率>90%），ROE长期>18%，毛利率>44%，造血能力极强（CFO/净利>1.6）。账面现金40亿+占总资产76%，资产负债表极其干净。FY2025首次出现营收和利润双降（-3.5%/-5.9%），主因春节错期高基数+消费疲软+新品推广费用激增。但2026Q1营收已恢复+13.7%，验证需求韧性。<br><br>
+  <strong>核心优势：</strong>① ROE 18%+持续多年，现金牛属性强；② 毛利率44.74%，定价权稳固；③ CFO 10.12亿，含金量极高；④ 低负债率+高现金，财务极度安全。<br><br>
+  <strong>核心风险：</strong>① 营收首次下滑，大单品依赖度高（杏仁露占94%）；② 新品推广效果待验证，销售费用+27.6%；③ 31亿货币资金存放万向财务公司，集中度风险；④ 南北露露商标纠纷历史遗留问题。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>31.74 亿</td><td>32.87 亿</td><td>-3.46%</td><td class="bad">❌ 首次下滑</td></tr>
+  <tr><td>归母净利润</td><td><strong>6.27 亿</strong></td><td>6.66 亿</td><td><strong>-5.87%</strong></td><td class="bad">❌ 负增长</td></tr>
+  <tr><td>扣非净利润</td><td><strong>6.24 亿</strong></td><td>6.58 亿</td><td><strong>-5.07%</strong></td><td class="bad">❌ 负增长</td></tr>
+  <tr><td>毛利率</td><td><strong>44.74%</strong></td><td>40.94%</td><td>+3.80pct</td><td class="good">✅ 显著提升</td></tr>
+  <tr><td>净利率</td><td><strong>19.76%</strong></td><td>20.27%</td><td>-0.51pct</td><td class="neutral">基本持平</td></tr>
+  <tr><td>销售费用率</td><td><strong>16.82%</strong></td><td>12.73%</td><td>+4.09pct</td><td class="bad">❌ 费用激增</td></tr>
+  <tr><td>管理费用率</td><td><strong>1.39%</strong></td><td>1.68%</td><td>-0.29pct</td><td class="good">✅ 控制良好</td></tr>
+  <tr><td>2025Q4 营收</td><td>12.18 亿</td><td>11.28 亿</td><td>+7.98%</td><td class="good">✅ 恢复增长</td></tr>
+  <tr><td>2025Q4 净利润</td><td>2.44 亿</td><td>2.47 亿</td><td>-1.21%</td><td class="neutral">基本持平</td></tr>
+  <tr><td>2026Q1 营收</td><td>11.39 亿</td><td>10.02 亿</td><td>+13.73%</td><td class="good">✅ 强劲反弹</td></tr>
+  <tr><td>2026Q1 净利润</td><td>2.48 亿</td><td>2.15 亿</td><td>+15.31%</td><td class="good">✅ 强劲反弹</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>FY2025营收下滑主要受春节错期影响（2024春节在2月、2025在1月），若将Q424+Q125合并看基本持平。毛利率从40.94%大幅提升至44.74%（+3.8pct），主因原材料杏仁成本下降。但销售费用率从12.73%飙升至16.82%（+4.1pct），因推广新品养生水+电商投入，侵蚀了大部分毛利改善空间。2026Q1营收+13.7%、净利+15.3%，验证需求已恢复。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td><strong>40.32 亿</strong></td><td class="good">✅ 极其充裕（占总资产76%）</td></tr>
+  <tr><td>— 其中：万向财务公司存款</td><td><strong>31.24 亿</strong></td><td class="bad">⚠ 关联方集中存放风险</td></tr>
+  <tr><td>应收账款</td><td><strong>0.83 亿</strong></td><td class="good">✅ 极低，对下游强势</td></tr>
+  <tr><td>存货</td><td><strong>1.72 亿</strong></td><td class="good">✅ 低库存，占资产3.2%</td></tr>
+  <tr><td>固定资产</td><td><strong>6.50 亿</strong></td><td class="good">✅ 轻资产模式</td></tr>
+  <tr><td>短期借款</td><td><strong>~0 亿</strong></td><td class="good">✅ 几乎无短期负债</td></tr>
+  <tr><td>长期借款</td><td><strong>4.92 亿</strong></td><td class="neutral">较年初1.34亿增加</td></tr>
+  <tr><td>资产负债率</td><td><strong>34.28%</strong></td><td class="good">✅ 低杠杆</td></tr>
+  <tr><td>归母净资产</td><td>34.90 亿</td><td class="good">✅ 同比+1.5%</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>承德露露拥有教科书级的资产负债表——货币资金40.32亿占总资产76%，应收账款仅0.83亿（占比2.6%），几乎没有短期借款。但需关注：31.24亿货币资金存放于控股股东万向旗下的财务公司，占货币资金的77.5%，存在关联方资金集中度风险。长期借款从1.34亿增至4.92亿，主要用于产能扩张，在现金充裕背景下可接受。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>10.12 亿</strong></td><td>6.30 亿</td><td class="good">✅ 大幅改善+60.6%</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><strong>-1.85 亿</strong></td><td>-2.15 亿</td><td class="good">✅ 资本开支可控</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td><strong>-8.50 亿</strong></td><td>-0.47 亿</td><td class="neutral">分红+回购流出</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>1.61</strong></td><td>0.95</td><td class="good">✅ 含金量极高</td></tr>
+  <tr><td>自由现金流（FCF）</td><td><strong>+4.88 亿</strong></td><td>+4.72 亿</td><td class="good">✅ 持续为正</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>典型的"现金奶牛"——CFO 10.12亿同比增长60.6%，主要受益于原材料采购减少（存货下降）+ 销售回款改善。CFO/净利1.61，利润含金量极高。FCF连续多年稳定在4-6亿，即使在营收下滑年份仍能产生大量自由现金流。筹资流出8.50亿主因分红5.1亿+回购支出。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>18.10%</strong></td><td>> 15% 优秀</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>毛利率</td><td><strong>44.74%</strong></td><td>稳定或提升</td><td class="good">✅ +3.80pct 提升</td></tr>
+  <tr><td>净利率</td><td><strong>19.76%</strong></td><td>> 10%</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>营收增长率</td><td><strong>-3.46%</strong></td><td>> 0%</td><td class="bad">❌ 首次负增长</td></tr>
+  <tr><td>利润增长率</td><td><strong>-5.87%</strong></td><td>正增长</td><td class="bad">❌ 负增长</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>1.61</strong></td><td>> 1</td><td class="good">✅ 优良</td></tr>
+  <tr><td>资产负债率</td><td><strong>34.28%</strong></td><td>< 40%</td><td class="good">✅ 低杠杆</td></tr>
+  <tr><td>分红率</td><td><strong>~81%</strong></td><td>持续分红</td><td class="good">✅ 慷慨</td></tr>
+</table>
+
+<h3>3.2 分业务分析（FY2025）</h3>
+<table>
+  <tr><th>业务板块</th><th>营收（亿）</th><th>占比</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td>杏仁露系列</td><td>29.89</td><td>94.18%</td><td>-6.25%</td><td>45.4%</td><td class="neutral">⚠ 核心产品下滑</td></tr>
+  <tr><td>果仁核桃系列</td><td>0.89</td><td>2.80%</td><td>+4.65%</td><td>—</td><td class="good">✅ 增长</td></tr>
+  <tr><td>水系列（新品）</td><td>0.83</td><td>2.62%</td><td>新品</td><td>42.2%</td><td class="good">✅ 新增长点</td></tr>
+  <tr><td>杏仁奶系列</td><td>0.11</td><td>0.35%</td><td>新品</td><td>—</td><td class="neutral">初期</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>杏仁露仍为绝对主力（94%），同比-6.25%主因一季度高基数+消费疲软，但Q4已恢复+8%增长。新品水系列首年贡献0.83亿收入，毛利率42.2%表现亮眼，养生水赛道正处行业性高速发展期。果仁核桃系列稳定增长。整体看，公司处于"老品守底盘+新品拓增量"的转型期。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="neutral">🟡 中等</td><td>营收利润首次双降，大单品依赖度高</td><td>L2 盈利指标</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>销售费用率激增+4.1pct至16.82%</td><td>L1 利润表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>31.24亿资金存放万向财务公司（占现金77.5%）</td><td>L1 资产负债表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>长期借款从1.34亿增至4.92亿</td><td>L1 资产负债表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>南北露露商标纠纷历史遗留问题</td><td>L5 行业竞争</td></tr>
+  <tr><td class="good">🟢 正面</td><td>ROE 18%+持续5年以上</td><td>L2 盈利指标</td></tr>
+  <tr><td class="good">🟢 正面</td><td>CFO/净利 1.61，利润含金量极高</td><td>L1 现金流量表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>FCF持续为正，现金奶牛</td><td>L1 现金流量表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>PE仅12x，历史低位，股息率~6%</td><td>L3 估值</td></tr>
+  <tr><td class="good">🟢 正面</td><td>2026Q1营收+13.7%强劲反弹</td><td>L1 利润表</td></tr>
+</table>
+
+<div class="verdict verdict-ok">✅ L2综合判定：优质（ROE优秀+CFO质量高+估值低，短期业绩承压但趋势向好）</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>股价（2026.7）</td><td><strong>~7.70 元</strong></td><td>近半年区间7.0-9.3元</td></tr>
+  <tr><td>总市值</td><td><strong>~78.5 亿</strong></td><td>总股本10.20亿</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>~12.5x</strong></td><td>基于FY2025 EPS 0.60元</td></tr>
+  <tr><td>PE（TTM扣非）</td><td><strong>~12.6x</strong></td><td>基于扣非EPS 0.60元</td></tr>
+  <tr><td>PE（2026E）</td><td><strong>~11.5x</strong></td><td>基于一致预期EPS ~0.67元</td></tr>
+  <tr><td>PB</td><td><strong>~2.2x</strong></td><td>基于每股净资产3.42元</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~2.5x</strong></td><td>市销率偏低</td></tr>
+  <tr><td>股息率</td><td><strong>~6.5%</strong></td><td>基于10派5元</td></tr>
+</table>
+
+<h3>4.2 PE Band估值区间</h3>
+<p style="font-size:13px;color:#666;">ROE 18% → 合理PE参考区间：15-25x | 2026E一致预期EPS ≈ 0.67元</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs现价7.7元</th></tr>
+  <tr><td>悲观（增长停滞）</td><td>10x</td><td>6.7 元</td><td class="bad">-13%</td></tr>
+  <tr><td>保守</td><td>15x</td><td>10.1 元</td><td class="good">+31%</td></tr>
+  <tr><td>中性（合理）</td><td>18x</td><td>12.1 元</td><td class="good">+57%</td></tr>
+  <tr><td>乐观</td><td>22x</td><td>14.7 元</td><td class="good">+91%</td></tr>
+  <tr><td>当前价</td><td>~12.5x</td><td>7.7 元</td><td>—</td></tr>
+  <tr><td>近5年均值</td><td>~20x</td><td>13.4 元</td><td class="good">+74%</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值评价：</strong>承德露露当前PE 12.5x处于近10年16%分位（所有时间6%分位），是历史底部区域。以ROE 18%对应的合理PE 15-25x计算，当前被明显低估。保守估计合理股价10-12元，较现价有30-56%上行空间。叠加~6.5%的股息率，下行保护充足。即使悲观情景（增长停滞），PE 10x对应6.7元，下行空间仅13%。
+</div>
+
+<h3>4.3 历史PE区间</h3>
+<table>
+  <tr><th>指标</th><th>数值</th></tr>
+  <tr><td>PE（TTM）最大值</td><td>~32x</td></tr>
+  <tr><td>PE（TTM）80%分位</td><td>~23x</td></tr>
+  <tr><td>PE（TTM）50%分位</td><td>~18x</td></tr>
+  <tr><td>PE（TTM）20%分位</td><td>~15x</td></tr>
+  <tr><td>PE（TTM）最小值</td><td>~11x</td></tr>
+  <tr><td>当前PE（TTM）</td><td class="good">~12.5x（近10年16%分位，低估）</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值总结：</strong>承德露露作为防御型消费龙头，当前估值处于历史底部。ROE 18%+、CFO/净利1.61、FCF持续为正、负债率34%、股息率6.5%——这组数据在A股消费品中极为稀缺。当前PE 12.5x相当于市场在为"营收可能持续下滑"定价，但2026Q1已恢复+13.7%增长。如果营收能稳住或恢复正增长，估值修复空间显著。对于追求安全边际的价值投资者，当前价格提供了可观的安全垫。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>净利润率</td><td>~20.5%</td><td>20.27%</td><td><strong>19.76%</strong></td><td class="neutral">➡ 基本稳定</td></tr>
+  <tr><td>资产周转率</td><td>0.69</td><td>0.60</td><td><strong>0.60</strong></td><td class="neutral">➡ 稳定</td></tr>
+  <tr><td>权益乘数</td><td>1.54</td><td>1.49</td><td><strong>1.52</strong></td><td class="neutral">➡ 稳定</td></tr>
+  <tr><td><strong>ROE</strong></td><td><strong>~21.6%</strong></td><td><strong>20.3%</strong></td><td><strong>18.1%</strong></td><td class="neutral">➡ 小幅下降</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>14.1%</td><td>12.2%</td><td><strong>11.9%</strong></td><td class="neutral">➡ 小幅下降</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>7.5pct</td><td>8.1pct</td><td><strong>6.2pct</strong></td><td class="neutral">➡ 降低</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：高利润型</strong><br>
+  承德露露净利润率~20%是ROE的核心驱动力，资产周转率0.60适中（轻资产饮料行业典型值），权益乘数1.52极低（几乎没杠杆）。去杠杆ROA高达11.9%，意味着即使完全不使用杠杆，公司每1元总资产也能产生近0.12元的净利润——这在A股消费品中属于顶尖水平。<br><br>
+  <strong>趋势解读：</strong>ROE从21.6%降至18.1%，主因净利润率微降（从20.5%→19.8%）和周转率下降（0.69→0.60，营收下滑导致资产周转放慢）。但18.1%的ROE在A股仍属优秀。杠杆贡献仅6.2pct，说明高ROE靠的是真本事（高利润率），而非财务杠杆。
+</div>
+
+<h3>5.2 分产品利润贡献</h3>
+<table>
+  <tr><th>业务板块</th><th>毛利率</th><th>趋势</th><th>对ROE影响</th></tr>
+  <tr><td>杏仁露系列</td><td>45.4%</td><td class="good">提升（成本下降）</td><td class="good">核心驱动</td></tr>
+  <tr><td>水系列</td><td>42.2%</td><td class="good">新品，开局良好</td><td class="good">边际增量</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>核心结论：</strong><br>
+  ① ROE 18.1%由"高利润率（20%）+ 中低周转（0.60）+ 极低杠杆（1.52）"共同驱动，是高利润型赚钱模式的典范；<br>
+  ② 去掉杠杆后ROA仍达11.9%，在A股消费品中属于顶尖，说明公司有真实的内生回报能力；<br>
+  ③ ROE下降主因周转率降低（营收下滑），而非盈利能力恶化——净利润率仍稳定在~20%；<br>
+  ④ 杠杆贡献仅6.2pct，极度安全——几乎没有偿债风险；<br>
+  ⑤ ROE能否重回20%+，取决于营收能否恢复正增长以带动周转率回升。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与特征（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：防御型（植物蛋白饮料）</strong><br>
+  <strong>判断依据：</strong>承德露露所处的杏仁露细分赛道已进入成熟期，需求稳定。植物蛋白饮料市场规模约1,200亿，杏仁露占比约3%。公司市占率>90%，是典型的"小而美"细分龙头。核心增长驱动力：① 植物蛋白饮料替代动物蛋白的长期健康趋势；② 养生水新品品类（药食同源概念）的行业性爆发；③ 南方市场的拓展空间。<br><br>
+  <strong>防御属性：</strong>产品属于必需消费品（宴席/送礼/家庭自饮），需求韧性较强。过去10年营收CAGR约6%，即使在经济下行周期也未出现大幅下滑。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th></tr>
+  <tr><td>行业集中度</td><td><strong>杏仁露细分赛道极高（CR1>90%）</strong>——承德露露独占杏仁露市场。但整个植物蛋白饮料赛道分散（养元饮品核桃露、椰树椰汁、维他奶等各有细分领域）。</td></tr>
+  <tr><td>品牌壁垒</td><td><strong>极高</strong>——"露露"品牌已有50年历史，杏仁露=露露=承德露露的消费者认知已固化，品牌切换成本高。</td></tr>
+  <tr><td>渠道壁垒</td><td><strong>强</strong>——北方宴席市场渗透率>85%，经销商体系稳定。南方市场拓展是未来增量。</td></tr>
+  <tr><td>供应链壁垒</td><td><strong>中等</strong>——苦杏仁原料产地集中在河北/山西，公司有稳定的采购体系，但原材料价格波动会影响毛利率。</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  <strong>阶段：成熟期（老品）→ 二次成长期（新品）</strong><br>
+  杏仁露（占营收94%）已进入成熟期——需求稳定但增速趋缓（过去5年营收CAGR~6%）。新品养生水（水系列）处于导入期→成长期拐点，养生水赛道贴合健康消费趋势，2025年首年即贡献0.83亿收入。公司正处于"老品稳底盘 + 新品拓增量"的转型关键期。<br><br>
+  <strong>投资策略重点：</strong>关注养生水新品的放量速度、南方市场拓展进度、销售费用率能否在规模效应下下降。
+</div>
+
+<h3>6.4 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>防御型（必需消费）</td><td>PE + 股息率</td><td>毛利率、ROE、FCF稳定性</td><td class="good">✅ 匹配——PE 12.5x低估+股息率6.5%</td></tr>
+</table>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>防御型（植物蛋白饮料），杏仁露细分赛道市占率>90%绝对龙头，品牌壁垒极高。<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 18.1%优秀，高利润型杜邦，CFO/净利1.61极好，FCF持续为正，资产负债表极度健康。<br>
+  <strong>Step 3 - 估值判断：</strong>PE 12.5x近10年16%分位，低估；股息率6.5%，下行保护充足。<br>
+  <strong>Step 4 - 风险排查：</strong>营收首次下滑（已恢复）、销售费用激增、大单品依赖、关联方资金集中存放。<br>
+  <strong>Step 5 - 结论：</strong>好公司（ROE 18%+高利润型+强CFO）+ 好价格（PE底部+高股息率），投资价值凸显。<br>
+  <strong>Step 6 - 跟踪：</strong>看养生水新品放量、南方市场拓展、销售费用率变化、南北露露纠纷进展。
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>植物蛋白饮料赛道长期健康化趋势确定，细分龙头地位稳固</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓</td><td>ROE 18%>15%达标，毛利率44.74%稳定提升，CFO/净利1.61>1.0，FCF持续为正</td></tr>
+  <tr><td>③ 好价格</td><td class="good">✓</td><td>PE 12.5x近10年16%分位，PEG<1，股息率6.5%，安全边际充足</td></tr>
+</table>
+
+<h3>7.3 三个陷阱排查</h3>
+<div class="summary-box">
+  <strong>☐ 价值陷阱：</strong>❌ 未命中——低PE+高ROE+高股息率，营收下滑但已恢复，不属于价值陷阱。<br>
+  <strong>☐ 周期陷阱：</strong>❌ 未命中——植物蛋白饮料属于必需消费品，无周期性特征。<br>
+  <strong>☐ 烧钱陷阱：</strong>❌ 未命中——FCF持续为正，不需要融资扩张，自有现金充裕。
+</div>
+
+<h3>7.4 风险评估</h3>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力</td><td>一般</td><td>董事长沈志军来自万向系，管理层稳定性尚可但进取心一般</td></tr>
+  <tr><td>股权结构与利益一致性</td><td>中等</td><td>万向三农持股41.6%，但高管持股比例较低</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td>有但可控</td><td>31亿存万向财务公司（存争议），南北露露商标纠纷败诉</td></tr>
+  <tr><td>资本配置记录</td><td>良好</td><td>分红慷慨（率>80%），回购注销积极，历史并购少</td></tr>
+  <tr><td>大客户集中度</td><td>分散</td><td>To B/C混合，经销商体系，客户集中度低</td></tr>
+  <tr><td>盈利可持续性</td><td>强</td><td>品牌壁垒+渠道壁垒+消费者认知固化，护城河深</td></tr>
+</table>
+
+<h3>7.5 前景展望</h3>
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. 养生水新品放量 — 贴合健康消费趋势，若年收入突破3-5亿可显著降低对杏仁露的依赖；<br>
+  2. 成本红利延续 — 杏仁价格仍处低位，毛利率有望维持45%左右；<br>
+  3. 南方市场拓展 — 若南方营收占比从目前~10%提升至20%+，可打开增量空间。<br><br>
+  <strong>负向拖累：</strong><br>
+  1. 消费持续疲软 — 若宏观消费环境未见好转，杏仁露销量可能继续承压；<br>
+  2. 销售费用居高不下 — 新品推广若持续高投入，可能进一步侵蚀利润；<br>
+  3. 万向财务公司资金安全 — 31亿资金存放关联方，若出现信用事件影响巨大。
+</div>
+
+<h3>7.6 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——卖杏仁露给北方人喝，50年品牌+90%市占率，赚品牌溢价和规模效应的钱。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——31亿现金在万向财务公司占现金77.5%，万一出事直接打穿资产负债表。<br>
+  3. 如果现在买入，期待的回报来源是什么？——PE修复（12x→18x）+ 股息6.5% + 养生水新品带来营收增量。<br>
+  4. 什么情况下你会坚决卖出？——营收连续2年负增长 / 万向财务公司出现信用风险 / 毛利率跌破40% / 南北露露纠纷导致品牌受损。
+</div>
+
+</div></div>
+
+<div class="footer">
+   免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+   数据来源：承德露露2025年年报、2026Q1季报、券商研报、理杏仁
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

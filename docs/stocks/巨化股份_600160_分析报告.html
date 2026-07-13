@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>巨化股份(600160) 财务分析报告</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f5f5f5;padding:0;color:#333}
+  .report-wrap{max-width:800px;margin:0 auto;background:#fff}
+  h1{font-size:22px;margin:0;padding:28px 0 4px;text-align:center}
+  h2{font-size:18px;margin:28px 0 12px;border-bottom:2px solid #1a1a1a;padding-bottom:4px}
+  h3{font-size:15px;margin:18px 0 8px}
+  .subtitle{color:#666;font-size:13px;text-align:center;margin-bottom:4px}
+  .meta{color:#999;font-size:12px;text-align:center;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #e0e0e0}
+  .tab-bar{position:sticky;top:0;z-index:10;background:#fff;display:flex;flex-wrap:wrap;border-bottom:2px solid #ddd;gap:0}
+  .tab-btn{padding:10px 14px;cursor:pointer;border:none;background:none;font-size:13px;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+  .tab-btn:hover{color:#333;background:#f9f9f9}
+  .tab-btn.active{color:#1a1a1a;font-weight:700;border-bottom-color:#1a1a1a}
+  .tab-btn.disabled{color:#ccc;cursor:not-allowed}
+  .tab-content{display:none}
+  .tab-content.active{display:block}
+  .tab-inner{padding:0 12px}
+  table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:13px}
+  th,td{padding:7px 6px;border:1px solid #ddd;text-align:center}
+  th{background:#f5f5f5;font-weight:600;border-bottom:2px solid #ddd}
+  tr:nth-child(even) td{background:#fafafa}
+  .summary-box{background:#fffde7;border-left:4px solid #f9a825;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .highlight-box{background:#e3f2fd;border-left:4px solid #1e88e5;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .danger-box{background:#ffebee;border-left:4px solid #e53935;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .verdict{text-align:center;padding:20px;margin:16px 0;border-radius:8px;font-size:18px;font-weight:700}
+  .verdict-ok{background:#e8f5e9;border:2px solid #4caf50;color:#2e7d32}
+  .verdict-caution{background:#fff3e0;border:2px solid #ff9800;color:#e65100}
+  .verdict-bad{background:#ffebee;border:2px solid #e53935;color:#c62828}
+  .score{font-size:36px;display:block;margin-bottom:4px}
+  .pass{color:#2e7d32;font-weight:700}
+  .skip{color:#666;font-style:italic}
+  .footer{font-size:11px;color:#aaa;text-align:center;padding:24px 0 8px;border-top:1px solid #eee;margin-top:30px}
+  .tbl-wrap{border:1px solid #e0e0e0;border-radius:6px;overflow:hidden;margin:10px 0 18px}
+  .tbl-wrap table{margin:0}
+  .tbl-wrap th{background:#f5f5f5;padding:9px 8px;border-bottom:1px solid #ddd;font-weight:600;font-size:12px}
+  .tbl-wrap td{padding:8px;border-bottom:1px solid #f0f0f0;font-size:13px}
+  .tbl-wrap tr:last-child td{border-bottom:none}
+  .bar-wrap{display:inline-flex;align-items:center;width:60px;height:16px;vertical-align:middle}
+  .bar-bg{background:#eee;border-radius:4px;height:8px;width:100%;overflow:hidden;position:relative}
+  .bar{display:block;height:8px;border-radius:4px}
+  .score-cell{font-weight:700;font-size:15px;text-align:center;white-space:nowrap}
+  .col-tag{display:inline-block;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600}
+  .col-win{background:#e8f5e9;color:#2e7d32}
+  .col-lose{background:#ffebee;color:#c62828}
+  .col-warn{background:#fff3e0;color:#e65100}
+  .col-info{background:#e3f2fd;color:#1565c0}
+  ul,ol{padding-left:20px;margin:8px 0;font-size:13px}
+  li{margin-bottom:4px}
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>巨化股份（600160）财务分析报告</h1>
+<div class="subtitle">基于 L1-L5 框架 + L6 综合实战 | 纯周期股·氟化工</div>
+<div class="meta">分析日期：2026-07-13 | 数据来源：FY2025 年报 + 2026Q1 季报 + 券商研报</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>公司基本画像</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">项目</th><th>内容</th></tr>
+<tr><td>公司名称</td><td>浙江巨化股份有限公司</td></tr>
+<tr><td>股票代码</td><td>600160.SH</td></tr>
+<tr><td>所属行业</td><td>基础化工（氟化工）</td></tr>
+<tr><td>行业地位</td><td>国内氟化工龙头，三代制冷剂配额全国第一（~39%）</td></tr>
+<tr><td>FY2025 营收</td><td><strong>269.91 亿（+10.33%）</strong></td></tr>
+<tr><td>FY2025 归母净利润</td><td><strong>37.83 亿（+94.29%）</strong></td></tr>
+<tr><td>FY2025 经营现金流</td><td><strong>62.61 亿（+127.54%）</strong></td></tr>
+<tr><td>总资产</td><td>~300 亿</td></tr>
+<tr><td>归母净资产</td><td>~204 亿</td></tr>
+<tr><td>ROE（FY2025）</td><td><strong>18.52%</strong></td></tr>
+</table>
+</div>
+
+<p style="font-size:13px;color:#666;margin:12px 0 4px"><strong>行业类型：纯周期股（基础化工-氟化工）</strong> — 采用周期股评分体系</p>
+
+<h2>综合评分（周期股体系）</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>维度</th><th style="width:60px">得分</th><th>进度</th><th>说明</th></tr>
+<tr>
+  <td>穿越周期ROE（5年均值）</td>
+  <td class="score-cell">10/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:67%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555;text-align:left">5年均值~9%（2020:2%/2021:8%/2023:6%/2024:11%/2025:19%），≥8%</td>
+</tr>
+<tr>
+  <td>成本位置（成本曲线）</td>
+  <td class="score-cell">15/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:100%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555;text-align:left">氟化工全产业链一体化自配套，成本行业Top quartile</td>
+</tr>
+<tr>
+  <td>负债安全垫</td>
+  <td class="score-cell">15/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:100%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555;text-align:left">负债率38.4%，CFO 62.6亿强劲，净负债/EBITDA<3x</td>
+</tr>
+<tr>
+  <td>行业格局与产能周期</td>
+  <td class="score-cell">10/10</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:100%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555;text-align:left">配额制锁定供给，CR3~60%，未来2年无大量新增供给</td>
+</tr>
+<tr>
+  <td>周期位置</td>
+  <td class="score-cell">7/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:47%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555;text-align:left">制冷剂高景气中周期（非底部），配额红利已部分兑现</td>
+</tr>
+<tr>
+  <td>估值（PB vs 历史分位）</td>
+  <td class="score-cell">5/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:33%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555;text-align:left">PB~4.0-4.9x，处于近5年50-70%分位，中等偏高</td>
+</tr>
+<tr>
+  <td>现金生成能力（FCF）</td>
+  <td class="score-cell">6/10</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:60%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555;text-align:left">CFO强劲62.6亿，但CAPEX高达77.7亿（甘肃项目），阶段性消耗现金</td>
+</tr>
+<tr>
+  <td>分红/回购历史</td>
+  <td class="score-cell">5/5</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:100%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555;text-align:left">分红率~40%，积极回报股东，控股股东增持</td>
+</tr>
+<tr style="background:#fafafa">
+  <td style="font-weight:700;font-size:14px">总分</td>
+  <td style="font-weight:700;font-size:16px;color:#e65100">73/100</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:73%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#e65100;font-weight:600;text-align:left">一般关注——优质周期龙头，但当前非最佳买入时点</td>
+</tr>
+</table>
+</div>
+
+<div class="verdict verdict-caution">
+  <span class="score">73</span>
+  一般关注
+</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>巨化股份是国内氟化工绝对龙头，三代制冷剂配额占全国~39%，拥有从萤石到制冷剂/含氟聚合物的完整产业链。2024年起制冷剂配额制正式实施，供需格局根本性改善，公司进入利润爆发期（FY2025净利+94%）。<br><br>
+  <strong>核心优势：</strong><br>
+  &emsp;• 三代制冷剂配额全国第一（~39%），配额即护城河——供给刚性锁定<br>
+  &emsp;• 全产业链一体化（萤石→氢氟酸→制冷剂/聚合物），成本行业最优<br>
+  &emsp;• 制冷剂毛利率50.81%，盈利弹性极大<br>
+  &emsp;• 控股股东增持+分红率40%，利益一致性强<br><br>
+  <strong>核心风险：</strong><br>
+  &emsp;• 当前非周期底部（已在中周期），配额红利已部分被股价反映<br>
+  &emsp;• PB 4.0-4.9x处于历史中等偏高区间，安全边际一般<br>
+  &emsp;• CAPEX高企（77.7亿），甘肃项目投资回收期不确定<br>
+  &emsp;• Q4业绩大幅低于预期（计提减值4亿），存在非经常性扰动
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>核心财务数据（FY2025）</h2>
+
+<h3>利润表</h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+<tr><td style="text-align:left">营业收入</td><td>269.91 亿</td><td>244.62 亿</td><td>+10.33%</td><td><span class="col-tag col-win">✅ 增长</span></td></tr>
+<tr><td style="text-align:left">归母净利润</td><td><strong>37.83 亿</strong></td><td>19.60 亿</td><td><strong>+94.29%</strong></td><td><span class="col-tag col-win">✅ 爆发增长</span></td></tr>
+<tr><td style="text-align:left">扣非净利润</td><td><strong>37.54 亿</strong></td><td>19.03 亿</td><td><strong>+97.23%</strong></td><td><span class="col-tag col-win">✅ 与归母匹配</span></td></tr>
+<tr><td style="text-align:left">毛利率</td><td><strong>28.23%</strong></td><td>17.50%</td><td>+10.73pct</td><td><span class="col-tag col-win">✅ 大幅提升</span></td></tr>
+<tr><td style="text-align:left">归母净利率</td><td><strong>14.02%</strong></td><td>8.01%</td><td>+6.01pct</td><td><span class="col-tag col-win">✅ 大幅提升</span></td></tr>
+<tr><td style="text-align:left">期间费用率</td><td><strong>~3.96%</strong></td><td>~4.08%</td><td>-0.12pct</td><td><span class="col-tag col-win">✅ 控制良好</span></td></tr>
+<tr><td style="text-align:left">FY2025Q4 营收</td><td>65.97 亿</td><td>65.56 亿</td><td>+0.62%</td><td><span class="col-tag col-warn">⚠ 增速放缓</span></td></tr>
+<tr><td style="text-align:left">FY2025Q4 净利润</td><td><strong>5.35 亿</strong></td><td>7.02 亿</td><td><strong>-23.44%</strong></td><td><span class="col-tag col-lose">❌ 大幅下滑</span></td></tr>
+</table>
+</div>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>全年利润+94%爆发增长，核心驱动力是制冷剂价格大幅上涨（均价+47.55%至3.95万/吨，毛利率50.81%）。但Q4净利仅5.35亿（同比-23%，环比-55%），主因制冷剂季节性价格回落+对巨化锦纶装置计提约4亿减值——这是典型的周期股特征：盈利弹性大但季度波动剧烈。2026Q1净利11.73亿（同比+46%）已重回高增长。
+</div>
+
+<h3>资产负债表</h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
+<tr><td style="text-align:left">货币资金</td><td><strong>~35 亿（估）</strong></td><td><span class="col-tag col-win">✅ 大幅改善（+100%）</span></td></tr>
+<tr><td style="text-align:left">应收账款</td><td><strong>~30 亿</strong></td><td><span class="col-tag col-warn">⚠ 占利润80%偏高</span></td></tr>
+<tr><td style="text-align:left">存货</td><td><strong>~40 亿</strong></td><td><span class="col-tag col-warn">⚠ 较高</span></td></tr>
+<tr><td style="text-align:left">短期借款</td><td><strong>~15 亿</strong></td><td><span class="col-tag col-win">✅ 可控</span></td></tr>
+<tr><td style="text-align:left">长期借款</td><td><strong>~50 亿</strong></td><td><span class="col-tag col-warn">⚠ 增加（甘肃项目投资）</span></td></tr>
+<tr><td style="text-align:left">资产负债率</td><td><strong>38.41%</strong></td><td><span class="col-tag col-win">✅ 偏低稳健</span></td></tr>
+<tr><td style="text-align:left">归母净资产</td><td>~204 亿</td><td><span class="col-tag col-win">✅ 同比+14.5%</span></td></tr>
+<tr><td style="text-align:left">总资产</td><td>~300 亿</td><td><span class="col-tag col-win">✅ 扩张中</span></td></tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>负债率38.4%在化工行业中偏低，财务结构稳健。货币资金翻倍增长，短期借款可控。需关注应收账款占利润比例偏高（~80%），以及在建工程大幅增长（+202%）带来的长期借款增加。甘肃巨化项目总投资预计超百亿，是未来1-2年的主要资本开支来源。
+</div>
+
+<h3>现金流量表</h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+<tr><td style="text-align:left">经营现金流（CFO）</td><td><strong>62.61 亿</strong></td><td>27.52 亿</td><td><span class="col-tag col-win">✅ 强劲+127.54%</span></td></tr>
+<tr><td style="text-align:left">投资现金流（CFI）</td><td><strong>-77.68 亿</strong></td><td>-32.25 亿</td><td><span class="col-tag col-lose">❌ CAPEX大幅扩张</span></td></tr>
+<tr><td style="text-align:left">筹资现金流（CFF）</td><td><strong>~+20 亿</strong></td><td>—</td><td><span class="col-tag col-warn">⚠ 融资支撑扩产</span></td></tr>
+<tr><td style="text-align:left">CFO/净利润</td><td><strong>1.65</strong></td><td>1.40</td><td><span class="col-tag col-win">✅ 利润含金量极高</span></td></tr>
+<tr><td style="text-align:left">自由现金流（FCF）</td><td><strong>-15 亿</strong></td><td>-4.73 亿</td><td><span class="col-tag col-lose">❌ CAPEX超过CFO</span></td></tr>
+</table>
+</div>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>CFO 62.6亿极为强劲（+128%），CFO/净利1.65说明利润含金量极高。但CAPEX高达77.7亿（甘肃氟氯新材料项目），导致FCF为负。这是周期上行期典型特征——盈利改善后大规模资本开支扩产。需关注甘肃项目投产后的产能消化和回报率。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>关键指标与排雷（L2框架）</h2>
+
+<h3>关键盈利指标</h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+<tr><td style="text-align:left">ROE</td><td><strong>18.52%</strong></td><td>>15%优秀 / >10%及格</td><td><span class="col-tag col-win">✅ 优秀（周期高位）</span></td></tr>
+<tr><td style="text-align:left">毛利率</td><td><strong>28.23%</strong></td><td>稳定或提升</td><td><span class="col-tag col-win">✅ +10.73pct大幅提升</span></td></tr>
+<tr><td style="text-align:left">净利率</td><td><strong>14.02%</strong></td><td>>10%</td><td><span class="col-tag col-win">✅ 极佳</span></td></tr>
+<tr><td style="text-align:left">营收增长</td><td><strong>+10.33%</strong></td><td>>10%</td><td><span class="col-tag col-win">✅ 达标</span></td></tr>
+<tr><td style="text-align:left">利润增长</td><td><strong>+94.29%</strong></td><td>>15%</td><td><span class="col-tag col-win">✅ 爆发</span></td></tr>
+<tr><td style="text-align:left">CFO/净利润</td><td><strong>1.65</strong></td><td>>1</td><td><span class="col-tag col-win">✅ 优秀</span></td></tr>
+<tr><td style="text-align:left">资产负债率</td><td><strong>38.41%</strong></td><td>制造业<60%</td><td><span class="col-tag col-win">✅ 极佳</span></td></tr>
+<tr><td style="text-align:left">分红率</td><td><strong>~40%</strong></td><td>持续分红</td><td><span class="col-tag col-win">✅ 积极</span></td></tr>
+</table>
+</div>
+
+<h3>分业务分析（FY2025）</h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>业务板块</th><th>营收（亿）</th><th>占比</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
+<tr><td style="text-align:left">制冷剂</td><td>128.71</td><td>47.7%</td><td>+36.94%</td><td><strong>50.81%</strong></td><td><span class="col-tag col-win">✅ 核心利润引擎</span></td></tr>
+<tr><td style="text-align:left">含氟聚合物</td><td>~50</td><td>~19%</td><td>—</td><td><span class="col-tag col-lose">负毛利率</span></td><td><span class="col-tag col-lose">❌ 同质化竞争严重</span></td></tr>
+<tr><td style="text-align:left">石化材料</td><td>~40</td><td>~15%</td><td>—</td><td><span class="col-tag col-lose">负毛利率</span></td><td><span class="col-tag col-lose">❌ 已关停部分装置</span></td></tr>
+<tr><td style="text-align:left">含氟精细化学品</td><td>3.94</td><td>1.5%</td><td>+31%</td><td>—</td><td><span class="col-tag col-win">✅ 液冷新增长极</span></td></tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>制冷剂是绝对核心——毛利率50.81%贡献主要利润，配额制下供给刚性锁定，价格持续上涨。含氟聚合物和石化材料均为负毛利率，拖累整体盈利，公司已主动关停15万吨己内酰胺装置。含氟精细化学品（巨芯冷却液）是未来看点，受益于AI数据中心液冷需求爆发（1000吨/年产能已释放）。
+</div>
+
+<h3>排雷清单</h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>等级</th><th>风险项</th><th>依据</th></tr>
+<tr><td><span class="col-tag col-warn">🟡 中等</span></td><td style="text-align:left">Q4净利同比-23%大幅低于预期</td><td>季节性价格回落+资产减值4亿</td></tr>
+<tr><td><span class="col-tag col-warn">🟡 中等</span></td><td style="text-align:left">CAPEX 77.7亿远超CFO 62.6亿</td><td>甘肃项目投资回收期不确定</td></tr>
+<tr><td><span class="col-tag col-lose">🔴 较高</span></td><td style="text-align:left">非制冷剂业务（聚合物+石化）亏损</td><td>毛利率为负，拖累整体</td></tr>
+<tr><td><span class="col-tag col-warn">🟡 中等</span></td><td style="text-align:left">应收账款占利润~80%</td><td>回款周期偏长</td></tr>
+<tr><td><span class="col-tag col-win">🟢 正面</span></td><td style="text-align:left">制冷剂配额机制构筑长期护城河</td><td>供给刚性约束，不可逆</td></tr>
+<tr><td><span class="col-tag col-win">🟢 正面</span></td><td style="text-align:left">CFO/净利1.65，利润含金量极高</td><td>现金流极为强劲</td></tr>
+<tr><td><span class="col-tag col-win">🟢 正面</span></td><td style="text-align:left">负债率38.4%极低</td><td>化工行业中属优秀水平</td></tr>
+<tr><td><span class="col-tag col-win">🟢 正面</span></td><td style="text-align:left">分红率40%，控股股东增持</td><td>积极回报股东</td></tr>
+</table>
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>估值分析（L3框架）</h2>
+
+<div class="danger-box">
+  <strong>⚠ 周期股估值提示：</strong>巨化股份是纯周期股，当前盈利处于上行周期高位。PE低不代表便宜——周期顶部PE最低，但往往是最危险的买入点。统一以<strong>PB估值</strong>为准，PE仅作参考。
+</div>
+
+<h3>当前估值水平</h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+<tr><td style="text-align:left">股价（2026-07-10估）</td><td><strong>~37 元</strong></td><td>近半年区间25-44元</td></tr>
+<tr><td style="text-align:left">总市值</td><td><strong>~1000 亿</strong></td><td>总股本27.0亿股</td></tr>
+<tr><td style="text-align:left">PE（TTM）</td><td><strong>~26x</strong></td><td>基于FY2025 EPS 1.40元</td></tr>
+<tr><td style="text-align:left">PE（2026E）</td><td><strong>~17-19x</strong></td><td>基于一致预期EPS 1.90-2.16</td></tr>
+<tr><td style="text-align:left">PB（MRQ）</td><td><strong>~4.0-4.9x</strong></td><td>基于BVPS 7.57-8.01元</td></tr>
+<tr><td style="text-align:left">PS（TTM）</td><td><strong>~3.7x</strong></td><td>市销率</td></tr>
+<tr><td style="text-align:left">股息率</td><td><strong>~1.5%</strong></td><td>基于每股分红~0.56元</td></tr>
+</table>
+</div>
+
+<h3>PB Band（周期股专用）</h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>情景</th><th>PB</th><th>对应股价</th><th>vs现价37元</th></tr>
+<tr><td style="text-align:left">历史PB最大值</td><td>~8x</td><td>~64 元</td><td><span class="col-tag col-win">+73%</span></td></tr>
+<tr><td style="text-align:left">80%分位</td><td>~5.5x</td><td>~44 元</td><td><span class="col-tag col-win">+19%</span></td></tr>
+<tr><td style="text-align:left">50%分位（中位数）</td><td>~3.5x</td><td>~28 元</td><td><span class="col-tag col-lose">-24%</span></td></tr>
+<tr><td style="text-align:left">20%分位</td><td>~2.0x</td><td>~16 元</td><td><span class="col-tag col-lose">-57%</span></td></tr>
+<tr><td style="text-align:left">历史PB最小值</td><td>~1.2x</td><td>~10 元</td><td><span class="col-tag col-lose">-73%</span></td></tr>
+<tr><td style="text-align:left;font-weight:700">当前PB</td><td><strong>~4.0-4.9x</strong></td><td>~37 元</td><td>—</td></tr>
+</table>
+</div>
+
+<p style="font-size:12px;color:#666">当前PB处于近5年<strong>50-70%分位</strong>，中等偏高。非周期底部区间，安全边际一般。</p>
+
+<h3>历史PE区间（参考，周期股PE失真）</h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>指标</th><th>数值</th></tr>
+<tr><td style="text-align:left">PE（TTM）最大值</td><td>~105x（2023年业绩低谷）</td></tr>
+<tr><td style="text-align:left">PE（TTM）最小值</td><td>~26x（2025年业绩高峰）</td></tr>
+<tr><td style="text-align:left">当前PE（TTM）</td><td><span class="col-tag col-lose">~26x（历史最低！周期顶部特征）</span></td></tr>
+</table>
+</div>
+
+<div class="danger-box">
+  <strong>周期股PE悖论：</strong>当前PE~26x是近5年最低水平——但这恰恰是周期股最危险的时刻。因为PE低不是因为股价便宜，而是因为盈利处于周期顶峰。一旦制冷剂价格回落，盈利将大幅缩水，PE会迅速被动抬高。对周期股而言，<strong>PE最低=最危险，PE最高（亏损时）=往往是机会</strong>。
+</div>
+
+<div class="highlight-box">
+  <strong>估值总结：</strong>巨化股份当前PB 4.0-4.9x处于历史中等偏高区间，非周期底部布局的好时机。从周期股投资框架看，配额制确实改变了行业格局（供给锁定），中长期中枢可能上移，但当前价格已反映了较多的配额红利预期。安全买入区间在PB 2.5-3.5x（对应股价20-28元）。建议：已持有者可继续持有（配额红利仍在兑现），新买入者需等待更好价格或采取分批建仓策略。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>杜邦分析拆解（L4框架）</h2>
+
+<h3>杜邦拆解表</h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+<tr><td style="text-align:left">净利润率</td><td>4.57%</td><td>8.01%</td><td><strong>14.02%</strong></td><td><span class="col-tag col-win">✅ 周期上行大幅提升</span></td></tr>
+<tr><td style="text-align:left">资产周转率</td><td>0.76</td><td>0.85</td><td><strong>0.90</strong></td><td><span class="col-tag col-win">✅ 持续改善</span></td></tr>
+<tr><td style="text-align:left">权益乘数</td><td>1.70</td><td>1.62</td><td><strong>1.62</strong></td><td><span class="col-tag col-win">✅ 稳定偏低</span></td></tr>
+<tr><td style="text-align:left;font-weight:700"><strong>ROE</strong></td><td><strong>5.87%</strong></td><td><strong>11.01%</strong></td><td><strong>18.52%</strong></td><td><span class="col-tag col-win">✅ 周期驱动大幅上升</span></td></tr>
+<tr><td style="text-align:left">去杠杆ROA</td><td>3.47%</td><td>6.81%</td><td><strong>12.62%</strong></td><td><span class="col-tag col-win">✅ 真实回报翻倍</span></td></tr>
+<tr><td style="text-align:left">杠杆贡献</td><td>2.40pct</td><td>4.20pct</td><td><strong>5.90pct</strong></td><td><span class="col-tag col-warn">⬆ 杠杆略有增加</span></td></tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：均衡型（利润+周转驱动）</strong><br>
+  ROE从5.87%→18.52%，核心驱动力是净利润率从4.57%→14.02%（制冷剂涨价），同时周转率也在改善（0.76→0.90）。权益乘数1.62偏低，不依赖杠杆。<br><br>
+  <strong>周期股特征：</strong>杜邦拆解完美展示了周期股ROE波动的底层逻辑——利润率的周期性波动是ROE变化的核心变量，而非经营效率或杠杆的变化。FY2023 ROE仅5.87%时公司运营能力并不差（周转率0.76，杠杆1.70），纯粹是制冷剂价格低迷导致的利润率偏低。
+</div>
+
+<h3>分业务杜邦贡献</h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>业务板块</th><th>毛利率</th><th>趋势</th><th>对ROE影响</th></tr>
+<tr><td style="text-align:left">制冷剂</td><td><strong>50.81%</strong></td><td><span class="col-tag col-win">⬆ 大幅提升（+21.74pct）</span></td><td><span class="col-tag col-win">正向核心</span></td></tr>
+<tr><td style="text-align:left">含氟聚合物</td><td><span class="col-tag col-lose">负</span></td><td><span class="col-tag col-lose">⬇ 亏损</span></td><td><span class="col-tag col-lose">拖累</span></td></tr>
+<tr><td style="text-align:left">石化材料</td><td><span class="col-tag col-lose">负</span></td><td><span class="col-tag col-lose">⬇ 已关停部分</span></td><td><span class="col-tag col-lose">拖累</span></td></tr>
+</table>
+</div>
+
+<div class="summary-box">
+  <strong>核心结论：</strong><br>
+  ① ROE 18.52%受制冷剂周期驱动为主，非经营效率提升——这是周期股的本质特征；<br>
+  ② 去杠杆ROA从3.47%→12.62%，真实回报翻3.6倍，但全部来自制冷剂涨价；<br>
+  ③ 低杠杆（权益乘数1.62）是优点——即使周期下行，也不会有债务危机；<br>
+  ④ 关键问题：18.52%的ROE能持续多久？若制冷剂价格维持高位，ROE有望稳定在15-20%；若回落，ROE可能跌回5-10%。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>行业分类与特征（L5框架）</h2>
+
+<h3>行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：纯周期股（基础化工-氟化工）</strong><br>
+  <strong>判断依据：</strong>巨化股份的核心产品氟制冷剂是典型的周期品——价格受供需错配驱动大幅波动，利润弹性极大（FY2023净利9.4亿→FY2025净利37.8亿，3年翻4倍）。虽然配额制（基加利修正案）从供给端锁定了部分产能，减少了周期波幅，但行业本质上仍属于强周期。<br><br>
+  <strong>选用的评分体系：周期股评分体系</strong><br>
+  <strong>评分理由：</strong>纯周期企业必须用PB估值、关注穿越周期ROE均值、重视周期位置判断。如果用非周期股评分体系（高PE扣分多），反而会误判——周期股盈利高峰时PE最低，用PE估值会高估安全边际。
+</div>
+
+<h3>行业集中度与壁垒</h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>维度</th><th>判断</th></tr>
+<tr><td style="text-align:left">行业集中度</td><td style="text-align:left"><strong>高集中度（配额制锁定）</strong>——巨化股份三代制冷剂配额占全国~39%，CR3~60%。不同于普通化工品，配额是不可逾越的供给天花板。</td></tr>
+<tr><td style="text-align:left">政策壁垒</td><td style="text-align:left"><strong>极高</strong>——基加利修正案（2016）冻结HFCs产量并计划逐步削减。2024年起中国执行生产配额制，新进入者无法获得配额。这是化工行业最强的准入壁垒之一。</td></tr>
+<tr><td style="text-align:left">产业链壁垒</td><td style="text-align:left"><strong>高</strong>——从萤石→氢氟酸→制冷剂/聚合物，全产业链一体化需要数十亿投资和多年积累。</td></tr>
+<tr><td style="text-align:left">技术壁垒</td><td style="text-align:left"><strong>中等</strong>——制冷剂生产技术已成熟，但高附加值产品（如电子级氟化液）仍有壁垒。</td></tr>
+</table>
+</div>
+
+<h3>生命周期阶段</h3>
+<div class="highlight-box">
+  <strong>阶段：成熟期（但配额制改变了生命周期曲线）</strong><br>
+  制冷剂行业本身已进入成熟期（增速<5%），但2024年配额制实施本质上是"供给侧改革"——通过行政手段限制产量，将行业从"充分竞争的周期品"转变为"配额管制的特许经营品"。这在一定程度上延长了行业生命周期并抬高了利润中枢。<br><br>
+  <strong>投资策略重点：</strong>关注制冷剂价格走势、2027-2029年配额削减进度、甘肃项目投产节奏、含氟精细化学品放量。
+</div>
+
+<h3>当前周期位置</h3>
+<div class="danger-box">
+  <strong>周期位置判断：中周期（复苏→繁荣过渡期）</strong><br>
+  制冷剂价格自2024年配额制启动后持续上涨，当前处于价格上行中段。本轮周期的特殊性在于——供给端有配额制做刚性约束，不像传统化工周期那样纯粹靠市场出清。因此本轮高景气持续时间可能比传统周期更长（预计2-3年），但价格不可能无限上涨。<br><br>
+  <strong>对评分的影响：</strong>周期位置评分7/15——既非底部区间（+15分）也非暴利期（+2分），属于中周期阶段。当前买入并非"逆周期布局"，而是"顺周期持有"阶段。
+</div>
+
+<h3>估值方法匹配</h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+<tr><td style="text-align:left">周期型（氟化工）</td><td><strong>PB（底部）</strong></td><td>PE（顶部参考）、产能利用率、制冷剂价格</td><td><span class="col-tag col-warn">⚠ PB 4.0-4.9x中等偏高</span></td></tr>
+</table>
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>综合实战（L6框架）</h2>
+
+<h3>六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>纯周期（氟化工），配额制下龙头地位不可撼动<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 18.52%优秀但属周期高位，CFO/净利1.65极佳<br>
+  <strong>Step 3 - 估值判断：</strong>PB 4.0-4.9x（中等偏高），PE 26x处于周期底部水平（顶部特征）<br>
+  <strong>Step 4 - 风险排查：</strong>CAPEX过大、非制冷剂业务亏损、PB非底部区间<br>
+  <strong>Step 5 - 结论：</strong>好公司✅（配额护城河+一体化成本优势），价格⚠（PB中等偏高）<br>
+  <strong>Step 6 - 跟踪：</strong>制冷剂价格、配额政策、甘肃项目投产、含氟精细化学品放量
+</div>
+
+<h3>好公司三要素检查</h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>要素</th><th>判断</th><th>依据</th></tr>
+<tr><td>① 好行业</td><td><span class="col-tag col-win">✅</span></td><td style="text-align:left">配额制供给锁定+下游空调/汽车刚需，格局根本性优化</td></tr>
+<tr><td>② 好公司</td><td><span class="col-tag col-win">✅</span></td><td style="text-align:left">氟化工全球龙头，全产业链一体化，客户壁垒极强</td></tr>
+<tr><td>③ 好价格</td><td><span class="col-tag col-warn">⚠️</span></td><td style="text-align:left">PB 4.0-4.9x中等偏高，非周期底部区间，安全边际一般</td></tr>
+</table>
+</div>
+
+<h3>风险评估</h3>
+
+<div class="danger-box">
+  <strong>三个陷阱排查：</strong><br>
+  ☐ 价值陷阱（低PE+低增长+高负债）→ <strong>❌ 未命中</strong>——高增长+低负债<br>
+  ☐ 周期陷阱（低PE+周期顶点）→ <strong>🔴 部分命中</strong>——PE~26x处于历史最低，但当前并非周期顶峰（配额制延长了景气周期），风险可控但需警惕<br>
+  ☐ 烧钱陷阱（高PE+高增速+FCF负）→ <strong>❌ 未命中</strong>——低PE+CFO强劲
+</div>
+
+<h3>管理层与治理风险</h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>事项</th><th>判断</th><th>依据</th></tr>
+<tr><td style="text-align:left">管理层能力与履历</td><td><span class="col-tag col-win">好</span></td><td style="text-align:left">国资背景国企，管理团队稳定，行业经验丰富</td></tr>
+<tr><td style="text-align:left">股权结构与利益一致性</td><td><span class="col-tag col-win">强</span></td><td style="text-align:left">巨化集团持股52.7%，控股股东增持，利益高度一致</td></tr>
+<tr><td style="text-align:left">关联交易/暴雷历史</td><td><span class="col-tag col-win">无</span></td><td style="text-align:left">历史无重大违规或监管处罚</td></tr>
+<tr><td style="text-align:left">资本配置记录</td><td><span class="col-tag col-warn">需关注</span></td><td style="text-align:left">CAPEX 77.7亿激进扩张，甘肃项目投资需验证回报率</td></tr>
+<tr><td style="text-align:left">CEO交接/关键人员变动</td><td><span class="col-tag col-win">无风险</span></td><td style="text-align:left">核心管理层稳定</td></tr>
+</table>
+</div>
+
+<h3>盈利可持续性</h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>维度</th><th>判断</th><th>依据</th></tr>
+<tr><td style="text-align:left">增长靠量还是靠价？</td><td><span class="col-tag col-warn">价驱动</span></td><td style="text-align:left">制冷剂均价+47.55%，产量受限配额无法大幅增长</td></tr>
+<tr><td style="text-align:left">涨价能否持续？</td><td><span class="col-tag col-warn">需观察</span></td><td style="text-align:left">配额制提供底部支撑，但价格天花板取决于下游承受力</td></tr>
+<tr><td style="text-align:left">非经常性利润占比</td><td><span class="col-tag col-win">低</span></td><td style="text-align:left">扣非占比99%，利润质量高</td></tr>
+<tr><td style="text-align:left">大客户/大项目集中度</td><td><span class="col-tag col-win">分散</span></td><td style="text-align:left">下游空调/汽车行业客户分散</td></tr>
+<tr><td style="text-align:left">政策/监管依赖度</td><td><span class="col-tag col-lose">高</span></td><td style="text-align:left">配额制是利润命脉，政策变动将直接影响盈利</td></tr>
+</table>
+</div>
+
+<h3>关键变量敏感性</h3>
+<div class="summary-box">
+  <strong>变量1：制冷剂价格走势</strong><br>
+  &emsp;乐观：R32维持3.5-4.5万/吨 → EPS 2.0-2.3元<br>
+  &emsp;中性：R32在3.0-3.5万/吨区间波动 → EPS 1.6-1.9元（当前基准）<br>
+  &emsp;悲观：下游需求走弱+价格回落至2.5万以下 → EPS 1.0-1.3元<br><br>
+  <strong>变量2：甘肃巨化项目投产回报</strong><br>
+  &emsp;乐观：2026Q3顺利投产+产品高附加值 → 2027年贡献利润5-8亿<br>
+  &emsp;中性：按期投产但爬坡慢 → 2027年贡献利润2-3亿<br>
+  &emsp;悲观：延期或产品价格低迷 → 拖累整体ROE 2-3pct<br><br>
+  <strong>变量3：配额政策变动（2027-2029削减节奏）</strong><br>
+  &emsp;乐观：削减进度延缓或维持现有配额 → 景气周期延长至2028+<br>
+  &emsp;中性：按既定计划逐步削减5-10%/年 → 供给趋紧支撑价格<br>
+  &emsp;悲观：提前加速削减或新增豁免条款 → 不确定性增加
+</div>
+
+<h3>前景展望</h3>
+<div class="summary-box">
+  <strong>未来1-3年核心驱动：</strong><br><br>
+  <strong>正向驱动：</strong><br>
+  &emsp;1. 配额制持续收紧供给——制冷剂价格中枢上移，盈利韧性超预期<br>
+  &emsp;2. 空调/汽车终端需求韧性——以旧换新+新能源车+出口拉动<br>
+  &emsp;3. AI液冷新材料放量——含氟冷却液（巨芯）受益于数据中心爆发<br><br>
+  <strong>负向拖累：</strong><br>
+  &emsp;1. 非制冷剂业务（聚合物/石化）持续亏损，拖累整体<br>
+  &emsp;2. 甘肃项目77.7亿CAPEX的回报率和债务压力<br>
+  &emsp;3. 周期位置已非底部——估值缺乏安全边际
+</div>
+
+<h3>三情景简表</h3>
+<div class="tbl-wrap">
+<table>
+<tr><th>情景</th><th>假设条件</th><th>EPS预估</th><th>PE区间</th><th>预期回报</th></tr>
+<tr><td style="text-align:left;font-weight:700">乐观</td><td style="text-align:left">制冷剂价格维持高位+甘肃项目顺利+液冷放量</td><td>~2.3元</td><td>20-25x</td><td>+25~55%（46~58元）</td></tr>
+<tr><td style="text-align:left;font-weight:700">中性</td><td style="text-align:left">制冷剂价格温和波动+正常投产</td><td>~1.90元</td><td>16-20x</td><td>-10~+15%（30~43元）</td></tr>
+<tr><td style="text-align:left;font-weight:700">悲观</td><td style="text-align:left">价格回落+甘肃延期+非制冷剂持续亏损</td><td>~1.20元</td><td>15-18x</td><td>-30~-40%（22~26元）</td></tr>
+</table>
+</div>
+<p style="font-size:12px;color:#666;margin-top:-14px">概率判断：中性45% | 乐观35% | 悲观20%</p>
+
+<h3>讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——卖制冷剂（空调雪种），配额制下供给受限+需求刚性=涨价赚钱。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——PB 4.0-4.9x不是底部买入区间。另外非制冷剂业务亏损何时扭转？CAPEX 77.7亿会不会成为负担？<br>
+  3. 如果现在买入，期待的回报来源是什么？——配额红利持续兑现+液冷新业务提供增量。但必须接受它不是逆周期布局，而是顺周期持有——预期回报不宜过高。<br>
+  4. 什么情况下你会坚决卖出？——制冷剂价格趋势性下跌 / 配额政策松动 / CAPEX失控导致负债率>55% / 液冷业务证伪。
+</div>
+
+</div></div>
+
+<div class="footer">
+  免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+  数据来源：巨化股份2025年年报、2026Q1季报、券商研报、理杏仁
+</div>
+
+</div>
+
+<script>
+var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+var contents = document.querySelectorAll('.tab-content');
+btns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    contents.forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    var tab = btn.getAttribute('data-tab');
+    document.getElementById('tab-' + tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
