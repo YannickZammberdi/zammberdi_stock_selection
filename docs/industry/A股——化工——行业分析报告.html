@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>A股——化工 行业分析报告</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f5f5f5;padding:0;color:#333}
+  .report-wrap{max-width:800px;margin:0 auto;background:#fff}
+  h1{font-size:22px;margin:0;padding:28px 0 4px;text-align:center}
+  h2{font-size:18px;margin:28px 0 12px;border-bottom:2px solid #1a1a1a;padding-bottom:4px}
+  h3{font-size:15px;margin:18px 0 8px}
+  .subtitle{color:#666;font-size:13px;text-align:center;margin-bottom:4px}
+  .meta{color:#999;font-size:12px;text-align:center;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #e0e0e0}
+  .tab-bar{position:sticky;top:0;z-index:10;background:#fff;display:flex;flex-wrap:wrap;border-bottom:2px solid #ddd;gap:0}
+  .tab-btn{padding:10px 14px;cursor:pointer;border:none;background:none;font-size:13px;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+  .tab-btn:hover{color:#333;background:#f9f9f9}
+  .tab-btn.active{color:#1a1a1a;font-weight:700;border-bottom-color:#1a1a1a}
+  .tab-content{display:none}
+  .tab-content.active{display:block}
+  .tab-inner{padding:0 12px}
+  table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:13px}
+  th{background:#f5f5f5;padding:8px 6px;text-align:left;border-bottom:2px solid #ddd;white-space:nowrap;font-weight:600}
+  td{padding:7px 6px;border-bottom:1px solid #eee}
+  tr:nth-child(even) td{background:#fafafa}
+  .summary-box{background:#fffde7;border-left:4px solid #f9a825;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .highlight-box{background:#e3f2fd;border-left:4px solid #1e88e5;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .danger-box{background:#ffebee;border-left:4px solid #e53935;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .verdict{text-align:center;padding:20px;margin:16px 0;border-radius:8px;font-size:18px;font-weight:700}
+  .verdict-ok{background:#e8f5e9;border:2px solid #4caf50;color:#2e7d32}
+  .verdict-caution{background:#fff3e0;border:2px solid #ff9800;color:#e65100}
+  .verdict-bad{background:#ffebee;border:2px solid #e53935;color:#c62828}
+  .score{font-size:36px;display:block;margin-bottom:4px}
+  .pass{color:#2e7d32;font-weight:700}
+  .skip{color:#666;font-style:italic}
+  .tag{display:inline-block;padding:2px 8px;border-radius:3px;font-size:11px;font-weight:700}
+  .tag-red{background:#ffebee;color:#c62828}
+  .tag-green{background:#e8f5e9;color:#2e7d32}
+  .tag-yellow{background:#fff8e1;color:#f57f17}
+  .footer{font-size:11px;color:#aaa;text-align:center;padding:24px 0 8px;border-top:1px solid #eee;margin-top:30px}
+  .card{background:#fafafa;border:1px solid #e0e0e0;border-radius:6px;padding:14px;margin:10px 0;font-size:13px}
+  .flex{display:flex;flex-wrap:wrap;gap:8px}
+  .tbl-wrap{border:1px solid #e0e0e0;border-radius:6px;overflow:hidden;margin:10px 0 18px}
+  .tbl-wrap table{margin:0}
+  .tbl-wrap th{background:#f5f5f5;padding:9px 8px;border-bottom:1px solid #ddd;font-weight:600;font-size:12px}
+  .tbl-wrap td{padding:8px;border-bottom:1px solid #f0f0f0;font-size:13px}
+  .tbl-wrap tr:last-child td{border-bottom:none}
+  .bar-wrap{display:inline-flex;align-items:center;width:60px;height:16px;vertical-align:middle}
+  .bar-bg{background:#eee;border-radius:4px;height:8px;width:100%;overflow:hidden;position:relative}
+  .bar{display:block;height:8px;border-radius:4px}
+  .score-cell{font-weight:700;font-size:15px;text-align:center;white-space:nowrap}
+  .tbl-wrap td,.tbl-wrap th{vertical-align:middle}
+  .metric-h{color:#1565c0;font-weight:700;font-size:13px}
+  .metric-l{color:#c62828;font-weight:700}
+  .metric-m{color:#e65100;font-weight:700}
+  .col-tag{display:inline-block;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600}
+  .col-win{background:#e8f5e9;color:#2e7d32}
+  .col-lose{background:#ffebee;color:#c62828}
+  .col-warn{background:#fff3e0;color:#e65100}
+  .col-info{background:#e3f2fd;color:#1565c0}
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>A股——化工 行业分析报告</h1>
+<div class="subtitle">L5分类：周期 ｜ 上市公司：~450只 ｜ 总市值：~5万亿</div>
+<div class="meta">生成日期：2026-07-13</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l7">L7 量化初筛</button>
+  <button class="tab-btn" data-tab="l8">L8 行业画像</button>
+  <button class="tab-btn" data-tab="l9">L9 竞争格局</button>
+  <button class="tab-btn" data-tab="l10">L10 周期时机</button>
+</div>
+
+<div class="tab-content active" id="tab-summary">
+<div class="tab-inner">
+
+<h2>行业速览</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">项目</th><th>内容</th></tr>
+<tr><td>行业名称</td><td><strong>化工</strong>（基础化工+炼化+精细化工与新材料）</td></tr>
+<tr><td>市场</td><td>A股</td></tr>
+<tr><td>L5分类</td><td><span class="col-tag col-lose">周期</span> 大宗品强周期波动，新材料有成长属性，内部分化极大</td></tr>
+<tr><td>上市公司</td><td>~450只（申万基础化工~390只+石油化工~60只），符合L7筛选条件 <span class="col-tag col-win">25只</span></td></tr>
+<tr><td>行业总市值</td><td>~5万亿</td></tr>
+<tr><td>产业链利润核心</td><td><span class="col-tag col-win">电子化学品/特种材料</span>（毛利率30-46%）+ <span class="col-tag col-info">氟化工（制冷剂配额红利）</span></td></tr>
+<tr><td>生命周期阶段</td><td><span class="col-tag col-warn">分化</span> 大宗品成熟/衰退（产能过剩），化工新材料成长期</td></tr>
+<tr><td>当前周期位置</td><td><span class="col-tag col-warn">去库存末期→弱复苏初期</span> CCPI环比大幅回升+37%，但绝对价格仍在低位</td></tr>
+</table>
+</div>
+
+<h2>综合评分</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>维度</th><th style="width:60px">得分</th><th>进度</th><th>说明</th></tr>
+<tr>
+  <td>行业规模与空间</td>
+  <td class="score-cell">16/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:80%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">中国化工TAM~15万亿（全球第一），国产替代空间>5000亿</td>
+</tr>
+<tr>
+  <td>产业链位置</td>
+  <td class="score-cell">9/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:60%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">高端材料盈利厚，大宗品同质化严重，炼化受油价压制</td>
+</tr>
+<tr>
+  <td>竞争格局</td>
+  <td class="score-cell">10/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:50%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">品类极度分散，大宗品过剩恶化，特种材料壁垒高但分散</td>
+</tr>
+<tr>
+  <td>增长驱动力</td>
+  <td class="score-cell">12/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:80%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">国产替代+新能源+AI散热+配额制+周期复苏，多重驱动力叠加</td>
+</tr>
+<tr>
+  <td>周期位置</td>
+  <td class="score-cell">12/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:80%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">周期底部已确认（CCPI环比+37%，固投增速转负），复苏正在展开</td>
+</tr>
+<tr>
+  <td>政策环境</td>
+  <td class="score-cell">12/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:80%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">"十五五"重点支持+反内卷+配额制+国产替代，政策全面利好</td>
+</tr>
+<tr style="background:#fafafa">
+  <td style="font-weight:700;font-size:14px">总分</td>
+  <td style="font-weight:700;font-size:16px;color:#2e7d32">71/100</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:71%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#2e7d32;font-weight:600">良好——周期底部复苏初期，精选细分龙头布局正当时</td>
+</tr>
+</table>
+</div>
+
+<div class="verdict verdict-ok">
+  <span class="score">71</span>
+  良好——结构性机会明确
+</div>
+
+<div class="summary-box">
+  <strong>核心结论</strong><br>
+  化工行业正处于"三年周期底部"转向"弱复苏初期"的关键拐点。CCPI在2026Q1环比大幅回升+37%，在建工程增速转负意味着供给端扩产高峰已过，价格和盈利已从最底部开始修复。但行业分化极大——大宗品（MDI/有机硅/氯碱/化肥）毛利率<15%仍在盈亏线挣扎，而氟化工（制冷剂配额制红利）、电子化学品（国产替代）、特种材料（AI散热/PEEK）盈利强劲。<br><br>
+  <strong>当前是周期底部布局的最佳窗口，核心逻辑：</strong>①供给端：化工固投增速转负，新产能投放接近尾声 ②价格端：CCPI从历史最低反弹，PVC/PTA等已涨15%+ ③政策端：反内卷+配额制+国产替代三线发力。建议"重特种、轻大宗"——优先配置氟化工/电子化学品/特种助剂龙头，对万华等大宗品龙头等待毛利率回升至>15%信号后加仓。
+</div>
+
+<div class="highlight-box">
+  <strong>行业公式</strong><br>
+  收入 = 产能（万吨）× 产品均价（元/吨）× 开工率 × 高附加值产品占比<br>
+  关键指标：1) CCPI化工价格指数 2) MDI/制冷剂/PTA/有机硅价格 3) 化工固投增速 4) 龙头毛利率趋势 5) 产能利用率
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l7">
+<div class="tab-inner">
+
+<h2>筛子调整说明</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:12%">筛子</th><th style="width:35%">标准</th><th>调整说明</th></tr>
+<tr><td>①<span class="col-tag col-info">市值</span></td><td>主板≥50亿 / 创业板科创板≥30亿</td><td>化工大量小公司（~450只），保留≥30亿门槛</td></tr>
+<tr><td>②<span class="col-tag col-info">营收</span></td><td>主板≥10亿 / 创业板科创板≥3亿</td><td>特种材料公司营收较小，保留≥3亿</td></tr>
+<tr><td>③<span class="col-tag col-lose">毛利率</span></td><td>制造业≥15%</td><td><strong>最严筛</strong>——大宗化工品毛利率普遍<15%，周期底部进一步压低</td></tr>
+<tr><td>④<span class="col-tag col-info">ROE</span></td><td>≥8%</td><td>周期底部ROE为负/极低的剔除；万华/巨化等因ROE<8%进入观察池</td></tr>
+<tr><td>⑤<span class="col-tag col-info">负债率</span></td><td>制造业≤65%</td><td>化工重资产行业负债率偏高，炼化企业普遍>65%</td></tr>
+<tr><td>⑥<span class="col-tag col-info">估值</span></td><td>PE≤70%分位 / 亏损用PB≤80%分位</td><td>周期底部PE虚高，PB辅助判断；ETF标的指数化工PB~52%分位</td></tr>
+</table>
+</div>
+
+<h2>候选池（25只）</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>环节</th><th>市值</th><th>毛利率</th><th>ROE</th><th>负债率</th><th>PE/PB分位</th><th>通过</th></tr>
+<tr>
+  <td><strong>万华化学 600309</strong></td>
+  <td><span class="col-tag col-warn">聚氨酯</span></td>
+  <td style="font-weight:600">~2500亿</td>
+  <td><span class="col-tag col-lose">12.8%</span></td>
+  <td><span class="col-tag col-warn">~5.5%</span></td>
+  <td>~58%</td>
+  <td>PB~1.5x（20%分位）</td>
+  <td class="skip">观察池</td>
+</tr>
+<tr>
+  <td><strong>新和成 002001</strong></td>
+  <td><span class="col-tag col-win">维生素/新材料</span></td>
+  <td style="font-weight:600">~800亿</td>
+  <td><span class="col-tag col-win">~40%</span></td>
+  <td><span class="col-tag col-win">~18%</span></td>
+  <td>~30%</td>
+  <td>PE~12x（40%分位）</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>巨化股份 600160</strong></td>
+  <td><span class="col-tag col-info">氟化工</span></td>
+  <td style="font-weight:600">~700亿</td>
+  <td><span class="col-tag col-warn">~14%</span></td>
+  <td><span class="col-tag col-warn">~5.6%</span></td>
+  <td>~32%</td>
+  <td>PB~3.2x（35%分位）</td>
+  <td class="skip">观察池</td>
+</tr>
+<tr>
+  <td><strong>金发科技 600143</strong></td>
+  <td><span class="col-tag col-warn">改性塑料</span></td>
+  <td style="font-weight:600">~500亿</td>
+  <td><span class="col-tag col-win">~22%</span></td>
+  <td><span class="col-tag col-win">~8%</span></td>
+  <td>~55%</td>
+  <td>PE~35x（60%分位）</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>华鲁恒升 600426</strong></td>
+  <td><span class="col-tag col-info">煤化工</span></td>
+  <td style="font-weight:600">~600亿</td>
+  <td><span class="col-tag col-warn">~14%</span></td>
+  <td><span class="col-tag col-warn">~4%</span></td>
+  <td>~28%</td>
+  <td>PB~1.2x（10%分位）</td>
+  <td class="skip">观察池</td>
+</tr>
+<tr>
+  <td><strong>三美股份 603379</strong></td>
+  <td><span class="col-tag col-info">氟化工</span></td>
+  <td style="font-weight:600">~250亿</td>
+  <td><span class="col-tag col-win">~53%</span></td>
+  <td><span class="col-tag col-warn">~6%</span></td>
+  <td>~20%</td>
+  <td>PB~8x（55%分位）</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>圣泉集团 605589</strong></td>
+  <td><span class="col-tag col-win">酚醛树脂/电池</span></td>
+  <td style="font-weight:600">~250亿</td>
+  <td><span class="col-tag col-win">~35%</span></td>
+  <td><span class="col-tag col-win">~12%</span></td>
+  <td>~40%</td>
+  <td>PE~25x（50%分位）</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>雅克科技 002409</td>
+  <td><span class="col-tag col-win">半导体材料</span></td>
+  <td>~328亿</td>
+  <td><span class="col-tag col-win">~33%</span></td>
+  <td><span class="col-tag col-win">~8%</span></td>
+  <td>~25%</td>
+  <td>PE~38x（55%分位）</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>呈和科技 688625</td>
+  <td><span class="col-tag col-win">高分子助剂</span></td>
+  <td>~100亿</td>
+  <td><span class="col-tag col-win">~46%</span></td>
+  <td><span class="col-tag col-win">~15%</span></td>
+  <td>~20%</td>
+  <td>PE~35x（45%分位）</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>彤程新材 603650</td>
+  <td><span class="col-tag col-win">光刻胶/助剂</span></td>
+  <td>~270亿</td>
+  <td><span class="col-tag col-win">~23%</span></td>
+  <td><span class="col-tag col-win">~10%</span></td>
+  <td>~38%</td>
+  <td>PE~51x（65%分位）</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>联瑞新材 688300</td>
+  <td><span class="col-tag col-win">硅微粉/封装</span></td>
+  <td>~120亿</td>
+  <td><span class="col-tag col-win">~40%</span></td>
+  <td><span class="col-tag col-win">~12%</span></td>
+  <td>~18%</td>
+  <td>PE~45x（50%分位）</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>东材科技 601208</td>
+  <td><span class="col-tag col-info">光学膜/绝缘</span></td>
+  <td>~184亿</td>
+  <td><span class="col-tag col-win">~28%</span></td>
+  <td><span class="col-tag col-win">~9%</span></td>
+  <td>~35%</td>
+  <td>PE~30x（40%分位）</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>万润股份 002643</td>
+  <td><span class="col-tag col-win">显示材料/沸石</span></td>
+  <td>~100亿</td>
+  <td><span class="col-tag col-win">~40%</span></td>
+  <td><span class="col-tag col-win">~10%</span></td>
+  <td>~25%</td>
+  <td>PE~25x（35%分位）</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>蓝晓科技 300487</td>
+  <td><span class="col-tag col-win">吸附分离材料</span></td>
+  <td>~180亿</td>
+  <td><span class="col-tag col-win">~45%</span></td>
+  <td><span class="col-tag col-win">~16%</span></td>
+  <td>~22%</td>
+  <td>PE~40x（55%分位）</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>瑞丰新材 300910</td>
+  <td><span class="col-tag col-win">润滑油添加剂</span></td>
+  <td>~130亿</td>
+  <td><span class="col-tag col-win">~35%</span></td>
+  <td><span class="col-tag col-win">~14%</span></td>
+  <td>~15%</td>
+  <td>PE~30x（45%分位）</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>国瓷材料 300285</td>
+  <td><span class="col-tag col-info">电子陶瓷/催化</span></td>
+  <td>~250亿</td>
+  <td><span class="col-tag col-win">~38%</span></td>
+  <td><span class="col-tag col-win">~9%</span></td>
+  <td>~28%</td>
+  <td>PE~35x（50%分位）</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>昊华科技 600378</td>
+  <td><span class="col-tag col-info">氟材料/特气</span></td>
+  <td>~395亿</td>
+  <td><span class="col-tag col-win">~30%</span></td>
+  <td><span class="col-tag col-win">~8%</span></td>
+  <td>~40%</td>
+  <td>PE~28x（40%分位）</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>永和股份 605020</td>
+  <td><span class="col-tag col-info">氟化工</span></td>
+  <td>~150亿</td>
+  <td><span class="col-tag col-win">~22%</span></td>
+  <td><span class="col-tag col-warn">~7%</span></td>
+  <td>~45%</td>
+  <td>PE~35x（50%分位）</td>
+  <td class="pass">6/6</td>
+</tr>
+</table>
+</div>
+
+<h2>观察池</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>卡在哪筛</th><th>备注</th></tr>
+<tr>
+  <td><strong>万华化学 600309</strong></td>
+  <td><span class="col-tag col-lose">③毛利率12.8%<15%</span> <span class="col-tag col-lose">④ROE~5.5%<8%</span></td>
+  <td>MDI全球龙头，周期底部毛利率+ROE双低是行业见底信号。当万华毛利率回升>15%/ROE>8%时，意味着行业全面复苏</td>
+</tr>
+<tr>
+  <td><strong>巨化股份 600160</strong></td>
+  <td><span class="col-tag col-lose">④ROE~5.6%<8%</span></td>
+  <td>氟化工配额制红利正在兑现，制冷剂价格大幅上涨，2026H2 ROE大概率回到8%+</td>
+</tr>
+<tr>
+  <td><strong>华鲁恒升 600426</strong></td>
+  <td><span class="col-tag col-lose">③毛利率14%<15%</span> <span class="col-tag col-lose">④ROE~4%<8%</span></td>
+  <td>煤化工龙头，成本优势突出但周期底部盈利承压，尿素/DMF价格回升将是催化剂</td>
+</tr>
+<tr>
+  <td><strong>华峰化学 002064</strong></td>
+  <td><span class="col-tag col-lose">③毛利率14.7%<15%</span> <span class="col-tag col-lose">④ROE~4%<8%</span></td>
+  <td>己二酸/聚氨酯底部，等待行业反转</td>
+</tr>
+<tr>
+  <td><strong>中材科技 002080</strong></td>
+  <td><span class="col-tag col-lose">④ROE~6%<8%</span></td>
+  <td>玻纤周期底部，风电叶片/锂电隔膜增长，多元布局</td>
+</tr>
+<tr>
+  <td><strong>天赐材料 002709</strong></td>
+  <td><span class="col-tag col-lose">④ROE为负</span></td>
+  <td>锂电电解液周期底部，PS~3x，等待2026H2需求复苏</td>
+</tr>
+<tr>
+  <td><strong>恒力石化 600346</strong></td>
+  <td><span class="col-tag col-lose">⑤负债率>68%</span></td>
+  <td>炼化龙头，PTA/涤纶周期底部，高负债率是硬伤但正在降杠杆</td>
+</tr>
+<tr>
+  <td><strong>荣盛石化 002493</strong></td>
+  <td><span class="col-tag col-lose">⑤负债率>70%</span></td>
+  <td>浙石化二期投产，炼化一体化但负债率高</td>
+</tr>
+</table>
+</div>
+
+<h2>筛除记录</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>筛子</th><th style="width:60px">筛除数</th><th>知名示例</th></tr>
+<tr><td>①市值</td><td style="text-align:center">~120</td><td>大量化工小票（涂料/助剂/农药等），市值<30亿</td></tr>
+<tr><td>②营收</td><td style="text-align:center">~80</td><td>早期材料公司/亏损小微化工</td></tr>
+<tr><td>③毛利率 <span class="col-tag col-lose">最严</span></td><td style="text-align:center">~130</td><td>万华化学、华鲁恒升、华峰化学、中泰化学、恒力石化、荣盛石化、桐昆股份、鲁西化工、卫星化学（周期底部毛利率<15%）</td></tr>
+<tr><td>④ROE</td><td style="text-align:center">~50</td><td>巨化股份、天赐材料、中材科技（ROE<8%）</td></tr>
+<tr><td>⑤负债率</td><td style="text-align:center">~30</td><td>恒力石化、荣盛石化、中泰化学（负债率>65%）</td></tr>
+<tr><td>⑥估值</td><td style="text-align:center">~15</td><td>部分炒作标的PE分位>70%</td></tr>
+<tr style="background:#fffde7"><td><strong>剩余</strong></td><td style="text-align:center;font-weight:700;color:#2e7d32"><strong>25</strong></td><td>—</td></tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <strong>L7筛选结论</strong><br>
+  450→25，筛选力度~94%。最严的仍是毛利率筛（~130只被筛除），周期底部大宗化工品毛利率普遍<15%。剩余的25只集中在氟化工（三美/永和/昊华）、特种材料（呈和/蓝晓/瑞丰）、电子化学品（雅克/彤程/联瑞）等高壁垒赛道。<br><br>
+  <strong>关键发现：</strong>万华化学、巨化股份、华鲁恒升作为行业核心龙头因周期底部毛利率/ROE双低进入观察池——这本身就是化工行业处于周期底部的确认信号。当这些龙头回归候选池时，意味着行业全面复苏。建议对观察池的万华/巨化/华鲁建立PB估值跟踪，当毛利率回升信号出现时第一时间加仓。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l8">
+<div class="tab-inner">
+
+<h2>产业链</h2>
+<div class="card" style="font-size:13px;line-height:1.7">
+
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px">
+
+<div style="flex:1;min-width:200px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#e65100;font-size:14px">上游基础原料</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">原油/天然气</div>
+    <div style="text-align:center;font-size:11px;color:#666">中石化/中石油/恒力/荣盛</div>
+    <div style="margin:8px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">煤炭/盐矿/磷矿</div>
+    <div style="text-align:center;font-size:11px;color:#666">宝丰能源/华鲁恒升/盐湖/云天化</div>
+    <div style="margin:8px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">基础化学品（三苯/乙烯/丙烯/甲醇）</div>
+    <div style="text-align:center;font-size:11px;color:#666">炼化一体化企业</div>
+  </div>
+</div>
+
+<div style="flex:2;min-width:280px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#1565c0;font-size:14px">中游化工制造</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+
+    <div style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap">
+      <div style="flex:1;min-width:70px;background:#fff3e0;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">聚氨酯</div>
+        <div style="font-size:10px;color:#666">万华化学</div>
+      </div>
+      <div style="font-size:20px;color:#999;line-height:36px">→</div>
+      <div style="flex:1;min-width:70px;background:#fff3e0;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">氟化工</div>
+        <div style="font-size:10px;color:#666">巨化/三美</div>
+      </div>
+      <div style="font-size:20px;color:#999;line-height:36px">→</div>
+      <div style="flex:1;min-width:70px;background:#e8f5e9;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">电子化学品</div>
+        <div style="font-size:10px;color:#666">雅克/彤程</div>
+      </div>
+    </div>
+
+    <div style="margin:6px 0 4px;font-weight:600;font-size:12px;color:#1565c0">细分赛道（按环节）</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px;min-width:100px">炼化：<strong>恒力/荣盛</strong></div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px;min-width:100px">煤化工：<strong>华鲁/宝丰</strong></div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px;min-width:100px">聚氨酯：<strong>万华</strong></div>
+      <div style="flex:1;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px;min-width:100px">氟化工：<strong>巨化/三美/永和</strong></div>
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px;min-width:100px">半导体材料：<strong>雅克/彤程/联瑞</strong></div>
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px;min-width:100px">特种助剂：<strong>呈和/瑞丰/蓝晓</strong></div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px;min-width:100px">改性塑料：<strong>金发</strong></div>
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px;min-width:100px">维生素：<strong>新和成</strong></div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px;min-width:100px">化肥：<strong>云天化/华鲁</strong></div>
+    </div>
+
+    <div style="text-align:center;font-size:11px;color:#c62828;margin-top:10px">▲ 炼化/聚氨酯/煤化工/氯碱毛利率<15%处于周期底部亏损区域</div>
+  </div>
+</div>
+
+<div style="flex:1;min-width:160px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#c62828;font-size:14px">下游应用</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:8px 6px;text-align:center;font-weight:600;font-size:12px">建筑/地产（涂料/保温/管材）</div>
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:8px 6px;text-align:center;font-weight:600;font-size:12px">汽车/交通（塑料/橡胶/涂料）</div>
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:8px 6px;text-align:center;font-weight:600;font-size:12px">电子/半导体（特气/光刻胶/硅微粉）</div>
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:8px 6px;text-align:center;font-weight:600;font-size:12px">新能源（锂电材料/光伏辅材/风电）</div>
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:8px 6px;text-align:center;font-weight:600;font-size:12px">纺织/服装（涤纶/氨纶/染料）</div>
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:8px 6px;text-align:center;font-weight:600;font-size:12px">农业（化肥/农药）</div>
+    <div style="margin:8px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#f5f5f5;border:1px solid #ccc;border-radius:4px;padding:8px 6px;text-align:center;font-weight:600;font-size:12px">终端用户</div>
+    <div style="text-align:center;font-size:11px;color:#666">制造业/消费者/基建/出口</div>
+  </div>
+</div>
+
+</div>
+
+<div style="background:#fffde7;border-left:3px solid #f9a825;padding:8px 12px;font-size:12px;border-radius:0 4px 4px 0">
+  <strong>利润最厚环节：</strong>氟化工（制冷剂配额红利，毛利率53%）> 电子化学品/特种助剂（30-46%）> 维生素（40%+）
+  <br><span style="color:#999">大宗品（炼化/聚氨酯/煤化工/氯碱）毛利率<15%，同质化竞争激烈，盈利随周期大幅波动</span>
+</div>
+
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>环节</th><th>代表公司</th><th>毛利率</th><th>集中度</th><th>议价能力</th></tr>
+<tr>
+  <td><span class="col-tag col-win">氟化工（制冷剂）</span></td>
+  <td>巨化/三美/永和</td>
+  <td><span class="col-tag col-win">53%（三美）</span></td>
+  <td>CR3~60%（配额制锁定）</td>
+  <td><span class="col-tag col-win">强（配额约束）</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-win">电子化学品</span></td>
+  <td>雅克/彤程/联瑞</td>
+  <td><span class="col-tag col-win">30-46%</span></td>
+  <td>分散（CR5<30%）</td>
+  <td><span class="col-tag col-win">强（认证壁垒）</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-win">特种助剂</span></td>
+  <td>呈和/瑞丰/蓝晓</td>
+  <td><span class="col-tag col-win">35-46%</span></td>
+  <td>高度分散</td>
+  <td><span class="col-tag col-win">强（配方壁垒）</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-win">维生素</span></td>
+  <td>新和成/万润</td>
+  <td><span class="col-tag col-win">40%+</span></td>
+  <td>寡头（新和成全球前列）</td>
+  <td><span class="col-tag col-win">强</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-warn">改性塑料</span></td>
+  <td>金发/圣泉</td>
+  <td><span class="col-tag col-win">22-35%</span></td>
+  <td>较分散</td>
+  <td><span class="col-tag col-warn">中</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-lose">聚氨酯（MDI）</span></td>
+  <td>万华化学</td>
+  <td><span class="col-tag col-lose">~13%</span></td>
+  <td>全球寡头（万华全球第一）</td>
+  <td><span class="col-tag col-warn">中（同质化+周期）</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-lose">炼化/PTA</span></td>
+  <td>恒力/荣盛/桐昆</td>
+  <td><span class="col-tag col-lose">8-12%</span></td>
+  <td>较集中</td>
+  <td><span class="col-tag col-lose">弱</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-lose">煤化工</span></td>
+  <td>华鲁/宝丰</td>
+  <td><span class="col-tag col-lose">~14%</span></td>
+  <td>较分散</td>
+  <td><span class="col-tag col-lose">弱</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-lose">化肥/氯碱</span></td>
+  <td>云天化/中泰</td>
+  <td><span class="col-tag col-lose">10-15%</span></td>
+  <td>分散</td>
+  <td><span class="col-tag col-lose">弱</span></td>
+</tr>
+</table>
+</div>
+
+<h2>市场规模</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">指标</th><th style="width:25%">数值</th><th>说明</th></tr>
+<tr><td><strong>TAM</strong>（中国化工行业）</td><td><span class="col-tag col-info">~15万亿</span></td><td>中国化工行业产值全球第一（占~40%）</td></tr>
+<tr><td><strong>化工新材料市场</strong></td><td><span class="col-tag col-info">~1.5万亿</span></td><td>其中进口替代空间>5000亿，自给率~56%</td></tr>
+<tr><td><strong>近年增速</strong>（行业整体）</td><td><span class="col-tag col-warn">~3-5%</span></td><td>化工新材料>10%，大宗品<3%，内部分化极大</td></tr>
+</table>
+</div>
+
+<h2>生命周期</h2>
+<div class="summary-box">
+  <strong><span class="col-tag col-warn">成熟/分化期</span></strong><br>
+  化工行业整体已进入成熟期（增速<5%），但内部高度分化——大宗品（聚氨酯/炼化/煤化工/氯碱/化肥）处于成熟期偏衰退（产能过剩+低增长），而化工新材料（电子化学品/特种助剂/碳纤维/PEEK）处于成长期甚至导入期。判断依据：①行业整体增速<5%但高端细分>15% ②国产替代空间>5000亿 ③产能周期处于底部（在建工程增速转负）④行业集中度仍在提升过程中。
+</div>
+
+<h2>增长驱动力</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动力</th><th>类型</th><th>可持续性</th><th>量化指标</th></tr>
+<tr>
+  <td>国产替代（半导体/高端材料）</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长（5-10年）</span></td>
+  <td>自给率56%→目标75%+，>5000亿空间</td>
+</tr>
+<tr>
+  <td>氟化工配额制（供给约束）</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-warn">中（3-5年）</span></td>
+  <td>三代制冷剂产量冻结，价格中枢上移</td>
+</tr>
+<tr>
+  <td>新能源/汽车轻量化</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长（5-10年）</span></td>
+  <td>碳纤维/工程塑料/锂电材料用量增长</td>
+</tr>
+<tr>
+  <td>AI/机器人新材料需求</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长（新兴增量）</span></td>
+  <td>AI散热/PEEK/电子氟化液等新兴品类</td>
+</tr>
+<tr>
+  <td>宏观经济化工周期复苏</td>
+  <td><span class="col-tag col-lose">周期</span></td>
+  <td><span class="col-tag col-lose">中（1-2年）</span></td>
+  <td>CCPI指数、MDI/PTA价格、开工率</td>
+</tr>
+</table>
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l9">
+<div class="tab-inner">
+
+<h2>市场结构</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>市场结构类型</td>
+  <td><span class="col-tag col-warn">垄断竞争（整体）</span> 细分单品市场寡头特征明显，但品类间高度分散</td>
+</tr>
+<tr>
+  <td>CR3</td>
+  <td>MDI：万华全球第一（~25%份额）；制冷剂：CR3~60%；炼化：CR5~40%；电子化学品：CR5<30%</td>
+</tr>
+<tr>
+  <td>格局象限</td>
+  <td><span class="col-tag col-warn">阶梯分层</span> 特种材料寡头稳定（高壁垒）→ 大宗品价格战中（低壁垒+过剩）</td>
+</tr>
+<tr>
+  <td>新进入者威胁</td>
+  <td><span class="col-tag col-warn">中</span> 大宗品过剩（威胁低），特种材料认证壁垒高（威胁低），但跨界进入者增多</td>
+</tr>
+</table>
+</div>
+
+<h2>竞争壁垒</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>壁垒类型</th><th>强度</th><th>可持续性</th><th>具体表现</th></tr>
+<tr>
+  <td>技术壁垒（配方/工艺）</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>特种助剂/电子化学品对配方和纯度要求极高，研发周期5-10年</td>
+</tr>
+<tr>
+  <td>客户认证壁垒</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>半导体/航空认证周期2-5年，替换成本极高</td>
+</tr>
+<tr>
+  <td>规模成本壁垒（大宗品）</td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>万华MDI全球最大成本最低，但新增产能门槛在降低</td>
+</tr>
+<tr>
+  <td>配额壁垒（氟化工）</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>基加利修正案约束，配额即护城河</td>
+</tr>
+</table>
+</div>
+
+<div class="summary-box">
+  <strong>定价权测试</strong><br>
+  🔹 龙头能涨价吗？<span class="col-tag col-win">氟化工能</span>（配额制供给约束） / <span class="col-tag col-win">特种材料能</span>（技术壁垒+认证） / <span class="col-tag col-lose">大宗品不能</span>（同质化过剩）<br>
+  🔹 毛利率趋势：氟化工↑（配额红利），特种材料→稳，大宗品↓（底部磨底）<br>
+  🔹 ROE趋势：特种材料>15%稳定，氟化工回升中（巨化~5.6%→预计>8%），大宗品3-6%底部
+</div>
+
+<h2>驱动力拆解</h2>
+<div class="highlight-box">
+  <strong>行业收入公式</strong><br>
+  收入 = 产能规模 × 开工率 × 产品均价 × 高附加值产品占比<br><br>
+  当前组合：<span style="color:#2e7d32;font-weight:700">量（国产替代+配额约束）→/↑</span> ＋ <span style="color:#e65100;font-weight:700">价（CCPI环比+37%，品类分化）→/↑</span> ＝ <span class="col-tag col-warn">分化：特种量价齐升、大宗量平价低</span>
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动因子</th><th>最新值</th><th>历史区间</th><th>当前分位</th></tr>
+<tr>
+  <td>CCPI化工价格指数</td>
+  <td><span class="col-tag col-win">环比+37%（2026Q1）</span></td>
+  <td>历史低位-高位</td>
+  <td><span class="col-tag col-warn">~30%</span></td>
+</tr>
+<tr>
+  <td>MDI价格（聚合MDI）</td>
+  <td><span class="col-tag col-lose">~15000元/吨</span></td>
+  <td>10000-28000</td>
+  <td><span class="col-tag col-lose">~25%</span></td>
+</tr>
+<tr>
+  <td>制冷剂R32价格</td>
+  <td><span class="col-tag col-win">~35000元/吨</span></td>
+  <td>15000-45000</td>
+  <td><span class="col-tag col-win">~70%</span></td>
+</tr>
+<tr>
+  <td>PTA价格</td>
+  <td><span class="col-tag col-warn">~5500元/吨</span></td>
+  <td>3000-8000</td>
+  <td><span class="col-tag col-warn">~40%</span></td>
+</tr>
+<tr>
+  <td>化工固投增速</td>
+  <td><span class="col-tag col-lose">同比-8%（2025）</span></td>
+  <td>-10% ~ +20%</td>
+  <td><span class="col-tag col-lose">~20%</span></td>
+</tr>
+</table>
+</div>
+
+<h2>成本结构</h2>
+<div class="summary-box">
+  🔹 <strong>类型：</strong><span class="col-tag col-lose">重资产</span> 化工是典型重资产行业（折旧+原材料占成本70-80%）<br>
+  🔹 <strong>成本敏感性：</strong>高度敏感于上游石油/煤炭/天然气价格——油价每变动10美元/桶，炼化毛利率变动约2-3个百分点<br>
+  🔹 <strong>盈亏平衡点：</strong>大宗化学品开工率>75%才盈利（当前部分仅60-70%）；特种材料开工率>50%即可盈利<br>
+  🔹 <strong>要素成本：</strong>电费占煤化工成本~30%，电价波动对华鲁/宝丰等影响显著
+</div>
+
+<h2>竞争格局总结</h2>
+<div class="highlight-box">
+  化工行业呈<strong>"三层金字塔"竞争结构：</strong><br>
+  <strong>顶层（高壁垒高盈利）：</strong>氟化工（配额制护城河）+ 电子化学品/特种助剂（技术+认证壁垒）→ 毛利率>30%，ROE>10%<br>
+  <strong>中层（中壁垒中等盈利）：</strong>改性塑料/维生素（规模+品牌）→ 毛利率20-40%，ROE 8-18%<br>
+  <strong>底层（低壁垒低盈利）：</strong>炼化/聚氨酯/煤化工/氯碱/化肥（同质化竞争+周期波动）→ 毛利率<15%，ROE 3-6%<br><br>
+  当前格局趋势：低端过剩加速洗牌（在建工程转负），高端国产替代加速，龙头集中度持续提升。投资策略应<strong>"重顶层、轻底层"</strong>——优先配置氟化工和特种材料龙头，对大宗品龙头等待周期信号右侧加仓。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l10">
+<div class="tab-inner">
+
+<h2>周期位置</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>库存周期阶段</td>
+  <td><span class="col-tag col-warn">去库存末期→弱复苏初期</span> CCPI环比+37%确认底部回升，但绝对价格仍处历史~30%分位</td>
+</tr>
+<tr>
+  <td>产能利用率</td>
+  <td><span class="col-tag col-warn">~65-70%</span>（历史区间：60-90%）大宗品偏低（60-65%），特种材料正常（75-80%）</td>
+</tr>
+<tr>
+  <td>产品价格分位</td>
+  <td><span class="col-tag col-warn">CCPI~30%分位</span> MDI~25%分位，制冷剂~70%分位，PTA~40%分位——品类高度分化</td>
+</tr>
+<tr>
+  <td>行业盈利状态</td>
+  <td><span class="col-tag col-warn">分化严重</span> 氟化工盈利强劲，特种材料正常；炼化/聚氨酯/煤化工大面积亏损或微利</td>
+</tr>
+</table>
+</div>
+
+<div class="danger-box">
+  <strong>⚠ PE悖论检查</strong><br>
+  当前基础化工整体PE 30-32x（~75%分位），PB 2.2-2.4x（~40-50%分位）<br>
+  <strong>PE高PB低是典型的周期底部特征：</strong>盈利低谷导致PE被动抬高，但资产价值（PB）并未高估。<br>
+  申万化工等权PE高达116x（95.7%分位）——大量微利/亏损公司拉高了整体PE。<br>
+  <strong>核心结论：</strong>当前不宜用PE估值化工行业（底部失真），应用PB估值——PB 2.2-2.4x处于近10年40-50%分位，有安全边际但不极端便宜。<br>
+  <strong>细分来看：</strong>万华PB 1.5x（20%分位，极低估区间），巨化PB 3.2x（35%分位），三美PB 8x（55%分位，偏高因盈利高增）——内部分化显著。
+</div>
+
+<h2>估值水平</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>估值指标</th><th>行业当前</th><th>历史中位数</th><th>80%分位</th><th>20%分位</th></tr>
+<tr>
+  <td><strong>PE（基础化工整体）</strong></td>
+  <td><span class="col-tag col-lose">30-32x</span></td>
+  <td>25x</td>
+  <td>35x</td>
+  <td>15x</td>
+</tr>
+<tr>
+  <td><strong>PB（基础化工整体）</strong></td>
+  <td><span class="col-tag col-win">2.2-2.4x</span></td>
+  <td>2.5x</td>
+  <td>3.5x</td>
+  <td>1.6x</td>
+</tr>
+<tr>
+  <td><strong>万华化学PB</strong></td>
+  <td><span class="col-tag col-win">~1.5x</span></td>
+  <td>3.0x</td>
+  <td>5.0x</td>
+  <td>1.2x</td>
+</tr>
+<tr>
+  <td><strong>巨化股份PB</strong></td>
+  <td><span class="col-tag col-win">~3.2x</span></td>
+  <td>4.5x</td>
+  <td>6.0x</td>
+  <td>2.0x</td>
+</tr>
+</table>
+</div>
+
+<h2>政策环境</h2>
+<div class="summary-box">
+  🔹 <strong>政策方向：</strong><span class="col-tag col-win">全面利好</span><br>
+  🔹 <strong>关键政策：</strong><br>
+  &emsp;• "十五五"规划将化工新材料列为重点攻关方向<br>
+  &emsp;• 国产替代政策：半导体材料/高端工程塑料自给率56%→目标75%+，财政+税收支持<br>
+  &emsp;• 制冷剂配额制（2025年起）：三代制冷剂产量冻结+配额管理→价格中枢上移<br>
+  &emsp;• 反内卷：工信部限制传统大宗化工无序扩产，推动落后产能退出<br>
+  &emsp;• 节能降碳：提高化工行业能耗标准，利好龙头（淘汰小产能）<br>
+  🔹 <strong>政策周期位置：</strong><span class="col-tag col-win">宽松+收紧的组合</span>（鼓励高端、收紧低端）
+</div>
+
+<h2>买入清单</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:28%">条件</th><th style="width:16%">结果</th><th>备注</th></tr>
+<tr>
+  <td>周期位置：不在繁荣顶点</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>化工周期底部确认（CCPI回升+固投增速转负），复苏初期</td>
+</tr>
+<tr>
+  <td>估值：PB/PE在历史偏低分位</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td>PB~45%分位（中等偏低有安全边际），PE~75%分位偏高（盈利底失真）</td>
+</tr>
+<tr>
+  <td>政策：不是收紧期</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>高端鼓励+低端收紧，政策组合拳利好龙头</td>
+</tr>
+<tr>
+  <td>格局：龙头壁垒稳固</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td>氟化工/特种材料壁垒深厚；大宗品龙头壁垒一般（周期波动大）</td>
+</tr>
+<tr>
+  <td>增长：有可见驱动力</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>国产替代+配额制+AI散热+新能源+周期复苏，多重驱动力</td>
+</tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <div style="font-size:16px;font-weight:700;margin-bottom:8px">综合判断：<span class="col-tag col-win" style="font-size:15px">买入——结构性分批布局</span></div>
+  <div style="margin-bottom:6px">化工行业周期底部已确认（CCPI环比+37%，固投转负），复苏正在展开。不能一刀切——氟化工和特种材料已具备明确配置价值，大宗品需要等待毛利率回升信号。建议"重顶层、轻底层，分批布局"。</div>
+  <table style="font-size:12px;margin:6px 0;border:none;background:transparent">
+    <tr><td style="border:none;padding:3px 6px;background:transparent;width:90px;font-weight:600">预期回报</td><td style="border:none;padding:3px 6px;background:transparent">氟化工/特种材料：业绩增长+估值修复（15-25%）/ 大宗品：周期反转（30-50%但需等待信号）</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">仓位建议</td><td style="border:none;padding:3px 6px;background:transparent"><span class="col-tag col-warn">中等（组合8-12%）</span> 优先氟化工+特种材料各~4%，大宗品观察2-4%</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">跟踪指标</td><td style="border:none;padding:3px 6px;background:transparent">CCPI指数、MDI/制冷剂/PTA价格、化工固投增速、万华毛利率、龙头开工率</td></tr>
+  </table>
+  <div style="margin-top:8px;padding:8px;background:#e8f5e9;border-radius:4px;font-size:12px">
+    <strong>买入策略（三梯队）：</strong><br>
+    <span class="col-tag col-win">第一梯队（右侧已启动，直接买入）</span><br>
+    &emsp;• 氟化工：巨化股份/三美股份——制冷剂配额制红利正在兑现，价格大幅上涨<br>
+    &emsp;• 特种材料：新和成（ROE~18%抗周期）/ 呈和科技（高分子助剂隐形冠军）/ 蓝晓科技（吸附分离龙头）<br>
+    <span class="col-tag col-warn">第二梯队（左侧等待信号，分批建仓）</span><br>
+    &emsp;• 万华化学：等待毛利率回升至>15% + ROE>8%信号确认后加仓（当前PB 1.5x在20%分位极低）<br>
+    &emsp;• 华鲁恒升：等待尿素/DMF价格回升信号（当前PB 1.2x在10%分位极低）<br>
+    <span class="col-tag col-info">第三梯队（跟踪催化）</span><br>
+    &emsp;• 炼化（恒力/荣盛）：等待PTA价差扩大+负债率下降至<65%
+  </div>
+</div>
+
+<h2>卖出信号</h2>
+<div class="danger-box">
+  <strong>出现以下信号考虑卖出：</strong><br>
+  <div style="margin-top:6px">
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px">1</span>
+    大宗品毛利率持续下行或产能利用率<60%：行业尚未真正见底，减仓等待<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">2</span>
+    政策转向收紧：如取消国产替代补贴/放松环保限产导致供给再次过剩<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">3</span>
+    原油价格大幅下跌（<$50/桶）：石化产品价格失去成本支撑，炼化/聚氨酯库存减值<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">4</span>
+    龙头公司毛利率连续2个季度下滑>5pct或ROE跌破5%：周期下行加深，全部减仓
+  </div>
+</div>
+
+</div>
+</div>
+
+<div class="footer">Generated by Industry Analysis · L7-L10 Framework · Stock Selection</div>
+
+</div>
+
+<script>
+var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+var contents = document.querySelectorAll('.tab-content');
+btns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    contents.forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    var tab = btn.getAttribute('data-tab');
+    document.getElementById('tab-' + tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

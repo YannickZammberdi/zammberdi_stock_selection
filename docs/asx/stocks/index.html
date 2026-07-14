@@ -55,7 +55,7 @@
     </select>
   </div>
 
-  <div class="count-bar" id="count">共 17 份</div>
+  <div class="count-bar" id="count">共 18 份</div>
 
   <table>
     <thead>
@@ -74,23 +74,24 @@
 
 <script>
 const data = [
-  {name:"HansenTech",code:"HSN",type:"成长性",score:100,date:"2026-07-07",file:"HansenTech_HSN_分析报告.html"},
-  {name:"ResMed",code:"RMD",type:"成长性",score:100,date:"2026-07-05",file:"ResMed_RMD_分析报告.html"},
-  {name:"REA Group",code:"REA",type:"成长性",score:97,date:"2026-07-06",file:"REA Group_REA_分析报告.html"},
-  {name:"ObjectiveCorp",code:"OCL",type:"成长性",score:94,date:"2026-07-07",file:"ObjectiveCorp_OCL_分析报告.html"},
-  {name:"IAG",code:"ASX",type:"特殊行业",score:94,date:"2026-06-29",file:"IAG_ASX_分析报告.html"},
-  {name:"Hub24",code:"HUB",type:"成长性",score:90,date:"2026-06-29",file:"Hub24_HUB_ASX_分析报告.html"},
-  {name:"Pro Medicus",code:"PME",type:"成长性",score:90,date:"2026-07-05",file:"Pro Medicus_PME_分析报告.html"},
-  {name:"CSL",code:"CSL",type:"成长性",score:88,date:"2026-07-03",file:"CSL_CSL_分析报告.html"},
-  {name:"PolyNovo",code:"PNV",type:"成长性",score:87,date:"2026-07-07",file:"PolyNovo_PNV_ASX_分析报告.html"},
-  {name:"BHP",code:"BHP",type:"周期性",score:81,date:"2026-07-09",file:"BHP_BHP_ASX_分析报告.html"},
-  {name:"Nanosonics",code:"NAN",type:"成长性",score:80,date:"2026-07-07",file:"Nanosonics_NAN_分析报告.html"},
-  {name:"Suncorp",code:"SUN",type:"特殊行业",score:80,date:"2026-06-29",file:"Suncorp_SUN_ASX_分析报告.html"},
-  {name:"Macquarie",code:"MQG",type:"价值型",score:76,date:"2026-07-07",file:"Macquarie_MQG_分析报告.html"},
-  {name:"Cochlear",code:"COH",type:"成长性",score:76,date:"2026-07-05",file:"Cochlear_COH_分析报告.html"},
-  {name:"Woodside",code:"WDS",type:"周期性",score:69,date:"2026-07-09",file:"Woodside_WDS_ASX_分析报告.html"},
-  {name:"PWR",code:"PWH",type:"成长性",score:62,date:"2026-07-07",file:"PWR_PWH_ASX_分析报告.html"},
-  {name:"Lincoln",code:"Minerals",type:"特殊行业",score:54,date:"2026-06-29",file:"Lincoln_Minerals_LML_ASX_分析报告.html"},
+  {"name":"HansenTech","code":"HSN","type":"成长性","score":100,"date":"2026-07-14","file":"HansenTech_HSN_分析报告.html"},
+  {"name":"ResMed","code":"RMD","type":"成长性","score":100,"date":"2026-07-14","file":"ResMed_RMD_分析报告.html"},
+  {"name":"REA Group","code":"REA","type":"成长性","score":97,"date":"2026-07-14","file":"REA Group_REA_分析报告.html"},
+  {"name":"ObjectiveCorp","code":"OCL","type":"成长性","score":94,"date":"2026-07-14","file":"ObjectiveCorp_OCL_分析报告.html"},
+  {"name":"Hub24","code":"HUB","type":"成长性","score":90,"date":"2026-07-14","file":"Hub24_HUB_ASX_分析报告.html"},
+  {"name":"IAG","code":"IAG","type":"特殊行业","score":88,"date":"2026-07-14","file":"IAG_ASX_分析报告.html"},
+  {"name":"CSL","code":"CSL","type":"成长性","score":88,"date":"2026-07-14","file":"CSL_CSL_分析报告.html"},
+  {"name":"PolyNovo","code":"PNV","type":"成长性","score":87,"date":"2026-07-14","file":"PolyNovo_PNV_ASX_分析报告.html"},
+  {"name":"Pro Medicus","code":"PME","type":"成长性","score":85,"date":"2026-07-14","file":"Pro Medicus_PME_分析报告.html"},
+  {"name":"Suncorp","code":"SUN","type":"特殊行业","score":84,"date":"2026-07-14","file":"Suncorp_SUN_ASX_分析报告.html"},
+  {"name":"BHP","code":"BHP","type":"周期性","score":81,"date":"2026-07-09","file":"BHP_BHP_ASX_分析报告.html"},
+  {"name":"Nanosonics","code":"NAN","type":"成长性","score":80,"date":"2026-07-14","file":"Nanosonics_NAN_分析报告.html"},
+  {"name":"Cochlear","code":"COH","type":"成长性","score":76,"date":"2026-07-14","file":"Cochlear_COH_分析报告.html"},
+  {"name":"Macquarie","code":"MQG","type":"价值型","score":70,"date":"2026-07-14","file":"Macquarie_MQG_分析报告.html"},
+  {"name":"Woodside","code":"WDS","type":"周期性","score":69,"date":"2026-07-09","file":"Woodside_WDS_ASX_分析报告.html"},
+  {"name":"PWR","code":"PWH","type":"成长性","score":62,"date":"2026-07-14","file":"PWR_PWH_ASX_分析报告.html"},
+  {"name":"Sandfire","code":"SFR","type":"周期股","score":61,"date":"2026-07-13","file":"Sandfire_SFR_ASX_分析报告.html"},
+  {"name":"Lincoln Minerals","code":"LML","type":"特殊行业","score":49,"date":"2026-07-14","file":"Lincoln_Minerals_LML_ASX_分析报告.html"},
 ];
 
 let sortKey='score', sortDir=-1;

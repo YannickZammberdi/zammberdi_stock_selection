@@ -54,25 +54,29 @@
   .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
   ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
   li { margin-bottom: 4px; }
+  .score-bar { display: flex; height: 20px; border-radius: 10px; overflow: hidden; margin: 6px 0; }
+  .score-fill { background: #27ae60; height: 100%; }
+  .score-empty { background: #e0e0e0; height: 100%; flex: 1; }
 </style>
 </head>
 <body>
 <div class="report-wrap">
 
 <h1>盛新锂能（002240）财务分析报告</h1>
-<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
-<p class="meta">分析日期：2026年6月 | 数据来源：FY2025 年报 + 2026Q1 季报</p>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（PB Band估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026-07-14 | 数据来源：FY2025 年报 + 2026Q1 季报 | 行业定位：混合周期股（锂矿强周期+新能源成长属性）</p>
 
 <div class="tab-bar">
   <button class="tab-btn active" data-tab="summary">总结论</button>
   <button class="tab-btn" data-tab="l1">L1 三张报表</button>
   <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
-  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l3">L3 PB Band估值</button>
   <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
   <button class="tab-btn" data-tab="l5">L5 行业分类</button>
   <button class="tab-btn" data-tab="l6">L6 综合实战</button>
 </div>
 
+<!-- ==================== 总结论 ==================== -->
 <div class="tab-content active" id="tab-summary"><div class="tab-inner">
 
 <h2>一、公司基本画像</h2>
@@ -81,42 +85,50 @@
   <tr><td>公司名称</td><td>盛新锂能集团股份有限公司</td></tr>
   <tr><td>股票代码</td><td>002240.SZ</td></tr>
   <tr><td>所属行业</td><td>有色金属冶炼（能源金属——锂盐+锂矿采选）</td></tr>
-  <tr><td>行业地位</td><td>国内锂盐产能第一梯队（已建成7.7万吨/年），拥有川西木绒锂矿（Li2O资源量98.96万吨，平均品位1.62%）</td></tr>
+  <tr><td>行业类型</td><td><strong>混合周期股</strong>（锂矿强周期+新能源成长属性，周期属性为主）</td></tr>
+  <tr><td>行业地位</td><td>国内锂盐产能第一梯队（已建成7.7万吨/年+印尼6万吨），拥有川西木绒锂矿（Li2O资源量98.96万吨，平均品位1.62%）</td></tr>
   <tr><td>FY2025 营收</td><td><strong>50.64 亿（+10.54%）</strong></td></tr>
   <tr><td>FY2025 归母净利润</td><td class="bad"><strong>-8.88 亿（亏损同比扩大42.87%）</strong></td></tr>
   <tr><td>FY2025 经营现金流</td><td><strong>~9.52 亿（EPS CFO 1.04元）</strong></td></tr>
   <tr><td>总资产（2026Q1）</td><td>255.01 亿</td></tr>
-  <tr><td>归母净资产</td><td>~102.5 亿（BPS 11.2元）</td></tr>
-  <tr><td>ROE</td><td class="bad">-8.0%（亏损）</td></tr>
+  <tr><td>归母净资产</td><td>~107.3 亿（BPS 11.73元）</td></tr>
+  <tr><td>ROE（FY2025）</td><td class="bad">-8.0%（亏损）</td></tr>
+  <tr><td>ROE（2026Q1年化）</td><td class="good">~19.6%（拐点）</td></tr>
+  <tr><td>2026Q1 营收</td><td class="good">32.84 亿（+378.58%）</td></tr>
+  <tr><td>2026Q1 净利</td><td class="good"><strong>4.64 亿（扭亏为盈）</strong></td></tr>
 </table>
 
-<h2>综合评分（百分制）</h2>
-<p style="font-size:13px;color:#666;margin-bottom:8px">综合L1-L5所有因素，以FY2025为主、结合2026Q1拐点判断，对各维度打分求和</p>
+<h2>周期股评分体系（8维度，满分100分）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">针对混合周期股特性设计的8维度打分框架，以FY2025为主、结合2026Q1拐点</p>
 <table>
-  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
-  <tr><td>ROE（15分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">-8.0%，亏损<5%</td></tr>
-  <tr><td>杜邦驱动质量（5分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">亏损状态，杜邦拆解无意义</td></tr>
-  <tr><td>利润含金量 CFO/净利（15分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">净利润为负，指标失效</td></tr>
-  <tr><td>营收增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+10.54% ≥10%</td></tr>
-  <tr><td>利润增长（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">亏损扩大42.87%</td></tr>
-  <tr><td>负债率（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">~57.9% <70%但偏高</td></tr>
-  <tr><td>短期偿债（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">货币资金48.6亿 vs 短期借款65.2亿，缺口显著</td></tr>
-  <tr><td>毛利率（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">18.35%≥15%，大幅改善（FY2024为负）</td></tr>
-  <tr><td>估值 PE（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">FY2025 PE亏损；2026E PE ~25x对周期股偏高；PB 4.35x不便宜</td></tr>
-  <tr><td>自由现金流（5分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">持续资本开支，FCF为负</td></tr>
-  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px" class="bad">25/100</td><td style="text-align:left">不及格（25/100分）——FY2025亏损，但2026Q1已扭亏</td></tr>
+  <tr><th style="width:22%">维度</th><th style="width:8%">权重</th><th style="width:10%">得分</th><th>评分依据</th></tr>
+  <tr><td>① PB估值分位</td><td>20分</td><td class="neutral" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">PB 4.35x，历史区间3x-10x，处于20-40%分位（历史中低位但非底部）</td></tr>
+  <tr><td>② 周期位置判断</td><td>15分</td><td class="good" style="font-weight:bold;font-size:15px">12</td><td style="text-align:left">底部回升初期——FY2025亏损但2026Q1已扭亏，锂价从8万反弹至10万+</td></tr>
+  <tr><td>③ 毛利率趋势</td><td>15分</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">从FY2024负值→18.35%（FY2025）→34.07%（2026Q1），大幅改善</td></tr>
+  <tr><td>④ 资产负债安全性</td><td>15分</td><td class="bad" style="font-weight:bold;font-size:15px">3</td><td style="text-align:left">有息负债率39.85%持续攀升；短债65.24亿>现金48.62亿，缺口16.6亿</td></tr>
+  <tr><td>⑤ 经营现金流质量</td><td>10分</td><td class="bad" style="font-weight:bold;font-size:15px">3</td><td style="text-align:left">FY2025 CFO 9.52亿但2026Q1为-6.67亿（备货+应收），FCF尚未转正</td></tr>
+  <tr><td>⑥ 营收增长动能</td><td>10分</td><td class="good" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">FY2025 +10.5%，2026Q1 +379%（量升价稳），印尼项目产能释放</td></tr>
+  <tr><td>⑦ 资源/成本壁垒</td><td>10分</td><td class="neutral" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">木绒矿尚未投产，当前锂矿自给率低；但资源量（98.96万吨Li2O）潜力大</td></tr>
+  <tr><td>⑧ 股东与管理层信号</td><td>5分</td><td class="good" style="font-weight:bold;font-size:15px">3</td><td style="text-align:left">引入中创新航+华友控股战略投资，产业链绑定加深</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td>100分</td><td style="font-size:16px" class="neutral">62/100</td><td style="text-align:left"><strong>周期定位：底部回升初期</strong>——估值合理偏低（15/20）+毛利率改善（15/15）是亮点，但负债（3/15）和现金流（3/10）是主要拖累</td></tr>
 </table>
 
-<div class="verdict verdict-bad">不及格（25/100分）——FY2025深度亏损，基本面差；但2026Q1拐点已现</div>
+<div style="margin:8px 0;font-size:13px">
+  <strong>评分解读（周期股框架）：</strong>
+  62分意味着盛新锂能处于"周期底部回升初期"的可关注区间。与成长股评分不同，周期股评分更看重① PB分位（15/20，尚可）、② 毛利率趋势（15/15极好）、③ 周期位置（12/15，拐点初现）。短板在负债（3/15）和现金流（3/10），典型"扩产期特征"——用负债换未来产能。
+</div>
+
+<div class="verdict verdict-caution">周期定位：底部回升初期（62/100分）——基本面拐点已现，但负债和现金流是隐患，需锂价持续配合</div>
 
 <div class="summary-box">
-  <strong>综合诊断：</strong>盛新锂能是国内锂盐产能第一梯队的公司，2025年受锂盐价格低迷影响（碳酸锂年均价~8万/吨），全年亏损8.88亿。但2026Q1锂价回暖带动业绩大幅反转（净利4.64亿，扭亏为盈），公司核心看点在于：① 印尼6万吨锂盐项目产能释放；② 川西木绒锂矿（300万吨/年采选规模）即将投产，将大幅提升锂矿自给率；③ 引入中创新航、华友控股集团作为战略投资者，产业链绑定加深。<br><br>
+  <strong>综合诊断：</strong>盛新锂能是国内锂盐产能第一梯队的混合周期股，2025年受锂盐价格低迷影响（碳酸锂年均价~8万/吨），全年亏损8.88亿。但2026Q1锂价回暖带动业绩大幅反转（净利4.64亿，扭亏为盈），公司核心看点在于：① 印尼6万吨锂盐项目产能释放；② 川西木绒锂矿（300万吨/年采选规模）即将投产，将大幅提升锂矿自给率；③ 引入中创新航、华友控股集团作为战略投资者，产业链绑定加深。<br><br>
   <strong>核心优势：</strong>① 锂盐产能7.7万吨+印尼6万吨，规模国内前五；② 木绒锂矿品位1.62%为四川最高之一，矿山投产后资源自给率大幅提升；③ 绑定比亚迪、宁德时代、中创新航、华友等下游龙头，客户质量高；④ 2026Q1净利润4.64亿，业绩拐点确立。<br><br>
-  <strong>核心风险：</strong>① FY2025亏损8.88亿，资产负债表受损（净资产从高点~140亿降至~100亿）；② 锂价仍处周期底部反弹初期，若锂价再次下跌，亏损将延续；③ 有息负债率39.85%，货币资金48.6亿<短期借款65.2亿，短债缺口仍存在；④ 2026Q1经营现金流-6.67亿（存货增加+应收增加），现金流质量待改善。
+  <strong>核心风险：</strong>① FY2025亏损8.88亿，资产负债表受损（净资产从高点~140亿降至~100亿后再修复至107亿）；② 锂价仍处周期底部反弹初期，若锂价再次下跌，亏损将延续；③ 有息负债率39.85%，货币资金48.6亿<短期借款65.2亿，短债缺口仍存在；④ 2026Q1经营现金流-6.67亿（存货增加+应收增加），现金流质量待改善。
 </div>
 
 </div></div>
 
+<!-- ==================== L1 三张报表 ==================== -->
 <div class="tab-content" id="tab-l1"><div class="tab-inner">
 
 <h2>二、核心财务数据（FY2025 + 2026Q1）</h2>
@@ -134,6 +146,7 @@
   <tr><td>2025Q4 净利</td><td>-1.36 亿</td><td>-1.60 亿</td><td>+15.12%</td><td class="neutral">⚠ 亏损收窄</td></tr>
   <tr><td>2026Q1 营收</td><td>32.84 亿</td><td>6.86 亿</td><td><strong>+378.58%</strong></td><td class="good">✅ 爆发式增长</td></tr>
   <tr><td>2026Q1 净利</td><td class="good"><strong>4.64 亿</strong></td><td>-1.55 亿</td><td><strong>扭亏为盈</strong></td><td class="good">✅ 拐点确立</td></tr>
+  <tr><td>2026Q1 毛利率</td><td class="good"><strong>34.07%</strong></td><td>—</td><td>继续改善</td><td class="good">✅ 大幅提升</td></tr>
 </table>
 
 <div class="summary-box">
@@ -154,6 +167,7 @@
   <tr><td>速动比率</td><td>—</td><td><strong>0.64</strong></td><td class="bad">❌ 偏低</td></tr>
   <tr><td>归母净资产</td><td><strong>~102.5 亿</strong></td><td>~107.3 亿</td><td class="neutral">⬆ 扭亏后回升</td></tr>
   <tr><td>总资产</td><td>~240 亿（估）</td><td><strong>255.01 亿</strong></td><td class="neutral">产能扩张驱动</td></tr>
+  <tr><td>每股净资产（BPS）</td><td>~11.2 元</td><td><strong>~11.73 元</strong></td><td class="neutral">⬆ 略升</td></tr>
 </table>
 
 <div class="highlight-box">
@@ -177,6 +191,7 @@
 
 </div></div>
 
+<!-- ==================== L2 关键指标+排雷 ==================== -->
 <div class="tab-content" id="tab-l2"><div class="tab-inner">
 
 <h2>三、关键指标与排雷（L2框架）</h2>
@@ -225,55 +240,74 @@
 
 </div></div>
 
+<!-- ==================== L3 PB Band估值 ==================== -->
 <div class="tab-content" id="tab-l3"><div class="tab-inner">
 
-<h2>四、估值分析（L3框架）</h2>
+<h2>四、估值分析（L3框架）—— PB Band为主</h2>
+<p style="font-size:13px;color:#666;margin-bottom:10px">混合周期股估值：周期底部/亏损期以PB Band为核心，周期顶部/盈利期辅以PE Band。当前处于底部回升期，PB Band为主、PE Band为辅。</p>
 
 <h3>4.1 当前估值水平</h3>
 <table>
   <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
-  <tr><td>股价（2026.6）</td><td><strong>~51 元</strong></td><td>近期锂电板块回暖带动</td></tr>
+  <tr><td>股价（2026.7.14）</td><td><strong>~51 元</strong></td><td>锂电板块回暖带动</td></tr>
   <tr><td>总市值</td><td><strong>~467 亿</strong></td><td>总股本9.15亿</td></tr>
+  <tr><td>PB（核心估值指标）</td><td><strong>~4.35x</strong></td><td>BPS 11.73元（2026Q1）</td></tr>
   <tr><td>PE（TTM）</td><td class="bad"><strong>N/A（亏损）</strong></td><td>FY2025亏损8.88亿</td></tr>
-  <tr><td>PE（2026E）</td><td><strong>~25x</strong></td><td>一致预期净利~18.45亿</td></tr>
-  <tr><td>PB</td><td><strong>~4.35x</strong></td><td>BPS 11.73元（2026Q1）</td></tr>
+  <tr><td>PE（2026E）</td><td><strong>~25x</strong></td><td>一致预期净利~18.45亿（EPS 2.02元）</td></tr>
   <tr><td>PS（TTM FY2025）</td><td><strong>~9.2x</strong></td><td>基于营收50.64亿</td></tr>
   <tr><td>PS（2026E）</td><td><strong>~5x</strong></td><td>基于一致预期营收~100亿</td></tr>
   <tr><td>PCF</td><td>~49x</td><td>基于CFO 9.52亿</td></tr>
   <tr><td>股息率</td><td><strong>0%</strong></td><td>亏损不派息</td></tr>
 </table>
 
-<h3>4.2 PE Band估值区间（2026E一致预期EPS≈2.02元）</h3>
-<p style="font-size:13px;color:#666;">锂盐属于混合周期行业，中周期合理PE区间10-20x。当前ROE正在修复中（2026E预计~17%）</p>
+<h3>4.2 PB Band估值区间（核心估值方法）</h3>
+<p style="font-size:13px;color:#666;">BPS（每股净资产）= 11.73元（2026Q1）。周期底部看PB，当前PB 4.35x处于历史中低位。</p>
+<table>
+  <tr><th>情景</th><th>PB</th><th>对应股价</th><th>vs现价51元</th><th>估值判断</th></tr>
+  <tr><td>历史底部（2024年锂价8万）</td><td>3.0x</td><td>35.2 元</td><td class="bad">-31%</td><td>极度低估（周期最悲观）</td></tr>
+  <tr><td>底部估值区间</td><td>3.5x</td><td>41.1 元</td><td class="bad">-19%</td><td>低估区间（周期底部）</td></tr>
+  <tr><td>历史中位（50%分位）</td><td>5.0x</td><td>58.7 元</td><td>+15%</td><td>合理中位（周期正常）</td></tr>
+  <tr><td>周期合理估值（上沿）</td><td>6.0x</td><td>70.4 元</td><td>+38%</td><td>合理偏高（周期中段）</td></tr>
+  <tr><td>历史高位（2022年锂价60万）</td><td>10.0x</td><td>117.3 元</td><td>+130%</td><td>周期顶部（极度乐观）</td></tr>
+  <tr><td><strong>当前（2026.7）</strong></td><td><strong>4.35x</strong></td><td><strong>51.0 元</strong></td><td><strong>—</strong></td><td><strong>PB 20-40%分位，偏低</strong></td></tr>
+</table>
+
+<h3>4.3 PE Band估值区间（辅助参考，仅当盈利恢复后有效）</h3>
+<p style="font-size:13px;color:#666;">锂盐混合周期行业，中周期合理PE区间10-20x。当前2026E一致预期EPS≈2.02元</p>
 <table>
   <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs现价51元</th></tr>
   <tr><td>悲观（锂价再跌）</td><td>8x</td><td>16.2 元</td><td class="bad">-68%</td></tr>
   <tr><td>保守（周期中低）</td><td>12x</td><td>24.2 元</td><td class="bad">-53%</td></tr>
   <tr><td>中性（周期中枢）</td><td>18x</td><td>36.4 元</td><td class="bad">-29%</td></tr>
   <tr><td>乐观（成长溢价）</td><td>25x</td><td>50.5 元</td><td class="neutral">~持平</td></tr>
-  <tr><td>当前价</td><td>~25x</td><td>51.0 元</td><td>—</td></tr>
+  <tr><td>当前价对应</td><td>~25x</td><td>51.0 元</td><td>—</td></tr>
   <tr><td>周期高峰情景</td><td>35x</td><td>70.7 元</td><td>+39%</td></tr>
 </table>
 
-<h3>4.3 历史PE/PB区间</h3>
+<h3>4.4 历史PB/PE区间回顾</h3>
 <table>
-  <tr><th>指标</th><th>PE（TTM）</th><th>PB</th></tr>
-  <tr><td>周期顶部（2022年，锂价60万）</td><td>~8x</td><td>~10x</td></tr>
-  <tr><td>周期底部（2024年，锂价8万）</td><td>亏损</td><td>~3x</td></tr>
-  <tr><td>当前（2026年中，锂价~10万）</td><td>亏损→25x（2026E）</td><td>~4.35x</td></tr>
+  <tr><th>周期阶段</th><th>年份</th><th>锂价</th><th>PB</th><th>PE（TTM）</th><th>标志事件</th></tr>
+  <tr><td>周期顶部</td><td>2022年</td><td>~60万/吨</td><td>~10x</td><td>~8x</td><td>锂价巅峰，公司盈利高峰</td></tr>
+  <tr><td>周期下行</td><td>2023年</td><td>~20万/吨</td><td>~5-6x</td><td>~15x</td><td>锂价暴跌开始</td></tr>
+  <tr><td>周期底部</td><td>2024年</td><td>~8万/吨</td><td>~3x</td><td>亏损</td><td>全行业亏损，库存出清</td></tr>
+  <tr><td>底部回升</td><td>2025年</td><td>~8-10万/吨</td><td>~3-4x</td><td>亏损</td><td>Q4锂价反弹，印尼项目投产</td></tr>
+  <tr><td><strong>当前</strong></td><td><strong>2026.7</strong></td><td><strong>~10万+</strong></td><td><strong>4.35x</strong></td><td><strong>亏损→25x（E）</strong></td><td><strong>Q1扭亏，拐点确认</strong></td></tr>
 </table>
 
 <div class="highlight-box">
-  <strong>估值总结：</strong>盛新锂能当前估值处于"周期底部反弹"阶段。PE (2026E) ~25x，PB 4.35x。对于锂盐这种强周期品种，PE在周期底部反弹期偏高是正常现象——市场在提前反映周期反转。<br><br>
-  <strong>多情景分析：</strong><br>
-  • 若2026年锂价维持在10万/吨以上，公司全年净利有望达18-25亿，对应PE 18-25x，估值处于合理偏高区间；<br>
-  • 若锂价再次跌破8万/吨，公司将再次亏损，当前估值无法支撑；<br>
-  • 若木绒矿山在2027年投产，资源自给率提升有望带来持续的成本优势，届时可给予更高估值溢价。<br><br>
-  <strong>核心矛盾：</strong>当前股价已包含了一定的"周期反转+木绒矿山"预期。需关注2026年实际锂价走势和公司产能释放节奏。对于周期股投资者，当前价格处于可关注区间；对于价值投资者，PB 4.35x相对于历史底部（3x）仍有下行空间。
+  <strong>估值总结（PB Band框架）：</strong><br><br>
+  <strong>当前PB 4.35x处于历史20-40%分位，属于"偏低"区间但非"极度低估"（历史底部3x）。</strong>对于周期股，PB Band是比PE Band更可靠的估值锚——因为净资产在周期底部虽然可能缩水，但矿权和产能的价值底线相对清晰。<br><br>
+  <strong>PB Band情景分析：</strong><br>
+  • PB 3x（历史底部）= 35元 —— 对应锂价再次跌破8万、公司重回亏损的极端悲观情景；<br>
+  • PB 4.35x（当前）= 51元 —— 对应锂价10万+、2026年盈利恢复的中性情景；<br>
+  • PB 5x（历史中位）= 59元 —— 对应锂价12-15万、公司全年净利20亿+的乐观情景；<br>
+  • PB 6x+（周期上沿）= 70元+ —— 对应锂价15万+、公司净利30亿+的周期高峰情景。<br><br>
+  <strong>核心判断：</strong>当前PB 4.35x处于"周期底部回升"的合理区间，向下有历史底部3x的安全垫（-31%），向上有中位5x的空间（+15%）。对于愿意承受周期波动的投资者，当前是"合理偏低"的配置区间。但需注意：若锂价再次下跌跌破8万，PB可能再次下探3x（35元），下行风险约31%。PB Band框架下的赔率约为1:0.5（向上空间15% vs 向下风险31%），需结合锂价走势判断。
 </div>
 
 </div></div>
 
+<!-- ==================== L4 杜邦分析 ==================== -->
 <div class="tab-content" id="tab-l4"><div class="tab-inner">
 
 <h2>五、杜邦分析拆解（L4框架）</h2>
@@ -290,7 +324,7 @@
 </table>
 
 <div class="highlight-box">
-  <strong>赚钱模式判断：高杠杆+高周转型（周期反转中）</strong><br>
+  <strong>赚钱模式判断：<span style="color:#e67e22">高杠杆+高周转型（周期反转中）</span></strong><br>
   FY2025杜邦拆解显示：净利润率-19.1%（亏损）+ 权益乘数2.37（中等杠杆）+ 周转率0.21（偏低）。三项指标全面恶化，ROE -8.0%。但2026Q1数据已展现V型反转：净利润率跳升至16%，周转率年化0.51（营收暴增），权益乘数2.38保持稳定。年化ROE升至~19.6%。<br><br>
   <strong>关键转变：</strong>从"亏利润-降周转-加杠杆"的恶性循环，转向"赚利润-提周转-稳杠杆"的良性循环。但需注意：Q1的高利润率（16%）能否维持取决于锂价走势。FY2025全年净利率为-19%，说明锂价低迷时盈利能力极其脆弱。
 </div>
@@ -314,6 +348,7 @@
 
 </div></div>
 
+<!-- ==================== L5 行业分类 ==================== -->
 <div class="tab-content" id="tab-l5"><div class="tab-inner">
 
 <h2>六、行业分类与特征（L5框架）</h2>
@@ -322,6 +357,7 @@
 <div class="summary-box">
   <strong>行业类型：混合周期（有色金属-能源金属-锂行业）</strong><br>
   <strong>判断依据：</strong>锂行业兼具"长期成长性"和"阶段性周期波动"。长期成长逻辑：全球电动化+储能需求爆发式增长，锂作为"白色石油"需求持续扩大。但是阶段性供给释放（2023-2025年大量锂矿+锂盐项目投产）导致供需错配，锂价从2022年60万/吨暴跌至2024年8万/吨，2025-2026年逐步修复。<br><br>
+  <strong>周期属性占主导：</strong>锂矿价格波动极剧烈（60万→8万→10万+），价格波动幅度远超产量增速，因此周期属性>成长属性。属于"强周期+弱成长"的混合型，应以其周期属性为主进行估值和投资决策。
   <strong>周期驱动因素：</strong>① 需求端：新能源车渗透率+储能装机量增速；② 供给端：南美盐湖、澳洲锂矿、非洲锂矿的产能释放节奏；③ 政策端：各国新能源补贴政策、碳排放法规。属于"纯周期"与"成长型"的混合体——有长期成长趋势（新能源确定性），但阶段性供需波动剧烈（周期属性强）。
 </div>
 
@@ -352,58 +388,68 @@
 <h3>6.5 估值方法匹配</h3>
 <table>
   <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
-  <tr><td>混合周期（锂）</td><td>PB（底部）+ PE（顶部）</td><td>锂价走势、产能利用率、成本曲线位置</td><td class="neutral">⚠ 部分匹配——PB 4.35x底部偏高，PE 25x顶部偏低，反映"周期反弹中"估值特征</td></tr>
+  <tr><td>混合周期（锂）</td><td><strong>PB Band（底部）+ PE Band（顶部）</strong></td><td>锂价走势、产能利用率、成本曲线位置</td><td class="good">✅ 匹配——PB 4.35x在20-40%分位偏低，PE 25x反映周期反弹预期</td></tr>
 </table>
 
 <div class="summary-box">
-  <strong>估值方法总结：</strong>锂行业的正确估值方式是在周期底部看PB（关注矿权价值和产能规模），在周期顶部看PE（警惕低PE陷阱）。盛新锂能当前处于"底部反弹期"：PB 4.35x不算极度便宜但合理，PE因2026年盈利恢复而看似合理（25x）。核心关注变量：2026年碳酸锂价格中枢。若锂价维持10万+，公司全年净利有望达18-25亿；若跌回8万以下，估值将再次失效。
+  <strong>估值方法总结：</strong>锂行业的正确估值方式是在周期底部看PB Band（关注矿权价值和产能规模），在周期顶部看PE（警惕低PE陷阱）。盛新锂能当前处于"底部反弹期"：PB 4.35x在20-40%分位不算极度便宜但合理偏低，PE因2026年盈利恢复而看似合理（25x）。核心关注变量：2026年碳酸锂价格中枢。若锂价维持10万+，公司全年净利有望达18-25亿；若跌回8万以下，PB将再次承压。
 </div>
 
 </div></div>
 
+<!-- ==================== L6 综合实战 ==================== -->
 <div class="tab-content" id="tab-l6"><div class="tab-inner">
 
 <h2>七、综合实战（L6框架）</h2>
 
 <h3>7.1 六步法总结</h3>
 <div class="summary-box">
-  <strong>Step 1 - 行业定位：</strong>混合周期（能源金属-锂），长期需求增长确定但阶段性供需波动剧烈，集中度正在提升，资源+客户壁垒高。<br>
-  <strong>Step 2 - 财务体检：</strong>FY2025 ROE -8.0%（亏损），杜邦拆解全面恶化；但2026Q1年化ROE达19.6%，V型反转确认。CFO为正但净利润亏损，2026Q1营收暴增378%。<br>
-  <strong>Step 3 - 估值判断：</strong>FY2025 PE亏损无意义；PB 4.35x历史中低分位；2026E PE ~25x反映周期反弹预期，整体估值合理偏高。<br>
-  <strong>Step 4 - 风险排查：</strong>核心风险——① 锂价再次下跌；② 有息负债率39.85%偏高；③ 短债缺口16.6亿；④ 木绒矿山建设不及预期。<br>
-  <strong>Step 5 - 结论：</strong>FY2025不是好公司（亏损），但2026年拐点已现。行业有长期逻辑，公司资源+产能布局领先。当前价格合理偏高，不是"安全边际充足"的买入点，但可作为"周期反转+成长"标的跟踪。<br>
+  <strong>Step 1 - 行业定位：</strong>混合周期（能源金属-锂），长期需求增长确定但阶段性供需波动剧烈，集中度正在提升，资源+客户壁垒高。周期属性>成长属性，应以周期股框架分析。<br>
+  <strong>Step 2 - 财务体检：</strong>FY2025 ROE -8.0%（亏损），杜邦拆解全面恶化；但2026Q1年化ROE达19.6%，V型反转确认。CFO为正但净利润亏损，2026Q1营收暴增378%。毛利率从负值修复至18.35%（FY2025）→34.07%（2026Q1）。<br>
+  <strong>Step 3 - 估值判断：</strong>PB Band为核心——当前PB 4.35x（历史20-40%分位，偏低），历史底部3x，中位5x。PE因亏损失效，2026E PE ~25x反映周期反弹预期。整体估值合理偏低。<br>
+  <strong>Step 4 - 风险排查：</strong>核心风险——① 锂价再次下跌（最大风险）；② 有息负债率39.85%偏高，短债缺口16.6亿；③ 2026Q1 CFO为负；④ 木绒矿建设不及预期。<br>
+  <strong>Step 5 - 结论：</strong>FY2025不是好公司（亏损），但2026年拐点已现。行业有长期逻辑，公司资源+产能布局领先。当前PB 4.35x处于周期底部回升的"合理偏低"区间，属于可关注但非"高安全边际"的配置时点。<br>
   <strong>Step 6 - 跟踪：</strong>① 碳酸锂价格走势（10万/吨是关键心理价位）；② 印尼项目季度产量释放；③ 木绒矿建设进度（目标是2027年投产）；④ 2026Q2-Q3盈利能否持续。
 </div>
 
-<h3>7.2 好公司三要素检查</h3>
+<h3>7.2 好公司三要素检查（周期股适配版）</h3>
 <table>
   <tr><th>要素</th><th>判断</th><th>依据</th></tr>
   <tr><td>① 好行业</td><td class="good">✓</td><td>锂行业长期受益于新能源车+储能增长，需求确定性高；但阶段性周期波动大，需要选时能力</td></tr>
-  <tr><td>② 好公司</td><td class="neutral">⚠</td><td>FY2025 ROE -8%（亏损）；2026Q1年化ROE ~19.6%正在修复。毛利率从负值修复至18-34%。产能规模和客户结构是国内第一梯队。资源自给率将随木绒矿投产大幅提升。</td></tr>
-  <tr><td>③ 好价格</td><td class="neutral">⚠</td><td>PB 4.35x历史中低位但底部不算便宜；2026E PE 25x合理偏高。需等待锂价进一步确认或估值回调。</td></tr>
+  <tr><td>② 好公司（周期框架）</td><td class="neutral">⚠</td><td>周期底部亏损是正常现象。FY2025亏损但2026Q1年化ROE ~19.6%正在修复。毛利率从负值修复至18-34%。产能规模和客户结构是国内第一梯队。资源自给率将随木绒矿投产大幅提升。但负债偏高、现金流待改善。</td></tr>
+  <tr><td>③ 好价格（PB Band框架）</td><td class="neutral">⚠</td><td>PB 4.35x处于历史20-40%分位（偏低），但历史底部3x仍有下行空间。向上PB中位5x对应约15%空间。赔率约1:0.5，需锂价配合。</td></tr>
 </table>
 
-<h3>7.3 三个陷阱排查</h3>
+<h3>7.3 三个陷阱排查（周期股版）</h3>
 <div class="danger-box">
-  <strong>☐ 价值陷阱：</strong>🟡 部分命中——PB 4.35x看起来不高，但FY2025亏损意味着净资产在缩水。若锂价再次下跌，净资产的"底"会继续下移。但2026Q1扭亏缓解了这一担忧。<br>
-  <strong>☐ 周期陷阱：</strong>🔴 高度命中——锂行业强周期属性，FY2025的"低PE"（实际为亏损）恰恰对应周期底部区间。若投资者在此时因PB低而买入，需承受锂价继续低迷的风险。正确做法是关注PB和矿权价值，而非亏损PE。<br>
+  <strong>☐ 价值陷阱：</strong>🟡 部分命中——PB 4.35x看起来不高，但FY2025亏损意味着净资产在缩水。若锂价再次下跌，净资产的"底"会继续下移。但2026Q1扭亏缓解了这一担忧。正确的做法是关注矿权价值和产能重置成本，而非账面净资产。<br>
+  <strong>☐ 周期陷阱：</strong>🔴 高度命中——锂行业强周期属性，FY2025的"低PE"（实际为亏损）恰恰对应周期底部区间。若投资者在此时因PB低而买入，需承受锂价继续低迷的风险。正确做法是关注PB Band位置（当前20-40%分位）和矿权价值，而非简单对比历史PB。<br>
   <strong>☐ 烧钱陷阱：</strong>🟡 部分命中——FY2025 CFO 9.52亿为正，但资本开支持续高企。2026Q1 CFO -6.67亿（备货周期）。公司尚未实现稳定FCF正收益，仍烧钱扩产。但2026年印尼项目达产后FCF有望转正。
 </div>
 
-<h3>7.4 讨论问题</h3>
+<h3>7.4 周期股投资策略</h3>
+<div class="summary-box">
+  <strong>周期股买卖信号框架：</strong><br>
+  <strong>买入信号（当前评估）：</strong>🟡 部分满足——① PB进入历史低位区间（当前4.35x，历史20-40%分位，尚未到3x极低位）；② 全行业亏损（FY2025已出现，多个锂盐厂亏损）；③ 毛利率趋势反转（✅ 从负值修复至18-34%）；④ 产能释放/降本（✅ 印尼项目投产）。<br><br>
+  <strong>卖出信号（需警惕）：</strong>① 碳酸锂价格跌破8万/吨（回到全行业亏损线）；② PB突破历史中位5-6x（透支周期预期）；③ 有息负债率突破50%；④ 木绒矿建设大幅延期。<br><br>
+  <strong>仓位建议：</strong>周期股不适合"一次性买入持有"，更适合分档建仓。建议以PB 3.5-4x为一档（当前接近）、PB 3-3.5x为二档（若锂价再次下跌）、PB<3x为三档（极端悲观）。当前PB 4.35x处于一档附近，适合建立观察仓（不超过周期股配置的30%）。
+</div>
+
+<h3>7.5 讨论问题</h3>
 <div class="summary-box">
   <strong>讨论问题（阅读后可以聊这些）：</strong><br>
   1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——挖锂矿→炼锂盐→卖给电池厂，赚的是"资源+加工"的钱。能不能赚到取决于锂价够不够高、矿是不是自己的。<br>
-  2. 你最大的担忧是什么？哪个数据让你睡不着？——碳酸锂价格。若价格跌破8万/吨，公司重回亏损，净资产继续缩水，股价可能腰斩。短期借款65亿比现金多16亿也是个隐患。<br>
-  3. 如果现在买入，期待的回报来源是什么？——① 锂价上涨带动盈利修复（2026E PE 25x → 若锂价涨到15万，PE可能降至12x，股价翻倍空间）；② 木绒矿投产带来的资源自给率提升和成本下降。<br>
-  4. 什么情况下你会坚决卖出？——碳酸锂价格跌破8万/吨 / 木绒矿建设大幅延期 / 有息负债率突破50% / 主要客户被竞争对手抢走。
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——碳酸锂价格。若价格跌破8万/吨，公司重回亏损，净资产继续缩水，PB可能回到3x（35元）。短期借款65亿比现金多16亿也是个隐患。2026Q1 CFO -6.67亿说明盈利质量还不过硬。<br>
+  3. 如果现在买入，期待的回报来源是什么？——① 锂价上涨带动盈利修复（2026E PE 25x → 若锂价涨到15万，PE可能降至12x，戴维斯双击空间）；② 木绒矿投产带来的资源自给率提升和成本下降（2027年催化剂）；③ PB从4.35x向中位5x修复（~15%估值修复空间）。<br>
+  4. 什么情况下你会坚决卖出？——碳酸锂价格跌破8万/吨 / 木绒矿建设大幅延期 / 有息负债率突破50% / 主要客户被竞争对手抢走 / PB突破6x（已price in周期高峰预期）。
 </div>
 
 </div></div>
 
 <div class="footer">
     免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
-    数据来源：盛新锂能2025年年报、2026Q1季报、券商研报、理杏仁
+    数据来源：盛新锂能2025年年报、2026Q1季报、券商研报、理杏仁<br>
+    分析框架：周期股8维度评分体系（PB分位20+周期位置15+毛利率趋势15+资产负债15+现金流10+营收增长10+资源壁垒10+股东信号5）
 </div>
 
 </div>
