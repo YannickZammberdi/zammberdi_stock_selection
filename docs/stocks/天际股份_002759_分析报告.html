@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>天际股份(002759) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>天际股份（002759）财务分析报告</h1>
+<p class="subtitle">基于 L1-L6 框架（财务三表+关键指标+估值+杜邦+行业分类+综合实战）</p>
+<p class="meta">分析日期：2026-07-15 | 数据来源：FY2025 年报 + 2026Q1 季报 + 券商研报 + 东方财富 + 理杏仁</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>天际新能源科技股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>002759.SZ</td></tr>
+  <tr><td>所属行业</td><td>基础化工（锂电材料—六氟磷酸锂）</td></tr>
+  <tr><td>行业分类（L5）</td><td><strong>纯周期股（基础化工）</strong> — 主营六氟磷酸锂（LiPF6，锂电电解液核心材料），强周期大宗化工品，2024年全行业巨亏、2025年触底反弹</td></tr>
+  <tr><td>行业地位</td><td>国内六氟磷酸锂产能前三，成本优势突出，2025年销量4万吨+55.84%，客户含宁德时代/比亚迪等头部电池厂</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>29.63 亿（+43.28%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>0.82 亿（扭亏，上年-13.5亿）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>-3.00 亿（仍为负，但大幅改善）</strong></td></tr>
+  <tr><td>总资产</td><td>66.18 亿</td></tr>
+  <tr><td>归母净资产</td><td>32.87 亿</td></tr>
+  <tr><td>ROE</td><td>2.50%</td></tr>
+  <tr><td>2026Q1 净利润</td><td><strong class="good">1.97 亿（扭亏，+1001.93%）</strong></td></tr>
+</table>
+
+<p style="font-size:13px;color:#666;margin-bottom:4px">行业类型：<strong>纯周期股（基础化工—六氟磷酸锂）</strong>。LiPF6是典型大宗化工品，价格随供需剧烈波动（2021年高点60万/吨→2024年低点4万/吨→2025年反弹至10万+/吨）。采用<strong>周期股评分体系</strong>：周期股价值取决于穿越周期的生存能力+周期位置+成本优势。</p>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">采用<strong>周期股评分体系</strong>，综合L1-L5所有因素打分</p>
+<table>
+  <tr><th style="width:24%">维度</th><th style="width:8%">得分</th><th>说明</th></tr>
+  <tr><td>穿越周期ROE（15分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">近3年ROE均值约为负（2023 ~0.7%/ 2024 巨亏约-43%/ 2025 2.50%），远<5%，穿越周期能力极弱</td></tr>
+  <tr><td>成本位置（15分）</td><td class="neutral" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">行业成本曲线中上水平，2026Q1毛利率41.66%显著高于行业均值18.91%，公司宣称成本远低于行业平均</td></tr>
+  <tr><td>负债安全垫（15分）</td><td class="bad" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">货币资金6.84亿<短期借款8.34亿, 净负债/EBITDA为正(CFO为负), 两项均不满足, 但负债率41.86%<65%</td></tr>
+  <tr><td>行业格局与产能周期（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">6</td><td style="text-align:left">LiPF6行业CR3约50-60%集中度中等, 但天际仍在扩产(3万吨二期在建), 供给仍在增加</td></tr>
+  <tr><td>周期位置（15分）</td><td class="neutral" style="font-weight:bold;font-size:15px">12</td><td style="text-align:left">LiPF6价格2024年跌至底部(全行业亏损产能出清), 2025Q4起大幅反弹, 公司Q4扭亏, 2026Q1净利暴增10倍。处于底部已过复苏初期</td></tr>
+  <tr><td>估值PB vs 历史（15分）</td><td class="neutral" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">PB ~5.18x, 锂电材料历史PB范围1-10x, 当前约在50-70%分位, 不算极端但偏高</td></tr>
+  <tr><td>现金生成能力FCF（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">CFO连续多年为负(2025年-3亿), 经营现金流持续消耗, 依赖融资维持</td></tr>
+  <tr><td>分红/回购历史（5分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">2025年未分配利润为负, 不派发现金红利, 无回购</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">38/100</td><td style="text-align:left">不及格（38/100分）——穿越周期能力极弱+现金流持续为负+不分红</td></tr>
+</table>
+
+<div class="verdict verdict-bad">不及格（38/100分）</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>天际股份是典型的周期股——主营六氟磷酸锂（LiPF6），2024年行业低谷巨亏13.5亿，2025年随LiPF6价格反弹实现扭亏（净利0.82亿），2026Q1净利暴增10倍至1.97亿。公司成本优势突出（毛利率41.66%远超同行），产能持续扩张（3万吨二期在建），在LiPF6价格上涨周期中弹性极大。但穿越周期能力极弱（2024年巨亏几近破产）、CFO持续为负、不分红，本质上是在"刀尖上跳舞"的强周期化工品公司。<br><br>
+  <strong>核心优势：</strong>① 成本优势显著（毛利率41.66% vs 行业均值18.91%），即使在价格下行期也能维持盈利；② LiPF6产能持续扩张（3万吨二期），销量+55.84%，绑定宁德时代/比亚迪等头部客户；③ 2026Q1净利1.97亿已超2025全年2倍，周期上行弹性大。<br><br>
+  <strong>核心风险：</strong>① 强周期属性——LiPF6价格历史波动极大（60万→4万→10万+/吨），若价格再次下跌将重陷亏损；② CFO连续多年为负，靠融资输血维持运营，现金流极为脆弱；③ 应收账款7.73亿/利润0.82亿=941%，回款风险巨大；④ 不分红、ROE极低、穿越周期能力几乎为零。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td><strong>29.63 亿</strong></td><td>20.68 亿</td><td>+43.28%</td><td class="good">✅ 大幅增长</td></tr>
+  <tr><td>归母净利润</td><td><strong>0.82 亿</strong></td><td>-13.51 亿</td><td><strong>扭亏</strong></td><td class="good">✅ 扭亏为盈</td></tr>
+  <tr><td>扣非净利润</td><td><strong>0.55 亿</strong></td><td>-13.60 亿</td><td><strong>扭亏</strong></td><td class="good">✅ 扭亏</td></tr>
+  <tr><td>毛利率</td><td><strong>18.08%</strong></td><td>负值</td><td>大幅改善</td><td class="good">✅ 触底回升</td></tr>
+  <tr><td>归母净利率</td><td><strong>5.07%</strong></td><td>-65.31%</td><td>大幅改善</td><td class="good">✅ 扭亏</td></tr>
+  <tr><td>期间费用率</td><td><strong>~6.68%</strong></td><td>~9.17%</td><td>-2.49pct</td><td class="good">✅ 控费改善</td></tr>
+  <tr><td>2026Q1 营收</td><td><strong>9.90 亿</strong></td><td>5.18 亿</td><td>+91.15%</td><td class="good">✅ 加速增长</td></tr>
+  <tr><td>2026Q1 净利润</td><td><strong>1.97 亿</strong></td><td>-0.22 亿</td><td><strong>扭亏+1001.93%</strong></td><td class="good">✅ 暴增</td></tr>
+  <tr><td>2026Q1 毛利率</td><td><strong>41.66%</strong></td><td>~11.58%</td><td>+30.08pct</td><td class="good">✅ 暴增</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>FY2025营收+43.28%至29.63亿，全年扭亏为盈（净利0.82亿）。但盈利集中在下半年——前三季度累计亏损0.78亿，Q4单季净利1.84亿。2026Q1更是净利1.97亿（超2025全年2倍），毛利率从2025年的18.08%暴增至41.66%。核心驱动力是六氟磷酸锂价格从2024年低点4万/吨反弹至2025Q4的10万+/吨。需清醒认识：这是价格反弹驱动的利润暴增，而非公司经营质的飞跃。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>2026Q1</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td><strong>6.84 亿</strong></td><td><strong>8.14 亿</strong></td><td class="neutral">⚠ 偏低</td></tr>
+  <tr><td>应收账款</td><td><strong>7.73 亿</strong></td><td><strong>9.03 亿</strong></td><td class="bad">❌ 持续上升</td></tr>
+  <tr><td>存货</td><td><strong>4.18 亿</strong></td><td><strong>6.52 亿</strong></td><td class="neutral">备货增加</td></tr>
+  <tr><td>短期借款</td><td><strong>8.34 亿</strong></td><td><strong>9.45 亿</strong></td><td class="bad">❌ 高于货币资金</td></tr>
+  <tr><td>有息负债合计</td><td><strong>12.72 亿</strong></td><td>—</td><td class="bad">❌ 负债偏高</td></tr>
+  <tr><td>资产负债率</td><td><strong>41.86%</strong></td><td><strong>43.65%</strong></td><td class="neutral">⚠ 中等</td></tr>
+  <tr><td>归母净资产</td><td><strong>32.87 亿</strong></td><td><strong>34.86 亿</strong></td><td class="good">✅ 稳定</td></tr>
+  <tr><td>总资产</td><td><strong>66.18 亿</strong></td><td><strong>73.46 亿</strong></td><td class="neutral">扩张中</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>资产负债表解读：</strong>资产负债表风险较高。货币资金6.84亿<短期借款8.34亿，流动性偏紧。应收账款7.73亿/年利润0.82亿=941%，回款周期极长且坏账风险高。存货4.18亿（2026Q1升至6.52亿）反映LiPF6价格上涨后的囤货意愿，但如果价格回落将面临跌价风险。有息负债12.72亿（短期借款8.34亿+长期借款4.38亿），财务费用因融资增加暴涨1025.85%。货币资金/流动负债仅39.29%，流动性覆盖能力弱。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>-3.00 亿</strong></td><td>-2.09 亿</td><td class="bad">❌ 连续为负</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><strong>待核实</strong></td><td>—</td><td class="neutral">产能扩张中</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td><strong>正（融资增加）</strong></td><td>—</td><td class="neutral">依赖融资</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>-3.65</strong></td><td>负值</td><td class="bad">❌ 利润含金量为负</td></tr>
+  <tr><td>自由现金流（FCF）</td><td><strong>负（持续消耗）</strong></td><td>负</td><td class="bad">❌ 无法造血</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>现金流解读：</strong>天际股份最严重的问题——经营现金流连续多年为负。FY2025 CFO -3.00亿，意味着公司即使"赚了"0.82亿净利润，实际经营仍然是净流出现金。利润是纸面的（大量应收账款），现金是真实的损失。公司运营完全依赖融资（短期借款从8.06亿增至8.34亿）。CFO/净利润=-3.65，利润含金量极差。这是典型的"纸面富贵"——利润看着不错，但钱没收回来。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>2.50%</strong></td><td>> 15% 优秀 / > 10% 及格</td><td class="bad">❌ 极低</td></tr>
+  <tr><td>毛利率</td><td><strong>18.08%</strong></td><td>稳定或提升</td><td class="good">✅ 触底大幅反弹</td></tr>
+  <tr><td>净利率</td><td><strong>5.07%</strong></td><td>> 10%</td><td class="bad">❌ 偏低</td></tr>
+  <tr><td>营收增长率</td><td><strong>+43.28%</strong></td><td>> 10%</td><td class="good">✅ 高增长</td></tr>
+  <tr><td>利润增长率</td><td><strong>扭亏</strong></td><td>正增长</td><td class="good">✅ 扭亏</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>-3.65</strong></td><td>> 1</td><td class="bad">❌ 含金量极差</td></tr>
+  <tr><td>资产负债率</td><td><strong>41.86%</strong></td><td>化工<60%</td><td class="good">✅ 合理</td></tr>
+  <tr><td>分红率</td><td><strong>0%</strong></td><td>持续高分红</td><td class="bad">❌ 不分红</td></tr>
+</table>
+
+<h3>3.2 分业务分析（FY2025）</h3>
+<table>
+  <tr><th>业务板块</th><th>营收（亿）</th><th>占比</th><th>同比</th><th>净利润</th><th>评价</th></tr>
+  <tr><td>六氟磷酸锂及氟化工</td><td>23.3</td><td>78.6%</td><td>大幅增长</td><td>核心盈利</td><td class="good">✅ 量价齐升</td></tr>
+  <tr><td>次磷酸钠及磷化工</td><td>4.6</td><td>15.5%</td><td>+28.18%</td><td>0.26亿</td><td class="good">✅ 稳定增长</td></tr>
+  <tr><td>小家电</td><td>1.7</td><td>5.7%</td><td>下滑</td><td>-0.27亿</td><td class="bad">❌ 亏损</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>公司本质是"六氟磷酸锂单业务公司"（占营收78.6%）。2025年LiPF6销量4万吨（+55.84%），价格触底反弹是扭亏核心驱动力。次磷酸钠（磷化工）稳定贡献0.26亿利润。小家电业务收入1.7亿但亏损0.27亿，公司正谋划整改。2026Q1收入9.9亿中主要来自LiPF6量价齐升，毛利率从2025全年18.08%暴增至41.66%，弹性极大。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="bad">🔴 较高</td><td>CFO连续多年为负，利润含金量极差</td><td>经营现金流-3亿，CFO/净利润=-3.65，利润是纸面富贵</td></tr>
+  <tr><td class="bad">🔴 较高</td><td>应收账款7.73亿/利润0.82亿=941%</td><td>回款周期极长，坏账风险大</td></tr>
+  <tr><td class="bad">🔴 较高</td><td>货币资金<短期借款，流动性偏紧</td><td>6.84亿<8.34亿，依靠融资续命</td></tr>
+  <tr><td class="bad">🔴 较高</td><td>LiPF6强周期属性，价格大跌将重陷亏损</td><td>2024年巨亏13.5亿，2025年扭亏全靠价格反弹</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>财务费用暴增1025.85%</td><td>融资增加+利率上升侵蚀利润</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>小家电业务持续亏损</td><td>收入1.7亿，亏损0.27亿</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>前期会计差错被监管处罚</td><td>广东证监局现场检查发现财务核算不规范</td></tr>
+  <tr><td class="good">🟢 正面</td><td>成本优势突出（毛利率41.66% vs 行业19%）</td><td>规模效应+工艺优化+原材料自供</td></tr>
+  <tr><td class="good">🟢 正面</td><td>LiPF6产能持续扩张（3万吨二期在建）</td><td>在建工程+116%，绑定头部客户</td></tr>
+  <tr><td class="good">🟢 正面</td><td>2026Q1净利1.97亿已超2025全年</td><td>周期上行弹性极大</td></tr>
+</table>
+
+<div class="verdict verdict-bad">❌ L2综合判定：风险极高（利润含金量极差+现金流枯竭+强周期+不分红）</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>股价（2026.7.15）</td><td><strong>~23.43 元</strong></td><td>52周范围约9-27元</td></tr>
+  <tr><td>总市值</td><td><strong>~120-133 亿</strong></td><td>总股本约5.14亿股</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>~40-60x</strong></td><td>基于TTM净利~2.8亿（25Q2-26Q1）</td></tr>
+  <tr><td>PE（2026E）</td><td><strong>~15-20x</strong></td><td>基于2026E净利预测~6-8亿（券商一致预期）</td></tr>
+  <tr><td>PB</td><td><strong>~5.18x</strong></td><td>基于每股净资产6.95元（2026Q1）</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~5.26x</strong></td><td>基于营收29.63亿</td></tr>
+  <tr><td>股息率</td><td><strong>0%</strong></td><td>不分红</td></tr>
+</table>
+
+<p style="font-size:13px;color:#999;margin-bottom:8px">⚠ 周期股PE失真，以PB为主要估值框架。当前PE(TTM)偏高因2024年亏损压低基数，2026E PE看似合理(15-20x)但需注意LiPF6价格能否维持。</p>
+
+<h3>4.2 PB Band估值（周期股专用）</h3>
+<p style="font-size:13px;color:#666;">LiPF6行业历史PB波动极大：景气高点PB可达8-10x+，低谷PB 1-2x。天际股份自身历史PB参考：</p>
+<table>
+  <tr><th>情景</th><th>PB</th><th>对应股价</th><th>vs现价23.43元</th></tr>
+  <tr><td>历史高位（2021年锂电牛市）</td><td>~8-10x</td><td>55-70 元</td><td class="good">+135%至+199%</td></tr>
+  <tr><td>景气中位（行业正常）</td><td>~3-5x</td><td>21-35 元</td><td class="neutral">≈ 现价</td></tr>
+  <tr><td><strong>当前价</strong></td><td><strong>~5.18x</strong></td><td><strong>23.43 元</strong></td><td><strong>—</strong></td></tr>
+  <tr><td>景气低谷（2024年行业亏损）</td><td>~1-2x</td><td>7-14 元</td><td class="bad">-40%至-70%</td></tr>
+  <tr><td>历史最低（2024年2月）</td><td>~1.2x</td><td>~8.4 元</td><td class="bad">-64%</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>PB估值分析：</strong>当前PB 5.18x处于历史中位偏上。以周期股逻辑看：
+  <br>① 若LiPF6价格维持当前水平（10万+/吨），2026E净利6-8亿，ROE ~15-20%，PB 5x属合理偏高；<br>
+  ② 若LiPF6价格再次下跌至成本线（如7-8万/吨），净利将大幅缩水，PB应回到2-3x才算合理（对应股价14-21元）；<br>
+  ③ 若LiPF6价格跌破成本（如2024年），公司重陷亏损，PB可能回到1-2x（对应股价7-14元）。<br>
+  <strong>结论：</strong>当前PB 5.18x隐含了LiPF6价格持续高位的乐观预期，安全边际不足。周期股投资的核心是"买在PB底部（1-2x），卖在PB顶部（8-10x）"，而当前5.18x处于中位偏高，向下空间远大于向上。
+</div>
+
+<h3>4.3 历史PE区间</h3>
+<table>
+  <tr><th>指标</th><th>数值</th></tr>
+  <tr><td>近5年PE最大值</td><td>亏损期PE为负/极高（2024年）</td></tr>
+  <tr><td>近5年PE最小值（盈利期）</td><td>~10x（2021年锂电牛市最高峰）</td></tr>
+  <tr><td><strong>当前PE（TTM）</strong></td><td class="neutral"><strong>~40-60x（因2024年亏损基数低而偏高）</strong></td></tr>
+  <tr><td>当前PE（2026E）</td><td>~15-20x（基于周期高点盈利预测）</td></tr>
+</table>
+<p style="font-size:13px;color:#999;margin-top:-8px;margin-bottom:12px;">⚠ 周期股PE失真，以PB为准。当前PE(TTM)因包含2024年亏损而虚高，2026E PE看似合理但建立在LiPF6价格维持高位的假设上。</p>
+
+<div class="danger-box">
+  <strong>估值总结：</strong>天际股份当前PB 5.18x处于中位偏高，PE 2026E 15-20x看起来"合理"但前提假设脆弱。核心问题：当前估值已经反映了LiPF6价格高位的乐观情景，如果LiPF6价格从10万+/吨回落至7-8万/吨（行业平均成本线），2026E净利可能从6-8亿腰斩至3-4亿，届时"合理PE 15-20x"对应的"合理股价"将降至11-16元。周期股投资铁律：不要在周期复苏股价大涨后追高，要在周期底部（PB 1-2x、全行业亏损）时布局。当前并非周期底部。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>归母净利率</td><td>~0.2%</td><td>~-65%</td><td><strong>5.07%</strong></td><td class="good">⬆ 扭亏</td></tr>
+  <tr><td>资产周转率（次）</td><td>0.29</td><td>0.33</td><td><strong>0.45</strong></td><td class="good">⬆ 改善</td></tr>
+  <tr><td>权益乘数</td><td>1.49</td><td>1.76</td><td><strong>1.72</strong></td><td class="neutral">➡ 稳定</td></tr>
+  <tr><td><strong>ROE</strong></td><td><strong>~0.7%</strong></td><td><strong>~-43%</strong></td><td><strong>2.50%</strong></td><td class="good">⬆ 扭亏</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>0.06%</td><td>-21.5%</td><td><strong>2.28%</strong></td><td class="good">⬆ 扭亏</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>0.64pct</td><td>-21.5pct</td><td><strong>0.22pct</strong></td><td class="neutral">杠杆贡献微薄</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：低利润+低周转+中杠杆型——典型的强周期大宗化工品模式</strong><br>
+  天际股份的ROE在不同年份呈现"天堂地狱"式波动。净利率从2024年的-65%到2025年的5.07%、再到2026Q1的26.68%，完全取决于LiPF6价格。公司的"成本优势"在行业低谷只能减少亏损（2024年仍巨亏13.5亿），在行业景气高峰则放大盈利（2026Q1净利率26.68%）。<br><br>
+  <strong>去杠杆ROA：</strong>FY2025仅2.28%，说明每1元总资产仅赚0.02元净利，资产回报效率很低。但在价格高峰（2026Q1），年化ROA可到10%+。这种极端波动是周期股的典型特征。
+</div>
+
+<h3>5.2 资产回报效率</h3>
+<table>
+  <tr><th>指标</th><th>天际股份2025</th><th>多氟多2025</th><th>天际股份2026Q1(年化)</th><th>评价</th></tr>
+  <tr><td>去杠杆ROA</td><td><strong>2.28%</strong></td><td>~1.0%</td><td>~10%+</td><td class="neutral">周期波动极大</td></tr>
+  <tr><td>每1元资产创净利</td><td><strong>0.023 元</strong></td><td>0.01 元</td><td>0.10 元+</td><td class="neutral">全靠价格</td></tr>
+  <tr><td>ROE</td><td><strong>2.50%</strong></td><td>2.53%</td><td>~25%+</td><td class="neutral">与同行相近</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>核心结论：</strong><br>
+  ① ROE 2.50%（FY2025）波动极大，完全取决于LiPF6价格——2024年-43%，2026Q1年化可达25%+；<br>
+  ② 去掉杠杆后ROA仅2.28%（FY2025），资产基础回报效率极低——公司本质是一个"看天吃饭"的化工加工厂；<br>
+  ③ 净利率从-65%到5.07%再到26.68%，是典型的"价格决定生死"的纯周期股；<br>
+  ④ 资产周转率0.45较低，属于重资产化工行业特征（固定资产+在建工程占比高）；<br>
+  ⑤ 权益乘数1.72中等，负债率42%尚可，但公司的问题不是杠杆，而是经营现金流持续为负。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与特征（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：纯周期股（基础化工—六氟磷酸锂）</strong><br>
+  <strong>判断依据：</strong>六氟磷酸锂（LiPF6）是锂电池电解液的核心材料，属于典型的大宗精细化工品。行业呈现极度周期波动特征：<br><br>
+  ① <strong>价格历史：</strong>2021年锂电牛市最高60万/吨→2022-2023年快速下跌→2024年低点约4万/吨（全行业亏损）→2025Q4反弹至10万+/吨；<br>
+  ② <strong>需求：</strong>跟随新能源汽车+储能增长，长期需求向上，但供给（六氟磷酸锂产能）大幅波动导致供需错配；<br>
+  ③ <strong>利润跟随价格：</strong>天际股份2024年净利-13.5亿、2025年+0.82亿、2026Q1 +1.97亿，利润完全由价格驱动；<br>
+  ④ <strong>纯周期判断：</strong>LiPF6是成熟化工品，无技术颠覆，利润全靠供需错配，长期增速≈新能源车增速（~20%），但利润波动远大于销量增长。<br><br>
+  <strong>结论：</strong>属于<strong>纯周期股（基础化工）</strong>，必须使用<strong>周期股评分体系</strong>。评分核心：穿越周期生存能力+成本位置+周期位置。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th></tr>
+  <tr><td>市场格局</td><td><strong>集中度中等（CR3约50-60%）</strong>——多氟多、天赐材料、天际股份为前三。行业仍在洗牌，小产能出清中。</td></tr>
+  <tr><td>技术/工艺壁垒</td><td><strong>中等</strong>——LiPF6生产技术相对成熟，核心壁垒在于：① 成本控制（原材料自供+规模化）；② 客户认证壁垒（电池厂认证周期1-2年）。</td></tr>
+  <tr><td>规模壁垒</td><td><strong>较高</strong>——万吨级LiPF6产线投资5-8亿，新进入者门槛高。但现有龙头仍在扩产，供给端竞争激烈。</td></tr>
+  <tr><td>客户粘性</td><td><strong>中等</strong>——下游电池厂（宁德时代、比亚迪）议价能力强，但一旦进入供应体系，短期替换成本较高。</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  <strong>阶段：成熟期（但伴随需求增长和供给波动）</strong><br>
+  LiPF6技术已成熟，行业进入"扩产→过剩→出清→再平衡"的周期循环。长期受益于新能源汽车和储能增长，但短期内供给波动远大于需求增长。天际股份当前战略：利用成本优势在周期底部抢占市场份额，通过扩产（3万吨二期）提升规模。<br><br>
+  <strong>投资策略重点：</strong>跟踪LiPF6价格走势、行业产能利用率、公司毛利率变化、新建产能投产进度。
+</div>
+
+<h3>6.4 当前周期位置</h3>
+<div class="highlight-box">
+  <strong>周期位置：底部过后的复苏初期→快速上行期</strong><br>
+  LiPF6价格：2024年低谷4万/吨（全行业亏损，小产能出清）→ 2025Q4反弹至10万+/吨 → 2026Q1有所回落但仍保持盈利高位。<br><br>
+  关键信号：① 2024年行业巨亏触发产能出清；② 2025Q4起价格快速反弹；③ 天际股份季度利润从Q3 -0.49亿→Q4 +1.84亿→2026Q1 +1.97亿；④ 公司毛利率从12.63%→18.08%→41.66%，弹性完全释放。<br><br>
+  <strong>周期位置评分输入：12/15分</strong>（底部已过，复苏初期，利润弹性释放中）<br><br>
+  <strong>⚠ 风险提示：</strong>2026Q1 LiPF6价格已从高点有所回落，如果需求不及预期或新增供给集中释放，价格可能再次承压。当前属于"甜蜜点"但窗口期可能有限。
+</div>
+
+<h3>6.5 同行对比分析</h3>
+<table>
+  <tr><th>指标</th><th>天际股份</th><th>多氟多</th><th>行业平均</th><th>评价</th></tr>
+  <tr><td>营收规模</td><td><strong>29.63 亿</strong></td><td>94.34 亿</td><td>—</td><td class="neutral">规模排名第二</td></tr>
+  <tr><td>营收增速</td><td><strong>+43.28%</strong></td><td>+14.37%</td><td>~20%+</td><td class="good">✅ 增速领先</td></tr>
+  <tr><td>归母净利润</td><td><strong>0.82 亿</strong></td><td>2.13 亿</td><td>—</td><td class="neutral">扭亏</td></tr>
+  <tr><td>ROE</td><td><strong>2.50%</strong></td><td>2.53%</td><td>~2-3%</td><td class="neutral">⚠ 行业偏低</td></tr>
+  <tr><td>毛利率（FY2025）</td><td><strong>18.08%</strong></td><td>~13.96%</td><td>~15%</td><td class="good">✅ 略有优势</td></tr>
+  <tr><td>毛利率（2026Q1）</td><td><strong>41.66%</strong></td><td>待更新</td><td>~20-30%</td><td class="good">✅ 成本优势突出</td></tr>
+  <tr><td>负债率</td><td><strong>41.86%</strong></td><td>~66%</td><td>~50%</td><td class="good">✅ 负债率较低</td></tr>
+  <tr><td>经营现金流</td><td><strong>-3.00 亿</strong></td><td>1.99 亿</td><td>—</td><td class="bad">❌ 远弱于同行</td></tr>
+  <tr><td>PB</td><td><strong>~5.18x</strong></td><td>~2.0x</td><td>~2-3x</td><td class="bad">❌ 估值偏高</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>同行对比结论：</strong>天际股份在LiPF6行业中以成本优势（2026Q1毛利率41.66% vs 行业均值~19%）和聚焦战略见长，营收增速领先同行。但经营现金流连续为负（-3亿 vs 多氟多+2亿），是最大的竞争劣势——说明公司对客户的议价能力弱、回款管理差。估值方面，PB 5.18x远高于多氟多的~2.0x，市场给了天际更高的"成本优势+弹性溢价"，但同时也意味着更高的风险（如果LiPF6价格下跌，天际的估值压缩空间更大）。
+</div>
+
+<h3>6.6 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>纯周期（基础化工）</td><td><strong>PB（底部）+ EV/EBITDA</strong></td><td>PE（顶部参考）、价格趋势、产能利用率、行业库存</td><td class="neutral">⚠ 部分匹配——市场同时使用PE(2026E 15-20x)和PB(5.18x)，但PE在周期股中不可靠</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值方法总结：</strong>对于纯周期化工股，首选的估值框架是PB（在周期底部PB 1-2x买入，周期顶部PB 8-10x卖出），PE在周期股中容易误导（盈利高点PE低但风险大，亏损期PE高或负但可能是机会）。当前PB 5.18x处于中位偏高，并非周期底部买入的好时机。建议等待下一次周期低谷（全行业亏损、PB回到1-2x）时再考虑布局。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战分析（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>纯周期（基础化工-LiPF6），行业集中度中等，成本+规模壁垒，强周期属性<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 2.50%（极低），周期波动型杜邦，CFO/净利-3.65（含金量极差），利润是纸面富贵<br>
+  <strong>Step 3 - 估值判断：</strong>PB 5.18x（中位偏高）、PE 2026E 15-20x（依赖价格假设），估值无安全边际<br>
+  <strong>Step 4 - 风险排查：</strong>CFO持续为负+应收/利润941%+LiPF6价格回落风险+不分红+财务造假前科<br>
+  <strong>Step 5 - 结论：</strong>⚠ 好行业（新能源上游有长期需求），但❌ 公司质地一般（ROE低+CFO为负），❌ 价格非常差（PB 5x非周期底部）<br>
+  <strong>Step 6 - 跟踪：</strong>关键指标：LiPF6价格、毛利率、经营现金流转正时点、产能投产进度。卖出信号：LiPF6价格跌破8万/吨、毛利率<20%、CFO继续恶化
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>新能源/储能长期需求增长，LiPF6是电解液不可替代的核心材料，需求刚性</td></tr>
+  <tr><td>② 好公司</td><td class="bad">✗</td><td>ROE 2.50%<15%，毛利率周期波动极大，CFO/净利=-3.65<<1——不符合好公司标准</td></tr>
+  <tr><td>③ 好价格</td><td class="bad">✗</td><td>PB 5.18x处于中位偏高，非周期底部买入时机，安全边际不足</td></tr>
+</table>
+
+<h3>7.3 风险评估</h3>
+
+<h4>a. 三个陷阱排查</h4>
+<div class="danger-box">
+  <strong>陷阱排查结果：</strong><br><br>
+  ☐ <strong>价值陷阱（低PE+低增长+高负债）</strong> → PE 40-60x（高非低），营收+43%（高增长），负债率42%（中等） → <b>❌ 未命中</b><br><br>
+  ☐ <strong>周期陷阱（低PE+周期顶点）</strong> → PE(TTM) 40-60x（高），周期位置在复苏初期非顶点 → <b>❌ 未命中</b>，但需警惕：LiPF6价格已从高点回落，若继续下跌则可能进入周期中段<br><br>
+  ☐ <strong>烧钱陷阱（高PE+高增速+CFO为负）</strong> → PE(TTM) 40-60x高，营收+43%高增速，CFO -3亿为负 → <b>✅ 命中！</b>典型的"烧钱陷阱"——有利润没现金，靠融资续命
+</div>
+<p style="font-size:13px;color:#666;margin-top:4px">⚠ <strong>预警：</strong>烧钱陷阱已命中。2025年"盈利"0.82亿但经营现金流-3亿，说明赚的钱都是应收账款，实际运营持续消耗现金。2024年巨亏时靠融资（短期借款8.34亿）维持。如果LiPF6价格再次下跌导致亏损，公司可能面临现金流断裂风险。</p>
+
+<h4>b. 管理层与治理风险</h4>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力与履历</td><td>一般</td><td>创始人吴锡盾（家电行业出身），跨界进入锂电材料，管理能力有待验证</td></tr>
+  <tr><td>股权结构与利益一致性</td><td>一般</td><td>吴锡盾为实控人，持股比例不高，管理层持股一般</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td>有但可控</td><td>广东证监局现场检查发现财务核算不规范，存在前期会计差错更正</td></tr>
+  <tr><td>资本配置记录</td><td>激进</td><td>大规模CAPEX扩产LiPF6，收购新特化工，但小家电业务持续亏损未剥离</td></tr>
+  <tr><td>管理层增减持记录</td><td>需关注</td><td>需查询近一年增减持情况</td></tr>
+  <tr><td>CEO交接/关键人员变动</td><td>无风险</td><td>管理层相对稳定</td></tr>
+</table>
+
+<h4>c. 盈利可持续性</h4>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是靠价？</td><td>价驱动为主（量驱动为辅）</td><td>2025年销量+55.84%，但利润暴增主因LiPF6价格从4万→10万+（涨150%+）</td></tr>
+  <tr><td>涨价能否持续？</td><td>不能</td><td>LiPF6是大宗化工品，价格由供需决定，公司无定价权。2026Q1价格已从高点回落</td></tr>
+  <tr><td>非经常性利润占比</td><td>中</td><td>扣非净利润0.55亿/归母0.82亿=67%，非经常性约0.27亿（政府补贴等）</td></tr>
+  <tr><td>大客户集中度</td><td>集中</td><td>下游为宁德时代/比亚迪等头部电池厂，议价能力弱</td></tr>
+  <tr><td>政策/监管依赖度</td><td>低</td><td>新能源补贴退坡影响终端需求，但非补贴直接依赖</td></tr>
+</table>
+
+<h4>d. 关键变量敏感性</h4>
+<div class="summary-box">
+  <strong>变量1: LiPF6价格走势（最关键变量）</strong><br>
+  &nbsp;&nbsp;乐观：LiPF6全年均价维持12万+/吨 → 2026E净利8-9亿，EPS 1.6-1.8元<br>
+  &nbsp;&nbsp;中性：LiPF6全年均价8-10万/吨 → 2026E净利5-6亿，EPS 1.0-1.2元<br>
+  &nbsp;&nbsp;悲观：LiPF6价格回落至6-7万/吨(成本线附近) → 2026E净利2-3亿，EPS 0.4-0.6元<br><br>
+  <strong>变量2: 3万吨二期产能投产节奏</strong><br>
+  &nbsp;&nbsp;乐观：2026年底全面投产，销量+70% → EPS 1.5-2.0元<br>
+  &nbsp;&nbsp;中性：2027年初部分投产，销量+30-40% → EPS 1.0-1.2元<br>
+  &nbsp;&nbsp;悲观：投产延迟或需求不足 → EPS 0.5-0.8元<br><br>
+  <strong>变量3: 经营现金流能否转正</strong><br>
+  &nbsp;&nbsp;乐观：加强回款管理+LiPF6价格高位，CFO转正 → 估值可从PB 5x修复至6-7x<br>
+  &nbsp;&nbsp;中性：CFO仍为负但大幅收窄 → 估值维持PB 4-5x<br>
+  &nbsp;&nbsp;悲观：CFO继续恶化+LiPF6价格下跌 → 估值压缩至PB 2-3x
+</div>
+
+<h3>7.4 前景展望</h3>
+
+<h4>a. 未来1-3年核心驱动</h4>
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. LiPF6价格维持高位的可能性——新能源车+储能需求持续增长，供给端产能出清后供需格局改善<br>
+  2. 成本优势驱动的份额提升——毛利率41.66%行业领先，可逆势扩产抢占份额，3万吨二期投产后规模再上台阶<br>
+  3. 次磷酸钠+磷化工稳定利润贡献——4.6亿收入+0.26亿净利，提供一定的利润底仓<br><br>
+  <strong>负向拖累：</strong><br>
+  1. LiPF6价格回落风险——2026Q1已从高点回落，若新增产能集中释放将再次压低价格和利润<br>
+  2. 现金流枯竭风险——CFO连续多年为负，若LiPF6价格下跌+CFO持续恶化，可能引发流动性危机<br>
+  3. 应收账款/利润比941%——回款风险巨大，一旦大客户出现信用问题可能导致巨额坏账
+</div>
+
+<h4>b. 三情景简表</h4>
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>EPS预估</th><th>PB区间</th><th>预期回报</th></tr>
+  <tr><td>乐观</td><td>LiPF6均价12万+吨+二期满产+CFO转正</td><td>1.6-1.8元</td><td>5-7x（55-89元）</td><td>+135%至+280%</td></tr>
+  <tr><td>中性</td><td>LiPF6均价8-10万/吨+产能正常爬坡</td><td>1.0-1.2元</td><td>3-5x（21-42元）</td><td>-10%至+79%</td></tr>
+  <tr><td>悲观</td><td>LiPF6价格回落至6万/吨+需求放缓</td><td>0.4-0.6元</td><td>2-3x（6-13元）</td><td>-72%至-45%</td></tr>
+</table>
+<p style="font-size:13px;color:#666;margin-bottom:16px">概率判断：中性45%，乐观20%，悲观35%。注意当前价格23.43元对应PB 5.18x，已经隐含了中性偏乐观情景。悲观情景下最大回撤可达-72%，风险回报比不佳。</p>
+
+<h3>7.5 资金面信号</h3>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>北向资金持股变动</td><td class="neutral">需跟踪</td><td>北向资金持股比例不高，需关注近期变动</td></tr>
+  <tr><td>机构持仓变动</td><td class="neutral">增仓</td><td>LiPF6价格反弹吸引机构关注，前十大股东中多家机构重仓</td></tr>
+  <tr><td>融资余额变动</td><td class="neutral">增加</td><td>2026年6月11日融资余额5.99亿，杠杆资金参与度较高</td></tr>
+  <tr><td>大股东增减持</td><td class="neutral">需关注</td><td>需查询近一年大股东增减持动向</td></tr>
+  <tr><td>业绩预告/快报</td><td class="good">正面</td><td>2026Q1净利+1001.93%超预期，市场情绪偏正面</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>资金面判断：</strong>2026Q1净利暴增10倍驱动股价从底部~9元反弹至23元+，资金关注度显著提升。融资余额增加反映杠杆资金参与。但需警惕：周期股在业绩最好、股价涨最多的时候往往是周期顶部的危险信号。当前市场情绪偏乐观，但盈利可持续性是最大疑问。
+</div>
+
+<h3>7.6 讨论问题（阅读引导）</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——买原料（氟化锂+磷酸）通过化学反应做成六氟磷酸锂（LiPF6）卖给电池厂，赚的是加工差价。毛利率18%-42%全看市场供需，公司没有定价权。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——经营现金流连续多年为负（-3亿），而净利润是正的（0.82亿）——利润是纸面数据，现金是真实的损失。如果LiPF6价格再次下跌，公司能撑多久？<br>
+  3. 如果现在买入，期待的回报来源是什么？——只能是"赌"LiPF6价格继续维持高位或涨得更高。这不是价值投资（PB 5x不是底部），也不是成长投资（CFO为负），而是"周期博弈"——赌自己不会接最后一棒。<br>
+  4. 什么情况下你会坚决卖出？——① LiPF6价格跌破8万/吨；② 毛利率<20%；③ 应收账款/利润比继续恶化>1000%；④ 任何债务违约信号。
+</div>
+
+</div></div>
+
+<div class="footer">
+   免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+   数据来源：天际股份2025年年报、2026Q1季报、券商研报、东方财富、理杏仁、证券之星
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>
