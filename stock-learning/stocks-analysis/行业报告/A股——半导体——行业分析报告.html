@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>A股——半导体 行业分析报告</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f5f5f5;padding:0;color:#333}
+  .report-wrap{max-width:800px;margin:0 auto;background:#fff}
+  h1{font-size:22px;margin:0;padding:28px 0 4px;text-align:center}
+  h2{font-size:18px;margin:28px 0 12px;border-bottom:2px solid #1a1a1a;padding-bottom:4px}
+  h3{font-size:15px;margin:18px 0 8px}
+  .subtitle{color:#666;font-size:13px;text-align:center;margin-bottom:4px}
+  .meta{color:#999;font-size:12px;text-align:center;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #e0e0e0}
+  .tab-bar{position:sticky;top:0;z-index:10;background:#fff;display:flex;flex-wrap:wrap;border-bottom:2px solid #ddd;gap:0}
+  .tab-btn{padding:10px 14px;cursor:pointer;border:none;background:none;font-size:13px;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+  .tab-btn:hover{color:#333;background:#f9f9f9}
+  .tab-btn.active{color:#1a1a1a;font-weight:700;border-bottom-color:#1a1a1a}
+  .tab-content{display:none}
+  .tab-content.active{display:block}
+  .tab-inner{padding:0 12px}
+  table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:13px}
+  th{background:#f5f5f5;padding:8px 6px;text-align:left;border-bottom:2px solid #ddd;white-space:nowrap;font-weight:600}
+  td{padding:7px 6px;border-bottom:1px solid #eee}
+  tr:nth-child(even) td{background:#fafafa}
+  .summary-box{background:#fffde7;border-left:4px solid #f9a825;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .highlight-box{background:#e3f2fd;border-left:4px solid #1e88e5;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .danger-box{background:#ffebee;border-left:4px solid #e53935;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .verdict{text-align:center;padding:20px;margin:16px 0;border-radius:8px;font-size:18px;font-weight:700}
+  .verdict-ok{background:#e8f5e9;border:2px solid #4caf50;color:#2e7d32}
+  .verdict-caution{background:#fff3e0;border:2px solid #ff9800;color:#e65100}
+  .verdict-bad{background:#ffebee;border:2px solid #e53935;color:#c62828}
+  .score{font-size:36px;display:block;margin-bottom:4px}
+  .pass{color:#2e7d32;font-weight:700}
+  .skip{color:#666;font-style:italic}
+  .tag{display:inline-block;padding:2px 8px;border-radius:3px;font-size:11px;font-weight:700}
+  .tag-red{background:#ffebee;color:#c62828}
+  .tag-green{background:#e8f5e9;color:#2e7d32}
+  .tag-yellow{background:#fff8e1;color:#f57f17}
+  .footer{font-size:11px;color:#aaa;text-align:center;padding:24px 0 8px;border-top:1px solid #eee;margin-top:30px}
+  .card{background:#fafafa;border:1px solid #e0e0e0;border-radius:6px;padding:14px;margin:10px 0;font-size:13px}
+  .flex{display:flex;flex-wrap:wrap;gap:8px}
+  .tbl-wrap{border:1px solid #e0e0e0;border-radius:6px;overflow:hidden;margin:10px 0 18px}
+  .tbl-wrap table{margin:0}
+  .tbl-wrap th{background:#f5f5f5;padding:9px 8px;border-bottom:1px solid #ddd;font-weight:600;font-size:12px}
+  .tbl-wrap td{padding:8px;border-bottom:1px solid #f0f0f0;font-size:13px}
+  .tbl-wrap tr:last-child td{border-bottom:none}
+  .bar-wrap{display:inline-flex;align-items:center;width:60px;height:16px;vertical-align:middle}
+  .bar-bg{background:#eee;border-radius:4px;height:8px;width:100%;overflow:hidden;position:relative}
+  .bar{display:block;height:8px;border-radius:4px}
+  .score-cell{font-weight:700;font-size:15px;text-align:center;white-space:nowrap}
+  .tbl-wrap td,.tbl-wrap th{vertical-align:middle}
+  .metric-h{color:#1565c0;font-weight:700;font-size:13px}
+  .metric-l{color:#c62828;font-weight:700}
+  .metric-m{color:#e65100;font-weight:700}
+  .col-tag{display:inline-block;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600}
+  .col-win{background:#e8f5e9;color:#2e7d32}
+  .col-lose{background:#ffebee;color:#c62828}
+  .col-warn{background:#fff3e0;color:#e65100}
+  .col-info{background:#e3f2fd;color:#1565c0}
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>A股——半导体 行业分析报告</h1>
+<div class="subtitle">L5分类：成长型 ｜ 上市公司：~150只 ｜ 总市值：~5万亿</div>
+<div class="meta">生成日期：2026-07-16</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l7">L7 量化初筛</button>
+  <button class="tab-btn" data-tab="l8">L8 行业画像</button>
+  <button class="tab-btn" data-tab="l9">L9 竞争格局</button>
+  <button class="tab-btn" data-tab="l10">L10 周期时机</button>
+</div>
+
+<div class="tab-content active" id="tab-summary">
+<div class="tab-inner">
+
+<h2>行业速览</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">项目</th><th>内容</th></tr>
+<tr><td>行业名称</td><td><strong>半导体</strong>（申万半导体行业，含设计/制造/封测/设备/材料）</td></tr>
+<tr><td>市场</td><td>A股</td></tr>
+<tr><td>L5分类</td><td><span class="col-tag col-win">成长型</span> AI驱动+国产替代双轮驱动，长期成长逻辑清晰</td></tr>
+<tr><td>上市公司</td><td>~150只，其中符合L7筛选条件 <span class="col-tag col-win">30只</span></td></tr>
+<tr><td>行业总市值</td><td>~5万亿</td></tr>
+<tr><td>产业链利润核心</td><td><span class="col-tag col-win">设备（北方华创/中微公司）</span> + <span class="col-tag col-win">设计龙头（海光/韦尔/澜起）</span></td></tr>
+<tr><td>生命周期阶段</td><td><span class="col-tag col-win">高速成长期</span> 国产替代率仍低（整体&lt;20%），AI需求爆发，政策持续加码</td></tr>
+<tr><td>当前周期位置</td><td><span class="col-tag col-warn">结构分化期</span> 存储/模拟芯片周期上行，消费电子芯片触底，AI芯片持续高景气</td></tr>
+</table>
+</div>
+
+<h2>综合评分</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>维度</th><th style="width:60px">得分</th><th>进度</th><th>说明</th></tr>
+<tr>
+  <td>行业规模与空间</td>
+  <td class="score-cell">19/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:95%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">全球半导体~6000亿美元，中国消费~2000亿美元，国产替代空间极大</td>
+</tr>
+<tr>
+  <td>产业链位置</td>
+  <td class="score-cell">10/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:67%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">中国在封测环节全球领先，设计中等，制造/设备/材料差距大，但进步最快</td>
+</tr>
+<tr>
+  <td>竞争格局</td>
+  <td class="score-cell">14/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:70%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">细分赛道寡头格局明显（设备/CPU/模拟），设计环节分散但龙头突出</td>
+</tr>
+<tr>
+  <td>增长驱动力</td>
+  <td class="score-cell">14/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:93%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">AI+国产替代+周期复苏三重驱动力叠加，极为强劲</td>
+</tr>
+<tr>
+  <td>周期位置</td>
+  <td class="score-cell">10/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:67%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">全球半导体周期2024年见底，2025-2026上行中，AI独立于周期持续高景气</td>
+</tr>
+<tr>
+  <td>政策环境</td>
+  <td class="score-cell">14/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:93%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">国家大基金+税收优惠+国产替代政策全力支持，制裁反而加速自主可控</td>
+</tr>
+<tr style="background:#fafafa">
+  <td style="font-weight:700;font-size:14px">总分</td>
+  <td style="font-weight:700;font-size:16px;color:#2e7d32">81/100</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:81%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#2e7d32;font-weight:600">优秀——A股最值得长期关注的赛道之一</td>
+</tr>
+</table>
+</div>
+
+<div class="verdict verdict-ok">
+  <span class="score">81</span>
+  优秀——重点关注
+</div>
+
+<div class="summary-box">
+  <strong>核心结论</strong><br>
+  半导体是A股最值得长期配置的赛道之一——AI革命（GPU/HBM/算力芯片需求爆发）+ 国产替代（美国制裁倒逼自主可控）+ 周期复苏（2024年见底，上行周期开启）三重逻辑叠加。但产业链内部巨大分化：设备（北方华创/中微公司）受益于国内晶圆厂扩产最确定；设计龙头（海光/澜起/韦尔）弹性最大但竞争激烈；制造（中芯国际）重资产+技术追赶压力大；封测（长电/通富）稳健但弹性有限。当前整体估值偏高（PE 40-60x），但是高成长赛道中合理的"成长溢价"，调整时就是买入机会。
+</div>
+
+<div class="highlight-box">
+  <strong>行业公式</strong><br>
+  收入 = 全球半导体周期（β） × 国产替代率（α） × 公司份额<br>
+  关键指标：1) 半导体销售额同比 2) 设备招标量 3) 国产化率 4) 晶圆厂产能利用率 5) AI芯片出货量
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l7">
+<div class="tab-inner">
+
+<h2>筛子调整说明</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:12%">筛子</th><th style="width:35%">标准</th><th>调整说明</th></tr>
+<tr><td>①<span class="col-tag col-info">市值</span></td><td>主板≥50亿 / 创业板科创板≥30亿</td><td>半导体大量公司在科创板，保持≥30亿门槛</td></tr>
+<tr><td>②<span class="col-tag col-info">营收</span></td><td>主板≥10亿 / 创业板科创板≥3亿</td><td>部分Fabless设计公司营收小但毛利率极高，保留≥3亿</td></tr>
+<tr><td>③<span class="col-tag col-lose">毛利率</span></td><td>制造业/科技≥15%</td><td><strong>最轻松的筛</strong>——半导体公司毛利率普遍很高（设计40-60%，设备35-50%）</td></tr>
+<tr><td>④<span class="col-tag col-info">ROE</span></td><td>≥8%，连续3年&lt;5%剔除</td><td>正常执行，亏损的制造/设计公司会被剔除</td></tr>
+<tr><td>⑤<span class="col-tag col-info">负债率</span></td><td>科技≤65%</td><td>Fabless设计公司负债率低（&lt;30%），制造/封测重资产偏高</td></tr>
+<tr><td>⑥<span class="col-tag col-info">估值</span></td><td>PE历史分位≤70%</td><td>正常执行，高成长赛道PE普遍偏高但分位合理</td></tr>
+</table>
+</div>
+
+<h2>候选池（30只）</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>环节</th><th>市值</th><th>毛利率</th><th>ROE</th><th>负债率</th><th>PE分位</th><th>通过</th></tr>
+<tr>
+  <td><strong>北方华创</strong> 002371</td>
+  <td><span class="col-tag col-win">设备</span></td>
+  <td style="font-weight:600">~1800亿</td>
+  <td><span class="col-tag col-win">~42%</span></td>
+  <td><span class="col-tag col-win">~15%</span></td>
+  <td>45%</td>
+  <td>50-60%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>中微公司</strong> 688012</td>
+  <td><span class="col-tag col-win">设备</span></td>
+  <td style="font-weight:600">~1500亿</td>
+  <td><span class="col-tag col-win">~50%</span></td>
+  <td><span class="col-tag col-win">~12%</span></td>
+  <td>20%</td>
+  <td>50-60%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>海光信息</strong> 688041</td>
+  <td><span class="col-tag col-win">CPU</span></td>
+  <td style="font-weight:600">~2500亿</td>
+  <td><span class="col-tag col-win">~60%</span></td>
+  <td><span class="col-tag col-win">~10%</span></td>
+  <td>30%</td>
+  <td>60-70%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>韦尔股份</strong> 603501</td>
+  <td><span class="col-tag col-win">CIS</span></td>
+  <td style="font-weight:600">~1400亿</td>
+  <td><span class="col-tag col-win">~25%</span></td>
+  <td><span class="col-tag col-win">~10%</span></td>
+  <td>35%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>拓荆科技</strong> 688072</td>
+  <td><span class="col-tag col-win">设备</span></td>
+  <td style="font-weight:600">~600亿</td>
+  <td><span class="col-tag col-win">~48%</span></td>
+  <td><span class="col-tag col-win">~11%</span></td>
+  <td>30%</td>
+  <td>50-60%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>中芯国际</strong> 688981</td>
+  <td><span class="col-tag col-warn">制造</span></td>
+  <td>~5000亿</td>
+  <td><span class="col-tag col-warn">~18%</span></td>
+  <td><span class="col-tag col-win">~8%</span></td>
+  <td>40%</td>
+  <td>50-60%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>华海清科</strong> 688120</td>
+  <td><span class="col-tag col-win">设备</span></td>
+  <td>~500亿</td>
+  <td><span class="col-tag col-win">~45%</span></td>
+  <td><span class="col-tag col-win">~12%</span></td>
+  <td>30%</td>
+  <td>50-60%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>澜起科技</strong> 688008</td>
+  <td><span class="col-tag col-win">接口</span></td>
+  <td>~900亿</td>
+  <td><span class="col-tag col-win">~55%</span></td>
+  <td><span class="col-tag col-win">~9%</span></td>
+  <td>15%</td>
+  <td>50-60%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>长电科技</strong> 600584</td>
+  <td><span class="col-tag col-warn">封测</span></td>
+  <td>~800亿</td>
+  <td><span class="col-tag col-warn">~18%</span></td>
+  <td><span class="col-tag col-win">~10%</span></td>
+  <td>35%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>通富微电</strong> 002156</td>
+  <td><span class="col-tag col-warn">封测</span></td>
+  <td>~500亿</td>
+  <td><span class="col-tag col-warn">~15%</span></td>
+  <td><span class="col-tag col-win">~8%</span></td>
+  <td>40%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>兆易创新</strong> 603986</td>
+  <td><span class="col-tag col-warn">存储</span></td>
+  <td>~700亿</td>
+  <td><span class="col-tag col-warn">~18%</span></td>
+  <td><span class="col-tag col-win">~10%</span></td>
+  <td>25%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>紫光国微</strong> 002049</td>
+  <td><span class="col-tag col-warn">FPGA</span></td>
+  <td>~600亿</td>
+  <td><span class="col-tag col-win">~55%</span></td>
+  <td><span class="col-tag col-win">~12%</span></td>
+  <td>25%</td>
+  <td>50-60%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>华大九天</strong> 301269</td>
+  <td><span class="col-tag col-info">EDA</span></td>
+  <td>~600亿</td>
+  <td><span class="col-tag col-win">~65%</span></td>
+  <td><span class="col-tag col-warn">~6%</span></td>
+  <td>20%</td>
+  <td>60-70%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>卓胜微</strong> 300782</td>
+  <td><span class="col-tag col-win">射频</span></td>
+  <td>~400亿</td>
+  <td><span class="col-tag col-win">~55%</span></td>
+  <td><span class="col-tag col-win">~10%</span></td>
+  <td>10%</td>
+  <td>50-60%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>思瑞浦</strong> 688536</td>
+  <td><span class="col-tag col-win">模拟</span></td>
+  <td>~350亿</td>
+  <td><span class="col-tag col-win">~55%</span></td>
+  <td><span class="col-tag col-warn">~6%</span></td>
+  <td>15%</td>
+  <td>50-60%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>圣邦股份</strong> 300661</td>
+  <td><span class="col-tag col-win">模拟</span></td>
+  <td>~500亿</td>
+  <td><span class="col-tag col-win">~52%</span></td>
+  <td><span class="col-tag col-win">~10%</span></td>
+  <td>10%</td>
+  <td>50-60%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>中科蓝讯</strong> 688332</td>
+  <td><span class="col-tag col-warn">MCU</span></td>
+  <td>~200亿</td>
+  <td><span class="col-tag col-warn">~22%</span></td>
+  <td><span class="col-tag col-win">~9%</span></td>
+  <td>20%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>乐鑫科技</strong> 688018</td>
+  <td><span class="col-tag col-warn">WiFi</span></td>
+  <td>~200亿</td>
+  <td><span class="col-tag col-win">~40%</span></td>
+  <td><span class="col-tag col-win">~10%</span></td>
+  <td>15%</td>
+  <td>50-60%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>芯源微</strong> 688037</td>
+  <td><span class="col-tag col-win">设备</span></td>
+  <td>~250亿</td>
+  <td><span class="col-tag col-win">~40%</span></td>
+  <td><span class="col-tag col-win">~9%</span></td>
+  <td>25%</td>
+  <td>50-60%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>盛美上海</strong> 688082</td>
+  <td><span class="col-tag col-win">设备</span></td>
+  <td>~400亿</td>
+  <td><span class="col-tag col-win">~42%</span></td>
+  <td><span class="col-tag col-win">~10%</span></td>
+  <td>25%</td>
+  <td>50-60%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>晶晨股份</strong> 688099</td>
+  <td><span class="col-tag col-warn">SOC</span></td>
+  <td>~300亿</td>
+  <td><span class="col-tag col-win">~35%</span></td>
+  <td><span class="col-tag col-win">~8%</span></td>
+  <td>20%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>格科微</strong> 688728</td>
+  <td><span class="col-tag col-warn">CIS</span></td>
+  <td>~250亿</td>
+  <td><span class="col-tag col-warn">~20%</span></td>
+  <td><span class="col-tag col-win">~8%</span></td>
+  <td>30%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>华虹半导体</strong> 688347</td>
+  <td><span class="col-tag col-warn">制造</span></td>
+  <td>~1200亿</td>
+  <td><span class="col-tag col-warn">~16%</span></td>
+  <td><span class="col-tag col-warn">~6%</span></td>
+  <td>30%</td>
+  <td>50-60%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>华天科技</strong> 002185</td>
+  <td><span class="col-tag col-warn">封测</span></td>
+  <td>~400亿</td>
+  <td><span class="col-tag col-warn">~17%</span></td>
+  <td><span class="col-tag col-warn">~7%</span></td>
+  <td>35%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>沪硅产业</strong> 688126</td>
+  <td><span class="col-tag col-warn">材料</span></td>
+  <td>~400亿</td>
+  <td><span class="col-tag col-warn">~15%</span></td>
+  <td><span class="col-tag col-warn">~5%</span></td>
+  <td>35%</td>
+  <td>50-60%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>鼎龙股份</strong> 300054</td>
+  <td><span class="col-tag col-info">材料</span></td>
+  <td>~300亿</td>
+  <td><span class="col-tag col-win">~35%</span></td>
+  <td><span class="col-tag col-win">~8%</span></td>
+  <td>25%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>安集科技</strong> 688019</td>
+  <td><span class="col-tag col-win">材料</span></td>
+  <td>~300亿</td>
+  <td><span class="col-tag col-win">~50%</span></td>
+  <td><span class="col-tag col-win">~9%</span></td>
+  <td>15%</td>
+  <td>50-60%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>中颖电子</strong> 300327</td>
+  <td><span class="col-tag col-warn">MCU</span></td>
+  <td>~150亿</td>
+  <td><span class="col-tag col-win">~42%</span></td>
+  <td><span class="col-tag col-win">~8%</span></td>
+  <td>15%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>芯朋微</strong> 688508</td>
+  <td><span class="col-tag col-win">电源</span></td>
+  <td>~120亿</td>
+  <td><span class="col-tag col-win">~35%</span></td>
+  <td><span class="col-tag col-win">~8%</span></td>
+  <td>15%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>东芯股份</strong> 688110</td>
+  <td><span class="col-tag col-warn">存储</span></td>
+  <td>~120亿</td>
+  <td><span class="col-tag col-warn">~22%</span></td>
+  <td><span class="col-tag col-warn">~6%</span></td>
+  <td>20%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>佰维存储</strong> 688525</td>
+  <td><span class="col-tag col-warn">存储</span></td>
+  <td>~200亿</td>
+  <td><span class="col-tag col-warn">~15%</span></td>
+  <td><span class="col-tag col-warn">~7%</span></td>
+  <td>40%</td>
+  <td>30-40%</td>
+  <td class="pass">6/6</td>
+</tr>
+</table>
+</div>
+
+<h2>观察池</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>卡在哪筛</th><th>备注</th></tr>
+<tr>
+  <td><strong>寒武纪</strong> 688256</td>
+  <td><span class="col-tag col-lose">④ROE负</span> <span class="col-tag col-lose">②营收&lt;10亿</span></td>
+  <td>AI芯片设计龙头，营收快速增长但尚未盈利，关注盈利拐点</td>
+</tr>
+<tr>
+  <td><strong>龙芯中科</strong> 688047</td>
+  <td><span class="col-tag col-lose">④ROE~3%</span></td>
+  <td>国产CPU自主架构，信创驱动成长，盈利改善中</td>
+</tr>
+<tr>
+  <td><strong>翱捷科技</strong> 688220</td>
+  <td><span class="col-tag col-lose">④ROE~2%</span></td>
+  <td>基带芯片国产替代，营收高增但尚未盈利</td>
+</tr>
+<tr>
+  <td><strong>北京君正</strong> 300223</td>
+  <td><span class="col-tag col-lose">④ROE&lt;5%</span></td>
+  <td>存储+CPU双主业，车载存储增长快</td>
+</tr>
+<tr>
+  <td><strong>闻泰科技</strong> 600745</td>
+  <td><span class="col-tag col-lose">⑤负债率~68%</span></td>
+  <td>ODM+功率半导体双轮驱动，负债偏高但营收强</td>
+</tr>
+</table>
+</div>
+
+<h2>筛除记录</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>筛子</th><th style="width:60px">筛除数</th><th>知名示例</th></tr>
+<tr><td>①市值</td><td style="text-align:center">~45</td><td>大量初创半导体小票，市值&lt;30亿</td></tr>
+<tr><td>②营收</td><td style="text-align:center">~35</td><td>早期阶段的Fabless设计公司，营收&lt;3亿</td></tr>
+<tr><td>③毛利率</td><td style="text-align:center">~5</td><td>部分制造/封测低毛利标的，或亏损中的代工厂</td></tr>
+<tr><td>④ROE <span class="col-tag col-lose">最严</span></td><td style="text-align:center">~20</td><td>寒武纪、龙芯中科、翱捷科技、北京君正等亏损或低ROE设计公司</td></tr>
+<tr><td>⑤负债率</td><td style="text-align:center">~12</td><td>闻泰科技、部分制造设备高杠杆公司</td></tr>
+<tr><td>⑥估值</td><td style="text-align:center">~3</td><td>少数PE分位偏高（追高）的标的</td></tr>
+<tr style="background:#fffde7"><td><strong>剩余</strong></td><td style="text-align:center;font-weight:700;color:#2e7d32"><strong>30</strong></td><td>—</td></tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <strong>L7筛选结论</strong><br>
+  150→30，筛选力度合理（-80%）。最严厉的是ROE筛（大量未盈利或低ROE的早期阶段设计公司被剔除）和营收/市值筛（初创公司多）。通过筛选的核心标的分四类：①设备龙头（北方华创/中微/拓荆/华海清科）——国产替代最确定，受益于晶圆厂持续扩产；②设计龙头（海光/韦尔/澜起/紫光/卓胜微）——高毛利率+高成长，但估值较高；③制造/封测（中芯/长电/通富）——稳健但弹性有限；④材料龙头（安集/鼎龙）——国产化率最低，空间最大。核心关注北方华创、海光信息、中微公司、澜起科技、长电科技。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l8">
+<div class="tab-inner">
+
+<h2>产业链</h2>
+<div class="card" style="font-size:13px;line-height:1.7">
+
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px">
+
+<div style="flex:1;min-width:180px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#2e7d32;font-size:14px">上游支撑</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:12px">EDA/IP</div>
+    <div style="text-align:center;font-size:10px;color:#666">华大九天·概伦电子</div>
+    <div style="margin:8px 0;text-align:center;color:#999;font-size:16px">↓</div>
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:12px">半导体设备</div>
+    <div style="text-align:center;font-size:10px;color:#666">北方华创·中微·拓荆·华海清科</div>
+    <div style="margin:8px 0;text-align:center;color:#999;font-size:16px">↓</div>
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:12px">半导体材料</div>
+    <div style="text-align:center;font-size:10px;color:#666">沪硅·鼎龙·安集·中环</div>
+  </div>
+</div>
+
+<div style="flex:2;min-width:280px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#1565c0;font-size:14px">中游制造</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+
+    <div style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap">
+      <div style="flex:1.2;min-width:80px;background:#fff3e0;border-radius:4px;padding:8px 6px;text-align:center">
+        <div style="font-weight:700;font-size:12px">芯片设计</div>
+        <div style="font-size:10px;color:#666">Fabless</div>
+      </div>
+      <div style="font-size:20px;color:#999;line-height:36px">→</div>
+      <div style="flex:1;min-width:70px;background:#ffebee;border-radius:4px;padding:8px 6px;text-align:center">
+        <div style="font-weight:700;font-size:12px">晶圆制造</div>
+        <div style="font-size:10px;color:#666">Foundry</div>
+      </div>
+      <div style="font-size:20px;color:#999;line-height:36px">→</div>
+      <div style="flex:1;min-width:70px;background:#fff3e0;border-radius:4px;padding:8px 6px;text-align:center">
+        <div style="font-weight:700;font-size:12px">封装测试</div>
+        <div style="font-size:10px;color:#666">OSAT</div>
+      </div>
+    </div>
+
+    <div style="text-align:center;font-size:11px;color:#1565c0;margin-bottom:10px">▲ 设计（高毛利高弹性）→ 制造（重资产高门槛）→ 封测（稳毛利低弹性）</div>
+
+    <div style="margin:6px 0 4px;font-weight:600;font-size:12px;color:#1565c0">芯片设计细分</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:11px"><strong>CPU/GPU</strong><br><span style="font-size:9px;color:#666">海光·龙芯</span></div>
+      <div style="flex:1;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-size:11px"><strong>存储</strong><br><span style="font-size:9px;color:#666">兆易·东芯</span></div>
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:11px"><strong>CIS</strong><br><span style="font-size:9px;color:#666">韦尔·格科</span></div>
+      <div style="flex:1;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-size:11px"><strong>模拟</strong><br><span style="font-size:9px;color:#666">圣邦·思瑞浦</span></div>
+    </div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px">
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:11px"><strong>射频</strong><br><span style="font-size:9px;color:#666">卓胜微</span></div>
+      <div style="flex:1;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-size:11px"><strong>接口</strong><br><span style="font-size:9px;color:#666">澜起科技</span></div>
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:11px"><strong>FPGA</strong><br><span style="font-size:9px;color:#666">紫光国微</span></div>
+    </div>
+
+    <div style="margin:8px 0 4px;font-weight:600;font-size:12px;color:#1565c0">晶圆代工</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">中芯国际<br><span style="font-size:10px;color:#666">14nm-28nm</span></div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">华虹半导体<br><span style="font-size:10px;color:#666">55nm+特色工艺</span></div>
+    </div>
+  </div>
+</div>
+
+<div style="flex:1;min-width:150px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#c62828;font-size:14px">下游应用</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:8px 6px;text-align:center;font-weight:600;font-size:11px">消费电子</div>
+    <div style="text-align:center;font-size:10px;color:#666">手机·PC·IoT</div>
+    <div style="margin:6px 0;text-align:center;color:#999;font-size:14px">↓</div>
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:8px 6px;text-align:center;font-weight:600;font-size:11px">AI/数据中心</div>
+    <div style="text-align:center;font-size:10px;color:#666">GPU·HBM·服务器</div>
+    <div style="margin:6px 0;text-align:center;color:#999;font-size:14px">↓</div>
+    <div style="margin-bottom:6px;background:#e3f2fd;border-radius:4px;padding:8px 6px;text-align:center;font-weight:600;font-size:11px">汽车/工业</div>
+    <div style="text-align:center;font-size:10px;color:#666">车规·工控·储能</div>
+  </div>
+</div>
+
+</div>
+
+<div style="background:#fffde7;border-left:3px solid #f9a825;padding:8px 12px;font-size:12px;border-radius:0 4px 4px 0">
+  <strong>利润最厚环节：</strong>EDA/IP（毛利率60-70%）→ 芯片设计（40-60%）→ 设备（35-50%）→ 材料（30-50%）
+  <br><span style="color:#999">制造和封测毛利率较低（15-20%）但技术壁垒和战略价值极高</span>
+</div>
+
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>环节</th><th>代表公司</th><th>毛利率</th><th>集中度</th><th>议价能力</th></tr>
+<tr>
+  <td><span class="col-tag col-info">EDA/IP</span></td>
+  <td>华大九天、概伦电子</td>
+  <td><span class="col-tag col-win">60-65%</span></td>
+  <td>CR3~80%（国产EDA）</td>
+  <td><span class="col-tag col-win">强</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-win">CPU/GPU设计</span></td>
+  <td>海光信息、龙芯中科</td>
+  <td><span class="col-tag col-win">55-60%</span></td>
+  <td>CR2~90%</td>
+  <td><span class="col-tag col-win">强</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-win">模拟/射频设计</span></td>
+  <td>圣邦、思瑞浦、卓胜微</td>
+  <td><span class="col-tag col-win">50-55%</span></td>
+  <td>CR3~40%（分散）</td>
+  <td><span class="col-tag col-win">强</span></td>
+</tr>
+<tr style="background:#fafafa">
+  <td><span class="col-tag col-warn">存储设计</span></td>
+  <td>兆易创新、东芯股份</td>
+  <td><span class="col-tag col-warn">18-22%</span></td>
+  <td>CR2~70%（国产NOR）</td>
+  <td><span class="col-tag col-warn">中</span></td>
+</tr>
+<tr style="background:#fafafa">
+  <td><span class="col-tag col-win">半导体设备</span></td>
+  <td>北方华创、中微、拓荆</td>
+  <td><span class="col-tag col-win">40-50%</span></td>
+  <td>CR3~50%（国产）</td>
+  <td><span class="col-tag col-win">强</span></td>
+</tr>
+<tr style="background:#fafafa">
+  <td><span class="col-tag col-win">半导体材料</span></td>
+  <td>安集、鼎龙、沪硅</td>
+  <td><span class="col-tag col-win">30-50%</span></td>
+  <td>CR3~30%（分散）</td>
+  <td><span class="col-tag col-warn">中强</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-warn">晶圆制造</span></td>
+  <td>中芯国际、华虹</td>
+  <td><span class="col-tag col-warn">16-18%</span></td>
+  <td>CR2~100%（国产）</td>
+  <td><span class="col-tag col-warn">中</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-warn">封装测试</span></td>
+  <td>长电、通富、华天</td>
+  <td><span class="col-tag col-warn">15-18%</span></td>
+  <td>CR3~60%（国产）</td>
+  <td><span class="col-tag col-lose">弱</span></td>
+</tr>
+</table>
+</div>
+
+<h2>市场规模</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">指标</th><th style="width:25%">数值</th><th>说明</th></tr>
+<tr><td><strong>TAM</strong>（全球半导体）</td><td><span class="col-tag col-info" style="font-size:13px">全球~6000亿美元/年</span></td><td>2025年全球半导体市场约$600B，AI芯片增速最快（CAGR~40%）</td></tr>
+<tr><td><strong>中国自给率</strong></td><td><span class="col-tag col-warn">~15-20%</span></td><td>综合自给率仍低，设备/材料&lt;20%，EDA&lt;10%，CPU&lt;5%</td></tr>
+<tr><td><strong>近年增速</strong>（3年CAGR）</td><td><span class="col-tag col-win">国产替代标的20-40%</span></td><td>设备/设计龙头增速显著高于全球半导体增速（~8%）</td></tr>
+</table>
+</div>
+
+<h2>生命周期</h2>
+<div class="summary-box">
+  <strong><span class="col-tag col-win" style="font-size:14px">高速成长期</span></strong><br>
+  判断依据：中国半导体整体处于追赶式成长期——全球半导体行业已进入成熟期（增速8-10%/年），但中国半导体产业在国产替代驱动的超级周期中（增速20-40%/年）。设备环节处于<strong>成长期早期</strong>（国产化率~20%，增长空间大）；设计环节处于<strong>成长期中期</strong>（部分品类已实现突破）；制造环节处于<strong>追赶期</strong>（与台积电差距~3代，但差距在缩小）；封测环节已进入<strong>成熟期</strong>（全球份额~30%）。美国制裁持续升级是最大的外部变量——短期压制，中长期加速国产替代。
+</div>
+
+<h2>增长驱动力</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动力</th><th>类型</th><th>可持续性</th><th>量化指标</th></tr>
+<tr>
+  <td>AI算力需求爆发（GPU/HBM/服务器）</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长（10年+）</span></td>
+  <td>AI芯片出货量、HBM销售额、数据中心资本开支</td>
+</tr>
+<tr>
+  <td>国产替代（美国制裁倒逼）</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长（10年+）</span></td>
+  <td>设备国产化率、设计公司营收/份额</td>
+</tr>
+<tr>
+  <td>半导体周期复苏（2024-2027上行）</td>
+  <td><span class="col-tag col-warn">周期</span></td>
+  <td><span class="col-tag col-warn">中（2-3年）</span></td>
+  <td>全球半导体销售额同比、存储芯片价格</td>
+</tr>
+<tr>
+  <td>汽车/工业智能化（车规芯片）</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>车规芯片国产化率、单车芯片价值量</td>
+</tr>
+<tr>
+  <td>消费电子触底反弹</td>
+  <td><span class="col-tag col-warn">周期</span></td>
+  <td><span class="col-tag col-warn">中短</span></td>
+  <td>手机/PC出货量、CIS/射频出货</td>
+</tr>
+</table>
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l9">
+<div class="tab-inner">
+
+<h2>市场结构</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>市场结构类型</td>
+  <td>设备/设计细分赛道：<span class="col-tag col-win">寡头竞争</span>（国产龙头已确立先发优势）；制造：<span class="col-tag col-warn">双寡头</span>（中芯+华虹）；封测：<span class="col-tag col-warn">三强鼎立</span></td></tr>
+<tr>
+  <td>CR3（设备国产）</td>
+  <td>北方华创+中微+拓荆~50%（<span style="color:#2e7d32">↑集中</span>），国产替代初期集中度在提升</td></tr>
+<tr>
+  <td>格局象限</td>
+  <td>设备：<span class="col-tag col-win">国产替代高确定</span>；CPU/GPU：<span class="col-tag col-info">信创主导</span>；模拟/射频：<span class="col-tag col-warn">百花齐放</span></td></tr>
+<tr>
+  <td>新进入者威胁</td>
+  <td><span class="col-tag col-warn">中等</span>（技术+资金+客户认证壁垒极高，但政策鼓励导致大量初创公司涌入）</td></tr>
+</table>
+</div>
+
+<h2>竞争壁垒</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>壁垒类型</th><th>强度</th><th>可持续性</th><th>具体表现</th></tr>
+<tr>
+  <td>技术+专利壁垒（设备/设计）</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>中微刻蚀设备已进入台积电产线，华大九天EDA获国内70%+市占率；半导体技术迭代快但先发优势明显</td>
+</tr>
+<tr>
+  <td>客户认证+供应链粘性</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>设备验证周期1-2年，材料验证1-3年，一旦进入产线难以替换；Fabless客户转换成本高</td>
+</tr>
+<tr>
+  <td>资金+规模壁垒（制造）</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>建一座12寸晶圆厂投资50-100亿美元，中芯国际年资本开支~500亿，新进入者几乎不可能</td>
+</tr>
+<tr>
+  <td>政策+信创壁垒</td>
+  <td><span class="col-tag col-warn">中强</span></td>
+  <td><span class="col-tag col-warn">中（政策周期）</span></td>
+  <td>信创目录+党政军采购限制为国产CPU/FPGA提供安全垫，但长期需市场化竞争力</td>
+</tr>
+</table>
+</div>
+
+<div class="summary-box">
+  <strong>定价权测试</strong><br>
+  🔹 龙头能涨价吗？<strong>设备能</strong>（国产替代稀缺性，北方华创/中微有议价权）／ <strong>设计看品类</strong>（CPU信创市场定价强，模拟/射频竞争加剧）<br>
+  🔹 毛利率趋势：设备稳定↑（国产替代溢价），设计分化（CPU/EDA高位稳定，CIS/存储承压），制造封测平稳<br>
+  🔹 ROE趋势：设备龙头15%+（优秀），设计龙头8-12%（合理），制造/封测6-10%（偏低）
+</div>
+
+<h2>驱动力拆解</h2>
+<div class="highlight-box">
+  <strong>行业收入公式</strong><br>
+  收入 = 全球半导体市场规模(β) × 国产替代率提升(α) × 各环节份额<br><br>
+  当前组合（设备）：<span style="color:#2e7d32;font-weight:700">全球β ↑</span>（周期上行） ＋ <span style="color:#2e7d32;font-weight:700">国产α ↑↑</span>（加速替代） ＝ <span class="col-tag col-win">双击上行</span><br>
+  当前组合（设计）：<span style="color:#2e7d32;font-weight:700">AI相关↑↑</span>（爆发）＋ <span style="color:#c62828;font-weight:700">消费电子↓</span>（触底）＝ <span class="col-tag col-info">结构分化</span>
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动因子</th><th>最新值</th><th>历史区间</th><th>当前分位</th></tr>
+<tr>
+  <td>全球半导体月销售额</td>
+  <td><span class="col-tag col-win">~$50B</span></td>
+  <td>$35-55B</td>
+  <td><span class="col-tag col-win">75%</span></td>
+</tr>
+<tr>
+  <td>中国半导体设备国产化率</td>
+  <td><span class="col-tag col-info">~20%</span></td>
+  <td>5-20%</td>
+  <td><span class="col-tag col-info">低（潜力大）</span></td>
+</tr>
+<tr>
+  <td>国产芯片自给率</td>
+  <td><span class="col-tag col-warn">~18%</span></td>
+  <td>5-18%</td>
+  <td><span class="col-tag col-info">低</span></td>
+</tr>
+<tr>
+  <td>中芯国际产能利用率</td>
+  <td><span class="col-tag col-win">~85%</span></td>
+  <td>60-100%</td>
+  <td><span class="col-tag col-info">中高</span></td>
+</tr>
+<tr>
+  <td>存储芯片价格（DDR5）</td>
+  <td><span class="col-tag col-warn">触底反弹</span></td>
+  <td>—</td>
+  <td><span class="col-tag col-info">30%分位</span></td>
+</tr>
+<tr>
+  <td>AI芯片出货增速</td>
+  <td><span class="col-tag col-win">+50%+ YoY</span></td>
+  <td>—</td>
+  <td><span class="col-tag col-win">高位</span></td>
+</tr>
+</table>
+</div>
+
+<h2>成本结构</h2>
+<div class="summary-box">
+  🔹 <strong>类型：</strong>设计——<span class="col-tag col-info">轻资产</span>（人力成本为主，研发费用率高20-30%）；制造——<span class="col-tag col-lose">极重资产</span>（设备折旧占成本40-50%）；设备——<span class="col-tag col-warn">中重资产</span>（研发+制造并重）<br>
+  🔹 <strong>成本敏感性：</strong>设计：营收±10% → 利润±15-25%（弹性适中，但毛利率高）；制造：营收±10% → 利润±30-60%（高经营杠杆）；设备：营收±10% → 利润±20-30%<br>
+  🔹 <strong>盈亏平衡点：</strong>晶圆厂需产能利用率&gt;70%（中芯目前~85%盈利健康）；设计公司只要毛利率&gt;40%即可盈利
+</div>
+
+<h2>竞争格局总结</h2>
+<div class="highlight-box">
+  中国半导体产业正处于<strong>"最好的时代，也是最残酷的时代"</strong>——最好的时代：美国制裁加速国产替代，AI爆发带来历史性机遇，国家大基金持续输血。最残酷的时代：大量同质化设计公司涌现，模拟/射频/MCU赛道已出现价格竞争；制造端与台积电差距仍大；先进制程（7nm以下）被卡脖子。<br><br>
+  竞争格局最清晰的是<strong>设备环节</strong>（北方华创+中微双龙头，客户验证壁垒极高，受益于国内晶圆厂持续扩产）和<strong>CPU/GPU设计</strong>（海光信息信创+AI双驱动，高壁垒）。模拟和MCU设计环节竞争加剧，但圣邦/思瑞浦/卓胜微等龙头凭借产品矩阵优势仍能保持增长。制造端中芯国际的战略意义远大于商业价值——技术追赶是核心。大基金三期的重点投向大概率是设备和材料，这两个细分赛道的确定性最高。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l10">
+<div class="tab-inner">
+
+<h2>周期位置</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>全球半导体周期</td>
+  <td><span class="col-tag col-win">上行初期到中期</span>（2024年见底，2025-2027上行周期，存储/模拟率先复苏，AI持续高景气）</td>
+</tr>
+<tr>
+  <td>产能利用率（中国）</td>
+  <td><span class="col-tag col-win">中芯~85%</span>（健康）、华虹~70%（偏低）、设备龙头订单饱满</td></tr>
+<tr>
+  <td>库存水平</td>
+  <td><span class="col-tag col-warn">消费电子库存去化接近尾声</span>、AI芯片供不应求、汽车芯片正常、存储芯片价格反弹</td></tr>
+<tr>
+  <td>行业盈利状态</td>
+  <td><span class="col-tag col-win">设备/CPU/模拟龙头盈利健康</span>、<span class="col-tag col-warn">制造/封测中低</span>、<span class="col-tag col-lose">部分设计公司仍在亏损</span></td></tr>
+</table>
+</div>
+
+<div class="danger-box">
+  <strong>⚠ PE悖论检查</strong><br>
+  半导体估值普遍偏高（PE 40-60x），但这不一定是陷阱——这是高成长赛道的"成长溢价"而非"泡沫"。关键区别：<br>
+  ✅ 设备龙头（北方华创/中微）PE 40-50x，但订单增速&gt;50%，PEG~1，合理<br>
+  ✅ CPU龙头（海光）PE 60-70x，但国产替代空间&gt;5倍，PEG~1.5，可接受<br>
+  ⚠️ 同质化设计公司（MCU/模拟）PE 50-60x但增速只有20%，PEG&gt;2，偏贵<br>
+  ❌ 亏损设计公司（寒武纪等）无法用PE估值，需用PS &lt; 10x衡量<br>
+  <strong>警告：</strong>半导体投资最大的风险不是周期下行（周期可预见），而是<strong>"技术路线被颠覆"</strong>（如CPU被GPU替代）或<strong>"制裁升级导致设备断供"</strong>。
+</div>
+
+<h2>估值水平</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>估值指标</th><th>行业当前</th><th>历史中位数</th><th>80%分位</th><th>20%分位</th></tr>
+<tr>
+  <td><strong>PE</strong>（设备龙头）</td>
+  <td><span class="col-tag col-info">40-50x</span></td>
+  <td>50-60x</td>
+  <td>80x+</td>
+  <td>35x</td>
+</tr>
+<tr>
+  <td><strong>PE</strong>（设计龙头）</td>
+  <td><span class="col-tag col-info">40-60x</span></td>
+  <td>50-70x</td>
+  <td>90x+</td>
+  <td>35x</td>
+</tr>
+<tr>
+  <td><strong>PE</strong>（制造/封测）</td>
+  <td><span class="col-tag col-warn">30-40x</span></td>
+  <td>35-50x</td>
+  <td>60x+</td>
+  <td>25x</td>
+</tr>
+<tr>
+  <td><strong>PB</strong>（制造/封测）</td>
+  <td><span class="col-tag col-warn">2-3x</span></td>
+  <td>2.5-4x</td>
+  <td>5x+</td>
+  <td>1.5x</td>
+</tr>
+</table>
+</div>
+
+<h2>政策环境</h2>
+<div class="summary-box">
+  🔹 <strong>政策方向：</strong><span class="col-tag col-win">全力支持</span>（国家战略，力度空前）<br>
+  🔹 <strong>关键政策：</strong><br>
+  &emsp;• 国家大基金三期（2024年成立，注册资本3440亿，重点投向设备和材料）<br>
+  &emsp;• 半导体企业所得税减免（设计/制造/设备均享受）<br>
+  &emsp;• 美国制裁持续升级（2025-2026年进一步限制设备/EDA/AI芯片出口，倒逼国产加速）<br>
+  &emsp;• 国产替代推荐目录（信创+政府+关键基础设施强制要求国产芯片）<br>
+  &emsp;• "东数西算"等AI基建政策带动算力芯片需求<br>
+  🔹 <strong>政策周期位置：</strong><span class="col-tag col-win">持续加码期</span>（制裁越严，政策力度越大）
+</div>
+
+<h2>买入清单</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:28%">条件</th><th style="width:16%">结果</th><th>备注</th></tr>
+<tr>
+  <td>周期位置：不在繁荣顶点</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>全球半导体刚进入上行中期，离繁荣顶点还有距离</td>
+</tr>
+<tr>
+  <td>估值：PB/PE在历史偏低分位</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td>PE 40-60x偏高但在成长赛道可接受，PEG多数接近1</td>
+</tr>
+<tr>
+  <td>政策：不是收紧期</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>政策全力支持，制裁倒逼国产替代</td>
+</tr>
+<tr>
+  <td>格局：龙头壁垒稳固</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>设备龙头壁垒极强，设计龙头产品力突出</td>
+</tr>
+<tr>
+  <td>增长：有可见驱动力</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>AI+国产替代+周期复苏三大驱动力叠加</td>
+</tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <div style="font-size:16px;font-weight:700;margin-bottom:8px">综合判断：<span class="col-tag col-win" style="font-size:15px">买入</span></div>
+  <div style="margin-bottom:6px">半导体是A股最值得长期配置的赛道，当前处于"国产替代加速+周期上行+AI爆发"的三击阶段</div>
+  <table style="font-size:12px;margin:6px 0;border:none;background:transparent">
+    <tr><td style="border:none;padding:3px 6px;background:transparent;width:90px;font-weight:600">预期回报</td><td style="border:none;padding:3px 6px;background:transparent">设备龙头：年化25-35%（订单增长+估值修复）；设计龙头：年化20-30%（成长消化估值）</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">仓位建议</td><td style="border:none;padding:3px 6px;background:transparent"><span class="col-tag col-win">不超过组合30%</span>（确定性高但波动大，适合长期持有）</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">跟踪指标</td><td style="border:none;padding:3px 6px;background:transparent">全球半导体销售额同比·设备招标量·国产化率·中芯产能利用率·美国制裁动态</td></tr>
+  </table>
+  <div style="margin-top:8px;padding:8px;background:#e8f5e9;border-radius:4px;font-size:12px">
+    <strong>买入策略：</strong><br>
+    <span class="col-tag col-win">设备龙头</span>（北方华创/中微公司/拓荆科技）：确定性最高，回调10-15%时分批建仓，长期持有<br>
+    <span class="col-tag col-warn">设计龙头</span>（海光信息/澜起科技/韦尔股份）：PE偏高，建议等回调至40x以下逐步建仓<br>
+    <span class="col-tag col-info">封测龙头</span>（长电科技/通富微电）：稳健型配置，受益于AI先进封装需求爆发<br>
+    <span class="col-tag col-lose">亏损标的</span>（寒武纪等）：仅适合高风险偏好，跟踪营收增速和盈利拐点
+  </div>
+</div>
+
+<h2>卖出信号</h2>
+<div class="danger-box">
+  <strong>出现以下信号考虑卖出：</strong><br>
+  <div style="margin-top:6px">
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px">1</span>
+    美国制裁进一步升级至全面断供（限制所有设备+EDA出口，国产替代逻辑短期受损）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">2</span>
+    全球半导体周期转向下行（存储芯片价格持续下跌、产能利用率跌破70%）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">3</span>
+    AI资本开支出现拐点向下（科技巨头削减AI投资，英伟达/AMD业绩miss）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">4</span>
+    设备龙头订单增速连续两季低于20%（国产替代进度不及预期或客户扩产放缓）
+  </div>
+</div>
+
+</div>
+</div>
+
+<div class="footer">Generated by Industry Analysis · L7-L10 Framework · Stock Selection</div>
+
+</div>
+
+<script>
+var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+var contents = document.querySelectorAll('.tab-content');
+btns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    contents.forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    var tab = btn.getAttribute('data-tab');
+    document.getElementById('tab-' + tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
