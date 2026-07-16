@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>A股——军工 行业分析报告</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f5f5f5;padding:0;color:#333}
+  .report-wrap{max-width:800px;margin:0 auto;background:#fff}
+  h1{font-size:22px;margin:0;padding:28px 0 4px;text-align:center}
+  h2{font-size:18px;margin:28px 0 12px;border-bottom:2px solid #1a1a1a;padding-bottom:4px}
+  h3{font-size:15px;margin:18px 0 8px}
+  .subtitle{color:#666;font-size:13px;text-align:center;margin-bottom:4px}
+  .meta{color:#999;font-size:12px;text-align:center;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #e0e0e0}
+  .tab-bar{position:sticky;top:0;z-index:10;background:#fff;display:flex;flex-wrap:wrap;border-bottom:2px solid #ddd;gap:0}
+  .tab-btn{padding:10px 14px;cursor:pointer;border:none;background:none;font-size:13px;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+  .tab-btn:hover{color:#333;background:#f9f9f9}
+  .tab-btn.active{color:#1a1a1a;font-weight:700;border-bottom-color:#1a1a1a}
+  .tab-content{display:none}
+  .tab-content.active{display:block}
+  .tab-inner{padding:0 12px}
+  table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:13px}
+  th{background:#f5f5f5;padding:8px 6px;text-align:left;border-bottom:2px solid #ddd;white-space:nowrap;font-weight:600}
+  td{padding:7px 6px;border-bottom:1px solid #eee}
+  tr:nth-child(even) td{background:#fafafa}
+  .summary-box{background:#fffde7;border-left:4px solid #f9a825;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .highlight-box{background:#e3f2fd;border-left:4px solid #1e88e5;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .danger-box{background:#ffebee;border-left:4px solid #e53935;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .verdict{text-align:center;padding:20px;margin:16px 0;border-radius:8px;font-size:18px;font-weight:700}
+  .verdict-ok{background:#e8f5e9;border:2px solid #4caf50;color:#2e7d32}
+  .verdict-caution{background:#fff3e0;border:2px solid #ff9800;color:#e65100}
+  .verdict-bad{background:#ffebee;border:2px solid #e53935;color:#c62828}
+  .score{font-size:36px;display:block;margin-bottom:4px}
+  .pass{color:#2e7d32;font-weight:700}
+  .skip{color:#666;font-style:italic}
+  .tag{display:inline-block;padding:2px 8px;border-radius:3px;font-size:11px;font-weight:700}
+  .tag-red{background:#ffebee;color:#c62828}
+  .tag-green{background:#e8f5e9;color:#2e7d32}
+  .tag-yellow{background:#fff8e1;color:#f57f17}
+  .footer{font-size:11px;color:#aaa;text-align:center;padding:24px 0 8px;border-top:1px solid #eee;margin-top:30px}
+  .card{background:#fafafa;border:1px solid #e0e0e0;border-radius:6px;padding:14px;margin:10px 0;font-size:13px}
+  .flex{display:flex;flex-wrap:wrap;gap:8px}
+  .tbl-wrap{border:1px solid #e0e0e0;border-radius:6px;overflow:hidden;margin:10px 0 18px}
+  .tbl-wrap table{margin:0}
+  .tbl-wrap th{background:#f5f5f5;padding:9px 8px;border-bottom:1px solid #ddd;font-weight:600;font-size:12px}
+  .tbl-wrap td{padding:8px;border-bottom:1px solid #f0f0f0;font-size:13px}
+  .tbl-wrap tr:last-child td{border-bottom:none}
+  .bar-wrap{display:inline-flex;align-items:center;width:60px;height:16px;vertical-align:middle}
+  .bar-bg{background:#eee;border-radius:4px;height:8px;width:100%;overflow:hidden;position:relative}
+  .bar{display:block;height:8px;border-radius:4px}
+  .score-cell{font-weight:700;font-size:15px;text-align:center;white-space:nowrap}
+  .tbl-wrap td,.tbl-wrap th{vertical-align:middle}
+  .metric-h{color:#1565c0;font-weight:700;font-size:13px}
+  .metric-l{color:#c62828;font-weight:700}
+  .metric-m{color:#e65100;font-weight:700}
+  .col-tag{display:inline-block;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600}
+  .col-win{background:#e8f5e9;color:#2e7d32}
+  .col-lose{background:#ffebee;color:#c62828}
+  .col-warn{background:#fff3e0;color:#e65100}
+  .col-info{background:#e3f2fd;color:#1565c0}
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>A股——军工 行业分析报告</h1>
+<div class="subtitle">L5分类：成长型 ｜ 上市公司：~130只 ｜ 总市值：~3.5万亿</div>
+<div class="meta">生成日期：2026-07-16</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l7">L7 量化初筛</button>
+  <button class="tab-btn" data-tab="l8">L8 行业画像</button>
+  <button class="tab-btn" data-tab="l9">L9 竞争格局</button>
+  <button class="tab-btn" data-tab="l10">L10 周期时机</button>
+</div>
+
+<div class="tab-content active" id="tab-summary">
+<div class="tab-inner">
+
+<h2>行业速览</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">项目</th><th>内容</th></tr>
+<tr><td>行业名称</td><td><strong>国防军工</strong>（申万国防军工行业，含航空/航天/船舶/兵器/电子）</td></tr>
+<tr><td>市场</td><td>A股</td></tr>
+<tr><td>L5分类</td><td><span class="col-tag col-win">成长型</span> 军费持续增长+装备升级列装+军民融合，长期成长逻辑清晰</td></tr>
+<tr><td>上市公司</td><td>~130只，其中符合L7筛选条件 <span class="col-tag col-win">22只</span></td></tr>
+<tr><td>行业总市值</td><td>~3.5万亿</td></tr>
+<tr><td>产业链利润核心</td><td><span class="col-tag col-win">航空主机（中航沈飞）</span> + <span class="col-tag col-win">军工电子（紫光国微/振华）</span> + <span class="col-tag col-win">材料（光威复材）</span></td></tr>
+<tr><td>生命周期阶段</td><td><span class="col-tag col-win">长期成长期</span> 备战打仗需求+装备现代化+国产替代+军民融合</td></tr>
+<tr><td>当前周期位置</td><td><span class="col-tag col-warn">十四五末期调整期</span> 2026年为十四五最后一年，订单节奏放缓，十五五规划预期驱动下一波</td></tr>
+</table>
+</div>
+
+<h2>综合评分</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>维度</th><th style="width:60px">得分</th><th>进度</th><th>说明</th></tr>
+<tr>
+  <td>行业规模与空间</td>
+  <td class="score-cell">17/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:85%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">中国军费~2.3万亿（全球第二），但人均/GDP占比仍低，长期增长空间确定</td>
+</tr>
+<tr>
+  <td>产业链位置</td>
+  <td class="score-cell">11/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:73%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">全产业链自主可控，航空发动机/高端芯片仍有差距但在快速追赶</td>
+</tr>
+<tr>
+  <td>竞争格局</td>
+  <td class="score-cell">16/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:80%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">军工行业天然垄断——每个细分赛道1-2家国企龙头，竞争格局极好</td>
+</tr>
+<tr>
+  <td>增长驱动力</td>
+  <td class="score-cell">12/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:80%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">备战打仗+装备升级+国产替代+十五五规划预期，驱动力多元且确定</td>
+</tr>
+<tr>
+  <td>周期位置</td>
+  <td class="score-cell">9/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:60%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">十四五末期订单增速放缓，十五五规划2027年启动，当前处于承上启下的调整期</td>
+</tr>
+<tr>
+  <td>政策环境</td>
+  <td class="score-cell">14/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:93%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">强军战略+军费持续增长+国企改革+军品定价机制改革，政策持续友好</td>
+</tr>
+<tr style="background:#fafafa">
+  <td style="font-weight:700;font-size:14px">总分</td>
+  <td style="font-weight:700;font-size:16px;color:#e65100">79/100</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:79%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#e65100;font-weight:600">良好→优秀——长期确定性高，短期需消化十四五末期订单放缓</td>
+</tr>
+</table>
+</div>
+
+<div class="verdict verdict-caution">
+  <span class="score">79</span>
+  良好——精选细分龙头
+</div>
+
+<div class="summary-box">
+  <strong>核心结论</strong><br>
+  军工是A股确定性最高的成长赛道之一——军费持续增长（~7.2% CAGR）+ 备战打仗驱动装备列装 + 国产替代（发动机/芯片）+ 十五五规划预期。但行业有独特的"五年规划节奏"：十四五末期（2026年）订单增速放缓，2027年十五五启动后新一轮装备采购周期开启。当前是布局窗口而非兑现期。细分赛道优先级：军工电子＞航空装备＞航天＞材料＞船舶。军工行业天然垄断的竞争格局（每个赛道1-2家国企龙头）是最大的护城河，但国企效率和信息透明度是主要风险。
+</div>
+
+<div class="highlight-box">
+  <strong>行业公式</strong><br>
+  收入 = 军费预算 × 装备采购占比 × 各细分赛道份额<br>
+  关键指标：1) 军费增速 2) 十五五规划装备方向 3) 主机厂合同负债 4) 军工电子订单 5) 国企改革进度
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l7">
+<div class="tab-inner">
+
+<h2>筛子调整说明</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:12%">筛子</th><th style="width:35%">标准</th><th>调整说明</th></tr>
+<tr><td>①<span class="col-tag col-info">市值</span></td><td>主板≥50亿 / 创业板科创板≥30亿</td><td>军工有大量民参军小市值公司，保持双门槛</td></tr>
+<tr><td>②<span class="col-tag col-info">营收</span></td><td>主板≥10亿 / 创业板科创板≥3亿</td><td>军工材料/电子公司营收偏小，保留≥3亿</td></tr>
+<tr><td>③<span class="col-tag col-info">毛利率</span></td><td>制造业/科技≥15%</td><td>军工行业毛利率普遍较高（材料/电子40-50%），主机厂略低（10-15%），正常执行</td></tr>
+<tr><td>④<span class="col-tag col-lose">ROE</span></td><td>≥8%，连续3年&lt;5%剔除</td><td><strong>最严筛</strong>——部分总装厂ROE偏低（5-8%），材料/电子高ROE顺利通过</td></tr>
+<tr><td>⑤<span class="col-tag col-info">负债率</span></td><td>制造业≤65%</td><td>军工国企负债率通常40-55%，健康</td></tr>
+<tr><td>⑥<span class="col-tag col-info">估值</span></td><td>PE历史分位≤70%</td><td>军工整体PE 40-60x偏高但合理，分位大多在40-60%</td></tr>
+</table>
+</div>
+
+<h2>候选池（22只）</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>环节</th><th>市值</th><th>毛利率</th><th>ROE</th><th>负债率</th><th>PE分位</th><th>通过</th></tr>
+<tr>
+  <td><strong>中航沈飞</strong> 600760</td>
+  <td><span class="col-tag col-win">航空主机</span></td>
+  <td style="font-weight:600">~1500亿</td>
+  <td><span class="col-tag col-warn">~12%</span></td>
+  <td><span class="col-tag col-win">~12%</span></td>
+  <td>55%</td>
+  <td>50-60%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>中航光电</strong> 002179</td>
+  <td><span class="col-tag col-win">连接器</span></td>
+  <td style="font-weight:600">~1000亿</td>
+  <td><span class="col-tag col-win">~35%</span></td>
+  <td><span class="col-tag col-win">~16%</span></td>
+  <td>40%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>振华科技</strong> 000733</td>
+  <td><span class="col-tag col-win">电子元器</span></td>
+  <td style="font-weight:600">~800亿</td>
+  <td><span class="col-tag col-win">~55%</span></td>
+  <td><span class="col-tag col-win">~14%</span></td>
+  <td>30%</td>
+  <td>50-60%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>航发动力</strong> 600893</td>
+  <td><span class="col-tag col-win">发动机制造</span></td>
+  <td style="font-weight:600">~1200亿</td>
+  <td><span class="col-tag col-warn">~16%</span></td>
+  <td><span class="col-tag col-win">~8%</span></td>
+  <td>45%</td>
+  <td>50-60%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>中航西飞</strong> 000768</td>
+  <td><span class="col-tag col-win">航空主机</span></td>
+  <td style="font-weight:600">~1100亿</td>
+  <td><span class="col-tag col-warn">~8%</span></td>
+  <td><span class="col-tag col-win">~8%</span></td>
+  <td>55%</td>
+  <td>50-60%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>紫光国微</strong> 002049</td>
+  <td><span class="col-tag col-win">特种IC</span></td>
+  <td>~700亿</td>
+  <td><span class="col-tag col-win">~55%</span></td>
+  <td><span class="col-tag col-win">~12%</span></td>
+  <td>25%</td>
+  <td>50-60%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>光威复材</strong> 300699</td>
+  <td><span class="col-tag col-win">碳纤维</span></td>
+  <td>~500亿</td>
+  <td><span class="col-tag col-win">~55%</span></td>
+  <td><span class="col-tag col-win">~14%</span></td>
+  <td>20%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>航天电器</strong> 002025</td>
+  <td><span class="col-tag col-win">连接器</span></td>
+  <td>~400亿</td>
+  <td><span class="col-tag col-win">~32%</span></td>
+  <td><span class="col-tag col-win">~12%</span></td>
+  <td>30%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>中航重机</strong> 600765</td>
+  <td><span class="col-tag col-warn">锻铸</span></td>
+  <td>~500亿</td>
+  <td><span class="col-tag col-win">~28%</span></td>
+  <td><span class="col-tag col-win">~10%</span></td>
+  <td>40%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>西部超导</strong> 688122</td>
+  <td><span class="col-tag col-win">高温合金</span></td>
+  <td>~400亿</td>
+  <td><span class="col-tag col-win">~35%</span></td>
+  <td><span class="col-tag col-win">~10%</span></td>
+  <td>35%</td>
+  <td>50-60%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>三角防务</strong> 300775</td>
+  <td><span class="col-tag col-warn">锻件</span></td>
+  <td>~300亿</td>
+  <td><span class="col-tag col-win">~42%</span></td>
+  <td><span class="col-tag col-win">~12%</span></td>
+  <td>25%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>七一二</strong> 603712</td>
+  <td><span class="col-tag col-win">军工通信</span></td>
+  <td>~300亿</td>
+  <td><span class="col-tag col-win">~45%</span></td>
+  <td><span class="col-tag col-win">~10%</span></td>
+  <td>30%</td>
+  <td>50-60%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>海格通信</strong> 002465</td>
+  <td><span class="col-tag col-win">军工通信</span></td>
+  <td>~400亿</td>
+  <td><span class="col-tag col-win">~35%</span></td>
+  <td><span class="col-tag col-win">~8%</span></td>
+  <td>30%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>北摩高科</strong> 002985</td>
+  <td><span class="col-tag col-info">刹车</span></td>
+  <td>~200亿</td>
+  <td><span class="col-tag col-win">~65%</span></td>
+  <td><span class="col-tag col-win">~10%</span></td>
+  <td>15%</td>
+  <td>50-60%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>中简科技</strong> 300777</td>
+  <td><span class="col-tag col-win">碳纤维</span></td>
+  <td>~250亿</td>
+  <td><span class="col-tag col-win">~65%</span></td>
+  <td><span class="col-tag col-win">~10%</span></td>
+  <td>15%</td>
+  <td>50-60%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>中国船舶</strong> 600150</td>
+  <td><span class="col-tag col-warn">船舶</span></td>
+  <td>~2500亿</td>
+  <td><span class="col-tag col-warn">~12%</span></td>
+  <td><span class="col-tag col-win">~8%</span></td>
+  <td>60%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>中航高科</strong> 600862</td>
+  <td><span class="col-tag col-warn">复合材料</span></td>
+  <td>~400亿</td>
+  <td><span class="col-tag col-win">~30%</span></td>
+  <td><span class="col-tag col-win">~12%</span></td>
+  <td>25%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>内蒙一机</strong> 600967</td>
+  <td><span class="col-tag col-warn">地面兵装</span></td>
+  <td>~200亿</td>
+  <td><span class="col-tag col-warn">~12%</span></td>
+  <td><span class="col-tag col-win">~8%</span></td>
+  <td>40%</td>
+  <td>30-40%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>立航科技</strong> 603261</td>
+  <td><span class="col-tag col-info">航空工装</span></td>
+  <td>~80亿</td>
+  <td><span class="col-tag col-win">~45%</span></td>
+  <td><span class="col-tag col-win">~9%</span></td>
+  <td>20%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>航宇科技</strong> 688239</td>
+  <td><span class="col-tag col-info">锻件</span></td>
+  <td>~150亿</td>
+  <td><span class="col-tag col-win">~30%</span></td>
+  <td><span class="col-tag col-win">~10%</span></td>
+  <td>30%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>国睿科技</strong> 600562</td>
+  <td><span class="col-tag col-win">雷达</span></td>
+  <td>~350亿</td>
+  <td><span class="col-tag col-win">~30%</span></td>
+  <td><span class="col-tag col-win">~9%</span></td>
+  <td>30%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>华秦科技</strong> 688281</td>
+  <td><span class="col-tag col-win">隐身材料</span></td>
+  <td>~250亿</td>
+  <td><span class="col-tag col-win">~58%</span></td>
+  <td><span class="col-tag col-win">~8%</span></td>
+  <td>15%</td>
+  <td>50-60%</td>
+  <td class="pass">6/6</td>
+</tr>
+</table>
+</div>
+
+<h2>观察池</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>卡在哪筛</th><th>备注</th></tr>
+<tr>
+  <td><strong>中国卫通</strong> 601698</td>
+  <td><span class="col-tag col-lose">④ROE~5%</span></td>
+  <td>卫星通信运营龙头，星网工程受益标的，盈利改善中</td>
+</tr>
+<tr>
+  <td><strong>中兵红箭</strong> 000519</td>
+  <td><span class="col-tag col-lose">④ROE~4%</span></td>
+  <td>智能弹药+超硬材料双主业，超硬材料拖累ROE</td>
+</tr>
+<tr>
+  <td><strong>航天电子</strong> 600879</td>
+  <td><span class="col-tag col-lose">④ROE~6%</span></td>
+  <td>航天电子配套龙头，营收规模大但利润率偏低</td>
+</tr>
+<tr>
+  <td><strong>菲利华</strong> 300395</td>
+  <td><span class="col-tag col-lose">②营收&lt;10亿</span></td>
+  <td>石英材料军用龙头，营收规模小但毛利率~50%，成长性好</td>
+</tr>
+<tr>
+  <td><strong>火炬电子</strong> 603678</td>
+  <td><span class="col-tag col-lose">④ROE~7%</span></td>
+  <td>军用MLCC龙头，代理业务拖累整体ROE</td>
+</tr>
+</table>
+</div>
+
+<h2>筛除记录</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>筛子</th><th style="width:60px">筛除数</th><th>知名示例</th></tr>
+<tr><td>①市值</td><td style="text-align:center">~40</td><td>大量民参军小票、新上市公司，市值&lt;30亿</td></tr>
+<tr><td>②营收</td><td style="text-align:center">~30</td><td>早期军工材料/电子公司，营收&lt;3亿</td></tr>
+<tr><td>③毛利率</td><td style="text-align:center">~8</td><td>部分总装/船舶公司毛利率&lt;10%</td></tr>
+<tr><td>④ROE <span class="col-tag col-lose">最严</span></td><td style="text-align:center">~18</td><td>中国卫通、中兵红箭、航天电子、火炬电子等ROE&lt;8%的国企</td></tr>
+<tr><td>⑤负债率</td><td style="text-align:center">~8</td><td>部分船舶/兵器企业负债率偏高</td></tr>
+<tr><td>⑥估值</td><td style="text-align:center">~4</td><td>少数PE分位偏高（70%+）军工电子标的</td></tr>
+<tr style="background:#fffde7"><td><strong>剩余</strong></td><td style="text-align:center;font-weight:700;color:#2e7d32"><strong>22</strong></td><td>—</td></tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <strong>L7筛选结论</strong><br>
+  130→22，筛选力度较大（-83%）。最严厉的是ROE筛——军工国企普遍ROE偏低（5-12%），大量总装/船舶类公司被剔除。通过筛选的核心标的分三类：①军工电子信息化龙头（中航光电/振华科技/紫光国微/七一二）——毛利率高+ROE高+成长性最好；②航空主机/发动机（中航沈飞/航发动力/中航西飞）——战略地位最高但毛利率低；③军工材料龙头（光威复材/西部超导/三角防务）——毛利率极高+ROE优秀。核心关注中航光电、振华科技、光威复材、中航沈飞、紫光国微。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l8">
+<div class="tab-inner">
+
+<h2>产业链</h2>
+<div class="card" style="font-size:13px;line-height:1.7">
+
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px">
+
+<div style="flex:1;min-width:180px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#2e7d32;font-size:14px">上游原材料/器件</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:12px">特种金属/合金</div>
+    <div style="text-align:center;font-size:10px;color:#666">西部超导·宝钛股份</div>
+    <div style="margin:6px 0;text-align:center;color:#999;font-size:16px">↓</div>
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:12px">碳纤维/复合材料</div>
+    <div style="text-align:center;font-size:10px;color:#666">光威复材·中简科技</div>
+    <div style="margin:6px 0;text-align:center;color:#999;font-size:16px">↓</div>
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:12px">电子元器件</div>
+    <div style="text-align:center;font-size:10px;color:#666">振华科技·紫光国微·火炬电子</div>
+  </div>
+</div>
+
+<div style="flex:2;min-width:280px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#1565c0;font-size:14px">中游总装/分系统</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+
+    <div style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap">
+      <div style="flex:1;min-width:90px;background:#e8f5e9;border-radius:4px;padding:8px 6px;text-align:center">
+        <div style="font-weight:700;font-size:12px">航空</div>
+        <div style="font-size:9px;color:#666">沈飞·西飞·成飞</div>
+      </div>
+      <div style="flex:1;min-width:90px;background:#e3f2fd;border-radius:4px;padding:8px 6px;text-align:center">
+        <div style="font-weight:700;font-size:12px">航天</div>
+        <div style="font-size:9px;color:#666">航天电器·电子</div>
+      </div>
+      <div style="flex:1;min-width:90px;background:#fff3e0;border-radius:4px;padding:8px 6px;text-align:center">
+        <div style="font-weight:700;font-size:12px">船舶</div>
+        <div style="font-size:9px;color:#666">中国船舶</div>
+      </div>
+      <div style="flex:1;min-width:90px;background:#f3e5f5;border-radius:4px;padding:8px 6px;text-align:center">
+        <div style="font-weight:700;font-size:12px">兵器</div>
+        <div style="font-size:9px;color:#666">内蒙一机·中兵</div>
+      </div>
+    </div>
+
+    <div style="text-align:center;font-size:11px;color:#1565c0;margin-bottom:8px">▲ 四大总装领域，每个细分1-2家国企垄断</div>
+
+    <div style="margin:6px 0 4px;font-weight:600;font-size:12px;color:#1565c0">核心分系统</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:11px"><strong>发动机</strong><br><span style="font-size:9px;color:#666">航发动力</span></div>
+      <div style="flex:1;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-size:11px"><strong>雷达/电子</strong><br><span style="font-size:9px;color:#666">国睿·七一二</span></div>
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:11px"><strong>连接器</strong><br><span style="font-size:9px;color:#666">中航光电·航天电器</span></div>
+      <div style="flex:1;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-size:11px"><strong>锻铸件</strong><br><span style="font-size:9px;color:#666">中航重机·三角防务</span></div>
+    </div>
+  </div>
+</div>
+
+<div style="flex:1;min-width:150px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#c62828;font-size:14px">下游客户</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:10px 8px;text-align:center;font-weight:600;font-size:12px">军方采购</div>
+    <div style="text-align:center;font-size:10px;color:#666">陆海空火·战略支援</div>
+    <div style="margin:8px 0;text-align:center;color:#999;font-size:16px">↓</div>
+    <div style="margin-bottom:6px;background:#fff3e0;border-radius:4px;padding:10px 8px;text-align:center;font-weight:600;font-size:12px">军工集团</div>
+    <div style="text-align:center;font-size:10px;color:#666">中航·航天·中船·兵器</div>
+    <div style="margin:8px 0;text-align:center;color:#999;font-size:16px">↓</div>
+    <div style="margin-bottom:6px;background:#f5f5f5;border:1px solid #ccc;border-radius:4px;padding:10px 8px;text-align:center;font-weight:600;font-size:12px">民用/出口</div>
+    <div style="text-align:center;font-size:10px;color:#666">C919·无人机·军贸</div>
+  </div>
+</div>
+
+</div>
+
+<div style="background:#fffde7;border-left:3px solid #f9a825;padding:8px 12px;font-size:12px;border-radius:0 4px 4px 0">
+  <strong>利润最厚环节：</strong>军工电子元器件（毛利率50-65%）→ 碳纤维/隐身材料（55-65%）→ 连接器（30-35%）
+  <br><span style="color:#999">主机厂毛利率低（8-12%）但收入规模大、战略地位高，利润由规模驱动</span>
+</div>
+
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>环节</th><th>代表公司</th><th>毛利率</th><th>集中度</th><th>议价能力</th></tr>
+<tr>
+  <td><span class="col-tag col-win">航空主机</span></td>
+  <td>中航沈飞、中航西飞</td>
+  <td><span class="col-tag col-warn">8-12%</span></td>
+  <td>CR2~90%</td>
+  <td><span class="col-tag col-warn">中（军方定价）</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-win">航空发动机</span></td>
+  <td>航发动力</td>
+  <td><span class="col-tag col-warn">~16%</span></td>
+  <td>几乎100%垄断</td>
+  <td><span class="col-tag col-warn">中（军方定价）</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-win">军工电子</span></td>
+  <td>振华科技、紫光国微</td>
+  <td><span class="col-tag col-win">50-55%</span></td>
+  <td>CR3~60%</td>
+  <td><span class="col-tag col-win">强</span></td>
+</tr>
+<tr style="background:#fafafa">
+  <td><span class="col-tag col-win">连接器</span></td>
+  <td>中航光电、航天电器</td>
+  <td><span class="col-tag col-win">32-35%</span></td>
+  <td>CR2~70%</td>
+  <td><span class="col-tag col-win">强</span></td>
+</tr>
+<tr style="background:#fafafa">
+  <td><span class="col-tag col-win">碳纤维/材料</span></td>
+  <td>光威复材、中简科技</td>
+  <td><span class="col-tag col-win">55-65%</span></td>
+  <td>CR2~80%</td>
+  <td><span class="col-tag col-win">强</span></td>
+</tr>
+<tr style="background:#fafafa">
+  <td><span class="col-tag col-warn">锻铸件</span></td>
+  <td>中航重机、三角防务</td>
+  <td><span class="col-tag col-win">28-42%</span></td>
+  <td>CR3~50%</td>
+  <td><span class="col-tag col-warn">中强</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-warn">船舶</span></td>
+  <td>中国船舶</td>
+  <td><span class="col-tag col-warn">~12%</span></td>
+  <td>CR2~80%</td>
+  <td><span class="col-tag col-lose">弱</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-info">军工通信</span></td>
+  <td>七一二、海格通信</td>
+  <td><span class="col-tag col-win">35-45%</span></td>
+  <td>CR3~50%</td>
+  <td><span class="col-tag col-win">强</span></td>
+</tr>
+</table>
+</div>
+
+<h2>市场规模</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">指标</th><th style="width:25%">数值</th><th>说明</th></tr>
+<tr><td><strong>中国军费</strong></td><td><span class="col-tag col-info" style="font-size:13px">~2.3万亿/年</span></td><td>全球第二，持续增长~7.2%/年，GDP占比~1.3%（远低于美国的~3.5%）</td></tr>
+<tr><td><strong>装备采购费</strong></td><td><span class="col-tag col-info">~1万亿/年</span></td><td>军费中装备采购占比约40-45%，十四五期间累计装备采购超4万亿</td></tr>
+<tr><td><strong>近年增速</strong>（3年CAGR）</td><td><span class="col-tag col-warn">航天/电子15-20%，航空10-15%</span></td><td>增速最高的细分：军工电子和航天（导弹+卫星）</td></tr>
+</table>
+</div>
+
+<h2>生命周期</h2>
+<div class="summary-box">
+  <strong><span class="col-tag col-win" style="font-size:14px">长期成长期</span></strong><br>
+  判断依据：中国国防建设仍处于"补课式"现代化阶段——军机数量仅为美国的~1/3，海军舰艇吨位差距大，导弹库存偏低。十四五（2021-2025年）是装备放量期，十五五（2026-2030年）预计进入"提质增量"阶段。军工信息化、无人机、导弹、航空发动机是十五五的重点方向。整体行业处于<strong>长周期成长</strong>阶段，不受宏观经济周期影响，具有显著的"逆周期"属性。
+</div>
+
+<h2>增长驱动力</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动力</th><th>类型</th><th>可持续性</th><th>量化指标</th></tr>
+<tr>
+  <td>强军战略+军费持续增长</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长（10年+）</span></td>
+  <td>军费增速~7.2%、装备采购占比</td>
+</tr>
+<tr>
+  <td>十五五规划装备升级列装</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长（5-10年）</span></td>
+  <td>新机型/新舰艇列装进度、导弹/无人机采购量</td>
+</tr>
+<tr>
+  <td>军工国产替代（发动机/芯片）</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>航发国产化率、军用FPGA国产替代率</td>
+</tr>
+<tr>
+  <td>军民融合+军贸出口</td>
+  <td><span class="col-tag col-warn">结构</span></td>
+  <td><span class="col-tag col-warn">中长</span></td>
+  <td>C919商用进度、无人机出口订单</td>
+</tr>
+<tr>
+  <td>国企改革+资产注入</td>
+  <td><span class="col-tag col-warn">周期/事件</span></td>
+  <td><span class="col-tag col-warn">中（事件驱动）</span></td>
+  <td>中航系/航天系资产证券化率</td>
+</tr>
+</table>
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l9">
+<div class="tab-inner">
+
+<h2>市场结构</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>市场结构类型</td>
+  <td>总装/分系统：<span class="col-tag col-win">完全垄断/寡头</span>（每个赛道1-2家国企）；军工电子/材料：<span class="col-tag col-win">寡头竞争</span>（少数国企龙头+民参军）</td></tr>
+<tr>
+  <td>CR3（航空主机）</td>
+  <td>中航沈飞+中航西飞+成飞~90%（<span style="color:#1565c0">→稳定垄断</span>）</td></tr>
+<tr>
+  <td>格局象限</td>
+  <td>总装：<span class="col-tag col-win">计划型垄断</span>；电子：<span class="col-tag col-win">竞争型寡头</span>；材料：<span class="col-tag col-win">技术驱动寡头</span></td></tr>
+<tr>
+  <td>新进入者威胁</td>
+  <td><span class="col-tag col-lose">极小</span>（军品资质+技术壁垒+资金门槛+客户关系，极其排他）</td></tr>
+</table>
+</div>
+
+<h2>竞争壁垒</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>壁垒类型</th><th>强度</th><th>可持续性</th><th>具体表现</th></tr>
+<tr>
+  <td>军品资质+保密体系</td>
+  <td><span class="col-tag col-win">极强</span></td>
+  <td><span class="col-tag col-win">永久</span></td>
+  <td>武器装备科研生产许可证+保密资格认证，获取周期3-5年，民企几乎无法进入总装领域</td>
+</tr>
+<tr>
+  <td>技术+研发壁垒</td>
+  <td><span class="col-tag col-win">极强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>军用芯片/发动机/隐身材料研发周期5-15年，技术积累不可复制</td>
+</tr>
+<tr>
+  <td>客户粘性+定点配套</td>
+  <td><span class="col-tag col-win">极强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>一旦列入军方定型产品目录，10-20年稳定供货，竞争对手几乎无法替代</td>
+</tr>
+<tr>
+  <td>资金+规模壁垒（总装）</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>新型战机研发投入500亿+，生产线投资100亿+，只有国家力量能支撑</td>
+</tr>
+</table>
+</div>
+
+<div class="summary-box">
+  <strong>定价权测试</strong><br>
+  🔹 龙头能涨价吗？<strong>总装厂不能</strong>（军品审价制度，利润率受军方管控）／ <strong>军工电子/材料能</strong>（技术壁垒高+国产替代稀缺性，有定价权）<br>
+  🔹 毛利率趋势：电子/材料持续稳定高位（50-65%），主机厂维持低毛利率（8-12%），锻铸件略降<br>
+  🔹 ROE趋势：电子/材料龙头15-16%优秀，主机厂8-12%尚可，部分老牌国企6-8%偏低
+</div>
+
+<h2>驱动力拆解</h2>
+<div class="highlight-box">
+  <strong>行业收入公式</strong><br>
+  收入 = 军费预算 × 装备采购占比 × 各细分赛道份额 + 民品收入<br><br>
+  当前组合：<span style="color:#2e7d32;font-weight:700">军费 ↑</span>（稳定增长7%） ＋ <span style="color:#2e7d32;font-weight:700">装备采购占比 ↑</span>（提升趋势） ＋ <span style="color:#ff9800;font-weight:700">十五五预期 ↑</span> ＝ <span class="col-tag col-win">长期稳健增长</span>
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动因子</th><th>最新值</th><th>历史区间</th><th>当前分位</th></tr>
+<tr>
+  <td>中国军费增速</td>
+  <td><span class="col-tag col-win">~7.2%</span></td>
+  <td>6.6-12%</td>
+  <td><span class="col-tag col-info">中</span></td>
+</tr>
+<tr>
+  <td>航空主机合同负债</td>
+  <td><span class="col-tag col-warn">沈飞~50亿</span></td>
+  <td>20-200亿</td>
+  <td><span class="col-tag col-warn">40%</span></td>
+</tr>
+<tr>
+  <td>军工电子订单增速</td>
+  <td><span class="col-tag col-warn">~10%</span></td>
+  <td>10-40%</td>
+  <td><span class="col-tag col-warn">30%</span></td>
+</tr>
+<tr>
+  <td>军机数量（对标美国）</td>
+  <td><span class="col-tag col-info">中国~3200架</span></td>
+  <td>—</td>
+  <td><span class="col-tag col-info">仅为美国1/3</span></td>
+</tr>
+<tr>
+  <td>资产证券化率</td>
+  <td><span class="col-tag col-warn">中航系~70%</span></td>
+  <td>30-70%</td>
+  <td><span class="col-tag col-warn">中高</span></td>
+</tr>
+</table>
+</div>
+
+<h2>成本结构</h2>
+<div class="summary-box">
+  🔹 <strong>类型：</strong>主机厂——<span class="col-tag col-lose">重资产</span>（厂房+设备+工装+大量生产人员）；军工电子/材料——<span class="col-tag col-info">中轻资产</span>（研发+精密设备，人力成本为主）<br>
+  🔹 <strong>成本敏感性：</strong>军工行业成本敏感度低——军品以"成本加成"定价，利润率受审价管控但相对稳定；主机厂营收±10% → 利润±15-20%<br>
+  🔹 <strong>盈亏平衡点：</strong>主机厂产能利用率&gt;60%即可盈利（订单饱满），军工电子&gt;50%即可盈利（高毛利率安全垫厚）
+</div>
+
+<h2>竞争格局总结</h2>
+<div class="highlight-box">
+  军工行业是A股中<strong>竞争格局最好的行业之一</strong>——每个细分赛道都是"双寡头"或"独家垄断"格局，背后是军工集团（中航工业/航天科工/中船重工/兵器工业等）的行政划分。这种格局意味着<strong>长期确定性极高</strong>——既不会有价格战，也不会有跨界竞争者，龙头地位几乎是永久性的。<br><br>
+  但军工的投资逻辑与其他行业完全不同：①<strong>五年规划节奏</strong>决定订单周期（十四五末=低点，十五五初=高点）；②<strong>军品审价</strong>限制利润率天花板；③<strong>资产注入</strong>是A股军工的独立炒作逻辑（中航系/航天系仍有资产证券化空间）；④<strong>信息透明度低</strong>是最大风险（国企效率+信息不透明）。最好的投资策略是"选对赛道（军工电子/材料＞航空＞航天＞船舶）+ 把握十五五采购周期"。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l10">
+<div class="tab-inner">
+
+<h2>周期位置</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>五年规划周期</td>
+  <td><span class="col-tag col-warn">十四五末期</span>（2026年），订单增速放缓，2027年十五五启动新一轮采购周期</td>
+</tr>
+<tr>
+  <td>产能利用率</td>
+  <td><span class="col-tag col-warn">主机厂~70-80%</span>（饱满，十四五前期扩产基本到位）、军工电子~80-90%（高景气）</td></tr>
+<tr>
+  <td>合同负债趋势</td>
+  <td><span class="col-tag col-lose">沈飞从2023年200亿降至2026年~50亿</span>（十四五任务基本交付，新订单尚在规划中）</td></tr>
+<tr>
+  <td>行业盈利状态</td>
+  <td><span class="col-tag col-warn">整体平稳，结构性分化</span>——军工电子盈利好，主机厂承压，材料分化</td></tr>
+</table>
+</div>
+
+<div class="danger-box">
+  <strong>⚠ PE悖论检查</strong><br>
+  军工股PE通常偏高（40-60x），但这是军工行业的正常特征（高壁垒+高确定性+高成长溢价），不一定是泡沫。<br>
+  ✅ 军工电子龙头（中航光电/振华科技）PE 30-40x，PEG~1，合理偏低<br>
+  ✅ 碳纤维（光威复材）PE 35-45x，PEG~1，合理<br>
+  ⚠️ 主机厂（沈飞）PE 40-50x，但业绩增速只有10-15%，PEG~3，偏贵<br>
+  ⚠️ 航发动力PE 60-70x，但ROE只有8%，性价比不高<br>
+  <strong>注意：</strong>军工板块历史上PE波动极大（20x→80x），主要受"五年规划节奏+资产注入预期"驱动，而非业绩线性增长。当前整体PE处于历史中位，估值不算便宜但也不贵。
+</div>
+
+<h2>估值水平</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>估值指标</th><th>行业当前</th><th>历史中位数</th><th>80%分位</th><th>20%分位</th></tr>
+<tr>
+  <td><strong>PE</strong>（军工电子）</td>
+  <td><span class="col-tag col-info">30-40x</span></td>
+  <td>40-50x</td>
+  <td>60x+</td>
+  <td>25x</td>
+</tr>
+<tr>
+  <td><strong>PE</strong>（航空主机）</td>
+  <td><span class="col-tag col-info">40-50x</span></td>
+  <td>50-65x</td>
+  <td>80x+</td>
+  <td>30x</td>
+</tr>
+<tr>
+  <td><strong>PE</strong>（军工材料）</td>
+  <td><span class="col-tag col-info">35-45x</span></td>
+  <td>45-55x</td>
+  <td>70x+</td>
+  <td>30x</td>
+</tr>
+<tr>
+  <td><strong>PB</strong>（船舶/兵器）</td>
+  <td><span class="col-tag col-info">1.5-2.5x</span></td>
+  <td>2-3x</td>
+  <td>4x+</td>
+  <td>1.2x</td>
+</tr>
+</table>
+</div>
+
+<h2>政策环境</h2>
+<div class="summary-box">
+  🔹 <strong>政策方向：</strong><span class="col-tag col-win">持续友好</span>（强军战略是国家核心战略，不受经济周期影响）<br>
+  🔹 <strong>关键政策：</strong><br>
+  &emsp;• 2026年军费预算增速~7.2%（连续2年增速回升，十四五以来最高）<br>
+  &emsp;• 十五五规划编制中——预计重点：无人机、导弹、军工电子、航空发动机、海军装备<br>
+  &emsp;• 军品定价机制改革（从"成本加成"逐步转向"目标价格+激励约束"）<br>
+  &emsp;• 国企改革深化（中航系/航天系资产注入预期，股权激励推进）<br>
+  &emsp;• 军贸出口放开（高端武器装备出口限制放宽）<br>
+  🔹 <strong>政策周期位置：</strong><span class="col-tag col-win">持续加码期</span>（备战打仗紧迫性+十五五规划预期）
+</div>
+
+<h2>买入清单</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:28%">条件</th><th style="width:16%">结果</th><th>备注</th></tr>
+<tr>
+  <td>周期位置：不在繁荣顶点</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td>十四五末订单放缓，但十五五预期提供支撑，不算顶点</td>
+</tr>
+<tr>
+  <td>估值：PB/PE在历史偏低分位</td>
+  <td style="text-align:center"><span class="col-tag col-info">→</span></td>
+  <td>整体PE处于历史中低位，军工电子估值合理偏低</td>
+</tr>
+<tr>
+  <td>政策：不是收紧期</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>强军战略持续加码，军费增速回升</td>
+</tr>
+<tr>
+  <td>格局：龙头壁垒稳固</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>军工天然垄断，全球竞争壁垒最高的行业之一</td>
+</tr>
+<tr>
+  <td>增长：有可见驱动力</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>十五五预期+装备列装+国产替代</td>
+</tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <div style="font-size:16px;font-weight:700;margin-bottom:8px">综合判断：<span class="col-tag col-win" style="font-size:15px">买入（精选）</span></div>
+  <div style="margin-bottom:6px">当前是布局十五五装备采购周期的窗口期——十四五末订单低点已在股价中反映，十五五预期将在2027年启动</div>
+  <table style="font-size:12px;margin:6px 0;border:none;background:transparent">
+    <tr><td style="border:none;padding:3px 6px;background:transparent;width:90px;font-weight:600">预期回报</td><td style="border:none;padding:3px 6px;background:transparent">军工电子/材料：年化15-25%（业绩增长+估值修复）；航空主机：年化10-15%（十五五订单驱动）</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">仓位建议</td><td style="border:none;padding:3px 6px;background:transparent"><span class="col-tag col-warn">不超过组合20%</span>（军工波动大，信息不透明，适合作为配置型仓位）</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">跟踪指标</td><td style="border:none;padding:3px 6px;background:transparent">军费增速·十五五规划方向·主机厂合同负债·军工电子订单·资产注入公告</td></tr>
+  </table>
+  <div style="margin-top:8px;padding:8px;background:#e8f5e9;border-radius:4px;font-size:12px">
+    <strong>买入策略：</strong><br>
+    <span class="col-tag col-win">军工电子龙头</span>（中航光电/振华科技/紫光国微）：确定性最高，PE 30-40x合理偏低，优先建仓<br>
+    <span class="col-tag col-win">军工材料龙头</span>（光威复材/西部超导）：毛利率高+成长空间大，等回调-15%后布局<br>
+    <span class="col-tag col-warn">航空主机</span>（中航沈飞/航发动力）：十五五核心资产，但当前估值不便宜，建议等回调-20%或十五五规划明确后入场<br>
+    <span class="col-tag col-info">船舶</span>（中国船舶）：民船周期上行+军船订单，周期+成长双击，配置少量
+  </div>
+</div>
+
+<h2>卖出信号</h2>
+<div class="danger-box">
+  <strong>出现以下信号考虑卖出：</strong><br>
+  <div style="margin-top:6px">
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px">1</span>
+    军费增速显著放缓至5%以下（国防建设优先级下降，基本面逻辑动摇）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">2</span>
+    十五五规划方向大幅转向（如从装备采购转向信息化/太空，传统主机厂订单萎缩）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">3</span>
+    军工电子毛利率连续两季下降超过5个百分点（竞争加剧或军方压价）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">4</span>
+    主机厂合同负债连续两季下降（订单储备耗尽，十五五新订单未及时接续）
+  </div>
+</div>
+
+</div>
+</div>
+
+<div class="footer">Generated by Industry Analysis · L7-L10 Framework · Stock Selection</div>
+
+</div>
+
+<script>
+var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+var contents = document.querySelectorAll('.tab-content');
+btns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    contents.forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    var tab = btn.getAttribute('data-tab');
+    document.getElementById('tab-' + tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
