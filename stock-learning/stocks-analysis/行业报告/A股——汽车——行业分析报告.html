@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>A股——汽车 行业分析报告</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f5f5f5;padding:0;color:#333}
+  .report-wrap{max-width:800px;margin:0 auto;background:#fff}
+  h1{font-size:22px;margin:0;padding:28px 0 4px;text-align:center}
+  h2{font-size:18px;margin:28px 0 12px;border-bottom:2px solid #1a1a1a;padding-bottom:4px}
+  h3{font-size:15px;margin:18px 0 8px}
+  .subtitle{color:#666;font-size:13px;text-align:center;margin-bottom:4px}
+  .meta{color:#999;font-size:12px;text-align:center;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #e0e0e0}
+  .tab-bar{position:sticky;top:0;z-index:10;background:#fff;display:flex;flex-wrap:wrap;border-bottom:2px solid #ddd;gap:0}
+  .tab-btn{padding:10px 14px;cursor:pointer;border:none;background:none;font-size:13px;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+  .tab-btn:hover{color:#333;background:#f9f9f9}
+  .tab-btn.active{color:#1a1a1a;font-weight:700;border-bottom-color:#1a1a1a}
+  .tab-content{display:none}
+  .tab-content.active{display:block}
+  .tab-inner{padding:0 12px}
+  table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:13px}
+  th{background:#f5f5f5;padding:8px 6px;text-align:left;border-bottom:2px solid #ddd;white-space:nowrap;font-weight:600}
+  td{padding:7px 6px;border-bottom:1px solid #eee}
+  tr:nth-child(even) td{background:#fafafa}
+  .summary-box{background:#fffde7;border-left:4px solid #f9a825;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .highlight-box{background:#e3f2fd;border-left:4px solid #1e88e5;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .danger-box{background:#ffebee;border-left:4px solid #e53935;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .verdict{text-align:center;padding:20px;margin:16px 0;border-radius:8px;font-size:18px;font-weight:700}
+  .verdict-ok{background:#e8f5e9;border:2px solid #4caf50;color:#2e7d32}
+  .verdict-caution{background:#fff3e0;border:2px solid #ff9800;color:#e65100}
+  .verdict-bad{background:#ffebee;border:2px solid #e53935;color:#c62828}
+  .score{font-size:36px;display:block;margin-bottom:4px}
+  .pass{color:#2e7d32;font-weight:700}
+  .skip{color:#666;font-style:italic}
+  .tag{display:inline-block;padding:2px 8px;border-radius:3px;font-size:11px;font-weight:700}
+  .tag-red{background:#ffebee;color:#c62828}
+  .tag-green{background:#e8f5e9;color:#2e7d32}
+  .tag-yellow{background:#fff8e1;color:#f57f17}
+  .footer{font-size:11px;color:#aaa;text-align:center;padding:24px 0 8px;border-top:1px solid #eee;margin-top:30px}
+  .card{background:#fafafa;border:1px solid #e0e0e0;border-radius:6px;padding:14px;margin:10px 0;font-size:13px}
+  .flex{display:flex;flex-wrap:wrap;gap:8px}
+  .tbl-wrap{border:1px solid #e0e0e0;border-radius:6px;overflow:hidden;margin:10px 0 18px}
+  .tbl-wrap table{margin:0}
+  .tbl-wrap th{background:#f5f5f5;padding:9px 8px;border-bottom:1px solid #ddd;font-weight:600;font-size:12px}
+  .tbl-wrap td{padding:8px;border-bottom:1px solid #f0f0f0;font-size:13px}
+  .tbl-wrap tr:last-child td{border-bottom:none}
+  .bar-wrap{display:inline-flex;align-items:center;width:60px;height:16px;vertical-align:middle}
+  .bar-bg{background:#eee;border-radius:4px;height:8px;width:100%;overflow:hidden;position:relative}
+  .bar{display:block;height:8px;border-radius:4px}
+  .score-cell{font-weight:700;font-size:15px;text-align:center;white-space:nowrap}
+  .tbl-wrap td,.tbl-wrap th{vertical-align:middle}
+  .metric-h{color:#1565c0;font-weight:700;font-size:13px}
+  .metric-l{color:#c62828;font-weight:700}
+  .metric-m{color:#e65100;font-weight:700}
+  .col-tag{display:inline-block;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600}
+  .col-win{background:#e8f5e9;color:#2e7d32}
+  .col-lose{background:#ffebee;color:#c62828}
+  .col-warn{background:#fff3e0;color:#e65100}
+  .col-info{background:#e3f2fd;color:#1565c0}
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>A股——汽车 行业分析报告</h1>
+<div class="subtitle">L5分类：混合周期 ｜ 上市公司：~260只 ｜ 总市值：~4.5万亿</div>
+<div class="meta">生成日期：2026-07-16</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l7">L7 量化初筛</button>
+  <button class="tab-btn" data-tab="l8">L8 行业画像</button>
+  <button class="tab-btn" data-tab="l9">L9 竞争格局</button>
+  <button class="tab-btn" data-tab="l10">L10 周期时机</button>
+</div>
+
+<div class="tab-content active" id="tab-summary">
+<div class="tab-inner">
+
+<h2>行业速览</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">项目</th><th>内容</th></tr>
+<tr><td>行业名称</td><td><strong>汽车</strong>（申万汽车一级行业，含整车+零部件+汽车服务）</td></tr>
+<tr><td>市场</td><td>A股</td></tr>
+<tr><td>L5分类</td><td><span class="col-tag col-warn">混合周期</span> 新能源成长性 + 传统车周期性，行业正经历"油转电"结构性变革</td></tr>
+<tr><td>上市公司</td><td>~260只，其中符合L7筛选条件 <span class="col-tag col-win">25只</span></td></tr>
+<tr><td>行业总市值</td><td>~4.5万亿</td></tr>
+<tr><td>产业链利润核心</td><td><span class="col-tag col-win">龙头整车（比亚迪）</span> + <span class="col-tag col-win">高壁垒零部件（福耀/星宇/三花/拓普）</span></td></tr>
+<tr><td>生命周期阶段</td><td><span class="col-tag col-warn">转型洗牌期</span> 新能源渗透率~50%，传统车萎缩，智能化竞争进入下半场</td></tr>
+<tr><td>当前周期位置</td><td><span class="col-tag col-warn">价格战中期</span> 2024-2026持续价格战，行业盈利承压但龙头韧性显现</td></tr>
+</table>
+</div>
+
+<h2>综合评分</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>维度</th><th style="width:60px">得分</th><th>进度</th><th>说明</th></tr>
+<tr>
+  <td>行业规模与空间</td>
+  <td class="score-cell">18/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:90%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">全球汽车年销~9000万辆，中国~3000万辆，TAM极大。新能源+智能化为双增长引擎</td>
+</tr>
+<tr>
+  <td>产业链位置</td>
+  <td class="score-cell">10/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:67%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">中国全产业链自主可控度最高，电池/智驾全球领先，但芯片/高端传感器仍依赖进口</td>
+</tr>
+<tr>
+  <td>竞争格局</td>
+  <td class="score-cell">12/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:60%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">整车格局未定（20+品牌混战），零部件细分龙头格局稳固（福耀/星宇/三花）</td>
+</tr>
+<tr>
+  <td>增长驱动力</td>
+  <td class="score-cell">12/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:80%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">出海+智能化+新能源下沉为三大增长极，驱动力明确且可持续</td>
+</tr>
+<tr>
+  <td>周期位置</td>
+  <td class="score-cell">8/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:53%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">价格战持续，行业盈利承压，但已进入后半段。龙头盈利韧性好于预期</td>
+</tr>
+<tr>
+  <td>政策环境</td>
+  <td class="score-cell">12/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:80%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">新能源支持政策持续+以旧换新补贴+智能驾驶法规加速推进，政策友好</td>
+</tr>
+<tr style="background:#fafafa">
+  <td style="font-weight:700;font-size:14px">总分</td>
+  <td style="font-weight:700;font-size:16px;color:#e65100">72/100</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:72%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#e65100;font-weight:600">良好——结构性机会大于系统性风险，精选细分龙头</td>
+</tr>
+</table>
+</div>
+
+<div class="verdict verdict-caution">
+  <span class="score">72</span>
+  良好——精选龙头
+</div>
+
+<div class="summary-box">
+  <strong>核心结论</strong><br>
+  汽车行业正处于"百年一遇"的结构性变革期——电动化上半场已近尾声（渗透率~50%），智能化下半场刚刚开始。整车端价格战仍在持续（2024-2026），但分化明显：比亚迪凭借垂直一体化+规模效应已实现盈利护城河，而大部分新势力仍处于亏损。零部件端机会更好——福耀玻璃（全球汽车玻璃龙头）、星宇股份（车灯国产替代）、三花智控（热管理全球领先）、拓普集团（平台化零部件）等细分龙头具备穿越周期的能力。建议用"混合周期"框架分析：整车关注格局变化和智能化进度，零部件关注国产替代和全球扩张。
+</div>
+
+<div class="highlight-box">
+  <strong>行业公式</strong><br>
+  收入 = 汽车销量(万辆) × 单车均价(万元) + 售后零部件收入<br>
+  关键指标：1) 新能源渗透率 2) 出口量同比 3) 行业库存系数 4) L2+智驾搭载率 5) 零部件龙头毛利率
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l7">
+<div class="tab-inner">
+
+<h2>筛子调整说明</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:12%">筛子</th><th style="width:35%">标准</th><th>调整说明</th></tr>
+<tr><td>①<span class="col-tag col-info">市值</span></td><td>主板≥50亿 / 创业板科创板≥30亿</td><td>汽车零部件有大量中小市值公司，保持双门槛</td></tr>
+<tr><td>②<span class="col-tag col-info">营收</span></td><td>主板≥10亿 / 创业板科创板≥3亿</td><td>部分专精特新零部件营收较小，保留≥3亿</td></tr>
+<tr><td>③<span class="col-tag col-lose">毛利率</span></td><td>制造业≥15%，消费属性≥20%</td><td><strong>最严筛</strong>——大量整车厂毛利率&lt;15%（价格战），零部件普遍通过</td></tr>
+<tr><td>④<span class="col-tag col-info">ROE</span></td><td>≥8%，连续3年&lt;5%剔除</td><td>亏损新势力被剔除，传统龙头通过</td></tr>
+<tr><td>⑤<span class="col-tag col-info">负债率</span></td><td>制造业≤65%</td><td>整车厂负债率偏高（60-75%），零部件普遍健康</td></tr>
+<tr><td>⑥<span class="col-tag col-info">估值</span></td><td>PE历史分位≤70%</td><td>正常执行，价格战导致PE分位偏低</td></tr>
+</table>
+</div>
+
+<h2>候选池（25只）</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>环节</th><th>市值</th><th>毛利率</th><th>ROE</th><th>负债率</th><th>PE分位</th><th>通过</th></tr>
+<tr>
+  <td><strong>比亚迪</strong> 002594</td>
+  <td><span class="col-tag col-win">整车</span></td>
+  <td style="font-weight:600">~9000亿</td>
+  <td><span class="col-tag col-win">~20%</span></td>
+  <td><span class="col-tag col-win">~15%</span></td>
+  <td>65%</td>
+  <td>30-40%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>福耀玻璃</strong> 600660</td>
+  <td><span class="col-tag col-win">玻璃</span></td>
+  <td style="font-weight:600">~1200亿</td>
+  <td><span class="col-tag col-win">~34%</span></td>
+  <td><span class="col-tag col-win">~18%</span></td>
+  <td>40%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>拓普集团</strong> 601689</td>
+  <td><span class="col-tag col-win">底盘</span></td>
+  <td style="font-weight:600">~1000亿</td>
+  <td><span class="col-tag col-win">~22%</span></td>
+  <td><span class="col-tag col-win">~12%</span></td>
+  <td>40%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>三花智控</strong> 002050</td>
+  <td><span class="col-tag col-win">热管理</span></td>
+  <td style="font-weight:600">~900亿</td>
+  <td><span class="col-tag col-win">~26%</span></td>
+  <td><span class="col-tag col-win">~14%</span></td>
+  <td>40%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>德赛西威</strong> 002920</td>
+  <td><span class="col-tag col-win">智驾</span></td>
+  <td style="font-weight:600">~800亿</td>
+  <td><span class="col-tag col-win">~21%</span></td>
+  <td><span class="col-tag col-win">~16%</span></td>
+  <td>45%</td>
+  <td>30-40%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>星宇股份</strong> 601799</td>
+  <td><span class="col-tag col-win">车灯</span></td>
+  <td>~500亿</td>
+  <td><span class="col-tag col-win">~24%</span></td>
+  <td><span class="col-tag col-win">~13%</span></td>
+  <td>35%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>华域汽车</strong> 600741</td>
+  <td><span class="col-tag col-warn">综合</span></td>
+  <td>~700亿</td>
+  <td><span class="col-tag col-warn">~14%</span></td>
+  <td><span class="col-tag col-win">~10%</span></td>
+  <td>55%</td>
+  <td>30-40%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>福达股份</strong> 603166</td>
+  <td><span class="col-tag col-warn">发动机</span></td>
+  <td>~200亿</td>
+  <td><span class="col-tag col-warn">~22%</span></td>
+  <td><span class="col-tag col-win">~11%</span></td>
+  <td>35%</td>
+  <td>30-40%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>科博达</strong> 603786</td>
+  <td><span class="col-tag col-info">电子</span></td>
+  <td>~300亿</td>
+  <td><span class="col-tag col-win">~35%</span></td>
+  <td><span class="col-tag col-win">~12%</span></td>
+  <td>25%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>新泉股份</strong> 603179</td>
+  <td><span class="col-tag col-warn">内饰</span></td>
+  <td>~300亿</td>
+  <td><span class="col-tag col-warn">~20%</span></td>
+  <td><span class="col-tag col-win">~15%</span></td>
+  <td>40%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>伯特利</strong> 603596</td>
+  <td><span class="col-tag col-info">制动</span></td>
+  <td>~300亿</td>
+  <td><span class="col-tag col-win">~24%</span></td>
+  <td><span class="col-tag col-win">~14%</span></td>
+  <td>35%</td>
+  <td>30-40%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>爱柯迪</strong> 600933</td>
+  <td><span class="col-tag col-warn">压铸</span></td>
+  <td>~250亿</td>
+  <td><span class="col-tag col-win">~28%</span></td>
+  <td><span class="col-tag col-win">~12%</span></td>
+  <td>30%</td>
+  <td>30-40%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>钧达股份</strong> 002865</td>
+  <td><span class="col-tag col-info">饰件</span></td>
+  <td>~150亿</td>
+  <td><span class="col-tag col-warn">~18%</span></td>
+  <td><span class="col-tag col-win">~10%</span></td>
+  <td>30%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>银轮股份</strong> 002126</td>
+  <td><span class="col-tag col-warn">热交换</span></td>
+  <td>~200亿</td>
+  <td><span class="col-tag col-warn">~21%</span></td>
+  <td><span class="col-tag col-win">~11%</span></td>
+  <td>45%</td>
+  <td>30-40%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>保隆科技</strong> 603197</td>
+  <td><span class="col-tag col-info">传感器</span></td>
+  <td>~150亿</td>
+  <td><span class="col-tag col-win">~28%</span></td>
+  <td><span class="col-tag col-win">~10%</span></td>
+  <td>35%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>上海沿浦</strong> 605128</td>
+  <td><span class="col-tag col-warn">座椅</span></td>
+  <td>~120亿</td>
+  <td><span class="col-tag col-warn">~17%</span></td>
+  <td><span class="col-tag col-win">~10%</span></td>
+  <td>35%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>万里扬</strong> 002434</td>
+  <td><span class="col-tag col-warn">变速箱</span></td>
+  <td>~180亿</td>
+  <td><span class="col-tag col-warn">~20%</span></td>
+  <td><span class="col-tag col-win">~9%</span></td>
+  <td>40%</td>
+  <td>30-40%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>常熟汽饰</strong> 603035</td>
+  <td><span class="col-tag col-warn">内饰</span></td>
+  <td>~120亿</td>
+  <td><span class="col-tag col-warn">~22%</span></td>
+  <td><span class="col-tag col-win">~10%</span></td>
+  <td>30%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>旭升集团</strong> 603305</td>
+  <td><span class="col-tag col-warn">压铸</span></td>
+  <td>~250亿</td>
+  <td><span class="col-tag col-warn">~22%</span></td>
+  <td><span class="col-tag col-win">~12%</span></td>
+  <td>30%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>文灿股份</strong> 603348</td>
+  <td><span class="col-tag col-warn">压铸</span></td>
+  <td>~180亿</td>
+  <td><span class="col-tag col-warn">~20%</span></td>
+  <td><span class="col-tag col-win">~9%</span></td>
+  <td>45%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>海联金汇</strong> 002537</td>
+  <td><span class="col-tag col-warn">冲压</span></td>
+  <td>~100亿</td>
+  <td><span class="col-tag col-warn">~16%</span></td>
+  <td><span class="col-tag col-win">~8%</span></td>
+  <td>45%</td>
+  <td>30-40%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>玲珑轮胎</strong> 601966</td>
+  <td><span class="col-tag col-warn">轮胎</span></td>
+  <td>~350亿</td>
+  <td><span class="col-tag col-warn">~23%</span></td>
+  <td><span class="col-tag col-win">~10%</span></td>
+  <td>45%</td>
+  <td>30-40%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>赛轮轮胎</strong> 601058</td>
+  <td><span class="col-tag col-warn">轮胎</span></td>
+  <td>~450亿</td>
+  <td><span class="col-tag col-win">~27%</span></td>
+  <td><span class="col-tag col-win">~15%</span></td>
+  <td>50%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>中鼎股份</strong> 000887</td>
+  <td><span class="col-tag col-warn">密封</span></td>
+  <td>~200亿</td>
+  <td><span class="col-tag col-warn">~22%</span></td>
+  <td><span class="col-tag col-win">~9%</span></td>
+  <td>45%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>经纬恒润</strong> 688326</td>
+  <td><span class="col-tag col-info">智驾</span></td>
+  <td>~150亿</td>
+  <td><span class="col-tag col-warn">~20%</span></td>
+  <td><span class="col-tag col-win">~8%</span></td>
+  <td>30%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>长安汽车</strong> 000625</td>
+  <td><span class="col-tag col-warn">整车</span></td>
+  <td>~1500亿</td>
+  <td><span class="col-tag col-warn">~14%</span></td>
+  <td><span class="col-tag col-win">~8%</span></td>
+  <td>55%</td>
+  <td>20-30%</td>
+  <td class="pass">6/6</td>
+</tr>
+</table>
+</div>
+
+<h2>观察池</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>卡在哪筛</th><th>备注</th></tr>
+<tr>
+  <td><strong>赛力斯</strong> 601127</td>
+  <td><span class="col-tag col-lose">④ROE~3%</span></td>
+  <td>华为智选模式加持，问界品牌快速放量，盈利改善中</td>
+</tr>
+<tr>
+  <td><strong>长城汽车</strong> 601633</td>
+  <td><span class="col-tag col-lose">⑤负债率~68%</span></td>
+  <td>坦克+出海表现强劲，新能源转型偏慢，负债偏高</td></tr>
+<tr>
+  <td><strong>上汽集团</strong> 600104</td>
+  <td><span class="col-tag col-lose">③毛利率~10%</span></td>
+  <td>合资品牌销量下滑，自主品牌尚在爬坡，等待反转</td>
+</tr>
+<tr>
+  <td><strong>广汽集团</strong> 601238</td>
+  <td><span class="col-tag col-lose">④ROE&lt;5%</span> <span class="col-tag col-lose">⑤负债率~68%</span></td>
+  <td>传祺+埃安双线压力大，日系合资加速下滑</td>
+</tr>
+<tr>
+  <td><strong>江淮汽车</strong> 600418</td>
+  <td><span class="col-tag col-lose">④ROE~4%</span></td>
+  <td>与华为合作尊界品牌，关注后续订单</td>
+</tr>
+<tr>
+  <td><strong>均胜电子</strong> 600699</td>
+  <td><span class="col-tag col-lose">⑤负债率~68%</span></td>
+  <td>全球汽车安全龙头，营收规模大但负债偏高</td>
+</tr>
+<tr>
+  <td><strong>汇川技术</strong> 300124</td>
+  <td><span class="col-tag col-lose">③毛利率&lt;15%电控</span></td>
+  <td>实为工控+电控龙头，新能源车电控业务高速增长但拉低综合毛利率</td>
+</tr>
+</table>
+</div>
+
+<h2>筛除记录</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>筛子</th><th style="width:60px">筛除数</th><th>知名示例</th></tr>
+<tr><td>①市值</td><td style="text-align:center">~105</td><td>大量零部件小票、汽车服务公司，市值&lt;30亿</td></tr>
+<tr><td>②营收</td><td style="text-align:center">~50</td><td>微型零部件、汽车经销商、概念壳公司</td></tr>
+<tr><td>③毛利率 <span class="col-tag col-lose">最严</span></td><td style="text-align:center">~45</td><td>上汽集团、广汽集团、北汽蓝谷、零跑汽车、哪吒汽车、众泰汽车、海马汽车</td></tr>
+<tr><td>④ROE</td><td style="text-align:center">~20</td><td>赛力斯、江淮汽车、北汽蓝谷、亏损新势力</td></tr>
+<tr><td>⑤负债率</td><td style="text-align:center">~12</td><td>长城汽车、均胜电子、部分经销商</td></tr>
+<tr><td>⑥估值</td><td style="text-align:center">~3</td><td>少数PE分位偏高的小市值标的</td></tr>
+<tr style="background:#fffde7"><td><strong>剩余</strong></td><td style="text-align:center;font-weight:700;color:#2e7d32"><strong>25</strong></td><td>—</td></tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <strong>L7筛选结论</strong><br>
+  260→25，筛选力度很大（-90%）。最严厉的是毛利率筛（整车价格战导致大多数整车厂毛利率&lt;15%）和市值筛。通过筛选的核心标的分两类：①高壁垒零部件龙头——福耀玻璃（全球汽车玻璃~33%份额）、三花智控（热管理全球领先）、德赛西威（智驾龙头）、星宇股份（车灯国产替代）、拓普集团（平台化供应）；②整车唯一确定性标的——比亚迪（垂直一体化+规模效应护城河）。观察池核心看赛力斯（华为赋能盈利能否持续改善）和长城汽车（出海+坦克品牌表现）。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l8">
+<div class="tab-inner">
+
+<h2>产业链</h2>
+<div class="card" style="font-size:13px;line-height:1.7">
+
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px">
+
+<div style="flex:1.2;min-width:200px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#2e7d32;font-size:14px">上游原材料</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">钢材/铝材</div>
+    <div style="text-align:center;font-size:11px;color:#666">宝钢、南山铝业</div>
+    <div style="margin:8px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">电子元器件</div>
+    <div style="text-align:center;font-size:11px;color:#666">TI/英飞凌+国产替代(韦尔/兆易)</div>
+    <div style="margin:8px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">电池材料</div>
+    <div style="text-align:center;font-size:11px;color:#666">锂/钴/镍矿 → 正极/负极/隔膜/电解液</div>
+  </div>
+</div>
+
+<div style="flex:2;min-width:280px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#1565c0;font-size:14px">中游制造</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+
+    <div style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap">
+      <div style="flex:1;min-width:60px;background:#fff3e0;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">三电系统</div>
+        <div style="font-size:10px;color:#666">电池·电机·电控</div>
+      </div>
+      <div style="font-size:20px;color:#999;line-height:36px">→</div>
+      <div style="flex:1;min-width:60px;background:#e3f2fd;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">智驾系统</div>
+        <div style="font-size:10px;color:#666">芯片·算法·传感器</div>
+      </div>
+      <div style="font-size:20px;color:#999;line-height:36px">→</div>
+      <div style="flex:1;min-width:60px;background:#ffebee;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">整车制造</div>
+        <div style="font-size:10px;color:#666">冲压·焊装·涂装·总装</div>
+      </div>
+    </div>
+
+    <div style="margin:6px 0 4px;font-weight:600;font-size:12px;color:#1565c0">核心零部件</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">福耀玻璃<br><span style="font-size:10px;color:#666">汽车玻璃</span></div>
+      <div style="flex:1;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">星宇股份<br><span style="font-size:10px;color:#666">车灯</span></div>
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">拓普集团<br><span style="font-size:10px;color:#666">底盘+内饰</span></div>
+    </div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px">
+      <div style="flex:1;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">三花智控<br><span style="font-size:10px;color:#666">热管理</span></div>
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">德赛西威<br><span style="font-size:10px;color:#666">智驾域控</span></div>
+      <div style="flex:1;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">玲珑/赛轮<br><span style="font-size:10px;color:#666">轮胎</span></div>
+    </div>
+
+    <div style="margin:8px 0 4px;font-weight:600;font-size:12px;color:#1565c0">整车品牌</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px"><strong>比亚迪</strong><br><span style="font-size:10px;color:#666">新能源绝对龙头</span></div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">长安汽车<br><span style="font-size:10px;color:#666">自主品牌第二</span></div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">赛力斯<br><span style="font-size:10px;color:#666">华为智选</span></div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">长城汽车<br><span style="font-size:10px;color:#666">坦克+出海</span></div>
+    </div>
+  </div>
+</div>
+
+<div style="flex:1;min-width:160px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#c62828;font-size:14px">下游服务</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:8px 6px;text-align:center;font-weight:600;font-size:12px">汽车销售</div>
+    <div style="text-align:center;font-size:11px;color:#666">4S店·直营·经销商</div>
+    <div style="margin:8px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:8px 6px;text-align:center;font-weight:600;font-size:12px">后市场</div>
+    <div style="text-align:center;font-size:11px;color:#666">维保·保险·充电</div>
+    <div style="margin:8px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#f5f5f5;border:1px solid #ccc;border-radius:4px;padding:8px 6px;text-align:center;font-weight:600;font-size:12px">终端用户</div>
+  </div>
+</div>
+
+</div>
+
+<div style="background:#fffde7;border-left:3px solid #f9a825;padding:8px 12px;font-size:12px;border-radius:0 4px 4px 0">
+  <strong>利润最厚环节：</strong>汽车玻璃（福耀毛利率~34%）→ 车灯（星宇~24%）→ 热管理（三花~26%）
+  <br><span style="color:#999">整车端仅比亚迪盈利，其他整车厂价格战下盈利承压；零部件龙头凭借技术壁垒和全球份额获取稳定利润</span>
+</div>
+
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>环节</th><th>代表公司</th><th>毛利率</th><th>集中度</th><th>议价能力</th></tr>
+<tr>
+  <td><span class="col-tag col-win">整车（比亚迪）</span></td>
+  <td>比亚迪</td>
+  <td><span class="col-tag col-warn">~20%</span></td>
+  <td>CR3~35%新能源</td>
+  <td><span class="col-tag col-warn">中强</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-lose">整车（传统）</span></td>
+  <td>长安/长城/上汽/广汽</td>
+  <td><span class="col-tag col-lose">10-15%</span></td>
+  <td>CR5~45%</td>
+  <td><span class="col-tag col-lose">弱</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-win">汽车玻璃</span></td>
+  <td>福耀玻璃</td>
+  <td><span class="col-tag col-win">~34%</span></td>
+  <td>CR2~70%（全球）</td>
+  <td><span class="col-tag col-win">强</span></td>
+</tr>
+<tr style="background:#fafafa">
+  <td><span class="col-tag col-win">热管理</span></td>
+  <td>三花智控、银轮股份</td>
+  <td><span class="col-tag col-win">22-26%</span></td>
+  <td>CR3~50%（全球）</td>
+  <td><span class="col-tag col-win">强</span></td>
+</tr>
+<tr style="background:#fafafa">
+  <td><span class="col-tag col-win">智驾域控</span></td>
+  <td>德赛西威、经纬恒润</td>
+  <td><span class="col-tag col-win">20-22%</span></td>
+  <td>CR3~60%</td>
+  <td><span class="col-tag col-win">强</span></td>
+</tr>
+<tr style="background:#fafafa">
+  <td><span class="col-tag col-warn">车灯</span></td>
+  <td>星宇股份、华域</td>
+  <td><span class="col-tag col-win">~24%</span></td>
+  <td>CR2~55%</td>
+  <td><span class="col-tag col-warn">中强</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-warn">轮胎</span></td>
+  <td>赛轮轮胎、玲珑轮胎</td>
+  <td><span class="col-tag col-warn">23-27%</span></td>
+  <td>CR3~40%（全球）</td>
+  <td><span class="col-tag col-warn">中</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-warn">底盘/内饰</span></td>
+  <td>拓普集团、新泉股份</td>
+  <td><span class="col-tag col-warn">20-22%</span></td>
+  <td>分散</td>
+  <td><span class="col-tag col-warn">中</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-info">压铸</span></td>
+  <td>旭升、爱柯迪、文灿</td>
+  <td><span class="col-tag col-warn">20-28%</span></td>
+  <td>分散</td>
+  <td><span class="col-tag col-warn">中</span></td>
+</tr>
+</table>
+</div>
+
+<h2>市场规模</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">指标</th><th style="width:25%">数值</th><th>说明</th></tr>
+<tr><td><strong>TAM</strong>（总可触达市场）</td><td><span class="col-tag col-info" style="font-size:13px">全球~2.5万亿/年</span></td><td>全球年销~9000万辆×均价~3万美元，中国市场~3000万辆×~2万美元</td></tr>
+<tr><td><strong>新能源渗透率</strong></td><td><span class="col-tag col-info">~52%</span></td><td>中国市场，全球约~25%，仍有翻倍空间</td></tr>
+<tr><td><strong>近年增速</strong>（3年CAGR）</td><td><span class="col-tag col-warn">新能源+30%，整体+2%</span></td><td>新能源快速增长，传统车持续萎缩</td></tr>
+</table>
+</div>
+
+<h2>生命周期</h2>
+<div class="summary-box">
+  <strong><span class="col-tag col-warn" style="font-size:14px">转型洗牌期</span></strong><br>
+  判断依据：传统燃油车处于<strong>成熟衰退期</strong>（年销持续下降，合资品牌加速退出）；新能源车处于<strong>成长晚期→洗牌期</strong>（渗透率已过50%，增速从100%+放缓至30%+，价格战淘汰弱势品牌）；智能驾驶处于<strong>导入期→成长期</strong>（L2+搭载率~20%，城市NOA刚刚开始普及）。行业整体呈现"冰火两重天"——传统车企在失血，新能源车企在淘汰赛中拼杀，零部件龙头受益于国产替代和全球化。
+</div>
+
+<h2>增长驱动力</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动力</th><th>类型</th><th>可持续性</th><th>量化指标</th></tr>
+<tr>
+  <td>中国汽车出口全球化</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长（10年+）</span></td>
+  <td>出口量同比+30-50%，比亚迪/奇瑞/长城海外收入占比</td>
+</tr>
+<tr>
+  <td>智能化升级（L2+→L3→L4）</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长（10年+）</span></td>
+  <td>城市NOA搭载率、智驾域控出货量</td>
+</tr>
+<tr>
+  <td>新能源下沉市场渗透</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-warn">中（3-5年）</span></td>
+  <td>三四线城市新能源渗透率</td>
+</tr>
+<tr>
+  <td>国产替代（零部件）</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>车灯/传感器/芯片国产化率</td>
+</tr>
+<tr>
+  <td>以旧换新+消费刺激政策</td>
+  <td><span class="col-tag col-warn">周期</span></td>
+  <td><span class="col-tag col-lose">短（1-2年）</span></td>
+  <td>补贴力度、报废更新量</td>
+</tr>
+</table>
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l9">
+<div class="tab-inner">
+
+<h2>市场结构</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>市场结构类型</td>
+  <td>整车：<span class="col-tag col-lose">垄断竞争（20+品牌混战）</span>；零部件细分：<span class="col-tag col-win">寡头/龙头主导</span>（福耀玻璃全球CR2~70%）</td></tr>
+<tr>
+  <td>CR3（新能源整车）</td>
+  <td>比亚迪~35% + 吉利~10% + 长安~8% = CR3~53%（<span style="color:#2e7d32">↑集中</span>）</td></tr>
+<tr>
+  <td>格局象限</td>
+  <td>新能源整车：<span class="col-tag col-warn">淘汰赛</span>；传统整车：<span class="col-tag col-lose">衰退</span>；零部件龙头：<span class="col-tag col-win">稳定寡头</span></td></tr>
+<tr>
+  <td>新进入者威胁</td>
+  <td><span class="col-tag col-warn">中等偏大</span>（小米/华为跨界进入，造车门槛降低，但规模效应壁垒已形成）</td></tr>
+</table>
+</div>
+
+<h2>竞争壁垒</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>壁垒类型</th><th>强度</th><th>可持续性</th><th>具体表现</th></tr>
+<tr>
+  <td>规模+垂直一体化（比亚迪）</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>电池+电机+电控+IGBT+整车全自制，成本优势行业领先，年销~400万辆规模效应显著</td>
+</tr>
+<tr>
+  <td>全球品牌+渠道（福耀/赛轮）</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>福耀全球汽车玻璃~33%份额，全球建厂+主机厂认证需5-8年</td>
+</tr>
+<tr>
+  <td>技术壁垒（德赛/三花）</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>德赛智驾域控国内份额第一，三花热管理全球领先，但技术迭代快</td>
+</tr>
+<tr>
+  <td>客户粘性+认证壁垒</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>车灯/制动/安全等零部件认证周期2-3年，定点后5-8年供货周期</td>
+</tr>
+<tr>
+  <td>品牌+渠道（整车）</td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>比亚迪品牌已建立心智，但新势力/跨界玩家品牌壁垒仍在建设中</td>
+</tr>
+</table>
+</div>
+
+<div class="summary-box">
+  <strong>定价权测试</strong><br>
+  🔹 龙头能涨价吗？<strong>整车不能</strong>（价格战激烈，任何涨价都会丢失份额）／ <strong>福耀能</strong>（全球寡头地位+高认证壁垒，价格平稳）<br>
+  🔹 毛利率趋势：整车持续承压（2022年20%→2026年10-15%），福耀稳定（33-35%），三花/星宇稳定略降，德赛因智驾渗透率提升毛利率逆势提升<br>
+  🔹 ROE趋势：比亚迪15%保持良好，福耀18%稳定，零部件12-16%健康，传统整车&lt;8%恶化
+</div>
+
+<h2>驱动力拆解</h2>
+<div class="highlight-box">
+  <strong>行业收入公式</strong><br>
+  收入 = 汽车销量(万辆) × 单车均价(万元) + 零部件ASP × 配套量<br><br>
+  当前组合（整车）：<span style="color:#2e7d32;font-weight:700">量 ↑</span>（新能源+出口增长） ＋ <span style="color:#c62828;font-weight:700">价 ↓</span>（价格战+结构下移） ＝ <span class="col-tag col-warn">以价换量</span><br>
+  当前组合（零部件）：<span style="color:#2e7d32;font-weight:700">量 ↑</span>（国产替代+全球扩张） ＋ <span style="color:#2e7d32;font-weight:700">价 →</span>（价格稳定） ＝ <span class="col-tag col-win">量价齐升或量稳利增</span>
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动因子</th><th>最新值</th><th>历史区间</th><th>当前分位</th></tr>
+<tr>
+  <td>中国汽车年销量（万辆）</td>
+  <td><span class="col-tag col-win">~3000</span></td>
+  <td>2000-3100</td>
+  <td><span class="col-tag col-win">95%</span></td>
+</tr>
+<tr>
+  <td>新能源渗透率</td>
+  <td><span class="col-tag col-win">~52%</span></td>
+  <td>5-52%</td>
+  <td><span class="col-tag col-win">100%</span></td>
+</tr>
+<tr>
+  <td>汽车出口量（万辆）</td>
+  <td><span class="col-tag col-win">~600</span></td>
+  <td>100-600</td>
+  <td><span class="col-tag col-win">100%</span></td>
+</tr>
+<tr>
+  <td>行业库存系数</td>
+  <td><span class="col-tag col-warn">1.5-1.8</span></td>
+  <td>1.0-2.5</td>
+  <td><span class="col-tag col-warn">60%</span></td>
+</tr>
+<tr>
+  <td>L2+智驾搭载率</td>
+  <td><span class="col-tag col-info">~20%</span></td>
+  <td>0-20%</td>
+  <td><span class="col-tag col-info">低潜力</span></td>
+</tr>
+<tr>
+  <td>整车平均毛利率</td>
+  <td><span class="col-tag col-lose">~13%</span></td>
+  <td>12-25%</td>
+  <td><span class="col-tag col-lose">20%</span></td>
+</tr>
+</table>
+</div>
+
+<h2>成本结构</h2>
+<div class="summary-box">
+  🔹 <strong>类型：</strong>整车——<span class="col-tag col-lose">重资产</span>（工厂+模具+研发投入大，折旧压力大）；零部件——<span class="col-tag col-info">中资产</span>（部分自动化产线重，但轻于整车）<br>
+  🔹 <strong>成本敏感性：</strong>整车营收±10% → 利润±50-80%（高经营杠杆，固定成本占比高）；零部件利润弹性略小<br>
+  🔹 <strong>盈亏平衡点：</strong>新能源整车厂需年销~30万辆才能盈亏平衡（比亚迪已超，大部分新势力&lt;15万辆仍在亏损）；零部件龙头产能利用率&gt;70%即可盈利
+</div>
+
+<h2>竞争格局总结</h2>
+<div class="highlight-box">
+  汽车行业正经历<strong>"去弱留强"</strong>的淘汰赛——整车端20+品牌混战，2024-2026价格战已淘汰威马、天际、爱驰等品牌，哪吒/零跑/北汽蓝谷仍在生死线挣扎。比亚迪凭借垂直一体化+年销400万辆的规模效应筑起成本护城河，是目前整车端最确定的标的。长城靠坦克+出口稳住基本盘，赛力斯靠华为赋能实现快速放量但尚未盈利。<br><br>
+  零部件端机会更确定：福耀玻璃（全球33%份额+海外产能扩张）、三花智控（热管理全球龙头+机器人第二曲线）、德赛西威（智驾域控国内第一）、星宇股份（车灯国产替代龙头）均处于"国产替代+全球扩张"的双击轨道。零部件竞争的核心逻辑是<strong>"技术壁垒+客户粘性+全球布局"</strong>，符合这三个条件的龙头将穿越整车价格战的周期。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l10">
+<div class="tab-inner">
+
+<h2>周期位置</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>库存周期阶段</td>
+  <td><span class="col-tag col-warn">价格战中期</span>（2024年启动，已持续2年+，进入后半段但未结束）</td>
+</tr>
+<tr>
+  <td>产能利用率</td>
+  <td><span class="col-tag col-warn">整车~60-70%</span>（传统车产能闲置严重，新能源车~70-80%）、零部件~75-85%（龙头接近满产）</td></tr>
+<tr>
+  <td>产品价格趋势</td>
+  <td>整车均价<span class="col-tag col-lose">↓持续下降</span>（新能源价格战每月都在降），零部件<span class="col-tag col-info">→小幅年降3-5%</span>（正常年降范围）</td></tr>
+<tr>
+  <td>行业盈利状态</td>
+  <td><span class="col-tag col-lose">整车普遍亏损</span>（除比亚迪外），<span class="col-tag col-win">零部件龙头盈利稳定</span>（福耀/三花/星宇/拓普利润率健康）</td></tr>
+</table>
+</div>
+
+<div class="danger-box">
+  <strong>⚠ PE悖论检查</strong><br>
+  传统整车厂（上汽/广汽）：当前PE为10-15x，看似便宜，但这是盈利下滑后的PE——未来盈利可能进一步恶化，PE反而会变高<br>
+  比亚迪PE 20-25x：历史中低分位，但市场担忧价格战侵蚀利润<br>
+  零部件（福耀/三花/星宇）：PE 20-25x，处于历史中低分位，盈利稳定，估值合理<br>
+  <strong>警告：</strong>整车PE低≠便宜——传统车企的资产和品牌价值正在被新能源车侵蚀。真正便宜的可能是零部件龙头，有稳定的业绩增长支撑估值。
+</div>
+
+<h2>估值水平</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>估值指标</th><th>行业当前</th><th>历史中位数</th><th>80%分位</th><th>20%分位</th></tr>
+<tr>
+  <td><strong>PE</strong>（比亚迪/整车）</td>
+  <td><span class="col-tag col-info">20-25x</span></td>
+  <td>30-40x</td>
+  <td>60x+</td>
+  <td>20x</td>
+</tr>
+<tr>
+  <td><strong>PE</strong>（零部件龙头）</td>
+  <td><span class="col-tag col-info">20-25x</span></td>
+  <td>25-35x</td>
+  <td>45x+</td>
+  <td>18x</td>
+</tr>
+<tr>
+  <td><strong>PB</strong>（传统整车）</td>
+  <td><span class="col-tag col-lose">0.5-0.8x</span></td>
+  <td>1.0-1.5x</td>
+  <td>2.0x</td>
+  <td>0.5x</td>
+</tr>
+<tr>
+  <td><strong>PE</strong>（亏损新势力）</td>
+  <td><span class="col-tag col-lose">N/A（亏损）</span></td>
+  <td>—</td>
+  <td>—</td>
+  <td>—</td>
+</tr>
+</table>
+</div>
+
+<h2>政策环境</h2>
+<div class="summary-box">
+  🔹 <strong>政策方向：</strong><span class="col-tag col-win">中长期利好</span>（新能源支持+以旧换新+智驾法规加速）<br>
+  🔹 <strong>关键政策：</strong><br>
+  &emsp;• 新能源购置税减免延续至2027年（稳定需求预期）<br>
+  &emsp;• 以旧换新补贴2024-2026（国补+地方补贴，带动~200万辆增量）<br>
+  &emsp;• L3/L4智能驾驶法规加速推进（2025年试点城市扩大，2026年有望全国推广）<br>
+  &emsp;• 欧盟反补贴关税（短期利空出口，中长期倒逼海外建厂）<br>
+  &emsp;• 双积分政策收紧（加速油车退出）<br>
+  🔹 <strong>政策周期位置：</strong><span class="col-tag col-win">友好期</span>（政策全面支持新能源和智能化，传统车自然淘汰）
+</div>
+
+<h2>买入清单</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:28%">条件</th><th style="width:16%">结果</th><th>备注</th></tr>
+<tr>
+  <td>周期位置：不在繁荣顶点</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>价格战中期，接近底部但未结束</td>
+</tr>
+<tr>
+  <td>估值：PB/PE在历史偏低分位</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>整车PE中低分位，零部件PE合理偏低</td>
+</tr>
+<tr>
+  <td>政策：不是收紧期</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>政策全面友好，新能源+智驾双重利好</td>
+</tr>
+<tr>
+  <td>格局：龙头壁垒稳固</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td>零部件龙头壁垒稳固，整车格局仍在淘汰赛中</td>
+</tr>
+<tr>
+  <td>增长：有可见驱动力</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>出口+智能化+国产替代三大驱动力明确</td>
+</tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <div style="font-size:16px;font-weight:700;margin-bottom:8px">综合判断：<span class="col-tag col-win" style="font-size:15px">买入（精选）</span></div>
+  <div style="margin-bottom:6px">不是整车的最佳买入时机（价格战未结束），但零部件龙头已进入布局窗口</div>
+  <table style="font-size:12px;margin:6px 0;border:none;background:transparent">
+    <tr><td style="border:none;padding:3px 6px;background:transparent;width:90px;font-weight:600">预期回报</td><td style="border:none;padding:3px 6px;background:transparent">零部件龙头：业绩增长15-20% CAGR + 估值修复 → 年化20-30%；比亚迪：价格战结束后的盈利修复</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">仓位建议</td><td style="border:none;padding:3px 6px;background:transparent"><span class="col-tag col-win">零部件龙头：不超过组合25%</span>（确定性高，分批建仓）；<span class="col-tag col-warn">比亚迪：不超过组合15%</span>（价格战不确定性）</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">跟踪指标</td><td style="border:none;padding:3px 6px;background:transparent">新能源月度渗透率·出口量·行业库存系数·整车ASP变化·零部件龙头毛利率</td></tr>
+  </table>
+  <div style="margin-top:8px;padding:8px;background:#e8f5e9;border-radius:4px;font-size:12px">
+    <strong>买入策略：</strong><br>
+    <span class="col-tag col-win">零部件龙头</span>（福耀/三花/德赛/星宇/拓普）：PE 20-25x合理偏低，业绩增长确定，分批建仓<br>
+    <span class="col-tag col-warn">比亚迪</span>：等待价格战缓和信号或PE回调至18x以下时建仓<br>
+    <span class="col-tag col-lose">传统整车</span>（上汽/广汽）：不碰，资产价值持续被侵蚀<br>
+    <span class="col-tag col-info">赛力斯</span>：观察盈利拐点，月销持续增长+毛利率转正后可考虑
+  </div>
+</div>
+
+<h2>卖出信号</h2>
+<div class="danger-box">
+  <strong>出现以下信号考虑卖出：</strong><br>
+  <div style="margin-top:6px">
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px">1</span>
+    零部件龙头毛利率连续两季下降超过3个百分点（年降压力超预期，或客户降价压力传导）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">2</span>
+    比亚迪新能源市场份额跌破25%（竞争对手加速侵蚀，护城河被突破）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">3</span>
+    欧盟/美国对中国汽车关税大幅加征至25%+（出口逻辑被严重破坏）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">4</span>
+    智驾法规推进低于预期或出现重大安全事故导致法规收紧（智驾渗透率逻辑被打破）
+  </div>
+</div>
+
+</div>
+</div>
+
+<div class="footer">Generated by Industry Analysis · L7-L10 Framework · Stock Selection</div>
+
+</div>
+
+<script>
+var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+var contents = document.querySelectorAll('.tab-content');
+btns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    contents.forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    var tab = btn.getAttribute('data-tab');
+    document.getElementById('tab-' + tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
