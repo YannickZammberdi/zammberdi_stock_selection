@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>振华科技(000733) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>振华科技（000733）财务分析报告</h1>
+<p class="subtitle">基于 L1-L6 框架（财务三表+关键指标+估值+杜邦+行业分类+综合实战）</p>
+<p class="meta">分析日期：2026-07-20 | 数据来源：FY2025 年报 + 2026Q1 季报 + 券商研报 + 东方财富 + 理杏仁</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>中国振华（集团）科技股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>000733.SZ</td></tr>
+  <tr><td>所属行业</td><td>军工电子元器件（半导体分立器件+片式元器件+叠层电感器+电阻电容）</td></tr>
+  <tr><td>行业分类（L5）</td><td><strong>非周期股（成长型）</strong> — 国内特种电子元器件核心供应商，军工电子龙头</td></tr>
+  <tr><td>行业地位</td><td>国内特种电子元器件核心供应商，军工电子元器件龙头之一，CEC旗下核心军工平台</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>57.55 亿（+10.26%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>10.25 亿（+5.69%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>13.94 亿（-12.90%）</strong></td></tr>
+  <tr><td>总资产</td><td>192.80 亿</td></tr>
+  <tr><td>归母净资产</td><td>157.45 亿</td></tr>
+  <tr><td>ROE</td><td>6.74%</td></tr>
+  <tr><td>2026Q1 净利润</td><td><strong class="bad">0.16 亿（-72.81%）</strong></td></tr>
+</table>
+
+<p style="font-size:13px;color:#666;margin-bottom:4px">行业类型：<strong>非周期股（成长型）</strong>。军工电子属于国防军工大行业中的成长性子赛道，受益于装备信息化/现代化+国产替代+十五五规划，长期成长逻辑清晰。采用<strong>非周期股评分体系</strong>。</p>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">采用<strong>非周期股评分体系</strong>，综合L1-L5所有因素打分</p>
+<table>
+  <tr><th style="width:24%">维度</th><th style="width:8%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="bad" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">6.74%（≥5%但<10%），2024-2025年处于行业订单调整期，ROE从2021-2023年的22-28%大幅回落</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">高利润型（净利率17.82%+毛利率45.95%），几乎零杠杆（权益乘数1.225），ROE完全靠利润驱动，模式健康</td></tr>
+  <tr><td>利润含金量（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">CFO/净利=1.36（≥1.0），经营现金流持续好于净利润，利润含金量高</td></tr>
+  <tr><td>营收增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+10.26%（≥10%），FY2025营收恢复增长，结束FY2024的-33%下滑</td></tr>
+  <tr><td>利润增长（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">+5.69%（≥5%但<15%），利润恢复但增速弱于营收，毛利率持续下滑侵蚀利润</td></tr>
+  <tr><td>负债率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">18.34%（<40%），几乎零有息负债，全A股负债率最低的公司之一</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">货币资金37.9亿，几乎零短期借款，充裕覆盖</td></tr>
+  <tr><td>毛利率水平与趋势（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">45.95%（≥10%但<15%且稳定档）— 绝对水平高但趋势向下（62%→46%），军工电子降价压力持续</td></tr>
+  <tr><td>估值PE vs 合理区间（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">PE~25x vs 合理区间15-25x（基于ROE 6.7%，但考虑历史均值23%+应有溢价），略偏高<30%</td></tr>
+  <tr><td>FCF（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">CFO 13.94亿持续为正，轻资产模式CAPEX低，FCF稳定为正</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">78/100</td><td style="text-align:left">一般关注（78/100）——核心优势：几乎零负债+高利润含金量+现金流强劲；核心短板：ROE偏低+毛利率持续下滑+2026Q1业绩骤降</td></tr>
+</table>
+
+<div class="verdict verdict-caution">一般关注（78/100）</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>振华科技是国内特种电子元器件龙头，军工信息化+国产替代的核心标的。FY2025营收恢复增长（+10.26%），摆脱了FY2024的-33%大幅下滑，但毛利率从59%持续下滑至46%，反映军品降价压力。财务结构极其健康——负债率仅18.34%、货币资金37.9亿、CFO/净利1.36，是A股财务最扎实的公司之一。但2026Q1净利润暴降72.8%（仅0.16亿），说明十四五末订单调整期的冲击仍在持续。当前PE~25x对于6.7%的ROE来说估值不便宜，但考虑到公司历史ROE中枢20%+的盈利能力，溢价有一定合理性。核心矛盾在于：十五五开启后订单能否恢复？毛利率能否企稳？<br><br>
+  <strong>核心优势：</strong>① 负债率仅18.34%，几乎零有息负债，财务极其健康——军工电子行业"轻资产+高毛利"的商业模式优越；② CFO/净利1.36，利润含金量极高，经营现金流持续强劲；③ 军工电子元器件赛道天然垄断（资质+认证壁垒），国产替代+信息化+十五五规划三重驱动；④ 子公司振华永光（半导体分立器件）净利率35.6%、振华云科24.8%、振华富26.2%，底层资产质量优秀。<br><br>
+  <strong>核心风险：</strong>① 毛利率连续三年下滑（62%→46%），军品降价压力持续——FY2025营收+10%但毛利仅+1%，增收不增利；② 2026Q1净利润仅0.16亿（-72.8%），十四五末订单青黄不接，2026年全年业绩可能显著低于预期；③ 应收账款49.85亿（占营收87%），回款周期长，坏账风险随军改推进而上升；④ 研发费用连续缩减（4.4亿→3.3亿），在技术快速迭代的军工电子领域可能影响长期竞争力。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td><strong>57.55 亿</strong></td><td>52.19 亿</td><td>+10.26%</td><td class="good">✅ 恢复增长</td></tr>
+  <tr><td>归母净利润</td><td><strong>10.25 亿</strong></td><td>9.70 亿</td><td>+5.69%</td><td class="neutral">⚠ 低速增长</td></tr>
+  <tr><td>扣非净利润</td><td><strong>9.45 亿</strong></td><td>8.38 亿</td><td>+12.80%</td><td class="good">✅ 经营改善</td></tr>
+  <tr><td>毛利率</td><td class="bad"><strong>45.95%</strong></td><td>49.70%</td><td>-3.75pct</td><td class="bad">❌ 持续下滑</td></tr>
+  <tr><td>归母净利率</td><td><strong>17.82%</strong></td><td>18.60%</td><td>-0.78pct</td><td class="bad">❌ 略降</td></tr>
+  <tr><td>期间费用率</td><td><strong>~23.5%</strong></td><td>~25.8%</td><td>-2.3pct</td><td class="good">✅ 费用控制改善</td></tr>
+  <tr><td>研发费用率</td><td><strong>5.68%</strong></td><td>6.88%</td><td>-1.20pct</td><td class="bad">❌ 研发投入缩减</td></tr>
+  <tr><td>2026Q1 营收</td><td class="bad"><strong>8.37 亿</strong></td><td>9.08 亿</td><td>-7.86%</td><td class="bad">❌ 再次下滑</td></tr>
+  <tr><td>2026Q1 净利润</td><td class="bad"><strong>0.16 亿</strong></td><td>0.59 亿</td><td><strong>-72.81%</strong></td><td class="bad">❌ 骤降</td></tr>
+  <tr><td>2026Q1 毛利率</td><td class="bad"><strong>39.96%</strong></td><td>45.91%</td><td>-5.95pct</td><td class="bad">❌ 继续恶化</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>FY2025营收恢复增长（+10.26%），结束了FY2024因军工订单调整导致的-33%大幅下滑。但毛利率从49.70%降至45.95%，连续第三年下滑（峰值62%），主因军品降价+产品结构变化。扣非净利润+12.80%跑赢营收增速，说明费用控制有所改善。但2026Q1数据极其疲弱——营收-7.86%、净利润-72.81%、毛利率降至39.96%，十五五过渡期的订单断层冲击远超预期。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td><strong>37.87 亿</strong></td><td>—</td><td class="good">✅ 充裕</td></tr>
+  <tr><td>应收账款</td><td><strong>49.85 亿</strong></td><td>—</td><td class="bad">❌ 占营收86.6%</td></tr>
+  <tr><td>存货</td><td><strong>~20 亿（估算）</strong></td><td>—</td><td class="neutral">⚠ 正常水平</td></tr>
+  <tr><td>短期借款</td><td><strong>几乎为0</strong></td><td>—</td><td class="good">✅ 零短期负债</td></tr>
+  <tr><td>长期借款</td><td><strong>几乎为0</strong></td><td>—</td><td class="good">✅ 零长期负债</td></tr>
+  <tr><td>资产负债率</td><td class="good"><strong>18.34%</strong></td><td>~18.3%</td><td class="good">✅ 极低</td></tr>
+  <tr><td>归母净资产</td><td class="good"><strong>157.45 亿</strong></td><td>147.49 亿</td><td class="good">✅ 持续增厚</td></tr>
+  <tr><td>总资产</td><td><strong>192.80 亿</strong></td><td>180.62 亿</td><td class="neutral">稳步增长</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>振华科技的资产负债表堪称"教科书级的健康"。负债率仅18.34%，几乎零有息负债（短期借款≈0、长期借款≈0），货币资金37.87亿远超过所有负债。净资产157.45亿占总资产81.66%，是A股中少见的"净现金公司"。唯一的瑕疵是应收账款49.85亿（占营收86.6%），军工行业回款周期长的特征使然。存货约20亿，考虑到军工备货属性，风险可控。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td class="good"><strong>13.94 亿</strong></td><td>16.01 亿</td><td class="neutral">⚠ 小幅下降</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><strong>约-2 亿（估）</strong></td><td>—</td><td class="good">✅ 轻资产低CAPEX</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td><strong>约-4 亿（估）</strong></td><td>—</td><td class="good">✅ 分红支付</td></tr>
+  <tr><td>CFO/净利润</td><td class="good"><strong>1.36</strong></td><td>1.65</td><td class="good">✅ 含金量高</td></tr>
+  <tr><td>自由现金流（FCF）</td><td class="good"><strong>约+12 亿</strong></td><td>—</td><td class="good">✅ 持续为正</td></tr>
+  <tr><td>年度分红</td><td><strong>每10股派3.86元（共约2.14亿）</strong></td><td>—</td><td class="neutral">⚠ 分红率~21%</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>现金流解读：</strong>CFO 13.94亿/净利润10.25亿=1.36，利润含金量极高，说明公司的"纸面利润"几乎全部转化为真金白银。轻资产模式（军工电子元器件制造）使得CAPEX需求极低（年约2亿），FCF约+12亿非常充裕。这是振华科技最核心的吸引力之一——军工电子是"高毛利率+轻资产+强现金流"的优质商业模式，远优于主机厂（重资产+低毛利）和材料厂（高CAPEX）。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td class="bad"><strong>6.74%</strong></td><td>> 15% 优秀 / > 10% 及格</td><td class="bad">❌ 偏低</td></tr>
+  <tr><td>毛利率</td><td class="good"><strong>45.95%</strong></td><td>稳定或提升</td><td class="bad">❌ 趋势向下</td></tr>
+  <tr><td>净利率</td><td class="good"><strong>17.82%</strong></td><td>> 10%</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>营收增长率</td><td class="good"><strong>+10.26%</strong></td><td>> 10%</td><td class="good">✅ 恢复增长</td></tr>
+  <tr><td>利润增长率</td><td class="neutral"><strong>+5.69%</strong></td><td>正增长</td><td class="neutral">⚠ 低速</td></tr>
+  <tr><td>CFO/净利润</td><td class="good"><strong>1.36</strong></td><td>> 1</td><td class="good">✅ 含金量高</td></tr>
+  <tr><td>资产负债率</td><td class="good"><strong>18.34%</strong></td><td>制造业<60%</td><td class="good">✅ 极低</td></tr>
+  <tr><td>分红率</td><td class="neutral"><strong>~21%</strong></td><td>持续高分红</td><td class="neutral">⚠ 中等水平</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>关键指标总结：</strong>8项指标5项达标、3项不达标。净利率（17.82%）、CFO/净利（1.36）、负债率（18.34%）三项表现极其优秀，属于全A股Top 5%水平。ROE仅6.74%和毛利率趋势向下是主要短板，但ROE偏低主要是因为2024-2025年军工订单调整期的异常低点——2021-2023年ROE均值24.6%，正常化后有望回到12-18%区间。
+</div>
+
+<h3>3.2 分业务分析（FY2025）</h3>
+<table>
+  <tr><th>业务板块</th><th>营收（亿）</th><th>占比</th><th>同比</th><th>评价</th></tr>
+  <tr><td>新型电子元器件</td><td>57.10</td><td>99.22%</td><td>+10.30%</td><td class="good">✅ 核心业务恢复</td></tr>
+  <tr><td>现代服务业（其他）</td><td>0.45</td><td>0.78%</td><td>+5.54%</td><td class="neutral">可忽略</td></tr>
+</table>
+
+<p style="font-size:13px;color:#666;margin-bottom:8px">主要子公司表现：振华永光（半导体分立器件）营收14.1亿+13.4%、净利5.0亿、净利率35.6%；振华云科（片式元器件）营收6.4亿-3.3%、净利1.6亿、净利率24.8%；振华富（叠层电感器）营收5.8亿+5.1%、净利1.5亿+21.0%、净利率26.2%。</p>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>振华科技99%+营收来自新型电子元器件，核心子公司盈利能力极其出色——振华永光（半导体分立器件）净利率35.6%、振华富（叠层电感器）净利率26.2%、振华云科（片式元器件）净利率24.8%。三家子公司合计贡献净利润约8.1亿，占归母净利的79%。这种"高利润型"商业模式的根源在于：军工电子元器件需要长期认证+极高的可靠性要求，形成天然的技术+资质壁垒。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="bad">🔴 高</td><td>毛利率连降三年（62%→46%）</td><td>军品降价压力持续，FY2025营收+10%但毛利润仅+2%，增收不增利</td></tr>
+  <tr><td class="bad">🔴 高</td><td>2026Q1业绩骤降（净利-72.8%）</td><td>十四五末订单青黄不接，营收-7.86%+毛利率降至39.96%=净利仅0.16亿</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>应收账款49.85亿（占营收86.6%）</td><td>军工回款周期长（通常1-2年），但集中计提坏账的风险始终存在</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>研发费用连续缩减（4.4亿→3.3亿）</td><td>研发费用率从6.9%降至5.7%，在军工电子技术快速迭代期可能影响长期竞争力</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>十五五订单节奏不确定</td><td>2026年为十四五→十五五过渡年，新订单释放节奏不明朗</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>ROE偏低（6.74%）叠加高PE（25x）</td><td>估值与盈利能力不匹配——若ROE不能恢复至10%+，当前估值偏贵</td></tr>
+  <tr><td class="good">🟢 正面</td><td>资产负债率仅18.34%，几乎零负债</td><td>A股极少数净现金公司，财务风险极低</td></tr>
+  <tr><td class="good">🟢 正面</td><td>CFO/净利1.36，利润含金量极高</td><td>经营现金流持续强劲，自由现金流充裕</td></tr>
+  <tr><td class="good">🟢 正面</td><td>核心子公司盈利能力优秀（净利率25-36%）</td><td>振华永光/振华富/振华云科三家核心子公司的资产质量极高</td></tr>
+  <tr><td class="good">🟢 正面</td><td>军工电子赛道壁垒高、格局好</td><td>资质认证周期长（3-5年），竞争格局稳定，受益于装备信息化率提升</td></tr>
+</table>
+
+<div class="verdict verdict-caution">⚠ L2综合判定：财务安全性顶级（负债率+CFO）但盈利趋势偏弱（毛利率下滑+ROE低位），核心矛盾是订单周期</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>股价（2026.7.20）</td><td><strong>~47 元</strong></td><td>总股本5.54亿股</td></tr>
+  <tr><td>总市值</td><td><strong>~261 亿</strong></td><td>—</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>~25.4x</strong></td><td>基于EPS 1.85元</td></tr>
+  <tr><td>PE（TTM扣非）</td><td><strong>~27.6x</strong></td><td>基于扣非EPS 1.71元</td></tr>
+  <tr><td>PE（2026E）</td><td><strong>~35-40x</strong></td><td>基于2026Q1骤降，全年EPS预估1.2-1.4元</td></tr>
+  <tr><td>PB</td><td><strong>~1.66x</strong></td><td>基于每股净资产28.41元（2026Q1）</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~4.5x</strong></td><td>基于营收57.55亿</td></tr>
+  <tr><td>PCF</td><td><strong>~18.7x</strong></td><td>基于CFO 13.94亿</td></tr>
+  <tr><td>股息率</td><td><strong>~0.81%</strong></td><td>基于每股分红0.386元</td></tr>
+</table>
+
+<h3>4.2 PE Band估值（非周期股）</h3>
+<p style="font-size:13px;color:#666;">合理PE取值参考：ROE 6.74%→合理PE<10x，但公司历史ROE中枢20%+且军工电子赛道有稀缺性溢价。综合考虑，合理区间15-25x。</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs现价47元</th></tr>
+  <tr><td>悲观（订单持续低迷）</td><td>15x</td><td>27.8 元</td><td class="bad">-41%</td></tr>
+  <tr><td>保守（订单温和恢复）</td><td>20x</td><td>37.0 元</td><td class="bad">-21%</td></tr>
+  <tr><td>中性（十五五正常启动）</td><td>25x</td><td>46.3 元</td><td class="neutral">≈ 现价</td></tr>
+  <tr><td><strong>当前价</strong></td><td><strong>~25.4x</strong></td><td><strong>47.0 元</strong></td><td><strong>—</strong></td></tr>
+  <tr><td>券商目标价（2026E）</td><td>~30x</td><td>55.5 元</td><td class="good">+18%</td></tr>
+  <tr><td>历史高位（2021-2022均值）</td><td>~50x</td><td>92.5 元</td><td class="good">+97%</td></tr>
+</table>
+
+<h3>4.3 历史PE区间</h3>
+<table>
+  <tr><th>指标</th><th>数值</th></tr>
+  <tr><td>PE（TTM）近5年最大值</td><td>~95x（2021年）</td></tr>
+  <tr><td>PE（TTM）80%分位</td><td>~42x</td></tr>
+  <tr><td>PE（TTM）50%分位（中值）</td><td>~30x</td></tr>
+  <tr><td>PE（TTM）20%分位</td><td>~15x</td></tr>
+  <tr><td>PE（TTM）近5年最小值</td><td>~8.96x（2024年利润低谷）</td></tr>
+  <tr><td><strong>当前PE（TTM）</strong></td><td class="neutral"><strong>~25.4x（10年~27%分位，5年~44%分位）</strong></td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值总结：</strong>振华科技当前PE~25.4x，处于近5年约44%分位、近10年约27%分位，属于中等偏低水平。考虑到（1）ROE处于6.7%的周期低点（非正常水平）；（2）公司现金含量极高（每股净现金约5元）；（3）军工电子赛道壁垒高、确定性强的属性，当前估值不算贵。但2026Q1业绩骤降使2026年动态PE可能升至35-40x，短期估值压力明显。核心判断：如果十五五规划在2027年如期启动订单恢复，当前PE 25x可能是中期底部；如果订单持续低迷，PE可能向15-20x下修。PB 1.66x处于10年约65%分位，对于一家18%负债率的净现金公司来说也不贵。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>归母净利率</td><td>34.42%</td><td>18.60%</td><td><strong>17.82%</strong></td><td class="bad">⬇ 大幅下降后趋稳</td></tr>
+  <tr><td>资产周转率（次）</td><td>0.43</td><td>0.29</td><td><strong>0.30</strong></td><td class="bad">⬇ 大幅下降</td></tr>
+  <tr><td>权益乘数</td><td>1.25</td><td>1.22</td><td><strong>1.22</strong></td><td class="good">➡ 极低且稳定</td></tr>
+  <tr><td><strong>ROE</strong></td><td><strong>23.57%</strong></td><td class="bad"><strong>6.69%</strong></td><td class="bad"><strong>6.74%</strong></td><td class="bad">⬇ 大幅回落后企稳</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>14.90%</td><td>5.38%</td><td><strong>5.33%</strong></td><td class="bad">⬇ 大幅下降</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>8.67%</td><td>1.31%</td><td><strong>1.41%</strong></td><td class="bad">⬇ 杠杆贡献极小</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：纯高利润型——几乎零杠杆，ROE完全靠净利率驱动</strong><br>
+  振华科技是A股最典型的"高利润型"公司之一。FY2025 ROE=6.74%的拆解：净利率17.82%（高）× 周转率0.30（低）× 权益乘数1.22（极低）。去掉杠杆后ROA=5.33%（几乎等于ROE），说明杠杆几乎不贡献回报——公司的每1元总资产每年产生约5.3分钱的净利润，全部来自经营利润而非杠杆放大。<br><br>
+  <strong>与高峰期对比（FY2023）：</strong>净利率34.42%（更高毛利率+更高规模效应）→ 周转率0.43（营收规模更大/资产规模更小）→ ROE 23.57%。ROE从23.57%降到6.74%，主因是净利率下降（34%→18%）和周转率下降（0.43→0.30）。净利率下降是因为军品降价+固定成本摊薄不足，周转率下降是因为营收萎缩+资产仍在扩张。
+</div>
+
+<h3>5.2 资产回报效率</h3>
+<table>
+  <tr><th>指标</th><th>振华科技</th><th>中航光电</th><th>紫光国微</th><th>评价</th></tr>
+  <tr><td>去杠杆ROA</td><td><strong>5.33%</strong></td><td>~4.7%</td><td>~8.5%</td><td class="neutral">行业中等</td></tr>
+  <tr><td>每1元资产创净利</td><td><strong>0.053 元</strong></td><td>~0.047 元</td><td>~0.085 元</td><td class="neutral">低于紫光国微</td></tr>
+  <tr><td>ROE</td><td><strong>6.74%</strong></td><td>9.16%</td><td>11.10%</td><td class="neutral">行业偏低</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>核心结论：</strong><br>
+  ① 振华科技的商业模式是纯高利润型——毛利率46%+净利率18%，几乎零杠杆，财务结构极其健康；<br>
+  ② ROE偏低（6.74%）的核心原因不是商业模式有问题，而是（1）营收规模远低于产能峰值导致周转率低（0.30）；（2）军品降价压制净利率。一旦十五五订单恢复，ROE有望修复至12-18%；<br>
+  ③ 权益乘数1.22（=几乎零负债）是一把双刃剑——极端安全但牺牲了杠杆对ROE的放大作用。对于"追求绝对安全"的投资者，这是优点；对于"追求高ROE"的投资者，这是缺点；<br>
+  ④ 与同行对比：振华科技的净利率（17.82%）显著高于中航光电（10.99%），但ROE（6.74%）低于中航光电（9.16%），主因是中航光电运用了适度杠杆（负债率~43%）放大ROE。紫光国微的ROE最高（11.10%），得益于更高的净利率（23.37%）和更快的周转。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与特征（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：成长型（军工电子元器件）</strong><br>
+  <strong>判断依据：</strong>军工电子属于国防军工大行业中的成长性子赛道，具备显著的成长性特征。<br><br>
+  <strong>成长性：</strong>（1）装备信息化率持续提升——现代化战争对电子系统的依赖度越来越高，军工电子占装备价值量的比例从20%向40%+提升；（2）国产替代——高端军用芯片/元器件国产化是国家安全刚需；（3）十五五规划预期——2027年新一轮装备采购周期启动。<br><br>
+  <strong>非周期性：</strong>军工电子不同于主机厂和材料企业——军工电子订单虽有五年规划节奏波动，但长期需求确定性高（军费持续增长+装备现代化），不存在光伏/钢铁等行业的"产能过剩→价格暴跌"的强周期特征。公司FY2025营收已恢复增长（+10.26%），毛利率虽然下降但仍保持46%的高水平。<br><br>
+  <strong>结论：</strong>属于<strong>非周期股（成长型）</strong>，长期受益于国防信息化+国产替代+十五五规划。选用<strong>非周期股评分体系</strong>。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th></tr>
+  <tr><td>市场格局</td><td><strong>细分赛道高度集中</strong>——军工电子元器件行业因资质认证+军品配套关系，每个细分品类通常只有2-3家供应商。振华科技在半导体分立器件、片式元器件、叠层电感器等多个品类处于国内前三。CEC旗下核心军工电子平台。</td></tr>
+  <tr><td>技术壁垒</td><td><strong>极高</strong>——军工电子元器件需要满足军标（GJB）要求，工作温度范围（-55℃~+125℃）、可靠性（MTBF>10万小时）、抗辐照等指标远高于民用。技术积累需要10年+。</td></tr>
+  <tr><td>资质壁垒</td><td><strong>极高</strong>——需取得军工四证（保密/承制/许可/质量体系），认证周期3-5年，新进入者几乎不可能短期突破。</td></tr>
+  <tr><td>客户粘性</td><td><strong>极高</strong>——军工电子元器件一旦定型列装，通常3-5年不会更换供应商。换型成本极高（涉及整个系统重新设计验证）。</td></tr>
+  <tr><td>规模壁垒</td><td><strong>中等</strong>——军工电子属于多品种小批量，规模效应不如民用消费电子。但振华科技通过平台化布局（旗下多家子公司覆盖不同品类）形成了综合配套优势。</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  <strong>阶段：长期成长期，当前处于十四五→十五五的过渡调整期</strong><br>
+  军工电子受益于三大长期趋势：装备信息化（电子系统占比提升）、国产替代（自主可控）、实战化训练（消耗性弹药/电子对抗需求增加）。2026年是十四五末到十五五初的过渡年，订单节奏阶段性放缓，2027年十五五正式启动后有望开启新一轮增长周期。<br><br>
+  <strong>投资策略重点：</strong>关注（1）十五五规划中军工电子的预算方向；（2）合同负债/预收款的变化（领先1-2年的订单指标）；（3）毛利率企稳信号；（4）子公司的盈利能力变化。
+</div>
+
+<h3>6.4 同行对比分析</h3>
+<table>
+  <tr><th>指标</th><th>振华科技</th><th>中航光电</th><th>紫光国微</th><th>航天电器</th><th>评价</th></tr>
+  <tr><td>营收（亿）</td><td><strong>57.55</strong></td><td>213.86</td><td>61.46</td><td>58.20</td><td class="neutral">行业中上</td></tr>
+  <tr><td>营收增速</td><td><strong>+10.26%</strong></td><td>+3.4%</td><td>+11.5%</td><td>+15.8%</td><td class="good">✅ 恢复增长</td></tr>
+  <tr><td>归母净利（亿）</td><td><strong>10.25</strong></td><td>21.62</td><td>14.37</td><td>1.83</td><td class="good">✅ 盈利能力好</td></tr>
+  <tr><td>毛利率</td><td class="good"><strong>45.95%</strong></td><td>29.19%</td><td class="good">~57.3%</td><td>30.60%</td><td class="good">✅ 高毛利</td></tr>
+  <tr><td>净利率</td><td class="good"><strong>17.82%</strong></td><td>10.99%</td><td class="good">23.37%</td><td>4.04%</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>ROE</td><td class="bad"><strong>6.74%</strong></td><td>9.16%</td><td>11.10%</td><td>2.81%</td><td class="bad">❌ 偏低</td></tr>
+  <tr><td>负债率</td><td class="good"><strong>18.34%</strong></td><td>~42.9%</td><td class="good">~27.5%</td><td>~43.5%</td><td class="good">✅ 最低</td></tr>
+  <tr><td>研发费用率</td><td><strong>5.68%</strong></td><td>~6.2%</td><td class="good">24.56%</td><td>12.68%</td><td class="bad">❌ 偏低</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>同行对比结论：</strong>振华科技在军工电子同行中毛利率（45.95%）和净利率（17.82%）处于中上水平，显著高于中航光电（29.19%/10.99%）和航天电器（30.60%/4.04%），但低于紫光国微（57.3%/23.37%）。负债率18.34%在同业中最低，财务安全性最强。ROE 6.74%偏低，低于中航光电（9.16%）和紫光国微（11.10%），主要因资产周转率低（0.30）——营收体量相对于资产规模偏小（产能利用率不足）。核心优势：财务最安全+毛利率高+现金流好；核心短板：ROE偏低+研发费用率下降。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>成长型（军工电子）</td><td><strong>PE / PEG</strong></td><td>PS（营收增速验证），毛利率趋势，合同负债</td><td class="neutral">⚠ PE~25x合理但PEG偏高（利润增速仅5.7%）</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值方法总结：</strong>当前市场对振华科技按"成长股"逻辑定价——PE~25x给予军工电子赛道壁垒溢价是合理的。但按PEG看，5.7%的利润增速支撑25x PE略显勉强（PEG>4）。核心变量是2027年十五五启动后增速能否恢复到15-20%+。如果增速恢复，当前PE是合理甚至偏低的；如果增速持续低迷，PE可能面临向下修正。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战分析（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>成长型（军工电子元器件），资质+技术壁垒极高，细分赛道寡头格局，受益装备信息化+国产替代+十五五规划<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 6.74%（偏低），纯高利润型杜邦（净利率18%主导），CFO/净利1.36含金量极高，负债率18.34%极低<br>
+  <strong>Step 3 - 估值判断：</strong>PE~25.4x（5年44%分位/10年27%分位），PB 1.66x——中等水平，不算贵但也不便宜<br>
+  <strong>Step 4 - 风险排查：</strong>核心风险：毛利率持续下滑+2026Q1净利-73%+十五五订单节奏不确定+研发费用缩减<br>
+  <strong>Step 5 - 结论：</strong>✅ 好行业（军工电子+国产替代）+ ✅ 好公司（零负债+高现金流+高毛利）+ ⚠ 价格一般（PE 25x，等待更佳买点）<br>
+  <strong>Step 6 - 跟踪：</strong>关键指标：合同负债、毛利率趋势、十五五规划细则、子公司盈利变化。买入信号：订单恢复（合同负债增长）+毛利率企稳。卖出信号：毛利率跌破40%或ROE持续<5%
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>军工电子——装备信息化率持续提升+国产替代+十五五规划，长期需求确定性高，资质壁垒极高，竞争格局极好</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓</td><td>净利率17.82%（>10%）、CFO/净利1.36（>1.0）、毛利率45.95%高水平。但ROE 6.74%（<15%）和毛利率趋势向下是减分项</td></tr>
+  <tr><td>③ 好价格</td><td class="neutral">⚠</td><td>PE~25x，处于历史中等分位（5年44%/10年27%），不算贵但也没明显安全边际。PB 1.66x对于零负债公司来说合理</td></tr>
+</table>
+
+<h3>7.3 风险评估</h3>
+
+<h4>a. 三个陷阱排查</h4>
+<div class="danger-box">
+  <strong>陷阱排查结果：</strong><br><br>
+  ☐ <strong>价值陷阱（低PE+低增长+高负债）</strong> → PE 25x（非低PE），营收+10.26%（中低速），负债率18%（极低） → <b>❌ 未命中</b><br><br>
+  ☐ <strong>周期陷阱（低PE+周期顶点）</strong> → PE 25x（非低PE），当前处于十四五末订单调整期（非周期顶点） → <b>❌ 未命中。</b>但需注意军工行业特有的"五年规划节奏"——2026年业绩底可能是布局机会而非风险<br><br>
+  ☐ <strong>烧钱陷阱（高PE+高增速+CFO为负）</strong> → PE 25x中等，增速+10%（中速），CFO 13.94亿为正 → <b>❌ 未命中</b>
+</div>
+
+<h4>b. 管理层与治理风险</h4>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力与履历</td><td>一般</td><td>国企背景，管理层由CEC任命，市场化激励不足。但军工国企管理层稳定，技术背景扎实</td></tr>
+  <tr><td>股权结构与利益一致性</td><td>一般</td><td>中国振华电子集团持股31.01%，最终控制方为CEC（央企）。管理层持股极少，利益一致性一般</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td>无</td><td>年报标准无保留意见，无重大违规或监管处罚历史</td></tr>
+  <tr><td>资本配置记录</td><td>合理</td><td>资本开支保守（轻资产模式），分红率~21%合理，无激进并购记录，账上大量现金等待合理配置</td></tr>
+  <tr><td>管理层增减持记录</td><td>无</td><td>国企管理层不持股也不减持，无大额增减持记录</td></tr>
+  <tr><td>CEO交接/关键人员变动</td><td>无风险</td><td>国企管理层稳定，正常换届</td></tr>
+</table>
+
+<h4>c. 盈利可持续性</h4>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是靠价？</td><td>量驱动</td><td>军工电子营收增长主要靠装备列装量增加，而非涨价（军品价格反而在下降）。FY2025营收+10%但毛利率-3.75pct，典型的"量增价跌"</td></tr>
+  <tr><td>涨价能否持续？</td><td>不能</td><td>军品定价受军采政策影响，长期趋势是稳中有降。振华科技毛利率从62%降至46%已充分说明了定价权的弱化</td></tr>
+  <tr><td>非经常性利润占比</td><td>低</td><td>扣非净利润9.45亿/归母10.25亿=92.2%，非经常性主要来自政府补贴，占比不高</td></tr>
+  <tr><td>大客户集中度</td><td>分散</td><td>军工电子客户覆盖各大军工集团（航空/航天/船舶/兵器等），单一客户依赖度低</td></tr>
+  <tr><td>政策/监管依赖度</td><td>高</td><td>核心驱动力是军费预算和国防政策，政策依赖度高但确定性强（军费长期增长）</td></tr>
+</table>
+
+<h4>d. 关键变量敏感性</h4>
+<div class="summary-box">
+  <strong>变量1: 十五五规划订单节奏（核心变量）</strong><br>
+  &nbsp;&nbsp;乐观：2026H2预研/小批量订单释放，2027年大批量采购启动，2026-2028营收CAGR 15-20%<br>
+  &nbsp;&nbsp;中性：2027年十五五正式启动，2026年全年业绩低迷（营收-5%~0%），2028年恢复增长<br>
+  &nbsp;&nbsp;悲观：军费增速放缓+军工改革推进，十五五订单低于预期，营收持续0-5%低增长<br><br>
+  <strong>变量2: 毛利率趋势</strong><br>
+  &nbsp;&nbsp;乐观：军品降价趋缓+高毛利新品（SiC器件/高端连接器）占比提升，毛利率在42-45%企稳<br>
+  &nbsp;&nbsp;中性：军品每年降价3-5%，毛利率缓慢降至40-42%后企稳<br>
+  &nbsp;&nbsp;悲观：军采改革推进竞争性采购，毛利率加速降至35-38%<br><br>
+  <strong>变量3: 应收账款回收</strong><br>
+  &nbsp;&nbsp;乐观：十五五启动后军方加快回款，应收账款周转天数从~300天降至~200天<br>
+  &nbsp;&nbsp;中性：应收账款维持当前水平（~50亿），周转天数稳定在250-300天<br>
+  &nbsp;&nbsp;悲观：军改推进导致回款进一步放缓，计提大额坏账（损失3-5亿）
+</div>
+
+<h3>7.4 前景展望</h3>
+
+<h4>a. 未来1-3年核心驱动</h4>
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. 十五五规划启动——预计2027年正式发布，军工电子作为装备信息化核心赛道将显著受益。参考十四五经验，订单增速在规划初期可达20-30%+<br>
+  2. 国产替代加速——中美科技竞争背景下，军用高端元器件（SiC器件/高端FPGA/高可靠MLCC）国产化是国家安全刚需，振华科技作为CEC旗下核心平台直接受益<br>
+  3. 子公司盈利能力优秀——永光（净利率35.6%）/富（净利率26.2%）/云科（净利率24.8%）三家核心子公司的资产质量极高，是利润的基石保障<br><br>
+  <strong>负向拖累：</strong><br>
+  1. 毛利率持续下滑——军品降价是长期趋势，毛利率从62%降到46%还没见底，若跌破40%将对盈利产生较大冲击<br>
+  2. 2026年业绩压力——2026Q1净利润仅0.16亿（-72.8%），全年业绩大概率低于FY2025，短期EPS承压<br>
+  3. 研发投入缩减——研发费用从4.4亿降至3.3亿（-25%），在军工电子技术快速迭代（SiC/GaN/先进封装）的背景下可能影响长期竞争力
+</div>
+
+<h4>b. 三情景简表</h4>
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>EPS预估</th><th>PE区间</th><th>预期回报</th></tr>
+  <tr><td>乐观</td><td>十五五2027启动+毛利率42%企稳+营收CAGR 15%</td><td>2.2-2.5元</td><td>25-30x（55-75元）</td><td>+17%至+60%</td></tr>
+  <tr><td>中性</td><td>十五五2027启动但增速10%+毛利率40%</td><td>1.6-2.0元</td><td>20-25x（32-50元）</td><td>-32%至+6%</td></tr>
+  <tr><td>悲观</td><td>十五五低于预期+毛利率降至38%+回款恶化</td><td>1.0-1.3元</td><td>15-20x（15-26元）</td><td>-68%至-45%</td></tr>
+</table>
+<p style="font-size:13px;color:#666;margin-bottom:16px">概率判断：中性50%，乐观25%，悲观25%。当前PE~25x处于中等水平，向上（十五五启动）和向下（业绩持续低迷）空间都不小。对于风险偏好适中的投资者，当前价格属于"等待更好买点"的区间。</p>
+
+<h3>7.5 资金面信号</h3>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>北向资金持股变动</td><td class="neutral">需跟踪</td><td>军工板块整体北向持仓不高，需关注最新数据</td></tr>
+  <tr><td>机构持仓变动</td><td class="bad">减仓</td><td>军工板块2024-2026年被公募基金持续减配，振华科技因业绩下滑面临机构减持压力</td></tr>
+  <tr><td>融资余额变动</td><td class="neutral">稳定</td><td>融资余额占比不高，杠杆资金情绪平稳</td></tr>
+  <tr><td>大股东增减持</td><td class="good">无减持</td><td>中国振华电子集团持股稳定，未减持</td></tr>
+  <tr><td>大宗交易</td><td class="neutral">无明显信号</td><td>近期大宗交易不活跃</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>资金面判断：</strong>振华科技当前处于"业绩真空期"——机构减仓、市场关注度低、2026Q1业绩骤降使短期情绪偏空。但公司极低的负债率和充裕的现金提供了坚实的安全垫，不存在流动性风险。资金面的拐点信号是：十五五规划落地+订单恢复。
+</div>
+
+<h3>7.6 讨论问题（阅读引导）</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——振华科技把半导体器件和电子元器件卖给军工客户，靠的是"认证壁垒+高可靠性"赚取46%的毛利率，特点是利润高但回款慢（应收账款占营收87%）。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——毛利率从62%一路降到46%，2026Q1更是跌破40%到了39.96%。如果这个趋势继续，40%以下意味着净利率可能降到12-14%，那ROE可能不到5%。零负债的公司ROE不到5%——那还不如买理财。<br>
+  3. 如果现在买入，期待的回报来源是什么？——十五五规划启动后订单恢复→营收增长+毛利率企稳→ROE修复到12%+→PE从25x修复到30x+。回报来源是"军工信息化长期成长+十五五周期反转"，而非短期业绩改善。<br>
+  4. 什么情况下你会坚决卖出？——① 毛利率跌破40%且无企稳迹象（商业模式恶化）；② 十五五规划发布后振华科技的订单份额低于预期；③ 应收账款突破60亿或连续2年计提大额坏账；④ PB回到2.5x以上（估值泡沫）。
+</div>
+
+</div></div>
+
+<div class="footer">
+    免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+    数据来源：振华科技2025年年报、2026Q1季报、券商研报、东方财富、理杏仁、亿牛网
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

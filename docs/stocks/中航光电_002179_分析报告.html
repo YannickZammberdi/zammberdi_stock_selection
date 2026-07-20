@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中航光电(002179) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>中航光电（002179）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026-07-20 | 数据来源：FY2025 年报 + 2026Q1 季报</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>中航光电科技股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>002179.SZ</td></tr>
+  <tr><td>所属行业</td><td>军工电子（连接器/光器件/液冷解决方案）</td></tr>
+  <tr><td>行业地位</td><td>国内高端连接器绝对龙头，防务领域市占率>40%，航空领域>60%</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>213.86 亿（+3.39%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>21.62 亿（-35.56%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>15.62 亿（-27.36%）</strong></td></tr>
+  <tr><td>总资产</td><td>391.12 亿</td></tr>
+  <tr><td>归母净资产</td><td>261.37 亿</td></tr>
+  <tr><td>ROE（加权）</td><td>8.91%</td></tr>
+</table>
+
+<p style="font-size:13px;font-weight:bold;margin-top:16px;">行业类型：非周期股（成长型 — 军工电子+新能源汽车+AI数据中心）</p>
+<p style="font-size:13px;color:#666;margin-bottom:8px">采用非周期股评分体系。FY2025为防务周期低谷，利润大幅下滑，评分反映当期数据。</p>
+
+<h2>综合评分（百分制）</h2>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="neutral" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">8.91%，≥5%（防务周期低谷，2021-2024年均>14%）</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="neutral" style="font-weight:bold;font-size:15px">3</td><td style="text-align:left">均衡偏低——净利率11.0%中+周转0.58低+权益乘数1.63低</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="neutral" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">0.72，≥0.7（回款放缓）</td></tr>
+  <tr><td>营收增长（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">+3.39%，≥0%（民品增长对冲防务下滑）</td></tr>
+  <tr><td>利润增长（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">-35.56%，<0%（防务低谷+原材料涨价+补税）</td></tr>
+  <tr><td>负债率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">38.5% < 40%，财务结构稳健</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">货币资金~65亿，有息负债率仅3.32%，充裕覆盖</td></tr>
+  <tr><td>毛利率（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">29.19%但同比-7.42pct显著下滑（防务占比降+原材料涨）</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">PE~36x，远超ROE<10%对应的合理PE<10x</td></tr>
+  <tr><td>自由现金流（5分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">FCF -6.5亿，持续为负（资本开支~25亿）</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">42/100</td><td style="text-align:left">不及格（42/100分）— 周期低谷数据，需区分一次性与趋势性</td></tr>
+</table>
+
+<div class="verdict verdict-bad">不及格（42/100分）</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>中航光电是国内连接器领域绝对龙头，防务领域市占率超40%（航空>60%），技术壁垒极高。FY2025因防务采购周期低谷（需求放缓+集采降价）+原材料（黄金/铜）价格暴涨+一次性补税等三重冲击，利润同比骤降35.6%，ROE跌至8.91%，呈现典型的"增收不增利"。但民品业务亮点突出——新能源汽车连接器+50%、数据中心光器件+28.7%、液冷连接器国内市占率第一，民品收入占比首次超过防务达52%，战略转型取得实质性突破。<br><br>
+  <strong>核心优势：</strong>① 军工连接器近乎垄断（航空>60%市占率，认证周期3-5年，客户粘性极强）；② 民品三大高景气赛道（新能源车高压连接+AI数据中心液冷+高速光模块），成长空间大；③ 负债率38.5%极低，财务安全边际充足；④ 2026年5月高管集体增持，释放底部信心。<br><br>
+  <strong>核心风险：</strong>① 防务周期底部深度未知，2026Q1利润仍同比-37.8%；② 毛利率系统性下滑（从35.8%→29.2%），民品占比提升拉低整体毛利；③ FCF持续为负，资本开支高企（~25亿/年）；④ 当前PE~36x，在业绩低谷期估值偏高。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>213.86 亿</td><td>206.86 亿</td><td>+3.39%</td><td class="neutral">⚠ 低增长</td></tr>
+  <tr><td>归母净利润</td><td><strong>21.62 亿</strong></td><td>33.54 亿</td><td><strong>-35.56%</strong></td><td class="bad">❌ 大幅下滑</td></tr>
+  <tr><td>扣非净利润</td><td><strong>21.03 亿</strong></td><td>32.78 亿</td><td><strong>-35.84%</strong></td><td class="bad">❌ 大幅下滑</td></tr>
+  <tr><td>毛利率</td><td><strong>29.19%</strong></td><td>36.61%</td><td>-7.42pct</td><td class="bad">❌ 显著恶化</td></tr>
+  <tr><td>归母净利率</td><td><strong>10.99%</strong></td><td>16.21%</td><td>-5.22pct</td><td class="bad">❌ 大幅下降</td></tr>
+  <tr><td>期间费用率</td><td><strong>6.23%</strong></td><td>7.86%</td><td>-1.63pct</td><td class="good">✅ 费用管控有效</td></tr>
+  <tr><td>2025Q4 营收</td><td>55.48 亿</td><td>65.90 亿</td><td>-15.81%</td><td class="bad">❌ Q4加速下滑</td></tr>
+  <tr><td>2025Q4 净利润</td><td><strong>4.25 亿</strong></td><td>8.42 亿</td><td><strong>-49.51%</strong></td><td class="bad">❌ 大幅下滑</td></tr>
+  <tr><td>2026Q1 营收</td><td>48.72 亿</td><td>48.39 亿</td><td>+0.69%</td><td class="neutral">⚠ 基本持平</td></tr>
+  <tr><td>2026Q1 净利润</td><td><strong>3.98 亿</strong></td><td>6.39 亿</td><td><strong>-37.75%</strong></td><td class="bad">❌ 继续承压</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>利润表解读：</strong>营收213.86亿创新高但增速仅3.39%，归母净利润21.62亿同比暴跌35.6%，"增收不增利"特征显著。核心原因：① 防务需求阶段性放缓，高毛利军品收入占比下降；② 黄金/铜/白银等原材料价格暴涨，成本同比+18.71%；③ 一次性所得税补缴。Q4净利4.25亿环比虽有改善但同比-49.5%，2026Q1净利仍-37.8%，底部尚未确认。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td><strong>~65 亿</strong></td><td class="good">✅ 充裕</td></tr>
+  <tr><td>应收账款及票据</td><td><strong>~174 亿</strong></td><td class="bad">❌ 占净利润542%（过大）</td></tr>
+  <tr><td>存货</td><td><strong>~61 亿</strong></td><td class="neutral">占资产15.6%，合理</td></tr>
+  <tr><td>短期借款</td><td><strong>极少</strong></td><td class="good">✅ 几乎无短期债务</td></tr>
+  <tr><td>资产负债率</td><td><strong>38.50%</strong></td><td class="good">✅ 极低，财务安全</td></tr>
+  <tr><td>归母净资产</td><td>261.37 亿</td><td class="good">✅ 同比+3.5%</td></tr>
+  <tr><td>有息负债率</td><td><strong>3.32%</strong></td><td class="good">✅ 几乎零杠杆</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>资产负债表解读：</strong>资产负债表极为健康——负债率仅38.5%、有息负债率3.32%、货币资金~65亿覆盖所有有息债务。最大的隐忧是应收账款174亿（占净利润542%），防务客户回款周期长（通常240天+），这是军工行业的普遍特征但需关注坏账风险。存货61亿同比增加，部分是为防务订单回暖备货。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>15.62 亿</strong></td><td>21.50 亿</td><td class="bad">❌ 同比-27.36%</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><strong>~-25 亿（估）</strong></td><td>-18 亿</td><td class="neutral">⚠ 资本开支高企</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>0.72</strong></td><td>0.64</td><td class="neutral">⚠ 低于1x</td></tr>
+  <tr><td>自由现金流（FCF）</td><td><strong>~-6.5 亿</strong></td><td>~+3.5 亿</td><td class="bad">❌ 转负</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>经营现金流15.62亿同比-27.36%，主因回款放缓（应收账款增加）。CFO/净利0.72低于1，利润含金量一般。自由现金流由正转负（-6.5亿），资本开支~25亿主要用于民品产能建设（泰兴液冷、基础器件产业园等）。好在公司账面现金充裕，短期资金链风险可控，但若防务回款持续恶化，需关注现金流压力。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>8.91%</strong></td><td>> 15% 优秀 / > 10% 及格</td><td class="bad">❌ 低于及格线</td></tr>
+  <tr><td>毛利率</td><td><strong>29.19%</strong></td><td>稳定或提升</td><td class="bad">❌ 下降7.42pct</td></tr>
+  <tr><td>净利率</td><td><strong>10.99%</strong></td><td>> 10%</td><td class="good">✅ 及格</td></tr>
+  <tr><td>营收增长率</td><td><strong>+3.39%</strong></td><td>> 10%</td><td class="bad">❌ 低增长</td></tr>
+  <tr><td>利润增长率</td><td><strong>-35.56%</strong></td><td>正增长</td><td class="bad">❌ 大幅负增长</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>0.72</strong></td><td>> 1</td><td class="bad">❌ 低于1</td></tr>
+  <tr><td>资产负债率</td><td><strong>38.50%</strong></td><td>制造业<60%</td><td class="good">✅ 极低，优秀</td></tr>
+  <tr><td>分红率</td><td><strong>~54%</strong></td><td>持续分红</td><td class="good">✅ 高分红比例</td></tr>
+</table>
+
+<div class="summary-box">
+  FY2025各项盈利指标全面恶化，ROE跌破10%警戒线，仅负债率和分红率维持优秀。但需注意这是防务周期低谷+一次性冲击的结果，历史均值来看仍是不错的标的。
+</div>
+
+<h3>3.2 分业务分析（2025年度）</h3>
+<table>
+  <tr><th>业务板块</th><th>营收（亿）</th><th>占比</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td>电连接器及集成互连组件</td><td>159.43</td><td>74.55%</td><td>-1.65%</td><td><strong>31.72%</strong></td><td class="bad">❌ 下滑（毛利率-7.65pct）</td></tr>
+  <tr><td>光连接器及其他光器件及光电设备</td><td>36.59</td><td>17.11%</td><td>+28.74%</td><td><strong>23.44%</strong></td><td class="good">✅ 高增长</td></tr>
+  <tr><td>液冷解决方案及其他产品</td><td>17.85</td><td>8.34%</td><td>+9.25%</td><td>~25%</td><td class="good">✅ 新增长极</td></tr>
+  <tr><td>国际业务</td><td>17.98</td><td>8.41%</td><td>+45.28%</td><td>—</td><td class="good">✅ 全球化突破</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>① <strong>防务（约48%）：</strong>受行业周期波动影响，需求阶段性放缓，客户端经济性要求提升；② <strong>新能源汽车（约42亿，+50%）：</strong>高压连接器市占率稳步提升，进入比亚迪/特斯拉/新势力供应链；③ <strong>数据中心（光器件11亿+液冷8亿）：</strong>高速光模块精密组件放量，液冷连接器国内市占率第一；④ <strong>民品收入占比首次超防务达52%</strong>，战略转型取得里程碑。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="bad">🔴 较高</td><td>利润下滑35.6%，ROE跌破10%</td><td>L2 盈利指标</td></tr>
+  <tr><td class="bad">🔴 较高</td><td>毛利率从35.8%骤降至29.2%</td><td>L1 利润表</td></tr>
+  <tr><td class="bad">🔴 较高</td><td>应收账款174亿/占净利润542%</td><td>L1 资产负债表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>FCF转负（-6.5亿），资本开支持续高企</td><td>L1 现金流量表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>防务周期底部深度未知，2026Q1仍-37.8%</td><td>L1 利润表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>CFO/净利0.72，利润含金量下降</td><td>L1 现金流量表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>PE 36x，在业绩低谷期估值偏高</td><td>L3 估值</td></tr>
+  <tr><td class="good">🟢 正面</td><td>负债率38.5%，有息负债率3.32%，财务极安全</td><td>L1 资产负债表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>民品收入占比52%，转型突破，新能源汽车+50%</td><td>L2 业务分析</td></tr>
+  <tr><td class="good">🟢 正面</td><td>光器件+28.7%，液冷国内市占第一，AI赛道受益</td><td>L2 业务分析</td></tr>
+  <tr><td class="good">🟢 正面</td><td>高管2026年5月集体增持252万元</td><td>公开信息</td></tr>
+</table>
+
+<div class="verdict verdict-bad">⚠ L2综合判定：FY2025财务数据较差，但需区分周期低谷与趋势性恶化</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>股价（2026.7.20）</td><td><strong>~36 元</strong></td><td>近期波动区间32-47元</td></tr>
+  <tr><td>总市值</td><td><strong>~756 亿</strong></td><td>总股本21.00亿股</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>~35x</strong></td><td>基于TTM EPS ~1.02元</td></tr>
+  <tr><td>PE（TTM扣非）</td><td><strong>~36x</strong></td><td>基于扣非EPS 1.00元</td></tr>
+  <tr><td>PE（2026E）</td><td><strong>~30x</strong></td><td>基于一致预期EPS ~1.19元</td></tr>
+  <tr><td>PB</td><td><strong>3.1x</strong></td><td>基于每股净资产11.55元</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~3.5x</strong></td><td>市销率</td></tr>
+  <tr><td>PCF</td><td><strong>~48x</strong></td><td>基于CFO 15.62亿</td></tr>
+  <tr><td>股息率</td><td><strong>~1.5%</strong></td><td>基于10派5.5元</td></tr>
+</table>
+
+<h3>4.2 PE Band估值区间</h3>
+<p style="font-size:13px;color:#666;">ROE 8.91% → 合理PE参考区间：<10x（周期低谷数据失真，历史中枢~32x） | 2026E一致预期EPS ≈ 1.19元</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs现价36元</th></tr>
+  <tr><td>悲观（业绩不恢复）</td><td>15x</td><td>17.9 元</td><td class="bad">-50%</td></tr>
+  <tr><td>保守（缓慢恢复）</td><td>22x</td><td>26.2 元</td><td class="bad">-27%</td></tr>
+  <tr><td>中性（正常恢复）</td><td>30x</td><td>35.7 元</td><td class="neutral">-1%</td></tr>
+  <tr><td>券商目标</td><td>35-40x</td><td>41.7-47.6 元</td><td class="good">+16%~+32%</td></tr>
+  <tr><td>当前价</td><td>~30x</td><td>36.0 元</td><td>—</td></tr>
+  <tr><td>历史高位（2021年）</td><td>70x</td><td>83.3 元</td><td>+131%</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>PE Band说明：</strong>中航光电作为"军工+成长"混合型标的，估值需结合周期位置判断。历史PE中枢约32x（2020-2025年），当前30x（2026E PE）略低于中枢。若2026年业绩恢复至~25亿净利润，PE降至28x，PEG~1，估值基本合理。但若防务持续低迷，业绩恢复不及预期，PE有向上被动推升的风险（盈利降幅>股价降幅）。
+</div>
+
+<h3>4.3 历史PE区间</h3>
+<table>
+  <tr><th>指标</th><th>数值</th></tr>
+  <tr><td>PE（TTM）最大值</td><td>70.3x（2021年1月）/ 84.95x（2015年）</td></tr>
+  <tr><td>PE（TTM）80%分位</td><td>~52x（近5年）/ ~43x（近10年）</td></tr>
+  <tr><td>PE（TTM）50%分位</td><td>~35x（近5年）/ ~34x（近10年）</td></tr>
+  <tr><td>PE（TTM）20%分位</td><td>~25x（近5年）/ ~26x（近10年）</td></tr>
+  <tr><td>PE（TTM）最小值</td><td>19.3x（2024年2月）/ 11.47x（2008年）</td></tr>
+  <tr><td>当前PE（TTM）</td><td class="neutral">~36x（近5年52%分位，近10年37%分位）</td></tr>
+</table>
+
+<h3>4.4 PB Band（辅助参考）</h3>
+<table>
+  <tr><th>指标</th><th>数值</th></tr>
+  <tr><td>PB最大值</td><td>~8.5x（2015年）</td></tr>
+  <tr><td>PB 80%分位</td><td>~5.0x</td></tr>
+  <tr><td>PB 50%分位</td><td>~3.8x</td></tr>
+  <tr><td>PB 20%分位</td><td>~2.8x</td></tr>
+  <tr><td>PB最小值</td><td>~1.5x（2008年）</td></tr>
+  <tr><td>当前PB</td><td class="neutral">3.1x（近10年~30%分位，偏低区间）</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值总结：</strong>中航光电当前PE~36x（TTM）/ ~30x（2026E），在近10年历史37%分位，略低于历史中枢32x。PB 3.1x在近10年30%分位，处于偏低区间。整体估值处于"业绩低谷期的被动偏高但历史分位尚可"的状态。核心矛盾在于：① 若防务2026下半年回暖 → 业绩恢复 → 估值合理偏低；② 若防务持续低迷 → PE被动抬升 → 估值偏贵。投资的关键是判断周期底部何时过去。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>净利润率</td><td>16.60%</td><td>16.21%</td><td><strong>10.99%</strong></td><td class="bad">⬇ 大幅下降</td></tr>
+  <tr><td>资产周转率</td><td>0.61</td><td>0.68</td><td><strong>0.58</strong></td><td class="bad">⬇ 产能利用率下滑</td></tr>
+  <tr><td>权益乘数</td><td>1.63</td><td>1.61</td><td><strong>1.63</strong></td><td class="neutral">➡ 稳定</td></tr>
+  <tr><td><strong>ROE</strong></td><td><strong>16.20%</strong></td><td><strong>14.70%</strong></td><td><strong>8.91%</strong></td><td class="bad">⬇ 几乎腰斩</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>10.1%</td><td>11.0%</td><td><strong>6.4%</strong></td><td class="bad">⬇ 明显下滑</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>6.1pct</td><td>3.7pct</td><td><strong>2.5pct</strong></td><td class="neutral">⬇ 杠杆低</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：高利润型（但利润率在压缩）</strong><br>
+  中航光电历史上是典型的高利润型杜邦模式——高净利润率（16%+）驱动ROE，周转率中等（0.6-0.7），权益乘数极低（1.6x，几乎无杠杆）。FY2025净利润率骤降至10.99%，周转率降到0.58，ROE腰斩至8.91%。<br><br>
+  去杠杆ROA从11.0%降至6.4%，说明去掉杠杆后的真实基础回报在大幅缩水。但低杠杆（权益乘数1.63）意味着公司在行业低谷期有充足的安全垫——不怕"戴维斯双杀"中的杠杆杀。
+</div>
+
+<h3>5.2 分业务杜邦贡献</h3>
+<table>
+  <tr><th>业务板块</th><th>毛利率</th><th>趋势</th><th>对ROE影响</th></tr>
+  <tr><td>防务连接器（~48%收入）</td><td>~40-50%</td><td class="bad">⬇ 下滑（降价+原材料）</td><td class="bad">负向核心</td></tr>
+  <tr><td>新能源汽车连接器</td><td>~20-25%</td><td class="good">⬆ 放量+50%</td><td class="good">正向但毛利偏低</td></tr>
+  <tr><td>光器件/数据中心</td><td>23.44%</td><td class="good">⬆ +28.7%</td><td class="good">规模效应</td></tr>
+  <tr><td>液冷解决方案</td><td>~25%</td><td class="good">⬆ 新业务</td><td class="good">增长极</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>核心结论：</strong><br>
+  ① ROE从16.2%降至8.91%，核心原因是净利润率从16.21%骤降至10.99%（防务占比下降+原材料涨价）；<br>
+  ② 周转率从0.68降至0.58，产能利用率不足（2025年约65% vs 正常85%+）；<br>
+  ③ 权益乘数仅1.63（负债率38.5%），杠杆贡献仅2.5pct，安全边际充足但ROE缺乏弹性；<br>
+  ④ ROE恢复的关键：防务订单回暖（利润率和周转率双修复）+ 民品规模效应提升毛利率；<br>
+  ⑤ 好消息是FY2025可能是ROE的低点——若防务恢复+成本回落，ROE有望回到12-14%。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与特征（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：成长性行业（军工电子/连接器）→ 非周期股评分体系</strong><br>
+  <strong>判断依据：</strong>中航光电所处的连接器行业兼具"防务周期波动"和"民品成长驱动"双重属性。防务业务（48%收入）受国家装备采购周期影响，呈现3-5年的周期性波动；民品业务（52%收入）受益于新能源汽车、AI数据中心、液冷散热等长期成长趋势。整体来看，民品增速（新能源车+50%、数据中心光器件+28.7%）远快于防务的收缩，公司的长期成长逻辑（军民融合+国产替代+AI算力）大于周期波动。<br><br>
+  <strong>成长属性：</strong>营收近5年CAGR~13.5%，连接器行业全球规模~865亿美元（+5.7%），中国新能源汽车连接器市场CAGR>20%，AI数据中心液冷连接器市场处于爆发初期。公司作为国内连接器龙头，具备"防务稳底盘+民品高增长"的双轮驱动逻辑。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th></tr>
+  <tr><td>行业集中度</td><td><strong>防务领域高度集中</strong>——中航光电在航空连接器市占率>60%，整体防务>40%，近乎垄断。<strong>民品领域正在集中</strong>——新能源汽车高压连接器市占率~15-18%，国内前三。</td></tr>
+  <tr><td>技术壁垒</td><td><strong>极高</strong>——拥有专利5900+项，主持标准950+项，224G高速连接器、液冷连接器技术国内领先。军工认证周期3-5年，进入后客户几乎不更换。</td></tr>
+  <tr><td>客户壁垒</td><td><strong>极强</strong>——防务客户（航空工业集团/中国航天等）的关系不可替代；民品已进入比亚迪/特斯拉/蔚来/理想及头部IDC厂商。</td></tr>
+  <tr><td>规模壁垒</td><td><strong>强</strong>——500+系列、35万+品种，全球布局产能，中小竞争者难以复制。</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  <strong>阶段：成长期中期（防务成熟 + 民品高速扩张）</strong><br>
+  防务业务处于"成熟期"——龙头地位稳固但增速放缓，受采购周期影响波动。民品业务处于"高速成长期"——新能源汽车连接器（+50%）、数据中心光器件（+28.7%）、液冷解决方案（国内市占率第一）均处于放量阶段。公司整体处于"防务稳现金+民品扩增长"的结构性成长期。<br><br>
+  <strong>投资策略重点：</strong>关注防务订单恢复节奏（十五五采购周期）、民品毛利率趋势（规模效应能否对冲原材料涨价）、液冷和数据中心业务的增速持续性。
+</div>
+
+<h3>6.4 同行对比分析</h3>
+<table>
+  <tr><th>指标</th><th>中航光电</th><th>航天电器</th><th>振华科技</th><th>鸿远电子</th><th>评价</th></tr>
+  <tr><td>ROE（2025）</td><td>8.91%</td><td>~12%</td><td>~10%</td><td>~8%</td><td class="neutral">中</td></tr>
+  <tr><td>毛利率</td><td>29.19%</td><td>~33%</td><td>~35%</td><td>~40%</td><td class="neutral">中</td></tr>
+  <tr><td>净利率</td><td>10.99%</td><td>~11%</td><td>~14%</td><td>~15%</td><td class="neutral">中</td></tr>
+  <tr><td>负债率</td><td>38.5%</td><td>~35%</td><td>~28%</td><td>~22%</td><td class="good">稳健</td></tr>
+  <tr><td>营收增速</td><td>+3.39%</td><td>+5%</td><td>-5%</td><td>-10%</td><td class="neutral">行业中上</td></tr>
+  <tr><td>PB</td><td>3.1x</td><td>~3.5x</td><td>~2.5x</td><td>~2.0x</td><td class="neutral">中</td></tr>
+  <tr><td>PE（TTM）</td><td>~36x</td><td>~35x</td><td>~28x</td><td>~25x</td><td class="neutral">行业中上</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>同行竞争位置：</strong>中航光电在军工连接器领域地位无可撼动（航空>60%市占率），体量是航天电器的3倍+。FY2025因防务占比高导致利润受冲击更大，ROE和增速数据看似不及同行，但若观察5年维度，公司的营收规模和增长稳定性远优于同业。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>成长型（军工电子+民品连接器）</td><td>PE（业绩恢复后）+ PEG</td><td>PB、营收增速、毛利率趋势</td><td class="neutral">⚠ 部分匹配——业绩低谷期PE失真，需关注恢复后PEG</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值方法总结：</strong>中航光电作为"军工+成长"混合标的，在业绩低谷期PE被动抬高（36x），此时参考PB（3.1x，历史30%分位）更有意义。核心关注2026年防务订单恢复进度——若净利润恢复至25-28亿，PE降至27-30x，PEG~1，估值进入合理区间。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>成长型（军工电子连接器），防务近乎垄断+民品新能源汽车/AI数据中心高增长，壁垒极高。<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 8.91%周期低谷，杜邦高利润型但利润率压缩，CFO/净利0.72偏低，FCF转负。<br>
+  <strong>Step 3 - 估值判断：</strong>PE~36x（TTM）/ ~30x（2026E），历史中枢32x，PB 3.1x（历史30%分位）。<br>
+  <strong>Step 4 - 风险排查：</strong>防务周期底部深度未知、毛利率系统性下行、应收账款/净利润比542%。<br>
+  <strong>Step 5 - 结论：</strong>护城河深厚的好公司，但FY2025是低谷期数据。当前估值隐含了业绩恢复预期，需判断周期拐点。<br>
+  <strong>Step 6 - 跟踪：</strong>看防务订单恢复（十五五采购周期）、毛利率趋势（原材料+结构）、民品增速能否维持>30%。
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>连接器是电子系统必需元件，防务壁垒极高，新能源汽车+AI数据中心长期成长</td></tr>
+  <tr><td>② 好公司</td><td class="neutral">⚠</td><td>ROE 8.91%<15%，毛利率29.19%大幅下降，CFO/净利0.72<1，FCF为负。但护城河仍在</td></tr>
+  <tr><td>③ 好价格</td><td class="neutral">⚠</td><td>PE~36x历史中枢附近，PB 3.1x历史30%分位，不算便宜但非极度高估</td></tr>
+</table>
+
+<h3>7.3 三个陷阱排查</h3>
+<div class="danger-box">
+  <strong>☐ 价值陷阱：</strong>🔴 部分命中——低增长（+3.4%）+利润骤降（-35.6%）+低负债（38.5%），但非高负债。当前低PE是周期因素所致，需区分。<br>
+  <strong>☐ 周期陷阱：</strong>🔴 命中——军工连接器有明显周期性，当前处于周期低谷，PE被动抬高。关键是判断底部位置。<br>
+  <strong>☐ 烧钱陷阱：</strong>🟡 未完全命中——FCF为负是因资本开支高（民品扩产），但公司现金充裕、有息负债率仅3.32%，非烧钱续命模式。
+</div>
+
+<h3>7.4 管理层与治理风险</h3>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力与履历</td><td>好</td><td>董事长李森深耕公司多年，管理层均具备深厚行业背景</td></tr>
+  <tr><td>股权结构与利益一致性</td><td>强</td><td>航空工业集团控股36.76%，国有资本合计45.87%，治理规范</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td>无</td><td>军工央企背景，历史无重大违规或暴雷记录</td></tr>
+  <tr><td>资本配置记录</td><td>合理</td><td>分红率~54%较高，资本开支聚焦主业（连接器扩产/液冷/光器件），无盲目并购</td></tr>
+  <tr><td>管理层增减持记录</td><td>增持（正面）</td><td>2026年5月7名高管合计增持252万元，释放底部信心</td></tr>
+  <tr><td>CEO交接/关键人员变动</td><td>无风险</td><td>管理层稳定，无重大人员变动</td></tr>
+</table>
+
+<h3>7.5 盈利可持续性</h3>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是靠价？</td><td>量驱动</td><td>民品（新能源车/数据中心）靠量增长，防务靠订单量驱动</td></tr>
+  <tr><td>涨价能否持续？</td><td>需观察</td><td>防务客户端有降价压力，民品竞争加剧，涨价空间有限</td></tr>
+  <tr><td>非经常性利润占比</td><td>低</td><td>扣非净利润占比97.3%，利润质量高</td></tr>
+  <tr><td>大客户/大项目集中度</td><td>分散</td><td>防务客户多元（各军兵种+航天航空），民品覆盖比亚迪/特斯拉/蔚来等</td></tr>
+  <tr><td>政策/监管依赖度</td><td>中</td><td>防务受国防预算影响大，民品受新能源汽车补贴/政策影响</td></tr>
+</table>
+
+<h3>7.6 关键变量敏感性</h3>
+<div class="summary-box">
+  <strong>变量1：防务订单恢复节奏</strong><br>
+  乐观：2026H2防务订单大幅回暖，全年净利润恢复至28亿（+30%）→ EPS 1.33元 → PE 27x<br>
+  中性：2026防务缓慢恢复，全年净利润25亿（+16%）→ EPS 1.19元 → PE 30x<br>
+  悲观：防务持续低迷，全年净利润22亿（+2%）→ EPS 1.05元 → PE 34x<br><br>
+  <strong>变量2：原材料价格走势</strong><br>
+  乐观：黄金/铜价格回落，毛利率恢复至32%+<br>
+  中性：原材料维持高位，毛利率维持29-30%<br>
+  悲观：原材料继续涨价，毛利率跌破28%<br><br>
+  <strong>变量3：民品增速</strong><br>
+  乐观：新能源车连接器+50%、数据中心液冷翻倍增长<br>
+  中性：新能源车+30%、数据中心+40%<br>
+  悲观：新能源汽车增速放缓至+15%、AI算力投资不及预期
+</div>
+
+<h3>7.7 未来1-3年核心驱动</h3>
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. 防务订单回暖——十五五采购周期启动，2026下半年有望看到拐点，高毛利业务恢复<br>
+  2. AI数据中心液冷爆发——液冷连接器国内市占率第一，2026年有望翻倍增长<br>
+  3. 新能源汽车全球化——进入国际车企供应链，海外业务+45%<br><br>
+  <strong>负向拖累：</strong><br>
+  1. 原材料涨价——黄金/铜价格高位，毛利率持续承压<br>
+  2. 民品竞争加剧——新能源连接器价格战，毛利率提升空间有限<br>
+  3. 应收账款风险——防务客户回款周期长，坏账计提风险
+</div>
+
+<h3>7.8 三情景简表</h3>
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>EPS预估</th><th>PE区间</th><th>预期回报</th></tr>
+  <tr><td>乐观</td><td>防务回暖+原材料跌价+民品高增</td><td>1.45 元</td><td>28-35x</td><td>+13%~+41%</td></tr>
+  <tr><td>中性</td><td>防务缓慢恢复+原材料高位+民品稳增</td><td>1.19 元</td><td>25-32x</td><td>-17%~+6%</td></tr>
+  <tr><td>悲观</td><td>防务持续低迷+原材料涨价+民品降速</td><td>1.00 元</td><td>22-28x</td><td>-39%~-22%</td></tr>
+</table>
+<p style="font-size:13px;color:#666;">概率判断：中性50%，乐观30%，悲观20%。基于公司深厚护城河和民品高景气，底部回升概率大于继续恶化。</p>
+
+<h3>7.9 资金面信号</h3>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>北向资金持股变动</td><td>增持</td><td>近3个月北向资金小幅增持，持仓占比~3%</td></tr>
+  <tr><td>机构持仓变动</td><td>稳定</td><td>富国军工龙头ETF等主力基金持仓稳定</td></tr>
+  <tr><td>融资余额变动</td><td>稳定</td><td>融资余额~10亿，杠杆资金情绪平稳</td></tr>
+  <tr><td>大股东增减持</td><td>增持</td><td>2026年5月高管集体增持252万元，积极信号</td></tr>
+  <tr><td>大宗交易</td><td>平价</td><td>近期大宗交易以平价为主，机构态度中性</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>资金面整体判断：</strong>高管增持释放底部信号，北向小幅加仓，资金面偏中性正面。但整体成交量不大，尚未形成趋势性资金流入。
+</div>
+
+<h3>7.10 讨论问题（阅读引导）</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——做各种连接器和液冷方案卖给军工/车企/数据中心，赚技术壁垒和客户粘性的钱。2025年军工不行但民品在补。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——毛利率从35.8%掉到29.2%，一年掉了7个点。是暂时的周期底还是结构性的恶化？防务回暖和原材料回落能修复多少？<br>
+  3. 如果现在买入，期待的回报来源是什么？——赌防务周期见底回升+民品持续高增长，PE从30x修复到35x+EPS增长，赚估值和业绩双升的钱。<br>
+  4. 什么情况下你会坚决卖出？——毛利率跌破28%且连续两季不回、防务订单连续两季无改善、应收账款坏账大幅增加、新能源汽车增速跌破20%。
+</div>
+
+</div></div>
+
+<div class="footer">
+    免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+    数据来源：中航光电2025年年报、2026Q1季报、券商研报、理杏仁、百优价值网
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

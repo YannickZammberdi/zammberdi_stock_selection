@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三花智控(002050) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>三花智控（002050）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026-07-20 | 数据来源：FY2025 年报 + 2026Q1 季报 + 理杏仁</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>浙江三花智能控制股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>002050.SZ（A股）/ 02050.HK（H股）</td></tr>
+  <tr><td>所属行业</td><td>家电零部件 / 汽车热管理</td></tr>
+  <tr><td>行业地位</td><td>全球制冷控制元器件龙头+全球领先的汽车热管理供应商（电子膨胀阀/四通换向阀全球市占率>50%）</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>310.12 亿（+10.97%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>40.63 亿（+31.10%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>50.91 亿（+16.58%）</strong></td></tr>
+  <tr><td>总资产</td><td><strong>494.06 亿</strong></td></tr>
+  <tr><td>归母净资产</td><td><strong>317.49 亿</strong></td></tr>
+  <tr><td>ROE（加权）</td><td><strong>15.80%</strong></td></tr>
+</table>
+
+<h2>行业类型与评分体系选择</h2>
+<div class="summary-box">
+  <strong>行业类型：成长型非周期股（家电零部件+汽车热管理）</strong><br>
+  <strong>选用体系：非周期股评分体系（成长型）</strong><br>
+  <strong>选用理由：</strong>三花智控业务横跨制冷空调零部件（全球龙头，需求刚性）和汽车热管理（跟随新能源车增长），均不属于强周期行业。制冷业务受空调更新/商用替代/AI液冷驱动，汽车业务受益于新能源渗透率持续提升，两大主业均有长期成长逻辑。公司ROE连续多年保持在15%+，利润率稳步提升，负债率仅35%，属于典型的"成长型非周期"公司。
+</div>
+
+<h2>综合评分（非周期股体系，百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">采用非周期股评分体系。成长型非周期股，适用标准非周期评分。</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">15.80% ≥ 15%</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">均衡偏利润型——净利率13.24%高 + 周转0.63中低 + 杠杆1.54极低</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">1.25 ≥ 1.0</td></tr>
+  <tr><td>营收增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+10.97% ≥ 10%</td></tr>
+  <tr><td>利润增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+31.10% ≥ 15%</td></tr>
+  <tr><td>负债率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">35.15% < 40%</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">货币资金143亿 >> 有息负债38亿，充裕覆盖</td></tr>
+  <tr><td>毛利率（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">28.78% ≥ 15%且提升1.31pct，稳定向好</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">PE 40.93x，合理PE 15-25x，偏高64%严重偏高</td></tr>
+  <tr><td>自由现金流（5分）</td><td class="neutral" style="font-weight:bold;font-size:15px">3</td><td style="text-align:left">扩张期FCF时正时负，偶尔为负（全球化建厂+机器人投资）</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">84/100</td><td style="text-align:left">品质优秀（84/100分），核心减分项是估值偏高</td></tr>
+</table>
+
+<div class="verdict verdict-ok">品质优秀（84/100分）</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>三花智控是全球热管理领域的"隐形冠军"，FY2025交出了"利润增速（+31%）远超营收增速（+11%）"的优质答卷。毛利率28.78%创近16年新高，净利率13.24%创历史新高，CFO 50.91亿充沛，负债率仅35%财务极稳健。两大主业协同发力——制冷业务（+12.22%）受益于商用替代+数据中心液冷，汽车业务（+9.14%）跟随新能源车渗透率提升。公司正从"家电制冷"向"汽车热管理+机器人执行器+AI液冷"多赛道拓展，技术同源性构筑了极宽的护城河。<br><br>
+  <strong>核心优势：</strong>① 全球制冷控制元器件龙头（电子膨胀阀/四通阀全球市占率>50%），定价权稳固；② 利润增速31%远超营收，毛利率净利率双创新高，经营质量持续提升；③ 财务极稳健——负债率35%、CFO充沛、现金143亿；④ 三大新兴增长极——机器人执行器、数据中心液冷、储能热管理。<br><br>
+  <strong>核心风险：</strong>① 估值偏高（PE 40.93x，合理PE 15-25x），市场给予了较高成长溢价；② 汽车热管理产销量首次下滑（-8.3%），新能源车增速放缓；③ 机器人业务仍处于"研发送样"阶段，量产时间不确定；④ ROE连续三年下滑（19.18%→16.77%→15.80%），H股摊薄效应需消化。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td><strong>310.12 亿</strong></td><td>279.47 亿</td><td>+10.97%</td><td class="good">✅ 首次突破300亿</td></tr>
+  <tr><td>归母净利润</td><td><strong>40.63 亿</strong></td><td>30.99 亿</td><td><strong>+31.10%</strong></td><td class="good">✅ 首次突破40亿</td></tr>
+  <tr><td>扣非净利润</td><td><strong>39.58 亿</strong></td><td>31.18 亿</td><td><strong>+26.95%</strong></td><td class="good">✅ 扎实增长</td></tr>
+  <tr><td>毛利率</td><td><strong>28.78%</strong></td><td>27.47%</td><td>+1.31pct</td><td class="good">✅ 创近16年新高</td></tr>
+  <tr><td>净利率</td><td><strong>13.24%</strong></td><td>11.13%</td><td>+2.11pct</td><td class="good">✅ 创历史新高</td></tr>
+  <tr><td>期间费用率（三费）</td><td><strong>8.91%</strong></td><td>8.77%</td><td>+0.14pct</td><td class="good">控制良好</td></tr>
+  <tr><td>研发费用</td><td><strong>13.74 亿</strong></td><td>13.52 亿</td><td>+1.65%</td><td class="neutral">占营收4.43%</td></tr>
+  <tr><td>2025Q1 营收</td><td>76.69 亿</td><td>64.79 亿</td><td>+18.37%</td><td class="good">✅</td></tr>
+  <tr><td>2025Q2 营收</td><td>81.99 亿</td><td>73.31 亿</td><td>+11.84%</td><td class="good">✅</td></tr>
+  <tr><td>2025Q3 营收</td><td>81.62 亿</td><td>76.55 亿</td><td>+6.62%</td><td class="good">✅</td></tr>
+  <tr><td>2025Q4 营收</td><td><strong>69.82 亿</strong></td><td>73.84 亿</td><td><strong>-5.44%</strong></td><td class="bad">❌ Q4下滑</td></tr>
+  <tr><td>2025Q4 净利</td><td><strong>8.21 亿</strong></td><td>7.98 亿</td><td><strong>+2.93%</strong></td><td class="good">✅ 营收降但利润增</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>FY2025是"提质增效"的一年——利润增速（+31%）是营收增速（+11%）的近3倍，形成显著的"剪刀差"。毛利率28.78%创16年新高、净利率13.24%创历史新高，核心驱动力来自产品结构优化（高毛利产品占比提升）+ 材料替代（不锈钢/高分子替代铜铝）+ 精益生产。Q4营收虽降5.44%但净利仍增2.93%，Q4毛利率高达31.16%（同比+4.32pct）为全年最亮眼单季。财务费用激增331%至2.10亿汇兑损失是主要拖累。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td><strong>149.12 亿</strong></td><td class="good">✅ 同比+184%（H股上市募资）</td></tr>
+  <tr><td>应收账款</td><td><strong>~77 亿</strong></td><td class="neutral">占营收25%，偏高需关注</td></tr>
+  <tr><td>存货</td><td><strong>~70 亿</strong></td><td class="neutral">占资产14%，合理</td></tr>
+  <tr><td>固定资产</td><td><strong>~175 亿</strong></td><td class="neutral">同比+19%（产能扩张）</td></tr>
+  <tr><td>在建工程</td><td><strong>~30 亿</strong></td><td class="neutral">同比-20%（大量转固）</td></tr>
+  <tr><td>短期借款</td><td><strong>~12 亿</strong></td><td class="good">很低</td></tr>
+  <tr><td>长期借款</td><td><strong>~26 亿</strong></td><td class="good">同比-58%（偿还+重分类）</td></tr>
+  <tr><td>资产负债率</td><td><strong>35.15%</strong></td><td class="good">✅ 极低，财务稳健</td></tr>
+  <tr><td>归母净资产</td><td><strong>317.49 亿</strong></td><td class="good">✅ 同比+64.52%（H股上市）</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>最亮眼的指标是资产负债率仅35.15%——在制造业中属于极低水平。2025年6月H股上市募资约93亿港元，货币资金从年初52.49亿飙升至149.12亿（+184%），即刻改善了资本结构。有息负债合计约38亿（短借12亿+长借26亿），货币资金是其近4倍，偿债能力极强。应付账款+票据约~60亿，应收账款约77亿，上下游议价能力均衡。总资产494亿中，固定资产约175亿（35%），属于合理重资产结构。整体看是一张非常健康的资产负债表。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>50.91 亿</strong></td><td>43.67 亿</td><td class="good">✅ 同比+16.58%，创年度新高</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><strong>负（大幅流出）</strong></td><td>负</td><td class="neutral">全球化建厂+机器人投资</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td><strong>正（大幅流入）</strong></td><td>正</td><td class="neutral">H股上市募资93亿港元</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>1.25</strong></td><td>1.41</td><td class="good">✅ 优秀，>1.0</td></tr>
+  <tr><td>自由现金流（FCF）</td><td><strong>约+16 亿（估算）</strong></td><td>约+9亿</td><td class="good">✅ 扩张期仍能维持正FCF</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>CFO 50.91亿创年度新高，且远超净利润（40.63亿），净利润现金含量高达125%——说明每一块钱的利润都收到了真金白银。CFO/净利1.25是优秀水平，表明盈利质量很高。资本开支约35亿（墨西哥/波兰/泰国基地建设+机器人38亿投资项目启动），但CFO足以覆盖。H股上市募资93亿港元进一步充实了资金储备。每股经营性现金流1.21元（+3.41%），现金流状况极佳。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>15.80%</strong></td><td>> 15% 优秀 / > 10% 及格</td><td class="good">✅ 优秀（但连续三年下滑需关注）</td></tr>
+  <tr><td>毛利率</td><td><strong>28.78%</strong></td><td>稳定或提升</td><td class="good">✅ 连续三年提升（25.9%→26.9%→27.47%→28.78%）</td></tr>
+  <tr><td>净利率</td><td><strong>13.24%</strong></td><td>> 10%</td><td class="good">✅ 创历史新高</td></tr>
+  <tr><td>营收增长率</td><td><strong>+10.97%</strong></td><td>> 10%</td><td class="good">✅ 连续十年正增长</td></tr>
+  <tr><td>利润增长率</td><td><strong>+31.10%</strong></td><td>> 15%</td><td class="good">✅ 近3倍于营收增速</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>1.25</strong></td><td>> 1</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>资产负债率</td><td><strong>35.15%</strong></td><td>制造业<60%</td><td class="good">✅ 极低</td></tr>
+  <tr><td>分红率</td><td><strong>~48.83%</strong></td><td>持续分红</td><td class="good">✅ 连续21年分红，累计98亿</td></tr>
+</table>
+
+<h3>3.2 分业务分析（FY2025）</h3>
+<table>
+  <tr><th>业务板块</th><th>营收（亿）</th><th>占比</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td>制冷空调电器零部件</td><td><strong>185.85</strong></td><td>59.9%</td><td>+12.22%</td><td><strong>28.77%</strong></td><td class="good">✅ 现金牛，稳健增长</td></tr>
+  <tr><td>汽车零部件</td><td><strong>124.27</strong></td><td>40.1%</td><td>+9.14%</td><td><strong>28.79%</strong></td><td class="neutral">⚠ 增速放缓，产销量首降</td></tr>
+  <tr><td style="font-weight:bold">境外收入</td><td><strong>133.23</strong></td><td><strong>42.96%</strong></td><td><strong>+6.58%</strong></td><td><strong>31.19%</strong></td><td class="good">✅ 高毛利率</td></tr>
+  <tr><td style="font-weight:bold">境内收入</td><td><strong>176.88</strong></td><td><strong>57.04%</strong></td><td><strong>+14.51%</strong></td><td><strong>26.96%</strong></td><td class="good">✅ 增速更快</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>制冷业务（59.9%）是"现金牛"——逆势增长12.22%（2025年中国家空销量-1.2%），核心原因是电子膨胀阀/四通阀全球市占率>50%的定价权+商用制冷国产替代+数据中心液冷新需求。汽车业务（40.1%）增速放缓至9.14%，新能源热管理产品产销量首次下滑（-8.3%），但毛利率提升1.15pct至28.79%，体现了"选客户、选项目"的策略。境外毛利率31.19%高于境内26.96%，全球化布局（墨西哥/波兰/越南/泰国4大基地）正在释放红利。战略新兴业务（机器人执行器+数据中心液冷+储能热管理）尚未产生显著营收但增速亮眼。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="neutral">🟡 中等</td><td>ROE连续三年下滑（19.18%→16.77%→15.80%）</td><td>H股上市摊薄净资产，资本回报效率下降</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>汽车热管理产销量首次下滑（-8.3%）</td><td>新能源车增速放缓，产能利用率仅七成</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>应收账款占利润比例高（172.56%）</td><td>回款风险需持续关注</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>财务费用激增331%（汇兑损失2.10亿）</td><td>海外收入占比43%，汇率波动风险大</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>机器人业务仅停留在"研发送样"</td><td>量产时间不确定，估值中已含较高预期</td></tr>
+  <tr><td class="bad">🔴 较高</td><td>PE 40.93x严重偏高（合理15-25x）</td><td>估值已提前反映成长预期</td></tr>
+  <tr><td class="good">🟢 正面</td><td>利润增速31%远超营收11%，盈利质量大幅提升</td><td>毛利率净利率双创新高</td></tr>
+  <tr><td class="good">🟢 正面</td><td>负债率仅35%，现金143亿，财务极稳健</td><td>偿债能力行业领先</td></tr>
+  <tr><td class="good">🟢 正面</td><td>CFO 50.91亿创年度新高，净利润现金含量125%</td><td>盈利质量优秀</td></tr>
+  <tr><td class="good">🟢 正面</td><td>连续21年分红，累计98亿，2025年分红+回购占净利48.83%</td><td>股东回报意识强</td></tr>
+</table>
+
+<div class="verdict verdict-ok">✅ L2综合判定：财务质量优秀（低负债+高盈利质量+强现金流），核心隐忧是估值偏高和汽零增速放缓</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>股价（2026-07-17）</td><td><strong>39.75 元</strong></td><td>52周区间 21.26-60.77元</td></tr>
+  <tr><td>总市值</td><td><strong>1,672.69 亿</strong></td><td>A+H双上市</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>40.93x</strong></td><td>基于TTM净利润约40.87亿</td></tr>
+  <tr><td>PE（2025年报）</td><td><strong>41.17x</strong></td><td>基于FY2025 EPS 1.03元</td></tr>
+  <tr><td>PE（2026E）</td><td><strong>~34.9x</strong></td><td>基于一致预期净利润~48亿/EPS~1.14元</td></tr>
+  <tr><td>PB</td><td><strong>5.32x</strong></td><td>基于每股净资产~7.54元</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>5.39x</strong></td><td>基于营收310.12亿</td></tr>
+  <tr><td>股息率</td><td><strong>1.01%</strong></td><td>基于FY2025分红10派2.80元</td></tr>
+</table>
+
+<h3>4.2 PE Band估值区间</h3>
+<p style="font-size:13px;color:#666;">ROE 15.80% → 合理PE参考区间：15-25x | 2026E一致预期净利润约48亿，对应EPS ~1.14元</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>对应市值</th><th>vs现价39.75元</th></tr>
+  <tr><td>悲观</td><td>15x</td><td>17.1 元</td><td>720 亿</td><td class="bad">-57%</td></tr>
+  <tr><td>保守</td><td>20x</td><td>22.8 元</td><td>960 亿</td><td class="bad">-43%</td></tr>
+  <tr><td>中性</td><td>25x</td><td>28.5 元</td><td>1,200 亿</td><td class="bad">-28%</td></tr>
+  <tr><td>券商目标均值</td><td>~37x</td><td>~42 元</td><td>~1,770 亿</td><td class="good">+6%</td></tr>
+  <tr><td>当前价</td><td>~34.9x（2026E）</td><td>39.75 元</td><td>1,673 亿</td><td>—</td></tr>
+  <tr><td>历史高位（2026.1）</td><td>~59x</td><td>60.77 元</td><td>2,557 亿</td><td>+53%</td></tr>
+</table>
+
+<h3>4.3 历史PE区间（近3年）</h3>
+<table>
+  <tr><th>指标</th><th>数值</th></tr>
+  <tr><td>PE（TTM）最大值</td><td>61.00x</td></tr>
+  <tr><td>PE（TTM）80%分位</td><td>46.04x</td></tr>
+  <tr><td>PE（TTM）50%分位</td><td>34.30x</td></tr>
+  <tr><td>PE（TTM）20%分位</td><td>28.08x</td></tr>
+  <tr><td>PE（TTM）最小值</td><td>19.74x</td></tr>
+  <tr><td>当前PE（TTM）</td><td class="bad">40.93x（近3年71.35%分位，偏高）</td></tr>
+</table>
+
+<h3>4.4 历史PB区间（近5年）</h3>
+<table>
+  <tr><th>指标</th><th>数值</th></tr>
+  <tr><td>PB最大值</td><td>~8.0x</td></tr>
+  <tr><td>PB 80%分位</td><td>~6.5x</td></tr>
+  <tr><td>PB 50%分位（中位）</td><td>~5.5x</td></tr>
+  <tr><td>PB 20%分位</td><td>~4.0x</td></tr>
+  <tr><td>PB最小值</td><td>~2.8x</td></tr>
+  <tr><td>当前PB</td><td class="neutral">5.32x（近5年中位附近）</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值总结：</strong>三花智控当前PE 40.93x处于近3年71%分位、PB 5.32x处于近5年中位水平，整体估值偏高。以2026E PE~35x看，PEG≈1.1（基于10%+利润增速预期），对于成长型龙头来说不算极端但也不便宜。券商目标均价约42-44元（对应6%上行空间），中金等机构已因估值中枢下移下调目标价。核心矛盾在于：① 传统业务（制冷+汽零）的合理PE仅15-25x，当前估值中包含了机器人/液冷等新兴业务的显著溢价；② 若机器人量产进展顺利，高估值可以被消化；③ 若机器人落地不及预期，估值有回归压力。从PB-ROE框架看，5.32x PB对应15.8% ROE，估值处于合理偏高水平。
+</div>
+
+<div class="danger-box">
+  <strong>估值风险提示：</strong><br>
+  ① PE 40.93x远高于合理中枢（25x），机器人/液冷等新业务尚未贡献利润；<br>
+  ② 2026年初从60.77元高点已回调超35%，估值泡沫部分释放但仍不便宜；<br>
+  ③ 汽车热管理产销量首次下滑，传统业务增速放缓可能压缩估值中枢；<br>
+  ④ 建议等待回调至PE 30x以内（对应股价~34元）再考虑布局。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>净利润率</td><td>11.91%</td><td>11.13%</td><td><strong>13.24%</strong></td><td class="good">⬆ 提升+2.11pct</td></tr>
+  <tr><td>资产周转率</td><td>0.72</td><td>0.77</td><td><strong>0.63</strong></td><td class="bad">⬇ 下降（H股上市资产膨胀）</td></tr>
+  <tr><td>权益乘数</td><td>2.20</td><td>2.07</td><td><strong>1.54</strong></td><td class="good">⬇ 大幅下降（去杠杆）</td></tr>
+  <tr><td><strong>ROE（杜邦计算）</strong></td><td><strong>~18.9%</strong></td><td><strong>~17.7%</strong></td><td><strong>~12.8%</strong></td><td class="bad">⬇ 下降</td></tr>
+  <tr><td>ROE（加权报告值）</td><td>19.18%</td><td>16.77%</td><td><strong>15.80%</strong></td><td class="bad">⬇ 连续三年下滑</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>8.58%</td><td>8.57%</td><td><strong>8.34%</strong></td><td class="neutral">➡ 基本稳定</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>10.3pct</td><td>9.1pct</td><td><strong>4.5pct</strong></td><td class="good">⬇ 杠杆依赖降低</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：均衡偏利润型（净利率高+杠杆极低）</strong><br>
+  三花智控的赚钱模式在FY2025发生了显著变化——净利率从11.13%大幅提升至13.24%（创历史新高），但权益乘数从2.07骤降至1.54（H股上市大幅增厚净资产），导致ROE从16.77%降至15.80%。<br><br>
+  <strong>去杠杆后的真实回报：</strong>去杠杆ROA在8.3%-8.6%之间保持稳定，说明经营层面的盈利能力没有实质恶化。ROE的下滑纯粹是资本结构变化（净资产增厚64.5%）带来的统计学效应，而非经营恶化。2022年ROE 21.38%时权益乘数约2.5，若回到同样杠杆水平，当前ROE可达8.34%×2.5≈20.9%。公司从"高杠杆"模式切换到了"低杠杆高质量"模式。
+</div>
+
+<h3>5.2 资产回报效率分析</h3>
+<table>
+  <tr><th>指标</th><th>三花智控</th><th>家电行业均值</th><th>汽车零部件均值</th><th>评价</th></tr>
+  <tr><td>净利润率</td><td>13.24%</td><td>~8%</td><td>~6%</td><td class="good">行业领先</td></tr>
+  <tr><td>资产周转率</td><td>0.63</td><td>~0.70</td><td>~0.60</td><td class="neutral">行业中位</td></tr>
+  <tr><td>ROA</td><td>8.34%</td><td>~5.6%</td><td>~3.6%</td><td class="good">显著领先</td></tr>
+  <tr><td>权益乘数</td><td>1.54</td><td>~2.0</td><td>~2.2</td><td class="good">行业最低之一</td></tr>
+  <tr><td>ROE</td><td>15.80%</td><td>~11%</td><td>~8%</td><td class="good">行业领先</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>核心结论：</strong><br>
+  ① ROE 15.80%靠"高净利率（13.24%）+低杠杆（1.54）"实现，是健康的利润驱动型；<br>
+  ② 去杠杆后ROA 8.34%，在制造业中属于优秀水平（行业平均~4-5%）；<br>
+  ③ ROE下滑是H股上市摊薄效应，经营质量实际在提升（净利率+2.11pct）；<br>
+  ④ 当前15.80%的ROE是在极低杠杆下的表现，若未来适度加杠杆，ROE有望回到18-20%；<br>
+  ⑤ 赚钱模式从"高杠杆规模驱动"切换为"高利润质量驱动"，是长期利好。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与特征（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：成长型非周期股（家电零部件+汽车热管理）</strong><br>
+  <strong>判断依据：</strong>三花智控业务横跨两大领域——① 制冷空调零部件：属于"成熟消费品"领域，需求刚性（空调/冰箱是必需品），受益于商用制冷国产替代+数据中心液冷新需求，防御性强；② 汽车热管理：跟随新能源汽车渗透率提升，处于成长期。两大业务均不属于强周期行业（无明显的供给驱动型周期）。公司营收连续十年正增长，利润率持续提升，呈现典型的成长股特征。<br><br>
+  <strong>L5分类结论：</strong>家电零部件属于非周期（防御型），汽车热管理属于成长型。综合判断为<strong>成长型非周期股</strong>，采用非周期股评分体系。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th></tr>
+  <tr><td>行业集中度</td><td><strong>高度集中</strong>——电子膨胀阀、四通换向阀全球市占率>50%，寡头格局。车用电子膨胀阀、新能源车热管理集成组件全球市占率第一。</td></tr>
+  <tr><td>技术壁垒</td><td><strong>极高</strong>——精密阀/泵/换热器的设计制造涉及材料科学+流体动力学+精密加工，专利墙4680项（发明专利2560项），认证周期3-5年。</td></tr>
+  <tr><td>客户壁垒</td><td><strong>极强</strong>——深度绑定特斯拉、比亚迪、美的、格力、大金等各领域头部客户，认证后极难替换。客户认证周期长达3-5年。</td></tr>
+  <tr><td>规模壁垒</td><td><strong>强</strong>——全球48个生产工厂，产能规模效应+成本优势（比竞争对手低15%）。</td></tr>
+  <tr><td>技术复用壁垒</td><td><strong>独特</strong>——核心技术（阀/泵/换热器）可跨行业复用：家电→汽车→机器人→液冷，边际拓展成本低。</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  <strong>阶段：制冷业务（成熟期）+ 汽车业务（成长期中后）+ 机器人/液冷（导入期）</strong><br>
+  制冷业务已进入成熟期（但仍有增长空间：商用替代+AI液冷），是稳定的现金牛。汽车热管理处于成长期中后阶段——全球新能源渗透率仍在提升但增速放缓，公司从"跑马圈地"转向"选客户选项目"。机器人执行器和AI液冷处于导入期，尚未产生显著营收但市场空间巨大。<br><br>
+  <strong>投资策略重点：</strong>① 制冷业务的利润稳定性（现金牛）；② 汽车业务从"量增"到"质增"的转型；③ 机器人执行器的量产进展（最重要的估值催化剂）；④ AI液冷/储能热管理的新订单获取。
+</div>
+
+<h3>6.4 同行对比分析</h3>
+<table>
+  <tr><th>指标</th><th>三花智控</th><th>拓普集团</th><th>银轮股份</th><th>行业均值</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>15.80%</strong></td><td>~15%</td><td>~12%</td><td>~12%</td><td class="good">高</td></tr>
+  <tr><td>毛利率</td><td><strong>28.78%</strong></td><td>~22%</td><td>~21%</td><td>~22%</td><td class="good">显著领先</td></tr>
+  <tr><td>净利率</td><td><strong>13.24%</strong></td><td>~10%</td><td>~7%</td><td>~8%</td><td class="good">显著领先</td></tr>
+  <tr><td>负债率</td><td><strong>35.15%</strong></td><td>~45%</td><td>~50%</td><td>~45%</td><td class="good">最低</td></tr>
+  <tr><td>营收增速</td><td><strong>+10.97%</strong></td><td>~+15%</td><td>~+12%</td><td>~+12%</td><td class="neutral">中</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>40.93x</strong></td><td>~35x</td><td>~25x</td><td>~30x</td><td class="neutral">偏高</td></tr>
+  <tr><td>PB</td><td><strong>5.32x</strong></td><td>~4.5x</td><td>~3.0x</td><td>~4.0x</td><td class="neutral">偏高</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>同行对比结论：</strong>三花智控在盈利能力和财务稳健度上全面领先同行——毛利率28.78%显著高于拓普（22%）和银轮（21%），负债率35%是行业内最低水平。ROE 15.80%和净利率13.24%均处于行业顶部。估值方面，PE 40.93x和PB 5.32x均高于同行，市场给予了龙头溢价+机器人概念溢价。核心优势是"高利润率+低负债+多赛道卡位"的稀缺组合。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>成长型（家电零部件+汽车热管理）</td><td>PE + PEG</td><td>PB-ROE、分部估值（SOTP）</td><td class="neutral">⚠ PE偏高但PEG~1.1尚可</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>综合评估：</strong>三花智控是A股中少见的"高质量成长+极低负债+高股东回报"的优质标的。FY2025的业绩证明了公司从"规模扩张"到"提质增效"的转型成功。核心矛盾在于估值——PE 40.93x已经隐含了机器人等新业务的显著预期。对于长期投资者，关键问题是：机器人执行器能否在2026-2027年从"样品"走向"量产"？若能，当前估值可被高增长消化；若不能，估值有回归压力。稳健策略是等待PE回落至30x以内，或建仓后以时间换空间。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>成长型非周期（家电零部件+汽车热管理），全球制冷龙头，多赛道技术复用能力强。<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 15.80%优秀，均衡偏利润型杜邦，CFO/净利1.25优秀，负债率35%极低。<br>
+  <strong>Step 3 - 估值判断：</strong>PE 40.93x近3年71%分位偏高，PB 5.32x中位附近，PEG~1.1尚可但并不便宜。<br>
+  <strong>Step 4 - 风险排查：</strong>汽零产销量首降、机器人量产不确定、汇兑损失、应收账款占比高。<br>
+  <strong>Step 5 - 结论：</strong>好行业+好公司，当前价格偏高——品质优秀的公司但安全边际不足。<br>
+  <strong>Step 6 - 跟踪：</strong>看机器人量产进展、汽零增速趋势、制冷业务毛利率、海外产能释放。
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>热管理赛道空间大（家电/汽车/机器人/液冷），技术壁垒高，龙头集中度持续提升</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓</td><td>ROE 15.80%达标，毛利率28.78%持续提升，CFO/净利1.25>1.0，分红连续21年</td></tr>
+  <tr><td>③ 好价格</td><td class="bad">✗</td><td>PE 40.93x合理PE 15-25x，PEG~1.1但传统业务仅10%增速，偏高估</td></tr>
+</table>
+
+<h3>7.3 三个陷阱排查</h3>
+<div class="danger-box">
+  <strong>☐ 价值陷阱：</strong>❌ 未命中——高PE+高增长+低负债，与价值陷阱特征完全相反。<br>
+  <strong>☐ 周期陷阱：</strong>❌ 未命中——公司属于成长型非周期，非强周期行业。<br>
+  <strong>☐ 烧钱陷阱：</strong>❌ 未命中——高PE（40x）+ 增长（+31%）但CFO充沛（50.91亿）且CFO/净利1.25，能自己造血。
+</div>
+
+<h3>7.4 管理层与治理风险</h3>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力与履历</td><td class="good">好</td><td>创始人张道才家族控股，30年制造业经验，战略清晰（技术复用跨赛道）</td></tr>
+  <tr><td>股权结构与利益一致性</td><td class="good">强</td><td>张氏家族控股，实控人利益与公司高度一致</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td class="good">无</td><td>上市21年无重大违规或暴雷记录</td></tr>
+  <tr><td>资本配置记录</td><td class="good">合理</td><td>分红率48.83%，连续21年分红累计98亿，H股上市理性融资</td></tr>
+  <tr><td>管理层增减持记录</td><td class="neutral">需关注</td><td>三花绿能实业FY2025减持7838万股，但实控人未减持</td></tr>
+  <tr><td>CEO交接/关键人员变动</td><td class="good">无风险</td><td>管理团队稳定，张亚波（子）接任董事长已多年</td></tr>
+</table>
+
+<h3>7.5 盈利可持续性</h3>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是靠价？</td><td>混合（价驱动为主）</td><td>毛利率提升1.31pct，利润增速31%远高于营收11%</td></tr>
+  <tr><td>涨价能否持续？</td><td class="neutral">需观察</td><td>铜价联动机制有效，但下游整车厂年降压力存在</td></tr>
+  <tr><td>非经常性利润占比</td><td class="good">低</td><td>扣非39.58亿 vs 归母40.63亿，占比97.4%</td></tr>
+  <tr><td>大客户集中度</td><td class="neutral">集中</td><td>特斯拉/美的/格力为TOP3客户，但单一客户依赖度在下降</td></tr>
+  <tr><td>政策/监管依赖度</td><td class="good">低</td><td>无补贴依赖，以旧换新政策只是锦上添花</td></tr>
+</table>
+
+<h3>7.6 关键变量敏感性</h3>
+<div class="summary-box">
+  <strong>变量1: 机器人执行器量产进展</strong><br>
+  乐观: 2026年特斯拉Optimus量产10万台 → 贡献净利3-5亿，EPS+0.07-0.12元<br>
+  中性: 2027年小批量量产 → 2026年无利润贡献，估值维持现状<br>
+  悲观: 量产持续延迟至2028年后 → 估值溢价消退，PE回落至30x<br><br>
+  <strong>变量2: 汽车热管理业务增速</strong><br>
+  乐观: 全球新能源车增速回升+新客户放量 → 营收+15%，利润+20%<br>
+  中性: 维持9%增速（选客户选项目策略） → 营收+10%，利润+15%<br>
+  悲观: 价格战加剧+客户降价压力 → 营收+5%，利润+5%<br><br>
+  <strong>变量3: 制冷业务毛利率趋势</strong><br>
+  乐观: AI液冷放量+商用替代加速 → 毛利率突破30%<br>
+  中性: 维持28-29% → 利润稳定增长<br>
+  悲观: 空调需求走弱+铜价持续上涨 → 毛利率降至26%
+</div>
+
+<h3>7.7 前景展望</h3>
+<div class="summary-box">
+  <strong>未来1-3年核心驱动：</strong><br><br>
+  <strong>正向驱动：</strong><br>
+  1. 机器人执行器量产——特斯拉Optimus从样品到量产的跨越，是最大的估值催化剂<br>
+  2. 数据中心液冷——AI算力爆发带动的液冷需求，公司已布局产品并获客户认可<br>
+  3. 全球化产能释放——墨西哥/波兰/泰国基地投产后，海外高毛利业务占比持续提升<br><br>
+  <strong>负向拖累：</strong><br>
+  1. 新能源车增速放缓——汽零产销量首次下滑，行业竞争加剧<br>
+  2. 汇兑损失风险——海外收入占比43%，人民币波动影响财务费用<br>
+  3. ROE摊薄——H股上市后净资产大增，短期ROE回升需时间
+</div>
+
+<h3>7.8 三情景简表</h3>
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>EPS预估</th><th>PE区间</th><th>预期回报</th></tr>
+  <tr><td>乐观</td><td>机器人量产+汽零增速回升+毛利率持续提升</td><td>1.30-1.50元</td><td>35-40x</td><td>+15% to +50%</td></tr>
+  <tr><td>中性</td><td>汽零稳增+制冷稳健+机器人维持送样</td><td>1.14-1.20元</td><td>30-35x</td><td>-5% to +15%</td></tr>
+  <tr><td>悲观</td><td>汽零增速<5%+机器人不及预期+毛利率下降</td><td>0.90-1.00元</td><td>25-30x</td><td>-30% to -10%</td></tr>
+</table>
+<p style="font-size:13px;color:#666;">概率判断：中性50%，乐观25%，悲观25%。当前价格反映中性偏乐观预期。</p>
+
+<h3>7.9 资金面信号</h3>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>北向资金持股变动</td><td class="good">增持</td><td>陆股通持股占流通A股2.62%，6月末市值42.38亿</td></tr>
+  <tr><td>机构持仓变动</td><td class="good">增仓</td><td>多位明星基金经理（鹏华闫思倩等）加仓</td></tr>
+  <tr><td>融资余额变动</td><td class="neutral">稳定</td><td>融资余额约64亿，占流通市值4.16%</td></tr>
+  <tr><td>大股东增减持</td><td class="neutral">部分减持</td><td>三花绿能实业FY2025减持7838万股，实控人未减持</td></tr>
+  <tr><td>大宗交易</td><td class="good">溢价</td><td>7月7日大宗交易溢价1.58%成交1.41亿，机构接盘</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>资金面整体判断：</strong>北向资金+机构基金持续增配，大宗交易溢价成交显示机构看好。大股东关联方减持（绿能实业）是压制因素，但实控人张氏家族未减持，整体资金面中性偏正面。
+</div>
+
+<h3>7.10 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——全球热管理零部件隐形冠军，靠阀/泵/换热器的技术壁垒+规模优势，赚家电和新能源车产业链升级的钱。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——PE 40x里有10x是机器人溢价，如果2026机器人量产又"鸽"了怎么办？汽零产销量下滑是短期波动还是长期趋势逆转？<br>
+  3. 如果现在买入，期待的回报来源是什么？——赚机器人执行器从0到1的钱（真正的主升浪驱动，但现在不确定何时来），或者等PEG回落到<1（PE跌到30x以下）时的价值回归。<br>
+  4. 什么情况下你会坚决卖出？——机器人业务被主要客户自研替代/汽零连续两个季度营收负增长/毛利率跌破25%/应收账款暴雷。
+</div>
+
+</div></div>
+
+<div class="footer">
+   免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+   数据来源：三花智控2025年年报、2026Q1季报、券商研报、理杏仁、东方财富、新浪财经
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

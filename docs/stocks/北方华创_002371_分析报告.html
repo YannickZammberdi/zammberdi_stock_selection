@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>北方华创(002371) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>北方华创（002371）财务分析报告</h1>
+<p class="subtitle">基于 L1-L6 框架（财务三表+关键指标+估值+杜邦+行业分类+综合实战）</p>
+<p class="meta">分析日期：2026-07-20 | 数据来源：FY2025 年报 + 2026Q1 季报 + 券商研报 + 东方财富 + 理杏仁 + 集思录</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>北方华创科技集团股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>002371.SZ</td></tr>
+  <tr><td>所属行业</td><td>半导体设备（刻蚀/薄膜沉积/清洗/炉管/离子注入等）</td></tr>
+  <tr><td>行业分类（L5）</td><td><strong>混合周期股</strong> — 中国平台型半导体设备龙头，产品覆盖刻蚀、薄膜沉积、清洗、炉管、离子注入等，国内市占率领先</td></tr>
+  <tr><td>行业地位</td><td>中国半导体设备龙头，国内市占率第一，产品覆盖度最广的平台型设备商</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>393.53 亿（+30.85%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>55.22 亿（-1.77%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>21.33 亿（+37.48%）</strong></td></tr>
+  <tr><td>总资产</td><td>898.01 亿</td></tr>
+  <tr><td>归母净资产</td><td>377.26 亿</td></tr>
+  <tr><td>ROE</td><td>14.64%</td></tr>
+  <tr><td>2026Q1 营收</td><td><strong>103.23 亿（+25.80%）</strong></td></tr>
+  <tr><td>2026Q1 净利润</td><td><strong>16.35 亿（+3.42%）</strong></td></tr>
+</table>
+
+<p style="font-size:13px;color:#666;margin-bottom:4px">行业类型：<strong>混合周期股（半导体设备）</strong>。半导体设备兼具"成长属性"（国产替代驱动，中国设备国产化率仅~20%）和"周期属性"（全球半导体资本开支周期）。考虑到北方华创的增长主要由国产替代结构性驱动（中国晶圆厂持续扩产，不受全球周期左右），采用<strong>非周期股评分体系（成长型）</strong>——理由是公司营收3年CAGR~45%，利润5年CAGR~59%，成长属性远强于周期属性。但需注意，该评分体系下的得分受增长期特征（低CFO/净利、负FCF、短期利润增速为负）压制，不能完全反映公司内在质量。</p>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">采用<strong>非周期股评分体系（成长型）</strong>，综合L1-L5所有因素打分</p>
+<table>
+  <tr><th style="width:24%">维度</th><th style="width:8%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="neutral" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">14.64%，≥10%但<15%——5年平均16.8%若计入则15分，但严格按当期14.64%计</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">净利率14%（高）+周转0.44（低）+杠杆2.38（中），高利润型驱动</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">0.39<0.5——主因营收高增长导致存货大增（存货286亿+21%），占用了大量现金</td></tr>
+  <tr><td>营收增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+30.85%≥10%</td></tr>
+  <tr><td>利润增长（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">-1.77%<0%——主因研发投入同比+36.64%及新产品验证成本增加，非经营恶化</td></tr>
+  <tr><td>负债率（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">51.08%<55%——但其中有息负债占比低，实际财务风险小</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">货币资金173.37亿 >> 短期借款3.19亿，覆盖充裕</td></tr>
+  <tr><td>毛利率水平与趋势（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">40.10%≥15%，但同比-2.83pct（新产品验证成本增加），趋势向下</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">PE(TTM)~90x远超合理区间，5Y历史分位~46%但绝对水平极高</td></tr>
+  <tr><td>自由现金流（5分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">FCF估算为负（资本开支>CFO），扩张期特征</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">49/100</td><td style="text-align:left">不及格（49分）——得分低主要受估值过高（0/10）、增长期财务特征（CFO/净利0/15+利润增长0/10+FCF 0/5）拖累。公司内在质量远高于评分所反映的，但当前价格缺乏安全边际</td></tr>
+</table>
+
+<div class="verdict verdict-bad">不及格（49/100）——高估值的成长代价</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>北方华创是中国半导体设备的绝对龙头——产品覆盖刻蚀、薄膜沉积、清洗、炉管、离子注入等全品类，国内晶圆厂扩产的核心受益者。FY2025营收393.53亿（+30.85%）增长强劲，但净利润55.22亿（-1.77%）因研发投入加大（R&D费用率大幅提升）而微降。现金流方面，CFO 21.33亿（+37.48%）改善明显，但存货286亿（+21%）占用了大量营运资金。<br><br>
+  <strong>核心优势：</strong>① 中国半导体设备平台型龙头，产品覆盖度最广；② 深度受益国产替代大趋势（中国设备国产化率仅~20%，空间巨大）；③ 合同负债42.9亿（订单饱满），2026E营收506.7亿（一致预期），增长确定性强；④ 货币资金173亿充裕，无短期偿债压力。<br><br>
+  <strong>核心风险：</strong>① PE(TTM)~90x，即使按2026E PE~46x仍然不便宜，估值透支了未来2-3年的成长；② 存货286亿（占总资产32%），若下游需求放缓存在跌价风险；③ 毛利率从42.9%降至40.1%，新产品验证成本持续增加压缩利润空间；④ 美国制裁若升级至设备领域全面封锁，可能短期影响供应链。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td><strong>393.53 亿</strong></td><td>300.75 亿</td><td><strong>+30.85%</strong></td><td class="good">✅ 高速增长</td></tr>
+  <tr><td>归母净利润</td><td class="bad"><strong>55.22 亿</strong></td><td>56.22 亿</td><td><strong>-1.77%</strong></td><td class="bad">❌ 微降</td></tr>
+  <tr><td>扣非净利润</td><td class="bad"><strong>53.36 亿</strong></td><td>55.71 亿</td><td>-4.22%</td><td class="bad">❌ 下降</td></tr>
+  <tr><td>毛利率</td><td class="bad"><strong>40.10%</strong></td><td>42.93%</td><td>-2.83pct</td><td class="bad">❌ 下滑明显</td></tr>
+  <tr><td>归母净利率</td><td class="neutral"><strong>14.03%</strong></td><td>18.69%</td><td>-4.66pct</td><td class="bad">❌ 下降</td></tr>
+  <tr><td>期间费用率</td><td><strong>~26.5%</strong></td><td>~22.1%</td><td>+4.4pct</td><td class="bad">❌ 费用率上升（研发驱动）</td></tr>
+  <tr><td>研发费用率</td><td><strong>~14.8%</strong></td><td>~12.5%</td><td>+2.3pct</td><td class="good">✅ 持续加大投入</td></tr>
+  <tr><td>2026Q1 营收</td><td class="good"><strong>103.23 亿</strong></td><td>82.06 亿</td><td><strong>+25.80%</strong></td><td class="good">✅ 延续高增长</td></tr>
+  <tr><td>2026Q1 净利润</td><td class="good"><strong>16.35 亿</strong></td><td>15.81 亿</td><td><strong>+3.42%</strong></td><td class="neutral">⚠ 微增（研发费用+36.64%）</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>FY2025营收393.53亿（+30.85%）延续高增长——集成电路设备营收同比超+50%（刻蚀/薄膜/炉管/清洗等多款设备市占率提升），但归母净利润55.22亿（-1.77%）"增收不增利"。主因有二：① 研发费用大幅增加（2026Q1研发费用14.02亿+36.64%，全年类比）；② 新产品在客户端验证过程中零部件迭代升级成本增加导致毛利率下降2.83pct。2026Q1营收103.23亿（+25.80%）持续高增，但利润仍受研发高投入压制（+3.42%）。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td><strong>173.37 亿</strong></td><td>124.00 亿</td><td class="good">✅ 充裕</td></tr>
+  <tr><td>应收账款</td><td><strong>82.17 亿</strong></td><td>62.36 亿</td><td class="neutral">占营收20.9%，合理</td></tr>
+  <tr><td>存货</td><td><strong>286.27 亿</strong></td><td>236.35 亿</td><td class="bad">❌ 高企</td></tr>
+  <tr><td>短期借款</td><td><strong>3.19 亿</strong></td><td>0.94 亿</td><td class="good">✅ 极低</td></tr>
+  <tr><td>长期借款</td><td><strong>129.73 亿</strong></td><td>39.46 亿</td><td class="neutral">⚠ 大幅增加（扩产投资）</td></tr>
+  <tr><td>合同负债</td><td><strong>42.91 亿</strong></td><td>62.20 亿</td><td class="neutral">⚠ 下降（订单交付确认）</td></tr>
+  <tr><td>资产负债率</td><td><strong>51.08%</strong></td><td>~53.2%</td><td class="neutral">⚠ 中等</td></tr>
+  <tr><td>归母净资产</td><td class="good"><strong>377.26 亿</strong></td><td>310.82 亿</td><td class="good">✅ 增厚21.38%</td></tr>
+  <tr><td>总资产</td><td><strong>898.01 亿</strong></td><td>663.66 亿</td><td class="good">✅ 增长35.31%</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>资产负债表整体健康——货币资金173亿充裕（占总资产19%），短期借款仅3.19亿。存货286亿（占总资产32%）是最大关注点，其中产成品和在产品占比较大。长期借款从39.46亿增至129.73亿，主要用于扩产投资（新设备研发、产能建设）。合同负债42.91亿从62.20亿下降，可能反映了订单交付节奏——但2026Q1营收103亿+25.8%说明需求仍然强劲。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>21.33 亿</strong></td><td>15.52 亿</td><td class="good">✅ 改善+37.48%</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><strong>约-45 亿（估）</strong></td><td>—</td><td class="bad">❌ 大量资本开支</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td><strong>约+50 亿（估）</strong></td><td>—</td><td class="neutral">外部融资支持扩产</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>0.39</strong></td><td>0.28</td><td class="bad">❌ 偏低但改善中</td></tr>
+  <tr><td>自由现金流（FCF）</td><td><strong>约-24 亿（估）</strong></td><td>—</td><td class="bad">❌ 持续为负</td></tr>
+  <tr><td>2026Q1 CFO</td><td class="good"><strong>7.48 亿</strong></td><td>-17.29 亿</td><td class="good">✅ 大幅转正</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>现金流解读：</strong>CFO 21.33亿（+37.48%）持续改善，但CFO/净利仅0.39，利润含金量偏低——主因是营收高增长导致应收账款+存货大幅增加。FCF估算为-24亿（资本开支>CFO），公司仍处于"重投入扩张期"。积极信号：2026Q1 CFO 7.48亿（去年同期-17.29亿）大幅转正，现金流质量正在改善。货币资金173亿充裕，短期无流动性压力，但FCF持续为负意味着公司仍依赖融资支撑扩张。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>14.64%</strong></td><td>> 15% 优秀 / > 10% 及格</td><td class="neutral">⚠ 中等（接近优秀）</td></tr>
+  <tr><td>毛利率</td><td class="bad"><strong>40.10%</strong></td><td>稳定或提升</td><td class="bad">❌ 下降2.83pct</td></tr>
+  <tr><td>净利率</td><td class="neutral"><strong>14.03%</strong></td><td>> 10%</td><td class="good">✅ 良好</td></tr>
+  <tr><td>营收增长率</td><td class="good"><strong>+30.85%</strong></td><td>> 10%</td><td class="good">✅ 高速增长</td></tr>
+  <tr><td>利润增长率</td><td class="bad"><strong>-1.77%</strong></td><td>正增长</td><td class="bad">❌ 微降</td></tr>
+  <tr><td>CFO/净利润</td><td class="bad"><strong>0.39</strong></td><td>> 1</td><td class="bad">❌ 偏低</td></tr>
+  <tr><td>资产负债率</td><td class="neutral"><strong>51.08%</strong></td><td>制造业<60%</td><td class="neutral">⚠ 中等</td></tr>
+  <tr><td>分红率</td><td><strong>~10%</strong></td><td>持续分红</td><td class="neutral">低，扩产期可理解</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>关键指标总结：</strong>8项指标中2项达标、2项及格、4项不及格。营收高增长（+30.85%）和净利率（14.03%）是亮点，但利润增长（-1.77%）、CFO/净利（0.39）和毛利率下滑是核心问题。高研发投入是利润增长为负的主因——2026Q1研发费用率高达13.6%，这是主动选择而非经营恶化。这是典型的"以利润换未来"策略，关键看研发投入能否转化为未来的收入增长和份额提升。
+</div>
+
+<h3>3.2 分业务分析（FY2025）</h3>
+<table>
+  <tr><th>业务板块</th><th>营收（亿）</th><th>占比</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td>电子工艺装备</td><td>367.31</td><td>93.34%</td><td>+32.57%</td><td>39.18%</td><td class="good">✅ 核心增长引擎</td></tr>
+  <tr><td>电子元器件</td><td>25.79</td><td>6.55%</td><td>+10.95%</td><td>52.95%</td><td class="good">✅ 高毛利稳健</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>电子工艺装备（半导体设备）是绝对核心，占营收93.34%，同比+32.57%。集成电路设备营收同比超+50%——刻蚀、薄膜沉积、热处理、湿法清洗、离子注入等多款设备市占率稳步提升。电子元器件（高精密电容/电阻/晶体器件等）毛利率52.95%，是利润的重要贡献者，但规模较小。公司已从单一设备商转型为平台型半导体设备龙头，产品覆盖度国内最广。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="bad">🔴 高</td><td>存货286亿占总资产32%，去化风险</td><td>存货同比+21%，若下游晶圆厂扩产放缓，可能面临跌价风险</td></tr>
+  <tr><td class="bad">🔴 高</td><td>FCF持续为负，依赖融资扩张</td><td>FCF估算约-24亿，长期借款从39亿增至130亿</td></tr>
+  <tr><td class="bad">🔴 高</td><td>估值极高，PE(TTM)~90x</td><td>即使2026E PE~46x仍然偏贵，市场已计入极高预期</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>毛利率持续下降（42.9%→40.1%）</td><td>新产品验证成本增加、产品结构变化，趋势仍需观察</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>美国制裁升级风险</td><td>若全面封锁设备出口，可能影响部分零部件供应</td></tr>
+  <tr><td class="good">🟢 正面</td><td>营收连续高增长（3年CAGR ~45%）</td><td>国产替代逻辑驱动，确定性高</td></tr>
+  <tr><td class="good">🟢 正面</td><td>货币资金173亿充裕，短期无忧</td><td>短期借款仅3.19亿，财务结构安全</td></tr>
+  <tr><td class="good">🟢 正面</td><td>合同负债42.9亿，在手订单饱满</td><td>公司是国内晶圆厂扩产核心受益者</td></tr>
+  <tr><td class="good">🟢 正面</td><td>5年平均ROE 16.8%，盈利能力优秀</td><td>穿越周期的资本回报能力验证</td></tr>
+</table>
+
+<div class="verdict verdict-caution">⚠ L2综合判定：业务面优秀（30%营收增长+龙头地位），但财务面存在明显压力（FCF为负+存货高企+估值极高）</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>股价（2026.7.20）</td><td><strong>~667 元</strong></td><td>总股本7.25亿股</td></tr>
+  <tr><td>总市值</td><td><strong>~4836 亿</strong></td><td>52周范围314-856元</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>~89.7x</strong></td><td>基于TTM EPS ~7.44元</td></tr>
+  <tr><td>PE（FY2025）/ PE（2026E）</td><td><strong>~87.6x / ~46.5x</strong></td><td>基于EPS 7.64元 / 10.29元</td></tr>
+  <tr><td>PB</td><td><strong>~12.3x</strong></td><td>基于每股净资产~52.1元</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~12.3x</strong></td><td>基于营收393.53亿</td></tr>
+  <tr><td>PCF</td><td><strong>~226x</strong></td><td>基于CFO 21.33亿</td></tr>
+  <tr><td>股息率</td><td><strong>~0.1%</strong></td><td>分红率低，成长型特征</td></tr>
+</table>
+
+<h3>4.2 PE Band估值区间（成长型适用）</h3>
+<p style="font-size:13px;color:#666;">ROE 14.64%（5Y平均16.8%）→ 合理PE参考区间：15-25x | 2026E一致预期EPS ≈ 10.29元</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs现价667元</th></tr>
+  <tr><td>悲观</td><td>20x</td><td>206 元</td><td class="bad">-69%</td></tr>
+  <tr><td>保守</td><td>35x</td><td>360 元</td><td class="bad">-46%</td></tr>
+  <tr><td>中性（PEG~1.5）</td><td>45x</td><td>463 元</td><td class="bad">-31%</td></tr>
+  <tr><td>券商目标</td><td>46.5x</td><td>478 元</td><td class="bad">-28%</td></tr>
+  <tr><td>当前价</td><td>~64.8x</td><td>667 元</td><td>—</td></tr>
+  <tr><td>乐观（高增长溢价）</td><td>55x</td><td>566 元</td><td class="bad">-15%</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>估值风险警示：</strong><br>
+  ① 当前PE(TTM)~90x，5Y历史分位~46%（半导体设备长期享有高估值溢价），但绝对水平极高；<br>
+  ② 券商目标价478元（46.5x 2026E PE）对应向下~28%空间；券商目标价通常是乐观假设；<br>
+  ③ 以ROE 14.6%对应的合理PE 15-25x计算，合理股价仅150-260元，现价已严重透支；<br>
+  ④ 市场给予北方华创极高的"国产替代垄断溢价"和"高增长溢价"，但当前价格已反映未来2-3年的增长；<br>
+  ⑤ PEG约2.0（基于一致预期35%利润增速 vs 46.5x 2026E PE），处于偏高水平。
+</div>
+
+<h3>4.3 历史PE区间（近5年TTM）</h3>
+<table>
+  <tr><th>指标</th><th>数值</th></tr>
+  <tr><td>PE（TTM）最大值</td><td>~507x（2022年利润低谷）</td></tr>
+  <tr><td>PE（TTM）80%分位</td><td>~180x</td></tr>
+  <tr><td>PE（TTM）50%分位（中值）</td><td>~127x</td></tr>
+  <tr><td>PE（TTM）20%分位</td><td>~70x</td></tr>
+  <tr><td>PE（TTM）最小值</td><td>~28x（2024年利润高点）</td></tr>
+  <tr><td>当前PE（TTM）</td><td class="neutral">~89.7x（5Y ~46%分位）</td></tr>
+</table>
+<p style="font-size:13px;color:#999;margin-top:-8px;margin-bottom:12px">⚠ PE(TTM)波动极大（28-507x），半导体设备公司PE受利润周期和市场情绪双重影响。历史中值127x但当前利润水平下的90x并非极端，但绝对估值水平仍高。</p>
+
+<h3>4.4 PB估值</h3>
+<table>
+  <tr><th>指标</th><th>数值</th></tr>
+  <tr><td>PB 5Y最大值</td><td>~31.9x</td></tr>
+  <tr><td>PB 80%分位</td><td>~15x</td></tr>
+  <tr><td>PB 50%分位（中值）</td><td>~7.7x</td></tr>
+  <tr><td>PB 20%分位</td><td>~4.5x</td></tr>
+  <tr><td>PB 5Y最小值</td><td>~2.4x</td></tr>
+  <tr><td>当前PB</td><td class="bad">~12.3x（5Y ~87%分位）</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值总结：</strong>北方华创当前PE(TTM)~90x（5Y 46%分位）、PB~12.3x（5Y 87%分位）——绝对估值水平极高，但相对历史并非极端（PE因利润增长而从高位回落）。市场给予北方华创极高的"国产替代龙头垄断溢价"，2026E PE~46.5x（券商一致预期）对应PEG~1.3，处于合理偏高区间。核心矛盾是：① 好公司（中国设备龙头，30%+增长确定性高）vs ② 高估值（市场已提前反映了未来2-3年的成长）。投资北方华创的核心问题是"愿意为确定性支付多高的溢价"——如果国产替代逻辑兑现顺利，46x PE可通过增长消化；但如果增速放缓或市场风格切换，估值有大幅压缩风险。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>归母净利率</td><td>17.40%</td><td>18.69%</td><td class="bad"><strong>14.03%</strong></td><td class="bad">⬇ 下降</td></tr>
+  <tr><td>资产周转率（次）</td><td>0.41</td><td>0.45</td><td><strong>0.44</strong></td><td class="neutral">➡ 稳定偏低</td></tr>
+  <tr><td>权益乘数</td><td>2.23</td><td>2.13</td><td><strong>2.38</strong></td><td class="neutral">⬆ 杠杆略升</td></tr>
+  <tr><td><strong>ROE</strong></td><td><strong>~15.9%</strong></td><td><strong>~18.1%</strong></td><td class="bad"><strong>14.64%</strong></td><td class="bad">⬇ 下降</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>7.13%</td><td>8.41%</td><td class="bad"><strong>6.17%</strong></td><td class="bad">⬇ 下降</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>8.77pct</td><td>9.69pct</td><td class="bad"><strong>8.47pct</strong></td><td class="neutral">➡ 略降</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：高利润+中杠杆型——技术壁垒驱动的典型半导体设备模式</strong><br>
+  北方华创FY2025 ROE=14.64%的拆解：净利率14.03%（较高）× 周转率0.44（偏低）× 权益乘数2.38（中）。核心驱动力是净利润率——14%的净利率在制造业中属于优秀水平，体现了半导体设备的技术壁垒。去掉杠杆后ROA=6.17%，杠杆贡献了8.47个百分点，杠杆主要来自供应链占款（应付+合同负债）而非有息负债。<br><br>
+  <strong>与高利润期对比（FY2024）：</strong>ROE 18.1%→14.64%，下降3.46pct，几乎全部由净利率下降驱动（18.69%→14.03%，-4.66pct）。周转率（0.45→0.44）基本持平。ROE下降的主因是研发投入加大+新产品验证成本增加压缩了净利润率——这与公司"以利润换未来"的战略一致。
+</div>
+
+<h3>5.2 资产回报效率</h3>
+<table>
+  <tr><th>指标</th><th>北方华创</th><th>中微公司</th><th>评价</th></tr>
+  <tr><td>去杠杆ROA</td><td><strong>6.17%</strong></td><td>~8%</td><td class="neutral">⚠ 低于中微（模式不同）</td></tr>
+  <tr><td>每1元资产创营收</td><td><strong>0.44 元</strong></td><td>~0.35元</td><td class="good">✅ 平台型资产利用效率较高</td></tr>
+  <tr><td>ROE</td><td><strong>14.64%</strong></td><td>~12%</td><td class="good">✅ 高于中微</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>核心结论：</strong><br>
+  ① 北方华创的ROE驱动模型是"高利润+中杠杆"——依靠技术壁垒获取14%净利率，配合适度杠杆放大回报；<br>
+  ② ROE从18.1%下降到14.64%，几乎全部由净利率下降导致——这是公司主动加大研发投入的战略选择，不是竞争力恶化；<br>
+  ③ 资产周转率0.44在设备行业中属于合理水平（轻资产设计 vs 重资产制造兼备），周转率提升空间有限；<br>
+  ④ 杠杆贡献8.47个百分点，占总ROE的58%——扣除杠杆后的真实回报（ROA）仅6.17%，说明资本回报效率中等；<br>
+  ⑤ ROE修复路径：净利率从14%回到17-19%（研发投入的效益释放+产品结构优化）→ ROE回到18-22%——但这需要时间，取决于研发投入何时转化为收入增长。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与特征（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：混合周期股（半导体设备，偏成长型）</strong><br>
+  <strong>判断依据：</strong>半导体设备行业兼具"成长性"和"周期性"。<br><br>
+  <strong>成长属性（主驱动力）：</strong>中国半导体设备国产化率仅~20%，远低于全球成熟市场的50%+水平。在美国制裁持续升级的背景下，中国晶圆厂（中芯/长鑫/长存/华虹等）加速扩产和国产设备导入，北方华创作为国内最大的平台型设备商，深度受益于这一结构性趋势。FY2025营收393.53亿（+30.85%），3年CAGR~45%，远高于GDP增速。<br><br>
+  <strong>周期属性（次驱动力）：</strong>全球半导体设备行业有3-4年的资本开支周期——2024年见底后进入上行期，中国设备需求受全球周期影响相对较小（主要受国产替代驱动）。<br><br>
+  <strong>结论：</strong>属于<strong>混合周期股，偏成长型</strong>。选用<strong>非周期股评分体系（成长型）</strong>——因为成长属性远强于周期属性，公司增长的驱动力不是供需价格波动而是结构性国产替代。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th></tr>
+  <tr><td>市场格局</td><td><strong>国产设备高度集中</strong>——北方华创+中微公司+拓荆科技 CR3 ~50%（国产范围内）。但全球市场被Applied Materials/Lam Research/TEL三大巨头垄断，国产整体份额仍低。</td></tr>
+  <tr><td>技术壁垒</td><td><strong>极高</strong>——半导体设备涉及精密机械、等离子体物理、材料科学等多学科交叉，技术门槛极高。客户认证周期12-24个月，进入供应链后替换成本极高。</td></tr>
+  <tr><td>客户壁垒</td><td><strong>强</strong>——已进入中芯国际、长鑫存储、华虹等国内主要晶圆厂供应链，客户粘性高。中微公司刻蚀设备甚至已进入台积电产线。</td></tr>
+  <tr><td>资金壁垒</td><td><strong>极高</strong>——设备研发投入大（北方华创研发费用率~14%），新产品开发周期长，需要持续大量资本投入。</td></tr>
+  <tr><td>政策壁垒</td><td><strong>强</strong>——半导体设备国产化是国家战略，大基金持续投入，国产替代政策强力推动。</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  <strong>阶段：成长期前中期（国产替代空间仍大）</strong><br>
+  中国半导体设备行业整体处于"成长期早期到中期"——国产化率~20%，远未到天花板。北方华创作为平台型龙头，产品覆盖度持续扩大、市占率稳步提升。刻蚀/薄膜/清洗等成熟产品线已进入放量期，离子注入/涂胶显影等新产品正在突破期。公司营收增速虽从2021年的+59%放缓至目前的+30%，但绝对增速在制造业中仍属顶尖水平。<br><br>
+  <strong>投资策略重点：</strong>关注（1）国产替代进度和市占率变化；（2）新产品（离子注入/涂胶显影/键合等）的验证和放量进度；（3）毛利率趋势（新产品验证成本消化后能否回升）；（4）美国制裁动态。
+</div>
+
+<h3>6.4 同行对比分析</h3>
+<table>
+  <tr><th>指标</th><th>北方华创</th><th>中微公司</th><th>盛美上海</th><th>评价</th></tr>
+  <tr><td>营收（亿）</td><td><strong>393.53</strong></td><td>~90</td><td>~60</td><td class="good">✅ 规模领先</td></tr>
+  <tr><td>营收增速</td><td><strong>+30.85%</strong></td><td>~+35%</td><td>~+40%</td><td class="neutral">三家均高速增长</td></tr>
+  <tr><td>毛利率</td><td><strong>40.10%</strong></td><td>~50%</td><td>~42%</td><td class="neutral">⚠ 低于中微（平台型 vs 单品）</td></tr>
+  <tr><td>净利率</td><td><strong>14.03%</strong></td><td>~25%</td><td>~18%</td><td class="bad">❌ 低于中微（研发投入大）</td></tr>
+  <tr><td>ROE</td><td><strong>14.64%</strong></td><td>~12%</td><td>~10%</td><td class="good">✅ 高于同业</td></tr>
+  <tr><td>负债率</td><td><strong>51.08%</strong></td><td>~20%</td><td>~25%</td><td class="bad">❌ 最高（杠杆最大）</td></tr>
+  <tr><td>研发费用率</td><td><strong>~14.8%</strong></td><td>~18%</td><td>~15%</td><td class="neutral">行业正常水平</td></tr>
+  <tr><td>PB</td><td><strong>12.3x</strong></td><td>~8x</td><td>~7x</td><td class="bad">❌ 最高</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>~90x</strong></td><td>~80x</td><td>~60x</td><td class="neutral">整体偏高</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>同行对比结论：</strong>北方华创是"规模领先型"选手——营收393亿远超中微（~90亿）和盛美（~60亿），体现了平台型优势。但毛利率40.1%低于中微的~50%（中微聚焦高毛利的刻蚀设备），净利率14%也低于中微的~25%——因为北方华创产品线更宽，低毛利产品拉低整体，同时研发投入更大。ROE 14.64%是三家中最高的，因为杠杆更高（负债率51% vs 20%）。整体评价：北方华创是"规模+广度"领先，中微是"深度+利润率"领先。两者定位不同，都是中国半导体设备的核心资产。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>成长型（半导体设备）</td><td>PS + PEG</td><td>PE（盈利后）、营收增速、毛利率趋势、合同负债</td><td class="neutral">⚠ 部分匹配——PS 12.3x偏高（>10x预警线），PEG~1.3（2026E）尚可</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值方法总结：</strong>北方华创作为高成长半导体设备龙头，市场主要用PEG和PS估值。PS 12.3x已超过10x预警线——意味着需要>30%的营收增速来支撑。PEG~1.3（基于2026E PE 46.5x和30%利润增速）处于合理偏高。核心问题是：当前股价667元已超过券商目标价478元约40%，市场给予了极高的"国产替代确定性溢价"。对于成长型投资者，关键在于判断30%+的营收增速能维持多久——若持续2年以上，高估值可被时间消化；若增速放缓至<20%，将面临估值和业绩的双杀。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战分析（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>混合周期（偏成长型）——半导体设备，国产替代驱动，国产化率仅~20%空间巨大，技术壁垒极高<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 14.64%（5Y均值16.8%强），高利润+中杠杆型杜邦，CFO/净利0.39偏低（存货占用），FCF为负（扩张期）<br>
+  <strong>Step 3 - 估值判断：</strong>PE(TTM)~90x（5Y 46%分位），PB 12.3x（5Y 87%分位），2026E PE~46.5x（PEG~1.3），绝对估值高<br>
+  <strong>Step 4 - 风险排查：</strong>核心风险：存货高企+估值极高+FCF持续为负+毛利率下降<br>
+  <strong>Step 5 - 结论：</strong>✅ 好行业（半导体设备国产替代超级周期）+ ✅ 好公司（中国龙头，30%增长确定性高）+ ❌ 好价格（当前估值已反映2-3年增长，安全边际不足）<br>
+  <strong>Step 6 - 跟踪：</strong>关键指标：设备招标量、合同负债变化、毛利率趋势、研发投入转化效率。买入信号：PB回落至8x以下或PE回落至35x以下。卖出信号：产能利用率连续下降或制裁全面升级
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>半导体设备国产替代是中国科技领域最确定的长期投资主题之一，国产化率仅~20%，政策全力支持</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓</td><td>5年平均ROE 16.8%（>15%），毛利率40%（>15%），营收30%+增长，货币资金173亿充裕，中国设备龙头地位稳固</td></tr>
+  <tr><td>③ 好价格</td><td class="bad">✗</td><td>PE(TTM)~90x远超合理区间，PB 12.3x处于历史87%分位，券商目标价478元有28%下行空间</td></tr>
+</table>
+
+<h3>7.3 风险评估</h3>
+
+<h4>a. 三个陷阱排查</h4>
+<div class="danger-box">
+  <strong>陷阱排查结果：</strong><br><br>
+  ☐ <strong>价值陷阱（低PE+低增长+高负债）</strong> → PE 90x（高PE），营收+30.85%（高增长），负债率51%（中等）→ ❌ 未命中<br><br>
+  ☐ <strong>周期陷阱（低PE+周期顶点）</strong> → PE 90x非低PE，设备行业在国产替代驱动的结构性增长周期中，非传统供需周期 → ❌ 未命中<br><br>
+  ☑ <strong>烧钱陷阱（高PE+高增速+CFO为负）</strong> → PE 90x（极高），营收+30.85%（高增速），FCF为负（-24亿），长期借款从39亿增至130亿 → 🔴 <strong>部分命中</strong>——持续的资本开支依赖外部融资，但货币资金173亿充裕、短期借款仅3亿，现金流危机风险低，属于"可控的烧钱扩张"
+</div>
+
+<h4>b. 管理层与治理风险</h4>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力与履历</td><td>好</td><td>董事长赵晋荣（原北京电控背景），管理团队在半导体设备领域平均20年+经验</td></tr>
+  <tr><td>股权结构与利益一致性</td><td>强</td><td>北京电控（北京市国资委）为实控人，国资背景+市场化运营，利益与公司长期发展一致</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td>无</td><td>年报标准无保留意见，无重大违规或监管处罚历史</td></tr>
+  <tr><td>资本配置记录</td><td>合理</td><td>持续研发投入+扩产，符合行业发展规律。2025年通过长期借款优化债务结构（短借3亿→长借130亿）</td></tr>
+  <tr><td>管理层增减持记录</td><td>无重大</td><td>国资控股背景下管理层减持规模小，无异常减持记录</td></tr>
+  <tr><td>CEO交接/关键人员变动</td><td>无风险</td><td>管理层稳定，无关键人员变动风险</td></tr>
+</table>
+
+<h4>c. 盈利可持续性</h4>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是靠价？</td><td>量驱动</td><td>营收增长靠设备出货量增加（市占率提升），ASP相对稳定</td></tr>
+  <tr><td>涨价能否持续？</td><td>需观察</td><td>设备定价受技术迭代和竞争格局影响，国产替代初期有一定溢价，但中长期价格趋稳</td></tr>
+  <tr><td>非经常性利润占比</td><td>低</td><td>非经常性损益占比~3.4%（1.86亿/55.22亿），利润质量良好</td></tr>
+  <tr><td>大客户集中度</td><td>集中但可控</td><td>主要客户是国内头部门店晶圆厂（中芯/长鑫/华虹/长存等），集中度高但客户性质稳定</td></tr>
+  <tr><td>政策/监管依赖度</td><td>高</td><td>严重依赖国产替代政策和美国制裁动态——这是行业特征，既是风险也是机遇</td></tr>
+</table>
+
+<h4>d. 关键变量敏感性</h4>
+<div class="summary-box">
+  <strong>变量1: 国产替代进度（最核心变量）</strong><br>
+  &nbsp;&nbsp;乐观：设备国产化率加速提升（制裁加码倒逼），北方华创市占率持续扩大，2026E营收冲击550亿+<br>
+  &nbsp;&nbsp;中性：国产替代稳步推进，2026E营收~507亿（一致预期），净利润~74.6亿<br>
+  &nbsp;&nbsp;悲观：制裁缓和或国内晶圆厂资本开支放缓，营收增速降至<15%，高估值面临双杀<br><br>
+  <strong>变量2: 毛利率趋势</strong><br>
+  &nbsp;&nbsp;乐观：新产品验证完成，毛利率回升至42-43%，净利率恢复至17-18%<br>
+  &nbsp;&nbsp;中性：毛利率稳定在39-40%，研发费用率持续高企，净利率维持14%左右<br>
+  &nbsp;&nbsp;悲观：竞争加剧+新产品投入持续，毛利率降至37-38%，净利率降至12%<br><br>
+  <strong>变量3: 美国制裁升级</strong><br>
+  &nbsp;&nbsp;乐观：制裁短期影响可控，国内设备和零部件替代加速，国产替代逻辑反而强化<br>
+  &nbsp;&nbsp;中性：制裁维持现有水平，对部分关键零部件（如EDA、高端检测设备）形成制约但可替代<br>
+  &nbsp;&nbsp;悲观：全面封锁设备出口+技术转让，影响公司部分新产品研发进度和供应链安全
+</div>
+
+<h3>7.4 前景展望</h3>
+
+<h4>a. 未来1-3年核心驱动</h4>
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. 国产替代加速——美国制裁升级倒逼国内晶圆厂加速导入国产设备，北方华创作为平台型龙头最受益，订单确定性强<br>
+  2. 新产品放量——离子注入、涂胶显影、键合等新品类逐步验证通过并形成收入增量，打开第二成长曲线<br>
+  3. 先进封装设备需求爆发——AI芯片带动的2.5D/3D先进封装对刻蚀/薄膜沉积/清洗设备需求激增<br>
+  4. 规模效应释放——营收规模突破500亿后，研发费用率有望从14%降至12-13%，净利率回升<br><br>
+  <strong>负向拖累：</strong><br>
+  1. 存货286亿高企——若下游晶圆厂扩产节奏放缓，存货减值风险不容忽视<br>
+  2. 毛利率持续承压——新产品验证期间成本高企，叠加竞争加剧，毛利率短期难回升<br>
+  3. FCF持续为负——资本开支高峰期远未结束，长期借款从39亿激增至130亿，杠杆率上升<br>
+  4. 估值天花板——当前股价已超券商目标价28%，市场情绪和流动性是短期核心风险
+</div>
+
+<h4>b. 三情景简表</h4>
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>EPS预估</th><th>PE区间</th><th>预期回报</th></tr>
+  <tr><td>乐观</td><td>国产替代加速+毛利率回升至42%+新产品放量</td><td>12-13元</td><td>35-45x（420-585元）</td><td>-13%至-37%</td></tr>
+  <tr><td>中性</td><td>一致预期：营收+28%+净利+35%+毛利率39%</td><td>10.29元</td><td>40-50x（412-514元）</td><td>-23%至-38%</td></tr>
+  <tr><td>悲观</td><td>产能放缓+毛利率降至37%+增速<20%</td><td>7-8元</td><td>30-40x（210-320元）</td><td>-52%至-68%</td></tr>
+</table>
+<p style="font-size:13px;color:#666;margin-bottom:16px">概率判断：中性50%，乐观20%，悲观30%。所有情景下当前价均无安全边际——即使最乐观假设，预期回报也为负。核心问题是估值太高，需要股价大幅回调（-20%至-40%）才能提供有吸引力的买入机会。</p>
+
+<h3>7.5 资金面信号</h3>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>北向资金持股变动</td><td class="neutral">需跟踪</td><td>深股通标的，北向资金持有比例较高，近期需关注是否有大额流出</td></tr>
+  <tr><td>机构持仓变动</td><td class="neutral">稳定偏高</td><td>北方华创是公募基金半导体板块的核心配置标的，机构持仓比例长期较高</td></tr>
+  <tr><td>融资余额变动</td><td class="neutral">偏高</td><td>融资余额占比较高，杠杆资金情绪活跃，若市场调整可能加剧下跌</td></tr>
+  <tr><td>大股东增减持</td><td>无重大变动</td><td>北京电控为控股股东，无减持记录；国资背景减持风险极低</td></tr>
+  <tr><td>券商评级</td><td class="good">买入为主</td><td>主流券商一致给予"买入"评级，2026E一致目标价~478元但远低于现价667元</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>资金面判断：</strong>机构配置核心，北向稳定，但当前股价已超越券商目标价40%，市场情绪驱动的成分大于基本面驱动。资金面中性偏谨慎——机构持仓稳定但估值高位限制了新增资金的流入动力。
+</div>
+
+<h3>7.6 讨论问题（阅读引导）</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——设计制造刻蚀机/薄膜沉积/清洗等半导体设备，卖给中芯/长鑫/华虹等晶圆厂，赚技术壁垒的钱。在国产替代大潮中，中国晶圆厂每扩张一条产线，北方华创就能多卖几台设备。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——股价667元 vs 券商目标价478元，差了40%。PE 90x给了未来3年充分定价——如果国产替代进度慢一点、或者增速从30%降到20%，估值压缩的幅度可能远超想象。还有就是286亿的存货，占比32%，这在历史上任何制造业公司里都是需要盯着看的数字。<br>
+  3. 如果现在买入，期待的回报来源是什么？——说实话在667元这个价位很难找到有说服力的回报逻辑。唯一的希望是业绩超预期（2026E净利润冲到90亿+），让PE从65x降到50x以下，同时市场情绪维持高亢。但这不是投资，是投机，赌运气的成分大。<br>
+  4. 什么情况下你会坚决买入？——股价回调至400-480元区间（PE回落至40-46x，接近券商目标价），届时国产替代确定性和安全边际兼具。北方华创是好公司，但任何价格买入都是危险的。
+</div>
+
+</div></div>
+
+<div class="footer">
+    免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+    数据来源：北方华创2025年年报、2026Q1季报、券商研报（爱建证券）、东方财富、理杏仁、集思录。
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>
