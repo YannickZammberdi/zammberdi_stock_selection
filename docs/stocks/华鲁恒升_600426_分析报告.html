@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>华鲁恒升(600426) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>华鲁恒升（600426）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026-07-29 | 数据来源：FY2025 年报 + 2026Q1 季报</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>山东华鲁恒升化工股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>600426.SH</td></tr>
+  <tr><td>所属行业</td><td>基础化工（煤化工 — 肥料/有机胺/醋酸/新能源新材料）</td></tr>
+  <tr><td>行业地位</td><td>国内煤化工成本之王，DMF全球第一，己二酸国内第一</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>309.69 亿（-9.52%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>33.15 亿（-15.04%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>41.98 亿（-15.51%）</strong></td></tr>
+  <tr><td>总资产</td><td>491.77 亿</td></tr>
+  <tr><td>归母净资产</td><td>330.80 亿</td></tr>
+  <tr><td>ROE（加权）</td><td>10.32%</td></tr>
+</table>
+
+<p style="font-size:13px;font-weight:bold;margin-top:12px;">行业类型：纯周期股（基础化工/煤化工） — 采用周期股评分体系</p>
+
+<h2>综合评分（周期股评分体系）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">采用周期股评分体系——核心逻辑：穿越周期的生存能力 + 当前周期位置 + 成本优势</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>穿越周期ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">近5年ROE均值约18%（2021:33%→2022:23%→2023:12%→2024:13%→2025:10%），≥12%</td></tr>
+  <tr><td>成本位置/行业成本曲线（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">煤化工成本之王——"一头多线"柔性联产，单位能耗比行业低10-15%，成本比同行低15-20%，Top quartile</td></tr>
+  <tr><td>负债安全垫（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">净负债/EBITDA约1.5x<3x，资产负债率仅28.5%极低，有息负债率22%。货币资金20.85亿+CFO 41.98亿，安全垫极厚</td></tr>
+  <tr><td>行业格局与产能周期（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">6</td><td style="text-align:left">煤化工CR5约65%集中度中等，DMF全球第一但行业较分散。荆州基地仍在扩产，未来两年新增供给较多</td></tr>
+  <tr><td>周期位置（15分）</td><td class="good" style="font-weight:bold;font-size:15px">12</td><td style="text-align:left">2025年产品价格承压（营收-9.5%净利-15%），但Q4净利同比+10.3%拐点初现；2026Q1净利+58%确认复苏</td></tr>
+  <tr><td>估值PB vs历史区间（15分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">PB约1.74x，5年约40%分位（30-50%分位），估值处于中偏低区间</td></tr>
+  <tr><td>现金生成能力FCF（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">低谷期CFO 41.98亿极强，FCF约5.5亿仍为正，净现比1.27，现金质量好</td></tr>
+  <tr><td>分红/回购历史（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">连续多年分红，2025年分红率31.9%，中期+末期合计10.58亿；2026年推出2-3亿回购注销</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">88/100</td><td style="text-align:left">品质优秀（88/100分）</td></tr>
+</table>
+
+<div class="verdict verdict-ok">品质优秀（88/100分）</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>华鲁恒升是国内煤化工的"成本之王"，凭借"一头多线"柔性联产模式，在化工周期底部展现出极强韧性。DMF全球第一、己二酸国内第一，多个产品拥有定价权。资产负债率仅28.5%极为健康，CFO 41.98亿强劲有力。2026Q1净利同比+58%确认周期修复拐点，荆州基地新产能逐步释放将驱动量增长。<br><br>
+  <strong>核心优势：</strong>① 煤化工极致成本控制（成本比行业低15-20%），柔性联产72小时切换高毛利产品；② 资产负债率28.5%，有息负债率22%，财务极其健康（化工行业罕见）；③ DMF全球第一/己二酸国内第一，多个细分领域定价权；④ 2026Q1净利+58%确认周期修复，荆州双基地驱动量增长。<br><br>
+  <strong>核心风险：</strong>① 2025年营收-9.5%、净利-15%，周期下行压力仍在；② 荆州基地大规模扩产，资本开支高企（CFI -36亿），若复苏不及预期折旧压力大；③ 新能源新材料产品（BDO/NMP等）面临行业竞争加剧风险；④ TDI 30万吨在建（2027年投产），新业务尚需验证。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>309.69 亿</td><td>342.26 亿</td><td>-9.52%</td><td class="bad">❌ 价格下行拖累</td></tr>
+  <tr><td>归母净利润</td><td><strong>33.15 亿</strong></td><td>39.03 亿</td><td><strong>-15.04%</strong></td><td class="neutral">⚠ 周期底部承压</td></tr>
+  <tr><td>扣非净利润</td><td><strong>32.88 亿</strong></td><td>38.70 亿</td><td><strong>-15.03%</strong></td><td class="neutral">⚠ 主业同步下滑</td></tr>
+  <tr><td>毛利率</td><td><strong>19.16%</strong></td><td>18.71%</td><td>+0.45pct</td><td class="good">✅ 逆势改善</td></tr>
+  <tr><td>归母净利率</td><td><strong>11.80%</strong></td><td>12.21%</td><td>-0.41pct</td><td class="neutral">⚠ 微降</td></tr>
+  <tr><td>期间费用率</td><td><strong>~5.0%</strong></td><td>~4.8%</td><td>+0.2pct</td><td class="good">✅ 行业极低水平</td></tr>
+  <tr><td>2025Q1 营收</td><td>77.72 亿</td><td>79.79 亿</td><td>-2.59%</td><td class="neutral">➡ 持平</td></tr>
+  <tr><td>2025Q2 营收</td><td>79.92 亿</td><td>85.66 亿</td><td>-6.70%</td><td class="neutral">➡ 持平</td></tr>
+  <tr><td>2025Q3 营收</td><td>77.89 亿</td><td>83.68 亿</td><td>-6.92%</td><td class="neutral">➡ 持平</td></tr>
+  <tr><td>2025Q4 营收</td><td>74.16 亿</td><td>90.47 亿</td><td>-18.01%</td><td class="bad">❌ 基数效应</td></tr>
+  <tr><td>2025Q4 净利润</td><td><strong>9.42 亿</strong></td><td>8.54 亿</td><td><strong>+10.29%</strong></td><td class="good">✅ 拐点确认</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>2025年营收-9.5%主要因主导产品价格同比下滑（行业供需失衡），但成本端煤炭采购价同步下行，毛利率逆势提升0.45pct至19.16%，体现卓越成本管控。Q4净利9.42亿同比+10.29%、环比+16.96%，为全年最强季度，拐点信号明确。2026Q1延续修复趋势——营收83.44亿（+7.36%），归母净利11.17亿（+57.96%），复苏加速。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td><strong>20.85 亿</strong></td><td class="good">✅ 较去年+49%</td></tr>
+  <tr><td>应收账款</td><td><strong>0.31 亿</strong></td><td class="good">✅ 极小，回款极好</td></tr>
+  <tr><td>存货</td><td><strong>14.93 亿</strong></td><td class="good">✅ 占资产3%，合理</td></tr>
+  <tr><td>短期借款</td><td><strong>7.76 亿</strong></td><td class="good">✅ 极低</td></tr>
+  <tr><td>长期借款（含一年内到期）</td><td><strong>~50 亿（估）</strong></td><td class="neutral">可接受</td></tr>
+  <tr><td>资产负债率</td><td><strong>28.52%</strong></td><td class="good">✅ 化工行业极低</td></tr>
+  <tr><td>有息负债率</td><td><strong>~22%</strong></td><td class="good">✅ 远低于行业</td></tr>
+  <tr><td>归母净资产</td><td>330.80 亿</td><td class="good">✅ 同比+6.65%</td></tr>
+  <tr><td>总资产</td><td>491.77 亿</td><td class="good">✅ 同比+5.40%</td></tr>
+  <tr><td>在建工程</td><td>24.61 亿</td><td class="good">✅ 同比-49%（转固）</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>这是华鲁恒升最突出的亮点——资产负债率仅28.52%，在重资产化工行业中极为罕见（万华化学62.8%、鲁西化工~55%）。应收账款仅0.31亿（占营收0.1%），说明回款能力极强，对下游拥有强势话语权。在建工程从48.31亿大幅降至24.61亿（-49%），意味着荆州基地等多个项目已转固，折旧压力正在释放。整体来看，华鲁恒升的资产负债表是化工行业最健康的之一。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>41.98 亿</strong></td><td>49.68 亿</td><td class="good">✅ 依然强劲（-15.5%）</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><strong>-36.46 亿</strong></td><td>-50.75 亿</td><td class="neutral">⚠ 资本开支收窄</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td><strong>0.80 亿</strong></td><td>-3.88 亿</td><td class="good">✅ 融资需求极小</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>1.27</strong></td><td>1.27</td><td class="good">✅ 稳定优良</td></tr>
+  <tr><td>自由现金流（FCF）</td><td><strong>~5.5 亿</strong></td><td>~-1 亿</td><td class="good">✅ 周期底部仍为正</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>现金流解读：</strong>CFO 41.98亿在周期底部仍极其强劲，净现比1.27稳定——说明利润质量高，非"纸面利润"。资本开支从50.75亿收窄至36.46亿，FCF转正至~5.5亿。筹资现金流几乎为零（0.80亿），表明公司几乎不需要外部融资就能维持运营和扩张——这在化工行业中是非常罕见的"自造血"能力。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE（加权）</td><td><strong>10.32%</strong></td><td>> 15% 优秀 / > 10% 及格</td><td class="neutral">⚠ 周期下行期可接受</td></tr>
+  <tr><td>毛利率</td><td><strong>19.16%</strong></td><td>周期底部企稳</td><td class="good">✅ 逆势提升0.45pct</td></tr>
+  <tr><td>净利率</td><td><strong>11.80%</strong></td><td>周期底部>10% 优秀</td><td class="good">✅ 行业顶级</td></tr>
+  <tr><td>营收增长率</td><td><strong>-9.52%</strong></td><td>周期底部可接受</td><td class="neutral">⚠ 价格拖累</td></tr>
+  <tr><td>扣非增长率</td><td><strong>-15.03%</strong></td><td>周期底部可接受</td><td class="neutral">⚠ 价格下行拖累</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>1.27</strong></td><td>> 1.2 优良</td><td class="good">✅ 长期稳定</td></tr>
+  <tr><td>资产负债率</td><td><strong>28.52%</strong></td><td>化工<40% 优秀</td><td class="good">✅ 极其健康</td></tr>
+  <tr><td>分红率</td><td><strong>~32%</strong></td><td>持续分红</td><td class="good">✅ 含回购更优</td></tr>
+</table>
+
+<h3>3.2 分业务分析（2025年度）</h3>
+<table>
+  <tr><th>业务板块</th><th>营收（亿）</th><th>占比</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td>新能源新材料</td><td>~155.6</td><td>50.2%</td><td>—</td><td><strong>~25%</strong></td><td class="good">✅ 利润核心</td></tr>
+  <tr><td>肥料（尿素等）</td><td>~49.6</td><td>16.0%</td><td>—</td><td><strong>32.30%</strong></td><td class="good">✅ 高毛利稳定</td></tr>
+  <tr><td>醋酸及衍生品</td><td>~43.4</td><td>14.0%</td><td>—</td><td><strong>29.70%</strong></td><td class="good">✅ 高毛利</td></tr>
+  <tr><td>有机胺（DMF等）</td><td>~27.9</td><td>9.0%</td><td>—</td><td>~20%</td><td class="neutral">稳定</td></tr>
+  <tr><td>多元醇等</td><td>~33.2</td><td>10.7%</td><td>—</td><td>~15%</td><td class="neutral">一般</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>华鲁恒升2025年完成了从"传统煤化工"到"新能源新材料+传统化工"双轮驱动的结构升级。新能源新材料占比已超过50%（BDO/NMP/己二酸等），成为第一大收入来源和利润核心。传统化肥和醋酸板块毛利率分别高达32.3%/29.7%，作为"现金牛"提供稳定利润。"一头多线"柔性联产模式使公司可根据产品价差灵活切换生产，72小时切换高毛利产品，这是同行难以复制的核心能力。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="neutral">🟡 中等</td><td>营收-9.52%，净利-15.04%，周期压力仍在</td><td>L1 利润表，主导产品价格同比下滑</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>荆州基地持续资本开支，折旧压力未来加大</td><td>L1 现金流量表 CFI -36.46亿</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>TDI 30万吨在建，新业务盈利尚需验证</td><td>在建工程转固后新增折旧约3亿/年</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>新能源新材料板块竞争加剧（BDO/NMP）</td><td>行业产能扩张较快，价差有压缩风险</td></tr>
+  <tr><td class="good">🟢 正面</td><td>资产负债率28.52%，化工行业最低梯队之一</td><td>L1 资产负债表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>CFO 41.98亿极其强劲，净现比1.27稳定</td><td>L1 现金流量表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>Q4净利同比+10.29%，2026Q1净利+57.96%，拐点确认</td><td>L1 利润表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>毛利率逆势提升0.45pct至19.16%，成本优势持续</td><td>L1 利润表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>应收账款仅0.31亿，回款能力极强，对下游话语权大</td><td>L1 资产负债表</td></tr>
+</table>
+
+<div class="verdict verdict-ok">✅ L2综合判定：良好（财务极其健康+成本优势突出+周期拐点已现）</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架 — 周期股专用PB法）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<p style="font-size:13px;color:#666;">注：2026年7月公司完成10转3股本转增，以下数据均已调整</p>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>股价（2026.7.29）</td><td><strong>~21.24 元</strong></td><td>10转3除权后价格</td></tr>
+  <tr><td>总市值</td><td><strong>~586 亿</strong></td><td>总股本27.6亿股</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>~15.7x</strong></td><td>基于TTM净利~37.25亿（2025全年33.15+2026Q1 11.17-2025Q1 7.07）</td></tr>
+  <tr><td>PE（TTM扣非）</td><td><strong>~15.9x</strong></td><td>基于扣非TTM</td></tr>
+  <tr><td>PE（2026E）</td><td><strong>~12.7x</strong></td><td>基于券商一致预期EPS ~1.68元（2026E净利46.25亿）</td></tr>
+  <tr><td>PB</td><td><strong>~1.74x</strong></td><td>基于每股净资产~12.0元</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~1.9x</strong></td><td>市销率极低</td></tr>
+  <tr><td>PCF</td><td><strong>~14.0x</strong></td><td>基于CFO 41.98亿</td></tr>
+  <tr><td>股息率</td><td><strong>~1.8%</strong></td><td>基于2025年合计分红10.58亿</td></tr>
+</table>
+
+<h3>4.2 PB Band区间（周期股专用）</h3>
+<p style="font-size:13px;color:#666;">周期股PE失真，以PB为估值基准。每股净资产~12.0元（2025末调整后）</p>
+<table>
+  <tr><th>分位</th><th>PB</th><th>对应股价</th><th>vs现价21.24元</th></tr>
+  <tr><td>历史最大值（2021）</td><td>5.5x</td><td>66.0 元</td><td class="good">+211%</td></tr>
+  <tr><td>历史80%分位（估）</td><td>3.4x</td><td>40.8 元</td><td class="good">+92%</td></tr>
+  <tr><td>历史50%分位（估）</td><td>2.5x</td><td>30.0 元</td><td class="good">+41%</td></tr>
+  <tr><td>历史20%分位（估）</td><td>1.6x</td><td>19.2 元</td><td class="neutral">-10%</td></tr>
+  <tr><td>历史最小值（2025）</td><td>1.37x</td><td>16.4 元</td><td class="bad">-23%</td></tr>
+  <tr><td><strong>当前PB 1.74x</strong></td><td>1.74x</td><td>21.24 元</td><td>—</td></tr>
+</table>
+<p style="font-size:13px;color:#666;">当前PB 1.74x处于5年约40%分位 — <strong>处于中偏低区间</strong>，接近底部但非极端便宜</p>
+
+<h3>4.3 历史PE区间（参考，周期股PE失真）</h3>
+<table>
+  <tr><th>指标</th><th>数值</th><th>备注</th></tr>
+  <tr><td>PE（TTM）最大值</td><td>~25x</td><td>利润低谷期</td></tr>
+  <tr><td>PE（TTM）80%分位</td><td>~20x</td><td></td></tr>
+  <tr><td>PE（TTM）50%分位</td><td>~15x</td><td></td></tr>
+  <tr><td>PE（TTM）20%分位</td><td>~11x</td><td></td></tr>
+  <tr><td>PE（TTM）最小值</td><td>~8x</td><td>2021年利润高峰</td></tr>
+  <tr><td>当前PE（TTM）</td><td class="neutral">~15.7x</td><td>处于历史中位附近，但周期股PE失真！利润仍处修复期</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值总结：</strong>华鲁恒升作为纯周期股，当前PB 1.74x处于5年约40%分位（中偏低区间），尚未到极端底部但已具安全边际。2026E PE仅12.7x，基于盈利修复预期，估值合理偏低。<br><br>
+  <strong>核心观点：</strong>① PB处于历史中偏低区间（40%分位），距20%分位（PB 1.6x）仅约10%下行空间，距中位PB 2.5x有约41%上行空间——赔率有利但不如极端底部丰厚；② 2026E PE仅12.7x，与2026年净利+39.5%的预期增速相比，PEG<0.4极具吸引力；③ 公司ROE 10.32%（周期底部）对应PB 1.74x，PB/ROE比值合理；④ P/CF 14x、PS 1.9x均处于历史偏低水平，现金流和营收估值均提供安全垫；⑤ 当前属于<strong>周期底部+PB中偏低+拐点已确认</strong>的组合，是基本面右侧但估值尚未充分反映的布局机会。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>净利润率</td><td>13.29%</td><td>12.21%</td><td><strong>11.80%</strong></td><td class="bad">⬇ 连续两年下滑</td></tr>
+  <tr><td>资产周转率</td><td>0.62</td><td>0.73</td><td><strong>0.63</strong></td><td class="neutral">➡ 基本持平</td></tr>
+  <tr><td>权益乘数</td><td>1.45</td><td>1.42</td><td><strong>1.40</strong></td><td class="good">⬇ 杠杆持续降低</td></tr>
+  <tr><td><strong>ROE</strong></td><td><strong>~12.4%</strong></td><td><strong>~12.6%</strong></td><td><strong>10.32%</strong></td><td class="bad">⬇ 周期底部下降</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>8.2%</td><td>8.9%</td><td><strong>7.4%</strong></td><td class="neutral">➡ 仍有弹性</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>4.2pct</td><td>3.7pct</td><td><strong>2.9pct</strong></td><td class="good">✅ 低杠杆依赖</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：高利润+低杠杆+中等周转型（化工行业中模式最优）</strong><br>
+  华鲁恒升的杜邦结构在化工行业中堪称典范：净利率11.80%（周期底部仍保持双位数）、周转率0.63（重资产行业中正常水平）、权益乘数1.40（极低杠杆）。去掉杠杆后的基础回报（去杠杆ROA）为7.4%，在化工行业中处于极高水平——对比万华化学的4.4%高出近70%。杠杆贡献仅2.9个百分点，说明ROE主要靠经营效率而非加杠杆。<br><br>
+  <strong>与化工同行的本质区别：</strong>大多数化工公司（如万华化学权益乘数3.0、鲁西化工~2.5）需要用高杠杆来放大ROE，而华鲁恒升权益乘数仅1.40，意味着即使加杠杆到行业平均水平（2.5-3.0），ROE可达18-22%——这还没有考虑利润回升的贡献。换句话说，华鲁恒升是化工行业中"最不像周期股"的周期股，其低杠杆提供了最大的安全边际。
+</div>
+
+<h3>5.2 历史周期ROE追踪</h3>
+<table>
+  <tr><th>年份</th><th>ROE</th><th>周期位置</th></tr>
+  <tr><td>2021年</td><td>~33%</td><td class="bad">顶部（盈利暴利期）</td></tr>
+  <tr><td>2022年</td><td>~23%</td><td class="neutral">下行</td></tr>
+  <tr><td>2023年</td><td>~12%</td><td class="neutral">中周期偏下</td></tr>
+  <tr><td>2024年</td><td>~13%</td><td class="neutral">接近底部</td></tr>
+  <tr><td>2025年</td><td>10.32%</td><td class="good">底部区域（2026年拐点向上）</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>核心结论：</strong><br>
+  ① 华鲁恒升是"高利润+低杠杆+中等周转"的优质杜邦模式，在化工行业中独树一帜；<br>
+  ② ROE从2021年33%回落到2025年10.32%，是周期性的利润回归而非竞争力丧失——毛利率逆势提升说明成本优势在加强；<br>
+  ③ 去杠杆ROA 7.4%是化工行业顶级水平，远优于万华化学（4.4%）和鲁西化工（~5%），真实资产回报效率极高；<br>
+  ④ 权益乘数仅1.40，是最大的安全垫。周期底部无需担心利息覆盖问题（财务费用2.63亿/利润总额42.62亿=仅6.2%）；<br>
+  ⑤ ROE修复路径：利润率回升（产品价格修复）+ 周转率改善（荆州基地放量），两者叠加预计2026年ROE可回升至13%+。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与特征（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：纯周期股（基础化工—煤化工）</strong><br>
+  <strong>判断依据：</strong>华鲁恒升主营尿素/DMF/醋酸/己二酸/新能源材料等煤化工产品，均为大宗化工品。煤化工行业高度成熟——尿素需求增速约1-2%/年，醋酸约3-4%/年，长期增速≈GDP甚至更低，但利润波动极大。2021年净利72.5亿→2025年33.2亿，降幅54%，完全符合"利润靠供需错配的价格周期"的纯周期特征。纯周期行业属性：产能周期（扩产→过剩→出清→复苏）驱动利润波动，而非量的持续增长。<br><br>
+  <strong>周期特征确认：</strong>华鲁过去5年ROE在10%-33%之间剧烈波动，完全符合周期股特征。2025Q4-2026Q1已出现明确修复信号。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th></tr>
+  <tr><td>行业集中度</td><td><strong>分产品差异大</strong>——DMF全球第一（华鲁占全球~30%），己二酸国内第一。但煤化工整体CR5约65%，集中度中等。尿素行业较分散（CR5<50%），但华鲁在尿素领域非最大（化肥业务目前只占营收16%，已非重点）。</td></tr>
+  <tr><td>技术壁垒</td><td><strong>极高（煤气化技术）</strong>——华鲁煤气化技术自主可控，采用先进多喷嘴水煤浆气化炉，碳转化率和有效气成分优于同行。"一头多线"柔性联产技术是华鲁独有核心能力，可在72小时内根据市场价差切换高毛利产品。</td></tr>
+  <tr><td>规模壁垒</td><td><strong>极高</strong>——单套煤气化装置投资数十亿，荆州基地总投资460亿。新进入者几乎不可能在5年内建成有竞争力的煤化工一体化基地。</td></tr>
+  <tr><td>成本壁垒</td><td><strong>极强</strong>——华鲁已做到行业成本最低（单位能耗比行业低10-15%，成本比同行低15-20%），柔性联产进一步放大成本优势。高油价环境下，华鲁的烟煤气化路线相比油头/气头路线成本优势更加明显。</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  <strong>阶段：成熟期（化肥/醋酸/DMF）+ 成长期（新能源新材料）</strong><br>
+  传统煤化工产品（尿素/醋酸/DMF）已处于成熟期——需求平稳增长（1-4%/年），竞争格局稳定。华鲁在这些领域扮演"现金牛"角色，毛利率高（化肥32%/醋酸30%）但不再重点扩张。新能源新材料（BDO/NMP/己二酸/尼龙66等）处于成长期——营收占比已超50%，受益于锂电池/可降解塑料等下游需求爆发，是华鲁的"第二增长曲线"。荆州基地投产后将进一步驱动量的增长。<br><br>
+  <strong>投资策略重点：</strong>传统业务看成本优势和现金生成能力（周期底部能否维持盈利）；新业务看放量节奏和毛利率趋势（BDO/NMP价差能否维持）。
+</div>
+
+<h3>6.4 当前周期位置与判断</h3>
+<div class="highlight-box">
+  <strong>当前周期位置：底部已过 → 复苏初期（2026Q1已经确认）</strong><br>
+  判断依据：① 2025年全年营收-9.5%、净利-15.0%，主导产品价格持续承压，但毛利率逆势+0.45pct体现成本优势；② 2025Q4净利9.42亿同比+10.29%、环比+16.96%，拐点信号出现；③ 2026Q1营收83.44亿（+7.36%）、净利11.17亿（+57.96%），复苏加速确认；④ 从行业看，煤炭价格下行利好成本端，部分化工品价差（如醋酸/DMF）已从底部走阔。<br><br>
+  <strong>判断对评分的影响：</strong>周期位置维度（15分权重）可得12分（底部已过复苏初期）——Q1净利+58%验证复苏，但弹性的持续性和幅度有待后续季度确认。
+</div>
+
+<h3>6.5 同行对比分析</h3>
+<table>
+  <tr><th>指标</th><th>华鲁恒升</th><th>万华化学</th><th>鲁西化工</th><th>行业中位</th><th>评价</th></tr>
+  <tr><td>ROE（2025）</td><td>10.32%</td><td>12.44%</td><td>~4%</td><td>~8%</td><td class="good">中（周期底部）</td></tr>
+  <tr><td>毛利率</td><td><strong>19.16%</strong></td><td>13.61%</td><td>~12%</td><td>~14%</td><td class="good">✅ 最高</td></tr>
+  <tr><td>净利率</td><td><strong>11.80%</strong></td><td>6.91%</td><td>~3.5%</td><td>~5%</td><td class="good">✅ 最高</td></tr>
+  <tr><td>负债率</td><td><strong>28.52%</strong></td><td>62.81%</td><td>~55%</td><td>~50%</td><td class="good">✅ 最低（优秀）</td></tr>
+  <tr><td>营收增速</td><td>-9.52%</td><td>+11.62%</td><td>~0%</td><td>~0%</td><td class="neutral">价格拖累</td></tr>
+  <tr><td>PB</td><td>1.74x</td><td>~2.5x</td><td>~1.2x</td><td>~1.8x</td><td class="neutral">中等偏低</td></tr>
+  <tr><td>PE（TTM）</td><td>~15.7x</td><td>~21x</td><td>~14x</td><td>~18x</td><td class="neutral">中等</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>同行对比结论：</strong>华鲁恒升在化工同行中财务指标全面领先——毛利率（19.16%）和净利率（11.80%）均为三家最高，负债率（28.52%）不到万华的一半。盈利能力优势来源于极致成本控制（"一头多线"柔性联产+煤气化技术自主可控）。万华化学体量更大（营收2032亿 vs 310亿）但负债率高、净利率低；鲁西化工在盈利能力和财务健康度上均远逊华鲁。华鲁是化工行业中"盈利能力最强、财务最健康"的标的，市场对其PB的保守定价（仅1.74x）未充分反映这一核心优势。
+</div>
+
+<h3>6.6 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>周期型（煤化工）</td><td>PB（周期性底部）</td><td>PE（顶部参考）、产品价差、产能利用率</td><td class="good">✅ 匹配——PB 1.74x处于40%分位，估值中偏低</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值方法总结：</strong>对于华鲁恒升这类纯周期股，PB估值是正确框架。当前PB 1.74x处于5年40%分位，属于中偏低区域但非极端底部（2014年PB曾跌至0.96x）。相比万华化学（PB 2.5x/27%分位），华鲁的PB分位偏高但绝对估值更低。周期股投资是"PB在底部买入、PE在低位时等待、PE升高时卖出"的逆向逻辑。当前阶段看——周期底部+PB中偏低+拐点已确认=基本面右侧、估值左侧的布局机会。华鲁恒升的独特之处在于其极低的负债率和极强的成本优势，使其即使在周期底部也具有强大韧性，适合作为化工周期股的"底仓"配置。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>纯周期（煤化工），DMF全球第一/己二酸国内第一，技术+规模+成本三重壁垒，传统产品成熟+新材料成长期。<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 10.32%（周期底部），杜邦高利润低杠杆型(11.8%净利率×1.40权益乘数)，CFO/净利1.27优良，FCF约5.5亿为正。负债率28.5%行业最低。<br>
+  <strong>Step 3 - 估值判断：</strong>PB 1.74x（5年40%分位）中偏低，PE 15.7x因利润触底属正常，2026E PE 12.7x有吸引力。<br>
+  <strong>Step 4 - 风险排查：</strong>营收净利下滑（周期压力）、资本开支仍在高位（荆州基地）、TDI新业务待验证，但均处于可控范围。<br>
+  <strong>Step 5 - 结论：</strong>好公司（成本之王+财务最健康+现金生成强）+ 合理偏低的价格（PB 40%分位+2026E PE 12.7x）= 适合作为周期底仓。<br>
+  <strong>Step 6 - 跟踪：</strong>看化工品价差走势/荆州基地产能利用率/新能源材料毛利率/TDI项目进度/2026H1业绩验证。
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="neutral">⚠</td><td>煤化工是强周期行业，但华鲁凭借极致成本+柔性联产在周期底部仍能盈利，且DMF等细分领域拥有全球领先地位</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓</td><td>净利率11.80%行业最高+毛利率19.16%逆势提升+CFO/净利1.27+负债率28.5%+连续分红32年</td></tr>
+  <tr><td>③ 好价格</td><td class="neutral">⚠</td><td>PB 1.74x处于40%分位（中偏低），2026E PE 12.7x有吸引力，但非极端底部（PB 1.37x为2025年最低）</td></tr>
+</table>
+
+<h3>7.3 三个陷阱排查</h3>
+<div class="danger-box">
+  <strong>☐ 价值陷阱：</strong>❌ 未命中——营收-9.5%但净利率11.80%仍处高位，毛利率逆势提升，基本面健康。价值陷阱的核心是"利润不可持续"，华鲁的利润是周期性的而非结构性的，且成本优势持续加强。<br>
+  <strong>☐ 周期陷阱：</strong>❌ 未命中——当前处于周期底部（利润已从2021年72.5亿降至33.2亿），底部买入是正确操作。周期陷阱发生在顶部利润暴利期PE极低时买入，当前恰恰相反。<br>
+  <strong>☐ 烧钱陷阱：</strong>❌ 未命中——CFO 41.98亿强劲，FCF约5.5亿为正，净现比1.27，完全不涉及烧钱问题。公司几乎不依赖外部融资（筹资现金流仅0.80亿）。
+</div>
+
+<h3>7.4 管理层与治理风险</h3>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力与履历</td><td>好</td><td>公司管理层长期稳定，深耕煤化工领域，成本管控能力行业公认最强。董事长常怀春（化工背景，内部培养）</td></tr>
+  <tr><td>股权结构与利益一致性</td><td>强</td><td>山东国资为实控人（华鲁控股集团），管理层薪酬与业绩挂钩，2025年推行股权激励，利益绑定良好</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td>无</td><td>上市24年无重大违规、监管处罚、诉讼记录，治理规范，是山东省国资体系中的标杆企业</td></tr>
+  <tr><td>资本配置记录</td><td>合理</td><td>聚焦主业（煤化工+新材料），荆州基地有序推进。分红率稳定在30%+，2026年推出2-3亿回购注销。无大规模并购，以自建为主</td></tr>
+  <tr><td>管理层增减持记录</td><td>增持（正面）</td><td>2025年管理层多次增持，公司推出2-3亿回购计划已实施2亿元，传递强烈信心</td></tr>
+  <tr><td>CEO交接/关键人员变动</td><td>无风险</td><td>管理团队稳定，无重大交接风险</td></tr>
+</table>
+
+<h3>7.5 盈利可持续性</h3>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是靠价？</td><td>量驱动（中期）</td><td>2025年营收下降是价格拖累（量实际在增长）。中期增长靠荆州基地新产能释放，是纯量驱动</td></tr>
+  <tr><td>涨价能否持续？</td><td>需观察</td><td>DMF/醋酸等产品价差在2025年底-2026年初走阔，但涨价持续性与宏观需求相关，不确定性存在</td></tr>
+  <tr><td>非经常性利润占比</td><td>低</td><td>2025年非经常利润0.27亿/净利润33.15亿=0.8%，利润质量极高</td></tr>
+  <tr><td>大客户/大项目集中度</td><td>分散</td><td>化工大宗品客户极度分散，下游覆盖农业/建筑/锂电/纺织等多个行业</td></tr>
+  <tr><td>政策/监管依赖度</td><td>低</td><td>无补贴依赖，受环保政策影响但华鲁环保水平行业领先，是国家"能效领跑者"</td></tr>
+</table>
+
+<h3>7.6 关键变量敏感性</h3>
+<div class="summary-box">
+  <strong>变量1: 化工品价差（最核心变量）</strong><br>
+  乐观: 宏观经济复苏+下游需求超预期 → 醋酸/DMF/己二酸价差扩大20% → EPS增加约0.3元<br>
+  中性: 价差温和修复至历史均值 (已体现在券商2026E中) → EPS约1.68元<br>
+  悲观: 经济二次探底 + 化工品价格继续承压 → 价差维持2025年水平 → EPS约1.0-1.2元<br><br>
+  <strong>变量2: 荆州基地放量节奏</strong><br>
+  乐观: 荆州提前满产 + 毛利率达标 → 量增长超预期 → EPS额外增加0.2-0.3元<br>
+  中性: 按计划推进，2026-2027年逐步放量 → 量增长符合预期<br>
+  悲观: 项目延迟/毛利率不达标 → 投产后折旧压力大 → 拖累ROE<br><br>
+  <strong>变量3: 新能源新材料板块竞争</strong><br>
+  乐观: BDO/NMP/己二酸需求强劲+价差维持 → 新材料毛利率维持25%+<br>
+  中性: 行业竞争加剧但华鲁成本优势守住底线 → 毛利率20%左右<br>
+  悲观: 产能严重过剩 → BDO/NMP价格暴跌 → 新材料毛利率降至15%以下
+</div>
+
+<h3>7.7 前景展望</h3>
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. 周期修复 — 2026Q1净利+58%确认复苏，化工品价差从底部走阔，2026年净利有望达46亿（+39% YoY）<br>
+  2. 荆州基地放量 — 荆州基地新项目陆续投产（投资460亿），量增长将部分抵消价格波动，驱动2027-2028年增长<br>
+  3. 新材料占比提升 — 新能源新材料占比已超50%，高毛利（~25%）产品占比提升优化整体盈利结构<br><br>
+  <strong>负向拖累：</strong><br>
+  1. 宏观需求不确定 — 若经济复苏低于预期，化工品价格修复弹性和持续性存疑<br>
+  2. TDI投产风险 — 30万吨TDI项目（2027年投产），TDI竞争激烈（万华全球第一），新业务盈利待验证<br>
+  3. 原料成本波动 — 煤炭价格若大幅反弹将侵蚀成本优势，影响毛利率弹性
+</div>
+
+<h3>7.8 三情景简表</h3>
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>EPS预估</th><th>PE区间</th><th>预期回报</th></tr>
+  <tr><td>乐观</td><td>价差快速修复+荆州超预期放量</td><td>~2.2元</td><td>12-15x</td><td>26-33元（+24-55%）</td></tr>
+  <tr><td>中性</td><td>价差温和修复，与券商一致预期一致</td><td>~1.68元</td><td>13-16x</td><td>22-27元（+3-27%）</td></tr>
+  <tr><td>悲观</td><td>需求弱+价格低位持续</td><td>~1.1元</td><td>15-20x</td><td>17-22元（-22%-+3%）</td></tr>
+</table>
+<p style="font-size:13px;color:#666;margin-top:4px;">概率判断：中性50%，乐观30%，悲观20%。基于PB 1.74x处于中偏低区间和Q1拐点确认，下行风险有限但上行空间需看价差修复力度。</p>
+
+<h3>7.9 资金面信号</h3>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>基金持仓</td><td>增仓</td><td>截至2025年底，1085只基金+4只社保重仓，持股占流通股27.57%，机构认可度极高</td></tr>
+  <tr><td>大股东增持</td><td>增持</td><td>2025年管理层多次增持，公司推出2-3亿回购计划（已实施2亿注销减资）</td></tr>
+  <tr><td>融资余额</td><td>稳定</td><td>杠杆资金情绪平稳，无明显异常</td></tr>
+  <tr><td>大宗交易</td><td>—</td><td>近期无异常大宗交易</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>资金面判断：</strong>华鲁恒升是机构"心头好"——1085只基金重仓（化工行业机构覆盖最广之一），多家社保组合持有，鹏华化工ETF/华泰柏瑞沪深300ETF等主流指数基金均重仓配置。公司自身也在积极回购（2-3亿回购注销）和管理层增持，传递信心。整体资金面稳定偏正面。
+</div>
+
+<h3>7.10 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——用煤做原料，通过全球最先进的煤气化技术做成DMF、醋酸、己二酸、BDO等化工品，赚"成本比同行低15-20%"的钱。柔性联产可以根据市场价差72小时切换利润最高的产品。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——营收-9.5%说明价格压力仍大，如果2026年下半年复苏不及预期，价差修复可能低于想象。TDI 30万吨投资巨大（预计~30-50亿），若投产后不达预期，将拖累ROE持续低于12%。<br>
+  3. 如果现在买入，期待的回报来源是什么？——① 周期修复赚价差的钱（净利从33亿修复到46亿+，PE扩张）；② 荆州基地量增长驱动盈利提升；③ 低负债+高现金流的"类债券"属性提供下行保护（估值底部支撑）。核心假设是化工品价格从底部缓慢修复。<br>
+  4. 什么情况下你会坚决卖出？——① 化工品价格再次加速下行（景气二次探底）；② PB反弹至2.5x以上（中位以上，周期已充分反映甚至透支）；③ 毛利率持续滑落至15%以下且无修复迹象（成本优势弱化）；④ 荆州基地出现重大工程问题或严重安全事故。
+</div>
+
+</div></div>
+
+<div class="footer">
+    免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+    数据来源：华鲁恒升2025年年报、2026Q1季报、券商研报（国海证券/国金证券）、亿牛网/集思录
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

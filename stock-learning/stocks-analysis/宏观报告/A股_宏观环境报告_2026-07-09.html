@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A股宏观环境报告 2026-07-09</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 900px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 14px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 14px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #e67e22; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .score-box { display: inline-block; padding: 2px 10px; border-radius: 4px; font-weight: bold; font-size: 14px; margin: 0 4px; }
+  .score-box.positive { background: #f0f8f0; color: #27ae60; }
+  .score-box.zero { background: #f5f5f5; color: #666; }
+  .score-box.negative { background: #fde8e8; color: #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+  .flex-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .card { flex: 1; min-width: 200px; border: 1px solid #ddd; border-radius: 6px; padding: 12px; margin: 8px 0; }
+  .card h4 { font-size: 14px; margin-bottom: 6px; }
+  .card .value { font-size: 22px; font-weight: bold; }
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 12px; font-weight: bold; margin: 0 3px; }
+  .tag.hot { background: #fde8e8; color: #c0392b; }
+  .tag.warm { background: #fef8e8; color: #e67e22; }
+  .tag.cold { background: #e8f4f8; color: #2980b9; }
+  .tag.neutral-tag { background: #f0f0f0; color: #666; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>A股宏观环境报告</h1>
+<p class="subtitle">L0-A1 宏观象限 + L0-A2 政策资金面 综合判断</p>
+<p class="meta">报告日期：2026-07-09 | 数据截止：2026年7月第一周</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="a1">A1 宏观象限</button>
+  <button class="tab-btn" data-tab="a2">A2 政策资金</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>当前市场环境总判断</h2>
+
+<div class="verdict verdict-caution">中性偏多 · 可以进场，精选行业</div>
+
+<div class="highlight-box">
+  <strong>一句话总结：</strong>A股处于"宏观弱复苏 + 政策极宽松 + 资金面改善"的组合——经济数据不温不火（PMI 50.3，PPI刚转正），但货币政策持续宽松（LPR历史低位）、产业政策方向明确（AI/新质生产力）、北向资金大幅回流（Q2净买入2086亿）。这不是全面牛市的环境，但结构性机会明确。
+</div>
+
+<h3>A股综合评分：+4/6</h3>
+<table>
+  <tr><th style="width:22%">维度</th><th style="width:10%">评分</th><th>说明</th></tr>
+  <tr>
+    <td>宏观象限</td>
+    <td><span class="score-box zero">0</span></td>
+    <td style="text-align:left">PMI 50.3弱复苏，PPI转正（+0.5%）是亮点，CPI 1.0%偏低，整体偏弱但有改善迹象</td>
+  </tr>
+  <tr>
+    <td>货币政策</td>
+    <td><span class="score-box positive">+1</span></td>
+    <td style="text-align:left">LPR 1年期3.0%处于历史低位，7天逆回购利率1.40%，宽松方向明确</td>
+  </tr>
+  <tr>
+    <td>财政政策</td>
+    <td><span class="score-box positive">+1</span></td>
+    <td style="text-align:left">赤字率>3%，专项债加速发行，减税降费持续</td>
+  </tr>
+  <tr>
+    <td>产业政策</td>
+    <td><span class="score-box positive">+1</span></td>
+    <td style="text-align:left">AI/数字经济/新质生产力主线清晰，中央经济会议定调积极</td>
+  </tr>
+  <tr>
+    <td>资金面</td>
+    <td><span class="score-box positive">+1</span></td>
+    <td style="text-align:left">北向Q2净买入2086亿（历史级别），新发基金月均781亿回暖，两融首破3万亿</td>
+  </tr>
+  <tr>
+    <td>情绪/技术</td>
+    <td><span class="score-box zero">0</span></td>
+    <td style="text-align:left">两融创新高但占市值比不高（5.36%），情绪偏暖但未到极端亢奋</td>
+  </tr>
+  <tr style="font-weight:bold;background:#e8e8e8">
+    <td>总分</td>
+    <td style="font-size:16px">+4/6</td>
+    <td style="text-align:left">环境友好，偏多</td>
+  </tr>
+</table>
+
+<h3>操作建议</h3>
+<table>
+  <tr><th style="width:25%">项目</th><th>建议</th></tr>
+  <tr><td>仓位建议</td><td style="text-align:left"><strong>60~80%</strong>（中性偏重，环境友好但不支持满仓，因为宏观基本面偏弱）</td></tr>
+  <tr><td>风格建议</td><td style="text-align:left"><strong>成长为主 + 周期辅助</strong>（AI/科技成长受产业政策支撑，PPI转正利好周期股盈利改善）</td></tr>
+  <tr><td>关键风险</td><td style="text-align:left">
+    ① 社融增速持续偏弱（7.5%），宽货币未有效传导为宽信用<br>
+    ② 美联储偏鹰（9位官员主张年内加息），人民币汇率承压<br>
+    ③ 两融3万亿创新高，若市场转向可能引发杠杆踩踏
+  </td></tr>
+</table>
+
+<h3>当前适合做什么</h3>
+<div class="summary-box">
+  <strong>适合：</strong>按你的L1-L14框架精选个股，优先选有产业政策支撑的成长型行业（AI、半导体、新质生产力），配合PPI转正利好的周期性改善行业。<br><br>
+  <strong>不太适合：</strong>全面追高、全仓押注单一板块、使用高杠杆。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-a1"><div class="tab-inner">
+
+<h2>一、经济象限判断</h2>
+
+<h3>当前中国宏观象限：弱复苏（偏衰退侧）</h3>
+
+<div class="flex-row">
+  <div class="card">
+    <h4>PMI</h4>
+    <div class="value" style="color:#27ae60">50.3</div>
+    <div style="font-size:12px;color:#666">6月，环比+0.3</div>
+    <div><span class="tag neutral-tag">刚过荣枯线</span></div>
+  </div>
+  <div class="card">
+    <h4>CPI</h4>
+    <div class="value" style="color:#e67e22">1.0%</div>
+    <div style="font-size:12px;color:#666">6月同比</div>
+    <div><span class="tag cold">偏低</span></div>
+  </div>
+  <div class="card">
+    <h4>PPI</h4>
+    <div class="value" style="color:#27ae60">+0.5%</div>
+    <div style="font-size:12px;color:#666">6月同比，转正</div>
+    <div><span class="tag neutral-tag">由负转正</span></div>
+  </div>
+  <div class="card">
+    <h4>10Y国债</h4>
+    <div class="value" style="color:#2980b9">1.82%</div>
+    <div style="font-size:12px;color:#666">历史低位</div>
+    <div><span class="tag cold">极低</span></div>
+  </div>
+</div>
+
+<h3>五大指标明细</h3>
+
+<table>
+  <tr><th>指标</th><th>最新值</th><th>趋势</th><th>正常范围</th><th>评价</th></tr>
+  <tr>
+    <td>PMI</td>
+    <td><strong>50.3</strong>（6月）</td>
+    <td>↑ 较5月+0.3</td>
+    <td>48~52</td>
+    <td>刚过荣枯线，小型企业PMI 48.2仍收缩</td>
+  </tr>
+  <tr>
+    <td>社融存量增速</td>
+    <td><strong>~7.5%</strong>（6月估）</td>
+    <td>↓ 较5月-0.2%</td>
+    <td>8~10%</td>
+    <td>偏弱，宽信用传导不畅</td>
+  </tr>
+  <tr>
+    <td>CPI</td>
+    <td><strong>1.0%</strong>（6月）</td>
+    <td>↑ 年初0.2%→1.0%</td>
+    <td>1~3%</td>
+    <td>回升但仍偏低，非食品涨1.5%但食品跌</td>
+  </tr>
+  <tr>
+    <td>PPI</td>
+    <td><strong>+0.5%</strong>（6月）</td>
+    <td>↑ 年初-1.4%→+0.5%</td>
+    <td>-3~3%</td>
+    <td><span class="good">转正</span>，周期股盈利改善信号</td>
+  </tr>
+  <tr>
+    <td>10Y国债收益率</td>
+    <td><strong>1.82%</strong></td>
+    <td>↓ 历史低位</td>
+    <td>2.5~3.2%</td>
+    <td>极低，市场预期经济仍弱，但在历史上往往对应A股底部区域</td>
+  </tr>
+</table>
+
+<h3>经济象限判断逻辑</h3>
+<div class="summary-box">
+  PMI 50.3（刚过荣枯线）+ 社融增速7.5%（偏弱）+ CPI 1.0%（低）+ PPI +0.5%（转正）= <strong>弱复苏象限</strong>。<br>
+  说人话：经济没有大幅衰退，但也没强劲复苏，处于"底部企稳、缓慢爬坡"的状态。<br><br>
+  <strong>PPI转正是当前最重要的积极信号</strong>——意味着上游工业品价格开始回升，周期股（化工/有色/钢铁）的盈利最坏的时候可能已经过去。
+</div>
+
+<h3>趋势变化</h3>
+<table>
+  <tr><th>指标</th><th>Q1 2026</th><th>4月</th><th>5月</th><th>6月</th><th>方向</th></tr>
+  <tr><td>PMI</td><td>49.3 → 50.4</td><td>49.5</td><td>50.0</td><td>50.3</td><td class="good">↑ 缓慢回升</td></tr>
+  <tr><td>CPI (%)</td><td>0.2 → 1.3</td><td>—</td><td>—</td><td>1.0</td><td class="neutral">→ 小幅回落</td></tr>
+  <tr><td>PPI (%)</td><td>-1.4 → -0.9</td><td>—</td><td>—</td><td>+0.5</td><td class="good">↑ 转正（关键）</td></tr>
+  <tr><td>社融增速 (%)</td><td>8.2</td><td>—</td><td>~7.7</td><td>~7.5</td><td class="bad">↓ 持续回落</td></tr>
+</table>
+
+</div></div>
+
+<div class="tab-content" id="tab-a2"><div class="tab-inner">
+
+<h2>二、政策与资金面判断</h2>
+
+<h3>1. 货币政策</h3>
+<table>
+  <tr><th>工具</th><th>最新值</th><th>趋势</th><th>评价</th></tr>
+  <tr><td>1年期LPR</td><td>3.00%</td><td>→ 2026年2月后未变</td><td class="good">偏低，宽松</td></tr>
+  <tr><td>5年期LPR</td><td>3.50%</td><td>→ 同上</td><td class="good">偏低，利好地产</td></tr>
+  <tr><td>7天逆回购利率</td><td>1.40%</td><td>→ 稳定</td><td class="good">偏低</td></tr>
+  <tr><td>存款准备金率</td><td>~7.0%</td><td>—</td><td>仍有降准空间</td></tr>
+</table>
+<div style="font-size:13px;color:#666;margin-top:-8px;margin-bottom:12px">数据来源：央行官网、中国银行LPR报价</div>
+
+<div class="highlight-box">
+  <strong>政策取向判断：</strong>当前货币政策明确处于宽松周期。LPR处于历史低位（3.0%/3.5%），7天逆回购1.40%，市场预期下半年可能继续降准降息。宽松方向未变。
+</div>
+
+<h3>2. 资金面</h3>
+<table>
+  <tr><th style="width:25%">指标</th><th>最新值</th><th>趋势</th><th>评价</th></tr>
+  <tr>
+    <td>北向资金</td>
+    <td>Q2净买入<strong>2086亿</strong></td>
+    <td>↑ Q1净流出134亿→Q2大幅流入</td>
+    <td class="good">资金大幅回流</td>
+  </tr>
+  <tr>
+    <td>两融余额</td>
+    <td><strong>3.00万亿</strong>（6月23日）</td>
+    <td>↑ 首破3万亿，创历史新高</td>
+    <td class="neutral">创新高但占市值比不高（5.36%）</td>
+  </tr>
+  <tr>
+    <td>新发偏股基金</td>
+    <td>Q2月均<strong>781亿份</strong></td>
+    <td>↑ 高于Q4 2025的618亿</td>
+    <td class="good">回暖</td>
+  </tr>
+  <tr>
+    <td>股权风险溢价(ERP)</td>
+    <td><strong>4.4%</strong></td>
+    <td>—</td>
+    <td class="good">偏高，股票相对债券有吸引力</td>
+  </tr>
+</table>
+
+<h3>3. 产业政策</h3>
+<table>
+  <tr><th>方向</th><th>内容</th><th>影响</th></tr>
+  <tr><td>AI/数字经济</td><td>新质生产力，政策持续加码</td><td class="good">利好AI/半导体/算力</td></tr>
+  <tr><td>设备更新/以旧换新</td><td>中央财政支持消费品以旧换新</td><td class="good">利好消费/制造</td></tr>
+  <tr><td>新能源</td><td>双碳目标下的电网/储能</td><td class="neutral">政策持续但边际递减</td></tr>
+  <tr><td>房地产</td><td>保交楼+取消限购+降首付</td><td class="neutral">托底为主，难大幅反弹</td></tr>
+</table>
+
+<h3>4. 情绪水位</h3>
+<div class="flex-row">
+  <div class="card">
+    <h4>两融/自由流通市值</h4>
+    <div class="value" style="color:#27ae60">5.36%</div>
+    <div style="font-size:12px;color:#666">vs 2015峰值9.56%</div>
+    <div><span class="tag neutral-tag">中性</span></div>
+  </div>
+  <div class="card">
+    <h4>两融成交占比</h4>
+    <div class="value" style="color:#27ae60">9.8%</div>
+    <div style="font-size:12px;color:#666">vs 2015峰值20.2%</div>
+    <div><span class="tag neutral-tag">中性</span></div>
+  </div>
+</div>
+
+<div class="summary-box">
+  <strong>资金面总结：</strong>北向资金大幅回流（Q2净买入2086亿是历史级规模）、新发基金回暖、ERP偏高说明股票有性价比——三个信号都指向资金环境在改善。两融创新高但占市值比不高，说明杠杆水平合理，未到过热程度。
+</div>
+
+<h3>5. 综合评分明细</h3>
+<table>
+  <tr><th>评分维度</th><th>评分</th><th>判断依据</th></tr>
+  <tr><td>宏观象限</td><td><span class="score-box zero">0</span></td><td style="text-align:left">弱复苏，PMI 50.3 + 社融偏弱，但不构成做多/做空的决定性理由</td></tr>
+  <tr><td>货币政策</td><td><span class="score-box positive">+1</span></td><td style="text-align:left">LPR历史低位，宽松方向明确，下半年可能继续降准降息</td></tr>
+  <tr><td>财政政策</td><td><span class="score-box positive">+1</span></td><td style="text-align:left">赤字率>3%，专项债加力，设备更新/以旧换新等政策在落地</td></tr>
+  <tr><td>产业政策</td><td><span class="score-box positive">+1</span></td><td style="text-align:left">AI/新质生产力主线明确，政策在持续加码</td></tr>
+  <tr><td>资金面</td><td><span class="score-box positive">+1</span></td><td style="text-align:left">北向Q2+2086亿，新发回暖，ERP偏高→股优于债</td></tr>
+  <tr><td>情绪/技术</td><td><span class="score-box zero">0</span></td><td style="text-align:left">两融创新高但占比合理，情绪偏暖但未极端</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">+4/6</td><td style="text-align:left">偏多，环境友好</td></tr>
+</table>
+
+</div></div>
+
+<div class="footer">
+  报告生成日期：2026-07-09 | 数据来源：国家统计局、央行、Wind、东方财富<br>
+  本报告不构成投资建议，仅供参考
+</div>
+
+</div>
+
+<script>
+var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+var contents = document.querySelectorAll('.tab-content');
+btns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    contents.forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    var tab = btn.getAttribute('data-tab');
+    document.getElementById('tab-' + tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>宏发股份(600885) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>宏发股份（600885）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026-07-29 | 数据来源：FY2025 年报 + 2026Q1 季报</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>宏发科技股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>600885.SH</td></tr>
+  <tr><td>所属行业</td><td>电子元器件（继电器 — 全球第一）</td></tr>
+  <tr><td>行业地位</td><td>全球继电器市占率第一（~38%），连续多年蝉联；中国电子元器件百强第4位</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>172.02 亿（+21.98%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>17.58 亿（+7.76%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>29.69 亿（+32.85%）</strong></td></tr>
+  <tr><td>总资产</td><td>233.64 亿</td></tr>
+  <tr><td>归母净资产</td><td>126.31 亿</td></tr>
+  <tr><td>ROE（加权）</td><td>17.23%</td></tr>
+</table>
+
+<p style="font-size:13px;font-weight:bold;margin-top:12px;">行业类型：成长性行业（电子元器件-继电器） — 采用非周期股评分体系</p>
+
+<h2>综合评分（非周期股评分体系）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">综合L1-L5所有因素（财务健康度、关键指标、估值、杜邦分析、行业分类），对各维度打分求和</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">17.23% ≥ 15%，且连续多年保持15%+</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">高利润型——净利率13.6%+周转0.74+杠杆1.46，利润驱动为主</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">1.69 ≥ 1.0，CFO 29.69亿远覆盖净利润</td></tr>
+  <tr><td>营收增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+21.98% ≥ 10%，连续13+年正增长</td></tr>
+  <tr><td>利润增长（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">扣非+8.44%，≥5%，但增速放缓低于营收增速</td></tr>
+  <tr><td>负债率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">31.47% < 40%，健康水平</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">货币资金~39.25亿 >> 短期借款~6.71亿，充裕覆盖</td></tr>
+  <tr><td>毛利率水平与趋势（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">34.32% ≥ 30%但同比下降1.9pct（原材料涨价拖累），趋势不稳定</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">PE~26x，略高于ROE 17%对应的合理区间（15-25x），偏高<30%</td></tr>
+  <tr><td>自由现金流（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">FCF ~17.88亿，持续为正</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">91/100</td><td style="text-align:left">品质优秀（91/100分）</td></tr>
+</table>
+
+<div class="verdict verdict-ok">品质优秀（91/100分）</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>宏发股份是全球继电器绝对龙头（市占率~38%），连续13+年营收利润双增长。公司凭借垂直一体化+自动化生产+全球化布局构建了极深的护城河。2025年营收+22%展现强劲增长动力，但受铜/银等原材料涨价影响，毛利率下降1.9pct，利润增速（+7.8%）显著落后于营收增速。高压直流继电器（+40%）和信号继电器（+25%）是核心增长引擎，HVDC/AIDC有望打开新空间。估值PE~26x处于历史偏高区间，但ROE 17%+和全球龙头地位支撑溢价。<br><br>
+  <strong>核心优势：</strong>① 全球继电器龙头（市占率~38%），高压直流继电器国内份额50%+/全球40%+，竞争壁垒极高；② 营收连续13+年正增长，过去10年营收CAGR 13%/业绩CAGR 14%，穿越周期；③ 资产负债率31.5%极为健康，CFO 29.69亿强劲（净现比1.69），FCF持续为正；④ 高压直流+信号继电器双轮驱动，HVDC/AIDC打开新成长空间。<br><br>
+  <strong>核心风险：</strong>① 毛利率连续下降（铜/银等原材料涨价），若持续将侵蚀利润；② Q4净利2.88亿同比-20%严重不及预期，利润增速远低于营收；③ 应收账款41.4亿（占营收24%），体量较大需关注回款；④ PE~26x处于历史80%+分位，估值偏高。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>172.02 亿</td><td>141.02 亿</td><td>+21.98%</td><td class="good">✅ 高增长</td></tr>
+  <tr><td>归母净利润</td><td><strong>17.58 亿</strong></td><td>16.31 亿</td><td><strong>+7.76%</strong></td><td class="neutral">⚠ 增速低于营收</td></tr>
+  <tr><td>扣非净利润</td><td><strong>16.43 亿</strong></td><td>15.15 亿</td><td><strong>+8.44%</strong></td><td class="neutral">⚠ 增速放缓</td></tr>
+  <tr><td>毛利率</td><td><strong>34.32%</strong></td><td>36.22%</td><td>-1.90pct</td><td class="bad">❌ 原材料涨价拖累</td></tr>
+  <tr><td>归母净利率</td><td><strong>10.22%</strong></td><td>11.57%</td><td>-1.35pct</td><td class="bad">❌ 下降</td></tr>
+  <tr><td>期间费用率</td><td><strong>~19.1%</strong></td><td>~20.0%</td><td>-0.9pct</td><td class="good">✅ 控制良好</td></tr>
+  <tr><td>2025Q1 营收</td><td>39.83 亿</td><td>32.19 亿</td><td>+23.74%</td><td class="good">✅ 强劲</td></tr>
+  <tr><td>2025Q2 营收</td><td>43.64 亿</td><td>35.06 亿</td><td>+24.47%</td><td class="good">✅ 强劲</td></tr>
+  <tr><td>2025Q3 营收</td><td>45.67 亿</td><td>37.90 亿</td><td>+20.50%</td><td class="good">✅ 稳健</td></tr>
+  <tr><td>2025Q4 营收</td><td>42.88 亿</td><td>32.34 亿</td><td>+32.62%</td><td class="good">✅ 超预期</td></tr>
+  <tr><td>2025Q4 净利润</td><td><strong>2.88 亿</strong></td><td>3.62 亿</td><td><strong>-20.42%</strong></td><td class="bad">❌ 大幅下滑</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>2025年呈现"增收不增利"格局——营收+22%但净利仅+7.8%。Q4严重拖累全年：营收42.88亿同比+32.6%创单季新高，但净利仅2.88亿同比-20.4%、环比-43.1%，主因铜/银等原材料价格大幅上涨导致毛利率骤降至33.4%（同比-6.3pct）。全年看，高压直流继电器（+40%）、信号继电器（+25%）增长亮眼，但家电继电器竞争激烈毛利率承压。2026年若原材料价格回落，利润弹性较大（券商预计2026E净利19.5亿+11%）。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>货币资金（含交易性金融资产）</td><td><strong>~39.25 亿</strong></td><td class="good">✅ 充裕</td></tr>
+  <tr><td>应收账款及票据</td><td><strong>~41.42 亿</strong></td><td class="neutral">⚠ 占营收24%，体量较大</td></tr>
+  <tr><td>存货</td><td><strong>42.78 亿</strong></td><td class="neutral">占资产18.3%，偏高</td></tr>
+  <tr><td>短期借款</td><td><strong>~6.71 亿</strong></td><td class="good">✅ 极低</td></tr>
+  <tr><td>长期借款</td><td><strong>~1.69 亿</strong></td><td class="good">✅ 极低</td></tr>
+  <tr><td>有息负债率</td><td><strong>~5.2%</strong></td><td class="good">✅ 极低</td></tr>
+  <tr><td>资产负债率</td><td><strong>31.47%</strong></td><td class="good">✅ 健康</td></tr>
+  <tr><td>归母净资产</td><td>126.31 亿</td><td class="good">✅ 同比+32.9%</td></tr>
+  <tr><td>总资产</td><td>233.64 亿</td><td class="good">✅ 同比+13.1%</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>财务结构极其健康——有息负债率仅5.2%，资产负债率31.5%，在制造业中属极低水平。货币资金39.25亿覆盖短期借款6.71亿绰绰有余。但需关注两点：① 应收账款41.42亿（占营收24%/净利润236%），虽与收入增长匹配但回款周期需跟踪；② 存货42.78亿（+23%），高于营收增速，若原材料价格回落需计提跌价风险。整体看，宏发股份的资产负债表是制造业中"教科书级别"的健康水平。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>29.69 亿</strong></td><td>22.35 亿</td><td class="good">✅ +32.85%强劲</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><strong>-6.10 亿</strong></td><td>-22.10 亿</td><td class="good">✅ 大幅收窄</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td><strong>-19.51 亿</strong></td><td>1.11 亿</td><td class="good">✅ 偿还借款降杠杆</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>1.69</strong></td><td>1.37</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>自由现金流（FCF）</td><td><strong>~17.88 亿</strong></td><td>~11 亿</td><td class="good">✅ 持续强劲</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>现金流解读：</strong>CFO 29.69亿同比+33%展现极强的现金创造能力。净现比1.69（远>1），说明利润质量极高——每1元净利润对应1.69元真实现金流入。资本开支仅~11.81亿（占营收6.9%），FCF高达17.88亿，说明公司已进入"现金牛"阶段——不需要大量资本投入即可维持增长。筹资现金流-19.51亿（偿还借款），降杠杆动作积极。整体现金流状况在A股制造业中属顶级水平。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>17.23%</strong></td><td>> 15% 优秀 / > 10% 及格</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>毛利率</td><td><strong>34.32%</strong></td><td>稳定或提升</td><td class="bad">❌ 降1.9pct</td></tr>
+  <tr><td>净利率</td><td><strong>13.60%</strong></td><td>> 10%</td><td class="good">✅ 良好</td></tr>
+  <tr><td>营收增长率</td><td><strong>+21.98%</strong></td><td>> 10%</td><td class="good">✅ 高增长</td></tr>
+  <tr><td>扣非增长率</td><td><strong>+8.44%</strong></td><td>正增长</td><td class="neutral">⚠ 利润增幅偏低</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>1.69</strong></td><td>> 1.2 优秀</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>资产负债率</td><td><strong>31.47%</strong></td><td>制造业<50%</td><td class="good">✅ 健康</td></tr>
+  <tr><td>分红率</td><td><strong>~30%</strong></td><td>持续分红</td><td class="good">✅ 稳定</td></tr>
+</table>
+
+<h3>3.2 分业务分析（2025年度）</h3>
+<table>
+  <tr><th>业务板块</th><th>营收（亿）</th><th>占比</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td>继电器产品</td><td>157.03</td><td>91.3%</td><td>+23.64%</td><td><strong>35.66%</strong></td><td class="good">✅ 核心利润来源</td></tr>
+  <tr><td> 其中：高压直流继电器</td><td>~35</td><td>~20%</td><td><strong>+40%+</strong></td><td><strong>~40%+</strong></td><td class="good">✅ 最强增长引擎</td></tr>
+  <tr><td> 其中：汽车继电器</td><td>~28</td><td>~16%</td><td>+16%</td><td>~35%</td><td class="good">✅ 份额持续提升</td></tr>
+  <tr><td> 其中：信号继电器</td><td>~15</td><td>~9%</td><td>+25%</td><td>~38%</td><td class="good">✅ 高毛利增长</td></tr>
+  <tr><td> 其中：家电继电器</td><td>~45</td><td>~26%</td><td>~5-8%</td><td>~28%</td><td class="neutral">稳定</td></tr>
+  <tr><td>电气产品</td><td>7.58</td><td>4.4%</td><td>-4.27%</td><td><strong>21.82%</strong></td><td class="neutral">持平</td></tr>
+  <tr><td>其他业务</td><td>7.41</td><td>4.3%</td><td>+51.80%</td><td>19.03%</td><td class="neutral">低毛利</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>继电器是绝对核心（91.3%营收），高压直流继电器是"皇冠上的明珠"——受益新能源汽车（800V平台渗透率提升）和AI数据中心（HVDC直流供电），全年发货控制模块3.8亿元同比翻倍，全球市占率40%+。汽车继电器全球份额从8%（2018）提升至23%（2024），持续替代松下/泰科。信号继电器拓展电动车/光储/半导体测试设备等新领域，+25%增长。低压电器/连接器/传感器等新门类产品（TAM超1万亿）是第三增长曲线。整体增长驱动力明确、多点开花。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="neutral">🟡 中等</td><td>毛利率连续下降（-1.9pct），Q4骤降至33.4%</td><td>L1 利润表，铜/银等原材料涨价拖累毛利率</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>利润增速仅+7.8%，显著低于营收+22%，增收不增利</td><td>L1 利润表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>应收账款41.42亿（占净利润236%），体量偏大</td><td>L1 资产负债表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>Q4净利润2.88亿同比-20%/环比-43%，盈利趋势恶化</td><td>L1 利润表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>PE~26x处于历史80%+分位，估值偏高</td><td>L3 估值</td></tr>
+  <tr><td class="good">🟢 正面</td><td>ROE 17.23%连续多年保持15%+，股东回报优秀</td><td>L2 盈利指标</td></tr>
+  <tr><td class="good">🟢 正面</td><td>CFO 29.69亿极其强劲，净现比1.69</td><td>L1 现金流量表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>全球继电器龙头（市占率~38%），壁垒极深</td><td>L5 行业定位</td></tr>
+  <tr><td class="good">🟢 正面</td><td>高压直流继电器+40%，HVDC打开新空间</td><td>L2 分业务分析</td></tr>
+  <tr><td class="good">🟢 正面</td><td>有息负债率仅5.2%，负债率31.5%极健康</td><td>L1 资产负债表</td></tr>
+</table>
+
+<div class="verdict verdict-caution">⚠ L2综合判定：谨慎看好（ROE优秀+现金流极强+全球龙头，但毛利率趋势和利润增速需要跟踪）</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>股价（2026.7）</td><td><strong>~31 元</strong></td><td>52周区间21-39元</td></tr>
+  <tr><td>总市值</td><td><strong>~480 亿</strong></td><td>总股本15.48亿股</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>~26x</strong></td><td>基于TTM净利~18.5亿（2025全年17.58+2026Q1~5.1-2025Q1 4.11）</td></tr>
+  <tr><td>PE（TTM扣非）</td><td><strong>~27x</strong></td><td>基于扣非TTM</td></tr>
+  <tr><td>PE（2026E）</td><td><strong>~22x</strong></td><td>基于券商一致预期EPS~1.40元（2026E净利~19.5亿）</td></tr>
+  <tr><td>PB</td><td><strong>~3.8x</strong></td><td>基于每股净资产8.16元</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~2.8x</strong></td><td>市销率合理</td></tr>
+  <tr><td>PCF</td><td><strong>~16x</strong></td><td>基于CFO 29.69亿</td></tr>
+  <tr><td>股息率</td><td><strong>~1.1%</strong></td><td>基于每股分红0.347元</td></tr>
+</table>
+
+<h3>4.2 PE Band估值区间</h3>
+<p style="font-size:13px;color:#666;">ROE 17.23% → 合理PE参考区间：15-25x | 2026E一致预期EPS ≈ 1.40元</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs现价31元</th></tr>
+  <tr><td>悲观</td><td>15x</td><td>21.0 元</td><td class="bad">-32%</td></tr>
+  <tr><td>保守</td><td>20x</td><td>28.0 元</td><td class="neutral">-10%</td></tr>
+  <tr><td>中性</td><td>25x</td><td>35.0 元</td><td class="good">+13%</td></tr>
+  <tr><td>券商目标</td><td>~28x</td><td>~39.2 元</td><td class="good">+26%</td></tr>
+  <tr><td>当前价</td><td>~22x（2026E）</td><td>31.0 元</td><td>—</td></tr>
+  <tr><td>历史高位</td><td>31x</td><td>43.4 元</td><td class="good">+40%</td></tr>
+</table>
+
+<h3>4.3 历史PE区间</h3>
+<table>
+  <tr><th>指标</th><th>数值</th><th>备注</th></tr>
+  <tr><td>PE（TTM）最大值</td><td>~31x</td><td>历史高位</td></tr>
+  <tr><td>PE（TTM）80%分位</td><td>~26x</td><td></td></tr>
+  <tr><td>PE（TTM）50%分位</td><td>~22x</td><td></td></tr>
+  <tr><td>PE（TTM）20%分位</td><td>~20x</td><td></td></tr>
+  <tr><td>PE（TTM）最小值</td><td>~17x</td><td></td></tr>
+  <tr><td>当前PE（TTM）</td><td class="neutral">~26x</td><td>5年约80%分位 — 偏高</td></tr>
+</table>
+
+<h3>4.4 历史PB区间</h3>
+<table>
+  <tr><th>指标</th><th>数值</th></tr>
+  <tr><td>PB最大值</td><td>~5.7x</td></tr>
+  <tr><td>PB 80%分位</td><td>~4.6x</td></tr>
+  <tr><td>PB 50%分位</td><td>~3.9x</td></tr>
+  <tr><td>PB 20%分位</td><td>~3.6x</td></tr>
+  <tr><td>PB最小值</td><td>~2.9x</td></tr>
+  <tr><td>当前PB</td><td class="neutral">~3.8x（约35-45%分位）</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值总结：</strong>宏发股份当前PE~26x处于5年约80%分位（偏高），PB~3.8x处于约35-45%分位（中偏低）。不同估值框架出现背离——PE偏贵但PB尚可。<br><br>
+  <strong>核心观点：</strong>① PE偏高反映市场已给予全球龙头溢价（ROE 17%+），但2025年利润增速仅7.8%无法支撑高估值，需2026年利润增速（券商预计+11%）验证；② 2026E PE 22x回落至历史中位附近，若原材料价格回落+利润弹性释放，估值压力将缓解；③ PB仅3.8x（低于历史中位），在制造业龙头中并不贵——ROE 17%对应PB 3.8x的"PB/ROE"比值为0.22，低于合理水平0.25-0.30；④ 风险点：若毛利率持续下降或利润增速继续低于10%，PE有从26x收缩至20x的风险（-23%下行空间）。当前属于<strong>估值中偏高但基本面优异</strong>的状态，适合持有等待利润兑现，不适合追高买入。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>净利润率（整体）</td><td>14.3%</td><td>14.8%</td><td><strong>13.6%</strong></td><td class="bad">⬇ 下降</td></tr>
+  <tr><td>资产周转率</td><td>0.73</td><td>0.68</td><td><strong>0.74</strong></td><td class="good">⬆ 提升</td></tr>
+  <tr><td>权益乘数</td><td>1.53</td><td>1.65</td><td><strong>1.46</strong></td><td class="good">⬇ 降杠杆</td></tr>
+  <tr><td><strong>ROE（加权）</strong></td><td><strong>~17.4%</strong></td><td><strong>~18.3%</strong></td><td><strong>17.23%</strong></td><td class="neutral">➡ 保持高位</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>10.4%</td><td>10.1%</td><td><strong>10.1%</strong></td><td class="neutral">➡ 稳定</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>7.0pct</td><td>8.2pct</td><td><strong>7.1pct</strong></td><td class="neutral">杠杆适中</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：高利润+中等周转+低杠杆型（最健康的制造业主导模式）</strong><br>
+  宏发股份的杜邦结构极为健康：净利润率13.6%较高（制造行业中优秀）、资产周转率0.74中等偏上（非重资产）、权益乘数1.46极低。去掉杠杆后的基础回报（去杠杆ROA）高达10.1%，在制造业中处于顶级水平——这意味着即使完全不使用杠杆，公司的资产回报效率也超过10%。杠杆贡献仅7.1个百分点，说明ROE主要依靠经营效率而非财务杠杆。<br><br>
+  <strong>核心竞争力：</strong>公司具备自主开发一流继电器自动化产线的能力，设备自制率极高，这带来了两重优势：① 大幅降低单位投资成本（资本开支占营收仅6.9%）；② 40余年工艺积累使产线效率和良率行业领先。这种"设备自研+规模效应+垂直一体化"的模式，是宏发股份ROE长期保持在15%+的核心驱动力。
+</div>
+
+<h3>5.2 历史ROE追踪</h3>
+<table>
+  <tr><th>年份</th><th>ROE</th><th>趋势</th></tr>
+  <tr><td>2021年</td><td>~16%</td><td class="good">稳健</td></tr>
+  <tr><td>2022年</td><td>~16%</td><td class="good">稳健</td></tr>
+  <tr><td>2023年</td><td>~17%</td><td class="good">稳健</td></tr>
+  <tr><td>2024年</td><td>~18%</td><td class="good">提升</td></tr>
+  <tr><td>2025年</td><td>~17%</td><td class="neutral">略有下降（原材料涨价）</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>核心结论：</strong><br>
+  ① 宏发股份是"高利润+中等周转+低杠杆"的优质杜邦模式，ROE长期保持在15-18%之间，是A股分红价值型公司的典范；<br>
+  ② 去杠杆ROA 10.1%在制造业中处于顶级水平——这归功于公司设备自研能力和自动化水平带来的超高资产回报效率；<br>
+  ③ 权益乘数仅1.46（有息负债率5.2%），意味着公司几乎没有财务风险，ROE完全是"赚出来的"而非"借出来的"；<br>
+  ④ 2025年ROE微降的原因是净利润率从14.8%降至13.6%（原材料涨价），但周转率从0.68提升至0.74（产能利用率提升），部分抵消了利润率的负面影响；<br>
+  ⑤ ROE修复路径：当铜/银等原材料价格回落时，净利润率有望回升至14%+，叠加营收持续增长，ROE有望重返18%+。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与特征（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：成长性行业（电子元器件—继电器）</strong><br>
+  <strong>判断依据：</strong>宏发股份主营继电器产品（全球市占率~38%，全球第一），属于电子元器件制造行业。继电器是电路控制的核心器件，下游覆盖家电/汽车/新能源/电力/工业/通讯等广泛领域。行业驱动力来自：① 新能源汽车渗透率提升（高压直流继电器单车用量和价值量双升）；② AI数据中心从48V向800V HVDC过渡（增量市场预计2027年超30亿）；③ 全球电网智能化改造（智能电表/电力继电器需求稳定增长）；④ 制造业自动化升级（工控继电器国产替代空间大）。<br><br>
+  <strong>成长属性确认：</strong>公司营收连续13+年正增长，过去10年营收CAGR 13%、业绩CAGR 14%，不受宏观经济周期明显影响（下游极度分散、全球布局）。高压直流继电器+40%增速是成长性的最强证明。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th></tr>
+  <tr><td>行业集中度</td><td><strong>龙头集中但整体分散</strong>——宏发全球市占率~38%稳居第一，但行业第二名泰科电子/第三名欧姆龙份额分别约10-15%，整体CR3约55%。在细分领域集中度极高：高压直流继电器宏发全球40%+/国内50%+、电力继电器57%、功率继电器32%。</td></tr>
+  <tr><td>技术壁垒</td><td><strong>极高</strong>——继电器涉及电磁设计/接触系统/电弧控制/可靠性验证等多学科交叉，高端产品（高压直流/信号继电器）认证周期2-5年。宏发拥有第五代信号继电器等自主核心技术。</td></tr>
+  <tr><td>规模壁垒</td><td><strong>极高</strong>——年产33亿只继电器，全球规模最大。设备自研自制（非外购），构建了竞争对手难以复制的自动化成本优势。</td></tr>
+  <tr><td>客户壁垒</td><td><strong>极强</strong>——已进入特斯拉/比亚迪/大众/西门子/英伟达等全球头部客户供应链，客户认证周期长、替换成本高。</td></tr>
+  <tr><td>品牌与渠道壁垒</td><td><strong>强</strong>——全球120+国家销售网络，9家海外销售机构+7个全球物流中心，品牌已获全球认可。</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  <strong>阶段：成熟期（传统继电器）+ 成长期（高压直流/新门类产品）</strong><br>
+  传统继电器（家电/汽车/电力）已处于成熟期——需求增速5-10%/年，格局稳定，宏发作为龙头通过份额提升维持增长。高压直流继电器处于高速成长期（+40%），受益于新能源汽车/AI数据中心双轮驱动。新门类产品（低压电器/连接器/传感器/电容器等）处于早期成长期，TAM超1万亿，是宏发的"第三增长曲线"。整体看，公司处于"成熟现金牛+成长加速器"的双轮驱动阶段。<br><br>
+  <strong>投资策略重点：</strong>核心跟踪高压直流继电器在AIDC/HVDC领域的突破节奏、新门类产品客户导入进度、原材料（铜/银）价格走势。
+</div>
+
+<h3>6.4 同行对比分析</h3>
+<table>
+  <tr><th>指标</th><th>宏发股份</th><th>三友联众</th><th>航天电器</th><th>行业中位</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>17.23%</strong></td><td>~8%</td><td>~12%</td><td>~10%</td><td class="good">✅ 最高</td></tr>
+  <tr><td>毛利率</td><td><strong>34.32%</strong></td><td>~22%</td><td>~32%</td><td>~28%</td><td class="good">✅ 最高</td></tr>
+  <tr><td>净利率</td><td><strong>13.60%</strong></td><td>~5%</td><td>~11%</td><td>~8%</td><td class="good">✅ 最高</td></tr>
+  <tr><td>负债率</td><td><strong>31.47%</strong></td><td>~45%</td><td>~35%</td><td>~40%</td><td class="good">✅ 最低</td></tr>
+  <tr><td>营收增速</td><td><strong>+21.98%</strong></td><td>+12%</td><td>+8%</td><td>+10%</td><td class="good">✅ 最高</td></tr>
+  <tr><td>PB</td><td>~3.8x</td><td>~2.0x</td><td>~3.5x</td><td>~3.0x</td><td class="neutral">中等</td></tr>
+  <tr><td>PE（TTM）</td><td>~26x</td><td>~25x</td><td>~28x</td><td>~25x</td><td class="neutral">中等</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>同行对比结论：</strong>宏发股份在继电器/电子元器件同行中全面领先——ROE（17.23%）、毛利率（34.32%）、净利率（13.60%）、营收增速（+21.98%）均为行业内最高，负债率（31.47%）最低。与三友联众（国内继电器第二）相比，宏发在规模/技术/客户/品牌上构成全方位碾压，ROE是其二倍有余，市占率是其8-10倍。航天电器毛利率接近但ROE和增速远逊。宏发是电子元器件行业中当之无愧的"全能冠军"，其ROE/PB比值（17%/3.8x=4.5%）在同行中仍有性价比。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>成长型（电子元器件）</td><td>PE + PEG</td><td>毛利率、ROE、营收增速</td><td class="neutral">⚠ 部分匹配——PE 26x偏贵，但PEG~2.0略高</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值方法总结：</strong>宏发股份作为电子元器件行业全球龙头，PE/PEG是合理框架。当前PE 26x处于历史80%分位（偏高），但考虑ROE 17%+和全球龙头地位，市场给予25-30x PE有合理性。2026E PE 22x回落至历史中位水平。PEG约2.0（基于2026E利润增速~11%），略高于价值投资1.5的舒适区，但考虑到公司增长可持续性（13+年连续增长）和全球龙头确定性，可接受适度溢价。建议以PE 20-25x作为合理估值区间，当前价位接近上沿。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>成长性（电子元器件-继电器），全球市占率~38%第一，技术+规模+客户三重壁垒极深。<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 17.23%优秀，杜邦高利润低杠杆型，CFO/净利1.69极其优秀，FCF 17.88亿强劲，负债率31.5%健康。<br>
+  <strong>Step 3 - 估值判断：</strong>PE 26x历史80%分位偏高，但2026E PE 22x回落至中位，PB 3.8x合理。全球龙头享受溢价。<br>
+  <strong>Step 4 - 风险排查：</strong>毛利率下降（原材料涨价）、Q4利润骤降、应收偏高、PE偏贵，均需持续跟踪但非致命。<br>
+  <strong>Step 5 - 结论：</strong>好公司（全球龙头+ROE 17%+现金流极强）+ 价格偏高（PE 80%分位）= 适合持有但不宜追高。<br>
+  <strong>Step 6 - 跟踪：</strong>看铜/银价格走势/高压直流HVDC订单/新门类产品收入占比/2026H1毛利率是否企稳。
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>继电器下游极度分散（家电/汽车/新能源/电力/工控），全球需求稳定增长。高压直流/HVDC打开新空间。行业集中度提升趋势利好龙头</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓</td><td>ROE 17.23%>15%，毛利率34.32%在制造业中优秀，CFO/净利1.69>1，连续13+年营收利润双增长</td></tr>
+  <tr><td>③ 好价格</td><td class="neutral">⚠</td><td>PE 26x处于80%分位偏高，但2026E PE 22x回落至中位，PB 3.8x低于中位。价格中等偏贵</td></tr>
+</table>
+
+<h3>7.3 三个陷阱排查</h3>
+<div class="danger-box">
+  <strong>☐ 价值陷阱：</strong>❌ 未命中——PE偏高（26x）而非偏低，ROE 17%+优秀，营收+22%高增长，与价值陷阱特征完全相反。<br>
+  <strong>☐ 周期陷阱：</strong>❌ 未命中——继电器行业非强周期，公司连续13+年正增长证明穿越周期能力。高压直流/AIDC等结构性趋势驱动成长而非周期。<br>
+  <strong>☐ 烧钱陷阱：</strong>❌ 未命中——CFO 29.69亿/NI 17.58亿=1.69，净现比优秀。FCF 17.88亿持续为正。完全不涉及烧钱问题。
+</div>
+
+<h3>7.4 管理层与治理风险</h3>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力与履历</td><td>好</td><td>核心创始人郭满金（实际控制人）深耕继电器行业40+年，管理团队长期稳定，战略执行力强</td></tr>
+  <tr><td>股权结构与利益一致性</td><td>强</td><td>实控人郭满金为自然人，有格创投（关联方）持股~27%，管理层与股东利益高度一致</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td>无</td><td>上市近30年无重大违规/监管处罚/诉讼记录，治理规范</td></tr>
+  <tr><td>资本配置记录</td><td>合理</td><td>聚焦继电器主业+新门类拓展，分红率30%稳定。资本开支占营收仅6.9%，轻资产高效扩张</td></tr>
+  <tr><td>管理层增减持记录</td><td>无异常</td><td>近一年无大额集中减持，管理层持股稳定</td></tr>
+  <tr><td>CEO交接/关键人员变动</td><td>无风险</td><td>郭满金年事较高（70+）但团队已形成稳定梯队，职业经理人制度完善</td></tr>
+</table>
+
+<h3>7.5 盈利可持续性</h3>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是靠价？</td><td>量驱动</td><td>营收+22%主要受益于继电器出货量增长（33亿只+）和高压直流等高端产品占比提升，非涨价驱动</td></tr>
+  <tr><td>涨价能否持续？</td><td>有限</td><td>继电器作为元器件定价权中等，宏发凭借龙头地位有一定议价权但无法完全转嫁原材料涨价</td></tr>
+  <tr><td>非经常性利润占比</td><td>低</td><td>2025年非经常利润1.15亿/净利17.58亿=6.5%，主要为政府补助和套保损益，占比可控</td></tr>
+  <tr><td>大客户/大项目集中度</td><td>分散</td><td>下游覆盖全球120+国家/地区，前5大客户占比极低，无单一客户依赖风险</td></tr>
+  <tr><td>政策/监管依赖度</td><td>低</td><td>无补贴依赖，新能源/电力行业政策利好仅为锦上添花，非生存必要条件</td></tr>
+</table>
+
+<h3>7.6 关键变量敏感性</h3>
+<div class="summary-box">
+  <strong>变量1: 原材料价格（铜/银/漆包线）</strong><br>
+  乐观: 铜价回落至8000美元/吨以下 → 毛利率回升至36%+ → 净利弹性+2-3亿<br>
+  中性: 铜价维持当前水平 (已体现在券商2026E中) → EPS约1.40元<br>
+  悲观: 铜价继续上涨至12000美元+ → 毛利率降至32%以下 → EPS约1.1-1.2元<br><br>
+  <strong>变量2: 高压直流继电器（核心增长引擎）</strong><br>
+  乐观: HVDC/AIDC超预期放量（英伟达800V方案推广） + 欧洲新能源车渗透加速 → 营收增速>40%<br>
+  中性: 新能源汽车稳健增长（全球+20%）+ 份额提升 → 维持+30%增速<br>
+  悲观: 新能源汽车增速放缓至10%+竞争加剧 → 增速降至20%以下<br><br>
+  <strong>变量3: 新门类产品（第三增长曲线）</strong><br>
+  乐观: 低压电器/连接器等新产品突破头部客户 → 营收占比提升至15%+，估值重塑<br>
+  中性: 稳步拓展，24-27年CAGR ~35% → 逐步贡献增量<br>
+  悲观: 客户导入受阻/竞争激烈 → 增速低于预期，拖累整体毛利率
+</div>
+
+<h3>7.7 前景展望</h3>
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. 高压直流继电器双轮驱动 — 新能源汽车800V平台渗透率提升+AI数据中心HVDC直流供电（英伟达白皮书），2027年预计增量30亿+市场<br>
+  2. 原材料价格回落释放利润弹性 — 若铜价从高点回落，毛利率有望修复1-2pct，贡献利润增量2-3亿<br>
+  3. 新门类产品放量 — 低压电器/连接器/传感器等TAM超1万亿，24-27年CAGR目标~35%，催化估值重估<br><br>
+  <strong>负向拖累：</strong><br>
+  1. 原材料持续涨价 — 若铜/银价格维持高位或继续上涨，毛利率将继续承压，利润增速可能持续低于营收<br>
+  2. 全球贸易摩擦 — 宏发海外营收占比~29%，关税升级可能影响海外业务（海外基地印尼宏发产能尚小）<br>
+  3. 家电继电器竞争 — 国内补贴退坡后家电需求进入淡季，低端产品价格战加剧可能拉低整体毛利率
+</div>
+
+<h3>7.8 三情景简表</h3>
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>EPS预估</th><th>PE区间</th><th>预期回报</th></tr>
+  <tr><td>乐观</td><td>原材料回落+HVDC超预期+新门类放量</td><td>~1.8元</td><td>22-28x</td><td>40-50元（+29-61%）</td></tr>
+  <tr><td>中性</td><td>原材料价格稳定+稳健增长，与券商一致预期一致</td><td>~1.40元</td><td>20-25x</td><td>28-35元（-10%~+13%）</td></tr>
+  <tr><td>悲观</td><td>原材料继续涨价+需求不及预期</td><td>~1.1元</td><td>20-25x</td><td>22-28元（-29%~-10%）</td></tr>
+</table>
+<p style="font-size:13px;color:#666;margin-top:4px;">概率判断：中性50%，乐观25%，悲观25%。核心关注原材料价格走势和2026H1毛利率能否企稳。</p>
+
+<h3>7.9 资金面信号</h3>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>北向资金持股</td><td>增持</td><td>陆股通持股占流通A股22.04%（103.67亿），外资高度认可</td></tr>
+  <tr><td>机构持仓变动</td><td>稳定偏增</td><td>中证500ETF等指数基金重仓，机构覆盖度高</td></tr>
+  <tr><td>融资余额变动</td><td>稳定</td><td>融资余额4.93亿（占市值1.08%），杠杆资金情绪平稳</td></tr>
+  <tr><td>大股东增减持</td><td>无</td><td>实控人郭满金/有格创投持股稳定，无减持</td></tr>
+  <tr><td>大宗交易</td><td>—</td><td>近期无异常大宗交易</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>资金面判断：</strong>北向资金持股22%显示外资对宏发全球龙头地位的深度认可。机构覆盖密集（东吴/国金/国海等多家券商覆盖），指数基金被动配置需求稳定。整体资金面正面，但需要注意PE处于历史高位区间，若利润增速不及预期可能面临机构调仓压力。
+</div>
+
+<h3>7.10 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——做继电器（全球第一），从家电到汽车到新能源到AI数据中心都需要的小零件，靠"自动化产线自研+垂直一体化+全球40年口碑"把成本做到最低、品质做到最稳，赚全球制造业升级的钱。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——毛利率从36%降到34%还在往下走，Q4毛利率33.4%创近年新低。如果铜价不回落，2026年毛利率可能跌破33%，利润增速可能继续低于10%。应收账款41亿（净利的2.4倍）也要盯紧。<br>
+  3. 如果现在买入，期待的回报来源是什么？——① 原材料价格回落→毛利率修复→利润弹性释放（赚利润率回升的钱）；② 高压直流+HVDC+新门类产品放量→营收增速维持20%+（赚增长的钱）；③ 全球龙头溢价→PE稳定在25x左右（赚估值不变的钱）。核心假设是利润增速能回升到15%+。<br>
+  4. 什么情况下你会坚决卖出？——① 毛利率持续跌破32%且无修复迹象（成本优势弱化）；② 营收增速降至10%以下（增长失速）；③ PE突破30x（过度透支）；④ 应收账款大幅坏账/大客户丢失/大规模股权质押。
+</div>
+
+</div></div>
+
+<div class="footer">
+    免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+    数据来源：宏发股份2025年年报、2026Q1季报、券商研报（东吴证券/国金证券）、亿牛网/集思录/理杏仁
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASX宏观环境报告 2026-07-09</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 900px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 14px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 14px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #e67e22; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .score-box { display: inline-block; padding: 2px 10px; border-radius: 4px; font-weight: bold; font-size: 14px; margin: 0 4px; }
+  .score-box.positive { background: #f0f8f0; color: #27ae60; }
+  .score-box.zero { background: #f5f5f5; color: #666; }
+  .score-box.negative { background: #fde8e8; color: #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+  .flex-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .card { flex: 1; min-width: 200px; border: 1px solid #ddd; border-radius: 6px; padding: 12px; margin: 8px 0; }
+  .card h4 { font-size: 14px; margin-bottom: 6px; }
+  .card .value { font-size: 22px; font-weight: bold; }
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 12px; font-weight: bold; margin: 0 3px; }
+  .tag.hot { background: #fde8e8; color: #c0392b; }
+  .tag.warm { background: #fef8e8; color: #e67e22; }
+  .tag.cold { background: #e8f4f8; color: #2980b9; }
+  .tag.neutral-tag { background: #f0f0f0; color: #666; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>ASX宏观环境报告</h1>
+<p class="subtitle">L0-B1 澳洲宏观+大宗商品 + L0-B2 全球联动 综合判断</p>
+<p class="meta">报告日期：2026-07-09 | 数据截止：2026年7月第一周</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="b1">B1 大宗利率</button>
+  <button class="tab-btn" data-tab="b2">B2 全球联动</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>当前市场环境总判断</h2>
+
+<div class="verdict verdict-caution">中性 · 结构分化，精选个股</div>
+
+<div class="highlight-box">
+  <strong>一句话总结：</strong>ASX处于"利率见顶 + 大宗商品承压 + 全球利率高位"的组合。RBA 4.35%大概率已见顶（9月降息概率超70%），但铁矿石近一月跌8%拖累矿业，能源股因地缘政治（美伊冲突）短期获支撑，金融/地产因降息预期回暖。整体不是单边行情，板块分化明显。
+</div>
+
+<h3>ASX四维判断</h3>
+<table>
+  <tr><th style="width:22%">维度</th><th style="width:10%">信号</th><th>说明</th></tr>
+  <tr>
+    <td>RBA利率</td>
+    <td><span class="score-box positive">+1</span></td>
+    <td style="text-align:left">4.35%大概率见顶，市场定价9月降息概率>70%，金融/地产受益</td>
+  </tr>
+  <tr>
+    <td>大宗商品</td>
+    <td><span class="score-box negative">-1</span></td>
+    <td style="text-align:left">铁矿石月跌8%，金价跌至$4127（11周低点），矿业板块承压</td>
+  </tr>
+  <tr>
+    <td>中国经济</td>
+    <td><span class="score-box zero">0</span></td>
+    <td style="text-align:left">PMI 50.3弱复苏，房地产仍在筑底，对资源需求未明显改善</td>
+  </tr>
+  <tr>
+    <td>全球联动</td>
+    <td><span class="score-box negative">-1</span></td>
+    <td style="text-align:left">Fed鹰派（加息概率~75%），美债4.77%高位，美元偏强</td>
+  </tr>
+  <tr style="font-weight:bold;background:#e8e8e8">
+    <td>整体</td>
+    <td style="font-size:16px">中性偏弱</td>
+    <td style="text-align:left">降息预期 vs 商品下跌 + 全球利率高，方向不清晰</td>
+  </tr>
+</table>
+
+<h3>操作建议</h3>
+<table>
+  <tr><th style="width:25%">项目</th><th>建议</th></tr>
+  <tr><td>仓位建议</td><td style="text-align:left"><strong>40~60%</strong>（中性，不做整体方向性押注）</td></tr>
+  <tr><td>风格建议</td><td style="text-align:left"><strong>银行+地产（降息受益）+ 能源（短期地缘支撑）</strong>，回避矿业/科技高估值股</td></tr>
+  <tr><td>关键风险</td><td style="text-align:left">
+    ① 铁矿石持续下跌 → 矿业板块拖累ASX200<br>
+    ② Fed意外加息（概率~25%）→ 全球风险资产承压<br>
+    ③ 美伊冲突升级 → 能源涨但全球避险，成长股被抛售
+  </td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>当前适合做什么：</strong>关注降息受益板块（银行、地产REITs），这些行业已在提前定价降息。能源股短期有地缘支撑但波动大。铁矿石如继续下跌可能拖累ASX200跌破8800支撑。<br><br>
+  <strong>不太适合：</strong>追高矿业股、重仓高估值成长科技股（WTC已跌50%有警示意义）。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-b1"><div class="tab-inner">
+
+<h2>一、澳洲宏观与大宗商品</h2>
+
+<h3>1. RBA利率</h3>
+
+<div class="flex-row">
+  <div class="card">
+    <h4>现金利率</h4>
+    <div class="value" style="color:#e67e22">4.35%</div>
+    <div style="font-size:12px;color:#666">6月维持不变</div>
+    <div><span class="tag warm">已见顶概率大</span></div>
+  </div>
+  <div class="card">
+    <h4>9月降息概率</h4>
+    <div class="value" style="color:#27ae60">>70%</div>
+    <div style="font-size:12px;color:#666">市场定价</div>
+    <div><span class="tag neutral-tag">预期升温</span></div>
+  </div>
+</div>
+
+<table>
+  <tr><th>指标</th><th>最新值</th><th>趋势</th><th>含义</th></tr>
+  <tr><td>RBA现金利率</td><td><strong>4.35%</strong></td><td>→ 6月会议维持</td><td colspan="2">RBA 2026年加息3次（2月/3月/5月各25bp）后暂停</td></tr>
+  <tr><td>道明-墨尔本通胀指数</td><td>环比<strong>-0.4%</strong>（6月）</td><td>↓ 连续第二个月下降</td><td>通缩信号明确，降息预期加速升温</td></tr>
+  <tr><td>就业市场</td><td>数据趋弱</td><td>↓</td><td>经济降温为不继续加息提供了理由</td></tr>
+  <tr><td>四大行预测</td><td>NAB/ANZ/CBA：峰值4.35%</td><td>Westpac：可能再升至4.85%</td><td>大部分认为已见顶</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>利率判断：</strong>通胀连续两个月环比下降（5月-0.3%，6月-0.4%），市场已定价9月降息概率>70%。RBA大概率已完成加息周期，下一步是降息——但具体时间取决于后续通胀和就业数据。
+</div>
+
+<h3>2. 大宗商品</h3>
+<table>
+  <tr><th>商品</th><th>最新价</th><th>月走势</th><th>对ASX的影响</th></tr>
+  <tr>
+    <td>铁矿石</td>
+    <td>月跌<strong>~8%</strong></td>
+    <td class="bad">↓ 下跌</td>
+    <td>利空BHP/RIO/FMG → 拖累ASX200</td>
+  </tr>
+  <tr>
+    <td>黄金</td>
+    <td><strong>US$4,127/oz</strong></td>
+    <td class="bad">↓ 11周低点</td>
+    <td>利空金矿股（NST/EVN等）</td>
+  </tr>
+  <tr>
+    <td>原油(Brent)</td>
+    <td><strong>US$76.10</strong></td>
+    <td class="good">↑ +2.62%（短期地缘）</td>
+    <td>利多能源股（STO/WDS/KAR）</td>
+  </tr>
+  <tr>
+    <td>RBA商品指数</td>
+    <td>6月环比-0.7%（澳元计）</td>
+    <td class="bad">↓ 连续下跌</td>
+    <td>整体商品需求偏弱</td>
+  </tr>
+</table>
+
+<h3>3. 汇率</h3>
+<table>
+  <tr><th>汇率</th><th>最新值</th><th>趋势</th><th>含义</th></tr>
+  <tr><td>AUD/USD</td><td><strong>0.6940</strong></td><td>→ 近期震荡</td><td>偏弱，降息预期+铁矿石下跌双重压制</td></tr>
+  <tr><td>主要支撑/阻力</td><td>支撑0.65</td><td>—</td><td>若跌破0.65可能打开下行空间</td></tr>
+</table>
+<div style="font-size:13px;color:#666;margin-top:-8px;margin-bottom:12px">澳元弱对矿业公司出口有利（美元收入换更多澳元），但对进口和通胀不利。</div>
+
+<h3>4. 中国联动（对ASX的影响）</h3>
+<table>
+  <tr><th>中国指标</th><th>最新</th><th>趋势</th><th>对ASX的含义</th></tr>
+  <tr><td>PMI</td><td>50.3</td><td>↑ 小幅回升</td><td class="neutral">弱复苏，不足以拉动铁矿石需求大涨</td></tr>
+  <tr><td>房地产</td><td>仍在筑底</td><td>→</td><td class="bad">铁矿石需求主力未恢复</td></tr>
+  <tr><td>PPI</td><td>+0.5%</td><td>↑ 转正</td><td class="good">中期利好周期品，但传导需要时间</td></tr>
+</table>
+
+</div></div>
+
+<div class="tab-content" id="tab-b2"><div class="tab-inner">
+
+<h2>二、全球联动与市场情绪</h2>
+
+<h3>1. 美联储利率</h3>
+<table>
+  <tr><th>指标</th><th>最新值</th><th>趋势</th><th>含义</th></tr>
+  <tr><td>联邦基金利率</td><td><strong>3.50~3.75%</strong></td><td>→ 6月维持</td><td>全年维持该水平</td></tr>
+  <tr><td>下次会议</td><td>7月28~29日</td><td>—</td><td>关注是否暗示加息</td></tr>
+  <tr><td>点阵图鹰派程度</td><td>9位官员主张年内加息</td><td class="bad">偏鹰</td><td>年内加息概率约75%</td></tr>
+  <tr><td>美国CPI</td><td><strong>4.1%</strong></td><td class="bad">偏高</td><td>远高于2%目标，Fed不敢轻举妄动</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>关键冲突：</strong>Fed内部对利率走向分歧巨大——一方认为通胀会自然回落可降息，另一方认为通胀持续高企需加息。市场定价年内加息概率约75%，这对ASX是外部压力。<br>
+  <strong>ASX含义：</strong>Fed偏鹰 → 美债收益率高位 → 全球成长股估值受压 → 美澳利差缩小支撑美元 → AUD承压。
+</div>
+
+<h3>2. 美债收益率与美元</h3>
+<table>
+  <tr><th>指标</th><th>最新值</th><th>正常范围</th><th>对ASX影响</th></tr>
+  <tr><td>10年期美债</td><td><strong>4.77%</strong></td><td>4.0~4.5%</td><td class="bad">偏高，资金回流美国</td></tr>
+  <tr><td>2年期美债</td><td><strong>4.23%</strong></td><td>—</td><td>反应Fed利率预期</td></tr>
+  <tr><td>美元指数(DXY)</td><td data待补充>待补充</td><td>—</td><td>美元偏强对大宗商品不利</td></tr>
+</table>
+
+<h3>3. ASX200技术面</h3>
+<table>
+  <tr><th>指标</th><th>最新值</th><th>趋势</th><th>含义</th></tr>
+  <tr><td>ASX200收盘</td><td><strong>8,785.1</strong></td><td class="bad">↓ 跌破8,800</td><td>短期技术面转弱</td></tr>
+  <tr><td>日内最低</td><td>8,680.8（-1.4%）</td><td>—</td><td>盘中大幅下探后回升，说明有买盘</td></tr>
+  <tr><td>涨跌比</td><td>92涨 / 131跌</td><td class="bad">跌多涨少</td><td>宽度偏弱，除能源外普跌</td></tr>
+  <tr><td>VIX</td><td><strong>16.54</strong>（+2.54%）</td><td>↑ 上升</td><td>地缘风险推升波动</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>技术面判断：</strong>ASX200跌破8,800是短期负面信号，但盘中从8,680深V反弹至8,785说明下方有买盘承接。短期可能在8,600~8,800区间震荡，等待方向。<br><br>
+  <strong>板块轮动观察：</strong>资金从科技/成长股流出，转向金融（+0.65%）、地产（REITs）、能源（+3.26%）——这是一个"防御+利率敏感"的轮动，说明市场在定价降息预期但不是全面做多。
+</div>
+
+<h3>4. 全球风险矩阵</h3>
+<table>
+  <tr><th>风险因素</th><th>状态</th><th>对ASX的影响</th></tr>
+  <tr><td>美伊冲突</td><td class="bad">升温（特朗普称停火结束）</td><td>能源涨，但避险压制整体风险偏好</td></tr>
+  <tr><td>美国通胀4.1%</td><td class="bad">偏高</td><td>Fed不敢降息，全球流动性偏紧</td></tr>
+  <tr><td>中国经济弱复苏</td><td class="neutral">PMI 50.3</td><td>资源需求不旺，矿业承压</td></tr>
+  <tr><td>RBA降息预期</td><td class="good">升温</td><td>利好ASX金融/地产</td></tr>
+</table>
+
+</div></div>
+
+<div class="footer">
+  报告生成日期：2026-07-09 | 数据来源：RBA、ABS、TradingView、金十数据、Swingfolio<br>
+  本报告不构成投资建议，仅供参考
+</div>
+
+</div>
+
+<script>
+var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+var contents = document.querySelectorAll('.tab-content');
+btns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    contents.forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    var tab = btn.getAttribute('data-tab');
+    document.getElementById('tab-' + tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

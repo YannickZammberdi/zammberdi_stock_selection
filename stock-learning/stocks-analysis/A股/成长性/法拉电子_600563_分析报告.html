@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>法拉电子(600563) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>法拉电子（600563）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026-07-29 | 数据来源：FY2025 年报 + 2026Q1 季报</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>厦门法拉电子股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>600563.SH</td></tr>
+  <tr><td>所属行业</td><td>电子元器件（薄膜电容器 — 全球前三，国内绝对龙头）</td></tr>
+  <tr><td>行业地位</td><td>全球薄膜电容器市占率~18%（前三），国内新能源车薄膜电容市占率~38.8%，全球第一梯队</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>53.27 亿（+11.64%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>11.92 亿（+14.72%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>12.73 亿（+1.14%）</strong></td></tr>
+  <tr><td>总资产</td><td>~80.22 亿</td></tr>
+  <tr><td>归母净资产</td><td>~55.47 亿</td></tr>
+  <tr><td>ROE（加权）</td><td>21.49%</td></tr>
+</table>
+
+<p style="font-size:13px;font-weight:bold;margin-top:12px;">行业类型：成长性行业（电子元器件-薄膜电容器） — 采用非周期股评分体系</p>
+
+<h2>综合评分（非周期股评分体系）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">综合L1-L5所有因素（财务健康度、关键指标、估值、杜邦分析、行业分类），对各维度打分求和</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">21.49% ≥ 15%，连续5年保持20%+（21-27%）</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">高利润型——净利率22.39%极高，利润驱动为主，杠杆极低</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">1.07 ≥ 1.0，CFO 12.73亿覆盖净利润11.92亿</td></tr>
+  <tr><td>营收增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+11.64% ≥ 10%，连续多年正增长</td></tr>
+  <tr><td>利润增长（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">+14.72%，≥5%但<15%（扣非+10.21%略低）</td></tr>
+  <tr><td>负债率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">30.86% < 40%，在制造业中极低</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">货币资金充裕（~12亿+），短期借款仅~0.5亿，充裕覆盖</td></tr>
+  <tr><td>毛利率水平与趋势（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">32.12% ≥ 30%但同比-1.26pct（原材料涨价），趋势略降</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">PE~24.7x，在ROE 21%对应的合理区间20-30x内，5年31.9%分位偏低</td></tr>
+  <tr><td>自由现金流（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">FCF持续为正，CFO 12.73亿覆盖资本开支绰绰有余</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">94/100</td><td style="text-align:left">品质优秀（94/100分）</td></tr>
+</table>
+
+<div class="verdict verdict-ok">品质优秀（94/100分）</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>法拉电子是全球薄膜电容器龙头（全球前三，国内绝对第一），深耕行业50+年，凭借"超薄化+金属化镀膜+自动化"核心工艺构建了极深护城河。FY2025营收53.27亿（+11.64%）、净利11.92亿（+14.72%），ROE连续5年保持20%+。新能源车（薄膜电容单车价值量提升）、光伏/储能、AI数据中心（HVDC滤波电容）三大增长引擎驱动。资产负债率30.86%极低，有息负债几乎为零，财务极为健康。<br><br>
+  <strong>核心优势：</strong>① 全球薄膜电容龙头（全球~18%/国内新能源汽车~38.8%），超薄薄膜（2.5μm以下）技术全球领先，壁垒极深；② ROE连续5年20%+（均值~23%），在A股制造业中属于顶级水平；③ 资产负债率30.86%，有息负债几乎为零，财务极度健康；④ 新能源车+光伏+AI数据中心三轮驱动，成长空间广阔。<br><br>
+  <strong>核心风险：</strong>① 毛利率趋势下降（32.12%同比-1.26pct），原材料涨价+竞争加剧；② 营收增速放缓至11.64%，较前两年~15-20%有所下降；③ 2026Q1经营现金流仅322万（同比-98.88%），需关注是否偶发；④ PE~24.7x虽合理但不算便宜，股价136元处52周中位。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>53.27 亿</td><td>47.72 亿</td><td>+11.64%</td><td class="good">✅ 稳健增长</td></tr>
+  <tr><td>归母净利润</td><td><strong>11.92 亿</strong></td><td>10.39 亿</td><td><strong>+14.72%</strong></td><td class="good">✅ 利润增速>营收</td></tr>
+  <tr><td>扣非净利润</td><td><strong>11.28 亿</strong></td><td>10.23 亿</td><td><strong>+10.21%</strong></td><td class="good">✅ 正增长</td></tr>
+  <tr><td>毛利率</td><td><strong>32.12%</strong></td><td>33.38%</td><td>-1.26pct</td><td class="neutral">⚠ 下降（原材料涨价）</td></tr>
+  <tr><td>归母净利率</td><td><strong>22.39%</strong></td><td>21.78%</td><td>+0.61pct</td><td class="good">✅ 提升</td></tr>
+  <tr><td>期间费用率</td><td><strong>~9.1%</strong></td><td>~9.6%</td><td>-0.5pct</td><td class="good">✅ 控制良好</td></tr>
+  <tr><td>2026Q1 营收</td><td>12.84 亿</td><td>12.03 亿</td><td>+6.72%</td><td class="neutral">⚠ 增速放缓</td></tr>
+  <tr><td>2026Q1 归母净利</td><td>2.68 亿</td><td>2.65 亿</td><td>+1.30%</td><td class="neutral">⚠ 接近持平</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>2025年利润表呈现"利润率驱动"的良性结构——营收+11.64%稳健增长，净利率逆势提升0.61pct至22.39%（费用管控+产品结构优化），利润增速（+14.72%）高于营收增速。但毛利率下降1.26pct至32.12%，反映原材料涨价和竞争压力。2026Q1营收增速放缓至6.72%、净利仅+1.30%，需密切跟踪后续季度表现。扣非净利+10.21%较2024年的~15%有所放缓，但仍保持两位数增长。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>货币资金（含理财）</td><td><strong>~12.00 亿</strong></td><td class="good">✅ 充裕</td></tr>
+  <tr><td>应收账款及票据</td><td><strong>~14.50 亿</strong></td><td class="neutral">占营收27%，可控</td></tr>
+  <tr><td>存货</td><td><strong>~8.50 亿</strong></td><td class="good">✅ 管理良好</td></tr>
+  <tr><td>短期借款</td><td><strong>~0.50 亿</strong></td><td class="good">✅ 极低</td></tr>
+  <tr><td>长期借款</td><td><strong>~0.50 亿</strong></td><td class="good">✅ 极低</td></tr>
+  <tr><td>有息负债率</td><td><strong>~1.2%</strong></td><td class="good">✅ 基本无负债</td></tr>
+  <tr><td>资产负债率</td><td><strong>30.86%</strong></td><td class="good">✅ 健康</td></tr>
+  <tr><td>归母净资产</td><td>~55.47 亿</td><td class="good">✅ 同比+12.8%</td></tr>
+  <tr><td>总资产</td><td>~80.22 亿</td><td class="good">✅ 同比+13.6%</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>财务结构极其健康——有息负债率仅~1.2%（几乎为零），资产负债率30.86%在制造业中属于极低水平。货币资金~12亿充裕，短期借款仅~0.5亿，偿债无忧。应收账款~14.5亿占营收27%，处于合理范围。存货~8.5亿周转良好。整体来看，法拉电子的资产负债表在A股制造业中属于"教科书级别"的健康水平——基本没有财务风险。净资产55.47亿同比+12.8%，与盈利增长基本匹配。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>12.73 亿</strong></td><td>12.59 亿</td><td class="good">✅ +1.14%稳定</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><strong>-3.50 亿（估）</strong></td><td>-3.00 亿</td><td class="good">✅ 资本开支节制</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td><strong>-5.90 亿（估）</strong></td><td>-5.18 亿</td><td class="good">✅ 主要分红流出</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>1.07</strong></td><td>1.21</td><td class="good">✅ 健康</td></tr>
+  <tr><td>自由现金流（FCF）</td><td><strong>~9.2 亿</strong></td><td>~9.6 亿</td><td class="good">✅ 持续强劲</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>现金流解读：</strong>CFO 12.73亿稳定强劲，净现比1.07说明利润质量良好（每1元净利润对应1.07元现金流入）。资本开支仅3.5亿（占营收6.6%），属于轻资产高效运营模式。FCF~9.2亿持续为正，说明公司已进入"现金牛"阶段。筹资现金流-5.9亿主要为现金分红流出（2025年10派23元，派息5.18亿），反映公司持续高分红回馈股东。2026Q1 CFO仅322万（同比-98.88%），需关注是否为经营性波动或偶发因素。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>21.49%</strong></td><td>> 15% 优秀 / > 10% 及格</td><td class="good">✅ 优秀（连续5年20%+）</td></tr>
+  <tr><td>毛利率</td><td><strong>32.12%</strong></td><td>稳定或提升</td><td class="neutral">⚠ 降1.26pct</td></tr>
+  <tr><td>净利率</td><td><strong>22.39%</strong></td><td>> 10%</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>营收增长率</td><td><strong>+11.64%</strong></td><td>> 10%</td><td class="good">✅ 良好</td></tr>
+  <tr><td>扣非增长率</td><td><strong>+10.21%</strong></td><td>正增长</td><td class="good">✅ 稳健</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>1.07</strong></td><td>> 1.0 良好</td><td class="good">✅ 良好</td></tr>
+  <tr><td>资产负债率</td><td><strong>30.86%</strong></td><td>制造业<50%</td><td class="good">✅ 极健康</td></tr>
+  <tr><td>分红率</td><td><strong>43.41%</strong></td><td>持续高分红</td><td class="good">✅ 优秀（5年CAGR +12%）</td></tr>
+</table>
+
+<h3>3.2 分业务分析（2025年度）</h3>
+<table>
+  <tr><th>业务板块</th><th>营收（亿）</th><th>占比</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td>薄膜电容器</td><td>~50.70</td><td>~95.2%</td><td><strong>+12.3%</strong></td><td><strong>~32.5%</strong></td><td class="good">✅ 核心利润来源</td></tr>
+  <tr><td> 其中：境内市场</td><td>41.38</td><td>77.7%</td><td><strong>+13.60%</strong></td><td>~33%</td><td class="good">✅ 内需驱动</td></tr>
+  <tr><td> 其中：境外市场</td><td>10.36</td><td>19.5%</td><td><strong>+2.97%</strong></td><td>~30%</td><td class="neutral">增速偏低</td></tr>
+  <tr><td>电子变压器</td><td>~1.40</td><td>~2.6%</td><td>—</td><td>—</td><td class="neutral">占比极小</td></tr>
+  <tr><td>其他业务</td><td>1.17</td><td>~2.2%</td><td>—</td><td>—</td><td class="neutral">—</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>薄膜电容器是绝对核心（95%+营收），下游应用结构持续优化——新能源汽车薄膜电容（国内市占率~38.8%）受益于800V平台渗透率提升（单车用量从200元→500元+），是核心增长引擎；光伏/储能领域需求稳定增长；AI数据中心HVDC滤波电容是新增量（英伟达800V HVDC方案）。境内市场+13.6%是增长主力，境外仅+2.97%（海外经济疲软）。整体看，薄膜电容作为"电子工业大米"，下游覆盖新能源车/光伏/工控/家电/电力等广泛领域，需求韧性强。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="neutral">🟡 中等</td><td>毛利率趋势下降（-1.26pct），原材料涨价压力持续</td><td>L1 利润表，铜/铝/PP膜等成本上涨</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>营收增速放缓至11.64%，Q1 2026进一步降至6.72%</td><td>L1 利润表，增长动能减弱</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>2026Q1 CFO仅322万（同比-98.88%），恶化明显</td><td>L1 现金流量表，需观察是否为季节性/偶发</td></tr>
+  <tr><td class="good">🟢 正面</td><td>ROE 21.49%连续5年20%+，股东回报顶级</td><td>L2 盈利指标</td></tr>
+  <tr><td class="good">🟢 正面</td><td>有息负债率~1.2%，几乎零负债运营</td><td>L1 资产负债表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>全球薄膜电容龙头，壁垒极深，定价权强</td><td>L5 行业定位</td></tr>
+  <tr><td class="good">🟢 正面</td><td>分红率43.4%，连续多年高分红（上市累计分红43.8亿）</td><td>L2 分红历史</td></tr>
+</table>
+
+<div class="verdict verdict-ok">✅ L2综合判定：品质优秀（ROE 21%+连续5年+零负债+全球龙头，但毛利率趋势和增长放缓需跟踪）</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>股价（2026.7）</td><td><strong>~136 元</strong></td><td>52周区间99.65-198.80元</td></tr>
+  <tr><td>总市值</td><td><strong>~306 亿</strong></td><td>总股本2.25亿股</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>~24.7x</strong></td><td>基于TTM净利~12.4亿（2025全年11.92+2026Q1 2.68-2025Q1~2.2）</td></tr>
+  <tr><td>PE（TTM扣非）</td><td><strong>~25.5x</strong></td><td>基于扣非TTM</td></tr>
+  <tr><td>PE（2026E）</td><td><strong>~22.7x</strong></td><td>基于券商一致预期EPS 5.99元（2026E净利~13.49亿）</td></tr>
+  <tr><td>PB</td><td><strong>~4.8x</strong></td><td>基于每股净资产~26.80元</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~5.7x</strong></td><td>市销率合理</td></tr>
+  <tr><td>PCF</td><td><strong>~24x</strong></td><td>基于CFO 12.73亿</td></tr>
+  <tr><td>股息率</td><td><strong>~1.69%</strong></td><td>基于每股分红2.30元</td></tr>
+</table>
+
+<h3>4.2 PE Band估值区间</h3>
+<p style="font-size:13px;color:#666;">ROE 21.49% > 20% → 合理PE参考区间：20-30x | 2026E一致预期EPS ≈ 5.99元</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs现价136元</th></tr>
+  <tr><td>悲观</td><td>18x</td><td>107.8 元</td><td class="bad">-21%</td></tr>
+  <tr><td>保守</td><td>22x</td><td>131.8 元</td><td class="neutral">-3%</td></tr>
+  <tr><td>中性</td><td>26x</td><td>155.7 元</td><td class="good">+14%</td></tr>
+  <tr><td>券商目标</td><td>~27x</td><td>~161.4 元</td><td class="good">+19%</td></tr>
+  <tr><td>当前价</td><td>~22.7x（2026E）</td><td>136.0 元</td><td>—</td></tr>
+  <tr><td>历史高位</td><td>30x</td><td>179.7 元</td><td class="good">+32%</td></tr>
+</table>
+
+<h3>4.3 历史PE区间</h3>
+<table>
+  <tr><th>指标</th><th>数值</th><th>备注</th></tr>
+  <tr><td>PE（TTM）最大值</td><td>~79x</td><td>2022年极端市场情绪</td></tr>
+  <tr><td>PE（TTM）80%分位</td><td>~35x</td><td></td></tr>
+  <tr><td>PE（TTM）50%分位</td><td>~27x</td><td></td></tr>
+  <tr><td>PE（TTM）20%分位</td><td>~20x</td><td></td></tr>
+  <tr><td>PE（TTM）最小值</td><td>~16x</td><td>2024年底部</td></tr>
+  <tr><td>当前PE（TTM）</td><td class="good">~24.7x</td><td>5年约31.9%分位 — 偏低</td></tr>
+</table>
+
+<h3>4.4 历史PB区间</h3>
+<table>
+  <tr><th>指标</th><th>数值</th></tr>
+  <tr><td>PB最大值</td><td>~12x</td></tr>
+  <tr><td>PB 80%分位</td><td>~7.5x</td></tr>
+  <tr><td>PB 50%分位</td><td>~5.5x</td></tr>
+  <tr><td>PB 20%分位</td><td>~4.0x</td></tr>
+  <tr><td>PB最小值</td><td>~2.8x</td></tr>
+  <tr><td>当前PB</td><td class="neutral">~4.8x（约25-30%分位）</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值总结：</strong>法拉电子当前PE~24.7x处于5年约31.9%分位（偏低），PB~4.8x处于约25-30%分位（偏低），整体估值处于历史偏低水平。<br><br>
+  <strong>核心观点：</strong>① PE 24.7x对应ROE 21.49%，PEG约1.6（基于2026E利润增速~13%），处于合理区间。对于一个ROE连续5年保持20%+的全球制造业龙头，当前估值并未明显泡沫化；② 2026E PE 22.7x回落至历史20%分位附近，提供了较好的安全边际；③ PB 4.8x对应ROE 21%的"PB/ROE"比值为0.23，低于合理水平的0.25-0.30，说明PB并未充分反映高ROE；④ 当前136元处于52周中低位（区间99.65-198.80元），向下有99.65元的强支撑（-27%），向上空间取决于利润增速能否维持15%+。当前属于<strong>估值合理偏低、基本面优秀的配置窗口</strong>。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>净利润率（整体）</td><td>~21.0%</td><td>~21.8%</td><td><strong>22.39%</strong></td><td class="good">⬆ 提升</td></tr>
+  <tr><td>资产周转率</td><td>~0.70</td><td>~0.71</td><td><strong>~0.66</strong></td><td class="bad">⬇ 下降</td></tr>
+  <tr><td>权益乘数</td><td>~1.35</td><td>~1.37</td><td><strong>~1.45</strong></td><td class="neutral">⬆ 略升</td></tr>
+  <tr><td><strong>ROE（加权）</strong></td><td><strong>~22.42%</strong></td><td><strong>~21.13%</strong></td><td><strong>21.49%</strong></td><td class="good">➡ 保持高位</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>14.7%</td><td>15.5%</td><td><strong>14.8%</strong></td><td class="neutral">➡ 稳定</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>7.7pct</td><td>5.6pct</td><td><strong>6.7pct</strong></td><td class="good">杠杆很低</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：高利润型（制造业最健康的模式）</strong><br>
+  法拉电子的杜邦结构堪称典范：净利润率22.39%在制造业中属于极高水平（电子元器件行业平均仅5-10%），资产周转率0.66中等（合理水平），权益乘数1.45极低。最亮眼的是去杠杆ROA高达14.8%——这意味着即使完全不使用任何杠杆，公司的资产回报效率也接近15%，在A股制造业中属于金字塔尖的水平。杠杆贡献仅6.7个百分点，说明ROE几乎完全来自经营效率而非财务杠杆。<br><br>
+  <strong>核心竞争力来源：</strong>法拉电子深耕薄膜电容50+年，掌握了从超薄薄膜分切→金属化镀膜→卷绕→封装→测试的全链条核心工艺。公司设备自研比例高，单线产出效率行业领先。这种"技术积累+设备自研+规模效应"的模式，使公司在保持高利润率的同时实现了极高的资产回报效率。
+</div>
+
+<h3>5.2 历史ROE追踪</h3>
+<table>
+  <tr><th>年份</th><th>ROE</th><th>趋势</th></tr>
+  <tr><td>2021年</td><td>26.66%</td><td class="good">高点（景气）</td></tr>
+  <tr><td>2022年</td><td>25.52%</td><td class="good">高位</td></tr>
+  <tr><td>2023年</td><td>22.42%</td><td class="good">稳健</td></tr>
+  <tr><td>2024年</td><td>21.13%</td><td class="good">稳健</td></tr>
+  <tr><td>2025年</td><td>21.49%</td><td class="good">企稳回升</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>核心结论：</strong><br>
+  ① 法拉电子是典型的"高利润型"杜邦模式——净利润率22.39%是核心驱动，连续5年ROE保持20%+，是A股制造业的标杆；<br>
+  ② 去杠杆ROA 14.8%在制造业中属于顶级水平（行业平均通常<10%），这得益于公司50+年的工艺积累和设备自研能力；<br>
+  ③ 权益乘数仅1.45（有息负债率~1.2%），意味着公司几乎没有财务风险，ROE完全是"赚出来的"而非"借出来的"；<br>
+  ④ 2025年净利润率提升至22.39%（+0.6pct），主要受益于产品结构优化（高毛利的车规级/工控级电容占比提升）和费用管控；<br>
+  ⑤ ROE修复路径：若毛利率企稳（原材料价格回落），叠加营收增速恢复至15%+，ROE有望重返23-25%的历史中位水平。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与特征（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：成长性行业（电子元器件—薄膜电容器）</strong><br>
+  <strong>判断依据：</strong>法拉电子主营薄膜电容器（全球前三/国内第一），属于电子元器件制造行业。薄膜电容是电力电子电路的关键基础元件，下游覆盖新能源车/光伏储能/工控/家电/电网/AI数据中心等广泛领域。行业驱动力来自：① 新能源汽车800V平台渗透率提升（薄膜电容单车价值量从200元→500元+，翻倍以上）；② 全球光伏/风电装机持续增长（逆变器/变流器大量使用薄膜电容）；③ AI数据中心HVDC供电方案（英伟达800V白皮书，滤波电容需求新增量）；④ 工业自动化+智能电网改造升级。<br><br>
+  <strong>成长属性确认：</strong>公司营收连续多年正增长，ROE连续5年保持20%+。新能源电子化/绿色发电/AI算力三大结构性趋势均为长期增长驱动力，行业不受宏观经济周期明显影响。薄膜电容下游极度分散（新能源车/光伏/工控/家电/电力），单一行业波动不影响整体。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th></tr>
+  <tr><td>行业集中度</td><td><strong>全球集中度中等，国内高度集中</strong>——全球CR3约45%（松下~20%、法拉~18%、TDK~7%），法拉电子国内市占率远超同行（新能源车薄膜电容国内~38.8%），国内CR3>60%。</td></tr>
+  <tr><td>技术壁垒</td><td><strong>极高</strong>——薄膜电容涉及超薄薄膜（2.5μm以下）分切/金属化镀膜/卷绕/焊接/封装全链条工艺，高端车规级产品认证周期3-5年。法拉电子掌握核心工艺，是国内少数具备2.5μm以下超薄薄膜电容量产能力的企业。</td></tr>
+  <tr><td>规模壁垒</td><td><strong>高</strong>——法拉电子年产薄膜电容~200亿只，全球规模领先。产能规模带来显著的原材料采购成本优势和单位固定成本摊薄优势。</td></tr>
+  <tr><td>客户壁垒</td><td><strong>强</strong>——已进入特斯拉/比亚迪/华为/阳光电源/汇川技术等头部客户供应链，车规级产品认证壁垒高、替换成本大。</td></tr>
+  <tr><td>品牌与渠道壁垒</td><td><strong>强</strong>——"法拉"品牌在薄膜电容行业享誉50+年，全球知名。产品远销欧洲/美洲/亚洲等全球市场。</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  <strong>阶段：成熟期（传统薄膜电容）+ 成长期（新能源车/光伏/AIDC薄膜电容）</strong><br>
+  传统薄膜电容市场（家电/工控/照明）已处于成熟期——需求增速5-8%/年，格局稳定。新能源车薄膜电容处于高速成长期（受益800V平台渗透率提升，行业增速20%+），AI数据中心HVDC滤波电容处于早期爆发阶段。光伏/储能薄膜电容处于稳健成长期。整体看，公司处于"成熟现金牛+成长加速器"的双轮驱动阶段。<br><br>
+  <strong>投资策略重点：</strong>核心跟踪新能源汽车800V平台渗透率、AI数据中心HVDC方案推广进度、上游原材料（聚丙烯PP粒/铝箔/铜）价格走势、海外市场拓展节奏。
+</div>
+
+<h3>6.4 同行对比分析</h3>
+<table>
+  <tr><th>指标</th><th>法拉电子</th><th>江海股份</th><th>铜峰电子</th><th>行业中位</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>21.49%</strong></td><td>~9%</td><td>~5%</td><td>~8%</td><td class="good">✅ 最高</td></tr>
+  <tr><td>毛利率</td><td><strong>32.12%</strong></td><td>~25%</td><td>~20%</td><td>~24%</td><td class="good">✅ 最高</td></tr>
+  <tr><td>净利率</td><td><strong>22.39%</strong></td><td>~11%</td><td>~6%</td><td>~10%</td><td class="good">✅ 最高</td></tr>
+  <tr><td>负债率</td><td><strong>30.86%</strong></td><td>~35%</td><td>~40%</td><td>~38%</td><td class="good">✅ 最低</td></tr>
+  <tr><td>营收增速</td><td><strong>+11.64%</strong></td><td>+15%</td><td>+8%</td><td>+10%</td><td class="good">✅ 高</td></tr>
+  <tr><td>PB</td><td>~4.8x</td><td>~2.0x</td><td>~2.5x</td><td>~2.8x</td><td class="neutral">偏高（ROE更高）</td></tr>
+  <tr><td>PE（TTM）</td><td>~24.7x</td><td>~20x</td><td>~50x</td><td>~25x</td><td class="neutral">中等</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>同行对比结论：</strong>法拉电子在国内电子元器件/电容器同行中全面大幅领先——ROE（21.49%）是江海股份的2.4倍、铜峰电子的4.3倍，毛利率（32.12%）和净利率（22.39%）均显著高于同行。负债率（30.86%）也是同行中最低的。唯一的"劣势"是PB~4.8x看起来贵，但这完全被ROE 21.49%所支撑（PB/ROE比值仅0.23，低于同行0.25-0.30的水平）。法拉电子是电容器行业当之无愧的"全能冠军"——不仅规模最大，盈利能力和财务健康度也是行业最顶级。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>成长型（电子元器件）</td><td>PE + PEG</td><td>毛利率、ROE、营收增速</td><td class="good">✅ 匹配——PE 24.7x合理，PEG~1.6可接受</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值方法总结：</strong>法拉电子作为电子元器件行业全球龙头，PE/PEG是合理框架。当前PE~24.7x处于5年31.9%分位（偏低），对于ROE 21.49%的全球制造业龙头而言估值合理。PEG约1.6（基于2026E利润增速~13%），略高于1.5的舒适区但考虑到公司连续5年ROE 20%+的高确定性和全球龙头地位，可接受。建议以PE 22-28x作为合理估值区间，当前136元对应2026E PE 22.7x处于区间下沿，安全边际充足。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>成长性（电子元器件-薄膜电容器），全球前三/国内绝对龙头，技术+规模+客户三重壁垒极深。<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 21.49%连续5年20%+，杜邦高利润型，CFO/净利1.07健康，FCF~9.2亿强劲，负债率30.86%极低。<br>
+  <strong>Step 3 - 估值判断：</strong>PE 24.7x处于5年31.9%分位（偏低），PB 4.8x处于25-30%分位（偏低），估值合理偏低。<br>
+  <strong>Step 4 - 风险排查：</strong>毛利率下降趋势、营收增速放缓、2026Q1 CFO大幅恶化，均需持续跟踪但非致命。<br>
+  <strong>Step 5 - 结论：</strong>好公司（全球龙头+ROE 21%+零负债+高分红）+ 价格合理偏低 = 具备配置价值。<br>
+  <strong>Step 6 - 跟踪：</strong>看毛利率趋势/新能源汽车薄膜电容出货量/2026H1 CFO恢复情况/原材料价格走势。
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>薄膜电容是电力电子核心元件，下游新能源车/光伏/AI数据中心三大结构性趋势驱动长期成长。行业集中度提升利好龙头</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓</td><td>ROE 21.49%>15%（连续5年20%+），净利率22.39%极高，CFO/净利1.07>1，连续多年正增长+高分红</td></tr>
+  <tr><td>③ 好价格</td><td class="good">✓</td><td>PE 24.7x处于5年31.9%分位偏低，2026E PE 22.7x，PB 4.8x处于25-30%分位。估值合理偏低</td></tr>
+</table>
+
+<h3>7.3 三个陷阱排查</h3>
+<div class="danger-box">
+  <strong>☐ 价值陷阱：</strong>❌ 未命中——PE 24.7x不算低（非低PE），ROE 21.49%优秀，营收+11.64%正增长，与价值陷阱特征（低PE+低增长+高负债）完全相反。<br>
+  <strong>☐ 周期陷阱：</strong>❌ 未命中——薄膜电容行业非强周期，公司连续多年正增长证明穿越周期能力。新能源车/光伏/AIDC结构性趋势驱动成长而非周期。<br>
+  <strong>☐ 烧钱陷阱：</strong>❌ 未命中——CFO 12.73亿/NI 11.92亿=1.07，净现比健康。FCF~9.2亿持续为正。完全不涉及烧钱问题。
+</div>
+
+<h3>7.4 管理层与治理风险</h3>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力与履历</td><td>好</td><td>管理团队深耕薄膜电容行业数十年，技术出身，经营风格稳健务实，战略执行力强</td></tr>
+  <tr><td>股权结构与利益一致性</td><td>强</td><td>实控人为厦门市国资委（厦门法拉发展控股），国资背景+职业经理人制度，治理规范</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td>无</td><td>上市20+年无重大违规/监管处罚/诉讼记录，治理优秀</td></tr>
+  <tr><td>资本配置记录</td><td>合理</td><td>聚焦薄膜电容主业，不盲目跨界。分红率43%极高（累计分红43.8亿超过融资额）。资本开支占营收6.6%高效扩张</td></tr>
+  <tr><td>管理层增减持记录</td><td>无异常</td><td>近一年无大额集中减持，管理层持股稳定</td></tr>
+  <tr><td>CEO交接/关键人员变动</td><td>无风险</td><td>管理团队稳定，无关键人员变动风险</td></tr>
+</table>
+
+<h3>7.5 盈利可持续性</h3>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是靠价？</td><td>量驱动</td><td>营收+11.64%主要受益于薄膜电容出货量增长和产品结构优化（高毛利的车规级占比提升），非涨价驱动</td></tr>
+  <tr><td>涨价能否持续？</td><td>需观察</td><td>法拉作为国内绝对龙头有一定定价权，但面对下游大客户（特斯拉/比亚迪/华为）涨价空间有限</td></tr>
+  <tr><td>非经常性利润占比</td><td>低</td><td>2025年非经常利润0.64亿/净利11.92亿=5.4%，主要为政府补助，占比可控</td></tr>
+  <tr><td>大客户/大项目集中度</td><td>分散</td><td>下游覆盖新能源车/光伏/工控/家电/电力等广泛领域，前5大客户占比合理，无单一客户依赖</td></tr>
+  <tr><td>政策/监管依赖度</td><td>低</td><td>无补贴依赖，新能源车/光伏政策利好仅为锦上添花，非生存必要条件</td></tr>
+</table>
+
+<h3>7.6 关键变量敏感性</h3>
+<div class="summary-box">
+  <strong>变量1: 原材料价格（聚丙烯PP粒/铝箔/铜）</strong><br>
+  乐观: 原材料价格回落 → 毛利率回升至34%+ → 净利弹性+1-2亿，ROE重返23%+<br>
+  中性: 原材料价格维持当前水平（已体现） → 2026E净利~13.5亿（+13%）<br>
+  悲观: 原材料继续上涨 → 毛利率降至30%以下 → 净利增速降至5-8%<br><br>
+  <strong>变量2: 新能源汽车800V平台渗透速度</strong><br>
+  乐观: 800V平台渗透加速（从20%→40%）→ 单车薄膜电容价值量500元+ → 营收增速恢复至15-20%<br>
+  中性: 800V稳步渗透 → 薄膜电容+12-15%增长<br>
+  悲观: 800V推广不及预期/竞争加剧 → 增速降至8-10%<br><br>
+  <strong>变量3: AI数据中心HVDC方案进展</strong><br>
+  乐观: 英伟达800V HVDC方案大规模推广 → 打开数十亿增量市场 → 估值重估<br>
+  中性: 稳步推进，1-2年内逐步放量 → 贡献增量但短期有限<br>
+  悲观: 方案落地延迟或技术路线变更 → 增长预期落空
+</div>
+
+<h3>7.7 前景展望</h3>
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. 新能源汽车薄膜电容双轮驱动 — 800V平台渗透率提升（单车价值量翻倍）+ 全球新能源车销量增长，法拉国内市占率38.8%充分受益<br>
+  2. AI数据中心HVDC新市场 — 英伟达800V HVDC白皮书推动数据中心从48V向800V过渡，薄膜电容作为关键滤波元件迎增量市场<br>
+  3. 原材料价格回落释放利润弹性 — 若PP粒/铝箔价格回落，毛利率有望修复1-2pct，贡献显著利润增量<br><br>
+  <strong>负向拖累：</strong><br>
+  1. 毛利率持续承压 — 原材料涨价+行业竞争加剧，若毛利率持续下降将侵蚀利润<br>
+  2. 营收增速放缓 — 从2023年~20%降至2025年11.64%，2026Q1进一步降至6.72%，需关注是否趋势性放缓<br>
+  3. 海外市场增长乏力 — 境外收入仅+2.97%（vs 境内+13.6%），海外拓展进度偏慢
+</div>
+
+<h3>7.8 三情景简表</h3>
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>EPS预估</th><th>PE区间</th><th>预期回报</th></tr>
+  <tr><td>乐观</td><td>原材料回落+800V加速+AIDC放量</td><td>~7.5元</td><td>22-28x</td><td>165-210元（+21-54%）</td></tr>
+  <tr><td>中性</td><td>原材料稳定+稳健增长，与券商一致预期一致</td><td>~5.99元</td><td>20-25x</td><td>120-150元（-12%~+10%）</td></tr>
+  <tr><td>悲观</td><td>原材料继续涨价+增长放缓</td><td>~5.0元</td><td>20-25x</td><td>100-125元（-26%~-8%）</td></tr>
+</table>
+<p style="font-size:13px;color:#666;margin-top:4px;">概率判断：中性50%，乐观25%，悲观25%。核心关注毛利率趋势、2026H1营收增速和CFO恢复情况。</p>
+
+<h3>7.9 资金面信号</h3>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>北向资金持股</td><td>增持</td><td>陆股通持股占流通A股比例较高，外资对全球龙头认可度高</td></tr>
+  <tr><td>机构持仓变动</td><td>稳定偏增</td><td>多家公募基金重仓持有，机构覆盖度高</td></tr>
+  <tr><td>融资余额变动</td><td>稳定</td><td>融资余额占比合理，杠杆资金情绪平稳</td></tr>
+  <tr><td>大股东增减持</td><td>无</td><td>厦门国资委持股稳定，无减持动作</td></tr>
+  <tr><td>大宗交易</td><td>—</td><td>近期无异常大宗交易</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>资金面判断：</strong>法拉电子作为全球薄膜电容龙头+ROE 21%的优质标的，受到外资和国内机构的长期配置。北向资金持股比例高反映国际投资者对公司全球龙头地位的认可。整体资金面正面，当前估值处于历史偏低分位，下行风险有限。
+</div>
+
+<h3>7.10 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——做薄膜电容（电力电子"大米"），从新能源汽车到光伏到AI数据中心都要用的核心元件，凭50+年工艺积累做到全球前三/国内第一，靠高利润率（22%）+高资产效率（ROE 21%）赚钱。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——毛利率从33.4%降到32.1%还在往下走，如果原材料继续涨价可能跌破30%。2026Q1经营现金流只有322万（同比-99%），希望只是季度波动而非趋势恶化。营收增速从~20%降到11.6%，Q1进一步降到6.7%，增长动力在减弱。<br>
+  3. 如果现在买入，期待的回报来源是什么？——① ROE 21%+每年内生增厚净资产~12%（赚企业成长的钱）；② 估值从历史偏低分位回归中位（赚估值修复的钱）；③ 新能源车800V+AI数据中心HVDC两大增量市场打开新空间（赚预期差的钱）。核心假设是利润增速能维持12-15%。<br>
+  4. 什么情况下你会坚决卖出？——① 毛利率持续跌破30%且无修复迹象（竞争优势弱化）；② 营收增速降至5%以下/连续2个季度负增长（增长失速）；③ 经营性现金流持续为负（盈利质量恶化）；④ 实控人/大股东大规模减持或治理出现重大瑕疵。
+</div>
+
+</div></div>
+
+<div class="footer">
+    免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+    数据来源：法拉电子2025年年报、2026Q1季报、券商研报（国联民生/野村东方/开源证券）、亿牛网/集思录/理杏仁
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

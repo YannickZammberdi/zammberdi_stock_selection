@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>公牛集团(603195) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>公牛集团（603195）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026-07-29 | 数据来源：FY2025 年报 + 2026Q1 季报 + 券商研报</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>公牛集团股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>603195.SH</td></tr>
+  <tr><td>所属行业</td><td>轻工制造 — 民用电工（转换器/墙开/LED照明/新能源充电）</td></tr>
+  <tr><td>行业地位</td><td>"插座一哥"——转换器天猫市占>60%，墙壁开关插座全国第一，线下五金渠道75万+售点</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>160.26 亿（-4.78%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>40.71 亿（-4.72%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>47.44 亿（+27.16%）</strong></td></tr>
+  <tr><td>总资产</td><td>225.56 亿</td></tr>
+  <tr><td>归母净资产</td><td>167.98 亿</td></tr>
+  <tr><td>ROE</td><td>24.23%</td></tr>
+</table>
+
+<h2>行业类型与评分体系</h2>
+<div class="summary-box">
+  <strong>行业分类：非周期股 — 防御型（民用电工消费品）</strong><br>
+  判断依据：转换器（插排）属于必选消费品，墙开/照明有一定地产周期关联但更换需求稳定。公司品牌心智垄断（"用不坏的公牛"），线下渠道覆盖极其深厚，具备消费品的防御属性。<br>
+  <strong>采用非周期股评分体系</strong>
+</div>
+
+<h2>综合评分（百分制）</h2>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">24.23%，≥15%，A股顶尖水平</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">高利润型——净利率25.4%+高周转0.74+低杠杆1.34</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">1.17 ≥ 1.0，极其优秀</td></tr>
+  <tr><td>营收增长（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">-4.78%，<0%（FY2025承压）</td></tr>
+  <tr><td>利润增长（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">-4.72%，<0%</td></tr>
+  <tr><td>负债率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">25.48%，<40%，极其健康</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">流动比率3.47，速动3.16，短期偿债充裕</td></tr>
+  <tr><td>毛利率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">43.14%≥30%，微降0.13pct基本稳定</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">PE ~17x，ROE 24%对应合理PE 20-30x，当前偏低</td></tr>
+  <tr><td>自由现金流（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">持续大幅为正，CFO 47.44亿远超净利</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">80/100</td><td style="text-align:left">品质优秀（80/100）</td></tr>
+</table>
+
+<div class="verdict verdict-ok">品质优秀（80/100）</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>公牛集团是A股少有的"全能型"优质公司——ROE长期>24%、CFO持续超净利润、毛利率43%稳定、零有息负债风险、分红率84%。FY2025营收利润微降不是经营恶化，而是地产周期+消费环境偏弱的短暂扰动。2026Q1已重回增长（营收+3.5%，利润+8.5%），拐点信号明确。<br><br>
+  <strong>核心优势：</strong>① ROE 24.23%长期维持A股顶尖，杜邦三因子全部健康（高利润+高周转+低杠杆）；② CFO/净利持续>1.0，现金流极其扎实；③ 品牌心智垄断（"用不坏的公牛"）+75万+线下渠道构成极深护城河；④ 高分红（84%）+回购，股东回报意识强。<br><br>
+  <strong>核心风险：</strong>① 营收增长遇到瓶颈，传统转换器/墙开市场已饱和（FY2025-4.78%）；② 新能源/出海新业务体量尚小（新能源仅5.1%、出海<2%），尚不能弥补传统业务下滑；③ 实控人阮氏兄弟持股86%，近期有减持行为引发市场担忧；④ 2021年反垄断罚款3亿，渠道管控受限。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>160.26 亿</td><td>168.31 亿</td><td>-4.78%</td><td class="bad">❌ 承压</td></tr>
+  <tr><td>归母净利润</td><td><strong>40.71 亿</strong></td><td>42.72 亿</td><td><strong>-4.72%</strong></td><td class="bad">❌ 承压</td></tr>
+  <tr><td>扣非净利润</td><td><strong>36.25 亿</strong></td><td>37.42 亿</td><td><strong>-3.13%</strong></td><td class="neutral">⚠ 微降</td></tr>
+  <tr><td>毛利率</td><td><strong>43.14%</strong></td><td>43.27%</td><td>-0.13pct</td><td class="good">✅ 极其稳定</td></tr>
+  <tr><td>归母净利率</td><td><strong>25.40%</strong></td><td>25.37%</td><td>+0.03pct</td><td class="good">✅ 稳定</td></tr>
+  <tr><td>期间费用率</td><td><strong>~12.2%</strong></td><td>~13.3%</td><td>-1.1pct</td><td class="good">✅ 费用管控</td></tr>
+  <tr><td>2025Q1 营收</td><td>39.22 亿</td><td>38.29 亿</td><td>+2.43%</td><td class="neutral">⚠ 慢增</td></tr>
+  <tr><td>2025Q2 营收</td><td>42.46 亿</td><td>45.84 亿</td><td>-7.37%</td><td class="bad">❌ 降幅最大</td></tr>
+  <tr><td>2025Q3 营收</td><td>40.30 亿</td><td>42.17 亿</td><td>-4.44%</td><td class="bad">❌ 下滑</td></tr>
+  <tr><td>2025Q4 营收</td><td>38.29 亿</td><td>42.28 亿</td><td>-9.44%</td><td class="bad">❌ 加速下滑</td></tr>
+  <tr><td>2025Q4 净利润</td><td><strong>10.92 亿</strong></td><td>10.09 亿</td><td><strong>+8.23%</strong></td><td class="good">✅ 逆势增长</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>FY2025营收-4.78%，受地产竣工下行+消费环境偏弱双重拖累。电连接（转换器）-7.9%降幅最大，智能电工照明（墙开/LED）-2.8%降幅较小。但Q4利润+8.23%逆势增长，表明公司通过费用精细化管控（销售费用-13.6%、研发-13.6%）稳住了利润率。毛利率43.14%仅微降0.13pct——在营收下滑背景下能做到毛利率不降，说明产品定价权极强。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td><strong>41.67 亿</strong></td><td class="good">✅ 充裕（含受限34.46亿）</td></tr>
+  <tr><td>交易性金融资产</td><td><strong>120.56 亿</strong></td><td class="good">✅ 理财大户</td></tr>
+  <tr><td>应收账款</td><td><strong>~4.5 亿</strong></td><td class="good">✅ 极低，占营收<3%</td></tr>
+  <tr><td>存货</td><td><strong>~11.5 亿</strong></td><td class="good">✅ 占资产5%，合理</td></tr>
+  <tr><td>短期借款</td><td><strong>5.50 亿</strong></td><td class="neutral">⚠ 同比+94.58%</td></tr>
+  <tr><td>长期借款</td><td><strong>2.25 亿</strong></td><td class="neutral">⚠ 新增</td></tr>
+  <tr><td>资产负债率</td><td><strong>25.48%</strong></td><td class="good">✅ 极低</td></tr>
+  <tr><td>归母净资产</td><td>167.98 亿</td><td class="good">✅ 同比+5.87%</td></tr>
+  <tr><td>总资产</td><td>225.56 亿</td><td class="good">✅ 同比+10.06%</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>公牛集团的资产负债表堪称"教科书级健康"：总资产225.56亿中，货币资金41.67亿+理财120.56亿=162亿现金类资产，占比72%。应收账款仅4.5亿（占营收<3%），几乎是先款后货模式。短期借款5.5亿（+94.58%）和长期借款2.25亿虽有所增加，但对比162亿现金类资产微不足道。唯一"瑕疵"是受限资金34.46亿（票据保证金等），自由可用现金约7.2亿，仍足够充裕。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>47.44 亿</strong></td><td>37.30 亿</td><td class="good">✅ 大幅改善+27.16%</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><strong>-20.62 亿</strong></td><td>-7.06 亿</td><td class="neutral">⚠ 理财投入增加</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td><strong>-28.00 亿</strong></td><td>-35.22 亿</td><td class="good">✅ 持续大额分红回购</td></tr>
+  <tr><td>CFO/净利润（归母）</td><td><strong>1.17</strong></td><td>0.87</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>自由现金流（FCF）</td><td><strong>~43 亿</strong></td><td>~33 亿</td><td class="good">✅ 极其充沛</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>公牛集团是A股现金流最强的公司之一。FY2025 CFO 47.44亿远超净利润40.71亿（CFO/净利1.17），主要受益于预收货款增加+精细化管理。自由现金流估算约43亿（CFO减资本开支~4亿），极其充沛。公司的核心矛盾不是"赚不赚钱"，而是"赚的钱怎么花"——120亿理财+34亿分红+2.5亿回购，资金运用效率仍有提升空间。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>24.23%</strong></td><td>> 15% 优秀</td><td class="good">✅ A股顶尖</td></tr>
+  <tr><td>毛利率</td><td><strong>43.14%</strong></td><td>稳定或提升</td><td class="good">✅ 极其稳定</td></tr>
+  <tr><td>净利率</td><td><strong>25.40%</strong></td><td>> 10%</td><td class="good">✅ 极高</td></tr>
+  <tr><td>营收增长率</td><td><strong>-4.78%</strong></td><td>> 10%</td><td class="bad">❌ 负增长（FY2025承压）</td></tr>
+  <tr><td>扣非增长率</td><td><strong>-3.13%</strong></td><td>正增长</td><td class="bad">❌ 微降</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>1.17</strong></td><td>> 1</td><td class="good">✅ 极其优秀</td></tr>
+  <tr><td>资产负债率</td><td><strong>25.48%</strong></td><td>制造业<60%</td><td class="good">✅ 极低</td></tr>
+  <tr><td>分红率</td><td><strong>84.39%</strong></td><td>持续分红</td><td class="good">✅ A股最高梯队</td></tr>
+</table>
+
+<h3>3.2 分业务分析（2025年度）</h3>
+<table>
+  <tr><th>业务板块</th><th>营收（亿）</th><th>占比</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td>电连接产品（转换器）</td><td>70.77</td><td>44.16%</td><td>-7.90%</td><td>~42%</td><td class="bad">❌ 核心业务下滑</td></tr>
+  <tr><td>智能电工照明（墙开/LED）</td><td>80.98</td><td>50.53%</td><td>-2.80%</td><td>~44%</td><td class="neutral">⚠ 微降</td></tr>
+  <tr><td>新能源产品（充电桩/储能）</td><td>8.22</td><td>5.13%</td><td>+5.71%</td><td>~30%</td><td class="good">✅ 增长中</td></tr>
+  <tr><td>其他（境外等）</td><td>0.30</td><td>0.19%</td><td>-22%</td><td>—</td><td class="neutral">体量极小</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>公牛的业务结构呈"双支柱+新兴业务"格局。转换器（44%）和墙开/LED（51%）合计占95%营收，但均受地产下行拖累。新能源业务8.22亿+5.71%，4年CAGR约151%，但体量尚小不足以对冲传统业务下滑。境外收入仅2.7亿占比<2%，国际化处于极早期。<br><br>
+  <strong>2026Q1积极信号：</strong>营收重回增长+3.52%，归母净利+8.55%，扣非+15.01%，拐点信号明确。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="neutral">🟡 中等</td><td>营收连续两季下滑，传统业务见顶压力</td><td>FY2025营收-4.78%，Q2-Q4均下滑</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>实控人阮氏兄弟近期减持</td><td>2026年6月阮立平、阮学平有减持记录</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>短期借款+94.58%，长期借款新增2.25亿</td><td>FY2025年报，虽金额不大但方向需关注</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>新业务（新能源/出海）体量太小，无法对冲</td><td>新能源5.1%，境外<2%</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>受限资金34.46亿，实际可用现金仅7.21亿</td><td>FY2025年报</td></tr>
+  <tr><td class="good">🟢 正面</td><td>ROE 24.23%持续A股顶尖，10年不下20%</td><td>L2 盈利指标</td></tr>
+  <tr><td class="good">🟢 正面</td><td>CFO 47.44亿超净利，盈利质量极高</td><td>L1 现金流量表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>毛利率43.14%极其稳定，定价权极强</td><td>L2 分业务分析</td></tr>
+  <tr><td class="good">🟢 正面</td><td>分红率84%+回购，股东回报A股顶级</td><td>FY2025年报</td></tr>
+  <tr><td class="good">🟢 正面</td><td>2026Q1营收重回增长+3.5%，拐点信号</td><td>2026Q1季报</td></tr>
+</table>
+
+<div class="verdict verdict-ok">✅ L2综合判定：品质优秀但增长遇瓶颈，等待新业务放量</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>股价（2026.7.29）</td><td><strong>~39.82 元</strong></td><td>52周范围36.53-49.90</td></tr>
+  <tr><td>总市值</td><td><strong>~700 亿</strong></td><td>总股本18.08亿股</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>~17.2x</strong></td><td>基于TTM EPS ~2.31元</td></tr>
+  <tr><td>PE（2026E）</td><td><strong>~16.4x</strong></td><td>基于一致预期EPS ~2.36元（23家机构）</td></tr>
+  <tr><td>PB</td><td><strong>~4.5x</strong></td><td>基于每股净资产9.85元</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~4.3x</strong></td><td>市销率合理</td></tr>
+  <tr><td>PCF</td><td><strong>~14.8x</strong></td><td>基于CFO 47.44亿</td></tr>
+  <tr><td>股息率</td><td><strong>~4.92%</strong></td><td>基于每股分红1.9元（10派19）</td></tr>
+</table>
+
+<h3>4.2 PE Band估值区间</h3>
+<p style="font-size:13px;color:#666;">ROE 24.23% → 合理PE参考区间：20-30x | 2026E一致预期EPS ≈ 2.36元</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs现价39.82元</th></tr>
+  <tr><td>悲观</td><td>14x</td><td>33.0 元</td><td class="bad">-17%</td></tr>
+  <tr><td>保守</td><td>18x</td><td>42.5 元</td><td class="good">+7%</td></tr>
+  <tr><td>中性</td><td>22x</td><td>51.9 元</td><td class="good">+30%</td></tr>
+  <tr><td>券商目标</td><td>24x</td><td>56.6 元</td><td class="good">+42%</td></tr>
+  <tr><td>当前价</td><td>~17x</td><td>39.82 元</td><td>—</td></tr>
+  <tr><td>历史高位</td><td>35x</td><td>82.6 元</td><td class="good">+107%</td></tr>
+</table>
+
+<h3>4.3 历史PE区间</h3>
+<table>
+  <tr><th>指标</th><th>数值</th></tr>
+  <tr><td>PE（TTM）最大值（上市以来）</td><td>~55x（2020年上市初）</td></tr>
+  <tr><td>PE（TTM）近3年80%分位</td><td>~30x</td></tr>
+  <tr><td>PE（TTM）近3年50%分位</td><td>~24x</td></tr>
+  <tr><td>PE（TTM）近3年20%分位</td><td>~18x</td></tr>
+  <tr><td>PE（TTM）最小值（近3年）</td><td>~15x（2024年初）</td></tr>
+  <tr><td>当前PE（TTM）</td><td class="good">~17x（接近近3年历史底部）</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值总结：</strong>公牛集团当前PE ~17x、PB ~4.5x、股息率4.92%，处于上市以来估值底部区域。对于一个ROE长期>24%、CFO持续超净利、资产负债表极其健康的消费品龙头，17x PE明显偏低——同类消费品龙头（如晨光股份、飞科电器）估值通常在20-30x区间。<br><br>
+  <strong>核心矛盾：</strong>低估值不是因为公司差，而是市场定价了两个担忧：① 传统业务（转换器+墙开）增长见顶，天花板已到；② 新能源/出海新业务慢于预期，第二曲线尚未形成。如果2026年营收恢复增长至3-5%，估值可能修复至22-24x，对应目标价52-57元（+30-43%）。叠加4.92%的股息率，当前价格具有不错的安全边际。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>净利润率</td><td>24.62%</td><td>25.37%</td><td><strong>25.40%</strong></td><td class="good">➡ 极其稳定</td></tr>
+  <tr><td>资产周转率</td><td>0.79</td><td>0.83</td><td><strong>0.74</strong></td><td class="bad">⬇ 微降</td></tr>
+  <tr><td>权益乘数</td><td>1.37</td><td>1.29</td><td><strong>1.34</strong></td><td class="neutral">➡ 稳定</td></tr>
+  <tr><td><strong>ROE</strong></td><td><strong>26.8%</strong></td><td><strong>26.9%</strong></td><td><strong>24.2%</strong></td><td class="neutral">➡ 轻微回落但仍顶尖</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>19.4%</td><td>21.1%</td><td><strong>18.8%</strong></td><td class="neutral">➡ 微降</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>7.4pct</td><td>5.8pct</td><td><strong>5.4pct</strong></td><td class="good">⬇ 杠杆依赖下降</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：高利润+高周转双驱动型（A股极其罕见）</strong><br>
+  公牛集团的杜邦结构在A股几乎是独一无二的：净利率25.4%（极高）+周转率0.74（制造型中算高）+杠杆1.34（极低）。三因子全部健康，没有任何一个因子在"撑"ROE——这种ROE 24%是"实打实"的。<br><br>
+  对比：大多数高ROE公司要么靠高杠杆（银行/地产）、要么靠高周转（零售），而公牛的ROE是"利润率×周转率"双核驱动，质量极高。去杠杆ROA（真实资产回报率）高达18.8%，在A股制造业中属于最顶尖水平。
+</div>
+
+<h3>5.2 杜邦核心结论</h3>
+<div class="summary-box">
+  <strong>核心结论：</strong><br>
+  ① ROE 24.23%在A股排名前列，且已连续保持>20%超过10年，具备可持续性证明；<br>
+  ② 三因子全部健康：净利率25.4%（强定价权）、周转率0.74（资产运营效率高）、杠杆1.34（零财务风险）；<br>
+  ③ 去杠杆ROA 18.8%——每100元总资产产生18.8元净利润，资本回报率A股最顶尖之一；<br>
+  ④ FY2025 ROE微降2.7pct主因是周转率从0.83降至0.74（营收下降导致），不是模式问题——营收恢复后ROE将立即回升；<br>
+  ⑤ 赚钱模式总结："卖一个插座赚25块钱，一年资产转0.74次，不借钱"。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与特征（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：非周期 — 防御型（民用电工消费品）</strong><br>
+  <strong>判断依据：</strong>公牛的核心产品转换器（插排）属于必选消费品——每个家庭/办公室都需要，更换周期3-5年，需求不会消失。墙开/LED产品虽受新房竣工影响，但存量房翻新+维修更换需求稳定，整体波动远小于地产产业链其他环节。<br><br>
+  <strong>FY2025营收-4.78%的原因：</strong>不是行业需求崩溃，而是① 地产竣工面积下降约20%影响新房配套墙开需求；② 消费降级趋势下部分消费者选择低价替代品牌；③ 高基数效应（FY2024营收+7.24%）。FY2026Q1已重回增长，证明需求韧性。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th></tr>
+  <tr><td>行业集中度</td><td><strong>高集中（转换器）</strong>——公牛转换器天猫市占>60%，线下份额更高，形成事实上的寡头垄断。<strong>集中度中（墙开）</strong>——公牛第一（约20%），西门子/施耐德/正泰各占~10-15%，中等集中。</td></tr>
+  <tr><td>壁垒类型</td><td><strong>品牌+渠道双重极深护城河</strong>——① 品牌："用不坏的公牛"积累了30年的安全口碑，消费者愿意为品牌溢价买单；② 渠道：75万+五金售点+12万+建材售点，覆盖从一线城市到乡镇村的毛细血管网络，竞争对手几乎不可能复制。</td></tr>
+  <tr><td>技术壁垒</td><td><strong>中等</strong>——插排/墙开制造技术壁垒不高，但品质管控（安全标准认证）需要长期积累。公牛在安全性上建立了信任，这是隐形的技术壁垒。</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  <strong>阶段：成熟期（传统业务）+ 成长期早期（新能源/出海）</strong><br>
+  转换器（占比44%）——市场饱和，增长靠替换需求+品类升级（如智能插座、快充插座），增速≈GDP。<br>
+  墙开/LED（占比51%）——存量房翻新+智能家居升级驱动，低个位数增长。<br>
+  新能源（占比5%）——充电桩/储能，4年CAGR 151%，处于爆发早期，但体量尚小。<br>
+  海外（占比<2%）——东南亚家装墙开+欧洲储能，极早期布局。<br><br>
+  <strong>投资策略重点：</strong>传统业务是"现金牛"（赚的钱用来分红+培育新业务），新能源+出海是未来的增长引擎。当前阶段的投资逻辑是"低估值+高股息+潜在第二曲线"。
+</div>
+
+<h3>6.4 同行对比分析</h3>
+<table>
+  <tr><th>指标</th><th>公牛集团</th><th>欧普照明</th><th>正泰电器</th><th>晨光股份</th><th>评价</th></tr>
+  <tr><td>营收规模</td><td>160亿</td><td>~75亿</td><td>~400亿</td><td>~240亿</td><td class="good">轻工龙头</td></tr>
+  <tr><td>ROE</td><td><strong>24.2%</strong></td><td>~13%</td><td>~10%</td><td>~14%</td><td class="good">远超同行</td></tr>
+  <tr><td>毛利率</td><td><strong>43.1%</strong></td><td>~36%</td><td>~25%</td><td>~25%</td><td class="good">行业第一</td></tr>
+  <tr><td>净利率</td><td><strong>25.4%</strong></td><td>~10%</td><td>~8%</td><td>~9%</td><td class="good">遥遥领先</td></tr>
+  <tr><td>负债率</td><td><strong>25.5%</strong></td><td>~35%</td><td>~55%</td><td>~35%</td><td class="good">最低</td></tr>
+  <tr><td>营收增速</td><td>-4.78%</td><td>~0%</td><td>~+3%</td><td>~+5%</td><td class="neutral">行业共性压力</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>17x</strong></td><td>15x</td><td>14x</td><td>19x</td><td class="neutral">估值合理偏低</td></tr>
+  <tr><td>股息率</td><td><strong>4.92%</strong></td><td>~3%</td><td>~3%</td><td>~2.5%</td><td class="good">回报最高</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>同行对比结论：</strong>公牛集团在ROE、毛利率、净利率、股息率四个核心指标上全面碾压可比同行。净利率25.4%是欧普照明的2.5倍、正泰电器的3倍。这种盈利能力的差异不是短期的，而是品牌+渠道护城河长期积累的结果。FY2025营收-4.78%是行业共性压力（欧普持平、正泰+3%），公牛的利润率韧性反而是最强的。PE 17x在可比公司中处于合理偏低水平。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>防御型消费（民用电工）</td><td>PE / 股息率</td><td>毛利率/ROE看品牌力、FCF看分红可持续性</td><td class="good">✅ 匹配——PE 17x低、股息率4.92%高</td></tr>
+</table>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>防御型（民用电工消费品），品牌+渠道双壁垒，转换器寡头垄断，墙开第一梯队。<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 24.23%顶尖，高利润+高周转双驱动杜邦，CFO/净利1.17极其优秀，FCF充沛43亿。<br>
+  <strong>Step 3 - 估值判断：</strong>PE 17x处于上市以来底部，股息率4.92%极佳，低估主要反映了市场对增长瓶颈的担忧。<br>
+  <strong>Step 4 - 风险排查：</strong>传统业务见顶压力、实控人减持、新业务体量太小（5%）未能对冲——但这些不伤及根本。<br>
+  <strong>Step 5 - 结论：</strong>好公司+好价格=明确的投资机会。ROE 24%+股息5%+PE 17x=低估的现金牛，等待新业务开花。<br>
+  <strong>Step 6 - 跟踪：</strong>看2026年营收能否恢复增长（目标3-5%）、新能源业务增速（目标>20%）、实控人减持是否持续。
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>民用电工刚需消费，转换器必选属性强，墙开/LED有存量翻新支撑</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓</td><td>ROE 24.23%>15%优秀，毛利率43%稳定，CFO>净利润，负债率25%极低</td></tr>
+  <tr><td>③ 好价格</td><td class="good">✓</td><td>PE 17x近3年底部+股息率4.92%，ROE 24%对应的合理PE应在20-30x</td></tr>
+</table>
+
+<h3>7.3 三个陷阱排查</h3>
+<div class="danger-box">
+  <strong>☐ 价值陷阱：</strong>❌ 未命中——低PE + 低增长 + 零净负债（净现金162亿），与价值陷阱"低PE+低增长+高负债"完全相反。<br>
+  <strong>☐ 周期陷阱：</strong>❌ 未命中——公牛不是周期股，转换器是必选消费品，不适用周期陷阱框架。<br>
+  <strong>☐ 烧钱陷阱：</strong>❌ 未命中——高PE+高增速但CFO为负才是烧钱陷阱。公牛CFO 47亿远超净利，恰恰相反是"印钞机"。
+</div>
+
+<h3>7.4 风险评估</h3>
+
+<h4>a. 管理层与治理风险</h4>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力与履历</td><td class="good">好</td><td>阮立平（创始人/董事长/总经理），30年民用电工行业经验，从插座做到行业第一</td></tr>
+  <tr><td>股权结构与利益一致性</td><td class="good">强</td><td>阮氏兄弟合计持股~86%，利益高度绑定（但减持需关注）</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td class="neutral">有但可控</td><td>2021年反垄断罚款2.95亿（固定终端售价），已执行完毕</td></tr>
+  <tr><td>资本配置记录</td><td class="good">合理</td><td>分红率84%+回购，但120亿理财效率偏低，资金运用尚有提升空间</td></tr>
+  <tr><td>管理层增减持记录</td><td class="bad">减持</td><td>2026年Q2阮立平、阮学平有减持记录，需关注减持节奏和原因</td></tr>
+</table>
+
+<h4>b. 盈利可持续性</h4>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是靠价？</td><td>量价混合</td><td>转换器销量-1.08%但毛利率微降0.13pct，价基本稳住；墙开销量+8.13%但收入-2.8%→均价下降（产品结构变化）</td></tr>
+  <tr><td>涨价能否持续？</td><td class="good">能</td><td>品牌心智垄断+渠道控制力强，有定价权。FY2025在营收下滑背景下毛利率仅微降0.13pct</td></tr>
+  <tr><td>非经常性利润占比</td><td class="neutral">中等</td><td>扣非/归母 = 89%，非经常性主要来自理财收益（3.77亿）+政府补助</td></tr>
+  <tr><td>大客户/大项目集中度</td><td class="good">分散</td><td>75万+五金售点极度分散，无单一客户依赖</td></tr>
+  <tr><td>政策/监管依赖度</td><td class="good">低</td><td>民用电工无集采风险，反垄断罚款已落地</td></tr>
+</table>
+
+<h4>c. 关键变量敏感性</h4>
+<div class="summary-box">
+  <strong>变量1: 地产竣工修复进度（影响墙开/LED约30%需求）</strong><br>
+  &nbsp;&nbsp;乐观: 2026年地产竣工企稳+0%，墙开恢复增长 → EPS +3~5%<br>
+  &nbsp;&nbsp;中性: 竣工继续-5~10%，墙开持平 → EPS 0~+2%<br>
+  &nbsp;&nbsp;悲观: 竣工加速下行-15%+，墙开再降-5% → EPS -3~5%<br><br>
+  <strong>变量2: 新能源业务增速（充电桩/储能）</strong><br>
+  &nbsp;&nbsp;乐观: 2026年新能源营收突破12亿（+50%），2028年达25亿 → 估值提升至22-25x<br>
+  &nbsp;&nbsp;中性: 新能源维持+15~20%增长 → 对EPS贡献~1-2%增量<br>
+  &nbsp;&nbsp;悲观: 新能源增速放缓至<10%，竞争加剧 → 第二曲线故事减弱<br><br>
+  <strong>变量3: 实控人减持节奏</strong><br>
+  &nbsp;&nbsp;乐观: 减持少量后停止（改善流动性）→ 不影响估值<br>
+  &nbsp;&nbsp;中性: 持续小量减持 → 压制估值但不出清<br>
+  &nbsp;&nbsp;悲观: 大额集中减持 → 短期-10~20%冲击
+</div>
+
+<h3>7.5 前景展望</h3>
+
+<h4>a. 未来1-3年核心驱动</h4>
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. 消费复苏+地产企稳 → 传统业务（转换器/墙开）自然修复至0~3%增长<br>
+  2. 新能源充电桩/储能持续高速增长（5年CAGR 151%，有望成为第三支柱）<br>
+  3. 智能无主灯/健康照明新品放量（惠州产业园投产，AI照明差异化）<br>
+  4. 高分红（84%）+持续回购 → 股息率5%提供股价底部支撑<br><br>
+  <strong>负向拖累：</strong><br>
+  1. 转换器市场已饱和，长期增长天花板明确<br>
+  2. 实控人减持压制市场情绪<br>
+  3. 新能源领域竞争激烈（特来电/星星充电/华为等强敌环伺）
+</div>
+
+<h4>b. 三情景简表</h4>
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>EPS预估</th><th>PE区间</th><th>预期回报</th></tr>
+  <tr><td>乐观</td><td>传统业务恢复+3%增长，新能源+40%放量，实控人停止减持</td><td>2026E 2.45→2027E 2.70</td><td>22-25x</td><td>+35~55%</td></tr>
+  <tr><td>中性</td><td>传统业务持平，新能源+15%，减持温和</td><td>2026E 2.36→2027E 2.51</td><td>18-22x</td><td>+10~25%</td></tr>
+  <tr><td>悲观</td><td>传统业务再降-3%，新能源<10%，大额减持</td><td>2026E 2.20→2027E 2.10</td><td>14-16x</td><td>-10~20%</td></tr>
+</table>
+<p style="font-size:13px;color:#666">概率判断：中性50%，乐观30%，悲观20%</p>
+
+<h3>7.6 资金面信号</h3>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>北向资金持股变动</td><td class="neutral">~1.5%</td><td>沪股通持股占比不高，近期无明显趋势</td></tr>
+  <tr><td>机构持仓变动</td><td class="neutral">稳定</td><td>23家机构覆盖（11买入+6增持），但重仓基金不多</td></tr>
+  <tr><td>融资余额变动</td><td class="neutral">~2.5亿</td><td>融资余额占流通市值0.36%，杠杆参与度低</td></tr>
+  <tr><td>大股东增减持</td><td class="bad">减持</td><td>2026年6月阮氏兄弟有减持记录</td></tr>
+  <tr><td>大宗交易</td><td class="neutral">小额折价</td><td>2026年6月15日大宗交易折价0.17%，金额577万</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>资金面整体判断：</strong>公牛集团当前处于"机构关注但不算热捧"的状态。23家机构覆盖全为买入/增持评级，但缺乏大规模资金流入的迹象。实控人减持是最大的资金面负面因素。不过4.92%的高股息率提供了天然的股价底部——当股息率超过5%，长线资金有配置价值。
+</div>
+
+<h3>7.7 讨论问题（阅读引导）</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——公牛做插排和开关，靠"用不坏"的品牌口碑+75万家五金店渠道网络，每个插座赚25%的净利率，一年做160亿营收，收进来47亿真金白银。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——营收连续三个季度下滑（Q2 -7.4%, Q3 -4.4%, Q4 -9.4%），传统业务是不是真的到天花板了？新能源充电桩能不能成为第三支柱？<br>
+  3. 如果现在买入，期待的回报来源是什么？——低估值修复（PE从17x到22x=+30%）+高股息（5%）= 年化15-20%的预期回报。核心前提是营收在2026年能恢复正增长。<br>
+  4. 什么情况下你会坚决卖出？——营收连续两年下滑/新能源业务停滞/实控人大量减持（单次>5%）/毛利率跌破40%。
+</div>
+
+</div></div>
+
+<div class="footer">
+   免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+   数据来源：公牛集团FY2025年报、2026Q1季报、券商研报（华福/天风/开源/华安/华泰等23家机构）、理杏仁
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>天坛生物(600161) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>天坛生物（600161）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026-07-29 | 数据来源：FY2025 年报 + 2026Q1 季报 + 券商研报</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>北京天坛生物制品股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>600161.SH</td></tr>
+  <tr><td>所属行业</td><td>医药生物 — 血液制品（人血白蛋白、静注人免疫球蛋白、凝血因子）</td></tr>
+  <tr><td>行业地位</td><td>国内血制品行业龙头，采浆量占全国约20%，浆站总数107家（在营85家），稳坐头把交椅</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>61.68 亿（+2.26%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>10.91 亿（-29.59%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>3.39 亿（-58.68%）</strong></td></tr>
+  <tr><td>总资产</td><td>165.83 亿</td></tr>
+  <tr><td>归母净资产</td><td>117.35 亿</td></tr>
+  <tr><td>ROE</td><td>9.30%（近3年均值 ~11.5%）</td></tr>
+</table>
+
+<h2>行业类型与评分体系</h2>
+<div class="summary-box">
+  <strong>行业分类：非周期股 — 防御型（血液制品）</strong><br>
+  判断依据：血液制品属于行政牌照垄断行业，临床刚需，人口老龄化长期支撑需求。但FY2025行业面临供需短期错配、产品价格下降，属于周期性波动而非结构性衰退。<br>
+  <strong>采用非周期股评分体系（基于FY2025数据）</strong>
+</div>
+
+<h2>综合评分（百分制）</h2>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="neutral" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">9.30%，近3年均值~11.5%（≥10%）</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">高利润型——净利率17.69%、低杠杆1.41、低周转0.37</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">0.31 < 0.5，信用政策放宽导致回款恶化</td></tr>
+  <tr><td>营收增长（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">+2.26%，≥0%但<5%</td></tr>
+  <tr><td>利润增长（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">-29.59%，<0%</td></tr>
+  <tr><td>负债率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">~29%，<40%，几乎无有息负债</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">货币资金14.44亿 > 短期借款≈0</td></tr>
+  <tr><td>毛利率（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">43.85%≥30%但大幅下降-10.92pct，趋势差</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">PE 25.5x，近10年分位12.69%，处于历史底部</td></tr>
+  <tr><td>自由现金流（5分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">FCF -2.67亿，持续为负（扩张期资本开支大）</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">53/100</td><td style="text-align:left">不及格（53/100）— 但主要受行业周期低谷拖累</td></tr>
+</table>
+
+<div class="verdict verdict-bad">不及格（53/100 分）— 周期低谷拖累</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>天坛生物是国内血制品行业绝对龙头（采浆量占全国20%），国药集团央企背景，行政牌照垄断构筑深厚护城河。FY2025受行业性供过于求导致产品价格下降、毛利率骤降10.92pct，利润同比-29.59%。这是一家好公司处于行业周期低谷的典型状态。<br><br>
+  <strong>核心优势：</strong>① 行政牌照垄断——浆站审批壁垒极高，新进入者几乎无法挑战现有格局；② 采浆规模全国第一（2801吨），在营85家+在建22家浆站，浆量增长空间大；③ 国药央企背景，资源整合能力强，外延并购可期；④ 产品管线最齐全（15个品种74个文号），第四代层析静丙+重组八因子等新品放量。<br><br>
+  <strong>核心风险：</strong>① 毛利率持续下滑（43.85%→34.59%在2026Q1），行业供需格局恶化；② FY2025净利润同比-29.59%，2026H1预计-51.75%，盈利还在探底；③ 应收账款激增582.9%，信用政策过度放宽，坏账风险上升；④ 增值税率从3%升至13%，税负增加。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>61.68 亿</td><td>60.32 亿</td><td>+2.26%</td><td class="neutral">⚠ 微增</td></tr>
+  <tr><td>归母净利润</td><td><strong>10.91 亿</strong></td><td>15.49 亿</td><td><strong>-29.59%</strong></td><td class="bad">❌ 大幅下滑</td></tr>
+  <tr><td>扣非净利润</td><td><strong>10.76 亿</strong></td><td>15.19 亿</td><td><strong>-29.13%</strong></td><td class="bad">❌ 大幅下滑</td></tr>
+  <tr><td>毛利率</td><td><strong>43.85%</strong></td><td>54.77%</td><td>-10.92pct</td><td class="bad">❌ 骤降</td></tr>
+  <tr><td>归母净利率</td><td><strong>17.69%</strong></td><td>25.68%</td><td>-7.99pct</td><td class="bad">❌ 下降</td></tr>
+  <tr><td>期间费用率</td><td><strong>~10.0%</strong></td><td>~10.0%</td><td>持平</td><td class="neutral">稳定</td></tr>
+  <tr><td>2025Q1 营收</td><td>15.42 亿</td><td>13.72 亿</td><td>+12.39%</td><td class="good">✅ 增长</td></tr>
+  <tr><td>2025Q2 营收</td><td>15.68 亿</td><td>14.69 亿</td><td>+6.74%</td><td class="neutral">⚠ 放缓</td></tr>
+  <tr><td>2025Q3 营收</td><td>13.55 亿</td><td>14.22 亿</td><td>-4.71%</td><td class="bad">❌ 下滑</td></tr>
+  <tr><td>2025Q4 营收</td><td>17.03 亿</td><td>19.59 亿</td><td>-13.05%</td><td class="bad">❌ 加速下滑</td></tr>
+  <tr><td>2025Q4 净利润</td><td><strong>2.72 亿</strong></td><td>4.97 亿</td><td><strong>-45.29%</strong></td><td class="bad">❌ 大幅下降</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>FY2025营收仅微增2.26%，但归母净利润骤降29.59%。核心原因：① 血制品行业供过于求导致产品价格下降，毛利率从54.77%降至43.85%（-10.92pct）；② 信用政策放宽导致信用减值损失6520万；③ 利息收入因存量资金下降而减少。Q4营收-13.05%，Q4净利-45.29%，下滑呈加速趋势。2026Q1毛利率进一步降至34.59%，2026H1净利润预告-51.75%，盈利仍在探底。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td><strong>14.44 亿</strong></td><td class="good">✅ 较充裕</td></tr>
+  <tr><td>应收账款</td><td><strong>13.86 亿</strong></td><td class="bad">❌ 激增582.9%，信用过度放宽</td></tr>
+  <tr><td>存货</td><td><strong>~33.5 亿</strong></td><td class="neutral">⚠ 占资产20%，偏高</td></tr>
+  <tr><td>短期借款</td><td><strong>~0</strong></td><td class="good">✅ 几乎无短期有息负债</td></tr>
+  <tr><td>长期借款</td><td><strong>~0</strong></td><td class="good">✅ 几乎无长期有息负债</td></tr>
+  <tr><td>资产负债率</td><td><strong>~29%</strong></td><td class="good">✅ 极低负债</td></tr>
+  <tr><td>商誉</td><td><strong>5.72 亿</strong></td><td class="neutral">⚠ 收购中原瑞德等形成，已减值0.46亿</td></tr>
+  <tr><td>归母净资产</td><td>117.35 亿</td><td class="good">✅ 同比+5.35%</td></tr>
+  <tr><td>总资产</td><td>165.83 亿</td><td class="good">✅ 同比+4.50%</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>公司财务结构极其稳健——几乎零有息负债，负债率仅29%。但需要警惕的是：① 应收账款从2024年末~2亿激增至13.86亿（+582.9%），公司为了保营收放宽了信用政策，大量血制品先发货后收款，坏账风险上升；② 存货33.5亿占资产20%，库存偏高可能面临跌价风险；③ 商誉5.72亿来自收购中原瑞德等，已计提减值0.46亿。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>3.39 亿</strong></td><td>8.20 亿</td><td class="bad">❌ 大幅下降-58.68%</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><strong>1.24 亿</strong></td><td>-18.59 亿</td><td class="neutral">⚠ 定期存款到期赎回</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td><strong>-4.42 亿</strong></td><td>-3.70 亿</td><td class="neutral">⚠ 分红增加</td></tr>
+  <tr><td>CFO/净利润（归母）</td><td><strong>0.31</strong></td><td>0.53</td><td class="bad">❌ 恶化</td></tr>
+  <tr><td>自由现金流（FCF）</td><td><strong>-2.67 亿</strong></td><td>-2.47 亿</td><td class="bad">❌ 持续为负</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>现金流解读：</strong>CFO仅3.39亿，同比-58.68%，是最大的财务隐忧。CFO/归母净利从2024年的0.53进一步降至0.31，利润含金量极低。主因是信用政策放宽导致销售回款大幅减少（应收账款激增）。CFI转正（+1.24亿）并非经营好转，而是定期存款到期赎回7.09亿所致。资本开支6.06亿（永安厂区、云南/兰州项目在建）仍处高位，FCF持续为负。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>9.30%</strong></td><td>> 15% 优秀 / > 10% 及格</td><td class="bad">❌ 不及格（低于10%）</td></tr>
+  <tr><td>毛利率</td><td><strong>43.85%</strong></td><td>稳定或提升</td><td class="bad">❌ 大幅下降-10.92pct</td></tr>
+  <tr><td>净利率</td><td><strong>17.69%</strong></td><td>> 10%</td><td class="good">✅ 仍较高</td></tr>
+  <tr><td>营收增长率</td><td><strong>+2.26%</strong></td><td>> 10%</td><td class="bad">❌ 接近停滞</td></tr>
+  <tr><td>扣非增长率</td><td><strong>-29.13%</strong></td><td>正增长</td><td class="bad">❌ 大幅下滑</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>0.31</strong></td><td>> 1</td><td class="bad">❌ 极差</td></tr>
+  <tr><td>资产负债率</td><td><strong>~29%</strong></td><td>医药<40%</td><td class="good">✅ 极其健康</td></tr>
+  <tr><td>分红率</td><td><strong>36.3%</strong></td><td>持续分红</td><td class="good">✅ 央企风格稳健</td></tr>
+</table>
+
+<h3>3.2 分业务分析（2025年度）</h3>
+<table>
+  <tr><th>业务板块</th><th>营收（亿）</th><th>占比</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td>人血白蛋白</td><td>24.42</td><td>39.6%</td><td>-2.71%</td><td>39.5%</td><td class="bad">❌ 量价双压</td></tr>
+  <tr><td>静注人免疫球蛋白（含层析）</td><td>30.79</td><td>49.9%</td><td>+11.64%</td><td>48.0%</td><td class="good">✅ 增长主力</td></tr>
+  <tr><td>其他血制品（凝血因子等）</td><td>6.28</td><td>10.2%</td><td>-15.64%</td><td>39.5%</td><td class="bad">❌ 下滑明显</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>业务解读：</strong>静丙（高浓度层析静丙+普通静丙）是最大单品，营收30.79亿占比50%，+11.64%增长稳健。人血白蛋白24.42亿占比40%，受进口白蛋白竞争冲击同比-2.71%。凝血因子类6.28亿同比-15.64%，主要受重组八因子铺货节奏影响。毛利率全线下降——白蛋白-11.7pct、静丙-9.0pct、其他-18.4pct，行业性降价压力显著。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="bad">🔴 较高</td><td>毛利率骤降10.92pct，产品价格持续承压</td><td>FY2025年报，2026Q1降至34.59%</td></tr>
+  <tr><td class="bad">🔴 较高</td><td>应收账款激增582.9%，信用政策过度放宽</td><td>FY2025年报，从~2亿增至13.86亿</td></tr>
+  <tr><td class="bad">🔴 较高</td><td>CFO/净利润仅0.31，利润含金量极差</td><td>FY2025现金流量表</td></tr>
+  <tr><td class="bad">🔴 较高</td><td>2026H1净利润预告-51.75%，盈利持续恶化</td><td>2026半年度业绩预告</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>增值税率从3%升至13%，税负大幅增加</td><td>2026年1月1日起执行</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>商誉5.72亿，收购整合风险</td><td>FY2025年报，已减值0.46亿</td></tr>
+  <tr><td class="good">🟢 正面</td><td>几乎零有息负债，资产负债表极其健康</td><td>FY2025年报</td></tr>
+  <tr><td class="good">🟢 正面</td><td>采浆量2801吨全国第一，22家浆站待投产</td><td>FY2025年报</td></tr>
+  <tr><td class="good">🟢 正面</td><td>第四代层析静丙+皮下注射免疫球蛋白获批</td><td>2026年6月公告</td></tr>
+  <tr><td class="good">🟢 正面</td><td>国药央企背景，整合资源能力强</td><td>实控人国药集团</td></tr>
+</table>
+
+<div class="verdict verdict-bad">❌ L2综合判定：当前指标全面走弱，处于行业周期低谷</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>股价（2026.7.29）</td><td><strong>~12.26 元</strong></td><td>52周范围11.12-22.08</td></tr>
+  <tr><td>总市值</td><td><strong>~242 亿</strong></td><td>总股本19.77亿股</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>~25.5x</strong></td><td>基于TTM EPS ~0.49元</td></tr>
+  <tr><td>PE（2026E）</td><td><strong>~27-29x</strong></td><td>基于券商一致预期EPS ~0.55</td></tr>
+  <tr><td>PB</td><td><strong>~2.0x</strong></td><td>基于每股净资产6.0元</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~4.0x</strong></td><td>市销率较低</td></tr>
+  <tr><td>PCF</td><td><strong>~71x</strong></td><td>基于CFO 3.39亿</td></tr>
+  <tr><td>股息率</td><td><strong>~1.61%</strong></td><td>基于每股分红0.20元</td></tr>
+</table>
+
+<h3>4.2 PE Band估值区间</h3>
+<p style="font-size:13px;color:#666;">ROE 9.3%（均值11.5%）→ 合理PE参考区间：15-25x | 2026E一致预期EPS ≈ 0.55元</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs现价12.26元</th></tr>
+  <tr><td>悲观</td><td>15x</td><td>8.25 元</td><td class="bad">-33%</td></tr>
+  <tr><td>保守</td><td>20x</td><td>11.00 元</td><td class="bad">-10%</td></tr>
+  <tr><td>中性</td><td>25x</td><td>13.75 元</td><td class="good">+12%</td></tr>
+  <tr><td>券商目标</td><td>30x</td><td>16.50 元</td><td class="good">+35%</td></tr>
+  <tr><td>当前价</td><td>~27x</td><td>12.26 元</td><td>—</td></tr>
+  <tr><td>历史中位</td><td>32x</td><td>17.60 元</td><td class="good">+44%</td></tr>
+</table>
+
+<h3>4.3 历史PE区间（近10年）</h3>
+<table>
+  <tr><th>指标</th><th>数值</th></tr>
+  <tr><td>PE（TTM）最大值</td><td>45.39x</td></tr>
+  <tr><td>PE（TTM）80%分位</td><td>40.56x</td></tr>
+  <tr><td>PE（TTM）50%分位</td><td>31.83x</td></tr>
+  <tr><td>PE（TTM）20%分位</td><td>25.88x</td></tr>
+  <tr><td>PE（TTM）最小值</td><td>22.22x</td></tr>
+  <tr><td>当前PE（TTM）</td><td class="good">~25.5x（近10年12.69%分位——历史底部区域）</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值总结：</strong>天坛生物当前PE 25.5x处于近10年12.69%分位，已接近历史底部（22.22x）。以防御型消费品/医药股的估值标准来看，25x PE对于一家拥有行政牌照垄断壁垒的行业龙头来说并不贵。券商目标价中枢在16.5-18.0元（30x），对应上行空间35-47%。<br><br>
+  <strong>关键判断：</strong>当前估值反映的是"周期低谷利润"而非"正常化利润"。如果用FY2024净利润15.49亿（正常化水平），对应PE仅15.6x；如果用券商预测FY2028净利润~15.5亿，对应PE 15.6x。因此当前估值的核心矛盾不是贵不贵，而是<strong>利润何时触底反弹</strong>。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>净利润率</td><td>21.42%</td><td>25.68%</td><td><strong>17.69%</strong></td><td class="bad">⬇ 先升后降</td></tr>
+  <tr><td>资产周转率</td><td>0.37</td><td>0.38</td><td><strong>0.37</strong></td><td class="neutral">➡ 基本持平</td></tr>
+  <tr><td>权益乘数</td><td>1.44</td><td>1.42</td><td><strong>1.41</strong></td><td class="neutral">➡ 基本持平</td></tr>
+  <tr><td><strong>ROE</strong></td><td><strong>11.4%</strong></td><td><strong>13.9%</strong></td><td><strong>9.3%</strong></td><td class="bad">⬇ 回落至3年低点</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>7.9%</td><td>9.8%</td><td><strong>6.5%</strong></td><td class="bad">⬇ 回落</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>3.5pct</td><td>4.1pct</td><td><strong>2.8pct</strong></td><td class="neutral">⬇ 略降</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：高利润型（典型血制品模式）</strong><br>
+  天坛生物的ROE完全依赖高净利润率驱动（正常年份20-25%），周转率0.37极低（重资产+长生产周期），杠杆1.41极低（几乎无负债）。这是一家"靠牌照垄断吃利润"的典型防御型公司。<br><br>
+  <strong>核心变化：</strong>净利润率从2024年的25.68%降至2025年的17.69%（-7.99pct），是ROE从13.9%降至9.3%的几乎全部原因。周转率和杠杆几乎没有变化。结论：<strong>ROE下滑100%由利润率收缩导致</strong>，而非经营效率恶化或杠杆问题。
+</div>
+
+<h3>5.2 分业务杜邦贡献</h3>
+<table>
+  <tr><th>业务板块</th><th>毛利率FY2024</th><th>毛利率FY2025</th><th>变化</th><th>对ROE影响</th></tr>
+  <tr><td>人血白蛋白</td><td>51.2%</td><td>39.5%</td><td class="bad">-11.7pct</td><td class="bad">大幅拖累</td></tr>
+  <tr><td>静丙（含层析）</td><td>57.0%</td><td>48.0%</td><td class="bad">-9.0pct</td><td class="bad">拖累</td></tr>
+  <tr><td>其他血制品</td><td>57.9%</td><td>39.5%</td><td class="bad">-18.4pct</td><td class="bad">严重拖累</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>核心结论：</strong><br>
+  ① 天坛生物的赚钱公式非常清晰——"高利润率（20-25%）+ 低周转（0.37）+ 低杠杆（1.41）"，属于典型的高利润型防御资产；<br>
+  ② FY2025 ROE从13.9%降至9.3%，100%由利润率从25.68%降至17.69%导致——这是行业供需错配的价格问题，不是公司竞争力问题；<br>
+  ③ 去杠杆ROA从9.8%降至6.5%，真实基础回报在下降；<br>
+  ④ 关键在于：当行业供需恢复平衡后，利润率能否回升至20%以上？如果可以，ROE将自然恢复至12-15%。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与特征（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：非周期 — 防御型（血液制品）</strong><br>
+  <strong>判断依据：</strong>血液制品是医药行业中最为特殊的子领域之一——① 行政牌照垄断：新设浆站需省级卫健委批准，截至2025年全国仅约300家在营浆站，新进入者几乎不可能挑战现有格局；② 临床刚需：人血白蛋白、静丙、凝血因子均为临床必需品种，需求随人口老龄化持续增长；③ 国药/华润/上药三大央企主导行业整合，CR3>50%。<br><br>
+  <strong>当前状态：</strong>行业正经历"2019-2024高景气→2025-2026供需错配→价格下降→产能出清"的短期周期性波动。FR2023-2024行业采浆量高增长（+18%/+15%）导致2025年供过于求，产品降价。这种波动是"成长行业中的阶段性过剩"，不具备周期性行业的"产能-价格-破产"大周期特征。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th></tr>
+  <tr><td>行业集中度</td><td><strong>中等偏高，正在集中</strong>——天坛生物（~20%）、上海莱士（~15%）、华兰生物（~10%）、派林生物（~8%），CR4~53%。国药集团通过收购卫光生物、派林生物（未果）持续整合，行业集中度在提升。</td></tr>
+  <tr><td>壁垒类型</td><td><strong>行政牌照垄断（最核心）</strong>——浆站审批是最大壁垒，几乎无法逾越。技术壁垒（病毒灭活工艺、层析纯化）和资金壁垒（三个千吨级生产基地投资数十亿）作为补充。</td></tr>
+  <tr><td>客户壁垒</td><td><strong>强</strong>——医院终端对血制品品牌粘性一般，但血浆资源（上游）是核心稀缺资源，控制了浆站就控制了行业命脉。</td></tr>
+  <tr><td>政策壁垒</td><td><strong>极强</strong>——国家对单采血浆站"总量控制、严格审批"，2001年起不再新批血制品企业。现有持证企业仅约30家。</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  <strong>阶段：成熟期（存量竞争）但仍有结构性增长空间</strong><br>
+  中国血制品市场约400亿元规模，人均用量仅为发达国家的1/5-1/3。老龄化+适应症拓展驱动长期需求增长。行业当前处于"短期供需错配→价格承压→产能出清"的调整期，但长期天花板远未到。<br><br>
+  <strong>增长驱动力：</strong>① 浆量增长——22家在建浆站陆续投产，单站采浆量从33吨向行业均值39吨提升；② 产品升级——第四代层析静丙（高浓度10%）放量+皮下注射免疫球蛋白获批（国内首个）；③ 新品类——重组八因子+人凝血因子IX等新产品线贡献增量。
+</div>
+
+<h3>6.4 同行对比分析</h3>
+<table>
+  <tr><th>指标</th><th>天坛生物</th><th>上海莱士</th><th>华兰生物</th><th>行业均值</th><th>评价</th></tr>
+  <tr><td>营收规模</td><td>61.68亿</td><td>~80亿</td><td>~45亿</td><td>—</td><td class="neutral">行业前三</td></tr>
+  <tr><td>采浆量（吨）</td><td><strong>2801</strong></td><td>~1700</td><td>~1450</td><td>~14000（全行业）</td><td class="good">全国第一</td></tr>
+  <tr><td>ROE</td><td>9.3%</td><td>~8%</td><td>~7%</td><td>~10%</td><td class="neutral">周期低谷均承压</td></tr>
+  <tr><td>毛利率</td><td>43.8%</td><td>~42%</td><td>~45%</td><td>~44%</td><td class="neutral">行业均受压</td></tr>
+  <tr><td>净利率</td><td>17.7%</td><td>~15%</td><td>~18%</td><td>~15%</td><td class="good">行业较高</td></tr>
+  <tr><td>负债率</td><td><strong>29%</strong></td><td>~20%</td><td>~15%</td><td>~25%</td><td class="good">极其稳健</td></tr>
+  <tr><td>PB</td><td><strong>2.0x</strong></td><td>1.8x</td><td>2.2x</td><td>—</td><td class="neutral">估值合理偏低</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>25.5x</strong></td><td>22x</td><td>28x</td><td>—</td><td class="neutral">接近行业均值</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>同行对比结论：</strong>天坛生物在采浆量（全国第一）、浆站数量（107家）、产品管线丰富度（15个品种）上遥遥领先同行。ROE和毛利率在行业周期中与同行同步承压，但净利率17.69%在行业中仍属较高水平。当前PB 2.0x、PE 25.5x处于历史低位，相比同行估值合理偏低。最大优势是国药央企背景+浆站储备（22家待投产），一旦行业供需恢复，弹性大于同行。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>防御型（血制品）</td><td>PE / 股息率</td><td>PB（周期底部参考）、EV/EBITDA、现金流稳定性</td><td class="good">✅ 匹配——PE 25.5x历史底部，PB 2.0x合理</td></tr>
+</table>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>防御型（血液制品），行政牌照垄断壁垒，临床刚需，国药央企背景。<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 9.3%（周期低谷），高利润型杜邦，CFO/净利0.31极差，FCF -2.67亿为负，但资产负债表极其健康（零有息负债）。<br>
+  <strong>Step 3 - 估值判断：</strong>PE 25.5x处于近10年12.69%分位，PB 2.0x合理偏低，估值已充分反映周期低谷。<br>
+  <strong>Step 4 - 风险排查：</strong>毛利率持续下滑、应收账款激增、CFO恶化、2026H1利润-51.75%——短期压力极大。<br>
+  <strong>Step 5 - 结论：</strong>好公司（行政垄断+行业龙头+央企背景），但当前处于周期低谷，盈利和现金流均在探底。估值已到历史底部，核心问题是"什么时候见底"。<br>
+  <strong>Step 6 - 跟踪：</strong>看毛利率能否企稳、应收账款能否回落、新建浆站投产进度、皮下注射免疫球蛋白放量情况。
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>血制品行政牌照垄断，临床刚需，老龄化长期受益，进入壁垒极高</td></tr>
+  <tr><td>② 好公司</td><td class="neutral">⚠</td><td>ROE 9.3%<15%未达标（正常年份13-14%），毛利率43.85%大幅下降，CFO/净利0.31极差，但零负债+央企资源是核心优势</td></tr>
+  <tr><td>③ 好价格</td><td class="good">✓</td><td>PE 25.5x，近10年12.69%分位，接近历史底部；PB 2.0x合理偏低；券商目标价均值18.7元对应+53%空间</td></tr>
+</table>
+
+<h3>7.3 三个陷阱排查</h3>
+<div class="danger-box">
+  <strong>☐ 价值陷阱：</strong>🔴 部分命中——低PE（周期底部低PE）+ 低增长 + 高应收账款 → 需警惕。但公司资产负债表极其健康（零有息负债），不属于高负债价值陷阱。<br>
+  <strong>☐ 周期陷阱：</strong>🔴 高度命中——血制品正处于"供过于求→价格下降→利润骤降"的周期下行阶段。当前PE低不是因为便宜，而是因为利润正处于高峰后的回落期。但血制品不是强周期品种（需求不消失），周期长度和幅度有限。<br>
+  <strong>☐ 烧钱陷阱：</strong>⚠ 部分命中——FCF持续为负但资本开支是建新产能（永安/云南/兰州三大基地），属于产能扩张型投入，不是烧钱维持运营。且公司零负债，烧钱风险有限。
+</div>
+
+<h3>7.4 风险评估</h3>
+
+<h4>a. 管理层与治理风险</h4>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力与履历</td><td class="good">好</td><td>国药央企体系，杨汇川董事长兼总经理，行业经验丰富，管理团队稳定</td></tr>
+  <tr><td>股权结构与利益一致性</td><td class="neutral">一般</td><td>国药集团控股46.59%，央企属性，管理层激励有限但治理规范</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td class="good">无</td><td>历史无重大违规或处罚记录</td></tr>
+  <tr><td>资本配置记录</td><td class="good">合理</td><td>聚焦血制品主业，2017-2018资产整合剥离疫苗收购血制品，战略清晰；分红率36.3%合理</td></tr>
+  <tr><td>管理层增减持记录</td><td class="good">增持</td><td>2024年多名高管增持（刘亚娜+3.43万、何彦林+2.20万等）</td></tr>
+</table>
+
+<h4>b. 盈利可持续性</h4>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是靠价？</td><td>量驱动</td><td>FY2025采浆量2801吨基本持平（+0.7%），收入微增靠量，利润下滑因价跌。长期靠浆量增长（新浆站投产）</td></tr>
+  <tr><td>涨价能否持续？</td><td class="bad">当前不能</td><td>行业供过于求，进口白蛋白持续增加，短期价格承压，但中期看供给增速放缓和需求增长将推动价格企稳</td></tr>
+  <tr><td>非经常性利润占比</td><td class="good">低</td><td>扣非/归母 = 98.6%，利润质量高</td></tr>
+  <tr><td>政策/监管依赖度</td><td class="neutral">高（双刃剑）</td><td>牌照壁垒是保护，但浆站审批、增值税政策变动也受政策影响</td></tr>
+</table>
+
+<h4>c. 关键变量敏感性</h4>
+<div class="summary-box">
+  <strong>变量1: 血制品价格走势（毛利率）</strong><br>
+  &nbsp;&nbsp;乐观: 2026H2行业供需平衡，毛利率回升至40%+ → EPS +50%+<br>
+  &nbsp;&nbsp;中性: 2027年价格企稳，毛利率维持35-38% → EPS基本持平<br>
+  &nbsp;&nbsp;悲观: 价格继续下跌至2027，毛利率跌破30% → EPS -30%<br><br>
+  <strong>变量2: 应收账款回收情况</strong><br>
+  &nbsp;&nbsp;乐观: 2026年回款改善，应收账款降至8亿以内 → CFO回升至8亿+<br>
+  &nbsp;&nbsp;中性: 应收账款逐步回收，年末降至~10亿 → CFO ~5亿<br>
+  &nbsp;&nbsp;悲观: 部分应收账款形成坏账，计提减值超2亿 → 利润进一步承压<br><br>
+  <strong>变量3: 新建产能投产进度</strong><br>
+  &nbsp;&nbsp;乐观: 云南项目2026年底投产，兰州项目2027年投产 → 浆量2028年突破3500吨<br>
+  &nbsp;&nbsp;中性: 云南2027年、兰州2028年投产<br>
+  &nbsp;&nbsp;悲观: 项目延期1-2年
+</div>
+
+<h3>7.5 前景展望</h3>
+
+<h4>a. 未来1-3年核心驱动</h4>
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. 行业供需拐点——2023-2024年行业采浆量高增长后，2025-2026年采浆增速明显放缓，供给端收缩+需求端老龄化增长，预计2027年供需再平衡<br>
+  2. 新产品放量——皮下注射人免疫球蛋白（国内首个，已获注册证书）、人凝血因子IX等新品类贡献增量<br>
+  3. 浆量增长空间——22家在建浆站陆续投产，单站采浆量从33吨向39吨提升，中长期浆量增长空间~40%<br><br>
+  <strong>负向拖累：</strong><br>
+  1. 增值税从3%→13%，每年增加税负~1.5亿<br>
+  2. 应收账款高企，回款节奏不确定<br>
+  3. 进口人血白蛋白持续增加，竞争加剧
+</div>
+
+<h4>b. 三情景简表</h4>
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>EPS预估</th><th>PE区间</th><th>预期回报</th></tr>
+  <tr><td>乐观</td><td>2026H2价格企稳，毛利率回升至40%，2027年恢复正常</td><td>2026E 0.55→2027E 0.75</td><td>25-30x</td><td>+50~80%</td></tr>
+  <tr><td>中性</td><td>2027年价格企稳，毛利率36%，利润缓慢恢复</td><td>2026E 0.50→2027E 0.60</td><td>20-25x</td><td>+10~20%</td></tr>
+  <tr><td>悲观</td><td>价格继续下跌至2027，毛利率<30%，利润继续下滑</td><td>2026E 0.35→2027E 0.30</td><td>15-20x</td><td>-30~50%</td></tr>
+</table>
+<p style="font-size:13px;color:#666">概率判断：中性45%，乐观30%，悲观25%</p>
+
+<h3>7.6 资金面信号</h3>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>北向资金持股变动</td><td class="neutral">持平（~2%）</td><td>陆股通持股占流通A股2.01%，近期变化不大</td></tr>
+  <tr><td>机构持仓变动</td><td class="neutral">稳定</td><td>多家基金持有，鹏扬汇利债券A等，但持仓不集中</td></tr>
+  <tr><td>融资余额变动</td><td class="neutral">~12.5亿</td><td>融资余额占流通市值5.1%，杠杆资金情绪中性</td></tr>
+  <tr><td>大股东增减持</td><td class="good">增持</td><td>2024年多名高管增持，国药集团未减持</td></tr>
+  <tr><td>券商评级</td><td class="good">买入/增持</td><td>最近90天6家机构：4家买入+2家增持，目标均价17.37元</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>资金面整体判断：</strong>机构评级偏正面（6家中4家买入），但资金面并无明显的积极信号——北向持平、融资稳定，市场整体对血制品板块处于观望状态。当前股价从22元高点回落至12元（-45%），估值已到历史底部，但未出现资金加速流入迹象，说明市场在等待基本面拐点确认。
+</div>
+
+<h3>7.7 讨论问题（阅读引导）</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——天坛生物开浆站采血浆，加工成人血白蛋白/静丙/凝血因子卖给医院，赚的是"行政牌照垄断+血浆资源稀缺"的钱。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——毛利率从54%降到34%（2026Q1）还在跌，应收账款13.86亿翻了5倍多，管理层放宽信用保营收的做法是否过度？<br>
+  3. 如果现在买入，期待的回报来源是什么？——血制品行业供需拐点（预期2027年）后利润回升至正常水平（~15亿）+估值修复（PE从25x到30x），目标回报50-80%。但同时要做好利润继续下滑30%的准备。<br>
+  4. 什么情况下你会坚决卖出？——毛利率跌破30%仍不见底 / 应收账款坏账暴雷 / 国药集团出让控制权 / 血制品集采政策出台。
+</div>
+
+</div></div>
+
+<div class="footer">
+   免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+   数据来源：天坛生物FY2025年报、2026Q1季报、券商研报（诚通证券/中邮证券/国泰海通）、理杏仁
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>
