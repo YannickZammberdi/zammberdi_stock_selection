@@ -14,15 +14,13 @@ description: 生成大盘宏观环境HTML分析报告，含A股/ASX的L0-A1/A2/B
 
 ## 参考模板
 
-以下两份参考HTML风格：
-- `docs/industry/` 下的行业报告（Tab导航样式）
-- `docs/stocks/` 下的个股报告（verdict框样式）
+参考 `stock-learning/stocks-analysis/宏观报告/A股_宏观环境报告_2026-07-09.html` 的HTML结构和CSS样式（Tab导航+verdict框）。
 
 ## 输出路径
 
-`docs/macro/{市场}_宏观环境报告_{YYYY-MM-DD}.html`
+`stock-learning/stocks-analysis/宏观报告/{市场}_宏观环境报告_{YYYY-MM-DD}.html`
 
-> 示例：`docs/macro/A股_宏观环境报告_2026-07-09.html`
+> 示例：`stock-learning/stocks-analysis/宏观报告/A股_宏观环境报告_2026-07-09.html`
 
 ## 报告结构
 

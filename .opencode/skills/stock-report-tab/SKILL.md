@@ -11,13 +11,13 @@ description: 生成带Tab导航的A股财务分析HTML报告，按L1-L5框架组
 
 ## 参考模板
 
-参考 `雅克科技_002409_分析报告.html` 的HTML结构和CSS样式。模板已包含完整的CSS、tab-bar和JS交互，直接复制后替换数据和内容即可。
+参考 `A股/成长性/雅克科技_002409_分析报告.html` 的HTML结构和CSS样式。模板已包含完整的CSS、tab-bar和JS交互，直接复制后替换数据和内容即可。
 
 ## 输出路径
 
-`stock-learning/stocks-analysis/{股票简称}_{股票代码}_分析报告.html`
+`stock-learning/stocks-analysis/{市场}/{L5分类}/{股票简称}_{股票代码}_分析报告.html`
 
-> 示例：`雅克科技_002409_分析报告.html`
+> 示例：`A股/成长性/雅克科技_002409_分析报告.html`
 
 ## 报告结构
 

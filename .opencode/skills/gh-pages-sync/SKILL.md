@@ -12,7 +12,8 @@ description: 将股票分析报告同步到docs目录并更新GitHub Pages表格
 ## 文件映射
 
 | 源文件位置 | 目标目录 |
-|---|---|
+|---|---|---|
+| `宏观报告/*.html` | `docs/macro/` |
 | `行业报告/A股——*.html` | `docs/industry/` |
 | `行业报告/ASX——*.html` | `docs/asx/industry/` |
 | `A股/**/*.html` | `docs/stocks/` |
@@ -37,19 +38,20 @@ description: 将股票分析报告同步到docs目录并更新GitHub Pages表格
 
 ### 3. 清除无源文件的旧报告
 
-检查 `docs/` 下各目录（`stocks/`、`industry/`、`plans/` 及 `asx/` 对应子目录），移除在 `stock-learning/stocks-analysis/` 中找不到对应源文件的 `.html` 文件。
+检查 `docs/` 下各目录（`stocks/`、`industry/`、`plans/`、`macro/` 及 `asx/` 对应子目录），移除在 `stock-learning/stocks-analysis/` 中找不到对应源文件的 `.html` 文件。
 
 > 匹配规则：以文件名（不含路径）为准，在源文件列表中查找相同文件名。
 
 ### 4. 更新 index.html
 
-对以下 6 个 index.html，用源文件的实际列表重新生成 `const data = [...]` 数组：
+对以下 index.html，用源文件的实际列表重新生成 `const data = [...]` 数组：
 
 | 文件 | data 字段 | 源文件来源 |
 |---|---|---|
 | `docs/stocks/index.html` | name, code, type, score, date, file | 从 `A股/**/*.html` 文件名中解析 |
 | `docs/industry/index.html` | name, type, score, date, file | `行业报告/A股——*.html` |
 | `docs/plans/index.html` | name, code, date, status, file | `交易计划/*.html` A股部分 |
+| `docs/macro/index.html` | market, date, file | `宏观报告/*.html` |
 | `docs/asx/stocks/index.html` | name, code, type, score, date, file | `ASX/**/*.html` |
 | `docs/asx/industry/index.html` | name, type, score, date, file | `行业报告/ASX——*.html` |
 | `docs/asx/plans/index.html` | name, code, date, status, file | `交易计划/*.html` ASX部分 |
@@ -72,6 +74,10 @@ description: 将股票分析报告同步到docs目录并更新GitHub Pages表格
 - 文件名格式：`{名称}_{代码}_交易计划.html`
 - 日期：从交易计划 HTML 中提取
 - 状态：默认为 "计划中"
+
+**宏观报告**：
+- 文件名格式：`{市场}_宏观环境报告_{YYYY-MM-DD}.html`
+- 日期：从文件名中解析 `{YYYY-MM-DD}` 部分
 
 #### 生成 data 数组
 

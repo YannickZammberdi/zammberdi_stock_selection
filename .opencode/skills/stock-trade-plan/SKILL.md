@@ -11,15 +11,15 @@ description: 为个股生成交易计划HTML报告（L11估值+L12仓位+L13止�
 
 ## 参考模板
 
-参考 `新和成_002001_交易计划.html` 的HTML结构和内容布局。
+参考 `stock-learning/stocks-analysis/交易计划/新和成_002001_交易计划.html` 的HTML结构和内容布局。
 
 ## 输出路径
 
 ```
-stock-learning/stocks-analysis/{股票简称}_{股票代码}_交易计划.html
+stock-learning/stocks-analysis/交易计划/{股票简称}_{股票代码}_交易计划.html
 ```
 
-> 示例：`新和成_002001_交易计划.html`
+> 示例：`stock-learning/stocks-analysis/交易计划/新和成_002001_交易计划.html`
 
 ## 报告结构
 
@@ -72,7 +72,7 @@ stock-learning/stocks-analysis/{股票简称}_{股票代码}_交易计划.html
 
 - 股价/PE/PB：东方财富、亿牛网等实时行情
 - PE/PB历史分位：亿牛网（分位数据）
-- VA/VE/蛋氨酸价格：券商研报、百川盈孚
+- 产品价格（视具体标的不同）：券商研报、百川盈孚等行业网站
 - 财报数据：已生成的L1-L5分析报告
 
 ## 使用条件
@@ -94,4 +94,4 @@ CSS全部内联在HTML中，无需外部依赖。配色沿用已有的`col-tag`�
 - `check` 检查清单（圆点+打勾/感叹号）
 - `grid-3` 三列仓位/止损/止盈卡片
 
-参考现有 `新和成_002001_交易计划.html` 的全部样式和结构，生成时替换数据和内容即可。
+参考现有 `stock-learning/stocks-analysis/交易计划/新和成_002001_交易计划.html` 的全部样式和结构，生成时替换数据和内容即可。

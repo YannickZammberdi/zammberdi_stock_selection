@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>A股——消费电子 行业分析报告</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f5f5f5;padding:0;color:#333}
+  .report-wrap{max-width:800px;margin:0 auto;background:#fff}
+  h1{font-size:22px;margin:0;padding:28px 0 4px;text-align:center}
+  h2{font-size:18px;margin:28px 0 12px;border-bottom:2px solid #1a1a1a;padding-bottom:4px}
+  h3{font-size:15px;margin:18px 0 8px}
+  .subtitle{color:#666;font-size:13px;text-align:center;margin-bottom:4px}
+  .meta{color:#999;font-size:12px;text-align:center;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #e0e0e0}
+  .tab-bar{position:sticky;top:0;z-index:10;background:#fff;display:flex;flex-wrap:wrap;border-bottom:2px solid #ddd;gap:0}
+  .tab-btn{padding:10px 14px;cursor:pointer;border:none;background:none;font-size:13px;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+  .tab-btn:hover{color:#333;background:#f9f9f9}
+  .tab-btn.active{color:#1a1a1a;font-weight:700;border-bottom-color:#1a1a1a}
+  .tab-content{display:none}
+  .tab-content.active{display:block}
+  .tab-inner{padding:0 12px}
+  table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:13px}
+  th{background:#f5f5f5;padding:8px 6px;text-align:left;border-bottom:2px solid #ddd;white-space:nowrap;font-weight:600}
+  td{padding:7px 6px;border-bottom:1px solid #eee}
+  tr:nth-child(even) td{background:#fafafa}
+  .summary-box{background:#fffde7;border-left:4px solid #f9a825;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .highlight-box{background:#e3f2fd;border-left:4px solid #1e88e5;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .danger-box{background:#ffebee;border-left:4px solid #e53935;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .verdict{text-align:center;padding:20px;margin:16px 0;border-radius:8px;font-size:18px;font-weight:700}
+  .verdict-ok{background:#e8f5e9;border:2px solid #4caf50;color:#2e7d32}
+  .verdict-caution{background:#fff3e0;border:2px solid #ff9800;color:#e65100}
+  .verdict-bad{background:#ffebee;border:2px solid #e53935;color:#c62828}
+  .score{font-size:36px;display:block;margin-bottom:4px}
+  .pass{color:#2e7d32;font-weight:700}
+  .skip{color:#666;font-style:italic}
+  .tag{display:inline-block;padding:2px 8px;border-radius:3px;font-size:11px;font-weight:700}
+  .tag-red{background:#ffebee;color:#c62828}
+  .tag-green{background:#e8f5e9;color:#2e7d32}
+  .tag-yellow{background:#fff8e1;color:#f57f17}
+  .footer{font-size:11px;color:#aaa;text-align:center;padding:24px 0 8px;border-top:1px solid #eee;margin-top:30px}
+  .card{background:#fafafa;border:1px solid #e0e0e0;border-radius:6px;padding:14px;margin:10px 0;font-size:13px}
+  .flex{display:flex;flex-wrap:wrap;gap:8px}
+  .tbl-wrap{border:1px solid #e0e0e0;border-radius:6px;overflow:hidden;margin:10px 0 18px}
+  .tbl-wrap table{margin:0}
+  .tbl-wrap th{background:#f5f5f5;padding:9px 8px;border-bottom:1px solid #ddd;font-weight:600;font-size:12px}
+  .tbl-wrap td{padding:8px;border-bottom:1px solid #f0f0f0;font-size:13px}
+  .tbl-wrap tr:last-child td{border-bottom:none}
+  .bar-wrap{display:inline-flex;align-items:center;width:60px;height:16px;vertical-align:middle}
+  .bar-bg{background:#eee;border-radius:4px;height:8px;width:100%;overflow:hidden;position:relative}
+  .bar{display:block;height:8px;border-radius:4px}
+  .score-cell{font-weight:700;font-size:15px;text-align:center;white-space:nowrap}
+  .tbl-wrap td,.tbl-wrap th{vertical-align:middle}
+  .metric-h{color:#1565c0;font-weight:700;font-size:13px}
+  .metric-l{color:#c62828;font-weight:700}
+  .metric-m{color:#e65100;font-weight:700}
+  .col-tag{display:inline-block;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600}
+  .col-win{background:#e8f5e9;color:#2e7d32}
+  .col-lose{background:#ffebee;color:#c62828}
+  .col-warn{background:#fff3e0;color:#e65100}
+  .col-info{background:#e3f2fd;color:#1565c0}
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>A股——消费电子 行业分析报告</h1>
+<div class="subtitle">L5分类：成长性/混合周期 — 上市公司：~80只 — 总市值：~2万亿</div>
+<div class="meta">生成日期：2026-07-16</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l7">L7 量化初筛</button>
+  <button class="tab-btn" data-tab="l8">L8 行业画像</button>
+  <button class="tab-btn" data-tab="l9">L9 竞争格局</button>
+  <button class="tab-btn" data-tab="l10">L10 周期时机</button>
+</div>
+
+<div class="tab-content active" id="tab-summary">
+<div class="tab-inner">
+
+<h2>行业速览</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">项目</th><th>内容</th></tr>
+<tr><td>行业名称</td><td><strong>消费电子</strong></td></tr>
+<tr><td>市场</td><td>A股</td></tr>
+<tr><td>L5分类</td><td><span class="col-tag col-warn">成长性/混合周期</span> 长期受益于AI终端+折叠屏创新驱动，短期受存储成本周期压制</td></tr>
+<tr><td>上市公司</td><td>~80只，其中符合L7筛选条件 <span class="col-tag col-win">17只</span></td></tr>
+<tr><td>行业总市值</td><td>~2万亿</td></tr>
+<tr><td>产业链利润核心</td><td><span class="col-tag col-win">品牌终端+高端零组件</span> 传音控股/安克创新/鹏鼎控股毛利率20-35%</td></tr>
+<tr><td>生命周期阶段</td><td><span class="col-tag col-warn">成熟分化期</span> 总量增长放缓，AI终端和折叠屏驱动结构性增量</td></tr>
+<tr><td>当前周期位置</td><td><span class="col-tag col-lose">成本冲击期</span> 存储芯片超级涨价周期（DRAM涨300%+），压制中低端品牌利润</td></tr>
+</table>
+</div>
+
+<h2>综合评分</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>维度</th><th style="width:60px">得分</th><th>进度</th><th>说明</th></tr>
+<tr>
+  <td>行业规模与空间</td>
+  <td class="score-cell">17/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:85%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">全球TAM~1.5万亿美元，AI终端/折叠屏/可穿戴打开新增量</td>
+</tr>
+<tr>
+  <td>产业链位置</td>
+  <td class="score-cell">9/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:60%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">中游代工/ODM毛利率极低(&lt;12%)，品牌和高端零组件利润厚</td>
+</tr>
+<tr>
+  <td>竞争格局</td>
+  <td class="score-cell">9/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:45%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">代工厂议价能力弱，品牌端竞争白热化，苹果/华为主导高端</td>
+</tr>
+<tr>
+  <td>增长驱动力</td>
+  <td class="score-cell">12/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:80%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">AI眼镜/AI手机/折叠屏三大创新驱动明确，换机周期有望启动</td>
+</tr>
+<tr>
+  <td>周期位置</td>
+  <td class="score-cell">7/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:47%;background:#f44336"></span></span></span></td>
+  <td style="font-size:12px;color:#555">2026H1出货量同比-6.7%，存储成本暴涨，行业利润承压</td>
+</tr>
+<tr>
+  <td>政策环境</td>
+  <td class="score-cell">12/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:80%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">国补+以旧换新政策持续，美越关税协议利好果链</td>
+</tr>
+<tr style="background:#fafafa">
+  <td style="font-weight:700;font-size:14px">总分</td>
+  <td style="font-weight:700;font-size:16px;color:#e65100">66/100</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:66%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#e65100;font-weight:600">一般——结构性机会存在，等待成本周期拐点</td>
+</tr>
+</table>
+</div>
+
+<div class="verdict verdict-caution">
+  <span class="score">66</span>
+  一般——精选个股，聚焦品牌/高端零组件
+</div>
+
+<div class="summary-box">
+  <strong>核心结论</strong><br>
+  消费电子行业正处于"冰火两重天"——总量出货量下滑（全球2026E同比-12%），但高端市场（苹果/华为）逆势增长，AI终端创新（AI眼镜/折叠屏/AI手机）驱动新一轮换机预期。最大的压制因素是存储芯片超级涨价周期（DRAM涨300%+），导致中低端品牌利润被侵蚀。建议用"混合周期"框架分析：关注品牌终端（传音控股、安克创新）和高端零组件（领益智造、鹏鼎控股、信维通信），回避低毛利代工/EMS标的。当前不是行业beta的最佳时机，但alpha机会明确。
+</div>
+
+<div class="highlight-box">
+  <strong>行业公式</strong><br>
+  收入 = 终端出货量(亿台) × 单机价值(元) × 各环节分润比例<br>
+  关键指标：1) 全球智能手机出货量 2) DRAM/NAND价格 3) AI眼镜渗透率 4) 折叠屏出货量 5) 国补政策力度
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l7">
+<div class="tab-inner">
+
+<h2>筛子调整说明</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:12%">筛子</th><th style="width:35%">标准</th><th>调整说明</th></tr>
+<tr><td>①<span class="col-tag col-info">市值</span></td><td>主板≥50亿 / 创业板科创板≥30亿</td><td>消费电子小公司多，保留创业板/科创板≥30亿</td></tr>
+<tr><td>②<span class="col-tag col-info">营收</span></td><td>主板≥10亿 / 创业板科创板≥3亿</td><td>部分品牌/配件公司营收较小，保留≥3亿</td></tr>
+<tr><td>③<span class="col-tag col-lose">毛利率</span></td><td>科技制造业≥15%</td><td><strong>最残酷的筛</strong>——EMS/ODM/代工毛利率普遍&lt;12%，仅品牌和高端零组件通过</td></tr>
+<tr><td>④<span class="col-tag col-info">ROE</span></td><td>≥8%</td><td>正常执行</td></tr>
+<tr><td>⑤<span class="col-tag col-info">负债率</span></td><td>制造业≤65%</td><td>正常执行</td></tr>
+<tr><td>⑥<span class="col-tag col-info">估值</span></td><td>PE历史分位≤70%</td><td>当前消费电子PE分化，部分龙头PE偏高需留意</td></tr>
+</table>
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th colspan="3" style="text-align:center">行业类型调整速查——消费电子适用项</th></tr>
+<tr><th>情况</th><th>调整</th><th>说明</th></tr>
+<tr><td>亏损但高营收成长（部分ODM）</td><td>跳过ROE，用PS替代</td><td>消费电子ODM阶段亏损但营收大，可看PS</td></tr>
+</table>
+</div>
+
+<h2>候选池（17只）</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>环节</th><th>市值</th><th>毛利率</th><th>ROE</th><th>负债率</th><th>PE分位</th><th>通过</th></tr>
+<tr>
+  <td><strong>传音控股</strong> 688036</td>
+  <td><span class="col-tag col-win">品牌终端</span></td>
+  <td style="font-weight:600">764亿</td>
+  <td><span class="col-tag col-win">~21%</span></td>
+  <td><span class="col-tag col-win">~15%</span></td>
+  <td>~45%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>安克创新</strong> 300866</td>
+  <td><span class="col-tag col-win">品牌配件</span></td>
+  <td style="font-weight:600">633亿</td>
+  <td><span class="col-tag col-win">~35%</span></td>
+  <td><span class="col-tag col-win">~18%</span></td>
+  <td>~25%</td>
+  <td>35-45%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>领益智造</strong> 002600</td>
+  <td><span class="col-tag col-info">精密功能件</span></td>
+  <td style="font-weight:600">1266亿</td>
+  <td><span class="col-tag col-win">~20%</span></td>
+  <td>~8%</td>
+  <td>~45%</td>
+  <td>50-60%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>鹏鼎控股</strong> 002938</td>
+  <td><span class="col-tag col-info">PCB</span></td>
+  <td style="font-weight:600">~650亿</td>
+  <td><span class="col-tag col-win">~20%</span></td>
+  <td>~10%</td>
+  <td>~30%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>东山精密</strong> 002384</td>
+  <td><span class="col-tag col-info">PCB/精密金属</span></td>
+  <td>~400亿</td>
+  <td><span class="col-tag col-win">~16%</span></td>
+  <td>~8%</td>
+  <td>~50%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>信维通信 300136</td>
+  <td><span class="col-tag col-info">射频/天线</span></td>
+  <td>~150亿</td>
+  <td><span class="col-tag col-win">~25%</span></td>
+  <td>~8%</td>
+  <td>~35%</td>
+  <td>30-40%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>长盈精密 300115</td>
+  <td><span class="col-tag col-info">精密结构件</span></td>
+  <td>~390亿</td>
+  <td><span class="col-tag col-win">~20%</span></td>
+  <td>~8%</td>
+  <td>~45%</td>
+  <td>50-60%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>欣旺达 300207</td>
+  <td><span class="col-tag col-info">电池</span></td>
+  <td>~400亿</td>
+  <td><span class="col-tag col-win">~16%</span></td>
+  <td>~8%</td>
+  <td>~55%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>电连技术 300679</td>
+  <td><span class="col-tag col-info">连接器</span></td>
+  <td>~150亿</td>
+  <td><span class="col-tag col-win">~30%</span></td>
+  <td>~10%</td>
+  <td>~25%</td>
+  <td>30-40%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>安洁科技 002635</td>
+  <td><span class="col-tag col-info">功能性器件</span></td>
+  <td>~100亿</td>
+  <td><span class="col-tag col-win">~25%</span></td>
+  <td>~9%</td>
+  <td>~20%</td>
+  <td>25-35%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>精研科技 300709</td>
+  <td><span class="col-tag col-warn">MIM/折叠屏</span></td>
+  <td>~80亿</td>
+  <td><span class="col-tag col-warn">~18%</span></td>
+  <td>~8%</td>
+  <td>~40%</td>
+  <td>35-45%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>统联精密 688210</td>
+  <td><span class="col-tag col-warn">MIM/折叠屏</span></td>
+  <td>~60亿</td>
+  <td><span class="col-tag col-warn">~17%</span></td>
+  <td>~8%</td>
+  <td>~25%</td>
+  <td>30-40%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>漫步者 002351</td>
+  <td><span class="col-tag col-win">品牌音频</span></td>
+  <td>~120亿</td>
+  <td><span class="col-tag col-win">~35%</span></td>
+  <td>~12%</td>
+  <td>~20%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>佳禾智能 300793</td>
+  <td><span class="col-tag col-warn">智能穿戴</span></td>
+  <td>~80亿</td>
+  <td><span class="col-tag col-warn">~18%</span></td>
+  <td>~8%</td>
+  <td>~30%</td>
+  <td>30-40%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>盈趣科技 002925</td>
+  <td><span class="col-tag col-info">智能制造</span></td>
+  <td>~120亿</td>
+  <td><span class="col-tag col-win">~28%</span></td>
+  <td>~9%</td>
+  <td>~25%</td>
+  <td>30-40%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>光弘科技 300735</td>
+  <td><span class="col-tag col-warn">EMS/代工</span></td>
+  <td>~150亿</td>
+  <td><span class="col-tag col-warn">~17%</span></td>
+  <td>~9%</td>
+  <td>~35%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>春秋电子 603890</td>
+  <td><span class="col-tag col-info">结构件/笔记本</span></td>
+  <td>~60亿</td>
+  <td><span class="col-tag col-warn">~16%</span></td>
+  <td>~8%</td>
+  <td>~40%</td>
+  <td>35-45%</td>
+  <td class="pass">6/6</td>
+</tr>
+</table>
+</div>
+
+<h2>观察池</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>卡在哪筛</th><th>备注</th></tr>
+<tr>
+  <td><strong>立讯精密</strong> 002475</td>
+  <td><span class="col-tag col-lose">③毛利率~12%</span></td>
+  <td>消费电子综合龙头，深度绑定苹果，整机组装毛利率过低</td>
+</tr>
+<tr>
+  <td><strong>歌尔股份</strong> 002241</td>
+  <td><span class="col-tag col-lose">③毛利率~12%</span></td>
+  <td>VR/AR声学龙头，短期毛利承压，AI眼镜放量后有望改善</td>
+</tr>
+<tr>
+  <td><strong>工业富联</strong> 601138</td>
+  <td><span class="col-tag col-lose">③毛利率~8%</span></td>
+  <td>代工龙头，毛利率过低，但AI服务器业务增长强劲</td>
+</tr>
+<tr>
+  <td><strong>蓝思科技</strong> 300433</td>
+  <td><span class="col-tag col-lose">④ROE偏低</span></td>
+  <td>2026H1亏损，资本开支大折旧高，折叠屏玻璃有望改善</td>
+</tr>
+<tr>
+  <td><strong>环旭电子</strong> 601231</td>
+  <td><span class="col-tag col-lose">③毛利率~10%</span></td>
+  <td>SiP封测EMS，毛利低但资产轻，估值合理</td>
+</tr>
+<tr>
+  <td><strong>华勤技术</strong> 603296</td>
+  <td><span class="col-tag col-lose">③毛利率~10%</span></td>
+  <td>ODM龙头，毛利率低但营收规模大，关注AI PC放量</td>
+</tr>
+<tr>
+  <td><strong>闻泰科技</strong> 600745</td>
+  <td><span class="col-tag col-lose">⑤负债率~62%</span></td>
+  <td>ODM+半导体双业务，负债率偏高，安世半导体盈利稳定</td>
+</tr>
+<tr>
+  <td><strong>长信科技</strong> 300088</td>
+  <td><span class="col-tag col-lose">④ROE~5%</span></td>
+  <td>触控显示模组，盈利能力下滑，等待折叠屏放量</td>
+</tr>
+</table>
+</div>
+
+<h2>筛除记录</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>筛子</th><th style="width:60px">筛除数</th><th>知名示例</th></tr>
+<tr><td>①市值</td><td style="text-align:center">~28</td><td>大量消费电子小票，市值&lt;30亿</td></tr>
+<tr><td>②营收</td><td style="text-align:center">~10</td><td>部分纯概念公司、小型配件厂</td></tr>
+<tr><td>③毛利率 <span class="col-tag col-lose">最严</span></td><td style="text-align:center">~15</td><td>立讯精密、歌尔股份、工业富联、环旭电子、华勤技术</td></tr>
+<tr><td>④ROE</td><td style="text-align:center">~8</td><td>蓝思科技、长信科技、部分亏损企业</td></tr>
+<tr><td>⑤负债率</td><td style="text-align:center">~2</td><td>闻泰科技、部分高负债零部件厂</td></tr>
+<tr><td>⑥估值</td><td style="text-align:center">0</td><td>当前PE分位大多在合理区间</td></tr>
+<tr style="background:#fffde7"><td><strong>剩余</strong></td><td style="text-align:center;font-weight:700;color:#2e7d32"><strong>17</strong></td><td>—</td></tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <strong>L7筛选结论</strong><br>
+  80→17，筛选力度~79%。最严厉的是毛利率筛——消费电子行业内部分化巨大：品牌终端（传音/安克毛利率21-35%）和高端零组件（领益/信维/电连毛利率20-30%）顺利通过；EMS/ODM代工龙头（立讯/歌尔/工业富联毛利率8-12%）因毛利过低被淘汰。核心关注5只：传音控股、安克创新、领益智造、鹏鼎控股、东山精密。立讯精密等观察池标的可待毛利率改善后重新评估，或使用PS替代估值法纳入。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l8">
+<div class="tab-inner">
+
+<h2>产业链</h2>
+<div class="card" style="font-size:13px;line-height:1.7">
+
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px">
+
+<div style="flex:1.2;min-width:200px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#2e7d32;font-size:14px">上游核心元器件</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">芯片/存储</div>
+    <div style="text-align:center;font-size:11px;color:#666">存储原厂·SoC·射频</div>
+    <div style="margin:10px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">显示/触控</div>
+    <div style="text-align:center;font-size:11px;color:#666">京东方·深天马</div>
+    <div style="margin:10px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">电池/结构件</div>
+    <div style="text-align:center;font-size:11px;color:#666">欣旺达·长盈精密</div>
+  </div>
+</div>
+
+<div style="flex:2;min-width:280px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#1565c0;font-size:14px">中游制造</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+
+    <div style="margin:6px 0 4px;font-weight:600;font-size:12px;color:#1565c0">零组件制造</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">精密功能件<br><span style="font-size:10px;color:#666">领益智造</span></div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">PCB/FPC<br><span style="font-size:10px;color:#666">鹏鼎·东山</span></div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">射频/天线<br><span style="font-size:10px;color:#666">信维通信</span></div>
+    </div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px">
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">玻璃盖板<br><span style="font-size:10px;color:#666">蓝思科技</span></div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">MIM/铰链<br><span style="font-size:10px;color:#666">精研·统联</span></div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">连接器<br><span style="font-size:10px;color:#666">电连技术</span></div>
+    </div>
+
+    <div style="margin:10px 0 4px;font-weight:600;font-size:12px;color:#c62828">EMS/ODM代工</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <div style="flex:1;background:#ffebee;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px;color:#c62828">整机组装<br><span style="font-size:10px">立讯精密</span></div>
+      <div style="flex:1;background:#ffebee;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px;color:#c62828">VR/声学<br><span style="font-size:10px">歌尔股份</span></div>
+      <div style="flex:1;background:#ffebee;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px;color:#c62828">ODM代工<br><span style="font-size:10px">华勤·闻泰</span></div>
+    </div>
+    <div style="text-align:center;font-size:11px;color:#c62828;margin-top:6px">▲ ODM/EMS毛利率普遍&lt;12%，议价能力弱</div>
+
+    <div style="margin:10px 0 4px;font-weight:600;font-size:12px;color:#1565c0">品牌/终端</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">手机品牌<br><span style="font-size:10px;color:#666">传音控股</span></div>
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">品牌配件<br><span style="font-size:10px;color:#666">安克创新</span></div>
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">品牌音频<br><span style="font-size:10px;color:#666">漫步者</span></div>
+    </div>
+  </div>
+</div>
+
+<div style="flex:1;min-width:160px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#c62828;font-size:14px">下游渠道</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:10px 8px;text-align:center;font-weight:600;font-size:13px">电商/线下零售</div>
+    <div style="text-align:center;font-size:11px;color:#666">京东·天猫·拼多多</div>
+    <div style="margin:10px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#f5f5f5;border:1px solid #ccc;border-radius:4px;padding:10px 8px;text-align:center;font-weight:600;font-size:13px">终端消费者</div>
+    <div style="text-align:center;font-size:11px;color:#666">个人·家庭</div>
+  </div>
+</div>
+
+</div>
+
+<div style="background:#fffde7;border-left:3px solid #f9a825;padding:8px 12px;font-size:12px;border-radius:0 4px 4px 0">
+  <strong>利润最厚环节：</strong>品牌终端（毛利率21-35%）→ 品牌配件/音频（35-40%）→ 高端零组件（20-30%）
+  <br><span style="color:#999">EMS/ODM代工环节毛利率&lt;12%，利润最薄，议价能力最弱</span>
+</div>
+
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>环节</th><th>代表公司</th><th>毛利率</th><th>集中度</th><th>议价能力</th></tr>
+<tr>
+  <td><span class="col-tag col-win">品牌终端</span></td>
+  <td>传音控股</td>
+  <td><span class="col-tag col-win">~21%</span></td>
+  <td>CR5~60%（全球）</td>
+  <td><span class="col-tag col-win">强</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-win">品牌配件</span></td>
+  <td>安克创新、漫步者</td>
+  <td><span class="col-tag col-win">35-40%</span></td>
+  <td>分散</td>
+  <td><span class="col-tag col-win">强</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-warn">精密功能件</span></td>
+  <td>领益智造</td>
+  <td><span class="col-tag col-warn">~20%</span></td>
+  <td>CR3~40%</td>
+  <td><span class="col-tag col-warn">中</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-warn">PCB/FPC</span></td>
+  <td>鹏鼎控股、东山精密</td>
+  <td><span class="col-tag col-warn">16-20%</span></td>
+  <td>CR3~35%</td>
+  <td><span class="col-tag col-warn">中</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-warn">射频/天线</span></td>
+  <td>信维通信</td>
+  <td><span class="col-tag col-warn">~25%</span></td>
+  <td>CR3~45%</td>
+  <td><span class="col-tag col-warn">中</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-info">电池</span></td>
+  <td>欣旺达</td>
+  <td><span class="col-tag col-warn">~16%</span></td>
+  <td>CR3~50%</td>
+  <td><span class="col-tag col-warn">中</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-lose">EMS/代工</span></td>
+  <td>立讯精密、歌尔股份、环旭电子</td>
+  <td><span class="col-tag col-lose">8-12%</span></td>
+  <td>CR3~50%</td>
+  <td><span class="col-tag col-lose">弱</span></td>
+</tr>
+</table>
+</div>
+
+<h2>市场规模</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">指标</th><th style="width:25%">数值</th><th>说明</th></tr>
+<tr><td><strong>TAM</strong>（总可触达市场）</td><td><span class="col-tag col-info" style="font-size:13px">全球~1.5万亿美元/年</span></td><td>全球智能手机~1.1万亿/PC~2000亿/可穿戴~500亿/其他</td></tr>
+<tr><td><strong>当前渗透率</strong></td><td>智能手机~78%（全球）/ ~96%（中国）</td><td>智能机替换市场，新增空间主要在非洲/南亚等新兴市场</td></tr>
+<tr><td><strong>近年增速</strong>（3年CAGR）</td><td><span class="col-tag col-lose">-2~+3%</span></td><td>2026年全球出货量预计-12%，但均价+14%支撑收入</td></tr>
+</table>
+</div>
+
+<h2>生命周期</h2>
+<div class="summary-box">
+  <strong><span class="col-tag col-warn" style="font-size:14px">成熟分化期</span></strong><br>
+  判断依据：智能手机渗透率已见顶（中国~96%），总量增长停滞甚至下滑。但结构分化显著——高端市场（600美元+）份额持续提升（2026E达35.9%），AI终端（AI手机/AI眼镜/折叠屏）成为新增长极。行业从"量的增长"切换至"价的增长"，单机价值量持续提升。新兴市场（非洲/南亚/东南亚）仍有渗透率提升空间。
+</div>
+
+<h2>增长驱动力</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动力</th><th>类型</th><th>可持续性</th><th>量化指标</th></tr>
+<tr>
+  <td>AI终端换机潮（AI手机/AI PC）</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长（5-10年）</span></td>
+  <td>AI手机渗透率、端侧AI芯片出货量</td>
+</tr>
+<tr>
+  <td>折叠屏手机放量</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-warn">中长（3-5年）</span></td>
+  <td>折叠屏出货量（2026E~3000万部）、铰链/盖板单价</td>
+</tr>
+<tr>
+  <td>AI眼镜/可穿戴爆发</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-warn">中长（3-5年）</span></td>
+  <td>AI眼镜出货量（2026E~7200万副）、Meta/苹果新品</td>
+</tr>
+<tr>
+  <td>新兴市场渗透（非洲/南亚）</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-warn">中（5-10年）</span></td>
+  <td>传音控股出货量、新兴市场智能机渗透率</td>
+</tr>
+<tr>
+  <td>存储涨价驱动的"以价补量"</td>
+  <td><span class="col-tag col-lose">周期</span></td>
+  <td><span class="col-tag col-lose">短（1-2年）</span></td>
+  <td>DRAM/NAND价格、手机BOM成本占比</td>
+</tr>
+</table>
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l9">
+<div class="tab-inner">
+
+<h2>市场结构</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>市场结构类型</td>
+  <td>全球智能手机：<span class="col-tag col-win">寡头垄断</span>（CR5~60%，苹果/三星/华为/小米/OPPO/vivo）<br>A股消费电子制造（零组件）：<span class="col-tag col-warn">垄断竞争</span>（每细分环节CR3~35-50%）</td>
+</tr>
+<tr>
+  <td>CR3</td>
+  <td>PCB CR3~35%（<span style="color:#1565c0">→分散</span>），精密功能件CR3~40%（<span style="color:#1565c0">→稳定</span>），EMS CR3~50%（<span style="color:#1565c0">→稳定</span>）</td>
+</tr>
+<tr>
+  <td>格局象限</td>
+  <td>品牌端：<span class="col-tag col-win">强者恒强</span>（苹果/华为高端寡头）；零组件：<span class="col-tag col-warn">红海竞争</span>（价格+技术驱动）；代工：<span class="col-tag col-lose">薄利多销</span>（客户集中，议价能力弱）</td>
+</tr>
+<tr>
+  <td>新进入者威胁</td>
+  <td><span class="col-tag col-warn">中等</span>（品牌壁垒高，零组件有技术壁垒，代工新进入者难撼动龙头份额）</td>
+</tr>
+</table>
+</div>
+
+<h2>竞争壁垒</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>壁垒类型</th><th>强度</th><th>可持续性</th><th>具体表现</th></tr>
+<tr>
+  <td>品牌+渠道壁垒（品牌端）</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>传音在非洲品牌认知度第一，安克创新在全球线上充电配件市占率前三；品牌建设需要5-10年积累</td>
+</tr>
+<tr>
+  <td>客户认证壁垒（零组件）</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>苹果/华为供应链认证周期2-3年，模具/品质验证严格，一旦进入相对稳定</td>
+</tr>
+<tr>
+  <td>规模+成本优势（代工/制造）</td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td><span class="col-tag col-lose">短</span></td>
+  <td>立讯/歌尔产能规模大，但价格战下利润空间被持续压缩，印度/越南产能转移威胁</td>
+</tr>
+<tr>
+  <td>技术壁垒（折叠屏/精密制造）</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>精研/统联的MIM铰链技术、领益的精密功能件工艺，但技术迭代快</td>
+</tr>
+<tr>
+  <td>全球化布局壁垒</td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>越南/印度产能建设需要大量资本开支，海外工厂管理复杂</td>
+</tr>
+</table>
+</div>
+
+<div class="summary-box">
+  <strong>定价权测试</strong><br>
+  🔹 龙头能涨价吗？<strong>品牌端能</strong>（苹果/华为靠品牌溢价，安克靠产品力）／<strong>零组件端部分能</strong>（高端功能件有技术溢价，但整体价格受下游压价）／<strong>代工不能</strong>（客户集中，随时可转移订单到越南/印度）<br>
+  🔹 毛利率趋势：品牌端稳定（传音21%/安克35%），零组件承压（成本上涨但难以完全转嫁），代工持续下降（竞争加剧）<br>
+  🔹 ROE趋势：品牌端稳定（15-18%），零组件分化（8-12%），代工偏低（&lt;10%）
+</div>
+
+<h2>驱动力拆解</h2>
+<div class="highlight-box">
+  <strong>行业收入公式</strong><br>
+  收入 = 全球智能终端出货量(亿台) × 平均售价(元) × 各环节分润比例<br><br>
+  当前组合：<span style="color:#c62828;font-weight:700">量 ↓</span>（-12% YoY） ＋ <span style="color:#2e7d32;font-weight:700">价 ↑</span>（+14% ASP） ＝ <span class="col-tag col-warn">量减价增，总金额微降</span>
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动因子</th><th>最新值</th><th>历史区间</th><th>当前分位</th></tr>
+<tr>
+  <td>全球智能手机出货量（亿部/年）</td>
+  <td><span class="col-tag col-lose">~10.9</span></td>
+  <td>10.9-15.6</td>
+  <td><span class="col-tag col-lose">10%</span></td>
+</tr>
+<tr>
+  <td>智能手机均价（美元）</td>
+  <td><span class="col-tag col-win">~523</span></td>
+  <td>260-523</td>
+  <td><span class="col-tag col-win">100%</span></td>
+</tr>
+<tr>
+  <td>DRAM价格（DDR4 8Gb, USD）</td>
+  <td><span class="col-tag col-lose">~15</span></td>
+  <td>3.2-15</td>
+  <td><span class="col-tag col-lose">100%</span></td>
+</tr>
+<tr>
+  <td>折叠屏出货量（万部）</td>
+  <td><span class="col-tag col-win">~3000</span></td>
+  <td>100-3000</td>
+  <td><span class="col-tag col-win">100%</span></td>
+</tr>
+<tr>
+  <td>AI眼镜出货量（万副）</td>
+  <td><span class="col-tag col-win">~1280</span></td>
+  <td>0-1280</td>
+  <td><span class="col-tag col-win">100%</span></td>
+</tr>
+</table>
+</div>
+
+<h2>成本结构</h2>
+<div class="summary-box">
+  🔹 <strong>类型：</strong>品牌端——<span class="col-tag col-info">轻资产</span>（研发+营销为主）；零组件——<span class="col-tag col-lose">中重资产</span>（设备折旧占比高）；代工——<span class="col-tag col-lose">重资产</span>（产线投资大，人工成本高）<br>
+  🔹 <strong>成本敏感性：</strong>存储成本上涨10% → 手机整机BOM成本+1-2%，毛利-2-4%（中低端品牌影响最大）<br>
+  🔹 <strong>盈亏平衡点：</strong>代工厂产能利用率需&gt;70%才能盈利（当前立讯/歌尔~75-80%尚可）；品牌端波动小，传音/安克保持稳定盈利
+</div>
+
+<h2>竞争格局总结</h2>
+<div class="highlight-box">
+  消费电子A股产业链呈现<strong>"两头甜、中间苦"</strong>的格局——品牌端（传音/安克）和高端零组件（领益/鹏鼎/信维）毛利率20-35%，盈利稳健；中游EMS/ODM代工（立讯/歌尔/环旭/华勤）毛利率普遍&lt;12%，靠规模生存。当前行业的核心矛盾是<strong>"存储涨价冲击中低端，AI创新驱动高端"</strong>——苹果/华为有能力消化成本压力甚至降价抢份额，而小米/OPPO/vivo被迫涨价丢份额。A股消费电子标的应聚焦两头：品牌出海（传音/安克）和高端零组件（领益/鹏鼎/信维），回避低毛利代工。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l10">
+<div class="tab-inner">
+
+<h2>周期位置</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>库存周期阶段</td>
+  <td><span class="col-tag col-lose">成本冲击期</span>（存储超级涨价周期导致成本飙升，终端出货量下滑，库存被动去化）</td>
+</tr>
+<tr>
+  <td>产能利用率</td>
+  <td><span class="col-tag col-warn">~75%</span>（代工端尚可，但ODM端库存周期缩短至4周以下）</td>
+</tr>
+<tr>
+  <td>产品价格分位</td>
+  <td>手机ASP<span class="col-tag col-win">历史最高</span>（~523美元），DRAM价格<span class="col-tag col-lose">历史最高</span>（DDR4 8Gb ~15美元，涨300%+）</td>
+</tr>
+<tr>
+  <td>行业盈利状态</td>
+  <td><span class="col-tag col-warn">结构分化</span>（品牌端盈利稳定，零组件分化，代工承压）</td>
+</tr>
+</table>
+</div>
+
+<div class="danger-box">
+  <strong>⚠ PE悖论检查</strong><br>
+  立讯精密/歌尔股份/环旭电子：当前PE 20-30x，看起来不高，但注意这是毛利率被压缩后的盈利水平——如果毛利率不能改善，低PE可能是"价值陷阱"<br>
+  品牌端（传音/安克）：PE 25-30x，合理偏高，但盈利稳定<br>
+  <strong>警告：</strong>消费电子代工型企业不适合用PE简单估值——毛利率下降一个点可能导致利润下降20-30%。关注<strong>毛利率趋势和客户结构</strong>比PE更重要。
+</div>
+
+<h2>估值水平</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>估值指标</th><th>行业当前</th><th>历史中位数</th><th>80%分位</th><th>20%分位</th></tr>
+<tr>
+  <td><strong>PE</strong>（品牌端）</td>
+  <td><span class="col-tag col-info">25-30x</span></td>
+  <td>20-25x</td>
+  <td>35-40x</td>
+  <td>15-20x</td>
+</tr>
+<tr>
+  <td><strong>PE</strong>（零组件端）</td>
+  <td><span class="col-tag col-warn">25-60x</span></td>
+  <td>20-35x</td>
+  <td>50x+</td>
+  <td>15-20x</td>
+</tr>
+<tr>
+  <td><strong>PE</strong>（代工端）</td>
+  <td><span class="col-tag col-warn">20-35x</span></td>
+  <td>15-25x</td>
+  <td>30-40x</td>
+  <td>10-15x</td>
+</tr>
+</table>
+</div>
+
+<h2>政策环境</h2>
+<div class="summary-box">
+  🔹 <strong>政策方向：</strong><span class="col-tag col-win">偏多</span>——消费刺激政策持续加码<br>
+  🔹 <strong>关键政策：</strong><br>
+  &emsp;• 2025-2026年"以旧换新"国补持续，手机/平板/智能手表纳入补贴范围<br>
+  &emsp;• 美越关税协议（2026年7月）：越南输美关税降至20%，利好果链出口<br>
+  &emsp;• 发改委将电子信息纳入设备更新支持范围<br>
+  &emsp;• 各地方政府叠加消费券补贴（深圳/北京等）<br>
+  🔹 <strong>政策周期位置：</strong><span class="col-tag col-win">刺激期</span>（消费补贴政策延续，关税环境改善）
+</div>
+
+<h2>买入清单</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:28%">条件</th><th style="width:16%">结果</th><th>备注</th></tr>
+<tr>
+  <td>周期位置：不在繁荣顶点</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>出货量下行，成本高企，不在繁荣期</td>
+</tr>
+<tr>
+  <td>估值：PE/PB在历史偏低分位</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td>品牌端25-30x中位合理，代工端盈利被压缩PE失真</td>
+</tr>
+<tr>
+  <td>政策：不是收紧期</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>国补+以旧换新+关税利好，政策友好</td>
+</tr>
+<tr>
+  <td>格局：龙头壁垒稳固</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td>品牌端壁垒稳固，零组件端客户认证壁垒存在，代工端壁垒弱</td>
+</tr>
+<tr>
+  <td>增长：有可见驱动力</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>AI终端/折叠屏/AI眼镜三大创新周期开启</td>
+</tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <div style="font-size:16px;font-weight:700;margin-bottom:8px">综合判断：<span class="col-tag col-win" style="font-size:15px">买入（精选）</span></div>
+  <div style="margin-bottom:6px">不是行业整体beta机会，但结构性alpha机会明确——聚焦品牌出海和高端零组件</div>
+  <table style="font-size:12px;margin:6px 0;border:none;background:transparent">
+    <tr><td style="border:none;padding:3px 6px;background:transparent;width:90px;font-weight:600">预期回报</td><td style="border:none;padding:3px 6px;background:transparent">AI终端换机潮驱动的估值修复+盈利增长（12-18个月维度）</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">仓位建议</td><td style="border:none;padding:3px 6px;background:transparent"><span class="col-tag col-warn">不超过组合20%</span>（行业下行期控制仓位）</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">跟踪指标</td><td style="border:none;padding:3px 6px;background:transparent">智能手机出货量 · DRAM价格 · AI眼镜渗透率 · 国补政策 · 毛利率趋势</td></tr>
+  </table>
+  <div style="margin-top:8px;padding:8px;background:#e8f5e9;border-radius:4px;font-size:12px">
+    <strong>买入策略：</strong><br>
+    <span class="col-tag col-win">品牌出海龙头</span>（传音控股/安克创新）：收入&利润稳定增长，非洲/新兴市场渗透率提升，估值合理时分批建仓<br>
+    <span class="col-tag col-info">高端零组件龙头</span>（领益智造/鹏鼎控股/信维通信）：受益于折叠屏放量+AI终端升级，PE回调至20-25x时可布局<br>
+    <span class="col-tag col-lose">代工/EMS龙头</span>（立讯精密/歌尔股份）：等待毛利率企稳信号（毛利率回升至15%+），或AI眼镜/折叠屏订单放量催化
+  </div>
+</div>
+
+<h2>卖出信号</h2>
+<div class="danger-box">
+  <strong>出现以下信号考虑卖出：</strong><br>
+  <div style="margin-top:6px">
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px">1</span>
+    全球智能手机出货量连续两季跌幅扩大至15%+（需求加速恶化）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">2</span>
+    存储价格拐头向下但出货持续萎靡（量价齐跌）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">3</span>
+    核心客户（苹果/华为）大幅砍单或转移供应链至印度/越南<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">4</span>
+    国补/以旧换新政策退坡且无替代刺激方案
+  </div>
+</div>
+
+</div>
+</div>
+
+<div class="footer">Generated by Industry Analysis · L7-L10 Framework · Stock Selection</div>
+
+</div>
+
+<script>
+var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+var contents = document.querySelectorAll('.tab-content');
+btns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    contents.forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    var tab = btn.getAttribute('data-tab');
+    document.getElementById('tab-' + tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

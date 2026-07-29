@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>海康威视(002415) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>海康威视（002415）财务分析报告</h1>
+<p class="subtitle">基于 L1-L6 框架（财务三表+关键指标+估值+杜邦+行业分类+综合实战）</p>
+<p class="meta">分析日期：2026-07-14 | 数据来源：FY2025 年报 + 2026Q1 季报 + 券商研报 + 东方财富</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>杭州海康威视数字技术股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>002415.SZ</td></tr>
+  <tr><td>所属行业</td><td>计算机设备（安防+AIoT）</td></tr>
+  <tr><td>行业分类（L5）</td><td><strong>非周期股（成长型）</strong> — AIoT+安防龙头，全球市占率连续14年第一</td></tr>
+  <tr><td>行业地位</td><td>全球视频监控市占率~38.7%，国内市占率>40%，绝对龙头</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>925.08 亿（+0.01%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>141.95 亿（+18.52%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>253.39 亿（+91.04%）</strong></td></tr>
+  <tr><td>总资产</td><td>1,380.50 亿</td></tr>
+  <tr><td>归母净资产</td><td>833.50 亿</td></tr>
+  <tr><td>ROE</td><td>17.31%</td></tr>
+  <tr><td>2026Q1 净利润</td><td><strong class="good">27.81 亿（+36.42%）</strong></td></tr>
+</table>
+
+<p style="font-size:13px;color:#666;margin-bottom:4px">行业类型：<strong>非周期股（成长型）</strong>。采用<strong>非周期股评分体系</strong>。</p>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">综合L1-L5所有因素，对各维度打分求和</p>
+<table>
+  <tr><th style="width:24%">维度</th><th style="width:8%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">17.31% ≥ 15%，优秀</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">高利润型——净利率16.68%高，周转率0.67偏低，权益乘数1.66低</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">1.78 ≥ 1.0，含金量极高</td></tr>
+  <tr><td>营收增长（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">+0.01%接近零增长（主动收缩低质业务所致），2026Q1已恢复+11.78%</td></tr>
+  <tr><td>利润增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+18.52% ≥ 15%，扣非+15.98%</td></tr>
+  <tr><td>负债率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">33.92% < 40%，极低</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">货币资金418亿 >> 短期借款21亿，偿债能力极强</td></tr>
+  <tr><td>毛利率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">45.88% ≥ 30%且同比提升2.05pct，趋势向上</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">PE ~22x，处于近5年22%分位，合理偏低</td></tr>
+  <tr><td>自由现金流（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">CFO 253.39亿 >> 资本开支，FCF持续为正且充裕</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">90/100</td><td style="text-align:left">品质优秀（90/100分）</td></tr>
+</table>
+
+<div class="verdict verdict-ok">品质优秀（90/100分）</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>海康威视是全球安防+AIoT绝对龙头，FY2025年主动收缩低质业务、聚焦高质量增长，呈现"增利不增收"的良性格局——营收持平但净利润+18.52%、毛利率提升、现金流翻倍。2026Q1营收恢复双位数增长（+11.78%），净利润+36.42%，拐点已确认。创新业务（机器人、汽车电子、存储、微影）占比27.51%且7个已盈利，AI大模型（观澜）产品加速放量。<br><br>
+  <strong>核心优势：</strong>① 全球安防市占率第一（~38.7%），品牌+渠道+技术全链条壁垒；② 央企背景（中国电科），财务极度稳健；③ 创新业务高速增长，第二曲线成型；④ CFO 253亿现金流充沛，分红率74.25%慷慨回馈股东。<br><br>
+  <strong>核心风险：</strong>① 美国实体清单/地缘政治持续压制海外发达国家市场；② SMBG（渠道业务）2025年下滑26.35%，修复仍需时间；③ 营收增长中枢偏低（主动收缩+体量庞大），2026年预计高个位数增长；④ PE 22x虽合理偏低，但缺乏短期爆发催化。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>925.08 亿</td><td>924.96 亿</td><td>+0.01%</td><td class="neutral">⚠ 持平（主动收缩低质业务）</td></tr>
+  <tr><td>归母净利润</td><td><strong>141.95 亿</strong></td><td>119.77 亿</td><td><strong>+18.52%</strong></td><td class="good">✅ 高增长</td></tr>
+  <tr><td>扣非净利润</td><td><strong>137.03 亿</strong></td><td>118.15 亿</td><td><strong>+15.98%</strong></td><td class="good">✅ 高质量增长</td></tr>
+  <tr><td>毛利率</td><td><strong>45.88%</strong></td><td>43.83%</td><td>+2.05pct</td><td class="good">✅ 持续提升</td></tr>
+  <tr><td>归母净利率</td><td><strong>15.34%</strong></td><td>12.95%</td><td>+2.39pct</td><td class="good">✅ 改善</td></tr>
+  <tr><td>期间费用率</td><td><strong>~28.72%</strong></td><td>~29.08%</td><td>-0.36pct</td><td class="good">✅ 控费见效</td></tr>
+  <tr><td>研发费用率</td><td><strong>12.70%</strong></td><td>12.83%</td><td>-0.13pct</td><td class="neutral">持续高研发投入</td></tr>
+  <tr><td>2026Q1 营收</td><td><strong>207.15 亿</strong></td><td>185.32 亿</td><td>+11.78%</td><td class="good">✅ 重回双位数增长</td></tr>
+  <tr><td>2026Q1 净利润</td><td><strong>27.81 亿</strong></td><td>20.39 亿</td><td><strong>+36.42%</strong></td><td class="good">✅ 快速增长</td></tr>
+  <tr><td>2026Q1 毛利率</td><td><strong>49.09%</strong></td><td>44.93%</td><td>+4.16pct</td><td class="good">✅ 大幅提升</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>FY2025营收几乎零增长（+0.01%）但利润大增18.52%，毛利率同比提升2.05pct至45.88%，体现了公司主动放弃低毛利、低回款项目、聚焦高质量增长的经营策略。2026Q1营收恢复双位数增长（+11.78%），毛利率进一步提升至49.09%，净利润增速达36.42%，连续五个季度逐季提速，盈利拐点确认。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>2026Q1</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td><strong>465.08 亿</strong></td><td><strong>418.06 亿</strong></td><td class="good">✅ 极其充裕</td></tr>
+  <tr><td>应收账款</td><td><strong>298.12 亿</strong></td><td><strong>273.95 亿</strong></td><td class="neutral">占比仍高但环比下降</td></tr>
+  <tr><td>存货</td><td><strong>204.72 亿</strong></td><td><strong>243.82 亿</strong></td><td class="neutral">备货加大，应对原材料涨价</td></tr>
+  <tr><td>短期借款</td><td><strong>26.86 亿</strong></td><td><strong>21.19 亿</strong></td><td class="good">✅ 持续压降</td></tr>
+  <tr><td>长期借款</td><td><strong>~0 亿</strong></td><td><strong>~0 亿</strong></td><td class="good">✅ 几乎无长期有息负债</td></tr>
+  <tr><td>资产负债率</td><td><strong>33.92%</strong></td><td><strong>30.26%</strong></td><td class="good">✅ 极低</td></tr>
+  <tr><td>归母净资产</td><td><strong>833.50 亿</strong></td><td><strong>860.65 亿</strong></td><td class="good">✅ 持续增厚</td></tr>
+  <tr><td>总资产</td><td><strong>1,380.50 亿</strong></td><td><strong>1,353.12 亿</strong></td><td class="neutral">微降（应收账款压降）</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>海康威视的资产负债表是A股最健康的之一。货币资金418亿远超全部有息负债（短期借款仅21亿，长期借款几乎为零），资产负债率仅30.26%。应收账款298亿仍偏高（应收账款/利润比~192%），但2025年全年应收账款下降77.7亿（-19.1%），回款管理显著改善。存货增加至244亿主要是应对存储等原材料涨价的主动备货。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>253.39 亿</strong></td><td>132.59 亿</td><td class="good">✅ 暴增+91.04%</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><strong>-7.52 亿</strong></td><td>-13.50 亿</td><td class="good">✅ 资本开支收窄44%</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td><strong>-195.29 亿</strong></td><td>-55.08 亿</td><td class="neutral">大额分红+回购</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>1.78</strong></td><td>1.11</td><td class="good">✅ 含金量极高</td></tr>
+  <tr><td>自由现金流（FCF）</td><td><strong>~241 亿</strong></td><td>~119 亿</td><td class="good">✅ 极其充裕</td></tr>
+  <tr><td>年度分红</td><td><strong>每10股派7.5元（共105.40亿）</strong></td><td>—</td><td class="good">✅ 分红率74.25%</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>CFO 253.39亿同比暴增91%——这是海康2025年报最亮眼的数据。公司加强应收账款全流程管理，销售回款大幅改善。CFO/净利润达1.78，利润含金量极高。扣除资本开支后FCF约241亿，公司完全不依赖外部融资。筹资现金流大额为负主要因105亿高额分红+20-25亿回购。这种现金流水平在A股科技公司中极为罕见。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>17.31%</strong></td><td>> 15% 优秀 / > 10% 及格</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>毛利率</td><td><strong>45.88%</strong></td><td>稳定或提升</td><td class="good">✅ 提升2.05pct</td></tr>
+  <tr><td>净利率</td><td><strong>15.34%</strong></td><td>> 10%</td><td class="good">✅ 良好</td></tr>
+  <tr><td>营收增长率</td><td><strong>+0.01%</strong></td><td>> 10%</td><td class="bad">❌ 持平（主动收缩所致）</td></tr>
+  <tr><td>利润增长率</td><td><strong>+18.52%</strong></td><td>正增长</td><td class="good">✅ 高增长</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>1.78</strong></td><td>> 1</td><td class="good">✅ 含金量极高</td></tr>
+  <tr><td>资产负债率</td><td><strong>33.92%</strong></td><td>制造业<60%</td><td class="good">✅ 极低</td></tr>
+  <tr><td>分红率</td><td><strong>74.25%</strong></td><td>持续高分红</td><td class="good">✅ 慷慨</td></tr>
+</table>
+
+<h3>3.2 分业务分析（FY2025）</h3>
+<table>
+  <tr><th>业务板块</th><th>营收（亿）</th><th>占比</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td>主业产品及服务</td><td>650.12</td><td>70.28%</td><td>-4.34%</td><td><strong>49.07%</strong></td><td class="neutral">⚠ 收缩低质业务</td></tr>
+  <tr><td style="font-size:12px">其中：PBG（政府）</td><td>129.12</td><td>13.96%</td><td>-4.12%</td><td>—</td><td class="neutral">政府预算收紧</td></tr>
+  <tr><td style="font-size:12px">其中：EBG（企业）</td><td>170.63</td><td>18.44%</td><td>-3.33%</td><td>—</td><td class="neutral">经济放缓影响</td></tr>
+  <tr><td style="font-size:12px">其中：SMBG（渠道）</td><td>88.17</td><td>9.53%</td><td><strong>-26.35%</strong></td><td>—</td><td class="bad">❌ 渠道去库存</td></tr>
+  <tr><td>境外主业</td><td>272.17</td><td>29.42%</td><td>+4.73%</td><td>~48%</td><td class="good">✅ 稳健增长</td></tr>
+  <tr><td>创新业务</td><td><strong>254.46</strong></td><td><strong>27.51%</strong></td><td><strong>+13.17%</strong></td><td>~38-42%</td><td class="good">✅ 第二增长曲线</td></tr>
+  <tr><td style="font-size:12px">其中：汽车电子</td><td>52.89</td><td>5.72%</td><td><strong>+34.95%</strong></td><td>—</td><td class="good">✅ 爆发增长</td></tr>
+  <tr><td style="font-size:12px">其中：机器人</td><td>64.52</td><td>6.97%</td><td>+8.82%</td><td>—</td><td class="good">✅ 国内龙头</td></tr>
+  <tr><td style="font-size:12px">其中：智能家居</td><td>56.84</td><td>6.14%</td><td>+9.51%</td><td>—</td><td class="good">✅ 萤石网络</td></tr>
+  <tr><td style="font-size:12px">其中：热成像</td><td>44.43</td><td>4.80%</td><td>+6.01%</td><td>—</td><td class="good">✅ 国内领先</td></tr>
+  <tr><td style="font-size:12px">其中：存储业务</td><td>23.80</td><td>2.57%</td><td>—</td><td>—</td><td class="good">✅ 高速发展中</td></tr>
+  <tr><td>建造工程</td><td>20.49</td><td>2.21%</td><td>+0.05%</td><td>28.70%</td><td class="neutral">持平</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>海康威视正处于"传统安防收缩+创新业务爆发"的结构性转型期。境内主业主动清理低质项目，PBG/EBG/SMBG均下滑，但2026Q1三个BG已全部转正。境外主业+4.73%，发展中国家增长较快。创新业务是最强看点——8个创新业务中7个已盈利，汽车电子+34.95%爆发增长，海康机器人国内机器视觉+移动机器人双龙头。创新业务占比27.51%，目标2028年突破40%。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="neutral">🟡 中等</td><td>营收FY2025仅+0.01%，增长停滞</td><td>主动收缩低质业务，但需跟踪2026年恢复节奏</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>SMBG渠道业务下滑26.35%</td><td>渠道去库存影响，2026Q1已修复</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>应收账款298亿，占利润比~192%</td><td>持续压降中（-19.1%），但绝对额仍高</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>美国实体清单+地缘政治风险</td><td>发达国家市场受限，转向发展中国家对冲</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>存货244亿，原材料备货加大</td><td>应对存储涨价，需关注跌价风险</td></tr>
+  <tr><td class="good">🟢 正面</td><td>ROE 17.31%优秀</td><td>资本回报率高</td></tr>
+  <tr><td class="good">🟢 正面</td><td>CFO 253亿+91%，含金量极高</td><td>回款管理大幅改善</td></tr>
+  <tr><td class="good">🟢 正面</td><td>毛利率45.88%持续提升</td><td>产品结构优化+AI产品落地推高毛利</td></tr>
+  <tr><td class="good">🟢 正面</td><td>创新业务+13.17%，占比27.51%</td><td>第二曲线成型</td></tr>
+  <tr><td class="good">🟢 正面</td><td>分红率74.25%，股息率~2.1%</td><td>上市以来累计分红753亿</td></tr>
+</table>
+
+<div class="verdict verdict-ok">✅ L2综合判定：优秀（ROE 17.31%，盈利质量高，财务极度健康）</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>股价（2026.7.10）</td><td><strong>~35.36 元</strong></td><td>52周范围27.63-37.09元</td></tr>
+  <tr><td>总市值</td><td><strong>~3,241 亿</strong></td><td>总股本91.65亿股</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>~21.7x</strong></td><td>基于近4个季度EPS ~1.63元</td></tr>
+  <tr><td>PE（2026E）</td><td><strong>~19x</strong></td><td>基于券商一致预期EPS ~1.82-1.75元</td></tr>
+  <tr><td>PB</td><td><strong>~4.09x</strong></td><td>基于每股净资产9.09元</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~3.5x</strong></td><td>市销率合理</td></tr>
+  <tr><td>PCF</td><td><strong>~12.8x</strong></td><td>基于CFO 253亿</td></tr>
+  <tr><td>股息率</td><td><strong>~2.12%</strong></td><td>基于每股分红0.75元+0.30元中期</td></tr>
+</table>
+
+<h3>4.2 PE Band估值区间</h3>
+<p style="font-size:13px;color:#666;">ROE 17.31% → 合理PE参考区间：15-25x | 2026E一致预期EPS ≈ 1.75元</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs现价35.36元</th></tr>
+  <tr><td>悲观</td><td>15x</td><td>26.3 元</td><td class="bad">-26%</td></tr>
+  <tr><td>保守</td><td>18x</td><td>31.5 元</td><td class="bad">-11%</td></tr>
+  <tr><td><strong>当前价</strong></td><td><strong>~22x</strong></td><td><strong>35.4 元</strong></td><td><strong>—</strong></td></tr>
+  <tr><td>中性（中枢）</td><td>25x</td><td>43.8 元</td><td class="good">+24%</td></tr>
+  <tr><td>乐观（成长溢价）</td><td>28x</td><td>49.0 元</td><td class="good">+39%</td></tr>
+  <tr><td>券商目标均价</td><td>~24x</td><td>~42 元</td><td class="good">+19%</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>PE估值分析：</strong>当前PE 22x处于近5年22%分位，低于中枢24-26x，属于合理偏低区间。公司ROE 17.31%支撑15-25x的合理PE范围，当前估值处于中枢位。若市场重新按"成长型AIoT龙头"而非"安防硬件制造商"定价，PE中枢有望从22x修复至25-28x，对应约39-49%的上行空间。券商目标均价~42元（中信建投、中国银河、国联民生等）。
+</div>
+
+<h3>4.3 历史PE区间</h3>
+<table>
+  <tr><th>指标</th><th>数值</th></tr>
+  <tr><td>PE（TTM）近5年最大值</td><td>~45x（2021年高点）</td></tr>
+  <tr><td>PE（TTM）80%分位</td><td>~32x</td></tr>
+  <tr><td>PE（TTM）50%分位（中值）</td><td>~25x</td></tr>
+  <tr><td>PE（TTM）20%分位</td><td>~21x</td></tr>
+  <tr><td>PE（TTM）近5年最小值</td><td>~18x（2022年低点）</td></tr>
+  <tr><td><strong>当前PE（TTM）</strong></td><td class="neutral"><strong>~22x（20%分位附近）</strong></td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值总结：</strong>海康威视当前PE 22x处于近5年偏低分位（~22%），PEG约1.2（以2026E利润增速~13%计），估值合理偏低。公司ROE 17.31%在A股科技公司中属优秀水平，CFO/净利1.78的盈利含金量极高，叠加3.5%左右的综合股息率，具备了"类核心资产"的配置价值。但需注意——市场对海康的传统定价逻辑是"安防硬件制造商"（20x PE），其向"AIoT平台型公司"的估值重塑需要持续的业绩验证。2026Q1净利润+36.42%的强劲表现是积极信号，但全年能否维持高增速仍待观察。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>归母净利率</td><td>~14.9%</td><td>~12.95%</td><td><strong>15.34%</strong></td><td class="good">⬆ 回升</td></tr>
+  <tr><td>资产周转率（次）</td><td>0.67</td><td>0.68</td><td><strong>0.67</strong></td><td class="neutral">➡ 持平</td></tr>
+  <tr><td>权益乘数</td><td>1.63</td><td>1.65</td><td><strong>1.66</strong></td><td class="neutral">➡ 极低杠杆</td></tr>
+  <tr><td><strong>ROE</strong></td><td><strong>~16.3%</strong></td><td><strong>~14.5%</strong></td><td><strong>17.31%</strong></td><td class="good">⬆ 回升至优秀</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>10.0%</td><td>8.8%</td><td><strong>10.3%</strong></td><td class="good">⬆ 回升</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>6.3pct</td><td>5.7pct</td><td><strong>7.0pct</strong></td><td class="neutral">杠杆极低，ROE靠利润率驱动</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：高利润型——典型的"技术+品牌"驱动</strong><br>
+  海康威视15.34%的净利率是ROE的核心驱动，周转率0.67中等，权益乘数1.66极低（几乎无杠杆）。去掉杠杆后ROA仍达10.3%，说明公司是靠产品竞争力和技术壁垒赚钱，而非靠负债放大。<br><br>
+  <strong>值得关注的变化：</strong>净利率从2024年12.95%提升至15.34%（+2.39pct），是ROE回升的核心。毛利率提升+控费共同推动。周转率基本持平（主动收缩低质业务压低了营收，但资产端也同步优化）。
+</div>
+
+<h3>5.2 分业务杜邦贡献</h3>
+<table>
+  <tr><th>业务板块</th><th>毛利率</th><th>趋势</th><th>对ROE影响</th></tr>
+  <tr><td>主业产品及服务</td><td>49.07%</td><td class="good">⬆ +3.31pct</td><td class="good">正向核心</td></tr>
+  <tr><td>境外主业</td><td>~48%</td><td class="good">稳定高位</td><td class="good">利润重要来源</td></tr>
+  <tr><td>创新业务</td><td>~38-42%</td><td class="good">⬆ 占比提升</td><td class="good">长期增量</td></tr>
+  <tr><td>建造工程</td><td>28.70%</td><td class="good">⬆ +7.98pct</td><td class="neutral">占比小</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>核心结论：</strong><br>
+  ① ROE 17.31%靠"高利润率+中等周转+极低杠杆"实现，驱动健康可持续；<br>
+  ② 去掉杠杆后ROA 10.3%，在A股科技公司中属顶尖水平——每1元资产赚0.10元净利润；<br>
+  ③ 利润率提升是主引擎——从12.95%→15.34%，毛利率同比+2.05pct、费用率-0.36pct；<br>
+  ④ 与同行（大华股份ROE 10.42%、ROA ~5.5%）相比，海康的资产回报效率明显领先；<br>
+  ⑤ 未来ROE提升关键：营收增速恢复至双位数+毛利率继续改善+周转率提升。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与特征（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：非周期股（成长型）——AIoT+安防龙头</strong><br>
+  <strong>判断依据：</strong>海康威视所处的安防+AIoT行业受益于智慧城市、数字化转型、AI大模型等长期趋势。全球安防市场2029年预计达5,340亿美元（CAGR 6.8%），国内安防双寡头格局稳固（海康+大华市占率>70%）。公司从"安防硬件制造商"向"AIoT平台型公司"转型，创新业务占比已达27.51%，AI大模型产品加速落地。虽然传统安防受宏观经济影响，但公司整体需求偏刚性（安全是刚需），不属于纯周期行业。<br><br>
+  <strong>成长属性：</strong>非周期中的成长型——FY2025主动收缩导致营收持平，但利润+18.52%、2026Q1营收+11.78%。创新业务+13.17%持续高增，AI大模型产品逐季加速放量。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th></tr>
+  <tr><td>市场格局</td><td><strong>高度集中（双寡头）</strong>——海康全球市占率~38.7%第一，大华第二，两家合计全球~55%，国内>70%。行业竞争格局极优。</td></tr>
+  <tr><td>技术壁垒</td><td><strong>极高</strong>——研发投入98.5亿（占营收12.7%），2.8万研发人员，超30,000种产品型号。观澜大模型覆盖可见光/X光/毫米波/红外多模态感知。</td></tr>
+  <tr><td>品牌+渠道壁垒</td><td><strong>极强</strong>——全球180+国家布局，国内200+办事处覆盖100%地级市。连续14年全球第一，品牌认知度和渠道覆盖碾压竞争对手。</td></tr>
+  <tr><td>央企背景壁垒</td><td><strong>特有优势</strong>——实控人中国电子科技集团（CETC），在信创、公共安全、智慧城市等领域享有政策倾斜。</td></tr>
+  <tr><td>客户粘性</td><td><strong>极高</strong>——覆盖90+子行业，客户替换成本极高（硬件+软件+平台+服务全链条锁定）。</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  <strong>阶段：成长期中后段——传统安防（成熟）+ 创新业务+AI（高成长期）</strong><br>
+  传统安防业务进入成熟期（行业增速<10%），但海康凭借龙头地位仍能维持稳定利润。真正的高成长来自：① 创新业务（机器人、汽车电子、存储、微影）——处于爆发成长期，2025年+13.17%，2026年预计加速；② AI大模型产品——处于导入期向成长期过渡，数百款产品已发布，收入逐季加速。<br><br>
+  <strong>投资策略重点：</strong>关注创新业务占比提升速度、AI大模型产品收入规模、SMBG修复进度、海外发展中国家市场拓展。
+</div>
+
+<h3>6.4 同行对比分析</h3>
+<table>
+  <tr><th>指标</th><th>海康威视</th><th>大华股份</th><th>行业/中位</th><th>评价</th></tr>
+  <tr><td>营收规模</td><td><strong>925 亿</strong></td><td>327 亿</td><td>—</td><td class="good">✅ 行业绝对龙头，2.8x大华</td></tr>
+  <tr><td>ROE</td><td><strong>17.31%</strong></td><td>10.42%</td><td>~8%</td><td class="good">✅ 显著领先</td></tr>
+  <tr><td>毛利率</td><td><strong>45.88%</strong></td><td>40.62%</td><td>~35%</td><td class="good">✅ 领先5pct+</td></tr>
+  <tr><td>净利率</td><td><strong>15.34%</strong></td><td>~11.78%</td><td>~8%</td><td class="good">✅ 领先明显</td></tr>
+  <tr><td>负债率</td><td><strong>33.92%</strong></td><td>24.68%</td><td>~40%</td><td class="good">✅ 双低，财务稳健</td></tr>
+  <tr><td>营收增速</td><td><strong>+0.01%</strong></td><td>+1.75%</td><td>~5%</td><td class="neutral">⚠ 均放缓</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>~22x</strong></td><td>~16x</td><td>~30x</td><td class="neutral">海康估值溢价合理</td></tr>
+  <tr><td>PB</td><td><strong>~4.09x</strong></td><td>~1.67x</td><td>~3x</td><td class="neutral">品牌+龙头溢价</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>同行对比结论：</strong>海康威视在ROE、毛利率、净利率、营收规模等核心指标上全面领先大华股份，龙头溢价合理。与A股计算机设备行业相比，海康的ROE（17.31%）远高于行业中位数（~8%），净利率（15.34%）也遥遥领先。估值方面，PE 22x给海康是合理的龙头溢价——略高于大华（16x），但远低于纯AI/软件公司（30-50x），反映市场仍将其按"硬件制造"而非"AI平台"定价。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>成长型（AIoT+安防）</td><td>PE + PEG</td><td>PS（创新业务占比提升后）、毛利率趋势、CFO质量</td><td class="good">✅ 匹配——PE 22x + PEG 1.2，估值合理偏低</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值方法总结：</strong>海康威视当前仍以PE为主要估值框架（22x，低于历史中枢25x），PEG约1.2。若创新业务占比持续提升（目标2028年>40%），市场可能逐步切换分部估值法——传统安防给15-20x PE，AI+创新业务给25-35x PE。按分部估值算（传统~2000亿+创新~1500亿），合理市值约3,500-3,950亿（对应股价38-43元），较当前有约10-22%上行空间。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战分析（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>非周期（成长型），AIoT+安防双寡头龙头，技术+品牌+渠道壁垒极高<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 17.31%优秀，高利润型杜邦，CFO/净利1.78含金量极高，财务极健康<br>
+  <strong>Step 3 - 估值判断：</strong>PE 22x处于近5年22%分位偏低，PEG 1.2，合理偏低区间<br>
+  <strong>Step 4 - 风险排查：</strong>FY2025营收持平（主动收缩）、SMBG下滑26%、应收账款仍偏高、地缘政治风险<br>
+  <strong>Step 5 - 结论：</strong>✅ 好公司（ROE>15%+毛利率提升+CFO/净利>1），⚠ 好价格（估值合理偏低但非低估到极端）<br>
+  <strong>Step 6 - 跟踪：</strong>关键指标：营收增速恢复、SMBG修复、创新业务占比、AI产品放量。卖出信号：毛利率趋势逆转、应收账款恶化、地缘政治重大升级
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>安防+AIoT需求刚性强，双寡头格局稳定，AI大模型打开新空间</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓</td><td>ROE 17.31%>15%，毛利率45.88%提升，CFO/净利1.78远>1</td></tr>
+  <tr><td>③ 好价格</td><td class="neutral">⚠</td><td>PE 22x处于近5年22%分位合理偏低，但尚未到极度低估水平</td></tr>
+</table>
+
+<h3>7.3 风险评估</h3>
+
+<h4>a. 三个陷阱排查</h4>
+<div class="danger-box">
+  <strong>陷阱排查结果：</strong><br><br>
+  ☐ <strong>价值陷阱（低PE+低增长+高负债）</strong> → PE 22x（合理非极低），FY2025营收+0.01%（低增长但主动收缩），负债率34%极低 → <b>❌ 未命中</b><br><br>
+  ☐ <strong>周期陷阱（低PE+周期顶点）</strong> → 非周期股，安防为刚需行业 → <b>❌ 未命中</b><br><br>
+  ☐ <strong>烧钱陷阱（高PE+高增速+CFO为负）</strong> → PE 22x合理非高，CFO 253亿极其充裕 → <b>❌ 未命中</b>
+</div>
+<p style="font-size:13px;color:#666;margin-top:4px">✅ 三个陷阱均未命中，公司基本面健康。</p>
+
+<h4>b. 管理层与治理风险</h4>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力与履历</td><td>好</td><td>董事长陈宗年（CETC背景），总经理胡扬忠（内部成长，行业经验超20年），管理层稳定</td></tr>
+  <tr><td>股权结构与利益一致性</td><td>强</td><td>中电海康集团37.28%+中电科投控2.71%+52所1.97%=合计41.96%国有控股权，利益高度一致</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td>无</td><td>年报标准无保留意见，无重大违规、监管处罚或诉讼历史</td></tr>
+  <tr><td>资本配置记录</td><td>合理</td><td>高分红（74.25%）、回购20-25亿注销、创新业务跟投机制高效</td></tr>
+  <tr><td>管理层增减持记录</td><td>无</td><td>近一年未见董监高大额减持，管理层持股稳定</td></tr>
+  <tr><td>CEO交接/关键人员变动</td><td>无风险</td><td>管理层稳定，无重大变动</td></tr>
+</table>
+
+<h4>c. 盈利可持续性</h4>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是靠价？</td><td>价驱动+结构优化</td><td>FY2025毛利率提升主因删减低毛利产品线+AI产品落地推高均价</td></tr>
+  <tr><td>涨价能否持续？</td><td>能</td><td>龙头定价权强，AI大模型产品溢价明显（"AI+"产品毛利率提升不止1-2pct）</td></tr>
+  <tr><td>非经常性利润占比</td><td>低</td><td>扣非净利润137.03亿/归母141.95亿=96.5%，利润质量极高</td></tr>
+  <tr><td>大客户/大项目集中度</td><td>分散</td><td>覆盖180+国家、90+子行业，单一客户依赖度极低</td></tr>
+  <tr><td>政策/监管依赖度</td><td>中</td><td>智慧城市/公共安全受政府预算影响，但AI+企业数字化转型需求增长对冲</td></tr>
+</table>
+
+<h4>d. 关键变量敏感性</h4>
+<div class="summary-box">
+  <strong>变量1: 国内主业营收恢复速度</strong><br>
+  &nbsp;&nbsp;乐观：2026年全年营收+10%+，PBG/EBG/SMBG全面恢复，EPS 1.90元<br>
+  &nbsp;&nbsp;中性：2026年营收+8-9%，三个BG基本持平微增，EPS 1.75元<br>
+  &nbsp;&nbsp;悲观：SMBG修复不及预期+PBG继续下滑，营收+3-5%，EPS 1.55元<br><br>
+  <strong>变量2: AI大模型产品放量速度</strong><br>
+  &nbsp;&nbsp;乐观：AI产品收入占比超15%，推动毛利率升至48%+，EPS 2.00元<br>
+  &nbsp;&nbsp;中性：AI产品稳步放量，毛利率维持46%，EPS 1.75元<br>
+  &nbsp;&nbsp;悲观：AI产品商业化低于预期，毛利率回落至44%，EPS 1.50元<br><br>
+  <strong>变量3: 地缘政治/关税影响</strong><br>
+  &nbsp;&nbsp;乐观：中美关系缓和，海外业务恢复增长+10%，EPS 1.85元<br>
+  &nbsp;&nbsp;中性：维持现状，海外+5-7%增长，发展中国家对冲发达国家下降，EPS 1.75元<br>
+  &nbsp;&nbsp;悲观：关税大幅升级+更多国家限制，海外业务承压，EPS 1.45元
+</div>
+
+<h3>7.4 前景展望</h3>
+
+<h4>a. 未来1-3年核心驱动</h4>
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. AI大模型产品规模化落地——2025年已发布数百款AI产品，收入逐季加速，有望带动毛利率中枢持续上移<br>
+  2. 创新业务爆发——海康机器人、汽车电子、存储、微影等7个创新业务已盈利，2026年有望加速增长，占比持续提升<br>
+  3. 海外发展中国家拓展——东南亚、拉美、中东持续高增长，海外非经销收入占比已超三成，长期空间大<br>
+  4. 高分红+回购——74.25%分红率+20-25亿回购注销，为股东提供稳定回报<br><br>
+  <strong>负向拖累：</strong><br>
+  1. 国内政府财政收紧压制PBG增长，智慧城市项目落地节奏不确定<br>
+  2. 美国实体清单+FCC禁令升级风险，发达国家市场持续受限<br>
+  3. 存储等原材料涨价可能压缩短期毛利率（但已通过提价对冲）
+</div>
+
+<h4>b. 三情景简表</h4>
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>EPS预估</th><th>PE区间</th><th>预期回报</th></tr>
+  <tr><td>乐观</td><td>营收+10%+AI放量+毛利率48%+海外扩张加速</td><td>1.90-2.00元</td><td>25-28x（47-56元）</td><td>+33%至+58%</td></tr>
+  <tr><td>中性</td><td>营收+8-9%+AI稳步放量+毛利率46%</td><td>1.70-1.80元</td><td>22-25x（37-45元）</td><td>+5%至+27%</td></tr>
+  <tr><td>悲观</td><td>营收+3-5%+AI低于预期+地缘政治恶化</td><td>1.45-1.55元</td><td>18-20x（26-31元）</td><td>-12%至-26%</td></tr>
+</table>
+<p style="font-size:13px;color:#666;margin-bottom:16px">概率判断：中性55%，乐观25%，悲观20%。券商一致预期（中信建投、中国银河、国联民生）2026E EPS 1.75-1.82元。</p>
+
+<h3>7.5 资金面信号</h3>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>北向资金持股变动</td><td class="neutral">减持</td><td>北向持股比例从历史高位（~10%）降至较低水平（<1%），受实体清单影响外资持续流出</td></tr>
+  <tr><td>机构持仓变动</td><td class="neutral">减仓</td><td>2026Q1机构202家（持仓57.03%），较2025年报1120家（61.05%）下降，主因基金数量季节性波动</td></tr>
+  <tr><td>融资余额变动</td><td class="neutral">稳定</td><td>融资余额维持稳定，杠杆资金情绪中性</td></tr>
+  <tr><td>大股东增减持</td><td class="good">无减持</td><td>中电海康等国有股东持股稳定，龚虹嘉未进一步减持（已质押部分股份）</td></tr>
+  <tr><td>股东户数变化</td><td class="good">集中</td><td>股东户数从40.44万（2025年报）降至34.87万（2026Q1），减少13.74%，筹码趋于集中</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>资金面判断：</strong>北向资金因实体清单因素持续流出是主要拖累，但国内机构持仓相对稳定。股东户数大幅减少（-13.74%）说明筹码在向机构和大户集中。高毅资产（冯柳）虽在2026Q1减持5700万股至2亿股，但仍是第四大股东，持仓市值超60亿。整体资金面中性偏正面——国内资金在接手外资抛售的筹码。
+</div>
+
+<h3>7.6 讨论问题（阅读引导）</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——卖摄像头+AI解决方案给政府和企业的安防/数字化需求，赚技术+品牌+渠道壁垒的钱，同时用创新业务（机器人/汽车电子/存储）开辟新增长曲线。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——营收什么时候恢复两位数增长？FY2025营收零增长到底是真的主动收缩还是需求真的开始萎缩？2026Q1 +11.78%是否可持续？<br>
+  3. 如果现在买入，期待的回报来源是什么？——① 利润稳健增长（2026E +13%）；② 估值修复（PE从22x回到26x中枢）；③ 高分红（~2.1%股息率）。核心前提：营收恢复中高个位数增长+AI产品放量验证。<br>
+  4. 什么情况下你会坚决卖出？——毛利率持续下降 / 营收增速持续低于5%（扣非主动收缩影响） / 地缘政治重大升级（如全面脱钩） / 创新业务增速显著放缓。
+</div>
+
+</div></div>
+
+<div class="footer">
+   免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+   数据来源：海康威视2025年年报、2026Q1季报、券商研报（中信建投/中国银河/国联民生）、东方财富、盈慢网
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>
