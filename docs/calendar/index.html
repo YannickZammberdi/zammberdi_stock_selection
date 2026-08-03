@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>持仓股财报日历 · 股票研究笔记</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#333}
+  .wrap{max-width:860px;margin:0 auto;padding:32px 16px}
+  .top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;flex-wrap:wrap;gap:8px}
+  .top h1{font-size:22px;font-weight:700}
+  .top a{font-size:13px;color:#888;text-decoration:none}
+  .top a:hover{color:#333}
+  .date-line{color:#888;font-size:13px;margin-bottom:24px}
+  .section{margin-bottom:28px}
+  .section h2{font-size:16px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .section h2 .bar{width:4px;height:16px;background:#1a73e8;border-radius:2px}
+  .summary{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+  .stat{background:#fff;border:1px solid #e8e8e8;border-radius:10px;padding:12px 18px;flex:1;min-width:120px}
+  .stat .num{font-size:24px;font-weight:700;color:#1a73e8}
+  .stat .lab{font-size:12px;color:#888;margin-top:2px}
+  table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;border:1px solid #eee}
+  th{background:#f8f8f8;padding:10px 12px;font-size:12px;font-weight:600;color:#666;text-align:left;border-bottom:1px solid #eee;white-space:nowrap}
+  td{padding:10px 12px;font-size:13px;border-bottom:1px solid #f5f5f5}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:#fafafa}
+  .rect{display:inline-block;min-width:44px;text-align:center;font-weight:600;padding:2px 6px;border-radius:6px}
+  .owed{border:1px solid #1a73e8;color:#1a73e8;background:#e8f0fe}
+  .soon{background:#1a73e8;color:#fff}
+  .done{background:#e6f4ea;color:#1e8e3e;border:1px solid #1e8e3e}
+  .tag{font-size:11px;padding:1px 8px;border-radius:10px;white-space:nowrap}
+  .tag.jindhu{background:#e6f4ea;color:#1e8e3e}
+  .tag.jijiang{background:#fef7e0;color:#b06000}
+  .tag.wait{background:#f0f0f0;color:#888}
+  .code{color:#999;font-size:12px}
+  .memo{color:#555}
+  .footer{text-align:center;font-size:12px;color:#ccc;margin-top:36px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <h1>📅 持仓股财报日历</h1>
+    <a href="../index.html">← 返回首页</a>
+  </div>
+  <div class="date-line">更新日期：2026-08-03 · 报告期：2026年半年报</div>
+
+  <div class="summary">
+    <div class="stat"><div class="num">7</div><div class="lab">持仓股票</div></div>
+    <div class="stat"><div class="num" style="color:#1e8e3e">1</div><div class="lab">已披露</div></div>
+    <div class="stat"><div class="num" style="color:#b06000">6</div><div class="lab">待披露</div></div>
+    <div class="stat"><div class="num">6</div><div class="lab">8月披露</div></div>
+  </div>
+
+  <div class="section">
+    <h2><span class="bar"></span>2026 半年报披露一览</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>股票</th>
+          <th>代码</th>
+          <th>披露日期</th>
+          <th>状态</th>
+          <th>业绩提示</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>东鹏饮料</strong></td>
+          <td class="code">605499</td>
+          <td><span class="rect done">07-31</span></td>
+          <td><span class="tag jindhu">已披露</span></td>
+          <td class="memo">营收124.26亿(+15.8%)，净利28.67亿，拟10派30</td>
+        </tr>
+        <tr>
+          <td><strong>药明康德</strong></td>
+          <td class="code">603259</td>
+          <td><span class="rect soon">08-04</span></td>
+          <td><span class="tag jijia">即将披露</span></td>
+          <td class="memo">CXO龙头，Q1营收124.36亿(+28.8%)</td>
+        </tr>
+        <tr>
+          <td><strong>新和成</strong></td>
+          <td class="code">002001</td>
+          <td><span class="rect rec">08-20</span></td>
+          <td><span class="tag wait">待披露</span></td>
+          <td class="memo">实控人提议中期分红10派2</td>
+        </tr>
+        <tr>
+          <td><strong>横店东磁</strong></td>
+          <td class="code">002056</td>
+          <td><span class="rect rec">08-20</span></td>
+          <td><span class="tag wait">待披露</span></td>
+          <td class="memo">光伏+磁材+锂电，Q1净利3.86亿(-15.8%)</td>
+        </tr>
+        <tr>
+          <td><strong>福斯特</strong></td>
+          <td class="code">603806</td>
+          <td><span class="rect rec">08-20</span></td>
+          <td><span class="tag wait">待披露</span></td>
+          <td class="memo">预增75%，净利约8.69亿</td>
+        </tr>
+        <tr>
+          <td><strong>皖维高新</strong></td>
+          <td class="code">600063</td>
+          <td><span class="rect rec">08-21</span></td>
+          <td><span class="tag wait">待披露</span></td>
+          <td class="memo">预增17~29%，净利3.0~3.3亿</td>
+        </tr>
+        <tr>
+          <td><strong>三友化工</strong></td>
+          <td class="code">600409</td>
+          <td><span class="rect rec">08-26</span></td>
+          <td><span class="tag wait">待披露</span></td>
+          <td class="memo">预增129%，净利约1.68亿</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2><span class="bar"></span>即将到来的披露（按时间）</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>日期</th>
+          <th>股票</th>
+          <th>距今天数</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="rect soon">08-04</span></td><td>药明康德 603259</td><td class="memo">1 天</td></tr>
+        <tr><td><span class="rect rec">08-20</span></td><td>新和成 002001 / 横店东磁 002056 / 福斯特 603806</td><td class="memo">17 天</td></tr>
+        <tr><td><span class="rect rec">08-21</span></td><td>皖维高新 600063</td><td class="memo">18 天</td></tr>
+        <tr><td><span class="rect rec">08-26</span></td><td>三友化工 600409</td><td class="memo">23 天</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer">数据来源：沪深交易所预约披露计划及公司公告 · 仅供个人研究参考，不构成投资建议</div>
+</div>
+</body>
+</html>

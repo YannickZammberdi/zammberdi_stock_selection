@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>天孚通信(300394) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>天孚通信（300394）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026-08-03 | 数据来源：FY2025 年报 + 2026Q1 季报 + 2026H1 业绩预告 + 券商研报</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>苏州天孚光通信股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>300394.SZ（创业板）</td></tr>
+  <tr><td>所属行业</td><td>通信-通信设备-光通信器件（无源光器件 + 有源光器件/光引擎）</td></tr>
+  <tr><td>行业地位</td><td>全球光器件龙头：2025年全球市场份额 11.7%（第一名），光模块"易中天"组合之一</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>51.63 亿（+58.79%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>20.17 亿（+50.15%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>~18.7 亿（每股 2.4 元）</strong></td></tr>
+  <tr><td>总资产</td><td>~66 亿（FY2025末）</td></tr>
+  <tr><td>归母净资产</td><td>~55 亿（FY2025末，每股 7.08 元）</td></tr>
+  <tr><td>ROE / ROIC</td><td>~40% / 40.58%</td></tr>
+  <tr><td>股权结构</td><td>实控人邹支农/欧洋（通过天孚仁和持股 37.63%）；Fabrinet 为第一大客户（占营收 63%+）</td></tr>
+</table>
+
+<h2>行业类型与评分体系</h2>
+<div class="summary-box">
+  <strong>非周期股（成长型）· 采用非周期股评分体系</strong><br>
+  <strong>说明：</strong>天孚通信所处"光通信-光器件"属科技成长赛道，需求由 AI 算力与数据中心建设驱动，虽受上游物料（EML 芯片）及资本开支节奏影响有阶段性波动（2025Q3、2026Q1 环比回落），但长期成长属性主导，利润可预测性高。按 <code>industry-classification.md</code> 科技类归入<strong>非周期股</strong>，细分为<strong>成长型</strong>，采用非周期股评分体系（无需 PB 周期调整）。估值方法匹配成长型：首选 PS/PEG，辅助 PE。
+</div>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">综合L1-L4所有因素（财务健康度、关键指标、估值、杜邦分析），并按非周期股评分体系打分求和</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">~40%（高分红少、留存高，资本回报顶级）</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">高利润型——净利率 39.08% 主导 + 周转 0.75 + 低杠杆 1.17</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="neutral" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">0.93 略低于 1.0（备货+扩产占用，2026Q1 降至 0.36）</td></tr>
+  <tr><td>营收增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+58.79%，AI 驱动高增</td></tr>
+  <tr><td>利润增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+50.15%，2026H1 预告再 +25%~45%</td></tr>
+  <tr><td>负债率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">~16%，几乎零有息负债</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">货币资金充裕（~30 亿），短借近零</td></tr>
+  <tr><td>毛利率（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">53.96% 极高，但同比 -5.69pct（有源占比提升+芯片成本），Q4/Q1 已回升至 56-60%</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">PE(TTM) ~72x、2026E ~48x，历史分位 ~60%，PEG ~1.1 可接受但绝对估值高</td></tr>
+  <tr><td>自由现金流（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">FCF ~10 亿+持续为正（扩产期 capex 上升）</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">89/100</td><td style="text-align:left">品质优秀（89/100分）</td></tr>
+</table>
+<div class="verdict verdict-ok">品质优秀（89/100分）</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>天孚通信是全球光器件平台型龙头（市占率 11.7% 全球第一），深度受益 AI 算力驱动的光互连升级。公司在无源光器件（陶瓷套管等精密元件）拥有深厚壁垒，并已切入有源光引擎与 CPO 配套（FAU/ELS），是全球首家交付 800G/1.6T 光引擎的企业，2025 年营收 +58.79%、净利 +50.15%，ROE ~40%、ROIC 40.58%，盈利质量极高（净利率 39%、毛利率 54%）。基本面为教科书级的"好行业+好公司"。<br><br>
+  <strong>核心优势：</strong>① 全球光器件第一，技术+客户认证双壁垒；② 高 ROE（40%）+ 超高净利率（39%），ROIC 40.58%；③ AI 算力长景气，1.6T/CPO 打开成长空间；④ 近零负债、现金充裕、FCF 为正。<br><br>
+  <strong>核心风险：</strong>① 估值极高且波动巨大——PE(TTM) 曾达 129x、52 周区间 61~375 元，任何增速回落都会引发剧烈杀估值；② 客户高度集中——第一大客户 Fabrinet 占营收 63%+，前五大 86.8%；③ 毛利率结构性下降（有源占比提升+EML 芯片成本）；④ 2025Q3/2026Q1 环比回落，上游物料紧缺制约产能；⑤ 汇兑损失侵蚀利润（海外占比 74%）。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>一、利润表</h2>
+<table>
+  <tr><th>项目</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td><strong>51.63 亿</strong></td><td>32.52 亿</td><td><strong>+58.79%</strong></td><td class="good">✅ 高速增长</td></tr>
+  <tr><td>归母净利润</td><td><strong>20.17 亿</strong></td><td>13.44 亿</td><td><strong>+50.15%</strong></td><td class="good">✅ 高增</td></tr>
+  <tr><td>扣非净利润</td><td><strong>~19.8 亿</strong></td><td>~13.2 亿</td><td><strong>+~50%</strong></td><td class="good">✅ 主业驱动</td></tr>
+  <tr><td>毛利率</td><td><strong>53.96%</strong></td><td>57.22%</td><td>-5.69pct</td><td class="neutral">⚠ 结构性下降</td></tr>
+  <tr><td>净利率</td><td><strong>39.08%</strong></td><td>41.32%</td><td>-2.24pct</td><td class="neutral">⚠ 略降</td></tr>
+  <tr><td>销售/管理/财务费用</td><td>1.22 亿（占营收 2.36%）</td><td>—</td><td>三费率 +19.33%</td><td class="neutral">费用率极低</td></tr>
+  <tr><td>研发投入</td><td>2.67 亿（占营收 5.2%）</td><td>2.33 亿</td><td>+14.79%</td><td class="good">✅ 持续加码</td></tr>
+  <tr><td>2025Q1 营收/净利</td><td>9.45 亿 / 3.38 亿</td><td>—</td><td>+29.11% / +21.07%</td><td class="neutral">基数效应</td></tr>
+  <tr><td>2025Q2 营收/净利</td><td>15.1 亿 / 5.6 亿</td><td>—</td><td>+83.3% / +49.6%</td><td class="good">✅ 高增</td></tr>
+  <tr><td>2025Q3 营收/净利</td><td>~14.7 亿 / ~5.7 亿</td><td>—</td><td>环比回落（物料紧缺）</td><td class="neutral">⚠ 环比承压</td></tr>
+  <tr><td>2025Q4 营收/净利</td><td>12.45 亿 / 5.52 亿</td><td>8.57 亿 / 3.67 亿</td><td>+45.28% / +50.35%</td><td class="good">✅ 同比高增</td></tr>
+  <tr><td>2026Q1 营收/净利</td><td>13.30 亿 / 4.92 亿</td><td>9.45 亿 / 3.38 亿</td><td>+40.82% / +45.79%</td><td class="good">✅ 环比+6.9%/同比高增</td></tr>
+</table>
+<div class="highlight-box">
+  <strong>结论：</strong>收入利润连续多年高速增长（2023/2024/2025 营收增速 62%/68%/59%），净利率高达 39%，盈利质量行业顶尖。需注意：① 2025 毛利率同比下降 5.69pct，主因有源光器件占比提升（其毛利率 46.63% 低于无源 63.67%）+ 上游芯片成本上涨；② 财务费用因汇兑损失同比 +66%，2026Q1 净利润环比 -10.8%，受物料紧缺与汇兑双重扰动。整体仍属高质量高成长。
+</div>
+
+<h2>二、资产负债表</h2>
+<table>
+  <tr><th>项目</th><th>FY2025末</th><th>评价</th></tr>
+  <tr><td>货币资金及金融资产</td><td><strong>~30 亿</strong></td><td class="good">✅ 现金充裕</td></tr>
+  <tr><td>应收账款</td><td><strong>~11 亿</strong></td><td class="neutral">⚠ 前五大客户占 86.8%（Fabrinet 占 61.7%→63%+）</td></tr>
+  <tr><td>存货</td><td><strong>4.57 亿（2026Q1 升至 5.39 亿）</strong></td><td class="neutral">⚠ 主动备货</td></tr>
+  <tr><td>预付款项</td><td>2077 万 → 2026Q1 9663 万</td><td class="neutral">预付材料款（锁定物料）</td></tr>
+  <tr><td>短期借款</td><td><strong>~0</strong></td><td class="good">✅ 无有息短债</td></tr>
+  <tr><td>长期借款</td><td><strong>~0</strong></td><td class="good">✅ 无有息长债</td></tr>
+  <tr><td>归母净资产</td><td><strong>~55 亿（每股 7.08 元）</strong></td><td class="good">✅ 2026Q1 每股 7.69 元</td></tr>
+  <tr><td>总资产</td><td>~66 亿</td><td class="good">✅ 轻资产高回报</td></tr>
+  <tr><td>资产负债率</td><td><strong>~16%</strong></td><td class="good">✅ 极低</td></tr>
+</table>
+<div class="highlight-box">
+  <strong>结论：</strong>资产负债表极为健康——几乎零有息负债、资产负债率仅 16%、现金超 30 亿，为全球扩产（泰国工厂二期）提供充足弹药。隐忧在应收端：客户高度集中于 Fabrinet（英伟达供应商），前五大客户占比 86.8%，"荣损与共"。
+</div>
+
+<h2>三、现金流量表</h2>
+<table>
+  <tr><th>项目</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营活动现金流（CFO）</td><td><strong>~18.7 亿（每股 2.4 元）</strong></td><td>12.63 亿</td><td class="good">✅ +48%，随收入高增</td></tr>
+  <tr><td>投资活动现金流（CFI）</td><td><strong>小幅净流出</strong></td><td>-3.58 亿</td><td class="neutral">理财净赎回+固定资产投资减少</td></tr>
+  <tr><td>筹资活动现金流（CFF）</td><td><strong>净流出（分红）</strong></td><td>-7.82 亿</td><td class="neutral">分红为主</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>~0.93</strong></td><td>0.94</td><td class="neutral">⚠ 略低于 1.0</td></tr>
+  <tr><td>自由现金流（FCF）</td><td><strong>~10 亿+</strong></td><td>~7 亿</td><td class="good">✅ 持续为正</td></tr>
+</table>
+<div class="summary-box">
+  <strong>结论：</strong>现金流质量高——CFO 随收入高增、FCF 持续为正。但 CFO/净利 0.93 略低于 1.0，且 2026Q1 因扩大备货 CFO 同比 -37.9%（每股经营现金流 0.23 元），处于产能扩张期的营运资金占用阶段，需跟踪物料缓解后现金回补。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>一、关键指标表</h2>
+<table>
+  <tr><th>指标</th><th>数值</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>~40%</strong></td><td>> 15% 优秀</td><td class="good">✅ 顶级</td></tr>
+  <tr><td>毛利率</td><td><strong>53.96%</strong></td><td>> 30% 且稳定</td><td class="good">✅ 极高（微降）</td></tr>
+  <tr><td>净利率</td><td><strong>39.08%</strong></td><td>> 15%</td><td class="good">✅ 顶尖</td></tr>
+  <tr><td>营收增长率</td><td><strong>+58.79%</strong></td><td>> 15%</td><td class="good">✅ 高增</td></tr>
+  <tr><td>利润增长率</td><td><strong>+50.15%</strong></td><td>> 15%</td><td class="good">✅ 高增</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>0.93</strong></td><td>> 1</td><td class="neutral">⚠ 略低于 1</td></tr>
+  <tr><td>资产负债率</td><td><strong>~16%</strong></td><td>< 40%</td><td class="good">✅ 极低</td></tr>
+  <tr><td>分红率</td><td>~20%（留存为主）</td><td>持续分红</td><td class="neutral">成长股重投入，股息率仅 0.3%</td></tr>
+</table>
+
+<h2>二、分业务分析</h2>
+<table>
+  <tr><th>业务</th><th>FY2025 营收</th><th>占比</th><th>增速</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td>有源光器件（高速光引擎/CPO配套）</td><td><strong>29.98 亿</strong></td><td>58.06%</td><td>+81.11%</td><td>46.63%</td><td class="good">✅ 增长主引擎</td></tr>
+  <tr><td>无源光器件（陶瓷套管/FAU等）</td><td><strong>20.84 亿</strong></td><td>40.37%</td><td>+32.23%</td><td>63.67%</td><td class="good">✅ 高毛利压舱石</td></tr>
+  <tr><td>海外（占 74.35%）</td><td>38.39 亿</td><td>74.35%</td><td>+55.21%</td><td>—</td><td class="neutral">依赖 Fabrinet/北美 AI 客户</td></tr>
+  <tr><td>国内</td><td>13.24 亿</td><td>25.65%</td><td>+70.17%</td><td>—</td><td class="good">✅ 内需亦高增</td></tr>
+</table>
+
+<h2>三、排雷清单</h2>
+<table>
+  <tr><th style="width:20%">风险项</th><th style="width:14%">严重程度</th><th>依据</th></tr>
+  <tr><td class="bad">🔴 较高</td><td>客户集中度</td><td>第一大客户 Fabrinet 占营收 63%+，前五大 86.8%，客户需求波动直接冲击业绩（2025Q3 已显现）</td></tr>
+  <tr><td class="bad">🔴 较高</td><td>估值泡沫</td><td>PE(TTM) 曾达 129x（2026-05），52 周区间 61~375 元，波动率极高，增速放缓即杀估值</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>毛利率趋势</td><td>有源占比提升+EML 芯片成本，2025 毛利率 -5.69pct（Q4/Q1 已回升至 56~60%）</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>汇兑风险</td><td>海外占 74%，财务费用因汇兑损失 +66%，2026Q1 环比利润下滑主因之一</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>供应链瓶颈</td><td>EML 200G 等高端光芯片短缺制约交付，预计 2026H2 逐步缓解</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>大股东减持</td><td>2025-11 控股股东天孚仁和询价转让 850 万股套现 ~12 亿（高位）</td></tr>
+  <tr><td class="good">🟢 正面</td><td>技术壁垒</td><td>全球首家量产 800G/1.6T 光引擎，CPO 配套 FAU/ELS 稳定交付，市占率全球第一</td></tr>
+  <tr><td class="good">🟢 正面</td><td>盈利质量</td><td>净利率 39%、ROIC 40.58%，近 10 年中位 ROIC 16.4% 也属优秀</td></tr>
+</table>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>一、当前估值水平</h2>
+<table>
+  <tr><th>项目</th><th>数值</th><th>说明</th></tr>
+  <tr><td>股价（2026年7月末）</td><td><strong>~200 元</strong></td><td>52 周区间 61.14 ~ 375.00 元（2026-07-27 收 209.19）</td></tr>
+  <tr><td>总市值</td><td><strong>~1560 亿</strong></td><td>总股本 ~7.79 亿股</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>~72x</strong></td><td>TTM EPS ~2.79 元（2026-05 曾达 129x）</td></tr>
+  <tr><td>PE（2026E）</td><td><strong>~48x</strong></td><td>基于 2026E 归母 ~32.4 亿、EPS 4.17 元（一致预期）</td></tr>
+  <tr><td>PB</td><td><strong>~26x</strong></td><td>每股净资产 7.69 元（2026Q1）</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~30x</strong></td><td>市值/2025 营收 51.63 亿</td></tr>
+  <tr><td>股息率</td><td>~0.33%</td><td>成长股低分红</td></tr>
+</table>
+
+<h2>二、PE Band（非周期股）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">基于 2026E EPS 4.17 元（券商一致预期）。合理 PE 参考：ROE>20% → 20-30x；但高成长龙头市场给溢价，当前 2026E ~48x。</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>相对当前价</th></tr>
+  <tr><td>悲观</td><td>30x</td><td>125 元</td><td class="bad">-37%</td></tr>
+  <tr><td>保守</td><td>40x</td><td>167 元</td><td class="neutral">-16%</td></tr>
+  <tr><td>中性</td><td>50x</td><td>209 元</td><td class="neutral">+4%</td></tr>
+  <tr><td>乐观</td><td>60x</td><td>250 元</td><td class="good">+25%</td></tr>
+  <tr><td>券商目标（高盛，2025-12）</td><td>65x</td><td>271 元</td><td class="good">+35%</td></tr>
+  <tr><td>历史高位（2026-05）</td><td>129x</td><td>375 元</td><td class="good">+88%</td></tr>
+  <tr><td>当前价</td><td>~48x（2026E）</td><td>~200 元</td><td>—</td></tr>
+</table>
+
+<h2>三、历史 PE 区间</h2>
+<table>
+  <tr><th>项目</th><th>数值</th></tr>
+  <tr><td>PE(TTM) 最大值</td><td>156.42x</td></tr>
+  <tr><td>PE(TTM) 80% 分位</td><td>93.20x</td></tr>
+  <tr><td>PE(TTM) 50% 分位</td><td>61.52x</td></tr>
+  <tr><td>PE(TTM) 20% 分位</td><td>44.20x</td></tr>
+  <tr><td>PE(TTM) 最小值</td><td>26.74x</td></tr>
+  <tr><td>当前 PE(TTM)</td><td class="neutral">~72x（处于历史 ~60% 分位）</td></tr>
+</table>
+
+<h2>四、估值总结</h2>
+<div class="danger-box">
+  <strong>估值偏高：</strong>PE(TTM) ~72x、PS ~30x，处于历史中高位置（60% 分位），绝对估值昂贵。虽 2026E ~48x、PEG ~1.1 尚可接受，但该股历史波动极端（52 周 61~375 元），对增速回落极其敏感。当前价位属于"好公司+贵价格"阶段，性价比一般，不建议追高；若回调至 2026E PE 35x 以下（~145 元）风险收益比更佳。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>一、杜邦拆解表</h2>
+<table>
+  <tr><th>项目</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>净利润率</td><td>37.65%</td><td>41.32%</td><td><strong>39.08%</strong></td><td class="neutral">高位小幅波动</td></tr>
+  <tr><td>资产周转率</td><td>0.50</td><td>0.69</td><td><strong>~0.75</strong></td><td class="good">⬆ 持续提升</td></tr>
+  <tr><td>权益乘数</td><td>1.16</td><td>1.19</td><td><strong>~1.17</strong></td><td class="neutral">低杠杆稳定</td></tr>
+  <tr><td><strong>ROE</strong></td><td><strong>~23%</strong></td><td><strong>~34%</strong></td><td><strong>~40%</strong></td><td class="good">⬆ 持续走高</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>18.8%</td><td>28.5%</td><td><strong>~29.3%</strong></td><td class="good">⬆ 真实回报极高</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>4.2pct</td><td>5.5pct</td><td><strong>~10.7pct</strong></td><td class="neutral">小幅</td></tr>
+</table>
+
+<h2>二、赚钱模式判断</h2>
+<div class="highlight-box">
+  <strong>高利润型公司：</strong>净利率 39% 主导，远超行业，资产周转与杠杆均不高。ROE ~40% 几乎完全由盈利能力（产品附加值/技术壁垒）驱动，是杜邦里最健康的"高利润型"模式——靠产品力而非杠杆赚钱，利润含金量高（ROIC 40.58% 亦印证）。<br><br>
+  <strong>资产回报效率：</strong>每 1 元总资产产生 ~0.30 元净利润（去杠杆 ROA ~29.3%），远高于制造业平均，与茅台、英伟达等顶级资产回报公司同级。
+</div>
+
+<h2>三、核心结论</h2>
+<div class="summary-box">
+  <strong>杜邦核心发现：</strong>天孚通信 ROE 由净利率（39%）单一驱动，且周转率随规模提升、杠杆极低，属于教科书级"高利润型"优秀模式。ROE 三年从 23% 升至 40%，是典型"利润率和周转率双升"的质变成长。唯一注意点：净利率微降（-2.24pct）反映产品结构变化（有源占比提升）与成本压力，需跟踪毛利率能否维持在 50%+ 上方。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>一、行业类型判断</h2>
+<div class="summary-box">
+  <strong>行业类型：成长型（科技-光通信/光器件）· 非周期股</strong><br>
+  天孚通信处于光通信产业链"光器件"环节（上游为芯片/材料，下游为光模块与云厂商），受 AI 算力资本开支驱动，长期成长趋势明确。按 <code>industry-classification.md</code>，光通信归科技类（非周期），虽受上游物料与资本开支节奏影响有阶段性波动，但利润可预测性高，采用<strong>非周期股评分体系</strong>，细分<strong>成长型</strong>。估值方法匹配：首选 PS/PEG，辅助 PE。
+</div>
+
+<h2>二、行业集中度与壁垒</h2>
+<table>
+  <tr><th>项目</th><th>判断</th><th>说明</th></tr>
+  <tr><td>行业集中度</td><td>中等偏高（持续集中）</td><td>2025 年全球光器件市场 61 亿美元，前五合计 25.4%，天孚第一（11.7%）；光模块端"易中天"（旭创/新易盛/天孚）主导，全球前十中国占 7 席</td></tr>
+  <tr><td>技术壁垒</td><td><strong>强</strong></td><td>精密陶瓷套管（打破日本垄断）、FAU/光引擎耦合与封装工艺，全球首家量产 800G/1.6T 光引擎</td></tr>
+  <tr><td>客户认证壁垒</td><td><strong>强</strong></td><td>进入 Fabrinet/英伟达/云厂商供应链，认证周期长、黏性强</td></tr>
+  <tr><td>规模/制造壁垒</td><td>中</td><td>泰国+国内多基地产能扩张，垂直整合降本</td></tr>
+  <tr><td>技术替代风险</td><td>存在</td><td>CPO/NPO 技术路线变革、下游模块厂自研器件，长期空间或被压缩</td></tr>
+</table>
+
+<h2>三、生命周期阶段</h2>
+<p><strong>成长期</strong>——AI 算力驱动，行业 2025 年全球销售额 +50% 至 238 亿美元，1.6T/CPO 放量打开新空间，天孚处于高速成长期。</p>
+
+<h2>四、同行对比分析</h2>
+<table>
+  <tr><th>指标（FY2025）</th><th>天孚通信</th><th>中际旭创</th><th>新易盛</th><th>光迅科技</th><th>评价</th></tr>
+  <tr><td>营收/增速</td><td>51.6亿/+58.8%</td><td>382.4亿/+60.3%</td><td>~180亿/+187%</td><td>~112亿/+35%</td><td class="good">高</td></tr>
+  <tr><td>归母净利/增速</td><td>20.2亿/+50.2%</td><td>108.0亿/+108.8%</td><td>~95亿/+236%</td><td>~9.1亿/+38%</td><td class="good">高</td></tr>
+  <tr><td>毛利率</td><td><strong>53.96%</strong></td><td>42.61%</td><td>~46%</td><td>~24%</td><td class="good">最高（器件上游）</td></tr>
+  <tr><td>净利率</td><td><strong>39.08%</strong></td><td>~28%</td><td>~52%</td><td>~8%</td><td class="good">高</td></tr>
+  <tr><td>ROE</td><td><strong>~40%</strong></td><td>~35%</td><td>~50%</td><td>~9%</td><td class="good">高</td></tr>
+  <tr><td>负债率</td><td><strong>~16%</strong></td><td>~25%</td><td>~30%</td><td>~38%</td><td class="good">最低</td></tr>
+  <tr><td>PE(TTM)</td><td>~72x</td><td>~45x</td><td>~40x</td><td>~50x</td><td class="bad">最高（确定性溢价）</td></tr>
+  <tr><td>产业链位置</td><td>光器件（上游）</td><td>光模块（下游）</td><td>光模块（下游）</td><td>光器件+模块（央企）</td><td class="neutral">上游高毛利</td></tr>
+</table>
+<div class="summary-box">
+  <strong>竞争位置结论：</strong>天孚通信以"光器件上游"卡位获得全场最高的毛利率（54%）与净利率（39%）、最低负债（16%），但营收体量远小于模块双雄，且 PE 估值（72x）显著高于同行（40-45x），市场为"确定性+壁垒"支付了显著溢价。
+</div>
+
+<h2>五、估值方法匹配</h2>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>匹配度</th></tr>
+  <tr><td>成长型（科技）</td><td>PS / PEG</td><td>PE（盈利后），看营收增速</td><td class="good">✅ 匹配——当前 PS 30x、PEG ~1.1</td></tr>
+</table>
+
+<h2>六、成长股成色检验（PS>10 需验证）</h2>
+<table>
+  <tr><th>验证项</th><th>判断</th><th>数据</th></tr>
+  <tr><td>① 营收—有没有实在的生意</td><td class="good">✓</td><td>营收 51.6 亿 > 20 亿且增速 > 20%（+58.8%）</td></tr>
+  <tr><td>② 毛利率—产品竞争力</td><td class="good">✓</td><td>53.96% > 30% 且稳定，有源/无源双高毛利</td></tr>
+  <tr><td>③ 经营现金流—能否自我造血</td><td class="good">✓</td><td>CFO 18.7 亿为正且 +48% 改善（非靠融资续命）</td></tr>
+  <tr><td>④ PS—梦想溢价</td><td class="neutral">⚠</td><td>PS ~30x > 20，属"高溢价"区间，需持续高增长支撑</td></tr>
+</table>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>一、六步法总结</h2>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>光通信光器件（科技成长），全球第一（11.7%），技术+认证双壁垒，AI 算力驱动成长期<br>
+  <strong>Step 2 - 财务体检：</strong>ROE ~40%、高利润型杜邦、净利率 39%、CFO/净利 0.93、FCF 为正、负债率 16%<br>
+  <strong>Step 3 - 估值判断：</strong>PE(TTM) ~72x（历史 60% 分位）、PS 30x、PEG ~1.1，偏贵但非极端泡沫<br>
+  <strong>Step 4 - 风险排查：</strong>客户集中（Fabrinet 63%+）、估值波动极端、毛利率趋势、汇兑、物料紧缺<br>
+  <strong>Step 5 - 结论：</strong>好公司（✅）+ 贵价格（⚠），当前性价比一般，回调后更有吸引力<br>
+  <strong>Step 6 - 跟踪：</strong>1.6T/CPO 放量、物料缓解节奏、单季毛利率、大客户订单、H股上市进度
+</div>
+
+<h2>二、好公司三要素检查</h2>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>AI 算力长景气、格局集中、技术壁垒深（成长赛道）</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓</td><td>ROE 40% > 15%，毛利率 54% 高位，CFO 接近净利、FCF 为正</td></tr>
+  <tr><td>③ 好价格</td><td class="neutral">⚠</td><td>PE(TTM) 72x、PS 30x 偏高，PEG ~1.1 仅在 2026E 增速兑现下合理</td></tr>
+</table>
+
+<h2>三、风险评估</h2>
+
+<h3>a. 三个陷阱排查</h3>
+<div class="danger-box">
+  ☐ 低PE + 低增长 + 高负债 = 价值陷阱 → <strong>未命中</strong><br>
+  ☐ 低PE + 周期顶点 = 周期陷阱 → <strong>未命中</strong><br>
+  ☐ 高PE + 高增速但现金流为负 = 烧钱陷阱 → <strong>未命中</strong>（CFO 为正且高增）
+</div>
+<div class="danger-box">
+  <strong>特别警示——"高估值+增速边际放缓"风险：</strong>公司 2025Q3、2026Q1 利润环比均回落，2026H1 预告增速（+25~45%）较 2025（+50%）放缓。若 2026H2 物料缓解不及预期或 AI 资本开支退潮，PE 从 72x 向 30-40x 回归的杀伤力极大（2026-05 以来股价已从 375 元跌至 ~200 元，-47%）。
+</div>
+
+<h3>b. 管理层与治理风险</h3>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力与履历</td><td class="good">好</td><td>创始人邹支农技术出身（吉林工大机械设计），经营二十年聚焦光器件，战略清晰</td></tr>
+  <tr><td>股权结构与利益一致性</td><td>一般</td><td>实控人通过天孚仁和持股 37.63%，但 2025-11 高位询价转让套现 ~12 亿，减持信号需留意</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td class="good">无</td><td>无重大违规记录，财报质量高</td></tr>
+  <tr><td>资本配置记录</td><td class="good">合理</td><td>研发投入持续、海外扩产（泰国二期）、分红适度，暂无盲目并购</td></tr>
+  <tr><td>管理层增减持</td><td class="neutral">减持(负面)</td><td>控股股东 2025-11 询价转让 850 万股（140 元/股，套现 ~12 亿）</td></tr>
+  <tr><td>CEO交接/关键人员变动</td><td class="good">无风险</td><td>创始团队稳定</td></tr>
+</table>
+
+<h3>c. 盈利可持续性</h3>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是靠价？</td><td>量驱动</td><td>出货量随 AI 数据中心建设增长，产品单价稳中有降（有源占比提升）</td></tr>
+  <tr><td>涨价能否持续？</td><td>不能（价格压力大）</td><td>光器件价格竞争激烈，靠产品迭代（1.6T/CPO）维持毛利率而非涨价</td></tr>
+  <tr><td>非经常性利润占比</td><td>低</td><td>2026H1 预告非经常性损益仅 2000-3500 万（占净利 ~2%），主业纯正</td></tr>
+  <tr><td>大客户/大项目集中度</td><td class="bad">极度集中</td><td>第一大客户 Fabrinet 占 63%+，前五大 86.8%</td></tr>
+  <tr><td>政策/监管依赖度</td><td>低</td><td>市场化竞争，无牌照/补贴依赖；但美国关税/出口管制影响海外（占 74%）</td></tr>
+</table>
+
+<h3>d. 关键变量敏感性</h3>
+<pre style="font-size:13px;line-height:1.8;margin:8px 0">
+变量1: 1.6T 光引擎 + CPO 配套放量
+  乐观: 1.6T 持续爬坡、CPO 大客户订单落地 → 2026 归母 ~36 亿（+80%）
+  中性: 1.6T 稳步放量、物料缓解 → 2026 归母 ~32 亿（+60%）
+  悲观: 1.6T 不及预期、CPO 延后 → 2026 归母 ~26 亿（+30%）
+
+变量2: 上游 EML/芯片物料供给
+  乐观: 2026H2 全面缓解、产能满产 → 毛利率回升至 57%+
+  中性: 下半年逐步缓解 → 毛利率维持 ~55%
+  悲观: 持续紧缺、交付受限 → 收入增长打折、毛利率承压
+
+变量3: AI 算力资本开支/大客户订单
+  乐观: 北美云厂商 capex 继续超预期 → 估值维持高位
+  中性: 资本开支平稳 → 股价随业绩消化估值
+  悲观: AI 泡沫论发酵/资本开支退潮 → PE 向 30-40x 回归，股价大幅回撤
+</pre>
+
+<h2>四、前景展望</h2>
+
+<h3>a. 未来 1-3 年核心驱动</h3>
+<div class="summary-box">
+  <strong>正向驱动：</strong>① 1.6T 光引擎规模化量产，为全球首家交付；② CPO 配套 FAU/ELS 稳定交付，卡位光电共封装前沿；③ 泰国工厂二期投产、全球产能协同；④ 车载激光雷达、电信等第二增长曲线。<br><br>
+  <strong>负向拖累：</strong>① 大客户 Fabrinet 高度集中（63%+），订单波动风险；② 上游物料紧缺制约交付与毛利率；③ 毛利率结构性下行（有源占比+芯片成本）；④ 汇兑损失与高估值波动。
+</div>
+
+<h3>b. 三情景简表</h3>
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>EPS预估</th><th>PE区间</th><th>预期回报</th></tr>
+  <tr><td>乐观</td><td>1.6T/CPO 放量 + 物料缓解</td><td>~4.6 元</td><td>55-65x</td><td>+27% ~ +50%（253~299 元）</td></tr>
+  <tr><td>中性</td><td>稳定增长、估值消化</td><td>~4.17 元</td><td>45-55x</td><td>-6% ~ +15%（188~229 元）</td></tr>
+  <tr><td>悲观</td><td>需求放缓 + 杀估值</td><td>~3.3 元</td><td>30-40x</td><td>-50% ~ -34%（99~132 元）</td></tr>
+</table>
+<p style="font-size:13px;color:#666">概率估计：中性 45%，乐观 30%，悲观 25%。整体风险收益比一般——上行空间（+15~50%）与下行风险（-34~-50%）大致对称，取决于 1.6T/CPO 兑现度与 AI 资本开支景气度。</p>
+
+<h2>五、资金面信号</h2>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>北向资金持股变动</td><td>增持（稳定）</td><td>陆股通持股占流通 A 股 ~7.1%（2026-03-31）</td></tr>
+  <tr><td>机构持仓变动</td><td>波动大</td><td>2025Q3 机构持仓从 856 家降至 243 家（回调），2026 年有明星基金经理（景顺长城张仲维）加仓</td></tr>
+  <tr><td>融资余额变动</td><td>高位</td><td>融资余额 ~67.5 亿（占流通市值 3.6%，7 月末），杠杆资金活跃</td></tr>
+  <tr><td>大股东增减持</td><td>减持（负面）</td><td>控股股东 2025-11 询价转让 850 万股套现 ~12 亿</td></tr>
+  <tr><td>大宗交易</td><td>数据待补充</td><td>2026-07 有零星大宗（1 笔，~260 万元）</td></tr>
+</table>
+<div class="summary-box">
+  <strong>资金面整体：</strong>北向稳定、机构结构性加仓（明星基金），但融资盘高位、大股东高位减持、股价历史波动极端（52 周 61~375 元），资金情绪面波动极大。H股上市推进中（2026-03 启动），需关注发行定价对 A 股估值的锚定影响。
+</div>
+
+<h2>六、讨论问题（阅读引导）</h2>
+<p style="font-size:13px;color:#666;line-height:2">
+  讨论问题（阅读后可以聊这些）：<br>
+  1. 这笔生意你看懂了吗？一句话说清天孚通信怎么赚钱？<br>
+  2. 第一大客户 Fabrinet 占 63%，这个集中度你睡得着吗？<br>
+  3. 如果现在买入，你赚的是"业绩增长"的钱还是"估值抬升"的钱？<br>
+  4. 什么情况下你会坚决卖出？（1.6T 放量不及预期 / AI 资本开支退潮 / 毛利率跌破 45%？）
+</p>
+
+</div></div>
+
+<div class="footer">
+  本报告仅供学习研究，不构成投资建议 | 数据来源：FY2025 年报、2026Q1 季报、2026H1 业绩预告、券商研报、理杏仁/东方财富公开数据 | 分析日期：2026-08-03
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>太阳纸业(002078) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  h4 { font-size: 14px; margin: 14px 0 6px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>太阳纸业（002078）财务分析报告</h1>
+<p class="subtitle">基于 L1-L6 框架（财务三表+关键指标+估值+杜邦+行业分类+综合实战）</p>
+<p class="meta">分析日期：2026-07-23 | 数据来源：FY2025 年报 + 2026Q1 季报 + 券商研报</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>山东太阳纸业股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>002078.SZ</td></tr>
+  <tr><td>所属行业</td><td>造纸（文化纸+包装纸+生活用纸+特种纸+浆料）</td></tr>
+  <tr><td>行业分类（L5）</td><td><strong>纯周期股</strong> — 纸业，行业成熟，利润靠供需错配</td></tr>
+  <tr><td>行业地位</td><td>国内造纸龙头，年浆纸产能超1400万吨，双胶纸/铜版纸/牛皮箱板纸/溶解浆主要供应商，浆纸一体化布局行业最优</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>391.92 亿（-3.77%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>32.51 亿（+4.82%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>49.56 亿（-41.69%）</strong></td></tr>
+  <tr><td>总资产</td><td>585.89 亿</td></tr>
+  <tr><td>归母净资产</td><td>305.09 亿</td></tr>
+  <tr><td>FY2025 ROE</td><td>10.93%（加权）</td></tr>
+  <tr><td>2026Q1 净利润</td><td><strong class="good">9.06 亿（+2.3%）</strong></td></tr>
+</table>
+
+<p style="font-size:13px;color:#666;margin-bottom:4px">行业类型：<strong>纯周期股</strong>（造纸）。采用<strong>周期股评分体系</strong>——核心逻辑：周期股价值取决于"穿越周期的生存能力 + 当前在周期中的位置 + 成本优势"。</p>
+
+<h2>综合评分（周期股评分体系，百分制）</h2>
+<table>
+  <tr><th style="width:24%">维度</th><th style="width:8%">得分</th><th>说明</th></tr>
+  <tr><td>穿越周期ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">近5年平均ROE约13.1%（2023 12.59%→2024 11.38%→2025 10.93%），即使行业周期底部仍保持10%+，为行业独有（同行普遍亏损）</td></tr>
+  <tr><td>成本位置（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">浆料木浆一体化，成本行业最优。2025单箱毛利率15.59%居行业之首（博汇9.61%、山鹰/晨鸣亏损），Top quartile</td></tr>
+  <tr><td>负债安全垫（15分）</td><td class="neutral" style="font-weight:bold;font-size:15px">12</td><td style="text-align:left">资产负债率47.92%适中，财务费用率1.22%可控，CFO 49.56亿充沛；净负债/EBITDA约2x&lt;3x</td></tr>
+  <tr><td>行业格局与产能周期（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">造纸行业产能过剩，文化纸（双胶/铜版）价格承压，近两年新增产能集中投放；但行业集中度提升、龙头整合中</td></tr>
+  <tr><td>周期位置（15分）</td><td class="good" style="font-weight:bold;font-size:15px">12</td><td style="text-align:left">文化纸仍在磨底，但箱板/生活纸已回升，太阳逆势扩产（广西基地投产），2025Q4净利+16.9%、2026Q1+2.3%盈利拐点已现，处复苏初期</td></tr>
+  <tr><td>估值PB vs 历史区间（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">当前PB约1.31x，处于历史约13%分位（低于30%分位），处于底部区间，估值具有安全边际</td></tr>
+  <tr><td>现金生成能力FCF（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">CFO 49.56亿充沛，但2025年资本开支高达约78.88亿（广西基地产能投放期），FCF阶段性大额为负——逆周期扩产</td></tr>
+  <tr><td>分红/回购历史（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">连续多年分红不中断，2025年累计每股分红约0.30元，分红率~26%，股息率2.09%，穿越周期持续回报股东</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">83/100</td><td style="text-align:left">品质优秀（83/100分）——周期底部仍保持高ROE+成本龙头+PB底部区间，穿越周期能力强</td></tr>
+</table>
+
+<div class="verdict verdict-ok">品质优秀（83/100分）</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>太阳纸业是国内造纸龙头，浆料一体化的成本优势在周期底部依然保持盈利（FY2025归母净利32.51亿，+4.82%）。当行业多数同行（晨鸣亏损83亿、山鹰亏损11亿、博汇微利）深陷亏损时，太阳纸业仍维持10.93%的ROE，展现出极强的穿越周期能力。当前唯一直接拖累是文化纸（双胶/铜版）价格承压导致收入下滑，但公司靠提升产能（广西南宁新基地）和箱板/生活纸改善实现以量补价、净利逆势增长。PB已回落至历史约13%分位的底部区域。<br><br>
+  <strong>核心优势：</strong>① 浆料一体化成本行业最优，周期底部仍盈利且ROE保持10%+；② 逆势扩产，广西基地带来包瓷纸/生活纸成长动能；③ PB 1.31x历史底部区间，估值安全边际明显；④ 现金流充沛、分红稳定，国企民营龙头财务稳健。<br><br>
+  <strong>核心风险：</strong>① 文化纸（双胶/铜版纸）供给过剩背景价格承压，若持续下滑拖累收入；② 资本开支大额投入到2025年FCF转负，短期现金流承压（扩产期）；③ 溶解浆价格波动（2025收入-29%）；④ 后续新产能若进一步投产，纸业周期反转时间可能延后。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>391.92 亿</td><td>407.27 亿</td><td>-3.77%</td><td class="neutral">⚠ 价跌量增</td></tr>
+  <tr><td>归母净利润</td><td><strong>32.51 亿</strong></td><td>31.01 亿</td><td><strong>+4.82%</strong></td><td class="good">✅ 逆势增长</td></tr>
+  <tr><td>扣非净利润</td><td><strong>31.92 亿</strong></td><td>32.35 亿</td><td><strong>-1.33%</strong></td><td class="neutral">基本持平</td></tr>
+  <tr><td>毛利率</td><td><strong>15.59%</strong></td><td>16.07%</td><td>-0.48pct</td><td class="neutral">小幅下滑</td></tr>
+  <tr><td>归母净利率</td><td><strong>8.29%</strong></td><td>7.61%</td><td>+0.68pct</td><td class="good">✅ 提升</td></tr>
+  <tr><td>期间费用率</td><td><strong>~5.44%</strong></td><td>~6.47%</td><td>-1.03pct</td><td class="good">✅ 优化</td></tr>
+  <tr><td>研发费用</td><td><strong>5.46 亿</strong></td><td>7.62 亿</td><td>-28.41%</td><td class="neutral">占营收1.39%</td></tr>
+  <tr><td>EPS</td><td><strong>1.16 元</strong></td><td>1.11 元</td><td>+4.50%</td><td class="good">✅ 增长</td></tr>
+  <tr><td>2026Q1 营收</td><td>100.83 亿</td><td>98.98 亿</td><td>+1.87%</td><td class="good">✅ 转正</td></tr>
+  <tr><td>2026Q1 净利润</td><td><strong>9.06 亿</strong></td><td>8.86 亿</td><td>+2.26%</td><td class="good">✅ 增长</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>2025年营收下滑3.77%主因产品跌价（双胶纸/铜版纸/溶解浆吨价大幅下滑），但靠广西新基地投产带动产销量提升（纸制品销量+6.39%至799万吨）实现量升价跌。净利率逆势提升0.68pct至8.29%（费用率优化+箱板纸/生活纸毛利率改善），归母净利仍有+4.82%，在同行普遍亏损背景下尤为难能可贵。2025Q4单季净利+16.9%、2026Q1（净利+2.3%）延续改善，盈利拐点基本确认。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>总资产</td><td><strong>585.89 亿</strong></td><td class="neutral">同比+11.33%（扩产）</td></tr>
+  <tr><td>归母净资产</td><td><strong>305.09 亿</strong></td><td class="good">✅ 同比+6.62%</td></tr>
+  <tr><td>资产负债率</td><td><strong>47.92%</strong></td><td class="neutral">适中，同比+2.51pct</td></tr>
+  <tr><td>应收账款</td><td>数据待补充</td><td class="neutral">回款质量较好（应收账款融资为主）</td></tr>
+  <tr><td>存货</td><td>数据待补充</td><td class="neutral">浆纸库存随产销量提升</td></tr>
+  <tr><td>固定资产</td><td><strong>（重资产，占比高）</strong></td><td class="neutral">重资产造纸企业，扩产期资本开支大</td></tr>
+  <tr><td>有息负债</td><td>数据待补充</td><td class="neutral">负债率提升主要来自扩产借款，财务费用率1.22%可控</td></tr>
+  <tr><td>每股净资产</td><td><strong>10.91 元</strong>；2026Q1末11.18元</td><td class="good">✅ 稳步提升</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>资产负债表解读：</strong>资产负债率47.92%在重资产纸业处于合理水平，因产能扩张（广西新基地）总资产增长11.33%，负债率同比小幅上升2.51pct。归母净资产305亿持续增厚（+6.62%），股东权益未被侵蚀。财务费用率仅1.22%（同比-0.53pct），说明利息负担与汇兑影响均在下降，偿债压力可控。整体财务结构健康，唯一的观察点是扩产期资本开支较大带来的有息债务积累。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>49.56 亿</strong></td><td>85.00 亿</td><td class="neutral">⚠ 下降41.69%，但基数高</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><strong>-78.88 亿</strong></td><td>-55.53 亿</td><td class="bad">❌ 扩产期资本开支大增</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td><strong>+24.84 亿</strong></td><td>8.38 亿</td><td class="neutral">借款增加（扩产融资）</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>1.52</strong></td><td>2.74</td><td class="good">✅ 现金流质量优</td></tr>
+  <tr><td>自由现金流（FCF）</td><td><strong>-29.3 亿（约）</strong></td><td>+29.5 亿</td><td class="bad">❌ 扩产期转负</td></tr>
+  <tr><td>每股经营现金流</td><td><strong>1.77 元</strong></td><td>-</td><td class="good">✅ 充沛</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>经营现金流49.56亿（-41.69%），主要因销售回款减少，但仍高质量（CFO/净利润=1.52&gt;1，扣除纸张存货及应收后现金净流入超过净利）。投资现金流-78.88亿反映广西基地（南宁）大规模资本开支，公司正处于逆势扩产期，导致FCF阶段性转负。筹资+24.84亿为扩产补充借款。评判：经营造血能力强，扩产是主动战略投入而非被动失血，一旦新产能达产放量，现金流将重新转正并进入收获期。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>10.93%</strong></td><td>> 15% 优秀 / > 10% 及格</td><td class="good">✅ 周期底部仍达标</td></tr>
+  <tr><td>毛利率</td><td><strong>15.59%</strong></td><td>稳定或提升</td><td class="neutral">⚠ 小幅下滑0.48pct</td></tr>
+  <tr><td>净利率</td><td><strong>8.29%</strong></td><td>-</td><td class="good">✅ 提升0.68pct</td></tr>
+  <tr><td>营收增长率</td><td><strong>-3.77%</strong></td><td>> 10%</td><td class="neutral">⚠ 价跌量增</td></tr>
+  <tr><td>利润增长率</td><td><strong>+4.82%</strong></td><td>正增长</td><td class="good">✅ 逆势正增长</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>1.52</strong></td><td>> 1</td><td class="good">✅ 现金流质量优</td></tr>
+  <tr><td>资产负债率</td><td><strong>47.92%</strong></td><td>制造业<60%</td><td class="good">✅ 合理</td></tr>
+  <tr><td>分红率</td><td><strong>~26%</strong></td><td>持续分红</td><td class="neutral">适中</td></tr>
+</table>
+
+<h3>3.2 分业务分析（FY2025）</h3>
+<table>
+  <tr><th>业务板块</th><th>收入/增速</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td>牛皮箱板纸（29.0%）</td><td>120.82亿 / +4.05%</td><td>17.71%（+2.49pct）</td><td class="good">✅ 量价齐升，核心利润</td></tr>
+  <tr><td>双胶纸（20.9%）</td><td>81.97亿 / -8.53%</td><td>10.59%（-1.86pct）</td><td class="bad">❌ 供给过剩价承压</td></tr>
+  <tr><td>其他纸（10.9%）</td><td>42.63亿 / +5.55%</td><td>13.48%</td><td class="good">✅ 增长</td></tr>
+  <tr><td>铜版纸（9.7%）</td><td>38.05亿 / -7.92%</td><td>14.95%（+0.11pct）</td><td class="neutral">⚠ 下滑</td></tr>
+  <tr><td>生活用纸（6.9%）</td><td>26.99亿 / +33.47%</td><td>12.94%（+1.07pct）</td><td class="good">✅ 高增长</td></tr>
+  <tr><td>溶解浆（7.4%）</td><td>29.08亿 / -29.06%</td><td>18.04%（-6.34pct）</td><td class="bad">❌ 浆价波动承压</td></tr>
+  <tr><td>化机浆（3.7%）</td><td>14.51亿 / -9.24%</td><td>25.06%（+2.38pct）</td><td class="good">✅ 毛利率高</td></tr>
+  <tr><td>淋膜原纸 / 瓦楞原纸</td><td>11.10亿 / 小基数</td><td>-</td><td class="neutral">平稳</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>业务解读：</strong>收入结构上，文化纸（双胶+铜版）占约31%但受供给过剩价下跌拖累最大；包装纸（牛皮箱板纸）占29%实现量价齐升、毛利+2.49pct，是2025利润核心；生活用纸凭借广西新产能实现+33%高增长。整体靠"纸价下跌（文化纸）+ 提升量（新产能）+ 包装/生活纸改善"对冲，最终净利逆势增长。溶解浆因下游需求偏弱（如海南）收入下滑29%，但毛利率仍18%以上，柔韧性好。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="bad">🔴 极高</td><td>文化纸（双胶/铜版）供给过剩，价格承压</td><td>L5 行业分析，双胶纸毛利率降至10.59%</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>资本开支加大，FY2025 FCF 为负（-29亿）</td><td>L1 现金流量表，广西基地扩产</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>资产负债率升至47.92%，扩产伴升有息负债</td><td>L1 资产负债表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>溶解浆价格波动，2025收入-29%</td><td>L2 业务分析</td></tr>
+  <tr><td class="good">🟢 正面</td><td>成本最优（浆料一体化），周期底部仍盈利</td><td>L2 ROE 10.93%（同行亏损）</td></tr>
+  <tr><td class="good">🟢 正面</td><td>CFO/净利润=1.52，现金流质量优</td><td>L1 现金流量表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>连续分红，穿越周期未中断分红</td><td>L1 分红</td></tr>
+  <tr><td class="good">🟢 正面</td><td>2026Q1盈利延续增长，拐点已现</td><td>L1 利润表</td></tr>
+</table>
+
+<div class="verdict verdict-caution">⚠ L2综合判定：行业底部叠加扩产期——当期指标中等偏上（ROE 10.9%优质），核心看扩产达产后的盈利弹性和文化纸价格企稳</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>股价（2026.7.23）</td><td><strong>14.35 元</strong></td><td>52周范围约11.8-14.6元</td></tr>
+  <tr><td>总市值</td><td><strong>~401 亿</strong></td><td>基于总股本27.95亿股</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>~12.3x</strong></td><td>基于TTM EPS ~1.17元</td></tr>
+  <tr><td>PE（TTM扣非）</td><td><strong>~12.6x</strong></td><td>扣非净利31.92亿</td></tr>
+  <tr><td>PE（2026E）</td><td><strong>~11.2x</strong></td><td>基于2026E净利35-36亿（券商一致）</td></tr>
+  <tr><td>PB</td><td><strong>~1.31x</strong></td><td>基于每股净资产11.18元（2026Q1末）</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~1.02x</strong></td><td>市销率低</td></tr>
+  <tr><td>PCF</td><td><strong>~8.1x</strong></td><td>基于CFO 49.56亿</td></tr>
+  <tr><td>股息率</td><td><strong>2.09%</strong></td><td>基于每股分红0.30元</td></tr>
+</table>
+
+<h3>4.2 PB Band区间（周期股专用）</h3>
+<p style="font-size:13px;color:#666;">周期股PE失真，以PB为主要估值依据。当前PB 1.31x处于历史约13%分位，位于底部区间。</p>
+<table>
+  <tr><th>PB情景</th><th>PB</th><th>对应股价</th><th>vs现价14.35元</th><th>备注</th></tr>
+  <tr><td>历史高位</td><td>~3.5x</td><td>~39.1 元</td><td>+172%</td><td>周期顶部泡沫</td></tr>
+  <tr><td>80%分位</td><td>~2.5x</td><td>~28.0 元</td><td>+95%</td><td>偏高区域</td></tr>
+  <tr><td>50%分位（中值）</td><td>~1.8x</td><td>~20.1 元</td><td>+40%</td><td>中枢价值</td></tr>
+  <tr><td>20%分位</td><td>~1.35x</td><td>~15.1 元</td><td>+5%</td><td>偏低区域</td></tr>
+  <tr><td><strong>当前PB</strong></td><td><strong>~1.31x</strong></td><td><strong>14.35 元</strong></td><td><strong>—</strong></td><td class="good"><strong>✅ 底部区间</strong></td></tr>
+  <tr><td>历史低位</td><td>~1.01x</td><td>~11.3 元</td><td>-21%</td><td>极端底部</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>PB估值分析：</strong>当前PB 1.31x处于历史约13%分位（<30%分位），处于底部偏低区域。对太阳纸业这样的优质周期龙头，PB有额外溢价基础：穿越周期ROE始终10%+、净资产持续增厚，其PB的底部支撑比普通亏损纸企（PB更低但盈利恶化）更扎实。相对估值视角：PE(TTM) 12.3x对应一家周期底部仍盈利、且2026-2028有望增长的公司，11-12x的PE处于合理偏低区间。当前位置具有较好的中长期布局价值，唯一的变量是文化纸价格何时企稳回升。
+</div>
+
+<h3>4.3 历史PE区间（参考，周期股失真）</h3>
+<p style="font-size:13px;color:#c0392b;">⚠ 周期股PE波动与利润波动反向，此处仅供对照参考，以PB为准。</p>
+<table>
+  <tr><th>指标</th><th>数值</th><th>备注</th></tr>
+  <tr><td>PE（TTM）最大值</td><td>~20x+</td><td>利润低或亏损期</td></tr>
+  <tr><td>PE 80%分位</td><td>~18x</td><td>景气偏弱期</td></tr>
+  <tr><td>PE 50%分位（中值）</td><td>~12-13x</td><td>中周期水平</td></tr>
+  <tr><td>PE 20%分位</td><td>~10x</td><td>利润较好期</td></tr>
+  <tr><td>PE 历史低位</td><td>~7-8x</td><td>周期顶部利润峰值时</td></tr>
+  <tr><td>当前PE（TTM）</td><td class="good">~12.3x</td><td class="good">✅ 处于中性合理区间</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值总结：</strong>① <strong>PB 1.31x处于历史约13%分位</strong>，处于底部区间，为周期股首选估值工具；② 相对同行（博汇/山鹰/晨鸣普遍亏损或微利）估值有溢价合理性，因太阳是行业唯一连续盈利龙头；③ PE(TTM) 12.3x与ROE 10.9%匹配，2026E PE约11x，泡沫不大；④ 尽露利润率回落到1x的历史极低值对应-21%下行最大风险，但按太阳穿越周期能力，此极端情形概率较低；⑤ 底部区间到反转的时间取决于文化纸价格企稳节奏与广西基地产能爬坡验证。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>归母净利率</td><td>~7.80%</td><td>~7.61%</td><td><strong>8.29%</strong></td><td class="good">⬆ 改善</td></tr>
+  <tr><td>资产周转率（次）</td><td>~0.79</td><td>~0.79</td><td><strong>~0.71</strong></td><td class="bad">⬇ 下降</td></tr>
+  <tr><td>权益乘数</td><td>~1.87</td><td>~1.84</td><td><strong>~1.92</strong></td><td class="neutral">➡ 温和</td></tr>
+  <tr><td><strong>ROE</strong></td><td><strong>12.59%</strong></td><td><strong>11.38%</strong></td><td><strong>10.93%</strong></td><td class="neutral">⬇ 缓降但仍高</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>~6.2%</td><td>~6.2%</td><td><strong>~5.9%</strong></td><td class="neutral">基本稳定</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>~6.4pct</td><td>~5.7pct</td><td><strong>~5.0pct</strong></td><td class="neutral">杠杆驱动</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：中高利润型 + 温和杠杆</strong><br>
+  太阳纸业的杜邦拆解呈现健康结构：净利率从7.8%提升至8.3%（周期底部逆势提升，区别于同行靠补贴或减值腾挪），周转率因扩产期表内资产增加而小幅下降（0.79→0.71），权益乘数稳定在1.9左右（适度杠杆）。ROE从12.6%缓降至10.9%，核心是周转率下降拖累，而非盈利恶化——即"收入增长受扩产摊薄"的暂时现象。相比纸业同行（山鹰-7.64%、晨鸣-164.8%），太阳在周期底部仍保持10%+的ROE，赚钱质量在行业内独一档。
+</div>
+
+<h3>5.2 三年趋势分析</h3>
+<table>
+  <tr><th>年份</th><th>ROE</th><th>净利率</th><th>周转率</th><th>权益乘数</th><th>ROA</th></tr>
+  <tr><td>FY2023</td><td>12.59%</td><td>7.80%</td><td>0.79</td><td>1.87</td><td>6.2%</td></tr>
+  <tr><td>FY2024</td><td>11.38%</td><td>7.61%</td><td>0.79</td><td>1.84</td><td>6.2%</td></tr>
+  <tr><td>FY2025</td><td>10.93%</td><td>8.29%</td><td>0.71</td><td>1.92</td><td>5.9%</td></tr>
+  <tr><td>趋势</td><td class="neutral">缓降</td><td class="good">⬆</td><td class="bad">⬇</td><td>➡</td><td class="neutral">稳定</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>核心结论：</strong>太阳纸业是在下行走势中靠"净利率提升"对冲"周转率下降"的典型：净利率逆势走高（得益于费用率优化与高价差边际改善），周转率因扩产期总资产膨胀而走低，二者对冲后ROE温和降至10.9%。相比同行，太阳ROE的稳定性行业第一。扩产出来后的两个关键变量是：① 新产能达产后周转率能否回升（决定ROE重回12%）；② 文化纸价是否企稳（决定净利率能否守住8%）。根据券商模型，太阳预期2027年ROE可回归12%+。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与周期分析（L5框架）</h2>
+
+<div class="summary-box">
+  <strong>行业类型判断：纯周期——造纸（纸浆一体化）</strong><br>
+  造纸属<b>纯周期型</b>行业（见行业分类清单"纸业"归类于纯周期股）。产品（文化纸/包装纸/生活纸/浆料）同质化程度较高、价格由供需决定、行业成熟（2025年中国造纸业营收14186.7亿、-2.6%，利润总额443亿、-13.6%）。利润取决于产品价格与原料（木浆）价差，强周期。<br><br>
+  <strong>纯周期×纸业 → 必须使用周期股评分体系</strong>（已在总结论tab中使用）
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>内容</th></tr>
+  <tr><td>市场格局</td><td>造纸龙头集中度中等（文化纸CR5约40%），太阳、晨鸣、玖龙、山鹰、博汇为前几家。近两年行业新增产能集中在包装纸/文化纸，供给有所过剩，行业正处淘汰整合阶段（晨鸣巨亏+ST、山鹰亏损）</td></tr>
+  <tr><td>进入壁垒</td><td>规模壁垒（百亿级浆纸产线）、资源壁垒（木浆/废纸原料采购）、环保（木浆/污水指标）、浆料一体化（林浆纸一体化降低成本）、渠道黏性</td></tr>
+  <tr><td>财务验证</td><td>太阳2025毛利率15.59%（同行博汇9.61%）、净利32.5亿（同行晨鸣亏83亿、山鹰亏11亿），成本与一体化优势在周期底部体现得淋漓尽致</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  行业成熟期——文化纸/包装纸是成熟大宗品，需求平稳，未来增速接近宏观零售/地产/电商增速。太阳通过向下游延伸（生活用纸C端）和特种纸进行产品升级，在成熟赛道里找结构性成长。
+</div>
+
+<h3>6.4 当前周期位置</h3>
+<div class="highlight-box">
+  <strong>底部磨底期，结构性改善（复苏初期）</strong><br>
+  ① 2025年造纸业整体利润-13.6%，行业处于规模化供给过剩后的周期底部；<br>
+  ② 文化纸（双胶/铜版）价格承压下滑，行业仍在磨底；<br>
+  ③ 结构性分化：包装纸（牛皮纸）已率先回升（太阳毛利+2.49pct），生活纸受益新产能量增；<br>
+  ④ 太阳逆势扩产并保持盈利增长：2025Q4单季+16.9%、2026Q1 +2.3%，公司盈利已从底部回升；<br>
+  ⑤ 周期位置评分：12/15分（复苏初期，拐点已现），等待文化纸价格企稳即是行业整体拐点信号。
+</div>
+
+<h3>6.5 同行对比分析</h3>
+<table>
+  <tr><th>指标(2025)</th><th>太阳纸业</th><th>博汇纸业</th><th>山鹰国际</th><th>晨鸣纸业</th><th>评价</th></tr>
+  <tr><td>营收(亿)</td><td>391.9</td><td>191.6</td><td>287.8</td><td>61.9</td><td class="good">太阳最大</td></tr>
+  <tr><td>归母净利(亿)</td><td><strong>32.51</strong></td><td>1.55</td><td>-11.36</td><td>-82.96</td><td class="good">行业独秀</td></tr>
+  <tr><td>ROE</td><td><strong>10.93%</strong></td><td>2.22%</td><td>-7.64%</td><td>-164.8%</td><td class="good">领先</td></tr>
+  <tr><td>毛利率</td><td><strong>15.59%</strong></td><td>~9.6%</td><td>-</td><td>同比恶化</td><td class="good">成本最优</td></tr>
+  <tr><td>资产负债率</td><td><strong>47.92%</strong></td><td>~62%</td><td>~72%</td><td>极高</td><td class="good">最低</td></tr>
+  <tr><td>营收增速</td><td>-3.77%</td><td>+1.20%</td><td>-1.54%</td><td>-72.8%</td><td class="neutral">中</td></tr>
+</table>
+<div class="summary-box">
+  <strong>同行结论：</strong>太阳纸业是A股造纸唯一保持"盈利+ROE 10%+ +低负债"的绝对龙头——同行业多数同行处于巨额亏损（晨鸣亏83亿并ST、山鹰亏11亿、博汇微利），而太阳凭借浆料一体化成本优势在周期底部维持盈利增长。竞争力处于无可争议的行业第一梯度。
+</div>
+
+<h3>6.6 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>当前指标</th><th>评价</th></tr>
+  <tr><td>纯周期（纸业）</td><td>PB（市净率）</td><td>PB ~1.31x</td><td class="good">✅ 历史约13%分位，底部区间</td></tr>
+  <tr><td>PE参考</td><td>中周期参考</td><td>PE(TTM) ~12.3x</td><td class="good">✅ 中性合理</td></tr>
+  <tr><td>辅助指标</td><td>PS / 产能利用率</td><td>PS ~1.02x</td><td class="neutral">合理</td></tr>
+</table>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战分析（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>纯周期（造纸），行业成熟、供给过剩、集中度提升中，壁垒=规模+浆料一体化。<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 10.93%（行业底部仍盈利、同行普遍亏损），杜邦中高利润型（净利率8.3%），CFO/净利1.52现金流优，FCF因扩产转负。<br>
+  <strong>Step 3 - 估值判断：</strong>PB 1.31x处于历史约13%分位（底部区间），PE(TTM) 12.3x合理，相对同行有龙头溢价但仍偏低。<br>
+  <strong>Step 4 - 风险排查：</strong>核心风险：文化纸供给过剩价承压+扩产期FCF为负+资产负债率升至48%。积极面：行业唯一盈利龙头、成本最优、现金流充沛。<br>
+  <strong>Step 5 - 结论：</strong>⛔ 好公司？穿越周期能力强（成本+一体化），优质周期龙头。⛔ 好价格？PB底部区间+PEG合理，已具备布局价值，处行业复苏初期。<br>
+  <strong>Step 6 - 跟踪：</strong>关键指标：文化纸（双胶/铜版）价格、木浆价格、广西基地产能爬坡利用率、净利率、2026年季度盈利趋势。卖点：PB回到中值（~1.8x）上方或周期确认见顶后。
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="neutral">⚠</td><td>造纸成熟无爆发性增长、产能过剩，但行业底部集中or淘汰、龙头收割，太阳占结构性优势</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓</td><td>ROE 10.93%&gt;10%、净利率提升、CFO&gt;净利（1.52）、成本龙头——穿越周期能力强，是A股纸业唯一盈利龙头</td></tr>
+  <tr><td>③ 好价格</td><td class="good">✓</td><td>PB 1.31x处于历史约13%分位（底部），PE(TTM) 12.3x，PEG合理，具备安全边际</td></tr>
+</table>
+
+<h3>7.3 风险评估</h3>
+
+<h4>a. 三个陷阱排查</h4>
+<div class="danger-box">
+  <strong>陷阱排查结果：</strong><br><br>
+  ☐ <strong>价值陷阱（低PE+低增长+高负债）</strong> → PE 12.3x不极低、负债率48%中等、自由FCF为负 → <b>⚠ 部分命中</b>（FCF为负需警惕，但系扩张所致非经营恶化）<br><br>
+  ☐ <strong>周期陷阱（低PE+周期顶点）</strong> → 当前处于周期底部而非顶点（同行亏损），<b>❌ 未命中</b>；但注意文化纸仍在磨底，若"复苏"证伪则股价可能横盘更久。<br><br>
+  ☐ <strong>烧钱陷阱（高PE+高增速+CFO为负）</strong> → 营收-3.8%非高增速、CFO为正，<b>❌ 未命中</b>
+</div>
+
+<h4>b. 管理层与治理风险</h4>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力与履历</td><td>好</td><td>创始人李洪信家族深耕造纸30余年，长期行业前瞻性强（早年布局浆料自供），经营稳健</td></tr>
+  <tr><td>股权结构与利益一致性</td><td>强</td><td>实控人李洪信（自然人）控股，管理层与股东利益一致，无国资制衡问题</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td>无</td><td>年报标准无保留意见，无重大违规处罚</td></tr>
+  <tr><td>资本配置记录</td><td>合理</td><td>浆料一体化+广西基地是公司长期盈利能力基础；逆周期扩产（新产能），长期胜率高于同业（同业均亏损而太阳盈利）</td></tr>
+  <tr><td>CEO交接/关键人员变动</td><td>无风险</td><td>管理团队稳定</td></tr>
+</table>
+
+<h4>c. 盈利可持续性</h4>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是靠价？</td><td>量驱动为主</td><td>扩产带来量（纸浆销量+6.4%），价格（文化纸）下行，靠浆料一体化的低成本获取盈利</td></tr>
+  <tr><td>涨价能否持续？</td><td>结构性 </td><td>包装纸/瓦楞纸已回升（+5%），文化纸需等产能收缩；溶解浆随棉价可能回升</td></tr>
+  <tr><td>非经常性利润占比</td><td>低</td><td>归母净利与扣非净利（31.92亿）差异很小，利润质量高</td></tr>
+  <tr><td>大客户集中度</td><td>分散</td><td>纸制品下游（印刷、包装、家电、电商）分散</td></tr>
+  <tr><td>政策/监管依赖度</td><td>中</td><td>环保（木浆污水、林纸政策）影响供给，木浆价格与原料端影响利润率</td></tr>
+</table>
+
+<h4>d. 关键变量敏感性</h4>
+<div class="summary-box">
+  <strong>变量1: 文化纸（双胶/铜版）价格</strong><br>
+  &nbsp;&nbsp;乐观：文化纸价格企稳回升（供给收缩），EPS +0.15元<br>
+  &nbsp;&nbsp;中性：价格底部企稳，EPS ~1.16元<br>
+  &nbsp;&nbsp;悲观：价格继续下滑（产能继续投放），EPS -0.12元<br><br>
+  <strong>变量2: 广西基地（新产能）爬坡与达产</strong><br>
+  &nbsp;&nbsp;乐观：生活用纸/包装纸产量+10%放量，EPS +0.20元<br>
+  &nbsp;&nbsp;中性：产能按预期爬坡，EPS ~1.16元<br>
+  &nbsp;&nbsp;悲观：试产/爬坡不及预期+市场过剩，EPS -0.1元<br><br>
+  <strong>变量3: 木浆价格</strong><br>
+  &nbsp;&nbsp;乐观：木浆价格回落（成本下降），EPS +0.1元<br>
+  &nbsp;&nbsp;中性：木浆平稳，EPS 稳定<br>
+  &nbsp;&nbsp;悲观：木浆上涨压缩利润，EPS -0.08元
+</div>
+
+<h3>7.4 前景展望</h3>
+
+<h4>a. 未来1-3年核心驱动</h4>
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. 广西基地（南宁二期及高档包装纸）产能投放放量，生活用纸/包装纸/特种纸成长性强，带来量增<br>
+  2. 材料成本（浆料自给+木浆库存）在环保、价格企稳后经济愈合，净利率有提升空间<br>
+  3. 行业供给侧淘汰（晨鸣ST、山鹰亏损）→ 集中度提升，龙头定价能力增强<br><br>
+  <strong>负向拖累：</strong><br>
+  1. 文化纸（双胶/铜版）供给过剩价格承压，若中长期低迷拖累整体收入利润<br>
+  2. 扩产期资本开支大，FCF为负、资产负债率升至48%附近<br>
+  3. 溶解浆价格波动（2025收入-29%），若下游聚丙烯需求继续弱，浆类仍有压力。
+</div>
+
+<h4>b. 三情景简表</h4>
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>EPS预估</th><th>PB区间</th><th>预期回报</th></tr>
+  <tr><td>乐观</td><td>文化纸企稳+周期性回升</td><td>1.40-1.60元</td><td>1.8-2.0x（19-22元）</td><td>+35%至+50%</td></tr>
+  <tr><td>中性</td><td>价稳+扩产量增、净利35-38亿</td><td>1.25-1.36元</td><td>1.4-1.6x（15.5-18元）</td><td>+8%至+25%</td></tr>
+  <tr><td>悲观</td><td>文化纸继续下跌+扩产受挫</td><td>0.90-1.05元</td><td>1.1-1.2x（12-13.5元）</td><td>-15%至-5%</td></tr>
+</table>
+<p style="font-size:13px;color:#666;margin-bottom:16px">概率判断：中性50%，乐观30%，悲观20%。券商一致预期 2026E/2028E 净利约 35-36 / 39-40 / 43-44 亿元，对应PE约11/10/9x。华创目标价19.0元。</p>
+
+<h3>7.5 讨论问题（阅读引导）</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——买木浆+废纸做成文化纸/包装纸/生活纸，靠浆料一体化把单吨成本做到行业最低，在纸价低位时仍赚钱。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——文化纸双胶/铜版价格会不会继续崩？扩产的FCF为负+负债率48%会不会拖累？行业这轮产能过剩要多久才出清？<br>
+  3. 如果现在买入，期待的回报来源是什么？——纸业周期修复+公司扩产量增兑现，bet的是太阳纸这种"周期底部仍盈利的龙头"估值（PB 1.3x）、修复到中值（1.8x）及净利回升的戴维斯双击。前提：扩产产能爬坡顺利+文化纸价企稳。<br>
+  4. 什么情况下你会坚决卖出？——PB反弹至中值1.8x及以上、或文化纸/木浆双杀盈利转弱、或行业产能继续大超预期投放。
+</div>
+
+</div></div>
+
+<div class="footer">
+   免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+   数据来源：太阳纸业2025年年报、2026Q1季报、券商研报（国联民生/国泰海通/华创/国信）、理杏仁、东方财富、新浪财经
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

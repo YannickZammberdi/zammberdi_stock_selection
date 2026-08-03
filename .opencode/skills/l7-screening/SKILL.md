@@ -33,6 +33,19 @@ description: 对A股/ASX指定行业进行完整分析（L7-L10），生成带Ta
 
 完整行业分析报告存入 `stock-learning/stocks-analysis/行业报告/{市场}——{行业名}——行业分析报告.html`。
 
+## 参考框架
+
+L7-L10 框架定义在 `stock-learning/materials/`，分析前必须通读对应文件，报告结论与框架保持一致：
+
+| Tab | 框架文件 |
+|-----|---------|
+| L7 量化初筛 | `stock-learning/materials/L7-screening.md` |
+| L8 行业画像 | `stock-learning/materials/L8-industry-profile.md` |
+| L9 竞争格局 | `stock-learning/materials/L9-competition-drivers.md` |
+| L10 周期时机 | `stock-learning/materials/L10-cycle-policy-timing.md` |
+
+行业分类标准见 `stock-learning/materials/L5-industry.md`（四大分类+估值方法）。
+
 ## 参考模板
 
 参考 `stock-learning/stocks-analysis/行业报告/A股——光伏——行业分析报告.html` 的HTML结构和CSS样式。模板已包含完整的CSS、tab-bar和JS交互，直接复制后替换数据和内容即可。
@@ -65,7 +78,7 @@ CSS/JS与参考模板完全一致。meta中日期统一 `YYYY-MM-DD` 格式。
 
 ### L7 tab
 
-- **筛子调整说明：** 6个筛子的标准值和调整原因。行业类型调整速查：
+- **筛子调整说明：** 6个筛子的标准值和调整原因。行业类型调整速查表（完整版以 `stock-learning/materials/industry-classification.md` §2.1 为唯一来源，若两处不一致以共享文件为准）：
 
 | 行业类型 | 跳过筛子 | 调整筛子 |
 |---------|---------|---------|
@@ -118,3 +131,24 @@ CSS/JS与参考模板完全一致。meta中日期统一 `YYYY-MM-DD` 格式。
 - **买入清单表：** 5个条件(周期位置/估值/政策/格局/增长)、结果(✅❌⚠️色标)、备注
 - **综合判断框：** highlight-box含买入/等待/回避标签、预期回报、仓位建议(色标)、跟踪指标、买入策略(分段标注)
 - **卖出信号：** danger-box，4个编号卖出信号(圆角圆形编号)
+
+## 数据来源
+
+**获取顺序（优先级从高到低）：**
+1. **websearch 实时搜索** — 个股市值/ROE/毛利率/PE/PB分位等，优先用 `websearch` 获取，记录来源和日期
+2. **已生成个股报告** — `stock-learning/stocks-analysis/{市场}/{L5分类}/{简称}_{代码}_分析报告.html`，读取其 L1-L4 财务数据和 L5 分类结论
+3. **用户提供** — 用户消息中给出的数据
+4. **知识内已知数据** — 仅用于无法搜索到的历史参考值，必须标注"历史参考"
+
+**筛选必须拿到的基础数据（每个候选股）：** 市值、营收、毛利率、ROE、负债率、PE/PB历史分位。数据不全时该股标记"数据待补充"，不得用臆测值填入表格。
+
+## 生成后检查（QC）
+
+生成完成后逐项核对：
+- [ ] 5个tab结构完整，按钮文字与`data-tab`对应（summary/l7/l8/l9/l10）
+- [ ] meta中日期为 `YYYY-MM-DD` 格式
+- [ ] 综合评分表总分=6个维度之和（20/15/20/15/15/15=100），总分与verdict颜色一致（≥80绿 / ≥60橙 / <60红）
+- [ ] 六道筛子每条有明确阈值依据，调整处注明原因
+- [ ] 候选池/观察池/筛除记录三表数据来源可追溯（websearch或已生成报告），无编造数字
+- [ ] 每个候选股的筛选结果（N/6）与表格数据自洽
+- [ ] 数据待补充项有明确提示，不参与评分

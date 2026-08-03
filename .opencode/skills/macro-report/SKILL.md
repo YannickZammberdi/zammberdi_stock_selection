@@ -12,6 +12,17 @@ description: 生成大盘宏观环境HTML分析报告，含A股/ASX的L0-A1/A2/B
 - ASX宏观环境综合判断（L0-B1 + L0-B2）
 - 对当前市场给出明确结论（现在是进攻还是防守、仓位多少合适）
 
+## 参考框架
+
+L0 宏观框架定义在 `stock-learning/materials/`，分析前必须通读对应文件，报告结论与框架保持一致：
+
+| 模块 | 框架文件 |
+|------|---------|
+| A股宏观象限（tab-a1） | `stock-learning/materials/L0-A1-china-macro-cycle.md` |
+| A股政策资金（tab-a2） | `stock-learning/materials/L0-A2-policy-capital.md` |
+| ASX大宗利率（tab-b1） | `stock-learning/materials/L0-B1-australia-macro.md` |
+| ASX全球联动（tab-b2） | `stock-learning/materials/L0-B2-global-linkage.md` |
+
 ## 参考模板
 
 参考 `stock-learning/stocks-analysis/宏观报告/A股_宏观环境报告_2026-07-09.html` 的HTML结构和CSS样式（Tab导航+verdict框）。
@@ -105,7 +116,12 @@ btns.forEach(function(btn) {
 
 ## 数据来源
 
-报告中的数据来自用户的宏观跟踪表或已知信息。每次生成报告时，需要确认以下数据是否齐全：
+**获取顺序（优先级从高到低）：**
+1. **websearch 实时搜索** — 优先用 `websearch` 获取最新宏观数据（PMI/社融/LPR/利率/大宗价格等），记录来源和日期
+2. **用户提供** — 用户消息中给出的宏观跟踪表或已知信息
+3. **知识内已知数据** — 仅用于无法搜索到的历史参考值，必须标注"历史参考"
+
+每次生成报告时，需要确认以下数据是否齐全：
 
 **A股部分需要确认：**
 - PMI（近3个月数据）
@@ -127,8 +143,24 @@ btns.forEach(function(btn) {
 
 ## 数据录入
 
-如果用户没有提供某部分数据，报告对应区域标注"数据待补充"并用灰色字体。**不要编造数据。**
+对每一项数据，先尝试 websearch 获取最新值；搜索不到再询问用户或标注缺失。
+
+如果某项数据无法获取（websearch 失败且用户未提供），报告对应区域标注"数据待补充"并用灰色字体。**不要编造数据。**
 
 ## 更新日志
 
-每次生成时要记录更新日期和对应的数据状态。
+每次生成时在 `.footer` 或报告末尾追加一行更新记录：
+
+```
+更新：{YYYY-MM-DD} | 数据完整度：A股 n/7 · ASX n/6 | 数据来源：websearch/用户提供
+```
+
+## 生成后检查（QC）
+
+生成完成后逐项核对：
+- [ ] 5个tab结构完整，按钮文字与`data-tab`对应
+- [ ] meta/更新日志中的日期为 `YYYY-MM-DD` 格式
+- [ ] 每个数据点有来源：websearch（标注日期）或"数据待补充"灰色标注
+- [ ] 无编造数据：所有数字能追溯到搜索来源或用户输入
+- [ ] verdict 框与评分一致（总分≥4绿 / 2-3橙 / ≤1红）
+- [ ] 数据待补充项有明确提示，不占verdict评分
