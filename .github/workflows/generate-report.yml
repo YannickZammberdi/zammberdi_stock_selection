@@ -47,6 +47,15 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:
+      - name: 权限检查（仅限本人触发）
+        env:
+          ACTOR: ${{ github.triggering_actor }}
+        run: |
+          if [ "$ACTOR" != "YannickZammberdi" ]; then
+            echo "非授权用户 $ACTOR 触发，拒绝执行"
+            exit 1
+          fi
+
       - name: 检出代码
         uses: actions/checkout@v4
         with:
