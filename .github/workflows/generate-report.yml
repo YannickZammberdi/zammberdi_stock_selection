@@ -1,0 +1,98 @@
+name: 生成股票分析报告
+
+on:
+  workflow_dispatch:
+    inputs:
+      type:
+        description: '报告类型：stock=个股财务分析 / industry=行业分析 / macro=宏观环境 / plan=交易计划'
+        required: true
+        type: choice
+        options:
+          - stock
+          - industry
+          - macro
+          - plan
+      market:
+        description: '市场'
+        required: true
+        default: 'A股'
+        type: choice
+        options:
+          - 'A股'
+          - 'ASX'
+      name:
+        description: '股票名称或行业名（type=stock/plan 填股票名称如 药明康德；type=industry 填行业名如 光伏；macro 留空）'
+        required: false
+        default: ''
+        type: string
+      model:
+        description: '模型'
+        required: false
+        default: 'opencode/deepseek-v4-flash-free'
+        type: choice
+        options:
+          - opencode/deepseek-v4-flash-free
+          - opencode/gpt-5.1
+          - opencode/claude-sonnet-4-5
+
+permissions:
+  contents: write
+
+concurrency:
+  group: report-generation
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: 安装 opencode
+        run: npm install -g opencode-ai
+
+      - name: 构造提示词
+        id: prompt
+        env:
+          RTYPE: ${{ github.event.inputs.type }}
+          RMARKET: ${{ github.event.inputs.market }}
+          RNAME: ${{ github.event.inputs.name }}
+        run: |
+          case "$RTYPE" in
+            stock)     P="使用 stock-report-tab skill，为 $RMARKET 股票 $RNAME 生成财务分析报告，保存到 stock-learning/stocks-analysis/ 下" ;;
+            industry)  P="使用 l7-screening skill，筛一下 $RMARKET $RNAME 行业，生成行业分析报告" ;;
+            macro)     P="使用 macro-report skill，生成 $RMARKET 大盘宏观环境分析报告" ;;
+            plan)      P="使用 stock-trade-plan skill，为 $RMARKET 股票 $RNAME 生成交易计划" ;;
+            *)         echo "未知报告类型: $RTYPE"; exit 1 ;;
+          esac
+          echo "PROMPT=$P" >> "$GITHUB_ENV"
+
+      - name: 运行 opencode 生成报告
+        env:
+          ZEN_API_KEY: ${{ secrets.ZEN_API_KEY }}
+        run: |
+          echo ">> PROMPT: $PROMPT"
+          opencode run --model "${{ github.event.inputs.model }}" --auto "$PROMPT"
+
+      - name: 同步到 docs（GitHub Pages）
+        run: python scripts/sync_ghpages.py
+
+      - name: 提交并推送
+        env:
+          RTYPE: ${{ github.event.inputs.type }}
+          RNAME: ${{ github.event.inputs.name }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git add -f stock-learning/stocks-analysis/*_交易计划.html
+          if git diff --cached --quiet; then
+            echo "无文件变更，跳过提交"
+          else
+            git commit -m "generate report ($RTYPE / $RNAME) via workflow"
+            git push
+          fi
