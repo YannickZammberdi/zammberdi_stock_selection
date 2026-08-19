@@ -11,6 +11,7 @@ Rules mirror stock-learning/stocks-analysis layout:
     行业报告/A股——*.html       -> docs/industry/
     行业报告/ASX——*.html       -> docs/asx/industry/
     *_交易计划.html (root/交易计划/) -> docs/plans/ or docs/asx/plans/
+    验证/*_C方案验证.html        -> docs/verify/ or docs/asx/verify/  (market by code)
 """
 
 import json
@@ -74,6 +75,7 @@ def collect_sources():
         "industry": [],    # (Path, basename, market)
         "macro": [],       # (Path, basename, market)
         "plans": [],       # (Path, basename, market, code)
+        "verify": [],      # (Path, basename, market, code)
     }
 
     for market, sub in (("A股", "A股"), ("ASX", "ASX")):
@@ -103,6 +105,11 @@ def collect_sources():
         market, code = judge_plan_market_code(f)
         sources["plans"].append((f, f.name, market, code))
 
+    # C方案验证: flat 验证/ dir, market judged by code
+    for f in (SRC / "验证").glob("*_C方案验证.html"):
+        market, code = judge_verify_market_code(f)
+        sources["verify"].append((f, f.name, market, code))
+
     return sources
 
 
@@ -122,6 +129,17 @@ def judge_plan_market_code(path):
                 if "ASX" in path.parent.name or "/ASX" in line:
                     return "ASX", code
                 return "A股", code
+    return "A股", code
+
+
+def judge_verify_market_code(path):
+    """Determine market (A股/ASX) and code for a C方案验证 file."""
+    m = re.match(r".*_([^_]+)_C方案验证\.html$", path.name)
+    code = m.group(1) if m else ""
+    if re.fullmatch(r"\d{6}", code):
+        return "A股", code
+    if re.search(r"[A-Za-z]", code):
+        return "ASX", code
     return "A股", code
 
 
@@ -150,6 +168,8 @@ def copy_files():
         do_copy(f, DOCS / "macro")
     for f, _, market, _ in sources["plans"]:
         do_copy(f, DOCS / "plans" if market == "A股" else DOCS / "asx" / "plans")
+    for f, _, market, _ in sources["verify"]:
+        do_copy(f, DOCS / "verify" if market == "A股" else DOCS / "asx" / "verify")
 
     prune_stale(sources)
     return copied, skipped
@@ -164,6 +184,8 @@ def prune_stale(sources):
     macro = {s[1] for s in sources["macro"]}
     plan_a = {s[1] for s in sources["plans"] if s[2] == "A股"}
     plan_asx = {s[1] for s in sources["plans"] if s[2] == "ASX"}
+    verify_a = {s[1] for s in sources["verify"] if s[2] == "A股"}
+    verify_asx = {s[1] for s in sources["verify"] if s[2] == "ASX"}
 
     rules = [
         (DOCS / "stocks", stock_a),
@@ -173,6 +195,8 @@ def prune_stale(sources):
         (DOCS / "macro", macro),
         (DOCS / "plans", plan_a),
         (DOCS / "asx" / "plans", plan_asx),
+        (DOCS / "verify", verify_a),
+        (DOCS / "asx" / "verify", verify_asx),
     ]
     for d, keep in rules:
         if not d.exists():
@@ -245,6 +269,40 @@ def parse_plan(html, filename):
     sm = re.search(r"状态：\s*<span class=\"tag[^\"]*\">([^<]+)</span>", html)
     status = sm.group(1).strip() if sm else "计划中"
     return {"name": name, "code": code, "date": date, "status": status}
+
+
+def parse_verify_name_code(html, filename):
+    """Returns (name, code) from title '药明康德(603259) C方案验证', fallback filename."""
+    m = re.search(r"<title>(.*?)</title>", html, re.S)
+    if m:
+        t = re.search(r"^\s*(.*?)[(（]([^)）:：]*)[)）]\s*C方案验证", m.group(1).strip())
+        if t:
+            return t.group(1).strip(), t.group(2).strip()
+    base = re.sub(r"_C方案验证\.html$", "", filename)
+    parts = base.split("_")
+    if len(parts) >= 2:
+        return parts[0], parts[1]
+    return base, ""
+
+
+def parse_verify_score(html):
+    """10-point score, e.g. 总评分 7/10."""
+    m = re.search(r"(\d+)/10", html)
+    return int(m.group(1)) if m else 0
+
+
+def parse_verify_verdict(html):
+    """Map verdict class to display label."""
+    m = re.search(r"verdict-(ok|caution|bad)", html)
+    if not m:
+        return ""
+    return {"ok": "言行一致", "caution": "部分存疑", "bad": "言行不一致"}[m.group(1)]
+
+
+def parse_verify_date(html):
+    """验证日期：YYYY-MM-DD (meta line); fallback to first date."""
+    m = re.search(r"验证日期[:：]\s*(\d{4}-\d{2}-\d{2})", html)
+    return m.group(1) if m else parse_date(html)
 
 
 def parse_industry_name(filename):
@@ -387,6 +445,31 @@ def build_plans_index(market):
     log(f"[index] {market} plans: {len(rows)} 份 -> {idx}")
 
 
+def build_verify_index(market):
+    target = DOCS / "verify" if market == "A股" else DOCS / "asx" / "verify"
+    target.mkdir(parents=True, exist_ok=True)
+    idx = target / "index.html"
+    if not idx.exists():
+        log(f"[warn] 缺少 index 模板: {idx}（请先手动创建）")
+        return
+    rows = []
+    for f, _, mkt, _ in collect_sources()["verify"]:
+        if mkt != market:
+            continue
+        html = read_utf8(f)
+        name, code = parse_verify_name_code(html, f.name)
+        rows.append({
+            "name": name,
+            "code": code,
+            "verdict": parse_verify_verdict(html),
+            "score": parse_verify_score(html),
+            "date": parse_verify_date(html),
+            "file": f.name,
+        })
+    replace_data_array(idx, render_data(rows, ["name", "code", "verdict", "score", "date", "file"], ["score", "name"]))
+    log(f"[index] {market} verify: {len(rows)} 份 -> {idx}")
+
+
 def build_macro_index():
     target = DOCS / "macro"
     target.mkdir(parents=True, exist_ok=True)
@@ -440,12 +523,14 @@ def update_home_counts():
         "industry": count_html_files(DOCS / "industry"),
         "stocks": count_html_files(DOCS / "stocks"),
         "plans": count_html_files(DOCS / "plans"),
+        "verify": count_html_files(DOCS / "verify"),
     }
     counts_asx = {
         "macro": macro_asx,
         "industry": count_html_files(DOCS / "asx" / "industry"),
         "stocks": count_html_files(DOCS / "asx" / "stocks"),
         "plans": count_html_files(DOCS / "asx" / "plans"),
+        "verify": count_html_files(DOCS / "asx" / "verify"),
     }
 
     def patch(path, counts):
@@ -480,6 +565,8 @@ def _count_for(card, counts):
         return counts["stocks"]
     if href.endswith("plans/index.html"):
         return counts["plans"]
+    if href.endswith("verify/index.html"):
+        return counts["verify"]
     return None  # untouched
 
 
@@ -501,6 +588,8 @@ def main():
     build_industry_index("ASX")
     build_plans_index("A股")
     build_plans_index("ASX")
+    build_verify_index("A股")
+    build_verify_index("ASX")
     build_macro_index()
     update_home_counts()
     log(f"完成：复制 {copied}，跳过 {skipped}（内容一致）")

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>C方案验证 – 股票研究笔记</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#333}
+  .wrap{max-width:960px;margin:0 auto;padding:32px 16px}
+  .top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:20px;flex-wrap:wrap;gap:8px}
+  .top h1{font-size:22px;font-weight:700}
+  .top a{font-size:13px;color:#888;text-decoration:none}
+  .top a:hover{color:#333}
+  .toolbar{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+  .toolbar input,.toolbar select{padding:8px 12px;border:1px solid #ddd;border-radius:8px;font-size:13px;background:#fff;outline:none;font-family:inherit}
+  .toolbar input{flex:1;min-width:180px}
+  .toolbar input:focus,.toolbar select:focus{border-color:#888}
+  table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;border:1px solid #eee}
+  th{background:#f8f8f8;padding:10px 12px;font-size:12px;font-weight:600;color:#666;text-align:left;cursor:pointer;user-select:none;white-space:nowrap;border-bottom:1px solid #eee}
+  th:hover{background:#f0f0f0}
+  th .arrow{color:#bbb;margin-left:3px;font-size:11px}
+  td{padding:10px 12px;font-size:13px;border-bottom:1px solid #f5f5f5}
+  tr:hover td{background:#fafafa}
+  tr:last-child td{border-bottom:none}
+  .tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600}
+  .tag-ok{background:#e8f5e9;color:#2e7d32}
+  .tag-caution{background:#fff3e0;color:#e65100}
+  .tag-bad{background:#ffebee;color:#c62828}
+  .score-bar{display:inline-block;height:6px;border-radius:3px;margin-right:6px;vertical-align:middle}
+  .count-bar{color:#888;font-size:13px;margin-bottom:12px}
+  .empty{text-align:center;color:#aaa;padding:40px;font-size:14px}
+  .footer{text-align:center;font-size:12px;color:#ccc;margin-top:40px}
+  a{color:#1a73e8;text-decoration:none}
+  a:hover{text-decoration:underline}
+  .code{color:#999;font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <h1>🛡️ C方案验证</h1>
+    <a href="../index.html">← 返回首页</a>
+  </div>
+
+  <div class="toolbar">
+    <input type="text" id="search" placeholder="搜索股票名称或代码…" oninput="render()">
+    <select id="filter" onchange="render()">
+      <option value="">全部结论</option>
+      <option value="言行一致">言行一致（绿）</option>
+      <option value="部分存疑">部分存疑（橙）</option>
+      <option value="言行不一致">言行不一致（红）</option>
+    </select>
+  </div>
+
+  <div class="count-bar" id="count">共 1 份</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th onclick="sort('name')">股票 <span class="arrow" id="a-name">▼</span></th>
+        <th onclick="sort('code')">代码 <span class="arrow" id="a-code">▲</span></th>
+        <th onclick="sort('verdict')">验证结论 <span class="arrow" id="a-verdict">▼</span></th>
+        <th onclick="sort('score')" style="text-align:center">评分(10分) <span class="arrow" id="a-score">▼</span></th>
+        <th onclick="sort('date')">验证日期 <span class="arrow" id="a-date">▲</span></th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+  <div class="footer">仅限个人研究参考</div>
+</div>
+
+<script>
+const data = [
+  {"name": "药明康德", "code": "603259", "verdict": "部分存疑", "score": 7, "date": "2026-08-19", "file": "药明康德_603259_C方案验证.html"}];
+
+let sortKey='score', sortDir=-1;
+
+function verdictClass(v){
+  if(v==='言行一致') return 'tag-ok';
+  if(v==='部分存疑') return 'tag-caution';
+  if(v==='言行不一致') return 'tag-bad';
+  return 'tag-caution';
+}
+
+function scoreColor(s){
+  if(s>=8) return '#4caf50';
+  if(s>=5) return '#ff9800';
+  return '#f44336';
+}
+
+function render(){
+  const q=document.getElementById('search').value.trim().toLowerCase();
+  const f=document.getElementById('filter').value;
+  let rows=data.filter(d=>(!q||d.name.includes(q)||d.code.includes(q))&&(!f||d.verdict===f));
+  const cmp=(a,b)=>{const v=a[sortKey],w=b[sortKey];return v<w?-1:v>w?1:0};
+  rows.sort((a,b)=>cmp(a,b)*sortDir);
+  document.getElementById('count').textContent='共 '+rows.length+' 份';
+  const tbody=document.getElementById('tbody');
+  tbody.innerHTML=rows.map(d=>{
+    const bar='<span class="score-bar" style="width:'+(d.score*10)+'%;background:'+scoreColor(d.score)+'"></span>';
+    return '<tr><td><a href="'+d.file+'">'+d.name+'</a></td><td class="code">'+d.code+'</td><td><span class="tag '+verdictClass(d.verdict)+'">'+d.verdict+'</span></td><td style="text-align:center"><span class="tag '+verdictClass(d.verdict)+'" style="min-width:32px;display:inline-block">'+bar+'<span style="margin-left:2px">'+d.score+'</span></span></td><td style="color:#888">'+d.date+'</td></tr>';
+  }).join('');
+  if(!rows.length) tbody.innerHTML='<tr><td colspan="5" class="empty">没有匹配的验证报告</td></tr>';
+}
+
+function sort(k){
+  if(sortKey===k)sortDir*=-1;else{sortKey=k;sortDir=-1}
+  ['name','code','verdict','score','date'].forEach(k=>document.getElementById('a-'+k).textContent=k===sortKey?(sortDir<0?'▼':'▲'):'');
+  render();
+}
+
+render();
+</script>
+</body>
+</html>

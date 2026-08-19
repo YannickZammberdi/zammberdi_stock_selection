@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>药明康德(603259) C方案验证</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif; color: #1a1a1a; line-height: 1.8; background: #f5f5f5; }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; padding: 0 12px 30px; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .conclusion { text-align: center; font-size: 18px; font-weight: bold; color: #1a1a1a; margin: 20px 0 6px; }
+  h2 { font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 2px solid #1a1a1a; color: #1a1a1a; }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  .gray { color: #999; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 22px; font-weight: bold; padding: 22px; margin: 18px 0; border-radius: 8px; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-score { font-size: 14px; font-weight: normal; color: #666; margin-top: 6px; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+  .step-verdict { display: inline-block; padding: 2px 10px; border-radius: 4px; font-size: 12px; font-weight: bold; }
+  .sv-pos { background: #f0f8f0; color: #27ae60; border: 1px solid #27ae60; }
+  .sv-neu { background: #fef8e8; color: #e67e22; border: 1px solid #e67e22; }
+  .sv-neg { background: #fde8e8; color: #c0392b; border: 1px solid #c0392b; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>药明康德（603259）C方案验证</h1>
+<p class="subtitle">用公开信息验证"这家公司是不是在按它说的做" | 验证对象：L1-L6分析报告（2026-08-04）</p>
+<p class="meta">验证日期：2026-08-19 | 数据来源：公告 + 公开市场数据（websearch，详见文末）</p>
+
+<p class="conclusion">结论一句话：公司说的话基本都做到了——订单创新高、全面上调指引、1260H诉讼阶段性胜诉、筹码在集中；但实控人持续减持是个治理瑕疵，股价也已冲到报告中性偏乐观区间。<strong>言行一致，但价格不便宜，维持你"已减仓、不加仓、等触发位"的节奏。</strong></p>
+
+<div class="verdict verdict-caution">言行一致但存在治理瑕疵 —— 部分存疑（verdict-caution）<div class="verdict-score">总评分 7/10（兑现2分 / 内部人1分 / 互动1分 / 筹码2分 / 说明会1分）</div></div>
+
+<h2>一、五步结论汇总</h2>
+<table>
+  <tr><th>步骤</th><th>得分</th><th>判断</th><th>一句话依据</th></tr>
+  <tr><td>① 兑现记录</td><td class="good">2</td><td><span class="step-verdict sv-pos">正面</span></td><td>2025年超额达成指引；2026H1超预期 → 8/3全面上调全年指引；TIDES+44.3%在轨；在手订单664.3亿创新高</td></tr>
+  <tr><td>② 内部人动向</td><td class="neutral">1</td><td><span class="step-verdict sv-neu">中性</span></td><td>6月10亿回购+8月员工持股（正面），但实控人2025/11-2026/1减持2%套现54亿、2022年来累计近200亿（负面）</td></tr>
+  <tr><td>③ 互动一问</td><td class="neutral">1</td><td><span class="step-verdict sv-neu">中性</span></td><td>8/4中期业绩电话会（有实录）口径透明一致；未抓到最近回避关键问题的信号；e互动最新问答细节待补充</td></tr>
+  <tr><td>④ 筹码与机构</td><td class="good">2</td><td><span class="step-verdict sv-pos">正面</span></td><td>股东户数26.14万户（-8.34%）筹码集中；北向Q2增持2.94%仍持8.77%；机构集体买入；公募小幅净减属正常轮动</td></tr>
+  <tr><td>⑤ 业绩说明会/AGM</td><td class="neutral">1</td><td><span class="step-verdict sv-neu">中性</span></td><td>8/4中报电话会口径与公告一致；正式业绩说明会预计8-9月召开，待跟踪文字实录</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td>7/10</td><td colspan="2">2正面 + 3中性，无重大负面 → verdict-caution（橙）</td></tr>
+</table>
+
+<h2>二、与L1-L6报告的冲突标注（重要）</h2>
+<div class="danger-box">
+  <strong>发现一处报告遗漏：</strong>L6报告"7.4.1 管理层增减持"只写了"6月完成10亿回购(103元)=正面"，<strong>没有提到实控人李革等17名股东在2025年11月20日-2026年1月5日完成减持2%（5967万股，套现约54亿元，价格区间84.66-95.07元）</strong>，且2022年以来累计减持套现近200亿元（实控人持股从24%+降至16.2%）。<br><br>
+  <strong>修正结论：</strong>按C方案"结论冲突以验证为准"原则，管理层增减持判断由"正面"修正为<strong>中性</strong>——公司层面回购+员工持股（正面）与实控人层面持续套现（负面）并存。注：减持已完成且合规、接盘方为国际知名投资者、减持价(84-95元)低于现价，尚不构成"重大负面一票否决"，但它是你持有时的治理跟踪点。
+</div>
+
+<h2>三、验证了报告里的哪些判断</h2>
+<table>
+  <tr><th style="width:16%">报告位置</th><th style="width:34%">报告写的判断</th><th>验证结果</th></tr>
+  <tr><td>L2 排雷清单</td><td>1260H军工清单"危险"，市场估胜诉概率73-90%</td><td class="good"><strong>乐观情景被部分验证</strong>：8/7美国法院批准初步禁令，叫停国防部认定，认定理由三项全被否。⚠ 但初步禁令≠终局，国防部可上诉/重新认定</td></tr>
+  <tr><td>L6 风险评估</td><td>管理层增减持=正面（6月10亿回购）</td><td class="bad"><strong>冲突</strong>：漏了实控人2025/11-2026/1减持2%套现54亿（详见第二节）</td></tr>
+  <tr><td>L6 资金面信号</td><td>北向6/30持股2.62亿股(+50.43%)</td><td class="good">方向验证：Q2北向增持2.94%，仍持8.77%（比例口径）</td></tr>
+  <tr><td>L6 资金面信号</td><td>机构增配，中金目标价167 / 大摩175</td><td class="good">验证：西部证券8/9维持买入、大和上调至230港元、伯恩斯坦覆盖；股价已到161-167元区间</td></tr>
+  <tr><td>L6 三情景表</td><td>中性144元 / 乐观173元；现价141.35元接近中性</td><td class="bad"><strong>估值进一步透支</strong>：8/11最高166.66元（距历史峰值0.17元），8/16市值4726亿——已越过中性奔向乐观区间</td></tr>
+  <tr><td>L3 估值</td><td>PE(TTM)~19.5x处60-70%分位，不再低估</td><td class="bad">验证且更贵：现价159-166元，PE(TTM)升至~24x区间，追高风险比8/4更大</td></tr>
+  <tr><td>L2 排雷清单</td><td>扣非高基数，下半年增速自然回落</td><td class="gray">无法验证（下半年未结束），待Q3季报跟踪</td></tr>
+  <tr><td>L6 资金面信号</td><td>融资余额回升</td><td class="gray">未单独核实，数据待补充</td></tr>
+</table>
+
+<h3>报告里没有、C方案发现的新信号</h3>
+<ol>
+  <li><strong>1260H初步禁令（8/7）</strong>：报告后最大事件，地缘风险实锤下降（未消除）</li>
+  <li><strong>2026年A股员工持股计划草案（8/3晚）</strong>：≤4000人、≤970.12万股、≤10亿元，与业绩绑定（正面）</li>
+  <li><strong>股东户数26.14万户（-8.34%）</strong>：6/30较3/31下降，户均持股9463股↑，筹码集中</li>
+  <li><strong>中期分红10派5.1元（约15亿元）</strong>：报告提及"拟中期分红"，已验证落地披露</li>
+  <li><strong>8/17大宗交易3笔（2319.77万元，溢价率0.00%）</strong>：金额小，无信号意义</li>
+  <li><strong>实控人减持2%（报告遗漏）</strong>：见第二节冲突标注</li>
+</ol>
+
+<h2>四、每步详情</h2>
+
+<h3>① 兑现记录（正面，2分）</h3>
+<table>
+  <tr><th>承诺时间</th><th>承诺内容</th><th>应兑现时间</th><th>实际结果</th><th>评价</th></tr>
+  <tr><td>2026年初</td><td>2025全年业绩指引</td><td>2026/3年报</td><td>"超额达成全年指引"：营收454.6亿(+15.8%)、持续经营+21.4%、订单580亿(+28.8%)</td><td class="good">兑现</td></tr>
+  <tr><td>2026年初</td><td>2026指引：收入513-530亿、持续经营+18-22%</td><td>2026全年</td><td>H1已+48%，8/3全面上调至585-605亿、+35-39%</td><td class="good">超预期兑现</td></tr>
+  <tr><td>2026/8/3</td><td>TIDES全年+45%（原30-40%上调）</td><td>2026全年</td><td>H1已+44.3%，客户数+39%、分子数+68%</td><td class="good">在轨</td></tr>
+  <tr><td>2026/8/3</td><td>资本开支上调至75-85亿、FCF上调至135-145亿</td><td>2026全年</td><td>在建工程增至82亿，产能加速兑现</td><td class="good">在轨</td></tr>
+  <tr><td>历年</td><td>在手订单增长预期</td><td>2026/6末</td><td>664.3亿(+25.2%)创历史新高</td><td class="good">兑现</td></tr>
+  <tr><td>历史</td><td>1260H诉讼"坚信事实终将彰显"（李革）</td><td>2026/8/7</td><td>法院批准初步禁令，认定理由被否</td><td class="good">阶段性兑现</td></tr>
+</table>
+<p style="font-size:13px;">历史说明：2024年是唯一一次营收净利双降（392亿/-2.73%），当年因生物安全法案+业务剥离，公司未给高指引，不算"承诺落空"。2025年起连续超预期。</p>
+
+<h3>② 内部人动向（中性，1分）</h3>
+<table>
+  <tr><th>方向</th><th>事项</th><th>金额/数量</th><th>时点</th><th>信号</th></tr>
+  <tr><td>正面</td><td>公司回购（1260H大跌当天抛出）</td><td>10亿元，均价103元</td><td>2026年6月完成</td><td class="good">跌中回购，与业绩绑定（员工持股）</td></tr>
+  <tr><td>正面</td><td>2026年A股员工持股计划草案</td><td>≤970.12万股 / ≤10亿元</td><td>2026/8/3披露</td><td class="good">管理层利益绑定</td></tr>
+  <tr><td>负面</td><td>实控人李革等17名股东减持2%</td><td>5967万股 / 约54亿元，84.66-95.07元</td><td>2025/11/20-2026/1/5完成</td><td class="neutral">合规完成，接盘方为国际知名投资者；但2022年来累计套现近200亿（持股24%+→16.2%）</td></tr>
+  <tr><td>负面</td><td>2021年上海瀛翊违规减持</td><td>28.94亿元（未提前公告）</td><td>2021年</td><td class="bad">历史污点（股东违规，非公司层面）</td></tr>
+</table>
+<div class="summary-box">
+  <strong>判断：</strong>近期（2026年）公司层面动作是正面（回购+员工持股），但实控人减持尾巴刚过去，历史减持频繁。不算"集中减持一票否决"（比例小、已结束、非高位），但<strong>治理瑕疵必须写进持有跟踪清单</strong>。
+</div>
+
+<h3>③ 互动一问（中性，1分）</h3>
+<ul>
+  <li><strong>2026/8/4中期业绩交流电话会</strong>（有雪球转录实录）：管理层对订单、产能、指引上调、1260H法律行动的回应完整，口径与公告一致，无答非所问。</li>
+  <li><strong>2026/6/16 e互动</strong>（董秘回应股东提问）：围绕AI与回购计划，正常回应。</li>
+  <li><strong>2025/4/10年度业绩说明会</strong>（上证路演中心）：投资者问关税、美国产能、减持、生物安全法案，公司均有实质回应。</li>
+  <li class="gray">最近一个月e互动具体问答明细未直接抓取到，不强行下"回避问题"结论。</li>
+</ul>
+<p style="font-size:13px;">看公司回避什么：未发现回避关键问题的红旗。散户近期关注点在"中期分红"和股价位置（股吧），情绪偏积极。</p>
+
+<h3>④ 筹码与机构（正面，2分）</h3>
+<table>
+  <tr><th>维度</th><th>数据</th><th>解读</th></tr>
+  <tr><td>股东户数</td><td>26.14万户（2026/6/30），较3/31 <strong>-8.34%</strong>；户均持股9463股↑，户均市值117.82万</td><td class="good">筹码集中，有人在收（正面）</td></tr>
+  <tr><td>北向资金</td><td>Q2增持2.94%，持股8.77%，北向第34大重仓股</td><td class="good">外资持续加仓（正面）</td></tr>
+  <tr><td>机构整体</td><td>786家机构披露持股10.92亿股（36.61%）；前十大机构26.36%（+3.07pct）</td><td class="good">机构整体增配（正面）</td></tr>
+  <tr><td>公募基金</td><td>增持132家(+0.52%) vs 减持248家(-1.59%)</td><td class="neutral">小幅净减，属轮动，非系统性撤退</td></tr>
+  <tr><td>机构评级</td><td>中金167元、大摩175元、大和230港元、西部"买入"、伯恩斯坦覆盖</td><td class="good">卖方一致看多（正面）</td></tr>
+</table>
+
+<h3>⑤ 业绩说明会/AGM（中性，1分）</h3>
+<ul>
+  <li>8/4中报电话会已开，口径一致；正式中报业绩说明会预计8-9月召开（上证路演中心），<strong>待出文字实录后补验</strong>。</li>
+  <li>2025年度业绩说明会（2026/4/10）已有实录，透明度高。</li>
+</ul>
+
+<h2>五、用户待办清单</h2>
+<div class="highlight-box">
+  <ul>
+    <li><strong>无需额外行动</strong>：持仓股，已完成一阶段减仓。</li>
+    <li>跟踪点①：<strong>实控人是否再启减持计划</strong>（若再出2%减持公告 → 治理瑕疵升级，考虑更严格）</li>
+    <li>跟踪点②：<strong>1260H终局</strong>（国防部是否上诉/重新认定；终局判决前风险未完全消除）</li>
+    <li>跟踪点③：<strong>Q3扣非增速回落幅度</strong>（验证报告"高基数回落"假设，回落正常、转负则警报）</li>
+    <li>跟踪点④：<strong>中报业绩说明会文字实录</strong>（8-9月，出后补验第五步）</li>
+    <li>增强项（可选）：渠道验证——向1-2个客户/行业人士确认订单排产真实性（A方案性质，非必需）</li>
+  </ul>
+</div>
+
+<h2>六、怎么读这份报告</h2>
+<div class="summary-box">
+  <strong>结论在哪：</strong>最上面那句结论 + 橙色verdict框（7/10，部分存疑）。<br>
+  <strong>依据在哪：</strong>五步汇总表一行一个判断，往下每步有证据表和来源日期；第二节的"冲突标注"是你最该看的地方——报告漏了实控人减持。<br>
+  <strong>你该做什么：</strong>药明是持仓股，本报告的实操含义=维持"已减仓、不加仓"节奏。它替你确认了两件事：①公司说话算数（业绩、诉讼都在兑现）；②但治理有瑕疵+估值已贵，<strong>不值得此刻追高补仓</strong>。
+</div>
+
+<h2>七、数据来源与日期</h2>
+<p style="font-size:12px;color:#666;">
+  - 药明康德2026半年报及业绩指引上调公告（2026-08-03，新京报/美通社/西部证券点评）<br>
+  - 1260H初步禁令裁决（2026-08-07/08-09，每日经济新闻、ZAKER；中国日报引35页裁决意见）<br>
+  - 实控人减持结果公告（2026-01-07，新浪公告PDF/星岛）；减持历程（源媒汇2025-11-11）<br>
+  - 股东户数（2026-08-03，新浪/雪球/老虎社区引6/30数据）<br>
+  - 北向与机构持仓（2026-08-04界面新闻、东方财富财富号2026-08-09）<br>
+  - 中期业绩交流电话会实录（2026-08-04，雪球）<br>
+  - 股价/市值（新浪财经8-11、MarketCapWatch 8-16、沪股通十大成交股8-14）<br>
+  - 2025年"超额达成指引"（药明康德官网新闻2026-03-23）<br>
+  - 注：融资余额、最新e互动问答明细未单独核实，标"数据待补充"
+</p>
+
+<div class="footer">
+  C方案是验证不是分析，不单独决定买卖；结论冲突以验证为准。<br>
+  免责声明：本报告仅为个人学习分析，不构成任何投资建议。
+</div>
+
+</div>
+</body>
+</html>

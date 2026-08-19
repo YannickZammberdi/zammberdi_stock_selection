@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       type:
-        description: '报告类型：stock=个股财务分析 / industry=行业分析 / macro=宏观环境 / plan=交易计划'
+        description: '报告类型：stock=个股财务分析 / industry=行业分析 / macro=宏观环境 / plan=交易计划 / verify=C方案验证'
         required: true
         type: choice
         options:
@@ -12,6 +12,7 @@ on:
           - industry
           - macro
           - plan
+          - verify
       market:
         description: '市场'
         required: true
@@ -21,7 +22,7 @@ on:
           - 'A股'
           - 'ASX'
       name:
-        description: '股票名称或行业名（type=stock/plan 填股票名称如 药明康德；type=industry 填行业名如 光伏；macro 留空）'
+        description: '股票名称或行业名（type=stock/plan/verify 填股票名称如 药明康德；type=industry 填行业名如 光伏；macro 留空）'
         required: false
         default: ''
         type: string
@@ -76,6 +77,7 @@ jobs:
             industry)  P="使用 l7-screening skill，筛一下 $RMARKET $RNAME 行业，生成行业分析报告" ;;
             macro)     P="使用 macro-report skill，生成 $RMARKET 大盘宏观环境分析报告" ;;
             plan)      P="使用 stock-trade-plan skill，为 $RMARKET 股票 $RNAME 生成交易计划" ;;
+            verify)    P="使用 c-plan-verify skill，为 $RMARKET 股票 $RNAME 跑 C方案验证" ;;
             *)         echo "未知报告类型: $RTYPE"; exit 1 ;;
           esac
           echo "PROMPT=$P" >> "$GITHUB_ENV"

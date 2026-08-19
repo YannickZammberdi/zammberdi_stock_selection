@@ -19,6 +19,7 @@ description: 将股票分析报告同步到docs目录并更新GitHub Pages表格
 | `A股/**/*.html` | `docs/stocks/` |
 | `ASX/**/*.html` | `docs/asx/stocks/` |
 | 交易计划 | 见下方「交易计划市场判断」 |
+| `验证/*_C方案验证.html` | `docs/verify/` 或 `docs/asx/verify/`（见「验证市场判断」） |
 
 > 交易计划的源文件位置**不固定**：可能在 `交易计划/` 子目录，也可能直接放在 `stock-learning/stocks-analysis/` 根目录。收集时用以下规则，不依赖路径：
 
@@ -29,6 +30,10 @@ description: 将股票分析报告同步到docs目录并更新GitHub Pages表格
 2. 代码为 **6位纯数字** → A股 → `docs/plans/`
 3. 代码含**字母**（如 MQG/CSL/BHP）→ ASX → `docs/asx/plans/`
 4. 无法判断时，回退查 `stock-learning/stocks-analysis/index.md` 表格中的代码列归属市场；仍无法判断 → 询问用户，不猜测
+
+**验证识别**：`stock-learning/stocks-analysis/验证/` 下所有匹配 `*_C方案验证.html` 的文件。
+
+**验证市场判断**（与交易计划同规则）：取文件名 `_C方案验证.html` 前的最后一段为代码；代码为 **6位纯数字** → A股 → `docs/verify/`；代码含**字母** → ASX → `docs/asx/verify/`。
 
 ## 步骤
 
@@ -63,6 +68,8 @@ description: 将股票分析报告同步到docs目录并更新GitHub Pages表格
 > | `docs/asx/stocks/*.html` | `ASX/**/{同名文件}`（任意子目录） |
 > | `docs/plans/*.html` | 源为 `*_交易计划.html` 且市场判断为 A股 |
 > | `docs/asx/plans/*.html` | 源为 `*_交易计划.html` 且市场判断为 ASX |
+> | `docs/verify/*.html` | 源为 `验证/{同名文件}` 且市场判断为 A股 |
+> | `docs/asx/verify/*.html` | 源为 `验证/{同名文件}` 且市场判断为 ASX |
 >
 > 比对前先收集一次源文件完整清单（步骤1的列表），反向匹配时在清单内查找，避免对已删除文件重复判断。
 >
@@ -83,6 +90,8 @@ description: 将股票分析报告同步到docs目录并更新GitHub Pages表格
 | `docs/asx/stocks/index.html` | name, code, type, score, date, file | `ASX/**/*.html` |
 | `docs/asx/industry/index.html` | name, type, score, date, file | `行业报告/ASX——*.html` |
 | `docs/asx/plans/index.html` | name, code, date, status, file | 市场判断为 ASX 的交易计划 |
+| `docs/verify/index.html` | name, code, verdict, score, date, file | 市场判断为 A股 的验证报告 |
+| `docs/asx/verify/index.html` | name, code, verdict, score, date, file | 市场判断为 ASX 的验证报告 |
 
 #### 数据解析规则
 
@@ -104,6 +113,12 @@ description: 将股票分析报告同步到docs目录并更新GitHub Pages表格
 - 名称/代码：`.sub` 或 `<title>`，格式 `{名称}({代码})`；回退用文件名 `{名称}_{代码}_交易计划.html`
 - 日期：`.sub` 中匹配 `YYYY-MM-DD`
 - 状态：`.sub` 中 `状态:<span class="tag ...">{值}</span>`；无该标记时默认 "计划中"
+
+**C方案验证**：
+- 名称/代码：`<title>`，格式 `{名称}({代码}) C方案验证`；回退用文件名 `{名称}_{代码}_C方案验证.html`
+- 日期：`.meta` 中 `验证日期:YYYY-MM-DD`（注意报告里源报告日期可能出现更早，必须匹配 `验证日期` 字样，不能取第一个日期）
+- 评分：匹配 `(\d+)/10`（10分制）
+- 结论：匹配 `verdict-(ok|caution|bad)` 类名 → 言行一致/部分存疑/言行不一致
 
 **宏观报告**：
 - 文件名格式：`{市场}_宏观环境报告_{YYYY-MM-DD}.html`，市场/日期从文件名解析
@@ -130,7 +145,9 @@ const data = [
 - 如果某类报告完全为空，对应 index.html 保留空的 `data: []` 数组
 - **市场归属只看源路径，不看文件名**：`A股/**` 归 `docs/stocks/`，`ASX/**` 归 `docs/asx/stocks/`。即使文件名含 ASX 字样，只要在 `A股/**` 下就按 A股 处理
 - 交易计划**不依赖子目录路径**，用 `*_交易计划.html` 文件名模式识别，市场按代码格式判断（6位数字→A股，含字母→ASX）
+- 验证报告市场判断与交易计划同规则（6位数字→A股，含字母→ASX）
 - 对于 ASX 交易计划：如果 `docs/asx/plans/index.html` 当前是静态 "暂无交易计划" 页面，当有 ASX 交易计划需要同步时，参照 `docs/plans/index.html` 的结构改写为带表格的版本
+- 验证章节 index（`docs/verify/index.html`、`docs/asx/verify/index.html`）为带 verdict 列的表格（tag-ok/tag-caution/tag-bad），只替换 `data` 数组
 
 ## 生成后检查（QC）
 
