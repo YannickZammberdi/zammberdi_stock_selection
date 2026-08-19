@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>福斯特(603806) C方案验证</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif; color: #1a1a1a; line-height: 1.8; background: #f5f5f5; }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; padding: 0 12px 30px; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .conclusion { text-align: center; font-size: 18px; font-weight: bold; color: #1a1a1a; margin: 20px 0 6px; }
+  h2 { font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 2px solid #1a1a1a; color: #1a1a1a; }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  .gray { color: #999; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 22px; font-weight: bold; padding: 22px; margin: 18px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-score { font-size: 14px; font-weight: normal; color: #666; margin-top: 6px; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+  .step-verdict { display: inline-block; padding: 2px 10px; border-radius: 4px; font-size: 12px; font-weight: bold; }
+  .sv-pos { background: #f0f8f0; color: #27ae60; border: 1px solid #27ae60; }
+  .sv-neu { background: #fef8e8; color: #e67e22; border: 1px solid #e67e22; }
+  .sv-neg { background: #fde8e8; color: #c0392b; border: 1px solid #c0392b; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>福斯特（603806）C方案验证</h1>
+<p class="subtitle">用公开信息验证"这家公司是不是在按它说的做" | 验证对象：L1-L6分析报告（2026-08-19）</p>
+<p class="meta">验证日期：2026-08-19（半年报披露日） | 数据来源：公告 + 公开市场数据（websearch，详见文末）</p>
+
+<p class="conclusion">结论一句话：这是一家"大方向言行一致、细节需留神"的公司——H1净利8.42亿兑现业绩预告（预告8.69亿，实际略低约3%，方向一致）、分红全兑现、感光干膜扩产在轨、海外占比30%+达标，且北向Q2增持5586.73万股至5.26%、社保502/110/107三只组合新进、Q2股东户数重新集中（-5.91%）全部验证了报告的资金面判断。唯一需要标注的瑕疵：<strong>参股股东暨董监高间接持股平台"同德实业"2025年9月减持1.25%（套现4.69亿）</strong>，报告"大股东增减持：无"的表述未涵盖此点；以及<strong>业绩预告8.69亿 vs 实际8.42亿（-3%）</strong>属"方向兑现、幅度小幅打折"。</p>
+
+<div class="verdict verdict-ok">言行一致（verdict-ok）<div class="verdict-score">总评分 9/10（兑现2分 / 内部人1分 / 互动2分 / 筹码2分 / 说明会2分）</div></div>
+
+<h2>一、五步结论汇总</h2>
+<table>
+  <tr><th>步骤</th><th>得分</th><th>判断</th><th>一句话依据</th></tr>
+  <tr><td>① 兑现记录</td><td class="good">2</td><td><span class="step-verdict sv-pos">正面</span></td><td>业绩预告→半年报方向兑现（8.42 vs 8.69，-3%）；分红2025年度已实施+2026中期10派1.2元在轨；感光干膜H1+21.9%在轨（全年+30%指引）；泰越6亿平投产、海外占比30%+达标</td></tr>
+  <tr><td>② 内部人动向</td><td class="neutral">1</td><td><span class="step-verdict sv-neu">中性</span></td><td>实控人/控股股东（61.94%）零减持、无质押、员工持股2025年买入671万股（正面）；但参股股东暨高管持股平台同德实业2025-09减持1.25%（套现4.69亿）（负面）</td></tr>
+  <tr><td>③ 互动一问</td><td class="good">2</td><td><span class="step-verdict sv-pos">正面</span></td><td>互动易答复具体（客户名/产能数字）、频次高、无回避</td></tr>
+  <tr><td>④ 筹码与机构</td><td class="good">2</td><td><span class="step-verdict sv-pos">正面</span></td><td>北向Q2增持5586.73万股至5.26%、社保502/110/107三只组合新进、Q2股东户数-5.91%筹码重新集中——全部验证报告判断</td></tr>
+  <tr><td>⑤ 业绩说明会/AGM</td><td class="good">2</td><td><span class="step-verdict sv-pos">正面</span></td><td>2025-09-15半年度说明会、2026-04年度说明会已办；2026-08-27半年报说明会已公告（上证路演）</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td>9/10</td><td colspan="2">4正面 + 1中性，无重大负面 → verdict-ok（绿）</td></tr>
+</table>
+
+<h2>二、与L1-L6报告的冲突标注（重要）</h2>
+<div class="danger-box">
+  <strong>发现一处报告信息缺口（非错误，但需补注）：</strong>L6"资金面信号"表写"大股东增减持：无——实控人（福斯特科技集团48.47%+林建华13.47%）无减持"。此表述<strong>技术上正确</strong>（实控人+控股股东持股61.94%在2025-12-31至2026-06-30间完全未变），但<strong>遗漏了参股股东"杭州临安同德实业投资有限公司"的减持</strong>：<br><br>
+  同德实业为IPO前发起人股东、<strong>公司参股股东，且胡伟民、毛根兴、项关源、宋赣军、孔晓安、周光大、许剑琴等多名现任/前任董监高曾通过该公司间接持股</strong>。其减持记录：2022-01减持1179万股（套现12.92亿）、2023-06减持614万股、<strong>2025-08-05公告拟减持不超1.25%，2025-09-10/11实施完毕减持3252.36万股（1.2467%，套现约4.69亿元）</strong>，至2025年末已退出前十大流通股东。<br><br>
+  <strong>性质判断：</strong>同德实业本次减持1.25%发生在近一年内、金额4.69亿元，是需列入台账的内部人动向信号——但它<strong>不构成"重大负面"</strong>（非控股股东/实控人、非董监高直接减持、单次比例小），且公司核心利益方（实控人61.94%+员工持股671万股）均在锁仓/增持，故不影响总体verdict-ok结论，仅作补注与跟踪项。
+</div>
+<div class="danger-box">
+  <strong>第二处需诚实标注：</strong>2026-07-13业绩预告归母净利8.693亿（+75.35%），2026-08-19半年报实际8.42亿（+69.89%），<strong>实际低于预告约3%</strong>（Q2单季预告隐含约5.58亿 vs 实际约5.3亿，低约5%）。属"方向兑现、幅度小幅打折"，常见于业绩预告的谨慎性与季末波动，不构成"言行不一"，但需降低对预告精度的期待。
+</div>
+
+<h2>三、验证了报告里的哪些判断</h2>
+<table>
+  <tr><th style="width:16%">报告位置</th><th style="width:34%">报告写的判断</th><th>验证结果</th></tr>
+  <tr><td>L6 资金面信号</td><td>北向 Q2 增持 5153.89 万股至 5.26%、为第三大股东</td><td class="good"><strong>验证</strong>：香港中央结算 2026-06-30 持股 137,111,211 股（5.26%），Q2 增持 5586.73 万股（报告数字偏保守约433万股，结论一致）</td></tr>
+  <tr><td>L6 资金面信号</td><td>社保 502/110/107 组合新进前十大股东（2026-06-30）</td><td class="good"><strong>完全验证</strong>：社保502新进1578.33万股(0.61%)、社保110新进866.80万股(0.33%)、社保107新进699.10万股(0.27%)</td></tr>
+  <tr><td>L6 资金面信号</td><td>股东户数 2026Q1末 8.41 万户（+19.18%），筹码分散</td><td class="good">验证且有新增：Q2（6/30）回落至 79,124 户（<strong>-5.91%</strong>），筹码重新集中，资金面比报告更正面</td></tr>
+  <tr><td>L6 资金面信号</td><td>实控人无减持，转债持有人结构稳定</td><td class="neutral"><strong>实控人部分验证</strong>：实控人/控股股东确实零减持零质押；但参股股东同德实业 2025-09 减持 1.25%（4.69亿），报告未涵盖</td></tr>
+  <tr><td>L2 排雷清单</td><td>应收账款 44.75 亿，占 TTM 净利约 400%</td><td class="neutral">维持关注：半年报应收仍高企，回款压力持续，未见缓解证据</td></tr>
+  <tr><td>L6 三情景表</td><td>中性假设毛利率维持 13-15%、全年净利 16-18 亿</td><td class="good">方向验证：H1毛利率回升、Q1 13.83%，H1净利8.42亿年化约17亿，落中性区间</td></tr>
+  <tr><td>L6 三情景表</td><td>中性 EPS 0.65 元</td><td class="good">方向验证：H1 EPS 0.32元（扣非0.28），若H2持平则全年约0.64元，与中性假设接近</td></tr>
+  <tr><td>管理层指引</td><td>感光干膜全年出货+30%、高端占比20%、江门扩产至5亿平</td><td class="good">在轨：H1销量1.09亿平(+21.9%)，需H2加速；江门投产后产能3.16→5.26亿平（互动易确认）；高端化加速导入</td></tr>
+  <tr><td>分红</td><td>2026 中期分红 10 派 1.2 元</td><td class="good">兑现：半年报披露拟10派1.2元，待2026-09-04第三次临时股东会审议</td></tr>
+</table>
+
+<h3>报告里没有、C方案发现的新信号</h3>
+<ol>
+  <li><strong>同德实业（参股股东/董监高间接持股平台）2025-09减持1.25%</strong>，套现约4.69亿元——报告"大股东增减持：无"未涵盖（详见第二节）</li>
+  <li><strong>2026-06-30前十大股东更新</strong>：北向增持5586.73万股至5.26%（第三大股东）；社保502/110/107三只新进；华夏能源革新减持135.76万股、太平洋/中国人寿保险资金小幅减仓；广发高端制造、广发科技创新、社保102（Q1新进）Q2退出前十——<strong>北向+社保加仓 vs 险资/部分公募减仓的分化</strong>值得注意</li>
+  <li><strong>Q2股东户数 -5.91%</strong>（8.41万→7.91万户），筹码重新集中，报告只披露了Q1的+19.18%</li>
+  <li><strong>2026-08-19公告召开2026年半年度业绩说明会</strong>（8/27 10:00-11:00，上证路演中心）</li>
+  <li><strong>业绩预告 vs 半年报实际差约3%</strong>（8.69 vs 8.42亿），首次给出预告精度参考</li>
+  <li><strong>调研纪要 2026-06-23</strong>：光伏2026主线盈利修复、感光干膜高端化（载板/阻焊干膜单价40元+/平 vs 普通3-4元）、太空光伏2026上天验证2027销售、海外占比目标30-40%</li>
+</ol>
+
+<h2>四、每步详情</h2>
+
+<h3>① 兑现记录（正面，2分）</h3>
+<table>
+  <tr><th>承诺时间</th><th>承诺内容</th><th>应兑现时间</th><th>实际结果</th><th>评价</th></tr>
+  <tr><td>2026-07-13</td><td>业绩预告 H1 归母净利 8.693 亿（+75.35%）</td><td>2026H1</td><td>半年报实际 8.42 亿（+69.89%），Q2单季约5.3亿</td><td class="neutral">方向兑现，实际低约3%</td></tr>
+  <tr><td>2025年报</td><td>2025年度分红 10 派 1.5 元（分红率50.79%）</td><td>2026-05-27</td><td>已实施（股权登记2026-05-26、除息05-27），派现3.91亿</td><td class="good">兑现</td></tr>
+  <tr><td>2026半年报</td><td>2026 中期分红 10 派 1.2 元</td><td>2026-09</td><td>半年报披露拟10派1.2元，2026-09-04临时股东会审议</td><td class="good">在轨</td></tr>
+  <tr><td>2025年报/调研</td><td>泰国3.5亿平+越南2.5亿平海外产能投产</td><td>2025年内</td><td>海外总产能6亿平已投产，2025海外销售占比26.90%，2026Q1升至30%+</td><td class="good">兑现</td></tr>
+  <tr><td>管理层指引</td><td>感光干膜全年出货+30%、高端占比20%</td><td>2026全年</td><td>H1销量1.09亿平（+21.9%）、营收3.89亿（+19.7%），需H2加速</td><td class="good">在轨</td></tr>
+  <tr><td>2026-06-15互动</td><td>江门基地投产后感光干膜产能扩至约5.26亿平</td><td>建设期</td><td>现有3.16亿平，江门项目按计划推进（转债募投进度此前约18%）</td><td class="good">在轨</td></tr>
+  <tr><td>2025年报</td><td>2025感光干膜销量1.89亿平（+18.67%）、进入头部PCB供应链</td><td>2025年</td><td>兑现，国内市占率提升至15%，进入深南电路/鹏鼎/东山/景旺等</td><td class="good">兑现</td></tr>
+  <tr><td>2026年报展望</td><td>铝塑膜扩产、布局固态电池封装</td><td>推进中</td><td>2026Q1出货400万平（+34.44%），互动易确认固态电池铝塑膜与头部电池厂合作开发</td><td class="good">在轨</td></tr>
+</table>
+<p style="font-size:13px;">判断逻辑：除业绩预告兑现时幅度打了约3%的折扣外，分红、扩产、指引均兑现或在轨，<strong>无连续落空</strong>。符合正面标准。</p>
+
+<h3>② 内部人动向（中性，1分）</h3>
+<table>
+  <tr><th>方向</th><th>事项</th><th>金额/数量</th><th>时点</th><th>信号</th></tr>
+  <tr><td>正面</td><td>实控人/控股股东零减持</td><td>福斯特集团48.47% + 林建华13.47% = 61.94%完全未变</td><td>2025-12-31 → 2026-06-30</td><td class="good">核心利益方锁仓</td></tr>
+  <tr><td>正面</td><td>控股股东质押</td><td>无质押记录（东方财富表格为空，年报"达80%以上□不适用"）</td><td>2026-08</td><td class="good">无质押风险</td></tr>
+  <tr><td>正面</td><td>员工持股计划买入</td><td>2024年度光伏事业合伙人计划之员工持股计划 671.26万股（均价12.61元）</td><td>2025-05-29</td><td class="good">员工低位增持绑定</td></tr>
+  <tr><td>正面</td><td>董监高直接持股变动</td><td>2025年报显示变动为0（林建华不变，其余未直接持股）</td><td>2025年报</td><td class="good">无直接套现</td></tr>
+  <tr><td>负面</td><td>同德实业（参股股东/高管间接持股平台）减持</td><td>3252.36万股（1.2467%），套现约4.69亿元（均价约14.4元）</td><td>2025-08-05公告 → 2025-09-10/11实施完毕</td><td class="bad">内部人关联平台减持</td></tr>
+  <tr><td>参考</td><td>同德实业历史减持</td><td>2022-01减持1179万股（12.92亿）、2023-06减持614万股</td><td>2022-2023</td><td class="neutral">持续减仓史，2025年出清退出前十</td></tr>
+  <tr><td>参考</td><td>实控人历史减持</td><td>2020年8-12月林建华多次减持（合计约4-5%）；2021-08拟减持不超3%</td><td>2020-2021</td><td class="neutral">历史高位减持，近两年零减持</td></tr>
+</table>
+<div class="summary-box">
+  <strong>判断：</strong>实控人+控股股东61.94%近一年零减持零质押、员工持股2025年低位买入671万股——核心利益与中小股东高度一致；但参股股东兼董监高间接持股平台同德实业2025年9月减持1.25%（4.69亿）且此前数年持续减仓，属于<strong>需要列入台账的负面信号</strong>。正负相抵，给中性1分。
+</div>
+
+<h3>③ 互动一问（正面，2分）</h3>
+<ul>
+  <li><strong>2026-06-15</strong>：确认载板干膜和阻焊干膜市场加速导入；感光干膜现有产能3.16亿平，江门基地投产后合计约5.26亿平——具体、可验证。</li>
+  <li><strong>2026-06-11</strong>：感光干膜主要客户包括深南电路、鹏鼎控股等头部PCB企业——点名客户，无回避。</li>
+  <li><strong>2026-01-12</strong>：PCB领域产品包括感光干膜、柔性覆铜板、感光覆盖膜——产品口径清晰。</li>
+  <li><strong>2025-12-29</strong>：HJT紫外截止/光转膜技术、2025-09固态电池铝塑膜与头部电池企业合作开发——技术进展透明。</li>
+  <li>答复频次高（2026-01-14有4条、05-19有5条、06-11有6条），内容均有数据支撑，<strong>未发现答非所问或回避关键问题</strong>。</li>
+</ul>
+
+<h3>④ 筹码与机构（正面，2分）</h3>
+<table>
+  <tr><th>维度</th><th>数据</th><th>解读</th></tr>
+  <tr><td>北向资金</td><td>香港中央结算 Q2 增持 5586.73 万股至 137,111,211 股（<strong>5.26%</strong>），第三大股东</td><td class="good">外资大幅加仓（验证报告）</td></tr>
+  <tr><td>社保基金</td><td>社保502新进1578.33万股（0.61%）、社保110新进866.80万股（0.33%）、社保107新进699.10万股（0.27%）</td><td class="good">三只国家队组合新进（验证报告）</td></tr>
+  <tr><td>股东户数</td><td>2026-06-30 为 79,124 户，较 2026-03-31（84,093 户）<strong>-5.91%</strong></td><td class="good">Q2筹码重新集中（新增信号）</td></tr>
+  <tr><td>保险/公募</td><td>华夏能源革新 -135.76万股、太平洋人寿分红 -157.70万股、中国人寿传统 -321.96万股；太平洋传统新进716.21万股</td><td class="neutral">险资/部分公募小幅减仓，北向/社保接棒</td></tr>
+  <tr><td>机构持仓</td><td>2026Q1末36家机构持仓14.57亿股、占流通盘55.85%</td><td class="good">机构化程度高</td></tr>
+  <tr><td>调研热度</td><td>2026-06-23调研交流纪要（光伏盈利修复+电子材料高端化+太空光伏）；2025-12-24纪要</td><td class="good">机构关注度高</td></tr>
+</table>
+
+<h3>⑤ 业绩说明会/AGM（正面，2分）</h3>
+<ul>
+  <li><strong>2026-08-27 10:00-11:00 2026年半年度业绩说明会</strong>（上证路演中心）——已公告（2026-08-19），管理层出席，会后再补验实录。</li>
+  <li><strong>2025-09-15 2025年半年度业绩说明会</strong>已举办（上证路演中心，roadshow.sseinfo.com/activityDetails/34887）。</li>
+  <li><strong>2026-04 2025年度业绩说明会</strong>已举办；2025-04-30 2024年度业绩说明会已办（管理层：总经理周光大、财务负责人许剑琴、董秘章樱）。</li>
+  <li>说明会机制健全、定期举行、出席高层完整，无缺席回避记录。</li>
+</ul>
+
+<h2>五、用户待办清单</h2>
+<div class="highlight-box">
+  <ul>
+    <li><strong>核心跟踪项（本次新增）</strong>：同德实业已出清，需盯是否再出现<strong>董监高/参股股东直接减持公告</strong>（若出现实控人级别减持则升级为重大负面）。</li>
+    <li><strong>8/27 半年度业绩说明会</strong>：出文字实录后补验第五步，重点问H2感光干膜出货能否达+30%、胶膜提价持续性、应收账款回款。</li>
+    <li><strong>9/4 临时股东会</strong>：中期分红10派1.2元审议——预计通过，兑现分红承诺。</li>
+    <li>跟踪①：<strong>H2感光干膜出货</strong>（H1 +21.9%，全年+30%需H2约+38%加速，高端占比20%兑现度）</li>
+    <li>跟踪②：<strong>胶膜提价与毛利率</strong>（中性假设毛利率13-15%能否维持，全年净利16-18亿）</li>
+    <li>跟踪③：<strong>应收账款44.75亿回款</strong>（半年报口径是否改善，坏账计提）</li>
+    <li>跟踪④：<strong>业绩预告精度</strong>（本次-3%，下次三季报预告对比实际）</li>
+    <li>跟踪⑤：<strong>福22转债 28.6亿</strong>转股摊薄进度（股价接近转股价时关注）</li>
+  </ul>
+</div>
+
+<h2>六、怎么读这份报告</h2>
+<div class="summary-box">
+  <strong>结论在哪：</strong>最上面那句结论 + 绿色verdict框（9/10，言行一致）。<br>
+  <strong>依据在哪：</strong>五步汇总表一行一个判断，往下每步有证据表和来源日期；第二节的"冲突标注"是你最该看的地方——同德实业减持和预告精度是需要降低期望值的两个点。<br>
+  <strong>你该做什么：</strong>福斯特是周期复苏初期的持仓/候选标的。本报告确认：①<strong>公司经营层面言行一致</strong>（分红/扩产/指引全兑现，北向+社保验证资金面判断）——持有逻辑未受破坏；②<strong>两个需留神的点</strong>：参股股东减持（非实控人级别，不升级为重大负面）与预告-3%精度；③<strong>下修对"管理层数字"的信赖度</strong>，Q3起以半年报/三季报实际数据为准。
+</div>
+
+<h2>七、数据来源与日期</h2>
+<p style="font-size:12px;color:#666;">
+  - 2026年半年报（2026-08-19披露）：营收69.88亿(-12.2%)、归母净利8.42亿(+69.89%)、Q2单季约5.3亿、扣非EPS 0.28元、拟10派1.2元（新浪/东财/中财网）<br>
+  - 2026年业绩预告（2026-07-13/14，东财/上交所）：归母8.693亿(+75.35%)、扣非7.519亿(+67.53%)<br>
+  - 2025年年报（2026-04-09）：营收154.91亿(-19.10%)、归母7.70亿(-41.14%)、10派1.5元（3.91亿、分红率50.79%）、海外占比26.90%、感光干膜销量1.89亿平(+18.67%)、应收44.75亿、董监高直接持股变动为0（新浪公告全文/巨潮）<br>
+  - 2026年一季报（2026-04-28）：营收33.73亿(-6.95%)、归母3.12亿、毛利率13.83%（太平洋/东吴研报）<br>
+  - 前十大股东：2026-06-30（新浪主要股东页、同花顺F10）——北向5.26%、社保502/110/107新进；股东户数79,124（-5.91%）<br>
+  - 同德实业减持：2025-08-05公告（证券时报）、2025-09-10/11减持完毕（东财/中财网）、2022-01减持1179万股12.92亿（经济日报）、2023-06减持614万股（每经）、2025年报"同德实业为参股股东"（关联方披露）<br>
+  - 互动易：2026-06-15、2026-06-11、2026-01-12（同花顺F10互动易记录）<br>
+  - 调研纪要：2026-06-23（东财财富号）、2025-12-24（交流纪要）<br>
+  - 业绩说明会：2026-08-27半年报说明会公告（2026-08-19，中财网）、2025-09-15半年度说明会（上证路演中心）<br>
+  - 券商研报：东吴（2026-04-10、04-28，26E净利18.0亿）、太平洋（2026-04-27，26E净利14.94亿、EPS 0.57）、中银（2026-05-07，总股本26.09亿股）<br>
+  - 股价：2026-08-19收约15.16元（中财网），总市值约397亿（报告口径）
+</p>
+
+<div class="footer">
+  C方案是验证不是分析，不单独决定买卖；结论冲突以验证为准。<br>
+  免责声明：本报告仅为个人学习分析，不构成任何投资建议。
+</div>
+
+</div>
+</body>
+</html>
