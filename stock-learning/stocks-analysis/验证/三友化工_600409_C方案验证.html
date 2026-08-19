@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三友化工(600409) C方案验证</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif; color: #1a1a1a; line-height: 1.8; background: #f5f5f5; }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; padding: 0 12px 30px; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .conclusion { text-align: center; font-size: 18px; font-weight: bold; color: #1a1a1a; margin: 20px 0 6px; }
+  h2 { font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 2px solid #1a1a1a; color: #1a1a1a; }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  .gray { color: #999; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 22px; font-weight: bold; padding: 22px; margin: 18px 0; border-radius: 8px; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-score { font-size: 14px; font-weight: normal; color: #666; margin-top: 6px; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+  .step-verdict { display: inline-block; padding: 2px 10px; border-radius: 4px; font-size: 12px; font-weight: bold; }
+  .sv-pos { background: #f0f8f0; color: #27ae60; border: 1px solid #27ae60; }
+  .sv-neu { background: #fef8e8; color: #e67e22; border: 1px solid #e67e22; }
+  .sv-neg { background: #fde8e8; color: #c0392b; border: 1px solid #c0392b; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>三友化工（600409）C方案验证</h1>
+<p class="subtitle">用公开信息验证"这家公司是不是在按它说的做" | 验证对象：L1-L6分析报告（2026-07-14）+ 交易计划（2026-07-16）</p>
+<p class="meta">验证日期：2026-08-19 | 数据来源：公告 + 公开市场数据（websearch，详见文末）</p>
+
+<p class="conclusion">结论一句话：这家公司说到做到了——半年报预告大超预期（Q2单季盈利2.6亿、从一季度亏损直接扭亏）、海水淡化/电池级碳酸钠/电子特气都进了试生产、分红照发，内部人也干净（无减持无质押）。但你要注意两件事：<strong>① 股价已到6.74元、PB约1.0x，正好触发你交易计划"PB 1.0x卖第一批"的止盈位；② 这波修复靠的是化纤和有机硅涨价，纯碱还在亏钱（氨碱法成本比价格高500元/吨），别把"业绩修复"当成"纯碱反转"。</strong></p>
+
+<div class="verdict verdict-caution">基本言行一致，但纯碱隐忧+价格已到止盈位 —— 部分存疑（verdict-caution）<div class="verdict-score">总评分 6/10（兑现2分 / 内部人1分 / 互动1分 / 筹码1分 / 说明会1分）</div></div>
+
+<h2>一、五步结论汇总</h2>
+<table>
+  <tr><th>步骤</th><th>得分</th><th>判断</th><th>一句话依据</th></tr>
+  <tr><td>① 兑现记录</td><td class="good">2</td><td><span class="step-verdict sv-pos">正面</span></td><td>H1业绩预告1.68亿（+129%）兑现扭亏，Q2单季盈利约2.6亿；海水淡化/电池级碳酸钠/电子特气进入试生产；2025分红照发（6/18已除权）</td></tr>
+  <tr><td>② 内部人动向</td><td class="neutral">1</td><td><span class="step-verdict sv-neu">中性</span></td><td>近一年无减持、无质押、无回购（正面但零动作）；7/28有一笔小额关联交易（子公司5282万买三友新材31%股权）需留意</td></tr>
+  <tr><td>③ 互动一问</td><td class="neutral">1</td><td><span class="step-verdict sv-neu">中性</span></td><td>8条互动/调研有实质回应，电子特气主动提示投资风险（坦诚）；但对成本细节、头部客户协议用"积极对接"等措辞</td></tr>
+  <tr><td>④ 筹码与机构</td><td class="neutral">1</td><td><span class="step-verdict sv-neu">中性</span></td><td>股东户数7.37万户（-5.52%）筹码集中+公募增配（正面），但北向(-647万股)、社保(-645万股)减持，融资余额处近一年低位</td></tr>
+  <tr><td>⑤ 业绩说明会/AGM</td><td class="neutral">1</td><td><span class="step-verdict sv-neu">中性</span></td><td>4月"2025年度暨2026Q1业绩说明会"已开（有实录页）；8/12机构调研口径一致；半年报（预计8/26披露）业绩会待跟踪</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td>6/10</td><td colspan="2">1正面 + 4中性，无重大负面 → verdict-caution（橙）</td></tr>
+</table>
+
+<h2>二、与L1-L6报告/交易计划的冲突标注（重要）</h2>
+<div class="danger-box">
+  <strong>① 报告"全年可能亏损"的悲观假设被证伪（利好）：</strong>L1-L6报告（7/14）判断"2026Q1已亏损（-0.92亿），若周期持续低迷全年可能亏损"，交易计划也把"2026Q1仍亏损、复苏基础不牢"列为头号风险。实际：<strong>7/12业绩预告H1净利1.68亿（+129%），Q2单季约2.6亿，直接从亏损扭成盈利</strong>，全年亏损风险基本解除。报告"周期底部已过、复苏初期"的判断方向正确。<br><br>
+  <strong>② 但"复苏"≠"纯碱反转"（重要修正）：</strong>业绩修复的核心是化纤（粘胶短纤价格从~12,100涨至14,200元/吨）+有机硅（行业反内卷限产保价、开工率仅6-7成）涨价，成本端原盐/浆粕等降价。而<strong>纯碱板块仍在亏</strong>——氨碱法成本约1,616元/吨 vs 价格~1,100元/吨，毛利为负约515元/吨，叠加天然碱新产能持续投放（2026年天然碱法占比升至23.9%）。报告"纯碱仍承压、供给出清未完成"的判断被验证。<br><br>
+  <strong>③ 估值已从"底部"涨到"止盈位"：</strong>报告（7/14）PB 0.82x、交易计划（7/16）建仓5.67元（PB 0.84x）。一个月后股价涨至<strong>6.74元（8/18收盘），PB(归母)约1.0x</strong>——正好触发交易计划写的"第一批止盈：PB达1.0x（~6.7元）卖30%"。按"结论冲突以验证为准"原则，<strong>交易计划的第一批止盈条件已达成</strong>，该执行你的纪律（详见用户待办清单）。
+</div>
+
+<h2>三、验证了报告里的哪些判断</h2>
+<table>
+  <tr><th style="width:18%">报告位置</th><th style="width:36%">报告写的判断</th><th>验证结果</th></tr>
+  <tr><td>L6 三情景表</td><td>中性情景 EPS 0.10-0.25元、PB 0.8-1.0x；概率中性50%</td><td class="good"><strong>中性情景基本兑现</strong>：H1 EPS约0.08元，若H2维持，全年约0.16-0.20元落中性区间；当前PB约1.0x已到中性情景上沿</td></tr>
+  <tr><td>L6 综合实战</td><td>粘胶改善是当前最大经营亮点</td><td class="good">验证：粘胶短纤价格7月涨至14,200元/吨（90天+3.65%），化纤板块盈利明显改善，是H1预增的第一引擎</td></tr>
+  <tr><td>L5 周期位置</td><td>复苏初期；纯碱新增产能压制、出清未完成</td><td class="good">验证：纯碱行业开工率约78%，但氨碱法成本1,616元/吨仍高于售价，板块继续减利；天然碱占比升至23.9%挤压合成碱</td></tr>
+  <tr><td>L6 风险评估</td><td>国企稳定、无暴雷历史、资本配置审慎</td><td class="good">验证：控股股东持股不变、无质押、分红照发、审计标准无保留；7/28还做了26亿套期保值+12亿国债逆回购（审慎）</td></tr>
+  <tr><td>L3 估值</td><td>PB 0.82x历史底部，好价格需"PB&lt;0.8x+周期拐点确认"</td><td class="bad"><strong>已离开底部区间</strong>：PB一个月内从0.82x回升至约1.0x，安全边际收窄，交易计划第一批止盈位已触发</td></tr>
+  <tr><td>L2 排雷清单</td><td>2026Q1已亏损是最高等级风险</td><td class="good">已解除：Q2单季盈利约2.6亿，扭亏确认（待8/26半年报正式数据）</td></tr>
+</table>
+
+<h3>报告里没有、C方案发现的新信号</h3>
+<ol>
+  <li><strong>2026年营收目标198亿</strong>（年报经营计划）：H1营收未披露（Q1为45.08亿），达标率待8/26半年报验证</li>
+  <li><strong>海水淡化及浓海水项目（一期）+电池级碳酸钠项目已进入试生产</strong>（7/29公告+8/12上证e互动）——"三链一群"落地</li>
+  <li><strong>电子特气（电子级氯化氢/氨气）试生产</strong>，正在品控验厂对接客户（6/12互动，公司主动提示"市场导入期风险"）</li>
+  <li><strong>8/12机构调研</strong>（方正证券、东财证券、国联民生参与）：纯碱开工率78%、有机硅开工率6-7成、"三链一群"建设提速、试用钠离子电池纯电矿卡</li>
+  <li><strong>董秘变更</strong>（7/29马欣接任，原董秘刘印江任期至8/4换届，正常交接）</li>
+  <li><strong>子公司5282.81万元收购三友新材31%股权</strong>（7/28，关联交易，关联董事李建渊回避，持股升至51%）</li>
+  <li><strong>26亿商品期货套期保值 + 12亿闲置资金国债逆回购</strong>（7/28，资金管理审慎）</li>
+  <li><strong>股东户数7.37万户（-5.52%）</strong>（2026-03-31较2025-12-31，2025年报披露7.80万户），筹码持续集中</li>
+  <li><strong>融资余额仅1.89亿</strong>（8/17，占流通市值1.35%，处近一年10%分位以下），杠杆资金尚未进场</li>
+  <li><strong>股价6.74元已到交易计划第一批止盈位</strong>（PB约1.0x ≈ 6.7元）——见第二节冲突标注③</li>
+</ol>
+
+<h2>四、每步详情</h2>
+
+<h3>① 兑现记录（正面，2分）</h3>
+<table>
+  <tr><th>承诺时间</th><th>承诺内容</th><th>应兑现时间</th><th>实际结果</th><th>评价</th></tr>
+  <tr><td>2026/1（业绩预告）</td><td>2026H1扭亏、环比大幅改善</td><td>2026/7</td><td>H1预告归母1.68亿（+129%）、扣非1.55亿（+236%）；Q1亏损0.92亿→Q2单季盈利约2.6亿（+181%）</td><td class="good">超预期兑现</td></tr>
+  <tr><td>2025年报</td><td>2026年营收目标约198亿</td><td>2026全年</td><td>H1营收未披露（Q1=45.08亿），达标率待8/26半年报</td><td class="neutral">待验证</td></tr>
+  <tr><td>"三链一群"项目</td><td>海水淡化及浓海水项目（一期）+电池级碳酸钠项目</td><td>2026年内</td><td>均已进入试生产阶段（7/29公告+8/12 e互动确认）</td><td class="good">兑现</td></tr>
+  <tr><td>电子特气项目</td><td>电子级氯化氢/氨气（拓展电子化学品）</td><td>2026年内</td><td>试生产阶段，正在品控验厂对接下游客户（6/12互动）</td><td class="good">兑现（处导入期）</td></tr>
+  <tr><td>2026/4</td><td>2025年度分红10派0.30元</td><td>2026/6</td><td>6/18已除权实施，周期底部仍照发分红</td><td class="good">兑现</td></tr>
+  <tr><td>2026/7/28</td><td>26亿套期保值、12亿国债逆回购（应对价格波动）</td><td>持续</td><td>董事会通过，8/25临时股东会审议</td><td class="good">推进中</td></tr>
+</table>
+<p style="font-size:13px;">历史说明：纯碱/氯碱等大化工价格由供需决定，公司无"给指引-保兑现"的传统，兑现记录主要看项目落地+分红+经营计划。近一年所有已到期的承诺全部兑现或按计划推进，<strong>无落空</strong>。</p>
+
+<h3>② 内部人动向（中性，1分）</h3>
+<table>
+  <tr><th>方向</th><th>事项</th><th>金额/数量</th><th>时点</th><th>信号</th></tr>
+  <tr><td>正面</td><td>控股股东三友碱业36.45%+三友集团8.10%持股</td><td>持股不变</td><td>2026-03-31</td><td class="good">近一年无减持</td></tr>
+  <tr><td>正面</td><td>股权质押</td><td>无质押</td><td>2025年报</td><td class="good">无质押风险（历史2021年有过质押式回购，已解除）</td></tr>
+  <tr><td>中性</td><td>董监高增持/回购</td><td>无</td><td>2025-2026</td><td class="neutral">无增持、无回购公告（国企属性，正常）</td></tr>
+  <tr><td>中性</td><td>子公司收购三友新材31%股权</td><td>5,282.81万元，持股升至51%</td><td>2026/7/28</td><td class="neutral">关联交易（关联董事回避），金额小，属集团体系内整合</td></tr>
+</table>
+<div class="summary-box">
+  <strong>判断：</strong>内部人层面干净——无减持、无质押、分红照发。但也是"零动作"：没有回购、没有内部人增持来表信心（国企常态，不算红旗）。一笔小额关联收购不算坏事（向体系内买盐化资源），但要留意后续是否频繁向大股东体系买资产。
+</div>
+
+<h3>③ 互动一问（中性，1分）</h3>
+<ul>
+  <li><strong>2026-07-08</strong>：投资者质问股价连跌"管理层干啥吃？只领薪资不干活？" → 公司回应"市值管理根本是提升经营业绩"（官腔，没给具体措施——这类问题本就难答，不构成红旗）</li>
+  <li><strong>2026-07-01</strong>：投资者问"纯碱价格一路跌还能盈利吗？会限产保价还是卷价格？" → 公司答"技改技措+加快浓海水项目降本+对标行业合理定价"（给了应对方向，没给成本数字）</li>
+  <li><strong>2026-06-12</strong>：投资者问"电池级碳酸钠是否与宁德/比亚迪签了供货协议？" → 公司答"项目试生产阶段，正在积极对接下游客户"（<strong>回避了"是否签约"——即没签，诚实但留了想象空间</strong>）</li>
+  <li><strong>2026-06-12</strong>：投资者问电子特气经营 → 公司答"试生产阶段、品控验厂对接客户，<strong>产品投产后还有市场导入期，敬请注意投资风险</strong>"（主动提示风险，坦诚）</li>
+  <li><strong>2026-08-12</strong>（上证e互动）：海水淡化及电池级碳酸钠"按计划稳步推进并已进入试生产阶段，投产时间受装置运转稳定性影响"</li>
+  <li class="gray">最近一个月更多e互动明细未能逐条抓取；未发现口径前后矛盾或答非所问。</li>
+</ul>
+<p style="font-size:13px;">看公司回避什么：散户在担心"股价跌、纯碱亏损、新项目兑现"，公司给的都是"方向性"回答，具体数字（成本、价格、订单）能不给就不给。没有欺骗，但也没有超出公告的增量信息——信息透明度中等。</p>
+
+<h3>④ 筹码与机构（中性，1分）</h3>
+<table>
+  <tr><th>维度</th><th>数据</th><th>解读</th></tr>
+  <tr><td>股东户数</td><td>2026-03-31为7.37万户，较2025-12-31（7.80万户）<strong>-5.52%</strong>；更早2024-09为8.85万户，持续下降</td><td class="good">筹码持续集中，有人在收（正面）</td></tr>
+  <tr><td>公募基金</td><td>2026Q1十大流通股东：中国人寿+820万股、广发优势成长+355.9万、广发聚丰+487.5万，华商信用增强/华商上游产业两家新进</td><td class="good">公募增配（正面）</td></tr>
+  <tr><td>北向资金</td><td>香港中央结算持股1.72%，季度内<strong>-647.4万股</strong></td><td class="bad">外资减持（负面）</td></tr>
+  <tr><td>社保基金</td><td>社保413组合<strong>-645万股</strong></td><td class="bad">社保减持（负面）</td></tr>
+  <tr><td>融资余额</td><td>1.89亿元（8/17），占流通市值1.35%，低于近一年10%分位</td><td class="neutral">杠杆资金低位，未参与这波反弹</td></tr>
+  <tr><td>机构调研/评级</td><td>8/12方正、东财、国联民生调研；开源7/17深度报告"买入"、中邮/华源"买入"；分析师平均目标价8.25元（+22%）</td><td class="good">卖方一致看好（正面）</td></tr>
+</table>
+<div class="summary-box">
+  <strong>判断：</strong>国内机构（公募+卖方）在买，外资和社保在减，杠杆资金没进。股东户数下降是真实信号（筹码在集中），但"谁来收"目前更多是国内公募。若8/26半年报披露的6/30股东户数继续下降，本步可升级为正面。
+</div>
+
+<h3>⑤ 业绩说明会/AGM（中性，1分）</h3>
+<ul>
+  <li><strong>2026-04</strong>：已召开"2025年度暨2026年第一季度业绩说明会"（上证路演中心有实录页面），公司披露"年可营收188亿、纯碱340万吨/粘胶80万吨产能"等信息，口径与年报一致。</li>
+  <li><strong>2026-08-12</strong>：机构调研（最新一次），答复覆盖纯碱/有机硅开工率、"三链一群"进度、设备电动化，与公告口径一致，无冲突。</li>
+  <li>半年报（预计8/26披露）发布后通常跟进召开业绩说明会，<strong>文字实录待跟踪</strong>。</li>
+</ul>
+
+<h2>五、用户待办清单</h2>
+<div class="highlight-box">
+  <ul>
+    <li><strong>待办①（最优先）：执行交易计划的止盈纪律。</strong>你的交易计划写着"第一批止盈：PB达1.0x（~6.7元）卖30%"。现价6.74元、PB约1.0x，<strong>条件已触发</strong>。建仓成本5.67元，当前浮盈约19%。选择权在你：<br>
+      · 按纪律减第一批（锁定部分利润，应对"纯碱仍亏"的不确定性）；<br>
+      · 或等8/26半年报+Q3展望确认后再决定。C方案不替你拍板，但必须提醒你：<strong>交易计划是你自己写的，触发位到了就该执行</strong>。</li>
+    <li><strong>待办②：8/26半年报验证（关键节点）。</strong>重点核对：①实际净利vs预告1.68亿；②6/30股东户数是否继续下降（若降→第④步升级正面）；③纯碱板块减亏幅度；④对下半年的价格/供需展望。</li>
+    <li><strong>待办③：盯纯碱价格。</strong>8/10纯碱期货盘中涨3%是否为真拐点待确认；氨碱法成本1,616元/吨仍高于价格~1,100元，若纯碱跌破1,000元/吨 → 触发交易计划基本面止损线。</li>
+    <li><strong>待办④：跟踪治理细节。</strong>①三友新材收购（关联交易）后续整合，警惕后续频繁向大股东体系买资产；②26亿套期保值实际执行与盈亏；③8/25临时股东会议案。</li>
+    <li><strong>增强项（可选）：渠道验证。</strong>向1-2个化纤下游纺织客户/行业人士确认粘胶短纤真实排产与价格（A方案性质，非必需）。</li>
+  </ul>
+</div>
+
+<h2>六、怎么读这份报告</h2>
+<div class="summary-box">
+  <strong>结论在哪：</strong>最上面那句结论 + 橙色verdict框（6/10，部分存疑）。<br>
+  <strong>依据在哪：</strong>五步汇总表一行一个判断，往下每步有证据表和来源日期；第二节"冲突标注"是你最该看的地方——①悲观假设被证伪（利好），③止盈位已触发（行动点）。<br>
+  <strong>你该做什么：</strong>三友是持仓股（10% @ 5.67）。这份报告替你确认了两件事：①公司说话算数（业绩、项目、分红都在兑现，内部人也干净）；②但价格已不再便宜（PB从0.82x涨回1.0x，正好到你计划的第一批止盈位），且纯碱主业的根本矛盾（天然碱挤压氨碱法）没有解决。因此你的操作优先级是：<strong>先执行止盈纪律，再用8/26半年报决定剩下的仓位怎么处理</strong>。
+</div>
+
+<h2>七、数据来源与日期</h2>
+<p style="font-size:12px;color:#666;">
+  - 2026年半年度业绩预告（2026-07-12/13，公司公告/每经/财联社/中财网/金融界）：归母1.68亿+129%、扣非1.55亿+236%<br>
+  - 华夏时报深度报道（2026-07-15）：化纤/有机硅撑起修复、Q2单季2.6亿、天然碱成本优势与氨碱法毛利为负、天然碱占比23.9%<br>
+  - 长江商报（2026-07-15）：2026年营收目标198亿、Q1营收45.08亿、电子化学品项目6.9亿投资<br>
+  - 上证e互动 / 证券之星投资者互动（2026-06-01至08-12）：海水淡化/电池级碳酸钠/电子特气试生产、纯碱盈利问答<br>
+  - 股东户数（2026-04-24，证券之星/雪球/新浪红岸）：2026-03-31为7.37万户（-5.52%）<br>
+  - 十大流通股东（2026-03-31，搜狐证券/证券之星）：北向-647万股、社保413-645万股、人寿+820万股、华商系两家新进<br>
+  - 机构调研记录（2026-08-13，新浪财经/证券之星/富途）：方正、东财、国联民生参与，开工率及项目进度<br>
+  - 行情/资金（中财网8/13-14、新浪8/17-18、Investing.com 8/18）：8/18收盘6.74元、市值约139亿、融资余额1.89亿（近一年10%分位以下）<br>
+  - 公告（新浪/上交所 2026-07-28至08-14）：三友新材31%股权收购、26亿套期保值、12亿国债逆回购、董秘变更、8/25临时股东会<br>
+  - 业绩说明会页面（roadshow.sseinfo.com）：2025年度暨2026Q1业绩说明会、2025年半年度业绩说明会<br>
+  - 注：2026半年报（预计8/26披露）、6/30股东户数、最新业绩说明会文字实录、e互动更多明细待补充（灰色，未参与判定）
+</p>
+
+<div class="footer">
+  C方案是验证不是分析，不单独决定买卖；结论冲突以验证为准。<br>
+  免责声明：本报告仅为个人学习分析，不构成任何投资建议。
+</div>
+
+</div>
+</body>
+</html>
