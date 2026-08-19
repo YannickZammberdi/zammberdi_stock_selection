@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>柏楚电子(688188) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>柏楚电子（688188）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026-08-19 | 数据来源：FY2025 年报 + 2026Q1 季报 + 2026 中报 + 券商研报</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>上海柏楚电子科技股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>688188.SH（科创板）</td></tr>
+  <tr><td>所属行业</td><td>工业自动化控制软件 + 智能硬件（激光切割控制系统/切割头）</td></tr>
+  <tr><td>行业地位</td><td>国内激光切割控制系统绝对龙头：中低功率市占率约60-67%，高功率份额持续提升（约29-40%）</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>21.96 亿（+26.52%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>11.13 亿（+26.04%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>11.03 亿（+15.95%）</strong></td></tr>
+  <tr><td>总资产</td><td>~64.3 亿</td></tr>
+  <tr><td>归母净资产</td><td>~60.7 亿（每股21.02元）</td></tr>
+  <tr><td>ROE</td><td>~18%（TTM 18.8%）</td></tr>
+</table>
+
+<h2>行业分类与评分体系</h2>
+<div class="summary-box">
+  <strong>行业类型：非周期股（成长型）</strong> — 激光切割控制系统属工业软件+智能硬件赛道，受益于激光加工对传统加工方式的持续替代与渗透率提升，2018-2025 年营收 CAGR 约 36%，穿越多轮宏观周期保持增长，采用<strong>非周期股评分体系</strong>。虽与制造业资本开支有一定关联（2026 上半年营收增速放缓），但成长驱动远大于供需错配逻辑，故按成长型归类。
+</div>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">采用非周期股评分体系（ROE 15分 + 杜邦质量5分 + 利润含金量15分 + 营收增长10分 + 利润增长10分 + 负债率10分 + 短期偿债10分 + 毛利率10分 + 估值10分 + FCF 5分 = 100分）</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">2025 年 ROE 约 18%（TTM 18.8%），≥15%</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">典型高利润型——净利率50.7% + 周转0.34低 + 杠杆1.06极低，ROE 完全由利润率驱动，无杠杆成分</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="neutral" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">CFO 11.03亿 / 净利11.13亿 = 0.99，≥0.7；略低于1因营收增长带来应收+35.6%，但应收绝对值极低（约占营收6%）</td></tr>
+  <tr><td>营收增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+26.52% ≥ 10%；2026H1 仍 +15.84%</td></tr>
+  <tr><td>利润增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+26.04% ≥ 15%；2026H1 +22.97% 仍保持</td></tr>
+  <tr><td>负债率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">5.6%，远低于40%</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">货币资金26.11亿 + 交易性金融资产合计约52亿，有息负债接近0（有息资产负债率0.15%），流动比率16.1</td></tr>
+  <tr><td>毛利率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">77.66%，≥30%且绝对水平极高；连续两年微降（80.5%→80.4%→77.7%），主因智能硬件占比提升（结构性），非竞争恶化</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">PE(TTM) ~35.5x，ROE 18% 对应合理区间15-25x，偏高约42%；但PE处历史近5年3-6%分位（相对自身历史极便宜），绝对值仍不低</td></tr>
+  <tr><td>自由现金流（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">FCF ≈ CFO 11.03亿 - 资本开支约0.36亿 ≈ 10.7亿，持续为正且规模可观</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">89/100</td><td style="text-align:left">品质优秀（89/100分）</td></tr>
+</table>
+
+<div class="verdict verdict-ok">品质优秀（89/100分）</div>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>柏楚电子是激光切割控制系统领域的"隐形冠军"——以自主软件为核心的软硬一体解决方案供应商，中低功率市占率约60-67%，高功率份额持续提升。商业模式极佳：毛利率78%、净利率51%、几乎零负债、账上现金+理财约52亿、FCF约10.7亿、分红率67%。FY2025 营收/净利双双增长26%，是A股稀缺的高质量成长股。<br><br>
+  <strong>核心优势：</strong>① 高功率切割控制系统国产替代 + 切割头放量，份额与盈利双升；② 第二曲线初现——智能焊接机器人（钢结构/船舶/铁塔）、超快激光/精密微加工、钙钛矿激光划线等新业务 2025 年合计+83%；③ 极致财务质量：负债率5.6%、应收极低、CFO 与净利润匹配；④ 高分红（2025 全年含中期分红率67.3%）+ 股东结构稳定（实控人团队持股约64.6%）。<br><br>
+  <strong>核心风险：</strong>① 成长依赖下游激光切割设备行业景气与制造业资本开支，2026H1 营收增速已从26.5%放缓至15.8%；② 毛利率连续两年下滑（80.4%→77.7%），智能硬件占比提升摊薄毛利；③ 估值绝对水平不低（PE 35x、PB 6.6x、PS 19x），若增速进一步下台阶将面临戴维斯双杀；④ 行业赛道天花板较窄（切割控制系统市场约30亿级），长期空间靠新业务打开，兑现节奏不确定。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>21.96 亿</td><td>17.35 亿</td><td>+26.52%</td><td class="good">✅ 高增长</td></tr>
+  <tr><td>归母净利润</td><td><strong>11.13 亿</strong></td><td>8.83 亿</td><td><strong>+26.04%</strong></td><td class="good">✅ 高增长</td></tr>
+  <tr><td>扣非净利润</td><td><strong>10.27 亿</strong></td><td>8.21 亿</td><td><strong>+25.07%</strong></td><td class="good">✅ 高增长</td></tr>
+  <tr><td>毛利率</td><td><strong>77.66%</strong></td><td>80.51%</td><td>-2.85pct</td><td class="neutral">⚠ 连续第二年微降（结构性）</td></tr>
+  <tr><td>归母净利率</td><td><strong>50.68%</strong></td><td>50.89%</td><td>-0.21pct</td><td class="good">✅ 极高且稳定</td></tr>
+  <tr><td>期间费用率（三费）</td><td><strong>11.83%</strong></td><td>~11.3%</td><td>+0.5pct</td><td class="neutral">⚠ 小幅上升</td></tr>
+  <tr><td>研发费用率</td><td><strong>15.5%</strong></td><td>16.2%</td><td>-0.7pct</td><td class="good">✅ 保持高位</td></tr>
+  <tr><td>2025Q1 营收/净利</td><td>4.96 / 2.55 亿</td><td>4.55 / 2.06 亿</td><td>+9% / +24%</td><td class="good">✅ 稳健</td></tr>
+  <tr><td>2025Q2 营收/净利</td><td>6.08 / 3.85 亿</td><td>4.86 / 2.98 亿</td><td>+25% / +29%</td><td class="good">✅ 稳健</td></tr>
+  <tr><td>2025Q3 营收/净利</td><td>5.16 / 2.64 亿</td><td>4.17 / 2.34 亿</td><td>+24% / +13%</td><td class="good">✅ 稳健</td></tr>
+  <tr><td>2025Q4 营收/净利</td><td>5.76 / 2.08 亿</td><td>4.35 / 1.57 亿</td><td><strong>+32.52% / +32.66%</strong></td><td class="good">✅ 高基数高增长</td></tr>
+  <tr><td>2026Q1 营收/净利</td><td>5.48 / 3.16 亿</td><td>4.96 / 2.55 亿</td><td>+10.53% / +23.87%</td><td class="neutral">⚠ 营收增速放缓</td></tr>
+  <tr><td>2026H1 营收/净利</td><td>12.78 / 7.87 亿</td><td>11.03 / 6.40 亿</td><td>+15.84% / +22.97%</td><td class="neutral">⚠ 营收增速放缓</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>FY2025 营收21.96亿（+26.5%）、归母净利11.13亿（+26.0%）、扣非10.27亿（+25.1%），业绩全面双位数增长且扣非与归母增速基本一致（非经常性占比低，扣非/归母=92%），盈利质量高。毛利率从80.5%降至77.7%，主因"软硬一体化"组合方案中智能硬件占比提高（如切割头、传感器等硬件毛利率低于纯软件），属产品结构变化而非价格战。净利率稳定在50%以上。2026年上半年营收增速放缓至15.8%（制造业景气回落+基数抬升），但净利仍增23%，盈利能力保持强劲。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025末</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td><strong>26.11 亿</strong>（现金等价物）</td><td class="good">✅ 充裕；加交易性金融资产合计约52亿</td></tr>
+  <tr><td>应收账款</td><td><strong>~1.4 亿</strong>（占营收约6%）</td><td class="good">✅ 极低，先款后货，对下游议价权强</td></tr>
+  <tr><td>存货</td><td><strong>~1.2 亿</strong>（含产成品1.05亿）</td><td class="neutral">⚠ 同比+155%（智能硬件备货，需关注去化）</td></tr>
+  <tr><td>短期借款</td><td><strong>无</strong></td><td class="good">✅ 有息负债率仅0.15%</td></tr>
+  <tr><td>长期借款</td><td><strong>无</strong></td><td class="good">✅ 零长期有息负债</td></tr>
+  <tr><td>资产负债率</td><td><strong>5.6%</strong></td><td class="good">✅ 极低，A股制造业罕见</td></tr>
+  <tr><td>流动比率</td><td><strong>16.1</strong></td><td class="good">✅ 短期偿债能力极强</td></tr>
+  <tr><td>归母净资产</td><td><strong>~60.7 亿</strong>（每股21.02元）</td><td class="good">✅ 家底厚实</td></tr>
+  <tr><td>总资产</td><td><strong>~64.3 亿</strong></td><td class="good">✅ 负债率极低，几乎全权益</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>这是教科书级的"轻资产+净现金"资产负债表。负债率仅5.6%，几乎全部是无息经营性负债（应付、合同负债），有息负债接近于零；货币资金+理财合计约52亿，而总市值约420亿，净现金（净金融资产约55.6亿）占市值约13%。应收账款约1.4亿仅占营收6%，说明公司对下游数百家设备集成商拥有极强的话语权（先款后货）。唯一的关注点是存货同比+155%（智能硬件备货加大），但绝对规模仅约1.2亿，风险可控。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>11.03 亿</strong></td><td>9.51 亿</td><td class="good">✅ +15.95%，随业绩同步增长</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><strong>负（~-3.7 亿，估算）</strong></td><td>-8.93 亿</td><td class="neutral">主要为购买/赎回理财及对外投资</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td><strong>负（~-7.5 亿，估算）</strong></td><td>-3.49 亿</td><td class="good">✅ 主要为高分红支付，无融资需求</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>0.99</strong></td><td>1.08</td><td class="good">✅ 现金与利润高度匹配</td></tr>
+  <tr><td>自由现金流（FCF）</td><td><strong>~10.7 亿</strong></td><td>~9.1 亿</td><td class="good">✅ 轻资产，资本开支极低（每百元营收资本开支仅1.62元）</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>CFO 11.03亿与净利润11.13亿几乎1:1匹配，利润含金量极高。公司是典型轻资产模式——资本开支占营收不足2%，FCF约10.7亿且持续为正、规模逐年扩大。筹资现金流为负主要是高额分红（2025年含中期分红合计7.49亿），公司完全靠自身造血支持分红，无需外部融资，现金流质量在A股属于顶级水平。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>~18%（TTM 18.8%）</strong></td><td>> 15% 优秀 / > 10% 及格</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>毛利率</td><td><strong>77.66%</strong></td><td>稳定或提升</td><td class="neutral">⚠ 极高但连续两年微降</td></tr>
+  <tr><td>净利率</td><td><strong>51.49%</strong></td><td>> 10%</td><td class="good">✅ 顶级水平</td></tr>
+  <tr><td>营收增长率</td><td><strong>+26.52%</strong></td><td>> 10%</td><td class="good">✅ 高增长（2026H1 +15.8%放缓）</td></tr>
+  <tr><td>利润增长率</td><td><strong>+26.04%</strong></td><td>正增长</td><td class="good">✅ 与营收同步，无虚增</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>0.99</strong></td><td>> 1</td><td class="good">✅ 接近1，现金匹配</td></tr>
+  <tr><td>资产负债率</td><td><strong>5.6%</strong></td><td>制造业<60%</td><td class="good">✅ 极低</td></tr>
+  <tr><td>应收周转天数</td><td><strong>~23 天</strong></td><td><30天</td><td class="good">✅ 回款极快</td></tr>
+  <tr><td>分红率</td><td><strong>67.3%</strong>（全年含中期）</td><td>持续分红</td><td class="good">✅ 高分红</td></tr>
+</table>
+
+<h3>3.2 分业务分析（FY2025）</h3>
+<table>
+  <tr><th>业务板块</th><th>营收（亿）</th><th>占比</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td>平面解决方案（切割控制系统+切割头）</td><td>12.93</td><td>58.89%</td><td>+14.94%</td><td><strong>81.55%</strong></td><td class="good">✅ 基本盘，量稳价稳</td></tr>
+  <tr><td>管材解决方案</td><td>4.87</td><td>22.20%</td><td>+28.20%</td><td><strong>84.40%</strong></td><td class="good">✅ 高增长+高毛利</td></tr>
+  <tr><td>三维解决方案</td><td>0.64</td><td>2.91%</td><td>+73.73%</td><td><strong>82.65%</strong></td><td class="good">✅ 高速增长新亮点</td></tr>
+  <tr><td>其他（智能焊接/超快激光/精密微加工/智能硬件）</td><td>3.22</td><td>14.68%</td><td>+83.12%</td><td>52.64%</td><td class="good">✅ 第二曲线，高增长（毛利率偏低因含硬件）</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>公司已从"纯软件控制系统"升级为"软硬一体解决方案"。基本盘平面+管材方案（合计占81%）毛利率82-84%，贡献绝大部分利润；高功率切割头与控制系统协同放量是近年核心增量。第二曲线"其他"业务（智能焊接机器人控制系统、超快激光、精密微加工等）2025年+83%，虽毛利率52.6%低于纯软件，但打开长期成长空间。产品结构升级方向清晰：金属成型→智能机器人→精密微加工。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="neutral">🟡 中等</td><td>2026H1 营收增速放缓至+15.8%（2025年+26.5%），下游景气回落+基数抬升</td><td>L1 利润表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>毛利率连续两年下滑（80.5%→80.4%→77.7%），硬件占比提升摊薄毛利</td><td>L1/L2 分业务</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>存货同比+155%（智能硬件备货），需跟踪去化速度</td><td>L1 资产负债表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>Q4单季净利2.08亿环比Q3（2.64亿）下降，年底费用集中计提</td><td>L1 利润表</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>赛道天花板较窄（切割控制系统市场约30亿级），成长依赖新业务兑现</td><td>L5 行业分析</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>估值绝对值不低（PE 35x / PS 19x），增速下行期有杀估值风险</td><td>L3 估值</td></tr>
+  <tr><td class="good">🟢 正面</td><td>几乎零负债（5.6%），账上现金+理财约52亿，财务极稳健</td><td>L1 资产负债表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>CFO 11亿与净利1:1匹配，应收极低，利润含金量极高</td><td>L1 现金流量表</td></tr>
+  <tr><td class="good">🟢 正面</td><td>高分红（全年分红率67.3%），实控人团队持股64.6%利益高度绑定</td><td>L6 治理</td></tr>
+  <tr><td class="good">🟢 正面</td><td>研发投入15.5%，智能焊接/超快激光/钙钛矿划线等多线布局</td><td>L2 分业务</td></tr>
+</table>
+
+<div class="verdict verdict-ok">✅ L2综合判定：质地优秀（高毛利+零负债+强现金流，主要风险为增速放缓与毛利微降）</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
+  <tr><td>股价（2026-08-19）</td><td><strong>~104.8 元</strong></td><td>52周区间 88.50-128.41 元，较历史高点约224元回撤超50%</td></tr>
+  <tr><td>总市值</td><td><strong>~423 亿</strong></td><td>总股本约4.04亿股（2025年10转4后）</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>~35.5x</strong></td><td>基于 TTM 净利 11.74 亿</td></tr>
+  <tr><td>PE（TTM扣非）</td><td><strong>~39x</strong></td><td>基于扣非TTM 10.77 亿</td></tr>
+  <tr><td>PE（2026E）</td><td><strong>~30.9x</strong></td><td>基于券商一致预期 2026E 净利 ~13.7 亿</td></tr>
+  <tr><td>PB</td><td><strong>~6.6x</strong></td><td>基于转增后每股净资产约15.8元</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~19x</strong></td><td>基于 TTM 营收 22.48 亿</td></tr>
+  <tr><td>PCF</td><td><strong>~38x</strong></td><td>基于 CFO 11.03 亿</td></tr>
+  <tr><td>股息率</td><td><strong>~1.7%</strong></td><td>基于2025年度分红（每股约1.93元）</td></tr>
+</table>
+
+<h3>4.2 PE Band估值区间</h3>
+<p style="font-size:13px;color:#666;">ROE ~18% → 合理PE参考区间：15-25x | 2026E 一致预期净利 ≈ 13.7亿，EPS（转增后4.04亿股）≈ 3.39元 | 券商平均目标价 113.67 元（区间90-135.7元）</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应市值/股价</th><th>vs现价104.8元</th></tr>
+  <tr><td>悲观</td><td>15x</td><td>205亿 / 50.9 元</td><td class="bad">-51%</td></tr>
+  <tr><td>保守</td><td>18x</td><td>247亿 / 61.0 元</td><td class="bad">-42%</td></tr>
+  <tr><td>中性</td><td>25x</td><td>343亿 / 84.8 元</td><td class="bad">-19%</td></tr>
+  <tr><td>券商目标</td><td>~33.5x</td><td>459亿 / 113.7 元</td><td class="good">+8.5%</td></tr>
+  <tr><td>当前价</td><td>~30.9x（2026E）</td><td>423亿 / 104.8 元</td><td>—</td></tr>
+  <tr><td>历史高位（近1年）</td><td>48x</td><td>658亿 / 163 元</td><td class="good">+55%</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值提示：</strong>
+  ① 当前 PE(TTM) 约35.5x，处于历史近5年 3-6% 分位（历史均值59.8x、最高114.6x、最低27.3x），相对自身历史处于<strong>底部区域</strong>；<br>
+  ② 但以 ROE 18% 对应的合理PE 15-25x 衡量，绝对估值仍偏高约40%（成长股溢价仍在）；<br>
+  ③ 券商平均目标价113.7元，较现价仍有约8.5%空间，8位分析师目标价区间90-135.7元；<br>
+  ④ 2026H1 营收增速放缓至+15.8%，估值能否守住35x取决于增速能否企稳。
+</div>
+
+<h3>4.3 历史PE区间（上市以来，亿牛网数据）</h3>
+<table>
+  <tr><th>指标</th><th>数值</th></tr>
+  <tr><td>PE（TTM）最大值</td><td>114.6x（2021-08）</td></tr>
+  <tr><td>PE（TTM）80%分位</td><td>~75x（估算）</td></tr>
+  <tr><td>PE（TTM）50%分位（历史均值）</td><td>~52x（历史平均59.8x）</td></tr>
+  <tr><td>PE（TTM）20%分位</td><td>~41x（估算，2025年均值41.4x）</td></tr>
+  <tr><td>PE（TTM）最小值</td><td>27.3x（2026-06）</td></tr>
+  <tr><td>当前PE（TTM）</td><td class="good">~35.5x（近5年分位约3-6%，历史底部区域）</td></tr>
+</table>
+<p style="font-size:12px;color:#999;">注：历史分位为基于亿牛网年度数据的估算值；PB 当前约6.6x，上市初期曾达20-78x（2019-2020），近三年多在5-9x区间，当前处于中低分位。周期股不适用本PE Band（本公司为非周期成长股，PE有效）。</p>
+
+<div class="highlight-box">
+  <strong>估值总结：</strong>柏楚电子当前 PE 约35.5x，处于上市以来历史底部区域（近5年3-6%分位），这是其自2021年高点的估值大幅收缩的结果（股价从224元回落至104元）。对成长股投资者，这是"好公司+历史便宜"的组合——历史低分位+业绩仍双位数增长，风险收益比改善；对价值投资者，35x 绝对估值对应 ROE 18% 仍高于合理区间上沿，需警惕增速进一步放缓带来的杀估值。中性偏合理，关键跟踪变量是2026年下半年营收增速能否回到20%以上。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>2023</th><th>2024</th><th>2025</th><th>趋势</th></tr>
+  <tr><td>净利润率（归母）</td><td>51.8%</td><td>50.9%</td><td><strong>50.7%</strong></td><td class="neutral">➡ 高位稳定</td></tr>
+  <tr><td>资产周转率</td><td>~0.35</td><td>~0.30</td><td><strong>~0.34</strong></td><td class="neutral">➡ 低位平稳</td></tr>
+  <tr><td>权益乘数</td><td>~1.08</td><td>~1.08</td><td><strong>~1.06</strong></td><td class="good">⬇ 杠杆进一步下降</td></tr>
+  <tr><td><strong>ROE</strong></td><td>14.7%</td><td>16.1%</td><td><strong>~18%</strong></td><td class="good">⬆ 持续提升</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>~18.1%</td><td>~15.3%</td><td><strong>~17.2%</strong></td><td class="good">⬆ 极高水平</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>~-3.4pct</td><td>~0.8pct</td><td><strong>~0.8pct</strong></td><td class="neutral">➡ 几乎无杠杆</td></tr>
+</table>
+<p style="font-size:12px;color:#999;">注：周转率与权益乘数为基于资产负债表（总资产~64亿、净资产~61亿）估算；ROE 为年报/券商披露口径（2025年为估算值~18%，TTM 18.8%）。</p>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：高利润型（最优质模式）</strong><br>
+  柏楚电子的 ROE 18% 完全由超高的净利润率（50.7%）驱动，资产周转率仅0.34（因账上巨额现金+理财约52亿拉低了周转），权益乘数仅1.06（几乎无杠杆）。这是教科书级的"高利润型"商业模式——净利率是茅台的量级（50%+），杠杆是茅台的量级（1.06），ROE 质量极高且可持续。<br><br>
+  <strong>核心要点：</strong>ROE 从14.7%→16.1%→18% 持续提升，主因不是加杠杆，而是规模效应下费用率摊薄、净利率保持高位。账上 52 亿现金+理财若通过提高分红/回购提升资金效率，周转率与 ROE 还有改善空间。
+</div>
+
+<h3>5.2 资产回报效率</h3>
+<table>
+  <tr><th>公司</th><th>每1元总资产产生的净利润（ROA）</th><th>ROE</th><th>对比</th></tr>
+  <tr><td><strong>柏楚电子</strong></td><td><strong>~17.3%（11.13亿/64.3亿）</strong></td><td><strong>~18%</strong></td><td class="good">✅ 碾压同级</td></tr>
+  <tr><td>维宏股份</td><td>~3-5%（估算）</td><td>~10%</td><td class="neutral">一般</td></tr>
+  <tr><td>金橙子</td><td>~5%（0.37亿/约7.6亿总资产）</td><td>~4%</td><td class="neutral">一般</td></tr>
+  <tr><td>软件服务行业中位</td><td>~4-6%</td><td>~8-12%</td><td class="neutral">一般</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>核心结论：</strong>
+  ① ROE 18% 靠超高的净利润率驱动，不靠杠杆，是最健康的赚钱模式；<br>
+  ② 每1元总资产产出17.3分净利润，资产回报效率显著优于同行（维宏、金橙子 ROA 仅3-5%）；<br>
+  ③ ROE 三年持续提升（14.7%→16.1%→18%），趋势健康；<br>
+  ④ 唯一"低效"是账上巨额现金+理财拉低周转，这是"幸福的烦恼"，提高分红/回购即可改善；<br>
+  ⑤ 若未来净利率因硬件占比提升而小幅回落，ROE 仍能靠周转改善维持高位，杜邦结构具备极强的抗压性。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与特征（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：成长型（工业自动化软件 + 智能硬件），归类为非周期股</strong><br>
+  <strong>判断依据：</strong>激光切割控制系统是激光加工设备的"大脑"，属工业软件+智能硬件赛道。成长逻辑：① 激光切割对传统冲压/剪切/火焰切割的替代仍在渗透（设备市场规模300亿+，控制系统约30亿级）；② 高功率激光成本下降推动国产替代与设备升级；③ 智能焊接、超快激光、精密微加工等新应用打开第二增长曲线。公司2018-2025年营收CAGR约36%，穿越了2019-2020和2022-2023两轮制造业下行周期仍保持增长，成长属性显著强于周期属性。<br><br>
+  <strong>分类结论：</strong>非周期股（成长型）→ 采用<strong>非周期股评分体系</strong>。与 industry-classification.md 中"科技/工业自动化"非周期归类一致；虽与制造业资本开支存在一定关联（2026H1 增速放缓即为例证），但行业处于渗透率提升的成长阶段，供需错配逻辑不成立。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th></tr>
+  <tr><td>行业集中度</td><td><strong>高度集中</strong>——中低功率切割控制系统柏楚市占率约60-67%（国内第一），高功率市场主要玩家为柏楚+海外西门子/倍福/PA等；国内激光控制系统 CR3 高，格局清晰</td></tr>
+  <tr><td>技术壁垒</td><td><strong>极高</strong>——完整掌握控制系统研发五大类关键技术（CAD/CAM/数控等），毛利率78%验证壁垒；切割头+控制系统的软硬协同形成"1+1>2"的组合优势</td></tr>
+  <tr><td>客户/生态壁垒</td><td><strong>强</strong>——服务400+激光设备集成商，控制系统在设备成本占比不足10%，下游自研不划算，第三方采购粘性极强</td></tr>
+  <tr><td>先发与品牌壁垒</td><td><strong>强</strong>——深耕行业18年，中低功率份额固化，高功率凭借价格+协同优势持续侵蚀海外份额</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  <strong>阶段：成长期</strong>（切割控制系统基本盘进入成熟放量期 + 智能焊接/超快激光/精密微加工处于导入-放量初期）<br>
+  基本盘（平面+管材+三维方案）占营收84%，处于"渗透率提升+高功率升级"的成熟成长期；第二曲线（智能焊接机器人、超快激光、钙钛矿划线）占营收约15%且+83%，处于放量初期。公司战略已从"激光切割"升级为"金属成型→智能机器人→精密微加工"三大方向。<br><br>
+  <strong>投资策略重点：</strong>跟踪智能焊接在钢结构/船舶/铁塔行业的订单放量、超快激光/精密微加工的客户导入进度、以及高功率切割头市占率提升节奏。
+</div>
+
+<h3>6.4 同行对比分析</h3>
+<table>
+  <tr><th>指标（2025年）</th><th>柏楚电子</th><th>维宏股份</th><th>金橙子</th><th>软件服务行业中位</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>~18%</strong></td><td>~10%</td><td>~4%</td><td>~8-12%</td><td class="good">高（碾压同行）</td></tr>
+  <tr><td>毛利率</td><td><strong>77.7%</strong></td><td>~54%</td><td>58.2%</td><td>~41%</td><td class="good">高（定价权最强）</td></tr>
+  <tr><td>净利率</td><td><strong>51.5%</strong></td><td>~14%</td><td>14.2%</td><td>~10%</td><td class="good">极高（5倍于同行）</td></tr>
+  <tr><td>负债率</td><td><strong>5.6%</strong></td><td>~20%</td><td>8.2%</td><td>~34%</td><td class="good">低（最稳健）</td></tr>
+  <tr><td>营收增速</td><td><strong>+26.5%</strong></td><td>+15%</td><td>+19.5%</td><td>~10%</td><td class="good">高</td></tr>
+  <tr><td>PB</td><td>~6.6x</td><td>~4x</td><td>~5x</td><td>—</td><td class="neutral">中高（盈利质量支撑）</td></tr>
+  <tr><td>PE</td><td><strong>~35x</strong></td><td>~55x</td><td>~150x</td><td>—</td><td class="good">低（龙头反而最便宜）</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>同行对比结论：</strong>柏楚电子在盈利能力（毛利率/净利率/ROE）上全面碾压同行——净利率是维宏、金橙子的3-4倍，ROE是金橙子的4倍以上，负债率行业最低。最值得注意的是估值：质地最好的龙头 PE（35x）反而显著低于质地平庸的同行（维宏55x、金橙子150x），市场对龙头给予了"确定性折价"，这是典型的优质资产被低估格局（若同行能被炒到150x PE，龙头的35x明显更安全）。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>成长型（软件+硬件）</td><td>PS / PEG</td><td>PE（盈利后）、营收增速、毛利率趋势</td><td class="neutral">⚠ 部分匹配——PS 19x 偏高（需高增长支撑），PE 35x 处历史低分位，PEG ~1.4</td></tr>
+</table>
+
+<h3>6.6 成长股成色检验（四步法）</h3>
+<table>
+  <tr><th>步骤</th><th>检验内容</th><th>数据</th><th>判定</th></tr>
+  <tr><td>① 营收</td><td>有没有实在的生意？</td><td>营收21.96亿 +26.52%，体量与增速俱佳</td><td class="good">✅ 过关</td></tr>
+  <tr><td>② 毛利率</td><td>产品竞争力如何？</td><td>毛利率77.66%（微降2.85pct），净利率51%</td><td class="good">✅ 强竞争力</td></tr>
+  <tr><td>③ CFO</td><td>能不能自己造血？</td><td>CFO 11.03亿，CFO/净利0.99，FCF 10.7亿</td><td class="good">✅ 强造血</td></tr>
+  <tr><td>④ PS</td><td>梦想溢价多少？</td><td>PS ~19x，处于10-20区间上沿，需25%+增长支撑</td><td class="neutral">⚠ 偏高需兑现</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>四步法结论：</strong>柏楚是"真成长股"——营收/毛利率/现金流三关全部高分通过，只有PS 19x的估值溢价需靠高增长兑现。关键验证点：营收增速能否守住20%+，以及智能焊接等第二曲线能否接棒放量。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>成长型（工业自动化软件+智能硬件），激光切割控制系统高度集中，技术+软硬协同壁垒高。<br>
+  <strong>Step 2 - 财务体检：</strong>ROE ~18% 由超高净利率（51%）驱动（高利润型，无杠杆），CFO/净利0.99，FCF 10.7亿，财务质量A股顶级。<br>
+  <strong>Step 3 - 估值判断：</strong>PE 35x 处历史近5年3-6%分位（底部区域），PB 6.6x 中低分位，PS 19x 偏高；相对自身历史便宜，绝对估值不低。<br>
+  <strong>Step 4 - 风险排查：</strong>下游制造业景气波动、毛利率结构性下行、2026H1 增速放缓至15.8%、赛道天花板较窄。<br>
+  <strong>Step 5 - 结论：</strong>好公司（是，A股稀缺的高质量成长股）；价格（历史低分位，中性偏合理，非极便宜也非泡沫）。<br>
+  <strong>Step 6 - 跟踪：</strong>营收增速能否回到20%+、毛利率能否企稳、智能焊接放量节奏、PE 是否突破历史中枢、大股东有无减持。
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>激光加工渗透率提升+高功率国产替代，格局高度集中，壁垒（技术+软硬协同）牢固</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓</td><td>ROE 18%（>15%），毛利率77%稳定高位，CFO≈净利润，FCF 10.7亿，零负债</td></tr>
+  <tr><td>③ 好价格</td><td class="neutral">⚠</td><td>PE 35x 处历史低分位（✓），但绝对估值不低（PEG~1.4），中性偏合理</td></tr>
+</table>
+
+<h3>7.3 三个陷阱排查</h3>
+<div class="summary-box">
+  <strong>☐ 价值陷阱：</strong>❌ 未命中——高增长（+26%）+ 极低负债（5.6%）+ 强现金流，与"低增长高负债"的价值陷阱特征完全相反。<br>
+  <strong>☐ 周期陷阱：</strong>❌ 未命中——成长驱动（渗透率+国产替代）远大于供需错配；但需警惕制造业资本开支周期带来的增速回落（已在2026H1显现）。<br>
+  <strong>☐ 烧钱陷阱：</strong>❌ 未命中——CFO 11亿 &gt; 净利润，FCF 10.7亿，完全自我造血，分红率67%，与"高PE+现金流为负"的烧钱特征相反。
+</div>
+
+<h3>7.4 管理层与治理风险</h3>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力与履历</td><td class="good">好</td><td>创始人团队（唐晔/代田田/卢琳/万章/谢淼）均为技术出身，上市以来营收CAGR 36%、净利率稳定50%+，战略执行力强</td></tr>
+  <tr><td>股权结构与利益一致性</td><td class="good">强</td><td>实控人5人团队合计持股约64.6%，利益高度绑定，无质押</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td class="good">无</td><td>无重大违规、无监管处罚、无重大诉讼</td></tr>
+  <tr><td>资本配置记录</td><td class="good">合理</td><td>高分红（全年分红率67.3%），累计分红22.7亿/累计融资26.9亿（分红融资比0.84），无激进并购，参股产业链企业为主</td></tr>
+  <tr><td>管理层增减持记录</td><td class="good">增持为主</td><td>2025-09 徐军等高管增持（股权激励归属）；2025-09-30 阳潇小额减持4000股（约62万元）可忽略；2026-06 董监高增持（含转增）；无大额集中减持</td></tr>
+  <tr><td>CEO交接/关键人员变动</td><td class="good">无风险</td><td>2024-07 谢淼接任总经理（原核心技术人员），交接平稳，核心技术团队稳定</td></tr>
+</table>
+
+<h3>7.5 盈利可持续性</h3>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是靠价？</td><td class="good">量价混合</td><td>销量驱动为主（高功率渗透+份额提升）+ 软硬一体方案升级带来结构提价</td></tr>
+  <tr><td>涨价能否持续？</td><td class="good">能</td><td>高功率国产替代定价权强，中低功率格局固化价格稳定，无价格战迹象</td></tr>
+  <tr><td>非经常性利润占比</td><td class="good">低</td><td>扣非/归母=92%，非经常项（政府补助+理财收益）占比约8%，可持续性较好</td></tr>
+  <tr><td>大客户/大项目集中度</td><td class="good">分散</td><td>服务400+设备集成商，无单一客户依赖，终端应用覆盖汽车/船舶/五金/家电/重工等广泛制造业</td></tr>
+  <tr><td>政策/监管依赖度</td><td class="good">低</td><td>无补贴依赖（政府补助占净利约2%），仅享高新技术企业税收优惠</td></tr>
+</table>
+
+<h3>7.6 关键变量敏感性</h3>
+<pre style="font-size:13px;line-height:1.9;white-space:pre-wrap;margin:10px 0;font-family:inherit;">
+变量1: 下游激光切割设备行业景气度（制造业资本开支）
+  乐观: 制造业复苏+高功率渗透加速 → 营收增速回到25%+ → EPS 较基准 +10%
+  中性: 温和增长延续 → 营收+15~20% → EPS 持平基准
+  悲观: 制造业下行、资本开支收缩 → 营收增速降至5~10% → EPS 较基准 -15%
+
+变量2: 智能焊接/新业务（第二曲线）放量
+  乐观: 焊接解决方案在钢结构/船舶批量落地 → 第二曲线贡献明显 → EPS +15%
+  中性: 稳步推进、客户验证顺利 → EPS +5%
+  悲观: 新业务不及预期 → 增长重回切割基本盘单轮驱动 → EPS -10%
+
+变量3: 毛利率走向（硬件占比与竞争格局）
+  乐观: 软硬协同溢价稳定 → 毛利率维持77%以上
+  中性: 智能硬件占比提升 → 毛利率缓降至74-76%
+  悲观: 高功率竞争加剧引发价格战 → 毛利率跌破70% → EPS -20%
+</pre>
+
+<h3>7.7 前景展望</h3>
+<div class="summary-box">
+  <strong>未来1-3年核心驱动</strong><br><br>
+  正向驱动：<br>
+  1. 高功率切割控制系统+切割头国产替代 — 份额从29%向40%+提升，量价齐升；<br>
+  2. 智能焊接机器人解决方案 — 钢结构/船舶/铁塔/变压器油箱多行业突破，对应数百亿潜在市场；<br>
+  3. 超快激光/精密微加工+钙钛矿激光划线 — 打开精密制造新赛道；<br>
+  4. 高分红（分红率67%）+ 净现金55亿 — 提供安全垫与股东回报。<br><br>
+  负向拖累：<br>
+  1. 制造业资本开支周期 — 2026H1 增速已放缓至+15.8%，景气下行期增长承压；<br>
+  2. 毛利率结构性下行 — 智能硬件占比提升持续摊薄毛利；<br>
+  3. 赛道天花板 — 切割控制系统市场约30亿级，长期空间依赖新业务兑现。
+</div>
+
+<table>
+  <tr><th>情景（至2027E）</th><th>假设条件</th><th>净利预估</th><th>PE区间</th><th>预期回报</th></tr>
+  <tr><td>乐观（概率30%）</td><td>制造业复苏+智能焊接放量+高功率份额提升</td><td>18亿（+30%）</td><td>30x</td><td>+28%</td></tr>
+  <tr><td>中性（概率50%）</td><td>温和增长，营收+18%，净利率稳定</td><td>17亿（+24%）</td><td>25x</td><td>0%</td></tr>
+  <tr><td>悲观（概率20%）</td><td>制造业下行+增速跌至10%以下</td><td>14亿（+2%）</td><td>20x</td><td>-34%</td></tr>
+</table>
+
+<h3>7.8 资金面信号（A股适用）</h3>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>北向资金持股变动</td><td class="good">增持</td><td>香港中央结算持股3302.57万股（8.14%，2026-06-30），较上期增持</td></tr>
+  <tr><td>机构持仓变动</td><td class="good">稳定偏增</td><td>22家机构合计持股4945.81万股（2026-06-30）；基金2025年报口径持仓618只/11.03%；社保基金114组合、GIC 均增持</td></tr>
+  <tr><td>融资余额变动</td><td class="neutral">温和增加</td><td>融资余额约3.3-3.4亿（2026-08），占流通市值0.76%，超过近一年70%分位，杠杆资金情绪偏暖</td></tr>
+  <tr><td>大股东增减持</td><td class="good">无减持</td><td>实控人团队无减持，2025-09 仅阳潇小额减持4000股（可忽略）；2026-06 董监高增持（含转增）</td></tr>
+  <tr><td>大宗交易</td><td class="neutral">中性</td><td>2026-03 平价大宗17万股（149.14元），2025-11 折价大宗9万股（约0%折价），规模小无信号意义</td></tr>
+  <tr><td>股东户数</td><td class="good">集中</td><td>股东户数从2025年末12300户降至2026Q1的10800户（-12%），筹码趋于集中</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>资金面整体判断：</strong>北向+社保+GIC 等长线机构持续增持，股东户数下降筹码集中，融资余额回升显示杠杆资金情绪回暖，资金面整体偏正面。但需注意基金2026Q1季报口径持仓（37只/4.02%）较2025年报口径（618只/11.03%）明显回落，反映部分公募在股价回调中离场，短期筹码结构存在分歧。资金面信号仅作辅助参考，核心决策仍以基本面为准。
+</div>
+
+<h3>7.9 讨论问题（阅读引导）</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——卖激光切割设备的"大脑"（控制系统+切割头），靠60%+市占率和78%毛利赚"软件+硬件一体化"的钱。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——2026H1 营收增速从26%降到16%，如果制造业景气继续下行，35倍的PE还撑得住吗？<br>
+  3. 如果现在买入，期待的回报来源是什么？——业绩增长（每年20%+）+ 估值修复（PE从历史3%分位回到40-50%分位的均值回归），两者都赚。<br>
+  4. 什么情况下你会坚决卖出？——营收增速跌破10% / 毛利率跌破70% / 智能焊接等新业务迟迟不兑现 / 实控人团队出现大额减持。
+</div>
+
+</div></div>
+
+<div class="footer">
+    免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+    数据来源：柏楚电子2025年年报、2026Q1季报、2026年中报、券商研报（国信/西部/证券之星/东方财富/亿牛网/新浪财经/搜狐证券）
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>
