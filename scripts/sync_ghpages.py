@@ -663,8 +663,11 @@ def sync_stock_history(market):
         found = False
         for p in st["series"]:
             if p.get("d") == date:
-                if p.get("s") != score or p.get("t") != type_ or p.get("n") != note:
-                    p["s"], p["t"], p["n"] = score, type_, note
+                note_changed = bool(note) and p.get("n") != note
+                if p.get("s") != score or p.get("t") != type_ or note_changed:
+                    p["s"], p["t"] = score, type_
+                    if note:
+                        p["n"] = note
                     changed = True
                 found = True
                 break
