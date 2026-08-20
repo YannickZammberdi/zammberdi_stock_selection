@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>A股——纯软件/云计算 行业分析报告</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f5f5f5;padding:0;color:#333}
+  .report-wrap{max-width:800px;margin:0 auto;background:#fff}
+  h1{font-size:22px;margin:0;padding:28px 0 4px;text-align:center}
+  h2{font-size:18px;margin:28px 0 12px;border-bottom:2px solid #1a1a1a;padding-bottom:4px}
+  h3{font-size:15px;margin:18px 0 8px}
+  .subtitle{color:#666;font-size:13px;text-align:center;margin-bottom:4px}
+  .meta{color:#999;font-size:12px;text-align:center;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #e0e0e0}
+  .tab-bar{position:sticky;top:0;z-index:10;background:#fff;display:flex;flex-wrap:wrap;border-bottom:2px solid #ddd;gap:0}
+  .tab-btn{padding:10px 14px;cursor:pointer;border:none;background:none;font-size:13px;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+  .tab-btn:hover{color:#333;background:#f9f9f9}
+  .tab-btn.active{color:#1a1a1a;font-weight:700;border-bottom-color:#1a1a1a}
+  .tab-content{display:none}
+  .tab-content.active{display:block}
+  .tab-inner{padding:0 12px}
+  table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:13px}
+  th{background:#f5f5f5;padding:8px 6px;text-align:left;border-bottom:2px solid #ddd;white-space:nowrap;font-weight:600}
+  td{padding:7px 6px;border-bottom:1px solid #eee}
+  tr:nth-child(even) td{background:#fafafa}
+  .summary-box{background:#fffde7;border-left:4px solid #f9a825;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .highlight-box{background:#e3f2fd;border-left:4px solid #1e88e5;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .danger-box{background:#ffebee;border-left:4px solid #e53935;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .verdict{text-align:center;padding:20px;margin:16px 0;border-radius:8px;font-size:18px;font-weight:700}
+  .verdict-ok{background:#e8f5e9;border:2px solid #4caf50;color:#2e7d32}
+  .verdict-caution{background:#fff3e0;border:2px solid #ff9800;color:#e65100}
+  .verdict-bad{background:#ffebee;border:2px solid #e53935;color:#c62828}
+  .score{font-size:36px;display:block;margin-bottom:4px}
+  .pass{color:#2e7d32;font-weight:700}
+  .skip{color:#666;font-style:italic}
+  .tag{display:inline-block;padding:2px 8px;border-radius:3px;font-size:11px;font-weight:700}
+  .tag-red{background:#ffebee;color:#c62828}
+  .tag-green{background:#e8f5e9;color:#2e7d32}
+  .tag-yellow{background:#fff8e1;color:#f57f17}
+  .footer{font-size:11px;color:#aaa;text-align:center;padding:24px 0 8px;border-top:1px solid #eee;margin-top:30px}
+  .card{background:#fafafa;border:1px solid #e0e0e0;border-radius:6px;padding:14px;margin:10px 0;font-size:13px}
+  .flex{display:flex;flex-wrap:wrap;gap:8px}
+  .tbl-wrap{border:1px solid #e0e0e0;border-radius:6px;overflow:hidden;margin:10px 0 18px}
+  .tbl-wrap table{margin:0}
+  .tbl-wrap th{background:#f5f5f5;padding:9px 8px;border-bottom:1px solid #ddd;font-weight:600;font-size:12px}
+  .tbl-wrap td{padding:8px;border-bottom:1px solid #f0f0f0;font-size:13px}
+  .tbl-wrap tr:last-child td{border-bottom:none}
+  .bar-wrap{display:inline-flex;align-items:center;width:60px;height:16px;vertical-align:middle}
+  .bar-bg{background:#eee;border-radius:4px;height:8px;width:100%;overflow:hidden;position:relative}
+  .bar{display:block;height:8px;border-radius:4px}
+  .score-cell{font-weight:700;font-size:15px;text-align:center;white-space:nowrap}
+  .tbl-wrap td,.tbl-wrap th{vertical-align:middle}
+  .metric-h{color:#1565c0;font-weight:700;font-size:13px}
+  .metric-l{color:#c62828;font-weight:700}
+  .metric-m{color:#e65100;font-weight:700}
+  .col-tag{display:inline-block;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600}
+  .col-win{background:#e8f5e9;color:#2e7d32}
+  .col-lose{background:#ffebee;color:#c62828}
+  .col-warn{background:#fff3e0;color:#e65100}
+  .col-info{background:#e3f2fd;color:#1565c0}
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>A股——纯软件/云计算 行业分析报告</h1>
+<div class="subtitle">L5分类：非周期（成长型） ｜ 上市公司：~150只 ｜ 总市值：~1.5万亿（估算）</div>
+<div class="meta">生成日期：2026-08-20 ｜ 数据口径：2025年报 + 2026年中，市值为各时点公开数据</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l7">L7 量化初筛</button>
+  <button class="tab-btn" data-tab="l8">L8 行业画像</button>
+  <button class="tab-btn" data-tab="l9">L9 竞争格局</button>
+  <button class="tab-btn" data-tab="l10">L10 周期时机</button>
+</div>
+
+<div class="tab-content active" id="tab-summary">
+<div class="tab-inner">
+
+<h2>行业速览</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">项目</th><th>内容</th></tr>
+<tr><td>行业名称</td><td><strong>纯软件 / 云计算</strong>（办公协同、企业ERP、金融IT、建筑造价、OA、安全云、AI应用、医疗IT）</td></tr>
+<tr><td>市场</td><td>A股（金蝶国际为港股参考）</td></tr>
+<tr><td>L5分类</td><td><span class="col-tag col-info">非周期股（成长型）</span> 高毛利、轻资产、重研发，无库存周期</td></tr>
+<tr><td>上市公司</td><td>~150只（申万软件开发+云计算），其中符合L7筛选条件 <span class="col-tag col-win">4只</span></td></tr>
+<tr><td>行业总市值</td><td>~1.5万亿（估算，纯软件应用类）</td></tr>
+<tr><td>产业链利润核心</td><td><span class="col-tag col-win">产品化软件</span> 办公(金山85.95%) / OA(泛微93.8%) / 造价(广联达85.88%) / 金融IT(恒生71%)</td></tr>
+<tr><td>生命周期阶段</td><td><span class="col-tag col-win">成长期</span> SaaS渗透率~20%（美国40%+），AI化再造ARPU</td></tr>
+<tr><td>当前周期位置</td><td><span class="col-tag col-warn">结构性分化</span> 盈利龙头稳定兑现（净利率20-30%），云转型股仍在盈亏线挣扎</td></tr>
+</table>
+</div>
+
+<h2>综合评分</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>维度</th><th style="width:60px">得分</th><th>进度</th><th>说明</th></tr>
+<tr>
+  <td>行业规模与空间</td>
+  <td class="score-cell">17/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:85%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">软件业务收入15.48万亿(+13.2%)，云计算破万亿，SaaS渗透率低提升空间大</td>
+</tr>
+<tr>
+  <td>产业链位置</td>
+  <td class="score-cell">11/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:73%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">产品化软件议价强（毛利70-94%），但受下游政企预算影响</td>
+</tr>
+<tr>
+  <td>竞争格局</td>
+  <td class="score-cell">15/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:75%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">细分赛道寡头稳固（办公/OA/造价/金融IT），ERP双雄竞争</td>
+</tr>
+<tr>
+  <td>增长驱动力</td>
+  <td class="score-cell">12/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:80%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">AI商业化(2026元年) + 信创2027收官 + 云订阅化，三驱并行</td>
+</tr>
+<tr>
+  <td>周期位置</td>
+  <td class="score-cell">9/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:60%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">非周期成长股，AI应用上行初期；但板块整体PE处历史90.6%分位</td>
+</tr>
+<tr>
+  <td>政策环境</td>
+  <td class="score-cell">13/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:87%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">信创国策（2027央国企替代收官）+ "人工智能+"行动，最强顺风</td>
+</tr>
+<tr style="background:#fafafa">
+  <td style="font-weight:700;font-size:14px">总分</td>
+  <td style="font-weight:700;font-size:16px;color:#e65100">77/100</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:77%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#e65100;font-weight:600">一般偏上——结构性机会，精选盈利兑现龙头</td>
+</tr>
+</table>
+</div>
+
+<div class="verdict verdict-caution">
+  <span class="score">77</span>
+  一般偏上——结构性机会
+</div>
+
+<div class="summary-box">
+  <strong>核心结论</strong><br>
+  纯软件/云计算是典型的"非周期成长型"行业：龙头毛利率70-94%、ROE 7-15%，轻资产重研发。当前正处于SaaS化 + AI化的双轮成长期，政策面（信创2027收官 + AI+行动）为历史最佳。但行业分化剧烈——<strong>已盈利兑现的龙头</strong>（金山办公、恒生电子、广联达、泛微网络）净利率20-30%稳定赚钱；<strong>云转型烧钱的公司</strong>（用友连续3年亏损、卫宁2025首亏-3.74亿、金蝶2025年才刚扭亏）仍在盈亏平衡线挣扎。同时AI概念把板块整体估值推到历史90.6%分位，但纯软件应用龙头的PE分位其实温和（40-63x）。结论：结构性机会，精选"盈利兑现+估值分位温和"的细分寡头，回避转型烧钱股和高估值概念股。
+</div>
+
+<div class="highlight-box">
+  <strong>行业公式</strong><br>
+  收入 = 客户数 × ARPU × 续费率（订阅化程度越高越接近这个公式）<br>
+  关键指标：1) 云订阅ARR增速 2) SaaS续费率 3) 信创替换进度 4) AI相关收入占比 5) 毛利率（纯软件应&gt;40%）
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l7">
+<div class="tab-inner">
+
+<h2>筛子调整说明</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:12%">筛子</th><th style="width:35%">标准</th><th>调整说明</th></tr>
+<tr><td>①<span class="col-tag col-info">市值</span></td><td>主板≥50亿 / 创业板科创板≥30亿</td><td>保留，软件小票众多需过滤</td></tr>
+<tr><td>②<span class="col-tag col-info">营收</span></td><td>主板≥10亿 / 创业板科创板≥3亿</td><td>保留，剔除纯概念壳公司</td></tr>
+<tr><td>③<span class="col-tag col-lose">毛利率</span></td><td>软件行业 <strong>≥40%</strong></td><td><strong>提高至40%</strong>——纯软件重研发轻资产高毛利，低于40%说明混入集成/硬件业务（卫宁32.8%被淘汰）</td></tr>
+<tr><td>④<span class="col-tag col-info">ROE</span></td><td>≥8%，成长型放宽至<strong>≥5%</strong></td><td>非周期成长股可放宽；亏损但高营收成长股跳过ROE、用PS估值（用友营收仅微增不满足）</td></tr>
+<tr><td>⑤<span class="col-tag col-info">负债率</span></td><td>科技≤65%</td><td>软件轻资产，全部通过</td></tr>
+<tr><td>⑥<span class="col-tag col-info">估值</span></td><td>PE历史分位≤70% / 亏损成长股PS≤10x</td><td>盈利股用PE分位；亏损股用PS（用友PS~5x、卫宁PS~7.6x均&lt;10x）</td></tr>
+</table>
+</div>
+
+<h2>候选池（4只）</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>细分赛道</th><th>市值</th><th>毛利率</th><th>ROE</th><th>负债率</th><th>PE分位</th><th>通过</th></tr>
+<tr>
+  <td><strong>金山办公</strong> 688111</td>
+  <td><span class="col-tag col-win">办公SaaS</span></td>
+  <td style="font-weight:600">~1155亿<span style="font-size:10px;color:#999">(26-04)</span></td>
+  <td><span class="col-tag col-win">85.95%</span></td>
+  <td><span class="col-tag col-win">15.2%</span></td>
+  <td style="color:#2e7d32;font-weight:600">~19%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>恒生电子</strong> 600570</td>
+  <td><span class="col-tag col-win">金融IT</span></td>
+  <td style="font-weight:600">~420亿<span style="font-size:10px;color:#999">(26年中)</span></td>
+  <td><span class="col-tag col-win">71.06%</span></td>
+  <td><span class="col-tag col-win">13.33%</span></td>
+  <td style="color:#2e7d32;font-weight:600">~40%</td>
+  <td>30-40%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>广联达</strong> 002410</td>
+  <td><span class="col-tag col-win">建筑造价</span></td>
+  <td style="font-weight:600">~182亿<span style="font-size:10px;color:#999">(26-04)</span></td>
+  <td><span class="col-tag col-win">85.88%</span></td>
+  <td>7.12%<span style="font-size:10px;color:#999">(≥5放宽)</span></td>
+  <td style="color:#2e7d32;font-weight:600">39%</td>
+  <td>低分位</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>泛微网络</strong> 603039</td>
+  <td><span class="col-tag col-win">OA协同</span></td>
+  <td style="font-weight:600">~140亿<span style="font-size:10px;color:#999">(26-08)</span></td>
+  <td><span class="col-tag col-win">93.8%</span></td>
+  <td><span class="col-tag col-win">13.4%</span></td>
+  <td style="color:#2e7d32;font-weight:600">~20%</td>
+  <td>低分位</td>
+  <td class="pass">6/6</td>
+</tr>
+</table>
+</div>
+
+<h2>观察池</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>卡在哪筛</th><th>备注</th></tr>
+<tr>
+  <td><strong>深信服</strong> 300454</td>
+  <td><span class="col-tag col-lose">④ROE~4%&lt;5%</span></td>
+  <td>安全+云双轮，云收入占49.86%，2025净利3.93亿(+99.5%)刚转正，观察利润持续性</td>
+</tr>
+<tr>
+  <td><strong>科大讯飞</strong> 002230</td>
+  <td><span class="col-tag col-lose">④ROE~3%&lt;5%</span> <span class="col-tag col-lose">⑥PE 103.9x偏高</span></td>
+  <td>AI龙头，2025营收271亿(+16.1%)，但扣非仅2.64亿，盈利质量一般、估值偏贵</td>
+</tr>
+<tr>
+  <td><strong>用友网络</strong> 600588</td>
+  <td><span class="col-tag col-lose">④ROE负（连续3年亏损）</span></td>
+  <td>云转型中：ARR 29亿(+13.7%)，2025经营现金流转正8.12亿(+400%)，营收微增0.32%不满足高成长</td>
+</tr>
+<tr>
+  <td><strong>卫宁健康</strong> 300253</td>
+  <td><span class="col-tag col-lose">③毛利率32.8%&lt;40%</span> <span class="col-tag col-lose">④ROE负</span></td>
+  <td>医疗IT，2025首亏-3.74亿，毛利率大降21pct；2026Q1收入转正+15.2%，观察修复</td>
+</tr>
+<tr>
+  <td><strong>金蝶国际</strong> 0268.HK（港股参考）</td>
+  <td><span class="col-tag col-info">不适用A股筛子</span></td>
+  <td>云订阅ARR 40.9亿(+19.2%)，2025年扭亏0.93亿，云收入占82.5%——转型最成功的ERP</td>
+</tr>
+</table>
+</div>
+
+<h2>筛除记录</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>筛子</th><th style="width:60px">筛除数</th><th>知名示例</th></tr>
+<tr><td>①市值</td><td style="text-align:center">~70</td><td>大量软件小票市值&lt;30亿</td></tr>
+<tr><td>②营收</td><td style="text-align:center">~25</td><td>纯概念壳公司、营收&lt;3亿</td></tr>
+<tr><td>③毛利率 <span class="col-tag col-lose">提高至40%</span></td><td style="text-align:center">~15</td><td>卫宁健康（32.8%）及混入系统集成业务的"伪软件"</td></tr>
+<tr><td>④ROE</td><td style="text-align:center">~20</td><td>用友网络、卫宁健康、多数云转型亏损期公司</td></tr>
+<tr><td>⑤负债率</td><td style="text-align:center">~2</td><td>少数高杠杆公司</td></tr>
+<tr><td>⑥估值</td><td style="text-align:center">~14</td><td>PS&gt;10x或PE分位&gt;70%的AI概念股（寒武纪等算力/概念标的）</td></tr>
+<tr style="background:#fffde7"><td><strong>剩余</strong></td><td style="text-align:center;font-weight:700;color:#2e7d32"><strong>4</strong></td><td>—</td></tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <strong>L7筛选结论</strong><br>
+  ~150→4，筛选力度非常大（-97%）。最严苛的是<strong>毛利率筛</strong>（提高至40%，剔除混入集成/硬件业务的标的）和<strong>ROE筛</strong>（云转型期公司普遍亏损）。剩余4只全部是"盈利兑现型"产品化软件龙头：金山办公（办公）、恒生电子（金融IT）、广联达（造价）、泛微网络（OA）。云转型期的用友/金蝶和AI龙头的科大讯飞/深信服落入观察池，需等待盈利兑现信号。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l8">
+<div class="tab-inner">
+
+<h2>产业链</h2>
+<div class="card" style="font-size:13px;line-height:1.7">
+
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px">
+
+<div style="flex:1.2;min-width:200px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#2e7d32;font-size:14px">上游基础设施</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">云基础设施 / 算力</div>
+    <div style="text-align:center;font-size:11px;color:#666">阿里云 · 华为云 · 腾讯云（非A股）</div>
+    <div style="margin:10px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">信创底座（数据库/OS/中间件）</div>
+    <div style="text-align:center;font-size:11px;color:#666">达梦数据 · 东方通 · 中望</div>
+  </div>
+</div>
+
+<div style="flex:2;min-width:280px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#1565c0;font-size:14px">中游软件产品（利润核心）</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+
+    <div style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap">
+      <div style="flex:1;min-width:60px;background:#e8f5e9;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">办公</div>
+        <div style="font-size:10px;color:#666">金山办公</div>
+      </div>
+      <div style="flex:1;min-width:60px;background:#e8f5e9;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">OA</div>
+        <div style="font-size:10px;color:#666">泛微 · 致远</div>
+      </div>
+      <div style="flex:1;min-width:60px;background:#fff3e0;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">ERP</div>
+        <div style="font-size:10px;color:#666">用友 · 金蝶(港)</div>
+      </div>
+      <div style="flex:1;min-width:60px;background:#e8f5e9;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">金融IT</div>
+        <div style="font-size:10px;color:#666">恒生电子</div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:11px;color:#2e7d32;margin-bottom:10px">▲ 产品化程度高的赛道：毛利率70-94%，盈利稳定</div>
+
+    <div style="margin:6px 0 4px;font-weight:600;font-size:12px;color:#1565c0">垂直/平台软件</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">建筑造价<br><span style="font-size:10px;color:#666">广联达</span></div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">安全+云<br><span style="font-size:10px;color:#666">深信服</span></div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">医疗IT<br><span style="font-size:10px;color:#666">卫宁健康</span></div>
+    </div>
+
+    <div style="margin:8px 0 4px;font-weight:600;font-size:12px;color:#1565c0">AI应用</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">科大讯飞</div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">AI+办公（金山WPS AI）</div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">AI+ERP（金蝶AI原生）</div>
+    </div>
+  </div>
+</div>
+
+<div style="flex:1;min-width:160px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#c62828;font-size:14px">下游应用</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:10px 8px;text-align:center;font-weight:600;font-size:13px">党政/央国企（信创）</div>
+    <div style="text-align:center;font-size:11px;color:#666">2027年完成替代</div>
+    <div style="margin:10px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:10px 8px;text-align:center;font-weight:600;font-size:13px">行业客户</div>
+    <div style="text-align:center;font-size:11px;color:#666">金融 · 制造 · 医疗 · 教育</div>
+  </div>
+</div>
+
+</div>
+
+<div style="background:#fffde7;border-left:3px solid #f9a825;padding:8px 12px;font-size:12px;border-radius:0 4px 4px 0">
+  <strong>利润最厚环节：</strong>OA（泛微93.8%）→ 办公（金山85.95%）→ 造价（广联达85.88%）→ 金融IT（恒生71%）
+  <br><span style="color:#999">利润最薄：医疗IT（卫宁32.8%）、安全/云（深信服59%）、AI应用（科大讯飞42%）——重实施或重硬件混合</span>
+</div>
+
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>环节</th><th>代表公司</th><th>毛利率</th><th>集中度</th><th>议价能力</th></tr>
+<tr>
+  <td><span class="col-tag col-win">办公</span></td>
+  <td>金山办公</td>
+  <td><span class="col-tag col-win">85.95%</span></td>
+  <td>CR1~90%</td>
+  <td><span class="col-tag col-win">强</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-win">OA</span></td>
+  <td>泛微、致远</td>
+  <td><span class="col-tag col-win">93.8%</span></td>
+  <td>CR2~70%</td>
+  <td><span class="col-tag col-win">强</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-win">造价</span></td>
+  <td>广联达</td>
+  <td><span class="col-tag col-win">85.88%</span></td>
+  <td>CR1~80%</td>
+  <td><span class="col-tag col-win">强</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-warn">金融IT</span></td>
+  <td>恒生电子</td>
+  <td><span class="col-tag col-win">71.06%</span></td>
+  <td>CR1~50%</td>
+  <td><span class="col-tag col-warn">中强</span></td>
+</tr>
+<tr style="background:#fafafa">
+  <td><span class="col-tag col-warn">ERP</span></td>
+  <td>用友、金蝶(港)</td>
+  <td><span class="col-tag col-warn">46-67%</span></td>
+  <td>CR2~60%</td>
+  <td><span class="col-tag col-warn">中</span></td>
+</tr>
+<tr style="background:#fafafa">
+  <td><span class="col-tag col-warn">安全+云</span></td>
+  <td>深信服</td>
+  <td><span class="col-tag col-warn">59.31%</span></td>
+  <td>分散</td>
+  <td><span class="col-tag col-warn">中</span></td>
+</tr>
+<tr style="background:#fafafa">
+  <td><span class="col-tag col-warn">AI应用</span></td>
+  <td>科大讯飞</td>
+  <td><span class="col-tag col-warn">42.36%</span></td>
+  <td>分散</td>
+  <td><span class="col-tag col-warn">中</span></td>
+</tr>
+<tr style="background:#fafafa">
+  <td><span class="col-tag col-lose">医疗IT</span></td>
+  <td>卫宁健康</td>
+  <td><span class="col-tag col-lose">32.83%</span></td>
+  <td>分散</td>
+  <td><span class="col-tag col-lose">弱</span></td>
+</tr>
+</table>
+</div>
+
+<h2>市场规模</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">指标</th><th style="width:25%">数值</th><th>说明</th></tr>
+<tr><td><strong>TAM</strong>（总可触达市场）</td><td><span class="col-tag col-info" style="font-size:13px">软件15.48万亿/年 + 云计算1万亿</span></td><td>2025年中国软件业务收入15.48万亿(+13.2%，工信部)；云计算市场2025年约1.09万亿</td></tr>
+<tr><td><strong>当前渗透率</strong></td><td>SaaS占软件支出~20%</td><td>美国SaaS渗透率40%+，中国提升空间约2倍</td></tr>
+<tr><td><strong>近年增速</strong>（3年CAGR）</td><td><span class="col-tag col-win">12-34%</span></td><td>软件业务收入+13.2%，云计算+34%（2024年8288亿→+34.4%）</td></tr>
+</table>
+</div>
+
+<h2>生命周期</h2>
+<div class="summary-box">
+  <strong><span class="col-tag col-win" style="font-size:14px">成长期</span></strong><br>
+  判断依据：SaaS渗透率仅~20%仍有2倍空间；行业增速两位数；AI大模型正在再造ARPU（金山WPS AI国内月活超8000万、金蝶AI原生产品收入2026H1 +189%）；信创制造确定性需求；细分赛道格局初步稳定。尚未进入成熟期的标志：渗透率未过半、订阅化率仍在提升、AI变现刚开始兑现。
+</div>
+
+<h2>增长驱动力</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动力</th><th>类型</th><th>可持续性</th><th>量化指标</th></tr>
+<tr>
+  <td>信创替代（2027收官）</td>
+  <td><span class="col-tag col-win">政策/结构</span></td>
+  <td><span class="col-tag col-win">中（到2027）</span></td>
+  <td>党政PC替换率20%+（700万台/存量3000万台），央国企OA/办公/ERP全面替代</td>
+</tr>
+<tr>
+  <td>AI商业化（Agent元年）</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长（20年+）</span></td>
+  <td>WPS AI月活8000万、金蝶AI原生收入+189%、ARPU提升</td>
+</tr>
+<tr>
+  <td>SaaS云订阅转型</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-warn">中长</span></td>
+  <td>金蝶ARR 40.9亿(+19.2%)、用友订阅合同负债28.65亿(+24.2%)</td>
+</tr>
+<tr>
+  <td>企业数字化支出复苏</td>
+  <td><span class="col-tag col-warn">周期</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>企业软件市场2024年2119亿→2029年3816亿（CAGR 12.5%）</td>
+</tr>
+</table>
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l9">
+<div class="tab-inner">
+
+<h2>市场结构</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>市场结构类型</td>
+  <td>细分赛道<span class="col-tag col-win">寡头垄断</span>（办公/OA/造价/金融IT）；ERP <span class="col-tag col-warn">双雄</span>（用友vs金蝶）；安全/AI/医疗 <span class="col-tag col-lose">分散竞争</span></td>
+</tr>
+<tr>
+  <td>CR3</td>
+  <td>办公CR1~90%，造价CR1~80%，OA CR2~70%（<span style="color:#2e7d32">↑集中</span>），金融IT CR1~50%（<span style="color:#1565c0">→稳定</span>），ERP CR2~60%（<span style="color:#1565c0">→稳定</span>）</td>
+</tr>
+<tr>
+  <td>格局象限</td>
+  <td>产品化软件：<span class="col-tag col-win">寡头稳定</span>；ERP：<span class="col-tag col-warn">转型阵痛</span>；安全/AI：<span class="col-tag col-info">技术驱动</span></td>
+</tr>
+<tr>
+  <td>新进入者威胁</td>
+  <td><span class="col-tag col-warn">中等</span>（AI大模型降低软件门槛，但企业客户转换成本极高，产品化龙头护城河仍在）</td>
+</tr>
+</table>
+</div>
+
+<h2>竞争壁垒</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>壁垒类型</th><th>强度</th><th>可持续性</th><th>具体表现</th></tr>
+<tr>
+  <td>客户转换成本</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>企业软件嵌入业务流程，替换成本极高（恒生金融交易系统、广联达造价标准、用友/金蝶ERP）</td>
+</tr>
+<tr>
+  <td>行业Know-how + 数据积累</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>恒生懂金融交易规则、广联达掌握造价行业标准、金山掌握海量办公文档数据</td>
+</tr>
+<tr>
+  <td>信创适配资质</td>
+  <td><span class="col-tag col-warn">中强</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>党政/央国企采购要求信创认证，泛微已完成超150家信创伙伴适配互认</td>
+</tr>
+<tr>
+  <td>生态绑定</td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>泛微-腾讯（企业微信共研）、金山-大模型生态、金蝶-AI原生生态</td>
+</tr>
+</table>
+</div>
+
+<div class="summary-box">
+  <strong>定价权测试</strong><br>
+  🔹 龙头能涨价吗？<strong>产品型能</strong>（金山个人订阅提价、广联达续费提价、泛微年费制）／ <strong>实施型难</strong>（卫宁/用友项目制受政企预算压缩）<br>
+  🔹 毛利率趋势：产品型高位稳定（金山85%+、泛微93%），转型型承压（用友55%→46%、卫宁55%→32.8%）<br>
+  🔹 ROE趋势：盈利龙头13-15%（金山15.2%、恒生13.3%、泛微13.4%），亏损转型股为负
+</div>
+
+<h2>驱动力拆解</h2>
+<div class="highlight-box">
+  <strong>行业收入公式</strong><br>
+  收入 = 客户数 × ARPU × 续费率（订阅化）<br><br>
+  当前组合：<span style="color:#2e7d32;font-weight:700">客户数 ↑</span>（信创+中小企业） ＋ <span style="color:#2e7d32;font-weight:700">ARPU ↑</span>（AI加成） ＝ <span class="col-tag col-win">量价齐升（龙头）</span>
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动因子</th><th>最新值</th><th>历史区间</th><th>当前分位</th></tr>
+<tr>
+  <td>云订阅ARR（金蝶）</td>
+  <td><span class="col-tag col-win">40.9亿 +19.2%</span></td>
+  <td>加速上行</td>
+  <td><span class="col-tag col-win">加速期</span></td>
+</tr>
+<tr>
+  <td>SaaS渗透率</td>
+  <td><span class="col-tag col-info">~20%</span></td>
+  <td>10-40%</td>
+  <td><span class="col-tag col-info">20-30%</span></td>
+</tr>
+<tr>
+  <td>信创PC替换率</td>
+  <td><span class="col-tag col-info">~20%</span></td>
+  <td>0-100%</td>
+  <td><span class="col-tag col-info">20%（2027需完成）</span></td>
+</tr>
+<tr>
+  <td>计算机板块PE分位</td>
+  <td><span class="col-tag col-lose">90.6%</span></td>
+  <td>历史区间</td>
+  <td><span class="col-tag col-lose">90%（AI概念拉高）</span></td>
+</tr>
+</table>
+</div>
+
+<h2>成本结构</h2>
+<div class="summary-box">
+  🔹 <strong>类型：</strong><span class="col-tag col-info">轻资产</span>（成本=研发人员工资+云基础设施，无库存/无重固定资产）<br>
+  🔹 <strong>成本敏感性：</strong>营收±10% → 利润±20-30%（高经营杠杆，前期研发投入大）<br>
+  🔹 <strong>盈亏平衡点：</strong>需订阅收入持续覆盖研发投入（用友/金蝶仍在平衡线附近，金山/恒生/泛微已跨越；恒生研发费用率42.7%仍高但利润稳定）
+</div>
+
+<h2>竞争格局总结</h2>
+<div class="highlight-box">
+  软件行业呈<strong>"冰火两重天"</strong>——产品化程度高的公司（金山办公毛利85.95%、泛微93.8%、广联达85.88%、恒生71.06%）已兑现盈利，ROE 7-15%，定价权稳固；而重实施/转型中的公司（用友连续3年亏损、金蝶2025年才扭亏、卫宁2025首亏-3.74亿）仍在盈亏平衡线挣扎，毛利下滑明显。核心矛盾不是"谁技术强"，而是<strong>"谁能把产品卖成订阅、把收入做成ARR"</strong>。AI正在放大分化：能快速将AI嵌入产品提ARPU的（金山WPS AI、金蝶AI原生+189%、泛微AI办公）受益明显；纯AI概念而无产品变现的将被证伪。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l10">
+<div class="tab-inner">
+
+<h2>周期位置</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>库存周期阶段</td>
+  <td><span class="col-tag col-info">非周期成长股</span>（无库存周期），处于<strong>AI应用商业化的上行初期</strong></td>
+</tr>
+<tr>
+  <td>板块估值</td>
+  <td><span class="col-tag col-lose">计算机PE(TTM) 85.4x，历史90.6%分位</span>（2025-12，AI概念拉高）</td>
+</tr>
+<tr>
+  <td>龙头估值分位</td>
+  <td>金山PE~63x（40-50%分位）、恒生PE 40.6x（30-40%）、泛微PE 42x（低分位）——<span class="col-tag col-win">龙头温和</span></td>
+</tr>
+<tr>
+  <td>行业盈利状态</td>
+  <td><span class="col-tag col-warn">分化</span>：盈利龙头稳定兑现（净利率20-30%），转型股亏损收窄/刚扭亏</td>
+</tr>
+</table>
+</div>
+
+<div class="danger-box">
+  <strong>⚠ PE悖论检查</strong><br>
+  用友/卫宁当前PE为负（亏损），不适用PE估值，应用<strong>PS</strong>（用友PS~5x、卫宁PS~7.6x均&lt;10x可接受）<br>
+  计算机板块PE 85.4x处90.6%分位——这是被AI概念/算力股拉高的，<strong>不代表纯软件应用龙头贵</strong>；盈利兑现的龙头PE分位反而温和（40-63x）<br>
+  <strong>结论：</strong>板块用PE会被AI概念股误导，纯软件龙头用<strong>PE历史分位</strong>判断更靠谱——当前龙头处于可配置区间，但需避免追高PE&gt;70%分位的概念标的
+</div>
+
+<h2>估值水平</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>估值指标</th><th>行业当前</th><th>历史中位数</th><th>80%分位</th><th>20%分位</th></tr>
+<tr>
+  <td><strong>PE</strong>（盈利龙头）</td>
+  <td><span class="col-tag col-info">40-63x</span></td>
+  <td>50-70x</td>
+  <td>100x+</td>
+  <td>35x</td>
+</tr>
+<tr>
+  <td><strong>PS</strong>（亏损转型股）</td>
+  <td><span class="col-tag col-warn">5-8x</span></td>
+  <td>—</td>
+  <td>&gt;10x（高估线）</td>
+  <td>&lt;3x（低估线）</td>
+</tr>
+</table>
+</div>
+
+<h2>政策环境</h2>
+<div class="summary-box">
+  🔹 <strong>政策方向：</strong><span class="col-tag col-win">强力顺风</span>（信创国策 + AI国家战略）<br>
+  🔹 <strong>关键政策：</strong><br>
+  &emsp;• 2022年国资委79号文：央国企<strong>2027年前完成信创全面替代</strong>（OA/办公/ERP），2026年进入冲刺窗口<br>
+  &emsp;• 党政信创：PC累计出货700万台/存量3000万台（替换率20%+），2025-2027为替换高峰<br>
+  &emsp;• 金融信创：大行办公系统替换率超80%，进入深水区<br>
+  &emsp;• "人工智能+"行动：AI应用纳入国家战略，2026年为Agent商业化元年<br>
+  🔹 <strong>政策周期位置：</strong><span class="col-tag col-win">顺风期</span>（确定性政策需求，非收紧期）
+</div>
+
+<h2>买入清单</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:28%">条件</th><th style="width:16%">结果</th><th>备注</th></tr>
+<tr>
+  <td>周期位置：不在繁荣顶点</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>非周期成长股，AI应用上行初期</td>
+</tr>
+<tr>
+  <td>估值：PE/PS在历史偏低分位</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td>板块PE 90.6%分位偏高，但龙头PE分位温和（40-63x）——选龙头</td>
+</tr>
+<tr>
+  <td>政策：不是收紧期</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>信创+AI双政策顺风，历史最佳</td>
+</tr>
+<tr>
+  <td>格局：龙头壁垒稳固</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>细分赛道寡头稳固，转换成本高</td>
+</tr>
+<tr>
+  <td>增长：有可见驱动力</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>AI提ARPU + 信创确定需求 + 订阅利润释放</td>
+</tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <div style="font-size:16px;font-weight:700;margin-bottom:8px">综合判断：<span class="col-tag col-warn" style="font-size:15px">可以配置（精选）</span></div>
+  <div style="margin-bottom:6px">非周期成长股，政策与AI双驱动，但需避开高估值概念与转型烧钱股</div>
+  <table style="font-size:12px;margin:6px 0;border:none;background:transparent">
+    <tr><td style="border:none;padding:3px 6px;background:transparent;width:90px;font-weight:600">预期回报</td><td style="border:none;padding:3px 6px;background:transparent">AI提ARPU + 信创确定需求 + 云订阅利润释放</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">仓位建议</td><td style="border:none;padding:3px 6px;background:transparent"><span class="col-tag col-info">不超过组合25%</span>（成长股波动大，分散到4只龙头）</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">跟踪指标</td><td style="border:none;padding:3px 6px;background:transparent">云订阅ARR增速 · 续费率 · 信创替换进度 · AI收入占比 · 经营现金流</td></tr>
+  </table>
+  <div style="margin-top:8px;padding:8px;background:#e8f5e9;border-radius:4px;font-size:12px">
+    <strong>买入策略：</strong><br>
+    <span class="col-tag col-win">盈利兑现龙头</span>（金山/恒生/广联达/泛微）：PE分位温和时分批建仓，AI+信创双逻辑<br>
+    <span class="col-tag col-warn">转型观察股</span>（用友/深信服/科大讯飞/金蝶）：等待"经营现金流转正 + 订阅收入占比&gt;70%"信号再介入<br>
+    <span class="col-tag col-lose">回避</span>：高估值AI概念股（PE分位&gt;70%）、首亏的医疗IT（卫宁）
+  </div>
+</div>
+
+<h2>卖出信号</h2>
+<div class="danger-box">
+  <strong>出现以下信号考虑卖出：</strong><br>
+  <div style="margin-top:6px">
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px">1</span>
+    云订阅ARR增速连续两季低于15%（订阅逻辑被证伪）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">2</span>
+    SaaS续费率跌破80%（用友YonBIP续费率95.4%为行业标杆，跌破即恶化）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">3</span>
+    信创替换进度大幅落后2027计划（政策逻辑动摇）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">4</span>
+    龙头毛利率连续两季下滑超5个百分点（产品定价权丧失）
+  </div>
+</div>
+
+</div>
+</div>
+
+<div class="footer">Generated by Industry Analysis · L7-L10 Framework · Stock Selection</div>
+
+</div>
+
+<script>
+var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+var contents = document.querySelectorAll('.tab-content');
+btns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    contents.forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    var tab = btn.getAttribute('data-tab');
+    document.getElementById('tab-' + tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

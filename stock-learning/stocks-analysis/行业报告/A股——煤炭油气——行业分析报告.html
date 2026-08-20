@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>A股——煤炭/油气 行业分析报告</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f5f5f5;padding:0;color:#333}
+  .report-wrap{max-width:800px;margin:0 auto;background:#fff}
+  h1{font-size:22px;margin:0;padding:28px 0 4px;text-align:center}
+  h2{font-size:18px;margin:28px 0 12px;border-bottom:2px solid #1a1a1a;padding-bottom:4px}
+  h3{font-size:15px;margin:18px 0 8px}
+  .subtitle{color:#666;font-size:13px;text-align:center;margin-bottom:4px}
+  .meta{color:#999;font-size:12px;text-align:center;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #e0e0e0}
+  .tab-bar{position:sticky;top:0;z-index:10;background:#fff;display:flex;flex-wrap:wrap;border-bottom:2px solid #ddd;gap:0}
+  .tab-btn{padding:10px 14px;cursor:pointer;border:none;background:none;font-size:13px;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+  .tab-btn:hover{color:#333;background:#f9f9f9}
+  .tab-btn.active{color:#1a1a1a;font-weight:700;border-bottom-color:#1a1a1a}
+  .tab-content{display:none}
+  .tab-content.active{display:block}
+  .tab-inner{padding:0 12px}
+  table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:13px}
+  th{background:#f5f5f5;padding:8px 6px;text-align:left;border-bottom:2px solid #ddd;white-space:nowrap;font-weight:600}
+  td{padding:7px 6px;border-bottom:1px solid #eee}
+  tr:nth-child(even) td{background:#fafafa}
+  .summary-box{background:#fffde7;border-left:4px solid #f9a825;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .highlight-box{background:#e3f2fd;border-left:4px solid #1e88e5;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .danger-box{background:#ffebee;border-left:4px solid #e53935;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .verdict{text-align:center;padding:20px;margin:16px 0;border-radius:8px;font-size:18px;font-weight:700}
+  .verdict-ok{background:#e8f5e9;border:2px solid #4caf50;color:#2e7d32}
+  .verdict-caution{background:#fff3e0;border:2px solid #ff9800;color:#e65100}
+  .verdict-bad{background:#ffebee;border:2px solid #e53935;color:#c62828}
+  .score{font-size:36px;display:block;margin-bottom:4px}
+  .pass{color:#2e7d32;font-weight:700}
+  .skip{color:#666;font-style:italic}
+  .tag{display:inline-block;padding:2px 8px;border-radius:3px;font-size:11px;font-weight:700}
+  .tag-red{background:#ffebee;color:#c62828}
+  .tag-green{background:#e8f5e9;color:#2e7d32}
+  .tag-yellow{background:#fff8e1;color:#f57f17}
+  .footer{font-size:11px;color:#aaa;text-align:center;padding:24px 0 8px;border-top:1px solid #eee;margin-top:30px}
+  .card{background:#fafafa;border:1px solid #e0e0e0;border-radius:6px;padding:14px;margin:10px 0;font-size:13px}
+  .flex{display:flex;flex-wrap:wrap;gap:8px}
+  .tbl-wrap{border:1px solid #e0e0e0;border-radius:6px;overflow:hidden;margin:10px 0 18px}
+  .tbl-wrap table{margin:0}
+  .tbl-wrap th{background:#f5f5f5;padding:9px 8px;border-bottom:1px solid #ddd;font-weight:600;font-size:12px}
+  .tbl-wrap td{padding:8px;border-bottom:1px solid #f0f0f0;font-size:13px}
+  .tbl-wrap tr:last-child td{border-bottom:none}
+  .bar-wrap{display:inline-flex;align-items:center;width:60px;height:16px;vertical-align:middle}
+  .bar-bg{background:#eee;border-radius:4px;height:8px;width:100%;overflow:hidden;position:relative}
+  .bar{display:block;height:8px;border-radius:4px}
+  .score-cell{font-weight:700;font-size:15px;text-align:center;white-space:nowrap}
+  .tbl-wrap td,.tbl-wrap th{vertical-align:middle}
+  .metric-h{color:#1565c0;font-weight:700;font-size:13px}
+  .metric-l{color:#c62828;font-weight:700}
+  .metric-m{color:#e65100;font-weight:700}
+  .col-tag{display:inline-block;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600}
+  .col-win{background:#e8f5e9;color:#2e7d32}
+  .col-lose{background:#ffebee;color:#c62828}
+  .col-warn{background:#fff3e0;color:#e65100}
+  .col-info{background:#e3f2fd;color:#1565c0}
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>A股——煤炭/油气 行业分析报告</h1>
+<div class="subtitle">L5分类：纯周期 ｜ 上市公司：~70只 ｜ 总市值：~7万亿（煤炭+油气，估算）</div>
+<div class="meta">生成日期：2026-08-20</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l7">L7 量化初筛</button>
+  <button class="tab-btn" data-tab="l8">L8 行业画像</button>
+  <button class="tab-btn" data-tab="l9">L9 竞争格局</button>
+  <button class="tab-btn" data-tab="l10">L10 周期时机</button>
+</div>
+
+<div class="tab-content active" id="tab-summary">
+<div class="tab-inner">
+
+<h2>行业速览</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">项目</th><th>内容</th></tr>
+<tr><td>行业名称</td><td><strong>煤炭/油气</strong>（上游资源，动力煤+焦煤+油气开采）</td></tr>
+<tr><td>市场</td><td>A股</td></tr>
+<tr><td>L5分类</td><td><span class="col-tag col-warn">纯周期</span> 估值用PB替代PE，周期股PE低≠便宜</td></tr>
+<tr><td>上市公司</td><td>~70只（煤炭开采+油气开采+炼化一体化），L7通过 <span class="col-tag col-win">5只</span>（另有观察池4只）</td></tr>
+<tr><td>行业总市值</td><td>~7万亿（煤炭板块~2.5万亿＋三桶油等~4.5万亿，估算）</td></tr>
+<tr><td>产业链利润核心</td><td><span class="col-tag col-win">上游采掘/开采环节</span> 毛利40-50%，炼化环节最薄（中石化ROE仅~5%）</td></tr>
+<tr><td>生命周期阶段</td><td><span class="col-tag col-warn">成熟期</span> 长期被新能源替代（中国煤炭消费"十五五"平台化），短期靠供给纪律支撑</td></tr>
+<tr><td>当前周期位置</td><td><span class="col-tag col-warn">煤炭=中段偏上</span>（Q5500为861元/吨，分位50-60%）／ <span class="col-tag col-lose">油气=中高位</span>（布伦特~91.7美元，分位70-75%）</td></tr>
+</table>
+</div>
+
+<h2>综合评分</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>维度</th><th style="width:60px">得分</th><th>进度</th><th>说明</th></tr>
+<tr>
+  <td>行业规模与空间</td>
+  <td class="score-cell">13/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:65%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">能源市场~10万亿级/年，但长期空间受新能源替代约束</td>
+</tr>
+<tr>
+  <td>产业链位置</td>
+  <td class="score-cell">11/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:73%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">上游开采是利润最厚环节（毛利40-50%），一体化更优</td>
+</tr>
+<tr>
+  <td>竞争格局</td>
+  <td class="score-cell">14/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:70%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">国企主导寡头格局，新进入者极难，龙头壁垒深</td>
+</tr>
+<tr>
+  <td>增长驱动力</td>
+  <td class="score-cell">5/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:33%;background:#f44336"></span></span></span></td>
+  <td style="font-size:12px;color:#555">纯周期驱动、无结构增长，长期需求被新能源替代</td>
+</tr>
+<tr>
+  <td>周期位置</td>
+  <td class="score-cell">8/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:53%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">煤炭中段、油气中高位，均非周期底部买点</td>
+</tr>
+<tr>
+  <td>政策环境</td>
+  <td class="score-cell">10/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:67%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">煤炭安监收紧+长协稳价利好龙头；油气增储上产中性偏正</td>
+</tr>
+<tr style="background:#fafafa">
+  <td style="font-weight:700;font-size:14px">总分</td>
+  <td style="font-weight:700;font-size:16px;color:#e65100">61/100</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:61%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#e65100;font-weight:600">一般——等待为主，防御性小仓位，不追高</td>
+</tr>
+</table>
+</div>
+
+<div class="verdict verdict-caution">
+  <span class="score">61</span>
+  一般——等待
+</div>
+
+<div class="summary-box">
+  <strong>核心结论</strong><br>
+  煤炭/油气是典型的<strong>纯周期股</strong>（L5分类），研究框架必须用PB+股息率体系而非PE。当前上游资源整体处于"中段偏上"（煤炭：Q5500为861元/吨、安监收紧支撑价格中枢上移）和"中高位"（油气：布伦特~91.7美元、含明显地缘溢价，机构预测2027年回落至74美元）。<br>
+  高股息性质需要区分：<strong>煤炭龙头（神华/陕煤）≈真价值</strong>——长协比例70-92%熨平价格波动＋自由现金流覆盖分红＋分红承诺下限（神华2025年分红率78.2%、分红413亿）；<strong>三桶油高股息≈周期中高位产物</strong>——油价一旦回落至70美元，股息率将缩水。<br>
+  龙头值得纳入周期股体系：神华=煤电路港航一体化+净现金~1500亿+净负债率~5%，是周期股"公用事业化"的稀缺标的；海油=桶油成本28美元（全球最低梯队）+产量双位数增长，但A股PB分位偏高，H股（PB~1.4x、PE~7.2x）更有性价比。可行动判断：<strong>等待+防御</strong>，煤炭龙头（神华/陕煤/兖矿）可5-15%仓位作股息替代；油气A股暂观望、等估值回落。
+</div>
+
+<div class="highlight-box">
+  <strong>行业公式</strong><br>
+  煤炭：收入 = 商品煤销量 × 吨煤售价 − 吨煤成本；当前组合 <span style="color:#1565c0;font-weight:700">量平</span>（2026H1原煤产量-1.6%）× <span style="color:#2e7d32;font-weight:700">价升</span>（价格中枢上移）= 量平价升<br>
+  油气：收入 = 油气产量 × 实现油价 − 桶油成本；当前组合 <span style="color:#2e7d32;font-weight:700">量升</span>（海油产量+8.6%）× <span style="color:#e65100;font-weight:700">价高位</span>（地缘溢价）＝ 量价齐升但油价高位承压<br>
+  关键指标：秦皇岛Q5500平仓价 · 港口库存 · 原煤产量增速 · 布伦特油价 · 桶油成本 · 长协价
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l7">
+<div class="tab-inner">
+
+<h2>筛子调整说明</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:12%">筛子</th><th style="width:35%">标准</th><th>调整说明</th></tr>
+<tr><td>①<span class="col-tag col-info">市值</span></td><td>主板≥50亿</td><td>龙头均千亿级，此筛主要剔除小型煤焦贸易/开采设备/壳资源股</td></tr>
+<tr><td>②<span class="col-tag col-info">营收</span></td><td>主板≥10亿</td><td>正常执行，剔除微型贸易商</td></tr>
+<tr><td>③<span class="col-tag col-lose">毛利率</span></td><td>≥15%</td><td>上游开采环节自然通过（毛利40-50%），注意周期高位毛利偏高，需结合PB看</td></tr>
+<tr><td>④<span class="col-tag col-info">ROE</span></td><td>≥8%</td><td>正常执行，参考近三年中位ROE；潞安环能/中石化/新潮等2025年ROE&lt;8%被剔除</td></tr>
+<tr><td>⑤<span class="col-tag col-info">负债率</span></td><td>≤65%</td><td>正常执行，国企资源股低杠杆普遍通过（兖矿~60%为临界值）</td></tr>
+<tr><td>⑥<span class="col-tag col-lose">估值</span></td><td><strong>PB历史分位≤80%（替代PE）</strong></td><td><strong>纯周期股调整</strong>（依据 industry-classification §2.1）：周期中高位PE低是陷阱，用PB分位判断贵贱。煤炭龙头PB分位中低通过；油气A股（中石油/海油A）PB分位偏高被卡</td></tr>
+</table>
+</div>
+
+<h2>候选池（5只）</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>环节</th><th>市值</th><th>毛利率</th><th>ROE</th><th>负债率</th><th>PB分位</th><th>通过</th></tr>
+<tr>
+  <td><strong>中国神华</strong> 601088</td>
+  <td><span class="col-tag col-info">一体化</span></td>
+  <td style="font-weight:600">~9700亿</td>
+  <td><span class="col-tag col-win">30-35%</span></td>
+  <td><span class="col-tag col-win">~11%</span></td>
+  <td style="color:#2e7d32;font-weight:600">29%</td>
+  <td>低(30-40%)</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>陕西煤业</strong> 601225</td>
+  <td><span class="col-tag col-info">动力煤</span></td>
+  <td style="font-weight:600">~2130亿</td>
+  <td><span class="col-tag col-win">~35%</span></td>
+  <td><span class="col-tag col-win">~14%</span></td>
+  <td style="color:#2e7d32;font-weight:600">~34%</td>
+  <td>中(40-50%)</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>中国海油</strong> 600938</td>
+  <td><span class="col-tag col-win">油气开采</span></td>
+  <td style="font-weight:600">~2万亿(A股)</td>
+  <td><span class="col-tag col-win">~51%</span></td>
+  <td><span class="col-tag col-win">~15%</span></td>
+  <td style="color:#2e7d32;font-weight:600">~40%</td>
+  <td>A偏高/H中低</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>兖矿能源</strong> 600188</td>
+  <td><span class="col-tag col-warn">动力煤+化工</span></td>
+  <td style="font-weight:600">~1676亿</td>
+  <td><span class="col-tag col-win">~29%</span></td>
+  <td><span class="col-tag col-warn">~10%</span></td>
+  <td style="color:#e65100;font-weight:600">~60%</td>
+  <td>中低(30-40%)</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>中煤能源 601898</td>
+  <td><span class="col-tag col-info">动力煤+化工</span></td>
+  <td>~2342亿</td>
+  <td>~27%</td>
+  <td><span class="col-tag col-win">~11%</span></td>
+  <td style="color:#2e7d32;font-weight:600">~46%</td>
+  <td><span style="color:#e65100;font-weight:700">偏高(60-70%)</span></td>
+  <td><span class="pass">5/6</span> <span class="col-tag col-lose">卡⑥</span></td>
+</tr>
+</table>
+</div>
+
+<h2>观察池</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>卡在哪筛</th><th>备注</th></tr>
+<tr>
+  <td><strong>中国石油</strong> 601857</td>
+  <td><span class="col-tag col-lose">⑥估值分位偏高</span></td>
+  <td>A股市值2.14万亿登顶（2026/3），股价11年新高，等回调；2026Q1业绩创历史新高、ROE~11%</td>
+</tr>
+<tr>
+  <td><strong>中国石化</strong> 600028</td>
+  <td><span class="col-tag col-lose">④ROE~4-6%&lt;8%</span></td>
+  <td>炼化环节盈利薄，2025年前三季净利299.84亿(-32.2%)；分红率69%为亮点</td>
+</tr>
+<tr>
+  <td><strong>潞安环能</strong> 601699</td>
+  <td><span class="col-tag col-lose">④ROE&lt;8%</span></td>
+  <td>焦煤弹性标的，2025年净利同比-54%，2026Q1量价齐升；等焦煤价格拐点确认后再看</td>
+</tr>
+<tr>
+  <td><strong>新潮能源</strong> 600777</td>
+  <td><span class="col-tag col-lose">④ROE 5.3%</span> <span class="col-tag col-lose">⑤派现</span> <span class="col-tag col-lose">⑥ST</span></td>
+  <td>*ST+近三年零分红，2026H1净利3.23亿(-66.27%)，天然气负气价，回避</td>
+</tr>
+</table>
+</div>
+
+<h2>筛除记录</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>筛子</th><th style="width:60px">筛除数</th><th>知名示例</th></tr>
+<tr><td>①市值</td><td style="text-align:center">~15</td><td>小型煤焦钢贸、开采设备小票</td></tr>
+<tr><td>②营收</td><td style="text-align:center">~10</td><td>微型贸易商、纯概念公司</td></tr>
+<tr><td>③毛利率 <span class="col-tag col-warn">周期因素</span></td><td style="text-align:center">~5</td><td>贸易型公司毛利&lt;5%、部分亏损小矿</td></tr>
+<tr><td>④ROE</td><td style="text-align:center">~10</td><td>潞安环能、新潮能源、中石化、多家炼化/焦化公司</td></tr>
+<tr><td>⑤负债率</td><td style="text-align:center">~3</td><td>高杠杆民营煤化工企业</td></tr>
+<tr><td>⑥估值 <span class="col-tag col-warn">PB分位</span></td><td style="text-align:center">~18</td><td>股价创新高的油气A股（中石油/海油A）、估值分位偏高标的</td></tr>
+<tr style="background:#fffde7"><td><strong>剩余</strong></td><td style="text-align:center;font-weight:700;color:#2e7d32"><strong>9</strong></td><td>候选池5只＋观察池4只</td></tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <strong>L7筛选结论</strong><br>
+  ~70→9（候选5＋观察4），筛选力度大（-87%）。最严的是估值筛（改用PB分位后，油气A股因估值分位偏高被卡）和ROE筛（焦煤/炼化环节盈利弱被剔除）。煤炭上游龙头普遍通过——格局极好、基本面稳健。核心关注5只：神华、陕煤、海油、兖矿、中煤（估值分位偏高，等回调）。
+  <div style="margin-top:6px;color:#999;font-size:11px">数据口径：毛利率/ROE/负债率为2025年报及2026Q1数据，部分为估算值（以~标注）；PB分位为近5-10年历史参考区间。</div>
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l8">
+<div class="tab-inner">
+
+<h2>产业链</h2>
+<div class="card" style="font-size:13px;line-height:1.7">
+
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px">
+
+<div style="flex:1.2;min-width:200px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#2e7d32;font-size:14px">上游资源</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">矿权/储量/油田</div>
+    <div style="text-align:center;font-size:11px;color:#666">煤炭：央企+地方国企垄断矿权<br>油气：三桶油+渤海/南海</div>
+    <div style="margin:10px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">开采设备/服务</div>
+    <div style="text-align:center;font-size:11px;color:#666">郑煤机 · 天地科技</div>
+  </div>
+</div>
+
+<div style="flex:2;min-width:280px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#1565c0;font-size:14px">中游采掘/炼化（利润最厚）</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+
+    <div style="margin:4px 0;font-weight:600;font-size:12px;color:#2e7d32">煤炭采掘（毛利40-48%）</div>
+    <div style="display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:70px;background:#e8f5e9;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">动力煤</div>
+        <div style="font-size:10px;color:#666">神华·陕煤·兖矿·中煤</div>
+      </div>
+      <div style="flex:1;min-width:70px;background:#fff3e0;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">焦煤</div>
+        <div style="font-size:10px;color:#666">潞安·淮北·平煤</div>
+      </div>
+      <div style="font-size:20px;color:#999;line-height:36px">→</div>
+      <div style="flex:1.4;min-width:90px;background:#e3f2fd;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">运输/洗选</div>
+        <div style="font-size:10px;color:#666">大秦铁路·秦皇岛港</div>
+      </div>
+    </div>
+
+    <div style="margin:4px 0 4px;font-weight:600;font-size:12px;color:#2e7d32">油气开采（毛利50%+）</div>
+    <div style="display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap">
+      <div style="flex:1.4;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">海上开采<br><span style="font-size:10px;color:#666">海油（桶油成本28美元）</span></div>
+      <div style="flex:1.4;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">陆上油气<br><span style="font-size:10px;color:#666">中石油·中石化</span></div>
+      <div style="flex:1;background:#ffebee;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">页岩油<br><span style="font-size:10px;color:#666">新潮能源</span></div>
+    </div>
+
+    <div style="margin:4px 0 4px;font-weight:600;font-size:12px;color:#1565c0">中游炼化/煤化工（毛利最薄）</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <div style="flex:1;background:#ffebee;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">炼化<br><span style="font-size:10px;color:#666">中石化·中石油炼厂</span></div>
+      <div style="flex:1;background:#ffebee;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">炼化毛利~13-15%</div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">煤化工<br><span style="font-size:10px;color:#666">兖矿·中煤·宝丰</span></div>
+    </div>
+    <div style="text-align:center;font-size:11px;color:#c62828;margin-top:8px">▲ 炼化环节ROE仅4-6%（中石化），盈利最薄</div>
+  </div>
+</div>
+
+<div style="flex:1;min-width:160px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#c62828;font-size:14px">下游消费</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">火电（煤炭~55%）</div>
+    <div style="margin-bottom:6px;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">焦化/钢铁（~15%）</div>
+    <div style="margin-bottom:6px;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">成品油/化工</div>
+    <div style="margin:10px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#f5f5f5;border:1px solid #ccc;border-radius:4px;padding:10px 8px;text-align:center;font-weight:600;font-size:13px">终端用户</div>
+    <div style="text-align:center;font-size:11px;color:#666">电网 · 钢厂 · 加油站</div>
+  </div>
+</div>
+
+</div>
+
+<div style="background:#fffde7;border-left:3px solid #f9a825;padding:8px 12px;font-size:12px;border-radius:0 4px 4px 0">
+  <strong>利润最厚环节：</strong>油气开采（海油毛利51%）→ 煤炭采掘（40-48%）→ 炼化（~14%）——越靠近资源端越赚钱
+  <br><span style="color:#999">油气上游CR3&gt;90%（三桶油），煤炭头部企业贡献全国产量~20%，均为国企主导的寡头格局</span>
+</div>
+
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>环节</th><th>代表公司</th><th>毛利率</th><th>集中度</th><th>议价能力</th></tr>
+<tr>
+  <td><span class="col-tag col-win">动力煤采掘</span></td>
+  <td>神华、陕煤、兖矿、中煤</td>
+  <td><span class="col-tag col-win">40-48%</span></td>
+  <td>头部企业~20%</td>
+  <td><span class="col-tag col-warn">中</span>（长协锚定+进口约束）</td>
+</tr>
+<tr>
+  <td><span class="col-tag col-warn">焦煤采掘</span></td>
+  <td>潞安、淮北、平煤</td>
+  <td><span class="col-tag col-warn">40-45%</span></td>
+  <td>较分散</td>
+  <td><span class="col-tag col-lose">弱</span>（随钢价波动）</td>
+</tr>
+<tr>
+  <td><span class="col-tag col-win">油气开采</span></td>
+  <td>海油、中石油、中石化</td>
+  <td><span class="col-tag col-win">50%+</span></td>
+  <td>CR3&gt;90%</td>
+  <td><span class="col-tag col-lose">弱</span>（全球定价接受者，成本曲线决定利润）</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><span class="col-tag col-lose">炼化</span></td>
+  <td>中石化、中石油炼厂、地炼</td>
+  <td><span class="col-tag col-lose">13-15%</span></td>
+  <td>中高</td>
+  <td><span class="col-tag col-lose">弱</span>（产能过剩）</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><span class="col-tag col-warn">煤化工</span></td>
+  <td>兖矿、中煤、宝丰</td>
+  <td><span class="col-tag col-warn">20-30%</span></td>
+  <td>中</td>
+  <td><span class="col-tag col-warn">中</span></td>
+</tr>
+<tr style="background:#fafafa">
+  <td><span class="col-tag col-info">煤机/设备</span></td>
+  <td>郑煤机、天地科技</td>
+  <td><span class="col-tag col-warn">25-35%</span></td>
+  <td>中</td>
+  <td><span class="col-tag col-warn">中</span></td>
+</tr>
+</table>
+</div>
+
+<h2>市场规模</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">指标</th><th style="width:25%">数值</th><th>说明</th></tr>
+<tr><td><strong>TAM</strong>（总可触达市场）</td><td><span class="col-tag col-info" style="font-size:13px">煤炭~3万亿/年<br>油气~5万亿/年</span></td><td>煤炭：商品煤消费~45亿吨×均价~700元；油气：原油加工~7.8亿吨/年+炼油产能9.8亿吨</td></tr>
+<tr><td><strong>当前渗透率</strong></td><td>煤炭占一次能源~55%</td><td>长期被新能源替代，"十五五"煤炭消费平台化</td></tr>
+<tr><td><strong>近年增速</strong>（3年CAGR）</td><td><span class="col-tag col-lose">~0%</span></td><td>量平价升：2026H1原煤产量-1.6%（安监收紧）、油价年增主要靠地缘</td></tr>
+</table>
+</div>
+
+<h2>生命周期</h2>
+<div class="summary-box">
+  <strong><span class="col-tag col-warn" style="font-size:14px">成熟期（长期衰退通道）</span></strong><br>
+  判断依据：行业总量已见顶（中国煤炭消费进入平台期、石油预计2030年前后见顶）；长期增长逻辑是负面的——新能源（光伏/风电/电动车）持续替代化石能源；但短期供给侧纪律（安监收紧、超产治理、长协稳价、产能储备制度）支撑盈利韧性。投资含义：<strong>不赚成长的钱，赚周期和分红的钱</strong>——龙头以5-6%股息率+低波动运行，类似"周期公用事业"。
+</div>
+
+<h2>增长驱动力</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动力</th><th>类型</th><th>可持续性</th><th>量化指标</th></tr>
+<tr>
+  <td>安监收紧→供给收缩（煤炭）</td>
+  <td><span class="col-tag col-warn">周期</span></td>
+  <td><span class="col-tag col-warn">中（政策期）</span></td>
+  <td>原煤产量同比-1.6%、进口预计全年3.3亿吨(-7.6%)</td>
+</tr>
+<tr>
+  <td>长协稳价机制（煤炭）</td>
+  <td><span class="col-tag col-warn">政策</span></td>
+  <td><span class="col-tag col-win">长（制度化）</span></td>
+  <td>煤企长协占自有资源75%、履约率80-90%（发改办运行〔2025〕985号）</td>
+</tr>
+<tr>
+  <td>火电刚需+AI数据中心用电</td>
+  <td><span class="col-tag col-warn">结构/周期</span></td>
+  <td><span class="col-tag col-warn">中长</span></td>
+  <td>2025年全社会用电量同比+6%</td>
+</tr>
+<tr>
+  <td>增储上产（油气）</td>
+  <td><span class="col-tag col-warn">政策</span></td>
+  <td><span class="col-tag col-warn">中长</span></td>
+  <td>海油2026年产量目标780-800百万桶油当量（+8.6%）</td>
+</tr>
+<tr>
+  <td>油价周期（油气）</td>
+  <td><span class="col-tag col-warn">周期</span></td>
+  <td><span class="col-tag col-lose">中短（高位承压）</span></td>
+  <td>布伦特~91.7美元含地缘溢价，机构预测2027年回落至74美元</td>
+</tr>
+<tr>
+  <td>新能源替代（反向）</td>
+  <td><span class="col-tag col-lose">结构</span></td>
+  <td><span class="col-tag col-win">长（20年+）</span></td>
+  <td>光伏/风电装机增速、电动车渗透率</td>
+</tr>
+</table>
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l9">
+<div class="tab-inner">
+
+<h2>市场结构</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>市场结构类型</td>
+  <td>煤炭：<span class="col-tag col-win">寡头垄断（一超多强，国企主导）</span>；油气上游：<span class="col-tag col-win">高度垄断（三桶油CR3&gt;90%）</span>；炼化：<span class="col-tag col-warn">寡头+过剩并存</span></td>
+</tr>
+<tr>
+  <td>CR3</td>
+  <td>煤炭头部企业（神华/中煤/陕煤/兖矿）产量占比~20%（<span style="color:#2e7d32">↑集中</span>）；油气开采CR3&gt;90%（<span style="color:#2e7d32">高度集中</span>）</td>
+</tr>
+<tr>
+  <td>格局象限</td>
+  <td>煤炭/油气上游：<span class="col-tag col-win">寡头稳定</span>；炼化：<span class="col-tag col-lose">过剩承压</span>；煤化工：<span class="col-tag col-info">技术驱动</span></td>
+</tr>
+<tr>
+  <td>新进入者威胁</td>
+  <td><span class="col-tag col-win">极小</span>（矿权+安监+牌照+重资本门槛极高，民营仅能参与页岩油等边缘环节）</td>
+</tr>
+</table>
+</div>
+
+<h2>竞争壁垒</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>壁垒类型</th><th>强度</th><th>可持续性</th><th>具体表现</th></tr>
+<tr>
+  <td>资源独占（矿权/储量）</td>
+  <td><span class="col-tag col-win">极强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>优质动力煤资源被央企/省属国企垄断，焦煤资源稀缺；油田储量决定产能上限</td>
+</tr>
+<tr>
+  <td>牌照准入（开采资质）</td>
+  <td><span class="col-tag col-win">极强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>安监/环评/采矿证审批极严，实际难以新批大规模煤矿；油气开采仅三桶油+少量民企</td>
+</tr>
+<tr>
+  <td>规模+一体化（神华模式）</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>神华煤电路港航一体化自产3.3亿吨、长协90%+、净现金~1500亿，全行业成本最低梯队</td>
+</tr>
+<tr>
+  <td>成本优势（海油模式）</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-warn">中长</span></td>
+  <td>海油桶油成本28美元全球最低梯队，油价&gt;50美元即可盈利；陕煤吨煤成本385元/吨</td>
+</tr>
+</table>
+</div>
+
+<div class="summary-box">
+  <strong>定价权测试</strong><br>
+  🔹 龙头能涨价吗？<strong>煤炭部分能</strong>（长协锚定+供给纪律+进口约束，2026年价格中枢上移）／ <strong>焦煤不能</strong>（随钢价）／ <strong>油气上游不能</strong>（全球定价接受者，但成本曲线位置决定谁赚大头）<br>
+  🔹 毛利率趋势：煤炭采掘稳定（长协熨平），油气开采高位（油价~91美元），炼化承压<br>
+  🔹 ROE趋势：煤炭龙头稳定10-14%，油气龙头高位（海油~15%）——这是格局好但周期决定高度的典型
+</div>
+
+<h2>驱动力拆解</h2>
+<div class="highlight-box">
+  <strong>行业收入公式</strong><br>
+  收入 = 商品量 × 售价 − 成本<br><br>
+  煤炭当前组合：<span style="color:#1565c0;font-weight:700">量平</span>（产量零增长）＋ <span style="color:#2e7d32;font-weight:700">价升</span>（中枢上移）＝ <span class="col-tag col-win">量平价升</span><br>
+  油气当前组合：<span style="color:#2e7d32;font-weight:700">量升</span>（增储上产）＋ <span style="color:#e65100;font-weight:700">价高位</span>（地缘溢价）＝ <span class="col-tag col-warn">量价齐升但油价不可持续</span>
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动因子</th><th>最新值</th><th>历史区间</th><th>当前分位</th></tr>
+<tr>
+  <td>动力煤Q5500平仓价（元/吨）</td>
+  <td><span class="col-tag col-warn">861</span></td>
+  <td>500-1500</td>
+  <td><span class="col-tag col-warn">55-60%</span></td>
+</tr>
+<tr>
+  <td>焦煤期货主连（元/吨）</td>
+  <td><span class="col-tag col-warn">~1380</span></td>
+  <td>900-2900</td>
+  <td><span class="col-tag col-warn">~40%</span></td>
+</tr>
+<tr>
+  <td>布伦特油价（美元/桶）</td>
+  <td><span class="col-tag col-lose">~91.7</span></td>
+  <td>20-140</td>
+  <td><span class="col-tag col-lose">70-75%</span></td>
+</tr>
+<tr>
+  <td>全国原煤产量同比</td>
+  <td><span class="col-tag col-warn">-1.6%</span></td>
+  <td>-10%~+10%</td>
+  <td><span class="col-tag col-info">供给收缩</span></td>
+</tr>
+<tr>
+  <td>三桶油产量增速</td>
+  <td><span class="col-tag col-win">+0.4%~+8.6%</span></td>
+  <td>0-8%</td>
+  <td><span class="col-tag col-win">温和增长</span></td>
+</tr>
+</table>
+</div>
+
+<h2>成本结构</h2>
+<div class="summary-box">
+  🔹 <strong>类型：</strong><span class="col-tag col-lose">重资产</span>（固定成本高、资本开支大、高经营杠杆）<br>
+  🔹 <strong>成本敏感性：</strong>煤价/油价±10% → 净利润±30-50%<br>
+  🔹 <strong>盈亏平衡点：</strong>海油桶油成本28.41美元（布伦特&gt;50美元即盈利）；陕煤吨成本385元（售价444元）；神华长协90%+成本与售价匹配锁定<br>
+  🔹 <strong>特殊点：</strong>成本曲线决定了周期下行时谁先亏损——成本最低的（神华/海油）永远最后受伤，这是"周期股中的防御资产"本质
+</div>
+
+<h2>竞争格局总结</h2>
+<div class="highlight-box">
+  煤炭与油气上游是全A股<strong>格局最好的行业之一</strong>——国企主导的寡头垄断、牌照+资源双重壁垒、新进入者几乎为零。核心矛盾不在格局（格局极好），而在<strong>周期位置</strong>和<strong>长期替代</strong>。分化要点：①一体化成本优势（神华煤电路港航、海油桶油28美元）是穿越周期之本；②高股息质地分化——煤炭龙头（长协+分红承诺）是真价值，三桶油（油价高位）是周期红利；③炼化环节（中石化）ROE仅4-6%，赚规模不赚钱，不值得作为资源股核心配置。一句话：<strong>在最好的格局里，用最严格的周期纪律选时</strong>。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l10">
+<div class="tab-inner">
+
+<h2>周期位置</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>库存周期阶段</td>
+  <td>煤炭：<span class="col-tag col-warn">复苏→繁荣过渡（中段）</span>；油气：<span class="col-tag col-lose">繁荣（高油价，地缘驱动）</span></td>
+</tr>
+<tr>
+  <td>产能利用率</td>
+  <td>煤炭：受安监约束有效产能利用率高（供给弹性低）；油气：全球偏宽松（美国产量创新高1341万桶/日），IEA预测供应过剩</td>
+</tr>
+<tr>
+  <td>产品价格分位</td>
+  <td>动力煤<span class="col-tag col-warn">55-60%</span>，焦煤<span class="col-tag col-warn">~40%</span>，布伦特<span class="col-tag col-lose">70-75%</span></td>
+</tr>
+<tr>
+  <td>行业盈利状态</td>
+  <td>煤炭：盈利中枢修复（2025年报同比-5%~-44%不等，2026H1煤价上行）；油气：盈利高位（海油2025年净利~1280亿、中石油2026Q1创历史新高）</td>
+</tr>
+</table>
+</div>
+
+<div class="danger-box">
+  <strong>⚠ PE悖论检查</strong><br>
+  煤炭/油气是纯周期股，<strong>估值一律看PB，不用PE</strong>：<br>
+  &emsp;• 兖矿能源：2025年净利-43.6%后PE(TTM)~20x，看似"昂贵"实为盈利低点假象（前瞻PE仅11-13x）<br>
+  &emsp;• 三桶油：当前PE仅8-11x，看似"便宜"实为<strong>油价高位盈利不可持续</strong>——周期股PE最低时往往最危险<br>
+  &emsp;• PB视角：煤炭龙头PB 1.4-1.8x（中低分位）相对安全；油气A股（海油A PB~2.4x、中石油）PB分位偏高<br>
+  <strong>结论：煤炭用PB分位+股息率双重确认，油气A股估值分位偏高需等回调。</strong>
+</div>
+
+<h2>估值水平</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>估值指标</th><th>行业当前</th><th>历史中位数</th><th>80%分位</th><th>20%分位</th></tr>
+<tr>
+  <td><strong>PB</strong>（煤炭龙头）</td>
+  <td><span class="col-tag col-info">1.0-1.5x</span></td>
+  <td>~1.3x</td>
+  <td>~2.0x</td>
+  <td>~0.8x</td>
+</tr>
+<tr>
+  <td><strong>PE</strong>（煤炭板块）</td>
+  <td><span class="col-tag col-warn">10-13x</span></td>
+  <td>~12x</td>
+  <td>~18x</td>
+  <td>~7x</td>
+</tr>
+<tr>
+  <td><strong>PB</strong>（油气A股）</td>
+  <td><span class="col-tag col-lose">1.1-2.4x</span></td>
+  <td>~1.5x</td>
+  <td>~2.5x</td>
+  <td>~0.9x</td>
+</tr>
+<tr>
+  <td><strong>PE</strong>（油气A股）</td>
+  <td><span class="col-tag col-warn">8-11x</span></td>
+  <td>~15x</td>
+  <td>~25x</td>
+  <td>~7x</td>
+</tr>
+</table>
+</div>
+<div style="color:#999;font-size:11px;margin-top:-8px;margin-bottom:12px">注：分位数基于近5-10年历史估算区间；海油H股PB~1.4x、PE~7.2x显著低于A股（A股上市时间短、分位参考性弱）。</div>
+
+<h2>政策环境</h2>
+<div class="summary-box">
+  🔹 <strong>政策方向：</strong>煤炭<span class="col-tag col-warn">中性偏正</span>（供给侧约束利好龙头）／ 油气<span class="col-tag col-info">中性</span>（增储上产保能源安全）<br>
+  🔹 <strong>关键政策：</strong><br>
+  &emsp;• 长协机制（发改办运行〔2025〕985号）：煤企长协占自有资源75%、发电企业签约占需求80%、月度/季度履约率≥80%/90%；山西产地基准价470元/吨<br>
+  &emsp;• 安监收紧＋超产治理：2026H1原煤产量-1.6%，全年预计零增长，供给弹性降低<br>
+  &emsp;• 产能储备制度（发改能源规〔2024〕1051号）：提升应急保供能力<br>
+  &emsp;• 油气增储上产：海油2026年产量目标780-800百万桶油当量<br>
+  🔹 <strong>政策周期位置：</strong>煤炭=<span class="col-tag col-warn">收紧期</span>（安监约束→对龙头是利好）／ 油气=<span class="col-tag col-info">中性期</span>
+</div>
+
+<h2>买入清单</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:28%">条件</th><th style="width:16%">结果</th><th>备注</th></tr>
+<tr>
+  <td>周期位置：不在繁荣顶点</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td>煤炭中段尚可，油气中高位（地缘溢价不可持续）</td>
+</tr>
+<tr>
+  <td>估值：PB在历史偏低分位</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td>煤炭龙头PB中低OK；油气A股PB分位偏高需等回调</td>
+</tr>
+<tr>
+  <td>政策：不是收紧期</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>煤炭安监收紧反而约束供给、利好龙头定价</td>
+</tr>
+<tr>
+  <td>格局：龙头壁垒稳固</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>寡头垄断+成本优势，格局是全市场最好的之一</td>
+</tr>
+<tr>
+  <td>增长：有可见驱动力</td>
+  <td style="text-align:center"><span class="col-tag col-lose">❌</span></td>
+  <td>长期被新能源替代，短期靠供给纪律+股息支撑</td>
+</tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <div style="font-size:16px;font-weight:700;margin-bottom:8px">综合判断：<span class="col-tag col-warn" style="font-size:15px">等待（防御性小仓位）</span></div>
+  <div style="margin-bottom:6px">不是周期底部买点，但煤炭龙头具防御配置价值，油气等估值回落</div>
+  <table style="font-size:12px;margin:6px 0;border:none;background:transparent">
+    <tr><td style="border:none;padding:3px 6px;background:transparent;width:90px;font-weight:600">预期回报</td><td style="border:none;padding:3px 6px;background:transparent">煤炭龙头：股息5-6%＋估值平稳；油气：油价高位回落风险大于上行空间</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">仓位建议</td><td style="border:none;padding:3px 6px;background:transparent"><span class="col-tag col-warn">煤炭龙头合计不超过组合15%</span>（作股息替代），油气暂不追高</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">跟踪指标</td><td style="border:none;padding:3px 6px;background:transparent">秦皇岛Q5500平仓价 · 港口库存 · 原煤产量增速 · 布伦特油价 · 桶油成本 · 长协价 · 分红承诺</td></tr>
+  </table>
+  <div style="margin-top:8px;padding:8px;background:#e8f5e9;border-radius:4px;font-size:12px">
+    <strong>买入策略：</strong><br>
+    <span class="col-tag col-win">煤炭龙头</span>（神华/陕煤/兖矿）：PB中低分位＋股息5-6%，可分批建仓作防御性股息配置<br>
+    <span class="col-tag col-info">海油</span>：关注H股低估值（PB~1.4x、PE~7.2x）；A股PB分位偏高暂不追高，油价回调时布局<br>
+    <span class="col-tag col-warn">焦煤</span>（潞安）：等2026H2焦煤价格反弹＋业绩拐点确认后再看<br>
+    <span class="col-tag col-lose">油气A股</span>（中石油/中石化）：等估值分位回落再评估
+  </div>
+</div>
+
+<h2>卖出信号</h2>
+<div class="danger-box">
+  <strong>出现以下信号考虑卖出：</strong><br>
+  <div style="margin-top:6px">
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px">1</span>
+    动力煤Q5500快速冲上1000元/吨（需求透支＋供给放松双信号）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">2</span>
+    安监放松／大规模产能核增（供给侧纪律逆转，供给弹性恢复）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">3</span>
+    布伦特油价回落至70美元下方且需求疲弱（油气盈利中枢下移、高股息逻辑被证伪）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">4</span>
+    龙头分红承诺下调（神华分红率跌破65%、陕煤跌破60%等）
+  </div>
+</div>
+
+</div>
+</div>
+
+<div class="footer">Generated by Industry Analysis · L7-L10 Framework · Stock Selection</div>
+
+</div>
+
+<script>
+var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+var contents = document.querySelectorAll('.tab-content');
+btns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    contents.forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    var tab = btn.getAttribute('data-tab');
+    document.getElementById('tab-' + tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

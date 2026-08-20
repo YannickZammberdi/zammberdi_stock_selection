@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>A股——快递物流 行业分析报告</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f5f5f5;padding:0;color:#333}
+  .report-wrap{max-width:800px;margin:0 auto;background:#fff}
+  h1{font-size:22px;margin:0;padding:28px 0 4px;text-align:center}
+  h2{font-size:18px;margin:28px 0 12px;border-bottom:2px solid #1a1a1a;padding-bottom:4px}
+  h3{font-size:15px;margin:18px 0 8px}
+  .subtitle{color:#666;font-size:13px;text-align:center;margin-bottom:4px}
+  .meta{color:#999;font-size:12px;text-align:center;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #e0e0e0}
+  .tab-bar{position:sticky;top:0;z-index:10;background:#fff;display:flex;flex-wrap:wrap;border-bottom:2px solid #ddd;gap:0}
+  .tab-btn{padding:10px 14px;cursor:pointer;border:none;background:none;font-size:13px;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+  .tab-btn:hover{color:#333;background:#f9f9f9}
+  .tab-btn.active{color:#1a1a1a;font-weight:700;border-bottom-color:#1a1a1a}
+  .tab-content{display:none}
+  .tab-content.active{display:block}
+  .tab-inner{padding:0 12px}
+  table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:13px}
+  th{background:#f5f5f5;padding:8px 6px;text-align:left;border-bottom:2px solid #ddd;white-space:nowrap;font-weight:600}
+  td{padding:7px 6px;border-bottom:1px solid #eee}
+  tr:nth-child(even) td{background:#fafafa}
+  .summary-box{background:#fffde7;border-left:4px solid #f9a825;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .highlight-box{background:#e3f2fd;border-left:4px solid #1e88e5;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .danger-box{background:#ffebee;border-left:4px solid #e53935;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .verdict{text-align:center;padding:20px;margin:16px 0;border-radius:8px;font-size:18px;font-weight:700}
+  .verdict-ok{background:#e8f5e9;border:2px solid #4caf50;color:#2e7d32}
+  .verdict-caution{background:#fff3e0;border:2px solid #ff9800;color:#e65100}
+  .verdict-bad{background:#ffebee;border:2px solid #e53935;color:#c62828}
+  .score{font-size:36px;display:block;margin-bottom:4px}
+  .pass{color:#2e7d32;font-weight:700}
+  .skip{color:#666;font-style:italic}
+  .tag{display:inline-block;padding:2px 8px;border-radius:3px;font-size:11px;font-weight:700}
+  .tag-red{background:#ffebee;color:#c62828}
+  .tag-green{background:#e8f5e9;color:#2e7d32}
+  .tag-yellow{background:#fff8e1;color:#f57f17}
+  .footer{font-size:11px;color:#aaa;text-align:center;padding:24px 0 8px;border-top:1px solid #eee;margin-top:30px}
+  .card{background:#fafafa;border:1px solid #e0e0e0;border-radius:6px;padding:14px;margin:10px 0;font-size:13px}
+  .flex{display:flex;flex-wrap:wrap;gap:8px}
+  .tbl-wrap{border:1px solid #e0e0e0;border-radius:6px;overflow:hidden;margin:10px 0 18px}
+  .tbl-wrap table{margin:0}
+  .tbl-wrap th{background:#f5f5f5;padding:9px 8px;border-bottom:1px solid #ddd;font-weight:600;font-size:12px}
+  .tbl-wrap td{padding:8px;border-bottom:1px solid #f0f0f0;font-size:13px}
+  .tbl-wrap tr:last-child td{border-bottom:none}
+  .bar-wrap{display:inline-flex;align-items:center;width:60px;height:16px;vertical-align:middle}
+  .bar-bg{background:#eee;border-radius:4px;height:8px;width:100%;overflow:hidden;position:relative}
+  .bar{display:block;height:8px;border-radius:4px}
+  .score-cell{font-weight:700;font-size:15px;text-align:center;white-space:nowrap}
+  .tbl-wrap td,.tbl-wrap th{vertical-align:middle}
+  .metric-h{color:#1565c0;font-weight:700;font-size:13px}
+  .metric-l{color:#c62828;font-weight:700}
+  .metric-m{color:#e65100;font-weight:700}
+  .col-tag{display:inline-block;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600}
+  .col-win{background:#e8f5e9;color:#2e7d32}
+  .col-lose{background:#ffebee;color:#c62828}
+  .col-warn{background:#fff3e0;color:#e65100}
+  .col-info{background:#e3f2fd;color:#1565c0}
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>A股——快递物流 行业分析报告</h1>
+<div class="subtitle">L5分类：混合周期（成长+周期） ｜ 申万物流板块约124家上市公司 ｜ 板块总市值约3.08万亿</div>
+<div class="meta">生成日期：2026-08-20</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l7">L7 量化初筛</button>
+  <button class="tab-btn" data-tab="l8">L8 行业画像</button>
+  <button class="tab-btn" data-tab="l9">L9 竞争格局</button>
+  <button class="tab-btn" data-tab="l10">L10 周期时机</button>
+</div>
+
+<div class="tab-content active" id="tab-summary">
+<div class="tab-inner">
+
+<h2>行业速览</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">项目</th><th>内容</th></tr>
+<tr><td>行业名称</td><td><strong>快递物流</strong>（快递 + 综合物流 + 跨境物流）</td></tr>
+<tr><td>市场</td><td>A股为主（附港股/美股龙头：中通、京东物流、极兔）</td></tr>
+<tr><td>L5分类</td><td><span class="col-tag col-warn">混合周期</span> 长期成长（电商渗透）+ 周期性价格战，重资产服务业</td></tr>
+<tr><td>上市公司</td><td>申万物流板块约124只；核心快递+跨境物流约20只，其中通过L7筛选 <span class="col-tag col-win">5只核心候选</span></td></tr>
+<tr><td>板块总市值</td><td>约3.08万亿（申万物流口径，2026年5月）</td></tr>
+<tr><td>产业链利润核心</td><td><span class="col-tag col-win">规模龙头</span> 中通单票净利0.25元行业最高；顺丰靠时效件品牌溢价</td></tr>
+<tr><td>生命周期阶段</td><td><span class="col-tag col-warn">成熟期早期</span>（洗牌期后段）：增速降至个位数，格局固化，价格修复</td></tr>
+<tr><td>当前周期位置</td><td><span class="col-tag col-win">复苏/修复期</span> 单票收入2026年同比转正，龙头盈利大幅回升</td></tr>
+</table>
+</div>
+
+<h2>综合评分</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>维度</th><th style="width:60px">得分</th><th>进度</th><th>说明</th></tr>
+<tr>
+  <td>行业规模与空间</td>
+  <td class="score-cell">16/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:80%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">2026年预计2140亿件(+8%)，收入1.5万亿+，全球最大；电商渗透率25.9%仍有空间，但增速降档至个位数</td>
+</tr>
+<tr>
+  <td>产业链位置</td>
+  <td class="score-cell">10/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:67%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">中游服务商，对上游运力/人力议价弱、对下游电商平台议价弱；利润池在单票成本最低的规模龙头</td>
+</tr>
+<tr>
+  <td>竞争格局</td>
+  <td class="score-cell">15/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:75%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">CR8=87%高度集中，前六份额80.5%；"反内卷"使价格战趋缓，格局从泥潭转向寡头稳定</td>
+</tr>
+<tr>
+  <td>增长驱动力</td>
+  <td class="score-cell">10/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:67%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">电商增速降至4.8%，直播电商/逆向物流/下沉/出海提供新增量，结构性驱动仍在但放缓</td>
+</tr>
+<tr>
+  <td>周期位置</td>
+  <td class="score-cell">12/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:80%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">单票收入从2025年7月谷底7.36元回升至2026年6月7.77元，2026H1收入增速(7.3%)首次反超件量(5.0%)</td>
+</tr>
+<tr>
+  <td>政策环境</td>
+  <td class="score-cell">12/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:80%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">"反内卷"专项治理+22省价格自律+社保规范化，政策明确利好合规龙头、出清尾部</td>
+</tr>
+<tr style="background:#fafafa">
+  <td style="font-weight:700;font-size:14px">总分</td>
+  <td style="font-weight:700;font-size:16px;color:#e65100">75/100</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:75%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#e65100;font-weight:600">一般偏积极——处于价格战出清后的盈利修复期，可以分批买入龙头</td>
+</tr>
+</table>
+</div>
+
+<div class="verdict verdict-caution">
+  <span class="score">75</span>
+  关注——可分批买入龙头
+</div>
+
+<div class="summary-box">
+  <strong>核心结论</strong><br>
+  快递行业正处于"价格战→格局固化"的转折期。2025年7月国家邮政局启动"反内卷"专项治理后，行业单票收入从7.36元谷底持续回升，2026年上半年收入增速（+7.3%）近两年首次反超件量增速（+5.0%），单票收入同比转正。CR8升至87.0，前六大快递份额80.5%，格局高度集中。<strong>行业已经走出价格战泥潭，进入盈利修复期</strong>：2026H1圆通/申通/韵达净利分别预增69-86%/110-134%/71-99%，通达系单票净利逐季回升。<br><br>
+  用<strong>"混合周期"</strong>框架分析：长期看电商渗透率提升+直播电商/下沉/出海带来成长；短期看价格修复驱动盈利弹性。当前可以<strong>分批买入</strong>通达系成本龙头（中通/圆通）与反内卷弹性标的（申通），顺丰处估值底部（PS分位1%）可左侧布局；跨境物流中嘉友国际质量优但估值偏高需等回落。
+</div>
+
+<div class="highlight-box">
+  <strong>行业公式</strong><br>
+  收入 = 快递件量(亿件) × 单票收入(元)<br>
+  利润 = 件量 × (单票收入 − 单票成本)<br>
+  关键指标：1) 件量同比增速 2) 单票收入同比（是否转正） 3) CR8集中度 4) 通达系单票净利 5) 实物商品网上零售额增速
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l7">
+<div class="tab-inner">
+
+<h2>筛子调整说明</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:12%">筛子</th><th style="width:35%">标准</th><th>调整说明</th></tr>
+<tr><td>①<span class="col-tag col-info">市值</span></td><td>主板≥50亿</td><td>正常执行，剔除中小货代/同城配送小票</td></tr>
+<tr><td>②<span class="col-tag col-info">营收</span></td><td>主板≥10亿</td><td>正常执行</td></tr>
+<tr><td>③<span class="col-tag col-lose">毛利率</span></td><td>快递业务≥5% / 货代≥5%</td><td><strong>放宽</strong>：快递收入含派费口径，通达系毛利率天然5-10%（申通5.66%）；货代贸易属性天然低。以"单票净利为正"佐证</td></tr>
+<tr><td>④<span class="col-tag col-info">ROE</span></td><td>≥8%</td><td>正常执行。韵达2025年ROE约5-6%剔除（2026H1预增71-99%修复中，入观察池）</td></tr>
+<tr><td>⑤<span class="col-tag col-info">负债率</span></td><td>≤65%</td><td>正常执行，快递重资产但龙头负债率普遍40-55%</td></tr>
+<tr><td>⑥<span class="col-tag col-info">估值</span></td><td>PE历史分位≤70%</td><td>正常执行（混合周期用PE+PB）。嘉友国际PE分位94.6%剔除</td></tr>
+</table>
+</div>
+
+<h2>候选池（核心5只）</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>环节</th><th>市值</th><th>毛利率</th><th>ROE</th><th>负债率</th><th>PE/PB分位</th><th>通过</th></tr>
+<tr>
+  <td><strong>顺丰控股</strong> 002352</td>
+  <td><span class="col-tag col-info">综合/直营</span></td>
+  <td style="font-weight:600">~1800亿</td>
+  <td><span class="col-tag col-win">13.3%</span></td>
+  <td><span class="col-tag col-win">11.5%</span></td>
+  <td>49%</td>
+  <td>PE~16x；PS分位1.1%极低</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>中通快递</strong> 02057.HK</td>
+  <td><span class="col-tag col-win">电商件/加盟</span></td>
+  <td style="font-weight:600">~1492亿港元</td>
+  <td><span class="col-tag col-win">25%</span></td>
+  <td><span class="col-tag col-win">14.3%</span></td>
+  <td>26%</td>
+  <td>PE~15x（2026E 12x）</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>圆通速递</strong> 600233</td>
+  <td><span class="col-tag col-win">电商件/加盟</span></td>
+  <td style="font-weight:600">~647亿</td>
+  <td><span class="col-tag col-win">~10%</span></td>
+  <td><span class="col-tag col-win">~14%</span></td>
+  <td>~35%</td>
+  <td>PE~13x，分位~41%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>申通快递</strong> 002468</td>
+  <td><span class="col-tag col-warn">电商件/加盟</span></td>
+  <td style="font-weight:600">~212亿</td>
+  <td><span class="col-tag col-warn">5.7%</span></td>
+  <td><span class="col-tag col-win">~12%</span></td>
+  <td>~50%</td>
+  <td>PE~13x，分位~7%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>中国外运</strong> 601598</td>
+  <td><span class="col-tag col-info">跨境货代</span></td>
+  <td style="font-weight:600">~430亿</td>
+  <td><span class="col-tag col-warn">5.7%</span></td>
+  <td><span class="col-tag col-win">9.9%</span></td>
+  <td>~56%</td>
+  <td>PE~11x，PB~1.0</td>
+  <td class="pass">6/6</td>
+</tr>
+</table>
+</div>
+
+<h2>观察池</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>卡在哪筛</th><th>备注</th></tr>
+<tr>
+  <td><strong>韵达股份</strong> 002120</td>
+  <td><span class="col-tag col-lose">④ROE~5-6%</span>（2025年净利-38.79%）</td>
+  <td>2026H1预增71-99%，单票净利回升至0.09元，ROE修复后转正可重新评估</td>
+</tr>
+<tr>
+  <td><strong>嘉友国际</strong> 603871</td>
+  <td><span class="col-tag col-lose">⑥PE分位94.6%</span></td>
+  <td>ROE 19.4%、净利率13.6%质量优（中蒙/非洲陆运走廊），等估值回落至70%分位内</td>
+</tr>
+<tr>
+  <td><strong>华贸物流</strong> 603128</td>
+  <td><span class="col-tag col-lose">④ROE 8.0%边界</span></td>
+  <td>跨境电商物流，2025年净利-9.4%，ROE提升后转正</td>
+</tr>
+<tr>
+  <td><strong>京东物流</strong> 02618.HK</td>
+  <td><span class="col-tag col-info">港股（数据待补充）</span></td>
+  <td>2025年营收2171亿(+18.8%)、经调整净利77亿，一体化供应链护城河深，市值/估值数据待补充</td>
+</tr>
+<tr>
+  <td><strong>极兔速递</strong> 01519.HK</td>
+  <td><span class="col-tag col-info">港股（数据待补充）</span></td>
+  <td>2025年扭亏（经调整净利4.25亿美元），全球包裹301亿件，东南亚领先，估值待补充</td>
+</tr>
+</table>
+</div>
+
+<h2>筛除记录</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>筛子</th><th style="width:60px">筛除数</th><th>知名示例</th></tr>
+<tr><td>①市值</td><td style="text-align:center">~30</td><td>中小快递、同城配送、微型货代（三羊马、炬申股份等）</td></tr>
+<tr><td>②营收</td><td style="text-align:center">~5</td><td>微型货代公司</td></tr>
+<tr><td>③毛利率 <span class="col-tag col-warn">放宽后</span></td><td style="text-align:center">~8</td><td>部分中小货代毛利率&lt;5%</td></tr>
+<tr><td>④ROE</td><td style="text-align:center">~5</td><td>韵达股份（5-6%）、华贸物流（边界）、德邦股份（亏损）</td></tr>
+<tr><td>⑤负债率</td><td style="text-align:center">~2</td><td>极少数高杠杆物流公司</td></tr>
+<tr><td>⑥估值</td><td style="text-align:center">~3</td><td>嘉友国际（PE分位94.6%）等</td></tr>
+<tr style="background:#fffde7"><td><strong>特殊</strong></td><td style="text-align:center">1</td><td><strong>德邦股份 603056</strong>已于2026-03-31主动退市摘牌（2025年亏损5.19亿，并入京东物流生态）</td></tr>
+<tr style="background:#fffde7"><td><strong>剩余</strong></td><td style="text-align:center;font-weight:700;color:#2e7d32"><strong>5只核心+5只观察</strong></td><td>—</td></tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <strong>L7筛选结论</strong><br>
+  快递板块约124只中筛出<strong>5只核心候选（顺丰/中通/圆通/申通/中国外运）+5只观察池</strong>。最严厉的是ROE筛（韵达、德邦等价格战受伤企业被淘汰）与估值筛（嘉友国际质量优但PE历史高位）。剩余5只集中在两个利润池：<strong>电商件规模龙头</strong>（中通/圆通/申通）与<strong>直营/跨境差异化</strong>（顺丰/中国外运）。核心逻辑：价格修复期里，谁的<strong>单票净利</strong>回升最快、份额稳定，谁就是这轮盈利弹性的最大受益者。下一轮对5只逐一跑L1-L6。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l8">
+<div class="tab-inner">
+
+<h2>产业链</h2>
+<div class="card" style="font-size:13px;line-height:1.7">
+
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px">
+
+<div style="flex:1.1;min-width:200px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#2e7d32;font-size:14px">上游运力资源</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">干线运力</div>
+    <div style="text-align:center;font-size:11px;color:#666">公路车队 · 航空货机（顺丰/圆通自有） · 铁路</div>
+    <div style="margin:10px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">要素成本</div>
+    <div style="text-align:center;font-size:11px;color:#666">燃油 · 人力/快递员 · 场地 · 分拣设备</div>
+  </div>
+</div>
+
+<div style="flex:2;min-width:280px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#1565c0;font-size:14px">中游快递服务商</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+
+    <div style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap">
+      <div style="flex:1;min-width:60px;background:#fff3e0;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">揽收</div>
+        <div style="font-size:10px;color:#666">网点/加盟商</div>
+      </div>
+      <div style="font-size:20px;color:#999;line-height:36px">→</div>
+      <div style="flex:1;min-width:60px;background:#fff3e0;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">转运分拣</div>
+        <div style="font-size:10px;color:#666">转运中心（自建）</div>
+      </div>
+      <div style="font-size:20px;color:#999;line-height:36px">→</div>
+      <div style="flex:1;min-width:60px;background:#fff3e0;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">干线运输</div>
+        <div style="font-size:10px;color:#666">公路/航空</div>
+      </div>
+      <div style="font-size:20px;color:#999;line-height:36px">→</div>
+      <div style="flex:1;min-width:60px;background:#ffebee;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">末端派送</div>
+        <div style="font-size:10px;color:#666">派费占成本大头</div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:11px;color:#e65100;margin-bottom:10px">▲ 末端派费+人力是成本核心；加盟制总部赚"运输+中转"运营利润</div>
+
+    <div style="margin:6px 0 4px;font-weight:600;font-size:12px;color:#1565c0">直营模式（重资产）</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">顺丰控股<br><span style="font-size:10px;color:#666">时效件+供应链+国际</span></div>
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">京东物流<br><span style="font-size:10px;color:#666">一体化供应链</span></div>
+    </div>
+
+    <div style="margin:8px 0 4px;font-weight:600;font-size:12px;color:#1565c0">加盟模式（轻资产/中资产）</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <div style="flex:1;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">中通快递</div>
+      <div style="flex:1;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">圆通速递</div>
+      <div style="flex:1;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">申通快递</div>
+      <div style="flex:1;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">韵达股份</div>
+      <div style="flex:1;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">极兔（东南亚）</div>
+    </div>
+
+    <div style="margin:8px 0 4px;font-weight:600;font-size:12px;color:#1565c0">跨境/综合物流分支</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">嘉友国际<br><span style="font-size:10px;color:#666">中蒙/中亚/非洲陆运走廊</span></div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">中国外运<br><span style="font-size:10px;color:#666">货代+合同物流</span></div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">华贸物流<br><span style="font-size:10px;color:#666">跨境电商物流</span></div>
+    </div>
+  </div>
+</div>
+
+<div style="flex:1;min-width:160px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#c62828;font-size:14px">下游客户</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:10px 8px;text-align:center;font-weight:600;font-size:13px">电商平台</div>
+    <div style="text-align:center;font-size:11px;color:#666">淘天 · 京东 · 拼多多 · 抖音 · 快手</div>
+    <div style="margin:10px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#f5f5f5;border:1px solid #ccc;border-radius:4px;padding:10px 8px;text-align:center;font-weight:600;font-size:13px">终端用户</div>
+    <div style="text-align:center;font-size:11px;color:#666">商家（B端·占大头） · 个人消费者（C端）</div>
+  </div>
+</div>
+
+</div>
+
+<div style="background:#fffde7;border-left:3px solid #f9a825;padding:8px 12px;font-size:12px;border-radius:0 4px 4px 0">
+  <strong>利润最厚环节：</strong>规模龙头（中通单票净利0.25元/件 > 圆通0.139元 > 韵达0.09元 > 申通0.07元）与直营时效龙头（顺丰13.3%毛利率）。
+  <br><span style="color:#999">核心规律：单票成本最低者赚超额利润——规模效应是行业胜负手</span>
+</div>
+
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>环节</th><th>代表公司</th><th>毛利率</th><th>集中度</th><th>议价能力</th></tr>
+<tr>
+  <td><span class="col-tag col-win">电商件（加盟）</span></td>
+  <td>中通、圆通、申通、韵达、极兔</td>
+  <td><span class="col-tag col-warn">5-10%</span></td>
+  <td>中通19.4% / 圆通15.7% / 申通13.1% / 韵达12.9%</td>
+  <td><span class="col-tag col-lose">弱</span>（对电商平台）</td>
+</tr>
+<tr>
+  <td><span class="col-tag col-info">直营综合</span></td>
+  <td>顺丰、京东物流</td>
+  <td><span class="col-tag col-win">13-15%</span></td>
+  <td>顺丰8.4%市占但时效件第一</td>
+  <td><span class="col-tag col-win">强</span>（时效品牌溢价）</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><span class="col-tag col-warn">跨境物流</span></td>
+  <td>中国外运、嘉友、华贸</td>
+  <td><span class="col-tag col-warn">5-18%</span></td>
+  <td>货代分散 / 嘉友陆运走廊垄断性强</td>
+  <td><span class="col-tag col-warn">中</span></td>
+</tr>
+</table>
+</div>
+
+<h2>市场规模</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">指标</th><th style="width:25%">数值</th><th>说明</th></tr>
+<tr><td><strong>TAM</strong>（总可触达市场）</td><td><span class="col-tag col-info" style="font-size:13px">收入1.5万亿+/年</span></td><td>2025年全国快递收入1.5万亿；2026年预计件量2140亿件（+8%）</td></tr>
+<tr><td><strong>当前渗透率</strong></td><td>~25.9%</td><td>网上商品零售占社零总额比重（2026H1），仍有提升空间</td></tr>
+<tr><td><strong>近年增速</strong>（3年CAGR）</td><td><span class="col-tag col-warn">件量~16%</span></td><td>2023年+19.4%、2024年+21.5%（可比）、2025年+13.6% → 2026年降至+8%</td></tr>
+</table>
+</div>
+
+<h2>生命周期</h2>
+<div class="summary-box">
+  <strong><span class="col-tag col-warn" style="font-size:14px">成熟期早期（洗牌期后段）</span></strong><br>
+  判断依据：件量增速从20%+降至个位数（2026E +8%）；CR8高达87%、前六份额80.5%，格局基本固化；"反内卷"行政干预终结恶性价格战，行业从"以价换量"转向"价值竞争"；新进入者威胁极低（极兔是最后一个大玩家）。行业仍处盈利修复期，龙头单票净利逐季回升，服务分层/产品差异化成为新竞争维度。
+</div>
+
+<h2>增长驱动力</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动力</th><th>类型</th><th>可持续性</th><th>量化指标</th></tr>
+<tr>
+  <td>电商渗透率提升</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>网上商品零售占社零25.9%（2026H1 +4.8%）</td>
+</tr>
+<tr>
+  <td>直播电商/兴趣电商</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-warn">中长</span></td>
+  <td>2026H1直播电商零售破万亿（+6.5%），高退货率→逆向件</td>
+</tr>
+<tr>
+  <td>下沉市场/中西部</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-warn">中长</span></td>
+  <td>中西部件量占比升至32%</td>
+</tr>
+<tr>
+  <td>逆向物流/退货件</td>
+  <td><span class="col-tag col-warn">结构/周期</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>直播退货率显著高于传统电商；申通/中通散件/逆向件高增</td>
+</tr>
+<tr>
+  <td>快递出海/跨境电商</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>国际/港澳台件2026H1 +6.6%；极兔全球301亿件；顺丰海外仓37国</td>
+</tr>
+<tr>
+  <td>反内卷价格修复</td>
+  <td><span class="col-tag col-info">政策/周期</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>单票收入2026年同比转正（+3.8%），22省上调价格</td>
+</tr>
+</table>
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l9">
+<div class="tab-inner">
+
+<h2>市场结构</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>市场结构类型</td>
+  <td><span class="col-tag col-win">寡头垄断</span> CR8=87.0（件量口径96.1），前六大份额80.5%</td>
+</tr>
+<tr>
+  <td>CR3 / CR8</td>
+  <td>CR3（中通+圆通+申通/韵达）~50%；CR8=87.0（<span style="color:#2e7d32">↑集中</span>，2025年以来持续同比提升）</td>
+</tr>
+<tr>
+  <td>格局象限</td>
+  <td><span class="col-tag col-warn">价格战泥潭→寡头稳定（转折中）</span> 行政反内卷+成本曲线分化驱动</td>
+</tr>
+<tr>
+  <td>新进入者威胁</td>
+  <td><span class="col-tag col-win">低</span>（网络建设+资本开支门槛极高，极兔为最后一个大玩家）</td>
+</tr>
+</table>
+</div>
+
+<h2>竞争壁垒</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>壁垒类型</th><th>强度</th><th>可持续性</th><th>具体表现</th></tr>
+<tr>
+  <td>规模效应（转运网络）</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>中通单票成本最低，385亿件规模摊薄转运+运输成本；单票净利0.25元全行业最高</td>
+</tr>
+<tr>
+  <td>成本曲线</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>圆通单票运输成本0.37元（智能路由）、韵达单票核心成本0.61元；自动化+AI降本持续</td>
+</tr>
+<tr>
+  <td>品牌+时效网络（直营）</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>顺丰时效件1310亿收入、连续16年公众满意度第一；直营网络差异化定价</td>
+</tr>
+<tr>
+  <td>网络效应/末端密度</td>
+  <td><span class="col-tag col-warn">中强</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>网点越密时效越优、单票成本越低；加盟网络稳定性决定总部利润（韵达调整期受损）</td>
+</tr>
+<tr>
+  <td>资本/牌照（航空运力）</td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>顺丰/圆通自有货机；跨境航线资源</td>
+</tr>
+</table>
+</div>
+
+<div class="summary-box">
+  <strong>定价权测试</strong><br>
+  🔹 龙头能涨价吗？<strong>电商件不能对平台涨价</strong>（议价权在电商），但<strong>能对末端/散件/逆向件提价</strong>——反内卷下通达系2026年单票收入同比+10%以上（韵达+9.5%、申通+12.2%）<br>
+  🔹 毛利率趋势：通达系快递毛利率5-10%低位企稳，单票毛利随反内卷回升；顺丰毛利率13.3%稳定<br>
+  🔹 ROE趋势：2025年因价格战ROE承压（韵达5-6%），2026H1盈利修复后显著改善
+</div>
+
+<h2>驱动力拆解</h2>
+<div class="highlight-box">
+  <strong>行业收入公式</strong><br>
+  收入 = 快递件量(亿件) × 单票收入(元)<br><br>
+  当前组合：<span style="color:#2e7d32;font-weight:700">量 ↑</span>（2026H1 +5.0%）＋ <span style="color:#2e7d32;font-weight:700">价 ↑</span>（单票收入转正+3.8%） ＝ <span class="col-tag col-win">量价齐升（近两年首次）</span>
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动因子</th><th>最新值</th><th>历史区间</th><th>当前分位</th></tr>
+<tr>
+  <td>行业件量同比（2026H1）</td>
+  <td><span class="col-tag col-warn">+5.0%</span></td>
+  <td>-10% ~ +30%</td>
+  <td><span class="col-tag col-warn">~30%</span></td>
+</tr>
+<tr>
+  <td>单票收入（2026年6月）</td>
+  <td><span class="col-tag col-win">7.77元 (+3.8%)</span></td>
+  <td>7.3 ~ 9.5元</td>
+  <td><span class="col-tag col-warn">~35%</span></td>
+</tr>
+<tr>
+  <td>CR8集中度</td>
+  <td><span class="col-tag col-win">87.0</span></td>
+  <td>80 ~ 87</td>
+  <td><span class="col-tag col-win">~95%</span></td>
+</tr>
+<tr>
+  <td>通达系单票净利（圆通H1测算）</td>
+  <td><span class="col-tag col-win">~0.20元</span></td>
+  <td>0.05 ~ 0.28元</td>
+  <td><span class="col-tag col-warn">~60%</span></td>
+</tr>
+<tr>
+  <td>实物商品网上零售额（2026H1）</td>
+  <td><span class="col-tag col-warn">+4.8%</span></td>
+  <td>-5% ~ +20%</td>
+  <td><span class="col-tag col-warn">~30%</span></td>
+</tr>
+</table>
+</div>
+
+<h2>成本结构</h2>
+<div class="summary-box">
+  🔹 <strong>类型：</strong><span class="col-tag col-lose">重资产</span>（转运中心+干线车辆+航空运力，固定成本高、规模效应显著）＋人力密集<br>
+  🔹 <strong>成本敏感性：</strong>单票收入±0.1元 × 件量 → 利润弹性大；件量每增10%摊薄单票固定成本<br>
+  🔹 <strong>盈亏平衡点：</strong>通达系单票净利0.05-0.25元，极其依赖规模与成本管控；反内卷后单票收入每升0.1元即带来利润翻倍级弹性（圆通单票收入+5% → EPS +49%，汇丰前海测算）
+</div>
+
+<h2>竞争格局总结</h2>
+<div class="highlight-box">
+  快递行业经历了<strong>"低价抢量→行政反内卷→价格修复"</strong>的完整转折。CR8高达87%、前六份额80.5%，格局已从"价格战泥潭"转向"寡头稳定"。核心矛盾从"谁能抢到份额"变为<strong>"谁的供应链成本最低、服务能分层"</strong>：中通（单票净利0.25元）、圆通（AI降本+自有机队）、申通（并表丹鸟切入时效件+阿里赋能）形成第一梯队；顺丰靠直营时效网络维持品牌溢价。价格战的极端阶段已结束（2026Q1行业收入增速首次反超件量），但通达系对电商平台议价权仍弱，盈利修复依赖"反内卷"政策持续性与成本管控，这是跟踪的核心变量。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l10">
+<div class="tab-inner">
+
+<h2>周期位置</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>库存周期阶段</td>
+  <td><span class="col-tag col-win">复苏期</span>（价格战出清结束，盈利修复中，类似2022H1盈利恢复期）</td>
+</tr>
+<tr>
+  <td>产能利用率</td>
+  <td><span class="col-tag col-warn">转运中心利用率高（龙头~85%+，数据待补充）</span> 服务型产能，网络利用率决定盈亏</td>
+</tr>
+<tr>
+  <td>单票价格分位</td>
+  <td>2026年6月7.77元，从2025年7月谷底7.36元回升，处于历史中低分位（~35%）</td>
+</tr>
+<tr>
+  <td>行业盈利状态</td>
+  <td><span class="col-tag col-win">修复中</span> 2026H1通达系净利大幅预增：圆通+69~86%、申通+110~134%、韵达+71~99%</td>
+</tr>
+</table>
+</div>
+
+<div class="danger-box">
+  <strong>⚠ PE悖论检查</strong><br>
+  通达系PE（TTM）看似不低（圆通13x/申通13x/韵达16x静态），但这是<strong>价格战底部利润基数</strong>造成的。2026E按修复后盈利看：圆通~8-10x、申通~10-11x、中通~12x，处于历史中低分位。<br>
+  <strong>正确用法：</strong>用"PE × 修复后盈利"而非"PE × 底部盈利"判断估值；顺丰看PS分位（1.1%，历史极低）。<strong>警惕反向陷阱：</strong>若价格战重启、利润回落，低PE可能再次变贵。
+</div>
+
+<h2>估值水平</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>标的</th><th>PE当前</th><th>历史中位</th><th>80%分位</th><th>20%分位</th></tr>
+<tr>
+  <td><strong>顺丰控股</strong></td>
+  <td><span class="col-tag col-info">~16x（PS分位1.1%）</span></td>
+  <td>25-30x</td>
+  <td>40x+</td>
+  <td>15x</td>
+</tr>
+<tr>
+  <td><strong>中通快递</strong></td>
+  <td><span class="col-tag col-info">~15x（2026E 12x）</span></td>
+  <td>~17x</td>
+  <td>25x</td>
+  <td>12x</td>
+</tr>
+<tr>
+  <td><strong>圆通速递</strong></td>
+  <td><span class="col-tag col-info">~13x（分位~41%）</span></td>
+  <td>~13.4x</td>
+  <td>14.9x</td>
+  <td>11.6x</td>
+</tr>
+<tr>
+  <td><strong>申通快递</strong></td>
+  <td><span class="col-tag col-win">~13x（分位~7%）</span></td>
+  <td>~31.9x</td>
+  <td>49x</td>
+  <td>19.7x</td>
+</tr>
+</table>
+</div>
+
+<h2>政策环境</h2>
+<div class="summary-box">
+  🔹 <strong>政策方向：</strong><span class="col-tag col-win">明确利好（反内卷）</span>——终结低价内卷，利好合规龙头、出清尾部<br>
+  🔹 <strong>关键政策：</strong><br>
+  &emsp;• 2025年7月国家邮政局专项治理"内卷式"竞争；2026年列入全国邮政工作会议八大着力点之一<br>
+  &emsp;• 22省出台价格自律/上调快递价格（四川全域派费+0.1元等）；贵州五公司同步调价<br>
+  &emsp;• 快递员社保覆盖扩大（合规成本上升→进一步强化提价诉求，利好合规龙头）<br>
+  &emsp;• "十五五"规划建议明确综合整治"内卷式"竞争（顶层设计背书）<br>
+  🔹 <strong>政策周期位置：</strong><span class="col-tag col-win">宽松/扶持期</span>（价格自律+监管托底），是本轮盈利修复的核心支撑
+</div>
+
+<h2>买入清单</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:28%">条件</th><th style="width:16%">结果</th><th>备注</th></tr>
+<tr>
+  <td>周期位置：价格见底回升</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>单票收入2026年同比转正，处于修复期非顶点</td>
+</tr>
+<tr>
+  <td>估值：PE/PB历史偏低分位</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>申通PE分位7%，圆通41%，顺丰PS分位1.1%</td>
+</tr>
+<tr>
+  <td>政策：非收紧期</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>"反内卷"强托底，政策明确利好龙头</td>
+</tr>
+<tr>
+  <td>格局：龙头壁垒稳固</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>CR8=87%，前六80.5%，新进入者威胁低</td>
+</tr>
+<tr>
+  <td>增长：有可见驱动力</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td>件量增速降档至+5~8%，依赖直播/下沉/逆向新动能</td>
+</tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <div style="font-size:16px;font-weight:700;margin-bottom:8px">综合判断：<span class="col-tag col-win" style="font-size:15px">可以买入（分批）</span></div>
+  <div style="margin-bottom:6px">价格战出清后的盈利修复期，龙头单票净利与估值双双处于修复通道</div>
+  <table style="font-size:12px;margin:6px 0;border:none;background:transparent">
+    <tr><td style="border:none;padding:3px 6px;background:transparent;width:90px;font-weight:600">预期回报</td><td style="border:none;padding:3px 6px;background:transparent">业绩修复（通达系2026E净利+40~90%）+ 估值修复，1-2年目标30-60%</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">仓位建议</td><td style="border:none;padding:3px 6px;background:transparent"><span class="col-tag col-warn">通达系龙头合计≤25%</span>（分3批），顺丰≤10%（左侧），跨境物流≤5%（等嘉友估值回落）</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">跟踪指标</td><td style="border:none;padding:3px 6px;background:transparent">单票收入同比 · 件量同比 · 通达系单票净利 · CR8 · 网上商品零售额增速</td></tr>
+  </table>
+  <div style="margin-top:8px;padding:8px;background:#e8f5e9;border-radius:4px;font-size:12px">
+    <strong>买入策略：</strong><br>
+    <span class="col-tag col-win">通达系龙头</span>（中通/圆通，6/6）：份额稳定+成本最低，反内卷利润弹性确定性最强，率先建仓<br>
+    <span class="col-tag col-warn">弹性标的</span>（申通，6/6）：PE分位7%极低+2026H1净利预增110-134%，但毛利率垫底（5.7%）、并购整合待验证，小仓位<br>
+    <span class="col-tag col-info">顺丰</span>（6/6）：PS分位1.1%历史极低，时效件+供应链结构优化，左侧分批<br>
+    <span class="col-tag col-warn">观察转正</span>（韵达5/6，等ROE修复；嘉友5/6，等估值回落）
+  </div>
+</div>
+
+<h2>卖出信号</h2>
+<div class="danger-box">
+  <strong>出现以下信号考虑卖出：</strong><br>
+  <div style="margin-top:6px">
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px">1</span>
+    行业单票收入同比连续2个月转负（"反内卷"失效、价格战重启）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">2</span>
+    反内卷政策明显放松（地方价格自律瓦解、监管督导减弱）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">3</span>
+    通达系龙头单票净利连续两季环比下滑超10%（成本优化跟不上价格回落）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">4</span>
+    件量增速跌破3%且网上商品零售额增速停滞（需求端系统性走弱）
+  </div>
+</div>
+
+</div>
+</div>
+
+<div class="footer">Generated by Industry Analysis · L7-L10 Framework · Stock Selection ｜ 数据来源：国家邮政局、各公司2025年报/2026中报预告、理杏仁、券商月报（2026-08-20）</div>
+
+</div>
+
+<script>
+var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+var contents = document.querySelectorAll('.tab-content');
+btns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    contents.forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    var tab = btn.getAttribute('data-tab');
+    document.getElementById('tab-' + tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

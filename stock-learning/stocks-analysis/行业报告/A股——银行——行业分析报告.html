@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>A股——银行 行业分析报告</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f5f5f5;padding:0;color:#333}
+  .report-wrap{max-width:800px;margin:0 auto;background:#fff}
+  h1{font-size:22px;margin:0;padding:28px 0 4px;text-align:center}
+  h2{font-size:18px;margin:28px 0 12px;border-bottom:2px solid #1a1a1a;padding-bottom:4px}
+  h3{font-size:15px;margin:18px 0 8px}
+  .subtitle{color:#666;font-size:13px;text-align:center;margin-bottom:4px}
+  .meta{color:#999;font-size:12px;text-align:center;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #e0e0e0}
+  .tab-bar{position:sticky;top:0;z-index:10;background:#fff;display:flex;flex-wrap:wrap;border-bottom:2px solid #ddd;gap:0}
+  .tab-btn{padding:10px 14px;cursor:pointer;border:none;background:none;font-size:13px;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+  .tab-btn:hover{color:#333;background:#f9f9f9}
+  .tab-btn.active{color:#1a1a1a;font-weight:700;border-bottom-color:#1a1a1a}
+  .tab-content{display:none}
+  .tab-content.active{display:block}
+  .tab-inner{padding:0 12px}
+  table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:13px}
+  th{background:#f5f5f5;padding:8px 6px;text-align:left;border-bottom:2px solid #ddd;white-space:nowrap;font-weight:600}
+  td{padding:7px 6px;border-bottom:1px solid #eee}
+  tr:nth-child(even) td{background:#fafafa}
+  .summary-box{background:#fffde7;border-left:4px solid #f9a825;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .highlight-box{background:#e3f2fd;border-left:4px solid #1e88e5;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .danger-box{background:#ffebee;border-left:4px solid #e53935;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .verdict{text-align:center;padding:20px;margin:16px 0;border-radius:8px;font-size:18px;font-weight:700}
+  .verdict-ok{background:#e8f5e9;border:2px solid #4caf50;color:#2e7d32}
+  .verdict-caution{background:#fff3e0;border:2px solid #ff9800;color:#e65100}
+  .verdict-bad{background:#ffebee;border:2px solid #e53935;color:#c62828}
+  .score{font-size:36px;display:block;margin-bottom:4px}
+  .pass{color:#2e7d32;font-weight:700}
+  .skip{color:#666;font-style:italic}
+  .tag{display:inline-block;padding:2px 8px;border-radius:3px;font-size:11px;font-weight:700}
+  .tag-red{background:#ffebee;color:#c62828}
+  .tag-green{background:#e8f5e9;color:#2e7d32}
+  .tag-yellow{background:#fff8e1;color:#f57f17}
+  .footer{font-size:11px;color:#aaa;text-align:center;padding:24px 0 8px;border-top:1px solid #eee;margin-top:30px}
+  .card{background:#fafafa;border:1px solid #e0e0e0;border-radius:6px;padding:14px;margin:10px 0;font-size:13px}
+  .flex{display:flex;flex-wrap:wrap;gap:8px}
+  .tbl-wrap{border:1px solid #e0e0e0;border-radius:6px;overflow:hidden;margin:10px 0 18px}
+  .tbl-wrap table{margin:0}
+  .tbl-wrap th{background:#f5f5f5;padding:9px 8px;border-bottom:1px solid #ddd;font-weight:600;font-size:12px}
+  .tbl-wrap td{padding:8px;border-bottom:1px solid #f0f0f0;font-size:13px}
+  .tbl-wrap tr:last-child td{border-bottom:none}
+  .bar-wrap{display:inline-flex;align-items:center;width:60px;height:16px;vertical-align:middle}
+  .bar-bg{background:#eee;border-radius:4px;height:8px;width:100%;overflow:hidden;position:relative}
+  .bar{display:block;height:8px;border-radius:4px}
+  .score-cell{font-weight:700;font-size:15px;text-align:center;white-space:nowrap}
+  .tbl-wrap td,.tbl-wrap th{vertical-align:middle}
+  .metric-h{color:#1565c0;font-weight:700;font-size:13px}
+  .metric-l{color:#c62828;font-weight:700}
+  .metric-m{color:#e65100;font-weight:700}
+  .col-tag{display:inline-block;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600}
+  .col-win{background:#e8f5e9;color:#2e7d32}
+  .col-lose{background:#ffebee;color:#c62828}
+  .col-warn{background:#fff3e0;color:#e65100}
+  .col-info{background:#e3f2fd;color:#1565c0}
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>A股——银行 行业分析报告</h1>
+<div class="subtitle">L5分类：非周期·价值型（成熟期） ｜ 上市公司：42家 ｜ 总市值：~14.6万亿</div>
+<div class="meta">生成日期：2026-08-20</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l7">L7 量化初筛</button>
+  <button class="tab-btn" data-tab="l8">L8 行业画像</button>
+  <button class="tab-btn" data-tab="l9">L9 竞争格局</button>
+  <button class="tab-btn" data-tab="l10">L10 周期时机</button>
+</div>
+
+<div class="tab-content active" id="tab-summary">
+<div class="tab-inner">
+
+<h2>行业速览</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">项目</th><th>内容</th></tr>
+<tr><td>行业名称</td><td><strong>银行</strong></td></tr>
+<tr><td>市场</td><td>A股</td></tr>
+<tr><td>L5分类</td><td><span class="col-tag col-info">非周期·价值型</span> 成熟期行业，低增长+高分红，估值看PB</td></tr>
+<tr><td>上市公司</td><td>42家，其中符合L7筛选条件 <span class="col-tag col-win">9只</span>（4大行/2股份行/3城商行）</td></tr>
+<tr><td>行业总市值</td><td>~14.6万亿（42家上市银行，2026年中，精确值数据待补充）</td></tr>
+<tr><td>产业链利润核心</td><td><span class="col-tag col-win">银行自身环节</span> 牌照垄断，利润来自净息差+中间业务，不向上下游分流</td></tr>
+<tr><td>生命周期阶段</td><td><span class="col-tag col-info">成熟期</span> 信贷增速降至5.1%，寡头格局稳定，分红率30%+</td></tr>
+<tr><td>当前周期位置</td><td><span class="col-tag col-warn">底部企稳</span> 净息差2026Q2环比回升1bp至1.41%，为2022年以来17个季度首次回升</td></tr>
+</table>
+</div>
+
+<h2>综合评分</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>维度</th><th style="width:60px">得分</th><th>进度</th><th>说明</th></tr>
+<tr>
+  <td>行业规模与空间</td>
+  <td class="score-cell">13/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:65%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">银行业金融机构总资产498万亿、规模全球第一；但贷款增速降至5.1%，增量空间有限</td>
+</tr>
+<tr>
+  <td>产业链位置</td>
+  <td class="score-cell">11/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:73%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">金融体系中轴+牌照垄断，利润留在银行自身环节；负债端可压成本、资产端受监管约束</td>
+</tr>
+<tr>
+  <td>竞争格局</td>
+  <td class="score-cell">15/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:75%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">寡头垄断，六大行资产占67%，牌照冻结+国家信用背书，无价格战、格局稳定</td>
+</tr>
+<tr>
+  <td>增长驱动力</td>
+  <td class="score-cell">8/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:53%;background:#f44336"></span></span></span></td>
+  <td style="font-size:12px;color:#555">低增长成熟期，靠以量补价+中间业务；无结构性高增长引擎，零售信贷需求偏弱</td>
+</tr>
+<tr>
+  <td>周期位置</td>
+  <td class="score-cell">11/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:73%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">净息差2026Q2首次环比回升（17个季度首次），底部企稳非拐点；板块PB处历史低位</td>
+</tr>
+<tr>
+  <td>政策环境</td>
+  <td class="score-cell">10/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:67%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">反内卷+化债+市值管理利好龙头；但LPR仍有下行预期压制资产端</td>
+</tr>
+<tr style="background:#fafafa">
+  <td style="font-weight:700;font-size:14px">总分</td>
+  <td style="font-weight:700;font-size:16px;color:#e65100">68/100</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:68%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#e65100;font-weight:600">一般——谨慎关注，防御配置价值显现，等待息差拐点确认</td>
+</tr>
+</table>
+</div>
+
+<div class="verdict verdict-caution">
+  <span class="score">68</span>
+  一般——谨慎关注
+</div>
+
+<div class="summary-box">
+  <strong>核心结论</strong><br>
+  ① <strong>周期位置：息差触底回升了吗？</strong> 部分确认。商业银行净息差2026Q2环比回升1bp至1.41%，为2022年以来<strong>17个季度首次回升</strong>（负债端高息存款到期重定价驱动），但专家共识是"企稳而非趋势拐点"——资产端收益率仍承压，全年大概率底部窄幅波动，二次探底概率低。<br>
+  ② <strong>筛选结果：</strong>42家上市银行中，市值/营收/估值三筛几乎无杀伤（全部破净、PB历史低位），真正区分优劣的是<strong>ROE + 资产质量（不良率/拨备覆盖率）+ 息差企稳顺序</strong>。9只通过，核心5只：<span class="col-tag col-win">招商银行</span><span class="col-tag col-win">宁波银行</span><span class="col-tag col-win">江苏银行</span><span class="col-tag col-win">成都银行</span><span class="col-tag col-win">工商银行</span>。<br>
+  ③ <strong>值不值得研究：</strong>值得——作为<strong>防御性底仓/收息资产</strong>研究，银行是组合的"压舱石"；但不具备成长弹性，研究重点在个股α（息差企稳顺序+资产质量+分红率）。<br>
+  ④ <strong>用什么框架：</strong>L5分类=非周期·价值型（成熟期）。估值用<strong>PB+股息率</strong>（金融股PE会骗人），核心指标=净息差/不良率/拨备覆盖率。<br>
+  ⑤ <strong>现在能不能买：</strong>可以<strong>分批建仓（不重仓）</strong>。逻辑=估值历史低位（42家全部破净）+股息率4.5-5%远高于10Y国债（1.8%）+息差企稳；但需等待息差趋势性拐点（连续两季回升）确认后再加仓。<strong>仓位建议：不超过组合15-20%（防御底仓）</strong>。
+</div>
+
+<div class="highlight-box">
+  <strong>行业公式</strong><br>
+  收入 = 生息资产规模 × 净息差 + 非息收入（手续费及佣金 + 投资收益）<br>
+  关键指标：1) 净息差（季度环比） 2) LPR与存款挂牌利率 3) 不良率/不良生成率 4) 拨备覆盖率 5) 分红率与股息率
+</div>
+
+<div class="card" style="font-size:11px;color:#888">
+  <strong>数据来源与口径说明（2026-08-20）：</strong>国家金融监督管理总局2026年二季度银行业监管指标（2026-08-14发布）；42家上市银行2025年报及2026年一季报/半年报；2026-08-20 LPR报价（1年期3.0%、5年期以上3.5%）；市值数据来自Wind/中证金牛座/瑞财经（2026年8月）。个股ROE/NIM/不良率/拨备覆盖率均采用公司公告口径，NIM存在日均余额与期初期末口径差异，已在L7表中注明。标注"数据待补充"的为未能获得精确值、仅给出估算或区间，不参与评分。
+</div>
+
+</div>
+</div>
+<div class="tab-content" id="tab-l7">
+<div class="tab-inner">
+
+<h2>筛子调整说明</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:12%">筛子</th><th style="width:35%">标准</th><th>调整说明</th></tr>
+<tr><td>①<span class="col-tag col-info">市值</span></td><td>主板≥50亿</td><td>42家上市银行市值全部&gt;50亿，全过（最小银行市值也超百亿）</td></tr>
+<tr><td>②<span class="col-tag col-info">营收</span></td><td>主板≥10亿</td><td>银行营收规模巨大（最小上市银行营收也&gt;10亿），全过</td></tr>
+<tr><td>③<span class="col-tag col-lose">毛利率</span></td><td><span class="skip">跳过</span></td><td><strong>银行无毛利率概念</strong>，用净息差替代——行业NIM 1.41%已企稳（2026Q2首次环比回升）</td></tr>
+<tr><td>④<span class="col-tag col-info">ROE</span></td><td>≥8%</td><td>正常执行，剔除ROE&lt;8%的低资本回报银行（民生、郑州、兰州等股份行/城商行）</td></tr>
+<tr><td>⑤<span class="col-tag col-lose">负债率</span></td><td><span class="skip">跳过</span></td><td><strong>银行天然高杠杆经营</strong>，用不良率（上市银行1.21%）+拨备覆盖率（全行业&gt;200%）替代</td></tr>
+<tr><td>⑥<span class="col-tag col-info">估值</span></td><td>PB历史分位≤80%</td><td><strong>估值改用PB</strong>（金融/周期股用PB，PE在业绩低谷会骗人）。板块PB 0.58-0.67x、42家全部破净，处历史低位，全过</td></tr>
+</table>
+</div>
+
+<h2>候选池（9只）</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>类型</th><th>市值</th><th>ROE</th><th>净息差</th><th>不良率</th><th>拨备覆盖</th><th>PB</th><th>通过</th></tr>
+<tr>
+  <td><strong>工商银行</strong> 601398</td>
+  <td><span class="col-tag col-info">国有大行</span></td>
+  <td style="font-weight:600">2.77万亿</td>
+  <td><span class="col-tag col-warn">9.45%</span></td>
+  <td><span class="col-tag col-win">1.29%↑1bp</span></td>
+  <td>1.31%</td>
+  <td>213.6%</td>
+  <td>~0.60x（低位）</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>招商银行</strong> 600036</td>
+  <td><span class="col-tag col-warn">股份行</span></td>
+  <td style="font-weight:600">~1.0万亿</td>
+  <td><span class="col-tag col-win">13.48%</span></td>
+  <td><span class="col-tag col-win">1.83%</span></td>
+  <td><span class="col-tag col-win">0.94%</span></td>
+  <td><span class="col-tag col-win">387.8%</span></td>
+  <td>0.79-0.92x（低位）</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>宁波银行</strong> 002142</td>
+  <td><span class="col-tag col-info">城商行</span></td>
+  <td style="font-weight:600">~2100亿</td>
+  <td><span class="col-tag col-win">14.38%</span></td>
+  <td><span class="col-tag col-win">1.73%</span></td>
+  <td><span class="col-tag col-win">0.76%</span></td>
+  <td><span class="col-tag col-win">369.4%</span></td>
+  <td>0.84x（低位）</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>江苏银行</strong> 600919</td>
+  <td><span class="col-tag col-info">城商行</span></td>
+  <td style="font-weight:600">~2112亿</td>
+  <td><span class="col-tag col-win">15.72%</span></td>
+  <td><span class="col-tag col-warn">~1.5%（口径见注）</span></td>
+  <td><span class="col-tag col-win">0.81%</span></td>
+  <td><span class="col-tag col-win">304.8%</span></td>
+  <td>~0.70x（低位）</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>成都银行</strong> 601838</td>
+  <td><span class="col-tag col-info">城商行</span></td>
+  <td style="font-weight:600">~779亿</td>
+  <td><span class="col-tag col-win">14.0%</span></td>
+  <td><span class="col-tag col-win">1.65%↑</span></td>
+  <td><span class="col-tag col-win">0.68%</span></td>
+  <td><span class="col-tag col-win">424%</span></td>
+  <td>0.76x（低位）</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>建设银行 601939</td>
+  <td><span class="col-tag col-info">国有大行</span></td>
+  <td>~2.5万亿</td>
+  <td><span class="col-tag col-warn">~10%（估算）</span></td>
+  <td><span class="col-tag col-win">1.36%↑2bp</span></td>
+  <td>1.31%</td>
+  <td>233.2%</td>
+  <td>~0.60x（低位）</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>农业银行 601288</td>
+  <td><span class="col-tag col-info">国有大行</span></td>
+  <td>2.32万亿</td>
+  <td><span class="col-tag col-warn">10.16%</span></td>
+  <td>1.26%</td>
+  <td>1.27%</td>
+  <td><span class="col-tag col-win">292.6%</span></td>
+  <td>~0.60x（低位）</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>中国银行 601988</td>
+  <td><span class="col-tag col-info">国有大行</span></td>
+  <td>~1.9万亿</td>
+  <td><span class="col-tag col-warn">8.94%</span></td>
+  <td>1.26%</td>
+  <td><span class="col-tag col-win">1.23%</span></td>
+  <td>200.4%</td>
+  <td>~0.60x（低位）</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>兴业银行 601166</td>
+  <td><span class="col-tag col-warn">股份行</span></td>
+  <td>~4863亿</td>
+  <td><span class="col-tag col-warn">11.56%</span></td>
+  <td>1.62%</td>
+  <td>1.08%</td>
+  <td>224.5%</td>
+  <td><span class="col-tag col-lose">0.43x（历史低点）</span></td>
+  <td class="pass">6/6</td>
+</tr>
+</table>
+</div>
+<div class="card" style="font-size:11px;color:#888">
+  注：① ROE为2025年报或2026年一季报年化口径（招行/宁波/成都/兴业为26Q1年化，江苏为26H1年化15.72%，建行为2025年估算）；② 净息差为2026年一季报披露值（工行/建行为较2025全年回升幅度），江苏银行为期初期末测算口径~1.5%（2025年报披露1.73-1.86%，各口径差异大，统一口径数据待补充）；③ 个股PB精确历史分位数据待补充，板块分位参考：PB 0.58-0.67x对应近十年43%分位、2010年以来约23%分位（2026年4-6月）；④ 兴业PB 0.43x为9家股份行均值水平、历史低点。
+</div>
+
+<h2>观察池</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>卡在哪筛</th><th>备注</th></tr>
+<tr>
+  <td><strong>邮储银行</strong> 601658</td>
+  <td><span class="col-tag col-warn">拨备覆盖率一年大降58pct至228%</span></td>
+  <td>净息差1.65%国有行最高、不良率0.95%最优，但拨备快速消耗，需观察资产质量企稳后再入池</td>
+</tr>
+<tr>
+  <td><strong>交通银行</strong> 601328</td>
+  <td><span class="col-tag col-warn">净息差1.20%国有行垫底</span></td>
+  <td>股息率4.64%国有行最高，作高股息备选，等息差改善信号</td>
+</tr>
+<tr>
+  <td><strong>平安银行</strong> 000001</td>
+  <td><span class="col-tag col-lose">零售不良暴露压力大</span></td>
+  <td>净息差1.79%较高，但信用卡/消费贷风险仍在出清，等零售风险拐点</td>
+</tr>
+<tr>
+  <td><strong>杭州银行</strong> 600926</td>
+  <td><span class="col-tag col-warn">估值分位相对偏高，需等回调</span></td>
+  <td>ROE~17%、资产质量优，与宁波/江苏同属优质城商行，回调后可入池</td>
+</tr>
+<tr>
+  <td><strong>南京银行</strong> 601009</td>
+  <td><span class="col-tag col-warn">高收益零售占比下降拖累息差</span></td>
+  <td>ROE~14%，关注零售风险与息差企稳信号</td>
+</tr>
+</table>
+</div>
+
+<h2>筛除记录</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>筛子</th><th style="width:60px">筛除数</th><th>知名示例</th></tr>
+<tr><td>①市值</td><td style="text-align:center">0</td><td>42家上市银行市值全部&gt;50亿</td></tr>
+<tr><td>②营收</td><td style="text-align:center">0</td><td>银行营收规模远&gt;10亿</td></tr>
+<tr><td>③毛利率 <span class="col-tag col-info">跳过</span></td><td style="text-align:center">—</td><td>银行无此指标，用净息差替代（行业NIM 1.41%企稳）</td></tr>
+<tr><td>④ROE</td><td style="text-align:center">~5</td><td>民生银行、郑州银行、兰州银行等ROE&lt;8%</td></tr>
+<tr><td>⑤负债率 <span class="col-tag col-info">跳过</span></td><td style="text-align:center">—</td><td>银行高杠杆经营，用不良率1.52%/拨备&gt;200%替代</td></tr>
+<tr><td>⑥估值 <span class="col-tag col-info">PB替代</span></td><td style="text-align:center">0</td><td>42家全部破净或接近破净，PB处历史低位</td></tr>
+<tr><td>综合优选（缩池）</td><td style="text-align:center">~28</td><td>按规模代表性+资产质量+息差企稳顺序，聚焦9只核心标的深度研究</td></tr>
+<tr style="background:#fffde7"><td><strong>剩余</strong></td><td style="text-align:center;font-weight:700;color:#2e7d32"><strong>9</strong></td><td>—</td></tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <strong>L7筛选结论</strong><br>
+  42→9，银行是<strong>特殊行业</strong>：跳过毛利率、负债率两筛，估值改用<strong>PB</strong>（金融股用PE会掉进"低PE≠便宜"的陷阱）。市值/营收/估值三筛几乎无杀伤力——真正的筛选器是<strong>ROE + 资产质量（不良率/拨备覆盖率）+ 息差企稳顺序</strong>。当前42家上市银行<strong>全部破净</strong>、板块PB处于历史低位，行业β层面"不贵"；但个股α分化巨大。9只候选覆盖"大行红利（工/建/农/中）+零售龙头（招行）+股份行低估值（兴业）+优质城商行（宁波/江苏/成都）"。核心关注5只：招商银行、宁波银行、江苏银行、成都银行、工商银行。
+</div>
+
+</div>
+</div>
+<div class="tab-content" id="tab-l8">
+<div class="tab-inner">
+
+<h2>产业链</h2>
+<div class="card" style="font-size:13px;line-height:1.7">
+
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px">
+
+<div style="flex:1.2;min-width:200px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#2e7d32;font-size:14px">上游：资金来源</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">储户存款</div>
+    <div style="text-align:center;font-size:11px;color:#666">存款利率已进入"1时代"，大行重启5年期大额存单</div>
+    <div style="margin:10px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">央行/同业市场</div>
+    <div style="text-align:center;font-size:11px;color:#666">逆回购1.4% · 同业存单 · 同业负债</div>
+  </div>
+</div>
+
+<div style="flex:2;min-width:280px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#1565c0;font-size:14px">中游：银行（分析环节）</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+
+    <div style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap">
+      <div style="flex:1;min-width:60px;background:#e3f2fd;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">国有大行</div>
+        <div style="font-size:10px;color:#666">工农中建交邮<br>资产220万亿占67%</div>
+      </div>
+      <div style="font-size:20px;color:#999;line-height:36px">→</div>
+      <div style="flex:1;min-width:60px;background:#fff3e0;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">股份行</div>
+        <div style="font-size:10px;color:#666">招行·兴业·中信<br>浦发·平安等</div>
+      </div>
+      <div style="font-size:20px;color:#999;line-height:36px">→</div>
+      <div style="flex:1;min-width:60px;background:#e8f5e9;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">城商行</div>
+        <div style="font-size:10px;color:#666">宁波·江苏·成都<br>南京·杭州等</div>
+      </div>
+      <div style="flex:1;min-width:60px;background:#f5f5f5;border:1px solid #ccc;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">农商行</div>
+        <div style="font-size:10px;color:#666">常熟·渝农商等</div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:11px;color:#1565c0;margin-bottom:4px">▲ 四类银行净息差（26Q2）：大行1.31% / 股份行1.54% / 城商行1.40% / 农商行1.59%，全部企稳</div>
+    <div style="text-align:center;font-size:11px;color:#c62828;margin-bottom:6px">▼ 行业NIM从2022年1.97%一路下行至1.40%后，26Q2回升至1.41%（17个季度首次）</div>
+
+  </div>
+</div>
+
+<div style="flex:1;min-width:160px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#c62828;font-size:14px">下游：资金运用</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">企业贷款</div>
+    <div style="text-align:center;font-size:11px;color:#666">对公为主，基建/制造/绿色</div>
+    <div style="margin:8px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">居民贷款</div>
+    <div style="text-align:center;font-size:11px;color:#666">按揭/消费/信用卡<br>零售不良抬升</div>
+    <div style="margin:8px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#f5f5f5;border:1px solid #ccc;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">终端用户</div>
+    <div style="text-align:center;font-size:11px;color:#666">实体经济（企业+居民）</div>
+  </div>
+</div>
+
+</div>
+
+<div style="background:#fffde7;border-left:3px solid #f9a825;padding:8px 12px;font-size:12px;border-radius:0 4px 4px 0">
+  <strong>利润最厚环节：银行自身</strong>——牌照垄断+低成本负债（大行存款成本率约1%）是核心；增量利润池在中间业务（财富管理/托管/投行）。
+  <br><span style="color:#999">净息差接近盈亏平衡线（1.41%），"稳息差"是全行业核心任务；利润不向产业链上下游分流。</span>
+</div>
+
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>环节</th><th>代表公司</th><th>净息差(26Q2)</th><th>集中度</th><th>议价能力</th></tr>
+<tr>
+  <td><span class="col-tag col-info">国有大行</span></td>
+  <td>工、农、中、建、交、邮</td>
+  <td><span class="col-tag col-win">1.31%↑2bp</span></td>
+  <td>资产占比~67%</td>
+  <td><span class="col-tag col-win">强</span>（存款成本最低）</td>
+</tr>
+<tr>
+  <td><span class="col-tag col-warn">股份行</span></td>
+  <td>招行、兴业、中信、浦发</td>
+  <td><span class="col-tag col-warn">1.54%（持平）</span></td>
+  <td>CR5~60%</td>
+  <td><span class="col-tag col-warn">中强</span>（招行零售品牌溢价）</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><span class="col-tag col-info">城商行</span></td>
+  <td>宁波、江苏、成都、南京</td>
+  <td><span class="col-tag col-warn">1.40%↑2bp</span></td>
+  <td>分散（按区域）</td>
+  <td><span class="col-tag col-warn">中</span>（区域议价能力分化大）</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><span class="col-tag col-warn">农商行</span></td>
+  <td>常熟、渝农商等</td>
+  <td><span class="col-tag col-warn">1.59%↑1bp</span></td>
+  <td>分散</td>
+  <td><span class="col-tag col-lose">弱</span>（客群下沉，成本偏高）</td>
+</tr>
+</table>
+</div>
+
+<h2>市场规模</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">指标</th><th style="width:25%">数值</th><th>说明</th></tr>
+<tr><td><strong>TAM</strong>（总可触达市场）</td><td><span class="col-tag col-info" style="font-size:13px">~500万亿</span></td><td>银行业金融机构总资产498万亿（2026H1末）</td></tr>
+<tr><td><strong>SAM</strong>（上市银行可服务市场）</td><td>总资产330万亿</td><td>42家上市银行2025年末合计总资产330.96万亿</td></tr>
+<tr><td><strong>SOM</strong>（A股市场可得）</td><td>总市值~14.6万亿</td><td>42家上市银行合计（2026年中，精确值数据待补充）</td></tr>
+<tr><td><strong>增长规模</strong></td><td><span class="col-tag col-warn">贷款同比+5.1%</span></td><td>2026年7月末人民币贷款增速，总资产增速7.5%</td></tr>
+<tr><td><strong>近年增速</strong></td><td>上市银行营收26Q1 +7.6%</td><td>较2025全年+1.4%明显改善；归母净利26Q1 +3.0%</td></tr>
+</table>
+</div>
+
+<h2>生命周期</h2>
+<div class="summary-box">
+  <strong><span class="col-tag col-info" style="font-size:14px">成熟期</span></strong><br>
+  判断依据：信贷增速降至个位数（5.1%）；行业格局寡头稳定（六大行资产占67%）；无颠覆性技术风险；ROE稳定在10%左右；分红率长期维持30%+，2026年7月单月分红超千亿。对应"增速-利润"四象限中的<strong>现金牛</strong>——营收增速低、利润率稳定、现金流充沛、靠分红回馈股东。
+</div>
+
+<h2>增长驱动力</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动力</th><th>类型</th><th>可持续性</th><th>量化指标</th></tr>
+<tr>
+  <td>信贷规模扩张（以量补价）</td>
+  <td><span class="col-tag col-warn">周期</span></td>
+  <td><span class="col-tag col-warn">中（增速降至5.1%）</span></td>
+  <td>贷款同比增速、生息资产增速</td>
+</tr>
+<tr>
+  <td>净息差企稳修复</td>
+  <td><span class="col-tag col-warn">周期</span></td>
+  <td><span class="col-tag col-warn">中（底部企稳非拐点）</span></td>
+  <td>NIM季度环比、存款付息率</td>
+</tr>
+<tr>
+  <td>中间业务/财富管理</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长（资本市场回暖+理财回暖）</span></td>
+  <td>中收增速（26Q1 +5.8%）、招行AUM 17.9万亿</td>
+</tr>
+<tr>
+  <td>高股息/红利资产配置需求</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长（低利率时代）</span></td>
+  <td>股息率vs 10Y国债利差（当前300bp+）</td>
+</tr>
+<tr>
+  <td>国际化与区域经济红利</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-warn">中长</span></td>
+  <td>中行海外收入、江苏/成都区域贷款增速</td>
+</tr>
+</table>
+</div>
+
+</div>
+</div>
+<div class="tab-content" id="tab-l9">
+<div class="tab-inner">
+
+<h2>市场结构</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>市场结构类型</td>
+  <td><span class="col-tag col-win">寡头垄断</span>（六大行资产占上市银行~67%，全国性牌照基本冻结）</td>
+</tr>
+<tr>
+  <td>CR3</td>
+  <td>工农建资产合计约150万亿 / 上市银行330万亿 ≈ <strong>45%</strong>（趋势：<span style="color:#2e7d32">稳定微升</span>——低利率推动供给侧整合，行业集中度提升）</td>
+</tr>
+<tr>
+  <td>格局象限</td>
+  <td><span class="col-tag col-win">寡头稳定</span>——无人有打价格战的动机，利润靠规模+低成本负债+资产质量竞争</td>
+</tr>
+<tr>
+  <td>新进入者威胁</td>
+  <td><span class="col-tag col-win">极小</span>（牌照壁垒+资本金门槛+国家信用背书，民营银行试点极少）</td>
+</tr>
+</table>
+</div>
+
+<h2>竞争壁垒</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>壁垒类型</th><th>强度</th><th>可持续性</th><th>具体表现</th></tr>
+<tr>
+  <td>牌照/特许经营权</td>
+  <td><span class="col-tag col-win">极强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>全国性银行牌照基本冻结，新设银行门槛极高，监管严格</td>
+</tr>
+<tr>
+  <td>规模+负债端成本优势</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>大行存款付息率约1%（招行26Q1计息负债成本率1.07%），低成本存款沉淀非中小行可比</td>
+</tr>
+<tr>
+  <td>客户网络+网点覆盖</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>工农建物理网点过万、县域全覆盖；招行零售客户2.27亿户、AUM 17.9万亿</td>
+</tr>
+<tr>
+  <td>品牌/国家信用背书</td>
+  <td><span class="col-tag col-win">极强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>国家信用+存款保险+隐性担保，大行融资成本系统性低于中小行</td>
+</tr>
+<tr>
+  <td>转换成本</td>
+  <td><span class="col-tag col-warn">中强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>企业与个人更换主办银行需重开账户/授信/渠道迁移，粘性高</td>
+</tr>
+</table>
+</div>
+
+<div class="summary-box">
+  <strong>定价权测试</strong><br>
+  🔹 能涨价吗？<strong>贷款端不能</strong>（资产荒+监管"反内卷"压制，新发放贷款利率约3.0-3.1%）／ <strong>存款端有定价权</strong>（可下调挂牌利率压降成本，存款进入"1时代"）→ 银行的议价能力主要来自负债端<br>
+  🔹 息差趋势：NIM从2022年1.97%→2026Q1 1.40%→26Q2 1.41%（<span style="color:#2e7d32;font-weight:700">企稳回升</span>）<br>
+  🔹 ROE趋势：上市银行ROE约10-11%稳定，优质城商行14-16%，大行9-10%缓慢下行后企稳；招行13.5%仍居股份行前列
+</div>
+
+<h2>驱动力拆解</h2>
+<div class="highlight-box">
+  <strong>行业收入公式</strong><br>
+  收入 = 生息资产规模 × 净息差 + 非息收入（手续费/投资收益）<br><br>
+  当前组合：<span style="color:#2e7d32;font-weight:700">量 ↑</span>（生息资产+9%） ＋ <span style="color:#e65100;font-weight:700">价 →</span>（息差企稳） ＝ <span class="col-tag col-info">低个位数正增长（26Q1营收+7.6%）</span>
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动因子</th><th>最新值</th><th>历史区间</th><th>当前分位</th></tr>
+<tr>
+  <td>商业银行净息差</td>
+  <td><span class="col-tag col-win">1.41%（26Q2）</span></td>
+  <td>1.40%-2.08%</td>
+  <td><span class="col-tag col-win">底部（17季度首次回升）</span></td>
+</tr>
+<tr>
+  <td>1年期LPR</td>
+  <td><span class="col-tag col-lose">3.0%</span></td>
+  <td>3.0%-4.35%</td>
+  <td><span class="col-tag col-lose">历史最低</span></td>
+</tr>
+<tr>
+  <td>5年期以上LPR</td>
+  <td><span class="col-tag col-lose">3.5%</span></td>
+  <td>3.5%-4.85%</td>
+  <td><span class="col-tag col-lose">历史最低</span></td>
+</tr>
+<tr>
+  <td>人民币贷款同比增速</td>
+  <td><span class="col-tag col-warn">5.1%（26年7月）</span></td>
+  <td>5%-15%</td>
+  <td><span class="col-tag col-lose">历史低区</span></td>
+</tr>
+<tr>
+  <td>商业银行不良率</td>
+  <td><span class="col-tag col-win">1.52%（26Q2）</span></td>
+  <td>1.5%-2.0%</td>
+  <td><span class="col-tag col-win">历史低位</span></td>
+</tr>
+<tr>
+  <td>存款利率（1年期定存）</td>
+  <td><span class="col-tag col-lose">~1%区间</span></td>
+  <td>1.0%-2.75%</td>
+  <td><span class="col-tag col-lose">历史最低</span></td>
+</tr>
+</table>
+</div>
+
+<h2>成本结构</h2>
+<div class="summary-box">
+  🔹 <strong>类型：</strong><span class="col-tag col-lose">高杠杆</span>（资本充足率约束下杠杆约10-14倍）+ <span class="col-tag col-warn">重资产</span>（拨备/资本占用）<br>
+  🔹 <strong>成本敏感性：</strong>NIM每变动10bp → 净利息收入变动约3-4%；拨备计提可平滑利润（26Q1上市银行加大计提、利润增速小于营收增速）<br>
+  🔹 <strong>盈亏平衡：</strong>NIM需覆盖资金成本+风险成本+运营成本+资本成本，当前1.41%贴近盈亏平衡线，"稳息差"是核心任务，银行会优先保规模与资产质量
+</div>
+
+<h2>竞争格局总结</h2>
+<div class="highlight-box">
+  银行业是典型的<strong>寡头稳定</strong>格局：六大行资产占67%、牌照冻结、国家信用背书，谁都没有打"价格战"的动机，靠规模+低成本负债+资产质量竞争。行业利润池稳定但增长停滞（营收低个位数增长）。真正的α集中在两类：一是<strong>负债端成本最低、零售客户粘性最强的"零售之王"（招商银行）</strong>；二是<strong>区域经济景气+资产质量优异的城商行（宁波/江苏/成都）</strong>。国有大行是"压舱石"——赚股息的钱，不赚成长的钱。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l10">
+<div class="tab-inner">
+
+<h2>周期位置</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>利率/息差周期</td>
+  <td><span class="col-tag col-warn">底部企稳</span>——NIM 26Q2环比+1bp至1.41%，17个季度（2022年以来）首次回升；市场共识"企稳而非拐点"</td>
+</tr>
+<tr>
+  <td>行业盈利状态</td>
+  <td><span class="col-tag col-win">边际改善</span>——26Q1上市银行营收+7.6%（2025全年+1.4%）、归母净利+3.0%，净利润同比降幅显著收窄</td>
+</tr>
+<tr>
+  <td>信贷需求</td>
+  <td><span class="col-tag col-lose">偏弱</span>——贷款同比+5.1%，"资产荒"延续，零售信贷收缩</td>
+</tr>
+<tr>
+  <td>资产质量</td>
+  <td><span class="col-tag col-win">整体稳定</span>——商业银行不良率1.52%历史低位，上市银行不良率1.21%；但零售不良（信用卡/消费贷）仍在抬升</td>
+</tr>
+</table>
+</div>
+
+<div class="danger-box">
+  <strong>⚠ PE悖论检查</strong><br>
+  银行PE普遍仅6-7x（招行6.7x），看似极低，但金融股<strong>必须用PB+ROE+资产质量判断</strong>——PE低≠便宜（利润受拨备调节、存在隐性不良风险）。<br>
+  当前板块PB 0.58-0.67x，42家上市银行<strong>全部破净</strong>，9家股份行PB均值仅0.43x——市场已充分定价"息差下行+资产质量担忧"。<br>
+  破净=市场按账面净资产的<strong>打折价</strong>定价，隐含的是资产质量折价而非股息价值否定。当ROE与拨备真实可信时，低PB即安全边际；当资产质量恶化时，低PB可能变成"价值陷阱"（判断关键：不良生成率+拨备覆盖率）。
+</div>
+
+<h2>估值水平</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>估值指标</th><th>当前</th><th>历史中位数</th><th>80%分位</th><th>20%分位</th></tr>
+<tr>
+  <td><strong>板块PB</strong></td>
+  <td><span class="col-tag col-lose">0.58-0.67x</span></td>
+  <td>~0.80x</td>
+  <td>~1.10x</td>
+  <td>~0.55x</td>
+</tr>
+<tr>
+  <td><strong>国有大行PB</strong></td>
+  <td><span class="col-tag col-lose">0.5-0.6x</span></td>
+  <td>~0.75x</td>
+  <td>~1.00x</td>
+  <td>~0.50x</td>
+</tr>
+<tr>
+  <td><strong>招商银行PB</strong></td>
+  <td><span class="col-tag col-lose">0.79-0.92x</span></td>
+  <td>~1.3x</td>
+  <td>~1.8x</td>
+  <td>~0.90x</td>
+</tr>
+<tr>
+  <td><strong>优质城商行PB</strong></td>
+  <td><span class="col-tag col-lose">0.70-0.84x</span></td>
+  <td>~1.0x</td>
+  <td>~1.4x</td>
+  <td>~0.70x</td>
+</tr>
+<tr>
+  <td><strong>板块股息率</strong></td>
+  <td><span class="col-tag col-win">中位数4.9%</span></td>
+  <td>~4.0%</td>
+  <td>7.26%（2024/7峰值）</td>
+  <td>~2.8%</td>
+</tr>
+</table>
+</div>
+<div class="card" style="font-size:11px;color:#888">
+  注：历史中位数/分位为基于板块aggregate数据的估算（板块PB 0.58x对应近十年43%分位、0.67x对应2010年以来约23%分位；个股精确历史分位数据待补充）。10Y国债收益率约1.8%，银行股息率（4.3-5.5%）相对利差达300bp+。
+</div>
+
+<h2>政策环境</h2>
+<div class="summary-box">
+  🔹 <strong>政策方向：</strong><span class="col-tag col-win">中性偏多</span>（反内卷+化债+市值管理利好，LPR下行是唯一利空变量）<br>
+  🔹 <strong>关键政策：</strong><br>
+  &emsp;• <strong>金融监管"反内卷"</strong>：整治利率乱象、贷款定价回归商业原则 → 资产端压价动能减弱，直接利好息差企稳<br>
+  &emsp;• <strong>化债推进</strong>：城投贷款重定价部分完成（区域分化），隐性债务化解缓释系统性风险<br>
+  &emsp;• <strong>市值管理纳入央企负责人考核</strong>：大行分红率稳定30%+，2026年7月单月分红超千亿，管理层有维护股价动力<br>
+  &emsp;• <strong>LPR连续15个月未动</strong>（1年3.0%/5年3.5%，2025年5月后未调整）；市场预期Q3末前后或降息10bp+降准0.5pct——资产端承压，但存款利率同步下行可部分对冲<br>
+  &emsp;• <strong>国际评级上调</strong>：惠誉/穆迪2026年7月上调多家中资银行评级与展望（外资视角的风险出清确认）<br>
+  🔹 <strong>政策周期位置：</strong><span class="col-tag col-info">宽松末期→观察期</span>（货币政策按兵不动，结构性工具加力）
+</div>
+
+<h2>买入清单</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:28%">条件</th><th style="width:16%">结果</th><th>备注</th></tr>
+<tr>
+  <td>周期位置：不在繁荣顶点</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>息差底部企稳、估值低位，非顶点</td>
+</tr>
+<tr>
+  <td>估值：PB/PE在历史偏低分位</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>板块PB 0.58-0.67x，近十年43%分位/2010年以来~23%分位</td>
+</tr>
+<tr>
+  <td>政策：不是收紧期</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td>反内卷利好，但LPR仍有下行预期（Q3末或降息10bp）</td>
+</tr>
+<tr>
+  <td>格局：龙头壁垒稳固</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>牌照+国家信用+负债成本优势，寡头稳定</td>
+</tr>
+<tr>
+  <td>增长：有可见驱动力</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td>息差企稳+高股息提供支撑，但缺成长弹性</td>
+</tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <div style="font-size:16px;font-weight:700;margin-bottom:8px">综合判断：<span class="col-tag col-warn" style="font-size:15px">等待 + 小仓位分批建仓（防御底仓）</span></div>
+  <div style="margin-bottom:6px">不具备成长股弹性，但估值与股息提供底部安全边际——"类固收+低位看涨期权"属性</div>
+  <table style="font-size:12px;margin:6px 0;border:none;background:transparent">
+    <tr><td style="border:none;padding:3px 6px;background:transparent;width:90px;font-weight:600">预期回报</td><td style="border:none;padding:3px 6px;background:transparent">估值修复+股息，年化8-12%（持有1-2年）</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">仓位建议</td><td style="border:none;padding:3px 6px;background:transparent"><span class="col-tag col-warn">不超过组合15-20%</span>（防御底仓，单只不超5%）</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">跟踪指标</td><td style="border:none;padding:3px 6px;background:transparent">净息差季度环比 · LPR与存款利率 · 不良生成率 · 拨备覆盖率 · 股息率vs 10Y国债利差</td></tr>
+  </table>
+  <div style="margin-top:8px;padding:8px;background:#e8f5e9;border-radius:4px;font-size:12px">
+    <strong>买入策略：</strong><br>
+    <span class="col-tag col-win">高ROE+高拨备+息差率先企稳</span>（招商银行/宁波银行/江苏银行/成都银行）：可分批建仓<br>
+    <span class="col-tag col-win">国有大行高股息底仓</span>（工商银行/农业银行/建设银行）：息差企稳+市值管理考核，逢低配置，赚股息+估值修复<br>
+    <span class="col-tag col-info">加仓触发信号：</span>净息差连续两季环比回升 + 新发放贷款利率止跌企稳 + 零售不良生成率见顶回落
+  </div>
+</div>
+
+<h2>卖出信号</h2>
+<div class="danger-box">
+  <strong>出现以下信号考虑卖出：</strong><br>
+  <div style="margin-top:6px">
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px">1</span>
+    净息差连续两季环比回落（企稳被证伪，二次探底）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">2</span>
+    不良生成率显著抬升或零售不良加速暴露（资产质量恶化）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">3</span>
+    LPR单次下调超15bp且存款利率未同步下调（息差被急剧压缩）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">4</span>
+    股息率跌破3.5%（相对10Y国债利差收窄至100bp内，股息吸引力消失）
+  </div>
+</div>
+
+</div>
+</div>
+
+<div class="footer">Generated by Industry Analysis · L7-L10 Framework · Stock Selection · 数据截至2026-08-20</div>
+
+</div>
+
+<script>
+var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+var contents = document.querySelectorAll('.tab-content');
+btns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    contents.forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    var tab = btn.getAttribute('data-tab');
+    document.getElementById('tab-' + tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
