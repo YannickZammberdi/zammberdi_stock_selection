@@ -1,6 +1,7 @@
 
 # Stock analysis reports
 stock-learning/stocks-analysis/*.html
+!stock-learning/stocks-analysis/*_交易计划.html
 
 # Home budget
 home-budget/
