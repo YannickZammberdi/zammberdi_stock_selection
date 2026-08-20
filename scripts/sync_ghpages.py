@@ -14,6 +14,7 @@ Rules mirror stock-learning/stocks-analysis layout:
     验证/*_C方案验证.html        -> docs/verify/ or docs/asx/verify/  (market by code)
 """
 
+import datetime
 import json
 import re
 import shutil
@@ -23,6 +24,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "stock-learning" / "stocks-analysis"
 DOCS = ROOT / "docs"
+
+HISTORY_DIR = DOCS / "history"
+HISTORY_FILE = HISTORY_DIR / "scores.json"
+HISTORY_MARKER = "<!-- HISTORY-TABLE -->"
 
 STOCK_TARGETS = [("A股", DOCS / "stocks"), ("ASX", DOCS / "asx" / "stocks")]
 INDUSTRY_TARGETS = [("A股", DOCS / "industry"), ("ASX", DOCS / "asx" / "industry")]
@@ -247,6 +252,27 @@ def parse_stock_name_code(html, filename):
     if len(parts) >= 2:
         return parts[0], parts[1]
     return base, ""
+
+
+def code_key(filename):
+    """Canonical stock identity from filename: A股 6-digit code, ASX ticker.
+
+    Stable across time even when title/name parsing changed. Examples:
+        新和成_002001_分析报告.html -> 002001
+        BHP_BHP_ASX_分析报告.html   -> BHP
+        Pro Medicus_PME_分析报告.html -> PME
+        IAG_ASX_分析报告.html       -> IAG
+    """
+    base = re.sub(r"_分析报告\.html$", "", filename)
+    parts = base.split("_")
+    if re.fullmatch(r"\d{6}", parts[-1]):
+        return parts[-1]
+    for p in reversed(parts):
+        if p == "ASX":
+            continue
+        if re.fullmatch(r"[A-Za-z]{2,5}", p):
+            return p
+    return parts[-1]
 
 
 def normalize_type(dirname):
@@ -519,6 +545,130 @@ def build_macro_index():
         log(f"[index] macro: {len(cards)} 份 -> {target}/index.html")
 
 
+# ---------------------------------------------------------------- score history
+
+def load_history():
+    """Load docs/history/scores.json -> dict keyed by 'name_code'."""
+    if not HISTORY_FILE.exists():
+        return {}
+    try:
+        payload = json.loads(HISTORY_FILE.read_text(encoding="utf-8"))
+        return payload.get("stocks", {}) if isinstance(payload, dict) else {}
+    except Exception:
+        log(f"[warn] scores.json 解析失败，重置为空历史")
+        return {}
+
+
+def save_history(hist):
+    HISTORY_DIR.mkdir(parents=True, exist_ok=True)
+    payload = {"version": 1, "updated": datetime.date.today().isoformat(), "stocks": hist}
+    HISTORY_FILE.write_text(json.dumps(payload, ensure_ascii=False, indent=1), encoding="utf-8")
+    log(f"[history] 更新 {HISTORY_FILE.relative_to(ROOT)} ({len(hist)} 只股票)")
+
+
+def parse_score_note(html):
+    """Extract 评分口径说明 (≤40字) from the template's .score-note element."""
+    i = html.find('class="score-note"')
+    if i == -1:
+        return ""
+    seg = html[i:i + 600]
+    seg = re.sub(r"<[^>]+>", "|", seg)
+    seg = re.sub(r"\|+", "|", seg)
+    m = re.search(r"评分口径说明[:：]\s*\|?\s*([^|]+?)(?:\||$)", seg)
+    if not m:
+        return ""
+    note = re.sub(r"【[^】]*】", "", m.group(1)).strip()
+    note = re.sub(r"\s+", " ", note)
+    if not note or "{" in note or "≤40字" in note:
+        return ""
+    return note[:80]
+
+
+def render_history_table(hist, key):
+    """Build the 评分沿革 table HTML for a stock key from history."""
+    st = hist.get(key)
+    if not st or not st.get("series"):
+        return ""
+    points = sorted(st["series"], key=lambda p: p.get("d", ""))
+    rows = []
+    prev_t = ""
+    for p in points:
+        s = p.get("s", "")
+        t = p.get("t", "") or ""
+        n = p.get("n", "") or ""
+        if not n and t and prev_t and t != prev_t:
+            n = f"换评分体系（{prev_t}→{t}）"
+        prev_t = t
+        if isinstance(s, int):
+            cls = "good" if s >= 80 else ("neutral" if s >= 60 else "bad")
+            sc = f'<td class="{cls}" style="font-weight:bold">{s}/100</td>'
+        else:
+            sc = f"<td>{s}</td>"
+        rows.append(
+            f'  <tr><td>{p.get("d", "")}</td>{sc}<td>{t}</td>'
+            f'<td style="text-align:left">{n or "—"}</td></tr>'
+        )
+    return (
+        '<h2>评分沿革</h2>\n'
+        '<table class="history-table">\n'
+        '  <tr><th>日期</th><th>评分</th><th>评分体系</th><th>变化原因</th></tr>\n'
+        + "\n".join(rows) +
+        "\n</table>"
+    )
+
+
+def inject_history(dst_path, hist, key):
+    """Replace HISTORY_MARKER in a docs copy with the 评分沿革 table."""
+    html = read_utf8(dst_path)
+    if HISTORY_MARKER not in html:
+        return False
+    table = render_history_table(hist, key)
+    new_html = html.replace(HISTORY_MARKER, table)
+    if new_html != html:
+        dst_path.write_text(new_html, encoding="utf-8")
+        log(f"[history] 注入评分沿革 -> {dst_path.name}")
+        return True
+    return False
+
+
+def sync_stock_history(market):
+    """Upsert current stock report scores into history, inject 沿革 into docs copies."""
+    src_sub = SRC / ("A股" if market == "A股" else "ASX")
+    target = DOCS / "stocks" if market == "A股" else DOCS / "asx" / "stocks"
+    hist = load_history()
+    changed = False
+    for f in sorted(src_sub.rglob("*.html")):
+        html = read_utf8(f)
+        key = code_key(f.name)
+        name, code = parse_stock_name_code(html, f.name)
+        date = parse_date(html)
+        score = parse_score(html)
+        type_ = normalize_type(f.parent.name)
+        note = parse_score_note(html)
+        if not key or not date or not score:
+            continue
+        st = hist.setdefault(key, {"name": name, "code": code, "series": []})
+        found = False
+        for p in st["series"]:
+            if p.get("d") == date:
+                if p.get("s") != score or p.get("t") != type_ or p.get("n") != note:
+                    p["s"], p["t"], p["n"] = score, type_, note
+                    changed = True
+                found = True
+                break
+        if not found:
+            st["series"].append({"d": date, "s": score, "t": type_, "n": note})
+            changed = True
+        dst = target / f.name
+        if dst.exists():
+            inject_history(dst, hist, key)
+    for st in hist.values():
+        st["series"].sort(key=lambda p: p.get("d", ""))
+    if changed:
+        save_history(hist)
+    log(f"[history] {market} 股票历史同步完成（{len(hist)} 只股票入账）")
+
+
 # ---------------------------------------------------------------- home page counts
 
 def count_html_files(d):
@@ -596,6 +746,8 @@ def main():
     copied, skipped = copy_files()
     build_stocks_index("A股")
     build_stocks_index("ASX")
+    sync_stock_history("A股")
+    sync_stock_history("ASX")
     build_industry_index("A股")
     build_industry_index("ASX")
     build_plans_index("A股")

@@ -5,3 +5,7 @@ stock-learning/stocks-analysis/*.html
 
 # Home budget
 home-budget/
+
+# Python
+__pycache__/
+*.pyc
