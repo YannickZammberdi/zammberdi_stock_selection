@@ -39,14 +39,14 @@ on:
 permissions:
   contents: write
 
-concurrency:
-  group: report-generation
-  cancel-in-progress: false
-
 jobs:
+  # ---- 生成报告：不同标的并行，同一标的重复触发排队 ----
   generate:
     runs-on: ubuntu-latest
     timeout-minutes: 90
+    concurrency:
+      group: report-gen-${{ github.event.inputs.type }}-${{ github.event.inputs.name }}
+      cancel-in-progress: false
     steps:
       - name: 权限检查（仅限本人触发）
         env:
@@ -89,6 +89,61 @@ jobs:
           echo ">> PROMPT: $PROMPT"
           opencode run --model "${{ github.event.inputs.model }}" --auto "$PROMPT"
 
+      - name: 打包生成的文件（交给 sync job 合并）
+        run: |
+          mkdir -p /tmp/report
+          git status --porcelain -z -- stock-learning | tr '\0' '\n' | cut -c4- | sort -u > /tmp/report/changed.txt
+          if [ -s /tmp/report/changed.txt ]; then
+            tar -czf /tmp/report/report.tar.gz -T /tmp/report/changed.txt
+            echo "本次生成的文件："
+            cat /tmp/report/changed.txt
+          else
+            echo "no changes" > /tmp/report/EMPTY
+          fi
+
+      - name: 上传产物
+        uses: actions/upload-artifact@v4
+        with:
+          name: report-${{ github.run_id }}
+          path: /tmp/report
+          if-no-files-found: warn
+
+  # ---- 同步+提交+推送：全局串行，避免 push 冲突 ----
+  sync:
+    needs: generate
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    concurrency:
+      group: report-sync
+      cancel-in-progress: false
+      queue: max
+    steps:
+      - name: 检出代码（完整历史）
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 对齐到最新 master
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin
+          git reset --hard origin/master
+
+      - name: 下载产物
+        uses: actions/download-artifact@v4
+        with:
+          name: report-${{ github.run_id }}
+          path: /tmp/report
+
+      - name: 合并生成文件到源目录
+        run: |
+          if [ ! -f /tmp/report/report.tar.gz ]; then
+            echo "无生成产物，跳过"
+            exit 0
+          fi
+          tar -xzf /tmp/report/report.tar.gz -C .
+
       - name: 同步到 docs（GitHub Pages）
         run: python scripts/sync_ghpages.py
 
@@ -97,13 +152,10 @@ jobs:
           RTYPE: ${{ github.event.inputs.type }}
           RNAME: ${{ github.event.inputs.name }}
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git add -f stock-learning/stocks-analysis/*_交易计划.html
           if git diff --cached --quiet; then
             echo "无文件变更，跳过提交"
-          else
-            git commit -m "generate report ($RTYPE / $RNAME) via workflow"
-            git push
+            exit 0
           fi
+          git commit -m "generate report ($RTYPE / $RNAME) via workflow"
+          git push

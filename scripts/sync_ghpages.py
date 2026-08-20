@@ -286,9 +286,21 @@ def parse_verify_name_code(html, filename):
 
 
 def parse_verify_score(html):
-    """10-point score, e.g. 总评分 7/10."""
-    m = re.search(r"(\d+)/10", html)
-    return int(m.group(1)) if m else 0
+    """10-point score, e.g. 总评分 9/10.
+
+    Must anchor to the 总评分 label: reports may contain other "X/10" text
+    (e.g. 社保基金组合编号 502/110/107) that would false-match a bare regex.
+    """
+    for pat in (
+        r"总评分\s*(\d+)/10",
+        r"verdict-score[^>]*>\s*总评分\s*(\d+)/10",
+        r"总分</t[dh]>\s*<t[dh]>\s*(\d+)/10",
+        r"verdict-ok|verdict-caution|verdict-bad[^>]*>\s*(\d+)/10",
+    ):
+        m = re.search(pat, html)
+        if m:
+            return int(m.group(1))
+    return 0
 
 
 def parse_verify_verdict(html):
