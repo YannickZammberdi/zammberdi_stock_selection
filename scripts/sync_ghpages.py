@@ -608,8 +608,20 @@ def render_history_table(hist, key):
             f'  <tr><td>{p.get("d", "")}</td>{sc}<td>{t}</td>'
             f'<td style="text-align:left">{n or "—"}</td></tr>'
         )
+    style = (
+        '<style>'
+        '.history-table{width:100%;border-collapse:collapse;margin:8px 0 16px;'
+        'font-size:13px}'
+        '.history-table th,.history-table td{border:1px solid #ddd;padding:6px 8px;'
+        'text-align:center}'
+        '.history-table th{background:#f0f0f0;font-weight:bold}'
+        '.history-table td.good{color:#27ae60}.history-table td.neutral{color:#e67e22}'
+        '.history-table td.bad{color:#c0392b}'
+        '</style>'
+    )
     return (
-        '<h2>评分沿革</h2>\n'
+        '<h2 style="margin-top:16px">评分沿革</h2>\n'
+        + style +
         '<table class="history-table">\n'
         '  <tr><th>日期</th><th>评分</th><th>评分体系</th><th>变化原因</th></tr>\n'
         + "\n".join(rows) +
