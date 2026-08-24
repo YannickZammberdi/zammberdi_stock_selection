@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>A股——游戏传媒 行业分析报告</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f5f5f5;padding:0;color:#333}
+  .report-wrap{max-width:800px;margin:0 auto;background:#fff}
+  h1{font-size:22px;margin:0;padding:28px 0 4px;text-align:center}
+  h2{font-size:18px;margin:28px 0 12px;border-bottom:2px solid #1a1a1a;padding-bottom:4px}
+  h3{font-size:15px;margin:18px 0 8px}
+  .subtitle{color:#666;font-size:13px;text-align:center;margin-bottom:4px}
+  .meta{color:#999;font-size:12px;text-align:center;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #e0e0e0}
+  .tab-bar{position:sticky;top:0;z-index:10;background:#fff;display:flex;flex-wrap:wrap;border-bottom:2px solid #ddd;gap:0}
+  .tab-btn{padding:10px 14px;cursor:pointer;border:none;background:none;font-size:13px;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+  .tab-btn:hover{color:#333;background:#f9f9f9}
+  .tab-btn.active{color:#1a1a1a;font-weight:700;border-bottom-color:#1a1a1a}
+  .tab-content{display:none}
+  .tab-content.active{display:block}
+  .tab-inner{padding:0 12px}
+  table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:13px}
+  th{background:#f5f5f5;padding:8px 6px;text-align:left;border-bottom:2px solid #ddd;white-space:nowrap;font-weight:600}
+  td{padding:7px 6px;border-bottom:1px solid #eee}
+  tr:nth-child(even) td{background:#fafafa}
+  .summary-box{background:#fffde7;border-left:4px solid #f9a825;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .highlight-box{background:#e3f2fd;border-left:4px solid #1e88e5;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .danger-box{background:#ffebee;border-left:4px solid #e53935;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .verdict{text-align:center;padding:20px;margin:16px 0;border-radius:8px;font-size:18px;font-weight:700}
+  .verdict-ok{background:#e8f5e9;border:2px solid #4caf50;color:#2e7d32}
+  .verdict-caution{background:#fff3e0;border:2px solid #ff9800;color:#e65100}
+  .verdict-bad{background:#ffebee;border:2px solid #e53935;color:#c62828}
+  .score{font-size:36px;display:block;margin-bottom:4px}
+  .pass{color:#2e7d32;font-weight:700}
+  .skip{color:#666;font-style:italic}
+  .tag{display:inline-block;padding:2px 8px;border-radius:3px;font-size:11px;font-weight:700}
+  .tag-red{background:#ffebee;color:#c62828}
+  .tag-green{background:#e8f5e9;color:#2e7d32}
+  .tag-yellow{background:#fff8e1;color:#f57f17}
+  .footer{font-size:11px;color:#aaa;text-align:center;padding:24px 0 8px;border-top:1px solid #eee;margin-top:30px}
+  .card{background:#fafafa;border:1px solid #e0e0e0;border-radius:6px;padding:14px;margin:10px 0;font-size:13px}
+  .flex{display:flex;flex-wrap:wrap;gap:8px}
+  .tbl-wrap{border:1px solid #e0e0e0;border-radius:6px;overflow:hidden;margin:10px 0 18px}
+  .tbl-wrap table{margin:0}
+  .tbl-wrap th{background:#f5f5f5;padding:9px 8px;border-bottom:1px solid #ddd;font-weight:600;font-size:12px}
+  .tbl-wrap td{padding:8px;border-bottom:1px solid #f0f0f0;font-size:13px}
+  .tbl-wrap tr:last-child td{border-bottom:none}
+  .bar-wrap{display:inline-flex;align-items:center;width:60px;height:16px;vertical-align:middle}
+  .bar-bg{background:#eee;border-radius:4px;height:8px;width:100%;overflow:hidden;position:relative}
+  .bar{display:block;height:8px;border-radius:4px}
+  .score-cell{font-weight:700;font-size:15px;text-align:center;white-space:nowrap}
+  .tbl-wrap td,.tbl-wrap th{vertical-align:middle}
+  .metric-h{color:#1565c0;font-weight:700;font-size:13px}
+  .metric-l{color:#c62828;font-weight:700}
+  .metric-m{color:#e65100;font-weight:700}
+  .col-tag{display:inline-block;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600}
+  .col-win{background:#e8f5e9;color:#2e7d32}
+  .col-lose{background:#ffebee;color:#c62828}
+  .col-warn{background:#fff3e0;color:#e65100}
+  .col-info{background:#e3f2fd;color:#1565c0}
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>A股——游戏传媒 行业分析报告</h1>
+<div class="subtitle">L5分类：成长型-非周期（科技/文娱） ｜ 上市公司：~147只（申万传媒）/ 88只（游戏概念） ｜ 总市值：~1.32万亿（传媒整体）/ 5487亿（纯游戏23家）</div>
+<div class="meta">生成日期：2026-08-24 ｜ 数据来源：Wind/申万/游戏工委《2025年中国游戏产业报告》/公司2025年报（websearch 2026-08-24）</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l7">L7 量化初筛</button>
+  <button class="tab-btn" data-tab="l8">L8 行业画像</button>
+  <button class="tab-btn" data-tab="l9">L9 竞争格局</button>
+  <button class="tab-btn" data-tab="l10">L10 周期时机</button>
+</div>
+
+<div class="tab-content active" id="tab-summary">
+<div class="tab-inner">
+
+<h2>行业速览</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">项目</th><th>内容</th></tr>
+<tr><td>行业名称</td><td><strong>游戏传媒</strong>（申万一级：传媒；细分：游戏+广告营销+影视院线+出版+数字媒体）</td></tr>
+<tr><td>市场</td><td>A股</td></tr>
+<tr><td>L5分类</td><td><span class="col-tag col-info">成长型-非周期</span> 轻资产、高毛利、现金流好；混合消费+科技属性（申万传媒/证监会文化传媒）</td></tr>
+<tr><td>上市公司</td><td>申万传媒 ~147只；游戏概念 <span class="col-tag col-info">88只</span>；纯游戏重点跟踪 <span class="col-tag col-win">23只</span>，其中符合L7筛选条件 <span class="col-tag col-win">8只</span></td></tr>
+<tr><td>行业总市值</td><td>传媒整体 ~1.32万亿；纯游戏23家合计 <span class="col-tag col-info">5487.44亿元</span>（2025-09-12，科创板日报统计，较年初+96%）</td></tr>
+<tr><td>产业链利润核心</td><td><span class="col-tag col-win">游戏研发发行 + 梯媒（分众）</span> 游戏毛利率68-93%，分众楼宇媒体69.96%</td></tr>
+<tr><td>生命周期阶段</td><td><span class="col-tag col-win">成熟期结构升级</span> 用户6.83亿渗透见顶，但ARPU/出海/AI驱动二次增长</td></tr>
+<tr><td>当前周期位置</td><td><span class="col-tag col-win">复苏/繁荣</span> 2025游戏板块营收+23%、归母净利+222%，2026Q1续增20%/54%</td></tr>
+</table>
+</div>
+
+<h2>综合评分</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>维度</th><th style="width:60px">得分</th><th>进度</th><th>说明</th></tr>
+<tr>
+  <td>行业规模与空间</td>
+  <td class="score-cell">16/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:80%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">国内3507.89亿（+7.68%创新高）+出海204.55亿美元，海内外合计TAM超5000亿，直接间接拉动1.2万亿</td>
+</tr>
+<tr>
+  <td>产业链位置</td>
+  <td class="score-cell">12/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:80%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">研发发行+IP为利润池（毛利70%+），渠道抽成松动+AI降本增效，利润向内容方回流</td>
+</tr>
+<tr>
+  <td>竞争格局</td>
+  <td class="score-cell">10/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:50%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">高度分散但加速集中：游戏TOP5营收占75.46%，分众梯媒寡头垄断，其余长尾出清中</td>
+</tr>
+<tr>
+  <td>增长驱动力</td>
+  <td class="score-cell">12/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:80%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">版号常态化（1771个创7年新高）+出海38%增长 + AI/小程序/多端互通三重结构驱动</td>
+</tr>
+<tr>
+  <td>周期位置</td>
+  <td class="score-cell">11/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:73%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">产品周期上行：2025为兑现期，2026Q1合同负债76.5亿+新品递延，景气度延续但需防买量回升</td>
+</tr>
+<tr>
+  <td>政策环境</td>
+  <td class="score-cell">12/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:80%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">十五五首提"引导网络游戏健康发展"+版号月均110-178个，监管常态化、支持出海与AI融合</td>
+</tr>
+<tr style="background:#fafafa">
+  <td style="font-weight:700;font-size:14px">总分</td>
+  <td style="font-weight:700;font-size:16px;color:#e65100">73/100</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:73%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#e65100;font-weight:600">良好——值得重仓研究，优选龙头分批配置</td>
+</tr>
+</table>
+</div>
+
+<div class="verdict verdict-caution">
+  <span class="score">73</span>
+  良好——结构性景气，龙头溢价
+</div>
+
+<div class="summary-box">
+  <strong>核心结论</strong><br>
+  游戏传媒是A股典型的<strong>轻资产高毛利成长型非周期</strong>行业（L5），2025年迎来戴维斯双击：收入端（3507亿+7.68%、用户6.83亿双新高）与利润端（游戏板块净利+222%）同步爆发。驱动来自<strong>三重共振</strong>：①政策底夯实（版号1771个/十五五定调健康发展）②出海成为第二增长曲线（境外收入408.75亿+38.26%、占比37%）③AI降本增效（销售费用率三七从60%→45%）。但行业分化空前：<strong>马太效应强化</strong>——TOP5占营收75.46%，8家双增、6家亏损，中小厂商加速出清。当前应以<strong>"成长股框架+PS/PE双估值"</strong>分析，优选具备长线运营+出海能力+新品储备的白马龙头，回避纯概念无流水标的。
+</div>
+
+<div class="highlight-box">
+  <strong>行业公式</strong><br>
+  游戏：收入 = 用户规模(6.83亿) × ARPU × 付费率 × 生命周期(月) ；利润 = 流水 ×（1-渠道分成30%→15%-买量成本）- 研发摊销<br>
+  传媒（分众）：收入 = 点位数 × 刊例价 × 出租率； 梯媒利润 = 收入 - 场地租赁固定成本（经营杠杆高）<br>
+  关键指标：1) 版号发放数（月均） 2) 自研出海收入占比 3) 头部游戏流水/榜单排名 4) 合同负债（递延收入） 5) 销售费用率（买量ROI）
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l7">
+<div class="tab-inner">
+
+<h2>筛子调整说明</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:12%">筛子</th><th style="width:35%">标准</th><th>调整说明</th></tr>
+<tr><td>①<span class="col-tag col-info">市值</span></td><td>主板≥50亿 / 创业板≥30亿</td><td>传媒小票多，创业板/科创板保留≥30亿，游戏概念88只中约59只满足</td></tr>
+<tr><td>②<span class="col-tag col-info">营收</span></td><td>主板≥10亿 / 创业板≥3亿</td><td>正常执行，游戏轻资产但需验证商业化能力，<3亿多为壳/转型标的</td></tr>
+<tr><td>③<span class="col-tag col-info">毛利率</span></td><td>科技/文娱≥15%（实际游戏≥60%）</td><td>正常执行，游戏普遍>60%远超阈值，低毛利多为贸易/影视承压标的</td></tr>
+<tr><td>④<span class="col-tag col-info">ROE</span></td><td>≥8%（连续3年<5%剔除）</td><td>正常执行，游戏ROE分化大，头部20%+ vs 亏损尾部为负</td></tr>
+<tr><td>⑤<span class="col-tag col-info">负债率</span></td><td>≤65%（传媒轻资产）</td><td>正常执行，游戏普遍20-40%极低，分众27.7%亦远低于阈值</td></tr>
+<tr><td>⑥<span class="col-tag col-info">估值</span></td><td>PE历史分位≤70% / 亏损用PS≤10x</td><td>正常执行，当前游戏PE中枢27.58x（TTM），龙头2026E 15-17x分位30-50%</td></tr>
+</table>
+</div>
+<div class="summary-box" style="font-size:12px">行业分类依据：<code>industry-classification.md</code> 将游戏/纯软件列为<strong>非周期</strong>，故六筛均正常执行，无需跳过。L5估值首选 <strong>PS/PEG（成长）+ PE（盈利稳定期）</strong>，PB仅作辅助。</div>
+
+<h2>候选池（8只）</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>环节</th><th>市值</th><th>毛利率</th><th>ROE</th><th>负债率</th><th>PE分位</th><th>通过</th></tr>
+<tr>
+  <td><strong>世纪华通</strong> 002602</td>
+  <td><span class="col-tag col-win">游戏出海</span></td>
+  <td style="font-weight:600">1273亿(1421亿*)</td>
+  <td><span class="col-tag col-win">69.95%</span></td>
+  <td><span class="col-tag col-win">20.27%</span></td>
+  <td>29.73%</td>
+  <td>35-45%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>分众传媒</strong> 002027</td>
+  <td><span class="col-tag col-win">梯媒</span></td>
+  <td style="font-weight:600">982亿</td>
+  <td><span class="col-tag col-win">70.48%</span></td>
+  <td><span class="col-tag col-win">18.28%</span></td>
+  <td>27.71%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>巨人网络</strong> 002558</td>
+  <td><span class="col-tag col-win">游戏研发</span></td>
+  <td style="font-weight:600">708亿</td>
+  <td><span class="col-tag col-win">91.03%</span></td>
+  <td><span class="col-tag col-win">12.45%</span></td>
+  <td>18.67%</td>
+  <td>30-40%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>三七互娱</strong> 002555</td>
+  <td><span class="col-tag col-win">游戏发行</span></td>
+  <td>525亿</td>
+  <td><span class="col-tag col-win">75.86%</span></td>
+  <td><span class="col-tag col-win">21.73%</span></td>
+  <td>38.74%</td>
+  <td>30-40%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>恺英网络</strong> 002517</td>
+  <td><span class="col-tag col-win">游戏+传奇IP</span></td>
+  <td>433亿</td>
+  <td><span class="col-tag col-win">80.84%</span></td>
+  <td><span class="col-tag col-win">23.13%</span></td>
+  <td>24.27%</td>
+  <td>35-45%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>吉比特</strong> 603444</td>
+  <td><span class="col-tag col-win">游戏研发</span></td>
+  <td>383亿</td>
+  <td><span class="col-tag col-win">93.90%</span></td>
+  <td><span class="col-tag col-win">33.27%</span></td>
+  <td>24.16%</td>
+  <td>40-50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>完美世界 002624</td>
+  <td><span class="col-tag col-warn">游戏+影视</span></td>
+  <td>约290亿</td>
+  <td><span class="col-tag col-win">60.28%</span></td>
+  <td><span class="col-tag col-win">10.61%</span></td>
+  <td>31.90%</td>
+  <td>50-60%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>神州泰岳 300002</td>
+  <td><span class="col-tag col-warn">游戏出海</span></td>
+  <td>约210亿</td>
+  <td><span class="col-tag col-warn">58.2%</span></td>
+  <td><span class="col-tag col-win">12.8%</span></td>
+  <td>22.5%</td>
+  <td>30-40%</td>
+  <td class="pass">6/6</td>
+</tr>
+</table>
+</div>
+<div style="font-size:11px;color:#999;margin:-10px 0 14px">*世纪华通2026-03-11市值1273.65亿（南方财富），2025-09-12达1421.74亿；分众、三七、恺英、吉比特等数据来自2025年报及Wind（搜索日期2026-08-24）；营收：世纪华通378.98亿、三七159.66亿、分众127.59亿、恺英53.25亿、巨人50.47亿、吉比特62.05亿、完美66.60亿；负债率/ROE均为2025年末年报值；PE分位为近5年TTM分位估算（华龙证券截至2025-12-18游戏PE 27.58x为中枢）</div>
+
+<h2>观察池</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>卡在哪筛</th><th>备注</th></tr>
+<tr>
+  <td><strong>昆仑万维</strong> 300418</td>
+  <td><span class="col-tag col-lose">④ROE负</span> <span class="col-tag col-warn">⑥PS>10</span></td>
+  <td>AI大模型投入期亏损，游戏+AI叙事强但财务未兑现，PS高企需等盈利拐点</td>
+</tr>
+<tr>
+  <td><strong>汤姆猫</strong> 300459</td>
+  <td><span class="col-tag col-lose">④ROE -15%</span> <span class="col-tag col-lose">②营收<10亿(8.2亿)</span></td>
+  <td>2025归母-12.04亿大幅亏损，IP老化+新品断档，2026Q1虽扭亏但持续性待验</td>
+</tr>
+<tr>
+  <td><strong>掌趣科技</strong> 300315</td>
+  <td><span class="col-tag col-lose">④ROE 1.2%</span></td>
+  <td>营收~12亿但净利微薄，ROE连续3年<5%，等待新游《代号XX》验证</td>
+</tr>
+<tr>
+  <td><strong>电魂网络</strong> 603258</td>
+  <td><span class="col-tag col-lose">②营收3.85亿</span> <span class="col-tag col-lose">④ROE负</span></td>
+  <td>营收腰斩30%、亏损2.14亿，出海滞后，观察新品能否止血</td>
+</tr>
+<tr>
+  <td><strong>中青宝</strong> 300052</td>
+  <td><span class="col-tag col-lose">①市值28亿</span> <span class="col-tag col-lose">②营收1.84亿</span> <span class="col-tag col-lose">④ROE负</span></td>
+  <td>市值营收双不达标，连续亏损，纯题材风险高</td>
+</tr>
+<tr>
+  <td><strong>游族网络</strong> 002174</td>
+  <td><span class="col-tag col-warn">④ROE 6.5%</span></td>
+  <td>刚扭亏，ROE未达8%但趋势向好，若2026维持盈利可晋级候选</td>
+</tr>
+<tr>
+  <td><strong>光线传媒</strong> 300251</td>
+  <td><span class="col-tag col-warn">④ROE 7.1%</span> <span class="col-tag col-info">⑤负债26%</span></td>
+  <td>影视波动大，靠《哪吒2》脉冲，ROE不稳定，适合事件驱动观察</td>
+</tr>
+</table>
+</div>
+
+<h2>筛除记录</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>筛子</th><th style="width:60px">筛除数</th><th>知名示例</th></tr>
+<tr><td>①市值 <span class="col-tag col-info">88→62</span></td><td style="text-align:center">26</td><td>中青宝、ST凯文、天娱数科等<30亿小票；传媒长尾大量20-40亿市值公司</td></tr>
+<tr><td>②营收 <span class="col-tag col-info">62→52</span></td><td style="text-align:center">10</td><td>电魂网络3.85亿、中青宝1.84亿、盛天网络等<10亿（或<3亿创业板）</td></tr>
+<tr><td>③毛利率 <span class="col-tag col-info">52→38</span></td><td style="text-align:center">14</td><td>部分影视/出版贸易类<15%（如中南传媒贸易拉低）、ST及商誉减值标的</td></tr>
+<tr><td>④ROE <span class="col-tag col-lose">最严 38→12</span></td><td style="text-align:center">26</td><td>昆仑万维、汤姆猫、电魂、中青宝、掌趣、宝通科技等亏损或<8%</td></tr>
+<tr><td>⑤负债率 <span class="col-tag col-info">12→10</span></td><td style="text-align:center">2</td><td>个别高商誉/高质押标的 >65%（如*ST文化类），游戏整体负债极低基本全过</td></tr>
+<tr><td>⑥估值 <span class="col-tag col-info">10→8</span></td><td style="text-align:center">2</td><td>完美世界PE分位~55%临界保留，个别PS>10x概念股剔除</td></tr>
+<tr style="background:#fffde7"><td><strong>剩余</strong></td><td style="text-align:center;font-weight:700;color:#2e7d32"><strong>8</strong></td><td>候选池：世纪华通/分众/巨人/三七/恺英/吉比特/完美/神州泰岳</td></tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <strong>L7筛选结论</strong><br>
+  88→8，筛选力度90.9%。最严是<strong>ROE筛（-26只）</strong>——行业亏损面仍存6家，ROE分化决定生死；其次是市值/毛利率。剩余8只均为<strong>盈利质量+现金流双优</strong>的白马：平均毛利率>75%、ROE>18%、负债率<30%，且2026E PE 15-20x处于历史30-50%分位（安全边际高）。核心5只（华通/巨人/三七/恺英/吉比特）为2025游戏白马六强（国泰海通覆盖），分众为梯媒寡头对冲游戏波动。若需更聚焦，可加第七筛：<strong>出海收入占比>30%或合同负债同比+20%</strong>，则进一步收敛至华通/三七/神州泰岳/吉比特。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l8">
+<div class="tab-inner">
+
+<h2>产业链</h2>
+<div class="card" style="font-size:13px;line-height:1.7">
+
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px">
+
+<div style="flex:1.1;min-width:200px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#2e7d32;font-size:14px">上游：内容与技术供给</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">IP源头</div>
+    <div style="text-align:center;font-size:11px;color:#666">阅文/网文 · 动漫 · 影视IP · 传奇/征途等自有IP</div>
+    <div style="margin:10px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">技术底座</div>
+    <div style="text-align:center;font-size:11px;color:#666">AI生成（美术/代码）· 引擎（Unity/UE）· 云游戏 · 芯片</div>
+  </div>
+</div>
+
+<div style="flex:2;min-width:280px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#1565c0;font-size:14px">中游：研运一体（利润池）</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+
+    <div style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap">
+      <div style="flex:1;min-width:70px;background:#e8f5e9;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">研发</div>
+        <div style="font-size:10px;color:#666">吉比特·完美·巨人</div>
+      </div>
+      <div style="font-size:20px;color:#999;line-height:36px">→</div>
+      <div style="flex:1;min-width:70px;background:#e8f5e9;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">发行/运营</div>
+        <div style="font-size:10px;color:#666">三七·世纪华通·恺英</div>
+      </div>
+      <div style="font-size:20px;color:#999;line-height:36px">→</div>
+      <div style="flex:1;min-width:70px;background:#ffebee;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">平台</div>
+        <div style="font-size:10px;color:#666">TapTap·传奇盒子</div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:11px;color:#2e7d32;margin-bottom:10px">▲ 研发发行毛利68-93%，净利11-23%，利润最厚 · 轻资产</div>
+
+    <div style="margin:6px 0 4px;font-weight:600;font-size:12px;color:#1565c0">广告营销（并行中游）</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">梯媒寡头<br><span style="font-size:10px;color:#666">分众传媒 69.96%</span></div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">效果广告<br><span style="font-size:10px;color:#666">蓝色光标·三人行</span></div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">MCN/营销<br><span style="font-size:10px;color:#666">引力传媒等</span></div>
+    </div>
+
+    <div style="margin:8px 0 4px;font-weight:600;font-size:12px;color:#1565c0">影视/出版（同属传媒）</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <div style="flex:1;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">影视院线<br><span style="font-size:10px;color:#666">光线·万达·华策</span></div>
+      <div style="flex:1;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">出版<br><span style="font-size:10px;color:#666">凤凰·中南·中文传媒</span></div>
+      <div style="flex:1;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">数字媒体<br><span style="font-size:10px;color:#666">芒果超媒</span></div>
+    </div>
+  </div>
+</div>
+
+<div style="flex:1;min-width:160px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#c62828;font-size:14px">下游：渠道与用户</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:10px 8px;text-align:center;font-weight:600;font-size:13px">渠道分发</div>
+    <div style="text-align:center;font-size:11px;color:#666">苹果/谷歌30% · 华为 · TapTap 0% · 微信小游戏</div>
+    <div style="margin:10px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#f5f5f5;border:1px solid #ccc;border-radius:4px;padding:10px 8px;text-align:center;font-weight:600;font-size:13px">终端用户</div>
+    <div style="text-align:center;font-size:11px;color:#666">6.83亿玩家 · 广告主（分众）· 观众/读者</div>
+  </div>
+</div>
+
+</div>
+
+<div style="background:#fffde7;border-left:3px solid #f9a825;padding:8px 12px;font-size:12px;border-radius:0 4px 4px 0">
+  <strong>利润最厚环节：</strong>游戏研发发行（毛利率70-93%）→ 梯媒（分众70.48%净利23%）→ 出版（净利11%稳定）→ 影视（波动大）
+  <br><span style="color:#999">渠道（苹果税30%）正在松动（海外第三方支付放开），利润向研发方回流；AI使美术/买量成本下降5-15pct</span>
+</div>
+
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>环节</th><th>代表公司</th><th>毛利率</th><th>集中度</th><th>议价能力</th></tr>
+<tr>
+  <td><span class="col-tag col-win">游戏研发</span></td>
+  <td>吉比特93.9%、巨人91.0%、恺英80.8%</td>
+  <td><span class="col-tag col-win">80-93%</span></td>
+  <td>CR5营收75%</td>
+  <td><span class="col-tag col-win">强（IP+长线运营）</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-win">游戏发行</span></td>
+  <td>三七75.9%、世纪华通73.1%</td>
+  <td><span class="col-tag col-win">70-76%</span></td>
+  <td>CR3 ~35%</td>
+  <td><span class="col-tag col-win">强（全球买量网络）</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-win">梯媒</span></td>
+  <td>分众传媒69.96%</td>
+  <td><span class="col-tag col-win">69.96%</span></td>
+  <td>CR1 ~60%（寡头）</td>
+  <td><span class="col-tag col-win">极强（点位垄断）</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-warn">广告营销</span></td>
+  <td>蓝色光标等</td>
+  <td><span class="col-tag col-warn">11-15%</span></td>
+  <td>分散 CR3<15%</td>
+  <td><span class="col-tag col-lose">弱</span></td>
+</tr>
+<tr style="background:#fafafa">
+  <td><span class="col-tag col-warn">影视院线</span></td>
+  <td>光线、万达</td>
+  <td><span class="col-tag col-warn">23-27%</span></td>
+  <td>分散</td>
+  <td><span class="col-tag col-lose">弱（内容脉冲）</span></td>
+</tr>
+<tr style="background:#fafafa">
+  <td><span class="col-tag col-win">出版</span></td>
+  <td>凤凰、中南、中文传媒</td>
+  <td><span class="col-tag col-warn">33.6%</span></td>
+  <td>区域垄断</td>
+  <td><span class="col-tag col-warn">中（教材教辅）</span></td>
+</tr>
+<tr style="background:#fafafa">
+  <td><span class="col-tag col-lose">渠道</span></td>
+  <td>苹果/谷歌/华为</td>
+  <td><span class="col-tag col-win">~30%抽成</span></td>
+  <td>CR2 ~80%</td>
+  <td><span class="col-tag col-lose">强→松动中</span></td>
+</tr>
+</table>
+</div>
+
+<h2>市场规模</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">指标</th><th style="width:25%">数值</th><th>说明</th></tr>
+<tr><td><strong>TAM</strong>（总可触达市场）</td><td><span class="col-tag col-info" style="font-size:13px">国内3507.89亿+出海~1494亿</span></td><td>国内(游戏工委2025) + 海外自研204.55亿美元×7.3≈1493亿，合计~5000亿；间接拉动1.2万亿</td></tr>
+<tr><td><strong>SAM</strong>（可服务-上市口径）</td><td>1149.19亿（游戏）/5355亿（传媒）</td><td>2025年A股游戏板块营收1149亿（+23%），传媒整体5355亿（+5.32%）（万联/国信）</td></tr>
+<tr><td><strong>SOM</strong>（龙头可得）</td><td>头部5家725.49亿 占游戏75.46%</td><td>世纪华通378.98亿为腾讯系外A股第一，Top5市占持续提升0.61pct</td></tr>
+<tr><td><strong>当前渗透率</strong></td><td>用户6.83亿 / 人口48.8%</td><td>用户增速仅1.35%已见顶，未来靠ARPU（付费率+ARPPU）+出海，而非用户数</td></tr>
+<tr><td><strong>近年增速</strong>（3年CAGR）</td><td><span class="col-tag col-win">7-8%</span></td><td>国内2021-2025 V型反转：2022负增后2023 3030亿→2024 3258亿(+7.5%)→2025 3508亿(+7.68%)</td></tr>
+</table>
+</div>
+
+<h2>生命周期</h2>
+<div class="summary-box">
+  <strong><span class="col-tag col-win" style="font-size:14px">成熟期-结构升级期</span></strong><br>
+  判断依据：用户规模6.83亿增速1.35%进入平台期（成熟标志），但<strong>收入仍+7.68%创新高</strong>——靠结构而非总量：①小程序游戏强劲 ②多端互通扩大场景 ③出海占比37%创新高 ④AI提升供给效率。对比光伏等洗牌期，游戏无产能过剩，而是<strong>内容供给常态化下的优胜劣汰</strong>。头部长青游戏（《问道》20年、《征途》累计300亿流水）证明生命周期可达10年+，新品（《Whiteout Survival》《超自然行动组》2亿注册/50亿流水）接力，行业从"人口红利"转向"精品+全球化红利"。
+</div>
+
+<h2>增长驱动力</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动力</th><th>类型</th><th>可持续性</th><th>量化指标</th></tr>
+<tr>
+  <td>版号常态化+十五五定调</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长（5年+）</span></td>
+  <td>1771个（7年新高，+20%）、月均110-178个</td>
+</tr>
+<tr>
+  <td>出海全球化</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长（10年）</span></td>
+  <td>204.55亿美元（连续6年>1000亿）、A股境外+38.26%</td>
+</tr>
+<tr>
+  <td>AI降本增效</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>三七销售费用率-15pct至45%，美术生成效率+50%，买量ROI优化</td>
+</tr>
+<tr>
+  <td>小程序/多端互通</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-warn">中长</span></td>
+  <td>小程序游戏增速>30%，多端用户+10-15%</td>
+</tr>
+<tr>
+  <td>情绪消费+IP衍生（谷子经济）</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>Z世代情绪消费、IP潮玩/影视联动拉动ARPU</td>
+</tr>
+<tr>
+  <td>渠道费率下行（第三方支付松动）</td>
+  <td><span class="col-tag col-warn">周期/结构</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>谷歌/苹果海外试点15% vs 30%，分众点位成本持续下降</td>
+</tr>
+</table>
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l9">
+<div class="tab-inner">
+
+<h2>市场结构</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>市场结构类型</td>
+  <td>游戏：<span class="col-tag col-warn">垄断竞争</span>（头部集中+长尾大量）；梯媒：<span class="col-tag col-win">寡头垄断</span>；广告/影视：<span class="col-tag col-lose">完全竞争</span></td>
+</tr>
+<tr>
+  <td>CR3/CR5</td>
+  <td>游戏A股：CR5营收75.46%（<span style="color:#2e7d32">↑+0.61pct</span>）、CR3市值~45%（华通/分众/巨人）；传媒整体CR5<30%分散</td>
+</tr>
+<tr>
+  <td>格局象限</td>
+  <td>游戏：<span class="col-tag col-win">赢家通吃→寡头稳定过渡</span>；梯媒：<span class="col-tag col-win">寡头稳定</span>；广告营销：<span class="col-tag col-lose">价格战泥潭</span></td>
+</tr>
+<tr>
+  <td>新进入者威胁</td>
+  <td><span class="col-tag col-warn">中</span>（版号放开+AI降低门槛，但成功率<5%，马太效应使新进入者难突围）</td>
+</tr>
+</table>
+</div>
+
+<h2>竞争壁垒</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>壁垒类型</th><th>强度</th><th>可持续性</th><th>具体表现</th></tr>
+<tr>
+  <td>IP+长线运营能力</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长（10年+）</span></td>
+  <td>《问道》20年、《征途》300亿流水、《Whiteout Survival》长青SLG，复用率决定ROE（吉比特ROE33%靠问道）</td>
+</tr>
+<tr>
+  <td>全球发行与买量网络</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>世纪华通点点互动海外TOP1/2（Sensor Tower 7月）、三七海外>50%（东南亚/拉美），渠道+Mediation能力</td>
+</tr>
+<tr>
+  <td>梯媒点位垄断（分众）</td>
+  <td><span class="col-tag col-win">极强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>楼宇媒体市占>60%，单屏成本持续下降，收购新潮后格局优化，互联网投放弹性大</td>
+</tr>
+<tr>
+  <td>AI技术与数据飞轮</td>
+  <td><span class="col-tag col-warn">中强</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>三七AI投放ROI优化、吉比特AI美术/研发提效；但技术迭代快，需持续投入（昆仑反例）</td>
+</tr>
+<tr>
+  <td>规模效应（买量/研发摊销）</td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>头部销售费用77亿但费率降15pct，研发分摊后净利弹性大；尾部因规模不足亏损</td>
+</tr>
+</table>
+</div>
+
+<div class="summary-box">
+  <strong>定价权测试</strong><br>
+  🔹 龙头能涨价吗？<strong>游戏不能直接涨价</strong>（靠ARPPU/付费率间接提价），但能<strong>提分成、降买量成本</strong>——三七净利+8.5%而营收-8.46%即靠降本；分众能提价（刊例价+出租率双提，Q3毛利回到18年峰值）<br>
+  🔹 毛利率趋势：游戏板块68.52%→70.76%（2025→2026Q1 +2.2pct），分众70.48%（+4.22pct），整体向好<br>
+  🔹 ROE趋势：头部20-33%（恺英23%、三七21.7%、吉比特33%）显著高于尾部负值，分化扩大
+</div>
+
+<h2>驱动力拆解</h2>
+<div class="highlight-box">
+  <strong>行业收入公式</strong><br>
+  游戏：收入 = 6.83亿用户 × 付费率(~8%) × ARPPU × 生命周期；利润 = 流水×(1-渠道30%→15%-买量40-60%) - 研发<br>
+  分众：收入 = 点位数 × 刊例价 × 出租率；利润 = 收入 - 租赁固定成本（杠杆高）<br><br>
+  当前组合：<span style="color:#2e7d32;font-weight:700">量 ↑</span>（用户微增+出海+小程序） ＋ <span style="color:#2e7d32;font-weight:700">价 ↑</span>（ARPU↑+渠道费率↓+毛利↑） ＝ <span class="col-tag col-win">量价齐升（戴维斯双击）</span>  ★最理想
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动因子</th><th>最新值</th><th>历史区间</th><th>当前分位</th></tr>
+<tr>
+  <td>国内游戏销售收入</td>
+  <td><span class="col-tag col-win">3507.89亿 +7.68%</span></td>
+  <td>2650-3508亿（2021-2025）</td>
+  <td><span class="col-tag col-win">100%（新高）</span></td>
+</tr>
+<tr>
+  <td>版号发放（年）</td>
+  <td><span class="col-tag col-win">1771个</span></td>
+  <td>500-1771个（2019-2025）</td>
+  <td><span class="col-tag col-win">95%</span></td>
+</tr>
+<tr>
+  <td>出海收入（自研）</td>
+  <td><span class="col-tag col-win">204.55亿美金</span></td>
+  <td>150-204亿美金</td>
+  <td><span class="col-tag col-win">100%</span></td>
+</tr>
+<tr>
+  <td>行业平均毛利率（游戏）</td>
+  <td><span class="col-tag col-win">70.76%（26Q1）</span></td>
+  <td>65-71%</td>
+  <td><span class="col-tag col-win">90%</span></td>
+</tr>
+<tr>
+  <td>头部公司合同负债</td>
+  <td><span class="col-tag col-win">76.5亿 +7.8亿YoY</span></td>
+  <td>60-77亿</td>
+  <td><span class="col-tag col-win">85%</span></td>
+</tr>
+<tr>
+  <td>销售费用率（游戏）</td>
+  <td><span class="col-tag col-win">38.33%（-新品期）</span></td>
+  <td>35-60%</td>
+  <td><span class="col-tag col-info">40%（低位）</span></td>
+</tr>
+</table>
+</div>
+
+<h2>成本结构</h2>
+<div class="summary-box">
+  🔹 <strong>类型：</strong>游戏——<span class="col-tag col-win">轻资产</span>（固定成本低，变动成本为买量+分成）；分众——<span class="col-tag col-warn">中重资产</span>（租赁固定成本高，经营杠杆大）<br>
+  🔹 <strong>成本敏感性：</strong>游戏营收±10% → 利润±25-30%（买量弹性大）；分众营收±10% → 利润±20%（出租率敏感）<br>
+  🔹 <strong>盈亏平衡点：</strong>游戏单产品流水需覆盖研发+买量，头部产品70%毛利下盈亏平衡低；分众出租率~65%盈亏平衡，当前行业出租率回升至高位<br>
+  🔹 <strong>单位经济学：</strong>单用户LTV = ARPU×生命周期 - 获客成本（买量）；当前AI使获客成本降10-15%，LTV/CAC>3为健康（头部达3.5-4）
+</div>
+
+<h2>竞争格局总结</h2>
+<div class="highlight-box">
+  游戏传媒正经历<strong>"强者恒强、弱者出清"</strong>的格局重塑：过去"百花齐放"（CR3<30%）正转向<strong>"一超多强"</strong>——世纪华通以50亿流水爆款（《Whiteout Survival》全球SLG第一）一骑绝尘（378亿营收=第二名2.4倍），三七/吉比特/恺英/巨人构成第二梯队（50-160亿），合计吃掉75%市场。护城河不再是"能否做出爆款"的一次性能力，而是<strong>"能否持续做出爆款+全球化+长线运营"</strong>的三重复利：吉比特《问道》运营20年仍贡献30%+利润，恺英传奇盒子形成平台飞轮，分众梯媒则靠不可复制的点位网络享受垄断定价权。新进入者面临<strong>三重门槛</strong>：版号虽多但精品率<5%、买量成本头部1/3、AI数据飞轮差距。投资上应<strong>重仓龙头、回避尾部</strong>——尾部6家亏损、5家双降，出清未完。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l10">
+<div class="tab-inner">
+
+<h2>周期位置</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>库存周期阶段</td>
+  <td><span class="col-tag col-win">复苏→繁荣</span>（非典型库存周期，用"产品周期"替代：2023底部→2024复苏→2025繁荣兑现）</td>
+</tr>
+<tr>
+  <td>产能利用率（版号供给）</td>
+  <td><span class="col-tag col-win">85-95%</span>（1771个满供给，研发团队满负荷，新品密集上线期）</td>
+</tr>
+<tr>
+  <td>产品价格分位</td>
+  <td>游戏流水<span class="col-tag col-win">高位</span>（5家新品合计>50亿），分众刊例价<span class="col-tag col-win">回升至峰值</span></td>
+</tr>
+<tr>
+  <td>行业盈利状态</td>
+  <td><span class="col-tag col-win">高盈利</span>（游戏净利率16.8%创3年新高，分众净利29.46亿虽降但现金流72亿稳健）</td>
+</tr>
+</table>
+</div>
+
+<div class="danger-box">
+  <strong>⚠ PE悖论检查</strong><br>
+  游戏为成长型非周期，PE有效但需结合增速：当前申万游戏PE(TTM) 27.58x（截至2025-12-18，华龙），高于传媒整体26.56x，但低于历史中枢30.01x。<br>
+  龙头2026E PE仅15-17x（世纪华通13x/巨人12x/三七15x/恺英15x/吉比特16x，国泰海通2026-04-30），显著低于TTM，因2025利润基数跃升后PE被动回落——<strong>非周期陷阱不适用</strong>，应看PEG（吉比特PEG 0.8 / 三七1.1，合理）。<br>
+  PB视角：游戏轻资产PB 3-5x（分众4.2x、吉比特6.1x）不具参考性，需用PS（完美PS 4.3x、昆仑PS高需警惕）。<br>
+  <strong>警告：</strong>勿因TTM PE 27x偏高而误判为贵——成长股应用动态PE/PEG，当前动态估值处于底部30-50%分位，具备安全边际。
+</div>
+
+<h2>估值水平</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>估值指标</th><th>行业当前</th><th>历史中位数</th><th>80%分位</th><th>20%分位</th></tr>
+<tr>
+  <td><strong>PE(TTM)</strong> 游戏</td>
+  <td><span class="col-tag col-warn">27.58x</span></td>
+  <td>30.01x（2015以来均值）</td>
+  <td>38x</td>
+  <td>16.9x</td>
+</tr>
+<tr>
+  <td><strong>PE(2026E)</strong> 白马</td>
+  <td><span class="col-tag col-win">15-17x</span></td>
+  <td>20-25x</td>
+  <td>30x+</td>
+  <td>15x</td>
+</tr>
+<tr>
+  <td><strong>PS</strong> 游戏</td>
+  <td><span class="col-tag col-info">4-6x</span></td>
+  <td>5x</td>
+  <td>8x</td>
+  <td>3x</td>
+</tr>
+<tr>
+  <td><strong>PB</strong> 传媒整体</td>
+  <td>~2.8x</td>
+  <td>2.5x</td>
+  <td>4.0x</td>
+  <td>1.8x</td>
+</tr>
+</table>
+</div>
+
+<h2>政策环境</h2>
+<div class="summary-box">
+  🔹 <strong>政策方向：</strong><span class="col-tag col-win">利好（常态化+鼓励）</span>（"先规范后支持"完成切换）<br>
+  🔹 <strong>关键政策：</strong><br>
+  &emsp;• 2025年《十五五规划建议》首次提出<strong>"引导网络游戏健康发展"</strong>——顶层定调由"防沉迷监管"转向"高质量发展"（信号意义极强）<br>
+  &emsp;• 版号：2025全年1771个创7年新高（+20% YoY），月均110-178个稳定发放，供给约束解除（游戏工委/一财 2025-12-25）<br>
+  &emsp;• 未保：人脸识别+时长限制已成熟，合规成本对龙头更低（利好集中）<br>
+  &emsp;• 出海/ AI：各地密集出台游戏电竞激励政策（上海/广州），且AI应用纳入数字经济支持范畴<br>
+  &emsp;• 梯媒：无不利政策，消费复苏+互联网投放回暖利好分众（互联网客户占比25%→2025年+188%）<br>
+  🔹 <strong>政策周期位置：</strong><span class="col-tag col-win">宽松期</span>（2021-2022最严→2023-2025持续宽松，预计2026延续）
+</div>
+
+<h2>买入清单</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:28%">条件</th><th style="width:16%">结果</th><th>备注</th></tr>
+<tr>
+  <td>周期位置：不在繁荣顶点</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>复苏向繁荣，合同负债+7.8亿显示景气延续，非顶部</td>
+</tr>
+<tr>
+  <td>估值：PE/PS在历史偏低分位</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>动态PE 15-17x（20%分位），TTM 27.58x低于中枢30x，拥挤度历史低分位</td>
+</tr>
+<tr>
+  <td>政策：不是收紧期</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>十五五利好+版号新高，政策底最扎实阶段</td>
+</tr>
+<tr>
+  <td>格局：龙头壁垒稳固</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>5家白马壁垒验证（出海+长线+AI），分众寡头垄断</td>
+</tr>
+<tr>
+  <td>增长：有可见驱动力</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>2026新品储备丰富（腾讯/网易大作少，竞争温和利好A股）+AI持续渗透</td>
+</tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <div style="font-size:16px;font-weight:700;margin-bottom:8px">综合判断：<span class="col-tag col-win" style="font-size:15px">可以买入（分批）</span></div>
+  <div style="margin-bottom:6px">5/5条件全满足，但需精选龙头、控制仓位（成长股波动大）</div>
+  <table style="font-size:12px;margin:6px 0;border:none;background:transparent">
+    <tr><td style="border:none;padding:3px 6px;background:transparent;width:90px;font-weight:600">预期回报</td><td style="border:none;padding:3px 6px;background:transparent">业绩增长（15-30%/年）+ 估值修复（PE 15x→20-25x）合计年化20-35%</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">仓位建议</td><td style="border:none;padding:3px 6px;background:transparent"><span class="col-tag col-win">组合15-25%</span>（龙头集中3-5只，单只≤10%）</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">跟踪指标</td><td style="border:none;padding:3px 6px;background:transparent">版号数 · 出海收入占比 · 头部流水榜单 · 合同负债 · 销售费用率</td></tr>
+  </table>
+  <div style="margin-top:8px;padding:8px;background:#e8f5e9;border-radius:4px;font-size:12px">
+    <strong>买入策略：</strong><br>
+    <span class="col-tag col-win">核心仓（60%）</span>：世纪华通（出海第一+50亿流水兑现）+ 三七互娱（发行+AI降本最优，PE15x PEG 1.1）<br>
+    <span class="col-tag col-win">卫星仓（40%）</span>：吉比特（长线运营之王，ROE33%+分红率高）+ 巨人网络（超自然行动组递延17亿待释放）+ 分众传媒（梯媒对冲，股息率~4%）<br>
+    分三批：现价建40% + 财报验证后30% + 新品流水超预期后30%；止损：单只-15%或连续两季流水下滑
+  </div>
+</div>
+
+<h2>卖出信号</h2>
+<div class="danger-box">
+  <strong>出现以下信号考虑卖出：</strong><br>
+  <div style="margin-top:6px">
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px">1</span>
+    版号骤减至<800个/年或重回收紧（如防沉迷二次加码）——供给端恶化<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">2</span>
+    头部流水连续2季度下滑20%+ 且无新品接力（产品周期结束）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">3</span>
+    动态PE回升至30x+（历史80%分位）且PEG>2，估值透支<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">4</span>
+    销售费用率重新攀升至60%+（买量恶性竞争再起，利润率被侵蚀）
+  </div>
+</div>
+
+</div>
+</div>
+
+<div class="footer">Generated by Industry Analysis · L7-L10 Framework · Stock Selection · 数据截止2026-08-24</div>
+
+</div>
+
+<script>
+var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+var contents = document.querySelectorAll('.tab-content');
+btns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    contents.forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    var tab = btn.getAttribute('data-tab');
+    document.getElementById('tab-' + tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
