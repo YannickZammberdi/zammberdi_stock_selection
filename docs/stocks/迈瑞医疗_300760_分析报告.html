@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>迈瑞医疗(300760) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .score-note { font-size: 13px; color: #666; background: #fafafa; border: 1px dashed #ccc; padding: 8px 12px; margin: 10px 0; }
+  .history-table td:first-child { white-space: nowrap; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>迈瑞医疗（300760）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026-08-24 | 数据来源：2024年报 + 2025年Q1-Q3季报 + 券商研报一致预期(2026E) + 理杏仁/Choice估值数据</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>深圳迈瑞生物医疗电子股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>300760.SZ（创业板）</td></tr>
+  <tr><td>所属行业</td><td>医疗器械（申万：医疗器械 / Wind：健康护理设备）</td></tr>
+  <tr><td>行业地位</td><td>国产医疗器械绝对龙头，国内市占率第一（监护、超声、生化均Top1-3），全球Top30医疗器械企业，产品覆盖190+国家</td></tr>
+  <tr><td>FY 营收</td><td>2024年 367.26亿元（YoY +5.14%）；2023年349.32亿；2025前三季度258.34亿（YoY -12.38%，Q3单季拐点+1.53%）</td></tr>
+  <tr><td>归母净利润</td><td>2024年 116.68亿元（YoY +0.74%）；扣非114.42亿（+0.07%）；2025H1 50.69亿（-32.96%），Q3单季25.01亿（-18.69%）</td></tr>
+  <tr><td>经营现金流</td><td>2024年 124.32亿元（YoY +12.38%，净现比106%）；2025H1 39.22亿（-53.83%）；2025Q1 14.94亿</td></tr>
+  <tr><td>总资产</td><td>2024年末 566.44亿元（YoY +18.16%）；2023年末479.40亿</td></tr>
+  <tr><td>归母净资产</td><td>2024年末 358.56亿元（YoY +8.38%）；2023年末330.85亿</td></tr>
+  <tr><td>ROE</td><td>2024年加权ROE 32.54%（YoY -2.46pp）；2025H1加权13.26%（-7.43pp）；五年均值约28%</td></tr>
+</table>
+<div class="highlight-box">
+  <strong>行业类型标注：非周期股（成长型）</strong> —— 按 <code>industry-classification.md</code> 医疗器械属“非周期股”清单，采用<strong>非周期股评分体系</strong>。公司虽有国产替代成长属性，但受集采/财政周期扰动有阶段性波动，不属于纯周期。
+</div>
+
+<p class="score-note"><strong>评分口径说明：</strong><span>采用非周期股评分体系，首次分析，无历史版本</span></p>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:12px;color:#999;margin-bottom:6px;">采用非周期股评分体系（ROE/含金量/增长/负债/毛利率/估值/FCF等10维）</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE</td><td class="good">15/15</td><td style="text-align:left">2024加权ROE 32.54% ≥15%满分；五年均值约28%，巴菲特标准优秀</td></tr>
+  <tr><td>杜邦驱动质量</td><td class="good">5/5</td><td style="text-align:left">高利润型：净利率31.8%×周转0.70×乘数1.39，靠定价权而非杠杆，质量最高</td></tr>
+  <tr><td>利润含金量(CFO/净利)</td><td class="good">15/15</td><td style="text-align:left">2024 CFO 124.32亿 /归母116.68亿=1.07 ≥1.0满分；经营现金流持续＞净利润</td></tr>
+  <tr><td>营收增长</td><td class="neutral">7/10</td><td style="text-align:left">2024 +5.14%（≥5%得7分）；较2023年10.3%、2022年20%显著放缓，2025前三季度-12.38%承压</td></tr>
+  <tr><td>利润增长</td><td class="bad">4/10</td><td style="text-align:left">2024 +0.74%（≥0%得4分）；扣非+0.07%几近停滞，2025H1 -32.96%大幅下滑</td></tr>
+  <tr><td>负债率</td><td class="good">10/10</td><td style="text-align:left">2024资产负债率28.04% ＜40%满分；行业中最低一档，远低于同行均值35-45%</td></tr>
+  <tr><td>短期偿债(货币-有息)</td><td class="good">10/10</td><td style="text-align:left">货币166.44亿 vs 短期有息0.05亿+一年内有息1.15亿，覆盖倍数＞100倍，充裕</td></tr>
+  <tr><td>毛利率水平与趋势</td><td class="good">7/10</td><td style="text-align:left">2024 63.11%（≥30%）但同比-1.07pp，Q4单季毛利率大幅下降至约55%，趋势需警惕，扣3分</td></tr>
+  <tr><td>估值(PE vs 合理区间)</td><td class="neutral">7/10</td><td style="text-align:left">当前PE-TTM约23.3x，落在ROE＞20%合理区间20-30x内；但处于盈利下行期，PE有被动抬高风险</td></tr>
+  <tr><td>FCF</td><td class="good">5/5</td><td style="text-align:left">2024 FCF≈95-100亿（CFO124.3亿-资本开支约25亿），持续为正；上市以来仅2021年小幅波动</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">85/100</td><td style="text-align:left">品质优秀（阈值≥80）</td></tr>
+</table>
+
+<div class="verdict verdict-ok">品质优秀（85/100分）</div>
+
+<h2 style="margin-top:16px">评分沿革</h2>
+<style>.history-table{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:13px}.history-table th,.history-table td{border:1px solid #ddd;padding:6px 8px;text-align:center}.history-table th{background:#f0f0f0;font-weight:bold}.history-table td.good{color:#27ae60}.history-table td.neutral{color:#e67e22}.history-table td.bad{color:#c0392b}</style><table class="history-table">
+  <tr><th>日期</th><th>评分</th><th>评分体系</th><th>变化原因</th></tr>
+  <tr><td>2026-08-24</td><td class="good" style="font-weight:bold">85/100</td><td>成长性</td><td style="text-align:left">采用非周期股评分体系，首次分析，无历史版本</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>国产医疗器械最优质资产之一：超高ROE+零有息负债+现金流真金白银，但2024-2025进入“国内政策阵痛+国际挑大梁”的切换期，增长失速是当前核心矛盾。<br><br>
+  <strong>核心优势：</strong>① 商业模式极优：63%毛利率、32%净利率，高利润型杜邦，定价权显著；② 财务极度稳健：28%负债率、166亿现金、零有息负债，扛风险能力行业最强；③ 龙头地位+全球化：三大产线市占率持续提升，国际收入占比45%→2025H1首次超50%，欧洲/发展中国家双位数增长；④ 现金奶牛+高分红：2024分红76亿（分红率65%）、净现比106%、FCF持续为正。<br><br>
+  <strong>核心风险：</strong>① 增长引擎熄火：2024营收+5%、利润+0.7%为上市最慢，2025H1营收-18%、利润-33%，国内设备招标延迟+IVD集采降价双重挤压；② 毛利率承压：Q4毛利率骤降1pp+，IVD试剂降价约20%、设备以价换量，净利率全年-1.4pp；③ 商誉高企：收购惠泰后商誉110.9亿占净资产31%，整合及减值风险；④ 资金面逆转：北向持股从10.8%→8%→7.56%持续减持，公募持仓占比79.7%→73%，股东数从5.5万→15.2万散户化。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2024本期</th><th>FY2023上期</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>367.26亿</td><td>349.32亿</td><td class="neutral">+5.14%</td><td>上市以来最低增速，2022年+20%→2023年+15%→2024年+5%阶梯下行</td></tr>
+  <tr><td>归母净利润</td><td>116.68亿</td><td>115.82亿</td><td class="bad">+0.74%</td><td>几乎零增长，扣非仅+0.07%，利润增速首次跑输营收</td></tr>
+  <tr><td>扣非净利润</td><td>114.42亿</td><td>114.34亿</td><td class="bad">+0.07%</td><td>主业盈利停滞，非经常性贡献2.26亿</td></tr>
+  <tr><td>毛利率</td><td>63.11%</td><td>64.18%</td><td class="bad">-1.07pp</td><td>仍处高位但趋势向下，Q4单季降超3pp至约55%</td></tr>
+  <tr><td>净利率</td><td>31.77%</td><td>33.16%</td><td class="bad">-1.39pp</td><td>高盈利但边际承压，管理层解释Q2毛利率降幅更大</td></tr>
+  <tr><td>期间费用率</td><td>28.72%</td><td>28.54%</td><td>+0.18pp</td><td>销售5.28亿/研发3.67亿/管理1.60亿，研发占比10.91%创新高</td></tr>
+  <tr><td>Q4营收</td><td>72.41亿</td><td>约88亿*</td><td class="bad">-17%*</td><td>Q4失速最明显，占全年19.7%（正常约25%），招标延迟集中体现</td></tr>
+  <tr><td>Q4归母净利</td><td>10.31亿</td><td>约24亿*</td><td class="bad">-57%*</td><td>Q4净利仅为Q2（44亿）的23%，盈利季节性异常</td></tr>
+  <tr><td>加权ROE</td><td>32.54%</td><td>35.00%*</td><td class="neutral">-2.46pp</td><td>仍远超15%优秀线，但2025H1骤降至13.26%</td></tr>
+</table>
+<p style="font-size:11px;color:#999;">*2023 Q4为推算值；费用率=（销售+管理+研发）/营收。</p>
+<div class="summary-box">
+  <strong>利润表解读：</strong>“增收不增利”+“Q4塌陷”是2024年核心特征。5%营收增速创上市新低，利润几近零增长，扣非更差；毛利率/净利率双降，Q4单季营收/净利环比Q3分别-19%/-66%，显示国内财政紧张+医疗专项债收缩+设备更新招标延期的三重冲击在年末集中释放。2025Q1（-12%/-16.8%）、H1（-18.45%/-32.96%）进一步恶化，但公司指引Q3营收已转正（+1.53%）且Q4提速，拐点信号初现。剔除财务费用影响后归母净利实际+4.36%，显示利息收入下降（5.57亿 vs 8.22亿）也是拖累项。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>2024年末</th><th>2023年末</th><th>变动</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td>166.44亿</td><td>187.87亿</td><td>-11.4%</td><td class="good">仍极充裕，占总资产29%，远超有息负债</td></tr>
+  <tr><td>应收账款</td><td>32.19亿</td><td>32.95亿</td><td>-2.3%</td><td class="good">零增长，回款优于营收，应收/营收仅8.8%</td></tr>
+  <tr><td>存货</td><td>47.57亿</td><td>39.79亿</td><td class="neutral">+19.6%</td><td>增幅远超营收，存货周转3.10次（-），需关注去化</td></tr>
+  <tr><td>商誉</td><td>110.93亿</td><td>50.62亿</td><td>+119%</td><td class="bad">因收购惠泰医疗暴增，占净资产27.2%，为最大潜在雷点</td></tr>
+  <tr><td>固定资产+在建</td><td>97.61亿</td><td>79.51亿</td><td>+22.8%</td><td>武汉/产能基地持续投入，重资产化趋势</td></tr>
+  <tr><td>短期借款</td><td>0.054亿</td><td>0.077亿</td><td>-30%</td><td class="good">几乎为零</td></tr>
+  <tr><td>长期借款</td><td>0.003亿</td><td>0.014亿</td><td>-76%</td><td class="good">零杠杆</td></tr>
+  <tr><td>合同负债</td><td>21.66亿</td><td>19.73亿</td><td>+9.8%</td><td class="good">预收款增长，先款后货模式健康</td></tr>
+  <tr><td>总资产</td><td>566.44亿</td><td>479.40亿</td><td>+18.2%</td><td>主要由商誉+无形资产（67.23亿）驱动</td></tr>
+  <tr><td>归母净资产</td><td>358.56亿</td><td>330.85亿</td><td>+8.4%</td><td>每股净资产29.57元（摊薄）</td></tr>
+  <tr><td>资产负债率</td><td>28.04%</td><td>30.44%</td><td>-2.40pp</td><td class="good">极低，申万医疗器械行业第82位（越低越安全）</td></tr>
+</table>
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>极致稳健的“现金牛”资产结构：货币资金166亿+零有息负债+28%负债率，在A股属于最安全梯队。正面信号：应收零增长（医改整顿后回款改善）、合同负债逆势增长9.8%显示在手订单韧性。两大关注点：① 存货+19.6%显著快于营收，IVD试剂及设备备货增加，若需求不及预期有跌价风险；② 商誉从50.6亿→110.9亿（收购惠泰61亿商誉），占净资产比例从15%跃至31%，若惠泰整合或心血管耗材集采不及预期，减值将直接冲击利润。无形资产同步从22.25亿→67.23亿（惠泰技术/专利）。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>2024本期</th><th>2023上期</th><th>同比</th><th>评价</th></tr>
+  <tr><td>经营现金流(CFO)</td><td>124.32亿</td><td>110.62亿</td><td class="good">+12.38%</td><td>逆势增长，远超净利润增速，收现能力增强</td></tr>
+  <tr><td>投资现金流(CFI)</td><td>约-85亿*</td><td>约-32亿*</td><td class="neutral">流出扩大</td><td>主要为收购惠泰股权+产能/研发资本化</td></tr>
+  <tr><td>筹资现金流(CFF)</td><td>约-62亿*</td><td>约-70亿*</td><td>-</td><td>重分红：全年分红+回购约76亿流出</td></tr>
+  <tr><td>CFO/归母净利润</td><td>106.5%</td><td>95.5%</td><td class="good">+11pp</td><td>利润含金量回升至＞1，纸面富贵风险低</td></tr>
+  <tr><td>自由现金流(FCF)</td><td>约98亿</td><td>约85亿</td><td class="good">+15%</td><td>CFO-资本开支（购建+开发约26亿），持续为正且充裕</td></tr>
+  <tr><td>2025H1 CFO</td><td>39.22亿</td><td>84.96亿</td><td class="bad">-53.83%</td><td>与利润同步下滑，但仍为正；Q1 CFO 14.94亿（-47.8%）</td></tr>
+</table>
+<p style="font-size:11px;color:#999;">*CFI/CFF为根据资产负债变动及公告推算，精确值以现金流量表为准；FCF= CFO-购建固定资产无形资产支付的现金。</p>
+<div class="summary-box">
+  <strong>现金流解读：</strong>2024年是“利润失速但现金更真”的一年：CFO +12.38%显著跑赢净利润+0.74%，净现比从95%回升至106%，说明尽管利润承压，上下游占款能力未恶化（应收下降、合同负债增长）。FCF约98亿，分红后仍有盈余，支撑65%高分红率。隐忧在2025年：H1 CFO腰斩至39.22亿（-53.8%），与营收/利润下滑同步，Q1经营现金流仅14.9亿，需跟踪Q3拐点后现金流能否同步修复。长期看，轻资产+高预收款模式使迈瑞FCF稳定性远超重资产医疗器械同行。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>2024本期</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE（加权）</td><td>32.54%</td><td>＞15%优秀</td><td class="good">优秀，远超标准，但较2023年-2.46pp，2025H1降至13.26%</td></tr>
+  <tr><td>毛利率</td><td>63.11%</td><td>＞40%且稳定</td><td class="good">优秀，但-1.07pp且Q4加速下滑，趋势转弱</td></tr>
+  <tr><td>净利率</td><td>31.77%</td><td>＞15%</td><td class="good">优秀，但-1.39pp，扣非净利率31.16%</td></tr>
+  <tr><td>营收增长</td><td>5.14%</td><td>＞10%</td><td class="neutral">不及格，近五年最低；2025前三季度-12.38%</td></tr>
+  <tr><td>扣非利润增长</td><td>0.07%</td><td>＞15%</td><td class="bad">停滞，显著低于营收增速</td></tr>
+  <tr><td>CFO/净利润</td><td>106.5%</td><td>＞1.0</td><td class="good">优秀，现金为真</td></tr>
+  <tr><td>资产负债率</td><td>28.04%</td><td>＜50%（行业中低）</td><td class="good">极优，零有息负债</td></tr>
+  <tr><td>分红率</td><td>65.15%</td><td>30-50%合理</td><td class="good">慷慨，2024现金分红76.02亿，上市以来累计357亿≈6倍IPO募资</td></tr>
+  <tr><td>研发占比</td><td>10.91%</td><td>＞5%（科技型）</td><td class="good">高投入，2024研发40.08亿，同比+6%</td></tr>
+</table>
+
+<h3>3.2 分业务分析</h3>
+<table>
+  <tr><th>业务板块</th><th>营收(亿)</th><th>占比</th><th>同比</th><th>毛利率* </th><th>评价</th></tr>
+  <tr><td>体外诊断（IVD）</td><td>137.65</td><td>37.5%</td><td class="good">+10.82%</td><td>~62%</td><td class="good">新晋第一大业务，国际+30%，国内市占率生化＞15%/化学发光国内第3，MT8000装机190套</td></tr>
+  <tr><td>生命信息与支持</td><td>135.57</td><td>36.9%</td><td class="bad">-11.11%</td><td>~65%</td><td class="neutral">传统支柱失速，国内监护/呼吸等大幅下滑，但微创外科+30%、国际双位数增长对冲</td></tr>
+  <tr><td>医学影像</td><td>74.98</td><td>20.4%</td><td class="good">+6.60%</td><td>~68%</td><td class="good">超预期，国内超声市占率首次超30%（第一），Resona A20首年超4亿，高端占比60%</td></tr>
+  <tr><td>惠泰医疗并表（心血管）</td><td>14.39</td><td>3.9%</td><td>-</td><td>~75%</td><td class="neutral">新并入，电生理/冠脉耗材高毛利，但整合期</td></tr>
+  <tr><td>国内市场</td><td>202.92</td><td>55.3%</td><td class="bad">-5.10%</td><td>-</td><td>受财政/招标/整顿三重冲击，Q4后招标自12月起复苏</td></tr>
+  <tr><td>国际市场</td><td>164.34</td><td>44.7%</td><td class="good">+21.28%</td><td>-</td><td>核心亮点，发展中国家+欧洲强劲，2025H1占比首次超50%</td></tr>
+</table>
+<p style="font-size:11px;color:#999;">*分业务毛利率为根据整体63.11%及行业特性推算，精确值公司未单独披露；IVD试剂价格受集采承压。</p>
+<div class="highlight-box">
+  <strong>分业务解读：</strong>结构性切换：IVD（耗材流水型）首次超越生命信息与支持（设备型）成为第一大板块，且国际IVD +30%显示全球化突破；生命信息与支持虽-11%但微创外科+30%且国际双位数，数智化方案（瑞智联装机超1000家医院）巩固市占率第一；医学影像高端化成效显著（超高端A20放量）。长期看，流水型业务（IVD试剂+微创/心血管耗材）占比提升将平滑设备周期波动。短期风险在于国内设备类（监护/麻醉/输注）待释放空间超200亿何时兑现，以及IVD试剂集采后价格-20%的持续影响。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险项</th><th>严重程度</th><th>依据</th></tr>
+  <tr><td>商誉高企（110.9亿/净资产31%）</td><td><span style="color:#c0392b;font-weight:bold;">● 红色</span></td><td>收购惠泰医疗新增约61亿商誉，若心血管耗材集采或整合不及预期，减值将一次性吞噬利润</td></tr>
+  <tr><td>2025年业绩大幅下滑且毛利率承压</td><td><span style="color:#c0392b;font-weight:bold;">● 红色</span></td><td>2025H1营收-18.45%/净利-32.96%，Q1毛利率降幅扩大，IVD试剂出厂价下调20%+设备以价换量</td></tr>
+  <tr><td>存货激增+19.6%快于营收</td><td><span style="color:#f39c12;font-weight:bold;">● 黄色</span></td><td>47.57亿创历史新高，存货周转3.10次放缓，需警惕减值及去化压力</td></tr>
+  <tr><td>实控人关联方持续减持</td><td><span style="color:#f39c12;font-weight:bold;">● 黄色</span></td><td>Ever Union 2025/7大宗减持500万股套现10.7亿，睿隆/睿福合计持股从7.6%→0.66%，高管平台近乎清仓</td></tr>
+  <tr><td>应收/商誉减值信用损失扩大</td><td><span style="color:#f39c12;font-weight:bold;">● 黄色</span></td><td>2024信用减值3.00亿（+22%）、资产减值2.38亿，计提力度加大</td></tr>
+  <tr><td>海外业务地缘/汇率风险</td><td><span style="color:#f39c12;font-weight:bold;">● 黄色</span></td><td>国际占比45%→50%，欧洲/发展中国家高增长，但面临关税、本地化及汇率波动</td></tr>
+  <tr><td>创始人年龄/治理结构集中</td><td><span style="color:#f39c12;font-weight:bold;">● 黄色</span></td><td>李西廷74岁、徐航背景，接班及职业经理人吴昊（总经理）能否平稳过渡待观察</td></tr>
+  <tr><td>负债/现金流/质押风险</td><td><span style="color:#27ae60;font-weight:bold;">● 绿色</span></td><td>零有息负债、货币166亿、质押率为0，无债务暴雷风险</td></tr>
+  <tr><td>财务造假/违规处罚</td><td><span style="color:#27ae60;font-weight:bold;">● 绿色</span></td><td>安永标准无保留意见，近年无监管处罚及诉讼暴雷</td></tr>
+  <tr><td>关联交易/资金占用</td><td><span style="color:#27ae60;font-weight:bold;">● 绿色</span></td><td>控股股东Smartco/Magnifice合计51.47%，关联交易披露规范，无资金占用公告</td></tr>
+</table>
+<div class="summary-box">
+  <strong>排雷结论：</strong>迈瑞财务真实性极高，无“纸面富贵”（CFO＞净利）、无高负债、无质押暴雷，经典财务排雷全绿。核心雷点不在财务造假而在<strong>经营层面的高商誉+高增长预期落差</strong>：110亿商誉为最大或有负债，2025年业绩拐点未至前的估值重估是主要风险。存货及减值计提为次级关注。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>历史分位</th><th>行业均值</th></tr>
+  <tr><td>股价（2026-07-28收盘）</td><td>150.54元</td><td>-</td><td>-</td></tr>
+  <tr><td>总市值</td><td>约1825亿（150.54×12.12亿股）</td><td>-</td><td>医疗器械龙头中位约800亿</td></tr>
+  <tr><td>PE(TTM)</td><td>23.29倍</td><td>11.74%分位（底部）</td><td>申万医疗器械约32x</td></tr>
+  <tr><td>PE(静态2024)</td><td>约15.6倍（1825/116.68）</td><td>-</td><td>-</td></tr>
+  <tr><td>PE(2026E均值87.9亿)</td><td>约20.8倍</td><td>-</td><td>GPS等国际巨头20-25x</td></tr>
+  <tr><td>PB</td><td>5.70倍（理杏仁）/5.10倍（按净资产）</td><td>历史低位</td><td>行业中位约3.5x</td></tr>
+  <tr><td>PS</td><td>4.97倍（1825/367.26）</td><td>-</td><td>约6-8x</td></tr>
+  <tr><td>PCF(TTM)</td><td>约14.7倍（1825/124.32）</td><td>-</td><td>-</td></tr>
+  <tr><td>股息率(TTM)</td><td>约2.61%（Choice）/若计2024全分红6.27元则4.16%</td><td>上市以来最高</td><td>行业约1.2%</td></tr>
+</table>
+<p style="font-size:11px;color:#999;">PE-TTM分位源自理杏仁：当前23.29分位11.74%，80%分位30.42，50%分位26.75，20%分位23.94，最大值35.63，最小20.71，均值27.12.</p>
+
+<h3>4.2 估值区间</h3>
+<h3>PE Band（非周期股适用，ROE＞20%合理PE 20-30x）</h3>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应EPS(2024摊薄9.64元)</th><th>对应股价</th><th>说明</th></tr>
+  <tr><td>悲观</td><td>15x</td><td>9.64元</td><td>144.6元</td><td>盈利下行+市场杀估值，接近历史最小PE 20.7x下沿*</td></tr>
+  <tr><td>保守</td><td>20x</td><td>9.64元</td><td>192.8元</td><td>国际巨头GPS中枢，当前已接近</td></tr>
+  <tr><td>中性（合理）</td><td>25x</td><td>9.64元</td><td>241.0元</td><td>券商一致预期2026E 7.25元×25x=181元，与当前相近</td></tr>
+  <tr><td>券商目标</td><td>30x</td><td>9.64元</td><td>289.2元</td><td>历史50%分位以上，需业绩重回15%增长</td></tr>
+  <tr><td>当前价</td><td>23.3x(TTM)</td><td>6.46元(TTM扣非)</td><td>150.54元</td><td>处于历史11.7%分位，底部区间</td></tr>
+  <tr><td>历史高位</td><td>35.6x</td><td>9.64元</td><td>343.1元</td><td>2020-2021高光期估值已难再现</td></tr>
+</table>
+<p style="font-size:11px;color:#999;">*悲观15x为极端情绪定价，历史实际未触及；当前TTM EPS（扣非）约6.46元（近4季度：3.16+4.40+3.07+1.03→受Q4拖累），静态PE 15.6x已低于TTM。</p>
+<h3>历史PE区间对比（理杏仁，截至2026-07-28）</h3>
+<table>
+  <tr><th>区间</th><th>PE值</th><th>当前对比</th></tr>
+  <tr><td>最大值</td><td>35.63</td><td>当前低35% </td></tr>
+  <tr><td>80%分位</td><td>30.42</td><td>低于80%分位23% </td></tr>
+  <tr><td>50%分位（中位）</td><td>26.75</td><td>低于中位13% </td></tr>
+  <tr><td>20%分位</td><td>23.94</td><td>略低于20%分位（已跌入底部区间）</td></tr>
+  <tr><td>最小值</td><td>20.71</td><td>高于最小值12% </td></tr>
+  <tr><td><strong>当前PE-TTM</strong></td><td><strong>23.29</strong></td><td><strong>分位11.74% → 底部区间</strong></td></tr>
+</table>
+<div class="summary-box">
+  <strong>估值历史分位结论：</strong>当前PE处于历史底部区间（＜20%分位，仅12%分位），市值较2021年高点（约3000亿）腰斩，估值已充分消化业绩悲观预期。PB 5.7x虽高于银行等重资产，但在轻资产高ROE医疗器械中属合理（茅台PB 9x）。
+</div>
+
+<h3>4.3 估值总结</h3>
+<div class="highlight-box">
+  <strong>估值判断：合理偏低，具备安全边际但需等待盈利拐点确认。</strong><br>
+  1）绝对估值：23.3x PE-TTM对应2024静态15.6x、2026E 20.8x，均在ROE＞20%合理区间20-30x下沿，低于行业32x及历史中位26.75x，显示<strong>价格已反映悲观预期</strong>；<br>
+  2）相对估值：与GPS（美敦力20x、雅培25x）相当，低于联影医疗约35x、鱼跃约28x，龙头折价；<br>
+  3）风险提示：当前低PE是基于2024高基数，若2025全年净利下滑至80-85亿（券商预测），TTM PE将被动抬升至28-30x，静态便宜可能变贵；<br>
+  4）策略建议：<strong>估值底部≠立即买入</strong>，需确认2025Q4营收提速及2026国内招标200亿空间兑现；中长期（2-3年）若业绩重回10-15%增长+分红4%支撑，当前价位具备“业绩+估值”双击潜力。DCF内在价值200-250元对应20-30%上行空间与当前判断一致。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析（L4框架）</h2>
+
+<h3>5.1 杜邦拆解</h3>
+<table>
+  <tr><th>指标</th><th>2022</th><th>2023</th><th>2024</th><th>判断</th></tr>
+  <tr><td>净利润率</td><td>31.64%</td><td>33.16%</td><td>31.77% / 31.97%*</td><td class="neutral">高位微降，仍＞30%顶级水平</td></tr>
+  <tr><td>资产周转率</td><td>0.73次</td><td>0.73次</td><td>0.70次</td><td class="neutral">轻微放缓，重资产化及存货增加拖累</td></tr>
+  <tr><td>权益乘数</td><td>1.33</td><td>1.45</td><td>1.39</td><td class="good">极低杠杆，远低于沃尔玛2.5、银行12</td></tr>
+  <tr><td>ROE（归母）</td><td>约33.5%</td><td>约35.0%</td><td>32.54%</td><td class="good">顶级但趋势向下，2025H1骤降至13.26%（半年度）</td></tr>
+  <tr><td>ROA（去杠杆后）</td><td>23.7%</td><td>24.2%</td><td>23.4%</td><td class="good">真实资产回报极高（净利率×周转）</td></tr>
+</table>
+<p style="font-size:11px;color:#999;">*净利率31.77%为归母口径，31.97%为销售净利率（总净利润/营收）；周转=营收/平均总资产，乘数=平均总资产/平均净资产。</p>
+<div class="highlight-box">
+  <strong>赚钱模式：高利润型（最优质模式）</strong><br>
+  ROE = 31.77%（高利润率） × 0.70（中低周转） × 1.39（低杠杆）= 30.9%（推算）≈ 32.54%（加权）。<br>
+  与贵州茅台（高利润型：49%×0.5×1.23）、沃尔玛（高周转：2.5%×2.4×2.5）、银行（高杠杆：25%×0.05×12）对比，迈瑞<strong>利润率是绝对核心</strong>，周转一般、杠杆极低，商业模式最安全可持续。
+</div>
+
+<h3>5.2 资产回报效率</h3>
+<table>
+  <tr><th>指标</th><th>2024</th><th>同行对比* </th><th>评价</th></tr>
+  <tr><td>每1元资产产生净利</td><td>0.223元（ROA 22.3%）</td><td>联影约0.08、鱼跃约0.12、行业中位约0.08</td><td class="good">2-3倍于同行</td></tr>
+  <tr><td>每1元净资产产生净利</td><td>0.325元（ROE 32.5%）</td><td>联影约12%、鱼跃约15%、行业约10%</td><td class="good">显著领先</td></tr>
+  <tr><td>去杠杆ROA（净利×周转）</td><td>22.2%</td><td>行业中位约8-10%</td><td class="good">去掉杠杆后依然顶级，证明非杠杆驱动</td></tr>
+</table>
+<p style="font-size:11px;color:#999;">*同行值为2024年报推算，仅作定性参考。</p>
+
+<h3>5.3 核心结论</h3>
+<div class="summary-box">
+  <strong>杜邦结论：</strong>迈瑞是典型的<strong>高利润型+低杠杆</strong>好生意：① ROE靠31%+净利率驱动，而非周转或杠杆，护城河来自技术/品牌/渠道壁垒带来的定价权；② 权益乘数1.39在A股属最低一档（对比宁德1.8、茅台1.23），财务风险极低；③ 趋势隐忧：ROE从2023年35%→2024年32.5%→2025H1 13.26%（年化约26%），主要因净利率-1.4pp及周转-0.03次共同拖累，显示盈利能力与运营效率同步承压，需关注2025Q4能否企稳回升。若净利率能稳定在30%+、周转回升至0.73以上，ROE有望重回35%平台。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：非周期股（成长型）→ 采用非周期股评分体系</strong><br>
+  依据：① 按 <code>industry-classification.md</code> 医疗器械属非周期清单（需求稳定、人口老龄化驱动、技术迭代而非供需错配）；② 但2024-2025年暴露“政策周期”：国内财政/集采/合规整顿导致阶段性波动，呈现“成长中的政策扰动”特征，类似创新药的“混合”但仍以成长为主；③ 生命周期：国产替代从导入→成长期后半段，国际化从成长期初期→加速期。
+</div>
+
+<h3>6.2 集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>行业集中度</td><td>高度集中且加速集中</td><td>迈瑞国内超声＞30%（第1）、监护＞50%、生化＞15%、化发第3；IVD企业从2320家→1530家（-34%），CR3持续提升</td></tr>
+  <tr><td>竞争格局</td><td>一超多强 → 龙头优势扩大</td><td>迈瑞市占率逆势提升（招标更合规后赢单率提升），联影/鱼跃等二线追赶但差距仍大</td></tr>
+  <tr><td>技术壁垒</td><td>极高</td><td>监护/超声/化发等全产线自研，海肽生物原料自制、MT8000流水线、Resona A20超高端超声</td></tr>
+  <tr><td>渠道/品牌壁垒</td><td>极高</td><td>覆盖190+国家、40国63子公司、三甲医院超1000家瑞智联装机，高端客户突破260家</td></tr>
+  <tr><td>资金/牌照壁垒</td><td>高</td><td>医疗器械注册证（III类）、集采入围门槛、10亿级研发投入（2024 40亿）</td></tr>
+  <tr><td>规模壁垒</td><td>高</td><td>全球13国本地化生产、SPD/LIS生态，规模降本（化发原料3年降50%目标）</td></tr>
+</table>
+
+<h3>6.3 生命周期与周期位置</h3>
+<div class="highlight-box">
+  <strong>生命周期：成长期后半段（国内）+ 成长期初期（国际）</strong><br>
+  国内：国产替代率监护＞80%、超声30%+、化发仍低（进口主导），从高速成长期进入存量整合+高端突破期，增速从20%→5%符合成熟化；IVD进口替代才刚起步，长期空间仍大。<br>
+  国际：市占率仍低（监护/超声海外中低端为主、高端突破中），流水线海外装机仅20套，本地化生产9国启动，属于成长期初期，未来5-10年为主要增量。<br>
+  <strong>周期位置：非周期股不适用周期底部判断，但处于“政策底”附近</strong>：国内设备招标自2024/12起持续复苏，专项债发行Q1同比快增，DRG/集采边际影响递减，行业整顿进入常态化，类似周期底部特征但非供需周期。
+</div>
+
+<h3>6.4 同行对比</h3>
+<table>
+  <tr><th>指标</th><th>迈瑞医疗</th><th>联影医疗 (688271)</th><th>鱼跃医疗 (002223)</th><th>行业中位*</th><th>评价</th></tr>
+  <tr><td>ROE(2024)</td><td>32.54%</td><td>约12%</td><td>约15%</td><td>约10%</td><td class="good">显著领先</td></tr>
+  <tr><td>毛利率</td><td>63.11%</td><td>约48%</td><td>约52%</td><td>约45%</td><td class="good">领先10-15pp</td></tr>
+  <tr><td>净利率</td><td>31.77%</td><td>约13%</td><td>约18%</td><td>约12%</td><td class="good">领先一倍</td></tr>
+  <tr><td>资产负债率</td><td>28.0%</td><td>约35%</td><td>约22%</td><td>约35%</td><td class="good">最低一档</td></tr>
+  <tr><td>营收增速(2024)</td><td>5.14%</td><td>约12%</td><td>约8%</td><td>约5%</td><td class="neutral">低于联影/鱼跃，但国际增速更高</td></tr>
+  <tr><td>PB</td><td>5.7x</td><td>约5.2x</td><td>约4.0x</td><td>约3.5x</td><td class="neutral">溢价合理，反映ROE差距</td></tr>
+  <tr><td>PE(TTM)</td><td>23.3x</td><td>约35x</td><td>约28x</td><td>约32x</td><td class="good">偏低，估值优势</td></tr>
+</table>
+<p style="font-size:11px;color:#999;">*行业中位为申万医疗器械板块2024年报中位；联影/鱼跃数据为Wind一致预期近似值，仅定性对比。</p>
+<div class="summary-box">
+  <strong>竞争位置：</strong>迈瑞在盈利能力（ROE/毛利/净利）、财务稳健性、估值性价比三项全面领先同行，唯一短板是2024增速暂时落后（联影受益设备更新更早），但国际化及流水型业务占比提升后，长期成长韧性更强。一句话：<strong>“最赚钱、最稳健、还最便宜的龙头”</strong>，符合“好公司+好价格”中长期布局特征。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<div class="summary-box">
+  <strong>估值方法：首选 PE（成长型），辅助 PS/PEG，PB仅作安全垫参考</strong><br>
+  匹配度：✓ 正确。成长型医疗器械（研发驱动、轻资产、高ROE）应看PE/PEG而非PB（PB会高估轻资产价值）。当前市场用PE 23x定价合理；若未来亏损则切换PS（当前4.97x合理，＜10即合理）。<br>
+  偏差提示：周期股常用PB底部定价不适用于迈瑞（PB 5.7x看似高实则因净资产轻）；用PB会低估其品牌/技术溢价。PEG：2024增速0.7%导致PEG＞30失真，需用2026E增速8%计算PEG≈2.9仍偏高，解释了估值底部原因。<br>
+  <strong>成长股四步验证（PS＞10或PE＞50时启用，本例不适用但检验）：</strong>①营收367亿＞20亿且增速5%（及格）；②毛利率63%且稳定（优秀）；③CFO 124亿为正且＞净利（优秀）；④PS 4.97＜10（合理）→ 结论：非“梦想溢价”投机股，是“有真实生意+真实现金”的成长股。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  Step 1 - 行业定位：非周期成长型（医疗器械），高度集中加速集中，技术+渠道+牌照三重壁垒，国内成长期后半段、国际成长期初期<br>
+  Step 2 - 财务体检：ROE 32.5%顶级（高利润型杜邦），CFO/净利106%现金为真，28%负债率零有息极稳健，但2024营收/利润增速失速至5%/0.7%<br>
+  Step 3 - 估值判断：PE-TTM 23.3x处历史11.7%底部区间，PB 5.7x轻资产溢价合理，PS 4.97x合理，较GPS及同行折价，安全边际显现<br>
+  Step 4 - 风险排查：商誉110.9亿（31%净资产）为首要雷点，存货+19%及毛利率承压次之，财务造假/债务风险为绿<br>
+  Step 5 - 结论：是好公司（行业×公司均优），价格合理偏低（底部区间但需盈利拐点确认），适合逆向分批而非重仓抄底<br>
+  Step 6 - 跟踪：关键看国内招标200亿兑现+IVD集采价格战止血+国际流水线放量，卖出信号为ROE跌破20%或商誉减值或份额被反超
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td>✓ 是</td><td>医疗器械万亿赛道，老龄化+国产替代+出海三驱动，需求稳定增长，政策短空长多，壁垒极高</td></tr>
+  <tr><td>② 好公司</td><td>✓ 是</td><td>ROE 32.5%＞15%、毛利率63%稳定、CFO 124亿＞净利116亿，三条全满足；市场份额逆势提升验证竞争力</td></tr>
+  <tr><td>③ 好价格</td><td>~ 接近是（需确认拐点）</td><td>PE 23.3x处历史底部（11.7%分位），PEG≈2.9仍高需等待增速回升；分红率65%+股息2.6-4%提供安全垫，未完全满足但接近</td></tr>
+</table>
+
+<h3>7.3 风险评估</h3>
+<div class="danger-box">
+  ☐ 价值陷阱（低PE+低增长+高负债）→ <strong>未命中</strong>：虽低增长但零负债、非低PE（23x合理）<br>
+  ☐ 周期陷阱（低PE+周期顶点）→ <strong>未命中</strong>：非周期股，且当前非盈利顶点而是政策底部<br>
+  ☐ 烧钱陷阱（高PE+高增速+负现金流）→ <strong>未命中</strong>：虽增速下滑但CFO为正且＞净利，非烧钱模式
+</div>
+<h3>管理层与治理风险</h3>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力与履历</td><td>好</td><td>李西廷（74岁）/徐航创始人深耕30年，吴昊总经理执行力强，战略清晰（数智化+国际化+外延并购）</td></tr>
+  <tr><td>股权结构与利益一致性</td><td>强但趋弱</td><td>实控人合计43.6%（Smartco 27%/Magnifice 24.5%），李西廷22年底增持2亿（0.08%），但睿隆/睿福持股近乎清仓（7.6%→0.66%）</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td>无</td><td>近年无监管处罚、诉讼暴雷，安永标准意见</td></tr>
+  <tr><td>资本配置记录</td><td>合理</td><td>分红率65%慷慨（累计357亿为IPO 6倍），收购惠泰（61亿）战略协同但商誉高企待验证，回购20亿</td></tr>
+  <tr><td>管理层增减持记录</td><td>偏负面</td><td>Ever Union 2025/7减持500万股套现10.7亿，过去三年累计套现超50亿；需警惕IPO前股东持续减持</td></tr>
+  <tr><td>CEO交接/关键人员变动</td><td>需关注</td><td>创始人74岁高龄，接班问题未明确，职业经理人团队稳定但创始人影响力仍大</td></tr>
+</table>
+<h3>盈利可持续性</h3>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是靠价？</td><td>量驱动为主（健康）</td><td>IVD装机190套+化发仪器1800台（60%高速机）带动试剂放量，影像高端占比60%靠结构升级，非单纯涨价</td></tr>
+  <tr><td>涨价能否持续？</td><td>不能（承压）</td><td>IVD试剂集采降价20%、DRG检验互认、设备以价换量，定价权短期受政策压制，需靠高端化对冲</td></tr>
+  <tr><td>非经常性利润占比</td><td>低</td><td>2024非经常2.26亿占净利1.9%，主要为政府补助及公允价值变动，无卖资产一次性收益</td></tr>
+  <tr><td>大客户/大项目集中度</td><td>分散</td><td>客户为全国数万家医院+海外190国经销，前5大客户占比预计＜10%，无单一依赖</td></tr>
+  <tr><td>政策/监管依赖度</td><td>高</td><td>集采（IVD/耗材）、DRG、财政专项债、合规整顿均直接影响招标及价格，政策敏感度高</td></tr>
+</table>
+<h3>关键变量敏感性</h3>
+<div class="summary-box">
+  <strong>变量1: 国内设备招标复苏节奏（最大变量）</strong><br>
+  乐观: 2025Q3招标同比+30%且专项债持续放量 → 2026国内+15%、全年营收+10% → EPS回升至约10.5元<br>
+  中性: 招标温和复苏+10-15% → 国内+5-8%、全年+6-7% → EPS约9.8元（券商中位）<br>
+  悲观: 财政仍紧+招标不及预期 → 国内0-5%、全年仅+2-3% → EPS约8.5元，PE被动抬至30x<br><br>
+  <strong>变量2: IVD集采降价幅度及以价换量成效</strong><br>
+  乐观: 降价止于15%+原料自制降本50%兑现 → IVD毛利率企稳62% → 净利率回升至32%<br>
+  中性: 降价20%+高端客户突破对冲 → 毛利率60-62% → 净利率30-31%（当前预期）<br>
+  悲观: 降价＞25%+竞争加剧 → 毛利率跌破58% → 净利率跌破28%<br><br>
+  <strong>变量3: 国际业务增速及惠泰整合</strong><br>
+  乐观: 国际维持20%+、惠泰协同超预期 → 国际占比55%+，商誉无减值<br>
+  中性: 国际15-20% → 占比50-52%<br>
+  悲观: 关税/汇率冲击+惠泰减值10-20亿 → 利润一次性冲击15-20%
+</div>
+
+<h3>7.4 前景展望</h3>
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. 国内政策拐点 — 招标自2024/12持续复苏+专项债Q1快增+200亿待释放空间，2025Q3营收已转正，2026国内有望重回正增长（公司指引）<br>
+  2. 国际化第二曲线 — 2025H1国际首次超50%+欧洲+20%/发展中国家+15%，13国本地化+高端客户突破260家，MT8000海外放量仅20套空间巨大<br>
+  3. 流水型业务崛起 — IVD试剂+微创/心血管耗材占比提升（IVD已37.5%第一），高毛利+复购属性平滑设备周期，MT8000装机为未来3年试剂增长奠基<br><br>
+  <strong>负向拖累：</strong><br>
+  1. 集采与价格战 — IVD安徽/江西联盟集采、检验结果互认、设备中低端价格战，短期毛利率/净利率持续承压<br>
+  2. 商誉与整合风险 — 惠泰110亿商誉占净资产31%，心血管耗材集采及整合不及预期将直接减值<br>
+  3. 机构资金逆风 — 北向+机构持续减持、散户化（股东15.2万），估值修复需等待业绩拐点验证，股价弹性受压
+</div>
+
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>EPS预估</th><th>PE区间</th><th>预期回报(1年)</th></tr>
+  <tr><td>乐观</td><td>国内提速+15%、国际20%+、毛利率企稳</td><td>2026 8.5元 / 2027 9.8元</td><td>25-30x</td><td>股价212-255元 (+40-70%)</td></tr>
+  <tr><td>中性</td><td>国内+5-8%、国际15-18%、净利率30-31%</td><td>2026 7.25元 / 2027 8.2元</td><td>20-25x</td><td>股价145-181元 (-4%至+20%)</td></tr>
+  <tr><td>悲观</td><td>国内0-2%、IVD降价超预期、惠泰减值</td><td>2026 6.0元 / 2027 6.5元</td><td>18-22x</td><td>股价108-132元 (-12%至-28%)</td></tr>
+</table>
+<p style="font-size:11px;color:#999;">概率判断：中性50%、乐观25%、悲观25%；EPS基于摊薄12.12亿股，当前价150.54元为锚点。</p>
+
+<h3>7.5 资金面信号</h3>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>北向资金持股变动</td><td>持续减持</td><td>从2025H1 1.31亿股(10.8%)→2025年末0.97亿股(8%)→2026Q1 9155万股(7.56%)，累计净卖出约4000万股，贝莱德等减持超90%</td></tr>
+  <tr><td>机构持仓变动</td><td>减仓</td><td>机构持仓占比79.7%(2025Q2)→73.09%(Q3)，景顺长城/易方达等头部公募大幅削减；基金持股市值从2194亿→1395亿</td></tr>
+  <tr><td>融资余额变动</td><td>稳定偏增</td><td>融资余额约4-5亿，占流通市值0.25-0.3%，杠杆资金未大幅撤离亦未亢奋，情绪中性</td></tr>
+  <tr><td>大股东增减持</td><td>显著减持</td><td>Ever Union 2025/7大宗减持500万股(10.7亿)，睿隆/睿福从7.6%→0.66%近乎清仓；李西廷增持2亿杯水车薪</td></tr>
+  <tr><td>大宗交易</td><td>折价为主</td><td>2026年多次折价4-18%大宗成交（如5/20折价18.25% 3万股），显示机构抛压</td></tr>
+  <tr><td>股东户数</td><td>大幅增加（散户化）</td><td>从2024Q2 5.58万→2024末8.27万→2025末13.5万→2026/3 15.2万，典型机构出、散户进</td></tr>
+</table>
+<div class="summary-box">
+  <strong>资金面整体判断：偏负面，资金面与基本面背离需警惕。</strong>北向+公募持续减持、大股东套现、散户化三重共振，显示聪明资金对短期业绩拐点仍观望。尽管基本面估值已到底部，但资金面未见企稳信号，股价短期缺乏催化，需等待Q4业绩兑现或机构回流。参考L6提示：资金面为辅助，核心仍以基本面拐点为准，不因资金面悲观而否定长期价值。
+</div>
+
+<h3>7.6 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？（提示：卖设备+耗材+数智化方案，靠200亿待释放招标+海外放量+流水耗材复购）<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？（是110亿商誉、还是-1.07pp毛利率、或是股东15万散户化？）<br>
+  3. 如果现在买入，期待的回报来源是什么？（是估值从23x修复至30x、还是业绩重回15%增长、或是4%股息？）<br>
+  4. 什么情况下你会坚决卖出？（如ROE跌破20%、商誉减值超10亿、或国际增速失速至个位数？）
+</div>
+
+</div></div>
+
+<div class="footer">
+  免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+  数据来源：公司2024年报（巨潮资讯 2025-04-29）、2025Q1/Q3季报、券商研报（国信/10jqka一致预期）、理杏仁估值分位、Choice/Basic数据平台；股价取2026-07-28收盘150.54元
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>
