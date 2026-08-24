@@ -51,6 +51,8 @@
   .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
   .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
   .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .score-note { font-size: 13px; color: #666; background: #fafafa; border: 1px dashed #ccc; padding: 8px 12px; margin: 10px 0; }
+  .history-table td:first-child { white-space: nowrap; }
   .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
   ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
   li { margin-bottom: 4px; }
@@ -61,7 +63,7 @@
 
 <h1>北方华创（002371）财务分析报告</h1>
 <p class="subtitle">基于 L1-L6 框架（财务三表+关键指标+估值+杜邦+行业分类+综合实战）</p>
-<p class="meta">分析日期：2026-07-20 | 数据来源：FY2025 年报 + 2026Q1 季报 + 券商研报 + 东方财富 + 理杏仁 + 集思录</p>
+<p class="meta">分析日期：2026-08-24 | 数据来源：FY2024 年报（已审计）+ FY2025 快报（393.53亿/55.22亿）+ 2025H1 + 2026Q1 + 券商研报 + 东方财富 + 理杏仁</p>
 
 <div class="tab-bar">
   <button class="tab-btn active" data-tab="summary">总结论</button>
@@ -95,6 +97,8 @@
 
 <p style="font-size:13px;color:#666;margin-bottom:4px">行业类型：<strong>混合周期股（半导体设备）</strong>。半导体设备兼具"成长属性"（国产替代驱动，中国设备国产化率仅~20%）和"周期属性"（全球半导体资本开支周期）。考虑到北方华创的增长主要由国产替代结构性驱动（中国晶圆厂持续扩产，不受全球周期左右），采用<strong>非周期股评分体系（成长型）</strong>——理由是公司营收3年CAGR~45%，利润5年CAGR~59%，成长属性远强于周期属性。但需注意，该评分体系下的得分受增长期特征（低CFO/净利、负FCF、短期利润增速为负）压制，不能完全反映公司内在质量。</p>
 
+<p class="score-note" style="font-size:13px;color:#666;background:#fafafa;border:1px dashed #ccc;padding:8px 12px;margin:10px 0;"><strong>评分口径说明：</strong><span>采用非周期股体系，首次分析，无历史版本</span></p>
+
 <h2>综合评分（百分制）</h2>
 <p style="font-size:13px;color:#666;margin-bottom:8px">采用<strong>非周期股评分体系（成长型）</strong>，综合L1-L5所有因素打分</p>
 <table>
@@ -113,6 +117,13 @@
 </table>
 
 <div class="verdict verdict-bad">不及格（49/100）——高估值的成长代价</div>
+
+<h2 style="margin-top:16px">评分沿革</h2>
+<style>.history-table{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:13px}.history-table th,.history-table td{border:1px solid #ddd;padding:6px 8px;text-align:center}.history-table th{background:#f0f0f0;font-weight:bold}.history-table td.good{color:#27ae60}.history-table td.neutral{color:#e67e22}.history-table td.bad{color:#c0392b}</style><table class="history-table">
+  <tr><th>日期</th><th>评分</th><th>评分体系</th><th>变化原因</th></tr>
+  <tr><td>2026-07-20</td><td class="bad" style="font-weight:bold">49/100</td><td>混合周期</td><td style="text-align:left">—</td></tr>
+  <tr><td>2026-08-24</td><td class="bad" style="font-weight:bold">49/100</td><td>成长性</td><td style="text-align:left">采用非周期股体系，首次分析，无历史版本</td></tr>
+</table>
 
 <div class="summary-box">
   <strong>综合诊断：</strong>北方华创是中国半导体设备的绝对龙头——产品覆盖刻蚀、薄膜沉积、清洗、炉管、离子注入等全品类，国内晶圆厂扩产的核心受益者。FY2025营收393.53亿（+30.85%）增长强劲，但净利润55.22亿（-1.77%）因研发投入加大（R&D费用率大幅提升）而微降。现金流方面，CFO 21.33亿（+37.48%）改善明显，但存货286亿（+21%）占用了大量营运资金。<br><br>
@@ -236,35 +247,35 @@
 <h3>4.1 当前估值水平</h3>
 <table>
   <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
-  <tr><td>股价（2026.7.20）</td><td><strong>~667 元</strong></td><td>总股本7.25亿股</td></tr>
-  <tr><td>总市值</td><td><strong>~4836 亿</strong></td><td>52周范围314-856元</td></tr>
-  <tr><td>PE（TTM）</td><td><strong>~89.7x</strong></td><td>基于TTM EPS ~7.44元</td></tr>
-  <tr><td>PE（FY2025）/ PE（2026E）</td><td><strong>~87.6x / ~46.5x</strong></td><td>基于EPS 7.64元 / 10.29元</td></tr>
-  <tr><td>PB</td><td><strong>~12.3x</strong></td><td>基于每股净资产~52.1元</td></tr>
-  <tr><td>PS（TTM）</td><td><strong>~12.3x</strong></td><td>基于营收393.53亿</td></tr>
-  <tr><td>PCF</td><td><strong>~226x</strong></td><td>基于CFO 21.33亿</td></tr>
-  <tr><td>股息率</td><td><strong>~0.1%</strong></td><td>分红率低，成长型特征</td></tr>
+  <tr><td>股价（2026-08-24 收盘）</td><td><strong>707.90 元</strong></td><td>总股本7.2568亿股，成交55.27亿</td></tr>
+  <tr><td>总市值</td><td><strong>~5137 亿</strong></td><td>流通市值5133亿，52周345-968元</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>~92.9x</strong></td><td>基于2025 EPS 7.62元（新浪/Investing）</td></tr>
+  <tr><td>PE（FY2025）/ PE（2026E）</td><td><strong>~92.9x / ~68.8x</strong></td><td>基于EPS 7.62元 / 10.29元（券商一致）</td></tr>
+  <tr><td>PB</td><td><strong>~13.6x</strong></td><td>基于每股净资产52.06元（2025-12）</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>~13.1x</strong></td><td>基于营收393.53亿</td></tr>
+  <tr><td>PCF</td><td><strong>~240x</strong></td><td>基于CFO 21.33亿</td></tr>
+  <tr><td>股息率</td><td><strong>~0.11%</strong></td><td>2026-06-25 10派7.62元，分红率低</td></tr>
 </table>
 
 <h3>4.2 PE Band估值区间（成长型适用）</h3>
-<p style="font-size:13px;color:#666;">ROE 14.64%（5Y平均16.8%）→ 合理PE参考区间：15-25x | 2026E一致预期EPS ≈ 10.29元</p>
+<p style="font-size:13px;color:#666;">ROE 14.64%（5Y平均16.8%）→ 合理PE参考区间：15-25x | 2026E一致预期EPS ≈ 10.29元 | 现价707.90元</p>
 <table>
-  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs现价667元</th></tr>
-  <tr><td>悲观</td><td>20x</td><td>206 元</td><td class="bad">-69%</td></tr>
-  <tr><td>保守</td><td>35x</td><td>360 元</td><td class="bad">-46%</td></tr>
-  <tr><td>中性（PEG~1.5）</td><td>45x</td><td>463 元</td><td class="bad">-31%</td></tr>
-  <tr><td>券商目标</td><td>46.5x</td><td>478 元</td><td class="bad">-28%</td></tr>
-  <tr><td>当前价</td><td>~64.8x</td><td>667 元</td><td>—</td></tr>
-  <tr><td>乐观（高增长溢价）</td><td>55x</td><td>566 元</td><td class="bad">-15%</td></tr>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs现价707.9元</th></tr>
+  <tr><td>悲观</td><td>20x</td><td>206 元</td><td class="bad">-71%</td></tr>
+  <tr><td>保守</td><td>35x</td><td>360 元</td><td class="bad">-49%</td></tr>
+  <tr><td>中性（PEG~1.5）</td><td>45x</td><td>463 元</td><td class="bad">-35%</td></tr>
+  <tr><td>券商目标</td><td>46.5x</td><td>478 元</td><td class="bad">-32%</td></tr>
+  <tr><td>当前价</td><td>~68.8x</td><td>707.9 元</td><td>—</td></tr>
+  <tr><td>乐观（高增长溢价）</td><td>55x</td><td>566 元</td><td class="bad">-20%</td></tr>
 </table>
 
 <div class="danger-box">
   <strong>估值风险警示：</strong><br>
-  ① 当前PE(TTM)~90x，5Y历史分位~46%（半导体设备长期享有高估值溢价），但绝对水平极高；<br>
-  ② 券商目标价478元（46.5x 2026E PE）对应向下~28%空间；券商目标价通常是乐观假设；<br>
-  ③ 以ROE 14.6%对应的合理PE 15-25x计算，合理股价仅150-260元，现价已严重透支；<br>
-  ④ 市场给予北方华创极高的"国产替代垄断溢价"和"高增长溢价"，但当前价格已反映未来2-3年的增长；<br>
-  ⑤ PEG约2.0（基于一致预期35%利润增速 vs 46.5x 2026E PE），处于偏高水平。
+   ① 当前PE(TTM)~93x，5Y历史分位~46%（半导体设备长期享有高估值溢价），但绝对水平极高；<br>
+   ② 券商目标价478元（46.5x 2026E PE）对应向下~32%空间；券商目标价通常是乐观假设；<br>
+   ③ 以ROE 14.6%对应的合理PE 15-25x计算，合理股价仅150-260元，现价已严重透支；<br>
+   ④ 市场给予北方华创极高的"国产替代垄断溢价"和"高增长溢价"，但当前价格已反映未来2-3年的增长；<br>
+   ⑤ PEG约2.7（基于一致预期35%利润增速 vs 68.8x 2026E PE），处于偏高水平。
 </div>
 
 <h3>4.3 历史PE区间（近5年TTM）</h3>
