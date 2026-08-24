@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>恒生电子(600570) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .score-note { font-size: 13px; color: #666; background: #fafafa; border: 1px dashed #ccc; padding: 8px 12px; margin: 10px 0; }
+  .history-table td:first-child { white-space: nowrap; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>恒生电子（600570）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026-08-24 | 数据来源：2025年报 + 2024年报 + 2026Q1季报 + 理杏仁/同花顺iFinD（股价2026-08-21）+ 券商一致预期</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>恒生电子股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>600570.SH</td></tr>
+  <tr><td>所属行业</td><td>计算机 / 软件开发（申万：软件开发－垂直应用软件）</td></tr>
+  <tr><td>行业地位</td><td>国内金融科技龙头，IDC FinTech 100 全球第22、亚洲第1；证券核心交易系统市占率领先，UF3.0、O45 为拳头产品</td></tr>
+  <tr><td>FY 营收</td><td>2025年 57.83亿元（同比-12.13%）；2024年 65.81亿元；2023年 72.81亿元</td></tr>
+  <tr><td>归母净利润</td><td>2025年 12.31亿元（同比+18.01%）；扣非 10.13亿元（+21.46%）</td></tr>
+  <tr><td>经营现金流</td><td>2025年 10.67亿元（同比+22.91%）；2024年 8.68亿元</td></tr>
+  <tr><td>总资产</td><td>159.07亿元（2025年末）</td></tr>
+  <tr><td>归母净资产</td><td>98.48亿元（2025年末）</td></tr>
+  <tr><td>ROE</td><td>加权ROE 13.33%（2025）、12.48%（2024）、19.27%（2023）；扣非加权 10.97%</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>行业类型标注：非周期股（成长型）→ 采用非周期股评分体系</strong><br>
+  依据 <code>industry-classification.md</code>：科技（纯软件）属非周期股，恒生电子为金融IT纯软件提供商，需求随资本市场与金融机构数字化扩容而成长，非靠大宗供需错配，符合成长型特征（研发费用率37.7%、毛利率>70%）。
+</div>
+
+<p class="score-note"><strong>评分口径说明：</strong><span>采用非周期股评分体系，首次分析，无历史版本</span></p>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:12px;color:#666;margin-bottom:6px;">采用非周期股评分体系（成长型软件）</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE</td><td class="neutral">10/15</td><td style="text-align:left">2025加权13.33%，处于10-15%区间，良好但未达优秀（≥15%）</td></tr>
+  <tr><td>杜邦驱动质量</td><td class="good">5/5</td><td style="text-align:left">高利润型：净利率21.3%×周转0.36×权益乘数1.62，靠高毛利驱动，最优质模式</td></tr>
+  <tr><td>利润含金量(CFO/净利)</td><td class="neutral">10/15</td><td style="text-align:left">CFO 10.67亿 / 净利12.31亿 =0.87，≥0.7但＜1.0，利润较实但部分为投资收益</td></tr>
+  <tr><td>营收增长</td><td class="bad">0/10</td><td style="text-align:left">2025营收 -12.13%，连续两年下滑（2024 -9.62%），金融机构IT预算收缩所致</td></tr>
+  <tr><td>利润增长</td><td class="good">10/10</td><td style="text-align:left">归母+18.01%、扣非+21.46%，在收入收缩中实现利润回升，降本增效显效</td></tr>
+  <tr><td>负债率</td><td class="good">10/10</td><td style="text-align:left">资产负债率32.5%（负债51.66亿/总资产159.07亿），＜40% 极稳健，轻资产模式</td></tr>
+  <tr><td>短期偿债</td><td class="good">10/10</td><td style="text-align:left">货币资金13.64亿 vs 短期有息2.25亿（短借2.06亿+一年内到期0.19亿），充裕覆盖；流动比率1.34</td></tr>
+  <tr><td>毛利率水平与趋势</td><td class="good">10/10</td><td style="text-align:left">71.06%（2024为72.05%），虽降0.99pct但仍＞70%且显著高于同行，护城河强</td></tr>
+  <tr><td>估值(PE vs 合理)</td><td class="bad">0/10</td><td style="text-align:left">PE(TTM)31.5x，相对ROE 10-15%合理区间10-18x 偏高75%；但处于历史24%分位，成长股需结合PS判断</td></tr>
+  <tr><td>FCF</td><td class="good">5/5</td><td style="text-align:left">2023-2025 CFO 12.61/8.68/10.67亿均＞0，资本开支约2-3亿，FCF持续为正</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">70/100</td><td style="text-align:left">一般关注（成长龙头但营收承压、估值不便宜）</td></tr>
+</table>
+
+<div class="verdict verdict-caution">一般关注（70/100分）</div>
+
+<!-- HISTORY-TABLE -->
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>金融IT绝对龙头，轻资产+高毛利+低负债的优质商业模式未变，但连续两年营收负增长暴露下游（券商/资管）IT支出周期的脆弱性；2025年以“收入质量优先”主动收缩非核心业务，实现利润与现金流的逆势修复，经营质量企稳。<br><br>
+  <strong>核心优势：</strong>① <b>护城河深</b>：券商核心交易市占率领先，UF3.0/O45已获20+家标杆券商签约，自主可控+高并发壁垒高；② <b>盈利质量高</b>：71%毛利率、21%净利率、低杠杆高利润型杜邦，现金流0.87覆盖；③ <b>财务极稳健</b>：32.5%负债率、货币覆盖短期有息6倍，商誉仅6.2亿占比3.9%；④ <b>AI+信创双引擎</b>：研发投入21.8亿（37.7%营收）、LightGPT/数据库MCP已落地，政策驱动合规系统需求（2026年9月《网络营销办法》）。<br><br>
+  <strong>核心风险：</strong>① <b>营收失速</b>：72.8亿→65.8亿→57.8亿两年下滑20%，若金融机构预算迟迟不回暖，新一代产品放量不及预期；② <b>估值偏高</b>：TTM 31.5x / PB 4.2x 高于传统ROE估值中枢，对增速敏感，增速不及预期易杀估值；③ <b>季节性极强</b>：Q4占全年营收40%、利润63%，单季波动大，Q1常现亏损；④ <b>利润含投资收益</b>：2025投资收益5.26亿（+169%）贡献近四成利润增量，主业修复依赖降本而非收入扩张。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>2025年</th><th>2024年</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入（亿元）</td><td>57.83</td><td>65.81</td><td class="bad">-12.13%</td><td class="bad">连续两年下滑</td></tr>
+  <tr><td>归母净利润（亿元）</td><td>12.31</td><td>10.43</td><td class="good">+18.01%</td><td class="good">降本增效+投资收益驱动</td></tr>
+  <tr><td>扣非净利润（亿元）</td><td>10.13</td><td>8.34</td><td class="good">+21.46%</td><td class="good">主业利润回升</td></tr>
+  <tr><td>毛利率</td><td>71.06%</td><td>72.05%</td><td class="neutral">-0.99pct</td><td class="good">仍处高位，领先同行</td></tr>
+  <tr><td>归母净利率</td><td>21.29%</td><td>15.85%</td><td class="good">+5.44pct</td><td class="good">费用压缩显效</td></tr>
+  <tr><td>期间费用率</td><td>57.82%</td><td>59.50%</td><td class="good">-1.68pct</td><td class="good">三费均双位数下降</td></tr>
+  <tr><td>研发费用（亿元）</td><td>21.80</td><td>24.58</td><td class="neutral">-11.33%</td><td class="neutral">绝对值仍高，占营收37.7%</td></tr>
+  <tr><td>销售费用（亿元）</td><td>4.25</td><td>5.43</td><td class="good">-21.72%</td><td class="good">人效提升</td></tr>
+  <tr><td>管理费用（亿元）</td><td>7.33</td><td>9.05</td><td class="good">-18.99%</td><td class="good">结构优化</td></tr>
+  <tr><td>Q1营收/净利（亿元）</td><td>10.26 / 0.31</td><td>11.88 / -0.36</td><td>─</td><td>Q1占比仅17.7%，季节性明显</td></tr>
+  <tr><td>Q4营收/净利（亿元）</td><td>22.93 / 7.76</td><td>23.93 / 5.98</td><td class="neutral">-4.18% / +29.8%</td><td>Q4占全年39.6%/63.0%</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>“收降利增”结构——金融机构IT投入负增长+公司主动收缩非核心亏损产品线，导致营收连续两年-10%量级下滑；但通过人员结构优化（技术人员6953人占67.66%）、三费合计下降22%（销售-21.7%、管理-19%、研发-11.3%），叠加投资收益5.26亿同比+169%（联营企业利润+处置收益），扣非净利逆势+21%。毛利率71%虽小降但仍为软件行业顶级，显示产品定价权未被侵蚀，利润回升主要靠“节流+投资”而非“开源”，持续性需观察2026年新一代产品（UF3.0/O45）能否转化为规模收入。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>2025年末</th><th>2024年末</th><th>变动</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td>13.64亿（8.57%）</td><td>22.77亿（15.46%）</td><td class="neutral">-40.12%</td><td>转至交易性金融资产</td></tr>
+  <tr><td>交易性金融资产</td><td>30.30亿（19.05%）</td><td>16.77亿（11.39%）</td><td class="neutral">+80.71%</td><td>理财/基金增加，流动性仍强</td></tr>
+  <tr><td>应收账款</td><td>8.07亿（5.07%）</td><td>9.51亿（6.46%）</td><td class="good">-15.23%</td><td>回款管理加强，占比低</td></tr>
+  <tr><td>存货</td><td>6.77亿（4.26%）</td><td>6.33亿（4.30%）</td><td class="neutral">+6.94%</td><td>项目制存货，风险可控</td></tr>
+  <tr><td>商誉</td><td>6.20亿（3.90%）</td><td>6.43亿（4.37%）</td><td class="good">-3.53%</td><td>占比低，无大额减值风险</td></tr>
+  <tr><td>总资产</td><td>159.07亿</td><td>147.29亿</td><td class="good">+8.00%</td><td>扩张放缓</td></tr>
+  <tr><td>短期借款</td><td>2.06亿</td><td>2.58亿</td><td class="good">-20%</td><td>极低</td></tr>
+  <tr><td>一年内到期非流动负债</td><td>0.19亿</td><td>0.27亿</td><td class="good">低</td><td>压力小</td></tr>
+  <tr><td>流动负债合计</td><td>47.97亿</td><td>约42亿*</td><td>─</td><td>以经营性负债为主</td></tr>
+  <tr><td>负债合计</td><td>51.66亿</td><td>约53亿</td><td class="good">-2.5%</td><td>负债率32.5% vs 36.1%</td></tr>
+  <tr><td>归母净资产</td><td>98.48亿</td><td>86.66亿</td><td class="good">+13.64%</td><td>内生积累+利润留存</td></tr>
+  <tr><td>资产负债率</td><td>32.47%</td><td>36.13%</td><td class="good">-3.66pct</td><td class="good">轻资产，远优于计算机均值</td></tr>
+  <tr><td>流动比率</td><td>1.34</td><td>约1.4</td><td class="neutral">稳定</td><td>短期偿债无忧</td></tr>
+</table>
+<p style="font-size:11px;color:#999;">*2024流动负债合计未在摘要披露，估算约420亿依据总负债推算；应付账款/合同负债等经营性负债为主要构成。</p>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>典型的轻资产软件报表——无重型固定资产（固定资产14.26亿仅占9%），核心资产为金融资产（交易性30亿+其他非流动20亿+长期股权26亿）与人力资本。负债端有息负债仅约4.3亿（短借2.06+长借2.09+租赁0.19），有息负债率仅2.7%，经营性负债（应付/合同负债）为主要负债，财务弹性极佳。货币资金虽降40%，但系增配理财所致，广义现金（货币+交易性金融）达43.9亿，覆盖流动负债92%。商誉6.2亿占比3.9%且连续计提审慎，无明显雷点。净资产一年增11.8亿，ROE支撑下内生增长稳固。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>2025年</th><th>2024年</th><th>同比</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td>10.67亿</td><td>8.68亿</td><td class="good">+22.91%</td><td class="good">显著改善</td></tr>
+  <tr><td>投资现金流（CFI）</td><td>-19.05亿</td><td>-5.95亿</td><td class="neutral">流出扩大</td><td>购买理财/股权投资增加</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td>-0.90亿</td><td>-4.08亿</td><td class="neutral">流出收窄</td><td>分红3.78亿+回购减少</td></tr>
+  <tr><td>CFO / 归母净利</td><td>0.87</td><td>0.83</td><td class="good">+0.04</td><td>利润含金量回升但仍＜1</td></tr>
+  <tr><td>自由现金流（FCF≈CFO-购建资本开支）</td><td>约8.5亿*</td><td>约6.5亿*</td><td class="good">为正</td><td>造血能力稳固</td></tr>
+  <tr><td>销售商品收到现金/营收</td><td>待补充</td><td>下降</td><td>─</td><td>2025回款加强（附注）</td></tr>
+</table>
+<p style="font-size:11px;color:#999;">*购建固定资产/无形资产等资本开支按2.0-2.5亿估算（现金流量表“购建”项），FCF为估算值。</p>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>经营现金流质量逆势改善是2025最大亮点：在营收-12%背景下CFO仍+22.9%至10.67亿，CFO/净利从0.83升至0.87，显示回款与费用管控奏效（支付给职工现金大幅下降）。FCF约8-9亿持续为正，轻资产模式下资本开支小（固定资产/在建合计约20亿），无需烧钱扩张。CFI大幅流出19亿主因增配交易性金融资产（30亿）与股权投资，非经营性扩张。整体现金流呈“主业造血稳健、投资偏理财化”特征，现金真实性优于利润表观增速。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>2025年</th><th>2024年</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE（加权）</td><td>13.33%</td><td>12.48%</td><td>＞15% 优秀</td><td class="neutral">良好，未达优秀</td></tr>
+  <tr><td>扣非ROE</td><td>10.97%</td><td>9.98%</td><td>＞15%</td><td class="neutral">一般</td></tr>
+  <tr><td>毛利率</td><td>71.06%</td><td>72.05%</td><td>稳定或微升</td><td class="good">优秀，金融IT顶级</td></tr>
+  <tr><td>净利率（归母）</td><td>21.29%</td><td>15.85%</td><td>＞15%</td><td class="good">费用压缩带动回升</td></tr>
+  <tr><td>营收增长</td><td>-12.13%</td><td>-9.62%</td><td>＞10%</td><td class="bad">不及格，行业β拖累</td></tr>
+  <tr><td>扣非利润增长</td><td>+21.46%</td><td>-42.39%</td><td>＞15%</td><td class="good">扣非修复</td></tr>
+  <tr><td>CFO / 净利</td><td>0.87</td><td>0.83</td><td>＞1.0</td><td class="neutral">接近优秀</td></tr>
+  <tr><td>资产负债率</td><td>32.47%</td><td>36.13%</td><td>＜50%且行业偏低</td><td class="good">极稳健</td></tr>
+  <tr><td>分红率（含回购）</td><td>32.37%</td><td>约20%*</td><td>30-50% 稳定</td><td class="good">上市以来累计分红超40亿</td></tr>
+</table>
+<p style="font-size:11px;color:#999;">*2024分红1.89亿/净利10.43亿≈18%，2025拟派3.78亿+回购后32.37%。</p>
+
+<h3>3.2 分业务分析</h3>
+<table>
+  <tr><th>业务板块</th><th>2025营收(亿元)</th><th>占比</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td>财富科技服务</td><td>13.20</td><td>22.8%</td><td class="neutral">-7.72%</td><td>73.19% (-2.87pct)</td><td>核心底盘，UF3.0获20+券商签约，综合理财V6获40家新客户</td></tr>
+  <tr><td>资管科技服务</td><td>12.57</td><td>21.7%</td><td class="bad">-19.82%</td><td>78.43% (+1.20pct)</td><td class="bad">下滑最大，O45虽高市占但客户预算延迟</td></tr>
+  <tr><td>运营与机构科技服务</td><td>12.66</td><td>21.9%</td><td class="neutral">-1.82%</td><td>77.99% (-0.75pct)</td><td class="good">最抗跌，新签270+家，PB2.0/LDP放量</td></tr>
+  <tr><td>企金、保险核心与金融基础设施</td><td>5.40</td><td>9.3%</td><td class="bad">-21.75%</td><td>40.55% (-4.86pct)</td><td class="bad">低毛利板块拖累</td></tr>
+  <tr><td>创新业务</td><td>4.90</td><td>8.5%</td><td class="neutral">-4.85%</td><td>77.56% (-1.04pct)</td><td>平稳</td></tr>
+  <tr><td>风险与平台科技服务</td><td>3.36</td><td>5.8%</td><td class="bad">-32.33%</td><td>58.01% (-9.19pct)</td><td class="bad">下滑最深</td></tr>
+  <tr><td>数据服务（聚源）</td><td>3.52</td><td>6.1%</td><td class="neutral">-0.47%</td><td>62.46% (+4.13pct)</td><td class="good">唯一基本持平，AI数据需求支撑</td></tr>
+  <tr><td>其他</td><td>2.18</td><td>3.8%</td><td class="neutral">-6.66%</td><td>70.36%</td><td>-</td></tr>
+  <tr style="font-weight:bold;background:#f5f5f5"><td>合计</td><td>57.80</td><td>100%</td><td class="bad">-12.13%</td><td>71.06%</td><td>主动收缩非核心、低效业务</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>分业务解读：</strong>收入下滑呈现结构性——高毛利核心三支柱（财富/资管/运营）合计占比66.4%，其中资管-19.8%为主要拖累，反映资管行业费率改革与交易量波动对IT投入的滞后影响；企金与风控板块-22%~-32%系公司主动战略收缩亏损、低效产品线所致，属“以利润换质量”。数据服务-0.47%基本稳住，毛利率逆势+4.13pct至62.46%，受益AI对数据MCP订阅需求。整体毛利率71%仍靠高毛利三支柱托底，40.55%的企金板块拉低均值，未来若该板块继续收缩，综合毛利率有回升空间。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险项</th><th>严重程度</th><th>依据</th></tr>
+  <tr><td>商誉减值</td><td style="color:#27ae60;">🟢 低</td><td>商誉6.20亿仅占总资产3.9%、净资产6.3%，较2024减值0.22亿，历史收购审慎，无大额商誉雷</td></tr>
+  <tr><td>应收账款坏账</td><td style="color:#27ae60;">🟢 低</td><td>8.07亿占营收13.9%、总资产5.07%，同比-15.2%，周转天数约51天（365×8.07/57.8），下游为持牌金融机构信用优</td></tr>
+  <tr><td>存货跌价</td><td style="color:#27ae60;">🟢 低</td><td>6.77亿为项目实施成本，非制造业库存，无大额计提历史，毛利率71%缓冲足</td></tr>
+  <tr><td>有息负债/资金链</td><td style="color:#27ae60;">🟢 低</td><td>有息负债仅4.3亿，货币+交易性金融43.9亿，利息支出仅0.07亿，财务费用率0.12%</td></tr>
+  <tr><td>大额减值/非经常性依赖</td><td style="color:#f39c12;">🟡 中</td><td>2025投资收益5.26亿占利润总额40%，公允价值变动+处置收益波动大，扣非/归母比82%（10.13/12.31），主业含金量需提升</td></tr>
+  <tr><td>收入持续性</td><td style="color:#c0392b;">🔴 高</td><td>营收两连降且2025Q1仍-11.75%（9.05亿），金融机构IT预算与资本市场强相关，β风险高；Q4集中确认（39.6%营收）平滑性差</td></tr>
+  <tr><td>股权质押/实控人风险</td><td style="color:#27ae60;">🟢 低</td><td>无实控人，股权分散；质押股数占前十大持股仅0.09%（1246万股），2026-08-14</td></tr>
+  <tr><td>监管/合规</td><td style="color:#27ae60;">🟢 低</td><td>无重大处罚披露；受益《金融产品网络营销办法》2026-09-30施行带来的合规系统增量</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>排雷结论：</strong>资产负债表干净，无商誉/应收/存货/债务等硬雷；核心雷点在<strong>经营端</strong>——连续收入下滑与投资收益对利润的贡献（40%利润总额）是否可持续。正面项：轻资产+高现金+低负债，回款改善（应收-15%）与费用管控（人效提升）已验证管理层执行力。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>历史分位</th><th>行业均值</th></tr>
+  <tr><td>股价（2026-08-21）</td><td>21.31元</td><td>-</td><td>-</td></tr>
+  <tr><td>总市值</td><td>403.54亿元（流通市值等同）</td><td>-</td><td>软件开发中位约80亿</td></tr>
+  <tr><td>PE(TTM)</td><td>31.48x（理杏仁 2026-07-30）</td><td>24.4%分位（20%:30.26 / 50%:41.36 / 80%:52.08）</td><td>申万软件开发 192x*</td></tr>
+  <tr><td>PE(静态2025)</td><td>32.8x（403.5亿/12.31亿）</td><td>-</td><td>-</td></tr>
+  <tr><td>PE(2026E)</td><td>28.6x（14.08亿一致预期）/ 26.9x（15亿乐观）</td><td>-</td><td>-</td></tr>
+  <tr><td>PB</td><td>4.21x（21.31/5.07每股净资产）</td><td>8.5%分位（20%:4.79 / 50%:6.18 / 80%:7.44，最大10.25/最小3.73）</td><td>4.42x</td></tr>
+  <tr><td>PS(TTM)</td><td>6.98x（403.5亿/57.83亿）</td><td>-</td><td>约8-10x</td></tr>
+  <tr><td>PCF(TTM)</td><td>37.8x（403.5亿/10.67亿CFO）</td><td>-</td><td>-</td></tr>
+  <tr><td>股息率(TTM)</td><td>0.90%（每10股派2元，股价21.31）</td><td>-</td><td>0.64%</td></tr>
+  <tr><td>PEG</td><td>约2.0（PE31.5 / 利润增速15.4%*）</td><td>-</td><td>-</td></tr>
+</table>
+<p style="font-size:11px;color:#999;">*申万软件开发PE 192x为受亏损公司拉高，失真；PEG中增速用2026E一致预期15.38%（同花顺）。</p>
+
+<h3>4.2 估值区间</h3>
+<table>
+  <tr><th>情景</th><th>估值</th><th>对应说明</th></tr>
+  <tr><td>悲观（PE 20x）</td><td>13.0元（0.65×20）</td><td>ROE＜10%或营收继续-10%，按成熟软件估值下限</td></tr>
+  <tr><td>保守（PE 25x）</td><td>16.3元</td><td>2026E EPS 0.65在低分位 + 历史PE 20%分位30x折价</td></tr>
+  <tr><td>中性（PE 31.5x）</td><td>20.5-23.6元</td><td>当前TTM 31.5x / 2026E 28.6x，对应EPS 0.65-0.75</td></tr>
+  <tr><td>券商目标</td><td>32.1-46.1元（均值38.0元）</td><td>19家机构目标价（富途2026-08-13），对应2026E 43-61x</td></tr>
+  <tr><td>当前价</td><td>21.31元</td><td>处于悲观-中性之间，已反映部分悲观预期</td></tr>
+  <tr><td>历史高位（PE 65x）</td><td>42.3元</td><td>2025高点65.5x / 均值41.6x 对应，需业绩增速＞30%支撑</td></tr>
+  <tr><td>PB底部区间</td><td>18.9-24.2元</td><td>PB 3.73-4.79（历史最小-20%分位）×5.07元净资产</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>历史分位解读：</strong>PE 31.5x处于近10年24.4%分位（20%分位30.26），PB 4.21x处于8.5%分位（20%分位4.79，已跌破），均处于历史偏低区间。2015-2021年PE中枢50-88x，2024年探底21.75x后回升，当前虽绝对值不低但相对自身历史已大幅消化。PB自2021年高点10.25回落59%，已接近历史底部区域，反映市场对“收降利增”模式的担忧已部分定价。
+</div>
+
+<h3>4.3 估值总结</h3>
+<div class="danger-box">
+  <strong>估值判断：估值合理偏高，但历史分位已处低位——持有观望，不追高</strong><br>
+  ① <b>绝对估值偏高</b>：按非周期ROE定价模型（ROE 13%合理PE 10-18x），31.5x明显偏高，PEG 2.0＞1.5亦偏贵，安全边际不足；<br>
+  ② <b>相对估值偏低</b>：较自身历史（中位41x/PB 6.2x）折价24%/32%，PS 6.98x低于软件中位8-10x，2026E PE 28.6x较券商目标38元隐含43x有折价；<br>
+  ③ <b>估值方法匹配</b>：成长型软件更宜用PS/PEG，PS 6.98x需营收增速＞15%支撑（当前-12%不达标），若2026年营收重回+10%且O45/UF3.0放量，则当前PS具吸引力；<br>
+  <strong>建议：</strong>现有估值已计入营收下滑悲观预期，但未计入复苏弹性。股价位于券商目标下沿（32-46元）的30%折价处，若无营收拐点确认，不宜重仓博估值修复；待Q2/Q3营收转正或AI订单兑现再增配更佳。PB跌破20%分位提供一定底部支撑，向下空间相对有限。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析（L4框架）</h2>
+
+<h3>5.1 杜邦拆解</h3>
+<table>
+  <tr><th>指标</th><th>2025年</th><th>2024年</th><th>2023年</th><th>判断</th></tr>
+  <tr><td>净利润率（归母/营收）</td><td>21.29%</td><td>15.85%</td><td>19.56%</td><td class="good">高且回升，费用管控显效</td></tr>
+  <tr><td>资产周转率（营收/总资产）</td><td>0.36次</td><td>0.45次</td><td>0.51次</td><td class="bad">连续下滑，资产利用率下降</td></tr>
+  <tr><td>权益乘数（总资产/归母净资产）</td><td>1.62</td><td>1.70</td><td>1.79</td><td class="good">持续降杠杆，更稳健</td></tr>
+  <tr><td>ROE（杜邦）</td><td>12.44%*</td><td>12.07%*</td><td>17.86%*</td><td class="neutral">与加权ROE 13.33%基本一致，2023高位回落</td></tr>
+  <tr><td>ROA（净利率×周转率）</td><td>7.70%</td><td>7.09%</td><td>9.92%</td><td class="good">去杠杆后真实回报仍优</td></tr>
+  <tr><td>每1元资产产生净利</td><td>0.077元</td><td>0.071元</td><td>0.099元</td><td class="good">高于顶点软件约0.11？（注）</td></tr>
+</table>
+<p style="font-size:11px;color:#999;">*杜邦ROE =净利率×周转×权益乘数，用归母口径简算，与年报加权ROE（考虑期初期末平均）略有差异；ROA为去杠杆回报。</p>
+
+<h3>5.2 赚钱模式判断</h3>
+<div class="highlight-box">
+  <strong>赚钱模式：高利润型（最优质）</strong><br>
+  恒生电子 ROE = 21.29%（高净利率） × 0.36（低周转） × 1.62（低杠杆）。<br>
+  <b>依据：</b>① 净利率21.3%远高于金融IT同行（金证软件业务48%、顶点29%），73-78%高毛利支撑；② 周转0.36次属软件行业常态（项目制、轻资产），非短板；③ 权益乘数1.62在A股属极低（同花顺约1.37、顶点约1.2），几乎无杠杆放大。<br>
+  <b>评价：</b>靠“卖得贵”（产品定价权+技术壁垒）而非“卖得快”或“借得多”，商业模式最健康、可持续性强，优于高周转型（超市）与高杠杆型（银行/地产）。风险点在于净利率对费用极敏感——2025净利率回升5.4pct全靠费用下降，若收入不能回升，高利润模式将受考验。
+</div>
+
+<h3>5.3 核心结论</h3>
+<div class="summary-box">
+  <strong>杜邦结论：</strong>ROE 13.33%靠高利润驱动，周转与杠杆均非支撑，质量上乘但趋势需警惕。<br>
+  ① <b>趋势拆解</b>：ROE从19.59%（2023）→12.48%（2024）→13.33%（2025），2024年净利率从19.56%跌至15.85%是主因，2025年净利率修复至21.29%带动ROE企稳，但周转从0.51→0.36的下滑抵消了一半修复；<br>
+  ② <b>去杠杆ROA</b>：7.70%在软件行业中上（同花顺约16.6%因其互联网变现效率更高），但显著优于重资产行业；<br>
+  ③ <b>健康度</b>：权益乘数三年从1.79降至1.62，主动降杠杆，财务风险持续收敛，与资产负债率32.5%印证；<br>
+  ④ <b>展望</b>：若UF3.0/O45放量带动营收重回60-70亿，周转有望回升至0.4-0.45，配合21%净利率，ROE可重回15%+优秀区间；反之若周转继续下探至0.3，ROE将承压。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：非周期股 — 成长型（科技 / 金融IT）</strong><br>
+  <b>判断依据：</b>① 需求驱动：服务资本市场与金融机构数字化，非大宗商品供需错配，长期随金融资产规模、交易活跃度、信创替代与AI渗透而成长，增速有β但非零和周期；② 财务特征：毛利率71%+、轻资产（固定资产仅9%）、研发投入37.7%，符合成长型“高毛利+高研发+轻资产”而非周期型“重资产+强周期+高杠杆”；③ 估值逻辑：市场用PS/PEG而非PB定价，与周期股PB底部逻辑迥异。<br>
+  <b>评分体系联动：</b>按 <code>industry-classification.md</code> 纯软件属非周期，已采用非周期评分体系；若误判为周期股用PB估值会严重低估其技术壁垒。
+</div>
+
+<h3>6.2 集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>行业集中度</td><td>高度集中（寡头）</td><td>证券核心交易CR3＞70%（恒生/金证/顶点），恒生在券商核心、资管投资交易市占率第一，IDC FinTech100连续亚洲第一</td></tr>
+  <tr><td>竞争格局</td><td>龙头稳固，正在向信创替代集中</td><td>UF3.0/O45借自主可控加速替代，2025年UF3.0签约20+家、PB2.0多家头部券商竣工，集中度提升利好龙头</td></tr>
+  <tr><td>技术壁垒</td><td>极高</td><td>高并发交易（百万客户/低时延）、分布式云原生架构、全栈自主可控适配，需十年以上积累</td></tr>
+  <tr><td>客户粘性/转换成本</td><td>极高</td><td>核心交易系统切换需“零中断零差错”，券商更换成本巨大，合同负债/预收款模式，续费率高</td></tr>
+  <tr><td>网络效应</td><td>强</td><td>生态型平台（财富/资管/运营/风控/数据），多产品协同，金融机构一旦接入全家桶，扩展边际成本低</td></tr>
+  <tr><td>牌照/资质壁垒</td><td>中</td><td>金融IT需监管合规认证，但非行政垄断牌照，技术与案例为主要壁垒</td></tr>
+</table>
+
+<h3>6.3 生命周期与周期位置</h3>
+<div class="highlight-box">
+  <strong>生命周期：成长期 → 成熟期过渡（结构分化）</strong><br>
+  传统金融IT（核心交易/账户）已进入成熟期，增速放缓（营收-12%印证）；但<strong>新曲线</strong>（AI大模型、信创替代、数据MCP、合规科技）处于成长期早期。整体判断为<strong>“成熟底盘 + 成长新翼”</strong>的过渡期。<br>
+  <strong>当前周期位置（非周期成长股的产业周期）：</strong>处于<strong>下游预算收缩的底部区间</strong>——2024-2025年券商/资管利润下滑导致IT预算负增长、招标验收拉长，行业β处于底部；但政策催化（信创、2026年《网络营销办法》）与AI订单已现拐点信号，类似“周期底部左侧”。与周期股不同，此底部不以PB＜1为标志，而以PS回落+订单拐点为标志。
+</div>
+
+<h3>6.4 同行对比</h3>
+<table>
+  <tr><th>指标</th><th>恒生电子</th><th>同花顺(300033)</th><th>顶点软件(603383)</th><th>行业中位*</th><th>评价</th></tr>
+  <tr><td>2024营收(亿)</td><td>65.81</td><td>41.87</td><td>6.64</td><td>约20</td><td>规模最大</td></tr>
+  <tr><td>营收增速</td><td>-9.62%</td><td>+17.47%</td><td>-10.78%</td><td>-5%~+5%</td><td>恒生/顶点承压，同花顺受益C端回暖</td></tr>
+  <tr><td>毛利率</td><td>72.05%</td><td>89.41%</td><td>67.05%</td><td>~70%</td><td>恒生居中，同花顺互联网模式最高</td></tr>
+  <tr><td>净利率</td><td>15.85%</td><td>43.54%</td><td>29.22%</td><td>~25%</td><td>恒生偏低，费用率57%拖累</td></tr>
+  <tr><td>ROE(加权)</td><td>12.48%</td><td>24.80%</td><td>13.09%</td><td>~15%</td><td>恒生偏低，同花顺显著领先</td></tr>
+  <tr><td>负债率</td><td>36.13%</td><td>约27%</td><td>约20%</td><td>~30%</td><td>均低，恒生略高但仍健康</td></tr>
+  <tr><td>CFO/净利</td><td>0.83</td><td>1.27</td><td>1.00</td><td>~1.0</td><td>恒生略弱</td></tr>
+  <tr><td>研发/营收</td><td>37.35%</td><td>约14%</td><td>23.0%</td><td>~20%</td><td>恒生投入最激进</td></tr>
+  <tr><td>PE(TTM)</td><td>31.5x</td><td>约28x</td><td>约35x</td><td>~30x</td><td>估值相近</td></tr>
+  <tr><td>PB</td><td>4.21x</td><td>约6.5x</td><td>约8x</td><td>~5x</td><td>恒生最低，性价比相对优</td></tr>
+</table>
+<p style="font-size:11px;color:#999;">*行业中位为估算；同花顺PB/PE按2024年报后股价估算；数据来源：三公司2024年报。</p>
+
+<div class="summary-box">
+  <strong>竞争位置：规模第一但盈利效率落后于C端同花顺，与B端顶点软件相当；研发投入强度行业第一，技术壁垒支撑长期溢价。</strong><br>
+  毛利率71%虽不及同花顺89%（互联网变现模式差异），但显著高于金证软件业务48%，护城河在B端最强；净利率15.85%落后主因研发37.7%+销售管理20%的高费用投入，属“以利润换壁垒”；ROE 12.48%低于同花顺24.8%主因周转率低（0.45 vs 同花顺0.38但同花顺净利率43%极高）与CFO质量略弱。若对标纯B端顶点软件，恒生在规模（10倍）、毛利率、ROE上均占优，龙头地位稳固。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<div class="summary-box">
+  <strong>估值方法：首选 PS / PEG，辅助 PE，关注营收增速与毛利率趋势</strong><br>
+  <table style="margin:8px 0;">
+    <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+    <tr><td>成长型（科技/金融IT）</td><td>PS / PEG</td><td>PE（盈利后），看营收增速</td><td>市场当前用PE 31.5x定价，PS 6.98x被低估；正确应以PS为主，PE为辅</td></tr>
+  </table>
+  <b>匹配度判断：</b>当前市场以PE 31.5x交易，隐含对2026E 15%利润增速的期待（PEG 2.0），但PS 6.98x对-12%营收增速不友好。若2026年营收转正至+10%（券商预期61.9亿），PS将降至6.5x以下，配合71%毛利率，成长股成色将修复。PB 4.21x对轻资产软件参考意义弱，不应以PB定价。<br>
+  <b>成长股四步验证（PS＞10预警）：</b>① 营收57.8亿＞20亿且为实物软件生意 ✔；② 毛利率71%稳定 ✔；③ CFO 10.67亿为正且改善 ✔；④ PS 6.98＜10 合理 ✔——四步均通过，非“烧钱陷阱”类成长股。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  Step 1 - 行业定位：非周期成长型（金融IT），寡头垄断，技术+客户粘性双壁垒，成熟底盘+AI/信创新翼过渡期<br>
+  Step 2 - 财务体检：ROE 13.33%良好、高利润型杜邦（净利21.3%驱动）、CFO/净利0.87较实、轻资产低负债（32.5%），但周转0.36持续下滑<br>
+  Step 3 - 估值判断：PE 31.5x（24%分位）、PB 4.21x（8.5%分位）均处历史低位，但绝对PE相对ROE合理区间偏高，PS 6.98x需营收增速支撑<br>
+  Step 4 - 风险排查：无硬雷（商誉/应收/债务均低），核心风险为营收两连降+Q4集中确认+投资收益占利润40%<br>
+  Step 5 - 结论：好公司（护城河深、财务稳）✓，但非好价格（估值偏高、营收未拐）→ 70分一般关注，适合跟踪而非重仓<br>
+  Step 6 - 跟踪：关键看2026Q2/Q3营收是否转正、UF3.0/O45签约转收入节奏、CFO/净利能否＞1、券商目标38元达成率；卖出信号：营收继续-10%或毛利率跌破68%或商誉突增
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td>✓ 是</td><td>金融IT为资本市场基础设施，信创+AI驱动长期扩容，寡头格局+高转换成本，行业需求非零和</td></tr>
+  <tr><td>② 好公司</td><td>✓ 是</td><td>ROE 13.33%接近15%、毛利率71%稳定、UF3.0/O45市占率第一、低负债高壁垒，符合好公司标准（ROE＞15%差0.7pct但趋势向好）</td></tr>
+  <tr><td>③ 好价格</td><td>✗ 否</td><td>PE 31.5x高于ROE合理区间（10-18x）75%，PEG 2.0＞1.5，PB虽历史低位但绝对值4.21x不便宜，需等待营收拐点或回调至25x以下</td></tr>
+</table>
+
+<h3>7.3 风险评估</h3>
+<div class="danger-box">
+  ☐ 价值陷阱（低PE+低增长+高负债）→ <b>未命中</b>（PE不低、负债极低）<br>
+  ☐ 周期陷阱（低PE+周期顶点）→ <b>未命中</b>（非周期股，且PE处历史低位非顶点）<br>
+  ☐ 烧钱陷阱（高PE+高增速+负现金流）→ <b>未命中</b>（CFO 10.67亿为正，FCF持续为正，PS 6.98合理）
+</div>
+
+<h4 style="font-size:13px;margin:12px 0 6px;">管理层与治理风险</h4>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力与履历</td><td>好</td><td>深耕金融IT 20+年，UF3.0/O45、LightGPT等战略产品如期落地，降本增效（费用-19%）与回款改善验证执行力；IDC排名稳居亚洲第一</td></tr>
+  <tr><td>股权结构与利益一致性</td><td>强</td><td>无实控人但蚂蚁集团等战略股东稳定；2026年推股票期权激励（第九届董事会第13次会议），深度绑定核心技术人员6953人</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td>无</td><td>近三年无重大监管处罚、诉讼或违规披露；审计机构天健（特殊普通合伙）连续出具标准无保留意见</td></tr>
+  <tr><td>资本配置记录</td><td>合理</td><td>分红率32.37%（含回购）+ 累计超40亿回报股东；投资聚焦金融科技生态（长期股权26亿、其他非流动20亿），无盲目跨界</td></tr>
+  <tr><td>管理层增减持</td><td>无/中性</td><td>2025-2026年未披露大额集中减持；回购专用账户155万股（较2024年275万股减少），显示回购力度放缓但无减持压力</td></tr>
+  <tr><td>CEO交接/关键人员</td><td>无风险</td><td>现任管理层稳定，无换届公告；技术团队占比67.66%结构优化后人效提升</td></tr>
+</table>
+
+<h4 style="font-size:13px;margin:12px 0 6px;">盈利可持续性</h4>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是靠价？</td><td>量价齐跌后靠“节流”</td><td>2025量（营收-12%）与价（毛利率-0.99pct）双降，利润增长靠费用-19%与投资收益+169%，非量价驱动，持续性弱于内生增长</td></tr>
+  <tr><td>涨价能否持续？</td><td>需观察</td><td>71%毛利率已处高位，提价空间有限；未来靠AI赋能提升单价（O45智能交易终端、投研平台）与粘性，但需客户预算回暖配合</td></tr>
+  <tr><td>非经常性利润占比</td><td>中</td><td>2025投资收益5.26亿+公允价值变动0.81亿，合计占利润总额50.2%，扣非/归母比82.3%（10.13/12.31），较2024年80%略改善但仍偏高</td></tr>
+  <tr><td>大客户/大项目集中度</td><td>分散</td><td>客户为数千家持牌金融机构（证券/基金/银行/保险/信托），无单一客户＞10%披露；Q4集中确认属行业惯例非单一项目依赖</td></tr>
+  <tr><td>政策/监管依赖度</td><td>中</td><td>受益信创替代与《网络营销办法》合规需求（正向），但亦受资本市场监管与费率改革影响（资管费率下行拖累IT投入）</td></tr>
+</table>
+
+<h4 style="font-size:13px;margin:12px 0 6px;">关键变量敏感性</h4>
+<table>
+  <tr><th>变量</th><th>乐观</th><th>中性</th><th>悲观</th></tr>
+  <tr><td>金融机构IT预算增速</td><td>资本市场回暖+信创招标放量，预算+10% → 营收重回65亿（+12%），净利14-15亿</td><td>预算持平（0%） → 营收58-60亿（±2%），净利12-13亿</td><td>预算继续-10% → 营收52亿（-10%），净利9-10亿（费用难再压缩）</td></tr>
+  <tr><td>UF3.0/O45转化率</td><td>20+家签约80%转收入，单客500万 → 新增0.8亿+存量续费，毛利率维持73%</td><td>50%转化 → 新增0.5亿，营收持平</td><td>转化＜30%或交付延迟 → 营收-5%，研发摊销压力显现</td></tr>
+  <tr><td>投资收益波动</td><td>联营企业+处置再增20% → 净利+1亿</td><td>持平5.26亿</td><td>公允价值回撤-30% → 净利-1.5亿，CFO/净利跌至0.75</td></tr>
+</table>
+
+<h3>7.4 前景展望</h3>
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. <b>信创替代放量</b> — UF3.0已签20+家、PB2.0头部券商竣工，自主可控从“可选”变“必选”，2026-2027年进入集中交付期，单价与市占率双升<br>
+  2. <b>AI赋能单价提升</b> — LightGPT/PTrade大模型已上线近40家券商，WarrenQ投研平台与数据MCP订阅制打开第二曲线，数据服务毛利率+4.13pct验证变现<br>
+  3. <b>合规增量</b> — 《网络营销办法》2026-09-30施行，金融机构内容审核/留痕/适当性系统集中采购，预计为行业带来10-15%增量订单，恒生作为龙头优先受益<br><br>
+  <strong>负向拖累：</strong><br>
+  1. <b>下游β未明</b> — 券商经纪/资管费率持续下行，IT预算与交易量/资管规模强相关，若2026年资本市场活跃度不及预期，营收拐点推迟<br>
+  2. <b>费用压缩天花板</b> — 销售/管理已降19-21%，研发37.7%为护城河不能再降，后续利润增长需靠收入而非节流，弹性减弱
+</div>
+
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>EPS预估</th><th>PE区间</th><th>预期回报（vs 21.31元）</th></tr>
+  <tr><td>乐观</td><td>营收65亿（+12%）+净利率22%+投资收益持平</td><td>0.82元（东吴预测）</td><td>30-35x</td><td>24.6-28.7元 (+15%~+35%) 概率25%</td></tr>
+  <tr><td>中性</td><td>营收60亿（+3.8%）+净利率21%+投资收益持平</td><td>0.75元（一致预期）</td><td>28-32x</td><td>21.0-24.0元 (-1%~+13%) 概率50%</td></tr>
+  <tr><td>悲观</td><td>营收52亿（-10%）+投资收益回撤</td><td>0.55元</td><td>25-30x</td><td>13.8-16.5元 (-35%~-23%) 概率25%</td></tr>
+</table>
+<p style="font-size:12px;color:#666;">中性概率50%，乐观25%（需信创+AI超预期），悲观25%（预算继续收缩）。2026E净利润14.08亿（券商均值）为中性基准。</p>
+
+<h3>7.5 资金面信号</h3>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>北向资金</td><td>持平偏增</td><td>陆股通持股占流通A股4.23%（16.97亿元，2026-06-30），较2025年末微增，外资对金融IT龙头配置稳定，未现大幅撤离</td></tr>
+  <tr><td>机构持仓</td><td>稳定</td><td>为沪深300与融资融券标的，机构持仓分散；2025年报前十大股东无大幅变动，险资/基金持仓待中报验证</td></tr>
+  <tr><td>融资余额</td><td>偏高</td><td>融资余额25.47亿占流通市值6.33%（2026-08-21），融券仅672万，杠杆资金情绪偏多，需警惕高融资对波动放大</td></tr>
+  <tr><td>大股东增减持</td><td>无</td><td>近一年无大股东集中减持公告；回购专用账户从275万股降至155万股，2025年回购金额计入分红32.37%回报</td></tr>
+  <tr><td>大宗交易</td><td>无明显溢价/折价</td><td>未披露大额折价大宗，机构态度中性</td></tr>
+</table>
+<div class="summary-box">
+  <strong>资金面结论：中性偏正面。</strong>北向与机构持仓稳定，无减持压力；但融资余额占比6.33%偏高（历史均值约4-5%），显示散户/杠杆资金对“AI+信创”叙事交易热情高，短期波动加大。资金面未现与基本面背离的极端信号，不能作为买卖主导，仍以基本面拐点为准。
+</div>
+
+<h3>7.6 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清恒生电子怎么赚钱？（提示：向金融机构卖核心交易/资管/运营软件，收许可+定制+年服务费，靠高毛利+高壁垒赚钱）<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？（是-12%的营收两连降，还是31.5x PE对增速的苛刻要求？）<br>
+  3. 如果现在买入，期待的回报来源是什么？（估值从24%分位修复，还是业绩重回15%+增速驱动？）<br>
+  4. 什么情况下你会坚决卖出？（营收继续-10%且毛利率跌破68%，或UF3.0转化不及预期且商誉突增？）
+</div>
+
+</div></div>
+
+<div class="footer">
+  免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+  数据来源：恒生电子2025年报（2026-03-28）、2024年报（2025-03-29）、2026年Q1季报、理杏仁估值（2026-08-21）、同花顺iFinD一致预期、券商研报（华泰/太平洋/东吴）
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>
