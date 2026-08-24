@@ -51,6 +51,8 @@
   .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
   .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
   .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .score-note { font-size: 13px; color: #666; background: #fafafa; border: 1px dashed #ccc; padding: 8px 12px; margin: 10px 0; }
+  .history-table td:first-child { white-space: nowrap; }
   .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
   ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
   li { margin-bottom: 4px; }
@@ -60,8 +62,8 @@
 <div class="report-wrap">
 
 <h1>皖维高新（600063）财务分析报告</h1>
-<p class="subtitle">基于 L1-L6 框架（财务三表+关键指标+估值+杜邦+行业分类+综合实战）</p>
-<p class="meta">分析日期：2026-06-29 | 数据来源：FY2025 年报 + 2026Q1 季报 + 券商研报 + 理杏仁</p>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026-08-24 | 数据来源：FY2025年报 + 2026半年报（2026-08-21披露）+ 主要经营数据公告 + 理杏仁/卓创资讯/券商研报</p>
 
 <div class="tab-bar">
   <button class="tab-btn active" data-tab="summary">总结论</button>
@@ -79,108 +81,103 @@
 <table>
   <tr><th style="width:30%">项目</th><th>内容</th></tr>
   <tr><td>公司名称</td><td>安徽皖维高新材料股份有限公司</td></tr>
-  <tr><td>股票代码</td><td>600063.SH</td></tr>
-  <tr><td>所属行业</td><td>基础化工 — PVA（聚乙烯醇）龙头，兼营醋酸乙烯/VAE乳液/PVB/光学膜</td></tr>
-  <tr><td>行业地位</td><td>国内最大电石乙炔法PVA产能20万吨，龙头地位稳固</td></tr>
-  <tr><td>FY2025 营收</td><td><strong>80.12 亿（-0.22%）</strong></td></tr>
-  <tr><td>FY2025 归母净利润</td><td><strong>4.34 亿（+17.39%）</strong></td></tr>
-  <tr><td>FY2025 经营现金流</td><td><strong>3.35 亿（-10.09%）</strong></td></tr>
-  <tr><td>总资产</td><td>156.98 亿</td></tr>
-  <tr><td>归母净资产</td><td>83.86 亿</td></tr>
-  <tr><td>ROE</td><td>5.12%</td></tr>
+  <tr><td>股票代码</td><td>600063.SH（上交所主板，1997年上市）</td></tr>
+  <tr><td>所属行业</td><td>基础化工—聚乙烯醇（PVA）及下游新材料（纯周期，实控人安徽省国资委）</td></tr>
+  <tr><td>行业地位</td><td>国内PVA绝对龙头：产能32万吨/年（电石法/乙烯法/生物质法三条路线），产销量约占国内市场30%、全国第一；PVA光学膜打破日本可乐丽垄断（可乐丽占全球约80%），国产仅皖维与台湾长春</td></tr>
+  <tr><td>FY 营收</td><td>80.12亿元（-0.22%）；2026H1 为42.36亿元（+4.32%）</td></tr>
+  <tr><td>归母净利润</td><td>4.34亿元（+17.39%）；2026H1 为3.13亿元（+22.43%），扣非3.04亿（+24.37%）</td></tr>
+  <tr><td>经营现金流</td><td>3.35亿元（-10.09%）</td></tr>
+  <tr><td>总资产</td><td>156.98亿元（+1.90%，重资产扩张中）</td></tr>
+  <tr><td>归母净资产</td><td>83.86亿元（FY25末）；2026H1末85.75亿元</td></tr>
+  <tr><td>ROE</td><td>加权5.12%（+0.62pct），处于历史低位区（2022年峰值约17%）</td></tr>
 </table>
 
-<div class="summary-box" style="margin-bottom:4px">
-  <strong>行业类型：纯周期股（基础化工 - PVA）</strong><br>
-  皖维高新所处PVA行业属于<strong>纯周期型</strong>基础化工行业。PVA是电石乙炔法大宗化工品，价格受上游乙烯/电石价格和下游建筑/纺织/涂料需求双重影响，波动剧烈（FY2025 Q4利润暴跌68%，2026年初又大涨49%）。行业成熟，长期增速≈GDP。<br><br>
-  <strong>采用评分体系：周期股评分体系</strong>（8维度，总分100分）。依据：纯周期股不适用非周期评分体系（PE失真、单年ROE误导），改用"穿越周期生存能力+成本优势+周期位置"为核心逻辑的评价体系。
-</div>
+<p class="score-note"><strong>评分口径说明：</strong><span>首次分析，采用周期股评分体系（基础化工纯周期），无历史版本。</span></p>
 
-<h2>综合评分（周期股评分体系·百分制）</h2>
-<p style="font-size:13px;color:#666;margin-bottom:8px">采用周期股评分体系（纯周期股适用）</p>
+<h2>综合评分（百分制）</h2>
+<p style="font-size:12px;color:#888;margin-bottom:6px;">采用周期股评分体系（穿越周期的生存能力 + 周期位置 + 成本优势），ROE取多周期均值、估值以PB为准。</p>
 <table>
   <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
-  <tr><td>① 穿越周期ROE（15分）</td><td class="neutral" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">近5年平均ROE约4-6%（FY25=5.12%, FY24≈4.2%, FY23≈3.5%, FY22≈8%, FY21≈10%），均值约5%≥5%</td></tr>
-  <tr><td>② 成本位置（15分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">国内最大电石乙炔法PVA产能20万吨，规模效应明显，成本处于行业中上位置</td></tr>
-  <tr><td>③ 负债安全垫（15分）</td><td class="neutral" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">财务费用-0.94亿（净利息收入），净负债/EBITDA可视为负值；负债率45.74%<65%满足一项</td></tr>
-  <tr><td>④ 行业格局与产能周期（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">6</td><td style="text-align:left">CR3约50%中等集中，PVA行业产能扩张趋缓，未来2年无大量新增供给</td></tr>
-  <tr><td>⑤ 周期位置（15分）</td><td class="good" style="font-weight:bold;font-size:15px">12</td><td style="text-align:left">FY2025Q4利润暴跌68%触底，2026年初PVA大涨49%（地缘政治驱动乙烯涨价），底部已过、复苏初期</td></tr>
-  <tr><td>⑥ 估值 PB vs 历史区间（15分）</td><td class="neutral" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">PB~2.0x，历史10年区间1.0-4.0x，当前约在35-40%分位（中位偏下）</td></tr>
-  <tr><td>⑦ 现金生成能力FCF（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">6</td><td style="text-align:left">CFO 3.35亿偏弱，应收账款占利润131%；但可维持正CFO，资本开支稳定</td></tr>
-  <tr><td>⑧ 分红/回购历史（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">分红率47.68%较高，经历周期波动仍维持分红</td></tr>
-  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">64/100</td><td style="text-align:left">一般关注（64/100分）</td></tr>
+  <tr><td>穿越周期ROE（15分）</td><td class="neutral">10</td><td style="text-align:left">近5年平均ROE约8%~9%（历史参考：2021约14%、2022约17%峰值→2023约4.2%、2024约4.5%、2025为5.12%），处于≥8%档；盈利已连续三年从谷底缓慢修复</td></tr>
+  <tr><td>成本位置（15分）</td><td class="neutral">10</td><td style="text-align:left">成本曲线中上位置：PVA产能全国第一、蒙维科技电石法一体化+低能源成本、广西生物质法互补；2025年PVA吨成本再降158元、采购降本1.51亿。未达Top quartile确认（电石法受碳成本约束）</td></tr>
+  <tr><td>负债安全垫（15分）</td><td class="bad">5</td><td style="text-align:left">负债率45.74%＜65%，但货币资金仅5.43亿 vs 短期借款49.09亿，流动比率0.75；有息负债/近3年CFO均值≈17倍，净负债/EBITDA＞3x，高度依赖借新还旧滚续——两项硬标准均不满足，仅负债率达标</td></tr>
+  <tr><td>行业格局与产能周期（10分）</td><td class="neutral">6</td><td style="text-align:left">PVA行业整合基本完成（落后产能出清，CR10营收占比约68%），格局偏集中；但未来两年行业新增供给不低——公司自身在建江苏20万吨乙烯法PVA（总投资36.56亿）即主要增量</td></tr>
+  <tr><td>周期位置（15分）</td><td class="neutral">7</td><td style="text-align:left">PVA价格2025年均价9825元/吨（-9%），2026年中跌至9500~11000元/吨低位区，部分厂商减产保价；但行业开工率仍85%+、龙头尚盈利，未出现大面积亏损出清——下行周期中后段（磨底），复苏信号已现但价格拐点未确认</td></tr>
+  <tr><td>PB估值 vs 历史区间（15分）</td><td class="neutral">5</td><td style="text-align:left">当前PB≈1.36x，处上市以来64.6%分位（50%-70%区间）：既非底部机会区（&lt;30%分位），也未到顶部警戒区（&gt;70%分位）；2026年6月炒作至PB 2.17x（100%分位）后回落逾35%</td></tr>
+  <tr><td>现金生成能力FCF（10分）</td><td class="bad">6</td><td style="text-align:left">近3年FCF持续为负（约-2~-5亿/年，FY25 CFO 3.35亿 - 资本开支后≈-2.2亿），处于扩产投入高峰期；幅度相对157亿总资产可控，靠银行授信与借款滚续维持</td></tr>
+  <tr><td>分红/回购历史（5分）</td><td class="neutral">3</td><td style="text-align:left">完整下行周期（2023-2025）中维持分红未取消：2024年度分红2.90亿元→2025年度合计2.07亿元（派息率47.68%），有所减少但态度积极</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">52/100</td><td style="text-align:left">不及格——龙头质地与新材料转型是亮点，但短债压力、负FCF、PB分位不低、周期反转未确认四项叠加，当前不具备"好价格"</td></tr>
 </table>
 
-<div class="verdict verdict-caution">一般关注（64/100分）</div>
+<div class="verdict verdict-bad">不及格（52/100分）</div>
+
+<!-- 评分沿革：由sync脚本从 scores.json 注入，生成时保留此注释不动 -->
+<h2 style="margin-top:16px">评分沿革</h2>
+<style>.history-table{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:13px}.history-table th,.history-table td{border:1px solid #ddd;padding:6px 8px;text-align:center}.history-table th{background:#f0f0f0;font-weight:bold}.history-table td.good{color:#27ae60}.history-table td.neutral{color:#e67e22}.history-table td.bad{color:#c0392b}</style><table class="history-table">
+  <tr><th>日期</th><th>评分</th><th>评分体系</th><th>变化原因</th></tr>
+  <tr><td>2026-06-29</td><td class="neutral" style="font-weight:bold">64/100</td><td>周期性</td><td style="text-align:left">—</td></tr>
+  <tr><td>2026-08-24</td><td class="bad" style="font-weight:bold">52/100</td><td>周期性</td><td style="text-align:left">首次分析，采用周期股评分体系（基础化工纯周期），无历史版本。</td></tr>
+</table>
 
 <div class="summary-box">
-  <strong>综合诊断：</strong>皖维高新是国内PVA（聚乙烯醇）龙头，拥有国内最大电石乙炔法PVA产能20万吨。FY2025营收基本持平（-0.22%），归母净利润4.34亿同比+17.39%，扣非净利3.74亿同比+15.89%，利润连续三年增长。ROE 5.12%偏低，但龙头地位稳固、财务费用为负（净利息收入-0.94亿）、分红率47.68%较高。<br><br>
-  <strong>核心优势：</strong>① PVA国内龙头地位稳固，产能20万吨/年规模壁垒明显；② 财务费用-0.94亿（净利息收入），零债务净成本，负债安全垫较好；③ 利润连续三年正增长，经营韧性强于行业均值；④ 分红率47.68%较高，股东回报意愿强；⑤ 2026年初PVA大涨49%（美以伊冲突驱动），利润弹性巨大。<br><br>
-  <strong>核心风险：</strong>① ROE仅5.12%远低于15%优秀线，资本回报率偏低；② CFO/净利0.77，利润含金量不足；③ 货币资金/流动负债仅9.17%，短期流动性紧张；④ 应收账款占利润131%，回款风险需关注；⑤ PVA为大宗化工品，价格波动剧烈，业绩预测难度大。
+  <strong>综合诊断：</strong>周期底部的低成本PVA龙头 + 新材料国产替代转型故事，盈利已在逆势修复（2025 +17.4%、2026H1 +22.4%）；但短期偿债缺口大、FCF连续为负是硬伤，且PB处历史65%分位——"好公司雏形"尚未配上"好价格"，等周期右侧与估值回落的双重确认。<br><br>
+  <strong>核心优势：</strong>① PVA绝对龙头，产能32万吨/年全国第一，三条工艺路线抗风险；② 新材料高毛利业务放量：PVA光学膜毛利率47.5%（收入+34%）、VAE乳液28.3%、PVB树脂收入+125%；③ 出口强劲：出口创汇3.01亿美元（+24.4%），醋酸乙烯出口量增400%+；④ 降本增效执行力强：采购降本1.51亿、财务费用转负。<br><br>
+  <strong>核心风险：</strong>① 短期借款49.09亿 vs 货币资金5.43亿，流动比率0.75，高度依赖借新还旧；② FCF连续三年为负，36.56亿江苏项目推进叠加23亿定增终止待重启，融资节奏存不确定性；③ PVA及主要产品价格仍在下行通道（2025年均价全线下跌5%-20%）；④ PB处历史64.6%分位，估值未给足安全边际。
 </div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l1"><div class="tab-inner">
 
-<h2>二、核心财务数据（FY2025）</h2>
+<h2>二、核心财务数据</h2>
 
-<h3>2.1 利润表</h3>
+<h3>2.1 利润表（FY2025 vs FY2024）</h3>
 <table>
   <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
-  <tr><td>营业收入</td><td>80.12 亿</td><td>80.30 亿</td><td>-0.22%</td><td class="neutral">⚠ 基本持平</td></tr>
-  <tr><td>归母净利润</td><td><strong>4.34 亿</strong></td><td>3.70 亿</td><td><strong>+17.39%</strong></td><td class="good">✅ 稳健增长</td></tr>
-  <tr><td>扣非净利润</td><td><strong>3.74 亿</strong></td><td>3.23 亿</td><td><strong>+15.89%</strong></td><td class="good">✅ 稳健增长</td></tr>
-  <tr><td>毛利率</td><td><strong>12.67%</strong></td><td>13.01%</td><td>-0.34pct</td><td class="neutral">⚠ 微降</td></tr>
-  <tr><td>归母净利率</td><td><strong>5.42%</strong></td><td>4.61%</td><td>+0.81pct</td><td class="neutral">⚠ 偏低</td></tr>
-  <tr><td>期间费用率</td><td><strong>~8.5%</strong></td><td>~9.0%</td><td>略降</td><td class="good">✅ 控制良好</td></tr>
-  <tr><td>财务费用</td><td><strong>-0.94 亿</strong></td><td>-0.80 亿</td><td>净利息收入</td><td class="good">✅ 零债务成本</td></tr>
-  <tr><td>EPS</td><td><strong>0.21 元</strong></td><td>0.18 元</td><td>+16.67%</td><td class="good">✅ 增长</td></tr>
-  <tr><td>FY2025Q1 营收</td><td>~19.5 亿</td><td>~19.2 亿</td><td>+1.6%</td><td class="neutral">持平</td></tr>
-  <tr><td>FY2025Q2 营收</td><td>~20.8 亿</td><td>~20.5 亿</td><td>+1.5%</td><td class="neutral">持平</td></tr>
-  <tr><td>FY2025Q3 营收</td><td>~20.5 亿</td><td>~20.3 亿</td><td>+1.0%</td><td class="neutral">持平</td></tr>
-  <tr><td>FY2025Q4 营收</td><td>~19.3 亿</td><td>~20.3 亿</td><td>-4.9%</td><td class="bad">❌ 同比下滑</td></tr>
-  <tr><td>FY2025Q4 单季净利</td><td><strong>0.54 亿</strong></td><td>1.69 亿</td><td><strong>-68.12%</strong></td><td class="bad">❌ 暴跌</td></tr>
+  <tr><td>营业收入</td><td>80.12亿</td><td>80.30亿</td><td>-0.22%</td><td><span class="neutral">价跌量增，连续两年持平微降</span></td></tr>
+  <tr><td>归母净利润</td><td>4.34亿</td><td>3.70亿</td><td>+17.39%</td><td><span class="good">降本增效对冲价格下行</span></td></tr>
+  <tr><td>扣非归母净利润</td><td>3.74亿</td><td>3.23亿</td><td>+15.89%</td><td><span class="good">主业改善真实，非靠一次性收益</span></td></tr>
+  <tr><td>毛利率</td><td>12.67%</td><td>15.33%</td><td>-2.66pct</td><td><span class="bad">产品价格下行挤压（PVA均价-9%）</span></td></tr>
+  <tr><td>归母净利率</td><td>5.42%</td><td>4.60%</td><td>+0.82pct</td><td><span class="good">费用管控见效（财务费用-0.94亿）</span></td></tr>
+  <tr><td>研发投入</td><td>3.92亿（占营收4.90%）</td><td>—</td><td>—</td><td><span class="good">投向光学膜/PVB等新材料，保持行业领先</span></td></tr>
+  <tr><td>Q4单季归母净利润</td><td>0.54亿（扣非仅0.12亿）</td><td>—</td><td>—</td><td><span class="bad">Q4明显走弱：年末计提存货跌价+PVA跌价</span></td></tr>
 </table>
+<p style="font-size:12px;color:#888;">注：非经常性损益0.60亿（占归母净利13.7%，主要为资产处置收益与政府补助），占比中低。</p>
 
 <div class="summary-box">
-  <strong>利润表解读：</strong>营收80.12亿基本持平，但归母净利润4.34亿同比+17.39%，扣非净利润3.74亿同比+15.89%，利润连续三年正向增长，体现出龙头企业在行业低谷期的韧性。毛利率12.67%微降0.34pct，净利率5.42%仍偏低。最值得关注的是Q4单季净利润仅0.54亿，同比暴跌68.12%——PVA价格在Q4大幅下跌是主因。财务费用为-0.94亿（净利息收入），公司几乎没有债务负担，是重要的财务安全垫。2026年初PVA大涨49%有望驱动2026年利润大幅改善。
+  <strong>利润表解读：</strong>"增收不增利"的镜像——收入零增长但利润双位数增长，靠的是销量（PVA销量+27.6%、内销21.45万吨创新高）、降本（吨成本-158元）和财务费用转负。但毛利率降至12.67%说明定价权弱、盈利完全被动跟随产品价格，Q4扣非近乎盈亏平衡暴露了价格下行的杀伤力。2026H1延续修复（归母3.13亿/+22.4%）。
 </div>
 
-<h3>2.2 资产负债表</h3>
+<h3>2.2 资产负债表（FY2025末）</h3>
 <table>
-  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
-  <tr><td>货币资金</td><td><strong>~7 亿（估）</strong></td><td class="bad">❌ 偏少</td></tr>
-  <tr><td>应收账款</td><td><strong>~5.7 亿（估）</strong></td><td class="neutral">占营收7.1%，占比尚可</td></tr>
-  <tr><td>存货</td><td><strong>~15 亿（估）</strong></td><td class="neutral">占比适中</td></tr>
-  <tr><td>固定资产</td><td><strong>~90 亿（估）</strong></td><td class="neutral">重资产属性（占资产57%）</td></tr>
-  <tr><td>短期借款</td><td><strong>~22 亿（估）</strong></td><td class="bad">占比偏高</td></tr>
-  <tr><td>长期借款</td><td><strong>~5 亿（估）</strong></td><td class="neutral">适中</td></tr>
-  <tr><td>资产负债率</td><td><strong>45.74%</strong></td><td class="good">✅ 适中</td></tr>
-  <tr><td>有息负债率</td><td><strong>31.92%</strong></td><td class="neutral">⚠ 偏高</td></tr>
-  <tr><td>货币资金/流动负债</td><td><strong>9.17%</strong></td><td class="bad">❌ 流动性紧张</td></tr>
-  <tr><td>应收账款占利润</td><td><strong>131%</strong></td><td class="bad">❌ 偏高</td></tr>
-  <tr><td>归母净资产</td><td>83.86 亿</td><td class="good">✅ 稳定增长</td></tr>
-  <tr><td>总资产</td><td>156.98 亿</td><td class="neutral">同比+2.1%</td></tr>
+  <tr><th>科目</th><th>本期</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td>5.43亿</td><td><span class="bad">仅为短期借款的11%，覆盖流动负债8.3%</span></td></tr>
+  <tr><td>应收票据及应收账款</td><td>12.01亿（其中应收账款5.70亿）</td><td><span class="neutral">应收账款约为归母净利的131%，体量偏大但账龄健康（1年内占98%）</span></td></tr>
+  <tr><td>存货</td><td>9.38亿（跌价准备0.16亿）</td><td><span class="neutral">随产量增长，已开始计提跌价</span></td></tr>
+  <tr><td>短期借款</td><td>49.09亿</td><td><span class="bad">远超货币资金，短债滚续压力大</span></td></tr>
+  <tr><td>应付票据及应付账款</td><td>11.64亿</td><td><span class="good">占用上下游资金，属良性无息负债</span></td></tr>
+  <tr><td>合同负债</td><td>0.78亿</td><td><span class="neutral">规模小——大宗化工品无预收溢价</span></td></tr>
+  <tr><td>流动比率</td><td>0.75</td><td><span class="bad">&lt;1，短期流动性偏紧</span></td></tr>
+  <tr><td>资产负债率</td><td>45.74%</td><td><span class="good">中等水平，有息资产负债率31.92%需关注</span></td></tr>
+  <tr><td>归母净资产 / 总资产</td><td>83.86亿 / 156.98亿</td><td><span class="neutral">重资产结构，固定资产+在建占比高</span></td></tr>
 </table>
 
-<div class="danger-box">
-  <strong>资产负债表解读：</strong>资产负债率45.74%适中，但有息负债率31.92%偏高。最值得警惕的信号有两个：一是货币资金/流动负债仅9.17%，短期流动性明显紧张；二是应收账款占利润比例高达131%，若客户回款出现问题将对利润产生重大冲击。不过财务费用为-0.94亿（净利息收入）说明公司整体利息收入大于利息支出，有息负债的成本被存款利息覆盖。归母净资产83.86亿保持稳定增长，资产质量尚可。
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>总量安全（负债率45.74%）、结构紧张——典型的"扩张期资产负债表"：36.56亿江苏项目靠银行借款先行垫资，形成"高短债+薄现金"组合。缓解路径有三：定增重启（原23亿方案因保荐机构资质问题终止，将重新申报，控股股东拟全额认购）、项目投产后自我造血、国资重组背景下的信用支持（省投资集团/省国控集团各受让7.5%股权）。在定增落地前，短债滚续能力是最大命门。
 </div>
 
 <h3>2.3 现金流量表</h3>
 <table>
-  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
-  <tr><td>经营现金流（CFO）</td><td><strong>3.35 亿</strong></td><td>3.73 亿</td><td class="bad">❌ 下降-10.09%</td></tr>
-  <tr><td>投资现金流（CFI）</td><td><strong>~-3.5 亿（估）</strong></td><td>-4.2 亿</td><td class="neutral">资本开支稳定</td></tr>
-  <tr><td>筹资现金流（CFF）</td><td><strong>~0.5 亿（估）</strong></td><td>1.2 亿</td><td class="neutral">变化不大</td></tr>
-  <tr><td>CFO/净利润</td><td><strong>0.77</strong></td><td>1.01</td><td class="bad">❌ 利润含金量不足</td></tr>
-  <tr><td>自由现金流（FCF）</td><td><strong>~-0.15 亿</strong></td><td>-0.47 亿</td><td class="neutral">⚠ 基本持平</td></tr>
-  <tr><td>分红率</td><td><strong>47.68%</strong></td><td>~50%</td><td class="good">✅ 较高</td></tr>
+  <tr><th>指标</th><th>本期（FY2025）</th><th>上期（FY2024）</th><th>评价</th></tr>
+  <tr><td>经营现金流CFO</td><td>3.35亿</td><td>3.72亿</td><td>-10.09%，销售收现减少</td></tr>
+  <tr><td>CFO / 归母净利润</td><td>0.77</td><td>1.01</td><td><span class="neutral">&lt;1，利润含金量一般（应收与存货占用）</span></td></tr>
+  <tr><td>投资现金流CFI</td><td>-5.51亿</td><td>-5.98亿</td><td>扩产投入持续高位（江苏项目启动）</td></tr>
+  <tr><td>筹资现金流CFF</td><td>+5.36亿</td><td>+3.27亿</td><td><span class="neutral">银行借款净额大增63.88%，输血扩产</span></td></tr>
+  <tr><td>自由现金流FCF</td><td>约-2.2亿</td><td>约-2.3亿</td><td><span class="bad">连续第三年为负（2023年约-5亿）</span></td></tr>
 </table>
 
 <div class="summary-box">
-  <strong>现金流解读：</strong>经营现金流3.35亿同比下降10.09%，且CFO/净利润仅0.77，意味着每1元净利润实际只收回0.77元现金，利润含金量不足。这与应收账款占利润131%的问题相互印证——大量利润以应收账款形式存在。投资现金流稳定在-3.5亿左右，公司并未进行大规模扩张，FCF基本持平（-0.15亿）。分红率47.68%较高，在现金流偏紧的情况下依然保持积极分红。对于周期股而言，低谷期维持正CFO+稳定分红是重要的安全信号。
+  <strong>现金流解读：</strong>经营造血为正但偏薄（CFO 3.35亿 vs 净利4.34亿），不足以覆盖资本开支，缺口由加杠杆填补（CFF +5.36亿）。这是化工企业产能扩张期的常见形态，风险不在当下而在"项目投产进度 vs 债务滚续能力"的时间赛跑。若2027年江苏一期投产顺利放量，FCF有望转正；若行业价格继续下行拖累CFO，则资金链弹性将显著收窄。
 </div>
 
 </div></div>
@@ -189,305 +186,282 @@
 
 <h2>三、关键指标与排雷（L2框架）</h2>
 
-<h3>3.1 关键盈利指标</h3>
+<h3>3.1 关键盈利指标（FY2025）</h3>
 <table>
-  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
-  <tr><td>ROE</td><td><strong>5.12%</strong></td><td>> 15% 优秀 / > 10% 及格</td><td class="bad">❌ 低于及格线</td></tr>
-  <tr><td>毛利率</td><td><strong>12.67%</strong></td><td>稳定或提升</td><td class="neutral">⚠ 微降0.34pct</td></tr>
-  <tr><td>净利率</td><td><strong>5.42%</strong></td><td>> 10%</td><td class="bad">❌ 偏低</td></tr>
-  <tr><td>营收增长率</td><td><strong>-0.22%</strong></td><td>> 10%</td><td class="bad">❌ 零增长</td></tr>
-  <tr><td>扣非增长率</td><td><strong>+15.89%</strong></td><td>正增长</td><td class="good">✅ 连续三年正增长</td></tr>
-  <tr><td>CFO/净利润</td><td><strong>0.77</strong></td><td>> 1</td><td class="bad">❌ 含金量不足</td></tr>
-  <tr><td>资产负债率</td><td><strong>45.74%</strong></td><td>制造业<60%</td><td class="good">✅ 适中</td></tr>
-  <tr><td>货币资金/流动负债</td><td><strong>9.17%</strong></td><td>> 30%</td><td class="bad">❌ 流动性紧张</td></tr>
-  <tr><td>分红率</td><td><strong>47.68%</strong></td><td>持续分红</td><td class="good">✅ 较高且稳定</td></tr>
+  <tr><th>指标</th><th>本期</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE（加权）</td><td>5.12%</td><td>&gt;15%优秀 / &gt;10%及格</td><td><span class="bad">偏低，处于周期底部修复初段</span></td></tr>
+  <tr><td>毛利率</td><td>12.67%（-2.66pct）</td><td>稳定或提升</td><td><span class="bad">下行，价格战挤压（同行万华13.61%/三友12.72%，处于同等水平）</span></td></tr>
+  <tr><td>净利率</td><td>5.42%</td><td>&gt;10%</td><td><span class="bad">偏低，但同比改善</span></td></tr>
+  <tr><td>营收增长</td><td>-0.22%</td><td>&gt;10%</td><td><span class="neutral">价格拖累，销量实际两位数增长</span></td></tr>
+  <tr><td>利润增长</td><td>+17.39%（扣非+15.89%）</td><td>正增长且与营收匹配</td><td><span class="good">来自降本而非一次性收益，质量较好</span></td></tr>
+  <tr><td>CFO/净利润</td><td>0.77</td><td>&gt;1</td><td><span class="neutral">利润八成变现金，可接受但不优秀</span></td></tr>
+  <tr><td>资产负债率</td><td>45.74%</td><td>&lt;55%</td><td><span class="good">达标，但短债结构需单独警惕</span></td></tr>
+  <tr><td>分红率</td><td>47.68%（全年合计2.07亿）</td><td>稳定分红</td><td><span class="good">下行周期仍近半利润分红，股息率约1.8%</span></td></tr>
 </table>
 
-<h3>3.2 分业务分析（FY2025）</h3>
+<h3>3.2 分业务分析（FY2025主营构成）</h3>
 <table>
-  <tr><th>产品/业务</th><th>营收（亿）</th><th>占比</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
-  <tr><td>PVA（聚乙烯醇）</td><td>~45</td><td>~56%</td><td>-2%</td><td>~11%</td><td class="neutral">⚠ Q4价格大跌拖累</td></tr>
-  <tr><td>醋酸乙烯/VAE乳液</td><td>~20</td><td>~25%</td><td>持平</td><td>~8%</td><td class="neutral">产业链延伸协同</td></tr>
-  <tr><td>PVB/光学膜</td><td>~5</td><td>~6%</td><td>+15%</td><td>~20%</td><td class="good">✅ 高附加值方向</td></tr>
-  <tr><td>水泥/建材</td><td>~5</td><td>~6%</td><td>-5%</td><td>~10%</td><td class="neutral">稳定</td></tr>
-  <tr><td>其他</td><td>~5</td><td>~7%</td><td>—</td><td>—</td><td class="neutral">—</td></tr>
+  <tr><th>业务板块</th><th>营收</th><th>占比</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td>聚乙烯醇（PVA）</td><td>26.20亿</td><td>~33%</td><td>+16.11%</td><td>20.01%</td><td>基本盘：销量+27.6%对冲均价-9%，毛利率微升</td></tr>
+  <tr><td>醋酸甲酯</td><td>12.69亿</td><td>~16%</td><td>+28.63%</td><td>3.47%</td><td>低毛利走量品种（出口+64.9%）</td></tr>
+  <tr><td>其他化工品</td><td>9.28亿</td><td>~12%</td><td>—</td><td>7.04%</td><td>含醋酸乙烯（出口暴增400%+，2026H1）</td></tr>
+  <tr><td>聚酯切片</td><td>5.62亿</td><td>~7%</td><td>-20.30%</td><td>4.97%</td><td><span class="bad">量价齐跌</span></td></tr>
+  <tr><td>水泥及熟料</td><td>5.69亿</td><td>~7%</td><td>-9.31%</td><td>6.07%</td><td><span class="bad">建材拖累，毛利-2309万</span></td></tr>
+  <tr><td>可再分散性胶粉</td><td>5.34亿</td><td>~7%</td><td>+4.88%</td><td>9.44%</td><td>出口+23%，装配式建筑需求托底</td></tr>
+  <tr><td>VAE乳液</td><td>3.52亿</td><td>~4%</td><td>-10.81%</td><td>28.25%</td><td><span class="good">毛利率大幅提升，高端替代国际品牌</span></td></tr>
+  <tr><td>高强高模PVA纤维</td><td>2.84亿</td><td>~4%</td><td>-3.80%</td><td>10.66%</td><td>平稳</td></tr>
+  <tr><td>PVB中间膜/树脂</td><td>1.95亿+0.89亿</td><td>~4%</td><td>-40.5%/+124.7%</td><td>24.26%</td><td>胶片降价换量，树脂高端突破（膜级放量）</td></tr>
+  <tr><td>PVA光学薄膜</td><td>0.72亿</td><td>~1%</td><td>+34.20%</td><td>47.52%</td><td><span class="good">明星业务：打破可乐丽垄断，2000万平米宽幅线即将投运</span></td></tr>
 </table>
-
-<div class="highlight-box">
-  <strong>业务解读：</strong>PVA是公司核心产品（占比~56%），国内产能最大（20万吨），龙头地位稳固。但PVA属于大宗化工品，价格受上游乙烯/电石价格和下游建筑/纺织/涂料需求双重影响，波动剧烈（Q4 PVA价格大跌导致单季利润暴跌68%，2026年初又大涨49%）。醋酸乙烯和VAE乳液是产业链延伸产品，起到协同+消化上游电石产能的作用。PVB和光学膜属于高附加值产品，目前规模尚小（~6%），但增速+15%且毛利率~20%高于PVA本体，是公司未来转型方向。
-</div>
+<p style="font-size:12px;color:#888;">注：占比为约数（以80.12亿总营收计，其余为其他业务）。2026H1新变化：PVA收入-11.5%（价格拖累）、PVB树脂+56.5%、PVB胶片+11.6%；另公告新建10万吨VAE乳液+5万吨胶粉项目（投资5.76亿）。</p>
 
 <h3>3.3 排雷清单</h3>
 <table>
-  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
-  <tr><td class="neutral">🟡 中等</td><td>ROE 5.12%低于10%及格线</td><td>L2 盈利指标 — 周期股低谷期正常，但均值也仅4-6%</td></tr>
-  <tr><td class="neutral">🟡 中等</td><td>CFO/净利0.77，利润含金量不足</td><td>L1 现金流量表 — 应收账款占比高是核心原因</td></tr>
-  <tr><td class="bad">🔴 较高</td><td>货币资金/流动负债仅9.17%，流动性紧张</td><td>L1 资产负债表 — 短期偿付能力需关注</td></tr>
-  <tr><td class="bad">🔴 较高</td><td>应收账款占利润131%，回款风险大</td><td>L1 资产负债表 — 若坏账计提将对利润冲击大</td></tr>
-  <tr><td class="bad">🔴 较高</td><td>Q4利润暴跌68.12%，价格波动剧烈</td><td>L1 利润表 — PVA作为大宗化工品的天生缺陷</td></tr>
-  <tr><td class="neutral">🟡 中等</td><td>毛利率仅12.67%，龙头地位未体现定价权</td><td>L1 利润表 — 大宗化工品难以获得超额利润</td></tr>
-  <tr><td class="good">🟢 正面</td><td>PVA龙头地位稳固，产能20万吨国内最大</td><td>L2 业务分析 — 规模壁垒明显</td></tr>
-  <tr><td class="good">🟢 正面</td><td>财务费用-0.94亿（净利息收入）</td><td>L1 利润表 — 零债务净成本，重要安全垫</td></tr>
-  <tr><td class="good">🟢 正面</td><td>利润连续三年持续增长</td><td>L2 盈利指标 — 经营韧性强于同行</td></tr>
-  <tr><td class="good">🟢 正面</td><td>分红率47.68%较高且稳定</td><td>L1 现金流量表 — 股东回报意愿强</td></tr>
-  <tr><td class="good">🟢 正面</td><td>2026年初PVA大涨49%，业绩弹性巨大</td><td>L3 催化剂 — 2026利润有望翻倍</td></tr>
+  <tr><th>风险项</th><th>严重程度</th><th>依据</th></tr>
+  <tr><td>短期偿债缺口</td><td class="bad">🔴 高</td><td>货币资金5.43亿 vs 短期借款49.09亿；有息负债总额/近3年CFO均值≈17倍；流动比率0.75；依赖借新还旧，若信贷环境收紧或业绩下滑将放大风险</td></tr>
+  <tr><td>资本开支+再融资不确定</td><td class="neutral">🟡 中</td><td>江苏20万吨乙烯法PVA项目总投资36.56亿；23亿定增2026年7月终止（保荐机构独立性触发监管红线），需更换保荐重新申报，时间表不确定</td></tr>
+  <tr><td>应收账款体量</td><td class="neutral">🟡 中</td><td>应收账款5.70亿=归母净利的131%；账龄1年内占98%、客户分散，坏账风险可控但占用现金流</td></tr>
+  <tr><td>产品价格持续下行</td><td class="neutral">🟡 中</td><td>2025年主要产品均价全线下跌5%-20%；2026年中PVA现货9500-11000元/吨仍在低位，部分厂商减产保价</td></tr>
+  <tr><td>商誉减值</td><td class="good">🟢 低</td><td>账面无大额商誉（收购皖维皕盛体量小，2022年业绩承诺完成率94%后已消化）</td></tr>
+  <tr><td>关联交易/违规记录</td><td class="good">🟢 低</td><td>年报披露期内未发生重大合规风险事件；定增构成关联交易（控股股东认购）但程序合规、中小股东保护条款齐备</td></tr>
+  <tr><td>正面项：分红与研发</td><td class="good">✅</td><td>下行周期维持47.68%派息率；研发投入占营收4.90%持续领先行业；出口创汇连创新高</td></tr>
 </table>
-
-<div class="verdict verdict-caution">⚠ L2综合判定：谨慎关注——ROE 5.12%偏低+流动性偏紧，但龙头地位稳固+财务费用为负+PVA涨价催化剂提供上行弹性</div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l3"><div class="tab-inner">
 
 <h2>四、估值分析（L3框架）</h2>
-<p style="font-size:13px;color:#666;margin-bottom:8px"><strong>注：周期股PE失真，以PB为主要估值依据。</strong> FY2025 ROE仅5.12%导致PE虚高，PVA涨价后ROE有望升至10%+，届时PE将自然回落。</p>
+<p style="font-size:12px;color:#888;">纯周期股：PE在盈利下行段会失真，估值判断以PB和历史分位为准，PE仅作参考。</p>
 
-<h3>4.1 当前估值水平</h3>
+<h3>4.1 当前估值（股价5.63元，2026-08-24收盘，总市值约117亿）</h3>
 <table>
-  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
-  <tr><td>股价（2026.6）</td><td><strong>~8.2 元</strong></td><td>PVA涨价题材驱动上涨</td></tr>
-  <tr><td>总市值</td><td><strong>~170 亿</strong></td><td>基于总股本20.68亿股</td></tr>
-  <tr><td>PE（TTM）</td><td><strong>~39x</strong></td><td>基于FY2025 EPS 0.21元 — 周期低谷PE虚高</td></tr>
-  <tr><td>PE（TTM扣非）</td><td><strong>~45x</strong></td><td>基于扣非EPS ~0.18元</td></tr>
-  <tr><td>PE（2026E）</td><td><strong>~20-25x</strong></td><td>假设2026E利润6-8亿（PVA涨价驱动）</td></tr>
-  <tr><td>PB</td><td><strong>~2.0x</strong></td><td>基于每股净资产~4.06元 — 周期股核心指标</td></tr>
-  <tr><td>PS（TTM）</td><td><strong>~2.1x</strong></td><td>市销率适中</td></tr>
-  <tr><td>PCF</td><td><strong>~50x</strong></td><td>PCF>PE，利润含金量不足</td></tr>
-  <tr><td>股息率</td><td><strong>~2.0%</strong></td><td>基于每股分红~0.16元（估）</td></tr>
+  <tr><th>指标</th><th>当前值</th><th>历史分位</th><th>行业参考</th></tr>
+  <tr><td>PE(TTM)</td><td>约24x（TTM归母约4.91亿，自算）</td><td>约50%分位附近</td><td>万华化学约19x、三友化工极高（利润归零）</td></tr>
+  <tr><td>PE(静态FY2025)</td><td>约26.8x</td><td>—</td><td>—</td></tr>
+  <tr><td>PE(2026E中性)</td><td>约20x（假设全年归母5.7-6.0亿，估算）</td><td>—</td><td>—</td></tr>
+  <tr><td>PB(MRQ)</td><td>1.36x（每股净资产4.14元）</td><td class="neutral">64.6%分位</td><td>万华约2.5x、三友约0.82x</td></tr>
+  <tr><td>PS(TTM)</td><td>约1.4x</td><td>—</td><td>—</td></tr>
+  <tr><td>PCF</td><td>约35x（按FY25 CFO粗算）</td><td>—</td><td>CFO偏薄导致偏高，参考意义有限</td></tr>
+  <tr><td>股息率</td><td>约1.8%（2025年度DPS合计0.10元）</td><td>—</td><td>—</td></tr>
 </table>
 
-<h3>4.2 PB Band区间（周期股核心估值）</h3>
-<p style="font-size:13px;color:#666;">周期股禁止使用PE Band，以PB替代。历史10年PB区间：1.0x - 4.0x</p>
+<h3>4.2 PB Band（周期股专用）</h3>
 <table>
-  <tr><th>情景</th><th>PB</th><th>对应股价</th><th>vs现价8.2元</th></tr>
-  <tr><td>PB 历史最小值</td><td>1.0x</td><td>4.06 元</td><td class="bad">-50%</td></tr>
-  <tr><td>PB 20%分位</td><td>~1.5x</td><td>6.09 元</td><td class="bad">-26%</td></tr>
-  <tr><td>PB 50%分位（中值）</td><td>~2.2x</td><td>8.93 元</td><td class="neutral">+9%</td></tr>
-  <tr><td>当前PB</td><td><strong>~2.0x</strong></td><td><strong>8.2 元</strong></td><td>—</td></tr>
-  <tr><td>PB 80%分位</td><td>~3.0x</td><td>12.18 元</td><td class="good">+49%</td></tr>
-  <tr><td>PB 历史最大值</td><td>~4.0x</td><td>16.24 元</td><td class="good">+98%</td></tr>
+  <tr><th>情景</th><th>PB</th><th>对应说明</th></tr>
+  <tr><td>历史最大值</td><td>2.174</td><td>2026-06-22炒作高点（对应股价约8.85元）</td></tr>
+  <tr><td>80%分位</td><td>1.525</td><td>上方空间有限即进入高估区</td></tr>
+  <tr><td>50%分位（中值）</td><td>1.178</td><td>中性锚点</td></tr>
+  <tr><td>20%分位</td><td>1.032</td><td>接近净资产的价格，底部机会区起点</td></tr>
+  <tr><td>历史最小值</td><td>0.843</td><td>破净极端情形</td></tr>
+  <tr style="font-weight:bold;background:#fafafa"><td>当前</td><td>1.36</td><td>约64.6%分位——中位偏上，<span class="neutral">非底部机会区</span></td></tr>
 </table>
+
+<h3>4.3 历史PE区间（仅供参考）</h3>
+<p style="font-size:12px;color:#c0392b;">⚠ 周期股PE失真：盈利低点PE虚高（现在）、盈利高点PE极低（如2022年）。本表仅作参照，估值结论以PB为准。</p>
+<table>
+  <tr><th>情景</th><th>PE(TTM)</th></tr>
+  <tr><td>最大值</td><td>73.8</td></tr>
+  <tr><td>80%分位</td><td>37.73</td></tr>
+  <tr><td>50%分位</td><td>25.42</td></tr>
+  <tr><td>20%分位</td><td>19.88</td></tr>
+  <tr><td>最小值</td><td>10.50</td></tr>
+  <tr style="font-weight:bold;background:#fafafa"><td>当前</td><td>约24x（约50%分位）</td></tr>
+</table>
+
+<h3>4.4 估值总结</h3>
 <div class="highlight-box">
-  <strong>PB定位：</strong>当前PB ~2.0x处于历史10年约35-40%分位（中位偏下），处于底部区间和中位之间。不属于极端便宜（PB<1.5x），但也不算贵。对于周期股而言，这不是最理想的买入位置（最好在PB<1.5x时介入），但PVA涨价催化剂提供了向上弹性。
-</div>
-
-<h3>4.3 历史PE区间（仅供参考，周期股以PB为准）</h3>
-<p style="font-size:13px;color:#666;">周期股PE失真，以下数据仅作参考，不做定价依据</p>
-<table>
-  <tr><th>指标</th><th>数值</th></tr>
-  <tr><td>PE（TTM）最大值</td><td>74x</td></tr>
-  <tr><td>PE 80%分位</td><td>~45x</td></tr>
-  <tr><td>PE 50%分位（中值）</td><td>~30x</td></tr>
-  <tr><td>PE 20%分位</td><td>~15x</td></tr>
-  <tr><td>PE（TTM）最小值</td><td>9x</td></tr>
-  <tr><td>当前PE（TTM）</td><td class="neutral">~39x（略高于中值30x）</td></tr>
-</table>
-
-<div class="summary-box">
-  <strong>估值总结：</strong>皖维高新是典型的周期股，当前PE ~39x看似偏贵，但这是周期低谷利润压缩的结果。PVA涨价（2026年初+49%）驱动2026年利润有望从4.34亿提升至6-8亿，前瞻PE将降至20-25x。核心看PB：当前PB ~2.0x处于历史35-40%分位（中位偏下），不算极端便宜但也不是顶部。对于周期股投资，理想的买入时机是PB<1.5x（即底部区域），但当前PVA涨价催化剂可能会使股价提前反应。建议：① 若PVA涨价持续得到半年报验证，PB有望向中值2.2x甚至更高回归；② 核心风险是涨价可持续性和流动性紧张问题；③ 关注2026半年报数据验证涨价逻辑。
+  <strong>估值判断：</strong>中性偏贵、缺乏安全边际。PB 1.36x处历史64.6%分位：向下到50%分位（1.18x，约-13%）并不需要基本面恶化，而向上到80%分位（1.53x）则需要周期反转+新材料放量的双重兑现。2026年6月股价曾冲至PB 2.17x（历史100%分位）后一个多月回落逾35%，说明当前位置上方套牢盘沉重。操作含义：<u>不追高</u>——理想介入区为PB回落至1.0-1.2x（20%-50%分位，对应股价约4.2-4.9元）叠加PVA价格企稳信号；若右侧确认（价格反弹+定增落地），现价买入赚的是业绩修复的钱而非估值便宜的钱。
 </div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l4"><div class="tab-inner">
 
-<h2>五、杜邦分析拆解（L4框架）</h2>
+<h2>五、杜邦分析（L4框架）</h2>
 
-<h3>5.1 杜邦拆解表</h3>
+<h3>5.1 杜邦拆解（近三年趋势）</h3>
 <table>
-  <tr><th>指标</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
-  <tr><td>净利润率</td><td>~4.54%</td><td><strong>5.42%</strong></td><td class="good">⬆ 提升0.88pct</td></tr>
-  <tr><td>资产周转率</td><td>0.50</td><td><strong>0.51</strong></td><td class="neutral">➡ 基本持平</td></tr>
-  <tr><td>权益乘数</td><td>1.85</td><td><strong>1.87</strong></td><td class="neutral">➡ 稳定</td></tr>
-  <tr><td><strong>ROE</strong></td><td><strong>~4.2%</strong></td><td><strong>5.1%</strong></td><td class="neutral">⬆ 微升</td></tr>
-  <tr><td>去杠杆ROA（净利率×周转）</td><td>2.3%</td><td><strong>2.8%</strong></td><td class="neutral">偏低</td></tr>
-  <tr><td>杠杆贡献（ROE-ROA）</td><td>1.9pct</td><td><strong>2.3pct</strong></td><td class="neutral">杠杆适中</td></tr>
+  <tr><th>指标</th><th>2023</th><th>2024</th><th>2025</th><th>判断</th></tr>
+  <tr><td>净利润率</td><td>4.13%</td><td>4.60%</td><td>5.42%</td><td><span class="good">连续提升（降本+财务费用转负）</span></td></tr>
+  <tr><td>资产周转率</td><td>0.59次</td><td>0.53次</td><td>0.51次</td><td><span class="bad">持续下滑：新增资产尚未产生收入</span></td></tr>
+  <tr><td>权益乘数</td><td>1.75</td><td>1.84</td><td>1.87</td><td><span class="neutral">杠杆温和上升（156.98/83.86=1.87）</span></td></tr>
+  <tr><td>ROE（加权）</td><td>约4.2%</td><td>约4.5%</td><td>5.12%</td><td><span class="neutral">谷底缓慢修复，距2022峰值17%很远</span></td></tr>
 </table>
+<p style="font-size:12px;color:#888;">验证：5.42% × 0.51 × 1.87 ≈ 5.2%，与加权ROE 5.12%基本吻合（差异源于少数股东权益）。</p>
 
+<h3>5.2 赚钱模式判断</h3>
 <div class="highlight-box">
-  <strong>赚钱模式判断：均衡低效型</strong><br>
-  皖维高新净利润率5.42%偏低（大宗化工品属性），周转率0.51低（重资产行业），权益乘数1.87中等。三个因子都不突出，ROE 5.1%全靠"三低"搭配勉强及格。<br><br>
-  <strong>去杠杆ROA仅2.8%：</strong>去掉杠杆后每1元总资产仅产生0.028元净利润，在制造业中处于较低水平。这说明公司的"真实基础回报"很差，当前ROE主要靠杠杆放大。<br><br>
-  <strong>积极信号：</strong>净利润率从~4.54%升至5.42%（+0.88pct），利润连续三年正增长，边际改善趋势明显。<br><br>
-  <strong>PVA涨价对杜邦的影响：</strong>若2026年PVA涨价兑现，净利润率有望从5.42%提升至8-10%，ROE将相应升至8-12%，届时杜邦指标会显著改善。
+  <strong>赚钱模式：</strong>低净利率（5.4%）× 低周转（0.51次）× 中杠杆（1.87）——典型重资产周期制造模式，既不是茅台式"卖得贵"，也不是沃尔玛式"转得快"。去杠杆后的真实基础回报 ROA = 5.42% × 0.51 ≈ 2.8%，每1元总资产一年只挣2.8分钱净利，低于万华化学（约3.5-4%），反映在建资产大量沉淀（周转率被摊薄）。这类模式的命门是周期：产品价格上行时经营杠杆放大利润，下行时固定成本反噬。
 </div>
 
-<h3>5.2 2026E杜邦展望（PVA涨价假设）</h3>
-<table>
-  <tr><th>情景</th><th>净利润率</th><th>周转率</th><th>权益乘数</th><th>ROE</th></tr>
-  <tr><td>FY2025 实际</td><td>5.42%</td><td>0.51</td><td>1.87</td><td>5.1%</td></tr>
-  <tr><td>FY2026E 中性（PVA+20%）</td><td>~7.5%</td><td>~0.55</td><td>~1.85</td><td>~7.6%</td></tr>
-  <tr><td>FY2026E 乐观（PVA+49%持续）</td><td>~10%</td><td>~0.55</td><td>~1.85</td><td>~10.2%</td></tr>
-</table>
-
+<h3>5.3 核心结论</h3>
 <div class="summary-box">
-  <strong>核心结论：</strong><br>
-  ① ROE 5.1%靠"低利润+低周转+低杠杆"实现，是典型的基础化工企业杜邦特征；<br>
-  ② 去掉杠杆后ROA仅2.8%，在A股中属于偏低水平，资本回报效率较低；<br>
-  ③ PVA涨价（+49%）是2026年ROE提升的核心催化剂——若涨价持续，ROE有望翻倍至~10%；<br>
-  ④ 但PVA作为大宗化工品，涨价持续性取决于地缘政治（美以伊冲突）和供需格局，非公司基本面改善；<br>
-  ⑤ 长期来看，公司需通过产品结构升级（PVB/光学膜等高附加值产品占比提升）来提升利润率中枢。
+  <strong>杜邦结论：</strong>本轮ROE修复（4.2%→5.1%）由"净利率改善+杠杆抬升"双轮驱动，而周转率连降三年是最大的结构性隐忧——它意味着过去几年上百亿的资本开支还没有变成收入。2026-2027年江苏20万吨乙烯法PVA与宽幅光学膜线的投产爬坡，是周转率与ROE能否上台阶（向8-10%迈进）的关键观察点；若投产即遭遇行业过剩，则杠杆会反向吞噬回报。
 </div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l5"><div class="tab-inner">
 
-<h2>六、行业分类与周期分析（L5框架）</h2>
+<h2>六、行业分类（L5框架）</h2>
 
 <h3>6.1 行业类型判断</h3>
 <div class="summary-box">
-  <strong>行业类型：纯周期型 — 基础化工（PVA聚乙烯醇龙头）</strong><br>
-  <strong>判断依据：</strong>皖维高新所处PVA行业属于典型的纯周期型基础化工行业。理由如下：<br>
-  ① 行业成熟：PVA是工业化生产近百年的成熟化工产品，技术路线（电石乙炔法/乙烯法）稳定，长期增速≈GDP或更低；<br>
-  ② 利润靠供需错配：FY2025Q4 PVA价格大跌→单季利润暴跌68%，2026年初因美以伊冲突乙烯涨价→PVA大涨49%，充分体现周期波动特征；<br>
-  ③ 大宗属性：毛利率仅12.67%，行业景气度高度依赖宏观和原料价格，龙头地位无法带来显著定价权。<br><br>
-  <strong>→ 必须使用周期股评分体系</strong>（总结论tab已用），L3估值以PB为主，PE仅作参考。
+  <strong>行业类型：</strong>纯周期股（基础化工—PVA产业链）。按《industry-classification》清单，基础化工属纯周期，<u>必须使用周期股评分体系</u>（总结论Tab已采用）。判断依据：① PVA传统下游（纺织浆料/建筑胶粉/粘合剂）成熟，长期增速≈GDP，利润主要由供需错配决定——2022年暴利13.7亿→2023年骤降至3.4亿即是明证；② 公司新材料业务（光学膜47.5%毛利率、PVB、VAE）带来结构性成长属性，但合计收入占比尚不足15%，不改变整体周期属性，属于"周期底色+新材料期权"。
 </div>
 
-<h3>6.2 行业集中度与壁垒</h3>
+<h3>6.2 集中度与壁垒</h3>
 <table>
-  <tr><th>维度</th><th>内容</th></tr>
-  <tr><td>市场格局</td><td>国内电石乙炔法PVA产能最大（20万吨），CR3约50%，中等集中度。皖维高新为国内最大电石乙炔法PVA生产商。</td></tr>
-  <tr><td>进入壁垒</td><td><strong>规模壁垒</strong>（一条PVA产线投资超10亿，总资产157亿）→ 中等偏强；<br><strong>资源壁垒</strong>（电石原料配套能力，公司地处安徽电石产区）→ 中等；<br><strong>技术壁垒</strong>（聚合工艺积累需要多年经验）→ 中等。</td></tr>
-  <tr><td>财务验证</td><td>龙头地位在利润连续三年正增长中得到验证（同行三友化工FY2025 ROE仅0.65%）；但毛利率仅12.67%，说明龙头地位在大宗化工品中未能转化为显著定价权。</td></tr>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>行业集中度</td><td>正在集中（整合基本完成）</td><td>PVA行业落后产能已基本出清，CR10营收占比约68%；全国有效产能110万吨/年，皖维32万吨居首</td></tr>
+  <tr><td>壁垒：技术工艺</td><td>强</td><td>国内少有的掌握PVA全系列核心技术并拥有自主知识产权的企业；PVA制造技术出口俄罗斯（从产品输出到技术输出）</td></tr>
+  <tr><td>壁垒：规模+一体化</td><td>强</td><td>"VAC-PVA-下游衍生物"五大产业链，电石渣制水泥循环经济，三地布局（安徽/内蒙古/广西+江苏在建）</td></tr>
+  <tr><td>壁垒：高端环节卡位</td><td>极强（光学膜）</td><td>PVA光学膜全球被日本可乐丽（约80%）垄断，国内仅皖维与台湾长春能量产——偏光片核心膜材国产替代的唯一A股标的</td></tr>
 </table>
 
-<h3>6.3 生命周期阶段</h3>
+<h3>6.3 生命周期与周期位置</h3>
 <div class="highlight-box">
-  <strong>阶段：成熟期</strong><br>
-  PVA是成熟化工产品，技术路线稳定（电石乙炔法vs乙烯法），全球需求增速约3-5%/年。公司正在向高附加值方向延伸（PVB/光学膜/偏光片等），但新业务规模尚小（~6%营收），尚未成为增长主要驱动力。<br><br>
-  <strong>投资策略重点：</strong>成熟期周期股的投资逻辑是"逆周期布局、顺周期持有"——在行业低谷（利润暴跌/产能出清）时买入，在行业高潮（满产满销/暴利）时卖出。关注PVA价格周期位置和产能利用率。
+  <strong>生命周期：</strong>PVA传统应用处于成熟期；PVA光学膜/PVB汽车级胶片等高端品处于成长早期（国产替代导入-放量期），2000万平方米宽幅光学膜生产线已全线贯通、即将投运。<br>
+  <strong>当前周期位置：</strong>下行周期中后段（磨底）——PVA现货2026年中跌至9500-11000元/吨（较年初13000元回落约20%），主力厂商均价7月11043元/吨环比续跌，部分厂商减产保价；但行业开工率仍有85%+、龙头企业尚在盈利，<u>尚未出现大面积亏损停产式的产能出清</u>。积极信号：公司2026H1净利+22.4%（量与出口驱动）、下游需求逐步回暖。价格拐点未确认前，不宜按"复苏初期"给予高评分。
 </div>
 
-<h3>6.4 当前周期位置</h3>
-<div class="highlight-box">
-  <strong>周期位置判断：底部已过，复苏初期</strong><br>
-  ① FY2025营收持平（-0.22%），Q4利润暴跌68%，处于周期谷底；<br>
-  ② 2026年初PVA大涨49%（美以伊冲突→乙烯涨价），周期底部已确认，进入复苏初期；<br>
-  ③ 但需警惕涨价为地缘政治驱动，非供需基本面改善，持续性不确定；<br>
-  ④ 若PVA涨价持续到2026H1，半年报利润有望大幅改善，进一步确认周期拐点；<br>
-  ⑤ 当前PB~2.0x处于35-40%分位，非极端底部但不算贵。<br><br>
-  <strong>→ 周期位置评分：12/15分</strong>（底部已过，复苏初期）
+<h3>6.4 同行对比（FY2025口径）</h3>
+<table>
+  <tr><th>指标</th><th>皖维高新</th><th>万华化学</th><th>三友化工</th><th>行业中位（基础化工）</th><th>评价</th></tr>
+  <tr><td>ROE（加权）</td><td>5.12%</td><td>12.44%</td><td>0.65%</td><td>约4%~5%（估）</td><td>中游，弱于万华、远强于三友</td></tr>
+  <tr><td>毛利率</td><td>12.67%</td><td>13.61%</td><td>12.72%</td><td>约15%~18%（估）</td><td>与化工同行相当，低于板块中位</td></tr>
+  <tr><td>净利率</td><td>5.42%</td><td>6.91%</td><td>0.48%</td><td>约4%（估）</td><td>略高于万华差距不大，费用控制好于三友</td></tr>
+  <tr><td>负债率</td><td>45.74%</td><td>62.8%</td><td>42.42%</td><td>约45%~50%（估）</td><td>中等偏低，但短债结构差于报表负债率观感</td></tr>
+  <tr><td>营收增速</td><td>-0.22%</td><td>+11.62%</td><td>-11.84%</td><td>约-2%（估）</td><td>跑赢深度下滑的三友，弱于多元化万华</td></tr>
+  <tr><td>PB</td><td>1.36x</td><td>约2.5x</td><td>约0.82x</td><td>约1.5~2x（估）</td><td>低于万华（ROE更高）、高于破净边缘的三友</td></tr>
+  <tr><td>PE(TTM)</td><td>约24x</td><td>约19x</td><td>极高（利润归零）</td><td>—</td><td>周期底部口径，参考意义有限</td></tr>
+</table>
+<p style="font-size:12px;color:#888;">注："行业中位"列为近似估计值供定位参考；万华/三友数据取自本仓库两份已生成分析报告（FY2025口径）。</p>
+
+<div class="summary-box">
+  <strong>竞争位置：</strong>皖维是"二线化工里的隐形冠军"——盈利韧性显著优于纯碱/粘胶系的三友化工（后者已亏损），成长弹性不及平台型的万华化学；真正的差异化在于PVA光学膜的独家卡位，这是同行对比表中看不到、但可能重塑其估值逻辑的变量。
 </div>
 
 <h3>6.5 估值方法匹配</h3>
-<table>
-  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
-  <tr><td>纯周期（化工）</td><td><strong>PB</strong>（底部判断）</td><td>PE（顶部参考）、产能利用率、产品价格</td><td class="good">✅ 已采用PB Band为主</td></tr>
-</table>
-
 <div class="summary-box">
-  <strong>估值方法总结：</strong>皖维高新作为纯周期化工股，估值必须以PB为核心，PE在周期低谷（利润压缩）时严重失真。当前PB~2.0x处于历史35-40%分位（中位偏下）。PVA涨价催化剂提供了一个观察窗口——若2026H1利润大幅改善验证涨价逻辑，PB有望向中值2.2x甚至80%分位3.0x回归。但核心风险在于涨价持续性：地缘政治（美以伊）一旦缓和，PVA价格可能快速回落。周期股投资的核心纪律：不在暴利期买入，也不要在亏损期卖出。
+  <strong>估值方法：</strong>周期型首选PB（底部区间），辅助看PVA产品价格与产能利用率——本报告采用PB Band ✓ 匹配。当前市场部分资金以PE/题材（光学膜概念）交易，属方法错配：盈利下行段PE虚高（24x），容易造成"贵"的误判或"见底"的错觉。跟踪要点：PVA吨毛利（价格-醋酸乙烯成本差）、行业开工率、公司短债滚续情况。
 </div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l6"><div class="tab-inner">
 
-<h2>七、综合实战分析（L6框架）</h2>
+<h2>七、综合实战（L6框架）</h2>
 
 <h3>7.1 六步法总结</h3>
 <div class="summary-box">
-  <strong>Step 1 - 行业定位：</strong>纯周期（基础化工—PVA），国内龙头（产能20万吨），中等集中度（CR3~50%），规模+资源壁垒。<br>
-  <strong>Step 2 - 财务体检：</strong>ROE 5.12%（偏低），杜邦"均衡低效型"（净利率5.42%+周转0.51+杠杆1.87），CFO/净利0.77含金量不足。财务费用-0.94亿为重要安全垫。<br>
-  <strong>Step 3 - 估值判断：</strong>PE~39x周期低谷失真，按周期股以PB为准——PB~2.0x处于历史35-40%分位（中位偏下）。PVA涨价+49%后2026E前瞻PE有望降至20-25x。<br>
-  <strong>Step 4 - 风险排查：</strong>核心风险：流动性紧张（货币资金/流动负债仅9.17%）+应收账款占利润131%+Q4利润暴跌68%+PVA涨价持续性不确定。<br>
-  <strong>Step 5 - 结论：</strong>⚠ 一般公司（64/100分）——龙头地位稳固+零债务成本+分红率高，但ROE偏低+流动性偏紧。⚠ 价格中性——PB 2.0x中位偏下，PVA涨价催化剂提供弹性但已被部分定价。<br>
-  <strong>Step 6 - 跟踪：</strong>关键指标：PVA价格走势、2026半年报利润、应收账款回收、流动性改善。卖出信号：PVA价格大幅回落/半年报低于预期。
+  Step 1 - 行业定位：纯周期（基础化工-PVA），CR10约68%集中度较高但自身大扩产，壁垒=技术+一体化+光学膜独家卡位<br>
+  Step 2 - 财务体检：ROE 5.12%低谷修复中；低净利率×低周转×中杠杆的重资产模式，ROA仅约2.8%；CFO/净利0.77，FCF连续为负<br>
+  Step 3 - 估值判断：PB 1.36x处历史64.6%分位（中位偏上），PE约24x失真失义；6月炒作高点PB 2.17x已回落<br>
+  Step 4 - 风险排查：🔴短借49亿vs现金5.4亿的滚动压力；🟡定增终止待重启；🟡价格下行未止<br>
+  Step 5 - 结论：好公司的雏形（低成本龙头+新材料期权），但目前既非好价格也非好时点，总分52不及格<br>
+  Step 6 - 跟踪：PVA价格能否站上11500元/吨、定增重启进度、江苏项目投产节点、季度CFO是否改善；卖出信号=PVA再度大幅下跌且公司转向亏损
 </div>
 
 <h3>7.2 好公司三要素检查</h3>
 <table>
   <tr><th>要素</th><th>判断</th><th>依据</th></tr>
-  <tr><td>① 好行业</td><td class="neutral">⚠</td><td>PVA是成熟大宗化工品，行业长期增速≈GDP，龙头地位未能带来显著定价权（毛利率仅12.67%）。但行业有规模壁垒，龙头相对安全。</td></tr>
-  <tr><td>② 好公司</td><td class="neutral">⚠</td><td>ROE 5.12%<15%未达标，CFO/净利0.77<1未达标。但龙头地位稳固+利润连续三年正增长+财务费用为负。周期股在低谷期ROE偏低是行业共性。</td></tr>
-  <tr><td>③ 好价格</td><td class="neutral">⚠</td><td>PB~2.0x处于历史35-40%分位，中位偏下但非极端便宜。PVA涨价催化剂提供向上弹性，但也增加了不确定性。</td></tr>
+  <tr><td>① 好行业</td><td>△ 中性偏负</td><td>PVA需求成熟无增长、供给端整合接近尾声但新一轮扩产已在路上；加分项是光学膜国产替代赛道空间明确（国内偏光片需求折PVA膜近2亿平米）</td></tr>
+  <tr><td>② 好公司</td><td>△ 半个</td><td>ROE 5.12%＜10%不达标、毛利率下行；但成本位置中上、出口与新材质量俱佳、治理干净（国企+控股股东全额认购定增意愿），属"周期底部的好公司雏形"</td></tr>
+  <tr><td>③ 好价格</td><td>✗ 不满足</td><td>PB 64.6%分位非低分位；PEG无意义（周期股）；理想买点在PB 1.0-1.2x+价格企稳双重条件出现时</td></tr>
 </table>
 
 <h3>7.3 风险评估</h3>
-
-<h4>a. 三个陷阱排查</h4>
 <div class="danger-box">
-  <strong>☐ 价值陷阱（低PE+低增长+高负债）：</strong> ❌ 未命中——当前PE 39x非低PE；营收零增长；负债率45.74%适中而非高负债。<br><br>
-  <strong>☐ 周期陷阱（低PE+周期顶点）：</strong> ❌ 未命中——当前PE 39x非低PE；Q4利润暴跌68%表明处于周期谷底而非顶点。周期股评分体系中已通过"周期位置+PB估值"维度覆盖。<br><br>
-  <strong>☐ 烧钱陷阱（高PE+高增速+CFO为负）：</strong> ❌ 未命中——营收零增长非常增速；CFO 3.35亿为正。不符合烧钱陷阱特征。
+  ☐ 价值陷阱（低PE+低增长+高负债）→ 未命中（PE 24x不算低，负债率45.7%中等；但"低增长+短债压力"两项要素存在，若股价大跌致PE走低需重查此陷阱）<br>
+  ☐ 周期陷阱（低PE+周期顶点）→ 未命中（当前处于周期下行中后段而非顶点暴利期；周期位置与PB分位已通过周期股评分体系覆盖）<br>
+  ☐ 烧钱陷阱（高PE+高增速+负现金流）→ 部分特征吻合但未命中（增速+22%为真、PE中等；FCF为负系资本开支而非经营失血，CFO始终为正）
 </div>
 
-<h4>b. 管理层与治理风险</h4>
+<h3>7.4 管理层与治理</h3>
 <table>
   <tr><th>事项</th><th>判断</th><th>依据</th></tr>
-  <tr><td>管理层能力与履历</td><td>一般</td><td>公司为安徽省属国企（安徽皖维集团控股），管理层多为内部晋升，在化工行业经验丰富但缺乏外部市场化竞争背景。</td></tr>
-  <tr><td>股权结构与利益一致性</td><td>一般</td><td>控股股东皖维集团（安徽省国资委实控），持股~30%。国企属性使管理层激励偏保守，利益一致性中等。</td></tr>
-  <tr><td>关联交易/暴雷历史</td><td>无</td><td>无重大违规或监管处罚记录，历史清白。</td></tr>
-  <tr><td>资本配置记录</td><td>合理</td><td>分红率47.68%较高且稳定，资本开支保持在合理水平（~3.5亿/年），未进行大规模激进并购。</td></tr>
-  <tr><td>CEO交接/关键人员变动</td><td>无风险</td><td>管理层稳定，无重大交接风险。</td></tr>
+  <tr><td>管理层能力与履历</td><td>好</td><td>降本增效执行体系成熟（月度利润考核、"赛马会"机制），价格下行期连续两年利润逆势增长</td></tr>
+  <tr><td>股权结构与利益一致性</td><td>强</td><td>安徽省国资委实控；控股股东皖维集团曾拟全额认购23亿定增（利益绑定）；海螺集团与皖维集团战略重组推进中，省投资集团/省国控集团各受让7.5%股权</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td>无重大</td><td>年报披露未发生重大合规事件；定增关联交易程序合规、独董专门会议审议通过</td></tr>
+  <tr><td>资本配置记录</td><td>进取偏激进</td><td>连续多年大额资本开支（江苏项目36.56亿+5.76亿VAE新项目），同时维持47.68%分红率；项目成败决定评价升降</td></tr>
+  <tr><td>董监高增减持</td><td>数据待补充</td><td>近一年未见大额减持公告；国有股权无偿划转属国资体系内安排，非市场化减持</td></tr>
+  <tr><td>CEO交接/关键人员变动</td><td>无风险信号</td><td>未见交接期公告</td></tr>
 </table>
 
-<h4>c. 盈利可持续性</h4>
+<h3>7.5 盈利可持续性</h3>
 <table>
   <tr><th>维度</th><th>判断</th><th>依据</th></tr>
-  <tr><td>增长靠量还是靠价？</td><td>价格驱动</td><td>营收同比-0.22%说明量无增长；利润+17.39%靠价格微升和成本控制；2026年利润提升主要靠PVA涨价。</td></tr>
-  <tr><td>涨价能否持续？</td><td>需观察</td><td>2026年初PVA大涨49%主因是美以伊冲突导致乙烯涨价，属地缘政治驱动，非供需基本面改善。持续性不确定。</td></tr>
-  <tr><td>非经常性利润占比</td><td>低</td><td>扣非3.74亿vs归母4.34亿，非经常性约0.6亿（占比~14%），主要来自政府补助，占比可控。</td></tr>
-  <tr><td>大客户/大项目集中度</td><td>分散</td><td>PVA下游覆盖建筑/纺织/涂料/胶水等众多行业，客户高度分散，无单一客户依赖风险。</td></tr>
-  <tr><td>政策/监管依赖度</td><td>低</td><td>PVA为大宗化工品，无补贴依赖，无特殊牌照管制，环保合规是常态成本。</td></tr>
+  <tr><td>增长靠量还是靠价？</td><td>量驱动（健康）</td><td>PVA销量+27.6%、出口+24.4% vs 均价-9%；量驱动说明市场份额在扩大，但也反映定价权弱</td></tr>
+  <tr><td>涨价能否持续？</td><td>需观察</td><td>行业仍有新增产能投放，PVA价格弹性取决于2026-2027年供需再平衡节奏</td></tr>
+  <tr><td>非经常性利润占比</td><td>中低</td><td>0.60亿/归母4.34亿≈13.7%（资产处置+补助），扣非增速与表观一致</td></tr>
+  <tr><td>大客户集中度</td><td>分散</td><td>大宗化工品+多品类出口，单一客户依赖低</td></tr>
+  <tr><td>政策/监管依赖度</td><td>中</td><td>出口退税调整、"双碳"政策（利好乙烯法/生物质法路线，压制电石法竞品）双向影响</td></tr>
 </table>
 
-<h4>d. 关键变量敏感性</h4>
-<div class="summary-box">
-  <strong>变量1: PVA价格走势</strong><br>
-  &nbsp;&nbsp;乐观: 地缘冲突持续→PVA维持高位 → 2026E利润~8亿，EPS 0.39元<br>
-  &nbsp;&nbsp;中性: PVA温和回落但高于2025均值 → 2026E利润~6亿，EPS 0.29元<br>
-  &nbsp;&nbsp;悲观: PVA大幅回落至2025Q4水平 → 2026E利润~3亿，EPS 0.15元<br><br>
-  <strong>变量2: 上游电石/乙烯价格</strong><br>
-  &nbsp;&nbsp;乐观: 电石价格平稳 → 成本端稳定，利润弹性完全释放<br>
-  &nbsp;&nbsp;中性: 电石价格温和上涨 → 部分利润被成本上涨侵蚀<br>
-  &nbsp;&nbsp;悲观: 电石价格暴涨 → 利润被严重压缩甚至亏损<br><br>
-  <strong>变量3: 应收账款回收</strong><br>
-  &nbsp;&nbsp;乐观: 回款正常 → CFO改善，缓解流动性压力<br>
-  &nbsp;&nbsp;中性: 部分延期 → 流动性继续偏紧但可控<br>
-  &nbsp;&nbsp;悲观: 大额坏账 → 对利润冲击可达0.5-1亿
+<h3>7.6 关键变量敏感性</h3>
+<div class="highlight-box">
+  变量1: PVA价格（核心变量，每千元/吨波动≈影响毛利2.5-3亿）<br>
+  乐观: 回升至11500-12000元/吨 → 年化EPS影响约+0.10~0.15<br>
+  中性: 10000-11000震荡磨底 → 维持当前盈利中枢<br>
+  悲观: 跌破9000逼近现金成本 → EPS影响约-0.08~-0.10，部分装置减停<br><br>
+  变量2: 定增重启与江苏项目投产（杠杆化解+周转率拐点）<br>
+  乐观: 2026年底-2027年落地23亿权益融资，项目如期投产 → 短债压力实质缓解，ROE上台阶<br>
+  中性: 2027年上半年重启申报 → 维持现状滚续<br>
+  悲观: 融资持续受阻 → 财务费用侵蚀+滚续风险上升（触发评分中"负债安全垫"进一步恶化）<br><br>
+  变量3: 光学膜放量（估值期权）<br>
+  乐观: 宽幅线满产+3000万平米高世代项目推进 → 收入从0.72亿向3亿+迈进，享受材料股估值<br>
+  悲观: 面板景气下行拖累放量 → 期权价值衰减
 </div>
 
-<h3>7.4 前景展望</h3>
-
-<h4>a. 未来1-3年核心驱动</h4>
+<h3>7.7 前景展望</h3>
 <div class="summary-box">
   <strong>正向驱动：</strong><br>
-  1. PVA涨价持续 — 2026年初PVA已涨49%，若2026全年维持高位，利润有望从4.34亿提升至6-8亿（+40-80%）；<br>
-  2. PVB/光学膜高端化 — 高附加值产品占比从6%提升至10%+，毛利率~20%高于PVA主体，改善产品结构；<br>
-  3. 产能利用率提升 — 当前产能利用率仅~70%，若下游需求回暖可释放产量弹性。<br><br>
+  1. 出口引擎 — 醋酸乙烯出口+400%、胶粉出口+30%、VAE出口大增，海外市场对冲国内价格战<br>
+  2. 新材料产能爬坡 — 宽幅光学膜线投运、PVB三期、水溶膜一期、10万吨VAE新项目获批，高毛利占比持续提升<br>
+  3. 国资运作 — 海螺×皖维集团战略重组+定增重启预期，潜在协同与信用背书<br><br>
   <strong>负向拖累：</strong><br>
-  1. 地缘政治缓和 — PVA涨价驱动因素是美以伊冲突，一旦缓和，价格可能快速回落；<br>
-  2. 流动性偏紧 — 货币资金/流动负债仅9.17%，短期偿债能力受限，可能影响分红和资本开支节奏；<br>
-  3. 应收账款回收 — 占利润131%的应收账款若出现坏账，将对利润产生重大冲击。
+  1. 价格下行 — PVA及主要产品价格仍未止跌，毛利率继续承压<br>
+  2. 短债滚动 — 49亿短借的利息与续贷成本，侵蚀本就偏薄的利润<br>
+  3. 行业新增供给 — 自家20万吨乙烯法投产后行业供给增加，压制价格弹性
 </div>
 
-<h4>b. 三情景简表</h4>
+<h3>7.8 三情景简表</h3>
 <table>
-  <tr><th>情景</th><th>假设条件</th><th>EPS预估</th><th>PE区间</th><th>预期回报</th></tr>
-  <tr><td>乐观</td><td>PVA全年维持高位+涨价扩散至醋酸乙烯</td><td>0.39 元</td><td>18-25x</td><td>+15~40%</td></tr>
-  <tr><td>中性</td><td>PVA温和回落但仍高于2025均值</td><td>0.29 元</td><td>20-30x</td><td>-10~+15%</td></tr>
-  <tr><td>悲观</td><td>PVA大幅回落，地缘冲突缓和</td><td>0.15 元</td><td>30-55x</td><td>-30~-50%</td></tr>
+  <tr><th>情景</th><th>假设条件</th><th>2026E归母/EPS</th><th>PB/PE区间</th><th>预期回报</th></tr>
+  <tr><td>乐观（概率25%）</td><td>PVA价格企稳回升+定增落地+光学膜放量</td><td>约6.5亿 / EPS 0.31</td><td>PB修复至1.5-1.6x</td><td>+15%~+25%</td></tr>
+  <tr><td>中性（概率50%）</td><td>价格低位震荡，量增与降本对冲</td><td>约5.7-6.0亿 / EPS 0.28-0.29</td><td>PB 1.2-1.4x震荡</td><td>-10%~+10%</td></tr>
+  <tr><td>悲观（概率25%）</td><td>价格跌破9000元/吨+融资受阻</td><td>约4.5亿 / EPS 0.22</td><td>PB回落至1.0x附近（20%分位）</td><td>-20%~-28%</td></tr>
 </table>
-<p style="font-size:13px;color:#666;margin-bottom:8px">概率判断：中性 50%，乐观 30%，悲观 20%。核心关注2026半年报数据验证。</p>
 
-<h3>7.5 讨论问题（阅读引导）</h3>
+<h3>7.9 资金面信号（仅A股适用）</h3>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>北向资金持股</td><td>持平偏低</td><td>陆股通持股占流通股仅0.67%（约1.05亿，2026-06-30），外资参与度低、影响有限</td></tr>
+  <tr><td>机构持仓变动</td><td>数据待补充</td><td>基金季报持仓明细待披露；从筹码结构看以游资/散户主导</td></tr>
+  <tr><td>融资余额变动</td><td>高位回落</td><td>融资余额8.2-8.7亿元，占流通市值7.4%-7.6%：6月股价炒作期间杠杆资金涌入，7月起回落——短线情绪退潮但仍偏高</td></tr>
+  <tr><td>大股东增减持</td><td>中性（国资划转）</td><td>皖维集团15%股权无偿划转省投资集团/省国控集团（各7.5%），属国资体系内重组而非市场化减持</td></tr>
+  <tr><td>股东户数</td><td>先降后升</td><td>70397户（2026-02）→75328户（2026-04）：2月底部筹码集中，4月起随股价炒作户数回升、筹码发散</td></tr>
+</table>
+<div class="summary-box">
+  <strong>资金面结论：</strong>6月的PB冲击历史100%分位由题材资金+融资盘推动，随后一个月回撤逾35%完成情绪出清；当前北向/机构参与度低，股价短期由博弈资金主导、与基本面关联度不高。资金面中性偏谨慎，不提供额外买入信号。
+</div>
+
+<h3>7.10 讨论问题</h3>
 <div class="summary-box">
   <strong>讨论问题（阅读后可以聊这些）：</strong><br>
-  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——用电石/乙烯做PVA，卖给涂料/胶水/纺织厂，赚规模效应的加工费。PVA涨价时弹性大，跌价时杀利润。<br>
-  2. 你最大的担忧是什么？哪个数据让你睡不着？——货币资金/流动负债仅9.17%，流动性太紧了。应收账款占利润131%，万一哪个大客户爆雷怎么办？PVA涨价49%是因为打仗，仗打完了涨回去吗？<br>
-  3. 如果现在买入，期待的回报来源是什么？——PVA涨价兑现→利润翻倍（4.34亿→8亿）→PE从39x降到20x→股价涨到~10元（+22%）。或者PB从2.0x回到中值2.2x。<br>
-  4. 什么情况下你会坚决卖出？——PVA价格连续2个月回落/2026半年报利润低于预期/应收账款出现大额坏账/流动性进一步恶化/分红大幅减少。
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？（提示：把煤/电石/生物质变成PVA，再往膜、胶、粉里加工一次多赚一道钱）<br>
+  2. 你最大的担忧是什么？49亿短借vs 5亿现金的数据让你睡不着吗？<br>
+  3. 如果现在买入，期待的回报来源是什么——PVA涨价、光学膜放量，还是定增落地化解债务压力？三者的概率你分别给多少？<br>
+  4. 什么情况下你会坚决卖出——PVA跌破9000？定增彻底黄了？还是PB回到1.0以下你反而会加仓？
 </div>
 
 </div></div>
 
-
 <div class="footer">
-   免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
-   数据来源：皖维高新FY2025年年报、2026Q1季报、券商研报、理杏仁
+  免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+  数据来源：公司2025年年报、2026年半年报及历次公告、年度主要经营数据公告、理杏仁（PE/PB分位）、卓创资讯（PVA价格）、上海证券报/界面新闻等公开报道
 </div>
 
 </div>
