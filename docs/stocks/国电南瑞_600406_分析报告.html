@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>国电南瑞(600406) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .score-note { font-size: 13px; color: #666; background: #fafafa; border: 1px dashed #ccc; padding: 8px 12px; margin: 10px 0; }
+  .history-table td:first-child { white-space: nowrap; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>国电南瑞（600406）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026-08-24 | 数据来源：FY2024 年报 + 2025H1半年报 + 2025Q1季报 + 券商研报（银河/华泰）+ 东方财富/集思录/亿牛网</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>国电南瑞科技股份有限公司（NARI Technology）</td></tr>
+  <tr><td>股票代码</td><td>600406.SH</td></tr>
+  <tr><td>所属行业</td><td>电气设备 / 电网自动化设备（申万：电网自动化 / 电网设备）</td></tr>
+  <tr><td>行业分类（L5）</td><td><strong>非周期股（成长型）</strong> — 新型电力系统智能化龙头</td></tr>
+  <tr><td>行业地位</td><td>国内能源电力及工业控制领域领军企业，二次设备绝对龙头；承担国家级重大专项、电网运行风险防御全国重点实验室</td></tr>
+  <tr><td>FY2024 营收</td><td><strong>574.17 亿（+11.15%）</strong></td></tr>
+  <tr><td>FY2024 归母净利润</td><td><strong>76.10 亿（+6.06%）</strong>；扣非 73.89 亿（+6.15%）</td></tr>
+  <tr><td>FY2024 经营现金流</td><td><strong>110.86 亿（-1.71%）</strong></td></tr>
+  <tr><td>FY2025H1 营收/净利</td><td><strong>242.43 亿（+19.54%）/ 29.52 亿（+8.82%）</strong>；CFO 28.09 亿（同比-1.65亿→+28亿大幅改善）</td></tr>
+  <tr><td>FY2025E 全年（年报已披露）</td><td><strong>662.29 亿（+14.53%）/ 82.79 亿（+8.79%）</strong></td></tr>
+  <tr><td>总资产</td><td><strong>927.05 亿</strong>（2024末）/ 899.03 亿（2025Q1）</td></tr>
+  <tr><td>归母净资产</td><td><strong>492.24 亿</strong>（2024末）</td></tr>
+  <tr><td>ROE（加权平均）</td><td><strong>15.87%（2024）/ 16.26%（2025全年）</strong></td></tr>
+  <tr><td>股息率</td><td>2024每10股派4.35元，现金分红45.65亿+回购3.86亿合计65.07%分红比例</td></tr>
+</table>
+
+<p style="font-size:13px;color:#666;margin:6px 0">行业类型：<strong>非周期股（成长型）</strong>。采用<strong>非周期股评分体系</strong>（电气设备虽与电网投资周期相关，但需求由新型电力系统+双碳长期驱动，非大宗商品周期）。</p>
+
+<p class="score-note"><strong>评分口径说明：</strong><span>采用非周期股体系，首次分析，无历史版本</span></p>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">采用非周期股评分体系 | 综合L1-L5所有因素</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">15.87% ≥15%，优秀（近5年均值15.69%）</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">高利润型——净利率13.25%中等偏高，周转0.62偏低，权益乘数1.88低杠杆，靠技术溢价赚钱</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">1.46 ≥1.0，110.86亿/76.10亿，含金量高；2025H1 CFO 28.09亿同比大幅改善</td></tr>
+  <tr><td>营收增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+11.15% ≥10%（2025H1进一步加速至19.54%）；5年CAGR 11.46%</td></tr>
+  <tr><td>利润增长（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">+6.06% ≥5%（5年CAGR 11.28%）；增速慢于营收，盈利能力略承压</td></tr>
+  <tr><td>负债率（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">43.11% ＜55%（＜40%得10分）；重资产适中，远优于行业重资产高负债特征</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">充裕覆盖：货币资金90.33亿+交易性金融资产157.45亿合计247.78亿 >> 短期借款5.2亿+短期有息极低</td></tr>
+  <tr><td>毛利率水平与趋势（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">26.66% ≥15%且稳定（26.84%近5年均值），但同比-0.14pct微降；核心智能电网29.52%高</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">PE TTM 24.6x，处于历史10年23.94%分位偏低；ROE 15.87%对应合理PE 15-25x，当前处于合理区间上限</td></tr>
+  <tr><td>FCF（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">持续为正：CFO 110.86亿 - 大额投资后仍为正；近10年FCF基本持续为正</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">88/100</td><td style="text-align:left">品质优秀</td></tr>
+</table>
+
+<div class="verdict verdict-ok">品质优秀（88/100分）</div>
+
+<h2 style="margin-top:16px">评分沿革</h2>
+<style>.history-table{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:13px}.history-table th,.history-table td{border:1px solid #ddd;padding:6px 8px;text-align:center}.history-table th{background:#f0f0f0;font-weight:bold}.history-table td.good{color:#27ae60}.history-table td.neutral{color:#e67e22}.history-table td.bad{color:#c0392b}</style><table class="history-table">
+  <tr><th>日期</th><th>评分</th><th>评分体系</th><th>变化原因</th></tr>
+  <tr><td>2026-08-24</td><td class="good" style="font-weight:bold">88/100</td><td>成长性</td><td style="text-align:left">采用非周期股体系，首次分析，无历史版本</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>国电南瑞是A股稀缺的“央企科技龙头”——背靠国家电网（南瑞集团持股56.9%），垄断二次设备及调度自动化等核心环节，受益于新型电力系统+电网投资高景气（国网2025年投资预计首超6500亿、南网1750亿），业绩持续创历史新高。财务上呈现“高ROE+低杠杆+高现金含金量+高分红”特征，护城河极深。<br><br>
+  <strong>核心优势：</strong>① 二次设备绝对龙头，新一代调度/集控/用采/柔直换流阀市占率领先，3家子公司获“卓越级智能工厂”；② 财务健康：ROE 15.87%、CFO/净利1.46、资产负债率43%稳健、货币资金+理财近248亿；③ 四大产业集群（智能电网/数能融合/能源低碳/工业互联）+ 海外爆发（海外营收+135%至32.79亿，新签663.2亿/在手507亿）；④ 央企分红典范：65.07%分红+回购比例，连续高分红。<br><br>
+  <strong>核心风险：</strong>① 客户高度集中：国家电网/南网为主要客户，议价及回款周期受电网投资节奏影响（应收账款309亿，占营收53.9%）；② 利润增速（6.06%）持续慢于营收（11.15%），毛利率微降、研发费用率上升（+0.38pct至5.63%）；③ 海外业务虽高增但毛利率偏低（19.02% vs 整体26.66%），摊薄整体盈利；④ 估值不便宜：PE 24.6x处于近10年24%分位虽偏低，但绝对值仍处于合理区间上沿，缺乏深度低估安全垫。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据</h2>
+
+<h3>2.1 利润表（FY2024 vs FY2023）</h3>
+<table>
+  <tr><th>指标</th><th>FY2024</th><th>FY2023</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td><strong>574.17 亿</strong></td><td>516.55 亿</td><td>+11.15%</td><td class="good">✅ 创历史新高，双位数增长</td></tr>
+  <tr><td>归母净利润</td><td><strong>76.10 亿</strong></td><td>71.75 亿</td><td>+6.06%</td><td class="good">✅ 创历史新高，但增速慢于营收</td></tr>
+  <tr><td>扣非净利润</td><td><strong>73.89 亿</strong></td><td>69.60 亿</td><td>+6.15%</td><td class="good">✅ 利润质量高（占96%）</td></tr>
+  <tr><td>毛利率</td><td><strong>26.66%</strong></td><td>26.80%</td><td>-0.14pct</td><td class="neutral">⚠ 微降，仍稳定</td></tr>
+  <tr><td>归母净利率</td><td><strong>13.25%（报表14.19%）</strong></td><td>13.89%（报表14.83%）</td><td>-0.64pct</td><td class="neutral">⚠ 承压</td></tr>
+  <tr><td>期间费用率</td><td><strong>11.27%</strong></td><td>10.83%</td><td>+0.44pct</td><td class="neutral">⚠ 研发投入加大</td></tr>
+  <tr><td>其中：销售费用</td><td>22.61 亿</td><td>21.05 亿</td><td>+7.42%</td><td class="neutral">费率3.94%下降0.14pct</td></tr>
+  <tr><td>管理费用</td><td>14.51 亿</td><td>12.85 亿</td><td>+12.93%</td><td class="neutral">费率2.53%上升</td></tr>
+  <tr><td>研发费用</td><td>32.35 亿</td><td>27.30 亿</td><td>+18.52%</td><td class="good">✅ 研发费率5.63%+0.38pct</td></tr>
+  <tr><td>财务费用</td><td>-4.76 亿</td><td>-4.77 亿</td><td>基本持平</td><td class="good">利息收入覆盖</td></tr>
+  <tr><td>Q4单季营收</td><td><strong>251.04 亿</strong></td><td>230.53 亿</td><td>+8.90%</td><td class="good">四季度集中交付</td></tr>
+  <tr><td>Q4单季净利</td><td><strong>31.37 亿</strong></td><td>30.15 亿</td><td>+4.04%</td><td class="good">占全年41.2%</td></tr>
+  <tr><td>2025H1营收</td><td><strong>242.43 亿</strong></td><td>201.14 亿</td><td>+19.54%</td><td class="good">✅ 加速</td></tr>
+  <tr><td>2025H1净利</td><td><strong>29.52 亿</strong></td><td>27.09 亿</td><td>+8.82%</td><td class="good">持续增长</td></tr>
+  <tr><td>2025Q1营收/净利</td><td><strong>88.95亿/6.80亿</strong></td><td>76.99亿/5.96亿</td><td>+14.76%/+14.14%</td><td class="good">良好开局</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>FY2024延续“稳中有进”——营收创历史新高574.17亿（+11.15%），但利润增速6.06%慢于营收，核心原因是毛利率微降0.14pct+研发投入大幅增加（+18.52%，18.52%增速远超营收）。Q4集中交付特征明显（单季占全年营收43.7%、净利41.2%），符合电网项目年末结算节奏。2025H1加速至+19.54%，显示需求景气度提升。扣非占比96%以上，利润含金量高，非经常性扰动小。
+</div>
+
+<h3>2.2 资产负债表（2024年末 vs 2023年末）</h3>
+<table>
+  <tr><th>科目</th><th>2024末</th><th>2023末</th><th>变动</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td><strong>90.33 亿</strong></td><td>167.50 亿</td><td>-46.21%</td><td class="neutral">⚠ 下降但仍充裕</td></tr>
+  <tr><td>交易性金融资产</td><td><strong>157.46 亿</strong></td><td>56.00 亿</td><td>+181.16%</td><td class="good">理财增加，流动性调剂</td></tr>
+  <tr><td>货币+理财合计</td><td><strong>247.79 亿</strong></td><td>223.50 亿</td><td>+10.87%</td><td class="good">✅ 真实流动性充裕</td></tr>
+  <tr><td>应收账款</td><td><strong>309.26 亿</strong></td><td>264.60 亿</td><td>+16.66%</td><td class="neutral">⚠ 增幅高于营收，占营收53.9%</td></tr>
+  <tr><td>应收款项融资</td><td>24.95 亿</td><td>31.92 亿</td><td>-21.85%</td><td class="neutral">票据减少</td></tr>
+  <tr><td>存货</td><td><strong>113.34 亿</strong></td><td>98.04 亿</td><td>+15.17%</td><td class="neutral">备货增加，占净资产23.0%</td></tr>
+  <tr><td>合同资产</td><td>15.25 亿</td><td>13.17 亿</td><td>+15.8%</td><td class="neutral">项目类资产</td></tr>
+  <tr><td>一年内到期非流动资产</td><td>13.24 亿</td><td>17.76 亿</td><td>-30.99%</td><td>-</td></tr>
+  <tr><td>固定资产</td><td>82.99 亿</td><td>约75亿</td><td>+约10%</td><td class="good">轻资产模式</td></tr>
+  <tr><td>总资产</td><td><strong>927.05 亿</strong></td><td>862.20 亿</td><td>+7.52%</td><td class="good">持续扩张</td></tr>
+  <tr><td>短期借款</td><td><strong>5.20 亿</strong></td><td>3.85 亿</td><td>+35%</td><td class="good">✅ 极低</td></tr>
+  <tr><td>应付票据+应付账款</td><td>~267.（披露+8.12%）</td><td>~247亿</td><td>+8.12%</td><td class="good">对上游议价强</td></tr>
+  <tr><td>合同负债</td><td>约~70-80亿</td><td>—</td><td>+28.69%</td><td class="good">✅ 预收大幅增加</td></tr>
+  <tr><td>总负债</td><td><strong>399.69 亿</strong></td><td>~357.5亿</td><td>+11.8%</td><td class="neutral">适度增长</td></tr>
+  <tr><td>资产负债率</td><td><strong>43.11%（报表43.23%）</strong></td><td>41.47%</td><td>+1.64pct</td><td class="good">✅ 稳健（5年均值42.93%）</td></tr>
+  <tr><td>归母净资产</td><td><strong>492.24 亿</strong></td><td>471.90 亿</td><td>+4.31%</td><td class="good">持续增厚</td></tr>
+  <tr><td>2025Q1货币/应收/存货</td><td>59.46亿 / 267.45亿 / 139.54亿</td><td>—</td><td>-34%/ -13%/ +23%</td><td class="neutral">Q1应收回落、存货季节性上升</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>典型的“轻资产+高信用”模式。资产端：货币+理财247.79亿真实充裕（虽货币资金账面下降46%，但系转为交易性金融资产理财），覆盖所有有息负债超40倍；应收账款309.26亿是最大关注点——占营收53.9%、占净资产62.8%，主要系电网客户结算周期长（国网/南网信用极好但回款慢），增幅16.66%高于营收需跟踪；存货113亿中跌价准备仅1.86亿（1.62%），风险可控。负债端：几乎无有息负债（短期借款仅5.2亿，资产负债率43%中大部分是经营性负债：应付账款、合同负债、应交税费），财务结构极健康。合同负债+28.69%是积极信号——预收增加预示在手订单饱满。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2024</th><th>FY2023</th><th>同比</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>110.86 亿</strong></td><td>112.78 亿</td><td>-1.71%</td><td class="good">✅ 绝对额高位稳定</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><strong>-144.41 亿</strong></td><td>-57.39 亿</td><td>大幅扩大</td><td class="neutral">⚠ 理财申购大幅增加</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td><strong>-59.40 亿</strong></td><td>-37.38 亿</td><td>-58.9%</td><td class="neutral">分红+回购增加</td></tr>
+  <tr><td>CFO/归母净利润</td><td><strong>1.46</strong></td><td>1.57</td><td>-0.11</td><td class="good">✅ ＞1，含金量高</td></tr>
+  <tr><td>自由现金流（FCF≈CFO-资本开支）</td><td><strong>约95-100 亿</strong></td><td>约100亿</td><td>微降</td><td class="good">✅ 持续为正且充裕</td></tr>
+  <tr><td>分季度CFO（Q1/Q2/Q3/Q4）</td><td><strong>-9.00 / 7.13 / 19.62 / 93.11 亿</strong></td><td>—</td><td>—</td><td class="neutral">季节性：Q4集中回款</td></tr>
+  <tr><td>2025H1 CFO</td><td><strong>28.09 亿</strong></td><td>-1.65 亿</td><td>大幅转正</td><td class="good">✅ 回款显著改善</td></tr>
+  <tr><td>2025全年CFO（已披露）</td><td><strong>127.69 亿（+15.17%）</strong></td><td>110.86 亿</td><td>+15.17%</td><td class="good">✅ 再创佳绩</td></tr>
+  <tr><td>现金分红+回购</td><td><strong>49.52 亿（65.07%）</strong></td><td>43.27 亿（60%）</td><td>+14.4%</td><td class="good">✅ 慷慨回报</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>CFO 110.86亿虽同比-1.71%微降，但绝对额仍远超净利润（1.46倍），“纸面富贵”风险为零；Q4单季贡献93.11亿（占全年84%）是电网行业典型回款节奏。2025H1 CFO 28.09亿同比由负转正、大幅改善（上年同期-1.65亿），2025全年127.69亿（+15.17%）进一步验证造血能力并未恶化。CFI大幅为负主要系交易性金融资产（理财）申购增加181%，并非资本开支恶化；扣除理财影响后，真实资本开支可控。筹资现金流-59.4亿主要系高比例分红+3864万回购。总体：造血能力强→理财增加→高分红回馈，循环健康。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2024</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE（加权平均）</td><td><strong>15.87%</strong>（摊薄15.44%）</td><td>>15% 优秀 / >10% 及格</td><td class="good">✅ 优秀（近5年均值15.69%）</td></tr>
+  <tr><td>ROA</td><td><strong>8.49%</strong>（近10年均值8.54%）</td><td>>5%</td><td class="good">✅ 良好</td></tr>
+  <tr><td>ROIC</td><td><strong>15.02%</strong></td><td>>10%</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>毛利率</td><td><strong>26.66%</strong></td><td>稳定或提升</td><td class="neutral">⚠ 微降0.14pct，但5年稳定26.84%中枢</td></tr>
+  <tr><td>净利率</td><td><strong>14.19%（扣非后约12.86%）</strong></td><td>>10%</td><td class="good">✅ 良好（近5年均值14.31%）</td></tr>
+  <tr><td>营收增长率</td><td><strong>+11.15%</strong></td><td>>10% 优秀</td><td class="good">✅ 稳定双位数</td></tr>
+  <tr><td>利润增长率</td><td><strong>+6.06%（扣非+6.15%）</strong></td><td>>15% 优秀 / >5% 及格</td><td class="neutral">⚠ 及格但慢于营收</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>1.46</strong></td><td>>1 优秀 / >0.7 及格</td><td class="good">✅ 极好</td></tr>
+  <tr><td>资产负债率</td><td><strong>43.11%（报表43.23%）</strong></td><td>制造业<60%稳健</td><td class="good">✅ 稳健（5年均值42.93%）</td></tr>
+  <tr><td>流动比率 / 速动比率</td><td><strong>1.91 / 1.63</strong></td><td>>1.5 / >1.0</td><td class="good">✅ 优</td></tr>
+  <tr><td>分红率（含回购）</td><td><strong>65.07%（现金分红59.99%）</strong></td><td>>30% 积极</td><td class="good">✅ 央企分红典范</td></tr>
+</table>
+
+<h3>3.2 分业务分析（FY2024）</h3>
+<table>
+  <tr><th>业务板块</th><th>营收（亿）</th><th>占比</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td><strong>智能电网</strong></td><td><strong>284.68</strong></td><td><strong>49.66%</strong></td><td><strong>+10.70%</strong></td><td><strong>29.52% (+0.61pct)</strong></td><td class="good">✅ 基本盘稳健，毛利提升</td></tr>
+  <tr><td><strong>数能融合</strong></td><td><strong>123.65</strong></td><td><strong>21.57%</strong></td><td><strong>+11.05%</strong></td><td><strong>22.41% (+0.03pct)</strong></td><td class="good">✅ 稳定增长</td></tr>
+  <tr><td><strong>能源低碳</strong></td><td><strong>121.85</strong></td><td><strong>21.26%</strong></td><td><strong>+26.43%</strong></td><td><strong>22.98% (-0.94pct)</strong></td><td class="good">✅ 最快增长，毛利承压系网外储能/风电拓展</td></tr>
+  <tr><td><strong>工业互联</strong></td><td><strong>28.67</strong></td><td><strong>5.00%</strong></td><td><strong>-9.51%</strong></td><td><strong>27.41% (+0.94pct)</strong></td><td class="bad">❌ 轨交/工控规模下降</td></tr>
+  <tr><td><strong>集成及其他</strong></td><td><strong>14.38</strong></td><td>2.51%</td><td>-23.89%</td><td>33.66% (-3.65pct)</td><td class="bad">❌ 节能租赁放缓</td></tr>
+  <tr><td>电工电气装备制造合计</td><td>573.23</td><td>99.89%</td><td>+11.21%</td><td>26.60% (-0.13pct)</td><td class="good">主业集中度极高</td></tr>
+  <tr><td>境外业务（隐含）</td><td><strong>32.79</strong></td><td>5.72%</td><td><strong>+135.14%</strong></td><td>19.02% (-4.23pct)</td><td class="good">✅ 爆发式增长</td></tr>
+  <tr><td>2025H1对比：能源低碳65.41亿/+27.02%占比升至新高</td><td colspan="5" style="text-align:left;font-size:12px">2025H1能源低碳65.41亿（27.02%）延续高增，智能电网（电网智能）122.25亿（50.49%）仍为基本盘，工业互联12.45亿占比5.14%略回升</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>四大集群“3增1降”格局健康：智能电网（49.66%）作为基本盘，依托特高压/配网高质量发展+新一代调度/集控/用采等冠军产品，稳健增长10.7%且毛利率提升至29.52%（四大板块最高）；能源低碳（21.26%）是最大亮点，+26.43%高速增长，得益于沙戈荒新能源基地、海上风电、储能EPC等“双碳”业务放量，但因网外竞争毛利率下滑0.94pct至22.98%；数能融合（21.57%）+11.05%受益于数字化/大数据/AI融合；工业互联-9.51%是唯一拖累（轨交/工控需求阶段性放缓）。境外业务+135%至32.79亿是最大惊喜——沙特ADMS/柔直阀、巴西伊泰普等项目落地，但19.02%毛利率偏低拉低整体。2025H1能源低碳占比进一步提升至27%，显示“网外+海外”正成为第二曲线。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险项</th><th>严重程度</th><th>依据</th></tr>
+  <tr><td>应收账款高企（309亿，占营收53.9%/净资产62.8%）</td><td><span class="neutral">🟡 中等</span></td><td>国网/南网客户信用极好但账期长，增幅16.66%高于营收11.15%；但2025Q1已回落至267亿，且长期无重大坏账（信用减值仅1.32亿）</td></tr>
+  <tr><td>客户高度集中（电网单一客户依赖）</td><td><span class="neutral">🟡 中等</span></td><td>电网行业收入392.08亿占比68.3%，对国网投资节奏敏感；但公司正加速网外（其他行业181亿+16.37%）及海外（+135%）分散风险</td></tr>
+  <tr><td>利润增速持续慢于营收（6.06% vs 11.15%）</td><td><span class="neutral">🟡 中等</span></td><td>费用侵蚀：研发+18.52%、管理+12.93%，导致净利率下滑0.64pct；需观察规模效应何时对冲研发投入</td></tr>
+  <tr><td>毛利率微降趋势（26.66% vs 26.80%）</td><td><span class="neutral">🟡 轻度</span></td><td>能源低碳毛利率-0.94pct（网外竞争）、集成业务-3.65pct；但智能电网毛利率+0.61pct对冲</td></tr>
+  <tr><td>存货增加（113亿，+15.17%）</td><td><span style="color:#27ae60">🟢 轻微</span></td><td>占净资产23%，主要系项目备货；跌价准备仅1.62%，风险可控</td></tr>
+  <tr><td>货币资金账面下降（90亿 vs 167亿）</td><td><span style="color:#27ae60">🟢 轻微</span></td><td>实为转为交易性金融资产理财（157亿），合计247.79亿仍增长，流动性无忧</td></tr>
+  <tr><td>商誉/减值风险</td><td><span style="color:#27ae60">🟢 无</span></td><td>商誉仅144万元，信用减值1.32亿、资产减值极低，无重大商誉雷</td></tr>
+  <tr><td>分红可持续性</td><td><span style="color:#27ae60">🟢 正面</span></td><td>65.07%分红+回购比例，且CFO 110亿远超分红45亿，分红可持续性强</td></tr>
+  <tr><td>关联交易/控股股东占用</td><td><span style="color:#27ae60">🟢 无</span></td><td>国网电科院控股56.9%，但公司独立运营，无违规担保、资金占用披露</td></tr>
+</table>
+
+<div class="highlight-box" style="background:#f0f8f0;border-left:4px solid #27ae60">
+  <strong>排雷总结（正面清单）：</strong><br>
+  ✅ ROE 15.87%稳定优秀，近5年均值15.69%无大幅波动<br>
+  ✅ CFO/净利1.46，利润真金白银，经营现金流10年持续为正<br>
+  ✅ 负债率43%稳健，几乎无有息负债，流动比率1.91安全<br>
+  ✅ 扣非占比96.5%，非经常性仅2.2亿（公允价值变动1.48亿为主），利润质量高<br>
+  ✅ 合同负债+28.69%、在手订单507亿、新签663亿，订单饱满度高
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>历史分位</th><th>行业均值</th></tr>
+  <tr><td>股价（参考）</td><td><strong>约24.58元（集思录2026-03-31）/ 26.13元（Moomoo 02-13）</strong></td><td>52周21.08-32.06元</td><td>—</td></tr>
+  <tr><td>总市值</td><td><strong>约1974亿（24.58元）/ 2098亿（26.13元）/ 1907亿（亿牛网23.75元）</strong></td><td>—</td><td>—</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>24.62（集思录）/ 23.87（亿牛网）/ 26.26（理杏仁TTM）</strong></td><td>近10年23.94%分位（集思录）</td><td>电网自动化~30-44x</td></tr>
+  <tr><td>PE（TTM扣非）</td><td><strong>约25.5x</strong></td><td>近10年24%分位</td><td>—</td></tr>
+  <tr><td>PE（2026E，券商一致）</td><td><strong>约19-21x</strong></td><td>基于EPS 1.06-1.18元（银河/华泰）</td><td>—</td></tr>
+  <tr><td>PB</td><td><strong>3.69（集思录）/ 3.88（亿牛网）/ 4.90（理杏仁）</strong></td><td>近10年14.07%分位（PB偏低）</td><td>行业PB ~4.71</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>约3.4-3.6x</strong></td><td>—</td><td>成长型PS 4-6x</td></tr>
+  <tr><td>PCF（TTM）</td><td><strong>约15-18x（基于CFO 110亿-127亿）</strong></td><td>—</td><td>—</td></tr>
+  <tr><td>股息率（TTM）</td><td><strong>约1.77-2.53%</strong>（每10股4.35元）</td><td>—</td><td>电网设备平均1.35-1.93%</td></tr>
+</table>
+<p style="font-size:12px;color:#999">注：不同平台PB/PE口径差异源于净资产/股本计算是否扣除其他权益工具及分红除权时点，核心结论一致：PE处于历史偏低分位，PB同样偏低。</p>
+
+<h3>4.2 估值区间（PE Band，非周期股）</h3>
+<p style="font-size:13px;color:#666;">ROE 15.87% → 合理PE参考区间：<strong>15-25x</strong>（ROE>20%→20-30x，15-20%→15-25x）| FY2024 EPS 0.95元 / 2025E EPS 1.04元 / 券商2026E EPS 1.06-1.18元</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价（按2024 EPS 0.95元）</th><th>对应股价（按2025E EPS 1.04元）</th><th>vs现价24.58元</th></tr>
+  <tr><td>悲观（15x，低谷+市场悲观）</td><td>15x</td><td>14.25 元</td><td>15.60 元</td><td class="bad">-42% ~ -36%</td></tr>
+  <tr><td>保守（18x）</td><td>18x</td><td>17.10 元</td><td>18.72 元</td><td class="bad">-30% ~ -24%</td></tr>
+  <tr><td><strong>当前价（24-26x）</strong></td><td><strong>24-26x</strong></td><td><strong>22.8-24.7 元</strong></td><td><strong>24.9-27.0 元</strong></td><td>—</td></tr>
+  <tr><td>中性（22x中枢）</td><td>22x</td><td>20.90 元</td><td>22.88 元</td><td class="neutral">-15% ~ -7%</td></tr>
+  <tr><td>中性偏乐观（25x合理上限）</td><td>25x</td><td>23.75 元</td><td>26.00 元</td><td class="good">-3% ~ +6%</td></tr>
+  <tr><td>乐观（28x，成长溢价+电网景气）</td><td>28x</td><td>26.60 元</td><td>29.12 元</td><td class="good">+8% ~ +18%</td></tr>
+  <tr><td>券商目标（银河30.15元/华泰27.04元）</td><td>~27-29x（按2025E）</td><td>—</td><td>27.04-30.15 元</td><td class="good">+10% ~ +23%</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>PE Band解读：</strong>按FY2024 EPS 0.95元计，当前价24.58元对应PE约25.87x，已处于合理区间（15-25x）上沿；但若以2025E EPS 1.04元计，对应PE约23.64x，回落至区间内。集思录显示PE 24.62处于近10年23.94%分位（历史TTM均值38.13x、最大值129x、最小16.69x），说明当前估值在历史长周期中并不贵。PB 3.69处于近10年14.07%分位（历史均值6.91x），同样偏低。但需注意：2026年初股价快速拉升至30.01元时PE曾达30.16（99.31%分位），估值重心已上移。
+</div>
+
+<h3>4.3 历史估值区间</h3>
+<table>
+  <tr><th>指标</th><th>数值</th><th>评价</th></tr>
+  <tr><td>PE TTM近10年最大值</td><td>129.38（2010-2011牛市）/ 近10年约45-55x</td><td>泡沫期</td></tr>
+  <tr><td>PE TTM 80%分位</td><td>约28-32x（理杏仁近5年80% 28.12x）</td><td>偏高</td></tr>
+  <tr><td>PE TTM 50%分位（中值）</td><td>约26x（理杏仁50% 26.0x）/ 集思录均值38.13x</td><td>中枢</td></tr>
+  <tr><td>PE TTM 20%分位</td><td>约23.83x（理杏仁）</td><td>偏低</td></tr>
+  <tr><td>PE TTM近5年最小值</td><td>21.79（2025）/ 16.69（集思录全历史）</td><td>底部</td></tr>
+  <tr><td><strong>当前PE TTM</strong></td><td><strong>24.62（集思录）/ 23.87（亿牛网）</strong></td><td class="neutral"><strong>~24%分位，偏低区间</strong></td></tr>
+  <tr><td>PB当前</td><td><strong>3.69</strong></td><td class="good">14.07%分位，偏低</td></tr>
+  <tr><td>PB历史均值/最大值</td><td>6.91 / 33.57</td><td>当前显著低于均值</td></tr>
+</table>
+
+<table>
+  <tr><th>年份</th><th>PE均值</th><th>PB均值</th><th>备注</th></tr>
+  <tr><td>2025</td><td>23.76（亿牛）</td><td>—</td><td>估值低位回升</td></tr>
+  <tr><td>2024</td><td>27.01</td><td>—</td><td>电网投资景气</td></tr>
+  <tr><td>2023</td><td>27.91</td><td>—</td><td>—</td></tr>
+  <tr><td>2022</td><td>31.87</td><td>—</td><td>—</td></tr>
+  <tr><td>2021</td><td>32.23</td><td>—</td><td>—</td></tr>
+</table>
+
+<div class="summary-box" style="background:#fef8e8;border-left:4px solid #e67e22">
+  <strong>估值总结：</strong><br>
+  <strong>结论：估值合理偏低，但非深度低估——适合“以合理价格买好公司”，不适合“捡便宜”。</strong><br>
+  ① 历史分位：PE 24%分位、PB 14%分位，均处于历史偏低区间（10年均值PE 38x/PB 6.91x），向下空间有限；<br>
+  ② 合理区间：ROE 15.87%对应合理PE 15-25x，当前24-26x处于上限，若按2025E EPS 1.04元计则回落至22-23x合理中枢；<br>
+  ③ 横向对比：电网自动化行业PE 44.32x/PB 4.71x，南瑞PE显著低于行业均值，相对估值有优势；<br>
+  ④ 股息支撑：2.5%以上股息率（TTM）高于行业1.35%，对长线资金有吸引力；<br>
+  ⑤ 风险提示：电网设备为“慢成长+稳定分红”型，PE难以像AI/半导体那样给到30x+，25x已是乐观上限；若利润增速持续低于10%，PE或有中枢下移压力。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析（L4框架）</h2>
+
+<h3>5.1 杜邦拆解（近3-5年趋势）</h3>
+<table>
+  <tr><th>指标</th><th>2022</th><th>2023</th><th>2024</th><th>2025E</th><th>趋势/判断</th></tr>
+  <tr><td>归母净利率</td><td>13.77%（14.74%报表）</td><td>13.89%（14.83%报表）</td><td><strong>13.25%（14.19%报表）</strong></td><td>12.50%（82.79/662.29）</td><td class="neutral">⚠ 高位微降-0.64pct</td></tr>
+  <tr><td>资产周转率（营收/总资产）</td><td>0.61（46.83/76.70）</td><td>0.60（51.65/86.22）</td><td><strong>0.62（57.42/92.71）</strong></td><td>约0.65（估）</td><td class="neutral">➡ 持平，轻微改善</td></tr>
+  <tr><td>权益乘数（总资产/净资产）</td><td>1.81</td><td>1.83</td><td><strong>1.88</strong></td><td>约1.85</td><td class="neutral">➡ 极低杠杆，慢升</td></tr>
+  <tr><td><strong>ROE（摊薄）</strong></td><td><strong>15.18%</strong></td><td><strong>15.22%</strong></td><td><strong>15.44%（加权15.87%）</strong></td><td><strong>约15.73-16.26%</strong></td><td class="good">⬆ 稳定优秀</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>8.39%</td><td>8.33%</td><td><strong>8.21%</strong></td><td>8.13%</td><td class="neutral">⚠ 微降</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>6.79pct</td><td>6.89pct</td><td><strong>7.23pct</strong></td><td>~7.6pct</td><td class="neutral">杠杆贡献小</td></tr>
+  <tr><td>ROIC</td><td>15.01%</td><td>15.36%</td><td><strong>15.02%</strong></td><td>约16.95%（FT）</td><td class="good">优秀且稳定</td></tr>
+</table>
+<p style="font-size:12px;color:#999">注：净利率差异源于口径：报表披露销售净利率14.19%含少数股东损益等，归母净利/营收为13.25%；杜邦用归母口径结论一致。</p>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：高利润型（高净利率+低周转+低杠杆）——典型的“技术+资质”壁垒驱动</strong><br>
+  国电南瑞 ROE 15.87%由三因子贡献：① <strong>净利率13.25%（报表14.19%）是核心</strong>——电网二次设备毛利率29.52%支撑高利润；② <strong>周转率0.62次偏低</strong>——符合“项目制、年末集中交付”行业特性，资产较重但轻于一次设备；③ <strong>权益乘数1.88极低</strong>——几乎不靠杠杆，去掉杠杆后ROA仍达8.21%，真实资产回报优秀。<br><br>
+  <strong>与同行对标（验证）：</strong>许继电气 ROE 10.08%（净利率6.53%=11.17/170.89，周转0.68，杠杆~2.27）— 净利率仅为南瑞一半；平高电气 ROE 9.98%（净利率8.25%=10.23/124，周转0.57，杠杆~2.08）— 同样净利率偏低。南瑞的“高利润”护城河显著。<br><br>
+  <strong>趋势隐忧：</strong>去杠杆ROA从8.39%（2022）→8.21%（2024）微降，系净利率下滑拖累；周转率小幅提升对冲不足，说明盈利能力承压需警惕。
+</div>
+
+<h3>5.2 每1元资产的回报效率</h3>
+<table>
+  <tr><th>维度</th><th>本公司（2024）</th><th>许继电气</th><th>平高电气</th><th>行业中位</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>15.87%</strong></td><td>10.08%</td><td>9.98%</td><td>~10%</td><td class="good">✅ 显著领先</td></tr>
+  <tr><td>ROA</td><td><strong>8.49%</strong></td><td>~5.1%（1.11/21.7）</td><td>~4.7%</td><td>~5%</td><td class="good">✅ 领先</td></tr>
+  <tr><td>ROIC</td><td><strong>15.02%</strong></td><td>~8-10%</td><td>~8-10%</td><td>~9%</td><td class="good">✅ 领先</td></tr>
+  <tr><td>毛利率</td><td><strong>26.66%</strong></td><td>20.77%</td><td>22.07%</td><td>~22%</td><td class="good">✅ 领先</td></tr>
+</table>
+
+<h3>5.3 核心结论</h3>
+<div class="summary-box">
+  <strong>杜邦结论：</strong><br>
+  ① ROE靠什么驱动：靠“高利润率”而非“高杠杆”——净利率13-14%是全行业最高梯队，权益乘数1.88远低于地产/金融（5-10x），商业模式健康可持续；<br>
+  ② 趋势是否健康：⚠ 需关注——ROE绝对值稳定（15.2%→15.87%），但驱动因子中ROA微降（8.39%→8.21%），系净利率下滑所致，被杠杆小幅提升对冲；<br>
+  ③ 每1元总资产产生约0.1325元净利润（13.25%），每1元净资产产生0.1587元回报，效率在电网设备行业断层领先；<br>
+  ④ 未来ROE提升关键：① 提升净利率（控费+海外高毛利项目落地）；② 提升周转率（加快项目结算、降低应收/存货占用）；③ 保持低杠杆底线不动摇。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：非周期股（成长型）— 电网自动化/新型电力系统设备（申万：电气设备-电网设备-电网自动化设备）</strong><br>
+  <strong>判断依据（对标 industry-classification.md）：</strong><br>
+  ① 二分法：不属于“纯周期股”清单（钢铁/煤炭/水泥/化工/有色等），亦非“混合周期股”（半导体/光伏/锂电等供需大幅波动行业），归为<strong>非周期股</strong>（需求由国家能源战略+电网投资长期驱动，非大宗商品周期）；<br>
+  ② 成长属性：非周期中进一步细分为<strong>成长型</strong>——受益于“双碳+新型电力系统”长期趋势（全国发电装机33.5亿千瓦中非化石58.2%、新能源投资11687亿+12.1%、国网/南网投资创历史新高），叠加数字化/AI融合，行业处于<strong>成长期中段向成熟期过渡</strong>，但公司通过网外（水利/轨交/储能）+海外拓展保持成长性；<br>
+  ③ 评分体系：采用<strong>非周期股评分体系</strong>（周期股PE失真、看PB，南瑞以PE为主）。<br><br>
+  <strong>特殊说明：</strong>电网设备虽有“投资周期”属性（与国网投资节奏相关），但本质是“国家基建刚性支出+技术升级”，波动远小于纯周期，归为成长型更合理。若按混合周期理解，亦可注“网外/海外业务具备成长对冲，现按非周期体系评分”。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>市场格局</td><td><strong>高度集中（CR3＞60%）</strong></td><td>二次设备/调度自动化领域：国电南瑞绝对龙头，许继电气、平高电气、国电南自等跟随；南瑞3项产品获国家级制造业单项冠军</td></tr>
+  <tr><td>竞争格局</td><td><strong>央企主导、稳态龙头</strong></td><td>国家电网系（南瑞/许继/平高均为央企）主导，民企难以进入核心环节；南瑞获全国重点实验室、新一代调度/集控等“首台套”</td></tr>
+  <tr><td>技术壁垒</td><td><strong>极高</strong></td><td>研发投入32.35亿（占营收5.63%）、牵头智能电网重大专项+国家重点研发计划+自然基金；柔性直流换流阀、继电保护等核心技术国际领先</td></tr>
+  <tr><td>资质/牌照壁垒</td><td><strong>极高</strong></td><td>电网二次设备需国网/南网严苛入围认证，调度系统等更是“唯一供应商”级别</td></tr>
+  <tr><td>规模/客户粘性壁垒</td><td><strong>极强</strong></td><td>服务全国+100多个国家，客户替换成本极高（涉及电网安全稳定）；在手订单507亿、新签663亿锁定未来</td></tr>
+  <tr><td>品牌/央企信用壁垒</td><td><strong>极强</strong></td><td>国务院国资委“科改标杆”、连续三年央企ESG先锋100、连续11年上交所信披A类（若对标南瑞为国网系）</td></tr>
+</table>
+
+<h3>6.3 生命周期与周期位置</h3>
+<div class="highlight-box">
+  <strong>生命周期：成长期中后段 → 成熟期过渡，新型电力系统带来第二成长曲线</strong><br>
+  传统电网投资（特高压/配网）已进入成熟期（增速5-10%），但“新型电力系统+双碳+数字化+海外”打开新空间：① 新能源装机高增（太阳能+45.2%、风电+18%）；② 抽蓄/储能/构网型技术爆发；③ 海外电力基建（沙特/巴西等）。公司从“电网内”向“网外+海外”转型，能源低碳+135%海外增速即为验证。<br><br>
+  <strong>当前周期位置：电网投资上行周期中段（非底部非顶部）</strong><br>
+  国家层面：国网2025年投资预计首超6500亿（+历史新高）、南网1750亿，均明确增长；电源投资11687亿+12.1%高位。南瑞新签+13.78%、合同负债+28.69%均指向景气度仍在上行。非周期股不适用PB底部判断，但以PE看并非周期顶部暴利期（PE 24x尚合理）。
+</div>
+
+<h3>6.4 同行对比分析</h3>
+<table>
+  <tr><th>指标</th><th>国电南瑞</th><th>许继电气（000400）</th><th>平高电气（600312）</th><th>行业中位</th><th>评价</th></tr>
+  <tr><td>营收（2024）</td><td><strong>574.17 亿</strong></td><td>170.89 亿</td><td>124.02 亿</td><td>约120亿</td><td class="good">✅ 断层领先（3.4x许继）</td></tr>
+  <tr><td>归母净利（2024）</td><td><strong>76.10 亿</strong></td><td>11.17 亿</td><td>10.23 亿</td><td>约8亿</td><td class="good">✅ 7倍于同行</td></tr>
+  <tr><td>ROE</td><td><strong>15.87%</strong></td><td>10.08%</td><td>9.98%</td><td>~10%</td><td class="good">✅ 高5-6pct</td></tr>
+  <tr><td>毛利率</td><td><strong>26.66%</strong></td><td>20.77%</td><td>22.07%</td><td>~22%</td><td class="good">✅ 高4-6pct</td></tr>
+  <tr><td>净利率</td><td><strong>14.19%</strong></td><td>6.53%</td><td>8.25%</td><td>~8%</td><td class="good">✅ 翻倍领先</td></tr>
+  <tr><td>负债率</td><td><strong>43.11%</strong></td><td>~55-60%（约13.9/25.26）</td><td>~51.8%</td><td>~52%</td><td class="good">✅ 最低</td></tr>
+  <tr><td>营收增速</td><td><strong>+11.15%</strong></td><td>+0.17%</td><td>+11.96%</td><td>~8%</td><td class="good">✅ 与平高并列领跑</td></tr>
+  <tr><td>利润增速</td><td><strong>+6.06%</strong></td><td>+11.09%</td><td>+25.43%</td><td>~12%</td><td class="neutral">⚠ 南瑞增速偏慢（基数大）</td></tr>
+  <tr><td>CFO/净利</td><td><strong>1.46</strong></td><td>1.16</td><td>2.94</td><td>~1.5</td><td class="good">✅ 均优秀</td></tr>
+  <tr><td>PB</td><td><strong>3.69</strong></td><td>~2-3x</td><td>~2.5x</td><td>~3x</td><td class="neutral">龙头溢价合理</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>24.62</strong></td><td>~15-20x</td><td>~20-25x</td><td>~24x</td><td class="neutral">与行业相当</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>竞争位置（一句话）：</strong>国电南瑞在电网设备行业是“断层式龙头”——营收/利润7倍于二线同行，ROE、毛利率、净利率全面碾压，估值溢价合理（PB 3.69 vs 行业3x），财务最健康。许继/平高在营收增速上与南瑞接近，但盈利能力差距显著，说明南瑞的“技术+资质”护城河难以复制。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>成长型（电网智能化+能源低碳）</td><td><strong>PE + PEG</strong></td><td>PS（网外业务）、PB（重资产校验）、股息率、分部估值（电网内/外拆分）</td><td class="good">✅ 匹配——PE 24.6x（合理区间15-25x上沿）、PEG约4.0（24.6/6.06，高）、PS 3.4x合理</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值方法总结：</strong>国电南瑞作为“慢成长+高分红”型成长股，市场主流用PE（辅以PB/股息率校验）。PS仅在分拆网外业务时参考。若能源低碳/海外占比持续提升至30%+，可考虑分部估值：电网内给20-25x PE、网外/海外给15-20x PE。按当前PE 24.6x，平高/许继15-25x看，南瑞未享受明显成长溢价，估值相对合理。
+</div>
+
+<h3>6.6 成长股成色检验（四步验证法，PS>10或PE>50时用，南瑞PS 3.4x无需预警但做检验）</h3>
+<table>
+  <tr><th>步骤</th><th>检验项</th><th>本公司</th><th>评价</th></tr>
+  <tr><td>1</td><td>营收——有没有实在生意</td><td>574亿营收，5年CAGR 11.46%</td><td class="good">✅ 巨量实在生意</td></tr>
+  <tr><td>2</td><td>毛利率——产品竞争力</td><td>26.66%且智能电网29.52%</td><td class="good">✅ 有定价权</td></tr>
+  <tr><td>3</td><td>CFO——能不能自己造血</td><td>CFO 110亿+连续10年为正</td><td class="good">✅ 造血极强</td></tr>
+  <tr><td>4</td><td>PS——梦想溢价</td><td>PS 3.4x <<10</td><td class="good">✅ 无泡沫</td></tr>
+</table>
+<p style="font-size:12px;color:#999">结论：四步全通过，非“烧钱讲故事”型成长股，是“有利润+有现金流+低PS”的硬核成长。</p>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  Step 1 - 行业定位：非周期（成长型），电网自动化高度集中龙头，技术+资质+央企品牌壁垒极高<br>
+  Step 2 - 财务体检：ROE 15.87%优秀，高利润型杜邦（净利13.25%驱动），CFO/净利1.46含金量高，财务极健康<br>
+  Step 3 - 估值判断：PE 24.6x（历史24%分位偏低）处于合理区间上沿，PB 3.69（14%分位偏低），股息2.5%有支撑<br>
+  Step 4 - 风险排查：应收309亿高企+客户集中+利润增速慢于营收+海外低毛利摊薄，但无商誉雷、流动性充裕<br>
+  Step 5 - 结论：✅ 好公司（ROE>15%+毛利稳定26%+CFO>净利+高分红），⚠ 好价格（合理偏低但非深度低估，适合合理价格买入）<br>
+  Step 6 - 跟踪：关键指标：国网投资额、新签/在手订单、应收周转、毛利率、海外毛利率、2025全年是否兑现82.79亿净利；卖出信号：应收/营收>65%、毛利率跌破25%、新签增速转负、海外亏损扩大
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>新型电力系统为国家战略，国网/南网投资创历史新高+新能源高增，行业需求刚性且有成长；CR3高度集中，龙头议价强</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓</td><td>ROE 15.87%>15%、毛利率26.66%稳定（智能电网29.52%）、CFO/净利1.46>1、ROIC 15.02%、负债率43%稳健</td></tr>
+  <tr><td>③ 好价格</td><td class="neutral">⚠</td><td>PE 24.6x处于合理区间15-25x上沿（按2025E回落至23.6x），PB 3.69历史14%分位偏低但绝对值不算便宜；股息2.5%提供安全垫，非深度低估</td></tr>
+</table>
+
+<h3>7.3 风险评估</h3>
+
+<h4>a. 三个陷阱排查</h4>
+<div class="danger-box">
+  ☐ <strong>价值陷阱（低PE + 低增长 + 高负债）</strong> → PE 24.6x（非低PE），营收+11.15%（非低增长），负债率43%（非高负债） → <b>❌ 未命中</b><br>
+  ☐ <strong>周期陷阱（低PE + 周期顶点）</strong> → 非周期股，且当前为电网投资上行中段（非顶部暴利期，PE并未极低至个位数） → <b>❌ 未命中</b>（周期股评分体系已通过“PE失真”规避）<br>
+  ☐ <strong>烧钱陷阱（高PE + 高增速 + 负现金流）</strong> → PE 24.6x合理非高，CFO 110亿极其充裕（1.46倍净利），FCF持续为正 → <b>❌ 未命中</b><br>
+  <b>结论：三个陷阱均未命中，基本面健康度高。</b>
+</div>
+
+<h4>b. 管理层与治理风险</h4>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力与履历</td><td>好</td><td>国务院国资委“科改标杆”企业，管理层深耕电力系统多年，获国家卓越工程师团队等荣誉；连续11年上交所信披A类</td></tr>
+  <tr><td>股权结构与利益一致性</td><td>强</td><td>国网电力科学研究院控股56.9%（45.7亿股）+ 沈国荣等核心团队持股，国有控股+技术骨干利益绑定</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td>无</td><td>近10年无重大违规、监管处罚、商誉减值暴雷；信永中和标准无保留意见</td></tr>
+  <tr><td>资本配置记录</td><td>合理</td><td>分红率65.07%（含回购）慷慨，研发投入32.35亿持续加码，理财247亿资金运用稳健</td></tr>
+  <tr><td>管理层增减持记录</td><td>无</td><td>近一年未见董监高大额集中减持；控股股东持股稳定（2025H1 56.9%不变）</td></tr>
+  <tr><td>CEO交接/关键人员变动</td><td>无风险</td><td>2025年未披露重大人事变动，管理层稳定</td></tr>
+</table>
+
+<h4>c. 盈利可持续性</h4>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是靠价？</td><td>量驱动为主</td><td>营收+11.15%主要靠电网投资量增+新能源项目量增，毛利率微降说明非靠涨价</td></tr>
+  <tr><td>涨价能否持续？</td><td>需观察</td><td>二次设备定价受国网集采压价约束，智能电网29.52%毛利率提升（+0.61pct）显示仍有定价权，但能源低碳-0.94pct受网外竞争压制</td></tr>
+  <tr><td>非经常性利润占比</td><td>低</td><td>扣非73.89亿/归母76.10亿=97.1%，非经常仅2.21亿（公允价值变动1.48亿+其他），利润纯净</td></tr>
+  <tr><td>大客户/大项目集中度</td><td>集中</td><td>电网内收入392亿占比68.3%，单一客户（国网）贡献巨大，但信用极好；网外+海外占比提升至32%分散风险</td></tr>
+  <tr><td>政策/监管依赖度</td><td>高</td><td>高度依赖国家电网投资政策、“双碳”及新型电力系统国策；但政策方向明确向好（国网投资创纪录）</td></tr>
+</table>
+
+<h4>d. 关键变量敏感性</h4>
+<div class="summary-box">
+  <strong>变量1: 国网/南网投资增速（核心）</strong><br>
+  &nbsp;&nbsp;乐观：国网2025年投资>7000亿（+8%），南瑞新签>750亿，营收+15%，EPS 1.18-1.20元<br>
+  &nbsp;&nbsp;中性：国网投资6500-6800亿（+5%），新签660-680亿，营收+11-13%，EPS 1.04-1.08元（券商一致）<br>
+  &nbsp;&nbsp;悲观：投资增速<3%或集采大幅压价，营收+5-7%，EPS 0.95-1.00元（增速转负风险）<br><br>
+  <strong>变量2: 海外+网外业务毛利率与放量</strong><br>
+  &nbsp;&nbsp;乐观：海外营收占比提升至10%+且毛利率修复至22%+，能源低碳毛利率止跌回升，净利率回升至14.5%，EPS 1.12元<br>
+  &nbsp;&nbsp;中性：海外占比6-8%、毛利率19-20%，能源低碳毛利率22-23%，EPS 1.04元<br>
+  &nbsp;&nbsp;悲观：海外低毛利持续摊薄+网外竞争加剧，整体毛利率跌破25%，EPS 0.92元<br><br>
+  <strong>变量3: 应收账款周转与回款</strong><br>
+  &nbsp;&nbsp;乐观：应收增速<营收增速，回款加速，CFO/净利>1.6，FCF充裕支撑更高分红<br>
+  &nbsp;&nbsp;中性：应收/营收维持53-55%，CFO/净利1.4-1.5<br>
+  &nbsp;&nbsp;悲观：应收/营收>60%且坏账增加，CFO/净利<1.0，现金流恶化触发估值重估
+</div>
+
+<h3>7.4 前景展望</h3>
+
+<h4>a. 未来1-3年核心驱动</h4>
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. 新型电力系统+电网投资高景气 — 国网2025年投资首超6500亿、南网1750亿，叠加特高压/配网高质量发展，南瑞作为二次设备龙头直接受益；公司指引2025年营收645亿（+12.34%）<br>
+  2. 能源低碳+海外第二曲线 — 能源低碳+26.43%、海外+135%，在手507亿+新签663亿保障未来2年；沙特/巴西等海外“兵团作战”模式（设立亚太/中东/美洲区域中心）有望提升海外毛利率<br>
+  3. 数能融合+AI驱动 — 数字化/大数据/光明电力大模型等落地，数能融合+11.05%稳定增长，打开电力AI增量<br>
+  4. 高分红+央企价值重估 — 65%分红比例+持续回购，2.5%股息率对险资/长线资金吸引力强，央企“科改标杆”享估值溢价<br><br>
+  <strong>负向拖累：</strong><br>
+  1. 利润增速慢于营收的结构性矛盾 — 研发高投入（+18.52%）+海外低毛利+集采压价，若持续将侵蚀净利率<br>
+  2. 客户集中与回款周期 — 应收309亿高企，若电网投资节奏放缓或财政紧张，回款周期拉长将施压现金流<br>
+  3. 网外竞争加剧 — 储能/风电等网外业务毛利率已下滑，若价格战升级或进一步摊薄整体盈利
+</div>
+
+<h4>b. 三情景简表（基于2025E EPS 1.04元，现价24.58元）</h4>
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>EPS预估</th><th>PE区间</th><th>预期回报（含股息）</th></tr>
+  <tr><td>乐观</td><td>国网投资>7000亿+海外毛利率修复+新签>750亿</td><td>1.18-1.20元</td><td>25-28x（29.5-33.6元）</td><td>+20%至+37%</td></tr>
+  <tr><td>中性</td><td>国网投资6500-6800亿+营收+11-13%+毛利率稳定26%+</td><td>1.04-1.08元</td><td>22-25x（22.9-27.0元）</td><td>-7%至+10%</td></tr>
+  <tr><td>悲观</td><td>投资增速<3%+集采压价+海外亏损+应收恶化</td><td>0.90-0.95元</td><td>18-20x（16.2-19.0元）</td><td>-34%至-23%</td></tr>
+</table>
+<p style="font-size:13px;color:#666;margin-bottom:16px">概率判断：中性55%，乐观25%，悲观20%。券商一致预期（银河/华泰）2025E EPS 1.06元、2026E 1.18元，对应现价PE 23.2x/20.8x；目标价27.04元（华泰，25年26x PE）/30.15元（银河）。</p>
+
+<h3>7.5 资金面信号（仅A股）</h3>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>北向资金持股变动</td><td class="bad">减持</td><td>港资持股从77154万股（2025-09-30，9.65%）→10892万股（2025-06-30，13.56%波动实为减少5780万股），2026年外资持续流出（受央企+高股息轮动影响）</td></tr>
+  <tr><td>机构持仓变动</td><td class="neutral">分化</td><td>上证50/沪深300等ETF被动持股稳定（华夏上证50 7670万股、华泰柏瑞沪深300 6845万股），但主动型基金持仓季节性波动；前十大流通股东中ETF占比高</td></tr>
+  <tr><td>融资余额变动</td><td class="neutral">高位稳定</td><td>融资余额26.24亿（占流通市值1.22%），超过近一年90%分位，杠杆资金情绪偏高但未大幅增加；4月17日获融资买入1.50亿、净卖出0.15亿</td></tr>
+  <tr><td>大股东增减持</td><td class="good">无减持</td><td>国网电科院56.9%持股稳定，沈国荣1.93亿股不变，中国证券金融2.37亿股不变，近一年无大股东大额减持公告</td></tr>
+  <tr><td>大宗交易</td><td class="neutral">无显著溢价/折价</td><td>未见大额折价大宗，机构态度中性</td></tr>
+  <tr><td>股东户数</td><td class="neutral">分散→集中待观察</td><td>股东户数15.01万（2025-09-30），较上期增加49.47%（分散），但2026年初融资余额高位显示散户杠杆增加</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>资金面判断：</strong>外资（北向）持续减持是主要拖累（港资持股较高位减少超3亿股），但国内被动资金（ETF）+险资等长线资金承接。融资余额处于近一年高位（90%分位），说明杠杆情绪不低但尚未过热。大股东持股极度稳定（56.9%国资），筹码结构稳固。整体资金面<strong>中性偏谨慎</strong>——缺乏外资增量，但内资高股息配置需求支撑。核心决策仍以L1-L5基本面为准，资金面为辅。
+</div>
+
+<h3>7.6 讨论问题（阅读引导）</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——为国家电网/南方电网及网外客户提供“二次设备+调度自动化+数字化+新能源”整体解决方案，靠技术+资质+规模壁垒赚取约26%毛利、13%净利。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——应收账款309亿（占营收53.9%）+利润增速慢于营收：若回款周期持续拉长或研发投入无法转化为毛利率提升，净利率或进一步承压。<br>
+  3. 如果现在买入，期待的回报来源是什么？——① 电网投资高景气带来的业绩稳增（券商预期2025-26年+8-10%）；② 估值从24%分位向中枢（25-26x）修复；③ 2.5%股息+65%分红比例的现金回报。非爆发式，适合“合理价格买好公司长期持有”。<br>
+  4. 什么情况下你会坚决卖出？——① 国网投资增速转负或集采大幅压价导致营收/订单负增；② 应收/营收>65%且CFO/净利跌破1.0；③ 整体毛利率跌破25%且海外亏损扩大；④ 利润增速连续2年<5%且ROE跌破13%。
+</div>
+
+</div></div>
+
+<div class="footer">
+  免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+  数据来源：国电南瑞2024年年报（信永中和审计）、2025半年报/2025Q1季报、券商研报（银河证券/华泰证券）、东方财富/集思录/亿牛网/理杏仁；股价取2026-03-31集思录前复权数据。
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>
