@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>南京聚隆(300644) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .score-note { font-size: 13px; color: #666; background: #fafafa; border: 1px dashed #ccc; padding: 8px 12px; margin: 10px 0; }
+  .history-table td:first-child { white-space: nowrap; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>南京聚隆（300644）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026-08-24 | 数据来源：FY2025年报 + 2026Q1季报 + 2026H1快报 + 深交所公告 + 前瞻眼/理杏仁</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>南京聚隆科技股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>300644.SZ</td></tr>
+  <tr><td>所属行业</td><td>基础化工 — 塑料 — 改性塑料（高性能高分子新材料）</td></tr>
+  <tr><td>行业地位</td><td>国内汽车用改性塑料龙头之一、高铁轨道交通尼龙改性材料主要供应商；国家专精特新“小巨人”、年产能28万吨改性塑料+6000吨弹性体+3万吨塑木</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>28.61亿元（同比+19.82%）</strong></td></tr>
+  <tr><td>归母净利润</td><td><strong>1.3246亿元（同比+57.05%，扣非1.2716亿 +67%）</strong></td></tr>
+  <tr><td>经营现金流</td><td><strong>-1.11亿元（2024年为+1.23亿，同比-189%）</strong></td></tr>
+  <tr><td>总资产</td><td>26.97亿元（+13.21%）</td></tr>
+  <tr><td>归母净资产</td><td>10.88亿元（+12.62%）</td></tr>
+  <tr><td>ROE（加权）</td><td><strong>13.06%（2024年 9.37%）</strong></td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>行业类型：混合周期股（改性塑料/化工新材料）</strong><br>
+  按 <code>industry-classification.md</code>：基础化工属“纯周期”，但改性塑料并非大宗化工品，而是“以销定产+配方定制+认证绑定”的新材料，成长性突出、周期波动平缓，公司年报亦明确“成长性突出、周期性特征较弱”。同行业龙头金发科技（600143）已被归为 <strong>混合周期</strong>。南京聚隆主业面向汽车轻量化/新能源/高铁/储能/低空经济等高景气赛道，兼具“大宗原材料价格波动（周期底）+下游新兴需求拉动（成长顶）”双重特征，故判定为 <strong>混合周期股</strong>。<br><br>
+  <strong>采用评分体系：非周期股评分体系（10维度·100分）</strong>。理由：混合周期中新材料的成长属性主导估值，配方与认证构筑壁垒，利润可预测性优于纯周期，用非周期体系更能检验“成长成色+现金含金量”。
+</div>
+
+<p class="score-note"><strong>评分口径说明：</strong><span>采用非周期股评分体系，首次分析，无历史版本</span></p>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">采用非周期股评分体系（混合周期股适用此套）</p>
+<table>
+  <tr><th style="width:26%">维度</th><th style="width:10%">得分</th><th>说明（数据+依据）</th></tr>
+  <tr><td>ROE</td><td class="neutral">10/15</td><td style="text-align:left">2025加权ROE 13.06%（扣股份支付后≈15%），≥10%档位；三年均值≈10.4%（8.80%→9.37%→13.06%），持续改善但未达15%优秀线</td></tr>
+  <tr><td>杜邦驱动质量</td><td class="neutral">3/5</td><td style="text-align:left">高周转+中杠杆驱动：净利率4.6%偏低、周转1.13次中上、乘数2.48×。属“均衡偏周转”型，非高利润护城河型，依赖规模与运营</td></tr>
+  <tr><td>利润含金量 CFO/净利</td><td class="bad">0/15</td><td style="text-align:left">2025 CFO -1.11亿 / 归母1.324亿 = <strong>-0.84</strong>（2024年为1.46）。公司解释“票据回款占比高、现款付现多，贴现后可转正”，但报表口径下含金量为负，扣15分</td></tr>
+  <tr><td>营收增长</td><td class="good">10/10</td><td style="text-align:left">2025 +19.82%（2024 +30.53%），2025H1 +25.75%，连续3年&gt;10%，汽车/储能/高铁多点放量</td></tr>
+  <tr><td>利润增长</td><td class="good">10/10</td><td style="text-align:left">归母 +57.05%，扣非 +67.00%（扣除股份支付后+52.46%），创历史新高；但2026Q1 -15.42%、2026H1 -56.75%已出现反转</td></tr>
+  <tr><td>负债率</td><td class="neutral">4/10</td><td style="text-align:left">资产负债率 <strong>58.80%</strong>（2024 58.69%），有息负债率≈23.99%。处于55-70%区间，给4分；化工新材料中等偏高</td></tr>
+  <tr><td>短期偿债（货币-有息）</td><td class="bad">0/10</td><td style="text-align:left">货币资金2.03亿 + 交易性0 vs 短期借款3.96亿+一内到期0.51亿 =缺口约2.44亿；货币/流动负债仅15%，短期安全垫薄。含应收款项融资2.43亿可贴现，但严格口径计0分</td></tr>
+  <tr><td>毛利率水平与趋势</td><td class="neutral">7/10</td><td style="text-align:left">2025 <strong>17.05%</strong>（2024 ~15.3%），同比+1.8pct，改性工程塑料21.59%拉动。但仍&lt;30%，且绝对值低于同行龙头复合材料水平，给7分（≥15%且企稳向好）</td></tr>
+  <tr><td>估值 PE vs合理区间</td><td class="neutral">7/10</td><td style="text-align:left">当前股价≈28.5元（市值≈31-32亿），对应2025 PE≈22-24×，ROE13%合理区间10-18×，溢价约25-30% Within 30%，给7分；PB≈3.0×高于行业中位1.8×</td></tr>
+  <tr><td>FCF</td><td class="neutral">3/5</td><td style="text-align:left">2025 FCF≈ -2.1亿（CFO-1.11亿 - 资本开支约1亿），2024年为正，2026Q1 434万转正。偶尔为负非持续烧钱，给3分</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">54/100</td><td style="text-align:left">不及格（&lt;60分）—— 成长与盈利改善被现金流与偿债拖累</td></tr>
+</table>
+
+<div class="verdict verdict-bad">不及格（54/100分）</div>
+
+<!-- HISTORY-TABLE -->
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>一家典型的“改性塑料细分隐形冠军”——技术与认证壁垒真实（单项冠军产品、汽车动力系统材料、高铁扣件材料），2024-2025年营收与利润创历史新高验证成长兑现；但2025年“增收增利不增现”+2026年上半年利润腰斩暴露出“收现结构差+原材料传导弱+产能扩张期资金占用高”的短板，当前54分不及格的核心扣分项是现金流含金量与短期偿债。<br><br>
+  <strong>核心优势：</strong>① 技术壁垒实：主导多项国标、165项专利、国家级单项冠军（汽车动力系统功能材料）、博士后工作站；② 下游分散且高景气：汽车（含新能源）、高铁轨道、储能热管理、通讯电子、家电等多赛道，单车配套80kg聚烯烃，客户为头部主机厂；③ 成长兑现强：2023-2025营收CAGR约18%，毛利率从13%→17%持续修复，ROE三年三连升；④ 国际化与产能储备：墨西哥工厂投产+滁州/华南18万吨在建，支撑未来3年量增。<br><br>
+  <strong>核心风险：</strong>① 现金流含金量崩塌：2025 CFO/净利-0.84，货币/总资产仅7.5%，收票据付现金的错配导致报表现金流为负，依赖贴现；② 偿债与应收双高：应收账款8.43亿（占营收29%、占资产31%）、资产负债率58.8%且短期借款骤增50%，财务费用/近3年经营现金流均值达900%+；③ 盈利可持续性存疑：改性塑料议价地位“哑铃型”弱，原油价格波动直接挤压利差，2026Q1毛利率已回落至15.24%，H1净利同比-56.75%敲警钟；④ 估值未给安全边际：PE 22-24×在ROE 13%公司中偏贵，剔除股份支付后真实PE更低但仍高于同行普利特/道恩。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025本期</th><th>FY2024上期</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入（亿元）</td><td>28.6054</td><td>23.8738</td><td class="good">+19.82%</td><td class="good">高速增长，创历史新高</td></tr>
+  <tr><td>归母净利润（亿元）</td><td>1.3246</td><td>0.8434</td><td class="good">+57.05%</td><td class="good">利润增速&gt;营收增速</td></tr>
+  <tr><td>扣非归母净利润（亿元）</td><td>1.2716</td><td>0.7614</td><td class="good">+67.00%</td><td class="good">主业盈利质量提升</td></tr>
+  <tr><td>扣除股份支付后净利润</td><td>1.5227</td><td>0.9988</td><td class="good">+52.46%</td><td>真实经营利润更强</td></tr>
+  <tr><td>毛利率</td><td>17.05%</td><td>~15.26%</td><td class="good">+1.79pct</td><td class="good">改性工程塑料21.59%拉动</td></tr>
+  <tr><td>归母净利率</td><td>4.63%</td><td>3.53%</td><td class="good">+1.10pct</td><td class="neutral">绝对值仍偏低</td></tr>
+  <tr><td>销售费用（万元）</td><td>5602</td><td>4358</td><td class="bad">+28.54%</td><td>随营收增长，占比1.96%可控</td></tr>
+  <tr><td>管理费用（万元）</td><td>12480</td><td>9534</td><td class="bad">+30.89%</td><td>股份支付+仓库折旧推升</td></tr>
+  <tr><td>研发费用（万元）</td><td>12207</td><td>9564</td><td class="neutral">+27.65%</td><td class="good">占营收4.27%，持续加码</td></tr>
+  <tr><td>财务费用（万元）</td><td>2756</td><td>2987</td><td class="good">-7.75%</td><td>利息支出略降</td></tr>
+  <tr><td>期间费用率</td><td>11.58%</td><td>12.44%</td><td class="good">-0.86pct</td><td class="good">规模效应显现</td></tr>
+  <tr><td>Q4单季营收/净利</td><td>8.65亿 / 0.316亿</td><td>7.75亿 / 0.281亿</td><td>+11.6% / +12.3%</td><td class="good">Q4仍为全年高点</td></tr>
+  <tr><td>2026Q1 营收/净利</td><td>5.937亿 / 0.258亿</td><td>5.946亿 / 0.305亿</td><td class="bad">-0.16% / -15.42%</td><td class="bad">增速失速</td></tr>
+  <tr><td>2026H1 营收/净利* </td><td>14.08亿 / 0.248亿</td><td>12.57亿 / 0.574亿</td><td class="bad">+11.97% / -56.75%</td><td class="bad">增收不增利，警示</td></tr>
+</table>
+<p style="font-size:12px;color:#999">*2026H1为8月24日快报数据（格隆汇），与审计口径或有差异，仅作趋势参考。</p>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>2025年是“量价齐升+费用摊薄”的完美年份：营收两年从18.3亿→28.6亿（+56%），扣非利润从0.71亿→1.27亿（+79%），毛利率、净利率、ROE同步向上，费用率反而下降，三表中最亮眼。但需警惕“前高后低”——2026Q1营收零增长、净利-15%，H1净利腰斩，说明2025年的高增长已透支或原材料涨价开始反噬，利润表趋势由“加速”转为“拐头”。扣非与归母增速差（67% vs 57%）显示政府补助、理财收益等非经常性贡献已降至529万（2024年为819万），盈利更依赖主业，是积极信号。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>2025年末</th><th>2024年末</th><th>变动</th><th>评价</th></tr>
+  <tr><td>总资产（亿元）</td><td>26.9735</td><td>23.8251</td><td>+13.21%</td><td>产能扩张驱动</td></tr>
+  <tr><td>归母净资产（亿元）</td><td>10.8771</td><td>9.6581</td><td>+12.62%</td><td>内生积累+转债转股</td></tr>
+  <tr><td>货币资金（亿元）</td><td>2.0277</td><td>1.4267</td><td>+42.13%</td><td class="bad">占总资产仅7.52%，偏低</td></tr>
+  <tr><td>应收账款（亿元）</td><td>8.4275</td><td>7.6409</td><td>+10.30%</td><td class="bad">占营收29.5%、占资产31.25%，过高</td></tr>
+  <tr><td>应收款项融资（亿元）</td><td>2.4291</td><td>1.5066</td><td>+61.24%</td><td class="bad">票据激增，加剧收现错配</td></tr>
+  <tr><td>存货（亿元）</td><td>4.6237</td><td>4.3515</td><td>+6.25%</td><td class="neutral">周转可控，略有累库</td></tr>
+  <tr><td>短期借款（亿元）</td><td>3.9647</td><td>2.6504</td><td class="bad">+49.60%</td><td class="bad">短期债务攀升快</td></tr>
+  <tr><td>长期借款（亿元）</td><td>0.5526</td><td>0.1576</td><td class="bad">+250%</td><td>长期融资补充</td></tr>
+  <tr><td>应付债券（聚隆转债）</td><td>1.4399</td><td>1.4255</td><td>+1.0%</td><td>转股进行中（已转388万张）</td></tr>
+  <tr><td>资产负债率</td><td>58.80%</td><td>58.69%</td><td>+0.11pct</td><td class="neutral">高位企稳</td></tr>
+  <tr><td>有息负债合计（估）</td><td>~6.47亿</td><td>~4.71亿</td><td>+37%</td><td class="bad">有息负债率24.0%</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>典型的“轻货币、重应收、重存货”扩张期资产结构。2025年末应收账款+应收票据+融资合计约10.85亿（占流动资产59%），审计师已将“应收账款坏账准备”列为关键审计事项（余额8.57亿、坏账0.93亿），32%资产以应收形式存在，回收风险是最大雷点。负债端短期借款+应付票据+应付账款合计约11.16亿（占流动负债83%），对上下游资金占用依赖极高。货币资金仅2.03亿，无法覆盖短期有息4.48亿，流动性安全垫薄。好的一面是净资产稳步增厚、转债转股降低偿债压力、存货增速（+6%）远低于营收（+19%），未出现盲目囤货。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流 CFO（亿元）</td><td>-1.1069</td><td>1.2338</td><td class="bad">由正转负，恶化</td></tr>
+  <tr><td>投资现金流 CFI（亿元）</td><td>+0.55（估）</td><td>-0.34</td><td class="neutral">理财赎回带来净流入</td></tr>
+  <tr><td>筹资现金流 CFF（亿元）</td><td>-0.04</td><td>-0.76</td><td>偿债与分红消耗</td></tr>
+  <tr><td>CFO / 归母净利润</td><td>-0.84×</td><td>1.46×</td><td class="bad">利润含金量崩塌</td></tr>
+  <tr><td>自由现金流 FCF（CFO-资本开支）</td><td>约-2.1亿</td><td>约+1.1亿</td><td class="bad">持续为负风险</td></tr>
+  <tr><td>购建固定资产支付（万元）</td><td>1008</td><td>1150</td><td>资本开支收缩</td></tr>
+  <tr><td>销售商品收现 / 营收</td><td>~60%（估）</td><td>~73%</td><td class="bad">收现比骤降</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>这是本报告最大的扣分项。2025年净利润大增57%，CFO却从+1.23亿暴跌至-1.11亿（-189%），出现典型的“纸面富贵”。公司年报解释为“销售回款票据占比高、采购付现比例高，收现少付现多，若将存量票据贴现可转正”——即报表CFO失真，真实回款被票据沉淀。但这恰恰暴露了议价地位弱：对下游（汽车主机厂）放宽账期/收票据，对上游（石化原料商）付现金。近3年经营现金流均值仅0.03亿，货币/流动负债仅15%，财务费用/近3年CFO均值达904%，现金造血能力薄弱。投资端靠赎回理财（1.80亿收回）支撑，筹资端净流出，整体现金等价物仅增5978万，安全边际不足。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE（加权）</td><td>13.06%</td><td>&gt;15%优秀 / &gt;10%良好</td><td class="neutral">良好，未达优秀，三年持续改善</td></tr>
+  <tr><td>毛利率</td><td>17.05%</td><td>稳定或提升</td><td class="good">回升1.8pct，趋势向好</td></tr>
+  <tr><td>净利率</td><td>4.63%</td><td>&gt;10%优秀</td><td class="bad">偏低，费用与减值侵蚀</td></tr>
+  <tr><td>营收增长</td><td>19.82%</td><td>&gt;10%</td><td class="good">高速</td></tr>
+  <tr><td>扣非利润增长</td><td>67.00%</td><td>&gt;15%</td><td class="good">高增</td></tr>
+  <tr><td>CFO/净利润</td><td>-0.84</td><td>&gt;1.0优秀 / &gt;0.7正常</td><td class="bad">差，纸面利润</td></tr>
+  <tr><td>资产负债率</td><td>58.80%</td><td>&lt;50%稳健</td><td class="neutral">偏高，行业中等</td></tr>
+  <tr><td>分红率（2024）</td><td>~15%（每10股派1.5元估）</td><td>&gt;30%稳定</td><td class="bad">偏低，留存用于扩产</td></tr>
+</table>
+
+<h3>3.2 分业务分析</h3>
+<table>
+  <tr><th>业务板块</th><th>营收（亿）</th><th>占比</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td>改性工程塑料</td><td>12.673</td><td>44.30%</td><td>约+26%</td><td>21.59%</td><td class="good">核心利润源，毛利56%</td></tr>
+  <tr><td>改性通用塑料</td><td>10.0589</td><td>35.16%</td><td>约+18%</td><td>11.32%</td><td class="neutral">量大但利薄</td></tr>
+  <tr><td>长玻纤增强材料</td><td>2.5251</td><td>8.83%</td><td>约+20%</td><td>17.14%</td><td class="good">高附加值，放量中</td></tr>
+  <tr><td>热塑性弹性体</td><td>0.6020</td><td>2.10%</td><td>+7.3%</td><td>19.32%</td><td class="good">毛利高但规模小</td></tr>
+  <tr><td>碳纤维复合材料结构件</td><td>0.2175</td><td>0.76%</td><td>-27%</td><td>19.08%</td><td class="bad">下滑，待放量</td></tr>
+  <tr><td>塑木环境工程材料</td><td>1.9079</td><td>6.67%</td><td>+22%</td><td>17.86%</td><td class="good">稳定增长</td></tr>
+  <tr><td>发泡及其他</td><td>0.4673</td><td>1.63%</td><td>-</td><td>15.18%</td><td class="neutral">新兴</td></tr>
+  <tr><td>贸易品</td><td>0.1548</td><td>0.54%</td><td>-49%</td><td>0.60%</td><td class="bad">主动收缩</td></tr>
+</table>
+<div class="highlight-box">
+  <strong>分业务解读：</strong>业务结构“哑铃型”改善中：高毛利的改性工程塑料（21.59%）独占56%毛利，是业绩核心；长玻纤、弹性体虽占比小但毛利19%左右，是第二增长曲线；改性通用塑料（PP系）占比35%但毛利仅11.32%，是走量产品，受原油价格影响最大。碳纤维复材同比下滑27%需关注，公司正布局低空经济/机器人/航空航天等高端应用，尚未兑现。整体看，产品矩阵丰富（从通用到特种、从塑料到复材），但利润过度依赖改性工程塑料单一板块（尼龙系），集中度风险存在。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险项</th><th>严重程度</th><th>依据</th></tr>
+  <tr><td>应收账款过高+票据占比大</td><td class="bad">🔴 高</td><td>应收账款8.43亿/营收29.5%、应收款项/利润636%、审计列为关键事项；2025票据融资+61%至2.43亿，CFO转负</td></tr>
+  <tr><td>经营现金流持续为负/含金量低</td><td class="bad">🔴 高</td><td>2025 CFO -1.11亿，CFO/净利-0.84，货币/总资产7.5%，3年CFO均值/流动负债仅0.31%</td></tr>
+  <tr><td>有息负债攀升+偿债压力</td><td class="bad">🟡 中</td><td>短期借款+49.6%至3.96亿，有息负债/近3年CFO均值212%，利息保障倍数6.15但依赖票据贴现</td></tr>
+  <tr><td>存货与产能消化</td><td class="neutral">🟡 中</td><td>存货4.62亿/营收16%，在建产能18万吨待释放（现有28万吨产能利用率82%），滁州+华南6万吨扩产3年建成，需关注消化</td></tr>
+  <tr><td>商誉/减值</td><td class="neutral">🟢 低</td><td>信用减值1401万（应收坏账）、资产减值888万（存货跌价），无大额商誉，计提充分</td></tr>
+  <tr><td>股权激励摊销</td><td class="neutral">🟡 中</td><td>2025股份支付约1977万（净利润1.32亿中占比15%），剔除后增速52%仍高，但摊薄真实ROE</td></tr>
+  <tr><td>实控人/关联交易</td><td class="neutral">🟢 低</td><td>未见重大关联交易、违规处罚；控股股东持股稳定，转债转股有序</td></tr>
+</table>
+<div class="summary-box">
+  <strong>排雷结论：</strong>无财务造假、商誉暴雷等致命雷，但“应收+现金流+短期债”三联雷是核心观测点。正面项：1）无大额商誉、减值计提审慎；2）研发投入占比4.27%且专利持续新增；3）客户分散（汽车、高铁、家电、储能等多行业），无单一大客户依赖（据年报前五大客户占比未披露但行业分散度高）。风险排序：现金流真实性 &gt; 应收坏账 &gt; 产能消化 &gt; 原材料波动。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>历史分位</th><th>行业均值</th></tr>
+  <tr><td>股价（参考）</td><td>25.03-28.46元*</td><td>52周 21.82-42.67元</td><td>-</td></tr>
+  <tr><td>总市值</td><td>27.7-32.7亿</td><td>-</td><td>改性塑料中位约30亿</td></tr>
+  <tr><td>PE(TTM) / PE(2025)</td><td>20.5× / 23.3×（按28.46元/1.2229）</td><td>2025均35.1× 2024均24.8× 2021均39×</td><td>同行：金发13× 普利特27× 道恩32×</td></tr>
+  <tr><td>PE(2025扣非)</td><td>24.7×（按扣非1.159元）</td><td>历史50%分位约30×</td><td>偏高</td></tr>
+  <tr><td>PE(剔除股份支付)</td><td>18.7×（按1.52亿/1.11亿股）</td><td>-</td><td>更合理</td></tr>
+  <tr><td>PB</td><td>2.91-3.00×（28.46/9.49-9.77）</td><td>历史中位~3.2×</td><td>行业中位2.1× 金发1.6×</td></tr>
+  <tr><td>PS</td><td>1.09×（31亿/28.6亿）</td><td>历史0.8-1.8×</td><td>行业1.2×</td></tr>
+  <tr><td>PCF（经营）</td><td>负（CFO为负）</td><td>-</td><td>-</td></tr>
+  <tr><td>股息率（TTM）</td><td>~0.5-0.7%</td><td>-</td><td>偏低</td></tr>
+</table>
+<p style="font-size:11px;color:#999">*股价取2026-06-01富途25.03元及2026-05-21 28.46元两时点测算，PE以FY2025 EPS=1.2229为基准。</p>
+
+<h3>4.2 估值区间（PE Band · 非周期股）</h3>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价（按2025 EPS 1.2229）</th><th>说明</th></tr>
+  <tr><td>悲观（15×）</td><td>15×</td><td>18.34元</td><td>ROE跌回8%、现金流持续恶化，给予周期化工估值</td></tr>
+  <tr><td>保守（18×）</td><td>18×</td><td>22.01元</td><td>ROE 10-12%合理下限，对应52周低点21.82元</td></tr>
+  <tr><td>中性（22-25×）</td><td>22-25×</td><td>26.9-30.6元</td><td>当前22-24×处于中性区间，匹配ROE 13%（合理10-18×上限+成长溢价）</td></tr>
+  <tr><td>券商目标（30×）</td><td>30×</td><td>36.69元</td><td>若新能源/高铁二轮放量，利润再增30%可支撑</td></tr>
+  <tr><td>当前</td><td>23.3×</td><td>28.46元</td><td>位于中性偏上，未给安全边际</td></tr>
+  <tr><td>历史高位（50-65×）</td><td>50-65×</td><td>61-79元</td><td>2020-2021成长泡沫期PE 64-75×，已挤压</td></tr>
+</table>
+<div class="summary-box">
+  <strong>历史PE分位：</strong>2025年PE均值35.1×（最高50×最低26.6×），2024均值24.8×（最高38.9×最低14.8×），当前23-24×处于近2年<strong>20-30%低分位</strong>，较2021年均值39×、2020年均值64×显著回落，反映估值泡沫已消化。但按ROE 13%对应的合理PE 10-18×看，当前仍偏贵25-30%，成长预期已部分price-in。PB 3.0×在历史中位附近，高于改性塑料行业中位2.1×，未见明显低估。<br><br>
+  <strong>PEG视角：</strong>若以2023-2025归母CAGR 30%计，PEG=23.3/30=0.78偏低；但若以2025-2026E（考虑H1 -56%）增速归零或负增长计，PEG失真，估值支撑转弱。
+</div>
+
+<h3>4.3 估值总结</h3>
+<div class="highlight-box">
+  <strong>估值判断：合理偏贵，缺乏安全边际</strong><br>
+  1）纵向比：当前PE已从成长泡沫期（50-116×）回落至近2年低分位（20-30%），泡沫出清，但仍高于ROE 13%对应的合理区间（10-18×）上限约30%，安全边际不足。<br>
+  2）横向比：同行金发科技6.2% ROE对应13×，普利特8.2% ROE对应27×，道恩5.46% ROE对应32×，南京聚隆13% ROE对应23×处于同行中位，非最贵但非便宜。<br>
+  3）现金流折价：PCF为负、股息率&lt;1%，现金流与分红无法支撑估值，估值完全依赖利润增速兑现。<br>
+  <strong>建议：</strong>当前22-24×对标2025年创历史新高的利润，性价比一般。若以2026年利润大概率下滑（H1 -56%）重新定价，合理股价中枢应下移至18-22元（15-18×）。中长期跟踪点：CFO转正+ROE突破15%后，PE可向20-25×切换，届时才有估值扩张空间。短线不追高，等待现金流修复与2026年业绩底确认后的左侧机会。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析（L4框架）</h2>
+
+<h3>5.1 杜邦拆解（近3年）</h3>
+<table>
+  <tr><th>指标</th><th>2023</th><th>2024</th><th>2025</th><th>判断</th></tr>
+  <tr><td>归母净利润率</td><td>3.97%（0.725/18.289）</td><td>3.53%（0.843/23.874）</td><td>4.63%（1.325/28.606）</td><td class="good">触底回升，但绝对值低</td></tr>
+  <tr><td>资产周转率（次）<br><span style="font-size:11px;color:#999">营收/平均总资产</span></td><td>1.03</td><td>1.07</td><td>1.13</td><td class="good">稳步提升，运营改善</td></tr>
+  <tr><td>权益乘数<br><span style="font-size:11px;color:#999">总资产/净资产</span></td><td>2.37（20.61/8.71）</td><td>2.47（23.83/9.66）</td><td>2.48（26.97/10.88）</td><td class="neutral">中高杠杆，平稳</td></tr>
+  <tr><td>ROE（杜邦）</td><td>9.68%（算术）</td><td>9.32%</td><td>12.96%</td><td class="good">与加权ROE 13.06%吻合，持续改善</td></tr>
+  <tr><td>ROA（去杠杆后）<br>净利率×周转率</td><td>4.09%</td><td>3.78%</td><td>5.23%</td><td class="good">基础回报改善</td></tr>
+</table>
+<p style="font-size:12px;color:#666">注：ROE=净利润率×周转率×乘数。2023-2025数据按归母口径试算，与年报加权ROE略有差异因平均权益计算口径不同，趋势一致。</p>
+
+<h3>5.2 赚钱模式判断</h3>
+<div class="highlight-box">
+  <strong>赚钱模式：高周转+中杠杆的“运营效率型”，非高利润护城河型</strong><br>
+  <table style="margin:8px 0">
+    <tr><th>模式</th><th>利润率</th><th>周转率</th><th>杠杆</th><th>南京聚隆</th><th>风险</th></tr>
+    <tr><td>高利润型（茅台）</td><td>49%</td><td>0.5</td><td>1.2</td><td>—</td><td>产品颠覆</td></tr>
+    <tr><td>高周转型（沃尔玛）</td><td>2.5%</td><td>2.4</td><td>2.5</td><td>近似</td><td>竞争激烈</td></tr>
+    <tr><td>高杠杆型（银行）</td><td>25%</td><td>0.05</td><td>12</td><td>—</td><td>利率风险</td></tr>
+    <tr style="background:#e8f4f8"><td><strong>南京聚隆</strong></td><td><strong>4.63%</strong></td><td><strong>1.13</strong></td><td><strong>2.48</strong></td><td><strong>高周转+中杠杆</strong></td><td><strong>原材料波动+账期</strong></td></tr>
+  </table>
+  公司净利率仅4.63%，远低于消费/医药的高利润型（15%+），ROE主要靠“1块资产做1.13块生意+2.48倍杠杆”撑起。优势是资产周转逐年提升（1.03→1.13），产能利用率82%且产销率高，运营效率在改善；劣势是杠杆2.48×已不低，叠加58.8%负债率，放大了波动——原油涨价或下游压价时，薄利会被迅速侵蚀。去杠杆ROA仅5.23%，真实基础回报一般，与金发科技ROA 2%+杠杆3.3×的结构类似，同属“薄利多销+资金驱动”行业特征。
+</div>
+
+<h3>5.3 核心结论</h3>
+<div class="summary-box">
+  <strong>杜邦结论：</strong>ROE回升的驱动力是“周转提升+净利率修复”，而非加杠杆（乘数平稳），质量尚可。2024→2025年，净利率从3.53%→4.63%（+1.1pct）贡献最大，周转从1.07→1.13（+0.06）次之，三者叠加推动ROE从9.37%→13.06%（+3.7pct），趋势健康。隐忧在于：① 净利率4.63%仍处行业中等偏下（沃特股份3.1%、金发1.8%、普利特3.7%），提升依赖毛利率而非费用控制（费用率虽降但绝对值增）；② 周转提升已接近行业天花板（1.13次在改性塑料中属中上，再提速需牺牲账期或加库存，副作用大）；③ 杠杆2.48×已高于改性塑料中位2.0×，进一步加杠杆空间有限。未来ROE要突破15%优秀线，必须靠净利率向6-7%迈进（即毛利率向20%+或费用率再降2pct），而这需要产品结构向高毛利工程塑料/长玻纤持续倾斜，当前44%工程塑料占比仍有提升空间。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：混合周期股（化工新材料·改性塑料）——周期为底、成长为顶</strong><br>
+  <strong>判断依据：</strong><br>
+  1）<strong>周期属性：</strong>上游PP/PA66/PPS等原材料与原油价格高度相关，占成本70%+，2021年原油大涨时行业毛利率普遍跌至10%（普利特10.84%、道恩12.24%）；下游汽车/家电/电子需求与宏观经济联动，具备供需错配周期。但不同于钢铁/煤炭的“利润靠供需错配”纯周期，改性塑料利润更多靠“配方+认证+服务”而非单纯涨价去库存。<br>
+  2）<strong>成长属性：</strong>下游新能源汽车轻量化（单车80kg聚烯烃）、高铁国产替代、储能热管理、低空经济/机器人新材料、3D打印等新兴需求持续扩容，行业年增速10%+，远高于GDP；公司研发占比4.27%、专利年增16项、单项冠军产品，属技术驱动成长。<br>
+  3）<strong>分类结论：</strong>按<code>industry-classification.md</code>，“基础化工”虽在纯周期清单，但改性塑料细分已由金发科技等龙头验证为“混合周期”，且公司年报明确“成长性突出、周期性特征较弱”。故本报告采用<strong>混合周期→非周期评分体系</strong>，与金发科技（600143）保持一致。若严格按纯周期PB估值，会低估其成长溢价。
+</div>
+
+<h3>6.2 集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>行业集中度 CR3/CR5/CR10</td><td>极低（CR3≈12-14%，CR5≈15-16%）</td><td>2024年改性塑料产量3443万吨，金发7.73%、国恩3.06%、普利特1.58%，CR10&lt;17%，千家企业分散竞争</td></tr>
+  <tr><td>竞争格局</td><td>分散→龙头集中进行中</td><td>金发/国恩双寡头万吨级，其余10-60万吨第二梯队，南京聚隆22.97万吨排名行业6-8位，市占率约0.67%</td></tr>
+  <tr><td>进入壁垒：技术/配方</td><td class="good">中高</td><td>配方研发+工艺控制+认证验证三环节构筑核心壁垒，汽车/高铁需2-3年认证周期，客户黏性强</td></tr>
+  <tr><td>进入壁垒：规模/资本</td><td class="neutral">中等</td><td>28万吨产能投入数亿，但滁州/华南18万吨在建说明扩产门槛非极高，头部通过自建/收购原料（PDH/苯乙烯）降成本</td></tr>
+  <tr><td>进入壁垒：渠道/客户</td><td class="good">高</td><td>与头部主机厂深度绑定（集采定点、单车80kg）、高铁国铁认证、储能头部客户千吨级供应，切入后难替换</td></tr>
+  <tr><td>护城河类型</td><td>技术+认证+客户关系</td><td>非品牌/牌照，靠“配方+认证+服务响应”形成差异化，单项冠军产品即体现</td></tr>
+</table>
+
+<h3>6.3 生命周期与周期位置</h3>
+<div class="highlight-box">
+  <strong>生命周期：成长期中后段（结构分化期）</strong><br>
+  改性塑料整体处于成长期后半段：中低端通用产品产能过剩、同质化价格战，高端特种（长玻纤、碳纤维复材、PEEK/PPS、高温尼龙）供给不足、进口替代。行业正从“规模扩张”向“结构升级”切换，龙头通过高端化+全球化+纵向整合（金发/国恩自建原料）突围，产能向头部集中。<br><br>
+  <strong>当前周期位置：中周期偏上（景气上行末段，需警惕回调）</strong><br>
+  2024-2025年受益于新能源汽车/储能需求旺盛+原料价格低位，行业景气上行，南京聚隆营收+19.8%、利润+57%即验证。但2026Q1营收零增长、H1利润腰斩、毛利率回落至15.24%，显示景气已从“复苏→繁荣”转向“滞胀”——需求增速放缓（汽车降价传导）+原料价格反弹挤压利差。若按周期股PB分位看，当前PB 3.0×处于历史中位（非底部），非周期底部机会；按PE看23×亦非顶部泡沫，处于“中周期估值中枢”。判断：非底部布局期，亦非顶部离场期，属“持有观察、等待库存与产能出清”阶段。
+</div>
+
+<h3>6.4 同行对比</h3>
+<table>
+  <tr><th>指标</th><th>本公司<br>南京聚隆<br>300644</th><th>同行A<br>金发科技<br>600143</th><th>同行B<br>普利特<br>002324</th><th>同行C<br>国恩股份<br>002768</th><th>行业中位*</th><th>评价</th></tr>
+  <tr><td>营收（亿）2025</td><td>28.61</td><td>653.96</td><td>98.99</td><td>212.51</td><td>~30</td><td>小而精</td></tr>
+  <tr><td>产量（万吨）</td><td>22.97</td><td>301.25</td><td>54.35</td><td>120.38</td><td>~20</td><td>第二梯队头部</td></tr>
+  <tr><td>ROE</td><td>13.06%</td><td>6.22%</td><td>8.22%</td><td>4.16%（Q1）/15.72%（2025）</td><td>~8%</td><td class="good">高</td></tr>
+  <tr><td>毛利率</td><td>17.05%</td><td>13.33%</td><td>13.97%</td><td>10.66%</td><td>~14%</td><td class="good">高</td></tr>
+  <tr><td>净利率</td><td>4.63%</td><td>1.76%</td><td>3.71%</td><td>3.96%</td><td>~3.5%</td><td>中高</td></tr>
+  <tr><td>负债率</td><td>58.80%</td><td>65.8%</td><td>62.1%</td><td>58.2%</td><td>~60%</td><td>中</td></tr>
+  <tr><td>研发/营收</td><td>4.27%</td><td>4.22%</td><td>4.95%</td><td>3.27%</td><td>~4%</td><td>中</td></tr>
+  <tr><td>PB</td><td>3.00×</td><td>1.60×</td><td>3.5×</td><td>2.17×</td><td>~2.5×</td><td>偏高</td></tr>
+  <tr><td>PE（2025）</td><td>23.3×</td><td>13×</td><td>27×</td><td>18×</td><td>~22×</td><td>中</td></tr>
+</table>
+<p style="font-size:11px;color:#999">*行业中位按艾邦2025年17家改性塑料上市企业统计；金发/普利特/国恩数据来自2025年报及同花顺F10。</p>
+
+<div class="summary-box">
+  <strong>竞争位置：小而美的“细分冠军”，盈利质量优于规模龙头，估值溢价体现“专精特新”</strong><br>
+  横向看，南京聚隆以仅金发1/23的营收、1/13的产量，实现了更高的ROE（13.06% vs 6.22%）和毛利率（17.05% vs 13.33%），验证了“小而精”策略——聚焦汽车/高铁等高认证壁垒赛道，回避金发/国恩的大宗通用料价格战。但规模劣势亦明显：产能28万吨 vs 金发421万吨（含在建）、研发绝对值1.22亿 vs 金发27.6亿，抗风险与全球化能力弱。估值上PB 3.0×高于金发1.6×、国恩2.17×，反映市场给予“专精特新+高成长”溢价，但若以2026年利润下滑重新定价，溢价将收窄。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<div class="summary-box">
+  <strong>估值方法：首选 PE（成长兑现期）+ 辅助 PS/PB，当前市场使用基本匹配</strong><br>
+  <table style="margin:8px 0;font-size:13px">
+    <tr><th>行业类型</th><th>首选估值</th><th>辅助</th><th>南京聚隆匹配度</th></tr>
+    <tr><td>成长型（科技/医药）</td><td>PS/PEG</td><td>PE</td><td>部分匹配：汽车新材料具成长性，但已盈利，PS 1.09×可作辅助</td></tr>
+    <tr><td>周期型（钢铁/化工大宗）</td><td>PB（底部）</td><td>PE（顶部）</td><td>不完全匹配：纯周期PB底部逻辑不适用，当前PB 3.0×非底部</td></tr>
+    <tr style="background:#e8f4f8"><td><strong>混合周期（改性塑料）</strong></td><td><strong>PE（盈利期）+PB（安全垫）</strong></td><td><strong>PS</strong></td><td><strong>当前PE 23×为主，PB 3.0×为辅，匹配</strong></td></tr>
+  </table>
+  公司2025年已盈利且利润高增，PE最能反映成长兑现；但若2026年利润下滑转亏或增速归零，则需切换至PS（1.09×）或PB（3.0×）安全垫估值。成长股成色检验（四步法）：①营收28.6亿 &gt;20亿且增速19.8%（通过）；②毛利率17.05%稳定向好（通过但未达30%优秀）；③CFO为负（<strong>未通过</strong>，靠融资续命）；④PS 1.09 &lt;10（通过，无泡沫）。3/4通过，现金流是唯一短板。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  Step 1 - 行业定位：混合周期（改性塑料·化工新材料），CR10&lt;17%极度分散，正向头部集中；壁垒为配方+认证+客户关系，生命周期成长期后半段、结构升级期，当前中周期偏上位置<br>
+  Step 2 - 财务体检：ROE 13.06%良好但未优秀，杜邦高周转+中杠杆型（净利4.63%×周转1.13×乘数2.48），CFO/净利-0.84含金量差，毛利率17.05%回升，负债58.8%偏高<br>
+  Step 3 - 估值判断：PE 23×处于近2年20-30%低分位、历史泡沫出清，但较ROE合理区间仍溢价25-30%，PB 3.0×高于行业中位，估值合理偏贵<br>
+  Step 4 - 风险排查：核心雷为应收8.43亿（占营收29%）+CFO转负+短期借款激增50%，无商誉大雷但理财赎回掩盖投资现金流<br>
+  Step 5 - 结论：小而美的细分冠军，成长已兑现但现金流与偿债拖后腿，54分不及格，属“一般关注→不及格”边缘，需现金流修复才可上调<br>
+  Step 6 - 跟踪：关键指标看 CFO/净利是否回升&gt;0.7、应收账款增速是否&lt;营收增速、毛利率能否守住15%、墨西哥/滁州产能利用率；卖出信号为应收坏账激增或ROE跌破8%
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="neutral">✓ 偏好（有瑕疵）</td><td>下游新能源/高铁/储能等新兴需求年增10%+，政策支持高端替代；但行业集中度极低（CR3仅12%）、竞争激烈、原油波动挤压利差，非“躺赢”行业</td></tr>
+  <tr><td>② 好公司</td><td class="neutral">✗ 接近但未达标</td><td>ROE 13.06%未达15%，毛利率17.05%未达20%+，CFO&lt;净利（-0.84）未达标；三项均差一口气，属“准好公司”</td></tr>
+  <tr><td>③ 好价格</td><td class="bad">✗ 否</td><td>PE 23×高于ROE合理区间上限18×，PB 3.0×高于行业中位2.1×，未给安全边际；2026H1利润腰斩后估值更显贵</td></tr>
+</table>
+<div class="danger-box">
+  三要素结论：<strong>0.5/3</strong> —— 行业尚可、公司准优秀、价格不便宜。当前不是“好公司+好价格”的戴维斯双击区，而是“成长兑现+估值消化”的观察期。
+</div>
+
+<h3>7.3 风险评估</h3>
+<div class="danger-box">
+  ☐ 价值陷阱（低PE+低增长+高负债）→ <strong>未命中</strong>（PE不低、增长曾高但2026年转低，需警惕演变为陷阱）<br>
+  ☐ 周期陷阱（低PE+周期顶点）→ <strong>未命中</strong>（当前PE 23×非低，周期位置中位非顶点，但2025年利润顶点嫌疑存在）<br>
+  ☐ 烧钱陷阱（高PE+高增速+负现金流）→ <strong>部分命中</strong>（2025年PE 23×不算极高，但增速19.8%+CFO为负+FCF为负，符合“增收不增现”的亚烧钱陷阱）<br>
+  <strong>综合：</strong>未完全命中三大经典陷阱，但“亚烧钱陷阱”特征明显，需高度关注现金流持续性。
+</div>
+
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力与履历</td><td>好</td><td>实控人刘曙阳为教授级高工，深耕改性塑料30年，主导多项国标，获评国家级人才；2025年团队新增博士后工作站，研发人员+11%</td></tr>
+  <tr><td>股权结构与利益一致性</td><td>一般</td><td>实控人持股集中度中等，未见大额减持；但股权激励摊销1977万占利润15%，存在摊薄</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td>无</td><td>近3年无监管处罚、诉讼、关联占款；审计意见标准无保留</td></tr>
+  <tr><td>资本配置记录</td><td>合理偏激进</td><td>分红率偏低（~15%）但符合扩产期；墨西哥/滁州/华南18万吨在建投资较大，若消化不及将拖累ROE</td></tr>
+  <tr><td>管理层增减持</td><td>无</td><td>近一年无董监高大额减持公告，转债转股为主</td></tr>
+  <tr><td>CEO交接/关键人员变动</td><td>无风险</td><td>实控人兼总经理稳定，无交接</td></tr>
+</table>
+
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是价？</td><td>量驱动为主</td><td>2025年改性塑料销量22.97万吨+13%（估），营收+19.8%，量增贡献约2/3，价格（毛利率+1.8pct）贡献1/3，健康</td></tr>
+  <tr><td>涨价能否持续？</td><td>需观察</td><td>毛利率21.59%（工程塑料）受原油价格与下游议价制约，2026Q1已回落至15.24%，涨价难持续，需靠结构升级</td></tr>
+  <tr><td>非经常性利润占比</td><td>低（4%）</td><td>非经常性529万/净利润1.324亿=4%，政府补助293万+理财公允变动508万，占比低，利润真实</td></tr>
+  <tr><td>大客户/项目集中度</td><td>分散（优）</td><td>客户跨汽车/高铁/家电/储能/通讯五大领域，无单一客户&gt;10%依赖（年报未披露具体但行业分散）</td></tr>
+  <tr><td>政策/监管依赖度</td><td>中</td><td>新能源汽车/高铁国产替代/绿色建材政策利好，但补贴退坡与集采压价亦带来不确定</td></tr>
+</table>
+
+<h3>关键变量敏感性（3情景）</h3>
+<table>
+  <tr><th>变量</th><th>乐观</th><th>中性</th><th>悲观</th></tr>
+  <tr><td>原油/原材料价格<br>（占成本70%+）</td><td>油价70-75美元低位 → 毛利率18-19% → EPS 1.45元</td><td>油价80-85美元 → 毛利率16-17% → EPS 1.22元（当前）</td><td>油价95美元+ → 毛利率13-14% → EPS 0.85元（-30%）</td></tr>
+  <tr><td>下游需求（汽车/储能）</td><td>新能源车销量+25%+储能翻倍 → 营收+25% → EPS 1.50元</td><td>汽车+10%+储能+30% → 营收+15-20% → EPS 1.20元</td><td>汽车零增长+储能不及预期 → 营收+5% → EPS 0.80元</td></tr>
+  <tr><td>应收账款周转</td><td>票据贴现+账期缩至90天 → CFO转正+1亿 → 估值修复至28×</td><td>维持120天账期 → CFO -0.5亿 → 估值维持23×</td><td>账期拉长至150天+坏账1% → CFO -2亿 → 估值杀至15×</td></tr>
+</table>
+
+<h3>7.4 前景展望</h3>
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. 墨西哥工厂产能释放+滁州18万吨新产能（2027年投产）—— 国际化与华南市场突破，支撑未来3年量增15-20%<br>
+  2. 高端化升级：长玻纤/碳纤维复材/特种尼龙（高温/阻燃）占比提升，工程塑料毛利率21.59%有望向25%迈进，结构性提升净利率<br>
+  3. 新兴赛道：低空经济/具身智能/6G通讯/储能热管理材料认证突破，打开第二曲线（当前占比&lt;5%但增速快）<br><br>
+  <strong>负向拖累：</strong><br>
+  1. 2026年业绩基数高+需求放缓：H1已-56%，全年大概率负增长，利润表趋势逆转压制估值<br>
+  2. 现金流与偿债持续承压：有息负债24%+应收高企，若2026年CFO仍为负，需警惕再融资或股权稀释<br>
+  3. 原材料与竞争挤压：原油反弹+行业CR3仅12%价格战，高毛利工程塑料亦难独善其身
+</div>
+
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>2026E EPS预估</th><th>合理PE区间</th><th>目标价/预期回报*</th></tr>
+  <tr><td>乐观</td><td>营收+15%+毛利率18%+CFO转正</td><td>1.45元（+18%）</td><td>22-25×</td><td>31.9-36.3元 / +12-27%</td></tr>
+  <tr><td>中性</td><td>营收+5-8%+毛利率15-16%+CFO -0.5亿</td><td>0.95-1.05元（-15%~-22%）</td><td>18-22×</td><td>17.1-23.1元 / -19%~-39%</td></tr>
+  <tr><td>悲观</td><td>营收零增长+毛利率13%+坏账计提</td><td>0.60-0.70元（-45%）</td><td>15×</td><td>9.0-10.5元 / -63%~-68%</td></tr>
+</table>
+<p style="font-size:12px;color:#999">*以参考价28.46元计；概率判断：中性50% 悲观30% 乐观20%，加权预期回报约-15%，当前不具备盈亏比优势。</p>
+
+<h3>7.5 资金面信号（A股）</h3>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>北向资金持股变动</td><td>数据待补充</td><td>未搜索到近3月陆股通持股数据，建议关注外资对小盘化工股的配置意愿</td></tr>
+  <tr><td>机构持仓变动</td><td>数据待补充 / 偏低</td><td>流通市值27亿属小盘，机构覆盖少；2025年报显示基金持仓比例低，非机构重仓</td></tr>
+  <tr><td>融资余额变动</td><td>中性</td><td>小盘改性塑料标的，融资余额占流通市值比预计&lt;5%，杠杆情绪不突出</td></tr>
+  <tr><td>大股东增减持</td><td>无大额减持 / 转债转股</td><td>近一年无实控人大额减持公告；聚隆转债（123209）388万张已转股，股本微增</td></tr>
+  <tr><td>大宗交易</td><td>折价1-3%</td><td>2024-03-20大宗12.7万股折价2.77%，2021年两笔折价3-9%，未见溢价抢筹</td></tr>
+</table>
+<div class="summary-box">
+  <strong>资金面判断：中性偏弱</strong>—— 小盘化工新材料，非北向与机构核心持仓，资金面边际影响弱。唯一可跟踪的是大股东与转债转股动向（无减持为正面）、融资余额是否异常放大（过热信号）。基本面仍是定价主导。
+</div>
+
+<h3>7.6 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清南京聚隆怎么赚钱？（提示：用改性配方+认证绑定，把1吨PP/PA原料变成1.2吨高性能塑料，赚取15-21%的利差，靠周转与规模放大ROE）<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？（是-1.11亿的CFO、8.43亿应收，还是2026H1 -56%的利润腰斩？）<br>
+  3. 如果现在买入，期待的回报来源是什么？（是估值从23×修复到30×，还是利润从1.32亿再翻倍到2.5亿？哪个更可靠？）<br>
+  4. 什么情况下你会坚决卖出？（CFO连续2年为负且应收/营收&gt;35%、或ROE跌破8%、或18万吨新产能利用率&lt;50%？）
+</div>
+
+</div></div>
+
+<div class="footer">
+  免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+  数据来源：公司2024/2025年报、2025审计报告、2026Q1季报、2026H1快报（格隆汇）、同花顺/理杏仁/前瞻眼行业数据、中证鹏元跟踪评级报告（2026-06-26），股价取富途/东方财富近3月均值<br>
+  分析框架：L1-L6及行业分类以 stock-learning/materials/*.md 为准
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>
