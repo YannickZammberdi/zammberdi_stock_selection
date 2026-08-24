@@ -27,7 +27,7 @@ on:
         default: ''
         type: string
       model:
-        description: '模型（zen免费模型）'
+        description: '模型（zen免费 / deepseek官方API）'
         required: false
         default: 'opencode/nemotron-3.5-lightning-free'
         type: choice
@@ -39,6 +39,10 @@ on:
           - opencode/mimo-v2.5-free
           - opencode/muse-spark-1.2-contributor-free
           - opencode/big-pickle
+          - deepseek/deepseek-v4-flash
+          - deepseek/deepseek-chat
+          - deepseek/deepseek-reasoner
+          - deepseek/deepseek-v4-pro
 
 permissions:
   contents: write
@@ -89,6 +93,7 @@ jobs:
       - name: 运行 opencode 生成报告
         env:
           ZEN_API_KEY: ${{ secrets.ZEN_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
         run: |
           echo ">> PROMPT: $PROMPT"
           opencode run --model "${{ github.event.inputs.model }}" --auto "$PROMPT"
