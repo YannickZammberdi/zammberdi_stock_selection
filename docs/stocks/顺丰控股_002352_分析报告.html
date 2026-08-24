@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>顺丰控股(002352) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .score-note { font-size: 13px; color: #666; background: #fafafa; border: 1px dashed #ccc; padding: 8px 12px; margin: 10px 0; }
+  .history-table td:first-child { white-space: nowrap; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>顺丰控股（002352）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026-03-31 | 数据来源：2024年报（普华永道审计）+ 2025年中报/三季报 + Wind/券商一致预期（20家）+ 国家邮政局</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>顺丰控股股份有限公司（SF Holding）</td></tr>
+  <tr><td>股票代码</td><td>002352.SZ（A+H：06936.HK，2024-11-27港股上市，国内首家A+H物流企业）</td></tr>
+  <tr><td>所属行业</td><td>快递物流 / 综合物流服务（申万-物流）</td></tr>
+  <tr><td>行业地位</td><td>直营制时效件绝对龙头（连续16年快递公众满意度第一）；综合物流龙头，拥有鄂州花湖国际货运枢纽、自有机队（约100架），供应链+国际为第二曲线</td></tr>
+  <tr><td>FY 营收</td><td>2024年 2,844.20亿元（同比+10.07%）；2025年 3,082.27亿元（同比+8.37%，券商预测披露）</td></tr>
+  <tr><td>归母净利润</td><td>2024年 101.70亿元（同比+23.51%）；2025年 111.17亿元（同比+9.31%）；扣非 91.46亿（+28.20%）</td></tr>
+  <tr><td>经营现金流</td><td>2024年 321.86亿元（同比+21.14%）；2025H1 129.0亿元；CFO/净利 316% 含金量极高</td></tr>
+  <tr><td>总资产</td><td>2024年末 2,138.24亿元（-3.46%）；2025年中 2,182.37亿元</td></tr>
+  <tr><td>归母净资产</td><td>2024年末 919.93亿元（-0.86%，因大额分红及回购）；2025年中 953.84亿元（+6.83%）</td></tr>
+  <tr><td>ROE</td><td>加权平均 11.16%（2024） vs 9.19%（2023） +1.97ppt；2025H1 6.07%（同比+0.84ppt）</td></tr>
+</table>
+
+<div class="summary-box">
+<strong>行业类型标注：混合周期股（成长+周期）→ 采用非周期股评分体系</strong><br>
+依据 <code>industry-classification.md</code>：快递物流属于“混合周期”——既有电商渗透带来的长期成长（件量年均+8-10%），又有阶段性价格战导致的周期性波动。顺丰为直营重资产综合物流，盈利不依赖大宗供需错配、PE不失真，且公司时效件基本盘稳定、现金流可预测，因此<strong>选用非周期股评分体系更能反映其真实经营质量</strong>（若按纯周期股用PB仅能反映底部安全垫，会低估其品牌与网络的成长价值）。
+</div>
+
+<p class="score-note"><strong>评分口径说明：</strong><span>采用非周期股评分体系；首次分析，无历史版本</span></p>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:12px;color:#666;margin-bottom:4px;">采用非周期股评分体系（总分100分，≥80优秀/≥60关注/＜60不及格）</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE</td><td class="good">10/15</td><td style="text-align:left">2024加权ROE 11.16%（≥10%档），行业中上但未达15%优秀线，扣5分</td></tr>
+  <tr><td>杜邦驱动质量</td><td class="neutral">3/5</td><td style="text-align:left">均衡偏周转型：净利率3.58%×周转1.33×杠杆2.32，非高利润也非高杠杆，靠运营效率驱动</td></tr>
+  <tr><td>利润含金量(CFO/净利)</td><td class="good">15/15</td><td style="text-align:left">CFO 321.86亿 / 归母101.7亿 = 3.16，远超1.0，利润全是真金白银（预收款+回款强）</td></tr>
+  <tr><td>营收增长</td><td class="good">10/10</td><td style="text-align:left">2024 +10.07%（≥10%满分）；2025H1 +9.26%，持续跑赢GDP</td></tr>
+  <tr><td>利润增长</td><td class="good">10/10</td><td style="text-align:left">2024归母 +23.51%，扣非 +28.20%（≥15%满分），降本增效兑现</td></tr>
+  <tr><td>负债率</td><td class="neutral">7/10</td><td style="text-align:left">资产负债率52.14%（＜55%档7分），重资产物流中属稳健，2025H1降至51.35%</td></tr>
+  <tr><td>短期偿债</td><td class="neutral">7/10</td><td style="text-align:left">货币资金339.36亿 vs 短期借款150.03亿充裕覆盖，但流动比率1.23、流动负债721.9亿覆盖仅1.23倍，评基本覆盖</td></tr>
+  <tr><td>毛利率水平与趋势</td><td class="bad">4/10</td><td style="text-align:left">毛利率13.93%（＜15%档），虽同比+1.11ppt至近三年高点，但绝对值低于“好公司”15%门槛，重资产人力密集硬伤</td></tr>
+  <tr><td>估值(PE vs 合理区间)</td><td class="neutral">4/10</td><td style="text-align:left">ROE≈11%合理PE 10-18x，当前PE(TTM)22-24x偏高约30%（按48.4元/TTM 2.08元），处于历史中位附近但不便宜</td></tr>
+  <tr><td>FCF</td><td class="good">5/5</td><td style="text-align:left">自由现金流222.98亿（+70.14%），2022-2024连续为正，鄂州枢纽资本开支高峰已过（2025FCF 179亿）</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">75/100</td><td style="text-align:left">一般关注（70-80分段，品质中上、价格未明显低估）</td></tr>
+</table>
+
+<div class="verdict verdict-caution">一般关注（75/100分）</div>
+
+<h2 style="margin-top:16px">评分沿革</h2>
+<style>.history-table{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:13px}.history-table th,.history-table td{border:1px solid #ddd;padding:6px 8px;text-align:center}.history-table th{background:#f0f0f0;font-weight:bold}.history-table td.good{color:#27ae60}.history-table td.neutral{color:#e67e22}.history-table td.bad{color:#c0392b}</style><table class="history-table">
+  <tr><th>日期</th><th>评分</th><th>评分体系</th><th>变化原因</th></tr>
+  <tr><td>2026-03-31</td><td class="neutral" style="font-weight:bold">75/100</td><td>混合周期</td><td style="text-align:left">采用非周期股评分体系；首次分析，无历史版本</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>顺丰是“重资产+强运营”型的综合物流龙头，已走出2021-2022年收购嘉里物流与鄂州重投入的消化期，进入“量增+价修复+降本”共振的盈利修复通道。2024-2025营收双位数增长、净利增速超营收、现金流与FCF创新高，体现网络分层+资源分层改革成效。<br><br>
+  <strong>核心优势：</strong>① 直营时效网络品牌壁垒极强（公众满意度16连冠，时效件1310亿收入占比41%）② 现金奶牛：CFO持续＞净利2-3倍，FCF三年均值170亿+，分红率40%+回购注销 ③ 第二曲线兑现：供应链及国际（不含KLN）2025同比+32.3%扭亏，同城即时配送+43.4%且净利翻倍 ④ “反内卷”最大受益标的之一，PS分位仅1.1%历史极低，鄂州枢纽将固定成本摊薄<br><br>
+  <strong>核心风险：</strong>① 毛利率/净利率绝对值低（13.9%/3.6%），单票净利对油价、人力社保合规成本高度敏感 ② Q3盈利已现波动：2025Q3归母-8.5%（单票收入仍受经济件价格拖累，销售费用+23.92%扩张） ③ 行业对电商平台议价能力弱，经济件单票收入仍同比-7.9%（2025Q4），价格修复未完全 ④ 资产偏重（固定资产+使用权资产约600亿），资本开支与折旧压力仍存
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2024本期</th><th>FY2023上期</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>2,844.20亿</td><td>2,584.09亿</td><td class="good">+10.07%</td><td><span class="good">良好</span>（件量133.3亿票+11.3%，跑赢行业）</td></tr>
+  <tr><td>营业成本</td><td>2,448.10亿</td><td>2,252.74亿</td><td>+8.67%</td><td><span class="good">优秀</span>（增速＜营收，降本兑现）</td></tr>
+  <tr><td>毛利 / 毛利率</td><td>396.10亿 / 13.93%</td><td>331.36亿 / 12.82%</td><td>+19.54% / +1.11ppt</td><td><span class="good">改善</span>（连续三年提升）</td></tr>
+  <tr><td>期间费用总额</td><td>260.36亿</td><td>247.77亿</td><td>+5.08%</td><td><span class="good">良好</span>（费用率9.15% vs 9.59% -0.44ppt）</td></tr>
+  <tr><td>销售费用</td><td>—</td><td>—</td><td>+5.08%（管理费用率改善主因）</td><td>精益管理有效</td></tr>
+  <tr><td>归母净利润</td><td>101.70亿</td><td>82.34亿</td><td class="good">+23.51%</td><td><span class="good">优秀</span></td></tr>
+  <tr><td>扣非归母净利润</td><td>91.46亿</td><td>71.34亿</td><td class="good">+28.20%</td><td><span class="good">优秀</span>（更真实）</td></tr>
+  <tr><td>归母净利率</td><td>3.58%</td><td>3.19%</td><td>+0.39ppt</td><td>微薄但改善</td></tr>
+  <tr><td>EBITDA / 利润率</td><td>326.95亿 / 11.50%</td><td>294.42亿 / 11.39%</td><td>+11.05% / +0.11ppt</td><td>稳步提升</td></tr>
+  <tr><td>基本EPS</td><td>2.11元</td><td>1.70元</td><td class="good">+24.12%</td><td>高增</td></tr>
+</table>
+<table>
+  <tr><th>季度</th><th>Q1 2024</th><th>Q2 2024</th><th>Q3 2024</th><th>Q4 2024</th><th>评价</th></tr>
+  <tr><td>营收（亿）</td><td>653.41</td><td>690.69</td><td>724.51</td><td>775.59</td><td>逐季走高，Q4旺季峰值</td></tr>
+  <tr><td>归母净利（亿）</td><td>19.12</td><td>28.95</td><td>28.10</td><td>25.53</td><td>Q2为全年高点，Q4环比回落但仍稳健</td></tr>
+</table>
+<p style="font-size:12px;color:#666;">注：2025年跟踪：H1营收1468.58亿（+9.26%）、归母57.38亿（+19.37%）；Q3单季营收784.03亿（+8.21%）、归母25.71亿（-8.53%），Q3毛利97.9亿（-4.4%）、毛利率12.5%（-1.6ppt），盈利短期承压主因主动市场拓展+销售团队扩张（销售费用前三季度+23.92%）。</p>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>“增收+更增利”格局确立。营收增速10.07%为近三年新高（超过2023年-3.4%低基数），核心驱动为供应链及国际+17.5%（第二曲线）与速运物流+7.7%（时效基本盘稳）；成本增速8.67%＜营收，得益于“拉直线、精简节点、网络分层”结构性降本，毛利率提升至13.93%为三年最高。但净利率仅3.58%，印证物流重资产低毛利本质，利润弹性仍受油价与人力成本钳制。2025Q3波动提示：规模驱动向价值驱动切换期，短期费用前置。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>2024年末</th><th>2023年末</th><th>变动</th><th>评价</th></tr>
+  <tr><td>总资产</td><td>2,138.24亿</td><td>2,214.91亿</td><td>-3.46%</td><td>缩表主因高效运营+折旧（非流动资产-4.11%）</td></tr>
+  <tr><td>流动资产</td><td>886.87亿</td><td>909.91亿</td><td>-2.53%</td><td>占比41.5%</td></tr>
+  <tr><td>货币资金</td><td>339.36亿</td><td>419.31亿*（含前募）</td><td>-19.09%</td><td><span class="neutral">关注</span>：占资产15.9%，但H股募集后荐港股还贷，仍覆盖短期借款2.3倍</td></tr>
+  <tr><td>交易性金融资产</td><td>约162亿（2025年披露161.99亿）</td><td>—</td><td>+65.15%</td><td>现金管理加强，结构性存款增加</td></tr>
+  <tr><td>应收票据及应收账款</td><td>277.14亿（应收账款）</td><td>251.20亿</td><td>+10.34%</td><td><span class="neutral">中性</span>：占资产13.0%，增速与营收同步，应收周转约10.6次良好</td></tr>
+  <tr><td>存货</td><td>约30亿</td><td>—</td><td>—</td><td>物流行业存货极低，非风险点</td></tr>
+  <tr><td>短期借款</td><td>150.03亿</td><td>182.22亿</td><td class="good">-17.68%</td><td><span class="good">改善</span></td></tr>
+  <tr><td>应付票据及应付账款</td><td>约302.81亿（2025年）</td><td>—</td><td>+9.96%</td><td>对上游议价能力强，无息负债增加是好事</td></tr>
+  <tr><td>长期借款</td><td>61.86亿</td><td>71.44亿</td><td class="good">-13.41%</td><td>长期负债合计392.96亿（-11.13%），租赁负债亦-11.74%</td></tr>
+  <tr><td>总负债</td><td>1,114.89亿</td><td>1,182.07亿</td><td>-5.68%</td><td>资产负债率52.14%（-1.23ppt）</td></tr>
+  <tr><td>归母净资产</td><td>919.93亿</td><td>927.90亿</td><td>-0.86%</td><td>微降因2024分红约12.3亿+回购注销</td></tr>
+  <tr><td>股东权益合计</td><td>1,023.35亿</td><td>1,032.84亿</td><td>-0.92%</td><td>权益比率47.86%</td></tr>
+</table>
+<p style="font-size:12px;color:#666;">资产结构：重资产特征明显，非流动资产1251.37亿（48%为固定资产+使用权资产+无形资产，鄂州枢纽及转运中心）。流动比率1.23（886.87/721.93），速动比率1.18，短期偿债安全边际尚可。</p>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>“降杠杆+提效率”双改善。资产负债率52.14%在重资产物流中属中低水平（通达系普遍35-50%，但顺丰含大量租赁负债与航空资产，实际经营杠杆可控），短期借款与长期借款双降，财务费用率同比-0.3ppt。货币资金339亿虽同比-19%，主因H股上市募集约57亿港元后偿还有息债及大额分红回购（筹资现金流出279.79亿），并非现金恶化。应收账款10.34%增长与营收增速匹配，未现赊销坏账风险。整体财务结构稳健，鄂州枢纽投建高峰已过，资本开支占收入比将持续回落。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>2024本期</th><th>2023上期</th><th>变动</th><th>评价</th></tr>
+  <tr><td>经营活动现金流净额(CFO)</td><td>321.86亿</td><td>265.70亿</td><td class="good">+21.14%</td><td><span class="good">优秀</span>，盈利增长+现金流管理优化</td></tr>
+  <tr><td>投资活动现金流净额(CFI)</td><td>-120.55亿</td><td>-135.06亿</td><td>流出收窄10.74%</td><td>购置物业厂房设备流出减少</td></tr>
+  <tr><td>筹资活动现金流净额(CFF)</td><td>-279.79亿</td><td>-129.95亿</td><td>流出扩大115%</td><td>借款净偿还+分红增加+H股发行流入对冲</td></tr>
+  <tr><td>CFO/归母净利润</td><td>3.16倍</td><td>3.23倍</td><td>—</td><td><span class="good">极优</span>，利润100%现金化且有预收性质</td></tr>
+  <tr><td>CFO/营收</td><td>11.32%</td><td>10.28%</td><td>+1.04ppt</td><td>造血能力增强</td></tr>
+  <tr><td>自由现金流(FCF)</td><td>222.98亿</td><td>131.06亿</td><td class="good">+70.14%</td><td><span class="good">极优</span>，FCF/营收7.84%</td></tr>
+  <tr><td>资本开支(不含股权投资)</td><td>约98.88亿（CFO-FCF）</td><td>134.64亿</td><td>-26.6%</td><td>高峰已过，2025E约93亿</td></tr>
+</table>
+<p style="font-size:12px;color:#666;">2025年跟踪：H1自由现金流入87.4亿（+6.1%）；前三季度CFO 194.15亿（-13.91%，受Q3营运资金波动），全年FCF券商预期179亿。</p>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>公司为典型的“现金奶牛+持续投资”模型，但已过烧钱期。CFO连续三年＞250亿且＞净利2倍以上，证明直营预收款模式+强回款能力，利润无水分。FCF在2021年鄂州建设期曾承压，现随产能利用率提升而爆发式增长（70%），2025年预计仍维持170-180亿，为分红（40%比例）与60亿回购提供坚实支撑。筹资端大额净流出反映主动降杠杆与股东回报加码，属健康去杠杆。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>2024本期</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE（加权）</td><td>11.16%</td><td>＞15%优秀 / 10-15%良好</td><td><span class="neutral">良好</span>，未达15%但连续两年提升</td></tr>
+  <tr><td>毛利率</td><td>13.93%</td><td>稳定或提升</td><td><span class="neutral">偏低但趋势佳</span>（三年12.49%→12.82%→13.93%）</td></tr>
+  <tr><td>归母净利率</td><td>3.58%</td><td>＞5%良好</td><td><span class="bad">偏低</span>，重资产+人力密集薄利</td></tr>
+  <tr><td>营收增长</td><td>10.07%</td><td>＞10%优秀</td><td><span class="good">达标</span></td></tr>
+  <tr><td>归母利润增长</td><td>23.51%</td><td>＞15%优秀</td><td><span class="good">优秀</span></td></tr>
+  <tr><td>CFO/净利润</td><td>3.16</td><td>＞1优秀</td><td><span class="good">极优</span></td></tr>
+  <tr><td>资产负债率</td><td>52.14%</td><td>行业中低（物流45-55%）</td><td><span class="neutral">正常</span></td></tr>
+  <tr><td>分红率</td><td>约30.7%（2024派0.36/1.8元？实际12.3亿/40.12亿口径；顺丰40%*）</td><td>＞30%良好</td><td><span class="good">优秀</span>：2024-2028承诺不低于23年35%且稳步提升，2025分红率40%（44.6亿）</td></tr>
+  <tr><td>自由现金流/营收</td><td>7.84%</td><td>＞5%良好</td><td><span class="good">优秀</span></td></tr>
+</table>
+<p style="font-size:12px;color:#666;">*顺丰2025年现金分红比例40%，总股东回报（分红+回购）55%（约61亿），股息率约3.3%（A股）、4.1%（H股）。</p>
+
+<h3>3.2 分业务分析</h3>
+<table>
+  <tr><th>业务板块</th><th>营收（亿）</th><th>占比</th><th>同比</th><th>毛利率* </th><th>评价</th></tr>
+  <tr><td><strong>速运物流</strong>（时效/经济/快运/冷运/同城）</td><td>2,057.8</td><td>72.3%</td><td class="good">+7.7%</td><td>约13-14%</td><td><span class="good">基本盘稳健</span>：时效快递1310.5亿（2025）+7.2%，经济快递320.5亿+17.6%（件量结构优化中）</td></tr>
+  <tr><td>其中：时效快递</td><td>~1,154.6（2024披露）</td><td>40.6%</td><td>+5-7%</td><td>最高（品牌溢价）</td><td>逆周期能力强，客单价稳定</td></tr>
+  <tr><td>快运（含顺丰快运+顺心捷达）</td><td>421.3（2025）</td><td>13.7%</td><td>+11.9%</td><td>中低</td><td>三网协同，货量+27%</td></tr>
+  <tr><td>冷运及医药</td><td>106.1（2025）</td><td>3.4%</td><td>+8.1%</td><td>较高</td><td>细分龙头</td></tr>
+  <tr><td>同城即时配送</td><td>127.2（2025）</td><td>4.1%</td><td class="good">+43.4%</td><td>待提升</td><td><span class="good">高增</span>：净利2.8亿（+110%），活跃商家+72%</td></tr>
+  <tr><td><strong>供应链及国际</strong></td><td>704.9</td><td>24.8%</td><td class="good">+17.5%</td><td>约8-9%</td><td><span class="good">第二曲线</span>：受益出海+跨境电商，剔除KLN后+32.3%，分部转盈1.9亿（2024亏7.6亿）</td></tr>
+  <tr><td>其他（非物流：原材料/设备购销）</td><td>~81.5</td><td>2.9%</td><td>—</td><td>低</td><td>配套业务，非核心</td></tr>
+</table>
+<p style="font-size:12px;color:#666;">*板块毛利率未单独披露，为根据行业及券商分部测算；供应链及国际含国际快递、货代（KLN）、海外仓等，2025年KLN受海运价回落同比-5.7%，但非KLN国际快递/海外仓合计+55.4%。</p>
+<div class="highlight-box"><strong>业务质地：</strong>顺丰已从“时效快递公司”升级为“综合物流生态”：时效件提供品牌与定价锚（毛利率最高），经济件与快运贡献规模，分层网络摊薄成本；供应链及国际打开天花板（37个国家海外仓、加密国际航线），与极兔战略合作形成“干线+末端”协同。2025年同城与国际合计增速超30%，生态协同效应初显。</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险项</th><th>严重程度</th><th>依据</th></tr>
+  <tr><td>商誉减值</td><td><span style="color:#27ae60">● 绿</span></td><td style="text-align:left">商誉主要源于收购嘉里物流（约100亿级），近年未大额减值，KLN经营已扭亏，且顺丰直营模式商誉占比低于加盟制并购风险</td></tr>
+  <tr><td>应收账款坏账</td><td><span style="color:#f39c12">● 黄</span></td><td style="text-align:left">277亿（+10.34%）与营收同步，账龄结构良好（长账龄回收带来2025Q3信用减值转回0.95亿），周转天数约37天（10.57次/年），需持续跟踪但非雷</td></tr>
+  <tr><td>存货跌价</td><td><span style="color:#27ae60">● 绿</span></td><td style="text-align:left">物流行业存货≈30亿可忽略，无跌价风险</td></tr>
+  <tr><td>有息负债与偿债</td><td><span style="color:#27ae60">● 绿</span></td><td style="text-align:left">有息负债（短借150+长借62+应付债券113+租赁约200亿）合计约525亿，CFO 321亿覆盖率0.61倍，利息保障倍数＞5倍（营业利润107亿/利息13.3亿）</td></tr>
+  <tr><td>大额关联交易/资金占用</td><td><span style="color:#27ae60">● 绿</span></td><td style="text-align:left">控股股东明德控股持股约50%+，无违规占用披露；关联交易主要为关联方物流服务，定价公允</td></tr>
+  <tr><td>非经常性损益依赖</td><td><span style="color:#f39c12">● 黄</span></td><td style="text-align:left">2024非经常1.02亿（政府补助5.6亿、公允价值变动5.97亿、处置收益0.8亿），占归母约10%，2025H1非经常中有REIT处置收益11.76亿（一次性），扣非增速（1.29% vs 9.31%归母）需关注真实盈利</td></tr>
+  <tr><td>资本开支与减值</td><td><span style="color:#f39c12">● 黄</span></td><td style="text-align:left">鄂州花湖枢纽累计投入约300亿+，在建工程29亿，折旧摊销年约160亿+，若利用率不及预期有减值压力，但2025年利用率提升、空运货量+约30%</td></tr>
+  <tr><td>社保合规成本</td><td><span style="color:#f39c12">● 黄</span></td><td style="text-align:left">2026年快递员社保全覆盖政策推升人力成本，顺丰直营用工合规成本高于通达系加盟，券商预计2026年成本压力+2-3%</td></tr>
+</table>
+<div class="summary-box">
+  <strong>排雷结论：无红灯重大雷，黄灯4项需跟踪。</strong>正面项：① CFO＞净利3倍，利润零水分 ② 资产负债率52%稳健且持续降杠杆 ③ H股上市拓宽融资，资本结构国际化 ④ 分红+回购注销（2025回购30-60亿）股东回报优。需跟踪：Q3利润波动、非经常性中REIT一次性收益占比、社保合规成本。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>历史分位</th><th>行业均值</th></tr>
+  <tr><td>股价（参考）</td><td>44.57元（2025-08-29收盘A股）/ 48.40元（2025-08-28）/ 34.36元（2026-06-12）</td><td>52周 30.13-50.70元</td><td>—</td></tr>
+  <tr><td>总市值</td><td>2,246亿（44.57×50.39亿股）~ 2,439亿（48.4）</td><td>—</td><td>申万物流3.08万亿（124家）</td></tr>
+  <tr><td>PE(TTM)</td><td>约22-24x（48.4/2.08TTM）</td><td>历史中位25-30x</td><td>物流行业24.37x（中值27.31x）</td></tr>
+  <tr><td>PE(静) 2024</td><td>23.98x（48.4/2.11）</td><td>80%分位约40x</td><td>圆通15.56x / 韵达12.78x</td></tr>
+  <tr><td>PE(2025E)</td><td>20.1x（44.57/2.21中邮）</td><td>20%分位约15x</td><td>行业预期中位约13-15x</td></tr>
+  <tr><td>PE(2026E)</td><td>15.6-17.2x（券商均值2.40-2.44元）</td><td>底部区间</td><td>2026E通达 12-15x</td></tr>
+  <tr><td>PB</td><td>2.44-2.59x</td><td>历史20%分位约1.8x，中位3-5x</td><td>行业2.05x</td></tr>
+  <tr><td>PS</td><td>0.79-0.86x（2246/2844）</td><td><span class="good">分位1.1%历史极低</span></td><td>行业0.5-1.5x</td></tr>
+  <tr><td>PCF（市现率）</td><td>7.6x（2246/321.86×?）</td><td>历史低位</td><td>行业10-15x</td></tr>
+  <tr><td>股息率（2025）</td><td>约1.84元/股 → 4.13%（44.57价）/ 含回购总回报约3.3% A股 4.1% H股</td><td>近五年高位</td><td>圆通2.8% / 韵达约3%</td></tr>
+  <tr><td>EV/EBITDA</td><td>6.89x（2025A）→ 6.81x（2026E中邮）</td><td>可比均值6.2-6.3x</td><td>通达加盟制6.2x</td></tr>
+</table>
+<p style="font-size:12px;color:#666;">注：2026E EPS券商一致预期均值2.40元（20家），净利润122.64亿（+10.32%）；中邮证券目标PE 22x对应53.82元，国盛目标53.82元，民生50.05元均值。</p>
+
+<h3>4.2 估值区间</h3>
+<p style="font-size:13px;margin:8px 0;"><strong>PE Band（非周期股适用，以2026E EPS 2.44元为基准）：</strong> 合理PE区间参考ROE 11% → 10-18x</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价（元）</th><th>对应说明</th></tr>
+  <tr><td>悲观</td><td>12x</td><td>29.3</td><td>价格战重启+油价飙升，利润零增长，历史底部</td></tr>
+  <tr><td>保守</td><td>15x</td><td>36.6</td><td>2026年盈利符合预期下限（118亿），历史20%分位</td></tr>
+  <tr><td>中性</td><td>18x</td><td>43.9</td><td>合理上限，对应2025-08-29收盘价44.57元（当前）</td></tr>
+  <tr><td>券商目标</td><td>22x</td><td>53.7-53.8</td><td>国盛/中邮给予22x（考虑高端壁垒+国际成长溢价），对应20%上涨空间</td></tr>
+  <tr><td>当前价</td><td>约18-20x（44.57价）/ 23-24x TTM</td><td>44.57 / 48.40</td><td>处于中性偏上，未明显低估</td></tr>
+  <tr><td>历史高位</td><td>30-40x</td><td>73-98</td><td>2020年疫情高光+鄂州预期期，PE曾超70x（泡沫）</td></tr>
+</table>
+<p style="font-size:13px;margin:8px 0;"><strong>PB Band补充（重资产验证）：</strong> 历史PB 20%分位1.8x（对应32.6元底部）、50%分位约3.5x（63元）、80%分位5x+（90元+），当前2.59x处于底部30%分位，安全垫较厚。</p>
+<table>
+  <tr><th>指标</th><th>最大值</th><th>80%分位</th><th>50%分位</th><th>20%分位</th><th>最小值</th><th>当前</th></tr>
+  <tr><td>PE(历史)</td><td>70x+（2021）</td><td>40x</td><td>25-30x</td><td>15x</td><td>12x（2024底部）</td><td>22-24x（约45%分位）</td></tr>
+  <tr><td>PB(历史)</td><td>5.5x</td><td>4.0x</td><td>3.0x</td><td>1.8x</td><td>1.5x</td><td>2.59x（约30%分位）</td></tr>
+  <tr><td>PS(历史)</td><td>1.8x</td><td>1.2x</td><td>0.9x</td><td>0.7x</td><td>0.6x</td><td>0.79x（1.1%分位，极低）</td></tr>
+</table>
+
+<h3>4.3 估值总结</h3>
+<div class="highlight-box">
+  <strong>估值判断：合理偏高，未到“击球区”，但底部特征显现。</strong><br>
+  ① PE视角：按2026E盈利看仅15-17x（底部区间），但按TTM 23x看处于历史45%分位，并不便宜。当前44.57元已隐含对2026年10-12%增长的兑现，若Q4及2026年利润增速不及预期（社保合规+油价），存在估值回调压力。<br>
+  ② PB/PS视角：PB 2.59x处于历史30%分位底部，PS 0.79x更是1.1%历史极低，反映市场对重资产低净利率模式的悲观定价，安全边际实则不差。<br>
+  ③ 横向对比：通达系2026E PE 10-15x更便宜，但顺丰品牌溢价+国际成长应享5-10%溢价，当前EV/EBITDA 6.89x vs 通达6.2x溢价约11%，合理。<br>
+  <strong>建议：</strong>现有持仓可持有；新开仓宜分批、回落至36-40元（15x 2026E，对应PB 2.0x / PS 0.65x）再加仓更安全。等待Q4利润增速回升与“反内卷”价格持续兑现的确认信号。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析（L4框架）</h2>
+
+<h3>5.1 杜邦拆解</h3>
+<table>
+  <tr><th>指标</th><th>2022</th><th>2023</th><th>2024</th><th>趋势</th><th>判断</th></tr>
+  <tr><td>净利润率</td><td>2.31%（61.7/2674）</td><td>3.19%（82.34/2584）</td><td>3.58%（101.7/2844）</td><td class="good">↑ 连续提升 +1.27ppt</td><td>薄利但改善</td></tr>
+  <tr><td>资产周转率</td><td>1.23次</td><td>1.17次</td><td>1.33次</td><td class="good">↑ 回升</td><td>资产利用效率回升（缩表+收入增）</td></tr>
+  <tr><td>权益乘数</td><td>2.51x</td><td>2.39x</td><td>2.32x</td><td class="good">↓ 降杠杆</td><td>主动去杠杆（偿债+分红）</td></tr>
+  <tr><td>ROE（加权）</td><td>7.34%</td><td>9.19%</td><td>11.16%</td><td class="good">↑ 持续修复</td><td>2025H1 6.07%（年化约12%）</td></tr>
+  <tr><td>ROA（净利/总资产）</td><td>2.85%</td><td>3.72%</td><td>4.76%</td><td class="good">↑</td><td>资产回报改善</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>2.84%</td><td>3.73%</td><td>4.76%</td><td class="good">↑</td><td>真实经营回报</td></tr>
+</table>
+<p style="font-size:12px;color:#666;">计算：2024 ROE=3.58%×1.33×2.32=11.06%（与披露11.16%吻合）；2023 3.19%×1.17×2.39=8.92%（接近9.19%含其他综合收益差异）。</p>
+
+<h3>5.2 赚钱模式判断</h3>
+<div class="highlight-box">
+  <strong>赚钱模式：均衡偏高周转型（非典型高利润，也非高杠杆）</strong><br>
+  顺丰净利率仅3.58%（远低于茅台49%、海天25%的高利润型），权益乘数2.32（远低于银行12x、地产3-4x的高杠杆型），资产周转1.33（高于茅台0.5、银行0.05，但低于沃尔玛2.4）。<br>
+  <strong>本质：</strong>靠“高周转+精细化运营+规模摊薄”赚钱——① 直营网络重资产但周转快（日均约3600万票）② 单票成本通过“拉直线、精简节点、网络分层”持续压降（2024营业成本增速＜营收1.4ppt）③ 杠杆适中，不依赖债务放大ROE，安全边际高于加盟制靠派费杠杆模式。<br>
+  <strong>评价：</strong>此模式壁垒在于运营效率与品牌，护城河不如高利润型深厚（易受油价与人力成本侵蚀），但胜在现金流极强、可规模化复制，且已穿越2021-2022重投入周期验证。
+</div>
+
+<table>
+  <tr><th>维度</th><th>顺丰</th><th>圆通（加盟标杆）</th><th>沃尔玛（高周转典范）</th><th>茅台（高利润典范）</th></tr>
+  <tr><td>净利率</td><td>3.58%</td><td>~5.8%（含货代）</td><td>2.5%</td><td>49.2%</td></tr>
+  <tr><td>周转率</td><td>1.33</td><td>~1.43（690/482）</td><td>2.4</td><td>0.5</td></tr>
+  <tr><td>权益乘数</td><td>2.32</td><td>1.52</td><td>2.5</td><td>1.23</td></tr>
+  <tr><td>ROE</td><td>11.16%</td><td>13.27%</td><td>15%</td><td>30%</td></tr>
+  <tr><td>模式</td><td>均衡偏周转</td><td>高周转</td><td>高周转</td><td>高利润</td></tr>
+</table>
+
+<h3>5.3 核心结论</h3>
+<div class="summary-box">
+  <strong>杜邦结论：ROE靠“利润率修复+周转提升”双驱动，且在降杠杆背景下实现，质量健康。</strong><br>
+  ① 净利率从2.31%→3.58%（+1.27ppt）是主引擎，源于毛利率提升+费用率压降，证明降本增效非一次性。<br>
+  ② 周转从1.17→1.33（+13.7%）是次引擎，缩表（总资产-3.46%）同时收入+10%，资产效率改善，鄂州枢纽产能释放将进一步推升周转。<br>
+  ③ 权益乘数从2.51→2.32（-7.6%）主动降杠杆，ROE提升含金量更高，非“借鸡生蛋”虚高。<br>
+  <strong>趋势健康度：</strong>去杠杆ROA 2.84%→4.76%同步提升，每1元资产产生4.76分利润（2024），较2022年提升67%，资产回报效率显著改善。<br>
+  <strong>隐忧：</strong>净利率绝对值仍低（3.58%），对成本扰动敏感（油价+10%→净利-约8-10%测算）；若2025Q3毛利率回落趋势延续，ROE修复将受阻。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：混合周期（成长+周期）— 成熟期早期（洗牌后段），非纯周期</strong><br>
+  <strong>判断依据：</strong><br>
+  1）成长属性：长期看电商渗透率25.9%仍有提升（2026H1 +4.8%），直播电商/下沉市场/跨境出海提供结构性增量，行业件量虽降至+5-8%但仍为正成长，非“增速≈0”的纯周期（钢铁/煤炭）。<br>
+  2）周期属性：短期看单票收入与价格战强相关，2023-2025年7月“反内卷”前单票收入持续下探（通达系-10%至-13%），2025年7月后才见底回升，呈现供需错配驱动的周期波动。<br>
+  3）顺丰差异：时效件（商务件+中高端）需求与制造业景气更相关，价格敏感度低于电商件，周期性弱于通达系，加之重资产直营，估值锚应为PE+PB而非单纯PB底部（纯周期用PB）。<br>
+  <strong>与评分体系联动：</strong>虽为混合周期，但因需求可预测、现金流稳定，选用非周期股评分体系；若按纯周期股体系（看PB+周期位置），顺丰PB 2.59x已处历史30%分位，结论亦为“底部偏机会”，与非周期体系“合理偏高”结论互补，互相验证底部安全垫厚。
+</div>
+
+<h3>6.2 集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>集中度</td><td><span style="color:#27ae60;font-weight:700">高度集中 寡头垄断 CR8=87.0 (件量96.1)</span></td><td>前六大份额80.5%（中通19.4%+圆通15.7%+申通13.1%+韵达12.9%+顺丰8.4%+极兔约8%），CR8持续同比提升，洗牌基本结束</td></tr>
+  <tr><td>竞争格局</td><td>价格战泥潭→寡头稳定 转折中</td><td>2025年7月国家邮政局“反内卷”专项治理+22省价格自律+社保合规化，行政干预终结“以价换量”</td></tr>
+  <tr><td>进入壁垒-规模/网络</td><td><span style="color:#27ae60;font-weight:700">强（长期）</span></td><td>转运中心+分拣自动化+干线车队+航空机队（100架），新进入者需数百亿投入，极兔为最后一个大玩家</td></tr>
+  <tr><td>进入壁垒-品牌/时效</td><td><span style="color:#27ae60;font-weight:700">强</span></td><td>顺丰时效件公众满意度16连冠，商务件/高价值件客户粘性极高，品牌溢价支撑单票收入高于通达2-3倍</td></tr>
+  <tr><td>进入壁垒-资金/牌照</td><td>中</td><td>鄂州国际货运枢纽、航权、跨境清关资质</td></tr>
+  <tr><td>进入壁垒-技术/数据</td><td>中强</td><td>AI路由、智能分拣、无人车/无人机、数字化供应链系统</td></tr>
+</table>
+
+<h3>6.3 生命周期与周期位置</h3>
+<div class="highlight-box">
+  <strong>生命周期：成熟期早期（洗牌期后段） / 周期位置：复苏/修复期（价格见底回升）</strong><br>
+  <strong>成熟依据：</strong>行业件量增速从2023年+19.4%、2024年+21.5%降至2026H1 +5.0%（个位数），收入增速首次反超件量（7.3% vs 5.0%），表明已从“野蛮生长”进入“价值竞争”；格局固化、新进入威胁低。<br>
+  <strong>复苏依据：</strong>单票收入从2025年7月谷底7.36元回升至2026年6月7.77元（+3.8%同比转正），通达系2026H1净利预增69-134%，顺丰Q4毛利率14.3%为全年最高。2025-2026年“反内卷”政策为强托底，类似行业2022H1盈利恢复期。<br>
+  <strong>阶段策略：</strong>不再赚“野蛮成长”的钱，而赚“价格修复+成本优化+份额向龙头集中”的钱；关注单票收入同比是否持续转正、单票净利是否逐季回升。
+</div>
+
+<h3>6.4 同行对比</h3>
+<table>
+  <tr><th>指标</th><th>顺丰控股</th><th>圆通速递 600233</th><th>韵达股份 002120</th><th>行业中位*</th><th>评价</th></tr>
+  <tr><td>2024营收（亿）</td><td>2,844.20</td><td>690.33</td><td>485.43</td><td>—</td><td>顺丰规模≈4倍圆通</td></tr>
+  <tr><td>归母净利（亿）</td><td>101.70</td><td>40.12</td><td>19.14</td><td>—</td><td>—</td></tr>
+  <tr><td>ROE</td><td>11.16%</td><td>13.27%</td><td>9.64%</td><td>~11%</td><td>圆通领先，顺丰中位，韵达偏低</td></tr>
+  <tr><td>毛利率</td><td>13.93%</td><td>9.19%（快递）/6.17%（总体）</td><td>9.49%</td><td>~9%</td><td><span class="good">顺丰显著领先</span>（直营溢价）</td></tr>
+  <tr><td>净利率</td><td>3.58%</td><td>5.81%（总体）</td><td>3.94%</td><td>~4.5%</td><td>圆通最高（规模摊薄），顺丰偏低</td></tr>
+  <tr><td>资产负债率</td><td>52.14%</td><td>~34.5%（482/140）</td><td>47.68%</td><td>~45%</td><td>顺丰最高（重资产+租赁），但可控</td></tr>
+  <tr><td>营收增速</td><td>10.07%</td><td>19.67%</td><td>7.92%</td><td>~12%</td><td>圆通最高（份额抢夺）</td></tr>
+  <tr><td>PB</td><td>2.59x</td><td>1.93x</td><td>1.19x</td><td>~1.9x</td><td>顺丰溢价（品牌+国际）</td></tr>
+  <tr><td>PE(TTM)</td><td>23.24x</td><td>16.19x</td><td>13.43x</td><td>~17x</td><td>顺丰最贵，韵达最便宜但ROE低</td></tr>
+  <tr><td>单票净利（快递）</td><td>约0.076元（101.7/1333亿票）</td><td>0.151元（40.12/265亿）</td><td>0.081元（19.14/237亿）</td><td>~0.10元</td><td>圆通领先（加盟轻资产）</td></tr>
+  <tr><td>分红率</td><td>40%（2025）</td><td>30.7%（2024）</td><td>约30%</td><td>~35%</td><td>顺丰股东回报最积极</td></tr>
+</table>
+<p style="font-size:12px;color:#666;">*行业中位取通达系+顺丰平均；数据来源：各公司2024年报、Wind。中通（02057.HK）为最强对标：营收约480亿港元、毛利率25%、ROE 14.3%、PE 15x，单票净利0.25元行业最高，但为加盟制轻资产与顺丰直营可比性有限。</p>
+<div class="summary-box">
+  <strong>竞争位置：直营溢价 vs 加盟效率，各领风骚。</strong>毛利率维度顺丰13.93%碾压通达（9%），品牌护城河确立；但净利率与单票净利反被圆通超越，体现加盟制轻资产的规模摊薄优势。ROE维度圆通13.27%＞顺丰11.16%＞韵达9.64%，顺丰处中位。估值维度顺丰最贵（PE23 vs 圆通16/韵达13），需靠国际与供应链成长兑现溢价。结论：顺丰是“价值+成长”综合体，通达是“成本+规模”极致体，两者在“反内卷”修复期均受益，但弹性上通达（申通/圆通）更大、顺丰更稳。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<div class="summary-box">
+  <strong>估值方法：首选PE（盈利后）+ PB/PS辅助，看单票净利与现金流。</strong><br>
+  按L5对照表，成长/价值型看PE，周期底部看PB。快递物流虽为混合周期，但当前处复苏初期非底部，且顺丰已盈利丰厚（非亏损），<strong>应以PE为主</strong>（券商22x目标），PB（2.59x）与PS（0.79x历史1%分位）作为安全垫验证。PCF 7.6x亦处低位，现金流折现视角同样偏低估。若行业重回价格战底部，则切换至PB（1.5-1.8x底部）与单票成本曲线评估。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  Step 1 - 行业定位：混合周期（成熟期早期→复苏修复期），CR8=87%寡头垄断，壁垒为规模网络+品牌时效+鄂州枢纽，反内卷政策强托底<br>
+  Step 2 - 财务体检：ROE 11.16%良好但未优秀，净利率薄（3.58%）靠周转1.33与杠杆2.32驱动，CFO/净利3.16与FCF 223亿极优<br>
+  Step 3 - 估值判断：PE TTM 22-24x处于历史45%分位（中位）、PB 2.59x处于30%分位（偏低）、PS 0.79x处于1%极低，EV/EBITDA 6.89x略高于通达6.2x，整体合理偏高<br>
+  Step 4 - 风险排查：无红灯，黄灯4项（应收+10%/非经常10%/资本开支/社保成本），资产负债率52%稳健，H股上市后融资渠道拓宽<br>
+  Step 5 - 结论：好公司（直营龙头+现金奶牛）✓，但好价格未完全出现（PE未到底部），75分“一般关注”<br>
+  Step 6 - 跟踪：关键看单票收入同比、Q4-2026H1毛利率能否重回14%+、CFO与销售费用率、国际业务扭亏持续性；卖出信号为单票收入转负或毛利率连续下滑
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td><span class="neutral">中性偏好</span></td><td>需求稳定且仍成长（电商+出海），但重资产低毛利、对平台议价弱，行业整体ROE中位~11%非顶级赛道；反内卷政策利好是加分项</td></tr>
+  <tr><td>② 好公司</td><td><span class="good">✓ 是</span></td><td>ROE＞10%且三年改善，毛利率连续三年提升，CFO＞净利3倍、FCF三年均正，时效件16连冠品牌+鄂州枢纽构筑护城河</td></tr>
+  <tr><td>③ 好价格</td><td><span class="neutral">⚠ 未达</span></td><td>PE 22-24x未处历史偏低（15x底部），但PB 2.59x与PS 1.1%分位已显底部特征；PEG约0.9（PE 15x 2026E / 增速10%）合理，等待回落至15-18x更佳</td></tr>
+</table>
+
+<h3>7.3 风险评估</h3>
+<div class="danger-box">
+  ☐ 价值陷阱（低PE+低增长+高负债）→ <strong>未命中</strong>：PE并不低（23x）、增长10%+且降杠杆<br>
+  ☐ 周期陷阱（低PE+周期顶点）→ <strong>未命中</strong>：当前非周期顶点，而是价格战底部刚修复，PE中位非底部低PE<br>
+  ☐ 烧钱陷阱（高PE+高增速+负现金流）→ <strong>未命中</strong>：CFO 321亿正、FCF 223亿正，非烧钱<br>
+  <span style="color:#27ae60;font-weight:700">结论：三陷阱均未命中，基本面无估值泡沫与现金流崩塌风险。</span>
+</div>
+
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力与履历</td><td>好</td><td>创始人王卫持股约50%+，32年聚焦物流，成功操盘嘉里并购与鄂州枢纽，2024年H股上市里程碑</td></tr>
+  <tr><td>股权结构与利益一致性</td><td>强</td><td>明德控股控股，管理层与员工持股计划“共同成长”15年期（控股股东无偿赠与，无需出资），利益绑定深；2025回购30-60亿注销，大幅增厚EPS</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td>无</td><td>近年无监管处罚与重大诉讼，审计无保留意见（普华永道）</td></tr>
+  <tr><td>资本配置记录</td><td>合理</td><td>鄂州枢纽重投入已过高峰，分红率从35%提至40%+回购翻倍，REIT处置盘活资产，现金流分配合理</td></tr>
+  <tr><td>管理层增减持记录</td><td>无负面</td><td>近一年无大额集中减持，Q2以来H股获南向资金关注（数据待补充）</td></tr>
+  <tr><td>CEO交接/关键人员变动</td><td>无风险</td><td>王卫稳定掌舵，无交接期</td></tr>
+</table>
+
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是靠价？</td><td>量驱动（健康）</td><td>2024件量+11.3% vs 单票收入整体-约1%（经济件价格战），2025H1量+25.7% vs 价-7.9%（结构优化中），非涨价驱动</td></tr>
+  <tr><td>涨价能否持续？</td><td>需观察</td><td>反内卷带来2026年价转正（+3.8%），但对电商平台议价权弱，持续性取决于政策执行与社保成本传导</td></tr>
+  <tr><td>非经常性利润占比</td><td>中（10%）</td><td>2024非经常约10亿/101.7亿（10%），2025H1含REIT处置11.76亿一次性，需看扣非增速（2025全年扣非预期仅+1.29%低于归母9.31%）</td></tr>
+  <tr><td>大客户/大项目集中度</td><td>分散</td><td>快递客户极度分散（C端+B端中小商家），供应链客户虽有大客户但行业分散，无单一依赖</td></tr>
+  <tr><td>政策/监管依赖度</td><td>中</td><td>受益于反内卷（利好合规龙头）与跨境出海政策，但也受社保合规（成本+）与邮政监管约束</td></tr>
+</table>
+
+<p style="font-size:13px;margin-top:12px;"><strong>关键变量敏感性（2-3个）：</strong></p>
+<table>
+  <tr><th>变量</th><th>乐观</th><th>中性</th><th>悲观</th></tr>
+  <tr><td>单票收入（反内卷）</td><td>2026年+5% → 净利+15-20%（汇丰测算圆通+5%→EPS+49%）</td><td>+2-3% → 净利+8-10%</td><td>-3%（价格战重启）→ 净利-20-30%</td></tr>
+  <tr><td>油价/燃油成本</td><td>油价-10% → 成本-约3% → 净利+10%</td><td>持平 → 影响中性</td><td>油价+15% → 成本+4.5% → 净利-12-15%</td></tr>
+  <tr><td>国际业务（KLN后）</td><td>国际快递+海外仓+55% → 贡献增量20亿+</td><td>+20-30% → 贡献10亿</td><td>海运价持续低位+地缘 → 亏损扩大</td></tr>
+</table>
+
+<h3>7.4 前景展望</h3>
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. 反内卷价格修复 — 单票收入2026年已转正+3.8%，22省价格自律+社保成本倒逼提价，通达单票净利每升0.1元即利润翻倍弹性，顺丰时效件提价能力更强<br>
+  2. 鄂州枢纽网络效应 — 投建高峰已过，固定成本摊薄，国际航线加密+37国海外仓，出海与跨境电商物流成为第二增长极（不含KLN +32%/+55%）<br>
+  3. AI与数字化降本 — 智能路由、分拣、无人车/机持续压降单票成本，管理费用率已降0.4ppt，规模效应进一步释放<br><br>
+  <strong>负向拖累：</strong><br>
+  1. 社保合规与人力成本 — 直营模式人力成本占比高，2026年全员社保预计增加成本2-3%，短期毛利率承压（Q3已-1.6ppt）<br>
+  2. 经济件价格竞争未根除 — 经济快递单票收入仍-7.9%（2025Q4），电商平台“卷低价”对通达与顺丰经济件仍有压制<br>
+  3. 宏观与油价波动 — 制造业景气与消费疲软影响商务件增速，油价高位侵蚀利润
+</div>
+
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>EPS预估（2026）</th><th>PE区间</th><th>预期回报（以44.57为基准）</th></tr>
+  <tr><td>乐观</td><td>反内卷持续+单票收入+5%+国际扭亏</td><td>2.75-2.85元（净利144-147亿）</td><td>18-22x</td><td>50-63元（+12-41%）</td></tr>
+  <tr><td>中性</td><td>单票收入+2%+成本稳、净利+10%</td><td>2.44元（净利122-136亿，均值）</td><td>15-18x</td><td>37-44元（-17%至-1%）</td></tr>
+  <tr><td>悲观</td><td>价格战重启+油价+15%+社保冲击</td><td>1.90-2.00元（净利95-100亿，-10%）</td><td>12-14x</td><td>23-28元（-37至-48%）</td></tr>
+</table>
+<p style="font-size:12px;color:#666;">概率判断：中性50%，乐观30%，悲观20%。当前价已反映中性预期，乐观情景需价格修复超预期才能兑现22x目标（53.8元）。</p>
+
+<h3>7.5 资金面信号</h3>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>北向资金持股变动</td><td>中性偏增持（数据待补充）</td><td>H股上市后外资关注度提升，但A股北向近期随大盘波动，未现持续单边流出</td></tr>
+  <tr><td>机构持仓变动</td><td>增仓（2025H1）</td><td>2025年中报股东户数14.13万（-15.75%），户均持股上升，筹码集中；17家机构评级16买入1增持，目标均价53.17元</td></tr>
+  <tr><td>融资余额变动</td><td>增加</td><td>8月融资余额累计+6.62亿（近10日），与股价回调形成背离，杠杆情绪偏热但未过热</td></tr>
+  <tr><td>大股东增减持</td><td>无减持 / 回购增厚</td><td>控股股东明德控股无减持；公司回购30-60亿注销（2025已回购16.4亿），H股另5亿港元回购，显著增厚EPS</td></tr>
+  <tr><td>大宗交易</td><td>无显著折价</td><td>未现大额折价大宗，机构态度中性偏多</td></tr>
+</table>
+<div class="summary-box">
+  <strong>资金面整体判断：中性偏正面。</strong>机构筹码趋于集中、回购注销提供支撑，但融资余额快速上升与Q3业绩波动导致8月29日单日-7.91%（成交75亿），显示短期分歧加大。基本面为锚，资金面为辅，回调是分批布局时点而非趋势反转。
+</div>
+
+<h3>7.6 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？（提示：直营时效网络赚“品牌溢价+规模摊薄”，国际与同城赚“生态协同”）<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？（是3.58%的薄利，还是Q3毛利率-1.6ppt的回落？）<br>
+  3. 如果现在44.57元买入，期待的回报来源是什么？（是估值从22x向15x回归的“便宜”，还是利润10%增长的“成长”，抑或PS 1%分位修复？）<br>
+  4. 什么情况下你会坚决卖出？（单票收入连续两月转负？还是国际业务重回大额亏损？或是ROE跌破8%？）
+</div>
+
+</div></div>
+
+<div class="footer">
+  免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+  数据来源：顺丰控股2024年报/2025中报/2025三季报、国家邮政局、Wind、券商一致预期（中邮/国盛/华泰/民生等20家）、理杏仁估值数据 | 生成框架：L1-L6综合实战
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>
