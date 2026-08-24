@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>A股——医疗器械 行业分析报告</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f5f5f5;padding:0;color:#333}
+  .report-wrap{max-width:800px;margin:0 auto;background:#fff}
+  h1{font-size:22px;margin:0;padding:28px 0 4px;text-align:center}
+  h2{font-size:18px;margin:28px 0 12px;border-bottom:2px solid #1a1a1a;padding-bottom:4px}
+  h3{font-size:15px;margin:18px 0 8px}
+  .subtitle{color:#666;font-size:13px;text-align:center;margin-bottom:4px}
+  .meta{color:#999;font-size:12px;text-align:center;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #e0e0e0}
+  .tab-bar{position:sticky;top:0;z-index:10;background:#fff;display:flex;flex-wrap:wrap;border-bottom:2px solid #ddd;gap:0}
+  .tab-btn{padding:10px 14px;cursor:pointer;border:none;background:none;font-size:13px;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+  .tab-btn:hover{color:#333;background:#f9f9f9}
+  .tab-btn.active{color:#1a1a1a;font-weight:700;border-bottom-color:#1a1a1a}
+  .tab-content{display:none}
+  .tab-content.active{display:block}
+  .tab-inner{padding:0 12px}
+  table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:13px}
+  th{background:#f5f5f5;padding:8px 6px;text-align:left;border-bottom:2px solid #ddd;white-space:nowrap;font-weight:600}
+  td{padding:7px 6px;border-bottom:1px solid #eee}
+  tr:nth-child(even) td{background:#fafafa}
+  .summary-box{background:#fffde7;border-left:4px solid #f9a825;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .highlight-box{background:#e3f2fd;border-left:4px solid #1e88e5;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .danger-box{background:#ffebee;border-left:4px solid #e53935;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .verdict{text-align:center;padding:20px;margin:16px 0;border-radius:8px;font-size:18px;font-weight:700}
+  .verdict-ok{background:#e8f5e9;border:2px solid #4caf50;color:#2e7d32}
+  .verdict-caution{background:#fff3e0;border:2px solid #ff9800;color:#e65100}
+  .verdict-bad{background:#ffebee;border:2px solid #e53935;color:#c62828}
+  .score{font-size:36px;display:block;margin-bottom:4px}
+  .pass{color:#2e7d32;font-weight:700}
+  .skip{color:#666;font-style:italic}
+  .tag{display:inline-block;padding:2px 8px;border-radius:3px;font-size:11px;font-weight:700}
+  .tag-red{background:#ffebee;color:#c62828}
+  .tag-green{background:#e8f5e9;color:#2e7d32}
+  .tag-yellow{background:#fff8e1;color:#f57f17}
+  .footer{font-size:11px;color:#aaa;text-align:center;padding:24px 0 8px;border-top:1px solid #eee;margin-top:30px}
+  .card{background:#fafafa;border:1px solid #e0e0e0;border-radius:6px;padding:14px;margin:10px 0;font-size:13px}
+  .flex{display:flex;flex-wrap:wrap;gap:8px}
+  .tbl-wrap{border:1px solid #e0e0e0;border-radius:6px;overflow:hidden;margin:10px 0 18px}
+  .tbl-wrap table{margin:0}
+  .tbl-wrap th{background:#f5f5f5;padding:9px 8px;border-bottom:1px solid #ddd;font-weight:600;font-size:12px}
+  .tbl-wrap td{padding:8px;border-bottom:1px solid #f0f0f0;font-size:13px}
+  .tbl-wrap tr:last-child td{border-bottom:none}
+  .bar-wrap{display:inline-flex;align-items:center;width:60px;height:16px;vertical-align:middle}
+  .bar-bg{background:#eee;border-radius:4px;height:8px;width:100%;overflow:hidden;position:relative}
+  .bar{display:block;height:8px;border-radius:4px}
+  .score-cell{font-weight:700;font-size:15px;text-align:center;white-space:nowrap}
+  .tbl-wrap td,.tbl-wrap th{vertical-align:middle}
+  .metric-h{color:#1565c0;font-weight:700;font-size:13px}
+  .metric-l{color:#c62828;font-weight:700}
+  .metric-m{color:#e65100;font-weight:700}
+  .col-tag{display:inline-block;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600}
+  .col-win{background:#e8f5e9;color:#2e7d32}
+  .col-lose{background:#ffebee;color:#c62828}
+  .col-warn{background:#fff3e0;color:#e65100}
+  .col-info{background:#e3f2fd;color:#1565c0}
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>A股——医疗器械 行业分析报告</h1>
+<div class="subtitle">L5分类：非周期（成长防御型） ｜ 上市公司：~132只 ｜ 总市值：~1.39万亿</div>
+<div class="meta">生成日期：2026-08-24 ｜ 数据截止：2025年报/2026Q1 ｜ 分类依据：申万二级医疗器械 + industry-classification.md（非周期）</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l7">L7 量化初筛</button>
+  <button class="tab-btn" data-tab="l8">L8 行业画像</button>
+  <button class="tab-btn" data-tab="l9">L9 竞争格局</button>
+  <button class="tab-btn" data-tab="l10">L10 周期时机</button>
+</div>
+
+<div class="tab-content active" id="tab-summary">
+<div class="tab-inner">
+
+<h2>行业速览</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">项目</th><th>内容</th></tr>
+<tr><td>行业名称</td><td><strong>医疗器械</strong>（申万二级：医疗器械Ⅲ）</td></tr>
+<tr><td>市场</td><td>A股</td></tr>
+<tr><td>L5分类</td><td><span class="col-tag col-win">非周期</span> 成长防御型：人口老龄化刚需 + 技术密集 + 医保支付驱动，估值首选 PE/PS，周期底部看 PB</td></tr>
+<tr><td>上市公司</td><td>~132只（申万口径，Choice 2025-12-05），其中符合L7六筛 <span class="col-tag col-win">8只</span> 进入候选池，观察池6只</td></tr>
+<tr><td>行业总市值</td><td>~1.39万亿（Choice 2025-12-05：13,926亿），占A股医药板块 ~19.7%，仅次于化学制药</td></tr>
+<tr><td>产业链利润核心</td><td><span class="col-tag col-win">高值耗材耗材化+IVD试剂</span>（电生理/冠脉通路毛利率70%+，化学发光试剂70%+）＞ <span class="col-tag col-info">影像设备核心部件</span>（探测器/球管）＞ 整机</td></tr>
+<tr><td>生命周期阶段</td><td><span class="col-tag col-warn">成长期后期→分化洗牌期</span> 国产替代从“量的提升”到“质的突破”，集采完成9大类142种耗材覆盖</td></tr>
+<tr><td>当前周期位置</td><td><span class="col-tag col-lose">萧条/复苏过渡</span> 2023-2025深度调整，2025H2订单交付回暖，设备集中采购进入“优质优价”新规则期</td></tr>
+</table>
+</div>
+
+<h2>综合评分</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>维度</th><th style="width:60px">得分</th><th>进度</th><th>说明</th></tr>
+<tr>
+  <td>行业规模与空间</td>
+  <td class="score-cell">17/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:85%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">2024中国1.11万亿（CAGR 6.6%），2030有望1.8万亿；全球第二大市场，国产替代空间大（影像/电生理外资仍占60%+）</td>
+</tr>
+<tr>
+  <td>产业链位置</td>
+  <td class="score-cell">12/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:80%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">利润池在 高值耗材+IVD试剂（毛利率60-85%），整机毛利率30-50%承压但出海提升</td>
+</tr>
+<tr>
+  <td>竞争格局</td>
+  <td class="score-cell">11/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:55%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">极度分散（全国3.3万家生产企业），上市龙头CR5~25%偏低，但头部集中度快速提升</td>
+</tr>
+<tr>
+  <td>增长驱动力</td>
+  <td class="score-cell">12/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:80%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">结构性：老龄化（65岁+>2.2亿）+ 国产替代 + 出海（2025H1境外收入813亿 YoY+16%）+ 设备更新</td>
+</tr>
+<tr>
+  <td>周期位置</td>
+  <td class="score-cell">9/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:60%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">深度调整底部：2024-2025营收/利润双降（迈瑞-9%/-30%），2026Q1开始企稳，仍需1-2季度验证拐点</td>
+</tr>
+<tr>
+  <td>政策环境</td>
+  <td class="score-cell">8/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:53%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">短期“集采深水区”利空钝化，中长期“稳价提质+反内卷+创新优先审评”利好龙头（2026-07-14设备集采新规：优质优价/异常低价审查）</td>
+</tr>
+<tr style="background:#fafafa">
+  <td style="font-weight:700;font-size:14px">总分</td>
+  <td style="font-weight:700;font-size:16px;color:#e65100">69/100</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:69%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#e65100;font-weight:600">一般偏上——值得研究，精选龙头，逆向布局窗口</td>
+</tr>
+</table>
+</div>
+
+<div class="verdict verdict-caution">
+  <span class="score">69</span>
+  一般偏上——精选龙头 / 等待拐点确认
+</div>
+
+<div class="summary-box">
+  <strong>核心结论</strong><br>
+  医疗器械是A股稀缺的非周期成长防御赛道，长期天花板明确（老龄化+国产替代+出海），但2023-2025年遭遇<strong>三重挤压</strong>：反腐+DRG/DIP+集采常态化，导致行业营收增速从15%+跌至2-5%，龙头迈瑞首次双降。当前已进入<strong>出清后期</strong>——2025H2规模以上企业营收增速回升2.17%（较2024H1 +5pct），2025全国耗材集采78项/1300+产品逐步落地温和化（复活机制+比价系数），2026-07-14设备集采新规确立“优质优价”而非“最低价”，行业“价格战泥潭”进入规则重构。<br><br>
+  <strong>投资框架：用非周期成长股模型</strong>——关注<span class="col-tag col-win">高毛利耗材化品种</span>（电生理/冠脉通路/IVD试剂）+ <span class="col-tag col-info">有核心部件自研的设备龙头</span>。当前不是全面进攻时机，而是<strong>逆向精选窗口</strong>：估值已回落至历史20-30%分位（迈瑞PE 22-26x历史底部），但盈利拐点需1-2个季度验证。建议<strong>候选池8只分批建仓（龙头不超过组合15%），观察池等待集采中选/出海放量信号</strong>。
+</div>
+
+<div class="highlight-box">
+  <strong>行业公式</strong><br>
+  收入 = 服务量（入院人次/检测量/手术量） × 单价（设备价/耗材价/试剂价） × 国产市占率 + 出海增量<br>
+  利润 = 收入 × 毛利率（耗材>设备） - 研发/销售费用（研发8-14%）<br>
+  关键跟踪指标：1) 医疗设备招标量/中标价（政府采购平台） 2) 高值耗材集采降幅与中选率 3) 国产替代率（影像/电生理/骨科） 4) 境外收入增速与占比 5) 存货/应收周转与经营现金流净现比
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l7">
+<div class="tab-inner">
+
+<h2>筛子调整说明</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:12%">筛子</th><th style="width:38%">标准</th><th>调整说明（依据 industry-classification.md §2.1）</th></tr>
+<tr><td>①<span class="col-tag col-info">市值</span></td><td>主板≥50亿 / 创业板科创板≥30亿</td><td>医疗器械为非周期行业，不跳过。A股医疗器械尾部大量＜30亿小票需剔除（约40%）</td></tr>
+<tr><td>②<span class="col-tag col-info">营收</span></td><td>主板≥10亿 / 创业板科创板≥3亿</td><td>正常执行；IVD/家用设备部分成长初期公司营收3-10亿仍保留</td></tr>
+<tr><td>③<span class="col-tag col-info">毛利率</span></td><td>制造业/医药≥15%</td><td>正常执行；医疗器械毛利率天然高（剔除项：无，贸易类除外）</td></tr>
+<tr><td>④<span class="col-tag col-info">ROE</span></td><td>≥8%（核心筛）</td><td>正常执行；连续3年＜5%剔除。亏损但高成长（PS逻辑）可入观察池，但本行业暂无PS≤10x成长股放宽</td></tr>
+<tr><td>⑤<span class="col-tag col-info">负债率</span></td><td>≤65%</td><td>正常执行；医疗器械普遍轻资产低负债（优秀公司＜30%），＞65%多为并购高商誉标的</td></tr>
+<tr><td>⑥<span class="col-tag col-info">估值</span></td><td>PE历史分位≤70% / 亏损看PS</td><td>正常执行；2025-2026业绩低谷PE偏高需结合PB与历史分位判断，避免PE悖论误杀</td></tr>
+</table>
+</div>
+<p style="font-size:12px;color:#666;margin:4px 0 10px">注：本行业属<span class="col-tag col-win">非周期</span>，不适用“周期股底部PB替代PE”“ASX矿业放宽”等特殊条款；成长初期亏损标的需PS≤10x但本池无符合者。</p>
+
+<h2>候选池（8只）</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>环节</th><th>市值</th><th>毛利率</th><th>ROE</th><th>负债率</th><th>PE分位</th><th>通过</th></tr>
+<tr>
+  <td><strong>迈瑞医疗</strong> 300760</td>
+  <td><span class="col-tag col-win">综合设备龙头</span></td>
+  <td style="font-weight:600">~2000亿</td>
+  <td><span class="col-tag col-win">60.3%</span></td>
+  <td><span class="col-tag col-win">22.0%</span></td>
+  <td><span class="col-tag col-win">27.4%</span></td>
+  <td><span class="col-tag col-win">~25%</span> 22-26x</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>联影医疗</strong> 688271</td>
+  <td><span class="col-tag col-info">医学影像设备</span></td>
+  <td style="font-weight:600">~915亿</td>
+  <td><span class="col-tag col-win">48.5%</span></td>
+  <td><span class="col-tag col-win">8.6%</span></td>
+  <td><span class="col-tag col-win">34.2%</span></td>
+  <td><span class="col-tag col-info">~35%</span> 32x</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>新产业</strong> 300832</td>
+  <td><span class="col-tag col-win">IVD化学发光</span></td>
+  <td>~420亿</td>
+  <td><span class="col-tag col-win">72.9%</span></td>
+  <td><span class="col-tag col-win">24.1%</span></td>
+  <td><span class="col-tag col-win">12.5%</span></td>
+  <td><span class="col-tag col-win">~30%</span> 24x</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>惠泰医疗</strong> 688617</td>
+  <td><span class="col-tag col-win">电生理+冠脉通路</span></td>
+  <td>~260亿</td>
+  <td><span class="col-tag col-win">68-72%</span></td>
+  <td><span class="col-tag col-win">28.8%</span></td>
+  <td><span class="col-tag col-win">15.2%</span></td>
+  <td><span class="col-tag col-warn">~62%</span> 38x</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>鱼跃医疗</strong> 002223</td>
+  <td><span class="col-tag col-info">家用/呼吸/血糖</span></td>
+  <td>~320亿</td>
+  <td><span class="col-tag col-win">50.6%</span></td>
+  <td><span class="col-tag col-win">11.4%</span></td>
+  <td><span class="col-tag col-win">17.0%</span></td>
+  <td><span class="col-tag col-win">~28%</span> 21x</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>奕瑞科技</strong> 688301</td>
+  <td><span class="col-tag col-info">探测器/X线核心部件</span></td>
+  <td>~185亿</td>
+  <td><span class="col-tag col-win">52.4%</span></td>
+  <td><span class="col-tag col-win">14.8%</span></td>
+  <td><span class="col-tag col-win">22.3%</span></td>
+  <td><span class="col-tag col-info">~40%</span> 28x</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>健帆生物</strong> 300529</td>
+  <td><span class="col-tag col-win">血液净化耗材</span></td>
+  <td>~185亿</td>
+  <td><span class="col-tag col-win">84.2%</span></td>
+  <td><span class="col-tag col-win">18.6%</span></td>
+  <td><span class="col-tag col-win">8.4%</span></td>
+  <td><span class="col-tag col-win">~32%</span> 26x</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>开立医疗</strong> 300633</td>
+  <td><span class="col-tag col-info">超声+内镜设备</span></td>
+  <td>~125亿</td>
+  <td><span class="col-tag col-win">68.5%</span></td>
+  <td><span class="col-tag col-win">13.2%</span></td>
+  <td><span class="col-tag col-win">18.7%</span></td>
+  <td><span class="col-tag col-info">~45%</span> 30x</td>
+  <td class="pass">6/6</td>
+</tr>
+</table>
+</div>
+<p style="font-size:12px;color:#666">数据源：市值截至2026-05-07同花顺问财/中证全指医疗器械指数H30217；营收/毛利率/ROE/负债率取2025年报；PE分位为近5年历史分位近似（Wind）。<span style="color:#2e7d32;font-weight:600">加粗为核心5只</span>。</p>
+
+<h2>观察池</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>卡在哪筛</th><th>备注（触发条件）</th></tr>
+<tr>
+  <td><strong>乐普医疗</strong> 300003</td>
+  <td><span class="col-tag col-lose">④ROE 6.1%</span></td>
+  <td>心血管器械龙头，集采后ROE从20%+跌至6%，若创新产品（可降解支架/切割球囊）放量带动ROE回升至8%+可回候选</td>
+</tr>
+<tr>
+  <td><strong>三诺生物</strong> 300298</td>
+  <td><span class="col-tag col-warn">②营收 28亿偏小</span> <span class="col-tag col-warn">④ROE 7.2%</span></td>
+  <td>血糖仪龙头，CGM新品放量中；营收突破30亿+ROE提升至8%+可入池</td>
+</tr>
+<tr>
+  <td><strong>万东医疗</strong> 600055</td>
+  <td><span class="col-tag col-lose">③毛利率26.6%</span> <span class="col-tag col-lose">④ROE负</span> <span class="col-tag col-lose">⑤集采亏损</span></td>
+  <td>DR/DSA集采深度绑定标的，2025首亏（毛利率-9pct至26.6%），需观察“优质优价”新规后毛利率修复至35%+再评估</td>
+</tr>
+<tr>
+  <td><strong>九安医疗</strong> 002432</td>
+  <td><span class="col-tag col-warn">②营收波动大</span> <span class="col-tag col-info">④ROE高但不稳定</span></td>
+  <td>疫情检测试剂暴利退潮，营收从疫期80亿+回落至正常，业绩可持续性待验证；若家用器械第二曲线稳定贡献30亿+营收可关注</td>
+</tr>
+<tr>
+  <td><strong>南微医学</strong> 688029</td>
+  <td><span class="col-tag col-warn">④ROE 7.8%</span> 接近门槛</td>
+  <td>内镜耗材龙头，集采影响较小，ROE若回升至8.5%+且负债＜30%可入池</td>
+</tr>
+<tr>
+  <td><strong>心脉医疗</strong> 688016</td>
+  <td><span class="col-tag col-info">①市值 ~95亿</span>（创业板≥30亿通过但主板标准边缘）</td>
+  <td>主动脉介入细分龙头，成长性强但市值/流动性门槛临界；作为小而美标的单列跟踪</td>
+</tr>
+</table>
+</div>
+
+<h2>筛除记录</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>筛子</th><th style="width:60px">筛除数</th><th>知名示例</th></tr>
+<tr><td>①市值 ＜30/50亿</td><td style="text-align:center">~52</td><td>大量北交所/小市值器械股（爱得科技、普昂医疗等，10-30亿区间，流动性差）</td></tr>
+<tr><td>②营收 ＜10亿（主板）/＜3亿（创业板）</td><td style="text-align:center">~8</td><td>部分纯耗材小厂、科研仪器类公司营收体量不足撑起估值</td></tr>
+<tr><td>③毛利率 ＜15%</td><td style="text-align:center">~6</td><td>万东医疗（26%但趋势恶化已在观察池）、部分低值耗材贸易型公司（＜10%）</td></tr>
+<tr><td>④ROE ＜8%</td><td style="text-align:center">~38</td><td>乐普医疗6.1%、大博医疗3.2%、三鑫医疗5.4%、阳普医疗亏损等（最严一筛，集采后ROE中枢下移）</td></tr>
+<tr><td>⑤负债率 ＞65%</td><td style="text-align:center">~3</td><td>个别高商誉并购标的（商誉/净资产＞40%且有息负债高）</td></tr>
+<tr><td>⑥估值 PE分位＞70%</td><td style="text-align:center">~17</td><td>惠泰医疗等高景气细分（电生理）PE分位60-75%临界，部分AI医疗概念股PS＞15x</td></tr>
+<tr style="background:#fffde7"><td><strong>剩余候选</strong></td><td style="text-align:center;font-weight:700;color:#2e7d32"><strong>8</strong></td><td>132 → 8（筛除率93.9%），符合L7“5-10只候选”要求，无需第七筛</td></tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <strong>L7筛选结论</strong><br>
+  132进8，筛选力度极大（-93.9%），最严为<span class="col-tag col-lose">ROE筛（-38家）</span>和<span class="col-tag col-lose">市值筛（-52家）</span>，本质是<strong>集采后盈利能力分化</strong>与小票流动性风险的体现。候选池呈现<span class="col-tag col-win">“哑铃型”</span>：一端是迈瑞/联影等综合设备龙头（出海对冲集采），一端是惠泰/新产业/健帆等高毛利耗材/试剂龙头（创新避集采）。观察池的乐普/万东是典型的“困境反转”标的，需等待ROE修复信号。下一步对8只候选逐一跑L1-L6，重点核查商誉减值、集采续约降幅、海外收入真实性。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l8">
+<div class="tab-inner">
+
+<h2>产业链</h2>
+<div class="card" style="font-size:13px;line-height:1.7">
+
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px">
+
+<div style="flex:1.1;min-width:180px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#2e7d32;font-size:14px">上游核心零部件/原材料</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:12px">芯片/探测器/球管<br><span style="font-size:10px;color:#666">奕瑞科技 · 核心部件自研</span></div>
+    <div style="margin-bottom:6px;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:12px">高分子/金属材料<br><span style="font-size:10px;color:#666">高值耗材原料</span></div>
+    <div style="margin-bottom:6px;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:12px">生物原料/抗体<br><span style="font-size:10px;color:#666">IVD试剂原料</span></div>
+    <div style="text-align:center;font-size:11px;color:#999">毛利率 40-60% · 外资主导度高</div>
+    <div style="margin:10px 0;text-align:center;color:#999;font-size:18px">↓ 议价能力弱 → 倒逼国产自研</div>
+  </div>
+</div>
+
+<div style="flex:2;min-width:280px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#1565c0;font-size:14px">中游制造（核心分析环节）</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+
+    <div style="display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:70px;background:#e3f2fd;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">医学影像设备</div>
+        <div style="font-size:10px;color:#666">CT/MRI/US/DR</div>
+        <div style="font-size:10px;color:#2e7d32">联影·迈瑞·开立</div>
+      </div>
+      <div style="flex:1;min-width:70px;background:#e8f5e9;border-radius:4px;padding:6px 4px;text-align:center;border:1px solid #4caf50">
+        <div style="font-weight:700;font-size:12px">生命监护设备</div>
+        <div style="font-size:10px;color:#666">监护/麻醉/除颤</div>
+        <div style="font-size:10px;color:#2e7d32">迈瑞（市占第一）</div>
+      </div>
+      <div style="flex:1;min-width:70px;background:#fff3e0;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">IVD体外诊断</div>
+        <div style="font-size:10px;color:#666">化学发光/POCT</div>
+        <div style="font-size:10px;color:#2e7d32">新产业·迈瑞</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px">
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px;border:1px solid #4caf50">高值耗材<br><span style="font-size:10px;color:#666">电生理/冠脉/骨科</span><br><span style="font-size:10px;color:#2e7d32">惠泰·健帆·大博</span></div>
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">低值+家用耗材<br><span style="font-size:10px;color:#666">血糖/呼吸/康复</span><br><span style="font-size:10px;color:#2e7d32">鱼跃·三诺</span></div>
+      <div style="flex:1;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">核心部件<br><span style="font-size:10px;color:#666">探测器/内镜镜体</span><br><span style="font-size:10px;color:#2e7d32">奕瑞·开立</span></div>
+    </div>
+
+    <div style="text-align:center;font-size:11px;color:#c62828;margin-bottom:6px">▲ 设备整机毛利率30-55%（集采压制），耗材/试剂毛利率60-85%（利润池）</div>
+    <div style="text-align:center;font-size:11px;color:#2e7d32">▲ 出海是关键分化：迈瑞国际占比53%（2026Q1），鱼跃外销占比15%+（YoY+30%）</div>
+
+  </div>
+</div>
+
+<div style="flex:1;min-width:160px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#c62828;font-size:14px">下游应用</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:8px;text-align:center;font-weight:600;font-size:12px">医院/检验科<br><span style="font-size:10px;color:#666">三级/二级/医共体</span></div>
+    <div style="text-align:center;font-size:10px;color:#666">医保支付（DRG/DIP）· 集采控费</div>
+    <div style="margin:8px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:8px;text-align:center;font-weight:600;font-size:12px">家用/基层/海外<br><span style="font-size:10px;color:#666">鱼跃/九安家用器械</span></div>
+    <div style="margin:8px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="background:#fff;border:1px solid #ccc;border-radius:4px;padding:8px;text-align:center;font-weight:600;font-size:12px">终端患者<br><span style="font-size:10px;color:#666">诊疗/监测/康复</span></div>
+  </div>
+</div>
+
+</div>
+
+<div style="background:#fffde7;border-left:3px solid #f9a825;padding:8px 12px;font-size:12px;border-radius:0 4px 4px 0">
+  <strong>利润最厚环节：</strong>IVD化学发光试剂（毛利率72-80%）→ 电生理/冠脉通路耗材（68-75%）→ 血液净化耗材（84%）→ 医学影像核心部件（探测器50%+）→ 整机（30-48%）<br>
+  <span style="color:#999">整机“卖硬件”利润薄，耗材“卖试剂/卖耗材”利润厚且复购强；国产替代最难在上游核心部件（球管/探测器仍依赖进口）</span>
+</div>
+
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>环节</th><th>代表公司</th><th>毛利率</th><th>集中度</th><th>议价能力</th></tr>
+<tr>
+  <td><span class="col-tag col-info">影像设备整机</span></td>
+  <td>联影医疗、迈瑞、万东、开立</td>
+  <td><span class="col-tag col-warn">42-50%</span></td>
+  <td>CR5~60%（GPS+联影）</td>
+  <td><span class="col-tag col-warn">中</span>（集采压价）</td>
+</tr>
+<tr>
+  <td><span class="col-tag col-win">生命监护/超声</span></td>
+  <td>迈瑞医疗、开立医疗</td>
+  <td><span class="col-tag col-win">55-62%</span></td>
+  <td>监护CR3~70% 迈瑞第一</td>
+  <td><span class="col-tag col-win">较强</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-win">IVD-化学发光试剂</span></td>
+  <td>新产业、迈瑞、安图生物</td>
+  <td><span class="col-tag col-win">72-85%</span></td>
+  <td>CR5~45%（进口仍占50%）</td>
+  <td><span class="col-tag col-win">强</span>（封闭系统）</td>
+</tr>
+<tr>
+  <td><span class="col-tag col-win">高值耗材-电生理</span></td>
+  <td>惠泰医疗、微电生理</td>
+  <td><span class="col-tag col-win">68-75%</span></td>
+  <td>外资65%+（强生/雅培）</td>
+  <td><span class="col-tag col-win">强</span>（进口替代初期）</td>
+</tr>
+<tr>
+  <td><span class="col-tag col-win">高值耗材-冠脉通路/骨科</span></td>
+  <td>惠泰、乐普、大博、威高</td>
+  <td><span class="col-tag col-warn">55-65%</span></td>
+  <td>集采后CR3~70%</td>
+  <td><span class="col-tag col-lose">弱</span>（集采降价50-90%）</td>
+</tr>
+<tr>
+  <td><span class="col-tag col-info">家用/低值耗材</span></td>
+  <td>鱼跃医疗、英科医疗</td>
+  <td><span class="col-tag col-info">50-60%</span></td>
+  <td>极度分散</td>
+  <td><span class="col-tag col-warn">中</span>（品牌+渠道）</td>
+</tr>
+<tr>
+  <td><span class="col-tag col-win">核心部件-探测器</span></td>
+  <td>奕瑞科技、康众医疗</td>
+  <td><span class="col-tag col-win">50-55%</span></td>
+  <td>CR3~60%</td>
+  <td><span class="col-tag col-win">强</span>（技术壁垒）</td>
+</tr>
+</table>
+</div>
+
+<h2>市场规模</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">指标</th><th style="width:25%">数值</th><th>说明</th></tr>
+<tr><td><strong>TAM</strong>（总可触达市场）</td><td><span class="col-tag col-info" style="font-size:13px">中国~1.11万亿（2024）</span></td><td>前瞻/沙利文：2023 1.03万亿 →2024 1.11万亿 →2025E 1.22万亿（协会）</td></tr>
+<tr><td><strong>SAM</strong>（可服务市场-上市公司覆盖）</td><td>~1600亿（2025H1）</td><td>178家上市企业合计营收1605亿（协会），A股132家1793亿（前三季）</td></tr>
+<tr><td><strong>SOM</strong>（龙头可得）</td><td>迈瑞332亿（市占~3%）</td><td>分散市场：全国3.33万家生产企业（2025-10），龙头市占提升空间极大</td></tr>
+<tr><td><strong>当前渗透率</strong></td><td>人均器械支出仅为美国1/10</td><td>国产替代率：DR 80%+已完成，CT/MRI 30-50%，电生理25%，内镜10%→提升空间大</td></tr>
+<tr><td><strong>近年增速</strong>（3年CAGR）</td><td><span class="col-tag col-warn">5-6.6%</span></td><td>2020-2024 6.6%（沙利文 7298→9417亿），2025E 5%（南方所14200亿生产企业口径），全球CAGR 8.1%</td></tr>
+</table>
+</div>
+
+<h2>生命周期</h2>
+<div class="summary-box">
+  <strong><span class="col-tag col-warn" style="font-size:14px">成长期后期→分化洗牌期</span></strong><br>
+  判断依据：①渗透率低但增速放缓（2024-2025行业营收增速从10%+降至2-5%）；②政策从“鼓励创新”到“集采控费+反内卷”并行；③企业数量增速骤降（2022 +18.6% →2024 +2.2% →2025 +1.6%），进入存量博弈；④头部集中度快速提升（市值CR10占比＞60%，营收CR5占比持续提升），大量尾部企业出清（2025亏损企业占比33%）。<br>
+  财务特征：龙头仍保持15-25%营收增速+20%+ROE，尾部亏损/低ROE；行业整体研发费率8.99%（2025上市企业）维持高位，创新器械获批数创历史新高（2025 1-10月377个）。
+</div>
+
+<h2>增长驱动力</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动力</th><th>类型</th><th>可持续性</th><th>量化指标</th></tr>
+<tr>
+  <td>人口老龄化与慢病管理</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长（10-20年）</span></td>
+  <td>65岁+人口>2.2亿（16%），家用器械/POCT需求↑</td>
+</tr>
+<tr>
+  <td>国产替代（设备+高值耗材）</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长（5-10年）</span></td>
+  <td>国产市占率：影像30-50%→70%目标，电生理25%→50%</td>
+</tr>
+<tr>
+  <td>出海（新兴市场+欧洲）</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>2025H1境外收入813亿 YoY+16.2%，贸易顺差1039亿 YoY+28.5%</td>
+</tr>
+<tr>
+  <td>医疗新基建+设备更新</td>
+  <td><span class="col-tag col-warn">周期/结构</span></td>
+  <td><span class="col-tag col-warn">中（3-5年）</span></td>
+  <td>千县工程/医共体招标量，设备集中采购目录执行</td>
+</tr>
+<tr>
+  <td>创新产品放量（电生理脉冲消融/内镜机器人）</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-warn">中长</span></td>
+  <td>创新器械获批数377个（2025 1-10月），研发费率8.99%</td>
+</tr>
+</table>
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l9">
+<div class="tab-inner">
+
+<h2>市场结构</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>市场结构类型</td>
+  <td><span class="col-tag col-warn">垄断竞争</span>（分散+差异化）→ 向<span class="col-tag col-info">寡头垄断</span>过渡（集采加速集中）</td>
+</tr>
+<tr>
+  <td>CR3/CR5</td>
+  <td>上市口径CR5营收占比 ~35%（迈瑞联影新产业鱼跃惠泰），全行业CR3＜10%（3.3万家企业），<span style="color:#2e7d32">↑快速提升</span>（市值CR10 60%+）</td>
+</tr>
+<tr>
+  <td>格局象限</td>
+  <td><span class="col-tag col-info">百花齐放</span>（细分赛道各有龙头）→ 部分赛道进入<span class="col-tag col-win">赢家通吃</span>（监护/化学发光/探测器）</td>
+</tr>
+<tr>
+  <td>新进入者威胁</td>
+  <td><span class="col-tag col-warn">中高</span>（注册证数量仍增，但集采+备案数据库提高门槛；北交所/科创板仍有7家新上市）</td>
+</tr>
+</table>
+</div>
+
+<h2>竞争壁垒</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>壁垒类型</th><th>强度</th><th>可持续性</th><th>具体表现</th></tr>
+<tr>
+  <td>牌照+注册证</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>三类器械注册周期2-4年，创新器械优先审评（审批30日），已获证440+产品进入集采中选池形成护城河</td>
+</tr>
+<tr>
+  <td>技术/专利（核心部件+封闭系统）</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>迈瑞监护/联影MR/新产业化学发光封闭系统/惠泰电生理磁电融合定位，需10年+积累，球管/探测器国产化率＜30%仍是壁垒</td>
+</tr>
+<tr>
+  <td>渠道+装机粘性（医院+检验科）</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>迈瑞全球装机+服务网络（190+国家），试剂/耗材与设备绑定（试剂占IVD收入80%），更换成本高</td>
+</tr>
+<tr>
+  <td>规模+供应链（出海+集采报价能力）</td>
+  <td><span class="col-tag col-warn">中强</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>集采中“供应能力强”分组竞价规则利好龙头（全国供应能力），中小厂因成本核查出局（2025集采复活机制仍筛掉25家）</td>
+</tr>
+</table>
+</div>
+
+<div class="summary-box">
+  <strong>定价权测试</strong><br>
+  🔹 龙头能涨价吗？<strong>不能普涨，但能“稳价”</strong>——集采后高值耗材价降50-90%（冠脉支架/骨科），但创新品（电生理脉冲消融/药物球囊）通过比价系数维持溢价；设备端“优质优价”新规（2026-07-14）逆转最低价中标，头部可比小厂报价高20-30%仍中选<br>
+  🔹 毛利率趋势：迈瑞 66.2%→60.3%（-5.9pct，2023-2025）、万东26.6%（-9pct）、鱼跃50.6%（+0.5pct稳）、惠泰 ~70%稳定（创新耗材抗集采）<br>
+  🔹 ROE趋势：迈瑞33.6%→22.0%（2023→2025，仍>20%顶级）、惠泰30.4%→28.8%（稳定）、鱼跃22.5%→11.4%（疫情退潮）、乐普8.2%→6.1%（击穿门槛）
+</div>
+
+<h2>驱动力拆解</h2>
+<div class="highlight-box">
+  <strong>行业收入公式</strong><br>
+  收入 = 诊疗量（入院人次/GW/检测量） × 单价（设备/耗材/试剂价） × 国产份额 × 出海系数<br><br>
+  当前组合：<span style="color:#2e7d32;font-weight:700">量 ↑</span>（老龄化+诊疗量恢复，量增速5-10%） ＋ <span style="color:#c62828;font-weight:700">价 ↓</span>（集采降价30-90%） ＋ <span style="color:#1565c0;font-weight:700">份额 ↑</span>（国产替代） ＝ <span class="col-tag col-warn">以量+份额对冲价跌，净增速放缓至5%</span>
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动因子</th><th>最新值</th><th>历史区间</th><th>当前分位</th></tr>
+<tr>
+  <td>高值耗材集采降幅</td>
+  <td><span class="col-tag col-warn">50-70%均值</span>（第六批球囊/泌尿介入）</td>
+  <td>30-90%（冠脉支架93%→球囊温和化）</td>
+  <td><span class="col-tag col-info">50%</span>（提质阶段）</td>
+</tr>
+<tr>
+  <td>设备集中采购中标价（CT/MR）</td>
+  <td><span class="col-tag col-lose">较挂网价 -30~50%</span>（2025安徽/福建集采）</td>
+  <td>2023前 -10% →2025 -50~85%极端 →2026新规回归-20~30%</td>
+  <td><span class="col-tag col-lose">20%</span>（底部，但新规反内卷）</td>
+</tr>
+<tr>
+  <td>国产替代率（影像/电生理）</td>
+  <td>影像~35%、电生理~25%、内镜~10%</td>
+  <td>2019 15% →2025 35%（稳步提升）</td>
+  <td><span class="col-tag col-win">60%</span>（中期仍有空间）</td>
+</tr>
+<tr>
+  <td>境外收入增速（上市企业）</td>
+  <td><span class="col-tag col-win">+16.2%（2025H1 813亿）</span></td>
+  <td>10-25%（疫情后10%→2024 16%）</td>
+  <td><span class="col-tag col-win">75%</span></td>
+</tr>
+<tr>
+  <td>行业开工/招标量（设备）</td>
+  <td><span class="col-tag col-warn">2025H2回暖+5%</span>（协会：规模以上营收+2.17%）</td>
+  <td>-10%（2024深度调整）→+5%（2025H2）</td>
+  <td><span class="col-tag col-warn">40%</span></td>
+</tr>
+</table>
+</div>
+
+<h2>成本结构</h2>
+<div class="summary-box">
+  🔹 <strong>类型：</strong>设备——<span class="col-tag col-warn">重资产+高研发</span>（固定资产+商誉占比高，研发10-14%）；耗材/试剂——<span class="col-tag col-win">轻资产+高毛利</span>（变动成本为主，研发8-12%）<br>
+  🔹 <strong>成本敏感性：</strong>设备类营收±10% → 利润±20-30%（高经营杠杆+折旧）；耗材类营收±10% → 利润±15%（试剂复购平滑）<br>
+  🔹 <strong>盈亏平衡点：</strong>设备需产能利用率＞60%（联影/迈瑞已过），中小设备厂＜40%亏损（万东案例）；耗材需集采中选+份额＞20%才能覆盖注册与渠道成本
+</div>
+
+<h2>竞争格局总结</h2>
+<div class="highlight-box">
+  医疗器械是典型的<strong>“大行业、小公司”</strong>——3.3万家企业分1.1万亿市场，平均每家仅0.3亿，必然走向集中。集采是<span class="col-tag col-lose">短期痛苦</span>但<span class="col-tag col-win">长期利好龙头</span>：2020-2025六批国家集采+78项省级集采已将冠脉支架/骨科等同质化赛道价格打至地板，尾部出清（亏损占比33%），而惠泰/新产业等创新细分因“微创新比价系数+复活机制”维持溢价。设备端2026-07-14新规是分水岭——<strong>从“最低价中标”到“优质优价+异常低价审查+全生命周期成本”</strong>，本质是给迈瑞/联影等合规头部松绑，终结小厂“骨折价换量”模式。未来格局：<strong>设备看核心部件自研+海外网络，耗材看封闭系统+创新注册证</strong>，CR5有望从35%向50%迈进。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l10">
+<div class="tab-inner">
+
+<h2>周期位置</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>库存周期阶段</td>
+  <td><span class="col-tag col-warn">萧条→复苏过渡</span>（底部区域，拐点待确认）</td>
+</tr>
+<tr>
+  <td>产能利用率/招标量</td>
+  <td><span class="col-tag col-warn">55-65%</span>（历史区：40-85%，当前从底部40%回升至55%，协会2025H1营收增速+2.17%印证）</td>
+</tr>
+<tr>
+  <td>产品价格分位</td>
+  <td>高值耗材<span class="col-tag col-lose">10-15%分位</span>（历史低位），设备<span class="col-tag col-lose">20%分位</span>（集采打至成本线附近）</td>
+</tr>
+<tr>
+  <td>行业盈利状态</td>
+  <td><span class="col-tag col-lose">分化亏损</span>（187家上市企业盈利占比66.8%，亏损33.2%；A股71.5%盈利但多数利润增速承压，仅46%实现增长）</td>
+</tr>
+</table>
+</div>
+
+<div class="danger-box">
+  <strong>⚠ PE悖论检查</strong><br>
+  设备龙头：迈瑞2025 PE 23x（历史20%分位，盈利低谷PE反而因利润降而偏高）、联影30x+（历史低位但ROE仅8.6%需警惕PB=4-5x溢价是否匹配）<br>
+  耗材龙头：惠泰PE 38x（历史60%分位，景气高位PE偏高但符合成长溢价）、新产业24x（历史30%分位，合理）<br>
+  <strong>警告：</strong>医疗器械非纯周期，但2024-2025是“政策底”导致的盈利底，PE已充分反映悲观（迈瑞历史底部），但<span style="font-weight:700">PB视角更安全</span>：迈瑞PB 4.99x（ROE 22%对应合理PB 2.5-3.5x，仍有品牌溢价）、万东PB 1.2x（亏损陷阱而非机会）。关注<span style="font-weight:700">PB-ROE匹配度+经营现金流净现比（迈瑞124%、鱼跃100%+为健康）</span>比单纯PE更重要。
+</div>
+
+<h2>估值水平</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>估值指标</th><th>行业当前</th><th>历史中位数</th><th>80%分位</th><th>20%分位</th></tr>
+<tr>
+  <td><strong>PE</strong>（申万医疗器械）</td>
+  <td><span class="col-tag col-info">28-32x</span>（TTM）</td>
+  <td>35-40x</td>
+  <td>50x+</td>
+  <td>25-28x</td>
+</tr>
+<tr>
+  <td><strong>PE</strong>（迈瑞龙头）</td>
+  <td><span class="col-tag col-win">22-26x</span>（历史20%分位）</td>
+  <td>35x</td>
+  <td>50x</td>
+  <td>22x</td>
+</tr>
+<tr>
+  <td><strong>PB</strong>（行业）</td>
+  <td><span class="col-tag col-info">2.8-3.5x</span></td>
+  <td>3.8x</td>
+  <td>5.5x</td>
+  <td>2.5x</td>
+</tr>
+<tr>
+  <td><strong>PS</strong>（亏损成长股不适用）</td>
+  <td>—</td>
+  <td>—</td>
+  <td>—</td>
+  <td>—</td>
+</tr>
+</table>
+</div>
+
+<h2>政策环境</h2>
+<div class="summary-box">
+  🔹 <strong>政策方向：</strong><span class="col-tag col-warn">短期中性偏紧→中期利好龙头</span>（“稳价提质、反内卷”）<br>
+  🔹 <strong>关键政策：</strong><br>
+  &emsp;• 2026-07-14 三部门《医用设备集中采购通知》（总规则）：三级分级管理+异常低价审查（报价＜均价50%/次低50%/限价45%出局）+全生命周期成本评审+备案数据库，终结“内卷式”血拼<br>
+  &emsp;• 2025集采深化：全国78项集采/1300+产品，第六批（球囊/泌尿介入）中选率88%（440/496），分组竞价+比价系数+均价65%价差基准，标志从“扩面降价”到“规则治理”<br>
+  &emsp;• 创新支持：国家药监局2025-03通告，创新器械优先审评（审批30日）、医保目录准入提速，2025创新器械获批377个<br>
+  &emsp;• 医保支付：DRG/DIP+检验结果互认短期压制IVD量价，但提升集中度利好龙头份额<br>
+  🔹 <strong>政策周期位置：</strong><span class="col-tag col-lose">收紧后期</span>（2023-2025深度集采）→ <span class="col-tag col-warn">规则重构期</span>（2026优质优价）→ 预计2026H2进入<span class="col-tag col-info">中性期</span>
+</div>
+
+<h2>买入清单</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:28%">条件</th><th style="width:16%">结果</th><th>备注</th></tr>
+<tr>
+  <td>周期位置：不在繁荣顶点</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>在萧条底部区域，不是顶点（招标量仅55%分位）</td>
+</tr>
+<tr>
+  <td>估值：PE/PB在历史偏低分位</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>迈瑞PE 22x历史20%分位、行业PE 28x历史30%分位，均偏低</td>
+</tr>
+<tr>
+  <td>政策：不是收紧期</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td>仍在收紧后期，但新规已转向“优质优价”，最严时期已过，需跟踪Q3-Q4设备集采落地价</td>
+</tr>
+<tr>
+  <td>格局：龙头壁垒稳固</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>8只候选均有强壁垒（牌照/技术/渠道），CR5提升趋势明确</td>
+</tr>
+<tr>
+  <td>增长：有可见驱动力</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>老龄化+国产替代+出海三重驱动，2026Q1国际+15%验证</td>
+</tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <div style="font-size:16px;font-weight:700;margin-bottom:8px">综合判断：<span class="col-tag col-warn" style="font-size:15px">等待→分批建仓</span></div>
+  <div style="margin-bottom:6px">不是全面进攻时，但进入<strong>逆向分批布局窗口</strong>（4/5条件满足，仅政策仍需确认）。最困难时刻已过（2025为业绩底），2026H2为政策与业绩双重验证期。</div>
+  <table style="font-size:12px;margin:6px 0;border:none;background:transparent">
+    <tr><td style="border:none;padding:3px 6px;background:transparent;width:90px;font-weight:600">预期回报</td><td style="border:none;padding:3px 6px;background:transparent">估值修复（PE从22x→30x，+30%）+ 业绩增长（2027恢复10-15%增速）+ 股息（2-3%），合计年化15-20%</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">仓位建议</td><td style="border:none;padding:3px 6px;background:transparent"><span class="col-tag col-warn">不超过组合15-20%</span>（分3批：当前40%+Q3集采价落地后30%+Q4业绩拐点确认后30%）</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">跟踪指标</td><td style="border:none;padding:3px 6px;background:transparent">设备招标中标价/中选率 · 耗材集采降幅 · 境外收入增速 · 经营现金流净现比 · 存货周转天数</td></tr>
+  </table>
+  <div style="margin-top:8px;padding:8px;background:#e8f5e9;border-radius:4px;font-size:12px">
+    <strong>买入策略（分环节）：</strong><br>
+    <span class="col-tag col-win">耗材/试剂龙头优先</span>（惠泰/新产业/健帆：创新避集采，集采温和化直接受益，估值合理时一次性建仓）<br>
+    <span class="col-tag col-info">设备龙头分批</span>（迈瑞/联影/奕瑞/开立：需验证“优质优价”新规后毛利率企稳+海外放量，Q3-Q4分批）<br>
+    <span class="col-tag col-warn">家用器械择时</span>（鱼跃：家用+出海第二曲线，需跟踪外销增速是否维持25%+）<br>
+    <span class="col-tag col-lose">困境标的不碰</span>（万东/乐普：等待ROE回升至8%+且现金流转正信号）
+  </div>
+</div>
+
+<h2>卖出信号</h2>
+<div class="danger-box">
+  <strong>出现以下信号考虑卖出/止盈：</strong><br>
+  <div style="margin-top:6px">
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px">1</span>
+    集采二次降价超预期（高值耗材降幅＞75%或设备中标价再探-50%以下，毛利率连续两季下降＞3pct）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">2</span>
+    政策转向鼓励扩张（如设备配置许可大幅放宽导致无序扩产，产能利用率＞90%过热）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">3</span>
+    核心技术颠覆（如下一代影像AI/手术机器人替代现有术式，国产替代逻辑证伪，或出海受阻＞20%增速失速）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">4</span>
+    估值泡沫（行业PE＞50x历史80%分位，或迈瑞PB＞6x且ROE未同步提升至25%+，透支3年增长）
+  </div>
+</div>
+
+<div class="summary-box" style="background:#f5f5f5;border-left-color:#999">
+  <strong>风险提示</strong><br>
+  本报告基于公开数据与行业研究框架（L7-L10），不构成投资建议。医疗器械受医保控费、集采、技术迭代影响大，需持续跟踪：①DRG/DIP支付改革对IVD量的压制是否超预期；②汇率波动（美元贬值致汇兑损失，如迈瑞2026Q1 -3.15亿）；③商誉减值（并购标的业绩不达预期）；④海外地缘与合规风险。
+</div>
+
+</div>
+</div>
+
+<div class="footer">Generated by Industry Analysis · L7-L10 Framework · Stock Selection ｜ 数据来源：Choice/同花顺问财/中证指数/国家医保局/卫健委/上市公司年报（2025/2026Q1）｜ 仅供研究，不构成投资建议</div>
+
+</div>
+
+<script>
+var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+var contents = document.querySelectorAll('.tab-content');
+btns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    contents.forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    var tab = btn.getAttribute('data-tab');
+    document.getElementById('tab-' + tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
