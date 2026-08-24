@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>鱼跃医疗(002223) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .score-note { font-size: 13px; color: #666; background: #fafafa; border: 1px dashed #ccc; padding: 8px 12px; margin: 10px 0; }
+  .history-table td:first-child { white-space: nowrap; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>鱼跃医疗（002223）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026-08-24 | 数据来源：FY2025年报（2026-04-25）+ 2025年中报/一季报 + 东吴证券研报 + Wind/理杏仁估值数据</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>江苏鱼跃医疗设备股份有限公司（鱼跃医疗）</td></tr>
+  <tr><td>股票代码</td><td>002223.SZ（深交所主板，上市 2008-04-18）</td></tr>
+  <tr><td>所属行业</td><td>医药生物 — 医疗器械（申万三级：医疗器械）</td></tr>
+  <tr><td>行业地位</td><td>国内家用医疗器械龙头；制氧机/呼吸机/血压计/轮椅/针灸针市占率国内前列，CGM（持续血糖监测）第二曲线</td></tr>
+  <tr><td>FY2025 营收</td><td>79.55 亿元（同比 +5.14%，2024年 75.66亿，2023年 79.72亿）</td></tr>
+  <tr><td>归母净利润</td><td>14.82 亿元（同比 -17.94%，扣非 11.69亿 -16.10%）</td></tr>
+  <tr><td>经营现金流</td><td>15.03 亿元（同比 -17.25%）</td></tr>
+  <tr><td>总资产</td><td>160.84 亿元（2024年末 156.46亿）</td></tr>
+  <tr><td>归母净资产</td><td>132.41 亿元（2024年末 125.35亿）</td></tr>
+  <tr><td>ROE（加权）</td><td>11.42%（2024年 14.82%，2023年 22.45%）</td></tr>
+</table>
+
+<div class="highlight-box">
+<strong>行业类型标注：</strong> 按 <code>industry-classification.md</code>，医疗器械属 <strong>非周期股</strong>（需求稳定、利润可预测），细分为 <strong>成长性非周期</strong>（家用器械+CGM/可穿戴增量）。<br>
+<strong>评分体系：</strong> 采用 <strong>非周期股评分体系</strong>（10维度百分制，ROE/现金流/负债/毛利/估值等）。纯周期股用PB估值，本公司不适用。
+</div>
+
+<p class="score-note"><strong>评分口径说明：</strong><span>采用非周期股评分体系，首次分析，无历史版本</span></p>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:12px;color:#666;margin-bottom:6px;">采用非周期股评分体系（百分制，≥80优秀 / ≥60一般关注 / &lt;60不及格）</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE</td><td class="neutral">10/15</td><td style="text-align:left">11.42%（扣非ROE约8.8%），≥10%档获得10分，未达15%优秀线，趋势连续两年下滑（22.45%→14.82%→11.42%）</td></tr>
+  <tr><td>杜邦驱动质量</td><td class="good">5/5</td><td style="text-align:left">高利润型：净利率18.6%×周转0.49×权益乘数1.21，靠利润率驱动而非杠杆，驱动质量最优</td></tr>
+  <tr><td>利润含金量 CFO/净利</td><td class="good">15/15</td><td style="text-align:left">1.01（CFO 15.03亿 / 归母14.82亿），利润100%现金化，且2023-2025三年均&gt;1</td></tr>
+  <tr><td>营收增长</td><td class="neutral">7/10</td><td style="text-align:left">+5.14%（摆脱2024年-5.09%下滑，H1 2025 +8.16%），中速增长档7分，未达10%高速线</td></tr>
+  <tr><td>利润增长</td><td class="bad">0/10</td><td style="text-align:left">-17.94%（扣非-16.10%），连续两年负增长，基数扰动+费用前置拖累</td></tr>
+  <tr><td>负债率</td><td class="good">10/10</td><td style="text-align:left">16.97%（2024年19.12%），&lt;40%最优档，零有息负债</td></tr>
+  <tr><td>短期偿债（货币-短债）</td><td class="good">10/10</td><td style="text-align:left">充裕覆盖：货币资金约66-74亿（2025Q3 74.5亿）+交易性资产，短期借款0，流动比率2.70</td></tr>
+  <tr><td>毛利率水平与趋势</td><td class="good">10/10</td><td style="text-align:left">50.60%（+0.46pct），H1 50.37%（+0.37pct），≥30%且5年稳定50%±1pct，定价权强</td></tr>
+  <tr><td>估值 PE vs合理区间</td><td class="neutral">4/10</td><td style="text-align:left">PE(TTM)21.3x，PB2.11x；以ROE11.4%合理PE应10-18x，当前偏高18%且处于历史87%分位，估值偏贵</td></tr>
+  <tr><td>FCF</td><td class="good">5/5</td><td style="text-align:left">持续为正：FCF≈13.8亿（CFO15.03亿-资本开支~1.2亿），2019-2025仅2020年后均正向</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px" class="neutral">76/100</td><td style="text-align:left">一般关注（60-79分档）</td></tr>
+</table>
+
+<div class="verdict verdict-caution">一般关注（76/100分）</div>
+
+<h2 style="margin-top:16px">评分沿革</h2>
+<style>.history-table{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:13px}.history-table th,.history-table td{border:1px solid #ddd;padding:6px 8px;text-align:center}.history-table th{background:#f0f0f0;font-weight:bold}.history-table td.good{color:#27ae60}.history-table td.neutral{color:#e67e22}.history-table td.bad{color:#c0392b}</style><table class="history-table">
+  <tr><th>日期</th><th>评分</th><th>评分体系</th><th>变化原因</th></tr>
+  <tr><td>2026-08-24</td><td class="neutral" style="font-weight:bold">76/100</td><td>成长性</td><td style="text-align:left">采用非周期股评分体系，首次分析，无历史版本</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>家用器械现金奶牛+CGM新曲线的优质非周期成长型公司，财务底盘极稳（零杠杆+高毛利+正现金流），但处于业绩消化期（连续2年利润负增长、ROE腰斩），当前估值已在历史高位（87%分位），需等待利润增速回归或估值回调。<br><br>
+  <strong>核心优势：</strong>① 财务堡垒：资产负债率17%零有息负债、货币70亿+、CFO/净利1.01现金真实 ② 高定价权：毛利率50.6%连续5年>48%，家用器械品牌壁垒深 ③ 现金奶牛：FCF持续为正，分红率67.65%（2025累计分红10.02亿）+拟授权2026中期分红 ④ 第二曲线：CGM翻倍增长+血糖/POCT 20%增速、外销26.6%高增<br><br>
+  <strong>核心风险：</strong>① 业绩增速失速：营收2024-2025合计仅+0%、利润-38%回撤，Q4扣非-652万失速明显 ② 费用侵蚀：销售费+29.5%至17.63亿（占营收22.2%），管理+11%、研发5.7亿拖累利润 ③ 估值不便宜：PE21.3x处于近5年87%分位，PB2.1x，PEG≈2.6难言便宜 ④ 疫情基数透支：呼吸治疗（占34%）仍受高基数拖累，2024-25两年累计-23%
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入（亿元）</td><td>79.55</td><td>75.66</td><td class="good">+5.14%</td><td>结束2024年-5.09%下滑，H1已+8.16%，趋势回暖</td></tr>
+  <tr><td>归母净利润（亿元）</td><td>14.82</td><td>18.06</td><td class="bad">-17.94%</td><td>扣非11.69亿 -16.1%，业绩与营收背离</td></tr>
+  <tr><td>扣非净利润（亿元）</td><td>11.69</td><td>13.93</td><td class="bad">-16.10%</td><td>非经常性3.13亿（政府补助+理财+处置）</td></tr>
+  <tr><td>毛利率</td><td>50.60%</td><td>50.14%</td><td class="good">+0.46pct</td><td>成本管控优秀，H1 50.37%亦提升0.37pct</td></tr>
+  <tr><td>归母净利率</td><td>18.63%</td><td>23.85%</td><td class="bad">-5.22pct</td><td>毛利升但费率升幅更大导致净利下滑</td></tr>
+  <tr><td>期间费用率</td><td>32.80%</td><td>27.74%</td><td class="bad">+5.06pct</td><td>销售17.63亿占比22.2% +29.5%为主要拖累</td></tr>
+  <tr><td>销售费用（亿）</td><td>17.63</td><td>13.61</td><td class="bad">+29.53%</td><td>电商/广告/人力海外扩张投入</td></tr>
+  <tr><td>研发费用（亿）</td><td>5.70</td><td>5.47</td><td class="neutral">+4.29%</td><td>占营收7.17%，持续投入CGM/可穿戴</td></tr>
+  <tr><td>Q4 单季营收/净利</td><td>14.10亿 / 0.16亿</td><td>15.38亿 / 2.74亿</td><td class="bad">-8.3% / -94%</td><td>Q4扣非-652万异常低，季节性+费用集中</td></tr>
+  <tr><td>Q1-Q3 营收/净利</td><td>24.36/6.25亿；22.23/5.78亿；18.86/2.63亿</td><td>对应2024 Q1-Q3</td><td>Q2净利+25.4%</td><td>H1趋势优于全年，Q4拖累全年</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>收入端已走出2023高基数坑（疫情呼吸类透支），2025实现5.1%正增长且外销+26.6%亮眼；但利润端与收入背离，主因战略性费用前置（销售+29.5%+管理+11%合计多支约4.5亿）侵蚀，且Q4扣非转负需关注费用节奏。毛利率逆势提升0.46pct至50.6%，证明产品端竞争力未受损，盈利质量取决于后续费效比改善。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>2025年末</th><th>2024年末</th><th>评价</th></tr>
+  <tr><td>货币资金（含交易性）</td><td>约74.6亿（Q3）/66.19亿（年报口径）</td><td>66.19亿</td><td class="good">充裕，利息收入2.49亿覆盖财务费用</td></tr>
+  <tr><td>应收账款</td><td>7.09亿</td><td>7.15亿</td><td class="good">同比-0.8%，回款良好，应收/营收8.9%</td></tr>
+  <tr><td>应收款项融资+票据</td><td>0.23亿</td><td>1.14亿</td><td class="neutral">下降</td></tr>
+  <tr><td>存货</td><td>14.78亿</td><td>14.40亿</td><td class="neutral">+2.6%，周转天数约135天，家用器械合理</td></tr>
+  <tr><td>固定资产+在建</td><td>18.26亿</td><td>18.50亿</td><td class="neutral">轻资产，占比仅11.3%，折旧压力小</td></tr>
+  <tr><td>商誉</td><td>10.77亿</td><td>10.77亿</td><td class="neutral">占比6.7%，主要为上械集团等收购，近3年未大额减值需持续跟踪</td></tr>
+  <tr><td>总资产</td><td>160.84亿</td><td>156.46亿</td><td class="good">+2.8%，扩张温和</td></tr>
+  <tr><td>短期借款</td><td>0</td><td>0</td><td class="good">零有息短债</td></tr>
+  <tr><td>长期借款</td><td>0</td><td>0</td><td class="good">零有息长债</td></tr>
+  <tr><td>应付账款+票据</td><td>16.17亿（105284+56405万）</td><td>15.29亿</td><td class="neutral">对上游议价稳定</td></tr>
+  <tr><td>负债合计</td><td>27.29亿</td><td>29.92亿</td><td class="good">同比-8.8%</td></tr>
+  <tr><td>资产负债率</td><td>16.97%</td><td>19.12%</td><td class="good">极低，远优于行业均值~30%</td></tr>
+  <tr><td>归母净资产</td><td>132.41亿</td><td>125.35亿</td><td class="good">+5.6%，未分配利润96.95亿厚实</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>典型的“现金堡垒”式财报——17%负债率+零有息负债+70亿现金+流动比率2.7倍，短期偿债无忧；轻资产运营（固定仅11%）+商誉占比可控，财务弹性极强，为CGM/海外扩张提供充足弹药。唯一关注点是商誉10.77亿（占净资产8.1%），若收购标的业绩不及预期需防范减值。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>CFO（经营现金流）</td><td>15.03亿</td><td>18.16亿</td><td class="neutral">-17.25%，但仍&gt;净利润，含金量高</td></tr>
+  <tr><td>CFI（投资现金流）</td><td>约 -0.25亿</td><td>-0.25亿</td><td class="neutral">资本开支1.2-1.3亿为主，投资理财净流入对冲</td></tr>
+  <tr><td>CFF（筹资现金流）</td><td>约 -23.99亿（2024）/ -2.5亿（2025E）</td><td>-23.99亿</td><td class="neutral">2024大额分红+回购导致流出，2025已收敛</td></tr>
+  <tr><td>CFO/净利润</td><td>101.3%</td><td>100.6%</td><td class="good">连续3年&gt;100%，利润现金化优秀</td></tr>
+  <tr><td>自由现金流 FCF</td><td>约13.8亿</td><td>约17.0亿</td><td class="good">持续为正，分红+扩张两不误</td></tr>
+  <tr><td>分季度CFO</td><td>Q1 6.58亿 / Q2 5.09亿 / Q3 3.37亿 / Q4 -0.06亿</td><td>Q1-Q4均正</td><td class="neutral">Q4单季CFO转负与回款节奏有关，全年仍健康</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>最亮眼的环节——CFO连续多年&gt;净利润，销售商品收到现金/营收约102%，应收控制得当；FCF每年13-17亿，支撑了高分红（2025拟分红10.02亿占净利67.65%）+研发+海外并购（拟认购Inogen 9.9%）。Q4 CFO -578万属季节性扰动，不改全年造血能力，唯一需观察是CFO同比-17.25%与利润同向下滑，经营质量仍待营收增速回升巩固。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE（加权）</td><td>11.42%</td><td>&gt;15%</td><td class="neutral">一般，趋势下滑</td></tr>
+  <tr><td>ROIC</td><td>12.20%（2024）→13.14%E</td><td>&gt;10%</td><td class="good">优秀，资本回报扎实</td></tr>
+  <tr><td>毛利率</td><td>50.60%</td><td>稳定或提升且&gt;30%</td><td class="good">优秀，5年稳定50%±</td></tr>
+  <tr><td>净利率</td><td>18.63%</td><td>&gt;15%</td><td class="good">良好，虽同比-5.2pct但仍高</td></tr>
+  <tr><td>营收增长</td><td>+5.14%</td><td>&gt;10%</td><td class="neutral">未达标，但拐点向上</td></tr>
+  <tr><td>利润增长（归母）</td><td>-17.94%</td><td>&gt;15%</td><td class="bad">差，连续两年负增</td></tr>
+  <tr><td>CFO/净利润</td><td>101%</td><td>&gt;1</td><td class="good">优秀</td></tr>
+  <tr><td>资产负债率</td><td>16.97%</td><td>&lt;50%且行业低位</td><td class="good">优秀</td></tr>
+  <tr><td>分红率</td><td>67.65%（累计10.02亿）</td><td>30-60%且稳定</td><td class="good">超高，股东回报积极</td></tr>
+  <tr><td>股息率（TTM）</td><td>3.67%（按27.3元）</td><td>&gt;3%</td><td class="good">良好，防御属性</td></tr>
+</table>
+
+<h3>3.2 分业务分析</h3>
+<table>
+  <tr><th>业务板块</th><th>2024营收</th><th>占比</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td>呼吸治疗解决方案</td><td>25.97亿</td><td>34.33%</td><td class="bad">-22.42%</td><td>52.53%（-3.29pct）</td><td>受23年高基数拖累，制氧机降幅收窄、呼吸机/雾化器已回升，2025H1转正+1.93%</td></tr>
+  <tr><td>血糖管理及POCT</td><td>10.30亿</td><td>13.61%</td><td class="good">+40.20%</td><td>61.12%（+1.04pct）</td><td>明星板块，CGM翻倍增长，Anytime 4/5系列放量，2025H1 +20%</td></tr>
+  <tr><td>家用健康检测</td><td>15.64亿</td><td>20.67%</td><td class="neutral">-0.41%</td><td>52.95%（-1.23pct）</td><td>电子血压计双位数增长，对冲红外测温回落，韧性强</td></tr>
+  <tr><td>临床器械及康复</td><td>20.93亿</td><td>27.66%</td><td class="neutral">+0.24%</td><td>40.57%（+0.10pct）</td><td>针灸针/轮椅/手术器械稳增，感染控制拖累已消</td></tr>
+  <tr><td>急救及其他</td><td>2.39亿</td><td>3.16%</td><td class="good">+34.05%</td><td>35.84%（-0.49pct）</td><td>AED等急救产品高速增长，基数小弹性大</td></tr>
+  <tr><td>分地区-内销</td><td>65.74亿</td><td>86.89%</td><td class="bad">-8.58%</td><td>53.14%（H1）</td><td>内销承压</td></tr>
+  <tr><td>分地区-外销</td><td>9.49亿</td><td>12.54%</td><td class="good">+30.42%</td><td>32.61%（H1）</td><td>海外注册落地+属地化，2025H1 +26.63%持续高增</td></tr>
+  <tr><td>分模式-经销</td><td>55.46亿</td><td>73.30%</td><td class="neutral">-3.51%</td><td>-</td><td>经销为主，直销26%渠道多元</td></tr>
+</table>
+<div class="highlight-box">
+<strong>分业务结论：</strong>“一拖两强”格局——传统呼吸（34%）拖后腿但跌幅已大幅收窄（2025H1转正），血糖/CGM（+40%）与急救（+34%）挑大梁，家用检测与临床器械提供稳定底盘。H1数据显示裂变更均衡：呼吸+1.9%、血糖+20%、家用+15.2%、临床+3.3%、急救+30.5%全面正增长，验证业务回归正常轨道。外销占比从9.1%→12.5%→13%持续提升（拟控股Inogen加码），是中期最大边际增量。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险项</th><th>严重程度</th><th>依据</th></tr>
+  <tr><td>商誉减值风险</td><td style="color:#f39c12">黄灯</td><td style="text-align:left">商誉10.77亿（上械集团/曼吉奎等），占净资产8.1%，近3年未大额减值但需跟踪标的业绩对赌</td></tr>
+  <tr><td>销售费用激增侵蚀利润</td><td style="color:#c0392b">红灯</td><td style="text-align:left">销售费17.63亿+29.5%，占营收22.2%（2023年仅~13%），费用率5年新高，若费效比不改善将持续压制净利</td></tr>
+  <tr><td>应收/存货坏账</td><td style="color:#27ae60">绿灯</td><td style="text-align:left">应收7.09亿同比-0.8%，占营收8.9%健康；存货14.78亿+2.6%，未现积压；信用减值2107万可控</td></tr>
+  <tr><td>关联交易/资金占用</td><td style="color:#27ae60">绿灯</td><td style="text-align:left">2025非经营性资金占用小计4900万（往来款），经营性往来49万，无大额违规；审计无保留意见</td></tr>
+  <tr><td>股权质押/大股东减持</td><td style="color:#27ae60">绿灯</td><td style="text-align:left">质押0%，实控人吴光明/吴群合计持股~42.6亿股未见大额减持，2025分红率67.65%利益一致</td></tr>
+  <tr><td>存货跌价/资产减值</td><td style="color:#f39c12">黄灯</td><td style="text-align:left">资产减值4699万（2024），较23年9298万收窄，呼吸类库存跌价风险已部分释放</td></tr>
+  <tr><td>利润调节/非经常性依赖</td><td style="color:#27ae60">绿灯</td><td style="text-align:left">非经常性3.13亿占净利21%，主要为政府补助3.6亿+理财，扣非后仍11.69亿，核心利润扎实</td></tr>
+  <tr><td>监管处罚/诉讼</td><td style="color:#27ae60">绿灯</td><td style="text-align:left">近3年无重大监管处罚，营业外支出4211万主要为捐赠等</td></tr>
+</table>
+
+<div class="summary-box">
+<strong>排雷结论：</strong>无重大财务造假或暴雷信号，财报真实度高（CFO>净利+审计无保留）。核心雷点仅两项：①费用失控（红灯）②商誉（黄灯）。前者是战略选择（出海+CGM推广），需跟踪1-2年费效比是否兑现；后者敞口有限。总体排雷通过率 6/8 绿灯，质量优于行业均值。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>历史分位</th><th>行业均值</th></tr>
+  <tr><td>股价（基准）</td><td>27.28元（2026-07-17）/ 35.94元（财报帮口径）</td><td>52周 23.9-45.71</td><td>-</td></tr>
+  <tr><td>总市值</td><td>273.5亿（27.28元）- 360.3亿（35.94元）</td><td>-</td><td>迈瑞 1875亿 / 可孚 37亿</td></tr>
+  <tr><td>PE(TTM)</td><td>21.28 - 21.51x</td><td>87.47%分位（偏贵）</td><td>医疗器械 46.5x</td></tr>
+  <tr><td>PE(静态 2025)</td><td>18.44x（按27.28元/1.48元EPS）</td><td>历史均值18.28x</td><td>-</td></tr>
+  <tr><td>PE(TTM扣非)</td><td>约27.2x（扣非1.17元）</td><td>高于归母口径</td><td>-</td></tr>
+  <tr><td>PE(2026E 券商一致)</td><td>16.6x（EPS 2.20元 / 东吴预测）</td><td>-</td><td>PEG 2.6</td></tr>
+  <tr><td>PB</td><td>2.10 - 2.66x</td><td>历史1.29%分位（PB偏低说明ROE下滑拖累）*注：PE与PB分位背离因盈利下修</td><td>医疗器械 2.55x</td></tr>
+  <tr><td>PS (TTM)</td><td>3.4x（273.5亿/79.55亿）</td><td>-</td><td>-</td></tr>
+  <tr><td>PCF</td><td>18.1x（273.5亿/15.03亿CFO）</td><td>-</td><td>-</td></tr>
+  <tr><td>股息率 TTM</td><td>3.67%（含2025拟分10派6+已派4元）</td><td>高股息分位</td><td>行业1.38%</td></tr>
+</table>
+<div class="danger-box">
+<strong>数据说明：</strong>理杏仁显示PE当前21.28处于近10年87%分位（20.82为80%分位，14.82为20%分位），PB2.10处于近10年绝对低位（与PE背离主因是2023-25净利润中枢下移，净资产仍增厚）。估值判断需PE为主，PB为辅。
+</div>
+
+<h3>4.2 估值区间（PE Band — 非周期股）</h3>
+<table>
+  <tr><th>情景</th><th>估值</th><th>对应说明</th></tr>
+  <tr><td>悲观（15x 扣非PE）</td><td>17.6元</td><td>对应扣非EPS 1.17元×15x，隐含市值176亿，接近历史PB底部</td></tr>
+  <tr><td>保守（18x 合理上限）</td><td>21.2 - 26.6元</td><td>以ROE 11-15%合理PE 18x计，扣非1.17元×18=21.1元；归母1.48元×18=26.6元</td></tr>
+  <tr><td>中性（20x 历史均值）</td><td>29.6元（归母）/ 23.4元（扣非）</td><td>历史均值PE 18.3x-20x，券商目标41.11元隐含PE ~21x（2026E）</td></tr>
+  <tr><td>券商一致目标</td><td>41.11元（最高45.47/最低32.49，8家买入）</td><td>对应2026E 2.20元×18.7x，预期涨幅51%</td></tr>
+  <tr><td>当前价</td><td>27.28元</td><td>PE21.3x（归母）/ 27x（扣非），位于中性偏上</td></tr>
+  <tr><td>历史高位（26.15x）</td><td>38.7元（按1.48元×26.15）</td><td>泡沫区间，2023年疫情业绩期触及</td></tr>
+</table>
+
+<h3>历史PE区间</h3>
+<table>
+  <tr><th>指标</th><th>数值</th><th>当前对比</th></tr>
+  <tr><td>最大值</td><td>26.15x</td><td>当前21.28 距顶部-18.6%</td></tr>
+  <tr><td>80%分位</td><td>20.82x</td><td>当前高于80%分位（87%分位）</td></tr>
+  <tr><td>50%分位</td><td>19.69x</td><td>当前高于中位8%</td></tr>
+  <tr><td>20%分位</td><td>14.82x</td><td>距底部+43%</td></tr>
+  <tr><td>最小值</td><td>11.99x</td><td>安全边际有限</td></tr>
+  <tr><td>平均值</td><td>18.28x</td><td>当前溢价16.4%</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值判断：</strong> 当前估值 <strong>合理偏贵</strong>。以盈利能力（ROE 11.4%）匹配的合理PE仅10-18x，当前21.3x已溢价；以历史分位看亦处于87%高位（接近80%分位上方），安全边际不足。但若以券商2026E EPS 2.20元计，PE回落至16.6x则重回合理；以股息率3.67%看，防御性支撑强。操作含义：<strong>不便宜，不追高；等待Q3/Q4利润增速回正或股价回调至23-24元（20%分位上方）再考虑</strong>。PB 2.1x虽低但对非周期股参考意义弱于PE。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析（L4框架）</h2>
+
+<h3>5.1 杜邦拆解</h3>
+<table>
+  <tr><th>指标</th><th>2023</th><th>2024</th><th>2025</th><th>判断</th></tr>
+  <tr><td>净利润率（归母）</td><td>30.05%（23.96/79.72）</td><td>23.85%（18.06/75.66）</td><td>18.63%（14.82/79.55）</td><td class="bad">连续下滑 -11.4pct，费用侵蚀</td></tr>
+  <tr><td>资产周转率（营收/总资产）</td><td>0.50次（79.72/159.67）</td><td>0.48次（75.66/156.46）</td><td>0.49次（79.55/160.84）</td><td class="neutral">稳定0.48-0.50次，轻资产效率中等</td></tr>
+  <tr><td>权益乘数（总资产/净资产）</td><td>1.36x（159.67/117.64）</td><td>1.25x（156.46/125.35）</td><td>1.21x（160.84/132.41）</td><td class="good">持续去杠杆，最安全档</td></tr>
+  <tr><td>ROE（净利率×周转×乘数）</td><td>20.36%（杜邦）/22.45%加权</td><td>14.44% /14.82%加权</td><td>11.09% /11.42%加权</td><td class="bad">ROE腰斩，主因净利率下滑</td></tr>
+  <tr><td>ROA（净利率×周转）</td><td>15.0%</td><td>11.55%</td><td>9.22%</td><td class="neutral">去杠杆后真实回报仍>9%，优质</td></tr>
+</table>
+
+<h3>5.2 赚钱模式判断</h3>
+<div class="highlight-box">
+  <strong>赚钱模式：高利润型 + 轻杠杆（最优质模式）</strong><br>
+  典型特征：净利率18.6%（远高于沃尔玛2.5%）、周转0.49次（中等）、杠杆1.21倍（极低）。<br>
+  对比标杆：茅台（49%×0.5×1.23=30%）、鱼跃（18.6%×0.49×1.21=11%）、银行（25%×0.05×12=15%）。鱼跃与茅台同属高利润驱动，但鱼跃费率更高导致净利差距。<br>
+  评价：产品定价权强（毛利50.6%），不靠加杠杆放大回报，抗周期能力最强，但需提升周转（海外/线上渠道）与费用效率以提升ROE。
+</div>
+
+<h3>5.3 资产回报效率</h3>
+<table>
+  <tr><th>指标</th><th>2025</th><th>同行对比</th><th>评价</th></tr>
+  <tr><td>每1元总资产产生净利润</td><td>0.092元</td><td>迈瑞约0.18元，可孚约0.06元</td><td>中等，介于迈瑞与可孚之间</td></tr>
+  <tr><td>每1元净资产产生净利润</td><td>0.11元</td><td>迈瑞0.22元，可孚0.07元</td><td>中等</td></tr>
+  <tr><td>去杠杆ROA</td><td>9.22%</td><td>行业中位约8-12%</td><td>良好，真实盈利能力扎实</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>杜邦结论：</strong> ROE下滑的“元凶”清晰——净利率从30%→18.6%是唯一变量，周转与杠杆均稳定甚至优化（杠杆下降降低风险）。说明公司商业模式未变差，利润端短期受战略投入与基数影响，而非竞争力丧失。若销售费率从22.2%回落至18%（节约约3.3亿），净利率可回升至约22-23%，ROE有望重回14-15%区间。杜邦健康度：<strong>盈利能力暂时承压，运营与杠杆极优，趋势可逆</strong>。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：非周期 — 成长性（医疗器械）</strong><br>
+  判断依据：① 需求端：人口老龄化+家用健康管理+院外康复，需求与GDP弱相关、与老龄化强相关，稳定增长（过去5年营收CAGR 10.3%）② 供给端：技术+品牌+注册证壁垒，周期性仅体现在呼吸类公共卫生事件脉冲，非行业本质周期 ③ 财务特征：毛利率50%+稳定、负债率17%、现金流稳定，不符合周期股“利润暴涨暴跌、PE失真”特征 → 按 <code>industry-classification.md</code> 归为非周期。<br>
+  细分：成长性（CGM/POCT/可穿戴年增速20-40%，外销30%+，研发7.2%）而非防御性（防御性增速通常&lt;10%且股息为主，鱼跃仍处扩张期），故评分用非周期体系，估值首选PE/PEG而非PB/股息率。
+</div>
+
+<h3>6.2 集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>行业集中度</td><td>分散→正在集中（CR3约30-40%）</td><td>国内器械企业超3万家，鱼跃/迈瑞/联影等龙头份额提升，家用器械CR3约45%（鱼跃领先制氧/血压计）</td></tr>
+  <tr><td>品牌壁垒</td><td>强</td><td>鱼跃品牌家喻户晓，电商市占率长期第一，复购与口碑壁垒</td></tr>
+  <tr><td>技术壁垒</td><td>中强</td><td>制氧/呼吸机/CGM需多年研发+临床，Anytime 5获批体现能力，但较迈瑞高端影像差距仍大</td></tr>
+  <tr><td>牌照/注册壁垒</td><td>强</td><td>二三类器械注册周期1-3年，海外MDR/FDA更严，构筑护城河</td></tr>
+  <tr><td>渠道壁垒</td><td>强</td><td>经销73%+直销26%+电商+海外属地化+药店连锁，铺货深度领先可孚等二线</td></tr>
+  <tr><td>规模壁垒</td><td>中等</td><td>轻资产不依赖重资本，但供应链规模效应降低成本（毛利率50.6%优于可孚43%）</td></tr>
+</table>
+
+<h3>6.3 生命周期与周期位置</h3>
+<div class="highlight-box">
+  <strong>生命周期：成长期 → 成熟期过渡（家用器械成熟，CGM/出海成长期）</strong><br>
+  传统家用（血压计/制氧机）已进入成熟期（增速5-10%），CGM/POCT/急救/AED处于成长期（增速30-100%），海外处于导入-成长期（增速30%+）。整体处于“第二曲线接力”阶段，战略上加大投入符合生命周期规律。<br>
+  <strong>周期位置：非周期股无典型周期位置</strong>，但需关注“公共卫生事件脉冲周期”余波：2023为顶部（呼吸类暴利）、2024-25为消化期（呼吸-22%→+1.9%修复），当前接近底部区域。
+</div>
+
+<h3>6.4 同行对比</h3>
+<table>
+  <tr><th>指标</th><th>鱼跃医疗</th><th>迈瑞医疗 300760</th><th>可孚医疗 301087</th><th>行业中位*</th><th>评价</th></tr>
+  <tr><td>ROE（2025/2024）</td><td>11.42% /14.82%</td><td>21.58% /32.58%</td><td>7.69% /6.41%</td><td>~10%</td><td>中游，低于迈瑞高于可孚</td></tr>
+  <tr><td>毛利率</td><td>50.60%</td><td>60.32% /66.16%</td><td>53.16% /51.86%</td><td>~45%</td><td>中上，低于迈瑞</td></tr>
+  <tr><td>净利率</td><td>18.63%</td><td>29.43% /35.7%</td><td>10.93%</td><td>~15%</td><td>中等</td></tr>
+  <tr><td>资产负债率</td><td>16.97%</td><td>~30%</td><td>~20%</td><td>~30%</td><td>最低，最安全</td></tr>
+  <tr><td>营收增速（2025H1）</td><td>8.16%</td><td>约5-8%</td><td>约12%</td><td>~8%</td><td>中等</td></tr>
+  <tr><td>PB</td><td>2.11</td><td>约8-10</td><td>约2.0</td><td>2.5</td><td>偏低</td></tr>
+  <tr><td>PE(TTM)</td><td>21.3</td><td>约25-30</td><td>约18-22</td><td>~28</td><td>低于行业46.5</td></tr>
+  <tr><td>分红率</td><td>67.65%</td><td>约35%</td><td>约20%</td><td>~30%</td><td>最高</td></tr>
+  <tr><td>核心壁垒</td><td>家用品牌+渠道</td><td>高端技术+医院</td><td>电商+性价比</td><td>-</td><td>差异化卡位</td></tr>
+</table>
+<p style="font-size:11px;color:#999;">* 行业中位取申万医疗器械指数；迈瑞/可孚数据取财报帮及wind 2024-25年报，更新至2025H1</p>
+
+<div class="summary-box">
+  <strong>竞争位置：</strong> “中间龙头”——盈利能力与壁垒介于高端迈瑞（医院高壁垒高毛利）与大众可孚（电商性价比）之间，财务安全性最强、股东回报最优，但技术高度与全球化不及迈瑞。优势赛道在家用/院外，CGM是缩小与迈瑞差距的关键。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<div class="summary-box">
+  <strong>估值方法：首选 PE / PEG（成长型非周期），辅助 PS（未盈利期）与股息率（防御验证）</strong><br>
+  成长性医疗器械（尤其CGM未放量时）更适合 PEG：当前PE21.3 / 增速(券商预期15%)=1.42，处于合理偏贵（PEG&lt;1为便宜，1-1.5合理）。<br>
+  当前市场用PE+股息双锚定基本匹配：PE看成长性、分红率67%+股息3.67%提供价值锚。不适用PB（轻资产、净资产低估品牌价值，茅台PB9为证）。<br>
+  <strong>四步成长股成色检验：</strong>① 营收79.5亿&gt;20亿且增速5%（达标但不高）② 毛利率50.6%且稳定（强）③ CFO15亿为正且持续（强）④ PS3.4合理（&lt;10）—— 3/4通过，非“烧钱陷阱”，是实生意但增速需回升至10%+才配得上当前PS。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  Step 1 - 行业定位：非周期成长性（医疗器械家用龙头），分散→集中，品牌+牌照+渠道壁垒，成长期向成熟期过渡<br>
+  Step 2 - 财务体检：ROE 11.4%高利润型驱动，毛利率50.6%稳，CFO/净利1.01现金真实，负债17%堡垒级<br>
+  Step 3 - 估值判断：PE21.3x历史87%分位偏贵，PB2.1x，合理PE10-18x溢价，股息3.67%有支撑<br>
+  Step 4 - 风险排查：无重大雷，销售费激增（红灯）+商誉10.7亿（黄灯）为主，其余绿灯<br>
+  Step 5 - 结论：好公司（财务底盘优）+ 价格偏贵（估值在高位）→ 等待业绩兑现或回调<br>
+  Step 6 - 跟踪：关键看CGM放量/外销增速/销售费率回落，卖出信号为费用失控或CGM不及预期+ROE跌破10%
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td>✓ 是</td><td>老龄化+院外健康管理长坡厚雪，家用器械需求稳定增长，壁垒中高，格局向龙头集中</td></tr>
+  <tr><td>② 好公司</td><td>✓ 是（瑕疵）</td><td>ROE 11.42%未达15%优秀线但ROIC12%+毛利率50.6%稳+CFO&gt;净利，扣分在利润增速而非质地</td></tr>
+  <tr><td>③ 好价格</td><td>✗ 否</td><td>PE21.3x处于历史87%分位（20.82为80%分位），PEG1.42偏贵，股息虽高但不构成深度价值</td></tr>
+</table>
+<div class="highlight-box">
+<strong>三要素结论：</strong> 2/3满足——行业与公司质地过关，价格不过关。属于“好公司、贵价格”，适合加入观察池而非立即重仓。
+</div>
+
+<h3>7.3 风险评估</h3>
+<div class="danger-box">
+  ☐ 价值陷阱（低PE+低增长+高负债）→ <strong>未命中</strong>（负债17%极低，虽低增长但PE不低）<br>
+  ☐ 周期陷阱（低PE+周期顶点）→ <strong>未命中</strong>（非周期股，且当前PE偏高非低）<br>
+  ☐ 烧钱陷阱（高PE+高增速+负现金流）→ <strong>未命中</strong>（CFO15亿为正，FCF持续正）
+</div>
+
+<h3>管理层与治理风险</h3>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力与履历</td><td>好</td><td>吴群（董事长/总经理）接班后推全球化/数智化/可穿戴三大战略，CGM及海外注册快速落地，2025外销+30%验证执行力</td></tr>
+  <tr><td>股权结构与利益一致性</td><td>强</td><td>实控人吴光明家族控股鱼跃科技（约42.6亿股），质押0%，分红率67.65%+拟授权中期分红，利益深度绑定</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td>无</td><td>近5年无监管处罚，审计连续无保留，非经营性占用仅0.49亿</td></tr>
+  <tr><td>资本配置记录</td><td>合理</td><td>分红慷慨（3年累计26亿占均净利137%），并购Inogen 9.9%加码出海，商誉未滥用</td></tr>
+  <tr><td>管理层增减持记录</td><td>无（中性）</td><td>近一年无董监高大额减持公告，需持续跟踪</td></tr>
+  <tr><td>CEO交接/关键人员变动</td><td>无风险</td><td>吴群已稳定掌舵多年，无交接期</td></tr>
+</table>
+
+<h3>盈利可持续性</h3>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是靠价？</td><td>量驱动为主</td><td>营收+5.1%靠血糖/CGM/急救放量（量增20-40%），毛利率微升0.46pct说明非涨价，健康</td></tr>
+  <tr><td>涨价能否持续？</td><td>需观察</td><td>家用器械定价受集采/电商比价压力，靠品牌溢价而非提价，CGM定价权强但竞争加剧</td></tr>
+  <tr><td>非经常性利润占比</td><td>低</td><td>21%（3.13亿/14.82亿），政府补助3.6亿可持续性弱但占比可控</td></tr>
+  <tr><td>大客户/大项目集中度</td><td>分散</td><td>经销73%分散至数千经销商+电商，直销26%，无单一大客户依赖</td></tr>
+  <tr><td>政策/监管依赖度</td><td>中</td><td>器械集采主要针对高值耗材，家用器械影响小；但CGM/海外注册受政策/地缘影响需关注</td></tr>
+</table>
+
+<h3>关键变量敏感性</h3>
+<div class="summary-box">
+<strong>变量1：销售费用率（当前22.2%）</strong><br>
+  乐观：费率回落至18%（节约~3.3亿）→ 净利率回升至22-23%，ROE重回14-15%，EPS增0.33元<br>
+  中性：维持22-23%（海外/CGM持续投入）→ 净利率18-19%维稳，依赖营收增长消化费用<br>
+  悲观：费率升至25%（投入不及预期）→ 净利率跌至15%，ROE破10%，估值承压<br>
+<strong>变量2：CGM放量速度（2024年翻倍）</strong><br>
+  乐观：2026 CGM收入15-18亿（+50%）、毛利率60%+ → 贡献增量5-6亿营收、3亿毛利，成为第二曲线<br>
+  中性：CGM 12-13亿（+20%）→ 稳定贡献但不足以对冲呼吸下滑<br>
+  悲观：竞争加剧或集采降价 → CGM增速&lt;10%，估值逻辑证伪<br>
+<strong>变量3：汇率与海外（外销占比12.5%）</strong><br>
+  乐观：美元强势+Inogen协同，外销+30%→ 增厚营收2-3亿<br>
+  中性：外销+15-20%保持<br>
+  悲观：地缘/关税导致外销增速放缓至&lt;10%
+</div>
+
+<h3>7.4 前景展望</h3>
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. CGM第二曲线 — Anytime 4/5已获批，2024翻倍、2025H1 +20%，血糖/POCT毛利率61%最高，潜在市场百亿级<br>
+  2. 出海放量 — 外销30.4%→26.6%连续高增，MDR注册+Inogen 9.9%入股打开欧美渠道，占比有望3年内提升至20%<br>
+  3. 呼吸修复 — 制氧机降幅收窄、呼吸机/雾化器已转正，基数出清后2026年有望恢复正增长<br><br>
+  <strong>负向拖累：</strong><br>
+  1. 费用前置 — 销售17.6亿+研发5.7亿合计23.3亿，短期难大幅压缩，侵蚀利润<br>
+  2. 集采/价格战 — 家用器械电商比价激烈，CGM面临雅培/美敦力竞争，毛利率承压<br>
+  3. 估值透支 — PE 87%分位已隐含对2026年15%增长预期，若增速不及预期易杀估值
+</div>
+
+<h3>三情景简表（FY2026E）</h3>
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>EPS预估</th><th>PE区间</th><th>预期回报（vs27.28）</th></tr>
+  <tr><td>乐观</td><td>营收+15%至91亿，净利率回升至22%，费用率18%</td><td>2.40元</td><td>18-22x → 43-53元</td><td>+58% ~ +94%</td></tr>
+  <tr><td>中性</td><td>营收+10%至87.6亿，净利率19%，费用率21%</td><td>2.10-2.20元（券商一致）</td><td>16-20x → 33.6-44元</td><td>+23% ~ +61%</td></tr>
+  <tr><td>悲观</td><td>营收+5%至83.5亿，净利率15%，费用失控</td><td>1.50-1.60元</td><td>15-18x → 22.5-28.8元</td><td>-17% ~ +6%</td></tr>
+</table>
+<p style="font-size:12px;color:#666;">概率判断：中性50% / 乐观25% / 悲观25%。中性预期隐含2026年利润增速约45%（因2025基数低），需Q3验证。</p>
+
+<h3>7.5 资金面信号</h3>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>北向资金持股变动</td><td>持平偏增</td><td>陆股通占流通2.69%（6.51亿，2026-06-30），较年初小幅增持，外资认可防御属性</td></tr>
+  <tr><td>机构持仓变动</td><td>稳定</td><td>2025中报基金持仓稳定，未见大幅减仓</td></tr>
+  <tr><td>融资余额变动</td><td>稳定</td><td>融资6.23亿占流通2.41%，融券916万，杠杆情绪不高</td></tr>
+  <tr><td>大股东增减持</td><td>无</td><td>控股股东鱼跃科技及吴光明近一年无大额减持公告，质押0%</td></tr>
+  <tr><td>大宗交易</td><td>溢价</td><td>近3月大宗多溢价成交（34.95-35.70元，溢价0-0.22%），机构接盘意愿强但量小（30万股级别）</td></tr>
+</table>
+<div class="summary-box">
+<strong>资金面结论：</strong> 资金面中性偏正面——外资小幅加仓+大宗溢价+零质押，显示机构对高股息防御标的仍有配置需求；但融资余额未放大，说明游资/散户情绪未过热，与基本面“业绩拐点未明+估值偏高”一致，非强势抢筹信号。
+</div>
+
+<h3>7.6 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？（提示：卖家用器械+耗材，靠品牌/渠道/牌照赚50%毛利，CGM是新故事）<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？（是Q4扣非-652万？还是销售费22.2%？或是PE 87%分位？）<br>
+  3. 如果现在买入，期待的回报来源是什么？（是估值修复？还是CGM放量带来的EPS增长？能接受多久的等待？）<br>
+  4. 什么情况下你会坚决卖出？（如销售费率升至25%且CGM增速&lt;10%，或商誉减值，或ROE跌破8%？）
+</div>
+
+</div></div>
+
+<div class="footer">
+  免责声明：本报告仅为个人学习分析，不构成任何投资建议。数据来源：公司2025年报、2025中报/一季报、东吴证券研报、Wind/理杏仁/集思录/东方财富Choice；估值数据截至2026-07-17。<br>
+  分析框架：L1-L6 stock-learning/materials，分类以 industry-classification.md 为准 | 报告生成：stock-report-tab skill
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>
