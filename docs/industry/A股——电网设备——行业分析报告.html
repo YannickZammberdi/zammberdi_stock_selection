@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>A股——电网设备 行业分析报告</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f5f5f5;padding:0;color:#333}
+  .report-wrap{max-width:800px;margin:0 auto;background:#fff}
+  h1{font-size:22px;margin:0;padding:28px 0 4px;text-align:center}
+  h2{font-size:18px;margin:28px 0 12px;border-bottom:2px solid #1a1a1a;padding-bottom:4px}
+  h3{font-size:15px;margin:18px 0 8px}
+  .subtitle{color:#666;font-size:13px;text-align:center;margin-bottom:4px}
+  .meta{color:#999;font-size:12px;text-align:center;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #e0e0e0}
+  .tab-bar{position:sticky;top:0;z-index:10;background:#fff;display:flex;flex-wrap:wrap;border-bottom:2px solid #ddd;gap:0}
+  .tab-btn{padding:10px 14px;cursor:pointer;border:none;background:none;font-size:13px;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+  .tab-btn:hover{color:#333;background:#f9f9f9}
+  .tab-btn.active{color:#1a1a1a;font-weight:700;border-bottom-color:#1a1a1a}
+  .tab-content{display:none}
+  .tab-content.active{display:block}
+  .tab-inner{padding:0 12px}
+  table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:13px}
+  th{background:#f5f5f5;padding:8px 6px;text-align:left;border-bottom:2px solid #ddd;white-space:nowrap;font-weight:600}
+  td{padding:7px 6px;border-bottom:1px solid #eee}
+  tr:nth-child(even) td{background:#fafafa}
+  .summary-box{background:#fffde7;border-left:4px solid #f9a825;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .highlight-box{background:#e3f2fd;border-left:4px solid #1e88e5;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .danger-box{background:#ffebee;border-left:4px solid #e53935;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .verdict{text-align:center;padding:20px;margin:16px 0;border-radius:8px;font-size:18px;font-weight:700}
+  .verdict-ok{background:#e8f5e9;border:2px solid #4caf50;color:#2e7d32}
+  .verdict-caution{background:#fff3e0;border:2px solid #ff9800;color:#e65100}
+  .verdict-bad{background:#ffebee;border:2px solid #e53935;color:#c62828}
+  .score{font-size:36px;display:block;margin-bottom:4px}
+  .pass{color:#2e7d32;font-weight:700}
+  .skip{color:#666;font-style:italic}
+  .tag{display:inline-block;padding:2px 8px;border-radius:3px;font-size:11px;font-weight:700}
+  .tag-red{background:#ffebee;color:#c62828}
+  .tag-green{background:#e8f5e9;color:#2e7d32}
+  .tag-yellow{background:#fff8e1;color:#f57f17}
+  .footer{font-size:11px;color:#aaa;text-align:center;padding:24px 0 8px;border-top:1px solid #eee;margin-top:30px}
+  .card{background:#fafafa;border:1px solid #e0e0e0;border-radius:6px;padding:14px;margin:10px 0;font-size:13px}
+  .flex{display:flex;flex-wrap:wrap;gap:8px}
+  .tbl-wrap{border:1px solid #e0e0e0;border-radius:6px;overflow:hidden;margin:10px 0 18px}
+  .tbl-wrap table{margin:0}
+  .tbl-wrap th{background:#f5f5f5;padding:9px 8px;border-bottom:1px solid #ddd;font-weight:600;font-size:12px}
+  .tbl-wrap td{padding:8px;border-bottom:1px solid #f0f0f0;font-size:13px}
+  .tbl-wrap tr:last-child td{border-bottom:none}
+  .bar-wrap{display:inline-flex;align-items:center;width:60px;height:16px;vertical-align:middle}
+  .bar-bg{background:#eee;border-radius:4px;height:8px;width:100%;overflow:hidden;position:relative}
+  .bar{display:block;height:8px;border-radius:4px}
+  .score-cell{font-weight:700;font-size:15px;text-align:center;white-space:nowrap}
+  .tbl-wrap td,.tbl-wrap th{vertical-align:middle}
+  .metric-h{color:#1565c0;font-weight:700;font-size:13px}
+  .metric-l{color:#c62828;font-weight:700}
+  .metric-m{color:#e65100;font-weight:700}
+  .col-tag{display:inline-block;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600}
+  .col-win{background:#e8f5e9;color:#2e7d32}
+  .col-lose{background:#ffebee;color:#c62828}
+  .col-warn{background:#fff3e0;color:#e65100}
+  .col-info{background:#e3f2fd;color:#1565c0}
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>A股——电网设备 行业分析报告</h1>
+<div class="subtitle">L5分类：混合周期（基础设施升级+成长） ｜ 上市公司：137只 ｜ 总市值：~2.0万亿</div>
+<div class="meta">生成日期：2026-08-24 ｜ 数据截止：2025年报 + 2026Q1 ｜ 分类标准：申万二级-电网设备</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l7">L7 量化初筛</button>
+  <button class="tab-btn" data-tab="l8">L8 行业画像</button>
+  <button class="tab-btn" data-tab="l9">L9 竞争格局</button>
+  <button class="tab-btn" data-tab="l10">L10 周期时机</button>
+</div>
+
+<div class="tab-content active" id="tab-summary">
+<div class="tab-inner">
+
+<h2>行业速览</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">项目</th><th>内容</th></tr>
+<tr><td>行业名称</td><td><strong>电网设备</strong>（输变电一次设备 + 二次设备/自动化 + 配用电 + 线缆辅材）</td></tr>
+<tr><td>市场</td><td>A股</td></tr>
+<tr><td>L5分类</td><td><span class="col-tag col-info">混合周期</span> 基础设施属性 + 新型电力系统成长 + 投资周期波动</td></tr>
+<tr><td>上市公司</td><td>137只（申万电网设备二级，Wind截至2026-01），其中符合L7筛选条件 <span class="col-tag col-win">10只</span></td></tr>
+<tr><td>行业总市值</td><td>~2.0万亿（2026Q1，国金/中航证券测算 1.9-2.0万亿）</td></tr>
+<tr><td>产业链利润核心</td><td><span class="col-tag col-win">二次设备/自动化</span>（南瑞/四方 毛利率30%+）与 <span class="col-tag col-win">特高压一次设备</span>（GIS/变压器 毛利率27-36%）最厚；配网/电表承压中</td></tr>
+<tr><td>生命周期阶段</td><td><span class="col-tag col-win">成长中期→成熟早期</span> 新型电力系统驱动第二成长曲线，存量更新+增量扩容并行</td></tr>
+<tr><td>当前周期位置</td><td><span class="col-tag col-win">复苏/繁荣</span> 国网“十五五”4万亿（+40%）、南网1.75万亿，2026Q1国网投资+37%，特高压+配网共振</td></tr>
+</table>
+</div>
+
+<h2>综合评分</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>维度</th><th style="width:60px">得分</th><th>进度</th><th>说明</th></tr>
+<tr>
+  <td>行业规模与空间</td>
+  <td class="score-cell">17/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:85%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">国内“十五五”5万亿级（国网4万亿+南网），全球电网投资3700亿美元/年，TAM超2.2万亿/年且持续扩容</td>
+</tr>
+<tr>
+  <td>产业链位置</td>
+  <td class="score-cell">11/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:73%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">二次/特高压一次利润厚，议价强；但配电/电表/线缆同质化竞争挤压毛利</td>
+</tr>
+<tr>
+  <td>竞争格局</td>
+  <td class="score-cell">13/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:65%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">二次设备高度集中（南瑞垄断），一次设备寡头（平高/西电/思源），配网分散但区域联采推动集中</td>
+</tr>
+<tr>
+  <td>增长驱动力</td>
+  <td class="score-cell">12/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:80%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">结构性成长（新能源消纳+AI算电协同）+ 周期性（特高压核准提速）双驱动，可持续5-10年</td>
+</tr>
+<tr>
+  <td>周期位置</td>
+  <td class="score-cell">11/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:73%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">处于复苏→繁荣切换初期，招标量价齐升（输变电招标919亿+26%），尚未过热</td>
+</tr>
+<tr>
+  <td>政策环境</td>
+  <td class="score-cell">13/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:87%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">顶层利好密集：新型电力系统“十五五”规划+高质量发展指导意见+设备更新1.08万亿</td>
+</tr>
+<tr style="background:#fafafa">
+  <td style="font-weight:700;font-size:14px">总分</td>
+  <td style="font-weight:700;font-size:16px;color:#4caf50">77/100</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:77%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#2e7d32;font-weight:600">良好——值得重仓研究，优选龙头分批布局</td>
+</tr>
+</table>
+</div>
+
+<div class="verdict verdict-ok">
+  <span class="score">77</span>
+  良好——值得重点配置
+</div>
+
+<div class="summary-box">
+  <strong>核心结论</strong><br>
+  电网设备是A股少见的 <strong>“HALO资产”</strong>（高确定性+长期成长+分红稳）：国内“十五五”4万亿投资较“十四五”+40%，年均8000亿，特高压（“十五五”年均核准4-5条直流+2条交流）+ 配网智能化（占国网投资60%+）+ AIDC算电协同构成三引擎；海外欧美电网老化+AI缺电带来第二曲线，变压器出口2025年+49%、2026Q1延续+38%。行业正从“总量维稳”切换至“结构高景气”，<strong>二次设备（南瑞）与特高压一次（思源/平高/西电）最受益，出海（金盘/华明）弹性最大，配网/电表已在底部修复</strong>。<br>
+  投资框架：用<strong>混合周期/价值成长框架</strong>——看PB+ROE+合同负债/在手订单，不被短期PE迷惑。当前（2026Q1-中）处于<strong>复苏→繁荣前期，估值偏合理（非泡沫顶）</strong>，适合<strong>龙头分批建仓、跟踪招标与原材料价差</strong>。回避无技术壁垒、低ROE、高杠杆的中小线缆/集成商。
+</div>
+
+<div class="highlight-box">
+  <strong>行业公式</strong><br>
+  收入 = 电网投资额（国网+南网+YOY） × 设备招标占比 × 中标份额 × 交付节奏（6-9个月滞后）<br>
+  利润 = 收入 ×（招标价 - 铜/铝/硅钢/芯片成本）- 期间费用<br>
+  关键指标：1) 国网/南网投资完成额与招标批次金额 2) 特高压核准/开工条数 3) 变压器/开关出口额 4) 铜铝价格 5) 合同负债+存货增速
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l7">
+<div class="tab-inner">
+
+<h2>筛子调整说明</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:12%">筛子</th><th style="width:35%">标准</th><th>调整说明</th></tr>
+<tr><td>①<span class="col-tag col-info">市值</span></td><td>主板≥50亿 / 创业板科创板≥30亿 / 北交所≥30亿</td><td>行业137家，含大量小市值线缆/集成商，严格执行以剔除流动性差标的</td></tr>
+<tr><td>②<span class="col-tag col-info">营收</span></td><td>主板≥10亿 / 创业板科创板≥3亿</td><td>严格执行；电网设备营收与在手订单强相关，<3亿多为空壳/转型</td></tr>
+<tr><td>③<span class="col-tag col-info">毛利率</span></td><td>制造业≥15%</td><td>正常执行；重资产但技术壁垒环节应≥20%，<15%多为低价竞争/贸易商</td></tr>
+<tr><td>④<span class="col-tag col-info">ROE</span></td><td>≥8%（加权ROE，近1年）</td><td>正常执行；连续3年<5%剔除，电网设备ROE>15%为优秀</td></tr>
+<tr><td>⑤<span class="col-tag col-info">负债率</span></td><td>制造业≤65%</td><td>正常执行；电网设备龙头普遍40-56%，>65%多为激进扩张或亏损</td></tr>
+<tr><td>⑥<span class="col-tag col-info">估值</span></td><td>PE历史分位≤70% 且 PB合理（周期用PB≤80%分位）</td><td>电网设备为混合周期，PE+PB双筛；高景气期PE高但PB仍可参考</td></tr>
+</table>
+</div>
+<div class="summary-box" style="font-size:12px">行业类型判定：<span class="col-tag col-info">混合周期</span> 按 industry-classification.md 属于“非纯周期、含成长属性”，不跳过任何筛子，但估值需PE+PB双看，避免高景气期PE陷阱。</div>
+
+<h2>候选池（10只）</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>环节</th><th>市值</th><th>毛利率</th><th>ROE</th><th>负债率</th><th>估值分位</th><th>通过</th></tr>
+<tr>
+  <td><strong>国电南瑞</strong> 600406</td>
+  <td><span class="col-tag col-win">二次/自动化</span></td>
+  <td style="font-weight:600">1,775亿</td>
+  <td><span class="col-tag col-win">25.8%</span></td>
+  <td><span class="col-tag col-win">16.26%</span></td>
+  <td>42.7%</td>
+  <td>PE 45%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>思源电气</strong> 002028</td>
+  <td><span class="col-tag col-win">一次输变电</span></td>
+  <td style="font-weight:600">1,185亿</td>
+  <td><span class="col-tag col-win">30.77%</span></td>
+  <td><span class="col-tag col-win">22.63%</span></td>
+  <td>47.0%</td>
+  <td>PE 55%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>特变电工</strong> 600089</td>
+  <td><span class="col-tag col-win">一次（变压器）</span></td>
+  <td style="font-weight:600">954亿</td>
+  <td><span class="col-tag col-win">18.8%</span></td>
+  <td><span class="col-tag col-win">8.75%</span></td>
+  <td>55.6%</td>
+  <td>PE 30%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>中国西电</strong> 601179</td>
+  <td><span class="col-tag col-win">一次（开关/变压器）</span></td>
+  <td>600亿</td>
+  <td><span class="col-tag col-win">20.5%</span></td>
+  <td><span class="col-tag col-win">8.5%</span></td>
+  <td>52%</td>
+  <td>PE 50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>金盘科技</strong> 688676</td>
+  <td><span class="col-tag col-win">配电（干变）</span></td>
+  <td>~185亿</td>
+  <td><span class="col-tag col-win">28-32%</span></td>
+  <td><span class="col-tag col-win">12.6%</span></td>
+  <td>45%</td>
+  <td>PE 40%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>平高电气</strong> 600312</td>
+  <td><span class="col-tag col-win">一次（GIS开关）</span></td>
+  <td>268亿</td>
+  <td><span class="col-tag col-win">23.6%</span></td>
+  <td><span class="col-tag col-win">10.28%</span></td>
+  <td>46.8%</td>
+  <td>PE 50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>许继电气</strong> 000400</td>
+  <td><span class="col-tag col-win">二次+直流</span></td>
+  <td>203亿</td>
+  <td><span class="col-tag col-win">23.36%</span></td>
+  <td><span class="col-tag col-win">9.94%</span></td>
+  <td>49.0%</td>
+  <td>PE 40%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>四方股份</strong> 601126</td>
+  <td><span class="col-tag col-win">二次/继保</span></td>
+  <td>130亿</td>
+  <td><span class="col-tag col-win">32%</span></td>
+  <td><span class="col-tag col-win">15.2%</span></td>
+  <td>38%</td>
+  <td>PE 45%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>东方电子</strong> 000682</td>
+  <td><span class="col-tag col-info">配网自动化</span></td>
+  <td>125亿</td>
+  <td><span class="col-tag col-win">31%</span></td>
+  <td><span class="col-tag col-win">9.2%</span></td>
+  <td>41%</td>
+  <td>PE 45%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>三星医疗</strong> 601567</td>
+  <td><span class="col-tag col-info">电表/配电</span></td>
+  <td>348亿</td>
+  <td><span class="col-tag col-win">28%</span></td>
+  <td><span class="col-tag col-win">11.5%</span></td>
+  <td>36%</td>
+  <td>PE 35%</td>
+  <td class="pass">6/6</td>
+</tr>
+</table>
+</div>
+<div style="font-size:11px;color:#999;margin:-10px 0 16px">数据来源：2025年报/2026Q1季报、Wind市值（2026-01-15/07-16）、券商研报；*中国西电ROE为年化扣非口径约8.5%（2025）；毛利率为综合毛利率；PE分位为近5年历史分位估算（25-55%均<70%阈值）。市值核心5只加粗。</div>
+
+<h2>观察池</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>卡在哪筛</th><th>备注</th></tr>
+<tr>
+  <td><strong>保变电气</strong> 600550</td>
+  <td><span class="col-tag col-lose">③毛利率~12%</span> <span class="col-tag col-lose">④ROE~3%</span></td>
+  <td>变压器龙头但盈利波动大，负债偏高，等待毛利率修复至15%+再评估</td>
+</tr>
+<tr>
+  <td><strong>国电南自</strong> 600268</td>
+  <td><span class="col-tag col-lose">④ROE~4.5%</span></td>
+  <td>自动化二线，连续多年ROE<5%，需观察三年持续性</td>
+</tr>
+<tr>
+  <td><strong>宏发股份</strong> 600885</td>
+  <td><span class="col-tag col-warn">③毛利率16%</span></td>
+  <td>继电器为主，电网占比低，毛利率临界但ROE达标，列观察</td>
+</tr>
+<tr>
+  <td><strong>华明装备</strong> 002270</td>
+  <td><span class="col-tag col-warn">估值PE~65%分位</span></td>
+  <td>分接开关细分龙头，出海高增但当前估值偏高，等待回调至70%内</td>
+</tr>
+<tr>
+  <td><strong>大烨智能</strong> 300670</td>
+  <td><span class="col-tag col-lose">②营收~2.5亿</span></td>
+  <td>营收<3亿（创业板阈值），体量过小，流动性风险</td>
+</tr>
+<tr>
+  <td><strong>长缆科技</strong> 002879</td>
+  <td><span class="col-tag col-lose">①市值~25亿</span> <span class="col-tag col-lose">③毛利率~11%</span></td>
+  <td>市值+毛利率双不达标，线缆同质化严重</td>
+</tr>
+</table>
+</div>
+
+<h2>筛除记录</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>筛子</th><th style="width:60px">筛除数</th><th>知名示例</th></tr>
+<tr><td>①市值</td><td style="text-align:center">~48</td><td>大量北交所/小市值线缆、集成商（<30亿），如长缆科技、神马电力等</td></tr>
+<tr><td>②营收</td><td style="text-align:center">~15</td><td>营收<10亿/3亿的壳/转型标的，如大烨智能等</td></tr>
+<tr><td>③毛利率 <span class="col-tag col-lose">较严</span></td><td style="text-align:center">~22</td><td>保变电气、长缆科技、积成电子等低毛利贸易/集成</td></tr>
+<tr><td>④ROE</td><td style="text-align:center">~18</td><td>国电南自、保变电气等长期ROE<5%</td></tr>
+<tr><td>⑤负债率</td><td style="text-align:center">~8</td><td>个别激进扩张线缆/承包商负债>65%</td></tr>
+<tr><td>⑥估值</td><td style="text-align:center">~16</td><td>华明装备、扬电科技等2025年涨幅后PE>70%分位</td></tr>
+<tr style="background:#fffde7"><td><strong>剩余</strong></td><td style="text-align:center;font-weight:700;color:#2e7d32"><strong>10</strong></td><td>137→10（-93%），聚焦二次+特高压一次+出海龙头</td></tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <strong>L7筛选结论</strong><br>
+  137→10，筛选力度极大（-93%）。最严是<strong>市值筛（-35%）与毛利率/ROE筛（合计-29%）</strong>，说明行业长尾小票多、盈利分化大。剩余10只集中在<strong>高壁垒环节</strong>：二次设备（南瑞/四方/许继）、特高压一次（思源/平高/西电/特变）、出海配电（金盘）与配网自动化（东方电子）。核心5只（南瑞、思源、特变、平高、许继）覆盖主干网投资增量的80%招标份额，值得逐一跑L1-L6。观察池中超跌但缺一项的标的需等ROE/毛利率修复或估值回调再纳入。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l8">
+<div class="tab-inner">
+
+<h2>产业链</h2>
+<div class="card" style="font-size:13px;line-height:1.7">
+
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px">
+
+<div style="flex:1.2;min-width:200px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#2e7d32;font-size:14px">上游原材料/零部件</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#fff;border:1px solid #e0e0e0;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:12px">大宗：铜·铝·硅钢·绝缘材料</div>
+    <div style="text-align:center;font-size:11px;color:#666">价格传导至毛利，2026H1铜铝高位挤压</div>
+    <div style="margin:8px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:12px">核心零部件</div>
+    <div style="text-align:center;font-size:11px;color:#666">芯片/IGBT·换流阀·套管·互感器<br>代表：南瑞/许继自研，西电/平高外采</div>
+  </div>
+</div>
+
+<div style="flex:2;min-width:280px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#1565c0;font-size:14px">中游制造（电网设备核心）</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+
+    <div style="display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:90px;background:#e8f5e9;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">一次设备<br><span style="font-weight:400;font-size:11px">输变电</span></div>
+        <div style="font-size:10px;color:#666">变压器·GIS·开关·电抗器</div>
+        <div style="font-size:10px;color:#2e7d32">思源·特变·平高·西电</div>
+      </div>
+      <div style="font-size:20px;color:#999;line-height:36px">↔</div>
+      <div style="flex:1;min-width:90px;background:#e3f2fd;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">二次设备<br><span style="font-weight:400;font-size:11px">自动化/控制</span></div>
+        <div style="font-size:10px;color:#666">继保·调度·换流阀控保</div>
+        <div style="font-size:10px;color:#1565c0">南瑞·许继·四方·东方电子</div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:11px;color:#1565c0;margin-bottom:8px">一次+二次融合（数字化变电站）是趋势，二次毛利更高</div>
+
+    <div style="margin:6px 0 4px;font-weight:600;font-size:12px;color:#1565c0">配用电 + 出海</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">配电设备<br><span style="font-size:10px;color:#666">环网柜·柱开·变压器</span><br><span style="font-size:10px;color:#e65100">金盘·明阳电气</span></div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">电表/用采<br><span style="font-size:10px;color:#666">智能电表·用采系统</span><br><span style="font-size:10px;color:#e65100">三星·炬华·威胜</span></div>
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">出海变压器<br><span style="font-size:10px;color:#666">电力变压器</span><br><span style="font-size:10px;color:#2e7d32">金盘·华明·思源</span></div>
+    </div>
+
+    <div style="margin:8px 0 4px;font-weight:600;font-size:12px;color:#1565c0">AIDC/算电协同（新）</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <div style="flex:1;background:#f3e5f5;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">SST固态变压器<br><span style="font-size:10px;color:#666">四方·金盘·中恒</span></div>
+      <div style="flex:1;background:#f3e5f5;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">HVDC 800V<br><span style="font-size:10px;color:#666">麦格米特·科士达</span></div>
+      <div style="flex:1;background:#fce4ec;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">虚拟电厂/EMS</div>
+    </div>
+  </div>
+</div>
+
+<div style="flex:1;min-width:160px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#c62828;font-size:14px">下游应用</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:10px 8px;text-align:center;font-weight:600;font-size:13px">电网投资方</div>
+    <div style="text-align:center;font-size:11px;color:#666">国网（4万亿）·南网（>1.75万亿）<br>蒙西/内蒙电力</div>
+    <div style="margin:10px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#fff;border:1px solid #e0e0e0;border-radius:4px;padding:10px 8px;text-align:center;font-weight:600;font-size:13px">终端用电</div>
+    <div style="text-align:center;font-size:11px;color:#666">新能源外送·工商业·居民<br>AIDC算力中心·充电桩</div>
+    <div style="margin:10px 0;text-align:center;color:#999;font-size:18px">↺</div>
+    <div style="margin-bottom:6px;background:#f5f5f5;border:1px dashed #ccc;border-radius:4px;padding:8px 8px;text-align:center;font-size:12px">海外电网<br><span style="font-size:10px;color:#666">欧美改造·亚非基建</span></div>
+  </div>
+</div>
+
+</div>
+
+<div style="background:#fffde7;border-left:3px solid #f9a825;padding:8px 12px;font-size:12px;border-radius:0 4px 4px 0">
+  <strong>利润最厚环节：</strong>二次设备/继保（毛利率32-40%）→ 特高压一次GIS/换流变（27-36%）→ 配电干变（28-32%）→ 电表/线缆（15-22%）<br>
+  <span style="color:#999">2025年数据：南瑞25.8%、思源30.77%、平高23.6%、许继23.36%；配网/电表因集采降价承压，但二季度价格已修复</span>
+</div>
+
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>环节</th><th>代表公司</th><th>毛利率</th><th>集中度</th><th>议价能力</th></tr>
+<tr>
+  <td><span class="col-tag col-win">二次/自动化</span></td>
+  <td>南瑞、许继、四方</td>
+  <td><span class="col-tag col-win">25-35%</span></td>
+  <td>CR3~70%（二次垄断）</td>
+  <td><span class="col-tag col-win">强</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-win">特高压一次</span></td>
+  <td>平高、西电、思源、特变</td>
+  <td><span class="col-tag col-win">22-36%</span></td>
+  <td>CR5~60%</td>
+  <td><span class="col-tag col-win">中强</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-warn">配电设备</span></td>
+  <td>金盘、明阳、东方电子</td>
+  <td><span class="col-tag col-warn">18-28%</span></td>
+  <td>分散，联采后提升</td>
+  <td><span class="col-tag col-warn">中</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-warn">电表/用采</span></td>
+  <td>三星、炬华、威胜、海兴</td>
+  <td><span class="col-tag col-warn">20-28%</span></td>
+  <td>CR5~40%</td>
+  <td><span class="col-tag col-warn">弱-中</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-lose">线缆辅材</span></td>
+  <td>宝胜、汉缆、东方电缆</td>
+  <td><span class="col-tag col-lose">12-18%</span></td>
+  <td>CR5<20%</td>
+  <td><span class="col-tag col-lose">弱</span></td>
+</tr>
+<tr style="background:#fafafa">
+  <td><span class="col-tag col-win">出海变压器</span></td>
+  <td>金盘、思源、华明</td>
+  <td><span class="col-tag col-win">30-40%（海外）</span></td>
+  <td>海外供给紧缺</td>
+  <td><span class="col-tag col-win">强</span></td>
+</tr>
+</table>
+</div>
+
+<h2>市场规模</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">指标</th><th style="width:25%">数值</th><th>说明</th></tr>
+<tr><td><strong>TAM</strong>（总可触达市场）</td><td><span class="col-tag col-info" style="font-size:13px">国内2.0-2.2万亿/年</span></td><td>国金测算24年国内电网设备对应市场~1.8万亿（含电源侧），广义电力设备2.2万亿（中研普华）</td></tr>
+<tr><td><strong>SAM</strong>（电网侧可服务）</td><td>~0.82万亿/年</td><td>网内市场约8230亿（新浪/国网口径）+ 海外出口增量</td></tr>
+<tr><td><strong>当前渗透/投资强度</strong></td><td>电网占电力投资34.2%</td><td>2024电网工程6083亿（+15.3%），电源11687亿；“十四五”8大基地455GW待外送</td></tr>
+<tr><td><strong>近年增速</strong>（3年CAGR）</td><td><span class="col-tag col-win">10-15%</span></td><td>板块营收25年+9%、26Q1+13%；输变电招标919亿+26%，出口变压器+35-49%</td></tr>
+</table>
+</div>
+
+<h2>生命周期</h2>
+<div class="summary-box">
+  <strong><span class="col-tag col-win" style="font-size:14px">成长期后半→成熟早期</span>（新型电力系统第二曲线）</strong><br>
+  判断依据：① 投资额创历史新高但增速非爆发式（6-15%温和上行）；② 技术迭代持续（柔直、SST、数字孪生）但非颠覆式；③ 格局从“跑马圈地”转向“龙头集中+出海溢价”；④ 渗透率视角：智能配电/数字化覆盖率68%→2030年95%仍有空间，AIDC供电系新物种导入期。非衰退期，未来5-10年复合增速可维持6-10%（电力装备稳增长目标）。
+</div>
+
+<h2>增长驱动力</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动力</th><th>类型</th><th>可持续性</th><th>量化指标</th></tr>
+<tr>
+  <td>新能源消纳+外送（沙戈荒大基地455GW）</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长（10年+）</span></td>
+  <td>特高压核准条数、跨区输电量（9984亿kWh+7.9%）</td>
+</tr>
+<tr>
+  <td>新型电力系统/配网智能化（分布式5亿kW）</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>配网投资占比60%+、数字化招标增速</td>
+</tr>
+<tr>
+  <td>AI算电协同（AIDC 129GW新增，+133%）</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>AIDC供电占比10%、SST/HVDC招标</td>
+</tr>
+<tr>
+  <td>海外电网改造+缺电（变压器交付100周+）</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-warn">中长</span></td>
+  <td>变压器出口额（55亿美金+49%）、海外毛利率</td>
+</tr>
+<tr>
+  <td>设备更新（1.08万亿，2024-27增45%）</td>
+  <td><span class="col-tag col-warn">周期/政策</span></td>
+  <td><span class="col-tag col-warn">中（3-5年）</span></td>
+  <td>以旧换新招标、配变能效提升</td>
+</tr>
+</table>
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l9">
+<div class="tab-inner">
+
+<h2>市场结构</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>市场结构类型</td>
+  <td>二次设备：<span class="col-tag col-win">寡头垄断</span>（南瑞绝对龙头）；一次设备：<span class="col-tag col-warn">寡头垄断</span>（4-5家瓜分70%）；配电/电表：<span class="col-tag col-warn">垄断竞争</span>（分散但联采集中）；线缆：<span class="col-tag col-lose">完全竞争</span></td>
+</tr>
+<tr>
+  <td>CR3/CR5</td>
+  <td>二次CR3~70%（南瑞74%+）、开关CR5~60%、配网CR5<30%但区域联采提升、变压器出海CR5~45% <span style="color:#2e7d32">↑集中趋势</span></td>
+</tr>
+<tr>
+  <td>格局象限</td>
+  <td>二次：<span class="col-tag col-win">寡头稳定</span>；特高压一次：<span class="col-tag col-win">赢家通吃</span>（技术+资质壁垒）；配网/电表：<span class="col-tag col-warn">价格战泥潭→修复</span>；线缆：<span class="col-tag col-lose">价格战泥潭</span></td>
+</tr>
+<tr>
+  <td>新进入者威胁</td>
+  <td><span class="col-tag col-warn">中</span>（高压资质+试验认证周期长，但配网/线缆进入门槛低，跨界者多）</td>
+</tr>
+</table>
+</div>
+
+<h2>竞争壁垒</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>壁垒类型</th><th>强度</th><th>可持续性</th><th>具体表现</th></tr>
+<tr>
+  <td>牌照/资质+业绩（一次设备）</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>特高压需国网/南网入网资质+工程业绩，1100kV GIS/换流变仅3-4家可供</td>
+</tr>
+<tr>
+  <td>技术/软件（二次/调度）</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>南瑞调度/继保市占>70%，AI+数字孪生专利>5000项，认证周期1-2年</td>
+</tr>
+<tr>
+  <td>规模+成本（变压器/开关）</td>
+  <td><span class="col-tag col-win">中强</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>特变/思源自制硅钢+规模化降本，海外供给紧缺时享受溢价</td>
+</tr>
+<tr>
+  <td>品牌+渠道（国网集采）</td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>国网集采历史中标份额决定次年投标权重，龙头稳定，南瑞/平高/思源份额前列</td>
+</tr>
+<tr>
+  <td>客户粘性（运维/数字化）</td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>二次系统+运维绑定，后续扩容/升级优先原供应商</td>
+</tr>
+</table>
+</div>
+
+<div class="summary-box">
+  <strong>定价权测试</strong><br>
+  🔹 龙头能涨价吗？<strong>二次/特高压一次能</strong>（供给紧缺+资质垄断，2025年输变电招标量价齐升，750kV设备+75%）；<strong>配网/电表不能</strong>（前期集采价格战，2025H1电表招标价触底后Q2修复）<br>
+  🔹 毛利率趋势：二次稳定（南瑞25-26%）、特高压一次提升（平高高压板块毛27.76%+2.23pct）、配网承压后企稳（15.5%）<br>
+  🔹 ROE趋势：龙头稳步上行（思源22.6%、南瑞16.3%），尾部企业分化
+</div>
+
+<h2>驱动力拆解</h2>
+<div class="highlight-box">
+  <strong>行业收入公式</strong><br>
+  收入 = 电网投资总额 × 设备招标比例 × 中标份额 × 交付确认（6-9月）<br>
+  利润 = 收入 ×（招标价 - 铜铝硅钢成本）- 固定费用<br><br>
+  当前组合：<span style="color:#2e7d32;font-weight:700">量 ↑</span>（招标+26%、投资+37%） ＋ <span style="color:#2e7d32;font-weight:700">价 ↑/企稳</span>（特高压量价齐升，电表价修复） ＝ <span class="col-tag col-win">量价齐升（戴维斯双击前期）</span>
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动因子</th><th>最新值</th><th>历史区间</th><th>当前分位</th></tr>
+<tr>
+  <td>国网投资（年）</td>
+  <td><span class="col-tag col-win">6500亿（25年）→8000亿/年（十五五）</span></td>
+  <td>5000-6500</td>
+  <td><span class="col-tag col-win">90%</span></td>
+</tr>
+<tr>
+  <td>输变电招标总额</td>
+  <td><span class="col-tag col-win">919亿（+26%YoY）</span></td>
+  <td>400-920</td>
+  <td><span class="col-tag col-win">95%</span></td>
+</tr>
+<tr>
+  <td>特高压核准（年）</td>
+  <td><span class="col-tag col-win">~5直2交（25年）</span></td>
+  <td>1-7条</td>
+  <td><span class="col-tag col-win">80%</span></td>
+</tr>
+<tr>
+  <td>变压器出口额</td>
+  <td><span class="col-tag col-win">81亿美金（+35%）/电力变55亿+49%</span></td>
+  <td>40-82</td>
+  <td><span class="col-tag col-win">85%</span></td>
+</tr>
+<tr>
+  <td>铜价（LME）</td>
+  <td><span class="col-tag col-lose">~9,500美金/吨（高位）</span></td>
+  <td>6000-11000</td>
+  <td><span class="col-tag col-warn">75%</span></td>
+</tr>
+</table>
+</div>
+
+<h2>成本结构</h2>
+<div class="summary-box">
+  🔹 <strong>类型：</strong>一次设备——<span class="col-tag col-warn">重资产</span>（固定成本高，产能利用率决定盈亏）；二次/软件——<span class="col-tag col-info">轻资产</span>（人力+研发为主）<br>
+  🔹 <strong>敏感性：</strong>一次设备营收±10% → 利润±20-30%（高经营杠杆）；二次设备±10% → ±15%<br>
+  🔹 <strong>盈亏平衡点：</strong>一次设备需产能利用率>65%，当前特高压满产、配网开工率回升中
+</div>
+
+<h2>竞争格局总结</h2>
+<div class="highlight-box">
+  电网设备呈现<strong>“金字塔”格局</strong>：塔尖是<strong>南瑞（二次垄断）+ 思源/特变/平高/西电（一次寡头）</strong>享受“十五五”增量与出海溢价，护城河靠资质+技术+集采份额构筑；腰部是<strong>金盘/东方电子/四方</strong>等细分龙头靠配网/AIDC突围；底部是大量线缆/集成商陷入价格战。当前核心矛盾不是“有没有需求”（需求确定性极高），而是<strong>“原材料高位+集采价格博弈”挤压毛利+交付节奏错配</strong>。龙头凭借规模/自制材料/海外高毛利对冲，盈利韧性显著强于二三线。海外变压器100周+交付周期与日立/西门子满单，给予中国龙头<strong>量利齐升窗口</strong>（量+30%/价+10%）。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l10">
+<div class="tab-inner">
+
+<h2>周期位置</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>库存周期阶段</td>
+  <td><span class="col-tag col-win">复苏/繁荣前期</span>（招标放量→订单饱满→交付兑现，合同负债高增）</td>
+</tr>
+<tr>
+  <td>产能利用率</td>
+  <td><span class="col-tag col-win">75-90%</span>（一次设备满产：思源/平高订单排至2027年；配网利用率回升中）</td>
+</tr>
+<tr>
+  <td>产品价格分位</td>
+  <td>输变电招标价<span class="col-tag col-win">80-90%分位</span>（量价齐升），电表价<span class="col-tag col-warn">30%分位→修复中</span></td>
+</tr>
+<tr>
+  <td>行业盈利状态</td>
+  <td><span class="col-tag col-win">分化但总体向上</span> 龙头净利+10-54%（思源+54%/南瑞+8.8%/平高+9.5%），尾部7/10家H1净利下滑（原材料挤压）</td>
+</tr>
+</table>
+</div>
+
+<div class="danger-box">
+  <strong>⚠ PE悖论检查</strong><br>
+  电网设备非强周期，但需警惕<strong>高景气期PE看似不低而PB已高</strong>的“成长陷阱”<br>
+  当前：南瑞PE~26x（历史中枢28x）、PB 4.0x（偏高但ROE16%支撑）；思源PE~48x（历史中高但业绩增速53%消化）；平高PE~27x、PB~3.0x偏合理<br>
+  PB视角：行业PB中位数~2.5-3.5x，未至历史顶部（5-6x）<br>
+  <strong>结论：</strong>非周期底部“低PE捡烟蒂”，而是<strong>景气验证期，PE需用PEG消化，PB+ROE更可靠</strong>。尾部低PE（保变/南自）可能是价值陷阱。
+</div>
+
+<h2>估值水平</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>估值指标</th><th>行业当前</th><th>历史中位数</th><th>80%分位</th><th>20%分位</th></tr>
+<tr>
+  <td><strong>PE</strong>（龙头TTM）</td>
+  <td><span class="col-tag col-warn">26-48x</span></td>
+  <td>30-35x</td>
+  <td>50x+</td>
+  <td>18-20x</td>
+</tr>
+<tr>
+  <td><strong>PB</strong>（龙头）</td>
+  <td><span class="col-tag col-warn">2.5-4.0x</span></td>
+  <td>3.0x</td>
+  <td>5-6x</td>
+  <td>1.5x</td>
+</tr>
+<tr>
+  <td><strong>股息率</strong></td>
+  <td>1.5-2.8%</td>
+  <td>1.5%</td>
+  <td>3.0%</td>
+  <td>0.8%</td>
+</tr>
+</table>
+</div>
+
+<h2>政策环境</h2>
+<div class="summary-box">
+  🔹 <strong>政策方向：</strong><span class="col-tag col-win">强利好（顶层密集落地）</span><br>
+  🔹 <strong>关键政策：</strong><br>
+  &emsp;• 《新型电力系统建设“十五五”规划》（发改能源〔2026〕942号）：2030年西电东送>4.2亿kW、配网承载分布式9亿kW、新型储能3亿kW<br>
+  &emsp;• 《关于促进电网高质量发展的指导意见》（发改能源〔2025〕1710号）：主干+配网+微网协同，加大投资<br>
+  &emsp;• 《电力装备稳增长工作方案（2025-26）》：传统装备营收年均+6%、龙头+10%，出口增长<br>
+  &emsp;• 大规模设备更新（1.08万亿，至27年+45%）+ 超长期特别国债支持<br>
+  &emsp;• “算电协同”国家战略：AIDC供电、SST、虚拟电厂纳入新基建<br>
+  🔹 <strong>政策周期位置：</strong><span class="col-tag col-win">宽松/加码期</span>（“十五五”开局之年，招标与投资同步提速）
+</div>
+
+<h2>买入清单</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:28%">条件</th><th style="width:16%">结果</th><th>备注</th></tr>
+<tr>
+  <td>周期位置：不在繁荣顶点</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>复苏→繁荣前期，订单排至27年，未见满产过热</td>
+</tr>
+<tr>
+  <td>估值：PB/PE在历史偏低分位</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td>龙头PB/PE处历史中位偏高，非底部但PEG合理（思源PEG~0.9）</td>
+</tr>
+<tr>
+  <td>政策：不是收紧期</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>顶层“十五五”+设备更新双加码</td>
+</tr>
+<tr>
+  <td>格局：龙头壁垒稳固</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>二次垄断+一次寡头，CR3上升中</td>
+</tr>
+<tr>
+  <td>增长：有可见驱动力</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>国内4万亿+海外+AI三重驱动</td>
+</tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <div style="font-size:16px;font-weight:700;margin-bottom:8px">综合判断：<span class="col-tag col-win" style="font-size:15px">可以买入（分批）</span></div>
+  <div style="margin-bottom:6px">4/5项通过，唯一瑕疵是估值非底部——需用业绩消化而非等待深跌。当前为<strong>景气兑现期</strong>而非周期顶点</div>
+  <table style="font-size:12px;margin:6px 0;border:none;background:transparent">
+    <tr><td style="border:none;padding:3px 6px;background:transparent;width:90px;font-weight:600">预期回报</td><td style="border:none;padding:3px 6px;background:transparent">业绩增长（15-30%/年）+ 估值温和扩张，2年维度25-40%（分化大）</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">仓位建议</td><td style="border:none;padding:3px 6px;background:transparent"><span class="col-tag col-win">15-25%（行业仓）</span> 龙头集中，小票回避</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">跟踪指标</td><td style="border:none;padding:3px 6px;background:transparent">国网招标批次金额 · 特高压核准条数 · 变压器出口额 · 合同负债QoQ · 铜铝价</td></tr>
+  </table>
+  <div style="margin-top:8px;padding:8px;background:#e8f5e9;border-radius:4px;font-size:12px">
+    <strong>买入策略：</strong><br>
+    <span class="col-tag col-win">核心仓（60%）</span>：南瑞（二次垄断+AI）+ 思源（一次+出海弹性）—— 随Q2/Q3招标与半年报分批<br>
+    <span class="col-tag col-info">卫星仓（40%）</span>：平高/西电（特高压交付）+ 金盘（出海干变）+ 四方/东方电子（配网修复）—— 电表/配网第二批集采价格回升确认后加仓<br>
+    <span class="col-tag col-warn">回避</span>：纯线缆/集成/低ROE尾部（保变/南自等）
+  </div>
+</div>
+
+<h2>卖出信号</h2>
+<div class="danger-box">
+  <strong>出现以下信号考虑卖出/减仓：</strong><br>
+  <div style="margin-top:6px">
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px">1</span>
+    国网投资增速连续两季<5%或“十五五”中期下修投资（需求证伪）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">2</span>
+    铜/铝/硅钢价格持续新高+招标价不涨，龙头毛利率连续两季下滑>3pct<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">3</span>
+    变压器出口增速转负或海外毛利率大幅回落（出海逻辑破）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">4</span>
+    板块PB>5x且PE>50x（估值泡沫），或中标份额被新进入者大幅侵蚀
+  </div>
+</div>
+
+</div>
+</div>
+
+<div class="footer">Generated by Industry Analysis · L7-L10 Framework · Stock Selection<br>数据来源：国家能源局/国网/南网公告、公司2025年报/2026Q1季报、Wind、国金/广发/中航/华泰证券研报（2025-2026），生成日期2026-08-24</div>
+
+</div>
+
+<script>
+var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+var contents = document.querySelectorAll('.tab-content');
+btns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    contents.forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    var tab = btn.getAttribute('data-tab');
+    document.getElementById('tab-' + tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
