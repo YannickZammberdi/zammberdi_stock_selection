@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brambles(BXB) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .score-note { font-size: 13px; color: #666; background: #fafafa; border: 1px dashed #ccc; padding: 8px 12px; margin: 10px 0; }
+  .history-table td:first-child { white-space: nowrap; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>Brambles（BXB）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026-08-25 | 数据来源：Brambles FY2025年报（截至2025-06-30）+ FY2026H1业绩 + StockAnalysis / FNArena / Quantfolio | 代码：BXB.ASX | 货币：USD报告/AUD报价</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>Brambles Limited（布兰堡）</td></tr>
+  <tr><td>股票代码</td><td>BXB.ASX</td></tr>
+  <tr><td>所属行业</td><td>商业与专业服务 / 供应链物流 — CHEP 托盘/箱柜循环共用（Pallet Pooling）</td></tr>
+  <tr><td>行业地位</td><td>全球最大托盘循环共用网络（CHEP），服务60+国家，覆盖消费品/零售/生鲜/工业；ASX 20成分，市值~A$260亿</td></tr>
+  <tr><td>FY2025 营收（Sales Revenue）</td><td><strong>US$66.70亿（同比+2.3%，恒定汇率+3%）</strong>；含其他收入总营收 US$68.38亿</td></tr>
+  <tr><td>归母净利润（Statutory）</td><td><strong>US$8.96亿（同比+14.9%）</strong>；持续经营业务 US$8.64亿（+11.6%）</td></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>US$18.33亿（同比+1.6%）</strong></td></tr>
+  <tr><td>总资产</td><td>US$95.69亿</td></tr>
+  <tr><td>归母净资产</td><td>US$33.50亿（AUD ~A$51亿）</td></tr>
+  <tr><td>ROE（FY2025）</td><td><strong>26.8%（平均权益）/ ROCI 15.2%</strong></td></tr>
+</table>
+
+<p style="font-size:13px;color:#666;margin:8px 0"><strong>行业类型：非周期股（基础设施/商业服务 — 价值型/防御型混合）</strong>，采用<strong>非周期股评分体系</strong>（10维度，满分100分）。按 <code>industry-classification.md</code>，基础设施/商业服务属非周期，需求与FMCG消费及工业生产相关但具网络效应与高切换成本，非纯周期。</p>
+<p class="score-note"><strong>评分口径说明：</strong><span>首次分析，选用非周期股评分体系</span></p>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">采用非周期股评分体系（10维度），综合L1-L4所有因素打分；商业服务属轻重资产混合，按非周期标准评估</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">26.8% ≥15% 优秀（5年均值>15%）</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">高利润+中周转型（净利率13.1%、周转0.70x、杠杆2.86x）均衡偏优质</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">18.33/8.96=2.05 ≥1.0 极优，现金为真利润2倍</td></tr>
+  <tr><td>营收增长（10分）</td><td style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">Sales +2.3%（恒定汇率+3%）≥0%但<5%，量缩价增驱动</td></tr>
+  <tr><td>利润增长（10分）</td><td style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">归母+14.9%（持续经营+11.6%）≥5%，利润增速显著跑赢营收</td></tr>
+  <tr><td>负债率（10分）</td><td style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">65.0%（6219/9569）<70%但偏高，重资产托盘资产所致</td></tr>
+  <tr><td>短期偿债（10分）</td><td style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">现金6.09亿 vs 短债约10.5亿，缺口42%，但CFO 18.3亿+利息覆盖11.4x可覆盖，流动比率0.67</td></tr>
+  <tr><td>毛利率水平与趋势（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">34.5% ≥30%且近5年稳定（33.5%-34.6%），定价权验证</td></tr>
+  <tr><td>估值 PE vs 合理区间（10分）</td><td style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">TTM PE ~19.8x 处于ROE>20%合理区间20-30x下沿，但PB 5.2x溢价偏高</td></tr>
+  <tr><td>FCF（5分）</td><td style="font-weight:bold;font-size:15px">3</td><td style="text-align:left">FCF 9.01亿同比+34.8%，但FY2022曾为负-0.67亿，偶尔为负</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">73/100</td><td style="text-align:left">一般关注（73/100分）</td></tr>
+</table>
+
+<div class="verdict verdict-caution">一般关注（73/100分）—— 高ROE+现金流优秀的循环共用龙头，但营收低增长+负债偏高+估值不便宜</div>
+
+<!-- HISTORY-TABLE -->
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>Brambles是典型的“隐形冠军”——不生产商品，但通过CHEP循环共用模式出租托盘/箱柜，赚的是网络规模+资产效率+可持续议价权的钱。FY2025在仅2.3%营收增长下实现14.9%净利润增长、24%自由现金流增长，体现强经营杠杆与资产损失率改善。ROE 26.8%、CFO/净利2.05x、FCF 9亿美金，财务质量在ASX工业股中属第一梯队。<br><br>
+  <strong>核心优势：</strong>① 全球网络垄断（60+国家、CR近似垄断），高切换成本与循环模式构筑深护城河；② 现金奶牛属性——CFO 18.3亿为净利润2倍、FCF 9亿、股息17%增长且连续多年提升；③ 经营杠杆显现——利润增速持续跑赢营收，Serialisation+数字化有望进一步降低资产丢失率；④ 资本配置克制——A$4亿回购已完成近半，分红率~60%可持续。<br><br>
+  <strong>核心风险：</strong>① 营收增长乏力（量like-for-like -2% in H1 FY26），依赖提价不可持续；② 负债率65%、流动比率0.67、净负债26亿，虽利息覆盖11x但重资产模式对利率敏感；③ AUD升值侵蚀报表（收入计USD、报价AUD）；④ 估值溢价（PE 20x / PB 5.2x / EV/EBITDA 9.1x）已 price-in 持续兑现，H1 FY26量缩警示需求对消费/工业周期的敏感性。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025 / 截至2025-06-30，USD百万）</h2>
+<p style="font-size:12px;color:#999">注：Brambles财年7-6月，报告货币USD；ASX报价AUD，已按约1.54汇率折算部分指标；H1 FY2026为截至2025-12-31</p>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>销售收入（Sales Revenue）</td><td><strong>6,670</strong></td><td>6,521</td><td><strong>+2.3%（恒定汇率+3%）</strong></td><td class="neutral">⚠ 低增长</td></tr>
+  <tr><td>总营收（含其他收入）</td><td>6,838</td><td>6,718</td><td>+1.8%</td><td class="neutral">—</td></tr>
+  <tr><td>毛利润（Gross Profit）</td><td><strong>2,357</strong></td><td>2,318</td><td>+1.7%</td><td class="neutral">稳定</td></tr>
+  <tr><td>毛利率</td><td><strong>34.5%</strong></td><td>34.5%</td><td>持平</td><td class="good">✅ 定价权稳</td></tr>
+  <tr><td>营业利润（Operating Profit）</td><td><strong>1,372</strong></td><td>1,258</td><td><strong>+9.1%</strong></td><td class="good">✅ 杠杆显现</td></tr>
+  <tr><td>营业利润率</td><td><strong>19.1%</strong></td><td>17.8%</td><td>+1.3pct</td><td class="good">✅ 提升显著</td></tr>
+  <tr><td>税前利润</td><td>1,234</td><td>1,121</td><td>+10.1%</td><td class="good">✅</td></tr>
+  <tr><td>持续经营净利润</td><td><strong>864.2</strong></td><td>774.1</td><td><strong>+11.6%</strong></td><td class="good">✅</td></tr>
+  <tr><td>归母净利润（含终止经营）</td><td><strong>896.0</strong></td><td>779.9</td><td><strong>+14.9%</strong></td><td class="good">✅ 终止业务贡献3180万</td></tr>
+  <tr><td>净利率（归母/总营收）</td><td><strong>13.1%</strong></td><td>11.6%</td><td>+1.5pct</td><td class="good">✅ 改善</td></tr>
+  <tr><td>摊薄EPS（USD）</td><td><strong>0.64</strong></td><td>0.56</td><td><strong>+15.5%</strong></td><td class="good">✅ 回购增厚</td></tr>
+  <tr><td>摊薄EPS（AUD折算 ~1.54）</td><td><strong>~0.99</strong></td><td>~0.86</td><td>+15%</td><td class="good">✅</td></tr>
+  <tr><td>H1 FY2026 营收</td><td>3,534</td><td>—</td><td>+5%（H1）</td><td class="neutral">量-2%价增驱动</td></tr>
+  <tr><td>H1 FY2026 Underlying Profit</td><td>792</td><td>—</td><td>+10%</td><td class="good">✅ 利润跑赢营收延续</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>典型“量价背离+利润杠杆”——FY2025销售收入仅+2.3%（恒定汇率+3%），但通过提价覆盖成本、资产效率提升与供应链节降，营业利润+9.1%、归母净利+14.9%，净利率从11.6%升至13.1%，营业利润率从17.8%升至19.1%。H1 FY2026延续该特征：营收+5%中like-for-like量-2%，靠价格/补偿收入实现增长。盈利质量关键看“能否在量缩时仍提价+控本”——目前兑现良好，但量缩本身是需求警示，若消费/工业持续走弱，价增难以长期对冲量跌。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td><strong>608.9</strong></td><td>112.9（+439%）</td><td class="good">✅ 现金储备大幅增厚</td></tr>
+  <tr><td>应收账款（Accounts Receivable）</td><td>949.4</td><td>926.1</td><td class="neutral">占销售14.2%，周转约52天</td></tr>
+  <tr><td>总应收（含其他）</td><td>1,166</td><td>1,127</td><td class="neutral">—</td></tr>
+  <tr><td>存货</td><td>62.6</td><td>77.7</td><td class="good">✅ 存货极低（托盘非存货模式）</td></tr>
+  <tr><td>流动资产合计</td><td>1,894</td><td>1,380</td><td class="neutral">—</td></tr>
+  <tr><td>固定资产（PP&E，含托盘池）</td><td><strong>7,042</strong></td><td>6,777</td><td class="neutral">资产基石，占总资产73.6%</td></tr>
+  <tr><td>总资产</td><td><strong>9,569</strong></td><td>8,731</td><td class="good">+9.6%</td></tr>
+  <tr><td>短期有息负债（估）</td><td><strong>~1,052</strong></td><td>—</td><td class="neutral">占总债32.6%</td></tr>
+  <tr><td>长期有息负债（估）</td><td><strong>~2,172</strong></td><td>—</td><td class="neutral">—</td></tr>
+  <tr><td>总有息负债</td><td><strong>3,224</strong></td><td>2,641（+22%）</td><td class="neutral">净负债26.15亿</td></tr>
+  <tr><td>总负债</td><td>6,219</td><td>5,504</td><td class="neutral">资产负债率65.0%（vs 63.0%上年）</td></tr>
+  <tr><td>归母净资产</td><td><strong>3,350</strong></td><td>3,227</td><td class="good">+3.8%</td></tr>
+  <tr><td>每股净资产（USD）</td><td>2.45</td><td>2.32</td><td class="good">AUD ~3.77（按1.54）</td></tr>
+  <tr><td>流动比率</td><td><strong>0.67</strong>（1894/2846）</td><td>—</td><td class="neutral">⚠ <1但符合池租赁模式</td></tr>
+  <tr><td>净负债/EBITDA</td><td><strong>1.33x</strong>（2615/1964）</td><td>1.37x</td><td class="good">✅ 稳定</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>重资产但高质量——PP&E 70.4亿占总资产73.6%，是托盘/箱柜池资产，虽重但周转明确、减值风险低（木托盘+塑料箱柜）。负债端有息化：总债32.2亿(+22%)，净负债26.15亿，资产负债率65%、净负债/EBITDA 1.33x，处于工业适度杠杆区间（1-2x健康）。风险点：流动比率0.67<1、短债10.5亿>现金6.09亿，存在期限错配，但CFO 18.3亿、利息覆盖11.4x、投资级评级使再融资无忧；现金从1.13亿骤增至6.09亿，显示公司主动增厚流动性应对。存货仅0.6亿，轻存货模式是比亚于零售/制造的核心财务优势。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>1,833</strong></td><td>1,804</td><td class="good">✅ +1.6%，现金牛</td></tr>
+  <tr><td>资本开支（CapEx）</td><td><strong>-932.1</strong></td><td>-1,136（-17.9%）</td><td class="good">✅ 托盘投放放缓，效率提升</td></tr>
+  <tr><td>自由现金流（FCF）</td><td><strong>900.9</strong></td><td>668.4</td><td class="good">✅ +34.8%大幅改善</td></tr>
+  <tr><td>自由现金流（扣除股息前）</td><td><strong>1,090</strong></td><td>—</td><td class="good">Kalkine口径+24%</td></tr>
+  <tr><td>投资现金流（CFI）</td><td>约-930</td><td>—</td><td class="neutral">—</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td>约-400</td><td>—</td><td class="neutral">分红+回购+偿债</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>2.05</strong>（1833/896）</td><td>2.31</td><td class="good">✅ 远>1，真金白银</td></tr>
+  <tr><td>FCF/营收</td><td><strong>13.2%</strong></td><td>9.9%</td><td class="good">✅ 提升3.3pct</td></tr>
+  <tr><td>FCF指引 FY2026</td><td><strong>9.5-11.0亿</strong></td><td>—</td><td class="good">指引上调</td></tr>
+  <tr><td>股息（DPS USD）</td><td>0.3983</td><td>0.34（+17%）</td><td class="good">✅ 连续增长</td></tr>
+  <tr><td>回购</td><td><strong>A$4亿中1.91亿已完成（H1）</strong></td><td>—</td><td class="good">✅ 资本返还</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>最亮眼的一张表——CFO 18.33亿为净利润2.05倍，说明利润全部兑现为现金且有预收/补偿驱动；CapEx从11.36亿降至9.32亿（-17.9%），推动FCF从6.68亿跃升至9.01亿（+34.8%），FCF率13.2%。H1 FY2026指引进一步上调至9.5-11.0亿，印证Serialisation+与资产管控成效。公司将现金用于：股息+17%（39.83美分）、回购A$4亿（已1.91亿）、偿债与再投资，形成“赚现金—控投入—还股东”闭环。唯一需跟踪的是CapEx下降是效率提升还是量缩被动减少——目前看是前者（资产损失率改善）。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>26.8%</strong></td><td>>15%优秀</td><td class="good">✅ 远超优秀线</td></tr>
+  <tr><td>ROA</td><td><strong>9.85%</strong></td><td>>5%</td><td class="good">✅ 重资产下仍优异</td></tr>
+  <tr><td>ROCI</td><td><strong>15.2%</strong></td><td>>12%</td><td class="good">✅ 资本回报强</td></tr>
+  <tr><td>毛利率</td><td><strong>34.5%</strong></td><td>稳定或提升</td><td class="good">✅ 5年稳定33.5-34.6%</td></tr>
+  <tr><td>净利率</td><td><strong>13.1%</strong></td><td>>10%</td><td class="good">✅ 提升1.5pct</td></tr>
+  <tr><td>营业利润率</td><td><strong>19.1%</strong></td><td>>15%</td><td class="good">✅ 工业中优秀</td></tr>
+  <tr><td>营收增长率</td><td><strong>+2.3%（+3%恒定汇率）</strong></td><td>>10%好 / >5%及格</td><td class="neutral">⚠ 低增长，量价背离</td></tr>
+  <tr><td>净利润增长率</td><td><strong>+14.9%</strong></td><td>>15%优秀 / >5%及格</td><td class="good">✅ 利润跑赢营收</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>2.05</strong></td><td>>1优秀</td><td class="good">✅ 极优</td></tr>
+  <tr><td>资产负债率</td><td><strong>65.0%</strong></td><td>工业<60%理想</td><td class="neutral">⚠ 重资产下偏高</td></tr>
+  <tr><td>流动比率</td><td><strong>0.67</strong></td><td>>1</td><td class="neutral">⚠ 但模式特殊</td></tr>
+  <tr><td>利息覆盖（EBIT/利息）</td><td><strong>11.4x</strong></td><td>>5x</td><td class="good">✅ 非常安全</td></tr>
+  <tr><td>净负债/EBITDA</td><td><strong>1.33x</strong></td><td><1.5x健康</td><td class="good">✅ 健康</td></tr>
+  <tr><td>分红率</td><td><strong>~60%</strong>（0.398/0.64=62%）</td><td>稳定分红</td><td class="good">✅ 连续增长</td></tr>
+  <tr><td>股息率（AUD 19.5）</td><td><strong>~3.1-3.4%</strong></td><td>>3%</td><td class="good">✅ 中高</td></tr>
+</table>
+
+<h3>3.2 分业务/分区域分析</h3>
+<table>
+  <tr><th>业务/区域</th><th>营收（USD亿）</th><th>占比</th><th>同比（FY25）</th><th>特点</th><th>评价</th></tr>
+  <tr><td>CHEP Americas</td><td>36.71</td><td>55.0%</td><td>+1.7%</td><td>最大市场，美国零售/消费主力</td><td class="neutral">⚠ 增长最慢，量压</td></tr>
+  <tr><td>CHEP EMEA</td><td>24.46</td><td>36.7%</td><td>+3.3%</td><td>欧洲中东非洲，价格传导较好</td><td class="good">✅ 相对稳健</td></tr>
+  <tr><td>CHEP Asia-Pacific</td><td>5.525</td><td>8.3%</td><td>+1.7%</td><td>澳新+亚洲，基数小</td><td class="neutral">平稳</td></tr>
+  <tr><td>Pallets（托盘）</td><td>~60+（估）</td><td>~90%</td><td>~+2-3%</td><td>核心，网络效应最强</td><td class="good">护城河核心</td></tr>
+  <tr><td>RPC（可循环塑料箱）</td><td>0.328</td><td>~0.5%</td><td>+10%</td><td>生鲜商超配套</td><td class="good">✅ 高增长</td></tr>
+  <tr><td>Containers（汽车/IBC）</td><td>2.444</td><td>3.7%</td><td>-2%（汽车-4%）</td><td>汽车受周期拖累</td><td class="bad">❌ 拖累</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>“一超一强一弱”——CHEP Americas占55%是基本盘但FY25仅+1.7%且H1 FY26量-2%，反映美国消费疲软对托盘周转的直接传导；EMEA +3.3%相对最强，体现欧洲提价能力；Asia-Pac基数小影响有限。产品维度看，核心Pallets稳但低增，RPC +10%是亮点（生鲜渗透），Containers -2%受汽车周期拖累（-4%量跌）。整体业务高度聚焦：Pallets占比~90%，这既是护城河（规模）也是风险集中度——托盘量的边际变化决定营收弹性。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险项</th><th>严重程度</th><th>依据</th></tr>
+  <tr><td>营收低增长+量缩（H1 like-for-like -2%）</td><td class="neutral" style="color:#f39c12;font-weight:bold">🟡 中等</td><td>FY25 +2.3%已低，H1量-2%依赖提价，非可持续；消费/工业周期下行将直接冲击量</td></tr>
+  <tr><td>负债率65%、流动比率0.67、短债>现金</td><td class="neutral" style="color:#f39c12;font-weight:bold">🟡 中等</td><td>重资产模式固有，但净负债/EBITDA 1.33x与利息覆盖11.4x缓冲充分；现金已增厚至6.09亿</td></tr>
+  <tr><td>汇率风险（USD报表/AUD报价）</td><td class="neutral" style="color:#f39c12;font-weight:bold">🟡 中等</td><td>收入USD/EUR为主，AUD升值将侵蚀AUD报表利润与分红；2025-26 AUD波动加剧</td></tr>
+  <tr><td>Serialisation+ 执行风险</td><td class="neutral" style="color:#f39c12;font-weight:bold">🟡 中等</td><td>数字化需持续CapEx与客户迁移，智利已过半客户采用，北美/英国测试中，若延期或超支影响ROCI</td></tr>
+  <tr><td>估值溢价 vs 低增长</td><td class="neutral" style="color:#f39c12;font-weight:bold">🟡 中等</td><td>PE 20x/PB 5.2x在工业中偏高，若H2量继续下滑或指引下调，易遭杀估值</td></tr>
+  <tr><td>竞争与替代（区域性托盘/自有托盘）</td><td style="color:#27ae60;font-weight:bold">🟢 轻微</td><td>CHEP网络与ESG循环优势构高壁垒，区域对手难以跨区复制；但经济下行时客户或转一次性/自有</td></tr>
+  <tr><td class="good">正面：CFO/净利2.05x现金质量极优</td><td style="color:#27ae60;font-weight:bold">🟢 正面</td><td>CFO 18.3亿远超净利，利润无水分</td></tr>
+  <tr><td class="good">正面：FCF大幅改善+回购分红双兑现</td><td style="color:#27ae60;font-weight:bold">🟢 正面</td><td>FCF 9.01亿+34.8%，股息+17%、回购A$4亿进行中</td></tr>
+  <tr><td class="good">正面：ROE 26.8%与ROCI 15.2%行业领先</td><td style="color:#27ae60;font-weight:bold">🟢 正面</td><td>资本回报在ASX工业中属top quartile</td></tr>
+  <tr><td class="good">正面：无商誉暴雷/关联交易/监管处罚</td><td style="color:#27ae60;font-weight:bold">🟢 正面</td><td>资产以PP&E为主，商誉仅1.97亿占比2%，无历史暴雷</td></tr>
+</table>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>历史分位/行业均值</th><th>解读</th></tr>
+  <tr><td>股价（AUD）</td><td><strong>~A$19.44（2026-08-25，52周 16.18-26.93）</strong></td><td>年内-15.6%跑输ASX200 13pct</td><td class="neutral">从高位回落，已回调近28%</td></tr>
+  <tr><td>总市值</td><td><strong>~A$260亿（US$170亿）</strong></td><td>ASX 20</td><td>—</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>19.8-20.6x</strong>（AUD EPS 0.99 / USD 0.64）</td><td>近5年50-80%分位；工业均值~15-18x</td><td class="neutral">⚠ 偏高但非泡沫</td></tr>
+  <tr><td>PE（Forward FY26E）</td><td><strong>19.5-19.7x</strong>（FNArena 0.993 AUD / Jarden 0.987）</td><td>Forward 17.4x（Quantfolio）</td><td class="neutral">与TTM接近，预期增长有限</td></tr>
+  <tr><td>PB</td><td><strong>5.2-5.6x</strong>（BV AUD 3.74 / USD 2.45）</td><td>近5年60-80%分位；工业2-4x</td><td class="bad">❌ 溢价明显</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>2.6-2.98x</strong></td><td>工业均值1.2x</td><td class="bad">溢价</td></tr>
+  <tr><td>PCF（TTM）</td><td><strong>9.5x</strong></td><td>—</td><td class="good">✅ 相对合理</td></tr>
+  <tr><td>EV/EBITDA</td><td><strong>9.1-9.3x</strong></td><td>物流平台多10x+</td><td class="good">✅ 不贵</td></tr>
+  <tr><td>股息率</td><td><strong>3.14-3.43%</strong>（DPS AUD 0.61-0.65）</td><td>ASX工业2.5-4%</td><td class="good">中高</td></tr>
+  <tr><td>股息支付率</td><td><strong>~60%</strong></td><td>可持续</td><td class="good">✅ 留存40%再投</td></tr>
+  <tr><td>PEG</td><td><strong>1.28x</strong></td><td> <1.5合理</td><td class="good">✅ 增长调整后合理</td></tr>
+  <tr><td>FCF收益率</td><td><strong>4.96%</strong></td><td>标普工业~4-5%</td><td class="good">✅ 有吸引力</td></tr>
+</table>
+
+<h3>4.2 PE Band 估值区间（非周期股适用）</h3>
+<p style="font-size:13px;color:#666;">ROE 26.8% → 合理PE参考：20-30x | FY2026E一致预期EPS ~A$0.99（99.3c FNArena）</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价（AUD）</th><th>vs现价19.44</th><th>说明</th></tr>
+  <tr><td>悲观（量持续-2%+AUD升值）</td><td>14x</td><td>A$13.9</td><td class="bad">-28%</td><td>盈利下修+估值收缩</td></tr>
+  <tr><td>保守</td><td>17x</td><td>A$16.9</td><td class="bad">-13%</td><td>低增长+现金质量支撑</td></tr>
+  <tr><td>中性</td><td>20x</td><td>A$19.9</td><td class="neutral">+2%</td><td>当前TTM水平，合理中枢下沿</td></tr>
+  <tr><td>乐观（Serialisation兑现+量回正）</td><td>25x</td><td>A$24.8</td><td class="good">+28%</td><td>量价齐升+资产效率提升</td></tr>
+  <tr><td>当前价（TTM 19.8x / Fwd 19.7x）</td><td>19.8x</td><td>A$19.44</td><td>—</td><td>—</td></tr>
+  <tr><td>券商一致目标</td><td>~21.3x</td><td>A$21.23-21.57</td><td class="good">+9-11%</td><td>9家投行均值21.3，UBS 24.3最高</td></tr>
+  <tr><td>52周高点隐含</td><td>27x</td><td>A$26.93</td><td class="good">+38%</td><td>2024年高位溢价</td></tr>
+</table>
+
+<h3>4.3 PB Band 与历史PE区间</h3>
+<table>
+  <tr><th>指标</th><th>数值</th><th>评价</th></tr>
+  <tr><td>PB 历史最大值（近5年）</td><td>~6.5x</td><td>—</td></tr>
+  <tr><td>PB 80%分位</td><td>~5.5x</td><td>—</td></tr>
+  <tr><td>PB 50%分位（中位数）</td><td>~4.5x</td><td>—</td></tr>
+  <tr><td>PB 20%分位</td><td>~3.5x</td><td>—</td></tr>
+  <tr><td>PB 最小值</td><td>~2.8x</td><td>—</td></tr>
+  <tr><td>当前PB 5.2-5.6x</td><td class="neutral">60-80%分位，偏高区间</td><td class="neutral">轻账面/重网络价值使PB天然偏高</td></tr>
+</table>
+<table>
+  <tr><th>指标</th><th>数值</th></tr>
+  <tr><td>PE（TTM）历史最大值</td><td>~28-30x（2021-22高增长期）</td></tr>
+  <tr><td>PE 80%分位</td><td>~22x</td></tr>
+  <tr><td>PE 50%分位</td><td>~18x</td></tr>
+  <tr><td>PE 20%分位</td><td>~14x</td></tr>
+  <tr><td>PE 最小值</td><td>~10x（2020疫情）</td></tr>
+  <tr><td>当前PE 19.8x</td><td class="neutral">50-80%分位，合理偏高</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值判断：合理偏贵，安全边际不足</strong><br>
+  以ROE 26.8%对应的合理PE 20-30x，当前19.8x恰在下沿，看似“合理”，但需注意三点：①营收增速仅2.3%（量-2%），PEG 1.28x虽<1.5但靠的是利润端提价不可持续；②PB 5.2x与PS 2.98x均显著高于ASX specialty business services均值（3.5x/1.2x），显示市场已给网络垄断溢价；③EV/EBITDA 9.1x与FCF收益率4.96%是唯二“不贵”指标，说明现金流支撑估值。<br><br>
+  券商目标A$21.23（+9.2%）隐含PE ~21.5x，需FY26营收3-4%+利润8-11%兑现（公司指引）才能支撑。股价自26.93高点回落28%已部分price-in量缩与AUD升值，但若H2量继续为负或Serialisation投入超预期，PE有向17x（-13%）回归风险。FCF 4.96%提供下行保护，适合“持有观望、以回落至A$16-17再考虑加仓”的策略。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析（L4框架）</h2>
+
+<h3>5.1 杜邦拆解（FY2023-2025）</h3>
+<table>
+  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>净利润率（Net Income / Sales）</td><td>11.7%（713/6077）</td><td>12.0%（780/6521）</td><td><strong>13.4%（896/6670）</strong></td><td class="good">⬆ 持续提升</td></tr>
+  <tr><td>净利润率（/总营收）</td><td>11.3%</td><td>11.6%</td><td><strong>13.1%</strong></td><td class="good">⬆</td></tr>
+  <tr><td>资产周转率（Sales/平均总资产）</td><td>0.73</td><td>0.75</td><td><strong>0.70</strong></td><td class="neutral">➡ 略降（资产增速快于营收）</td></tr>
+  <tr><td>权益乘数（平均总资产/平均净资产）</td><td>2.97</td><td>2.75</td><td><strong>2.78</strong></td><td class="neutral">➡ 稳定</td></tr>
+  <tr><td><strong>ROE（杜邦）</strong></td><td><strong>~25.4%</strong></td><td><strong>~24.7%</strong></td><td><strong>~26.1%（报表26.84%）</strong></td><td class="good">⬆ 高位稳升</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>8.55%</td><td>8.97%</td><td><strong>9.40%</strong></td><td class="good">⬆ 真实回报提升</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>~16.8pct</td><td>~15.7pct</td><td><strong>~16.7pct</strong></td><td class="neutral">稳定</td></tr>
+  <tr><td>ROCI（公司披露）</td><td>—</td><td>—</td><td><strong>15.2%</strong></td><td class="good">投入资本回报优异</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：高利润+中周转的均衡偏优质型（非高杠杆型）</strong><br>
+  ① <strong>净利率驱动是核心</strong>——从11.7%→13.4%（销售口径）提升1.7pct，是ROE维持25%+的关键。毛利率34.5%稳定，净利率提升来自营业利润率+1.3pct（供应链节降+资产效率）与财务费用下降（-6%）；<br>
+  ② <strong>周转率中等偏低但稳定</strong>——0.70x反映托盘池重资产特性，FY25略降因总资产+9.6%快于营收+2.3%，提示资产投放效率待提升；Serialisation+若降低丢失率，周转有望回升；<br>
+  ③ <strong>杠杆中性可控</strong>——权益乘数2.78在工业中属中等（vs 美股工业1.5-2.0x略高但远低于银行/地产），杠杆贡献16.7pct中约60%为良性杠杆（低息+长久期）；去杠杆ROA 9.40%在重资产工业中已属优秀，说明即使去杠杆仍是高质量回报。<br>
+  结论：非“借鸡生蛋”型，而是“卖得贵+管得好”型。
+</div>
+
+<h3>5.2 资产回报效率</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>说明</th></tr>
+  <tr><td>每1元总资产产生净利润（ROA）</td><td><strong>9.85%</strong></td><td>重资产下仍>9%，印证资产高效</td></tr>
+  <tr><td>每1元PP&E产生营收</td><td><strong>0.95x</strong>（6670/7042）</td><td>托盘池周转接近1，符合池租赁模型</td></tr>
+  <tr><td>EBITDA Margin</td><td><strong>28.7%</strong>（1964/6838）</td><td>重资产但高折旧前利润</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>杜邦结论：</strong>ROE 26.8%的高水准靠“利润率提升（48%贡献）+稳定周转（42%贡献）+适度杠杆（10%贡献）”三轮驱动，驱动结构健康。近3年ROE从25.4%→26.1%微升，背后是净利率改善对冲了周转小幅下滑，杠杆保持克制。去杠杆ROA 9.40%持续上升，是最值得肯定的信号——说明回报提升来自经营而非加杠杆。与同行比（Qube ROE~7%、AZJ~9%），Brambles的杜邦结构更“贵”也更“好”，估值溢价有基本面支撑，但周转率下行趋势需警惕资产膨胀侵蚀回报。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：非周期股（基础设施/商业服务 — 价值型/防御型混合）— 采用非周期股评分体系</strong><br>
+  <strong>判断依据：</strong>按 <code>industry-classification.md</code> 二分法：纯周期=长期增速≈0且利润靠供需错配（钢铁/煤炭等），Brambles不属此列。其托盘循环共用服务需求与FMCG消费量、零售库存、工业生产相关，但：①需求底层为刚性消费（超市/生鲜）波动远小于大宗周期；②商业模式为“资产出租+网络服务”而非商品销售，收入来自租金与补偿费，价格粘性强；③护城河为网络效应而非成本曲线。因此归为<strong>非周期股</strong>。细分上，成熟期+稳定现金流+中低营收增速（2-3%）符合<strong>价值型</strong>特征，同时FMCG关联又具<strong>防御性</strong>，故为混合。L5四分类中选<strong>价值型为主</strong>，用非周期评分体系。
+</div>
+
+<h3>6.2 集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>行业集中度</td><td><strong>高度集中/全球垄断</strong></td><td>CHEP为全球最大托盘池，60+国家网络，区域CR1>50%（如美澳欧），无同等规模全球对手</td></tr>
+  <tr><td>进入壁垒-网络效应</td><td><strong>极强</strong></td><td>托盘需在供需两端（制造商↔零售商）间循环，网络密度决定回收效率，新进入者无法跨区调度</td></tr>
+  <tr><td>规模壁垒</td><td><strong>极强</strong></td><td>PP&E 70亿托盘池+服务中心网络，重资投入，规模摊薄单托成本</td></tr>
+  <tr><td>牌照/技术壁垒</td><td><strong>中等</strong></td><td>Serialisation+给托盘加RFID/标签，数据层构成新壁垒；但木托盘本身技术门槛不高</td></tr>
+  <tr><td>品牌/客户粘性</td><td><strong>强</strong></td><td>与宝洁、联合利华等全球CPG巨头签长期框架，切换至自有/区域托盘需重建逆向物流，成本高</td></tr>
+  <tr><td>ESG壁垒</td><td><strong>强且增强</strong></td><td>循环共用比一次性托盘减碳减废，契合大型零售商ESG承诺，成为采购决策加分项</td></tr>
+</table>
+
+<h3>6.3 生命周期与周期位置</h3>
+<div class="highlight-box">
+  <strong>生命周期：成熟期（现金牛阶段）</strong>——成立于1954年，上市70年，网络覆盖已饱和，增长靠同店效率+提价+新品（RPC/容器）而非跑马圈地。行业本身（物流基础设施）处成熟期，增速与GDP及消费量挂钩（2-4%）。<br><br>
+  <strong>当前周期位置：需求小周期底部附近（量缩阶段）</strong>——H1 FY26 like-for-like量-2%、食品饮料零售库存增速从3%降至2.5%（低于10年均值3%）、美国托盘价格增速>木材成本增速致经营价差转负，均为需求走弱信号。但非纯周期股，底部特征是“量小跌、价可传导、利润仍增”。若消费复苏，量有望回正；若持续走弱，提价空间将收窄。
+</div>
+
+<h3>6.4 同行对比</h3>
+<table>
+  <tr><th>指标</th><th>Brambles BXB</th><th>Qube Holdings QUB</th><th>Aurizon AZJ</th><th>WiseTech WTC（参考）</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>26.8%</strong></td><td>~7%</td><td>~9%</td><td>~6%</td><td class="good">行业领先</td></tr>
+  <tr><td>毛利率</td><td><strong>34.5%</strong></td><td>~18%</td><td>~35%</td><td>~85%</td><td class="neutral">中等，低于软件但符合重资产</td></tr>
+  <tr><td>净利率</td><td><strong>13.1%</strong></td><td>~8%</td><td>~11%</td><td>~25%</td><td class="good">中上</td></tr>
+  <tr><td>资产负债率</td><td>65%</td><td>~55%</td><td>~60%</td><td>~45%</td><td class="neutral">偏高但可控</td></tr>
+  <tr><td>营收增速（FY25）</td><td>2.3%</td><td>~4%</td><td>~2%</td><td>~25%</td><td class="neutral">落后成长型</td></tr>
+  <tr><td>利息覆盖</td><td>11.4x</td><td>~3x</td><td>~4x</td><td>~10x</td><td class="good">最优</td></tr>
+  <tr><td>PB</td><td>5.2x</td><td>~1.8x</td><td>~2.2x</td><td>~12x</td><td class="neutral">溢价但低于成长科技</td></tr>
+  <tr><td>PE（TTM）</td><td>19.8x</td><td>~22x</td><td>~16x</td><td>~65x</td><td class="neutral">中等</td></tr>
+  <tr><td>EV/EBITDA</td><td>9.1x</td><td>~9x</td><td>~7x</td><td>~35x</td><td class="good">合理</td></tr>
+  <tr><td>股息率</td><td>3.1%</td><td>~2.5%</td><td>~4.5%</td><td>~0.5%</td><td class="good">中高</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>竞争位置：</strong>“高ROE+高现金流+中等估值”的优质工业现金牛——ROE 26.8%与利息覆盖11.4x在可比物流/基础设施中断层领先，毛利率与净利率中上，估值溢价（PB 5.2x）显著高于传统物流（QUB/AZJ 1.8-2.2x）但远低于成长科技（WTC 12x），EV/EBITDA 9.1x与Qube持平显示现金流定价合理。结论：护城河与回报支撑溢价，但营收增速落后是估值天花板。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<div class="summary-box">
+  <strong>估值方法：首选 EV/EBITDA + PE，辅助 PB/PS/股息率；FCF收益率作交叉验证</strong><br>
+  成长型（科技）用PS/PEG，周期型用PB，防御型用PE/股息率，Brambles作为混合价值型商业服务，最贴合的是<strong>PE（盈利稳定）+ EV/EBITDA（重资产+有债）</strong>。PB对Brambles失真（账面仅反映托盘历史成本，网络价值未入账，故PB天然高）；PS仅作参考。当前市场用PE 20x/EV/EBITDA 9x定价，符合价值型框架，方法匹配度高。<br><br>
+  <strong>成色检验（高估值需四步验证，BXB不适用）：</strong>PS 2.98x <10，PE 20x <50，非高估值成长股，无需PS>10检验，但可验证：营收66.7亿>>20亿、毛利率34.5%>30%、CFO为正且向好，三项皆优，梦想溢价低。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  Step 1 - 行业定位：非周期股（基础设施/商业服务，价值/防御混合），全球垄断网络，壁垒为网络效应+规模+ESG<br>
+  Step 2 - 财务体检：ROE 26.8%优秀，高利润中周转杜邦，去杠杆ROA 9.4%真实，CFO/净利2.05x现金质量极优，FCF 9亿<br>
+  Step 3 - 估值判断：PE 19.8x（合理区间20-30x下沿）、PB 5.2x偏高、EV/EBITDA 9.1x合理、FCF收益率4.96%有吸引力，券商目标+9-11%<br>
+  Step 4 - 风险排查：量缩（-2%）、负债65%流动0.67、汇率AUD升值、Serialisation执行、估值溢价<br>
+  Step 5 - 结论：好公司（高质量现金牛，护城河深），价格合理偏贵（安全边际不足），适合持有/逢回调吸纳而非追高<br>
+  Step 6 - 跟踪：量like-for-like、资产损失率/CapEx效率、Serialisation进度、AUD/USD、FY26指引（营收3-4%利润8-11%）兑现度
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>循环共用赛道与FMCG刚需挂钩，弱周期；全球垄断格局，ESG顺风，需求稳定可预测</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓</td><td>ROE 26.8%>15%，毛利率34.5%稳定，CFO 2.05x>1，FCF 9亿持续为正（仅22年小负）</td></tr>
+  <tr><td>③ 好价格</td><td class="neutral">⚠</td><td>PE 19.8x在合理下沿但PB 5.2x偏高，52周高点回落28%后仍处60-80%分位，FCF收益率支撑但安全边际不厚</td></tr>
+</table>
+
+<h3>7.3 风险评估</h3>
+<h4>a. 三个陷阱排查</h4>
+<div class="danger-box">
+  ☐ 价值陷阱（低PE+低增长+高负债）→ <strong>部分命中风险</strong>：PE 19.8x不算低但营收2.3%确低增长+负债65%偏高，若利润提价逻辑证伪，有估值与盈利双杀风险；但高ROE与现金流与典型价值陷阱（低ROE+负现金流）不同，风险可控<br>
+  ☐ 周期陷阱（低PE+周期顶点）→ <strong>未命中</strong>：PE 20x非周期顶点低PE（周期顶点PE常<8x），且行业非纯周期，量缩-2%已是底部特征而非顶部<br>
+  ☐ 烧钱陷阱（高PE+高增速+负现金流）→ <strong>未命中</strong>：PE 20x不算高，增速低而非高，且CFO 18.3亿/FCF 9亿自我造血极强，典型反例
+</div>
+
+<h4>b. 管理层与治理风险</h4>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力与履历</td><td class="good">好</td><td>CEO Graham Chipchase长期执掌，近年推Shaping Our Future与Serialisation+战略，利润跑赢营收兑现执行力</td></tr>
+  <tr><td>股权结构与利益一致性</td><td class="good">强</td><td>机构持股49%、BlackRock+State Street合计~17%，管理层持股0.5%+长期激励与ROCI/营收CAGR挂钩</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td class="good">无</td><td>无违规/处罚/诉讼，审计稳健，PP&E为主无大额商誉减值风险（商誉仅1.97亿）</td></tr>
+  <tr><td>资本配置记录</td><td class="good">合理</td><td>分红率~60%+A$4亿回购（纪律性强），CapEx从11.3亿主动降至9.3亿提效，未盲目并购</td></tr>
+  <tr><td>管理层增减持记录</td><td class="neutral">无显著</td><td>近一年无大额集中减持公告；回购是更强信心信号</td></tr>
+  <tr><td>CEO交接/关键人员变动</td><td class="good">无风险</td><td>核心团队稳定，Serialisation+团队在智利/北美/英国分步推进</td></tr>
+</table>
+
+<h4>c. 盈利可持续性</h4>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是靠价？</td><td class="neutral">价驱动（需关注）</td><td>FY25营收+2.3%中量贡献为负/微正，全靠提价与补偿费；H1量-2%价增，量价背离</td></tr>
+  <tr><td>涨价能否持续？</td><td class="neutral">需观察</td><td>定价权来自网络垄断与通胀传导，但客户为大型零售商议价力不弱，量缩时持续提价易致客户转自有/区域托盘</td></tr>
+  <tr><td>非经常性利润占比</td><td class="good">低</td><td>终止经营3180万仅占3.5%，Underlying=Statutory（无Significant Items），利润干净</td></tr>
+  <tr><td>大客户/大项目集中度</td><td class="good">分散</td><td>60+国家、无单一客户>10%营收，FMCG/零售/生鲜分散</td></tr>
+  <tr><td>政策/监管依赖度</td><td class="neutral">低-中</td><td>主要受ESG/循环经济政策利好，无牌照监管；仅受运输/木材等成本监管影响</td></tr>
+</table>
+
+<h4>d. 关键变量敏感性</h4>
+<div class="summary-box">
+  <strong>变量1: 托盘量（like-for-like volume）</strong><br>
+  乐观: 消费复苏量+1-2% → 营收+4-5%，EBIT +8-12%（经营杠杆）<br>
+  中性: 量持平0% → 营收+2-3%（靠价），EBIT +5-8%<br>
+  悲观: 量-3% → 营收0-1%，EBIT -5%（价难完全对冲）<br><br>
+  <strong>变量2: AUD/USD汇率（报表USD/报价AUD）</strong><br>
+  乐观: AUD贬至1.65 → AUD EPS +7%，股息AUD价值提升<br>
+  中性: 1.50-1.55 → 无显著影响<br>
+  悲观: AUD升至1.40 → AUD EPS -8%，报表增速被抹平，估值承压<br><br>
+  <strong>变量3: Serialisation+与资产效率</strong><br>
+  乐观: 丢失率-20%+审核自动化 → CapEx -10%，ROCI +1pct，估值溢价提升<br>
+  中性: 按计划推进（智利>50%客户、英美测试）→ 效率稳步改善<br>
+  悲观: 投入超支/客户迁移慢 → CapEx回升至11亿+，FCF指引下调，PE收缩
+</div>
+
+<h3>7.4 前景展望</h3>
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. Serialisation+数字化红利——托盘加标签+服务中心读码网络，实现实时可视、丢失率下降、人力审核减少，H1已在智利>50%客户采用，北美/英国测试中，若成功将系统性提升ROCI与客户粘性<br>
+  2. 循环经济与ESG顺风——大型CPG/零售商将CHEP循环模式纳入Scope3减碳路径，替代一次性托盘的趋势增强，构长期需求底<br>
+  3. 经营杠杆与现金兑现——利润增速持续2倍于营收，FCF指引上调至9.5-11亿，回购+股息双引擎提供股东回报（目标分红60%+回购）<br><br>
+  <strong>负向拖累：</strong><br>
+  1. 量缩与消费走弱——H1 -2%已敲警钟，食品饮料零售库存增速2.5%<10年均值3%，若美欧消费持续疲软，量难回正<br>
+  2. 汇率与成本——AUD升值侵蚀+木材/柴油波动（柴油月涨59.7%案例）挤压价差<br>
+  3. 估值与预期——20x PE+5.2x PB已price-in稳定兑现，任何指引下调（营收<3%或利润<8%）易引发高位补跌（已从26.93回落28%）
+</div>
+
+<h3>7.5 三情景简表</h3>
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>FY2026E EPS（AUD）</th><th>PE区间</th><th>预期回报（vs 19.44）</th></tr>
+  <tr><td>乐观（概率25%）</td><td>量回正+1%、Serialisation超预期、AUD稳定</td><td>1.10-1.15</td><td>22-25x</td><td>A$24-28（+23%~+44%）</td></tr>
+  <tr style="background:#f0faf0"><td>中性（概率50%）</td><td>量持平、营收+3-4%、利润+8-11%兑现指引</td><td>0.99-1.05</td><td>19-21x</td><td>A$19-22（-2%~+13%）</td></tr>
+  <tr><td>悲观（概率25%）</td><td>量-3%、指引下调、AUD升值</td><td>0.85-0.90</td><td>15-17x</td><td>A$13-15（-33%~-23%）</td></tr>
+</table>
+<p style="font-size:13px;color:#666;margin:6px 0">概率判断：中性50%，乐观25%，悲观25%（关键观察FY2026全年量与FCF兑现，8月年报为下一催化）</p>
+
+<h3>7.6 资金面信号</h3>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>北向资金/机构持仓（AUD）</td><td>N/A</td><td>ASX无北向/两融数据；替代看机构持仓：机构持股49.1%（Mutual+ETF 28.9%、其他机构16.8%），BlackRock 8.86%、State Street 8.53%为前两大</td></tr>
+  <tr><td>融资余额变动</td><td>N/A</td><td>ASX无融资余额统计；替代看做空率：Short % of float 0.77% 极低，情绪中性偏多</td></tr>
+  <tr><td>董事/大股东增减持</td><td>回购增持信号</td><td>A$4亿回购已完成1.91亿（H1），为实质增持；近一年无董监高大额减持公告</td></tr>
+  <tr><td>大宗交易</td><td>无显著折溢价</td><td>—</td></tr>
+</table>
+<div class="summary-box">资金面整体判断：N/A（ASX不适用A股资金面指标）。替代指标显示机构高度持有+低做空+回购进行中，资金面偏正面但股价年内-15.6%跑输大盘，反映基本面（量缩）担忧压制资金情绪。</div>
+
+<h3>7.7 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——买托盘、租托盘、收托盘、修托盘再租，靠全球最密的CHEP网络让托盘循环起来，赚租金+资产效率+丢失补偿的钱。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——H1 like-for-like量-2%：若量持续为负，再强的提价也难长期掩盖需求疲软；其次是流动比率0.67与AUD汇率。<br>
+  3. 如果现在买入，期待的回报来源是什么？——① 量回正+提价带来的盈利弹性（8-11%利润增速）+ ② Serialisation提升ROCI的估值修复（PE从19.8x向22x）+ ③ 3.1%股息+回购的现金回报。<br>
+  4. 什么情况下你会坚决卖出？——连续两季量-3%以上且提价无法覆盖；或FY26指引下调（营收<2%/利润<5%）；或AUD急升至1.35以下侵蚀报表且FCF指引下调；或Serialisation投入超支致FCF转负。
+</div>
+
+</div></div>
+
+<div class="footer">
+  免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+  数据来源：Brambles FY2025 Annual Report（2025-08-20）、H1 FY2026业绩（2026-06）、StockAnalysis财务数据库（S&P Global）、FNArena共识（FY26 EPS 99.3c/PE 19.5/DPS 61.4c/Target 21.23）、Quantfolio（PE 20.04/FCF Yield 4.96%/ROE 28.1%）、Kalkine AU（市价19.20-19.56）、TradingView/Bloomberg。USD/AUD汇率约1.54折算。
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>
