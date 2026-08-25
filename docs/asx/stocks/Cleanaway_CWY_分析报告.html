@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cleanaway(CWY) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .score-note { font-size: 13px; color: #666; background: #fafafa; border: 1px dashed #ccc; padding: 8px 12px; margin: 10px 0; }
+  .history-table td:first-child { white-space: nowrap; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>Cleanaway（CWY）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架 | ASX 防御型/基础设施</p>
+<p class="meta">分析日期：2026-08-25 | 数据来源：FY25年报(截至2025-06-30) + 1H FY26半年报 + FY24年报 + S&P Global/StockAnalysis | 币种：AUD</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>Cleanaway Waste Management Limited</td></tr>
+  <tr><td>股票代码</td><td>ASX: CWY</td></tr>
+  <tr><td>所属行业</td><td>Industrials — Environmental & Facilities Services / 废弃物管理</td></tr>
+  <tr><td>行业地位</td><td>澳大利亚最大废弃物管理上市公司，全国网络：>350运营点、6,400+车辆、垄断性填埋场/中转站/回收设施；近年扩张至新西兰（Contract Resources）与中东</td></tr>
+  <tr><td>FY25 营收（Gross / Net）</td><td>38.51亿 / 33.03亿 AUD（同比 +2.5% / +3.4%）</td></tr>
+  <tr><td>归母净利润（ statutory / underlying）</td><td>1.57亿 / 1.98亿 AUD（statutory +0.2% / underlying +16.1%）</td></tr>
+  <tr><td>经营现金流 CFO</td><td>4.57亿 AUD（FY24: 5.42亿）</td></tr>
+  <tr><td>总资产</td><td>65.78亿 AUD（FY24: 63.73亿）</td></tr>
+  <tr><td>归母净资产</td><td>30.43亿 AUD（FY24: 29.97亿）</td></tr>
+  <tr><td>ROE（statutory）/ ROIC（underlying）</td><td>5.24% / 6.0%（FY24: 5.32% / 5.5%）</td></tr>
+  <tr><td>员工 / 上市时间</td><td>约10,000人 / 2005-05-03 ASX上市</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>行业类型标注：</strong> <span class="good">非周期股 — 防御型（公用事业/基础设施属性）</span>。废弃物管理为必需服务，市政长协+填埋牌照形成类基建现金流，需求不随经济周期大幅波动。按 <code>industry-classification.md</code>，不属于纯周期（钢铁/煤炭等）或混合周期（半导体/锂电等），适用 <strong>非周期股评分体系</strong>。估值以 PE/股息率为首选，PB为辅助。
+</div>
+
+<p class="score-note"><strong>评分口径说明：</strong><span>采用非周期股评分体系，首次分析，无历史版本</span></p>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:12px;color:#666;margin-bottom:6px;">采用非周期股评分体系（ROE/现金含金量/增长/负债/毛利/估值/FCF共10维）</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE</td><td class="neutral">5/15</td><td style="text-align:left">FY25 ROE 5.24%（ROIC 6.0%），≥5%得5分，距“良好”15%差距较大，主因巨额商誉2,442m摊薄净资产回报</td></tr>
+  <tr><td>杜邦驱动质量</td><td class="neutral">3/5</td><td style="text-align:left">均衡型：净利率4.07%×周转0.59×乘数2.16，非高利润也非高杠杆，驱动分散</td></tr>
+  <tr><td>利润含金量 CFO/净利</td><td class="good">15/15</td><td style="text-align:left">CFO 4.57亿 / Stat NPAT 1.57亿 = 2.91倍（underlying 2.31倍），远超1.0，现金真实</td></tr>
+  <tr><td>营收增长</td><td class="neutral">4/10</td><td style="text-align:left">FY25 Net Revenue +3.4%（Gross +2.5%），<5%但为正；1H FY26加速至+13.7%（含并购）</td></tr>
+  <tr><td>利润增长</td><td class="good">7/10</td><td style="text-align:left">Underlying NPAT +16.1%（Stat +0.2%受58.1m一次性拖累），取核心+16%给7分，Stat增速失真</td></tr>
+  <tr><td>负债率</td><td class="neutral">7/10</td><td style="text-align:left">资产负债率53.7%（3531/6578），<55%得7分，低于65%警戒但重资产属性负债累积</td></tr>
+  <tr><td>短期偿债</td><td class="neutral">4/10</td><td style="text-align:left">现金86.5m vs 短期有息+租赁214.7m有缺口，现 比0.74、速动0.70；但有循环信贷额度覆盖，靠再融资而非自有现金</td></tr>
+  <tr><td>毛利率水平与趋势</td><td class="neutral">7/10</td><td style="text-align:left">毛利率25.05%（FY24 24.26%），≥15%且稳定微升，规模+定价（市政合约年度调价）驱动</td></tr>
+  <tr><td>估值 PE vs 合理区间</td><td class="bad">0/10</td><td style="text-align:left">按ROE<10%合理PE<10x，当前Forward PE 23.4x / Underlying 29.4x / Stat TTM 58.9x均严重偏高，PS 1.32亦高于历史中位</td></tr>
+  <tr><td>FCF</td><td class="good">5/5</td><td style="text-align:left">FY25 FCF 1.63亿（S&P口径）、媒体口径2.70亿，近5年持续为正，仅FY23 1.12亿低位仍正</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">57/100</td><td style="text-align:left">不及格 → 价值需靠盈利修复/估值回归实现</td></tr>
+</table>
+
+<div class="verdict verdict-bad">不及格（57/100分）</div>
+
+<h2 style="margin-top:16px">评分沿革</h2>
+<style>.history-table{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:13px}.history-table th,.history-table td{border:1px solid #ddd;padding:6px 8px;text-align:center}.history-table th{background:#f0f0f0;font-weight:bold}.history-table td.good{color:#27ae60}.history-table td.neutral{color:#e67e22}.history-table td.bad{color:#c0392b}</style><table class="history-table">
+  <tr><th>日期</th><th>评分</th><th>评分体系</th><th>变化原因</th></tr>
+  <tr><td>2026-08-25</td><td class="bad" style="font-weight:bold">57/100</td><td>防御性</td><td style="text-align:left">采用非周期股评分体系，首次分析，无历史版本</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>澳洲废弃物“收费公路”：牌照+网络形成强壁垒，现金流真实（CFO/净利2.9倍）、FCF五年为正，underlying EBIT已连续两年双位数增长（FY24 +18.9%、FY25 +14.6%）、ROIC提升至6.0%。但账面ROE仅5.2%被巨额商誉与重资产拖累，资产负债53.7%+流动比<1显示资金结构偏紧，估值（Forward PE 23x / PB 1.92x）已透支中期>450m EBIT的兑现预期，FY25 Stat利润零增长暴露一次性费用频繁（57.1m火灾/IT/剥离）的问题。<br><br>
+  <strong>核心优势：</strong>① 全国性垄断网络+市政长协（SWS净收入139亿级），定价有CPI传导；② 现金造血强，FCF持续为正且OPEX改善带来130bps EBIT margin扩张至12.5%；③ 牌照壁垒（填埋场稀缺）+ 循环经济政策红利（西悉尼MRF、塔州CDS、ResourceCo剥离聚焦）；④ 收购整合期已过，Citywide/Contract Resources FY26贡献约30m EBIT。<br><br>
+  <strong>核心风险：</strong>① 估值高企：Forward PE 23x vs ROE<10%合理<10x，安全边际薄，对EBIT不及预期敏感；② 负债与流动性：净负债17.4亿（FY26H升至23亿）、流动比0.74，依赖再融资，利率上升侵蚀（利息122.7m YoY +30%）；③ 商誉雷：24.4亿商誉占净资产80%，若并购整合或填埋场减值将大幅冲利润（FY23曾致ROE 0.84%）；④ 一次性费用常态化：两年累计75m+（火灾23m、IT 18m、剥离亏损16.9m）削弱Stat利润可信度。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY25</th><th>FY24</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入 Gross Revenue</td><td>38.51亿</td><td>37.58亿</td><td class="good">+2.5%</td><td>量价齐升但增速放缓</td></tr>
+  <tr><td>净收入 Net Revenue</td><td>33.03亿</td><td>31.95亿</td><td class="good">+3.4%</td><td>扣减碳/回收补贴后核心收入</td></tr>
+  <tr><td>毛利润 Gross Profit</td><td>9.65亿</td><td>9.11亿</td><td class="good">+5.9%</td><td></td></tr>
+  <tr><td>毛利率</td><td>25.05%</td><td>24.26%</td><td class="good">+79bps</td><td>定价+运营效率</td></tr>
+  <tr><td>EBIT（statutory）</td><td>3.70亿</td><td>3.29亿</td><td class="good">+12.4%</td><td>含显著项目</td></tr>
+  <tr><td>EBIT（underlying）</td><td>4.12亿</td><td>3.59亿</td><td class="good">+14.6%</td><td>剔除58.1m一次性后核心</td></tr>
+  <tr><td>EBIT Margin underlying</td><td>12.5%</td><td>11.2%</td><td class="good">+130bps</td><td>运营卓越兑现</td></tr>
+  <tr><td>归母净利润 statutory</td><td>1.57亿</td><td>1.57亿</td><td class="neutral">+0.2%</td><td>被一次性吃掉增长</td></tr>
+  <tr><td>归母净利润 underlying</td><td>1.98亿</td><td>1.71亿</td><td class="good">+16.1%</td><td>真实经营增长</td></tr>
+  <tr><td>净利率 statutory</td><td>4.07%</td><td>4.17%</td><td class="neutral">-10bps</td><td>利息+一次性拖累</td></tr>
+  <tr><td>EPS statutory / underlying (c)</td><td>7.0 / 8.8</td><td>7.0 / 7.6</td><td class="neutral">0% / +15.8%</td><td>稀释股本2231m微增0.16%</td></tr>
+  <tr><td>期间费用率 SG&A/营收</td><td>1.58%</td><td>1.56%</td><td class="neutral">+2bps</td><td>费用控制稳定</td></tr>
+</table>
+<p style="font-size:12px;color:#888;">1H FY26更新（2025-07至2025-12）：Gross 22.06亿 +13.7%、Underlying EBIT 2.28亿 +16.9%、Underlying NPAT 1.097亿 +17.8%、Stat NPAT 0.373亿 -49.1%（91m显著项目：减值/重组/IT/收购）。</p>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>营收端 FY25仅+2.5%（SWS驱动，IWS -6.5%、ETS -1.1%拖累），但 <strong>“增利不增收”</strong>：underlying EBIT +14.6%、margin +130bps至12.5%，靠价格（市政合约CPI联动）、昆州Solids修复、Health Services扭亏（FY23亏损→FY25贡献）及NSW Solids/LTS复苏。Stat与Underlying背离扩大（差额58.1m vs FY24 17.7m），含St Marys液废厂火灾23.2m、IT转型18.2m、ResourceCo剥离亏损16.9m，说明Stat利润对突发事件敏感。利息支出94m→123m（1H26）凸显杠杆成本。前景看FY26指引470-500m EBIT（含30m并购），兑现需SWS延续+ IWS重组见效。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY25</th><th>FY24</th><th>变动</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td>0.87亿</td><td>1.21亿</td><td class="bad">-28%</td><td>现金薄，依赖授信</td></tr>
+  <tr><td>应收账款（含其他）</td><td>5.71亿</td><td>5.57亿</td><td class="neutral">+2.5%</td><td>增速≈营收，管理稳</td></tr>
+  <tr><td>存货</td><td>0.65亿</td><td>0.58亿</td><td class="neutral">+11.8%</td><td>占营收1.7%，极低（服务业）</td></tr>
+  <tr><td>流动资产合计</td><td>7.69亿</td><td>7.76亿</td><td class="neutral">-0.9%</td><td></td></tr>
+  <tr><td>固定资产 PPE</td><td>25.54亿</td><td>23.88亿</td><td class="good">+6.9%</td><td>重资产：车辆/填埋/分拣</td></tr>
+  <tr><td>商誉 Goodwill</td><td>24.42亿</td><td>24.42亿</td><td class="neutral">0%</td><td>占净资产80%，最大雷点</td></tr>
+  <tr><td>其他无形资产</td><td>6.39亿</td><td>6.26亿</td><td class="neutral">+2%</td><td>客户合约/牌照</td></tr>
+  <tr><td>总资产</td><td>65.78亿</td><td>63.73亿</td><td class="neutral">+3.2%</td><td>重资产+轻商誉并重</td></tr>
+  <tr><td>流动负债合计</td><td>10.41亿</td><td>9.99亿</td><td class="bad">+4.2%</td><td></td></tr>
+  <tr><td>其中：短期有息+租赁</td><td>2.15亿</td><td>1.10亿</td><td class="bad">+95%</td><td>一年内到期跳升</td></tr>
+  <tr><td>长期有息债务</td><td>10.73亿</td><td>11.27亿</td><td class="good">-4.8%</td><td>再融资至长期</td></tr>
+  <tr><td>长期租赁</td><td>5.36亿</td><td>5.40亿</td><td class="neutral">-0.8%</td><td>IFRS16</td></tr>
+  <tr><td>总负债</td><td>35.31亿</td><td>33.71亿</td><td class="bad">+4.7%</td><td>负债率53.7%</td></tr>
+  <tr><td>归母净资产</td><td>30.43亿</td><td>29.97亿</td><td class="neutral">+1.5%</td><td>留存收益-1.09亿仍负</td></tr>
+  <tr><td>资产负债率</td><td>53.7%</td><td>52.9%</td><td class="neutral">+0.8pp</td><td>＜65%阈值</td></tr>
+  <tr><td>流动比率 / 速动</td><td>0.74 / 0.62</td><td>0.78 / 0.68</td><td class="bad">下滑</td><td>＜1警戒</td></tr>
+  <tr><td>净负债 / 净负债率</td><td>17.37亿 / 57%</td><td>16.56亿 / 55%</td><td class="bad">+4.9%</td><td>1H26升至23.08亿</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>典型 <strong>“重资产+高商誉”</strong> 结构：PPE 25.5亿+商誉24.4亿占总资产76%，真实有形净资产为负（Tangible BV -0.02澳元/股）。负债率53.7%看似可控，但流动性偏紧：流动比0.74、现金仅0.87亿无法覆盖短期有息2.15亿，营运资金-2.71亿（FY24 -2.23亿）。好在债务期限结构已拉长（长期债10.7亿）、Debt/EBITDA 2.43x（FY24 2.54x）较健康，且1H26后通过收购推升净负债至23亿，考验再融资能力。最大隐忧是商誉：占净资产80%，若Citywide/Contract Resources整合或填埋场估值下修触发减值，将直接吞噬利润（FY23 ROE曾跌至0.84%即为前车之鉴）。留存收益为负显示历史分红+减值消耗累积。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY25</th><th>FY24</th><th>同比</th><th>评价</th></tr>
+  <tr><td>CFO 经营现金流</td><td>4.57亿</td><td>5.42亿</td><td class="bad">-15.7%</td><td>应收+其他营运占用90.9m</td></tr>
+  <tr><td>CFI 投资现金流</td><td>-3.08亿</td><td>-4.60亿</td><td class="good">流出收窄</td><td>CapEx下降</td></tr>
+  <tr><td>CFF 筹资现金流</td><td>-1.83亿</td><td>-0.64亿</td><td class="neutral">分红+还债</td><td></td></tr>
+  <tr><td>资本开支 CapEx</td><td>-2.94亿</td><td>-3.70亿</td><td class="good">-20.5%</td><td>西悉尼MRF投产后回落</td></tr>
+  <tr><td>自由现金流 FCF (S&P)</td><td>1.63亿</td><td>1.72亿</td><td class="bad">-5.2%</td><td>仍为正</td></tr>
+  <tr><td>自由现金流 媒体口径</td><td>2.70亿</td><td>2.88亿</td><td class="bad">-6.2%</td><td>口径差异：含调整</td></tr>
+  <tr><td>CFO / 净利润</td><td>2.91x</td><td>3.46x</td><td class="good">＞1优</td><td>利润100%现金化</td></tr>
+  <tr><td>FCF Margin</td><td>4.22%</td><td>4.57%</td><td class="neutral">-35bps</td><td></td></tr>
+  <tr><td>分红支付</td><td>-1.15亿</td><td>-1.04亿</td><td class="neutral">+10.6%</td><td>分红/FCF 71%</td></tr>
+  <tr><td>并购现金支出</td><td>-0.06亿</td><td>-0.50亿</td><td class="good">FY25低，1H26激增4.78亿</td><td>Citywide等</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong> <strong>造血能力强但FY25边际走弱</strong>。CFO 4.57亿虽同比-15.7%（营运资产占用+所得税支付1.15亿 vs FY24 0.05亿），仍是净利2.9倍，证明利润质量高。FCF 1.63亿（S&P）连续5年为正（FY22 2.09亿/FY23 1.12亿/FY24 1.72亿/FY25 1.63亿），分红覆盖率1.4倍。CapEx从3.7亿降至2.94亿，显示重资产投入周期见顶，西悉尼MRF等资本化完成。隐患：1H26 CFO 2.6亿（估算）但并购耗资4.78亿导致净现金流告负、净负债飙升至23亿，未来2-3年需消化整合现金流。FCF/市值4.6%（S&P）隐含现金回报尚可。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY25</th><th>FY24</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td>5.24%</td><td>5.32%</td><td>＞15%</td><td class="bad">差 — 商誉拖累</td></tr>
+  <tr><td>ROIC underlying</td><td>6.0%</td><td>5.5%</td><td>＞10%</td><td class="neutral">一般，改善中</td></tr>
+  <tr><td>毛利率</td><td>25.05%</td><td>24.26%</td><td>稳定或提升</td><td class="good">优 — 微升</td></tr>
+  <tr><td>净利率 statutory</td><td>4.07%</td><td>4.17%</td><td>＞10%</td><td class="bad">低</td></tr>
+  <tr><td>EBIT Margin underlying</td><td>12.5%</td><td>11.2%</td><td>提升</td><td class="good">优 — +130bps</td></tr>
+  <tr><td>营收增长 Net</td><td>3.4%</td><td>7.7%</td><td>＞10%</td><td class="bad">慢</td></tr>
+  <tr><td>利润增长 underlying NPAT</td><td>16.1%</td><td>14.8%</td><td>＞10%</td><td class="good">优 — 连续双位数</td></tr>
+  <tr><td>CFO / 净利润</td><td>2.91x</td><td>3.46x</td><td>＞1.0</td><td class="good">极优</td></tr>
+  <tr><td>资产负债率</td><td>53.7%</td><td>52.9%</td><td>＜50%</td><td class="neutral">一般 — 重资产可容忍</td></tr>
+  <tr><td>流动比率</td><td>0.74</td><td>0.78</td><td>＞1.5</td><td class="bad">差</td></tr>
+  <tr><td>分红率 Payout (stat)</td><td>73.6%</td><td>66.5%</td><td>30-60%</td><td class="neutral">偏高但FCF覆盖</td></tr>
+  <tr><td>股息率</td><td>2.26%</td><td>1.89%</td><td>—</td><td class="neutral">ASX中等，100% franking</td></tr>
+  <tr><td>Debt/EBITDA</td><td>2.43x</td><td>2.54x</td><td>＜3.0</td><td class="good">安全</td></tr>
+</table>
+
+<h3>3.2 分业务分析</h3>
+<table>
+  <tr><th>业务板块</th><th>FY25营收</th><th>占比</th><th>同比</th><th>Underlying EBIT</th><th>评价</th></tr>
+  <tr><td>Solid Waste Services 固废服务</td><td>约27.88亿 (Gross)</td><td>72.4%</td><td class="neutral">+0.0% Gross / +3-4% Net估</td><td>约3.1-3.3亿 (FY24 3.29亿)</td><td class="good">核心引擎，价格+市占驱动，EBIT+预期</td></tr>
+  <tr><td>Liquid Waste & Health / ETS-Oils & Technical + Health</td><td>6.84亿</td><td>17.8%</td><td class="bad">-1.1%</td><td>0.841亿 +24.2%</td><td class="good">量跌利升：Health扭亏、OTS网络韧性</td></tr>
+  <tr><td>Industrial & Waste Services 工业服务</td><td>3.79亿</td><td>9.8%</td><td class="bad">-6.5%</td><td>0.238亿 -10.2%</td><td class="bad">周期性拖累，重组中</td></tr>
+  <tr><td>合计 Gross Revenue</td><td>38.51亿</td><td>100%</td><td class="good">+2.5%</td><td>4.118亿 +14.6%</td><td class="good">SWS占EBIT ~75%</td></tr>
+</table>
+<p style="font-size:12px;color:#888;">注：SWS FY24披露 Gross 27.88亿 Net 22.24亿；FY25未单列，按总额倒推SWS Gross≈27.88亿，Net约23亿（估算），管理层称“SWS强劲”。IWS/ETS数据来自FY25媒体稿。</p>
+<div class="highlight-box">
+  <strong>分业务解读：</strong> <strong>一强一稳一弱</strong>。SWS（72%收入）是定海神针：依托市政长协（3-7年）+填埋场稀缺性，具备CPI转嫁能力，FY24-25 EBIT margin从13.3%→14.8%→FY25预计进一步提升。ETS板块（Health+Oils）FY25营收微跌但EBIT +24%（Health从FY23亏损到FY25预计15m目标兑现），证明转型有效；IWS则受矿业/基建项目延期影响营收-6.5%、EBIT -10%，管理层已退出低效都市合约并重组。若IWS企稳，利润弹性向上。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险项</th><th>严重程度</th><th>依据</th></tr>
+  <tr><td>商誉占比过高</td><td class="bad">🔴 高</td><td style="text-align:left">商誉24.42亿占净资产80%、占总资产37%；Tangible BV -0.20澳元/股。若并购整合不及预期或填埋场减值，单次减值即可吞噬1-2年利润（FY23风水费62.2m即前车之鉴）</td></tr>
+  <tr><td>有息负债与流动性</td><td class="neutral">🟡 中</td><td style="text-align:left">净负债17.4亿→1H26 23.1亿，流动比0.74、速动0.62，现金0.87亿覆盖不足；Debt/EBITDA 2.43x尚可但利息+30%，需持续再融资。1H26新增9.5亿债务用于收购</td></tr>
+  <tr><td>Stat与Underlying背离</td><td class="neutral">🟡 中</td><td style="text-align:left">FY25一次性58.1m（火灾23.2m+IT 18.2m+剥离16.9m+收购5.7m）是FY24 17.7m的3.3倍，1H26更达91m，导致Stat NPAT零增长，underlying可信度待验证</td></tr>
+  <tr><td>应收账款集中</td><td class="good">🟢 低</td><td style="text-align:left">应收5.71亿占营收14.8%，周转天数约54天（365/ (3851/571)），同比稳定，未异常飙升</td></tr>
+  <tr><td>存货/合同负债</td><td class="good">🟢 低</td><td style="text-align:left">存货仅0.65亿（1.7%营收），无跌价风险；非服务业无合同负债堆积</td></tr>
+  <tr><td>关联交易/治理</td><td class="good">🟢 低</td><td style="text-align:left">五大机构股东合计约32%（Challenger 6%、Capital Group 6.3%等），无控股股东隧道风险；审计无保留</td></tr>
+  <tr><td>分红可持续性</td><td class="neutral">🟡 中</td><td style="text-align:left">Payout 73.6%（stat）、FCF覆盖1.4倍，但留存收益仍-1.09亿，靠当期现金分红而非累积利润</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>正面项：</strong>① CFO/净利2.9倍，利润100%现金化；② 毛利率25%稳定且EBIT margin扩张；③ Debt/EBITDA 2.43x未超3x红线；④ 无大额应收/存货雷。<br>
+  <strong>核心雷区：</strong>商誉+流动性是唯二红灯，其余黄灯可控。本质是“轻账面、重现金”的基建类公司，财报风险不在虚增利润，而在资产端减值与负债端再融资。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值</h3>
+<table>
+  <tr><th>指标</th><th>当前值（2026-08-25 收2.59）</th><th>FY25年报时（2.65）</th><th>行业均值参考</th></tr>
+  <tr><td>股价 Close</td><td>2.59 AUD</td><td>2.65 AUD (2025-06-30)</td><td>—</td></tr>
+  <tr><td>总市值</td><td>58.05亿 (2,241m股)</td><td>60.71亿</td><td>—</td></tr>
+  <tr><td>企业价值 EV</td><td>80.95亿</td><td>77.95亿</td><td>—</td></tr>
+  <tr><td>PE (TTM statutory)</td><td>58.86x</td><td>38.69x</td><td>ASX Industrials ~18x</td></tr>
+  <tr><td>PE (TTM underlying, 8.8c)</td><td>29.43x</td><td>30.1x</td><td></td></tr>
+  <tr><td>PE (Forward 2026E)</td><td>23.44x</td><td>25.23x</td><td>券商一致 ~22-23x</td></tr>
+  <tr><td>PB</td><td>1.92x</td><td>1.99x</td><td>ASX 300 ~2.0x</td></tr>
+  <tr><td>PS</td><td>1.32x</td><td>1.58x</td><td>废弃物国际 ~2-3x (WM US ~4x)</td></tr>
+  <tr><td>PCF (P/OCF)</td><td>11.00x</td><td>13.28x</td><td>11-13x合理</td></tr>
+  <tr><td>P/FCF (S&P)</td><td>23.91x</td><td>37.29x</td><td></td></tr>
+  <tr><td>股息率 (TTM)</td><td>2.66%</td><td>2.26%</td><td>ASX防御 ~3-4% + franking</td></tr>
+  <tr><td>Franking</td><td colspan="3">100% franking，分红6.0c (FY25) + 3.35c (1H26 interim)</td></tr>
+  <tr><td>EV/EBITDA</td><td>10.51x</td><td>12.11x</td><td>基建/废弃物 9-11x</td></tr>
+  <tr><td>EV/EBIT</td><td>23.08x</td><td>21.06x</td><td></td></tr>
+</table>
+<p style="font-size:12px;color:#888;">注：Forward PE基于券商一致 EPS 11.06c (2026F) / 8.76c (2025F)；PB按BVPS 1.36 (FY25)计算；52周区间 2.14-2.96。</p>
+
+<h3>4.2 估值区间</h3>
+<p style="font-size:13px;margin-bottom:8px;"><strong>非周期股 PE Band（首选） + PB辅助（重资产校正）</strong></p>
+<table>
+  <tr><th>情景</th><th>PE(underlying)</th><th>对应股价 (按8.8c)</th><th>对应说明</th></tr>
+  <tr><td>悲观</td><td>15x</td><td>1.32 AUD</td><td>ROE<8%且增长失速+利率高企，回归现金流折现底</td></tr>
+  <tr><td>保守</td><td>20x</td><td>1.76 AUD</td><td>成熟公用事业估值，EV/EBITDA 9x</td></tr>
+  <tr><td>中性</td><td>25x</td><td>2.20 AUD</td><td>当前Forward合理中枢，匹配6% ROIC+10% EBIT CAGR</td></tr>
+  <tr><td>券商目标均值</td><td>27-30x</td><td>2.38-2.64 AUD</td><td>目标价2.97均值（含EQT收购溢价预期）</td></tr>
+  <tr><td>当前价</td><td>29.4x (underlying) / 23.4x (Forward)</td><td>2.59 AUD</td><td>已处中性偏上，透支FY26指引</td></tr>
+  <tr><td>历史高位</td><td>35x+</td><td>3.08 AUD+</td><td>2021-22并购高峰估值</td></tr>
+</table>
+
+<table>
+  <tr><th>PB区间（辅助）</th><th>PB</th><th>对应股价 (BVPS 1.36)</th><th>说明</th></tr>
+  <tr><td>历史低位 / 破净风险</td><td>1.2x</td><td>1.63 AUD</td><td>FY23 ROE 0.84%时PB 1.96仍坚挺</td></tr>
+  <tr><td>20%分位</td><td>1.75x</td><td>2.38 AUD</td><td>当前即在此位附近</td></tr>
+  <tr><td>50%分位（中位）</td><td>1.98x</td><td>2.69 AUD</td><td>FY25均值</td></tr>
+  <tr><td>80%分位</td><td>2.20x</td><td>2.99 AUD</td><td>52周高点对应</td></tr>
+  <tr><td>当前</td><td>1.92x</td><td>2.59 AUD</td><td>处于50%分位下方，PB不算贵</td></tr>
+</table>
+
+<p style="font-size:12px;color:#888;">历史PE区间：最大值266x(FY23亏损) / 80%分位65.9x / 50%分位38.7x / 20%分位~25x / 最小值~22x。周期性失真大，以Forward/Underlying为准。</p>
+
+<div class="danger-box">
+  <strong>估值判断：偏高，安全边际不足。</strong>按非周期股ROE<10%合理PE<10x的教科书标准，当前Forward 23.4x严重偏高（4-5分制得0分）。但废弃物作为类基建资产，国际对标（Waste Management US 30x、Republic Services 28x）可容忍20-25x。若以20-25x为“基建合理区间”，当前2.59处于<span class="bad">中性偏贵</span>：已price-in FY26 EBIT 470-500m（+14-21%）的兑现，且PB 1.92虽处历史中位不算离谱，但支撑来自轻ROE+高商誉的净资产，质量打折。52周2.14-2.96区间显示当前距顶部仅-12.5%、距底部+20.9%，向上需超预期（EQT收购溢价）驱动，向下对利率/整合不及预期敏感。<strong>建议：估值回归至20x（1.76-2.20）再具配置价值；持有者以FY26指引兑现为观察点，跌破2.20可加仓。</strong>
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析（L4框架）</h2>
+
+<h3>5.1 杜邦拆解</h3>
+<table>
+  <tr><th>指标</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>判断</th></tr>
+  <tr><td>净利润率</td><td>2.63%</td><td>0.61%</td><td>4.17%</td><td>4.07%</td><td class="neutral">极低且波动</td></tr>
+  <tr><td>资产周转率</td><td>0.57</td><td>0.60</td><td>0.60</td><td>0.59-0.64</td><td class="neutral">低 — 重资产</td></tr>
+  <tr><td>权益乘数</td><td>2.23</td><td>2.06</td><td>2.12</td><td>2.16</td><td class="neutral">中等偏低</td></tr>
+  <tr><td>ROE</td><td>3.06%</td><td>0.84%</td><td>5.32%</td><td>5.24%</td><td class="bad">低</td></tr>
+  <tr><td>ROA (去杠杆)</td><td>2.13%</td><td>1.70%</td><td>3.31%</td><td>3.57%</td><td class="neutral">去杠杆后仍低</td></tr>
+  <tr><td>ROIC underlying</td><td>3.12%</td><td>2.62%</td><td>5.05%</td><td>5.35% (6.0%媒体)</td><td class="good">改善</td></tr>
+</table>
+<p style="font-size:12px;color:#888;">计算：ROE=净利润率×周转×乘数；ROA=净利润率×周转；FY25周转按Gross 38.5亿/平均资产64.75亿=0.595，TTM按0.64计，差异源于口径。</p>
+
+<h3>5.2 赚钱模式判断</h3>
+<div class="highlight-box">
+  <strong>赚钱模式：均衡型偏重资产周转，而非高利润或高杠杆。</strong> 净利率4%远低于茅台式高利润（49%），周转0.59低于沃尔玛高周转（2.4），乘数2.16远低于银行高杠杆（12）。CWY的本质是 <strong>“规模×牌照”的重资产运营</strong>：靠全国网络的密度与填埋场稀缺性赚取“过路费”，单吨利润薄但总量大、合约锁定。去杠杆ROA仅2.4%（4.07%×0.59），说明去掉杠杆后真实资产回报极低，印证商誉+重资产拖累效率。资产回报效率：每1元资产仅产生0.024元净利润，远低于轻资产公司，需靠提价与效率提升改善。
+</div>
+
+<table>
+  <tr><th>对比项</th><th>CWY FY25</th><th>茅台（高利润）</th><th>沃尔玛（高周转）</th><th>银行（高杠杆）</th></tr>
+  <tr><td>净利润率</td><td>4.07%</td><td>49%</td><td>2.5%</td><td>25%</td></tr>
+  <tr><td>周转率</td><td>0.59</td><td>0.5</td><td>2.4</td><td>0.05</td></tr>
+  <tr><td>乘数</td><td>2.16</td><td>1.23</td><td>2.5</td><td>12</td></tr>
+  <tr><td>ROE</td><td>5.24%</td><td>30%</td><td>15%</td><td>10%</td></tr>
+</table>
+
+<h3>5.3 核心结论</h3>
+<div class="summary-box">
+  <strong>杜邦结论：ROE靠“薄利+慢周转+中杠杆”勉强支撑，趋势边际向好但基数极低。</strong> 三年看：ROE从FY23谷底0.84%（大额减值）→FY24 5.32%→FY25 5.24%企稳，周转率0.57→0.60→0.59停滞，净利率0.61%→4.17%→4.07%修复是主因（EBIT margin扩张），乘数2.06→2.12→2.16微升反映负债增加。去杠杆ROA 2.4%仍远低于15%优秀线，说明 <strong>核心问题不是杠杆不够，而是资产效率与利润率太低</strong>（商誉+重资产+低净利三重拖累）。若FY26 EBIT达470-500m且无大额减值，净利率有望回升至4.5-5.0%、ROE向6-7%爬升，但要突破10%需大幅处置商誉或提价，短期难。投资上不应以ROE绝对值选股，而应跟踪ROIC与EBIT margin趋势——这才是CWY的真实改善信号。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：非周期股 — 防御型（基础设施/公用事业延伸）+ 价值底色</strong><br>
+  <strong>判断依据：</strong>① 需求刚性：废弃物产生与人口、消费、工业活动正相关，不随经济周期大幅波动，市政合约提供3-7年锁定收入（类似收费公路）；② 供给受限：填埋场牌照受环保审批极严，新增供给几乎为零，形成区域垄断；③ 财务特征：营收低增速（FY25 +2.5%）、毛利稳定25%、现金流可预测、分红100% franking，符合防御/公用事业特征，而非成长型烧钱或周期型暴利波动。按 <code>industry-classification.md</code>，不属纯/混合周期，<strong>选用非周期股评分体系</strong>。<br>
+  <strong>生命周期：</strong>成熟期 → 向“循环经济”二次成长过渡（资源回收、Waste-to-Energy），增速5-10%而非20%+，投资重点是效率与整合而非颠覆。
+</div>
+
+<h3>6.2 集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>行业集中度 CR3</td><td>高度集中</td><td style="text-align:left">CWY为澳第一，市占约30-35%；前三大（CWY + Veolia + Suez/Remondis）合计＞60%；市政招标CR3＞70%</td></tr>
+  <tr><td>竞争格局</td><td>寡头垄断，区域分割</td><td style="text-align:left">悉尼/墨尔本/布里斯班各区域填埋场为自然垄断，外来者需重资建中转+获批填埋，5-7年周期</td></tr>
+  <tr><td>品牌壁垒</td><td>中</td><td style="text-align:left">市政客户重履约与合规历史，CWY 20年运营记录为加分项</td></tr>
+  <tr><td>牌照/监管壁垒</td><td><strong>极强</strong></td><td style="text-align:left">EPA填埋/危废/医疗废弃物牌照，环境审批趋严，新增填埋几乎不可能</td></tr>
+  <tr><td>规模/网络壁垒</td><td>极强</td><td style="text-align:left">350+站点、6,400车辆形成密度经济，单车收集成本随密度递减</td></tr>
+  <tr><td>技术壁垒</td><td>中</td><td style="text-align:left">分拣/MRF、危废处理、Waste-to-Energy有技术门槛但非颠覆性</td></tr>
+  <tr><td>客户粘性</td><td>高</td><td style="text-align:left">市政合约期长+切换成本高（居民已习惯收集路线），商业客户合约1-3年</td></tr>
+</table>
+
+<h3>6.3 生命周期与周期位置</h3>
+<div class="highlight-box">
+  <strong>生命周期：成熟期 → 循环经济二次成长。</strong> 传统填埋/收集已成熟，增速≈GDP+人口；新增量来自：① 资源回收（MRF）提纯与再生料溢价；② 危废/医疗废弃物提价；③ 州际CDS（容器押金）运营（如塔州、维州TOMRA Cleanaway JV）；④ Waste-to-Energy。当前周期位置：<strong>非周期股无周期顶点/底问，但IWS子板块受矿业/基建周期拖累处于偏弱，而SWS/Health处于景气扩张</strong>。整体不适用PB底部/顶部判断，关注政策（州政府填埋税上调利好回收）与大宗（回收纸/油价影响OTS）。
+</div>
+
+<h3>6.4 同行对比</h3>
+<p style="font-size:12px;color:#666;">选取可比：Bingo Industries（未上市，澳洲第二）、Veolia澳洲（外资）、国际对标 Waste Management US (WM) / Republic Services (RSG)</p>
+<table>
+  <tr><th>指标</th><th>CWY</th><th>WM (US)</th><th>RSG (US)</th><th>Veolia AU (估)</th><th>评价</th></tr>
+  <tr><td>ROE</td><td>5.24%</td><td>~35%</td><td>~18%</td><td>~6%</td><td class="bad">CWY低 — 商誉拖累</td></tr>
+  <tr><td>毛利率</td><td>25.05%</td><td>38%</td><td>40%</td><td>~22%</td><td class="neutral">中 — 国际龙头更高</td></tr>
+  <tr><td>净利率</td><td>4.07%</td><td>~12%</td><td>~11%</td><td>~3%</td><td class="bad">低</td></tr>
+  <tr><td>负债率</td><td>53.7%</td><td>~68%</td><td>~65%</td><td>~60%</td><td class="good">CWY更低</td></tr>
+  <tr><td>营收增速 FY25</td><td>2.5%</td><td>5.6%</td><td>4.2%</td><td>~3%</td><td class="neutral">中</td></tr>
+  <tr><td>PB</td><td>1.92</td><td>~10</td><td>~6</td><td>—</td><td class="good">CWY低估（但ROE也低）</td></tr>
+  <tr><td>PE (Forward)</td><td>23.4</td><td>30</td><td>28</td><td>—</td><td class="neutral">CWY折价但ROE差距更大</td></tr>
+  <tr><td>EV/EBITDA</td><td>10.5</td><td>14</td><td>13</td><td>~10</td><td class="good">CWY合理</td></tr>
+  <tr><td>股息率</td><td>2.66%</td><td>1.5%</td><td>1.3%</td><td>—</td><td class="good">CWY高 + franking</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>竞争位置：规模垄断已成，但盈利效率落后国际龙头。</strong> CWY在澳洲的垄断地位堪比WM在美国（全国网络+填埋稀缺），但净利率4% vs WM 12%、ROE 5% vs 35%，差距在于：① 商誉与PPE过重稀释回报；② 澳洲废弃物单价与回收溢价低于美国；③ 管理与效率仍有提升空间（EBIT margin 12.5% vs WM ~19%）。估值上CWY PB 1.92远低于WM 10倍，反映市场对其ROE不信任；EV/EBITDA 10.5倍则与国际基建类相当，说明现金流价值被认可。结论：CWY是“澳洲版WM的形、但未得其神”，改善路径是提margin而非扩规模。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<div class="summary-box">
+  <strong>估值方法：首选 PE（Forward/Underlying）+ EV/EBITDA，辅助 PB + 股息率。</strong> 成长初期不适用PS（已盈利），周期股PB不适用（非周期）。当前市场对CWY使用PE 22-27x（券商）与EV/EBITDA 10-12x，与防御/基建类（TCL/APA）一致，匹配其现金流稳定属性。检验：① 若用PS会高估（PS 1.32但净利极低）；② 若用PB会低估资产中商誉水分；③ EV/EBITDA 10.5x处于合理区间下沿，是更稳健锚。关注EQT收购要约（2026-08 NBIO）对估值的事件驱动——若落地，估值将向私有化溢价（约3.15）靠拢。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  Step 1 - 行业定位：防御型非周期（废弃物基建），CR3＞60%高度集中，牌照+网络双极强壁垒，成熟期向循环经济过渡<br>
+  Step 2 - 财务体检：ROE 5.24%低但ROIC 6.0%改善中，均衡型杜邦（薄利慢周转），CFO/净利2.9倍现金极优，FCF五年为正<br>
+  Step 3 - 估值判断：Forward PE 23.4x / PB 1.92x / EV/EBITDA 10.5x，PE严重高于ROE<10%合理区间，PB中位但商誉打折，整体偏贵<br>
+  Step 4 - 风险排查：商誉24.4亿高悬（🔴）、流动比0.74偏紧（🟡）、一次性频繁致Stat失真（🟡），无应收/存货雷<br>
+  Step 5 - 结论：<strong>好行业、一般公司、贵价格</strong> — 行业值得长期跟踪，公司质地中等（待整合验证），价格无安全边际<br>
+  Step 6 - 跟踪：关键看 FY26 EBIT 470-500m兑现、净负债/EBITDA能否回落至＜3x、ROIC能否上8%、商誉是否减值
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓ 是</td><td style="text-align:left">必需服务、牌照垄断、长协锁定、政策（填埋税/循环经济）长期利好，类收费公路</td></tr>
+  <tr><td>② 好公司</td><td class="neutral">△ 一般</td><td style="text-align:left">ROIC 6%未达15%，ROE 5.2%差；但CFO＞净利、margin扩张、SWS龙头地位稳，属“中等生”待证明整合能力</td></tr>
+  <tr><td>③ 好价格</td><td class="bad">✗ 否</td><td style="text-align:left">Forward PE 23.4x（合理＜10x按ROE，或基建合理20x亦处上限）、PB 1.92需高ROE支撑，无折价</td></tr>
+</table>
+
+<h3>7.3 风险评估</h3>
+<div class="danger-box">
+  ☐ 价值陷阱（低PE+低增长+高负债）→ <strong>未命中</strong>（PE不低、增长 underlying 16%不低，但负债偏高）<br>
+  ☐ 周期陷阱（低PE+周期顶点）→ <strong>未命中</strong>（非周期股，IWS虽弱但非顶点暴利；Stat PE高非低）<br>
+  ☐ 烧钱陷阱（高PE+高增速+负现金流）→ <strong>未命中</strong>（高PE是、增速FY25慢，但CFO/FCF为正非烧钱）
+</div>
+
+<p style="font-size:13px;margin:12px 0 6px;"><strong>管理层与治理风险</strong></p>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力与履历</td><td>好</td><td style="text-align:left">CEO Mark Schubert 2021年上任，主导转型：Health扭亏、昆州Solids修复、EBIT margin +130bps/年，执行力兑现FY26 ambition</td></tr>
+  <tr><td>股权结构与利益一致性</td><td>一般</td><td style="text-align:left">无控股股东，前五机构32%（Challenger 6%、Capital Group 6.3%等），CEO持股105万股+期权，与股东部分一致；但高管FY25减持（Schubert 8月减30万股）需关注</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td>无</td><td style="text-align:left">审计无保留，无重大违规；历史有洪灾62m、火灾23m等意外但非治理问题</td></tr>
+  <tr><td>资本配置记录</td><td>需观察</td><td style="text-align:left">近年并购频繁（Citywide、Contract Resources 4.78亿/1H26），商誉累积24亿，整合是关键考验；分红率73%偏高但FCF覆盖</td></tr>
+  <tr><td>管理层增减持记录</td><td>需关注</td><td style="text-align:left">2025-08 CEO Schubert连续减持27.4万股（约77万 AUD），理由为期权行权后出售，非清仓但信号偏负面</td></tr>
+  <tr><td>CEO交接/关键人员变动</td><td>需关注</td><td style="text-align:left">2026-07 新CFO Nigel Simonsz上任，财务掌舵过渡期；董事会新增 Vaness Guthrie等</td></tr>
+</table>
+
+<p style="font-size:13px;margin:12px 0 6px;"><strong>盈利可持续性</strong></p>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是靠价？</td><td>价驱动为主</td><td style="text-align:left">FY25营收+2.5%但EBIT+14.6%，量微增、价（合约CPI+回收提价）与效率是主因，健康但需防止价天花板</td></tr>
+  <tr><td>涨价能否持续？</td><td>需观察</td><td style="text-align:left">市政合约年度CPI联动有保障（约60%收入），但商业客户竞价+填埋税转嫁有竞争约束；回收商品（纸/油）价格波动</td></tr>
+  <tr><td>非经常性利润占比</td><td>高</td><td style="text-align:left">58.1m显著项目占underlying EBIT 14%（FY24 5%），含火灾/IT/剥离等，若常态化则underlying失真</td></tr>
+  <tr><td>大客户/大项目集中度</td><td>分散</td><td style="text-align:left">市政客户分散至数十个地方政府，单一客户＜5%，但市政招标丢单风险存在（如IWS都市合约退出）</td></tr>
+  <tr><td>政策/监管依赖度</td><td>中</td><td style="text-align:left">利好：州填埋税上调（NSW 160+/吨）、CDS、循环经济目标；风险：环保罚款/填埋场关闭审批</td></tr>
+</table>
+
+<p style="font-size:13px;margin:12px 0 6px;"><strong>关键变量敏感性</strong></p>
+<div class="highlight-box">
+  <strong>变量1: 市政合约价格与续约率</strong><br>
+  乐观: CPI+2%超额提价且续约率＞90% → EBIT +8-10%（约+35m）<br>
+  中性: CPI联动+续约率85% → EBIT +3-5%<br>
+  悲观: 竞价失利丢1-2个大市政单 → 收入-5%、EBIT -15%<br><br>
+  <strong>变量2: 利率与净负债（含并购）</strong><br>
+  乐观: RBA降息50bps且并购整合顺利 → 利息-8m、NPAT +5%<br>
+  中性: 利率持稳、Debt/EBITDA 2.8-3.0x → 利息持平<br>
+  悲观: 利率再升50bps + 净负债23亿高位 → 利息+12m、NPAT -7%<br><br>
+  <strong>变量3: 资源回收商品价格（废纸/废油）</strong><br>
+  乐观: 废纸+20% / 油价回升 → OTS毛利+5%<br>
+  中性: 持稳 → 无影响<br>
+  悲观: 废纸-15%或油价跌 → OTS EBIT -10-15%（约-8m）
+</div>
+
+<h3>7.4 前景展望</h3>
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. FY26 EBIT 470-500m兑现 — SWS价格+效率+Citywide/Contract 30m增量，underlying EPS有望9-10c（+15%）<br>
+  2. 循环经济红利 — 西悉尼MRF投产、塔州CDS、ResourceCo剥离后聚焦高毛利回收，长期提margin 1-2pp<br>
+  3. EQT私有化要约（2026-08 NBIO, 3.15指引）— 事件驱动，若落地提供约20%溢价安全垫<br><br>
+  <strong>负向拖累：</strong><br>
+  1. 整合与减值风险 — 4.78亿并购商誉新增，整合不及预期或填埋估值下修触发减值，重演FY23<br>
+  2. 负债与利息 — 净负债23亿+利率高企，1H26利息已+30%，挤压NPAT<br>
+  3. IWS持续疲弱 — 矿业/基建资本开支周期下行，工业服务需求恢复慢于预期
+</div>
+
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>EPS预估 (FY26)</th><th>PE区间</th><th>预期回报 (以2.59计)</th></tr>
+  <tr><td>乐观</td><td style="text-align:left">EBIT 500m兑现+OTS超预期+EQT溢价</td><td>10.5-11.0c</td><td>28-30x</td><td class="good">+15-25% → 2.95-3.15</td></tr>
+  <tr><td>中性</td><td style="text-align:left">EBIT 470m、IWS持平、利率稳</td><td>9.0-10.0c</td><td>23-25x</td><td class="neutral">-5%至+5% → 2.20-2.70</td></tr>
+  <tr><td>悲观</td><td style="text-align:left">EBIT＜450m或减值/丢单/利率升</td><td>6.5-7.5c</td><td>15-18x</td><td class="bad">-25%至-15% → 1.60-2.00</td></tr>
+</table>
+<p style="font-size:12px;color:#888;">概率判断：中性50% / 乐观30%（含收购） / 悲观20%。</p>
+
+<h3>7.5 资金面信号</h3>
+<p style="font-size:12px;color:#666;margin-bottom:6px;">ASX无北向/两融，改为机构持仓+董事交易+大宗视角（N/A标注A股特有项）</p>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>机构持仓变动</td><td>中性偏正面</td><td style="text-align:left">前五机构持股32%稳定，Challenger/Capital Group 2025-08增持披露，养老金（ART/United Super）长期配置</td></tr>
+  <tr><td>董事增减持</td><td>偏负面</td><td style="text-align:left">CEO 2025-08连续减持27.4万股（行权后出售），董事层面无增持公告</td></tr>
+  <tr><td>大股东增减持</td><td>中性</td><td style="text-align:left">无5%以上大额减持公告，Top20持股稳定</td></tr>
+  <tr><td>大宗交易</td><td>无显著折价</td><td style="text-align:left">近期无大额折价大宗，流动性正常（日均810万股）</td></tr>
+  <tr><td>北向/两融</td><td>N/A</td><td style="text-align:left">ASX不适用</td></tr>
+  <tr><td>收购事件</td><td>正面催化</td><td style="text-align:left">2026-08-13 EQT NBIO + Process Deed，FY27 outlook利好，券商目标上调至3.15-3.50</td></tr>
+</table>
+<div class="summary-box">
+  <strong>资金面判断：</strong>机构底仓稳固+收购事件驱动为股价提供支撑，但董事减持与净负债飙升制约上行。无北向/融资数据，以ASX公告为准：关注EQT尽调进展与FY26 08-20正式年报。
+</div>
+
+<h3>7.6 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清CWY怎么赚钱？（提示：靠垄断填埋场收“过路费”+市政长协的密度经济）<br>
+  2. 你最大的担忧是什么？是24亿商誉、23亿净负债，还是58m一年的一次性费用？<br>
+  3. 如果现在买入，期待的回报来源是什么？（是FY26 500m EBIT的业绩兑现，还是EQT 3.15的收购溢价？）<br>
+  4. 什么情况下你会坚决卖出？（如ROIC回落至5%以下、Debt/EBITDA＞3.5x、或商誉减值公告）
+</div>
+
+</div></div>
+
+<div class="footer">
+  免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+  数据来源：Cleanaway FY25 Appendix 4E & Annual Report、FY24年报、1H FY26 ASX公告、S&P Global Market Intelligence via StockAnalysis、ASX公告、Intelligent Investor/MarketScreener券商一致预期 | 分析日期 2026-08-25
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>
