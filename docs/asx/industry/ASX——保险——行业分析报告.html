@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ASX——保险 行业分析报告</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f5f5f5;padding:0;color:#333}
+  .report-wrap{max-width:800px;margin:0 auto;background:#fff}
+  h1{font-size:22px;margin:0;padding:28px 0 4px;text-align:center}
+  h2{font-size:18px;margin:28px 0 12px;border-bottom:2px solid #1a1a1a;padding-bottom:4px}
+  h3{font-size:15px;margin:18px 0 8px}
+  .subtitle{color:#666;font-size:13px;text-align:center;margin-bottom:4px}
+  .meta{color:#999;font-size:12px;text-align:center;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #e0e0e0}
+  .tab-bar{position:sticky;top:0;z-index:10;background:#fff;display:flex;flex-wrap:wrap;border-bottom:2px solid #ddd;gap:0}
+  .tab-btn{padding:10px 14px;cursor:pointer;border:none;background:none;font-size:13px;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+  .tab-btn:hover{color:#333;background:#f9f9f9}
+  .tab-btn.active{color:#1a1a1a;font-weight:700;border-bottom-color:#1a1a1a}
+  .tab-content{display:none}
+  .tab-content.active{display:block}
+  .tab-inner{padding:0 12px}
+  table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:13px}
+  th{background:#f5f5f5;padding:8px 6px;text-align:left;border-bottom:2px solid #ddd;white-space:nowrap;font-weight:600}
+  td{padding:7px 6px;border-bottom:1px solid #eee}
+  tr:nth-child(even) td{background:#fafafa}
+  .summary-box{background:#fffde7;border-left:4px solid #f9a825;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .highlight-box{background:#e3f2fd;border-left:4px solid #1e88e5;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .danger-box{background:#ffebee;border-left:4px solid #e53935;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .verdict{text-align:center;padding:20px;margin:16px 0;border-radius:8px;font-size:18px;font-weight:700}
+  .verdict-ok{background:#e8f5e9;border:2px solid #4caf50;color:#2e7d32}
+  .verdict-caution{background:#fff3e0;border:2px solid #ff9800;color:#e65100}
+  .verdict-bad{background:#ffebee;border:2px solid #e53935;color:#c62828}
+  .score{font-size:36px;display:block;margin-bottom:4px}
+  .pass{color:#2e7d32;font-weight:700}
+  .skip{color:#666;font-style:italic}
+  .tag{display:inline-block;padding:2px 8px;border-radius:3px;font-size:11px;font-weight:700}
+  .tag-red{background:#ffebee;color:#c62828}
+  .tag-green{background:#e8f5e9;color:#2e7d32}
+  .tag-yellow{background:#fff8e1;color:#f57f17}
+  .footer{font-size:11px;color:#aaa;text-align:center;padding:24px 0 8px;border-top:1px solid #eee;margin-top:30px}
+  .card{background:#fafafa;border:1px solid #e0e0e0;border-radius:6px;padding:14px;margin:10px 0;font-size:13px}
+  .flex{display:flex;flex-wrap:wrap;gap:8px}
+  .tbl-wrap{border:1px solid #e0e0e0;border-radius:6px;overflow:hidden;margin:10px 0 18px}
+  .tbl-wrap table{margin:0}
+  .tbl-wrap th{background:#f5f5f5;padding:9px 8px;border-bottom:1px solid #ddd;font-weight:600;font-size:12px}
+  .tbl-wrap td{padding:8px;border-bottom:1px solid #f0f0f0;font-size:13px}
+  .tbl-wrap tr:last-child td{border-bottom:none}
+  .bar-wrap{display:inline-flex;align-items:center;width:60px;height:16px;vertical-align:middle}
+  .bar-bg{background:#eee;border-radius:4px;height:8px;width:100%;overflow:hidden;position:relative}
+  .bar{display:block;height:8px;border-radius:4px}
+  .score-cell{font-weight:700;font-size:15px;text-align:center;white-space:nowrap}
+  .tbl-wrap td,.tbl-wrap th{vertical-align:middle}
+  .metric-h{color:#1565c0;font-weight:700;font-size:13px}
+  .metric-l{color:#c62828;font-weight:700}
+  .metric-m{color:#e65100;font-weight:700}
+  .col-tag{display:inline-block;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600}
+  .col-win{background:#e8f5e9;color:#2e7d32}
+  .col-lose{background:#ffebee;color:#c62828}
+  .col-warn{background:#fff3e0;color:#e65100}
+  .col-info{background:#e3f2fd;color:#1565c0}
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>ASX——保险 行业分析报告</h1>
+<div class="subtitle">L5分类：非周期·价值型（成熟期） ｜ 上市公司：11家 ｜ 总市值：~AUD 82-85B（核心3家占~85%）</div>
+<div class="meta">生成日期：2026-08-25 ｜ 数据截至：2025年报 / H1 FY26 / 2026-08-24收盘</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l7">L7 量化初筛</button>
+  <button class="tab-btn" data-tab="l8">L8 行业画像</button>
+  <button class="tab-btn" data-tab="l9">L9 竞争格局</button>
+  <button class="tab-btn" data-tab="l10">L10 周期时机</button>
+</div>
+
+<div class="tab-content active" id="tab-summary">
+<div class="tab-inner">
+
+<h2>行业速览</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">项目</th><th>内容</th></tr>
+<tr><td>行业名称</td><td><strong>保险</strong>（ASX: Insurance，GICS 403010，一般险+经纪+健康险）</td></tr>
+<tr><td>市场</td><td>ASX（含IAG/QBE/SUN三大综合险企 + SDF/AUB两大经纪龙头）</td></tr>
+<tr><td>L5分类</td><td><span class="col-tag col-info">非周期·价值型</span> 成熟期，APRA强监管牌照垄断，估值看PB/ROE</td></tr>
+<tr><td>上市公司</td><td>11家（Listcorp全名单），其中符合L7筛选条件 <span class="col-tag col-win">5只核心</span></td></tr>
+<tr><td>行业总市值</td><td>~AUD 83B（QBE ~33B / SUN ~20B / IAG ~19B 三家占~87%，SDF 5.8B / AUB 3.7B）</td></tr>
+<tr><td>产业链利润核心</td><td><span class="col-tag col-win">承保利差（COR&lt;98%）</span> + <span class="col-tag col-info">保费定价权（气候驱动的再定价周期）</span></td></tr>
+<tr><td>生命周期阶段</td><td><span class="col-tag col-info">成熟期</span> 保费总量67.5B平稳，靠提价而非增量驱动</td></tr>
+<tr><td>当前周期位置</td><td><span class="col-tag col-warn">复苏期（保费再定价兑现）</span> 自然灾害成本冲击盈利，但承保利润率创近年新高</td></tr>
+</table>
+</div>
+
+<h2>综合评分</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>维度</th><th style="width:60px">得分</th><th>进度</th><th>说明</th></tr>
+<tr>
+  <td>行业规模与空间</td>
+  <td class="score-cell">12/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:60%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">总保费67.5B（车险27%/家财25%/火险14%），总量大但增速仅2-7%，靠提价非增量</td>
+</tr>
+<tr>
+  <td>产业链位置</td>
+  <td class="score-cell">12/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:80%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">持牌承保环节吃肉，再保险与经纪分润；气候风险推升定价权在承保端</td>
+</tr>
+<tr>
+  <td>竞争格局</td>
+  <td class="score-cell">16/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:80%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">寡头高度集中：IAG/SUN/QBE三家占一般险保费~60%+，APRA牌照冻结，新进入者为零</td>
+</tr>
+<tr>
+  <td>增长驱动力</td>
+  <td class="score-cell">8/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:53%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">无人口/渗透率红利，驱动靠气候驱动的费率上行+投资收益，持续性中</td>
+</tr>
+<tr>
+  <td>周期位置</td>
+  <td class="score-cell">10/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:67%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">H1 FY26自然灾害超预期冲击利润（SUN超允453M），但再定价周期下承保利润率仍处高位</td>
+</tr>
+<tr>
+  <td>政策环境</td>
+  <td class="score-cell">10/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:67%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">APRA偿付监管趋严利好龙头；但政府高层关注保费负担，涨价空间受政治约束</td>
+</tr>
+<tr style="background:#fafafa">
+  <td style="font-weight:700;font-size:14px">总分</td>
+  <td style="font-weight:700;font-size:16px;color:#e65100">68/100</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:68%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#e65100;font-weight:600">一般——谨慎关注，高股息防御底仓</td>
+</tr>
+</table>
+</div>
+
+<div class="verdict verdict-caution">
+  <span class="score">68</span>
+  一般——谨慎关注
+</div>
+
+<div class="summary-box">
+  <strong>核心结论</strong><br>
+  ① <strong>值不值得研究：值得作为防御底仓研究。</strong> 三家综合险企+两家经纪龙头构成的寡头垄断行业，APRA牌照+再保险+数据壁垒深，L5属非周期价值型。<br>
+  ② <strong>筛选结果：11→5核心+3观察。</strong> 市值/营收无杀伤，真正区分度是ROE与PB分位下的盈利可持续性——QBE/IAG/SUN/SDF/AUB 4/4通过。<br>
+  ③ <strong>用什么框架：PB + ROE + COR + 自然灾害成本。</strong> 保险不看PE（灾害年PE失真），核心看PB、ROE能否持续跑赢CoE、COR与灾害/再保成本。<br>
+  ④ <strong>现在能不能买：可分批作高股息防御。</strong> 板块股息率4-6%（QBE 4.7%/SUN 4.7%含franking 6.3%），PB 2.0-2.5处历史中高分位非底部，但再定价周期下承保利润率支撑分红；不适合追高弹性。
+</div>
+
+<div class="highlight-box">
+  <strong>行业公式</strong><br>
+  承保利润 = 已赚保费 × (1 - COR) ； ROE = 承保ROE + 投资ROE - 再保成本； 投资收益 = 资产 × 无风险利率 + 信用/权益超额<br>
+  关键指标：1) GWP增速与费率涨幅 2) 自然灾害成本/允额 3) COR与费用率 4) PB分位与股息率 5) APRA偿付（PCA 1.7-1.9x）
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l7">
+<div class="tab-inner">
+
+<h2>筛子调整说明</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:12%">筛子</th><th style="width:35%">标准</th><th>调整说明</th></tr>
+<tr><td>①<span class="col-tag col-info">市值</span></td><td>≥2亿AUD</td><td>正常执行。11家中最小者（HLI等~AUD 0.8-1.2B）亦远超阈值；无小票剔除</td></tr>
+<tr><td>②<span class="col-tag col-info">营收</span></td><td>≥1亿AUD</td><td>正常执行。GWP口径：IAG 17.8B / SUN 15.1B / QBE 36B / SDF 2.2B / AUB 1.2B，均＞100×阈值</td></tr>
+<tr><td>③<span class="col-tag col-info">毛利率</span></td><td>制造业≥15%</td><td class="skip"><strong>跳过</strong> —— 银行/保险按 industry-classification.md §2.1 跳过毛利率筛（用COR/承保利差替代）</td></tr>
+<tr><td>④<span class="col-tag col-info">ROE</span></td><td>≥8%，连续3年&lt;5%剔除</td><td>正常执行。IAG 15.57% / AUB 12.41% / SDF 15.06% / QBE ~12% 均达标；SUN TTM 8.40%临界但FY25 13.1%通过</td></tr>
+<tr><td>⑤<span class="col-tag col-info">负债率</span></td><td>≤65%</td><td class="skip"><strong>跳过</strong> —— 金融业高杠杆经营，用APRA偿付覆盖率替代（1.7-1.9x均＞监管要求）</td></tr>
+<tr><td>⑥<span class="col-tag col-info">估值</span></td><td>PB历史分位≤80%</td><td class="skip"><strong>调整为PB</strong> —— 周期/金融用PB。IAG 2.45(~70%) / SUN 2.02(~60%) / SDF ~2.5(~65%) 均在阈值内通过</td></tr>
+</table>
+</div>
+
+<h2>候选池（5只）</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>环节</th><th>市值</th><th>ROE</th><th>偿付替代</th><th>PB/分位</th><th>通过</th></tr>
+<tr>
+  <td><strong>QBE Insurance</strong> QBE</td>
+  <td><span class="col-tag col-win">综合险企（全球）</span></td>
+  <td style="font-weight:600">AUD 33.4B</td>
+  <td><span class="col-tag col-win">~12.5%</span></td>
+  <td><span class="col-tag col-win">PCA 1.87x</span></td>
+  <td><span class="col-tag col-win">~1.9x(~55%)</span><br><span style="font-size:11px;color:#666">PE 11.1x fwd</span></td>
+  <td class="pass">4/4*</td>
+</tr>
+<tr>
+  <td><strong>Suncorp Group</strong> SUN</td>
+  <td><span class="col-tag col-win">综合险企（本土）</span></td>
+  <td style="font-weight:600">AUD 20.5B</td>
+  <td><span class="col-tag col-warn">8.40% TTM / 13.14% FY25</span></td>
+  <td><span class="col-tag col-win">CET1 +700M超中枢</span></td>
+  <td><span class="col-tag col-win">2.02(~60%)</span><br><span style="font-size:11px;color:#666">PE 21.2x / fwd 15.2x</span></td>
+  <td class="pass">4/4*</td>
+</tr>
+<tr>
+  <td><strong>IAG</strong> IAG</td>
+  <td><span class="col-tag col-win">综合险企（个险龙头）</span></td>
+  <td style="font-weight:600">AUD 19.2B</td>
+  <td><span class="col-tag col-win">15.57%</span></td>
+  <td><span class="col-tag col-win">D/E 0.41</span></td>
+  <td><span class="col-tag col-warn">2.45(~70%)</span><br><span style="font-size:11px;color:#666">PE 19.2x / fwd 17.7x</span></td>
+  <td class="pass">4/4*</td>
+</tr>
+<tr>
+  <td><strong>Steadfast Group</strong> SDF</td>
+  <td><span class="col-tag col-info">经纪龙头</span></td>
+  <td style="font-weight:600">AUD 5.76B</td>
+  <td><span class="col-tag col-win">15.06%</span></td>
+  <td><span class="col-tag col-info">轻资产</span></td>
+  <td><span class="col-tag col-win">~2.5x(~65%)</span><br><span style="font-size:11px;color:#666">PE 16.3x</span></td>
+  <td class="pass">4/4*</td>
+</tr>
+<tr>
+  <td><strong>AUB Group</strong> AUB</td>
+  <td><span class="col-tag col-info">经纪</span></td>
+  <td style="font-weight:600">AUD 3.70B</td>
+  <td><span class="col-tag col-win">12.41%</span></td>
+  <td><span class="col-tag col-info">D/E 0.65</span></td>
+  <td><span class="col-tag col-win">2.03(~55%)</span><br><span style="font-size:11px;color:#666">PE 17.6x / fwd 14.8x</span></td>
+  <td class="pass">4/4*</td>
+</tr>
+</table>
+</div>
+<div style="font-size:11px;color:#888;margin:-10px 0 14px">* 保险按调整后4筛计算（跳过毛利率、负债率）；市值/营收/ROE/PB均为2025年报或H1 FY26及2026-08-24收盘价口径，PB分位为近5-10年参考区间（Wind/StockAnalysis/Wisesheets），来源：stockanalysis.com/ SimplyWallSt/ Wisesheets/ Kalkine H1 FY26。</div>
+
+<h2>观察池</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>卡在哪筛</th><th>备注</th></tr>
+<tr>
+  <td><strong>NIB Holdings</strong> NHF</td>
+  <td><span class="col-tag col-warn">⑥PB分位~85%</span></td>
+  <td>健康险龙头，ROE 18.07%优秀但PB~4-5x处历史高分位，估值偏贵。触发：PB回落至分位65%内或股息率&gt;4.5%再入池</td>
+</tr>
+<tr>
+  <td><strong>Medibank Private</strong> MPL</td>
+  <td><span class="col-tag col-warn">⑥PB分位~80%+</span></td>
+  <td>健康险巨头（市值13.6B，PE 21.3x），ROE稳但PB偏高、成长慢，等待回调</td>
+</tr>
+<tr>
+  <td><span class="col-tag col-lose">Helia Group</span> HLI</td>
+  <td><span class="col-tag col-lose">④ROE波动&lt;8%</span></td>
+  <td>房贷保险（LMI）周期性极强，ROE受房价与违约率影响大，2024-2025 ROE跌至6-7%触发阈值，观察盈利拐点</td>
+</tr>
+</table>
+</div>
+
+<h2>筛除记录</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>筛子</th><th style="width:60px">筛除数</th><th>知名示例</th></tr>
+<tr><td>①市值</td><td style="text-align:center">0</td><td>11家均&gt;2亿AUD（最小者仍&gt;8亿）</td></tr>
+<tr><td>②营收</td><td style="text-align:center">0</td><td>11家GWP/营收均&gt;1亿AUD（最小者~2亿）</td></tr>
+<tr><td>③毛利率</td><td style="text-align:center" class="skip">跳过</td><td>银行/保险跳过此筛</td></tr>
+<tr><td>④ROE</td><td style="text-align:center">1</td><td>Helia Group（ROE~6%）等周期性尾部</td></tr>
+<tr><td>⑤负债率</td><td style="text-align:center" class="skip">跳过</td><td>金融业跳过，用偿付覆盖率替代</td></tr>
+<tr><td>⑥估值</td><td style="text-align:center">2</td><td>NIB/Medibank PB分位&gt;80%偏贵</td></tr>
+<tr style="background:#fffde7"><td><strong>剩余</strong></td><td style="text-align:center;font-weight:700;color:#2e7d32"><strong>5+3观察</strong></td><td>11→5核心+3观察（筛选力度温和 -45%）</td></tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <strong>L7筛选结论</strong><br>
+  ASX保险是<strong>小池寡头型</strong>——11家中3家综合险企占市值87%，市值/营收两筛完全无杀伤，估值与ROE仅筛掉健康险高估与LMI周期尾部。剩余5只覆盖全球分散（QBE）、本土个险（IAG/SUN）、经纪双龙（SDF/AUB），已是全行业全样本。下一步对5只逐一跑L1-L6，重点比三力：承保纪律（COR+灾害成本）、再保与资本效率（PCA/分红+回购）、经纪的佣金与并购整合能力。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l8">
+<div class="tab-inner">
+
+<h2>产业链</h2>
+<div class="card" style="font-size:13px;line-height:1.7">
+
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px">
+
+<div style="flex:1;min-width:180px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#1565c0;font-size:14px">上游风险与资本</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">再保险</div>
+    <div style="text-align:center;font-size:11px;color:#666">Munich Re · Swiss Re · 中再</div>
+    <div style="margin:10px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">精算/数据/气候模型</div>
+    <div style="text-align:center;font-size:11px;color:#666">APRA · BOM气象 · 巨灾模型</div>
+  </div>
+</div>
+
+<div style="flex:1.6;min-width:280px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#2e7d32;font-size:14px">中游承保与分销（利润核心）</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+
+    <div style="display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:70px;background:#e8f5e9;border-radius:4px;padding:8px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">一般险承保</div>
+        <div style="font-size:10px;color:#666">IAG · SUN · QBE</div>
+      </div>
+      <div style="font-size:20px;color:#999;line-height:36px">↔</div>
+      <div style="flex:1;min-width:70px;background:#fff3e0;border-radius:4px;padding:8px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">经纪分销</div>
+        <div style="font-size:10px;color:#666">SDF · AUB</div>
+      </div>
+      <div style="font-size:20px;color:#999;line-height:36px">↔</div>
+      <div style="flex:1;min-width:60px;background:#e3f2fd;border-radius:4px;padding:8px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">健康险</div>
+        <div style="font-size:10px;color:#666">NHF · MPL</div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:11px;color:#2e7d32;margin-bottom:8px">▲ 一般险占GWP 67.5B的~90%，是利润主池</div>
+
+    <div style="margin:6px 0 4px;font-weight:600;font-size:12px;color:#1565c0">一般险分产品</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">车险<br><span style="font-size:10px;color:#666">18.5B 27%</span></div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">家财险<br><span style="font-size:10px;color:#666">~17B 25%</span></div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">火险ISR<br><span style="font-size:10px;color:#666">9.2B 14%</span></div>
+      <div style="flex:1;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">商险/责任<br><span style="font-size:10px;color:#666">其余~34%</span></div>
+    </div>
+
+    <div style="margin:8px 0 4px;font-weight:600;font-size:12px;color:#1565c0">资金运用</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <div style="flex:1;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">保险资金投资<br><span style="font-size:10px;color:#666">债券+权益</span></div>
+      <div style="flex:1;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">APRA偿付资本<br><span style="font-size:10px;color:#666">PCA 1.7-1.9x</span></div>
+    </div>
+  </div>
+</div>
+
+<div style="flex:1;min-width:160px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#c62828;font-size:14px">下游客户</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">个人客户</div>
+    <div style="text-align:center;font-size:11px;color:#666">车险·家财·CTP</div>
+    <div style="margin:6px 0;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">中小企业</div>
+    <div style="text-align:center;font-size:11px;color:#666">商险·责任·信用</div>
+    <div style="margin:6px 0;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">大型企业/政府</div>
+    <div style="margin:10px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#f5f5f5;border:1px solid #ccc;border-radius:4px;padding:8px;text-align:center;font-weight:600;font-size:13px">终端风险承担</div>
+    <div style="text-align:center;font-size:11px;color:#666">家庭/企业资产负债表</div>
+  </div>
+</div>
+
+</div>
+
+<div style="background:#fffde7;border-left:3px solid #f9a825;padding:8px 12px;font-size:12px;border-radius:0 4px 4px 0">
+  <strong>利润最厚环节：</strong>承保定价（费率持续上行6-8%）→ 再保险成本管控<br>
+  <span style="color:#999">H1 FY26自然灾害超额是利润波动主因：SUN超允453M、IAG含RACQI 174M；QBE FY25灾害成本仅4.1%（允额6.4%）凸显全球分散优势</span>
+</div>
+
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>环节</th><th>代表公司</th><th>集中度</th><th>议价能力</th></tr>
+<tr>
+  <td><span class="col-tag col-win">一般险承保</span></td>
+  <td>IAG/SUN/QBE</td>
+  <td>CR3 ~60-65%</td>
+  <td><span class="col-tag col-win">强</span>（定价权在费率）</td>
+</tr>
+<tr>
+  <td><span class="col-tag col-info">经纪</span></td>
+  <td>SDF（最大网络）/ AUB</td>
+  <td>CR2 ~30-35%</td>
+  <td><span class="col-tag col-win">强</span>（佣金+并购）</td>
+</tr>
+<tr>
+  <td><span class="col-tag col-warn">健康险</span></td>
+  <td>MPL / NHF</td>
+  <td>CR2 ~50%</td>
+  <td><span class="col-tag col-warn">中</span>（监管限价）</td>
+</tr>
+<tr>
+  <td><span class="col-tag col-info">再保险</span></td>
+  <td>全球再保人</td>
+  <td>寡头全球</td>
+  <td><span class="col-tag col-lose">弱</span>（对承保人是成本方）</td>
+</tr>
+<tr>
+  <td><span class="col-tag col-lose">LMI房贷险</span></td>
+  <td>Helia</td>
+  <td>双寡头</td>
+  <td><span class="col-tag col-lose">弱</span>（绑定银行）</td>
+</tr>
+</table>
+</div>
+
+<h2>市场规模</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:28%">指标</th><th style="width:30%">数值</th><th>说明</th></tr>
+<tr><td><strong>TAM</strong>（理论可保风险）</td><td><span class="col-tag col-info" style="font-size:13px">全社会可保资产数万亿</span></td><td>渗透率已高，增量靠保额与费率提升而非新增风险</td></tr>
+<tr><td><strong>SAM</strong>（一般险GWP）</td><td>AUD 67.5B/年</td><td>2025全行业：车险18.5B/家财~17B/火险9.2B三项占66%</td></tr>
+<tr><td><strong>SOM</strong>（ASX上市承保可得）</td><td>~40B（~60% SAM）</td><td>IAG 17.8B + QBE澳太区~8B + SUN 15B（含交叉）</td></tr>
+<tr><td><strong>保险密度</strong></td><td>~AUD 2500/人</td><td>成熟市场，人均保单数高，新客增量有限</td></tr>
+<tr><td><strong>近年增速</strong></td><td><span class="col-tag col-win">GWP CAGR 6-8%</span></td><td>主要靠费率上行（6-8%年涨）而非风险数量增长</td></tr>
+</table>
+</div>
+
+<h2>生命周期</h2>
+<div class="summary-box">
+  <strong><span class="col-tag col-info" style="font-size:14px">成熟期</span>（再定价周期中）</strong><br>
+  判断依据：保费总量平稳、CR3>60%格局固化10年+、分红与回购常态化（IAG 2亿/SUN 4亿回购）、技术上AI理赔与数字化提效但无颠覆，增长来自气候驱动的费率而非渗透率。
+</div>
+
+<h2>增长驱动力</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动力</th><th>类型</th><th>可持续性</th><th>量化指标</th></tr>
+<tr>
+  <td>气候驱动的费率再定价</td>
+  <td><span class="col-tag col-warn">周期</span></td>
+  <td><span class="col-tag col-warn">中（3-5年）</span></td>
+  <td>家财/车险费率年涨6-8%、再保成本转嫁</td>
+</tr>
+<tr>
+  <td>投资收益（债券+权益）</td>
+  <td><span class="col-tag col-warn">周期</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>RBA现金利率、10Y澳债、权益仓位</td>
+</tr>
+<tr>
+  <td>经纪并购与佣金增长</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>SDF/AUB并购数量、佣金率</td>
+</tr>
+<tr>
+  <td>人口与资产存量（存量保额提升）</td>
+  <td><span class="col-tag col-info">结构</span></td>
+  <td><span class="col-tag col-warn">中长</span></td>
+  <td>住宅存量、汽车保有量、保额/资产比</td>
+</tr>
+<tr>
+  <td>监管与偿付效率</td>
+  <td><span class="col-tag col-info">结构</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>APRA PCA覆盖率、资本返还能力</td>
+</tr>
+</table>
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l9">
+<div class="tab-inner">
+
+<h2>市场结构</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>市场结构类型</td>
+  <td><span class="col-tag col-win">寡头垄断</span>（一般险CR3>60%，健康险双寡头，经纪双寡头）</td>
+</tr>
+<tr>
+  <td>CR3 / CR5</td>
+  <td>一般险：<span class="col-tag col-warn">CR3 ~62% / CR5 ~78%</span>（APRA+前瞻，含IAG/SUN/QBE）；经纪：SDF+AUB占~30-35%</td>
+</tr>
+<tr>
+  <td>格局象限</td>
+  <td><span class="col-tag col-win">寡头稳定</span> —— 三大承保人+两大经纪，牌照+再保+数据护城河，无价格战泥潭（费率协同上行）</td>
+</tr>
+<tr>
+  <td>新进入者威胁</td>
+  <td><span class="col-tag col-win">极低</span>（APRA牌照+巨灾资本要求，近5年无新批全国性一般险牌照）</td>
+</tr>
+</table>
+</div>
+
+<h2>竞争壁垒</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>壁垒类型</th><th>强度</th><th>可持续性</th><th>具体表现</th></tr>
+<tr>
+  <td>牌照+APRA偿付</td>
+  <td><span class="col-tag col-win">极强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>APRA对资本、再保、治理全流程监管，资本门槛即壁垒；PCA 1.7-1.9x均超监管</td>
+</tr>
+<tr>
+  <td>再保险与巨灾分散</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>QBE全球分散对冲单一市场灾害；IAG/SUN每年巨灾允额+超赔再保锁定最大损失</td>
+</tr>
+<tr>
+  <td>品牌+分销网络</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>IAG的NRMA/AAMI、SUN的AAMI/GIO家喻户晓；SDF 500+经纪网络覆盖全国</td>
+</tr>
+<tr>
+  <td>数据+定价模型</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-warn">中长</span></td>
+  <td>30年理赔与气象数据训练的定价模型，COR差异1-2pct即数亿利润差</td>
+</tr>
+<tr>
+  <td>规模效应（费用率）</td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>IT与理赔中心摊薄，费用率每降1pct释放数亿承保利润</td>
+</tr>
+</table>
+</div>
+
+<div class="summary-box">
+  <strong>定价权测试</strong><br>
+  🔹 龙头能涨价吗？<strong>能且正在涨</strong>：家财/车险费率年涨6-8%（气候成本转嫁），QBE商业险更激进；但政府与媒体关注"保费负担"，涨幅受政治约束<br>
+  🔹 承保利润趋势：承保利润率近年新高（IAG保险利润指引15% margin / SUN曾受益银行出售）；COR 95-98%盈利区间，灾害年方破98%<br>
+  🔹 ROE趋势：IAG 15.57%（目标15% through-the-cycle）、SDF 15.06%、AUB 12.41%均跑赢CoE；SUN TTM 8.4%受灾害拖累但FY25 13.1%已修复，QBE约12%全球分散更稳
+</div>
+
+<h2>驱动力拆解</h2>
+<div class="highlight-box">
+  <strong>行业收入公式</strong><br>
+  保费收入 = 保单数量 × 件均保费（费率）； 承保利润 = 保费 × (1 - COR) ； 投资收益 = 浮存金 × 收益率<br><br>
+  当前组合：<span style="color:#2e7d32;font-weight:700">量 →</span>（保单数微增） ＋ <span style="color:#2e7d32;font-weight:700">价 ↑</span>（费率+6-8%） ＝ <span class="col-tag col-win">以价驱动增长</span>（量平价升）
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动因子</th><th>最新值</th><th>历史区间</th><th>当前分位</th></tr>
+<tr>
+  <td>家财费率年涨幅</td>
+  <td><span class="col-tag col-win">6-8%</span></td>
+  <td>0-12%</td>
+  <td><span class="col-tag col-win">中高位</span></td>
+</tr>
+<tr>
+  <td>自然灾害成本/允额</td>
+  <td><span class="col-tag col-lose">SUN 1319M/866M（超453M）</span></td>
+  <td>允额800-900M</td>
+  <td><span class="col-tag col-lose">高位冲击</span></td>
+</tr>
+<tr>
+  <td>综合成本率 COR</td>
+  <td><span class="col-tag col-win">97-98%</span>（盈利）</td>
+  <td>92-103%</td>
+  <td><span class="col-tag col-win">中位偏优</span></td>
+</tr>
+<tr>
+  <td>再保成本（费率）</td>
+  <td><span class="col-tag col-warn">高位但趋稳</span></td>
+  <td>硬市场顶峰已过</td>
+  <td><span class="col-tag col-warn">中高位</span></td>
+</tr>
+<tr>
+  <td>RBA现金利率</td>
+  <td><span class="col-tag col-info">4.35%</span>（高位）</td>
+  <td>0.10-4.35%</td>
+  <td><span class="col-tag col-win">高位利好投资</span></td>
+</tr>
+<tr>
+  <td>APRA PCA覆盖率</td>
+  <td><span class="col-tag col-win">1.7-1.9x</span></td>
+  <td>1.5-2.2x</td>
+  <td><span class="col-tag col-win">充裕</span></td>
+</tr>
+</table>
+</div>
+
+<h2>成本结构</h2>
+<div class="summary-box">
+  🔹 <strong>类型：</strong>承保——<span class="col-tag col-info">轻资产但重风险资本</span>（人力+IT+再保分保）；经纪——<span class="col-tag col-win">轻资产</span>（佣金驱动）<br>
+  🔹 <strong>成本敏感性：</strong>COR每降1pct → IAG/SUN承保利润+~180-200M AUD（以18B保费计）；再保费率每降5% → 利润+~50M<br>
+  🔹 <strong>盈亏平衡：</strong>COR=100%为承保盈亏线；ROE 15%需COR≤96%+投资收益率≥4%配合，当前RBA高利率环境有利
+</div>
+
+<h2>竞争格局总结</h2>
+<div class="highlight-box">
+  ASX保险是教科书级<strong>寡头稳定</strong>：三大承保寡头+两大经纪寡头，过去10年无新进入者，费率在气候成本驱动下协同上行而非价格战。真正的α不在份额争夺而在<strong>灾害成本管控与资本效率</strong>——QBE靠全球分散熨平单一市场波动，IAG靠直保+经纪协同与RACQI整合，SUN靠银行出售后的资本返还，SDF/AUB靠经纪网络的佣金与并购整合。尾部健康险与LMI房贷险不参与寡头游戏，应回避。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l10">
+<div class="tab-inner">
+
+<h2>周期位置</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>承保周期阶段</td>
+  <td><span class="col-tag col-info">复苏/繁荣交界</span>（费率上行3年+，再保硬市场，承保利润率处近年高位）</td>
+</tr>
+<tr>
+  <td>产能利用率<br><span style="font-size:11px;color:#999">（偿付/人力）</span></td>
+  <td><span class="col-tag col-win">偿付充裕（PCA 1.7-1.9x）、人力未过剩</span>（未过热，仍可承接再定价）</td>
+</tr>
+<tr>
+  <td>价格分位<br><span style="font-size:11px;color:#999">（费率/保费）</span></td>
+  <td>费率<span class="col-tag col-win">中高位（年涨6-8%）</span>，GWP<span class="col-tag col-win">量平价升</span>（总量67.5B）</td>
+</tr>
+<tr>
+  <td>行业盈利状态</td>
+  <td><span class="col-tag col-warn">分化</span>（QBE FY25创纪录/SDF稳增 vs IAG/SUN H1 FY26受灾害拖累-35%利润）</td>
+</tr>
+</table>
+</div>
+
+<div class="danger-box">
+  <strong>⚠ PE悖论检查</strong><br>
+  保险<strong>PE在灾害年失真</strong>：SUN TTM PE 21.2x（H1灾害超额拉高）、IAG 19.2x（灾害+整合成本），看似"贵"却是周期性盈利低谷；QBE fwd PE 11.1x看似"便宜"却是全球分散后的平稳。财险COR每波动1pct对利润影呼~15-20%，PE会放大噪音。<br>
+  正确视角：<strong>看PB+ROE+股息</strong>。当前PB 1.9-2.5处历史60-75%中高分位，非底部；但ROE 12-15%+股息4-5%支撑PB合理性。警惕"贵而陷阱"：若费率上行结束而灾害成本仍趋势性上升，高PB将暴露。
+</div>
+
+<h2>估值水平</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>估值指标</th><th>当前</th><th>历史中位数</th><th>80%分位</th><th>20%分位</th></tr>
+<tr>
+  <td><strong>PB</strong>（综合险企）</td>
+  <td><span class="col-tag col-warn">1.9-2.5x</span></td>
+  <td>1.6-1.9x</td>
+  <td>2.2-2.8x</td>
+  <td>1.2-1.4x</td>
+</tr>
+<tr>
+  <td><strong>PE</strong>（TTM / fwd）</td>
+  <td><span class="col-tag col-warn">15-21x / 11-18x</span></td>
+  <td>14-16x</td>
+  <td>19-22x</td>
+  <td>10-12x</td>
+</tr>
+<tr>
+  <td><strong>股息率</strong></td>
+  <td><span class="col-tag col-win">3.8-4.7%（含franking 5-6.3%）</span></td>
+  <td>3.5-4.0%</td>
+  <td>5.5%+</td>
+  <td>2.0%</td>
+</tr>
+</table>
+</div>
+<div style="font-size:11px;color:#888;margin:-12px 0 14px">注：PB/PE分位为近5-10年Wind/StockAnalysis参考区间，个股精确历史分位数据待补充；QBE为AUD/USD换算后口径。</div>
+
+<h2>政策环境</h2>
+<div class="summary-box">
+  🔹 <strong>政策方向：</strong><span class="col-tag col-warn">中性（审慎偏紧+保费可负担性关注）</span><br>
+  🔹 <strong>关键政策：</strong><br>
+  &emsp;• <strong>APRA偿付监管</strong>（SPS 510等）：资本与再保要求趋严，利好头部偿付充裕者，尾部小型险企承压<br>
+  &emsp;• <strong>政府保费负担审查</strong>：联邦与州政府关注家财险可负担性，极端涨价或引政治干预与税收/补贴<br>
+  &emsp;• <strong>RBA利率高位</strong>（4.35%）：投资端利好（债券票息+权益分红），但按揭压力传导至LMI与家财险需求<br>
+  &emsp;• <strong>气候与巨灾政策</strong>：国家再保险池（北澳气旋/洪水）与防灾投入，影响自留与再保结构<br>
+  🔹 <strong>政策周期位置：</strong><span class="col-tag col-info">审慎期</span>（强监管+保费审查并存）
+</div>
+
+<h2>买入清单</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:28%">条件</th><th style="width:16%">结果</th><th>备注</th></tr>
+<tr>
+  <td>周期位置：不在繁荣顶点</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td>费率上行3年+，再定价接近尾声，非顶点但接近中高位</td>
+</tr>
+<tr>
+  <td>估值：PB/PE在历史偏低分位</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td>PB 1.9-2.5处60-75%中高分位，非低位；股息仍具吸引力但安全边际一般</td>
+</tr>
+<tr>
+  <td>政策：不是收紧期</td>
+  <td style="text-align:center"><span class="col-tag col-info">✅</span></td>
+  <td>APRA审慎但非全面收紧；保费审查是结构性而非系统性收紧</td>
+</tr>
+<tr>
+  <td>格局：龙头壁垒稳固</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>三寡头+两经纪，牌照+数据+再保壁垒极深，CR3稳定</td>
+</tr>
+<tr>
+  <td>增长：有可见驱动力</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td>费率驱动仍在但边际放缓（QBE已提示增速放缓），靠投资与经纪并购补充</td>
+</tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <div style="font-size:16px;font-weight:700;margin-bottom:8px">综合判断：<span class="col-tag col-warn" style="font-size:15px">等待 + 小仓位防御配置</span></div>
+  <div style="margin-bottom:6px">3个⚠️：周期与估值均处中高位，不具备戴维斯双击弹性；但寡头壁垒+股息提供下行保护，适合作组合防御底仓而非进攻重仓。</div>
+  <table style="font-size:12px;margin:6px 0;border:none;background:transparent">
+    <tr><td style="border:none;padding:3px 6px;background:transparent;width:90px;font-weight:600">预期回报</td><td style="border:none;padding:3px 6px;background:transparent">股息4-5% + 盈利低个位数增长，年化6-10%（1-2年），资本利得有限</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">仓位建议</td><td style="border:none;padding:3px 6px;background:transparent"><span class="col-tag col-warn">不超过组合10-15%</span>（防御底仓，单只不超5%）</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">跟踪指标</td><td style="border:none;padding:3px 6px;background:transparent">费率涨幅 · 自然灾害成本/允额 · COR · PB分位与股息率 · PCA覆盖率 · RBA利率</td></tr>
+  </table>
+  <div style="margin-top:8px;padding:8px;background:#e8f5e9;border-radius:4px;font-size:12px">
+    <strong>买入策略：</strong><br>
+    <span class="col-tag col-win">全球分散优选</span>（QBE）：FY25灾害成本仅4.1%（允额6.4%），全球商业险分散，ROE稳，适合首配<br>
+    <span class="col-tag col-info">本土修复弹性</span>（SUN/IAG）：H1 FY26灾害超额已计价，H2正常化即修复，SUN回购4亿/IAG 2亿提供底<br>
+    <span class="col-tag col-warn">经纪稳健</span>（SDF/AUB）：佣金随保费水涨船高，轻资产ROE 12-15%，估值回调至PB 2.0x内再加仓<br>
+    加仓触发：费率仍&gt;5%且灾害回归允额内 + PB回落至20%分位（~1.4x）<br>
+    止盈参考：PB&gt;80%分位（~2.8x）或股息率&lt;3%或COR连续两季&gt;100%
+  </div>
+</div>
+
+<h2>卖出信号</h2>
+<div class="danger-box">
+  <strong>出现以下信号考虑卖出：</strong><br>
+  <div style="margin-top:6px">
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px">1</span>
+    费率上行结束转负（GWP增速&lt;2%且费率涨幅&lt;2%，量价齐跌）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">2</span>
+    自然灾害成本连续两期超允额30%+且再保成本大幅上行（COR破100%）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">3</span>
+    政府强干预限价或开征灾害税/再保池扩容大幅压缩承保利润<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">4</span>
+    PB推升至历史80%以上且股息率&lt;3%（安全边际消失）
+  </div>
+</div>
+
+<div style="margin-top:16px;padding:10px;background:#f5f5f5;border-radius:6px;font-size:11px;color:#888;line-height:1.6">
+<strong>数据来源与口径说明（2026-08-25）：</strong>ASX Listed Insurance集团11家（Listcorp）；IAG/SUN/QBE H1 FY26 GWP与灾害成本来自Kalkine 2026-04-13与公司H1 FY26公告（IAG GWP 8.93B +6%、SUN 7.69B +2.7%、QBE USD 23.96B +7%）；IAG市值19.2B/PB2.45/ROE15.57%来自stockanalysis.com 2026-08-24收盘、SUN市值20.5B/PB2.02/ROE 8.40% TTM来自stockanalysis、SDF市值5.76B/ROE15.06%来自Wisesheets 2026-07、AUB市值3.70B/ROE12.41%/PB2.03来自stockanalysis；NIB/MPL市场数据来自SimplyWallSt；APRA季报（2025-12季）总保费67.5B与分产品结构来自Beacon Hill 2025 Overview与APRA 2026-02-27发布；经纪股息与回购来自公司H1 FY26公告。PB/PE分位为近5-10年参考区间，精确历史分位数据待补充处已标注"参考区间"。
+</div>
+
+</div>
+</div>
+
+<div class="footer">Generated by Industry Analysis · L7-L10 Framework · Stock Selection · 数据截至2026-08-25</div>
+
+</div>
+
+<script>
+var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+var contents = document.querySelectorAll('.tab-content');
+btns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    contents.forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    var tab = btn.getAttribute('data-tab');
+    document.getElementById('tab-' + tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
