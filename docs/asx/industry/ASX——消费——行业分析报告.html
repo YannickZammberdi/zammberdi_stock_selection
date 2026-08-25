@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ASX——消费 行业分析报告</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f5f5f5;padding:0;color:#333}
+  .report-wrap{max-width:800px;margin:0 auto;background:#fff}
+  h1{font-size:22px;margin:0;padding:28px 0 4px;text-align:center}
+  h2{font-size:18px;margin:28px 0 12px;border-bottom:2px solid #1a1a1a;padding-bottom:4px}
+  h3{font-size:15px;margin:18px 0 8px}
+  .subtitle{color:#666;font-size:13px;text-align:center;margin-bottom:4px}
+  .meta{color:#999;font-size:12px;text-align:center;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #e0e0e0}
+  .tab-bar{position:sticky;top:0;z-index:10;background:#fff;display:flex;flex-wrap:wrap;border-bottom:2px solid #ddd;gap:0}
+  .tab-btn{padding:10px 14px;cursor:pointer;border:none;background:none;font-size:13px;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+  .tab-btn:hover{color:#333;background:#f9f9f9}
+  .tab-btn.active{color:#1a1a1a;font-weight:700;border-bottom-color:#1a1a1a}
+  .tab-content{display:none}
+  .tab-content.active{display:block}
+  .tab-inner{padding:0 12px}
+  table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:13px}
+  th{background:#f5f5f5;padding:8px 6px;text-align:left;border-bottom:2px solid #ddd;white-space:nowrap;font-weight:600}
+  td{padding:7px 6px;border-bottom:1px solid #eee}
+  tr:nth-child(even) td{background:#fafafa}
+  .summary-box{background:#fffde7;border-left:4px solid #f9a825;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .highlight-box{background:#e3f2fd;border-left:4px solid #1e88e5;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .danger-box{background:#ffebee;border-left:4px solid #e53935;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .verdict{text-align:center;padding:20px;margin:16px 0;border-radius:8px;font-size:18px;font-weight:700}
+  .verdict-ok{background:#e8f5e9;border:2px solid #4caf50;color:#2e7d32}
+  .verdict-caution{background:#fff3e0;border:2px solid #ff9800;color:#e65100}
+  .verdict-bad{background:#ffebee;border:2px solid #e53935;color:#c62828}
+  .score{font-size:36px;display:block;margin-bottom:4px}
+  .pass{color:#2e7d32;font-weight:700}
+  .skip{color:#666;font-style:italic}
+  .tag{display:inline-block;padding:2px 8px;border-radius:3px;font-size:11px;font-weight:700}
+  .tag-red{background:#ffebee;color:#c62828}
+  .tag-green{background:#e8f5e9;color:#2e7d32}
+  .tag-yellow{background:#fff8e1;color:#f57f17}
+  .footer{font-size:11px;color:#aaa;text-align:center;padding:24px 0 8px;border-top:1px solid #eee;margin-top:30px}
+  .card{background:#fafafa;border:1px solid #e0e0e0;border-radius:6px;padding:14px;margin:10px 0;font-size:13px}
+  .flex{display:flex;flex-wrap:wrap;gap:8px}
+  .tbl-wrap{border:1px solid #e0e0e0;border-radius:6px;overflow:hidden;margin:10px 0 18px}
+  .tbl-wrap table{margin:0}
+  .tbl-wrap th{background:#f5f5f5;padding:9px 8px;border-bottom:1px solid #ddd;font-weight:600;font-size:12px}
+  .tbl-wrap td{padding:8px;border-bottom:1px solid #f0f0f0;font-size:13px}
+  .tbl-wrap tr:last-child td{border-bottom:none}
+  .tbl-wrap td,.tbl-wrap th{vertical-align:middle}
+  .bar-wrap{display:inline-flex;align-items:center;width:60px;height:16px;vertical-align:middle}
+  .bar-bg{background:#eee;border-radius:4px;height:8px;width:100%;overflow:hidden}
+  .bar{display:block;height:8px;border-radius:4px}
+  .score-cell{font-weight:700;font-size:15px;text-align:center;white-space:nowrap}
+  .col-tag{display:inline-block;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600}
+  .col-win{background:#e8f5e9;color:#2e7d32}
+  .col-lose{background:#ffebee;color:#c62828}
+  .col-warn{background:#fff3e0;color:#e65100}
+  .col-info{background:#e3f2fd;color:#1565c0}
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>ASX——消费 行业分析报告</h1>
+<div class="subtitle">L5分类：防御+非周期（必选）/ 价值+防御（可选偏周期） ｜ 上市公司：~188只（54必选+134可选） ｜ 总市值：~3172亿AUD</div>
+<div class="meta">生成日期：2026-08-25 &nbsp;|&nbsp; 数据来源：websearch实时搜索 + Quantfolio/StockAnalysis/SimplyWallSt（2026-07-31至2026-08-25）+ ASX/MarketIndex</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l7">L7 量化初筛</button>
+  <button class="tab-btn" data-tab="l8">L8 行业画像</button>
+  <button class="tab-btn" data-tab="l9">L9 竞争格局</button>
+  <button class="tab-btn" data-tab="l10">L10 周期时机</button>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     总结论 Tab
+     ═══════════════════════════════════════════ -->
+<div class="tab-content active" id="tab-summary">
+<div class="tab-inner">
+
+<h2>行业速览</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">项目</th><th>内容</th></tr>
+<tr><td>行业名称</td><td><strong>消费（Consumer Staples + Consumer Discretionary）</strong></td></tr>
+<tr><td>市场</td><td>ASX（澳大利亚证券交易所）</td></tr>
+<tr><td>L5分类</td><td><span class="col-tag col-win">防御型（必选）</span> + <span class="col-tag col-warn">可选/价值型（可选）</span> 必选为非周期防御，可选随可支配收入周期波动</td></tr>
+<tr><td>上市公司</td><td>~188只（GICS必选54只+可选134只），其中符合L7筛选条件 <span class="col-tag col-win">7只核心+5只次优</span></td></tr>
+<tr><td>行业总市值</td><td>~3172亿AUD（必选~1032亿 + 可选~2140亿，SimplyWallSt 2026-08-14数据）</td></tr>
+<tr><td>产业链利润核心</td><td><span class="col-tag col-win">品牌+渠道可选</span> Aristocrat（60%毛利）/ Lovisa（82%）/ Wesfarmers-Bunnings；必选环节利润薄但稳定</td></tr>
+<tr><td>生命周期阶段</td><td><span class="col-tag col-warn">成熟期</span> 人口增速放缓+电商渗透深化，存量竞争为主，龙头靠效率与品牌取胜</td></tr>
+<tr><td>当前周期位置</td><td><span class="col-tag col-warn">分化震荡</span> 必选YTD+13.3%防御走强，可选1年-16%承压；可选处于成本/利率压力后期</td></tr>
+</table>
+</div>
+
+<h2>综合评分</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>维度</th><th style="width:60px">得分</th><th>进度</th><th>说明</th></tr>
+<tr>
+  <td>行业规模与空间</td>
+  <td class="score-cell">14/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:70%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">3172亿AUD占ASX约12%，年营收约3013亿AUD（1723亿必选+1290亿可选）；人均消费成熟，增量靠人口+通胀传导，空间有限但稳定</td>
+</tr>
+<tr>
+  <td>产业链位置</td>
+  <td class="score-cell">10/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:67%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">可选品牌端（ALL/BRG/LOV）毛利35-82%议价强；必选零售端毛利27%且受Aldi/Costco挤压，仅Bunnings等具备定价权</td>
+</tr>
+<tr>
+  <td>竞争格局</td>
+  <td class="score-cell">13/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:65%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">必选双寡头（WOW+COL占超市~67%）稳定；可选垄断竞争，可选CR3约45%，替代充分，价格战频发</td>
+</tr>
+<tr>
+  <td>增长驱动力</td>
+  <td class="score-cell">9/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:60%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">必选：人口+通胀+自有品牌，增速2-4%低但可预测；可选：可支配收入+品牌出海，增速分化（LOV/BRG全球化 vs DMP/FLT承压）</td>
+</tr>
+<tr>
+  <td>周期位置</td>
+  <td class="score-cell">9/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:60%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">必选估值偏高（PE 72x远超3年均值39.7x），可选估值回落（PE 31x低于均值41x），利率见顶后可选弹性更大</td>
+</tr>
+<tr>
+  <td>政策环境</td>
+  <td class="score-cell">11/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:73%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">ACCC强制版《食品杂货行为准则》落地解除监管悬念利好WOW/COL；RBA利率4.10%见顶预期利好可选；酒类/博彩监管中性偏紧</td>
+</tr>
+<tr style="background:#fafafa">
+  <td style="font-weight:700;font-size:14px">总分</td>
+  <td style="font-weight:700;font-size:16px;color:#e65100">66/100</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:66%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555;font-weight:600">中等——可选等待、必选偏贵</td>
+</tr>
+</table>
+</div>
+
+<div class="verdict verdict-caution">
+  <span class="score">66</span>
+  中等偏好 — 结构性分化，优选品牌可选
+</div>
+
+<div class="summary-box">
+  <strong>核心结论</strong><br>
+  ASX消费不是一个行业，而是<strong>"防御的必选 + 周期的可选"</strong>的组合。必选（WOW/COL/WES食品部分）扮演ASX的防御底仓，YTD跑赢大盘13.3%，但当前估值已不便宜（行业PE 72.4x vs 3年均值39.7x，盈利过去3年-25%/年），超额收益靠分红而非估值扩张。可选（WES/ALL/JBH/LOV/BRG等）1年-16%，受利率和成本挤压，但龙头已出现分化：Aristocrat/Lovisa/Breville靠IP和品牌维持60-82%毛利+20%+ROE并持续出海，JBH/HVN靠规模和地产抵御周期，而Domino's、Flight Centre等则陷入价格战。<br><br>
+  <strong>一句话策略：</strong>用L5防御框架做必选（赚股息+通胀传导），用L5价值/成长框架做可选（赚品牌溢价+周期修复）。当前时点<strong>可选优于必选</strong>——可选估值已回落至3年均值以下，等待RBA降息与可支配收入修复；必选宜等待回调或股息率回归。
+</div>
+
+<div class="highlight-box">
+  <strong>行业公式</strong><br>
+  必选：收入 = 门店客流 × 客单价（篮子大小） × 自有品牌占比；利润 = （零售价 - 采购成本 - 履约成本）× 销量<br>
+  可选：收入 = 门店/机器装机数 × 同店销售/单机日收益；利润 = 量 ×（价 - 变动成本）- 固定成本（重运营杠杆）<br>
+  <strong>关键指标：</strong>①同店销售增速（SSS）②毛利率趋势 ③库存周转/同店库存 ④可支配收入与消费者信心指数 ⑤RBA现金利率
+</div>
+
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     L7 Tab
+     ═══════════════════════════════════════════ -->
+<div class="tab-content" id="tab-l7">
+<div class="tab-inner">
+
+<h2>筛子调整说明</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:12%">筛子</th><th style="width:35%">标准（ASX消费）</th><th>调整说明</th></tr>
+<tr><td>①<span class="col-tag col-info">市值</span></td><td>≥2亿AUD</td><td>ASX标准，188只中约110只微盘被筛除（农业/小零售/初创）</td></tr>
+<tr><td>②<span class="col-tag col-info">营收</span></td><td>≥1亿AUD</td><td>ASX标准，排除未规模化概念股（部分澳洲农业、精品酒庄）</td></tr>
+<tr><td>③<span class="col-tag col-warn">毛利率</span></td><td>≥20%</td><td><strong>消费专用门槛</strong>（L7标准≥20%）：必选零售27%可过，Metcash/Inghams等分销~10%将被筛除</td></tr>
+<tr><td>④<span class="col-tag col-info">ROE</span></td><td>≥8%（连续3年<5%剔除）</td><td>正常执行，Endeavour/TWE等因减值ROE承压需观察，Lovisa/BRG保持>15%</td></tr>
+<tr><td>⑤<span class="col-tag col-warn">负债率</span></td><td>≤65%（零售租赁调整）</td><td><strong>特殊调整：</strong>超市/可选零售因AASB16租赁负债普遍>70%，改用<span class="col-tag col-info">有息负债率+利息覆盖>3x</span>辅助判断，否则WOW/COL/JBH会被误杀</td></tr>
+<tr><td>⑥<span class="col-tag col-info">估值</span></td><td>PE历史分位≤70%（亏损用PS≤10x）</td><td>必选当前PE分位偏高（WOW ~80%分位），可选多数回落至40-65%分位</td></tr>
+</table>
+</div>
+
+<h2>候选池（7只核心）</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>环节</th><th>市值</th><th>毛利率</th><th>ROE</th><th>负债率* </th><th>PE分位</th><th>通过</th></tr>
+<tr>
+  <td><strong>Wesfarmers WES</strong></td>
+  <td><span class="col-tag col-win">综合零售</span></td>
+  <td style="font-weight:600">$93.6B</td>
+  <td><span class="col-tag col-win">33.7%</span></td>
+  <td><span class="col-tag col-win">~28%</span></td>
+  <td>~70%<br><span style="font-size:10px;color:#999">含租赁</span></td>
+  <td><span class="col-tag col-warn">55%</span></td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>Aristocrat Leisure ALL</strong></td>
+  <td><span class="col-tag col-win">博彩科技</span></td>
+  <td style="font-weight:600">$36.9B</td>
+  <td><span class="col-tag col-win">60.6%</span></td>
+  <td><span class="col-tag col-win">22.0%</span></td>
+  <td><span class="col-tag col-win">30.7%</span></td>
+  <td><span class="col-tag col-warn">60%</span></td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>JB Hi-Fi JBH</strong></td>
+  <td><span class="col-tag col-info">电子零售</span></td>
+  <td style="font-weight:600">$8.80B</td>
+  <td><span class="col-tag col-win">~22%</span></td>
+  <td><span class="col-tag col-win">~45%</span></td>
+  <td><span class="col-tag col-win">~35%</span></td>
+  <td><span class="col-tag col-win">40%</span></td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>Lovisa Holdings LOV</strong></td>
+  <td><span class="col-tag col-win">饰品零售</span></td>
+  <td>$2.65B</td>
+  <td><span class="col-tag col-win">82.0%</span></td>
+  <td><span class="col-tag col-win">~55%</span></td>
+  <td><span class="col-tag col-win">~40%</span></td>
+  <td><span class="col-tag col-warn">65%</span></td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>Breville Group BRG</strong></td>
+  <td><span class="col-tag col-win">小家电品牌</span></td>
+  <td>$4.77B</td>
+  <td><span class="col-tag col-win">35.4%</span></td>
+  <td><span class="col-tag col-win">13.5%</span></td>
+  <td><span class="col-tag col-win">~25%</span></td>
+  <td><span class="col-tag col-warn">65%</span></td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>Harvey Norman HVN</td>
+  <td><span class="col-tag col-warn">综合零售+地产</span></td>
+  <td>~$4.2B</td>
+  <td><span class="col-tag col-win">~30%</span></td>
+  <td><span class="col-tag col-warn">~8.5%</span></td>
+  <td><span class="col-tag col-win">~22%</span></td>
+  <td><span class="col-tag col-win">25%</span></td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td>Super Retail Group SUL</td>
+  <td><span class="col-tag col-info">户外/汽车零售</span></td>
+  <td>~$2.20B</td>
+  <td><span class="col-tag col-win">~46%</span></td>
+  <td><span class="col-tag col-win">~28%</span></td>
+  <td><span class="col-tag col-win">~40%</span></td>
+  <td><span class="col-tag col-win">35%</span></td>
+  <td class="pass">6/6</td>
+</tr>
+</table>
+</div>
+<div style="font-size:11px;color:#999;margin:-10px 0 14px">* 负债率含租赁负债；WES已做租赁调整，利息覆盖~9x仍健康；JBH/SUL等租赁占比低，仍在≤65%内。数据来源：Quantfolio 2026-07-14/31、stockanalysis/WealthQuestLab、ASX公告。</div>
+
+<h2>次优池（5只，5/6通过）</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>卡在哪筛</th><th>备注（触发条件）</th></tr>
+<tr>
+  <td><strong>Woolworths WOW</strong> $48.2B</td>
+  <td><span class="col-tag col-lose">⑤负债率</span> <span class="col-tag col-warn">⑥估值高分位</span></td>
+  <td>营收$70.3B毛利27.3% ROE11.9%通过，但D/E 358%（租赁）+ PE 50.6x / Fwd 27x处历史高位。等待估值回落至25x以下或利息覆盖回升再评估</td>
+</tr>
+<tr>
+  <td><strong>Coles COL</strong> $30.3B</td>
+  <td><span class="col-tag col-lose">⑤负债率</span></td>
+  <td>营收$44.5B毛利27% ROE32%优秀，但总负债$10.6B、D/E 278%（租赁）。经营稳健，关注去租赁后有息负债率及ACCC准则执行成本</td>
+</tr>
+<tr>
+  <td><strong>Endeavour Group EDV</strong> ~$7.5B</td>
+  <td><span class="col-tag col-warn">④ROE~6%</span></td>
+  <td>酒类+酒店，毛利~35%，但ROE承压（行业监管+成本），负债~45%，等待盈利回升至8%+再入候选</td>
+</tr>
+<tr>
+  <td><strong>Treasury Wine TWE</strong> $4.0B</td>
+  <td><span class="col-tag col-lose">④ROE负（减值）</span></td>
+  <td>Penfolds品牌强，但1H26计提$7.5亿美国资产减值致亏损，Fwd PE 12.4x便宜，多年重置期，观察美国渠道重置成效</td>
+</tr>
+<tr>
+  <td><strong>Premier Investments PMV</strong> ~$1.8B</td>
+  <td><span class="col-tag col-warn">⑥估值</span></td>
+  <td>Smiggle/Peter Alexander品牌，毛利~65% ROE~20%，但剥离Apparel Brands后估值待消化，观察新主体盈利稳定性</td>
+</tr>
+</table>
+</div>
+
+<h2>观察池（典型筛除）</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>卡在哪筛</th><th>备注</th></tr>
+<tr>
+  <td>Metcash MTS $2.98</td>
+  <td><span class="col-tag col-lose">③毛利率~12%</span></td>
+  <td>IGA分销模式，毛利天然低靠规模，非品牌消费</td>
+</tr>
+<tr>
+  <td>Domino's DMP</td>
+  <td><span class="col-tag col-lose">④ROE</span> <span class="col-tag col-lose">⑤负债率高</span></td>
+  <td>同店负增长+关店，盈利承压，等待同店转正</td>
+</tr>
+<tr>
+  <td>Flight Centre FLT / Webjet</td>
+  <td><span class="col-tag col-warn">波动大</span></td>
+  <td>旅游可选，周期性强，盈利不稳定</td>
+</tr>
+<tr>
+  <td>a2 Milk A2M / Inghams ING</td>
+  <td><span class="col-tag col-warn">②营收/③毛利边际</span></td>
+  <td>食品子行业，A2M毛利~44%但ROE波动，ING为农业加工属性</td>
+</tr>
+<tr>
+  <td>Kogan / Temple & Webster</td>
+  <td><span class="col-tag col-lose">①市值/④ROE</span></td>
+  <td>纯线上零售，市值<2亿或持续亏损，模式待验证</td>
+</tr>
+</table>
+</div>
+
+<h2>筛除记录</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>筛子</th><th style="width:60px">筛除数</th><th>知名示例</th></tr>
+<tr><td>①市值 <2亿AUD</td><td style="text-align:center">~110</td><td>Anagenics、Australian Agricultural Co、大量小农业/小零售（占比~58%）</td></tr>
+<tr><td>②营收 <1亿AUD</td><td style="text-align:center">~18</td><td>部分精品农业、初创DTC、Bubs Australia等</td></tr>
+<tr><td>③毛利率 <20%</td><td style="text-align:center">~22</td><td>Metcash(~12%)、GrainCorp(~9%)、Inghams(~18%)、汽车经销商</td></tr>
+<tr><td>④ROE <8%</td><td style="text-align:center">~15</td><td>Treasury Wine(减值亏损)、Domino's、Star Entertainment、部分百货</td></tr>
+<tr><td>⑤负债率 >65%</td><td style="text-align:center">~8*</td><td>WOW/COL（租赁导致）、Flight Centre（租赁）、Myer（高杠杆）*已做租赁调整，未误杀核心</td></tr>
+<tr><td>⑥估值 PE>70%分位</td><td style="text-align:center">~6</td><td>Lovisa/Breville边缘（65%分位）、Pro Medicus式高估值可选小票已提前筛除</td></tr>
+<tr style="background:#fffde7"><td><strong>剩余</strong></td><td style="text-align:center;font-weight:700;color:#2e7d32"><strong>7+5</strong></td><td>7只6/6核心 + 5只5/6次优（WOW/COL/EDV/TWE/PMV）</td></tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <strong>L7筛选结论</strong><br>
+  188→7（核心）→12（含次优），筛选力度大（-94%）。最有效的两把筛子是<strong>市值+毛利率</strong>：110只微盘+22只低毛利分销/农业被淘汰，精准去除了"无品牌、无规模"的长尾。零售的负债筛若不做租赁调整会误杀WOW/COL，需用<strong>有息负债+利息覆盖</strong>二次验证。剩余7只呈现"品牌可选为主（ALL/LOV/BRG/JBH）+ 综合龙头（WES/HVN/SUL）"的结构，必选仅WES以综合体形式留存——这恰好说明ASX必选虽大但纯超市模式财务质量（薄利+高租）不如品牌可选。<br><br>
+  <strong>加第七筛建议：</strong>同店销售（SSS）连续2年>2% / 海外收入占比>20%（验证品牌可复制性），可进一步将WES/ALL/LOV/BRG与纯本土零售区分。
+</div>
+
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     L8 Tab
+     ═══════════════════════════════════════════ -->
+<div class="tab-content" id="tab-l8">
+<div class="tab-inner">
+
+<h2>产业链</h2>
+<div class="card" style="font-size:13px;line-height:1.7">
+
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px">
+
+<div style="flex:1;min-width:200px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#2e7d32;font-size:14px">上游：供给/品牌源</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">农产品/IP/设计</div>
+    <div style="text-align:center;font-size:11px;color:#666">农场·酒庄·游戏工作室·设计中心</div>
+    <div style="margin:10px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">制造/采购</div>
+    <div style="text-align:center;font-size:11px;color:#666">Breville（代工+自研）· TWE（葡萄园）· Aristocrat（硬件+软件）</div>
+    <div style="margin:10px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">品牌方</div>
+    <div style="text-align:center;font-size:11px;color:#666">ALL/BRG/LOV/TWE · 供应商（雀巢、宝洁等）</div>
+  </div>
+</div>
+
+<div style="flex:2;min-width:280px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#1565c0;font-size:14px">中游：渠道/零售（利润分化最大）</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+
+    <div style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap">
+      <div style="flex:1;min-width:70px;background:#ffebee;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">超市必选</div>
+        <div style="font-size:10px;color:#666">WOW·COL·MTS</div>
+        <div style="font-size:10px;color:#c62828">毛利27%</div>
+      </div>
+      <div style="font-size:20px;color:#999;line-height:36px">→</div>
+      <div style="flex:1;min-width:70px;background:#e8f5e9;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">综合零售</div>
+        <div style="font-size:10px;color:#666">WES·HVN·SUL</div>
+        <div style="font-size:10px;color:#2e7d32">毛利30-46%</div>
+      </div>
+      <div style="font-size:20px;color:#999;line-height:36px">→</div>
+      <div style="flex:1;min-width:70px;background:#e8f5e9;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">品牌可选</div>
+        <div style="font-size:10px;color:#666">ALL·LOV·BRG·JBH</div>
+        <div style="font-size:10px;color:#2e7d32">毛利22-82%</div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:11px;color:#c62828;margin-bottom:10px">▲ 薄利必选 vs 厚利品牌，中间综合体检品牌与地产</div>
+
+    <div style="margin:6px 0 4px;font-weight:600;font-size:12px;color:#1565c0">关键资产</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <div style="flex:1;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">Bunnings<br><span style="font-size:10px;color:#666">WES现金牛</span></div>
+      <div style="flex:1;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">EGMs装机<br><span style="font-size:10px;color:#666">ALL北美+澳新</span></div>
+      <div style="flex:1;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">门店网络<br><span style="font-size:10px;color:#666">LOV 1031店·JBH 330+</span></div>
+    </div>
+
+    <div style="margin:8px 0 4px;font-weight:600;font-size:12px;color:#1565c0">线上/平台</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">电商/全渠道<br><span style="font-size:10px;color:#666">JBH线上16.8%·LOV全球化</span></div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">酒店/酒类<br><span style="font-size:10px;color:#666">EDV 1400+门店</span></div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">物业<br><span style="font-size:10px;color:#666">HVN自持物业重资产</span></div>
+    </div>
+  </div>
+</div>
+
+<div style="flex:1;min-width:160px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#c62828;font-size:14px">下游：终端消费</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:10px 8px;text-align:center;font-weight:600;font-size:13px">家庭消费者</div>
+    <div style="text-align:center;font-size:11px;color:#666">食品日用（刚需）· 家电珠宝酒类（可选）</div>
+    <div style="margin:10px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:10px 8px;text-align:center;font-weight:600;font-size:13px">企业/赌场/酒店</div>
+    <div style="text-align:center;font-size:11px;color:#666">ALL的B端客户</div>
+    <div style="margin:10px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#f5f5f5;border:1px solid #ccc;border-radius:4px;padding:10px 8px;text-align:center;font-weight:600;font-size:13px">支付/物流</div>
+    <div style="text-align:center;font-size:11px;color:#666">忠诚度计划·供应链</div>
+  </div>
+</div>
+
+</div>
+
+<div style="background:#fffde7;border-left:3px solid #f9a825;padding:8px 12px;font-size:12px;border-radius:0 4px 4px 0">
+  <strong>利润最厚环节：</strong>品牌可选（Lovisa 82%、Aristocrat 60.6%、Breville 35-36%）＞ 综合零售（Bunnings/SUL 30-46%）＞ 超市必选（27%薄利靠周转）<br>
+  <span style="color:#999">HVN特殊：零售毛利一般但靠自持物业增值与租金贡献利润；必选靠规模与自有品牌（Homebrand）提升1-2pp毛利。</span>
+</div>
+
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>环节</th><th>代表公司</th><th>毛利率</th><th>集中度</th><th>议价能力</th></tr>
+<tr>
+  <td><span class="col-tag col-warn">超市必选</span></td>
+  <td>WOW、COL、MTS</td>
+  <td><span class="col-tag col-warn">27%</span></td>
+  <td>双寡头67%（WOW~37%+COL~30%）</td>
+  <td><span class="col-tag col-warn">中弱</span>（受Aldi/Costco挤压）</td>
+</tr>
+<tr>
+  <td><span class="col-tag col-win">综合零售</span></td>
+  <td>WES(Bunnings)、HVN、SUL</td>
+  <td><span class="col-tag col-win">30-46%</span></td>
+  <td>WES独大，CR3~50%</td>
+  <td><span class="col-tag col-win">中强</span>（Bunnings定价权强）</td>
+</tr>
+<tr>
+  <td><span class="col-tag col-win">博彩/游戏</span></td>
+  <td>ALL、Jumbo、Tabcorp</td>
+  <td><span class="col-tag col-win">60.6%</span></td>
+  <td>ALL北美份额~25%全球龙头</td>
+  <td><span class="col-tag col-win">强</span>（IP+监管牌照）</td>
+</tr>
+<tr>
+  <td><span class="col-tag col-win">品牌可选</span></td>
+  <td>LOV、BRG、TWE</td>
+  <td><span class="col-tag col-win">35-82%</span></td>
+  <td>分散，靠品牌区分</td>
+  <td><span class="col-tag col-win">强</span>（LOV/BRG出海验证）</td>
+</tr>
+<tr>
+  <td><span class="col-tag col-info">电子/专业零售</span></td>
+  <td>JBH、HVN、PMV</td>
+  <td><span class="col-tag col-win">22-65%</span></td>
+  <td>JBH市占领先，CR3~45%</td>
+  <td><span class="col-tag col-warn">中</span>（价格透明）</td>
+</tr>
+<tr>
+  <td><span class="col-tag col-lose">分销/低毛利</span></td>
+  <td>MTS、GNC、AAC</td>
+  <td><span class="col-tag col-lose">~10-12%</span></td>
+  <td>分散</td>
+  <td><span class="col-tag col-lose">弱</span></td>
+</tr>
+</table>
+</div>
+
+<h2>市场规模</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">指标</th><th style="width:25%">数值</th><th>说明</th></tr>
+<tr><td><strong>TAM</strong>（可触达市场）</td><td><span class="col-tag col-info">~3013亿AUD营收</span></td><td>必选1723亿+可选1290亿（SimplyWallSt 2026-08-23/14），占澳洲家庭消费~60%</td></tr>
+<tr><td><strong>SAM</strong>（ASX覆盖）</td><td><span class="col-tag col-info">188家上市公司</span></td><td>ASX 200中37家（必选14+可选23），合计市值3172亿AUD（1032+2140）</td></tr>
+<tr><td><strong>当前渗透</strong></td><td>电商~16-20%（零售）</td><td>JBH线上16.8%，超市线上~10%，仍有提升但增速放缓至个位数</td></tr>
+<tr><td><strong>近年增速</strong>（3年CAGR）</td><td><span class="col-tag col-warn">分化：可选 +12%/年盈利<br>必选 -25%/年盈利</span></td><td>可选靠效率提升（收入平但盈利+12%），必选收入平但成本/投入致盈利-25%/年</td></tr>
+</table>
+</div>
+
+<h2>生命周期</h2>
+<div class="summary-box">
+  <strong><span class="col-tag col-warn" style="font-size:14px">成熟期</span>（分化成熟）</strong><br>
+  判断依据：人均消费已达发达市场水平，人口年增~1.2%放缓，行业增速0-10%（成熟期特征）；线上渗透从高速期转入稳态；龙头格局稳定，新增玩家少，竞争围绕存量份额与效率；品牌可选通过出海（LOV 50+市场、BRG美欧亚、ALL北美）寻找第二曲线，但本土市场已成熟。
+</div>
+
+<h2>增长驱动力</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动力</th><th>类型</th><th>可持续性</th><th>量化指标</th></tr>
+<tr>
+  <td>人口+通胀传导（必选）</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>澳洲人口2700万年增1.2%、CPI 3%±、超市同店2-4%</td>
+</tr>
+<tr>
+  <td>可支配收入修复（可选）</td>
+  <td><span class="col-tag col-lose">周期</span></td>
+  <td><span class="col-tag col-warn">中（1-3年）</span></td>
+  <td>RBA现金利率4.10%见顶、实际工资增速、消费者信心指数</td>
+</tr>
+<tr>
+  <td>品牌出海（LOV/BRG/ALL）</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>LOV 1031店50+市场、BRG海外占比>80%、ALL北美装机+6%</td>
+</tr>
+<tr>
+  <td>自有品牌+供应链效率</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-warn">中长</span></td>
+  <td>WOW/COL自有品牌占比30%+、Bunnings自有品牌溢价</td>
+</tr>
+<tr>
+  <td>全渠道/体验升级</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>线上占比、会员复购率、Click & Collect占比</td>
+</tr>
+</table>
+</div>
+
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     L9 Tab
+     ═══════════════════════════════════════════ -->
+<div class="tab-content" id="tab-l9">
+<div class="tab-inner">
+
+<h2>市场结构</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>市场结构类型</td>
+  <td>必选：<span class="col-tag col-win">寡头垄断</span>（WOW/COL双寡头67%）；可选：<span class="col-tag col-warn">垄断竞争</span>（品牌差异化，价格透明）</td>
+</tr>
+<tr>
+  <td>CR3</td>
+  <td>超市CR2~67%（高度集中）；可选零售CR3~45%（中等）；博彩CR1 ALL全球领先</td>
+</tr>
+<tr>
+  <td>格局象限</td>
+  <td>必选：<span class="col-tag col-win">寡头稳定</span>；品牌可选：<span class="col-tag col-win">百花齐放（赢家通吃局部）</span>；大卖场/电子：<span class="col-tag col-warn">价格战泥潭边缘</span></td>
+</tr>
+<tr>
+  <td>新进入者威胁</td>
+  <td><span class="col-tag col-warn">中</span> 必选：Aldi/Costco持续渗透（门槛高但外资已入）；可选：线上DTC门槛低，但规模化难</td>
+</tr>
+</table>
+</div>
+
+<h2>竞争壁垒</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>壁垒类型</th><th>强度</th><th>可持续性</th><th>具体表现</th></tr>
+<tr>
+  <td>规模/采购壁垒（必选）</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>WOW/COL年采400-700亿AUD，对供应商议价+自有品牌30%+，新进入者需十年建网络</td>
+</tr>
+<tr>
+  <td>品牌/IP壁垒（可选）</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>ALL全球EGM份额+Pixel联合IP，BRG高端咖啡机品牌溢价，LOV 82%毛利+快速上新能力</td>
+</tr>
+<tr>
+  <td>选址+物业（HVN/WES）</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>HVN自持物业抗租、可抵押；Bunnings核心商圈仓储型物业稀缺</td>
+</tr>
+<tr>
+  <td>渠道/会员粘性</td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>WOW Everyday Rewards 1400万会员、JBH会员+价格口碑，但切换成本低</td>
+</tr>
+<tr>
+  <td>网络效应（弱）</td>
+  <td><span class="col-tag col-lose">弱</span></td>
+  <td><span class="col-tag col-lose">短</span></td>
+  <td>消费零售无强网络效应，靠复购与口碑，非平台型</td>
+</tr>
+</table>
+</div>
+
+<div class="summary-box">
+  <strong>定价权测试</strong><br>
+  🔹 龙头能涨价吗？<span class="col-tag col-warn">分化</span> 必选：<strong>不能轻易涨</strong>（WOW/COL价格敏感，受ACCC与Aldi制约，靠自有品牌变相提毛利）；品牌可选：<strong>能</strong>（ALL机器提价+软件分成、LOV时尚定价、BRG新品溢价）<br>
+  🔹 毛利率趋势：必选稳定27%（WOW 27.3%微升）、可选品牌稳定或提升（ALL 60.6%平、LOV 82%升）、大卖场承压（BRG 35.4%受关税-130bps）<br>
+  🔹 ROE趋势：必选WOW 11.9%承压（非现金减值）、COL 32%虚高（低权益）、可选ALL 22%稳健、JBH 45%极强、BRG 13.5%短期承压
+</div>
+
+<h2>驱动力拆解</h2>
+<div class="highlight-box">
+  <strong>行业收入公式</strong><br>
+  必选：收入 = 客流量 × 客单价；利润 = （采购价差 + 自有品牌溢价 - 履约成本）× 销量<br>
+  可选：收入 = 门店数/装机数 × 同店销售/单机收益；利润 = 量 ×（价 - 单位产品成本）- 固定成本<br><br>
+  当前组合：<span style="color:#c62828;font-weight:700">量 →（平）</span> ＋ <span style="color:#2e7d32;font-weight:700">价 ↑（温和）</span> ＝ <span class="col-tag col-warn">量平价升，靠提价与自有品牌对冲成本</span>
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动因子</th><th>最新值</th><th>历史区间</th><th>当前分位</th></tr>
+<tr>
+  <td>超市同店销售（SSS）</td>
+  <td><span class="col-tag col-warn">2-4%</span></td>
+  <td>-1% ~ 8%（COVID高基数）</td>
+  <td><span class="col-tag col-warn">45%</span></td>
+</tr>
+<tr>
+  <td>消费者信心指数</td>
+  <td><span class="col-tag col-warn">~85（偏弱）</span></td>
+  <td>75-110</td>
+  <td><span class="col-tag col-lose">30%</span></td>
+</tr>
+<tr>
+  <td>RBA现金利率</td>
+  <td><span class="col-tag col-lose">4.10%（峰值）</span></td>
+  <td>0.10-4.35%</td>
+  <td><span class="col-tag col-lose">90%</span></td>
+</tr>
+<tr>
+  <td>AUD/USD汇率</td>
+  <td><span class="col-tag col-warn">~0.66</span></td>
+  <td>0.55-0.80</td>
+  <td><span class="col-tag col-warn">40%</span></td>
+</tr>
+<tr>
+  <td>电商渗透率（零售）</td>
+  <td><span class="col-tag col-win">~17%</span></td>
+  <td>8-20%</td>
+  <td><span class="col-tag col-win">75%</span></td>
+</tr>
+</table>
+</div>
+
+<h2>成本结构</h2>
+<div class="summary-box">
+  🔹 <strong>类型：</strong>必选<span class="col-tag col-lose">重资产+重人力</span>（门店租赁+人力占营收~45%）；可选<span class="col-tag col-warn">中轻资产</span>（BRG/ALL轻制造/IP，JBH/LOV重租赁但可扩张）<br>
+  🔹 <strong>成本敏感性：</strong>人工/租金最敏感（澳洲最低工资年增3-4%直接压超市/零售1-2pp毛利）；关税敏感（BRG中国制造占比仍~20%）、汇率敏感（进口品牌）<br>
+  🔹 <strong>盈亏平衡点：</strong>超市需~95%产能/客流维持正利（薄利周转），可选品牌盈亏平衡低（LOV单店月销~3万AUD即盈利），抗周期更强
+</div>
+
+<h2>竞争格局总结</h2>
+<div class="highlight-box">
+  ASX消费呈现<strong>"必选寡头稳利润、可选品牌赚溢价"</strong>的双层格局。必选层WOW/COL双寡头+WES食品侧构成护城河，但护城河是规模而非品牌，利润薄且受监管与折扣商侵蚀，投资价值在股息而非成长。可选层ALL/LOV/BRG已验证品牌可出海（毛利60-82%+净利率10-23%），JBH/HVN/SUL靠密度与物业稳住份额，格局健康但无网络效应，胜负手是<strong>同店效率+新品/新市场</strong>。最差的是无品牌无物业的纯线上/低毛利分销（已在L7被筛除）。<br><br>
+  <strong>核心护城河排序：</strong>IP/品牌（ALL/BRG/LOV）＞ 规模+自有品牌（WOW/COL/WES）＞ 物业/选址（HVN/Bunnings）＞ 渠道执行（JBH/SUL）。
+</div>
+
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     L10 Tab
+     ═══════════════════════════════════════════ -->
+<div class="tab-content" id="tab-l10">
+<div class="tab-inner">
+
+<h2>周期位置</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>库存周期阶段</td>
+  <td><span class="col-tag col-warn">必选：繁荣后期 | 可选：萧条后期→复苏初期</span> 必选库存周转快但价格已传导；可选经历关税+高利率去库存，1H26库存环比下降</td>
+</tr>
+<tr>
+  <td>产能利用率/开店</td>
+  <td><span class="col-tag col-warn">~78%（历史65-90%）</span> JBH/LOV净开店放缓（LOV FY25净增162→1H26 64），BRG无新市场进入计划FY27</td>
+</tr>
+<tr>
+  <td>价格分位</td>
+  <td>食品CPI <span class="col-tag col-win">~60%分位</span>（温和通胀）；可选提价能力<span class="col-tag col-warn">~40%分位</span>（促销频次上升）</td>
+</tr>
+<tr>
+  <td>行业盈利状态</td>
+  <td><span class="col-tag col-warn">分化盈利</span> 必选盈利承压（WOW淨利$0.96B vs 2023 $1.62B腰斩）；可选分化（ALL/BRG/JBH盈利，TWE/DMP亏损）</td>
+</tr>
+</table>
+</div>
+
+<div class="danger-box">
+  <strong>⚠ PE悖论检查</strong><br>
+  必选：PE 72.4x（TTM）远超3年均值39.7x，属<strong>高估陷阱</strong>——盈利下滑导致PE被动抬高，非低估。<br>
+  可选：PE 31.1x 低于3年均值41.3x，属<strong>合理偏低</strong>——盈利+12%/年消化估值，PE回落是机会。<br>
+  <strong>结论：</strong>必选看股息率而非PE，可选看PE分位+同店修复；当前PE悖论方向相反，切勿混用。
+</div>
+
+<h2>估值水平</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>估值指标</th><th>行业当前</th><th>历史中位数</th><th>80%分位</th><th>20%分位</th></tr>
+<tr>
+  <td><strong>PE（必选 TTM）</strong></td>
+  <td><span class="col-tag col-lose">72.4x</span></td>
+  <td>~40x</td>
+  <td>~55x</td>
+  <td>~26x</td>
+</tr>
+<tr>
+  <td><strong>PE（可选 TTM）</strong></td>
+  <td><span class="col-tag col-win">31.1x</span></td>
+  <td>~41x</td>
+  <td>~50x</td>
+  <td>~28x</td>
+</tr>
+<tr>
+  <td><strong>PS（必选）</strong></td>
+  <td><span class="col-tag col-win">0.60x</span></td>
+  <td>0.58x</td>
+  <td>0.75x</td>
+  <td>0.45x</td>
+</tr>
+<tr>
+  <td><strong>PB（可选代表）</strong></td>
+  <td><span class="col-tag col-warn">ALL 6.0x / JBH ~8x / LOV ~20x</span></td>
+  <td>4-6x</td>
+  <td>8x+</td>
+  <td>3x</td>
+</tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <strong>个股估值速查（2026-07-31/08-25）</strong><br>
+  <table style="font-size:12px;margin:4px 0;border:none;background:transparent">
+    <tr><td style="border:none;padding:3px 6px;background:#e3f2fd;font-weight:600">WOW</td><td style="border:none;padding:3px 6px;background:transparent">PE 50.6x TTM / Fwd 27.2x，10年均值~25x，当前偏贵；PB 9.9x高，FCF yield 4.2%为唯一吸引力</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:#e3f2fd;font-weight:600">COL</td><td style="border:none;padding:3px 6px;background:transparent">PE ~28x TTM，历史中位~22x，中枢偏上；股息~3.5% franked，未显著低估</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:#e3f2fd;font-weight:600">WES</td><td style="border:none;padding:3px 6px;background:transparent">PE ~31x，历史~28x，溢价来自Bunnings稳定性；PB高但ROE 28%支撑</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:#e3f2fd;font-weight:600">ALL</td><td style="border:none;padding:3px 6px;background:transparent">PE 25.9x / Fwd 21.3x，低于近5年均值~28x，PEG 0.91合理</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:#e3f2fd;font-weight:600">JBH</td><td style="border:none;padding:3px 6px;background:transparent">PE 18.2x / Fwd 16.8x，历史均值~16x，合理偏低；股息6.8% grossed-up吸引</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:#e3f2fd;font-weight:600">LOV</td><td style="border:none;padding:3px 6px;background:transparent">PE 24.5x / Fwd 21x，历史~25x，合理；需验证Jewells投入不侵蚀ROE</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:#e3f2fd;font-weight:600">BRG</td><td style="border:none;padding:3px 6px;background:transparent">PE 34.3x / Fwd 34x，历史~28x，偏贵但有全球化溢价；股息1.1%低</td></tr>
+  </table>
+</div>
+
+<h2>政策环境</h2>
+<div class="summary-box">
+  🔹 <strong>政策方向：</strong><span class="col-tag col-win">必选：利好兑现 | 可选：中性偏利好（等待降息）</span><br>
+  🔹 <strong>关键政策：</strong><br>
+  &emsp;• <strong>ACCC强制版《食品杂货行为准则》</strong>（2025-26生效）：从自愿变强制，公平交易义务+供应商保护，WOW/COL监管悬念解除→股价YTD反弹，但合规成本上升<br>
+  &emsp;• <strong>RBA利率路径</strong>：现金利率4.10%已至峰值，市场定价26H2降息1-2次，可选最受益（WES/LOV/JBH对利率敏感系数高）<br>
+  &emsp;• <strong>美国关税/汇率</strong>：BRG 120V产品80%已移出中国，关税冲击边际缓和；AUD/USD 0.66弱澳元利好ALL/BRG出口<br>
+  &emsp;• <strong>酒类/博彩监管</strong>：TWE美国渠道重置、EDV酒店牌照审查、ALL在线博彩监管，中性偏紧但不改变龙头地位<br>
+  🔹 <strong>政策周期位置：</strong>必选<span class="col-tag col-win">利好兑现期</span>、可选<span class="col-tag col-warn">等待宽松期</span>
+</div>
+
+<h2>买入清单</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:28%">条件</th><th style="width:16%">结果</th><th>备注</th></tr>
+<tr>
+  <td>周期位置：不在繁荣顶点</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td>必选在估值繁荣顶点（PE 72x），可选在底部震荡（PE 31x）——分化</td>
+</tr>
+<tr>
+  <td>估值：PE/PB在历史偏低分位</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td>必选❌（高位），可选✅（低位），综合⚠️</td>
+</tr>
+<tr>
+  <td>政策：不是收紧期</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>必选监管利空出尽，可选等待降息落地</td>
+</tr>
+<tr>
+  <td>格局：龙头壁垒稳固</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>WES/ALL/JBH/LOV壁垒稳固（品牌/规模/物业），TWE/EDV除外</td>
+</tr>
+<tr>
+  <td>增长：有可见驱动力</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td>必选低增长（2-4%）、可选分化（LOV/BRG有出海，传统零售无）</td>
+</tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <div style="font-size:16px;font-weight:700;margin-bottom:8px">综合判断：<span class="col-tag col-warn" style="font-size:15px">可选分批建仓，必选等待</span></div>
+  <div style="margin-bottom:6px">消费行业不宜一刀切买卖。<strong>必选（WOW/COL）</strong>当前不适合追高——PE处于极高分位、盈利下滑、股息率仅2-3%无补偿；等待PE回落至30x以下或股息率>4%再考虑防御配置。<strong>可选（ALL/JBH/LOV/SUL/WES）</strong>已进入分批建仓区间：估值回落、同店触底、RBA降息预期升温，品牌可选的盈利弹性最大。</div>
+  <table style="font-size:12px;margin:6px 0;border:none;background:transparent">
+    <tr><td style="border:none;padding:3px 6px;background:transparent;width:90px;font-weight:600">预期回报</td><td style="border:none;padding:3px 6px;background:transparent">可选：估值修复（PE 31x→38x）+ 同店修复（2-7%）+ 出海（LOV/BRG/ALL 8-12%）；必选：股息3-4%+通胀传导2-4%</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">仓位建议</td><td style="border:none;padding:3px 6px;background:transparent"><span class="col-tag col-warn">总仓位8-12%（可选6-8% + 必选2-4%）</span>，可选分3批（RBA决议前后+财报验证）</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">跟踪指标</td><td style="border:none;padding:3px 6px;background:transparent">同店销售（WES/JBH/LOV月报）、毛利率、RBA现金利率、消费者信心、AUD/USD</td></tr>
+  </table>
+  <div style="margin-top:8px;padding:8px;background:#e8f5e9;border-radius:4px;font-size:12px">
+    <strong>买入策略：</strong><br>
+    <span class="col-tag col-win">核心仓位（60%）</span>：ALL（IP龙头+低负债）+ JBH（高ROE+6.8%股息）+ WES（Bunnings现金牛）—— 防守与弹性兼具<br>
+    <span class="col-tag col-win">卫星仓位（40%）</span>：LOV（全球店王+82%毛利，控制仓位防Jewells风险）+ BRG（咖啡全球化，等待关税毛利回升至36%+）+ SUL（低估值高ROE）<br>
+    <span class="col-tag col-warn">回避/等待</span>：WOW/COL（估值贵）、TWE（减值未出清）、DMP/FLT（同店负增长）
+  </div>
+</div>
+
+<h2>卖出信号</h2>
+<div class="danger-box">
+  <strong>出现以下信号考虑卖出：</strong><br>
+  <div style="margin-top:6px">
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px">1</span>
+    同店连续2季负增长且毛利率跌破阈值（超市<25%、可选品牌<30%）—— 需求或定价权丧失<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">2</span>
+    RBA重回加息或CPI超预期导致可支配收入再压缩—— 可选周期延长<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">3</span>
+    估值回归高分位：可选PE>45x或必选PE>60x且无盈利支撑—— 泡沫信号<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">4</span>
+    个股层面：ALL北美份额跌破20%/LOV同店-5%持续/BRG关税毛利再跌100bps以上—— 壁垒削弱
+  </div>
+</div>
+
+</div>
+</div>
+
+<div class="footer">Generated by Industry Analysis · L7-L10 Framework · Stock Selection · 数据截止 2026-08-25</div>
+
+</div>
+
+<script>
+var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+var contents = document.querySelectorAll('.tab-content');
+btns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    contents.forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    var tab = btn.getAttribute('data-tab');
+    document.getElementById('tab-' + tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
