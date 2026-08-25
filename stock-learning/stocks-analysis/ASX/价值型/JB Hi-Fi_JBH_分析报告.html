@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JB Hi-Fi(JBH) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .score-note { font-size: 13px; color: #666; background: #fafafa; border: 1px dashed #ccc; padding: 8px 12px; margin: 10px 0; }
+  .history-table td:first-child { white-space: nowrap; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>JB Hi-Fi（JBH）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架 | ASX 价值型/消费可选零售</p>
+<p class="meta">分析日期：2026-08-25 | 数据来源：FY2025年报（截至2025-06-30）+ FY2026初步业绩（2026-08-17发布）+ FY2026 H1（2026-02）+ StockAnalysis / Morningstar / Intelligent Investor | 代码：JBH.ASX | 货币：AUD</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>JB Hi-Fi Limited</td></tr>
+  <tr><td>股票代码</td><td>ASX: JBH（上市 2003-10-23，ASX 100 成份）</td></tr>
+  <tr><td>所属行业</td><td>Consumer Discretionary — Specialty Retail / 消费电子与家电零售</td></tr>
+  <tr><td>行业地位</td><td>澳洲第一大家电/消费电子零售商，旗下 JB Hi-Fi（229店）+ The Good Guys（107店）+ e&s（新收购75%）合计 340+ 店，市占率~13%品类份额，ASX 消费可选龙头，市值 ~A$75-78亿</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>A$105.55亿（同比+10.0%，FY24 95.92亿）</strong>；FY2026预告 110.6亿（+4.8%）</td></tr>
+  <tr><td>归母净利润</td><td><strong>A$4.624亿（同比+5.4%，FY24 4.388亿）</strong>；FY2026预告 4.899亿（+5.9%）</td></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>A$7.116亿（FY24 7.526亿）</strong>；现金转化率高</td></tr>
+  <tr><td>总资产</td><td><strong>A$38.83亿（FY24 34.87亿）</strong></td></tr>
+  <tr><td>归母净资产</td><td><strong>A$16.22亿（FY24 15.59亿），每股净资产 A$14.80 / 有形4.90</strong></td></tr>
+  <tr><td>ROE / ROA</td><td><strong>ROE 28.5-30.1% / ROA 11.9-12.6%</strong>（FY25平均，行业顶级）</td></tr>
+  <tr><td>股本 / 员工</td><td>1.0933亿股 / 约 15,000人</td></tr>
+</table>
+
+<p style="font-size:13px;color:#666;margin:8px 0"><strong>行业类型：非周期股（价值型/成熟消费零售）</strong>，采用<strong>非周期股评分体系</strong>（10维度，满分100分）。按 <code>industry-classification.md</code>，消费（食品饮料家电）及商业服务属非周期，不在纯周期（钢铁/煤炭/化工）或混合周期（半导体/锂电/汽车）清单；零售虽受消费景气扰动但无商品周期暴利/暴亏特征，适用非周期评分，估值首选 PE/股息率。</p>
+<p class="score-note"><strong>评分口径说明：</strong><span>首次分析，选用非周期股评分体系</span></p>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">采用非周期股评分体系（10维度），综合L1-L4所有因素打分；零售业轻存货+重租赁特征已校正</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">28.5-30.1% ≥15% 优秀（5年均值~28%，远超15%线）</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">高周转型：净利率4.38%×周转2.72×杠杆2.39，均衡偏优质（非高杠杆依赖）</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">7.116/4.624=1.54 ≥1.0 极优，近5年均>1.3，利润全现金化</td></tr>
+  <tr><td>营收增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">FY25 +10.0%（含e&s并表及同店+5%），≥10%满分；FY26预告+4.8%亦达7分水平</td></tr>
+  <tr><td>利润增长（10分）</td><td style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">FY25 +5.4%（FY26 +5.9%），≥5%得7分，跑赢通胀但逊于营收（毛利挤压）</td></tr>
+  <tr><td>负债率（10分）</td><td style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">58.2%（2261/3883）<70%但≥55%，含租赁714m，重租赁零售中可控</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">现金284m vs 短期有息201m+可覆盖，流动比1.17，授信充足，无缺口</td></tr>
+  <tr><td>毛利率水平与趋势（10分）</td><td style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">22.4% ≥15%且近3年稳定22.3-22.6%，非高端但在电器零售中领先，趋势平稳</td></tr>
+  <tr><td>估值 PE vs 合理区间（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">PE 15.5x 低于ROE>20%合理区间20-30x下沿，偏便宜；PB 4.7x虽高但轻账面所致</td></tr>
+  <tr><td>FCF（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">FY25 FCF ~5.9亿（711-123），近5年持续为正且2023-25均>5亿，自我造血</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">87/100</td><td style="text-align:left">品质优秀（87/100分）</td></tr>
+</table>
+
+<div class="verdict verdict-ok">品质优秀（87/100分）—— 高ROE+现金奶牛+低杠杆+估值合理偏低的成熟零售龙头</div>
+
+<!-- HISTORY-TABLE -->
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>JB Hi-Fi是ASX最能赚钱的零售商之一——不靠高毛利（22.4%），靠高周转（2.72次，约4.4个月一轮）与极致的成本控制（费用率~17%）在薄利中榨出4.38%净利率，并以2.4倍杠杆放大至28.5% ROE，同时CFO 1.54倍覆盖净利、FCF持续5亿+，分红+特别股息合计3.75澳元（yield 5%+）。FY25营收破百亿+10%的韧性在消费放缓中难得，FY26预告再创纪录110.6亿验证护城河。<br><br>
+  <strong>核心优势：</strong>① 规模+品牌护城河：340店+线上40%渗透，JB与The Good Guys双品牌错位，采购议价与自有库存周转（42天）领先Harvey Norman/SUL；② 现金质量顶级：CFO 711m为净利1.54倍，经营现金转化连续5年>130%，特别股息100c彰显兑现；③ ROE断层领先：30.1% vs 行业12-18%，ROIC ~18%同样顶级，净负债为负（净现金284m）；④ 估值便宜：PE 15.5x（forward 15.2x）在ASX消费可选中最便宜一档（HVN 18x, SUL 16-17x），股息率5.36%+100% franked提供安全垫。<br><br>
+  <strong>核心风险：</strong>① 可选消费β高：FY26Q3后7月同店仅+1-2%（vs 上半年+6%），消费信心与降息不及预期将压同店；② 毛利天花板：22.4%已是电器零售高位，促销+线上让利侵蚀（FY25利润增速5.4%<营收10%）；③ e&s整合：75%收购4780万、剩余25%看跌期权2029年行权，家电高端小众（230m营收）EBIT负，需12-18月整合；④ 估值陷阱错觉：低PE恰是可选零售对景气的前瞻定价，若进入衰退，PE修复靠盈利下修抵消。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025 截至2025-06-30，AUD百万；FY2026为预告）</h2>
+<p style="font-size:12px;color:#999">注：财年7-6月；AASB16租赁准则下，PPE含使用权资产，债务含租赁负债714m；FY2026数据来自2026-08-17业绩预告（未审计）</p>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY24</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入（Sales）</td><td><strong>10,554.8</strong></td><td>9,592.4</td><td><strong>+10.0%</strong></td><td class="good">✅ 创纪录，跑赢行业</td></tr>
+  <tr><td>销售成本（COGS）</td><td>8,194.4</td><td>7,458（估）</td><td>+9.9%</td><td class="neutral">与营收同步</td></tr>
+  <tr><td>毛利润（Gross Profit）</td><td><strong>2,360.4</strong></td><td>2,134.4（估）</td><td><strong>+10.6%</strong></td><td class="good">毛利增速超营收</td></tr>
+  <tr><td>毛利率</td><td><strong>22.36%</strong></td><td>22.26%</td><td>+10bps</td><td class="good">✅ 稳定微升</td></tr>
+  <tr><td>销售/管理费用（估）</td><td>~1,640</td><td>~1,490</td><td>+10.1%</td><td class="neutral">费用率15.5%持平</td></tr>
+  <tr><td>EBITDA（Intelligent: 978.2 / 公司口径 884）</td><td><strong>978.2 / 884.3*</strong></td><td>895.5 / 647.2</td><td>+9.2% / +36.6%</td><td class="good">✅ 经营杠杆显现</td></tr>
+  <tr><td>折旧摊销</td><td>-255.5</td><td>-235.2</td><td>+8.6%</td><td class="neutral">—</td></tr>
+  <tr><td>EBIT（公司披露 694.1 / 调整722.7）</td><td><strong>694.1</strong></td><td>647.2</td><td><strong>+7.2%</strong></td><td class="good">✅</td></tr>
+  <tr><td>税前利润（PBT）</td><td>685.0</td><td>629.3</td><td>+8.9%</td><td class="good">✅</td></tr>
+  <tr><td>归母净利润（Statutory）</td><td><strong>462.4</strong></td><td>438.8</td><td><strong>+5.4%</strong></td><td class="good">✅ 利润跑赢通胀</td></tr>
+  <tr><td>净利率</td><td><strong>4.38%</strong></td><td>4.57%</td><td>-19bps</td><td class="neutral">⚠ 费用与税率侵蚀</td></tr>
+  <tr><td>摊薄EPS（cps）</td><td><strong>423.0c</strong>（4.23）</td><td>401.4c</td><td><strong>+5.4%</strong></td><td class="good">回购增厚</td></tr>
+  <tr><td>普通股息（fully franked）</td><td>275c</td><td>261c</td><td>+5.4%</td><td class="good">✅ 60%+ payout</td></tr>
+  <tr><td>特别股息（fully franked）</td><td>100c</td><td>80c</td><td>+25%</td><td class="good">现金充沛</td></tr>
+  <tr><td>合计股息</td><td><strong>375c（3.75）</strong></td><td>341c</td><td>+10.0%</td><td class="good">✅ yield 5.3%</td></tr>
+  <tr><td>FY2026预告：营收/NPAT</td><td>11,060 / 489.9</td><td>—</td><td>+4.8% / +5.9%</td><td class="good">再创纪录</td></tr>
+  <tr><td>H1 FY26（截至2025-12-31）</td><td>营收6,100 / NPAT 305.8</td><td>5,670 / 285.6</td><td>+7.3% / +7.1%</td><td class="good">H1强，H2放缓</td></tr>
+</table>
+<p style="font-size:12px;color:#888">* 公司年报EBIT 694.1为AASB16前口径，StockAnalysis EBITDA 978.2含租赁；差异不影响趋势判断。有效税率30.7%（FY24 30.1%）。</p>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>FY25是“量价齐升但利润增速打折”的典型零售年——营收+10.0%中，澳洲同店+5.1%、新西兰+38%（基数低）、The Good Guys+4.2%，驱动毛利+10.6%（毛利率+10bps至22.36%），EBIT+7.2%仍跑赢，但归母仅+5.4%（净利率-19bps）因费用+10.1%与税率+0.6pp侵蚀，印证零售薄利本质。H1 FY26营收+7.3%/EBIT+8.1%/NPAT+7.1%强劲，但7月同店骤降至+1-2%预示FY26H2动能衰减，FY26全年营收+4.8%放缓即信号。全年分红375c（普通275+特别100）对应payout 86%，“赚多少、分多少”的股东友好在ASX中罕见。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>FY24</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td><strong>284.1</strong></td><td>317.7</td><td class="neutral">-10.6%，分红后仍厚</td></tr>
+  <tr><td>应收账款（Receivables）</td><td>95.8 + 90.7其他=186.5</td><td>135.1</td><td class="good">占营收1.8%，极低</td></tr>
+  <tr><td>存货（Inventories）</td><td><strong>1,298.0</strong></td><td>1,094.0</td><td class="neutral">+18.6%，占营收12.3%</td></tr>
+  <tr><td>预付款及其他</td><td>46.5</td><td>39.9</td><td class="neutral">—</td></tr>
+  <tr><td>流动资产合计</td><td><strong>1,815.6</strong></td><td>1,586.3</td><td class="good">+14.5%</td></tr>
+  <tr><td>固定资产/PPE（含使用权）</td><td>2,096.0</td><td>1,825.0</td><td class="neutral">租赁资产为主</td></tr>
+  <tr><td>无形资产（商誉780.2+其他300.5）</td><td>1,080.7</td><td>1,031.4</td><td class="neutral">e&s并表+33m</td></tr>
+  <tr><td>递延税/其他非流动</td><td>122.9</td><td>103.7</td><td class="neutral">—</td></tr>
+  <tr><td>总资产</td><td><strong>3,882.7</strong></td><td>3,486.6</td><td class="good">+11.4%</td></tr>
+  <tr><td>应付账款</td><td><strong>885.9</strong></td><td>720.8</td><td class="good">+22.9%，占流动负债57%</td></tr>
+  <tr><td>短期有息/租赁（流动）</td><td>201.2</td><td>197.6</td><td class="neutral">—</td></tr>
+  <tr><td>其他流动负债（拨备+预收）</td><td>463.9</td><td>392.4</td><td class="neutral">—</td></tr>
+  <tr><td>流动负债合计</td><td><strong>1,551.0</strong></td><td>1,310.8</td><td class="neutral">流动比1.17</td></tr>
+  <tr><td>长期有息/租赁</td><td>513.2</td><td>459.8</td><td class="neutral">期限5年+</td></tr>
+  <tr><td>其他非流动负债</td><td>196.7</td><td>156.9</td><td class="neutral">—</td></tr>
+  <tr><td>总负债</td><td><strong>2,260.9</strong></td><td>1,927.5</td><td class="neutral">负债率58.2%</td></tr>
+  <tr><td>归母净资产</td><td><strong>1,621.8（1,616.6）</strong></td><td>1,559.1</td><td class="good">+4.0%</td></tr>
+  <tr><td>资产负债率</td><td><strong>58.2%</strong></td><td>55.3%</td><td class="neutral">+2.9pp，并表所致</td></tr>
+  <tr><td>流动比率</td><td><strong>1.17</strong></td><td>1.21</td><td class="good">>1安全</td></tr>
+  <tr><td>净现金（Cash - Debt）</td><td><strong>净现金 -430m*（若含租赁则净负债）</strong></td><td>-340m</td><td class="good"> ex-lease净现金为正</td></tr>
+  <tr><td>总有息负债（StockAnalysis口径）</td><td>714.4</td><td>657.4</td><td class="neutral">+8.7%</td></tr>
+  <tr><td>每股净资产 / 有形</td><td>14.80 / 4.90</td><td>14.26 / 4.83</td><td class="good">持续增厚</td></tr>
+</table>
+<p style="font-size:12px;color:#888">* 按AASB16租赁计入负债，ex-lease口径净现金284.1-16.4=267.7m为正；含 lease则净负债430m但EBITDA利息覆盖>17x无忧。</p>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>典型“轻应收、重存货、重租赁”的零售模型：应收仅1.8%营收（现金销售）、存货1298m占流动资产71%（周转天数约58天，FY25因备货+18.6%略高但仍健康）、应付885m占流动负债57%（无息占用上游，议价力体现）。ex-lease资产负债率约30%极优，含租赁58.2%仍低于60%龙头线；现金284m虽较FY24降10%（分红+收购），但仍覆盖短期有息201m足额，净现金4670万（剔租）+0未动用循环信贷，流动比1.17安全。商誉780m占净资产48%，系2016年收购The Good Guys（870m）遗留，近8年未减值，经每年贴现测试（折现率9.5%），资产质量经得起检验。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY24</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>711.6</strong></td><td>752.6</td><td class="neutral">-5.4%，仍强劲</td></tr>
+  <tr><td>其中：客户回款</td><td>11,626</td><td>10,618</td><td class="good">+9.5%与营收匹配</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><strong>-123.0</strong></td><td>-74.0</td><td class="neutral">e&s收购47.8m</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td><strong>-622.4</strong></td><td>-537.9</td><td class="neutral">分红+还租</td></tr>
+  <tr><td>— 股息支付</td><td>-385.9</td><td>-298.5</td><td class="neutral">—</td></tr>
+  <tr><td>— 租赁本金偿还</td><td>-199.2</td><td>-187.6</td><td class="neutral">—</td></tr>
+  <tr><td>资本开支（CapEx，估）</td><td>~110</td><td>~80</td><td class="neutral">—</td></tr>
+  <tr><td>自由现金流（FCF=CFO-CapEx）</td><td><strong>~588-602</strong></td><td>~678</td><td class="good">✅ 充沛</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>1.54</strong>（711.6/462.4）</td><td>1.71</td><td class="good">✅ 远>1</td></tr>
+  <tr><td>FCF/营收</td><td><strong>5.58%</strong></td><td>7.07%</td><td class="good">✅ 零售中优异</td></tr>
+  <tr><td>期末现金</td><td>284.1</td><td>317.7</td><td class="neutral">—</td></tr>
+  <tr><td>股息现金覆盖（FCF/股息）</td><td>1.53x</td><td>2.27x</td><td class="good">✅ 覆盖足</td></tr>
+  <tr><td>利息覆盖（EBIT/利息，不含租）</td><td>276x* / 17.5x含租</td><td>327x / 21.3x</td><td class="good">✅ 无忧</td></tr>
+</table>
+<p style="font-size:12px;color:#888">* 公司披露“固定费用覆盖3.9x、利息覆盖276x”系AASB16前口径；含租口径 Simply Wall EBIT 729.6m/利息~42m=17.5x同样安全。FCF口径按S&P CapEx ~110m估算。</p>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>最能体现“现金牛”的一张表——CFO 711m是净利1.54倍（FY24 1.71倍、FY23 1.36倍），近5年均>1.3，超市“现金销售、无赊销”模式使利润100%落袋；FCF ~590m（即使H1存货+18%吸现金，仍覆盖分红1.53倍），5年累计FCF超30亿，支撑连续100% franked分红+特别股息。FY25 CFO同比-5.4%主因营运资本变动（存货+204m、应付+165m部分对冲）与税付增加，非盈利恶化。唯一需跟踪：投资流出从74m跳至123m（含e&s 47.8m），若后续e&s追加投入或门店扩张加速，FCF将收窄。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE（平均）</td><td><strong>28.5-30.1%</strong></td><td>>15%优秀</td><td class="good">✅ 断层优秀，近5年均>25%</td></tr>
+  <tr><td>ROA</td><td><strong>11.9-12.6%</strong></td><td>>5%</td><td class="good">✅ 重租赁下仍优异</td></tr>
+  <tr><td>ROIC（估）</td><td><strong>~18%</strong></td><td>>12%</td><td class="good">✅ 资本回报顶级</td></tr>
+  <tr><td>毛利率</td><td><strong>22.36%</strong></td><td>稳定或提升</td><td class="good">✅ 近3年22.3-22.6%稳定</td></tr>
+  <tr><td>净利率</td><td><strong>4.38%</strong></td><td>>10%</td><td class="neutral">⚠ 薄利，零售特性</td></tr>
+  <tr><td>营业利润率（EBIT/Sales）</td><td><strong>6.58%（694/10554）</strong></td><td>>8%</td><td class="neutral">⚠ 受费用压制</td></tr>
+  <tr><td>营收增长率（FY25）</td><td><strong>+10.0%</strong></td><td>>10%优秀 / >5%及格</td><td class="good">✅ 创纪录</td></tr>
+  <tr><td>净利润增长率</td><td><strong>+5.4%</strong></td><td>>15%优秀 / >5%及格</td><td class="good">✅ 及格线以上</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>1.54</strong></td><td>>1优秀</td><td class="good">✅ 极优</td></tr>
+  <tr><td>资产负债率（含租赁）</td><td><strong>58.2%</strong></td><td><60%理想</td><td class="good">✅ 可控</td></tr>
+  <tr><td>流动比率</td><td><strong>1.17</strong></td><td>>1</td><td class="good">✅ 安全</td></tr>
+  <tr><td>利息覆盖</td><td><strong>17.5x（含租）/276x（ex-lease）</strong></td><td>>5x</td><td class="good">✅ 非常安全</td></tr>
+  <tr><td>存货周转天数</td><td><strong>~58天</strong>（1298/8210*365）</td><td>零售<60天佳</td><td class="good">✅ 健康，FY24~53天略升</td></tr>
+  <tr><td>分红率 / 股息率</td><td><strong>86%（375c/423c） / 5.36%</strong></td><td>稳定分红 / >3%</td><td class="good">✅ 100% franked</td></tr>
+</table>
+
+<h3>3.2 分业务/分渠道分析</h3>
+<table>
+  <tr><th>业务板块</th><th>营收（估FY25）</th><th>占比</th><th>同比（FY25）</th><th>同店/可比</th><th>评价</th></tr>
+  <tr><td>JB Hi-Fi Australia</td><td>~7,280</td><td>~69.0%</td><td>+6.0%（估）</td><td>+5.1%（7月6.1%）</td><td class="good">✅ 核心引擎，份额提升</td></tr>
+  <tr><td>JB Hi-Fi New Zealand</td><td>~420</td><td>~4.0%</td><td>+38.1%（7月）</td><td>+24.0%</td><td class="good">✅ 低基数高增</td></tr>
+  <tr><td>The Good Guys</td><td>~2,800</td><td>~26.5%</td><td>+4.5%（估）</td><td>+3.8%（7月4.2%）</td><td class="good">✅ 白电驱动</td></tr>
+  <tr><td>e&s（权益75%，2024-09并表）</td><td>~230-250</td><td>~2.2%</td><td>新增并表</td><td>+1.1%（7月）</td><td class="neutral">⚠ 战略孵化，EBIT负</td></tr>
+  <tr><td>线上（含在各品牌）</td><td>~1,500（估14%）</td><td>—</td><td>+8-10%</td><td>—</td><td class="good">渗透稳步提升</td></tr>
+</table>
+<p style="font-size:12px;color:#888">注：FY25分品牌营收公司未单列，参考FY24结构（JB AU 6609.9 / NZ 303.4 / TGG 2679.1）+ FY25增速与2025-07更新推算；e&s为高端厨房家电，经销Miele等，正常化EBITDA约7m但FY25 EBIT为负。</p>
+
+<div class="highlight-box">
+  <strong>业务解读：</strong>“一超一强+双种子”——JB AU占69%是绝对基本盘，5.1%同店在消费放缓中领跑全澳零售（Woolworths食品仅+3%），体现“价值+服务”心智；The Good Guys占26.5%靠白电/大家电与JB形成高低搭配，4.2%同店稳健；NZ虽仅4%但38%爆发式增长是边际惊喜；e&s仅2.2%是公司押注的第三曲线——高端厨房场景店（类似澳洲版“国美高端店”），短期亏损（管理层指引12-18个月转正），长期若复制，前瞻市值弹性大。风险：业务高度同质（电子/家电），对新品周期（AI PC/手机）与房市（家电联动）敏感度高。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险项</th><th>严重程度</th><th>依据</th></tr>
+  <tr><td>可选消费景气回落（7月同店放缓）</td><td style="color:#f39c12;font-weight:bold">🟡 中等</td><td style="text-align:left">7月同店从上半年5-6%骤降至1-4%，AFR 2026-08提示“tough trading, cash-strapped consumers pull back”，库存+18.6%或致FY26H2去化压力</td></tr>
+  <tr><td>毛利与费用剪刀差</td><td style="color:#f39c12;font-weight:bold">🟡 中等</td><td style="text-align:left">FY25营收10%但归母仅5.4%（费用+10.1%），净利率-19bps，线上让利+促销侵蚀，若FY26营收放缓至4.8%而费用刚性，利润或零增长</td></tr>
+  <tr><td>e&s并表与或有对价</td><td style="color:#f39c12;font-weight:bold">🟡 中等</td><td style="text-align:left">47.8m收购75%+2029年剩余25%看跌/看涨期权，若高端家电不及预期或超支，商誉780m存隐忧（虽历年未减值）</td></tr>
+  <tr><td>存货堆积</td><td style="color:#f39c12;font-weight:bold">🟡 中等</td><td style="text-align:left">存货1298m同比+18.6%快于营收10%，存货天数58天（FY24 53天）+5天，需关注跌价与减值（电子迭代快）</td></tr>
+  <tr><td>租赁依赖与商誉</td><td style="color:#27ae60;font-weight:bold">🟢 轻微</td><td style="text-align:left">租赁负债714m、商誉780m各占净资产44-48%，但租赁覆盖17.5x、商誉经年审无减值，风险可控</td></tr>
+  <tr><td>竞争加剧（HVN/SUL/亚马逊）</td><td style="color:#f39c12;font-weight:bold">🟡 中等</td><td style="text-align:left">HVN家居+电子、SUL（Supercheap/BCF）分流，亚马逊澳洲电子GMV年增20%+，价格战风险</td></tr>
+  <tr><td class="good">正面：现金质量与分红</td><td style="color:#27ae60;font-weight:bold">🟢 正面</td><td style="text-align:left">CFO 1.54x、FCF 5.9亿覆盖分红1.53倍，特别股息100c连续两年，净现金ex-lease 267m，财务健康6/6（Simply Wall）</td></tr>
+  <tr><td class="good">正面：无有息债务违约风险</td><td style="color:#27ae60;font-weight:bold">🟢 正面</td><td style="text-align:left">有息债仅16.4m（ex-lease），净负债/EBITDA为负，BBB+等投资级，0违约</td></tr>
+  <tr><td class="good">正面：无关联交易/监管处罚</td><td style="color:#27ae60;font-weight:bold">🟢 正面</td><td style="text-align:left">审计无保留，合规记录清洁，关联方交易仅董监高薪酬</td></tr>
+</table>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>历史分位/行业均值</th><th>解读</th></tr>
+  <tr><td>股价（AUD）</td><td><strong>~A$69.20-72.91（2026-08-25基准72.71，52周67.38-120.51）</strong></td><td>距高位-39%，年内-25.9% YTD</td><td class="neutral">高位回落近四成</td></tr>
+  <tr><td>总市值</td><td><strong>~A$75.7-78亿（109.3m股）</strong></td><td>ASX 100</td><td>—</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>15.49-15.51x</strong>（Morningstar/Investing 70.21/4.47）</td><td>历史80%分位~22x，50%~18x，20%~14x</td><td class="good">✅ 低于历史中枢</td></tr>
+  <tr><td>PE（TTM扣非）</td><td><strong>16.49x</strong>（70.21/4.23 FY25 EPS）</td><td>—</td><td class="good">仍便宜</td></tr>
+  <tr><td>PE（Forward FY26E）</td><td><strong>15.2x</strong>（70.21/4.61 consensus）</td><td>行业14-18x</td><td class="good">✅ 有吸引力</td></tr>
+  <tr><td>PB</td><td><strong>4.64-4.73x</strong>（70.21/14.80）</td><td>历史50%~4.5x，80%~5.5x</td><td class="neutral">⚠ 偏高但轻账面所致</td></tr>
+  <tr><td>P/有形账面</td><td><strong>14.3x</strong>（70.21/4.90）</td><td>—</td><td class="neutral">商誉推高</td></tr>
+  <tr><td>PS（TTM）</td><td><strong>0.72x</strong>（77亿/105.5亿）</td><td>零售0.5-1.0x</td><td class="good">✅ 合理</td></tr>
+  <tr><td>PCF（TTM）</td><td><strong>9.87x</strong>（77亿/7.11亿）</td><td>零售8-10x</td><td class="good">✅ 合理</td></tr>
+  <tr><td>EV/EBITDA</td><td><strong>~7.5-8.0x</strong>（EV~82亿/EBITDA 9.78亿）</td><td>零售7-9x</td><td class="good">✅ 不贵</td></tr>
+  <tr><td>股息率（TTM，含特别）</td><td><strong>5.36%（3.75/70）/ 4.80%（3.37 Morningstar）</strong></td><td>ASX均值3.8%，零售4.2%</td><td class="good">✅ 高股息</td></tr>
+  <tr><td>普通股息率（不含特别）</td><td><strong>3.92%（275c/70）</strong></td><td>—</td><td class="good">仍高于银行约3.5%</td></tr>
+  <tr><td>分红率（Payout）</td><td><strong>86-88%（含特别）/ 65%（普通）</strong></td><td>60-85%可持续</td><td class="good">现金覆盖</td></tr>
+  <tr><td>PEG（Forward）</td><td><strong>~1.8x</strong>（15.2/8.5%增速）</td><td>&lt;1.5合理</td><td class="neutral">⚠ 增速慢</td></tr>
+  <tr><td>FCF收益率</td><td><strong>7.7%（5.9亿/77亿）</strong></td><td>—</td><td class="good">✅ 极高</td></tr>
+</table>
+
+<h3>4.2 估值区间</h3>
+<p style="font-size:13px;color:#666;">ROE 28.5% → 合理PE参考：20-30x | FY26E一致预期EPS ~A$4.61（Simply Wall，营收112亿） | DPS FY26E 3.37-3.45</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价（AUD）</th><th>vs现价70.21</th><th>说明</th></tr>
+  <tr><td>悲观（消费衰退+同店0%）</td><td>12x</td><td>A$55.3</td><td class="bad">-21%</td><td>盈利零增长+估值杀</td></tr>
+  <tr><td>保守</td><td>15x</td><td>A$69.2</td><td class="neutral">-1%</td><td>当前水平，现金与股息支撑</td></tr>
+  <tr><td>中性</td><td>18x</td><td>A$83.0</td><td class="good">+18%</td><td>历史中位附近，降息兑现</td></tr>
+  <tr><td>乐观（降息+AI换机潮）</td><td>22x</td><td>A$101.4</td><td class="good">+44%</td><td>同店5%+毛利修复</td></tr>
+  <tr><td>当前价（TTM 15.5x / Fwd 15.2x）</td><td>15.5x</td><td>A$70.21</td><td>—</td><td>—</td></tr>
+  <tr><td>券商一致目标</td><td>~20x</td><td>A$92.64（高94低58）</td><td class="good">+32%</td><td>14家均值92.64（Simply Wall）</td></tr>
+  <tr><td>年内高点隐含</td><td>27x</td><td>A$120.51</td><td class="good">+72%</td><td>2025年高位泡沫期</td></tr>
+  <tr><td>Citi新目标（中性）</td><td>16.7x</td><td>A$77.00</td><td class="good">+10%</td><td>Citi 2026-08降至Neutral 77</td></tr>
+</table>
+
+<h3>4.3 PB Band 与历史PE区间</h3>
+<table>
+  <tr><th>指标</th><th>数值</th><th>评价</th></tr>
+  <tr><td>PE 历史最大值（近3年）</td><td>~27-28x（2025高点120/4.23）</td><td>—</td></tr>
+  <tr><td>PE 80%分位</td><td>~22-23x</td><td>—</td></tr>
+  <tr><td>PE 50%分位（中位数）</td><td>~18x</td><td>—</td></tr>
+  <tr><td>PE 20%分位</td><td>~14x</td><td>—</td></tr>
+  <tr><td>PE 最小值</td><td>~12x（2024低点 54/4.5）</td><td>—</td></tr>
+  <tr><td>当前PE 15.5x</td><td class="good">20-30%分位，底部区间</td><td class="good">机会区域</td></tr>
+</table>
+<table>
+  <tr><th>指标</th><th>数值</th></tr>
+  <tr><td>PB 历史最大值</td><td>~8.1x（120.51/14.80）</td></tr>
+  <tr><td>PB 80%分位</td><td>~5.8x</td></tr>
+  <tr><td>PB 50%分位</td><td>~4.5-4.7x</td></tr>
+  <tr><td>PB 20%分位</td><td>~3.2x</td></tr>
+  <tr><td>PB 最小值</td><td>~2.5x</td></tr>
+  <tr><td>当前PB 4.64-4.73x</td><td class="neutral">50%分位，中位</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值判断：便宜且有安全垫，胜在股息与FCF而非PE扩张</strong><br>
+  以ROE 28.5%对应合理PE 20-30x，当前15.5x（forward 15.2x）显著低于下沿，处于历史20-30%底部区间，属机会区域。PB 4.7x看似偏高但系轻账面+高ROE所致（茅台PB 9x同理），P/有形14x更虚高，不宜锚定；更应看PS 0.72x/PCF 9.9x/EV/EBITDA 7.5x均处零售合理下沿，FCF收益率7.7%在ASX中罕见（Coles ~4.5%、Wesfarmers ~5%）。券商目标92.64（+32%）需PE回18-20x+盈利+8%兑现；Citi新目标77（+10%）更切合短期。股价较52周高点回落39%已充分price-in 7月放缓，若FY26H2社零企稳+降息落地，当前价的股息5.36%（含特别）+FCF 7.7%提供硬垫，估值修复向中枢18x（83澳元）为中性回报锚。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析（L4框架）</h2>
+
+<h3>5.1 杜邦拆解（FY2023-2025）</h3>
+<table>
+  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+  <tr><td>净利润率（Net Income / Sales）</td><td>5.45%（524.6/9626）</td><td>4.57%（438.8/9592）</td><td><strong>4.38%（462.4/10554）</strong></td><td class="bad">⬇ 逐年下滑19bps</td></tr>
+  <tr><td>资产周转率（Sales/平均总资产）</td><td>2.97</td><td>2.75</td><td><strong>2.86</strong></td><td class="neutral">➡ 高位波动</td></tr>
+  <tr><td>权益乘数（平均总资产/平均净资产）</td><td>2.28</td><td>2.24</td><td><strong>2.36</strong></td><td class="neutral">➡ 稳定轻杠杆</td></tr>
+  <tr><td><strong>ROE（杜邦）</strong></td><td><strong>36.9%</strong></td><td><strong>28.1%</strong></td><td><strong>28.5-30.1%</strong></td><td class="neutral">➡ 高位回落企稳</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>16.2%</td><td>12.6%</td><td><strong>12.5%</strong></td><td class="bad">⬇ 真实回报下行</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>20.7pct</td><td>15.5pct</td><td><strong>16.0pct</strong></td><td class="neutral">稳定</td></tr>
+  <tr><td>ROIC（披露/估）</td><td>—</td><td>—</td><td><strong>~18%</strong></td><td class="good">优异</td></tr>
+</table>
+<p style="font-size:12px;color:#888">注：平均资产/权益用FY24-25均值估算，FY23周转用年末数，趋势判断为主。</p>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：高周转型（叠加轻杠杆）—— 典型沃尔玛式零售</strong><br>
+  ① <strong>净利率低但稳定</strong>——4.38%在零售中已属中上（HVN ~3.5%、SUL ~5%），但较FY23 5.45%降107bps，费用与促销侵蚀是主因；绝非茅台式高利润（49%），赚的是“过路费”；<br>
+  ② <strong>周转率极高是核心</strong>——2.86次（约127天一轮）在ASX非金融中顶级（Brambles仅0.7次、Coles 2.22次亦略逊），存货+快周转撑起ROE；FY25周转从2.75回升至2.86是并表后效率改善；<br>
+  ③ <strong>杠杆轻且可控</strong>——权益乘数2.36远低于银行12倍、地产5-8倍，杠杆贡献16pct仅占ROE56%，去杠杆ROA 12.5%仍远超15% ROE线，说明“去掉杠杆依然是好生意”，与高杠杆型（银行/地产）本质不同。<br>
+  结论：非“借鸡生蛋”型，而是“卖得快+管得省”型，最怕的是周转放缓而非利率上行。
+</div>
+
+<h3>5.2 资产回报效率</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>说明</th></tr>
+  <tr><td>每1元总资产产生净利润（ROA）</td><td><strong>12.5%</strong></td><td>扣杠杆后仍>10%，真实回报顶级</td></tr>
+  <tr><td>每1元存货产生营收</td><td><strong>8.13x</strong>（10554/1298）</td><td>存货年转8次，42天一轮，零售高效</td></tr>
+  <tr><td>每1元PP&E产生营收</td><td><strong>5.04x</strong>（10554/2096）</td><td>轻重资产混合，门店租赁模式轻量化</td></tr>
+  <tr><td>EBITDA Margin</td><td><strong>9.27%（978/10554）</strong></td><td>重租赁但折旧前利润稳</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>杜邦结论：</strong>ROE 28.5%的优异靠“高周转（~48%贡献）+轻杠杆（~28%）+中利润（~24%）”三轮驱动，驱动结构健康且可复制。近3年ROE从36.9%→28.5%回落，主因净利率-107bps（FY23费控与补贴红利消退）而非周转或杠杆恶化，去杠杆ROA同步从16.2%→12.5%印证核心是商品差价而非资产效率。好消息：FY25周转止跌回升（2.75→2.86）、乘数2.36克制，说明公司主动控杠杆、提效率；若FY26毛利率企稳22.5%+周转维持2.8x，ROE有望稳在28-30%平台。与同行比（HVN ROE ~12%、SUL ~25%、NCK ~18%），JBH的杜邦结构“最贵也最好”，估值折价与回报溢价错配，构成错杀机会。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：非周期股（价值型/成熟消费可选零售）— 采用非周期股评分体系</strong><br>
+  <strong>判断依据：</strong>按 <code>industry-classification.md</code> 二分法：纯周期=长期增速≈0且利润靠供需错配（钢铁/煤炭/化工/有色），JBH不属此列。其消费电子/家电需求与居民可支配收入、房市、利率相关，有β但无商品周期的暴利/暴亏；商业模式为“库存+店面+供应链”赚差价与周转，非吨钢利润。细分上，FY25营收+10%但5年CAGR仅5-6%、毛利率22%稳定、FCF持续为正，符合<strong>价值型</strong>（成熟、现金牛、高分红）而非成长型（>20%增速+烧钱）或防御型（刚需）。L5四分类中选<strong>价值型为主、带可选β</strong>，用非周期评分体系。<br>
+  <strong>生命周期：</strong>成熟期 → 向“全渠道+高端”二次成长过渡（线上+14%、e&s高端厨房、高频AI换机潮），增速3-6%而非20%+，投资重点是份额与效率而非颠覆。
+</div>
+
+<h3>6.2 集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>行业集中度 CR3</td><td><strong>中高度集中</strong></td><td>JBH+Harvey Norman+SUL三家占电子/家电零售~45-50%，JBH单一最大13-15%</td></tr>
+  <tr><td>竞争格局</td><td>寡头+长尾</td><td>全国性仅3-4家（JBH/HVN/SUL/NCK），区域性与亚马逊长尾，价格透明，促销战常态</td></tr>
+  <tr><td>品牌壁垒</td><td><strong>强</strong></td><td>JB Hi-Fi为澳洲“年轻人首选”心智，NPS行业第一，The Good Guys白电口碑，双品牌错位</td></tr>
+  <tr><td>供应链壁垒</td><td><strong>极强</strong></td><td>340店+中央仓+与三星/苹果/戴森等直供议价，库存周转42天快于HVN~60天，规模摊薄物流</td></tr>
+  <tr><td>规模/网络壁垒</td><td>强</td><td>购物中心A级点位稀缺，新进入者拿店成本高；服务网络（安装/售后）构附加壁垒</td></tr>
+  <tr><td>渠道壁垒</td><td>中强</td><td>线上14%+门店自提1小时达，e&s高端设计师渠道，亚马逊物流短期难复制即时体验</td></tr>
+  <tr><td>客户粘性</td><td>中</td><td>会员/分期+售后，但电子标准化高、比价易（Price Match），粘性低于Costco/IKEA</td></tr>
+</table>
+
+<h3>6.3 生命周期与周期位置</h3>
+<div class="highlight-box">
+  <strong>生命周期：成熟期 — 效率与份额驱动的价值修复。</strong> 门店扩张已饱和（FY25净增3-4店），新增量来自：① 线上+同店；② e&s高端渗透；③ 新品周期（AI PC/手机）。<br><br>
+  <strong>当前周期位置：可选消费小周期顶部后回落阶段（非商品周期）</strong>——FY25H1消费在降息预期下冲高（同店5-6%），FY25H2起7月同店骤降至1-4%（AFR “tough trading”）、库存+18.6%佐证需求走弱。但非纯周期股，无PB底部/顶点判断，关注RBA利率、房市成交、消费者信心对可选支出的传导。若降息落地，量有望回正；若失业率上行，量再下探。
+</div>
+
+<h3>6.4 同行对比</h3>
+<p style="font-size:12px;color:#666;">选取可比：Harvey Norman (HVN, 家电家居综合)、Super Retail Group (SUL, 户外/汽车)、Nick Scali (NCK, 家具) — 均为ASX可选零售龙头</p>
+<table>
+  <tr><th>指标</th><th>JBH</th><th>HVN</th><th>SUL</th><th>NCK</th><th>行业中位</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>28.5%</strong></td><td>~11-13%</td><td>~25%</td><td>~18%</td><td>~20%</td><td class="good">JBH高</td></tr>
+  <tr><td>毛利率</td><td>22.36%</td><td>~30-32%（含加盟/物业）</td><td>~46%</td><td>~62%</td><td>~38%</td><td class="neutral">JBH低 — 品类定价透明</td></tr>
+  <tr><td>净利率</td><td>4.38%</td><td>~7%（含物业重估）</td><td>~5.5%</td><td>~10%</td><td>~5%</td><td class="neutral">中</td></tr>
+  <tr><td>资产负债率</td><td>58.2%</td><td>~28%</td><td>~55%</td><td>~60%</td><td>~55%</td><td class="neutral">中</td></tr>
+  <tr><td>营收增速 FY25</td><td>10.0%</td><td>~2-3%</td><td>~3%</td><td>~5%</td><td>~4%</td><td class="good">JBH高</td></tr>
+  <tr><td>存货周转天数</td><td>58天</td><td>~62天</td><td>~85天</td><td>~70天</td><td>~66天</td><td class="good">JBH快</td></tr>
+  <tr><td>PB</td><td>4.64</td><td>~1.2</td><td>~3.2</td><td>~3.8</td><td>~3.1</td><td class="bad">JBH偏高</td></tr>
+  <tr><td>PE（TTM）</td><td>15.5</td><td>~17-18</td><td>~15-16</td><td>~14</td><td>~15.5</td><td class="good">JBH持平偏低</td></tr>
+  <tr><td>股息率（含特别）</td><td>5.36%</td><td>~5.0%</td><td>~6.0%</td><td>~5.5%</td><td>~5.4%</td><td class="neutral">中</td></tr>
+  <tr><td>线上渗透</td><td>~14%</td><td>~8%</td><td>~12%</td><td>~10%</td><td>~11%</td><td class="good">JBH领先</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>竞争位置：规模第一且效率领先，盈利与周转断层，估值却最便宜</strong>——ROE 28.5%显著高于HVN~12%与NCK~18%，营收增速10%亦领跑（HVN/SUL仅2-3%），存货周转58天最快、线上14%最高，显示“规模—效率—现金”正循环。毛利率22%低于SUL/NCK因电子标准化、价差薄，但靠周转补回。估值端PE 15.5x与SUL平、低于HVN，却享有最高ROE，PB 4.6x虽高于HVN（物业重估低PB）但对应ROE溢价合理。结论：JBH是“可选零售中的沃尔玛”——最像高周转龙头，护城河与回报支撑溢价，但可选β使PE天然折价，当前折价过度提供机会。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<div class="summary-box">
+  <strong>估值方法：首选 PE + 股息率/FCF收益率，辅助 PS/EV/EBITDA；PB需剔商誉/租赁校正</strong><br>
+  成长型PS/PEG不适用（已盈利且低增速），周期型PB底部不适用（非周期）。当前市场对JBH及HVN/SUL均用Forward PE 14-18x + DDM（股息贴现，100% franked）+ FCF贴现，EV/EBITDA 7-9x为交叉验证，匹配可选零售现金流属性。检验：① 若用PS会低估（PS 0.72但净利薄）；② PB 4.6x虚高（含商誉780m与租赁），P/有形14x失真；③ 对比海外Best Buy PE 13x、美国家电零售12-14x，JBH 15.5x属合理偏低。关注 franking价值——375c分红100% franked，税后等效约5.36%/(1-30%)=7.6%毛息，对养老金溢价约20%。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  Step 1 - 行业定位：非周期股（价值型/成熟可选零售），中高度集中，供链+品牌+网络壁垒，成熟期向全渠道过渡<br>
+  Step 2 - 财务体检：ROE 28.5%顶级，高周转杜邦，去杠杆ROA 12.5%真实，CFO/净利1.54x现金极优，FCF 5.9亿<br>
+  Step 3 - 估值判断：PE 15.5x（合理20-30x下沿下）、PB 4.6x中位、股息5.36%+FCF 7.7%提供硬垫，券商目标92.6（+32%）<br>
+  Step 4 - 风险排查：可选β回落黄、毛利挤压黄、e&s整合黄、存货+18%黄，杠杆/现金无雷<br>
+  Step 5 - 结论：<strong>好行业（成熟但寡头）、好公司（现金牛）、好价格（便宜）— 三好齐备，价值洼地</strong><br>
+  Step 6 - 跟踪：同店销售+毛利、FY26 EBIT增速、e&s扭亏进度、RBA利率与房市、FY26股息是否维持375c
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓ 是</td><td style="text-align:left">可选零售虽非防御，但双寡头+购物中心稀缺点位构供给壁垒，电子/家电为人货场刚需，线上替代慢于图书/服装，现金流可预测类价值股</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓ 是</td><td style="text-align:left">ROE 28.5%>15%，毛利率22%稳定，CFO 1.54x>1，FCF 5.9亿持续为正且超分红，存货周转58天行业最快</td></tr>
+  <tr><td>③ 好价格</td><td class="good">✓ 是</td><td style="text-align:left">PE 15.5x低于合理区间且处历史20%底部、股息5.36%+FCF 7.7%双覆盖，52周高点回落39%提供安全垫</td></tr>
+</table>
+
+<h3>7.3 风险评估</h3>
+<div class="danger-box">
+  ☐ 价值陷阱（低PE+低增长+高负债）→ <strong>未命中</strong>（PE低但增长10%不低、负债58%不高且ROE 28%反证非陷阱）<br>
+  ☐ 周期陷阱（低PE+周期顶点）→ <strong>未命中</strong>（非周期股，无暴利顶点；PE 15.5x非周期顶点<8x，且FY26业绩仍创纪录非顶点）<br>
+  ☐ 烧钱陷阱（高PE+高增速+负现金流）→ <strong>未命中</strong>（PE低非高，增速10%非高，且CFO/FCF为正非烧钱）
+</div>
+
+<p style="font-size:13px;margin:12px 0 6px;"><strong>管理层与治理风险</strong></p>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力与履历</td><td class="good">好</td><td style="text-align:left">CEO Terry Smart（2024-08接任，前The Good Guys CEO，深耕20年）、Chair Stephen Goddard，FY25在消费放缓中仍破百亿+10%兑现执行力；CFO Nick Wells，成本与库存管控显效</td></tr>
+  <tr><td>股权结构与利益一致性</td><td class="good">强</td><td style="text-align:left">无控股股东，AustralianSuper 14.59%第一大+机构合计50%+（BlackRock等），管理层持股0.5%+LTIP与EPS/ROE挂钩，利益一致</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td class="good">无</td><td style="text-align:left">审计无保留，无违规/处罚/诉讼，关联方仅董监高薪酬披露</td></tr>
+  <tr><td>资本配置记录</td><td class="good">合理</td><td style="text-align:left">分红率86%（含特别）+零股权融资、2024年e&s 47.8m现金收购克制，未盲目并购；CapEx~110m轻量，现金优先返还股东</td></tr>
+  <tr><td>管理层增减持记录</td><td class="neutral">中性偏负面需关注</td><td style="text-align:left">Terry Smart 2025-08减持22,802股（约271万，+22,504股激励对冲），净减持约300股；近12月内幕交易为净卖出91万（Simply Wall），但幅度小（0.02%股本），且董事Boyce/Lines小额增持对冲</td></tr>
+  <tr><td>CEO交接/关键人员变动</td><td class="neutral">需关注</td><td style="text-align:left">Smart 2024年刚接任，尚处早期；e&s创始团队留任至2029年对赌，交接期执行力待FY26H2检验</td></tr>
+</table>
+
+<p style="font-size:13px;margin:12px 0 6px;"><strong>盈利可持续性</strong></p>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是靠价？</td><td>量价齐升（健康）</td><td style="text-align:left">FY25同店量+3-5%（销量）+ASP微升（价），非靠单一涨价，Q3线上+8%贡献；FY26H1亦为量驱动</td></tr>
+  <tr><td>涨价能否持续？</td><td class="neutral">需观察</td><td style="text-align:left">电子标准化定价权弱于白酒，靠规模议价而非品牌溢价；AI换机潮若不及预期，ASP或承压</td></tr>
+  <tr><td>非经常性利润占比</td><td class="good">低</td><td style="text-align:left">无一次性资产处置/补贴，NPAT与扣非价差<2%，利润干净</td></tr>
+  <tr><td>大客户/大项目集中度</td><td class="good">分散</td><td style="text-align:left">C端散户百万级，无单一大客户>5%，e&s B端设计师渠道亦分散</td></tr>
+  <tr><td>政策/监管依赖度</td><td class="good">低</td><td style="text-align:left">无补贴/牌照依赖，仅受消费法Price Match承诺与租赁准则影响</td></tr>
+</table>
+
+<p style="font-size:13px;margin:12px 0 6px;"><strong>关键变量敏感性</strong></p>
+<div class="highlight-box">
+  <strong>变量1: 同店销售（量）+毛利率</strong><br>
+  乐观: 同店+5%、毛利持平22.4% → 营收+6-7%，EBIT +10-12%（约+70-80m）、NPAT +12-15%<br>
+  中性: 同店+2-3%、毛利-10bps → 营收+3-4%，EBIT +5-7%（FY26预告）<br>
+  悲观: 同店0%或负、毛利-50bps（促销战） → 营收0-1%，EBIT -5%~0%、NPAT -5%（7月放缓延续）<br><br>
+  <strong>变量2: RBA利率与房市</strong><br>
+  乐观: 再降息50bps+房市成交+10% → 可选消费回暖，家电联动，营收+5%+，估值PE向18x修复<br>
+  中性: 利率持稳、房市平 → 当前假设<br>
+  悲观: 加息或失业率>5% → 可选支出-5%，库存跌价、FCF转弱<br><br>
+  <strong>变量3: e&s整合与存货</strong><br>
+  乐观: 12月内扭亏、存货周转回53天 → FCF +1亿，商誉无忧<br>
+  中性: 18月转正、周转58天 → 当前假设<br>
+  悲观: 持续亏损+存货65天+减值 → FCF -1.5亿，EPS -5c，PE收缩
+</div>
+
+<h3>7.4 前景展望</h3>
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. 降息与换机潮——RBA若FY26H2再降50bps，可选消费β弹性最大；AI PC/手机2026-27换机潮（Windows 10停更）直接拉动JB主品<br>
+  2. 份额与效率——在线14%→20%渗透、The Good Guys白电市占提升、e&s高端复制，营收向120亿迈进；存货若回53天释放1.5亿现金<br>
+  3. 股东回报——FCF 7.7%支撑特别股息常态化（FY24 80c→FY25 100c→FY26E 90-100c），100% franked对Super/养老金吸引力强，构成“股息底”<br><br>
+  <strong>负向拖累：</strong><br>
+  1. 消费透支——FY25H1提前消费+库存堆积（+18.6%）需FY26H2消化，7月放缓或延续至圣诞季<br>
+  2. 竞争白热化——亚马逊Prime Day/HVN低价战+线上让利，毛利率22.4%难再升<br>
+  3. 估值天花板——可选β使PE难超20x，若盈利零增长，股价即横盘靠股息
+</div>
+
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>EPS预估 (FY26-27)</th><th>PE区间</th><th>预期回报（以70.21计）</th></tr>
+  <tr><td>乐观</td><td style="text-align:left">同店5%+降息50bps+e&s扭亏，营收115亿+ EBIT 800m</td><td>5.20-5.50</td><td>18-22x</td><td class="good">+33%至+72% → 93-121</td></tr>
+  <tr><td>中性</td><td style="text-align:left">同店2-3%、营收110-112亿、利润率持平</td><td>4.60-4.90</td><td>15-18x</td><td class="neutral">-3%至+26% → 68-88</td></tr>
+  <tr><td>悲观</td><td style="text-align:left">同店0%+促销战+存货减值，营收105亿、利润下滑</td><td>3.80-4.10</td><td>12-14x</td><td class="bad">-35%至-18% → 46-57</td></tr>
+</table>
+<p style="font-size:12px;color:#888;">概率判断：中性50% / 乐观25% / 悲观25%。FY26E一致预期 EPS 4.61、营收112亿、目标92.64（+32%）；Citi 77目标隐含悲观缓冲。</p>
+
+<h3>7.5 资金面信号</h3>
+<p style="font-size:12px;color:#666;margin-bottom:6px;">ASX无北向/两融，改为机构持仓+董事交易视角（A股特有项标注N/A）</p>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>机构持仓变动</td><td>中性偏多</td><td style="text-align:left">机构合计50%+，AustralianSuper 14.59%第一大持仓稳定，无5%+减持公告；ETF/Mutual 32.5%被动配置</td></tr>
+  <tr><td>董事增减持</td><td>中性</td><td style="text-align:left">近12月Terry Smart净卖出约91万（0.3万股），Christy Boyce/Sheila Lines小额增持（1,600股），总体中性，无清仓式减持</td></tr>
+  <tr><td>大股东增减持</td><td>无</td><td style="text-align:left">Top20无大额减持，e&s卖方锁至2029年</td></tr>
+  <tr><td>大宗交易</td><td>无折价</td><td style="text-align:left">日均成交32万股、成交额约2200万AUD，流动性良好，无大额折价大宗</td></tr>
+  <tr><td>北向/两融</td><td>N/A</td><td style="text-align:left">ASX不适用</td></tr>
+  <tr><td>技术面/做空</td><td>谨慎</td><td style="text-align:left">股价低于50日线约-5%、做空率仅0.77%低，距52周低67.38仅+4%，技术面底部震荡</td></tr>
+</table>
+<div class="summary-box">
+  <strong>资金面判断：</strong>机构底仓稳固、做空极低，资金面不悲观但股价年内-25.9%跑输ASX 200约30pct，反映基本面（7月放缓）压制资金情绪。无A股式北向/融资信号，以ASX公告为准：关注FY26 02-16 H1与08-17年报两次催化，股息除息（02/08）为资金关键节点。
+</div>
+
+<h3>7.6 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清JBH怎么赚钱？（提示：靠340店+线上把电子/家电以薄利快速周转，赚规模议价+库存效率+售后服务的钱）<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——是7月同店骤降至1-4%且存货+18.6%的组合，还是e&s持续亏损对商誉的侵蚀？<br>
+  3. 如果现在买入，期待的回报来源是什么？——是股息5.36%（含特别）+FCF 7.7%的现金底，还是PE从15.5x向18x修复+盈利5-10%增长的戴维斯双击？<br>
+  4. 什么情况下你会坚决卖出？——连续两季同店<0%且净利率跌破4%、或RBA重回加息致可选消费衰退、或e&s减值超20m触发商誉审计保留？
+</div>
+
+</div></div>
+
+<div class="footer">
+  免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+  数据来源：JB Hi-Fi FY2025 Annual Report（2025-08-11/09-12）、Appendix 4E 2025-08-11、FY2026业绩预告（AFR/Investing 2026-08-17）、H1 FY26 Results（2026-02-16 Rask/TipRanks）、FY2024 Annual Report、StockAnalysis（S&P Global）财务数据库、Morningstar/Intelligent Investor 2025-08、Simply Wall St（EPS 4.61/营收112亿/目标92.64）、Investing.com（P/E 15.51/ROE 30.1%/PB 4.64）、AFR 2026-08-11、Yahoo Finance。股价基准：约A$70.21（2026-08-25）/52周67.38-120.51。
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>
