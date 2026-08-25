@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lovisa(LOV) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .score-note { font-size: 13px; color: #666; background: #fafafa; border: 1px dashed #ccc; padding: 8px 12px; margin: 10px 0; }
+  .history-table td:first-child { white-space: nowrap; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>Lovisa（LOV）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026-08-25 | 数据来源：FY2025 年报 + FY2024 年报 + FY2026H1 中期报告 + ASX公告 + Yahoo Finance / stockanalysis.com / Intelligent Investor</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>Lovisa Holdings Ltd (快时尚饰品零售)</td></tr>
+  <tr><td>股票代码</td><td>ASX: LOV</td></tr>
+  <tr><td>所属行业</td><td>可选消费 / 饰品零售（Fashion Jewellery）</td></tr>
+  <tr><td>行业地位</td><td>澳洲起源的全球快时尚饰品龙头，FY25末 1,031 家门店覆盖 50+ 国家，欧洲/美国为主要增长引擎</td></tr>
+  <tr><td>FY25 营收</td><td>A$798.1m（同比 +14.2%），FY24 698.7m / FY23 596.5m</td></tr>
+  <tr><td>归母净利润 (NPAT)</td><td>A$86.3m（同比 +4.8%），FY24 82.4m（+20.9%）/ FY23 68.2m</td></tr>
+  <tr><td>经营现金流 (税息前)</td><td>A$243.3m（FY24 240.4m）；H1 FY26 154.2m</td></tr>
+  <tr><td>总资产</td><td>A$698.4m（FY25末，含使用权资产 359.7m）；FY24 599.5m (H1对比口径)</td></tr>
+  <tr><td>归母净资产</td><td>A$78.6m（FY25末，FY24 80.3m；含 -2.09亿 common control reserve）</td></tr>
+  <tr><td>ROE (FY25)</td><td>110%（账面净资产极薄所致；ROIC ~21%，5年均值 >85%）</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>行业类型标注：非周期股 — 成长型（消费零售-快速扩张期）</strong><br>
+  按 <code>industry-classification.md</code>：消费/零售属非周期，Lovisa 处全球门店快速复制期，收入靠"开店数量×同店销售"驱动，兼具品牌/供应链壁垒。选用 <strong>非周期股评分体系</strong>，L3 采用 PE/PEG 为主、PB 为辅（净资产基数失真）。
+</div>
+
+<p class="score-note"><strong>评分口径说明：</strong><span>非周期股体系，首次分析，无历史版本</span></p>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:12px;color:#666;margin-bottom:6px;">采用非周期股评分体系（成长型零售适用）</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE</td><td class="good">15/15</td><td style="text-align:left">FY25 110%，FY24 103%，5年均 >85% ，远超 15%优秀线（但净资产基数薄，参考 ROIC 21% 仍优秀）</td></tr>
+  <tr><td>杜邦驱动质量</td><td class="good">4/5</td><td style="text-align:left">高利润型（毛利 82%、净利 10.8%）+ 高周转（1.14次）均衡，杠杆（AASB16租赁）放大ROE，扣租赁后仍为高质量</td></tr>
+  <tr><td>利润含金量 CFO/净利</td><td class="good">15/15</td><td style="text-align:left">243.3 / 86.3 = 2.82，FY24 2.92，持续 &gt;1，预收款+快速周转，现金极真</td></tr>
+  <tr><td>营收增长</td><td class="good">10/10</td><td style="text-align:left">FY25 +14.2%，FY24 +17.1%，3年 CAGR ~20%，门店数 900→1,031 同店 +1.7%（H2加速）</td></tr>
+  <tr><td>利润增长</td><td class="neutral">4/10</td><td style="text-align:left">FY25 +4.8% 显著慢于收入（费用/利息/折旧随开店上升），FY24 +20.9%；近年增速放缓至个位数</td></tr>
+  <tr><td>负债率</td><td class="bad">0/10</td><td style="text-align:left">报表 88.8%（619.9/698.4 含租赁负债 422.7m）；剔租赁后约 38%（77+105）/698，银行杠杆实际可控但 IFRS 口径计 0分</td></tr>
+  <tr><td>短期偿债</td><td class="bad">0/10</td><td style="text-align:left">现金 42.6m 覆盖不了当期租赁负债 82.9m + 应付 78.8m，缺口 &gt;30%；但经营现金强、授信 120m 剩 43m 未用，无即期危机</td></tr>
+  <tr><td>毛利率水平与趋势</td><td class="good">10/10</td><td style="text-align:left">82.0%（+100bps），FY24 81.0%（+110bps），FY22以来 +310bps，定价与供应链管控强，远超零售同行 45-66%</td></tr>
+  <tr><td>估值 PE vs 合理区间</td><td class="neutral">4/10</td><td style="text-align:left">TTM PE 29.8、Forward 25、PEG 1.39；合理区间 20-30x（高ROE成长），当前处于上限，偏高约 15-20%</td></tr>
+  <tr><td>FCF</td><td class="good">5/5</td><td style="text-align:left">FCF = 243.3-55.2 ≈188m 持续为正；FY24 217m，H1 FY26 122m，造血覆盖开店</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">67/100</td><td style="text-align:left">一般关注（成长质量优但估值不便宜 + 报表杠杆失真扣分）</td></tr>
+</table>
+
+<div class="verdict verdict-caution">一般关注（67/100分）</div>
+
+<h2 style="margin-top:16px">评分沿革</h2>
+<style>.history-table{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:13px}.history-table th,.history-table td{border:1px solid #ddd;padding:6px 8px;text-align:center}.history-table th{background:#f0f0f0;font-weight:bold}.history-table td.good{color:#27ae60}.history-table td.neutral{color:#e67e22}.history-table td.bad{color:#c0392b}</style><table class="history-table">
+  <tr><th>日期</th><th>评分</th><th>评分体系</th><th>变化原因</th></tr>
+  <tr><td>2026-08-25</td><td class="neutral" style="font-weight:bold">67/100</td><td>成长性</td><td style="text-align:left">非周期股体系，首次分析，无历史版本</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>全球快时尚饰品"门店复制机"，82%毛利+强现金是护城河核心，过去5年收入从 2,500万→7.98亿验证扩张能力；但 FY25 利润增速显著掉队、报表杠杆与 PB 因租赁准则失真、当前 30x PE 已透支部分增长，属"好生意、贵价格"。<br><br>
+  <strong>核心优势：</strong>① 82%毛利率且连续3年提升，定价权与供应链效率领先同行 15-35个点 ② 门店网络 1,031家覆盖50国，H1 FY26 同店 5.6%+总销售 28% 加速，扩张引擎未停 ③ CFO/净利 2.8+FCF持续正，自我造血支撑年开 160+店无需股权融资 ④ 轻库存周转快（68.6→81.1m 随门店 +18% 可控）、资产周转 1.14次效率高<br><br>
+  <strong>核心风险：</strong>① 利润增速仅 4.8% vs 收入 14.2%，单位店盈利被折旧/租金/人力稀释，同店仅 1.7% 2年曾 -2% ② IFRS 资产负债率 88.8%、PB 24-32x，账面净资产仅 78m 致 ROE/估值信号失真，市场误判波动大 ③ 估值不便宜：PE 30x/PS 2.9x 处历史中上分位（历史 PE 24-43），股价 52周 19.3-43.68 波动 126% ④ 快时尚择潮性强，单价低客单价依赖冲动消费，经济下行或关税/供应链风险传导快，2022-24 曾出现关店潮（UAE 14家）<br>
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY25 本期</th><th>FY24 上期</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>798.1m</td><td>698.7m</td><td class="good">+14.2%</td><td>连续3年双位数，靠开店驱动</td></tr>
+  <tr><td>营业成本 COGS</td><td>143.5m</td><td>132.9m</td><td>+8.0%</td><td>增速低于收入，毛利扩张</td></tr>
+  <tr><td>毛利润</td><td>654.7m</td><td>565.8m</td><td class="good">+15.7%</td><td>毛利率 82.0% +100bps</td></tr>
+  <tr><td>EBIT</td><td>138.7m</td><td>128.2m</td><td class="good">+8.2%</td><td>增速落后收入，费用上升</td></tr>
+  <tr><td>EBITDA</td><td>248.1m</td><td>223.5m</td><td class="good">+11.0%</td><td>Intelligent Investor 口径</td></tr>
+  <tr><td>归母净利润 NPAT</td><td>86.3m</td><td>82.4m</td><td class="neutral">+4.8%</td><td>FY24 +20.9%，增速明显放缓</td></tr>
+  <tr><td>扣非净利润*</td><td>86.3m</td><td>82.4m</td><td>+4.8%</td><td>无重大非经常，主业利润</td></tr>
+  <tr><td>毛利率</td><td>82.0%</td><td>81.0%</td><td class="good">+1.0pt</td><td>3年累计+3.1pt，行业顶尖</td></tr>
+  <tr><td>净利率</td><td>10.8%</td><td>11.8%</td><td class="bad">-1.0pt</td><td>净利率小幅下滑，关注</td></tr>
+  <tr><td>期间费用率 (估)</td><td>~64%</td><td>~62%</td><td class="neutral">+2pt</td><td>雇员 206m+物业41m+折旧95m，随门店增加</td></tr>
+  <tr><td>EPS (基本)</td><td>78.1c</td><td>75.4c</td><td>+3.6%</td><td>股本 110.7m 稀释极少</td></tr>
+  <tr><td>同店销售 (SSS)</td><td>+1.7%</td><td>-2.0%</td><td class="good">转正</td><td>H1 FY26 已加速至 +5.6%</td></tr>
+  <tr><td>分红 (全年)</td><td>77.0c</td><td>87.0c</td><td class="neutral">-11.5%</td><td>派息率 98% (77/78.1)，仍近全派</td></tr>
+</table>
+<div class="summary-box">
+  <strong>利润表解读：</strong>收入端"开店机器"依旧：162家新开净增131家，门店 900→1,031 对冲同店仅微增；毛利率是亮点，82% 且连续3年提升，价格与成本管控是核心竞争力。利润端出现"增收不增利"：EBIT/NPAT 增速仅为收入 1/2—1/3，因折旧（ROU+装修 +28.5%）、人力、租赁利息随扩张同步放大，FY25 净利率从 11.8%回落至 10.8%。好消息是 H2 与 FY26开局同店已回暖（FY25 H2 转正，FY26前8周同店+5.6%/总销售+28%），若同店持续回升，经营杠杆有望重新释放。扣非与报表利润一致，无一次性粉饰。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY25 (29 Jun 2025)</th><th>FY24</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td>42.6m</td><td>30.5m (H1对比 54.7m)</td><td>随开店波动，H1 FY26 已回升至 70.5m</td></tr>
+  <tr><td>应收账款及预付</td><td>27.1m (+39%)</td><td>19.4m</td><td class="neutral">增幅大于收入，关注但基数小占收入 3.4%</td></tr>
+  <tr><td>存货</td><td>81.1m (+18.2%)</td><td>68.6m</td><td class="good">增速仅略高于门店 +14.6%，周转可控</td></tr>
+  <tr><td>物业厂房设备 PPE</td><td>157.2m (+27.2%)</td><td>123.6m</td><td>装修投入 55.2m，同比翻番</td></tr>
+  <tr><td>使用权资产 ROU</td><td>359.7m</td><td>283.9m (H1)</td><td>AASB16 租赁资产为主</td></tr>
+  <tr><td>总资产</td><td>698.4m</td><td>599.5m</td><td>ROU+PPE 占 74%</td></tr>
+  <tr><td>应付账款及拨备</td><td>105.1m (+28%)</td><td>82.1m</td><td class="good">占用供应商资金，增幅健康</td></tr>
+  <tr><td>租赁负债合计</td><td>422.6m (82.9+339.7)</td><td>~343.6m</td><td>主要负债，已超净资产 5倍</td></tr>
+  <tr><td>有息借款 (银行)</td><td>77.0m</td><td>48.0m (H1)</td><td class="neutral">46%↑，授信 120m 未爆线</td></tr>
+  <tr><td>净债务 Net Debt</td><td>34.4m</td><td>23.5m</td><td>+46%，仍低 (EV 3.03B)</td></tr>
+  <tr><td>总负债</td><td>619.9m</td><td>495.0m (H1)</td><td>负债率 88.8%</td></tr>
+  <tr><td>归母净资产</td><td>78.6m (-2.2%)</td><td>80.3m</td><td>极薄，因 -2.09亿重组储备</td></tr>
+  <tr><td>资产负债率 (报表)</td><td>88.8%</td><td>~84%</td><td class="bad">IFRS 租赁推高，剔租约 38%</td></tr>
+</table>
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>典型的"轻净资产、重租赁"零售模型。资产端 ROU 359m+PPE 157m 占七成，系门店装修与租约资本化；负债端同样被租赁负债主导（422m），导致报表负债率 88.8%、PB 24x 失真——若剔租赁，真实银行杠杆仅 77m（授信120m，剩43m空间），负债率约 38%，安全垫充足。存货 81m 随门店同步 +18% 未见积压（公司强调 clean inventory），应付 105m 有效占用上游，营运资金管理优。净资产薄是历史重组（common control reserve -2.09亿）所致，不能用 PB 评便宜贵；关注点应是租赁现金覆盖与续租风险，而非账面负债率。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY25 本期</th><th>FY24 上期</th><th>评价</th></tr>
+  <tr><td>CFO (经营现金流，税息前)</td><td>243.3m</td><td>240.4m</td><td class="good">与收入同步，极强</td></tr>
+  <tr><td>CFO (净额，H1 FY26 例)</td><td>154.2m (H1 FY26)</td><td>117.0m (H1 FY25)</td><td class="good">+31.8% YoY</td></tr>
+  <tr><td>CFO / 净利润</td><td>2.82x</td><td>2.92x</td><td class="good">远 &gt;1，利润全是现金</td></tr>
+  <tr><td>资本开支 Capex</td><td>55.2m</td><td>23.3m</td><td class="neutral">翻番，因 162新店+IT/供应链</td></tr>
+  <tr><td>自由现金流 FCF</td><td>~188m (243-55)</td><td>~217m</td><td class="good">持续正且丰厚</td></tr>
+  <tr><td>融资现金流</td><td>-93.7m (H1)</td><td>-77.7m</td><td>含租赁本金 45m+分红 30m+还贷 18m</td></tr>
+  <tr><td>分红现金</td><td>85.2m (77c×110.7m)</td><td>96.3m (87c)</td><td>派息率 98%，现金覆盖 2.8x</td></tr>
+  <tr><td>期末现金</td><td>42.6m</td><td>30.5m</td><td>H1 FY26 70.5m 已回升</td></tr>
+</table>
+<div class="summary-box">
+  <strong>现金流解读：</strong>最强的表。CFO 税息前 243m 是净利润 2.8倍，说明高毛利快速转化为现金（低应收、预付少、库存周转快 + 应付占款）。即使 FY25 资本开支因加速开店翻番至 55m，FCF 仍 ~188m，足以覆盖全年分红 85m 后仍有盈余，还支撑净债务仅 34m。H1 FY26 现金流更强（净CFO 154m 同比 +32%），在开店 38家、Capex 31.7m、付租 45m 后现金仍增 29m 至 70.5m，验证"自我造血扩张"模式。没有靠股权融资或大幅加杠杆，质量极高。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY25 本期</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td>110% (111% II口径)</td><td>&gt;15% 优秀</td><td class="good">极优（净资产基数失真，ROIC 21%更可比）</td></tr>
+  <tr><td>ROA (去杠杆)</td><td>12.3% (10.8%×1.14)</td><td>&gt;8%</td><td class="good">基础回报扎实</td></tr>
+  <tr><td>毛利率</td><td>82.0%</td><td>稳定或提升</td><td class="good">3年持续提升，定价权强</td></tr>
+  <tr><td>净利率</td><td>10.8%</td><td>&gt;10%</td><td class="good">仍达标但同比 -1pt</td></tr>
+  <tr><td>营收增长</td><td>14.2%</td><td>&gt;10%</td><td class="good">达标，3年 CAGR 20%</td></tr>
+  <tr><td>利润增长</td><td>4.8%</td><td>&gt;10%</td><td class="neutral">不达标，增速背离</td></tr>
+  <tr><td>CFO/净利润</td><td>2.82</td><td>&gt;1</td><td class="good">远超标准</td></tr>
+  <tr><td>资产负债率 (报表)</td><td>88.8%</td><td>&lt;55% (零售)</td><td class="bad">IFRS失真，剔租约约38%</td></tr>
+  <tr><td>分红率</td><td>98% (77c/78.1c)</td><td>30-60% 稳定</td><td class="neutral">近全派，无留存缓冲</td></tr>
+  <tr><td>股息率 (按23.7)</td><td>3.25%</td><td>&gt;3%</td><td class="good">达标但非 franked</td></tr>
+</table>
+
+<h3>3.2 分业务/分地区分析</h3>
+<table>
+  <tr><th>业务/地区</th><th>FY24营收*</th><th>占比</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td>欧洲</td><td>230.4m</td><td>33%</td><td class="good">+26.9%</td><td>~82% (集团)</td><td>最大市场 +156店中86来自欧洲</td></tr>
+  <tr><td>美国 USA</td><td>177.5m</td><td>25%</td><td class="good">+38.5%</td><td>~82%</td><td>第二引擎，207店 +17净增</td></tr>
+  <tr><td>澳新 ANZ</td><td>200.1m</td><td>29%</td><td class="neutral">+0.7%</td><td>~81%</td><td>成熟市场 206店，饱和</td></tr>
+  <tr><td>非洲/中东</td><td>52.2m</td><td>7%</td><td class="good">+7.0%</td><td>~80%</td><td>南非81店为区域中心</td></tr>
+  <tr><td>亚洲</td><td>37.0m</td><td>5%</td><td class="neutral">-0.9%</td><td>~80%</td><td>新进中国/越南/港新台 27店</td></tr>
+  <tr><td>合计</td><td>698.7m (697.2m 地域口径)</td><td>100%</td><td>+17.1%</td><td>81-82%</td><td>FY25总 798m未披露细分，但欧洲/美国仍主导增量</td></tr>
+</table>
+<p style="font-size:12px;color:#666;">*FY24 地域拆为最新可得完整数据，FY25 仅披露总量；FY25开店分布：欧洲86、美洲42、亚太17、非洲/中东10，趋势与 FY24一致。</p>
+<div class="summary-box">
+  <strong>分业务解读：</strong>不再是"澳洲公司"，已是欧洲+美国双引擎：两者合计占 58% 且增速 27-38%，澳新仅 0.7% 说明本土已成熟。单店模型验证：澳洲人均店效约 1.1-1.3m，欧洲/美国新市场通过加密开店快速起量，H1 FY26总销售 +28% 验证海外复制仍有效。隐忧是亚洲仅 5% 且负增长，中国首店 FY24才落地，能否复制欧美仍待观察；非洲/中东增速也仅个位数。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险项</th><th>严重程度</th><th>依据</th></tr>
+  <tr><td>租赁负债过重 (off-BS实质债)</td><td><span class="bad">● 红</span></td><td style="text-align:left">报表负债率 88.8%、净资产仅 78m，租赁负债 422m 是银行债 5倍；续租/加租压力传导快，2022 曾集中关店</td></tr>
+  <tr><td>增收不增利剪刀差</td><td><span class="neutral">● 黄</span></td><td style="text-align:left">FY25收入+14%利润仅+4.8%，净利率 -1pt；若同店长期 &lt;3%，固定成本摊薄失效将拖累 ROE</td></tr>
+  <tr><td>99-100%派息率无留存</td><td><span class="neutral">● 黄</span></td><td style="text-align:left">FY25 77c/78c、FY24 87/75超额派，净资产2年几乎未增（80→78m），靠现金流而非留存支撑扩张，缓冲薄</td></tr>
+  <tr><td>快时尚潮流/山寨风险</td><td><span class="neutral">● 黄</span></td><td style="text-align:left">单价 A$5-30 冲动消费占比高，潮流切换快，存货虽可控但时尚误判会导致打折，毛利瞬间受损</td></tr>
+  <tr><td>高派息+高PB下股价波动</td><td><span class="neutral">● 黄</span></td><td style="text-align:left">52周 19.3-43.68振幅126%，PB 24-39x 对业绩敏感，2025年高点回撤 -45% 已现</td></tr>
+  <tr><td>正面：现金含量极高</td><td><span class="good">● 绿</span></td><td style="text-align:left">CFO/净利 2.8、FCF 188m，账面利润全是真金白银，无应收暴雷（应收仅 3.4%收入）</td></tr>
+  <tr><td>正面：零商誉、库存干净</td><td><span class="good">● 绿</span></td><td style="text-align:left">商誉仅 5m (0.7%资产)，存货周转健康，公司自称 clean inventory，无减值地雷</td></tr>
+  <tr><td>正面：无稀释、创始人背书</td><td><span class="good">● 绿</span></td><td style="text-align:left">股本 110.7m 2年 +0.07%，Brett Blundy (BB Retail) 核心股东，管理层稳定 (CEO Victor Herrero)</td></tr>
+</table>
+<div class="danger-box">
+  <strong>排雷结论：</strong>无"财务造假、出清式暴雷"类红雷；最大雷是"模式雷"而非"报表雷"——租赁重资产+100%派息使账面极脆弱，一旦同店失速+消费下行，固定租金与人力将迅速吞噬利润（FY25已现苗头）。但现金真实、存货与应收干净、商誉几乎为零，报表质量整体优于多数零售同行。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>历史分位</th><th>行业均值 (ASX零售)</th></tr>
+  <tr><td>股价 (参考)</td><td>A$23.71 (Google Finance) / 22.8-24.7区间</td><td>52周 19.30-43.68</td><td>—</td></tr>
+  <tr><td>总市值</td><td>A$2.62-2.72B (110.7m股)</td><td>2025高点 3.6B 回撤 -27%</td><td>PMV 1.5B, SUL 2.1B</td></tr>
+  <tr><td>企业价值 EV</td><td>A$3.03B</td><td>EV/Revenue 3.8x / EV/EBITDA 12.9x</td><td>8-10x</td></tr>
+  <tr><td>PE (TTM)</td><td>29.8x (公司披露 29.9x)</td><td>历史 24.1(22)-43.6(24)-51.9(21), 中位 ~32</td><td>PMV 14.9x, SUL 12-15x</td></tr>
+  <tr><td>PE (TTM扣非)</td><td>29.8x (无非经常)</td><td>同上</td><td>—</td></tr>
+  <tr><td>Forward PE (2026E)</td><td>24-25x (市场一致)</td><td>PEG 1.39</td><td>ASX成长零售 18-22x</td></tr>
+  <tr><td>PB</td><td>24.2-32.3x</td><td>历史 33.7(23)-39.3(24) 极高</td><td>PMV 2.1x, SUL 3x → 失真</td></tr>
+  <tr><td>PS</td><td>2.93x</td><td>历史 2.1-3.97</td><td>~1.5-2.5x</td></tr>
+  <tr><td>PCF (经营现金)</td><td>10.7x</td><td>—</td><td>~8x</td></tr>
+  <tr><td>P/FCF</td><td>15.8x</td><td>—</td><td>~12x</td></tr>
+  <tr><td>股息率</td><td>3.25% (77c/23.7)</td><td>历史 2.4-3.6%</td><td>PMV ~4%, SUL ~5%</td></tr>
+</table>
+
+<h3>4.2 估值区间（PE Band + PB参考）</h3>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应EPS/说明</th></tr>
+  <tr><td>悲观 (同店负增长, 利润零增长)</td><td>15x</td><td>EPS 0.60-0.65（去增长，匹配零售成熟期）→ A$9-10（较现价 -60%）</td></tr>
+  <tr><td>保守 (增速 5-8%, 净利回归)</td><td>20x</td><td>EPS 0.78（FY25基数）→ A$15.6；EPS 0.85 (26E) → A$17.0</td></tr>
+  <tr><td>中性 (增速 12-15%, 2026E)</td><td>25x</td><td>一致预期 EPS 0.92-0.95 → A$23.0-23.8（≈现价）</td></tr>
+  <tr><td>券商目标</td><td>28-30x</td><td>目标价 A$27.8-29.5（stockanalysis / TipRanks），对应 PE 30x 1年</td></tr>
+  <tr><td>当前价</td><td>29.8x TTM / 25x Fwd</td><td>A$23.7，处于中性-券商目标之间，估值已计入扩张预期</td></tr>
+  <tr><td>历史高位 (泡沫期)</td><td>42-52x</td><td>2021/24 曾达 43-52x 对应 A$33-40（2025年8月高点 43.68 已兑现）</td></tr>
+</table>
+
+<p style="font-size:12px;color:#666;">PB Band（辅助，因净资产失真仅作参考）：历史 PB 24-45x，当前 24-32x 处近2年低位但绝对值仍极高；周期股 PB 底部法不适用，成长零售应看 PE/PEG。</p>
+<table>
+  <tr><th>指标</th><th>最大值</th><th>80%分位</th><th>50%分位 (中位)</th><th>20%分位</th><th>最小值</th><th>当前</th></tr>
+  <tr><td>PE (近10年)</td><td>51.9 (2021)</td><td>~43</td><td>~31</td><td>~24</td><td>9.8 (2017)</td><td>29.8 (约45%分位)</td></tr>
+  <tr><td>PB (近8年)</td><td>45.7 (2021)</td><td>~39</td><td>~32</td><td>~24</td><td>13.4 (2018)</td><td>24-32 (20-50%分位)</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值判断：</strong>当前 PE 29.8x / Forward 25x 处历史中位略下（45%分位），PEG 1.39 尚合理，但绝对值显著贵于 ASX一般零售（PMV 15x, SUL 12x）——市场为"全球复制+高毛利"付溢价。结合 FY25利润增速仅 4.8%，若以 20x（保守零售）对应当 A$15-17，下行空间 30%+；若能兑现券商 12-15% CAGR（EPS 0.95-1.05）则 25x 刚好覆盖现价。结论：<strong>估值合理偏贵，未出现明显安全边际；适合"好公司、等便宜价格"——回调至 PE 20-22x（A$17-19 / 52周低位附近）胜率更高，当前追高赔率一般。</strong> PB 因净资产薄完全失真，不作为买卖依据。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析（L4框架）</h2>
+
+<h3>5.1 杜邦拆解</h3>
+<table>
+  <tr><th>指标</th><th>FY23</th><th>FY24</th><th>FY25</th><th>判断</th></tr>
+  <tr><td>净利润率</td><td>11.4% (68.2/596.5)</td><td>11.8% (82.4/698.7)</td><td>10.8% (86.3/798.1)</td><td class="neutral">高位回落 1pt，仍高</td></tr>
+  <tr><td>资产周转率</td><td>~1.15x*</td><td>1.17x (698.7/599.5)</td><td>1.14x (798.1/698.4)</td><td class="good">稳定 1.1-1.2次，零售中上</td></tr>
+  <tr><td>权益乘数</td><td>~7.4x</td><td>7.47x (599.5/80.3)</td><td>8.89x (698.4/78.6)</td><td class="bad">租赁推高，2年 +20%</td></tr>
+  <tr><td>ROE</td><td>85.2% (II)</td><td>103% (105% II)</td><td>110% (111% II)</td><td class="good">持续攀升，杠杆驱动大</td></tr>
+  <tr><td>ROA (=净利×周转)</td><td>13.1%</td><td>13.8%</td><td>12.3%</td><td class="good">去杠杆后真实回报仍顶尖</td></tr>
+</table>
+<p style="font-size:12px;color:#666;">*FY23总资产用 518m 报端口径估算，周转与 ROE 与 Intelligent Investor 披露一致。</p>
+
+<h3>5.2 赚钱模式判断</h3>
+<div class="highlight-box">
+  <strong>赚钱模式：高利润型 × 高周转型的"双高"混合，最接近"高利润型"但兼具周转型效率，且叠加高杠杆（租赁）放大。</strong><br>
+  判定依据：① 净利润率 10.8% + 毛利率 82% 远超零售均值（5-8%净利、45-65%毛利），属品牌/供应链定价权驱动的"卖得贵"；② 资产周转 1.14次不低（年周转 1.1次，对比 Woolworths ~2.5次但重资产零售通常 0.8-1.0），说明门店模型"卖得也快"——单店年销 ~0.77m (798m/1031店)；③ 权益乘数 7.5→8.9 因 AASB16 租赁资本化虚高，若剔租约 multiplier 仅 ~1.6，真实杠杆不高，ROE 高质量部分来自利润与周转，而非银行债。<br>
+  对比茅台（高利润低周转低杠杆）、沃尔玛（低利润高周转中杠杆），Lovisa 更像是"高毛利版的沃尔玛扩张模型"——既赚品牌溢价，又靠全球快速复制摊薄中台成本。
+</div>
+
+<table>
+  <tr><th>去杠杆 ROA 对比</th><th>Lovisa FY25</th><th>Premier Retail FY25</th><th>ASX零售中位</th></tr>
+  <tr><td>ROA (净利×周转)</td><td>12.3%</td><td>~9.6% (EBIT margin 24%但周转低)</td><td>6-8%</td></tr>
+  <tr><td>每1元资产产生净利</td><td>0.123元</td><td>~0.08元</td><td>0.05-0.07元</td></tr>
+</table>
+
+<h3>5.3 核心结论</h3>
+<div class="summary-box">
+  <strong>杜邦结论：</strong>ROE 看似"天花板"（110%），但拆解后真相是：<strong>12.3% ROA 已是 ASX零售顶尖</strong>，叠加 8.9倍租赁杠杆才推至 110%。好消息是 ROE 的"含金量"在 ROA——近3年 ROA 13.1%→13.8%→12.3% 保持稳定，说明基础赚钱能力未恶化；坏消息是乘数从 7.4→8.9持续攀升，反映租约规模增速快于权益积累（因 100%派息净资产不增），若同店放缓，固定租金杠杆会反噬（负向经营杠杆）。趋势上净利润率 FY25首次回落 1pt 是预警，需盯同店与费用率能否企稳。总体：<strong>靠"高毛利+快周转"赚钱的优质零售，但被租赁杠杆美化，投资时应盯 ROA/ROIC（21-25%）而非 ROE。</strong>
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：非周期股 — 成长型（可选消费 / 快时尚饰品零售）</strong><br>
+  依据：① 需求端：饰品非必选但单价 $5-30 冲动消费属性强，经济波动敏感度中等（弱于钢铁/煤炭等纯周期，但强于食品饮料/公用事业），长期随人口/时尚潮流与门店渗透稳步增长，非供需错配暴利；② 供给端：行业成熟但 Lovisa 处全球加密开店期（14年从25m→798m，门店 435→1031），属"成长期后半段、加速扩张"；③ 按 <code>industry-classification.md</code>，消费零售划为非周期，成长型细分（营收20% CAGR、扩张期现金再投入、估值用 PS/PEG/PE）。
+</div>
+
+<h3>6.2 集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>行业集中度</td><td>高度分散 → 正在整合</td><td>全球时尚饰品无绝对龙头，前五合计 &lt;15%；Lovisa以 1,031店在澳新/欧美加密，属区域性集中者</td></tr>
+  <tr><td>品牌壁垒</td><td>中等</td><td>非奢侈品牌，品牌忠诚度弱于 Pandora/施华洛世奇，但"潮流+低价+快上新"形成年轻客群心智</td></tr>
+  <tr><td>供应链/规模壁垒</td><td>强</td><td> centralized 设计+亚洲集中采购+自有物流，82%毛利即规模议价体现；1,000店网络分摊设计与 IT</td></tr>
+  <tr><td>渠道壁垒</td><td>强</td><td>全球购物中心卡位 50国，物业谈判与选址能力是新进入者 3-5年难复制的点位资源</td></tr>
+  <tr><td>技术壁垒</td><td>弱</td><td>无专利，产品易模仿，壁垒在速度与成本而非技术</td></tr>
+  <tr><td>进入门槛</td><td>低单店 / 高网络</td><td>单店投入小（装修 50-100k），但千店网络 + 跨国合规 + 供应链是系统壁垒</td></tr>
+</table>
+
+<h3>6.3 生命周期与周期位置</h3>
+<div class="highlight-box">
+  <strong>生命周期：成长期 → 成熟期过渡（扩张中后期）</strong><br>
+  行业（快时尚饰品）已成熟，但 Lovisa 仍处成长期：门店 5年 CAGR 18.8%（435→1031），收入 5年 CAGR 26%，远超行业 3-5%。当前渗透：澳新饱和（200店，增速 0.7%）、欧美加密（欧 50→53店 +17新亚洲点）、亚洲刚起步（中国/越南首店）。判断：未来 3-5年仍可年开 100-150店，但同店增速已从 8%→ -2%→ +1.7% 回落，扩张红利逐步被费用稀释，进入"量增、利不增"的过渡期。<br>
+  <strong>周期位置（消费弱周期）：</strong>处"消费承压+同店筑底回升"阶段，非顶部也非底部—— FY24 同店 -2% 为小周期底部，FY25 +1.7%、FY26前8周 +5.6% 已现复苏，但零售大环境仍弱（PMV同店 -1.5%、SUL承压），不宜用周期股 PB底部法。
+</div>
+
+<h3>6.4 同行对比</h3>
+<table>
+  <tr><th>指标</th><th>Lovisa LOV</th><th>Premier (PMV) 澳零售</th><th>Super Retail (SUL)</th><th>行业中位</th><th>评价</th></tr>
+  <tr><td>ROE</td><td>110% (ROIC21%)</td><td>16-18.9%</td><td>~20%</td><td>15-20%</td><td class="good">高 (但口径失真)</td></tr>
+  <tr><td>毛利率</td><td>82.0%</td><td>65.7%</td><td>~45-50%</td><td>55%</td><td class="good">行业领先 +16-37pt</td></tr>
+  <tr><td>净利率</td><td>10.8%</td><td>~8-10% (前)</td><td>~7%</td><td>6-8%</td><td class="good">高</td></tr>
+  <tr><td>负债率 (报表)</td><td>88.8% (剔租38%)</td><td>~40%</td><td>~65% (含租)</td><td>60-70%</td><td class="neutral">报表差、实低</td></tr>
+  <tr><td>营收增速 (FY25)</td><td>14.2%</td><td>0.9%</td><td>~3-5%</td><td>5%</td><td class="good">显著跑赢</td></tr>
+  <tr><td>PB</td><td>24.2x (失真)</td><td>2.1x</td><td>~3.0x</td><td>2-3x</td><td class="bad">高 (净资产薄)</td></tr>
+  <tr><td>PE (TTM)</td><td>29.8x</td><td>14.9x</td><td>12-15x</td><td>15x</td><td class="bad">贵 1倍</td></tr>
+</table>
+<div class="summary-box">
+  <strong>竞争位置：</strong>毛利率与 ROIC 行业断层领先，证明商业模式更优（快时尚+供应链效率）；增速也碾压本土零售（14% vs 1-5%）。但市场已给 30x PE、2倍 PS溢价，估值比同行贵一倍，透支了"全球复制"预期——若海外扩张不达预期，估值回归风险大于同行。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<div class="summary-box">
+  <strong>估值方法：首选 PE / PEG + PS 辅助，PB 完全不适用。</strong><br>
+  成长型零售标准：盈利期用 PE/PEG（增速 14% 对应 PEG&lt;1.5合理），PS 用于验证（2.9x vs PMV 2.6x 溢价合理范围内）。Lovisa 当前 PEG 1.39 处于成长股合理上限，PE 25-30x 对应 20% ROE 成长股区间上限，方法匹配。警示：切忌用 PB（净资产失真）或股息率（派息率 100%不可持续）定价；也忌用 EV/EBITDA 横比（租赁影响大，需统一 pre/post AASB16）。
+</div>
+
+<div class="highlight-box">
+  <strong>成长股成色检验（四步法）：</strong><br>
+  1. 营收：798m &gt;20亿阈值？澳元口径 7.98亿 &gt; 2亿门槛但 &lt;20亿人民币等值，增速 14% &gt;10%，有实在生意但未到"千亿级"体量<br>
+  2. 毛利率：82% &gt;30%且3年稳定提升，产品竞争力极强<br>
+  3. 经营现金流：243m 为正且 3年持续 &gt;净利，能自己造血，无烧钱<br>
+  4. PS：2.93 &lt;10合理，梦想溢价可控，非纯投机（PS&gt;10才预警）<br>
+  <strong>结论：成色为"真成长、非烧钱故事"，但体量仍小、增速已从 20%→14% 放缓，需观察同店能否撑起下一阶段。</strong>
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  Step 1 - 行业定位：非周期成长型（快时尚饰品），分散市场中靠供应链+渠道规模取胜，成长期后半段、欧美为主战场<br>
+  Step 2 - 财务体检：110% ROE（ROIC21%更真）、82%毛利、1.14周转、2.8x现金含金量均顶尖；但净利增速仅4.8%背离收入，租赁杠杆 8.9倍推高ROE<br>
+  Step 3 - 估值判断：PE 29.8x / Forward 25x 处历史中位偏下但绝对贵（同行 15x一倍），PEG 1.39 中性偏贵，PB失真不看<br>
+  Step 4 - 风险排查：无报表造假雷，核心风险是"增收不增利+100%派息+租赁重负"模式脆弱性，股价波动126%<br>
+  Step 5 - 结论：好生意（高毛利+快周转+强现金）但不是好价格，67分"一般关注"，等 PE 20x（A$17-19）更佳<br>
+  Step 6 - 跟踪：盯同店 SSS（目标 &gt;3%）、净利率能否回 11.5%+、FCF/派息覆盖、净债务/EBITDA &lt;1.5x
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓ 较好</td><td style="text-align:left">可选消费弱周期，千亿赛道分散，Lovisa卡位全球渠道有整合机会；但非必选、潮流属性强，行业壁垒中等（不及白酒/医药）</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓ 是</td><td style="text-align:left">ROE/ROIC &gt;20%、毛利82%稳定提升、CFO/净利 2.8 &gt;1、FCF持续正，均达"好公司"标准；扣分仅利润增速放缓</td></tr>
+  <tr><td>③ 好价格</td><td class="bad">✗ 否</td><td style="text-align:left">PE 29.8x / PS 2.9x 贵于同行1倍，PEG 1.39 已无折价；历史分位虽非顶，但绝对估值处成长股上限，无安全边际</td></tr>
+</table>
+
+<h3>7.3 风险评估</h3>
+<div class="danger-box">
+  ☐ 价值陷阱（低PE+低增长+高负债）→ <strong>未命中</strong>（PE不低、增长仍 14%）<br>
+  ☐ 周期陷阱（低PE+周期顶点）→ <strong>未命中</strong>（非周期股，PE未到底部，同店刚底部回升）<br>
+  ☐ 烧钱陷阱（高PE+高增速+负现金流）→ <strong>未命中</strong>（高PE但现金流极强、FCF为正）
+</div>
+
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力与履历</td><td>好</td><td style="text-align:left">创始人 Brett Blundy (BB Retail) 持股稳定；CEO Victor Herrero 2016年起掌舵，主导 35国→50国扩张，执行力验证</td></tr>
+  <tr><td>股权结构与利益一致性</td><td>强</td><td style="text-align:left">BB Retail 为控股股东，股本 2年近零稀释，管理层激励与开店挂钩</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td>无</td><td style="text-align:left">无监管处罚、大股东占款、商誉暴雷（商誉仅 5m）</td></tr>
+  <tr><td>资本配置记录</td><td>激进</td><td style="text-align:left">100%派息 + 年开 160店双重激进，Capex 55m翻番但仍靠内生现金，无M&A摊子</td></tr>
+  <tr><td>管理层增减持</td><td>无大额减持公告</td><td style="text-align:left">FY24-25未见董监高集中减持；需跟踪 BB Retail 是否减持（历史上曾配售）</td></tr>
+  <tr><td>CEO交接/关键变动</td><td>无风险</td><td style="text-align:left">管理层稳定，无交接期</td></tr>
+</table>
+
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是价？</td><td>量驱动为主</td><td style="text-align:left">FY25量（门店+131）为主，价（毛利+1pt）次之，同店仅 +1.7% 说明单店量增有限</td></tr>
+  <tr><td>涨价能否持续？</td><td>需观察</td><td style="text-align:left">82%毛利已极高，再提价空间有限，未来靠新品类与渠道而非提价</td></tr>
+  <tr><td>非经常性利润占比</td><td>低</td><td style="text-align:left">报表与扣非一致，FY24-25无卖资产/补贴（其他收益 0.5m可忽略）</td></tr>
+  <tr><td>大客户/项目集中度</td><td>分散</td><td style="text-align:left">零售 ToC，无单一客户 &gt;1%；但购物中心物业集中（西田等）有租金议价风险</td></tr>
+  <tr><td>政策/监管依赖度</td><td>低</td><td style="text-align:left">无补贴牌照，主要风险为跨国关税/外汇（50国运营，FY25汇兑对现金 -1m）</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>关键变量敏感性</strong><br>
+  变量1: 同店销售 (SSS)<br>
+  &nbsp;&nbsp;乐观: SSS +5-7%（FY26H1已 +5.6%）→ 收入 +20%+经营杠杆，EPS +15-20%至 0.95-1.00，PE 30x → A$29-30<br>
+  &nbsp;&nbsp;中性: SSS +2-3% → 收入 +12-14%，EPS 0.85-0.90（费用持平），PE 25x → A$21-22<br>
+  &nbsp;&nbsp;悲观: SSS 0至负（消费衰退）→ 收入 +5%仅靠新店，净利零增长甚至 -10%（租金刚性），EPS 0.70-0.78，PE 15x → A$10-12<br><br>
+  变量2: 开店速度与单店投资回报<br>
+  &nbsp;&nbsp;乐观: 年开 150+且新店 12个月回本 → PPE/ROU周转维持 1.14，ROIC 保持 21%+，支撑高估值<br>
+  &nbsp;&nbsp;中性: 年开 100-130，回本 18个月 → 周转微降至 1.0，ROIC 18-20%<br>
+  &nbsp;&nbsp;悲观: 年开 &lt;80或新市场（中国/越南）亏损 → ROU闲置，减值风险，ROIC跌破 15%<br><br>
+  变量3: 毛利率<br>
+  &nbsp;&nbsp;乐观: 维持 82%+1pt → 净利 +8-10% 额外增厚<br>
+  &nbsp;&nbsp;中性: 82%持平 → 基准<br>
+  &nbsp;&nbsp;悲观: 促销加剧回落至 79-80%（如 2022）→ 净利 -15%（每降1pt ≈ -8m毛利）
+</div>
+
+<h3>7.4 前景展望</h3>
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. 海外加密可期 — 欧洲/美国 仍有 2-3倍开店空间（德国53、法国86、美国207 vs 澳洲178），FY26前8周总销售 +28% 验证加密逻辑<br>
+  2. 同店回暖 — SSS 从 -2%→+1.7%→+5.6% 三阶段修复，若持续 &gt;3%，经营杠杆将带动净利增速追上收入<br>
+  3. 供应链议价 — 规模过 1,000店后采购成本再降 50-100bps，82%毛利或仍有 1pt提升空间<br><br>
+  <strong>负向拖累：</strong><br>
+  1. 费用刚性 — 年增 100+店带来折旧+租金+人力固定成本 FY25已超收入增速，若同店再失速将放大亏损<br>
+  2. 派息透支 — 98%派息率使留存为零，净资产不增，抗风险靠借债与现金流，遇消费寒冬缓冲薄<br>
+  3. 估值天花板 — 30x PE 已 Price-in 未来2年扩张，股价对 SSS/毛利极敏感（历史回撤45%），新市场（中国1店、越南1店）试错成本高
+</div>
+
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>EPS预估</th><th>PE区间</th><th>预期回报 (vs 23.7)</th></tr>
+  <tr><td>乐观 (30%)</td><td>SSS 5%+年开150，毛利83%</td><td>FY26 1.00 / FY27 1.15</td><td>28-32x</td><td>A$28-34 (+18%~+43%)</td></tr>
+  <tr><td>中性 (50%)</td><td>SSS 2-3%，年开120，毛利82%</td><td>FY26 0.88 / FY27 0.98</td><td>22-25x</td><td>A$19-24 (-20%~+1%)</td></tr>
+  <tr><td>悲观 (20%)</td><td>SSS 0%或负，毛利81%，费用高企</td><td>FY26 0.70 / FY27 0.65</td><td>15-18x</td><td>A$10-12 (-50%~)</td></tr>
+</table>
+<p style="font-size:12px;color:#666;">概率为示意；中性隐含 12个月目标 A$22-23，对应 Forward PE 25x EPS 0.88，基本等同现价，赔率一般。</p>
+
+<h3>7.5 资金面信号</h3>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>北向资金</td><td>N/A</td><td>ASX 无北向，替代看外资机构持仓：HUB/ Schroders 等外资对 LOV 关注度高但 2025年高位有减配</td></tr>
+  <tr><td>机构持仓</td><td>中性偏减</td><td>2024年 PE 43x 高位后股价 -27%至 24水平，部分成长基金获利了结；H1 FY26回暖后有回补但未至新高</td></tr>
+  <tr><td>融资/杠杆</td><td>N/A</td><td>ASX 无两融；公司层面银行杠杆仅 77/120m，杠杆资金情绪不适用</td></tr>
+  <tr><td>大股东增减持</td><td>无公告</td><td>BB Retail 未公告减持，但历史上曾在高位配售，需盯 ASX公告</td></tr>
+  <tr><td>大宗交易</td><td>折价偶现</td><td>2025年8月财报后 852k股大成交（41→43）伴随冲高回落，机构有分歧</td></tr>
+</table>
+<div class="summary-box">
+  <strong>资金面判断：</strong>ASX 资金面信号整体中性。无北向/两融可参考，核心看"机构对高估值成长股的容忍度"——2024-25年 LOV 在 PE 40+时遭抛售，当前 30x 仍偏贵，机构追价意愿不强，需靠业绩（SSS>3%）重新吸引资金；大股东未减持是正面，但股价 126%振幅说明筹码博弈激烈，不适合资金面驱动型买入。
+</div>
+
+<h3>7.6 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？（提示：82%毛利的 $5-30 饰品 × 1,031家全球快时尚门店 × 高周转）<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？（是 4.8%利润增速背离、88%报表负债率，还是 30x PE 透支？）<br>
+  3. 如果现在买入，期待的回报来源是什么？（是靠 SSS修复带来的估值回升，还是靠开店量增的业绩兑现，或两者兼有？）<br>
+  4. 什么情况下你会坚决卖出？（如 SSS转负 2季度、净利率跌破 9%、或 PE重回 40x 以上透支时？）
+</div>
+
+</div></div>
+
+<div class="footer">
+  免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+  数据来源：Lovisa FY2025/FY2024 Annual Report &amp; Preliminary Final Report、FY2026H1 Appendix 4D、ASX Announcements、Yahoo Finance / stockanalysis.com / Intelligent Investor（股价截至 2026-06-30 至 2026-08-25 区间）| 估值与同行数据为公开口径，部分 FY25 地域拆分沿用 FY24 披露，历史 PE/PB 取 companiesmarketcap / Market Cap 序列
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>
