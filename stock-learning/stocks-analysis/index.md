@@ -59,8 +59,8 @@
 | RMD | ResMed | ASX/成长性/ResMed_RMD_分析报告.html |
 | COH | Cochlear | ASX/成长性/Cochlear_COH_分析报告.html |
 | | REA | REA Group | ASX/成长性/REA Group_REA_分析报告.html |
-| **特殊行业** | IAG | IAG | ASX/特殊行业/IAG_ASX_分析报告.html |
-| | SUN | Suncorp | ASX/特殊行业/Suncorp_SUN_ASX_分析报告.html |
+| **特殊行业** | IAG | IAG | ASX/特殊行业/IAG_IAG_分析报告.html |
+| | SUN | Suncorp | ASX/特殊行业/Suncorp_SUN_分析报告.html |
 | | LML | Lincoln Minerals | ASX/特殊行业/Lincoln_Minerals_LML_ASX_分析报告.html |
 
 ## 交易计划（1份）
