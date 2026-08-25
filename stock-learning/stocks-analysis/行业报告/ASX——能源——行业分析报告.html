@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ASX——能源 行业分析报告</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f5f5f5;padding:0;color:#333}
+  .report-wrap{max-width:800px;margin:0 auto;background:#fff}
+  h1{font-size:22px;margin:0;padding:28px 0 4px;text-align:center}
+  h2{font-size:18px;margin:28px 0 12px;border-bottom:2px solid #1a1a1a;padding-bottom:4px}
+  h3{font-size:15px;margin:18px 0 8px}
+  .subtitle{color:#666;font-size:13px;text-align:center;margin-bottom:4px}
+  .meta{color:#999;font-size:12px;text-align:center;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #e0e0e0}
+  .tab-bar{position:sticky;top:0;z-index:10;background:#fff;display:flex;flex-wrap:wrap;border-bottom:2px solid #ddd;gap:0}
+  .tab-btn{padding:10px 14px;cursor:pointer;border:none;background:none;font-size:13px;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+  .tab-btn:hover{color:#333;background:#f9f9f9}
+  .tab-btn.active{color:#1a1a1a;font-weight:700;border-bottom-color:#1a1a1a}
+  .tab-content{display:none}
+  .tab-content.active{display:block}
+  .tab-inner{padding:0 12px}
+  table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:13px}
+  th{background:#f5f5f5;padding:8px 6px;text-align:left;border-bottom:2px solid #ddd;white-space:nowrap;font-weight:600}
+  td{padding:7px 6px;border-bottom:1px solid #eee}
+  tr:nth-child(even) td{background:#fafafa}
+  .summary-box{background:#fffde7;border-left:4px solid #f9a825;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .highlight-box{background:#e3f2fd;border-left:4px solid #1e88e5;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .danger-box{background:#ffebee;border-left:4px solid #e53935;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .verdict{text-align:center;padding:20px;margin:16px 0;border-radius:8px;font-size:18px;font-weight:700}
+  .verdict-ok{background:#e8f5e9;border:2px solid #4caf50;color:#2e7d32}
+  .verdict-caution{background:#fff3e0;border:2px solid #ff9800;color:#e65100}
+  .verdict-bad{background:#ffebee;border:2px solid #e53935;color:#c62828}
+  .score{font-size:36px;display:block;margin-bottom:4px}
+  .pass{color:#2e7d32;font-weight:700}
+  .skip{color:#666;font-style:italic}
+  .tag{display:inline-block;padding:2px 8px;border-radius:3px;font-size:11px;font-weight:700}
+  .tag-red{background:#ffebee;color:#c62828}
+  .tag-green{background:#e8f5e9;color:#2e7d32}
+  .tag-yellow{background:#fff8e1;color:#f57f17}
+  .footer{font-size:11px;color:#aaa;text-align:center;padding:24px 0 8px;border-top:1px solid #eee;margin-top:30px}
+  .card{background:#fafafa;border:1px solid #e0e0e0;border-radius:6px;padding:14px;margin:10px 0;font-size:13px}
+  .flex{display:flex;flex-wrap:wrap;gap:8px}
+  .tbl-wrap{border:1px solid #e0e0e0;border-radius:6px;overflow:hidden;margin:10px 0 18px}
+  .tbl-wrap table{margin:0}
+  .tbl-wrap th{background:#f5f5f5;padding:9px 8px;border-bottom:1px solid #ddd;font-weight:600;font-size:12px}
+  .tbl-wrap td{padding:8px;border-bottom:1px solid #f0f0f0;font-size:13px}
+  .tbl-wrap tr:last-child td{border-bottom:none}
+  .bar-wrap{display:inline-flex;align-items:center;width:60px;height:16px;vertical-align:middle}
+  .bar-bg{background:#eee;border-radius:4px;height:8px;width:100%;overflow:hidden;position:relative}
+  .bar{display:block;height:8px;border-radius:4px}
+  .score-cell{font-weight:700;font-size:15px;text-align:center;white-space:nowrap}
+  .tbl-wrap td,.tbl-wrap th{vertical-align:middle}
+  .metric-h{color:#1565c0;font-weight:700;font-size:13px}
+  .metric-l{color:#c62828;font-weight:700}
+  .metric-m{color:#e65100;font-weight:700}
+  .col-tag{display:inline-block;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600}
+  .col-win{background:#e8f5e9;color:#2e7d32}
+  .col-lose{background:#ffebee;color:#c62828}
+  .col-warn{background:#fff3e0;color:#e65100}
+  .col-info{background:#e3f2fd;color:#1565c0}
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>ASX——能源 行业分析报告</h1>
+<div class="subtitle">L5分类：周期性（强周期·资源型）｜ 上市公司：~117只（GICS Energy）｜ 总市值：~A$1750亿（约US$115B）</div>
+<div class="meta">生成日期：2026-08-25 ｜ 数据截止：2026-08-24 ｜ 市场：ASX ｜ GICS：Energy (1010)</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l7">L7 量化初筛</button>
+  <button class="tab-btn" data-tab="l8">L8 行业画像</button>
+  <button class="tab-btn" data-tab="l9">L9 竞争格局</button>
+  <button class="tab-btn" data-tab="l10">L10 周期时机</button>
+</div>
+
+<div class="tab-content active" id="tab-summary">
+<div class="tab-inner">
+
+<h2>行业速览</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">项目</th><th>内容</th></tr>
+<tr><td>行业名称</td><td><strong>能源（ASX Energy）</strong> — GICS 1010 石油/天然气/煤炭/铀</td></tr>
+<tr><td>市场</td><td>ASX（澳大利亚证券交易所）</td></tr>
+<tr><td>L5分类</td><td><span class="col-tag col-lose">周期性</span> 强周期·资源型 · 估值首选PB/股息率，PE悖论显著</td></tr>
+<tr><td>上市公司</td><td>~117只（GICS Energy），其中S&P/ASX 200 Energy成分股 <strong>11只</strong>；符合L7初筛 <span class="col-tag col-win">6只</span>，观察池5只</td></tr>
+<tr><td>行业总市值</td><td>~A$1750亿（约US$115.2B，GoMarketCap 2026-08-24）；XEJ指数年内+31.7%（至2026-08-25）</td></tr>
+<tr><td>产业链利润核心</td><td><span class="col-tag col-win">上游LNG/石油</span> + <span class="col-tag col-warn">优质动力煤/焦煤（高CV）</span>；下游炼化/零售利润薄且逆油价</td></tr>
+<tr><td>生命周期阶段</td><td><span class="col-tag col-warn">成熟期</span>（油气成熟+煤炭衰退期前半段，LNG仍有10年窗口；铀/新能源为成长期但占比小）</td></tr>
+<tr><td>当前周期位置</td><td><span class="col-tag col-warn">繁荣后期</span> Brent ~US$91（8月19日），地缘溢价驱动，同比+37%，远高于EIA中期均衡$69</td></tr>
+</table>
+</div>
+
+<h2>综合评分</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>维度</th><th style="width:60px">得分</th><th>进度</th><th>说明</th></tr>
+<tr>
+  <td>行业规模与空间</td>
+  <td class="score-cell">13/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:65%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">澳大利亚是全球第三大LNG出口国，绝对规模大，但全球能源转型下天花板受限，长期TAM收缩（煤炭）</td>
+</tr>
+<tr>
+  <td>产业链位置</td>
+  <td class="score-cell">9/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:60%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">利润在上游资源端（WDS/STO/WHC），中游炼化（ALD）被动，下游电力零售受政策管制</td>
+</tr>
+<tr>
+  <td>竞争格局</td>
+  <td class="score-cell">13/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:65%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">高度集中CR3~58%，WDS/STO双寡头 LNG；煤炭CR3~65%（WHC+YAL+NHC），壁垒来自牌照/资源</td>
+</tr>
+<tr>
+  <td>增长驱动力</td>
+  <td class="score-cell">7/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:47%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">无结构性增长；靠量价周期（Brent、Newcastle煤价、LNG netback），长期需求被可再生能源替代</td>
+</tr>
+<tr>
+  <td>周期位置</td>
+  <td class="score-cell">6/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:40%;background:#f44336"></span></span></span></td>
+  <td style="font-size:12px;color:#555">地缘战争溢价高位（95%+分位），EIA预测2027回落至$69，下行风险远大于上行；不应在顶点追高</td>
+</tr>
+<tr>
+  <td>政策环境</td>
+  <td class="score-cell">7/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:47%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">联邦气价上限、东海岸20%气源留存（2027/07起）、Safeguard减排、煤炭特许权使用费上调，整体偏紧</td>
+</tr>
+<tr style="background:#fafafa">
+  <td style="font-weight:700;font-size:14px">总分</td>
+  <td style="font-weight:700;font-size:16px;color:#e65100">55/100</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:55%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#e65100;font-weight:600">一般——交易性机会为主，不适合长期重仓</td>
+</tr>
+</table>
+</div>
+
+<div class="verdict verdict-caution">
+  <span class="score">55</span>
+  一般——周期繁荣后期，等待回调
+</div>
+
+<div class="summary-box">
+  <strong>核心结论</strong><br>
+  ASX能源是典型的<strong>强周期行业</strong>，L5估值应以<strong>PB+股息率</strong>为准，警惕PE悖论（当前PE低恰是盈利顶）。规模大、集中度高、资源牌照壁垒强，但<strong>增长完全依赖商品价格</strong>，没有结构性增量。<br>
+  2026年8月Brent ~US$91（战时溢价）、Newcastle煤 ~US$131、XEJ年内+31.7%，已处于<strong>繁荣后期</strong>。EIA最新STEO预测Brent Q3 2026均值$85、2027均值$69，叠加澳大利亚国内气价管制与碳约束，<strong>当前不宜追高</strong>。更佳策略是在油价回落至$65-75、PB跌至历史20%分位（WDS PB<1.0x / WHC PB<0.8x）时逆向布局龙头，赚取<strong>估值修复+股息</strong>。<br>
+  框架选择：<strong>周期股框架</strong>（PB分位 + 供需平衡表 + OPEC/地缘跟踪），而非成长股PS/PEG。
+</div>
+
+<div class="highlight-box">
+  <strong>行业公式</strong><br>
+  收入 = 产量（MMboe / Mt）× 实现价格（Brent / Newcastle / JKM）× 汇率（AUD/USD）<br>
+  利润 = 收入 − （现金成本 + 折旧摊销 + 特许权使用费/碳成本）<br>
+  关键跟踪指标：1) Brent-WTI价差与地缘事件  2) Newcastle动力煤 & 硬焦煤价  3) Gladstone LNG netback（$9.01/mmBtu → 预测$10） 4) XEJ相对ASX200超额收益  5) 澳联储利率与AUD/USD
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l7">
+<div class="tab-inner">
+
+<h2>筛子调整说明</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:12%">筛子</th><th style="width:38%">标准（ASX能源）</th><th>调整说明</th></tr>
+<tr><td>①<span class="col-tag col-info">市值</span></td><td>≥2亿AUD</td><td>ASX能源大量微型勘探公司（~70只 &lt;2亿），按L7标准严格执行，首轮即淘汰60%</td></tr>
+<tr><td>②<span class="col-tag col-info">营收</span></td><td>≥1亿AUD（TTM）</td><td>严格执行；勘探期公司无营收，直接筛除</td></tr>
+<tr><td>③<span class="col-tag col-info">毛利率</span></td><td><span class="skip">跳过</span></td><td>ASX矿业/能源 <strong>统一跳过毛利率筛</strong>（L7特殊调整），煤炭/油气毛利率随商品价巨幅波动，不设固定阈值</td></tr>
+<tr><td>④<span class="col-tag col-warn">ROE</span></td><td>≥5%（放宽）</td><td>矿业/周期放宽至5%（原8%），连续3年&lt;5%剔除。考核TTM ROE</td></tr>
+<tr><td>⑤<span class="col-tag col-info">负债率</span></td><td>≤65%（总负债/总资产）</td><td>重资产但需控制杠杆；ALD等下游高杠杆需警示。矿业不跳过</td></tr>
+<tr><td>⑥<span class="col-tag col-info">估值</span></td><td>PB历史分位 ≤80%（周期股用PB）</td><td>能源/煤炭为典型周期股，<strong>用PB替代PE</strong>（PE悖论），高分位（&gt;80%）剔除泡沫</td></tr>
+</table>
+</div>
+<p style="font-size:12px;color:#666;margin:-8px 0 12px">＊阈值依据：L7框架（stock-learning/materials/L7-screening.md §特殊情况偏差：ASX矿业 跳过毛利率、ROE放宽≥5%、估值用PB）</p>
+
+<h2>候选池（6只）</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>环节</th><th>市值</th><th>营收 TTM</th><th>ROE</th><th>负债率</th><th>PB分位</th><th>通过</th></tr>
+<tr>
+  <td><strong>Woodside Energy</strong> WDS</td>
+  <td><span class="col-tag col-win">LNG/石油 上游</span></td>
+  <td style="font-weight:600">A$60.4B</td>
+  <td>US$13.0B<br><span style="font-size:11px;color:#666">≈A$20B</span></td>
+  <td><span class="col-tag col-win">7.2%</span></td>
+  <td>40.6%</td>
+  <td><span class="col-tag col-win">~35%</span> PB~1.1x</td>
+  <td class="pass">5/5*</td>
+</tr>
+<tr>
+  <td><strong>Santos</strong> STO</td>
+  <td><span class="col-tag col-win">LNG/石油 上游</span></td>
+  <td style="font-weight:600">A$24.9B</td>
+  <td>US$4.94B<br><span style="font-size:11px;color:#666">≈A$7.7B</span></td>
+  <td><span class="col-tag col-win">5.2%</span></td>
+  <td>~40%</td>
+  <td><span class="col-tag col-win">~30%</span> PB~1.0x</td>
+  <td class="pass">5/5*</td>
+</tr>
+<tr>
+  <td><strong>Whitehaven Coal</strong> WHC</td>
+  <td><span class="col-tag col-warn">煤炭（焦煤+动力煤）</span></td>
+  <td style="font-weight:600">A$6.4B</td>
+  <td>A$4.9B</td>
+  <td><span class="col-tag col-win">11.8%</span></td>
+  <td>~36%</td>
+  <td><span class="col-tag col-win">~40%</span> PE 9.8x</td>
+  <td class="pass">5/5*</td>
+</tr>
+<tr>
+  <td><strong>New Hope</strong> NHC</td>
+  <td><span class="col-tag col-warn">煤炭</span></td>
+  <td>A$4.9B</td>
+  <td>A$1.59B</td>
+  <td><span class="col-tag col-win">16.6%</span></td>
+  <td>10.4%</td>
+  <td><span class="col-tag col-win">~45%</span></td>
+  <td class="pass">5/5*</td>
+</tr>
+<tr>
+  <td><strong>Yancoal</strong> YAL</td>
+  <td><span class="col-tag col-warn">煤炭</span></td>
+  <td>A$7.6B</td>
+  <td>A$~6-7B<span style="font-size:11px;color:#666">（估）</span></td>
+  <td><span class="col-tag col-win">~12%</span></td>
+  <td>~30%</td>
+  <td><span class="col-tag col-win">~35%</span></td>
+  <td class="pass">5/5*</td>
+</tr>
+<tr>
+  <td><strong>Karoon Energy</strong> KAR</td>
+  <td><span class="col-tag col-info">石油 上游（巴西）</span></td>
+  <td>A$1.16B</td>
+  <td>US$0.63B<br><span style="font-size:11px;color:#666">≈A$0.97B ⚠️</span></td>
+  <td><span class="col-tag col-win">15.0%</span></td>
+  <td>~28%</td>
+  <td><span class="col-tag col-win">~50%</span> P/S 1.09x</td>
+  <td><span class="col-tag col-warn">4/5</span></td>
+</tr>
+</table>
+</div>
+<p style="font-size:11px;color:#666;margin:-12px 0 14px">＊石油/煤炭跳过毛利率筛，故满分为5；KAR营收A$0.97B 略低于1B阈值，计为4/5，归入观察池边缘但暂留候选以示跟踪。</p>
+
+<h2>观察池</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>卡在哪筛</th><th>备注 / 触发条件</th></tr>
+<tr>
+  <td><strong>Ampol</strong> ALD</td>
+  <td><span class="col-tag col-lose">④ROE 3.9%</span> <span class="col-tag col-lose">⑤负债率122%</span></td>
+  <td>下游炼化+零售，高杠杆、低ROE（TTM 3.9%），油价上涨反而压缩炼化价差；库存/汇率波动大。触发：ROE回升至>8%且去杠杆至D/E&lt;80%再评估</td>
+</tr>
+<tr>
+  <td><strong>Beach Energy</strong> BPT</td>
+  <td><span class="col-tag col-lose">④ROE -3.7% (TTM)</span></td>
+  <td>FY24 ROE -13.2%，FY25 TTM -3.66%，连续亏损/减值；市占小、业绩波动极大。高杠杆油价小标的，待ROE转正+现金流覆盖再考虑</td>
+</tr>
+<tr>
+  <td><span class="col-tag col-warn">Paladin Energy</span> PDN</td>
+  <td><span class="col-tag col-lose">④ROE -4.9%</span> <span class="col-tag col-warn">⑥PB高分位</span></td>
+  <td>铀矿商，Langer Heinrich复产但仍亏损，ROE为负；铀价周期独立于油价，暂不纳入油气煤炭同质比较</td>
+</tr>
+<tr>
+  <td><strong>Boss Energy</strong> BOE</td>
+  <td><span class="col-tag col-lose">①市值0.59B→临界</span> <span class="col-tag col-lose">④ROE负</span></td>
+  <td>铀矿小型开发商，Honeymoon矿2024重启，尚未稳定盈利，风险高</td>
+</tr>
+<tr>
+  <td><strong>Viva Energy</strong> VEA</td>
+  <td><span class="col-tag col-lose">④ROE -27%</span> <span class="col-tag col-lose">⑤高负债</span></td>
+  <td>与ALD同为下游炼化零售，盈利受炼化毛利挤压，ROE大幅为负，剔除</td>
+</tr>
+</table>
+</div>
+
+<h2>筛除记录</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>筛子</th><th style="width:60px">筛除数</th><th>知名示例</th></tr>
+<tr><td>①市值 &lt;2亿AUD</td><td style="text-align:center">~73</td><td>大量微型勘探公司：88 Energy (88E)、Zeus Resources (ZEU)、3D Energi (TDO) 等，市值几千万</td></tr>
+<tr><td>②营收 &lt;1亿AUD</td><td style="text-align:center">~12</td><td>纯勘探阶段公司：Tamboran (TBN 早期)、Empire Energy、Horizon Oil等</td></tr>
+<tr><td>③毛利率</td><td style="text-align:center"><span class="skip">跳过</span></td><td>全行业跳过；若不跳过将误杀大部分煤炭/油气（毛利率随价格波动 8%-45%）</td></tr>
+<tr><td>④ROE &lt;5%</td><td style="text-align:center">~14</td><td>Beach Energy (-3.7%)、Paladin (-4.9%)、Boss Energy、Viva Energy (-27%) 等</td></tr>
+<tr><td>⑤负债率 &gt;65%</td><td style="text-align:center">~6</td><td>Ampol (122% D/E)、Viva Energy、部分高杠杆页岩勘探公司</td></tr>
+<tr><td>⑥估值 PB分位 &gt;80%</td><td style="text-align:center">~6</td><td>高PB铀矿/锂矿勘探股（博估值溢价，无盈利支撑）</td></tr>
+<tr style="background:#fffde7"><td><strong>剩余</strong></td><td style="text-align:center;font-weight:700;color:#2e7d32"><strong>6</strong></td><td>进入L1-L6深度分析池：WDS/STO/WHC/NHC/YAL (+KAR边界)</td></tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <strong>L7筛选结论</strong><br>
+  114 → 6，筛选力度92%。最有效的是<strong>市值筛（-63%）</strong>与<strong>ROE筛（-12%）</strong>。<br>
+  结果呈现<strong>双头集中</strong>：候选池被2家LNG寡头（WDS/STO）+3家煤炭龙头（WHC/NHC/YAL）垄断，符合行业CR3~58%的集中度特征。<br>
+  需注意：<strong>KAR营收略低于阈值（A$0.97B）</strong>但ROE 15%、负债低，列为<strong>边缘候选</strong>，需用PS和现金流交叉验证；下游炼化（ALD/VEA）因商业模式与油气生产完全相反，不应与上游同池比较，已移入观察池。<br>
+  下一步：对WDS/STO做L1-L3（现金流与资本开支穿透），对WHC/NHC做L4-L5（煤价敏感性与分红可持续性）；其余直接纳入持续跟踪，不做个股深度。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l8">
+<div class="tab-inner">
+
+<h2>产业链</h2>
+<div class="card" style="font-size:13px;line-height:1.7">
+
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px">
+
+<div style="flex:1.1;min-width:180px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#2e7d32;font-size:14px">上游资源端</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:12px">勘探/油气田 & 煤矿</div>
+    <div style="text-align:center;font-size:11px;color:#666">WDS · STO · KAR（海上油田）<br>WHC · YAL · NHC（Bowen/Hunter煤田）</div>
+    <div style="margin:10px 0;text-align:center;color:#999;font-size:18px">↓ 牌照/资源租金</div>
+    <div style="margin-bottom:6px;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:12px">开采 & 液化/洗选</div>
+    <div style="text-align:center;font-size:11px;color:#666">North West Shelf · Pluto LNG<br>Gladstone LNG · Newcastle港煤</div>
+  </div>
+</div>
+
+<div style="flex:1.3;min-width:220px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#1565c0;font-size:14px">中游 加工/运输</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:70px;background:#ffebee;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">炼化</div>
+        <div style="font-size:10px;color:#666">Ampol Lytton<br>Viva Geelong</div>
+      </div>
+      <div style="font-size:20px;color:#999;line-height:36px">→</div>
+      <div style="flex:1;min-width:70px;background:#e3f2fd;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">管道/航运</div>
+        <div style="font-size:10px;color:#666">APA · Qube<br>LNG船队</div>
+      </div>
+      <div style="font-size:20px;color:#999;line-height:36px">→</div>
+      <div style="flex:1;min-width:70px;background:#fff3e0;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">LNG液化</div>
+        <div style="font-size:10px;color:#666">Scarborough<br>Barossa</div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:11px;color:#666;margin-bottom:8px">政府收取：特许权使用费 + PRRT 40% + 碳成本（Safeguard）</div>
+    <div style="background:#fffde7;border-radius:4px;padding:6px 8px;text-align:center;font-size:11px">⚠️ 炼化价差（Singapore Crack）与油价负相关：油价↑ → 炼化毛利↓</div>
+  </div>
+</div>
+
+<div style="flex:1;min-width:160px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#c62828;font-size:14px">下游销售</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:10px 8px;text-align:center;font-weight:600;font-size:12px">出口/国内销售</div>
+    <div style="text-align:center;font-size:11px;color:#666">JKM LNG · Newcastle煤<br>日本/韩/中/印</div>
+    <div style="margin:10px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#f5f5f5;border:1px solid #ccc;border-radius:4px;padding:10px 8px;text-align:center;font-weight:600;font-size:12px">终端用户</div>
+    <div style="text-align:center;font-size:11px;color:#666">发电厂 · 钢厂 · 炼油客户<br>澳洲东海岸气/电用户</div>
+  </div>
+</div>
+
+</div>
+
+<div style="background:#fffde7;border-left:3px solid #f9a825;padding:8px 12px;font-size:12px;border-radius:0 4px 4px 0">
+  <strong>利润最厚环节：</strong>上游资源端（油气田/优质煤矿）→ 资源租金 + 规模效应；亏损/最薄环节：下游炼化零售（价差挤压）与勘探期公司（无产出）<br>
+  <span style="color:#999">WDS现金毛利率81%（H1 2025），WHC利润率12.7%随煤价波动；ALD炼化毛利率仅8.6%且负债高</span>
+</div>
+
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>环节</th><th>代表公司</th><th>毛利率* </th><th>集中度</th><th>议价能力</th></tr>
+<tr>
+  <td><span class="col-tag col-win">LNG/石油上游</span></td>
+  <td>WDS、STO、KAR</td>
+  <td><span class="col-tag col-win">32-38%</span>（现金毛利81%）</td>
+  <td>CR2~58%</td>
+  <td><span class="col-tag col-lose">弱</span>（价格接受者）</td>
+</tr>
+<tr>
+  <td><span class="col-tag col-warn">煤炭（动力煤+焦煤）</span></td>
+  <td>WHC、YAL、NHC</td>
+  <td><span class="col-tag col-warn">15-37%</span></td>
+  <td>CR3~65%</td>
+  <td><span class="col-tag col-lose">弱</span>（基准价定价）</td>
+</tr>
+<tr>
+  <td><span class="col-tag col-lose">炼化/燃料零售</span></td>
+  <td>ALD、VEA</td>
+  <td><span class="col-tag col-lose">7-9%</span></td>
+  <td>寡头（2家主导）</td>
+  <td><span class="col-tag col-warn">中</span>（零售端）</td>
+</tr>
+<tr>
+  <td><span class="col-tag col-info">铀矿</span></td>
+  <td>PDN、BOE</td>
+  <td><span class="col-tag col-lose">负/薄</span>（复产期）</td>
+  <td>分散</td>
+  <td><span class="col-tag col-warn">中</span>（长协价）</td>
+</tr>
+<tr>
+  <td><span class="col-tag col-info">设备/服务</span></td>
+  <td>APA、Worley</td>
+  <td><span class="col-tag col-info">~20%</span></td>
+  <td>分散</td>
+  <td><span class="col-tag col-info">中</span></td>
+</tr>
+</table>
+</div>
+<p style="font-size:11px;color:#999;margin:-12px 0 14px">*毛利率为TTM区间，受商品价波动极大，仅作示意；能源行业毛利率不作为L7筛选依据。</p>
+
+<h2>市场规模</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">指标</th><th style="width:28%">数值</th><th>说明</th></tr>
+<tr><td><strong>TAM</strong>（全球油气+煤炭）</td><td>~US$3-4万亿/年</td><td>全球油气消费 ~1亿桶/日 × $70-90 + 煤炭 ~80亿吨 × $100-150</td></tr>
+<tr><td><strong>SAM</strong>（澳大利亚可服务）</td><td>~A$1300-1500亿/年出口</td><td>LNG出口~A$800亿 + 煤炭~A$500亿（FY24）+ 石油/凝析油</td></tr>
+<tr><td><strong>SOM</strong>（上市公司可得）</td><td>~A$1000亿/年营收</td><td>GICS Energy上市公司营收总和（WDS~A$20B + STO ~A$7.7B + 煤炭三巨头 ~A$15B + 其余）</td></tr>
+<tr><td><strong>渗透/替代率</strong></td><td>可再生电力~35%（澳洲电网）</td><td>煤炭发电占比从~70%（2010）降至~45%（2025），LNG作为过渡燃料仍占出口主导</td></tr>
+<tr><td><strong>近年增速</strong>（3年CAGR）</td><td><span class="col-tag col-warn">-5% ~ +8%</span>（价格驱动）</td><td>量基本零增长（受碳约束与资本纪律），收入增速 = 价格波动（Brent 2022 $120 → 2023 $80 → 2026 $91）</td></tr>
+</table>
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>细分市场</th><th>2025实现价</th><th>2026当前价</th><th>趋势</th></tr>
+<tr><td>Brent原油</td><td>US$69均值（EIA）</td><td><span class="col-tag col-lose">US$91.5</span>（8-19, 战时溢价）</td><td><span class="col-tag col-warn">高位震荡</span></td></tr>
+<tr><td>Newcastle动力煤</td><td>US$131.5/t（8-25）</td><td>52周 100-152</td><td><span class="col-tag col-warn">区间震荡</span> Aussie Treasury预测2026末$70</td></tr>
+<tr><td>硬焦煤（Premium HCC）</td><td>US$215/t</td><td>Treasury预测2026末$140</td><td><span class="col-tag col-lose">下行</span></td></tr>
+<tr><td>Gladstone LNG netback</td><td>US$9.01/mmBtu</td><td>预测US$10（2026末）</td><td><span class="col-tag col-win">温和回升</span></td></tr>
+</table>
+</div>
+
+<h2>生命周期</h2>
+<div class="summary-box">
+  <strong><span class="col-tag col-warn" style="font-size:14px">成熟期 / 衰退前期</span></strong><br>
+  判断依据：① 量零增长：澳大利亚油气产量峰值已过（WDS产量指引186-196 MMboe/年，微增靠Scarborough/Trion新项目对冲老田衰减）；煤炭国内需求年降3-5%，出口量 plateau。<br>
+  ② 资本纪律：行业资本开支增速 &lt;5%，股东回报优先（WDS分红率80%、WHC/NHC高派息），不再追求规模扩张。<br>
+  ③ 替代不可逆：澳洲可再生发电+储能成本已低于新建煤电，煤电退役时间表明确（2035年前关停大部分）；LNG作为“过渡燃料”窗口约10-15年。<br>
+  ④ 财务特征：营收增速低/负、现金流强但波动大、分红率高（4-6%）、PB 1.0-1.5x（周期底部），）。>
+>br</>周期周期 </>
+�>
+</div>
+
+<h2>增长驱动力</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动力</th><th>类型</th><th>可持续性</th><th>量化指标</th></tr>
+<tr>
+  <td>地缘冲突与制裁（Hormuz/Red Sea）</td>
+  <td><span class="col-tag col-lose">周期（供给冲击）</span></td>
+  <td><span class="col-tag col-lose">短（数月）</span></td>
+  <td>Brent地缘溢价 $10-20；Hormuz通行量（~20%全球海运油）</td>
+</tr>
+<tr>
+  <td>OPEC+产量政策与美国页岩弹性</td>
+  <td><span class="col-tag col-lose">周期</span></td>
+  <td><span class="col-tag col-warn">中（1-3年）</span></td>
+  <td>OPEC spare capacity ~4-5mb/d；美国产量13.8mb/d（2026E）</td>
+</tr>
+<tr>
+  <td>亚洲LNG需求（日韩中印）</td>
+  <td><span class="col-tag col-win">结构（能源安全）</span></td>
+  <td><span class="col-tag col-warn">中长（5-10年）</span></td>
+  <td>JKM价、澳洲LNG出口量（~80Mtpa）、新项目FID</td>
+</tr>
+<tr>
+  <td>澳洲国内气价管制与碳政策</td>
+  <td><span class="col-tag col-lose">政策逆风</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>东海岸气价上限$12/GJ、Safeguard排放基线年降4.9%</td>
+</tr>
+<tr>
+  <td>煤炭替代（可再生+储能）</td>
+  <td><span class="col-tag col-lose">结构负向</span></td>
+  <td><span class="col-tag col-win">长（不可逆）</span></td>
+  <td>煤电发电占比、电池储能部署（GW）、碳价</td>
+</tr>
+</table>
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l9">
+<div class="tab-inner">
+
+<h2>市场结构</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>市场结构类型</td>
+  <td><span class="col-tag col-warn">寡头垄断</span>（LNG双寡头 + 煤炭三寡头）叠加 <span class="col-tag col-lose">完全竞争</span>定价（商品价格接受者）</td>
+</tr>
+<tr>
+  <td>CR3 / CR5</td>
+  <td>全GICS Energy CR3~<strong>58%</strong>（WDS 60.4B + STO 24.9B + WHC 6.4B ≈ 91.7B / 158B）；煤炭CR3~65%（WHC+YAL+NHC）；LNG CR2~72%（WDS+STO占LNG出口~70%）</td>
+</tr>
+<tr>
+  <td>格局象限</td>
+  <td><span class="col-tag col-info">寡头稳定</span>（资源牌照锁定，无新进入者；但产品同质、价差为零）</td>
+</tr>
+<tr>
+  <td>新进入者威胁</td>
+  <td><span class="col-tag col-win">极低</span>（勘探牌照+环保审批+巨额CAPEX，10-15年周期；铀/小煤例外但规模小）</td>
+</tr>
+<tr>
+  <td>客户集中度</td>
+  <td>高（日韩中印LNG长协、日本钢厂焦煤长协），但客户议价能力强（多源采购）</td>
+</tr>
+</table>
+</div>
+
+<h2>竞争壁垒</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>壁垒类型</th><th>强度</th><th>可持续性</th><th>具体表现</th></tr>
+<tr>
+  <td>资源/牌照壁垒</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长（20年+）</span></td>
+  <td>North West Shelf、Pluto、Barossa、Hunter Valley煤炭租约均为州政府特许；新矿/气田审批极严（环保+原住民）</td>
+</tr>
+<tr>
+  <td>规模+资本壁垒</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>LNG项目单体CAPEX US$10-20B（Scarborough、Louisiana LNG），只有WDS/STO能承受；煤炭洗选+港口铁路配套沉沒成本高</td>
+</tr>
+<tr>
+  <td>长协与客户粘性</td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>LNG 10-15年长协（JKM挂钩+油价挂钩），煤炭季度基准价；但2026后现货比例提升，粘性下降</td>
+</tr>
+<tr>
+  <td>成本曲线位置</td>
+  <td><span class="col-tag col-win">强（澳优质资产）</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>澳洲LNG现金成本全球前25%低位；Hunter Valley高CV动力煤（6000kcal）现金成本$60-70/t，位居成本曲线左半段</td>
+</tr>
+</table>
+</div>
+
+<div class="summary-box">
+  <strong>定价权测试</strong><br>
+  🔹 龙头能涨价吗？<strong>不能</strong>。WDS/STO/WHC均为<strong>价格接受者</strong>，实现价 = Brent/Newcastle/JKM基准价 × 品质系数，无法自主提价。<br>
+  🔹 毛利率趋势：随商品价同向剧烈波动。WDS现金毛利率81%（2025H1）但NPAT同比-24%；WHC利润率12.7%（TTM）但营收同比-27.7%，BPT更因价格与减值转亏。<br>
+  🔹 ROE趋势：高度顺周期。WDS ROE 7.2%（FY24）→ 预测6.9%（FY27）；WHC ROE 11.8%但2024前曾因煤价暴利达30%+，2025快速回落；BPT ROE -13.5%（FY24）显示无壁垒保护。
+</div>
+
+<h2>驱动力拆解</h2>
+<div class="highlight-box">
+  <strong>行业收入公式</strong><br>
+  收入 = 产量（MMboe / Mt）× 实现价格（Brent / Newcastle / JKM）× AUD/USD汇率<br>
+  利润 = 量 ×（价 − 单位现金成本 − 特许权使用费 − 碳成本）− 折旧/摊销<br><br>
+  当前组合：<span style="color:#c62828;font-weight:700">价 ↑↑</span>（战时溢价）＋ <span style="color:#666;font-weight:700">量 →</span>（资本纪律、产量平稳）＝ <span class="col-tag col-warn">价驱动的繁荣，量无贡献</span>（典型周期顶部特征）
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动因子</th><th>最新值</th><th>历史区间（5年）</th><th>当前分位</th></tr>
+<tr>
+  <td>Brent原油</td>
+  <td><span class="col-tag col-lose">US$91.5</span>（8-19）</td>
+  <td>US$60-120</td>
+  <td><span class="col-tag col-lose">90%+</span></td>
+</tr>
+<tr>
+  <td>Newcastle动力煤</td>
+  <td><span class="col-tag col-warn">US$131.5/t</span></td>
+  <td>US$60-440（2022峰值）</td>
+  <td><span class="col-tag col-warn">55%</span></td>
+</tr>
+<tr>
+  <td>澳洲LNG出口量</td>
+  <td>~80 Mtpa</td>
+  <td>75-82 Mtpa</td>
+  <td><span class="col-tag col-info">70%</span></td>
+</tr>
+<tr>
+  <td>行业平均产能利用率</td>
+  <td><span class="col-tag col-win">~85-90%</span>（LNG设施可靠性96-98%）</td>
+  <td>70-98%</td>
+  <td><span class="col-tag col-warn">高位</span></td>
+</tr>
+<tr>
+  <td>AUD/USD</td>
+  <td>~0.65</td>
+  <td>0.60-0.75</td>
+  <td><span class="col-tag col-info">中位</span></td>
+</tr>
+</table>
+</div>
+
+<h2>成本结构</h2>
+<div class="summary-box">
+  🔹 <strong>类型：</strong><span class="col-tag col-lose">重资产</span>（固定成本高，折旧/摊销占比大；WDS年折旧~US$2.5B，WHC单位成本A$132/t）<br>
+  🔹 <strong>成本敏感性：</strong>收入±10% → 利润±30-50%（高经营杠杆）。2025H1 WDS营收+10%但NPAT -24%（折旧与减值放大波动）<br>
+  🔹 <strong>盈亏平衡点：</strong>LNG ~US$30-40/boe（现金成本），动力煤 ~US$60-70/t（现金成本），均远低于当前价，故当前全行业盈利；但价格回落30%即吞噬大部分利润
+</div>
+
+<h2>竞争格局总结</h2>
+<div class="highlight-box">
+  ASX能源呈现<strong>“上游寡头坐收资源租金、下游炼化赚价差”</strong>的二元结构。<br>
+  上游（WDS/STO/WHC/YAL/NHC）靠<strong>资源禀赋+规模+成本曲线</strong>构筑护城河，但护城河<strong>不转化为定价权</strong>——所有人都是商品价格的奴隶。真正的竞争优势是<strong>低成本+长寿命资产+强资产负债表</strong>，能在周期底（Brent $60、煤$70）活下来并逆向收购。<br>
+  炼化（ALD/VEA）商业模式与上游<strong>负相关</strong>，不应同池比较。<br>
+  策略：只选上游<strong>成本曲线最左端+分红最慷慨</strong>的龙头（WDS/WHC），放弃无定价权的中间环节与勘探期公司。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l10">
+<div class="tab-inner">
+
+<h2>周期位置</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>库存周期阶段</td>
+  <td><span class="col-tag col-warn">繁荣后期 → 衰退前期</span>（价格高位、库存低于5年均值、OPEC spare capacity偏紧，但需求端已现疲软信号）</td>
+</tr>
+<tr>
+  <td>产能利用率</td>
+  <td><span class="col-tag col-warn">85-96%</span>（LNG设施可靠性96-98%，煤矿产量在指引上沿，接近满产）</td>
+</tr>
+<tr>
+  <td>产品价格分位</td>
+  <td>Brent <span class="col-tag col-lose">90%+分位</span>（US$91 vs 均衡$65-75），Newcastle煤 <span class="col-tag col-warn">55%分位</span>（$131 vs 预测$70），JKM <span class="col-tag col-warn">60%分位</span></td>
+</tr>
+<tr>
+  <td>行业盈利状态</td>
+  <td><span class="col-tag col-win">高盈利顶点</span>：WDS H1 EBITDA US$4.6B、WHC利润率12.7%、NHC ROE 16.6%，但环比已现营收-27%（WHC）与NPAT-24%（WDS）</td>
+</tr>
+</table>
+</div>
+
+<div class="danger-box">
+  <strong>⚠ PE悖论检查</strong><br>
+  当前WDS PE 16.2x / STO PE ~14x / WHC PE 9.8x，看似“便宜”，但恰是<strong>周期顶部陷阱</strong>：利润处于5年高位，分母极大导致PE极低。一旦Brent回落至$65-70，盈利将腰斩，PE将飙升至30-50x。<br>
+  正确标尺：<strong>PB</strong>。WDS PB~1.1x（历史20%分位~1.0x / 80%分位~2.0x）、STO PB~1.0x、WHC PB~1.2x，当前PB处于<strong>中高位</strong>而非底部——估值并未提供安全边际。<br>
+  <strong>警告：</strong>在商品价90%分位时以“低PE”买入，是周期股最典型的亏损方式。应以<strong>PB 20%分位</strong>作为买入锚。
+</div>
+
+<h2>估值水平</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>估值指标</th><th>当前（龙头均值）</th><th>历史中位数</th><th>80%分位（贵）</th><th>20%分位（便宜）</th></tr>
+<tr>
+  <td><strong>PE</strong>（TTM）</td>
+  <td><span class="col-tag col-warn">10-16x</span>（WDS 16.2x / WHC 9.8x）</td>
+  <td>14-18x（周期中枢已失真）</td>
+  <td>25x+（盈利底）</td>
+  <td>5-8x（盈利顶）</td>
+</tr>
+<tr>
+  <td><strong>PB</strong>（核心）</td>
+  <td><span class="col-tag col-warn">1.0-1.3x</span></td>
+  <td>1.4-1.6x</td>
+  <td>2.0-2.5x</td>
+  <td><span class="col-tag col-win">0.8-1.0x</span></td>
+</tr>
+<tr>
+  <td><strong>股息率</strong></td>
+  <td><span class="col-tag col-win">4.0-5.5%</span>（WDS 4.43% / ALD 5.9%）</td>
+  <td>4.5%</td>
+  <td>2.5%（股价高时）</td>
+  <td><span class="col-tag col-win">6-8%</span>（周期底买点）</td>
+</tr>
+</table>
+</div>
+
+<h2>政策环境</h2>
+<div class="summary-box">
+  🔹 <strong>政策方向：</strong><span class="col-tag col-lose">偏紧 / 逆风</span>（控通胀 + 减排 + 资源税）<br>
+  🔹 <strong>关键政策：</strong><br>
+  &emsp;• <strong>联邦气源留存</strong>：2027年7月起大型LNG出口商须将20%产量留供东海岸（STO/WDS直接冲击）<br>
+  &emsp;• <strong>气价上限</strong>：东海岸批发气价上限$12/GJ（2023起延续），压制国内实现价<br>
+  &emsp;• <strong>Safeguard Mechanism 2.0</strong>：2030前基线年降4.9%，WDS/WHC需购买ACCU或减产，碳成本年增A$50-150M<br>
+  &emsp;• <strong>州特许权使用费上调</strong>：QLD煤炭特许权累进税率最高40%（2022起），NSW亦上调，WHC/YAL/NHC现金流直接受损<br>
+  &emsp;• <strong>环保审批收紧</strong>：Scarborough等新项目面临联邦环保法重审，工期与CAPEX不确定性增加<br>
+  🔹 <strong>政策周期位置：</strong><span class="col-tag col-lose">收紧期</span>（2023-2027），有助于出清高成本产能、利好低成本龙头长期份额，但短期压制盈利与估值
+</div>
+
+<h2>买入清单（5条件）</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:28%">条件</th><th style="width:16%">结果</th><th>备注</th></tr>
+<tr>
+  <td>周期位置：不在繁荣顶点</td>
+  <td style="text-align:center"><span class="col-tag col-lose">❌ 未满足</span></td>
+  <td>Brent 90%+分位，JKM与煤价亦在高位；XEJ +31.7% YTD，情绪亢奋</td>
+</tr>
+<tr>
+  <td>估值：PB在历史20%分位附近</td>
+  <td style="text-align:center"><span class="col-tag col-lose">❌ 未满足</span></td>
+  <td>当前PB 1.0-1.3x 处于中高位；需回落至0.8-1.0x（WDS ~A$22-25）才具安全边际</td>
+</tr>
+<tr>
+  <td>政策：不是收紧期</td>
+  <td style="text-align:center"><span class="col-tag col-lose">❌ 未满足</span></td>
+  <td>气源留存+碳约束+特许权税三重收紧，2027前无放松迹象</td>
+</tr>
+<tr>
+  <td>格局：龙头壁垒稳固</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅ 满足</span></td>
+  <td>WDS/STO/WHC/YAL资源与规模壁垒强，成本曲线左侧，护城河真实</td>
+</tr>
+<tr>
+  <td>增长：有可见驱动力</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️ 部分满足</span></td>
+  <td>短期量无增长（仅靠价），长期受转型压制；仅Scarborough/Barossa等新项目提供2-3年增量</td>
+</tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <div style="font-size:16px;font-weight:700;margin-bottom:8px">综合判断：<span class="col-tag col-lose" style="font-size:15px">回避 / 等待</span></div>
+  <div style="margin-bottom:6px">1/5 条件满足，不具备买入条件。当前为<strong>持有者逐步兑现</strong>窗口，而非开仓窗口。</div>
+  <table style="font-size:12px;margin:6px 0;border:none;background:transparent">
+    <tr><td style="border:none;padding:3px 6px;background:transparent;width:90px;font-weight:600">预期回报</td><td style="border:none;padding:3px 6px;background:transparent">若在当前价买入，12个月预期回报 <strong>-10% ~ +5%</strong>（以Brent回落至$70为基准，盈利下修20-30%）；周期底买入预期回报 <strong>+40-80%</strong>（PB修复+股息）</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">仓位建议</td><td style="border:none;padding:3px 6px;background:transparent"><span class="col-tag col-lose">0-5% 观察仓</span>（仅限已持有者持有待沽；新资金不建仓）</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">跟踪指标</td><td style="border:none;padding:3px 6px;background:transparent">Brent连续3周&lt;$75 · XEJ回撤&gt;15% · WDS PB&lt;1.0x · WHC股息率&gt;6% · OPEC增产落地</td></tr>
+  </table>
+  <div style="margin-top:8px;padding:8px;background:#ffebee;border-radius:4px;font-size:12px">
+    <strong>买入策略（分段）：</strong><br>
+    <span class="col-tag col-lose">当前（Brent $90+）</span>：不买。持有者可逢高减半，锁定战时溢价收益<br>
+    <span class="col-tag col-warn">第一观察位（Brent $75-80，PB 1.0x）</span>：建观察仓 1-2%（WDS/WHC各半），试探性<br>
+    <span class="col-tag col-win">第二买入位（Brent $65-70，PB 0.8-0.9x，股息率&gt;6%）</span>：加至5-8%（WDS为主 + STO为辅，煤炭择WHC），明确赚<strong>估值修复+股息</strong>，持有12-24个月
+  </div>
+</div>
+
+<h2>卖出信号</h2>
+<div class="danger-box">
+  <strong>持有者出现以下信号考虑卖出：</strong><br>
+  <div style="margin-top:6px">
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px">1</span>
+    Brent跌破US$75并连续4周下行（确认地缘溢价消退，盈利下修开始）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">2</span>
+    联邦气源留存细则超预期收紧（如比例提至30%或溯及现有长协），STO/WDS国内实现价大幅承压<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">3</span>
+    煤炭特许权税或碳成本超预期上调（QLD/NSW新增税阶），WHC/YAL/NHC现金流骤降<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">4</span>
+    龙头PB修复至1.6x+（历史中位数以上）且股息率&lt;3.5%，估值修复完成，兑现离场
+  </div>
+</div>
+
+</div>
+</div>
+
+<div class="footer">
+  Generated by Industry Analysis · L7-L10 Framework · Stock Selection<br>
+  数据来源：Stake (2026-08-10)、GoMarketCap、Simply Wall St (S&P Global)、EIA STEO Aug 2026、ASX公告、Woodside/Santos年报 2025、MarketIndex XEJ、Aussie Treasury预测；价格为AUD除非注明USD<br>
+  免责：本报告仅为行业研究框架演示，不构成投资建议。商品价格预测方差极大，须以持续披露为准。
+</div>
+
+</div>
+
+<script>
+var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+var contents = document.querySelectorAll('.tab-content');
+btns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    contents.forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    var tab = btn.getAttribute('data-tab');
+    document.getElementById('tab-' + tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
