@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QBE Insurance Group (ASX: QBE) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .score-note { font-size: 13px; color: #666; background: #fafafa; border: 1px dashed #ccc; padding: 8px 12px; margin: 10px 0; }
+  .history-table td:first-child { white-space: nowrap; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>QBE Insurance Group（QBE）ASX: QBE 财务分析报告</h1>
+<p class="subtitle">非周期股评分体系（保险调整版·10维度）· 全球综合性一般保险龙头 · L1-L6 全框架分析</p>
+<p class="meta">分析日期：2026-08-25 | 数据来源：FY2025年报（截至2025-12-31）+ 1H26半年报 + ASX公告 + Yahoo/StockAnalysis | 货币：财务USD，股价/市值AUD | 股价 ~A$25.0（52周 A$18.57-25.83）</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 保险三表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 PB估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>QBE Insurance Group Limited</td></tr>
+  <tr><td>股票代码</td><td>ASX: QBE（全球综合性一般保险/再保险）</td></tr>
+  <tr><td>所属行业</td><td>一般保险（General Insurance）—— 特殊行业（非周期·金融）</td></tr>
+  <tr><td>行业地位</td><td>澳洲最大、全球前20大一般保险集团；27国运营、约13,500员工；澳洲/北美/国际三大板块</td></tr>
+  <tr><td>GWP FY2025</td><td><strong>US$23,959m（+7.0%，恒定汇率+8%剔除退出组合）</strong></td></tr>
+  <tr><td>保险收入 FY2025</td><td><strong>US$22,955m（+5.4%）</strong>；净保险收入 US$18,412m</td></tr>
+  <tr><td>归母净利润 FY2025</td><td><strong>US$2,157m（+21.3%）</strong>；调整后 US$2,132m（+23.3%）</td></tr>
+  <tr><td>经营现金流特征</td><td>先收保费后赔付，天然正现金流；运营资金受保费增长+投资回流驱动</td></tr>
+  <tr><td>总资产</td><td><strong>US$48,535m</strong>（FY2024 US$43,846m）</td></tr>
+  <tr><td>归母净资产（Equity）</td><td><strong>US$11,673m</strong>（有形约US$9,569m，商誉/无形US$2,104m）</td></tr>
+  <tr><td>ROE（调整后）</td><td><strong>19.8%</strong>（FY2024 18.2%，FY2023 16.0%）—— 十年新高</td></tr>
+  <tr><td>Combined Operating Ratio</td><td><strong>91.9%</strong>（FY2024 93.1%，FY2023 95.2%，FY2020 104.2%）</td></tr>
+  <tr><td>行业类型标注</td><td><strong>非周期股</strong> —— 保险属防御型金融，适用 非周期股评分体系（保险调整版10维度）</td></tr>
+</table>
+
+<p class="score-note"><strong>评分口径说明：</strong><span>首次分析，无历史版本；采用非周期股评分体系（保险调整版）</span></p>
+
+<h2>综合评分（百分制）· 非周期股（保险调整版10维度）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">采用非周期股评分体系（保险版）：ROE/承保质量/GWP增长/利润增长/杠杆/资本充足/费用/杜邦驱动/PB估值/现金流分红。保险首选PB估值，毛利率/负债率按保险逻辑解读。</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">满分</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>① ROE水平</td><td>15</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">调整后ROE 19.8% ≥15%，十年新高，全球大型保险顶级水平</td></tr>
+  <tr><td>② 承保利润质量（COR）</td><td>15</td><td class="good" style="font-weight:bold;font-size:15px">13</td><td style="text-align:left">COR 91.9%（目标 ~92.5%），较93.1%大幅改善，灾损低于预算；国际板块COR 88.7%最佳</td></tr>
+  <tr><td>③ GWP增长</td><td>10</td><td class="good" style="font-weight:bold;font-size:15px">8</td><td style="text-align:left">+7.0% headline，+8%剔除退出组合，符合中个位数指引，量价均衡</td></tr>
+  <tr><td>④ NPAT增长</td><td>10</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">法定+21.3%至US$2,157m，调整后+23.3%至US$2,132m，税前利润US$2,845m（+24%）</td></tr>
+  <tr><td>⑤ 财务杠杆 Debt/Capital</td><td>10</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">24.1%（FY2024 19.9%），虽上升但仍<40%安全线；长期债务US$3.7B</td></tr>
+  <tr><td>⑥ 资本充足 PCA Multiple</td><td>10</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">1.87x（FY2024 1.86x），高于目标1.6-1.8x；备考分红后1.76x仍充裕</td></tr>
+  <tr><td>⑦ 费用控制 Expense Ratio</td><td>10</td><td class="neutral" style="font-weight:bold;font-size:15px">6</td><td style="text-align:left">费率12.4%（FY2024 12.2%）微升，常币费用+10%含数字化投入，需跟踪</td></tr>
+  <tr><td>⑧ 杜邦驱动质量</td><td>5</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">高承保利润型：去杠杆ROA约4.4%，权益乘数4.16x，利润靠承保+投资非高杠杆</td></tr>
+  <tr><td>⑨ PB估值</td><td>10</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">PB ~1.9-2.15x（BVPS ~US$7.8 / A$11.5），ROE 19.8%支撑合理，历史分位中枢偏上</td></tr>
+  <tr><td>⑩ 现金流/股东回报</td><td>5</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">天然正现金流；股息A$1.09(+25%) payout 50% + A$450m回购，总回报~65%利润</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td>100</td><td style="font-size:16px">86/100</td><td style="text-align:left">品质优秀（86/100分）</td></tr>
+</table>
+
+<div class="verdict verdict-ok">品质优秀（86/100分）</div>
+
+<!-- HISTORY-TABLE -->
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>QBE是澳洲唯一全球化一般保险龙头，FY2025交出近十年最佳答卷：COR 91.9%提前完成管理层~92.5%目标、调整后ROE 19.8%为十年新高、GWP中个位数稳增、净投资收益率4.9%（US$1,633m）稳健。1H26延续势头：ROE年化17.7%仍远超中长期15%+指引、GWP恒定汇率+6%、投资US$828m（2.3%）。PCA 1.87x资本充裕支撑50%派息+A$450m回购（已于2026.4完成）。86/100分属"品质优秀"，扣分在费用率微升与债务资本比抬升。<br><br>
+  <strong>核心优势：</strong>① 全球多元化降低单一市场/灾种集中度，国际板块COR 88.7%领跑；② 承保纪律+灾损低于预算驱动COR三年连降 95.9%→93.1%→91.9%；③ 资金管理 US$35.85B（风险资产15%）在加息环境享受4.9%稳健回报，风险资产回报9.6%亮眼；④ 资本充裕且股东回报丰厚（股息+25%至109c +回购）。<br><br>
+  <strong>核心风险：</strong>① 灾损波动回归均值风险（FY2025低于预算，天灾年行业损失~US$150B高位）；② 北美板块仍承压（FY2024 COR 98.9%接近盈亏线）；③ 费率增速放缓（集团续保提价5.5% vs 上年9.7%）对GWP增速的边际贡献减弱；④ 债务资本比24.1%连续抬升需跟踪。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心保险财务数据（FY2025，USD百万）</h2>
+
+<h3>2.1 利润表（保险专用 — 管理口径 vs 法定口径）</h3>
+<table>
+  <tr><th>指标</th><th>FY2025 管理</th><th>FY2024 管理</th><th>同比</th><th>法定FY2025</th><th>评价</th></tr>
+  <tr><td>Gross Written Premium (GWP)</td><td><strong>23,959</strong></td><td>22,395</td><td>+7.0% (+8%核心)</td><td>23,959</td><td class="good">✅ 中个位数稳增</td></tr>
+  <tr><td>Insurance Revenue</td><td><strong>22,955</strong></td><td>21,778</td><td>+5.4%</td><td>22,955</td><td class="good">✅</td></tr>
+  <tr><td>Reinsurance Expenses</td><td>-4,543</td><td>-3,971</td><td>+14.4%</td><td>-5,251</td><td class="neutral">分保成本上升</td></tr>
+  <tr><td>Net Insurance Revenue</td><td><strong>18,412</strong></td><td>17,807</td><td>+3.4%</td><td>—</td><td class="good">✅</td></tr>
+  <tr><td>Net Claims Expense</td><td>-11,314</td><td>-11,249</td><td>+0.6%</td><td>—</td><td class="good">✅ 赔付控制卓越</td></tr>
+  <tr><td>Net Commission</td><td>-3,330</td><td>-3,153</td><td>+5.6%</td><td>—</td><td class="neutral">随保费增长</td></tr>
+  <tr><td>Expenses & Other</td><td>-2,281</td><td>-2,171</td><td>+5.1%</td><td>—</td><td class="neutral">⚠ 费用率微升</td></tr>
+  <tr><td><strong>Insurance Operating Result</strong></td><td><strong>1,487</strong></td><td>1,234</td><td>+20.5%</td><td>2,178</td><td class="good">✅ 承保利润大幅增长</td></tr>
+  <tr><td>Net Insurance Finance</td><td>-53</td><td>142</td><td>大幅波动</td><td>—</td><td class="neutral">贴现率影响</td></tr>
+  <tr><td>Fixed Income (risk-free)损益</td><td>47</td><td>-178</td><td>转正</td><td>—</td><td class="neutral">利率波动对冲中性</td></tr>
+  <tr><td>Net Investment Income (保单资金)</td><td>1,036</td><td>932</td><td>+11.2%</td><td>1,680合计</td><td class="good">✅</td></tr>
+  <tr><td>Insurance Profit</td><td><strong>2,517</strong></td><td>2,130</td><td>+18.2%</td><td>—</td><td class="good">✅</td></tr>
+  <tr><td>Net Investment Income (股东资金)</td><td>597</td><td>556</td><td>+7.4%</td><td>—</td><td class="good">✅</td></tr>
+  <tr><td>Profit Before Tax</td><td><strong>2,845</strong></td><td>2,291</td><td>+24.2%</td><td>—</td><td class="good">✅</td></tr>
+  <tr><td>Income Tax</td><td>-680（23.9%）</td><td>-504（22.0%）</td><td>税率抬升</td><td>-680</td><td class="neutral">—</td></tr>
+  <tr><td><strong>NPAT（归母）</strong></td><td><strong>2,157</strong></td><td>1,779</td><td><strong>+21.3%</strong></td><td>2,157</td><td class="good">✅</td></tr>
+  <tr><td>Adjusted NPAT</td><td><strong>2,132</strong></td><td>1,729</td><td><strong>+23.3%</strong></td><td>—</td><td class="good">✅ 核心利润更强</td></tr>
+  <tr><td>Adjusted ROE</td><td><strong>19.8%</strong></td><td>18.2%</td><td>+1.6pct</td><td>—</td><td class="good">✅ 十年新高</td></tr>
+  <tr><td>Basic Adjusted EPS</td><td><strong>141.3 US¢</strong></td><td>115.2 US¢</td><td>+22.6%</td><td>—</td><td class="good">✅</td></tr>
+  <tr><td>DPS</td><td><strong>A$1.09</strong></td><td>A$0.87</td><td><strong>+25.3%</strong></td><td>分红率50%</td><td class="good">✅</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读（保险视角）：</strong>QBE收入链是"GWP → 保险收入 → 净保险收入 → 承保利润 → 投资收益 → NPAT"。FY2025 GWP +7.0%（剔除北美中端市场/澳洲太平洋退出组合约US$600m影响后 +8-9%）由续保提价5.5%（北美7.3%、国际3.7%、澳洲太平洋8.4%）+新业务驱动，量价均衡。净赔付仅+0.6%远低于保费增速，COR 91.9%超预期，核心是灾损低于预算+储备稳定。投资端US$1,633m（4.9%回报）中核心固收4.2%+风险资产9.6%，对冲后利润影响中性。调整后利润US$2,132m更能反映持续盈利（法定与管理差异系分保/贴现会计处理）。1H26延续：调整后NPAT US$1,033m（+3.6%），年化ROE 17.7%仍超中长期15%+指引。
+</div>
+
+<h3>2.2 资产负债表（保险专用结构，USD百万）</h3>
+<table>
+  <tr><th>科目</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>Total Investments</td><td><strong>33,468</strong></td><td>28,269</td><td class="good">✅ 资金管理规模US$35,850m（avg US$33,218m）</td></tr>
+  <tr><td>Cash & Equivalents</td><td>1,869</td><td>1,638</td><td class="good">✅ 流动性充裕</td></tr>
+  <tr><td>Intangibles / Goodwill</td><td>2,104</td><td>1,964</td><td class="neutral">占比4.3%，总体可控</td></tr>
+  <tr><td>Total Assets</td><td><strong>48,535</strong></td><td>43,846</td><td class="good">✅ +10.7%</td></tr>
+  <tr><td>Insurance & Annuity Liabilities（含赔付准备金）</td><td><strong>31,259</strong></td><td>28,735</td><td class="neutral">保险核心负债，占负债85%</td></tr>
+  <tr><td>Long-Term Debt</td><td><strong>3,700</strong></td><td>2,664</td><td class="neutral">⚠ +38.9%，Debt/Capital 24.1%</td></tr>
+  <tr><td>Total Liabilities</td><td><strong>36,862</strong></td><td>33,115</td><td class="neutral">—</td></tr>
+  <tr><td>Common Equity（归母）</td><td><strong>11,671</strong></td><td>10,728</td><td class="good">✅ +8.8%</td></tr>
+  <tr><td>Shareholders' Equity</td><td><strong>11,673</strong></td><td>10,731</td><td class="good">✅</td></tr>
+  <tr><td>Net Tangible Assets</td><td><strong>~9,569</strong></td><td>~8,767</td><td class="good">✅ 有形资产占比82%</td></tr>
+  <tr><td>Debt to Total Capital</td><td><strong>24.1%</strong></td><td>19.9%</td><td class="neutral">⚠ 抬升但仍健康</td></tr>
+  <tr><td>PCA Multiple（APRA）</td><td><strong>1.87x</strong></td><td>1.86x</td><td class="good">✅ 高于1.6-1.8x目标区间</td></tr>
+  <tr><td>Funds Under Management</td><td><strong>35,850</strong></td><td>30,586</td><td class="good">✅ +17.2%（+11%恒定汇率）</td></tr>
+  <tr><td>Risk Assets Allocation</td><td><strong>15%</strong></td><td>14%</td><td class="neutral">85%高质固收，稳健</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读（保险视角）：</strong>保险最大负债是赔付准备金US$31,259m（占负债85%），反映未来理赔义务，负债久期与投资资产匹配是风控核心。现金US$1,869m+高质固收85%保障流动性与ALM匹配。总资产US$48,535m较2024 +10.7%，主要为投资规模扩张（受益保费+利润+投资回报）。净有形资产~US$9.57B，商誉占比仅4.3%无重大减值风险（对比2020年北美商誉减值）。Debt/Capital 24.1%较19.9%抬升（含Tier 2发行），但PCA 1.87x仍充裕（备考分红后1.76x、计入回购余量后1.73x）。FUM US$35.85B恒定汇率+11%增长，风险资产15%稳步提升贡献9.6%回报。
+</div>
+
+<h3>2.3 现金流量表（保险视角）</h3>
+<table>
+  <tr><th>指标</th><th>FY2025特征</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td>先收保费后赔付，天然正向；GWP增长+承保盈利驱动FUM持续流入</td><td class="good">✅ 行业特性，FY2025 FUM +US$5.26B验证</td></tr>
+  <tr><td>投资现金流（CFI）</td><td>FUM增配主要为固收+风险资产；2025风险资产占比15%→投资收益US$1,633m</td><td class="good">✅ 资产负债匹配稳健</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td>分红A$1.09（50% payout）+ A$450m回购（2025.11宣布，2026.4完成）+债务融资</td><td class="good">✅ 总分配~65%利润，资本纪律良好</td></tr>
+  <tr><td>FCF视角</td><td>保险无传统FCF口径，以"承保利润+投资收益-分红"衡量；自由资本生成强劲</td><td class="good">✅ 支撑PCA 1.87x</td></tr>
+  <tr><td>分红与回购</td><td>全年DPS A$1.09（末期78c+中期31c），同比+25%，29% franking；回购A$450m</td><td class="good">✅ 股东回报丰厚</td></tr>
+  <tr><td>债务动态</td><td>总借款US$4.2B（1H26）vs US$3.7B（FY2025），含Tier 2赎回A$500m（2026.8）后备考D/C 22.4%</td><td class="neutral">需关注债务上升节奏</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>保险现金流与工业企业迥异：保费预收带来天然经营正现金流，FY2025 FUM +17.2%至US$35.85B（恒定汇率+11%）即现金流入证据。投资端85%高质固收提供稳定票息，风险资产15%贡献超额回报。筹资端大额返还：FY2025总分配约65%利润（50%股息+A$450m回购），1H26回购已完成且中期派息33c（33% payout，年化）。PCA 1.82x（1H26）仍高于目标区间，备考分红后1.78x，资本生成与分配平衡良好。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 保险关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>目标/基准</th><th>评价</th></tr>
+  <tr><td>Combined Operating Ratio（COR）</td><td><strong>91.9%</strong></td><td>93.1%</td><td>FY2026目标~92.5%</td><td class="good">✅ 提前达标，三年连降</td></tr>
+  <tr><td>Net Claims Ratio</td><td>61.4%</td><td>63.2%</td><td>—</td><td class="good">✅ -1.8pct大幅改善</td></tr>
+  <tr><td>Net Commission Ratio</td><td>18.1%</td><td>17.7%</td><td>—</td><td class="neutral">⚠ 微升0.4pct</td></tr>
+  <tr><td>Expense Ratio</td><td>12.4%</td><td>12.2%</td><td>平稳</td><td class="neutral">⚠ +0.2pct</td></tr>
+  <tr><td>Insurance Profit Margin</td><td>~12.0%（2024 12.0%，2023 9.7%）</td><td>12.0%</td><td>低90s COR对应</td><td class="good">✅ 维持高位</td></tr>
+  <tr><td>Adjusted ROE</td><td><strong>19.8%</strong></td><td>18.2%</td><td>中长期15%+</td><td class="good">✅ 十年新高，远超指引</td></tr>
+  <tr><td>GWP Growth（ headline）</td><td><strong>+7.0%</strong></td><td>+3.0%</td><td>中个位数</td><td class="good">✅ 加速且质量高</td></tr>
+  <tr><td>Net Investment Return</td><td><strong>4.9%</strong></td><td>4.9%</td><td>—</td><td class="good">✅ 稳健（固收4.2%，风险9.6%）</td></tr>
+  <tr><td>Combined ROE vs IAG 19.4%/SUN 12.5%</td><td>19.8%最高</td><td>18.2%</td><td>行业~12-15%</td><td class="good">✅ 领跑澳洲同业</td></tr>
+  <tr><td>Tax Rate</td><td>23.9%</td><td>22.0%</td><td>22-24%</td><td class="neutral">—</td></tr>
+  <tr><td>Debt/Capital</td><td>24.1%</td><td>19.9%</td><td>&lt;40%</td><td class="neutral">⚠ 上升需跟踪</td></tr>
+  <tr><td>PCA Multiple</td><td>1.87x</td><td>1.86x</td><td>1.6-1.8x目标</td><td class="good">✅ 充裕</td></tr>
+  <tr><td>DPS（AUD）</td><td><strong>A$1.09（50% payout，29% franking）</strong></td><td>A$0.87（20% frank）</td><td>50% payout</td><td class="good">✅ +25%，franking提升</td></tr>
+</table>
+
+<h3>3.2 分部/分业务分析</h3>
+<table>
+  <tr><th>板块</th><th>FY2024 COR</th><th>FY2024 GWP</th><th>FY2025趋势</th><th>评价</th></tr>
+  <tr><td>North America</td><td>98.9%（2023 103.7%）</td><td>US$7,277m（-4%）</td><td>退出中端市场/三方物业组合， Renaissance中；农险（Crop）波动</td><td class="neutral">⚠ 仍最弱，改革见效中</td></tr>
+  <tr><td>International</td><td>88.7%（2023 89.5%）</td><td>US$9,837m（+11%）</td><td>领跑集团，持续扩张</td><td class="good">✅ 明星板块</td></tr>
+  <tr><td>Australia Pacific</td><td>92.0%（2023 93.6%）</td><td>US$5,281m（-1%）</td><td>退出非核心后企稳，续保提价8.4%支撑</td><td class="good">✅ 改善</td></tr>
+  <tr><td>Reinsurance（QBE Re归属International）</td><td>—</td><td>含于International</td><td>降低巨灾波动，再保优化</td><td class="good">✅ 降低波动核心举措</td></tr>
+  <tr><td>Crop & LMI</td><td>Crop高波动，LMI企稳</td><td>US$3,937m（Crop+LMI）</td><td>大宗商品价格+天气影响大</td><td class="neutral">⚠ 周期性强</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>分部解读：</strong>QBE的分部改善是集团COR从95.2%（2023）→93.1%→91.9%的主因。International（88.7%）已达优秀保险标准，是盈利压舱石；Australia Pacific（92.0%）受益本土提价与组合优化稳步改善；North America（98.9%）虽从103.7%大幅修复但仍接近盈亏平衡，受中端市场/三方物业历史包袱+农险波动拖累，退出非核心（~US$600m）与再保交易（LPT储备交易）是扭亏关键。FY2025 GWP加速至+7%（核心+8%）显示主动"量质兼顾"：不是盲目冲规模，而是通过优化组合+提价实现高质量增长。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
+  <tr><td class="good">🟢 正面</td><td>Adjusted ROE 19.8%十年新高，承保+投资双轮驱动</td><td>COR 91.9% + 投资4.9%</td></tr>
+  <tr><td class="good">🟢 正面</td><td>PCA 1.87x资本充裕，FUM US$35.85B流动性强</td><td>高于目标区间，备考1.76x仍充裕</td></tr>
+  <tr><td class="good">🟢 正面</td><td>赔付准备金计提审慎，灾损低于预算（2025），储备交易降低波动</td><td>COR三年连降，风险对冲</td></tr>
+  <tr><td class="good">🟢 正面</td><td>GWP高质量增长（提价5.5% + 新业务），国际板块领跑</td><td>+7% headline，+8%核心</td></tr>
+  <tr><td class="good">🟢 正面</td><td>股东回报丰厚：股息+25%至A$1.09（payout 50%）+ A$450m回购，franking提升至29%</td><td>总分配65%利润</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>费用率12.4%（+0.2pct），常币费用+10%含数字化投入</td><td>需观察费效比是否随规模摊薄</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>债务资本比24.1%（FY2024 19.9%）连续抬升，借款US$3.7B→US$4.2B（1H26）</td><td>杠杆仍安全但趋势需跟踪</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>北美板块COR 98.9%仍脆弱，农险天气/大宗商品波动大</td><td>历史拖累项</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>续保提价5.5%较上年9.7%大幅放缓，物业线费率已现松动</td><td>硬市场边际转弱信号</td></tr>
+  <tr><td class="neutral">🟡 中等</td><td>税率23.9%高于22.0%，北美税损利用/结构影响</td><td>—</td></tr>
+  <tr><td class="bad" style="color:#c0392b">🔴 风险</td><td>巨灾/自然灾害均值回归风险：行业年损~US$150B高位，QBE FY2025低于预算不可持续</td><td>气候变化+次生灾害频发，1H26需关注飓风季</td></tr>
+</table>
+
+<div class="verdict verdict-ok">✅ L2综合判定：品质优秀（COR91.9% + ROE19.8% + 资本充裕，北美与灾损为主要跟踪点）</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架 · 保险首选PB）</h2>
+
+<h3>4.1 当前估值水平</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>历史分位</th><th>行业均值 / 备注</th></tr>
+  <tr><td>股价</td><td><strong>A$25.0</strong>（29 Jun 2026收盘，52周 A$18.57-25.83）</td><td>接近52周高位</td><td>年初至今约+35%</td></tr>
+  <tr><td>总市值</td><td><strong>~A$37.3-37.4B（~US$24-25B）</strong></td><td>—</td><td>ASX第25大，IAG~A$18.7B，Suncorp~A$20B</td></tr>
+  <tr><td>PE（TTM 法定）</td><td><strong>~11.9-12.5x</strong>（Google 12.45x）</td><td>保险合理12-18x中枢偏低</td><td>行业均值~15x</td></tr>
+  <tr><td>PE（Adjusted核心）</td><td><strong>~10.6-11.3x</strong>（StockAnalysis 10.63x）</td><td>更低</td><td>基于Adjusted NPAT US$2,132m</td></tr>
+  <tr><td>Forward PE</td><td><strong>~11.2-12.9x</strong></td><td>—</td><td>券商一致预期小幅抬升</td></tr>
+  <tr><td><strong>PB（核心估值锚）</strong></td><td><strong>~1.94-2.15x</strong></td><td>见PB Band</td><td>基于BVPS A$11.5 / US$7.8</td></tr>
+  <tr><td>PS</td><td><strong>~1.17-1.39x</strong></td><td>—</td><td>总市值/保险收入</td></tr>
+  <tr><td>P/OCF、P/FCF</td><td><strong>~6.4-6.5x</strong></td><td>极低</td><td>保险正现金流特性</td></tr>
+  <tr><td>股息率</td><td><strong>~4.36-4.87%</strong></td><td>高股息区间</td><td>DPS A$1.09，payout 50%，29% franking</td></tr>
+  <tr><td>ROE支撑</td><td><strong>19.8%</strong></td><td>十年新高</td><td>远超行业10-15%</td></tr>
+</table>
+
+<h3>4.2 PB Band 估值区间（保险核心估值法）</h3>
+<p style="font-size:13px;color:#666;">保险行业首选PB——净资产是承保能力与监管资本锚。QBE BVPS = US$7.84（A$11.5@0.68汇率，基于净资产US$11,673m / 1,488m shares），有形BVPS ~US$6.44。ROE 19.8% → 合理PB参考 1.5-3.0x</p>
+<table>
+  <tr><th>情景</th><th>PB</th><th>对应股价（AUD）</th><th>vs现价 A$25.0</th><th>隐含ROE预期</th></tr>
+  <tr><td>大灾年/极端悲观</td><td>1.2x</td><td>A$13.8</td><td class="bad">-45%</td><td>&lt;10%</td></tr>
+  <tr><td>周期低谷/深度回调</td><td>1.5x</td><td>A$17.3</td><td class="bad">-31%</td><td>~11-12%</td></tr>
+  <tr><td>保守（目标区间下沿）</td><td>1.7x</td><td>A$19.6</td><td class="bad">-22%</td><td>~13%</td></tr>
+  <tr><td>行业均值</td><td>1.85x</td><td>A$21.3</td><td class="bad">-15%</td><td>~14-15%</td></tr>
+  <tr><td><strong>当前</strong></td><td><strong>~2.05x</strong></td><td><strong>A$25.0</strong></td><td>—</td><td><strong>~16-17%</strong></td></tr>
+  <tr><td>优质溢价（高ROE）</td><td>2.3x</td><td>A$26.5</td><td class="good">+6%</td><td>~18-19%</td></tr>
+  <tr><td>乐观（持续19%+ ROE）</td><td>2.6x</td><td>A$29.9</td><td class="good">+20%</td><td>~20%</td></tr>
+  <tr><td>极端乐观/泡沫</td><td>3.0x+</td><td>A$34.5+</td><td class="good">+38%+</td><td>&gt;20%</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>PB Band 估值解读：</strong><br>
+  PB是保险股第一估值锚。用戈登模型验证：P/B = (ROE - g)/(r - g)。假设长期ROE 16%、权益成本r=10%、永续g=3%，理论PB = (0.16-0.03)/(0.10-0.03)=1.86x——恰为"行业均值"1.85x/股价A$21.3。QBE当前PB ~2.05x隐含市场对长期ROE 16-17%的预期，低于当前19.8%但高于行业均值，定价隐含"ROE从19.8%向15-16%中长期指引温和回归"的理性预期。<br><br>
+  <strong>历史PB分位：</strong>2015-2025年QBE PB区间约1.4-2.1x（含2020亏损年），当前2.05x处于近十年<strong>80%分位偏上</strong>，非历史最高（2008年3.22x）但已进入"优质溢价"区间。驱动是ROE三年从8.3%（2020-21低谷）修复至19.8%，估值修复已较充分。<br><br>
+  <strong>关键判断：</strong>PB 2.05x以ROE 19.8%衡量<strong>合理偏高但未泡沫</strong>——ROE 19.8%可支撑2.3-2.5x，但中长期15%+指引对应PB中枢约1.85-2.0x。安全边际在PB 1.7x以下（+20%下跌空间），对应大灾年或北美再度恶化情景。FY2026指引COR ~92.5%（微升0.6pct）预示承保利润率将温和回落，对PB有小幅压制。
+</div>
+
+<h3>4.3 PE Band 辅助参考（保险PE失真提示）</h3>
+<p style="font-size:13px;color:#666;">保险PE受灾损/储备/投资波动影响较大，辅助参考为主；周期性大灾年PE会骤升或为负，不作为主锚</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价（基于FY2025 Adjusted EPS US$1.413≈A$2.08）</th><th>vs现价</th></tr>
+  <tr><td>大灾年（PE失真）</td><td>25x+或负值</td><td>—</td><td class="neutral">不适用</td></tr>
+  <tr><td>保守</td><td>10x</td><td>A$20.8</td><td class="bad">-17%</td></tr>
+  <tr><td>中性</td><td>13x</td><td>A$27.0</td><td class="good">+8%</td></tr>
+  <tr><td><strong>当前（12.0x）</strong></td><td><strong>12.0x</strong></td><td><strong>A$25.0</strong></td><td>—</td></tr>
+  <tr><td>乐观（高ROE溢价）</td><td>16x</td><td>A$33.3</td><td class="good">+33%</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值总结：</strong><br>
+  ① <strong>PB（核心锚）：</strong>当前~2.05x处于近十年80%分位偏上，对应长期ROE 16-17%预期，合理偏高。ROE 19.8%可支撑2.3x（A$26.5），但中长期15%+指引下中枢约1.85x（A$21.3）。PB安全边际在1.7x（A$19.6）以下，需等待大灾年或北美恶化带来的错杀机会。当前不算便宜但以高ROE衡量未泡沫化。<br>
+  ② <strong>PE（辅助）：</strong>TTM 12.45x / Adjusted 10.6x处于澳洲保险10-18x中低水平，反而显示相对便宜——PE与PB背离主因是QBE当期利润偏高拉低PE。<br>
+  ③ <strong>股息：</strong>4.4-4.9%现金股息率+payout 50%+A$450m回购，在ASX金融股中回报丰厚但franking仅29%（逊于IAG/SUN的100% franking），税后吸引力打折。<br>
+  ④ <strong>建议：</strong>当前估值适合<strong>持有</strong>，不建议在52周高位重仓追高。关注PB回落至1.85x（A$21-22）或灾损超预期时的布局机会；若COR能稳定在91-92%且ROE维持18%+，PB可向2.3-2.6x（A$26.5-30）打开空间。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析拆解（L4框架 · 保险适应版）</h2>
+
+<h3>5.1 杜邦拆解表（保险版：ROE = 净利/总资产 × 总资产/权益）</h3>
+<table>
+  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>1H26年化</th><th>趋势</th></tr>
+  <tr><td>净利润率（NPAT/资产）</td><td>3.22%（1,355 /42,108）</td><td>4.06%（1,779/43,846）</td><td><strong>4.44%（2,157/48,535）</strong></td><td>~4.26%（2,066年化/48,535）</td><td class="good">⬆ 持续提升</td></tr>
+  <tr><td>资产周转率（GWP/总资产）</td><td>0.517</td><td>0.511</td><td><strong>0.494</strong></td><td>~0.51（GWP年化）</td><td class="neutral">➡ 平稳略降（FUM增速快）</td></tr>
+  <tr><td>权益乘数（总资产/权益）</td><td>4.20</td><td>4.09</td><td><strong>4.16</strong></td><td>4.16</td><td class="neutral">保险天然高杠杆，稳定</td></tr>
+  <tr><td><strong>ROE（法定）</strong></td><td><strong>13.5%</strong></td><td><strong>16.6%</strong></td><td><strong>18.5%</strong></td><td>~17.2%</td><td class="good">⬆ 三年修复</td></tr>
+  <tr><td><strong>Adjusted ROE（管理口径）</strong></td><td><strong>16.0%</strong></td><td><strong>18.2%</strong></td><td><strong>19.8%</strong></td><td><strong>17.7%</strong></td><td class="good">⬆ 十年新高</td></tr>
+  <tr><td>去杠杆ROA（净利/资产）</td><td>3.22%</td><td>4.06%</td><td><strong>4.44%</strong></td><td>4.26%</td><td class="good">⬆ 真实回报提升</td></tr>
+  <tr><td>杠杆贡献（ROE - ROA）</td><td>10.3pct</td><td>12.5pct</td><td><strong>14.1pct</strong></td><td>~13.0pct</td><td class="neutral">保险杠杆特性</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：高承保利润+稳健投资驱动型（非高杠杆泡沫型）</strong><br>
+  QBE的ROE三年从13.5%→18.5%（法定）/ 16.0%→19.8%（Adjusted），驱动力分解：<br>
+  ① <strong>净利润率 3.22%→4.44%（+38%）是核心</strong>——COR从95.2%→91.9%（每1pct COR改善约释放US$180m利润）+ 投资回报4.9%稳定，共同推升资产回报率；<br>
+  ② 资产周转率0.51→0.49微降非恶化——分母FUM +17.2%快于GWP +7%所致，资产扩张由利润+保费共同驱动，健康；<br>
+  ③ 权益乘数~4.1-4.2稳定——保险天然高杠杆（赔付准备金占负债85%），但PCA 1.87x证明杠杆受监管约束且安全。<br>
+  去杠杆ROA 4.44%在保险业属优秀（对比IAG去杠杆约11.4%但口径不同——IAG以UITR衡量）；QBE若用保单资金投资回报叠加，真实经济回报更高。<br><br>
+  <strong>与高杠杆陷阱的区别：</strong>危险的高杠杆型是"低利润×高周转×极高杠杆"（如2008年前部分投行），而QBE是"利润率改善×周转平稳×杠杆受控"，杠杆贡献14.1pct虽高但与PCA充裕并存，非借债放大虚假ROE。
+</div>
+
+<div class="summary-box">
+  <strong>核心结论：</strong><br>
+  ① ROE修复完全由<span class="good">利润率驱动</span>（4.44% vs 3.22%），非杠杆放大——承保（COR -3.3pct三年）+投资（风险资产9.6%）双改进；<br>
+  ② 资产周转微降是FUM被动扩张（US$35.85B），非经营效率恶化；<br>
+  ③ 权益乘数4.16x符合保险业特性，债务资本比24.1%虽抬升但PCA仍超目标；<br>
+  ④ 调整后ROE 19.8%高于法定18.5%，剔除会计噪音后更显强劲；1H26年化17.7%回落符合COR ~92.5%指引（微升0.6pct）的正常回归，需关注能否守住15%+中长期底线。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与特征（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：防御型+金融特殊行业（一般保险/再保险）· 非周期股</strong><br>
+  <strong>判断依据：</strong>QBE属全球综合性一般保险（Commercial/Specialty/Personal）+ 再保险，需求与经济规模/GDP正相关但具刚性（企业运营、房贷车贷强制险等）。行业特征：① 先收保费后赔付，天然正现金流；② 承保利润受保费周期（硬/软市场）、巨灾频率、准备金释放三重驱动；③ 资本受APRA/各国偿付能力监管严格。<br><br>
+  <strong>与纯周期股的区别：</strong>保险有"承保周期"但非大宗商品供需周期——硬市场时保费提价、COR下降、ROE提升；软市场时竞争加剧、费率下行。QBE当前处于硬市场中后段（续保提价5.5% vs 上年9.7%已放缓），周期位置判断对估值至关重要。按<i>industry-classification.md</i>，保险归为非周期（金融），必须用非周期股（保险调整版）评分体系，估值首选PB。
+</div>
+
+<h3>6.2 集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>全球/澳洲集中度</td><td><strong>全球分散、澳洲寡头</strong></td><td>全球前20大一般险；澳洲CR3（QBE/IAG/Suncorp）>70%高度寡头</td></tr>
+  <tr><td>监管牌照</td><td><strong>极高</strong></td><td>APRA及各国偿付能力监管，PCA 1.87x需持续达标；新进入者资本/牌照门槛极高</td></tr>
+  <tr><td>品牌与分销</td><td><strong>强</strong></td><td>澳洲太平洋本土品牌+北美中介网络+国际伦敦市场；但北美品牌力弱于国际/澳洲</td></tr>
+  <tr><td>规模与数据/精算</td><td><strong>极强</strong></td><td>GWP US$24B规模提供海量理赔数据，定价工具全球协同；再保安排分散风险</td></tr>
+  <tr><td>投资与资产负债管理</td><td><strong>强</strong></td><td>FUM US$35.85B，85%高质固收匹配负债久期，ALM中性策略降低利率波动冲击</td></tr>
+  <tr><td>网络效应</td><td><strong>中等</strong></td><td>非平台型，但全球网络对跨国企业客户有协同价值</td></tr>
+</table>
+
+<h3>6.3 生命周期阶段</h3>
+<div class="highlight-box">
+  <strong>阶段：成熟期——全球龙头的精细化运营与组合优化期</strong><br>
+ 全球一般保险是成熟行业（GWP增速与名义GDP相近~5-7%），QBE的核心任务不是野蛮扩张而是"提质增效"：退出低回报组合（北美中端/三方物业~US$600m）、优化再保、降低波动、提升COR。澳洲一般险增速3-6%，QBE国际板块增速更快（+11%）是增长引擎。投资策略重点：从"规模为王"转向"ROE为王"。<br><br>
+  <strong>QBE vs 纯成长股：</strong>不适用PS>10的成长检验——QBE PS 1.2x、营收百亿、利润20亿，是典型的现金牛而非烧钱扩张期。
+</div>
+
+<h3>6.4 当前周期位置（承保周期）</h3>
+<div class="highlight-box">
+  <strong>周期位置：硬市场中后段 → 温和软化</strong><br>
+  证据：① 续保提价5.5%（FY2024）较9.7%（FY2023）大幅放缓，物业线已现费率松动；② COR 91.9%优于目标~92.5%，但FY2026指引~92.5%（微升0.6pct）预示管理层预期利润率温和回落；③ 投资端收益率4.9%维持高位但固收exit yield 3.7%（2025末）较4.3%（2024末）下行60bps，加息红利边际递减。<br><br>
+  <strong>对评分的联动：</strong>周期位置是保险股最敏感变量——硬市场高峰时ROE虚高（19.8%），估值需按中长期15%+折价而非当期峰值。当前PB ~2.05x已隐含回归预期，若软化超预期（提价转负或大灾频发），COR可能回升至94-95%，ROE回落至15%以下时PB将承压。
+</div>
+
+<h3>6.5 同行对比</h3>
+<table>
+  <tr><th>指标</th><th>QBE（全球）</th><th>IAG（澳洲龙头）</th><th>Suncorp SUN（澳洲纯险）</th><th>行业中位</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>19.8%（Adjusted）</strong></td><td>19.4%</td><td>12.5%（Cash）</td><td>~13-15%</td><td class="good">QBE/IAG顶级</td></tr>
+  <tr><td>COR / UITR</td><td><strong>COR 91.9%</strong></td><td>UITR 17.5%（COR~82.5%）</td><td>UITR 11.9%</td><td>COR ~93%</td><td class="good">IAG最优，QBE次优</td></tr>
+  <tr><td>GWP增速</td><td><strong>+7.0%（核心+8%）</strong></td><td>+4.3%</td><td>+6.3%</td><td>~5%</td><td class="good">QBE最快（全球化）</td></tr>
+  <tr><td>负债/杠杆</td><td>Debt/Capital 24.1%</td><td>D/E 36%</td><td>D/E 24%</td><td>~30%</td><td class="good">QBE/SUN最稳</td></tr>
+  <tr><td>资本充足</td><td>PCA 1.87x</td><td>CET1 $3,940m极充裕</td><td>超目标$997m</td><td>1.6-1.8x目标</td><td class="good">均超标，QBE/SUN更强</td></tr>
+  <tr><td>PB</td><td><strong>~2.05x</strong></td><td>~2.55x</td><td>~1.9x</td><td>~1.9-2.0x</td><td class="neutral">QBE居中</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>~12.0x</strong></td><td>~17.4x</td><td>~13.5x</td><td>~14x</td><td class="good">QBE相对便宜</td></tr>
+  <tr><td>股息率</td><td><strong>~4.5%</strong>（29% frank）</td><td>~3.9%（40% frank）</td><td><strong>~4.9%（100% frank）</strong></td><td>~4.5%</td><td class="good">SUN税后最优</td></tr>
+  <tr><td>业务结构</td><td>全球分散27国</td><td>澳洲本土为主</td><td>澳洲本土为主</td><td>—</td><td class="neutral">QBE分散但复杂</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>竞争位置：</strong>QBE在澳洲三强中是"全球化+高ROE+相对便宜PE"的代表——ROE 19.8%与IAG 19.4%并列顶级但PE仅12.0x（IAG 17.4x），PB居中2.05x，股息率4.5%略低于SUN的4.9%全franking。优势是全球化分散风险+国际板块高增长；劣势是北美包袱（98.9% COR）与结构复杂性（27国监管/汇率）。从估值匹配看，QBE的PB低于IAG但高于SUN，与其ROE居首相匹配——市场给予QBE"全球化溢价"但对北美风险打折。
+</div>
+
+<h3>6.6 估值方法匹配</h3>
+<div class="summary-box">
+  <strong>估值方法：</strong>保险首选PB（净资产是承保能力锚），辅助PE/股息率/PS、关键跟踪COR与ROE。当前QBE PB ~2.05x + PE 12.0x + 股息4.5%的组合与非周期金融的估值逻辑完全匹配。PS 1.2x在保险中偏中性（成长股PS>10时需四步验证，但QBE非成长股无需）。<br><br>
+  <strong>成长股四步验证（对QBE不适用）：</strong>QBE营收US$23B>>20亿、经营现金流天然为正、PS 1.2x<<10，不属高PS烧钱陷阱，用PB+ROE框架即可。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  <strong>Step 1 - 行业定位：</strong>防御型+金融特殊行业（全球一般保险），澳洲CR3>70%寡头、全球分散。牌照+规模/数据+投资ALM三重壁垒。使用非周期股（保险调整版10维度）。<br><br>
+  <strong>Step 2 - 财务体检：</strong>Adjusted ROE 19.8%十年新高，高承保利润型（COR 91.9%→净利4.44%资产回报），D/C 24.1%可控，PCA 1.87x充裕，FUM US$35.85B天然正现金流。<br><br>
+  <strong>Step 3 - 估值判断：</strong>PB ~2.05x为核心锚（近十年80%分位，隐含长期ROE 16-17%），PE 12.0x反而偏低，股息4.5%+A$450m回购提供回报底。<br><br>
+  <strong>Step 4 - 风险排查：</strong>北美98.9% COR脆弱、大灾均值回归、提价放缓、债务抬升、费率微升。<br><br>
+  <strong>Step 5 - 结论：</strong>品质优秀86/100，好行业（寡头刚需）+好公司（ROE顶级、COR三年连降）+价格合理偏高（PB中枢偏上但PE合理）。<br><br>
+  <strong>Step 6 - 跟踪：</strong>COR能否守住92.5%指引、北美修复进度、FUM固收收益率走势、PCA与回购后资本、自然灾害赔付。
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✅ 是</td><td>一般保险刚性需求，非周期防御型；澳洲CR3>70%寡头，全球分散降低单一市场风险；APRA监管构筑极高牌照壁垒</td></tr>
+  <tr><td>② 好公司</td><td class="good">✅ 是</td><td>Adjusted ROE 19.8% >15%优秀线，COR 91.9%大幅优于目标，CFO天然为正且FUM +17.2%，PCA 1.87x资本充裕，分部持续优化</td></tr>
+  <tr><td>③ 好价格</td><td class="neutral">⚠ 合理偏高</td><td>PB 2.05x近十年80%分位偏上，隐含回归预期；但PE 12.0x在保险10-18x中低水平+4.5%股息，价格未泡沫化，以ROE 19.8%衡量合理</td></tr>
+</table>
+
+<h3>7.3 风险评估</h3>
+
+<h3>a. 三个陷阱排查</h3>
+<div class="danger-box">
+  ☐ 价值陷阱（低PE + 低增长 + 高负债）→ <strong>未命中</strong>。QBE PE 12.0x不算极低，且GWP +7%正增长、PCA 1.87x资本充裕，Debt/Capital 24.1%健康。<br>
+  ☐ 周期陷阱（低PE + 周期顶点）→ <strong>需警惕/半命中</strong>。保险硬市场中后段，COR 91.9%处于近十年最佳、ROE 19.8%峰值，提价已从9.7%放缓至5.5%。PE 12x看似便宜实含峰值利润，FY2026 COR指引~92.5%（回升0.6pct）预示利润率温和回落，周期位置评分需打折。<br>
+  ☐ 烧钱陷阱（高PE + 高增速但现金流为负）→ <strong>未命中</strong>。QBE现金流天然为正（FUM US$35.85B），P/OCF 6.4x极低，无烧钱特征。
+</div>
+
+<h3>b. 管理层与治理风险</h3>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力与履历</td><td class="good">好</td><td>CEO Andrew Horton（2021.9上任）主导"波动降低+组合优化"战略，COR三年从95.2%→91.9%，北美退出与再保交易体现执行力；Chairman Mike Wilkins 2026年卸任平稳交接</td></tr>
+  <tr><td>股权结构与利益一致性</td><td class="good">强</td><td>无控股股东，机构持股为主；管理层股权激励与ROE/COR挂钩；A$450m回购彰显资本纪律</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td class="neutral">有但可控</td><td>历史包袱：北美中端市场、农险波动、2020年商誉减值与COVID赔付（COR 104.2%），近年通过退出与储备交易出清</td></tr>
+  <tr><td>资本配置记录</td><td class="good">合理</td><td>分红率50%稳定+大额回购（65%总分配），PCA维持1.87x充裕；FUM风险资产15%稳步提升非激进</td></tr>
+  <tr><td>管理层增减持</td><td class="neutral">无显著减持</td><td>近一年以回购为主，未见董监高大额集中减持公告</td></tr>
+  <tr><td>CEO交接/关键人员变动</td><td class="neutral">需关注</td><td>Chairman 2026卸任，交接期需观察新主席战略连续性；管理层稳定</td></tr>
+</table>
+
+<h3>c. 盈利可持续性</h3>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是靠价？</td><td>量价均衡</td><td>GWP +7%中提价5.5%贡献约80%，新业务+留存率82%贡献剩余；非单靠提价</td></tr>
+  <tr><td>涨价能否持续？</td><td>需观察</td><td>硬市场边际转弱：物业线费率已现松动，北美/国际提价已从10.5%/7.8%→7.3%/3.7%，FY2026 GWP指引仍为中个位数但提价红利递减</td></tr>
+  <tr><td>非经常性利润占比</td><td>低</td><td>FY2025无大额处置收益（仅US$18m出售收益），利润以承保+投资为主；1H26亦无异常</td></tr>
+  <tr><td>大客户/项目集中度</td><td>分散</td><td>27国分散，无单一客户>5%；但农险（Crop）受大宗商品+天气集中影响</td></tr>
+  <tr><td>政策/监管依赖度</td><td>中</td><td>APRA资本监管+各国偿付能力要求；气候变化监管（如澳洲强制气候披露）新增合规成本</td></tr>
+</table>
+
+<h3>d. 关键变量敏感性（2-3个核心变量）</h3>
+<div class="highlight-box">
+  <strong>变量1：Combined Operating Ratio（每1pct变动≈US$180m税前利润）</strong><br>
+  乐观（91.0%）：灾损持续低于预算+北美修复超预期 → Insurance Operating Result US$1.6B+ → ROE 20%+ → PB可维持2.3x+<br>
+  中性（91.9-92.5%）：符合FY2026指引，储备稳定 → ROE 17-18% → PB 2.0x中枢<br>
+  悲观（94-95%）：大灾年（飓风/洪水）+ 农险恶化 → COR回升1-2pct → ROE 14-15% → PB跌至1.7x
+</div>
+<div class="highlight-box">
+  <strong>变量2：净投资收益率（FUM US$35.85B，每10bps≈US$36m）</strong><br>
+  乐观（5.2%+）：风险资产10%+回报+固收收益率企稳4%以上 → 投资US$1.85B+ → 对冲承保波动<br>
+  中性（4.5-4.9%）：当前4.9%维持，固收3.7% exit yield +风险8-10% → 投资US$1.6B<br>
+  悲观（3.5-4.0%）：快速降息+信用利差走宽 → 投资US$1.2B → 利润承压10-15%
+</div>
+<div class="highlight-box">
+  <strong>变量3：北美板块修复进度</strong><br>
+  乐观：North America COR 95-96%（vs 98.9%）→ 集团COR再降0.5pct → 估值溢价<br>
+  中性：维持98-99% → 集团COR 91.9-92.5%中枢 → 估值中性<br>
+  悲观：重回100%+（农险或三方物业复发）→ 拖累集团0.8-1.0pct → PB折价
+</div>
+
+<h3>7.4 前景展望</h3>
+
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. <strong>承保纪律延续</strong> — 国际/澳洲太平洋优化见效中，储备交易降低波动，COR有望稳定低90s（管理层中长期目标低至中90s）。<br>
+  2. <strong>投资仍处有利期</strong> — FUM US$35.85B规模+高利率余温（固收4.2%底仓）+风险资产9.6%高回报，中性情景投资US$1.6B可对冲承保软化。<br>
+  3. <strong>资本与股东回报催化</strong> — PCA 1.87x充裕，A$450m回购完成增厚EPS，DPS A$1.09且franking提升至29%，2026年总分配有望维持60%+。<br><br>
+  <strong>负向拖累：</strong><br>
+  1. <strong>硬市场软化 + 灾损均值回归</strong> — 提价5.5%放缓、FY2026 COR指引微升0.6pct，叠加行业年损US$150B高位，大灾年冲击概率上升。<br>
+  2. <strong>北美仍为短板</strong> — COR 98.9%脆弱，农险天气/商品价格波动、历史三方物业敞口未完全出清。<br>
+  3. <strong>债务与费用边际压力</strong> — Debt/Capital 24.1%持续抬升+费用率12.4%微升，若GWP增速放缓至3-4%，运营杠杆转负。<br>
+  4. <strong>估值已处高位</strong> — PB 2.05x近十年80%分位，股价接近52周高位，上行需ROE维持18%+验证否则易回调至A$21-22。
+</div>
+
+<h3>三情景简表（FY2026E，基于指引 COR ~92.5% & GWP中个位数）</h3>
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>NPAT预估（USD）</th><th>PB区间</th><th>股价隐含（AUD）</th></tr>
+  <tr><td>乐观（25%）</td><td>COR 91.5% + 投资5.0% + 北美改善至97%</td><td>~US$2,300-2,400m</td><td>2.3-2.6x</td><td class="good">A$26.5-30.0（+6-20%）</td></tr>
+  <tr><td>中性（50%）</td><td>COR 92.5% + 投资4.6-4.9% + 北美98-99%</td><td>~US$2,000-2,150m</td><td>1.85-2.1x</td><td class="neutral">A$21.3-24.2（-15%至-3%）</td></tr>
+  <tr><td>悲观（25%）</td><td>COR 94.5%（大灾） + 投资3.8% + 北美恶化</td><td>~US$1,600-1,700m</td><td>1.5-1.7x</td><td class="bad">A$17.3-19.6（-31%至-22%）</td></tr>
+</table>
+<p style="font-size:12px;color:#666;text-align:center">中性概率50%，乐观25%，悲观25% — 中性隐含当前PB已部分定价，需等待业绩验证或回调机会</p>
+
+<h3>7.5 资金面信号（ASX — 标注N/A）</h3>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>ASX机构持仓/董事增减持</td><td>N/A（待跟踪）</td><td>QBE为ASX第25大，机构持仓稳定；无大额董事减持公告，回购为正面信号</td></tr>
+  <tr><td>外资/北向资金</td><td>N/A（ASX无此口径）</td><td>—</td></tr>
+  <tr><td>融资余额/做空</td><td>N/A</td><td>Beta 0.13极低，防御属性强</td></tr>
+  <tr><td>大股东增减持</td><td>无大额减持，A$450m回购中</td><td>管理层资本纪律正面</td></tr>
+  <tr><td>大宗交易/回购</td><td>A$450m回购已于2026.4完成</td><td>增厚EPS约2-3%，支撑PB</td></tr>
+</table>
+<div class="summary-box">
+  <strong>资金面判断（ASX不适用A股口径）：</strong>ASX无北向/两融数据。替代信号：A$450m回购完成（2026.4）是明确的资金面利好，增厚EPS并向市场传递管理层认为PB未高估的信号。股价近52周高位（A$25.0 vs A$18.57低点 +35%）反映资金已积极定价硬市场红利。Beta 0.13显示防御属性，适合避险配置。需跟踪回购后PCA能否维持1.8x以上及机构持仓季度变化。
+</div>
+
+<h3>7.6 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清QBE怎么赚钱？—— 收全球保费US$24B → 控赔付使COR 91.9%赚承保利润US$1.5B → 管US$35.85B资金赚投资US$1.6B → 交税后净赚US$2.15B。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？—— 是COR能否守住92.5%还是北美98.9%再度恶化？Debt/Capital 24.1%抬升是否会侵蚀PCA安全垫？<br>
+  3. 如果现在买入，期待的回报来源是什么？—— 赚股息4.5% + 承保/投资维持带来ROE 17-18%对应PB 2.0x中枢，还是赌COR再降至91%带来PB 2.3x+估值扩张？<br>
+  4. 什么情况下你会坚决卖出？—— COR回升至95%+ / Adjusted ROE跌破15%中长期底线 / PCA跌破1.6x / 提价转负且GWP负增长 / 连续大灾年击穿准备金。
+</div>
+
+</div></div>
+
+<div class="footer">
+  免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+  数据来源：QBE FY2025 Annual Report / Investor Report / ASX Announcements（2025/2026）、1H26公告、Yahoo Finance、StockAnalysis、Morningstar、Barchart | 分析日期：2026-08-25 | 货币：财务数据USD，股价/市值AUD（汇率约0.68）
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>
