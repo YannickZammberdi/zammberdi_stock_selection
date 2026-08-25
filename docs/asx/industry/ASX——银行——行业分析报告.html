@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ASX——银行 行业分析报告</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f5f5f5;padding:0;color:#333}
+  .report-wrap{max-width:800px;margin:0 auto;background:#fff}
+  h1{font-size:22px;margin:0;padding:28px 0 4px;text-align:center}
+  h2{font-size:18px;margin:28px 0 12px;border-bottom:2px solid #1a1a1a;padding-bottom:4px}
+  h3{font-size:15px;margin:18px 0 8px}
+  .subtitle{color:#666;font-size:13px;text-align:center;margin-bottom:4px}
+  .meta{color:#999;font-size:12px;text-align:center;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #e0e0e0}
+  .tab-bar{position:sticky;top:0;z-index:10;background:#fff;display:flex;flex-wrap:wrap;border-bottom:2px solid #ddd;gap:0}
+  .tab-btn{padding:10px 14px;cursor:pointer;border:none;background:none;font-size:13px;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+  .tab-btn:hover{color:#333;background:#f9f9f9}
+  .tab-btn.active{color:#1a1a1a;font-weight:700;border-bottom-color:#1a1a1a}
+  .tab-content{display:none}
+  .tab-content.active{display:block}
+  .tab-inner{padding:0 12px}
+  table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:13px}
+  th{background:#f5f5f5;padding:8px 6px;text-align:left;border-bottom:2px solid #ddd;white-space:nowrap;font-weight:600}
+  td{padding:7px 6px;border-bottom:1px solid #eee}
+  tr:nth-child(even) td{background:#fafafa}
+  .summary-box{background:#fffde7;border-left:4px solid #f9a825;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .highlight-box{background:#e3f2fd;border-left:4px solid #1e88e5;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .danger-box{background:#ffebee;border-left:4px solid #e53935;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .verdict{text-align:center;padding:20px;margin:16px 0;border-radius:8px;font-size:18px;font-weight:700}
+  .verdict-ok{background:#e8f5e9;border:2px solid #4caf50;color:#2e7d32}
+  .verdict-caution{background:#fff3e0;border:2px solid #ff9800;color:#e65100}
+  .verdict-bad{background:#ffebee;border:2px solid #e53935;color:#c62828}
+  .score{font-size:36px;display:block;margin-bottom:4px}
+  .pass{color:#2e7d32;font-weight:700}
+  .skip{color:#666;font-style:italic}
+  .tag{display:inline-block;padding:2px 8px;border-radius:3px;font-size:11px;font-weight:700}
+  .tag-red{background:#ffebee;color:#c62828}
+  .tag-green{background:#e8f5e9;color:#2e7d32}
+  .tag-yellow{background:#fff8e1;color:#f57f17}
+  .footer{font-size:11px;color:#aaa;text-align:center;padding:24px 0 8px;border-top:1px solid #eee;margin-top:30px}
+  .card{background:#fafafa;border:1px solid #e0e0e0;border-radius:6px;padding:14px;margin:10px 0;font-size:13px}
+  .flex{display:flex;flex-wrap:wrap;gap:8px}
+  .tbl-wrap{border:1px solid #e0e0e0;border-radius:6px;overflow:hidden;margin:10px 0 18px}
+  .tbl-wrap table{margin:0}
+  .tbl-wrap th{background:#f5f5f5;padding:9px 8px;border-bottom:1px solid #ddd;font-weight:600;font-size:12px}
+  .tbl-wrap td{padding:8px;border-bottom:1px solid #f0f0f0;font-size:13px}
+  .tbl-wrap tr:last-child td{border-bottom:none}
+  .bar-wrap{display:inline-flex;align-items:center;width:60px;height:16px;vertical-align:middle}
+  .bar-bg{background:#eee;border-radius:4px;height:8px;width:100%;overflow:hidden;position:relative}
+  .bar{display:block;height:8px;border-radius:4px}
+  .score-cell{font-weight:700;font-size:15px;text-align:center;white-space:nowrap}
+  .tbl-wrap td,.tbl-wrap th{vertical-align:middle}
+  .metric-h{color:#1565c0;font-weight:700;font-size:13px}
+  .metric-l{color:#c62828;font-weight:700}
+  .metric-m{color:#e65100;font-weight:700}
+  .col-tag{display:inline-block;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600}
+  .col-win{background:#e8f5e9;color:#2e7d32}
+  .col-lose{background:#ffebee;color:#c62828}
+  .col-warn{background:#fff3e0;color:#e65100}
+  .col-info{background:#e3f2fd;color:#1565c0}
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>ASX——银行 行业分析报告</h1>
+<div class="subtitle">L5分类：价值型 / 成熟行业 ｜ 上市公司：~14只 ｜ 总市值：~A$662亿</div>
+<div class="meta">生成日期：2026-08-26 &nbsp;|&nbsp; 市场：ASX &nbsp;|&nbsp; GICS：4010 Banks / 4020 Diversified Financials（含MQG） &nbsp;|&nbsp; 框架：L7-L10</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l7">L7 量化初筛</button>
+  <button class="tab-btn" data-tab="l8">L8 行业画像</button>
+  <button class="tab-btn" data-tab="l9">L9 竞争格局</button>
+  <button class="tab-btn" data-tab="l10">L10 周期时机</button>
+</div>
+
+<div class="tab-content active" id="tab-summary">
+<div class="tab-inner">
+
+<h2>行业速览</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">项目</th><th>内容</th></tr>
+<tr><td>行业名称</td><td><strong>银行（Banking）</strong></td></tr>
+<tr><td>市场</td><td>ASX（澳大利亚证券交易所）</td></tr>
+<tr><td>L5分类</td><td><span class="col-tag col-info">价值型</span> <span class="col-tag col-warn">成熟期</span> 资产密集 + 牌照垄断 + 强分红</td></tr>
+<tr><td>上市公司</td><td>~14只（Simply Wall St Banks行业口径），其中XBK指数成分 <span class="col-tag col-win">7只</span>，符合L7筛选条件 <span class="col-tag col-win">4只</span>核心候选</td></tr>
+<tr><td>行业总市值</td><td>~A$661.7亿（2026-08-16，Simply Wall St）· Big 4合计 ~A$650亿占99%</td></tr>
+<tr><td>行业总资产</td><td>Big 4合计 ~A$5.04万亿（2026H1），占全银行业72%（CFR 2025-03：Major banks A$3,927bn / 72%）</td></tr>
+<tr><td>产业链利润核心</td><td><span class="col-tag col-win">住房按揭 + 商业贷款息差</span>（NIM 1.5-2.05%），辅以财富管理/手续费；存款特许是利润之源</td></tr>
+<tr><td>生命周期阶段</td><td><span class="col-tag col-info">成熟期</span> 人均银行服务渗透率&gt;95%，信用/GDP已高位</td></tr>
+<tr><td>当前周期位置</td><td><span class="col-tag col-warn">加息尾声 / NIM承压</span> RBA现金利率~4.1%（2026-03），NIM历史低位企稳，信用成本温和上行</td></tr>
+</table>
+</div>
+
+<h2>综合评分</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>维度</th><th style="width:60px">得分</th><th>进度</th><th>说明</th></tr>
+<tr>
+  <td>行业规模与空间</td>
+  <td class="score-cell">14/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:70%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">体量巨大（信贷余额~A$3.8万亿），但人均渗透饱和，增速≈名义GDP 4-6%，空间有限</td>
+</tr>
+<tr>
+  <td>产业链位置</td>
+  <td class="score-cell">10/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:67%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">资金中介核心环节，牌照壁垒高，但定价受RBA和APRA双重约束，息差被竞争压缩</td>
+</tr>
+<tr>
+  <td>竞争格局</td>
+  <td class="score-cell">16/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:80%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">高度寡头垄断，Big 4控制72%资产，四支柱政策保护，格局稳定，龙头利润可预期</td>
+</tr>
+<tr>
+  <td>增长驱动力</td>
+  <td class="score-cell">8/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:53%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">靠人口+房价+企业信贷驱动，结构性增长弱，缺乏技术颠覆，新增长靠财富管理和数字化提效</td>
+</tr>
+<tr>
+  <td>周期位置</td>
+  <td class="score-cell">9/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:60%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">NIM在历史低位企稳（1.7-2.05%），信用周期温和恶化，估值分化大，周期弹性不如大宗</td>
+</tr>
+<tr>
+  <td>政策环境</td>
+  <td class="score-cell">10/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:67%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">APRA资本/流动性要求极严（CET1≥10.25%，LCR/NSFR&gt;100%），但政策可预期；DTI限贷（2026-02起）压制增速</td>
+</tr>
+<tr style="background:#fafafa">
+  <td style="font-weight:700;font-size:14px">总分</td>
+  <td style="font-weight:700;font-size:16px;color:#e65100">67/100</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:67%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#e65100;font-weight:600">一般——可配置防御底仓，不追高，重视股息与PB安全边际</td>
+</tr>
+</table>
+</div>
+
+<div class="verdict verdict-caution">
+  <span class="score">67</span>
+  一般——值得研究，但需精选时机与标的
+</div>
+
+<div class="summary-box">
+  <strong>核心结论</strong><br>
+  ASX银行是典型的<span style="font-weight:700">价值型/成熟期寡头行业</span>：Big 4合计占指数~25%权重和银行资产72%，牌照+四支柱政策构筑极深护城河，ROE 8-14%且分红率65-80%，是全市场最稳定的股息来源。但行业已高度渗透（住房信贷余额A$2.475万亿，2025-12，同比+6.6%），增长≈GDP，NIM被竞争长期压缩至1.5-2.0%历史低位，业绩弹性弱。<br><br>
+  <strong>当前判断：中性偏等待。</strong> RBA现金利率4.10%（2026-03）处于限制性区间，NIM企稳但上行有限（银行资金成本已随加息同步上升+18bps），不良率温和抬升（NPL ~0.99%，住房不良0.73%个人1.72%），PB分化极大（CBA 3.6-3.9x vs ANZ/WBC 1.3-1.6x）。<strong>用"价值型"框架：看PB+股息率，赚"估值修复+股息"而非高增长</strong>。优选PB处于历史低分位、ROE仍≥8%的龙头（ANZ/WBC/NAB），回避PB&gt;80%分位的CBA（机构一致目标价较现价低20-30%）；中小银行（BEN/BOQ/JDO）需等待ROE回升至8%+再评估。
+</div>
+
+<div class="highlight-box">
+  <strong>行业公式</strong><br>
+  银行收入 = 生息资产规模 × 净息差(NIM) + 非息收入（手续费/交易/财富管理）<br>
+  银行利润 = 收入 − 信用减值 − 运营成本 − 资本成本；ROE = ROA × 杠杆（含监管约束）<br>
+  关键跟踪指标：1) RBA现金利率与3m BBSW/OIS利差 2) NIM（集团/核心） 3) 住房与商业信贷增速 4) 不良率NPL/90+逾期与拨备覆盖 5) CET1比率与分红率
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l7">
+<div class="tab-inner">
+
+<h2>筛子调整说明（银行特殊）</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:12%">筛子</th><th style="width:35%">标准（ASX）</th><th>调整说明</th></tr>
+<tr><td>①<span class="col-tag col-info">市值</span></td><td>≥2亿AUD</td><td>ASX大量小额ADI/空壳，2亿为流动性和机构覆盖底线；银行业Big 4均&gt;1000亿</td></tr>
+<tr><td>②<span class="col-tag col-info">营收</span></td><td>≥1亿AUD（总营业收入）</td><td>银行营收=净利息+非息收入；1亿为经营存续底线，上市银行均远超</td></tr>
+<tr><td>③<span class="col-tag col-lose">毛利率</span></td><td><span class="skip">跳过</span></td><td>金融业跳过毛利率筛，改看<span style="font-weight:600">净息差NIM（1.5-2.05%）</span>与成本收入比</td></tr>
+<tr><td>④<span class="col-tag col-info">ROE</span></td><td>≥8%（连续3年&lt;5%剔除）</td><td>正常执行；低于沪深300长期回报(~8%)视为资本效率不足</td></tr>
+<tr><td>⑤<span class="col-tag col-lose">负债率</span></td><td><span class="skip">跳过</span></td><td>银行业高杠杆经营，改看<span style="font-weight:600">CET1比率（≥10.25%监管底线）+ 不良率/拨备覆盖</span></td></tr>
+<tr><td>⑥<span class="col-tag col-info">估值</span></td><td>PB历史分位≤80%（PE辅助）</td><td>周期/金融用PB为主，PE为辅；周期股PB低分位≠便宜需结合ROE</td></tr>
+</table>
+</div>
+
+<h2>候选池（4只核心）</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>环节</th><th>市值</th><th>NIM</th><th>ROE</th><th>CET1</th><th>PB/分位</th><th>通过</th></tr>
+<tr>
+  <td><strong>NAB</strong> NAB.AX</td>
+  <td><span class="col-tag col-info">全能银行</span> 企业+按揭</td>
+  <td style="font-weight:600">A$133.1亿</td>
+  <td><span class="col-tag col-warn">1.74%</span> FY25</td>
+  <td><span class="col-tag col-win">11.4%</span> cash FY25</td>
+  <td>11.7%</td>
+  <td><span class="col-tag col-warn">1.85x</span> ~60-65%分位</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>WBC</strong> WBC.AX</td>
+  <td><span class="col-tag col-info">全能银行</span> 按揭龙头</td>
+  <td style="font-weight:600">A$131.8亿</td>
+  <td><span class="col-tag col-win">1.95%</span> FY25</td>
+  <td><span class="col-tag col-win">9.7%</span> FY25</td>
+  <td>12.5%</td>
+  <td><span class="col-tag col-win">1.6-1.8x</span> ~40-50%分位</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>ANZ</strong> ANZ.AX</td>
+  <td><span class="col-tag col-info">全能银行</span> 机构+新西兰</td>
+  <td style="font-weight:600">A$114.9亿</td>
+  <td><span class="col-tag col-lose">1.53%</span> FY25</td>
+  <td><span class="col-tag col-warn">8.1%</span> cash (9.6% ex-items)</td>
+  <td>12.0%</td>
+  <td><span class="col-tag col-win">1.4-1.6x</span> ~30-35%分位</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>MQG</strong> MQG.AX</td>
+  <td><span class="col-tag col-win">投行/资管</span> 非传统存贷</td>
+  <td style="font-weight:600">A$102.5亿</td>
+  <td>— <span style="font-size:11px;color:#666">BFS NIM~2.1%</span></td>
+  <td><span class="col-tag col-win">14.0%</span> FY26</td>
+  <td>12.8%</td>
+  <td><span class="col-tag col-warn">2.5-2.7x</span> ~65%分位</td>
+  <td class="pass">6/6*</td>
+</tr>
+</table>
+</div>
+<div style="font-size:11px;color:#888;margin:-10px 0 14px">* MQG为多元金融（GICS 4020），非传统存贷银行，ROE/PB可比性有限但规模与分红符合筛选；NIM不直接可比故用BFS口径备注。数据来源：KPMG Major Banks FY25/H1-26、CBA FY26公告、NAB FY25 MDA、MQG FY26公告、Savings.com.au 2026-08-07市值、Stockwirex/GuruFocus估值。</div>
+
+<h2>观察池</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>卡在哪筛</th><th>备注 / 触发条件</th></tr>
+<tr>
+  <td><strong>CBA</strong> CBA.AX</td>
+  <td><span class="col-tag col-lose">⑥估值 PB 3.6-3.9x</span> <span class="col-tag col-lose">~90%分位</span></td>
+  <td>质量最佳（ROE 14.0%FY26、NIM 2.05%、CET1 12.0%），但PB处历史极高，机构目标价中枢较现价低20-30%（~A$123 vs A$176）；等PB回落至≤80%分位或股息率&gt;4%再评估</td>
+</tr>
+<tr>
+  <td><strong>BEN</strong> Bendigo & Adelaide Bank</td>
+  <td><span class="col-tag col-lose">④ROE ~7%</span> &lt;8%</td>
+  <td>区域行龙头，NIM 1.98% FY26回升+6bps，CET1稳健，但ROE未达目标（2030目标&gt;10%）；ROE回升至8%+且PB&lt;1.2x时进入候选</td>
+</tr>
+<tr>
+  <td><span style="font-weight:600">BOQ</span> Bank of Queensland</td>
+  <td><span class="col-tag col-lose">④ROE 6.4%</span> cash FY25</td>
+  <td>NIM 1.64% FY25改善+8bps，但ROE显著低于门槛，转型中；需连续2年ROE≥8%再考虑</td>
+</tr>
+<tr>
+  <td><span style="font-weight:600">JDO</span> Judo Bank</td>
+  <td><span class="col-tag col-lose">④ROE ~5-6%</span> 成长期</td>
+  <td>SME细分赛道，NIM~3%+高于Big 4，但未盈利规模化、ROE偏低；属成长型银行，适用PS估值，待ROE达标后复评</td>
+</tr>
+<tr>
+  <td><span style="font-weight:600">MYS / HGH</span> MyState/Heartland</td>
+  <td><span class="col-tag col-warn">①市值 ~0.85-0.94亿</span> 临界 + ④ROE待检验</td>
+  <td>微型区域行，规模与流动性不足，暂不纳入核心池；仅作赛道观察</td>
+</tr>
+</table>
+</div>
+
+<h2>筛除记录</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>筛子</th><th style="width:60px">筛除数</th><th>知名示例</th></tr>
+<tr><td>①市值 ≥2亿AUD</td><td style="text-align:center">2</td><td>两家微型上市ADI/金融壳（市值&lt;2亿，流动性不足，如部分BNK小型分支）</td></tr>
+<tr><td>②营收 ≥1亿AUD</td><td style="text-align:center">0</td><td>上市银行均远超门槛（CBA ~A$299亿，NAB/WBC/ANZ均&gt;A$200亿）</td></tr>
+<tr><td>③毛利率 <span class="skip">跳过</span></td><td style="text-align:center">—</td><td>银行业跳过，改用NIM/Cost-to-income评估（Big 4 NIM 1.53-2.05%，成本收入比46-59%）</td></tr>
+<tr><td>④ROE ≥8%</td><td style="text-align:center">4</td><td>BOQ 6.4% / BEN ~7% / JDO ~5-6% / 部分微型行；ANZ 8.1%临界通过</td></tr>
+<tr><td>⑤负债率 <span class="skip">跳过</span></td><td style="text-align:center">—</td><td>银行业跳过，改用CET1（Big 4 11.7-12.8%均&gt;10.25%监管底线）+ 不良率评估</td></tr>
+<tr><td>⑥估值 PB≤80%分位</td><td style="text-align:center">1</td><td>CBA PB 3.7x / ~90%分位（机构一致看空20%+）；MQG PB 2.5-2.7x临界但保留</td></tr>
+<tr style="background:#fffde7"><td><strong>剩余核心候选</strong></td><td style="text-align:center;font-weight:700;color:#2e7d32"><strong>4</strong></td><td>14→7（计入3只小银行数据待补充）→ <strong>4只核心</strong>进入L1-L6（NAB/WBC/ANZ/MQG）</td></tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <strong>L7筛选结论</strong><br>
+  ASX银行共14家上市实体，属小行业（&lt;30只），按"银行特殊"规则跳过毛利率与负债率筛后，核心约束是<span style="font-weight:700">ROE与PB</span>。本次筛选 14→4（核心），筛除力度约71%：最严是ROE筛（中小行普遍&lt;8%）和估值筛（CBA极高PB）。<br>
+  <strong>核心关注4只：NAB（企业贷龙头，ROE最高among Big 4 ex-CBA）、WBC（股息率最高4.5%、PB最低）、ANZ（PB最便宜、机构相对价值首选）、MQG（多元金融、ROE 14%但非存贷可比）</strong>。<br>
+  CBA虽质量最优但估值已透支，放入观察池等待回调；BEN/BOQ/JDO为中小行观察，触发条件为ROE回升至8%+。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l8">
+<div class="tab-inner">
+
+<h2>产业链</h2>
+<div class="card" style="font-size:13px;line-height:1.7">
+
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px">
+
+<div style="flex:1;min-width:180px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#2e7d32;font-size:14px">上游：资金供给</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">RBA / 批发市场</div>
+    <div style="text-align:center;font-size:11px;color:#666">现金利率 4.10% · BBSW · 债券</div>
+    <div style="margin:10px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">存款人</div>
+    <div style="text-align:center;font-size:11px;color:#666">家庭 67% · 企业 33%<br>活期/定期/抵消账户</div>
+    <div style="text-align:center;font-size:11px;color:#888;margin-top:6px">APRA监管 LSD/LCR/NSFR</div>
+  </div>
+</div>
+
+<div style="flex:2;min-width:280px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#1565c0;font-size:14px">中游：银行（持牌ADI）← 核心分析环节</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+
+    <div style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap">
+      <div style="flex:1;min-width:70px;background:#e8f5e9;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">住房按揭</div>
+        <div style="font-size:10px;color:#666">CBA·WBC·NAB·ANZ</div>
+        <div style="font-size:10px;color:#2e7d32;font-weight:600">占信贷~60%</div>
+      </div>
+      <div style="font-size:20px;color:#999;line-height:36px">+</div>
+      <div style="flex:1;min-width:70px;background:#e8f5e9;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">商业/企业贷</div>
+        <div style="font-size:10px;color:#666">NAB领先 21.7%</div>
+        <div style="font-size:10px;color:#2e7d32;font-weight:600">增速10.5%</div>
+      </div>
+      <div style="font-size:20px;color:#999;line-height:36px">+</div>
+      <div style="flex:1;min-width:70px;background:#e3f2fd;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">机构/市场</div>
+        <div style="font-size:10px;color:#666">MQG·ANZ机构</div>
+        <div style="font-size:10px;color:#666">交易/资管</div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:11px;color:#1565c0;margin-bottom:10px">▲ 收入 = 生息资产 × NIM（1.5-2.05%）+ 手续费/交易收入（~9%）</div>
+
+    <div style="margin:6px 0 4px;font-weight:600;font-size:12px;color:#1565c0">辅业 / 收费业务</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">财富/资管<br><span style="font-size:10px;color:#666">MQG 68%海外收入</span></div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">支付/交易<br><span style="font-size:10px;color:#666">手续费~9.4%</span></div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">保险/其他</div>
+    </div>
+
+    <div style="margin:8px 0 4px;font-weight:600;font-size:12px;color:#1565c0">基础设施/成本</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <div style="flex:1;background:#f0f0f0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">网点/数字渠道<br><span style="font-size:10px;color:#666">全行网点~6000+</span></div>
+      <div style="flex:1;background:#f0f0f0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">风控/合规<br><span style="font-size:10px;color:#666">APRA资本+拨备</span></div>
+      <div style="flex:1;background:#f0f0f0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">IT/运营<br><span style="font-size:10px;color:#666">投资~A$24亿/年·CBA</span></div>
+    </div>
+  </div>
+</div>
+
+<div style="flex:1;min-width:160px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#c62828;font-size:14px">下游：资金需求</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:10px 8px;text-align:center;font-weight:600;font-size:13px">借款人</div>
+    <div style="text-align:center;font-size:11px;color:#666">家庭（按揭）· 中小企业<br>· 大企业 · 政府</div>
+    <div style="margin:10px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#f5f5f5;border:1px solid #ccc;border-radius:4px;padding:10px 8px;text-align:center;font-weight:600;font-size:13px">终端经济</div>
+    <div style="text-align:center;font-size:11px;color:#666">住房 · 投资 · 消费<br>· 实体经济</div>
+  </div>
+</div>
+
+</div>
+
+<div style="background:#fffde7;border-left:3px solid #f9a825;padding:8px 12px;font-size:12px;border-radius:0 4px 4px 0">
+  <strong>利润最厚环节：</strong>存款特许（低成本活期/交易存款）→ 住房按揭（规模大、抵押足、损失率低）→ 商业/机构贷（定价高但拨备波动）<br>
+  <span style="color:#666">银行的"资源"是廉价稳定的存款，"产品"是按揭；NIM = 贷款收益率 − 资金成本（含对冲），成本收入比46-59%是效率关键。</span>
+</div>
+
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>环节</th><th>代表公司</th><th>盈利性</th><th>集中度</th><th>议价能力</th></tr>
+<tr>
+  <td><span class="col-tag col-info">资金供给</span></td>
+  <td>RBA / 家庭存款</td>
+  <td>— 决定资金成本</td>
+  <td>分散（家庭端）</td>
+  <td><span class="col-tag col-warn">中</span> 存款竞争激烈</td>
+</tr>
+<tr style="background:#e8f5e9">
+  <td><span class="col-tag col-win">住房按揭</span></td>
+  <td>CBA/WBC/NAB/ANZ/MQG</td>
+  <td><span class="col-tag col-win">高</span> 抵押足、损失率&lt;1%</td>
+  <td>CR4 ~80%+</td>
+  <td><span class="col-tag col-win">强</span> 银行定价跟随RBA</td>
+</tr>
+<tr style="background:#e8f5e9">
+  <td><span class="col-tag col-win">商业/企业贷</span></td>
+  <td>NAB（21.7%份额）· CBA/WBC</td>
+  <td><span class="col-tag col-win">较高</span> 但周期波动</td>
+  <td>CR4 ~70%</td>
+  <td><span class="col-tag col-warn">中强</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-warn">交易/财富</span></td>
+  <td>MQG（国际化68%）</td>
+  <td><span class="col-tag col-warn">中</span> 波动大</td>
+  <td>分散</td>
+  <td><span class="col-tag col-warn">中</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-info">支付/手续费</span></td>
+  <td>Big 4共享</td>
+  <td><span class="col-tag col-info">稳定</span> 占收入~9.4%</td>
+  <td>寡头</td>
+  <td><span class="col-tag col-info">弱</span> 受监管/竞争压制</td>
+</tr>
+</table>
+</div>
+
+<h2>市场规模</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">指标</th><th style="width:25%">数值</th><th>说明</th></tr>
+<tr><td><strong>TAM</strong>（理论可触达）</td><td><span class="col-tag col-info" style="font-size:13px">信贷余额 ~A$3.8万亿</span></td><td>住房信贷A$2.475万亿（2025-12 APRA）+ 商业/个人信贷·含表外</td></tr>
+<tr><td><strong>SAM</strong>（可服务）</td><td>A$5.0-5.5万亿资产</td><td>全银行业总资产（Big 4 5.04万亿 2026H1 + 中小行0.7万亿 + 外资0.5万亿）</td></tr>
+<tr><td><strong>SOM</strong>（上市银行可得）</td><td>~A$4.5万亿</td><td>14家上市银行资产合计，占行业~80%</td></tr>
+<tr><td><strong>当前渗透率</strong></td><td><span class="col-tag col-warn">~95%+</span> 成人银行账户</td><td>高度渗透，增量靠人口+房价+企业扩表，非新客</td></tr>
+<tr><td><strong>近年增速</strong>（3年CAGR）</td><td><span class="col-tag col-warn">资产 +5.3%</span> / 信贷 +5-6%</td><td>KPMG：总资产+5.3%，贷款+5.5%，其中企业贷+10.5%，住房+4.8%；收入CAGR 2.9%但利润-2.2%/年（竞争压利差）</td></tr>
+</table>
+</div>
+
+<h2>生命周期</h2>
+<div class="summary-box">
+  <strong><span class="col-tag col-info" style="font-size:14px">成熟期</span>（现金牛）</strong><br>
+  判断依据：①渗透率&gt;95%且信贷/GDP已处高位，增速≈名义GDP（4-6%）；②营收增速低但稳定（KPMG Big 4营收+4.7% 2026H1），利润率稳定但受NIM压缩；③现金流充沛，派息率65-80%，CET1 11.7-12.8%远超监管；④技术/牌照壁垒高，新进入者仅Judo等细分切入，难以撼动寡头。<br>
+  财务特征：营收个位数增长、ROE 8-14%分化、经营现金流可预测、股息率3-5%是主要回报来源；投资重点是<span style="font-weight:700">分红+效率+风控</span>而非规模扩张。
+</div>
+
+<h2>增长驱动力</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动力</th><th>类型</th><th>可持续性</th><th>量化指标</th></tr>
+<tr>
+  <td>人口增长 + 住房需求</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-warn">中长</span></td>
+  <td>年人口增速1.2%（RBA假设）、新房贷承诺、房价指数</td>
+</tr>
+<tr>
+  <td>商业信贷/企业投资</td>
+  <td><span class="col-tag col-warn">周期/结构</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>企业贷增速10.5%（FY25）、PMI、产能利用率</td>
+</tr>
+<tr>
+  <td>利率周期（NIM）</td>
+  <td><span class="col-tag col-lose">周期</span></td>
+  <td><span class="col-tag col-lose">短</span></td>
+  <td>RBA现金利率、BBSW、NIM 1.5-2.05%</td>
+</tr>
+<tr>
+  <td>数字化/生产率提升</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>成本收入比46-59%、FTE、IT投资</td>
+</tr>
+<tr>
+  <td>财富管理/手续费</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>非息收入占比~9.4%、AUM增速</td>
+</tr>
+</table>
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l9">
+<div class="tab-inner">
+
+<h2>市场结构</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>市场结构类型</td>
+  <td><span class="col-tag col-win">寡头垄断</span> · 四支柱政策（Four Pillars）禁止Big 4互并，牌照+APRA审慎监管构筑极高壁垒</td>
+</tr>
+<tr>
+  <td>CR3 / CR4</td>
+  <td>总资产CR4 <span class="col-tag col-win">72%</span>（CBA+WBC+NAB+ANZ 3,927bn / 行业5.4tn，CFR 2025-03）；住房按揭CR4 ~75-80%；商务贷CR3 ~55-60% · <span style="color:#2e7d32">趋势：微降</span>（中小行夺份额+5-10pct自GFC峰值，MQG个人房贷快速扩张）</td>
+</tr>
+<tr>
+  <td>格局象限</td>
+  <td><span class="col-tag col-win">寡头稳定</span> 产品同质化低（品牌/网点/数字体验差异），默契定价，竞争以存款/按揭利率为主，价格战烈度低于钢铁/光伏</td>
+</tr>
+<tr>
+  <td>新进入者威胁</td>
+  <td><span class="col-tag col-warn">中低</span> 牌照极难，资本要求高（CET1≥10.25%）；但细分切入可行（Judo专攻SME、非银/私人信贷在商用地产提份额）</td>
+</tr>
+</table>
+</div>
+
+<h2>竞争壁垒</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>壁垒类型</th><th>强度</th><th>可持续性</th><th>具体表现</th></tr>
+<tr>
+  <td>牌照/四支柱 + 监管</td>
+  <td><span class="col-tag col-win">极强</span></td>
+  <td><span class="col-tag col-win">极长</span></td>
+  <td>APRA持牌ADI仅~90家，Big 4受D-SIB额外资本要求但获隐形背书；并购受限保护格局</td>
+</tr>
+<tr>
+  <td>规模效应 + 资金成本</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>CBA存款占比~70%（批发仅20%）vs MQG 40-45%，存款特许带来10-30bps资金优势；IT/风控分摊</td>
+</tr>
+<tr>
+  <td>品牌 + 网点/数字生态</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>CBA服务1/3澳洲人+1/4企业（FY26），App月活领先；转换成本高（工资代发/按揭绑定）</td>
+</tr>
+<tr>
+  <td>风控/数据 + 资本</td>
+  <td><span class="col-tag col-warn">中强</span></td>
+  <td><span class="col-tag col-warn">中长</span></td>
+  <td>千亿级拨备池（CBA 65-67亿、WBC 58-60亿）、内部评级法优势；CET1 11.7-12.8%缓冲厚</td>
+</tr>
+</table>
+</div>
+
+<div class="summary-box">
+  <strong>定价权测试</strong><br>
+  🔹 银行能涨价吗？<strong>能，但受RBA和竞争强约束</strong>：现金利率上调时贷款与存款同步上行（2026年初+75bps按揭已传导），但竞争使NIM难扩大（RBA研究：资金成本相对现金利率反而下降15bps因对冲成本回落，贷款利差仍低于疫前）<br>
+  🔹 NIM趋势：2022-23 NIM回升（加息快于成本），2024-26 回落至历史低位企稳（CBA 2.05% / WBC 1.95% / NAB 1.74% / ANZ 1.53%），未来随现金利率下行或温和承压<br>
+  🔹 ROE趋势：分化加剧（CBA/MQG 14% vs ANZ 8.1%/WBC 9.7%），ROE差距是PB分化的根本解释（PB ≈ (ROE−g)/(r−g)）
+</div>
+
+<h2>驱动力拆解</h2>
+<div class="highlight-box">
+  <strong>行业收入公式</strong><br>
+  银行收入 = 生息资产规模 × 净息差(NIM) + 非息收入<br>
+  ＝（住房信贷 + 商业信贷 + 其他资产）×（生息收益率 − 资金成本率） + 手续费/交易/资管<br><br>
+  当前组合：<span style="color:#2e7d32;font-weight:700">量 ↑ 温和</span>（信贷+5-6%） ＋ <span style="color:#c62828;font-weight:700">价（NIM）→ 承压</span>（历史低位企稳，竞争抵消利率对冲红利） ＝ <span class="col-tag col-warn">以量补价，利润增速 ≈ 收入增速</span>
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动因子</th><th>最新值</th><th>历史区间</th><th>当前分位</th></tr>
+<tr>
+  <td>RBA现金利率</td>
+  <td><span class="col-tag col-warn">4.10%</span> 2026-03</td>
+  <td>0.10-4.35%（近5年）</td>
+  <td><span class="col-tag col-warn">75-80%</span> 高位</td>
+</tr>
+<tr>
+  <td>集团NIM（Big 4平均）</td>
+  <td><span class="col-tag col-lose">1.53-2.05%</span> 平均~1.78%</td>
+  <td>1.5-2.3%</td>
+  <td><span class="col-tag col-lose">20-30%</span> 低位</td>
+</tr>
+<tr>
+  <td>信贷增速（年）</td>
+  <td><span class="col-tag col-win">住房+4.8% / 企业+10.5%</span></td>
+  <td>2-8%</td>
+  <td><span class="col-tag col-win">60-70%</span></td>
+</tr>
+<tr>
+  <td>不良率（NPL/总信贷）</td>
+  <td><span class="col-tag col-warn">0.99%</span> 总体 / 住房90+逾期0.47%</td>
+  <td>0.6-1.5%（GFC前~1.8%）</td>
+  <td><span class="col-tag col-warn">45-55%</span> 温和上行</td>
+</tr>
+<tr>
+  <td>拨备覆盖（Collective provision/RWA）</td>
+  <td><span class="col-tag col-win">1.18-1.53%</span></td>
+  <td>0.9-1.6%</td>
+  <td><span class="col-tag col-win">70%</span> 充裕</td>
+</tr>
+</table>
+</div>
+
+<h2>成本结构</h2>
+<div class="summary-box">
+  🔹 <strong>类型：</strong><span class="col-tag col-info">重资本 + 中固定成本</span>（监管资本为核心约束，IT/网点/合规为固定成本）<br>
+  🔹 <strong>成本敏感性：</strong>收入±10% → 利润±15-25%（拨备弹性放大；成本收入比46-59%，ANZ 58.8%偏高因重组拨备）<br>
+  🔹 <strong>盈亏平衡点：</strong>NIM需&gt;1.4-1.5%才能覆盖信用成本（~10-30bps）+ 运营成本；当前NIM均安全，但中小行（NIM 1.64% BOQ）缓冲薄
+</div>
+
+<h2>竞争格局总结</h2>
+<div class="highlight-box">
+  ASX银行是<span style="font-weight:700">"寡头稳定+牌照垄断"</span>的价值型行业：Big 4凭借存款特许、规模和品牌享有10-30bps资金成本优势，ROE 8-14%且能长期维持（CBA/MQG RO E 14%属第一梯队）。但同质化竞争使NIM被压至历史低位，增长靠"量"（信贷+5-6%）而非"价"。格局演化主线是<span style="font-weight:700">中小行与非银侵蚀份额</span>（MQG房贷份额快速提升，外资在商业贷扩张），但Big 4凭借资本与风控仍主导定价。投资含义：<span style="font-weight:700">不选行业、选银行</span>——ROE与NIM的细微差距决定PB溢价（CBA 3.7x vs ANZ 1.4x），PB合理性需用ROE匹配（ROE 5%→PB 0.5-0.8x；10%→1.0-1.5x；15%→1.5-2.5x）。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l10">
+<div class="tab-inner">
+
+<h2>周期位置</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>库存/信用周期阶段</td>
+  <td><span class="col-tag col-warn">繁荣后期 → 顶部震荡</span>（非典型库存周期，信用周期主导；资产质量处温和恶化初期）</td>
+</tr>
+<tr>
+  <td>产能利用率（信贷供给）</td>
+  <td><span class="col-tag col-win">85-90%</span>（银行资本充裕，CET1 11.7-12.8% &gt;10.25%监管底线，有扩表能力；但DTI限贷压制需求）</td>
+</tr>
+<tr>
+  <td>价格分位（NIM）</td>
+  <td><span class="col-tag col-lose">20-30%分位</span>（历史低位企稳）；资金成本随现金利率上行但对冲成本回落部分对冲（RBA估计对冲成本-15bps）</td>
+</tr>
+<tr>
+  <td>行业盈利状态</td>
+  <td><span class="col-tag col-warn">利润承压但未失速</span>：Big 4合计税后利润A$15.2bn 2026H1 同比-2.1%（KPMG），减值费用+15.4%至A$9.6bn，成本+4-9%快于收入</td>
+</tr>
+</table>
+</div>
+
+<div class="danger-box">
+  <strong>⚠ PB/PE悖论检查（银行适用PB为主）</strong><br>
+  银行PB与ROE强相关，PE易受拨备周期干扰：<br>
+  • CBA PE 28x / PB 3.7x（历史90%+分位）—— 利润好时PE极低是卖点（光伏反例），但CBA当前PE/PB均极高，属<span style="font-weight:700">估值陷阱而非周期底部</span><br>
+  • ANZ/WBC PB 1.3-1.6x（20-40%分位）—— 盈利平稳期PB低分位属<span style="font-weight:700">价值区间</span>，但需确认ROE可持续（PB合理≈ROE匹配）<br>
+  • 中小行PB &lt;1.0-1.2x看似便宜，若ROE仅6-7%则PB合理仅0.8x，<span style="font-weight:700">低PB≠便宜</span>，需用P/B-ROE框架判断<br>
+  <strong>警告：</strong>银行在NIM底部+信用成本上行期，PE会"便宜"但盈利下修风险大；应锚定<span style="font-weight:700">PB分位 ≤30% + 股息率≥4.5% + CET1充裕</span>作为安全边际，而非追逐高PE成长幻觉。
+</div>
+
+<h2>估值水平</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>估值指标</th><th>行业当前（中位数）</th><th>历史中位数</th><th>80%分位</th><th>20%分位</th></tr>
+<tr>
+  <td><strong>PE</strong>（Big 4）</td>
+  <td><span class="col-tag col-warn">18-28x</span> CBA 28.5x / WBC18.7x / NAB20.7x / ANZ18.9x</td>
+  <td>15-17x</td>
+  <td>20-22x</td>
+  <td>12-13x</td>
+</tr>
+<tr>
+  <td><strong>PB</strong>（Big 4）</td>
+  <td><span class="col-tag col-warn">1.4-3.7x</span> CBA3.7x / NAB1.85-2.1x / WBC1.6-1.8x / ANZ1.4-1.6x</td>
+  <td>1.4-1.6x（ANZ/WBC）<br>CBA 2.0-2.5x</td>
+  <td>CBA 3.0x+ / 其他 1.9x</td>
+  <td>CBA 2.0x / 其他 1.0-1.2x</td>
+</tr>
+<tr>
+  <td><strong>股息率</strong></td>
+  <td><span class="col-tag col-info">3.5-4.5%</span> CBA~3.0-3.5% / ANZ~4.4% / WBC~4.5% / NAB~4.1%</td>
+  <td>4.5-5.5%</td>
+  <td>6%+（底部）</td>
+  <td>3%（顶部）</td>
+</tr>
+</table>
+</div>
+<div style="font-size:11px;color:#888;margin:-10px 0 14px">注：估值区间综合Quantfolio/Stockwirex/MarketMatters/Bull 2026-07/08数据；CBA PB 3.75x为MarketMatters 2026-07-24数据，Quantfolio显示3.7x，Stockwirex显示~2.8x（方法差异），统一取高位以示风险。</div>
+
+<h2>政策环境</h2>
+<div class="summary-box">
+  🔹 <strong>政策方向：</strong><span class="col-tag col-warn">中性偏紧</span>（审慎从严，逆周期调节）<br>
+  🔹 <strong>关键政策：</strong><br>
+  &emsp;• <strong>RBA货币政策：</strong>现金利率4.10%（2026-03），处限制性区间上限（RBA估计中性利率顶部），市场预期年内再加息0.5次概率~50%，但8月加息概率极低；银行资金成本已+18bps传导<br>
+  &emsp;• <strong>APRA审慎：</strong>CET1≥10.25%（D-SIB缓冲），LCR/NSFR&gt;100%，AT1工具2027年起逐步以更可靠资本替代（2032完成），资本充足无忧但约束分红扩张<br>
+  &emsp;• <strong>宏观审慎：</strong>2026-02起实施DTI≥6限制（投资/自住分贷种限占比），已见新增高DTI占比从5.8%→6.8%被压制；LVR≥80%新增占比32%需监控<br>
+  &emsp;• <strong>竞争与消费者：</strong>四支柱不削弱，但中小银行审查（CFR 2025）推动可携式账户/开放银行，长期利好中小行分流<br>
+  🔹 <strong>政策周期位置：</strong><span class="col-tag col-warn">紧缩末期</span> → 预计2026H2进入<span class="col-tag col-info">中性观望</span>（通胀3.4-3.7%仍高于目标中枢2.5%，RBA谨慎）
+</div>
+
+<h2>买入清单</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:28%">条件</th><th style="width:16%">结果</th><th>备注</th></tr>
+<tr>
+  <td>周期位置：不在繁荣顶点</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td>信用周期由繁荣转温和恶化（不良0.99%上行），NIM在底部，非顶点但也非萧条抄底期</td>
+</tr>
+<tr>
+  <td>估值：PB在历史偏低分位（≤30%）</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span> 分化</td>
+  <td>ANZ/WBC满足（PB 1.3-1.6x处20-40%分位），NAB居中，CBA严重偏高（~90%）</td>
+</tr>
+<tr>
+  <td>政策：不是收紧期</td>
+  <td style="text-align:center"><span class="col-tag col-lose">❌</span></td>
+  <td>当前为紧缩末期（加息+DTI限贷），政策未转向宽松，信贷增速将放缓</td>
+</tr>
+<tr>
+  <td>格局：龙头壁垒稳固</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>Big 4寡头壁垒极稳，CR4 72%且CET1充裕，龙头分化但无颠覆风险</td>
+</tr>
+<tr>
+  <td>增长：有可见驱动力</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td>量（信贷+5-6%）可预期，价（NIM）无弹性；增长=温和，不支持高估值</td>
+</tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <div style="font-size:16px;font-weight:700;margin-bottom:8px">综合判断：<span class="col-tag col-warn" style="font-size:15px">等待 / 精选</span>（非全行业买入）</div>
+  <div style="margin-bottom:6px">不追高CBA，聚焦PB低分位+股息≥4%+ROE≥8%的个体；全行业仓位≤15%防御配置</div>
+  <table style="font-size:12px;margin:6px 0;border:none;background:transparent">
+    <tr><td style="border:none;padding:3px 6px;background:transparent;width:90px;font-weight:600">预期回报</td><td style="border:none;padding:3px 6px;background:transparent">股息4-5% + 温和估值修复5-10%（若PB从1.3→1.6x）= 年化8-12%；无戴维斯双击</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">仓位建议</td><td style="border:none;padding:3px 6px;background:transparent"><span class="col-tag col-warn">组合≤15%且分散2-3只</span>（单只≤8%，避免重仓单一银行）</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">跟踪指标</td><td style="border:none;padding:3px 6px;background:transparent">RBA现金利率/BBSW · NIM（每季）· 90+逾期/不良率 · 信贷增速 · CET1与分红率 · PB分位与股息率</td></tr>
+  </table>
+  <div style="margin-top:8px;padding:8px;background:#e8f5e9;border-radius:4px;font-size:12px">
+    <strong>买入策略（分层）：</strong><br>
+    <span class="col-tag col-win">首选 ANZ / WBC</span>（PB 1.3-1.6x处历史低位、分红4.4-4.5%、机构相对价值首选）：PB≤80%分位且股息率≥4%时分批建仓（2-3次，跌5%加仓）<br>
+    <span class="col-tag col-warn">次选 NAB</span>（ROE 11.4%最优among低PB银行）：回调至PB 1.6x附近或股息率≥4.5%时介入<br>
+    <span class="col-tag col-lose">回避 CBA</span>（PB 3.7x）：等PB回落至2.5x以内或股息率&gt;4%再评估；短线不追<br>
+    <span class="col-tag col-info">观察 MQG</span>（投行周期）：ROE 14%但估值不便宜且国际/市场敞口大，适合PB≤2.0x或市场回调时配置<br>
+    <span style="color:#666">中小行BEN/BOQ/JDO仅在ROE连续2年≥8%且PB&lt;1.0x时考虑，当前不纳入核心。</span>
+  </div>
+</div>
+
+<h2>卖出信号</h2>
+<div class="danger-box">
+  <strong>出现以下信号考虑卖出/止盈：</strong><br>
+  <div style="margin-top:6px">
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px">1</span>
+    不良率加速上行（NPL&gt;1.3%或90+逾期&gt;0.7%）且拨备覆盖跌破1.0%（信用周期真正恶化）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">2</span>
+    RBA重启大幅加息（现金利率＞4.6%）或DTI/LVR进一步大幅收紧导致信贷负增长<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">3</span>
+    PB修复至历史中枢以上（ANZ/WBC PB&gt;1.9x / NAB&gt;2.2x）且股息率&lt;3.5%（估值透支）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">4</span>
+    NIM连续两季环比-5bps以上或成本收入比突破60%（竞争/资金成本失控侵蚀ROE）
+  </div>
+</div>
+
+</div>
+</div>
+
+<div class="footer">Generated by Industry Analysis · L7-L10 Framework · ASX Banks · 数据截至2026-08-26 · 仅供研究，不构成投资建议<br>数据来源：KPMG Major Banks FY25/H1-26、CBA/NAB/WBC/ANZ/MQG公告、RBA Bulletin/SMP 2026、APRA ADI Statistics Dec 2025、CFR Small/Medium Banks Review 2025、Savings.com.au、Simply Wall St、Stockwirex/GuruFocus</div>
+
+</div>
+
+<script>
+var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+var contents = document.querySelectorAll('.tab-content');
+btns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    contents.forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    var tab = btn.getAttribute('data-tab');
+    document.getElementById('tab-' + tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
