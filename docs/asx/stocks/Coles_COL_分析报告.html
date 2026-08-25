@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coles(COL) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .score-note { font-size: 13px; color: #666; background: #fafafa; border: 1px dashed #ccc; padding: 8px 12px; margin: 10px 0; }
+  .history-table td:first-child { white-space: nowrap; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>Coles（COL）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架 | ASX 防御型/消费必需品</p>
+<p class="meta">分析日期：2026-08-25 | 数据来源：FY25年报(52周至2025-06-29)+FY24年报(53周至2024-06-30)+2025 Full Year Results Release/Presentation+FY26Q3 Sales(2026-04-15)+S&P Global via StockAnalysis | 币种：AUD | 股价基准：23.75 AUD (2026-08-25 收盘)</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>Coles Group Limited</td></tr>
+  <tr><td>股票代码</td><td>ASX: COL (S&P/ASX 200 成份，上市 2018-11-21 自 Wesfarmers 分拆)</td></tr>
+  <tr><td>所属行业</td><td>Consumer Staples — Food & Staples Retailing / 食品零售（超市+酒类+便捷）</td></tr>
+  <tr><td>行业地位</td><td>澳洲两大超市寡头之一，全国约1,853店（超市870+、Liquor 960+、Coles Express关联），市占率约29%零售额/18%门店，销量仅次于 Woolworths（约37%）</td></tr>
+  <tr><td>FY25 总运营收入</td><td>444.87亿 AUD（同比 +1.84%，53周基准 normalised +2.8%）</td></tr>
+  <tr><td>归母净利润 Statutory</td><td>10.79亿 AUD（同比 -3.5%，FY24 11.18亿含53周；剔除显著项目 underlying 11.81亿，同比 -2.4%，normalised +3.1%）</td></tr>
+  <tr><td>经营现金流 CFO</td><td>29.36亿 AUD（FY24 27.93亿，+5.1%）</td></tr>
+  <tr><td>总资产</td><td>202.94亿 AUD（FY24 198.70亿，+2.1%）</td></tr>
+  <tr><td>归母净资产</td><td>38.06亿 AUD（FY24 36.17亿，+5.2%）</td></tr>
+  <tr><td>ROE（平均权益）/ ROA</td><td>29.07% / 5.35%（spot ROE 28.35%，ROIC 10.38%）</td></tr>
+  <tr><td>股本 / 员工</td><td>13.37亿股 / 约11.5万人</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>行业类型标注：</strong> <span class="good">非周期股 — 防御型（消费必需品）</span>。生鲜/日杂为刚需，需求不随经济周期大幅波动，营收可预测、现金流稳定。按 <code>industry-classification.md</code>，食品饮料/超市属<strong>非周期股</strong>，不在纯周期（钢铁/煤炭）或混合周期（半导体/锂电）清单，适用<strong>非周期股评分体系</strong>。估值首选 PE/股息率，PB为辅助（重租赁资产需校正）。
+</div>
+
+<p class="score-note"><strong>评分口径说明：</strong><span>采用非周期股评分体系，首次分析，无历史版本</span></p>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:12px;color:#666;margin-bottom:6px;">采用非周期股评分体系（ROE/杜邦质量/现金含金量/增长/负债/短期偿债/毛利/估值/FCF共10维）</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE</td><td class="good">15/15</td><td style="text-align:left">FY25平均ROE 29.07%（1079/平均权益3711m），≥15%得满分；spot 28.35%亦远超，连续5年>28%</td></tr>
+  <tr><td>杜邦驱动质量</td><td class="bad">1/5</td><td style="text-align:left">高杠杆驱动型：净利率2.43%×周转2.22×乘数5.41，高杠杆放大，利润与周转均非突出，财务风险权重高</td></tr>
+  <tr><td>利润含金量 CFO/净利</td><td class="good">15/15</td><td style="text-align:left">CFO 29.36亿 / NPAT 10.79亿 = 2.72倍（FY24 2.50倍），远超1.0，利润100%现金化且含预收，有息负债利息前更优</td></tr>
+  <tr><td>营收增长</td><td class="neutral">4/10</td><td style="text-align:left">FY25财报口径+1.84%（53周扭曲），Supermarkets normalised +4.3%（剔烟草+5.7%），Liquor +1.1%，集团 normalised约+2.8%，<5%仅得4分</td></tr>
+  <tr><td>利润增长</td><td class="bad">0/10</td><td style="text-align:left">Stat NPAT -3.5%（-2.1% underlying reported，normalised +3.1%），财报口径为负，费用与利息侵蚀抵消营收增长</td></tr>
+  <tr><td>负债率</td><td class="bad">0/10</td><td style="text-align:left">资产负债率81.3%（164.88/202.94），≥70%得0分；含AASB16租赁83.43亿，若剔租赁约41%，但会计口径仍高企，BBB+/Baa1评级维系</td></tr>
+  <tr><td>短期偿债</td><td class="neutral">4/10</td><td style="text-align:left">现金7.05亿 vs 短期有息1.50亿覆盖充裕；但含一年内租赁9.28亿则合计10.78亿，缺口约35%（373m），靠25.8亿未动用授信覆盖，给4分（缺口&lt;30%阈值边缘）</td></tr>
+  <tr><td>毛利率水平与趋势</td><td class="neutral">7/10</td><td style="text-align:left">毛利率26.61%（FY24 25.85%）+76bps，≥15%且稳定微升得7分；距30%卓越线仍有差距，超市2-3%净利显示定价权有限</td></tr>
+  <tr><td>估值 PE vs 合理区间</td><td class="good">10/10</td><td style="text-align:left">ROE>20%合理PE 20-30x，当前PE(TTM) 29.25x处于区间上限、Forward 23.51x处于中枢，属合理（偏高但未超30%），PCF 9.5x更优</td></tr>
+  <tr><td>FCF</td><td class="good">5/5</td><td style="text-align:left">FY25 FCF 14.49亿（FY24 11.22亿、FY23 12.93亿），近5年持续为正且 FY26 TTM升至18.53亿，自由现金强</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">61/100</td><td style="text-align:left">一般关注 → 现金牛但增长与杠杆制约估值弹性</td></tr>
+</table>
+
+<div class="verdict verdict-caution">一般关注（61/100分）</div>
+
+<h2 style="margin-top:16px">评分沿革</h2>
+<style>.history-table{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:13px}.history-table th,.history-table td{border:1px solid #ddd;padding:6px 8px;text-align:center}.history-table th{background:#f0f0f0;font-weight:bold}.history-table td.good{color:#27ae60}.history-table td.neutral{color:#e67e22}.history-table td.bad{color:#c0392b}</style><table class="history-table">
+  <tr><th>日期</th><th>评分</th><th>评分体系</th><th>变化原因</th></tr>
+  <tr><td>2026-08-25</td><td class="neutral" style="font-weight:bold">61/100</td><td>防御性</td><td style="text-align:left">采用非周期股评分体系，首次分析，无历史版本</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>澳洲“现金奶牛”式超市龙头：需求刚性+双寡头格局铸就29% ROE与2.7倍CFO/净利、FCF五年为正且FY25达14.5亿，但赚的是薄利（净利率2.43%）与高周转（2.22次），靠5.4倍权益乘数放大，负债率81%与租赁83亿是阿克琉斯之踵。FY25在烟草下滑与ADC/CFC投建成本下仍靠自有品牌与线上实现Supermarkets +4.3%（剔烟草5.7%），但利息+99m与显著项目35m致Stat利润负增长，估值PE 29x已处合理区间顶部，向上需量价齐升验证。<br><br>
+  <strong>核心优势：</strong>① 防御刚需+寡头定价：市占29%、ACCC 2025-02超市调查未认定哄抬价格，政策风险缓释；② 现金造血极强：CFO 29.36亿是净利2.7倍，FCF 14.5亿同比+29%、分红71% payout仍覆盖1.6倍；③ 自动化护城河：昆州/新州ADC全面投运+eCommerce +24.4%、渗透率提升，自有品牌占比扩大+库存周转12次；④ 股息稳：全额franked 69c、分红率86%、连续6年分红递增。<br><br>
+  <strong>核心风险：</strong>① 高杠杆：总负债164.9亿含租赁83.4亿，净负债96.2亿、杠杆率2.6x，利率+100bps税后利润-6m，流动比0.61、速动0.15极低；② 利润天花板：净利率仅2.43%、FY25 EBIT仅+1%（underlying +2.2%），Liquor EBIT -8.6%、Other亏损1.09亿拖累；③ 估值不便宜：PB 8.06x（Tangible PB 18.4x）、PE 29x高于历史中位20-22x，PEG 2.58、超额回报依赖降息或份额提升；④ 竞争与监管：与WOW双寡头竞争（COL近期份额回升但WOW体量仍大50%）、烟草新规2025-07生效致增速承压。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY25 (52周)</th><th>FY24 (53周)</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入 Total Operating Revenue</td><td>444.87亿</td><td>436.84亿</td><td class="neutral">+1.84% (normalised +2.8%)</td><td>剔53周后温和增长</td></tr>
+  <tr><td>销售收入 Sales Revenue</td><td>443.52亿</td><td>435.71亿</td><td class="neutral">+1.79%</td><td>烟草拖累，剔烟草+约5%</td></tr>
+  <tr><td>毛利润 Gross Profit</td><td>118.38亿</td><td>112.92亿</td><td class="good">+4.84%</td><td>快于营收</td></tr>
+  <tr><td>毛利率</td><td>26.61%</td><td>25.85%</td><td class="good">+76bps</td><td>Exclusive品牌+损耗改善</td></tr>
+  <tr><td>其他收入 Other Income</td><td>1.32亿</td><td>1.65亿</td><td class="bad">-20.0%</td><td>物业处置波动</td></tr>
+  <tr><td>管理/运营费用 Admin Expenses</td><td>98.88亿</td><td>93.82亿</td><td class="neutral">+5.4%</td><td>薪资通胀+ADC双运行</td></tr>
+  <tr><td>EBIT 报告</td><td>20.77亿</td><td>20.57亿</td><td class="neutral">+0.97%</td><td>含显著项目-0.35亿</td></tr>
+  <tr><td>EBIT 剔显著 / Underlying</td><td>22.23亿 / 21.12亿</td><td>21.75亿 / 20.57亿</td><td class="good">+2.2% / normalised +6.8%</td><td>Supermarkets +9.0%驱动</td></tr>
+  <tr><td>EBITDA 报告 / Underlying</td><td>39.41亿 / 40.52亿</td><td>36.59亿 / 37.68亿</td><td class="good">+7.7% / +7.5%</td><td>折旧18.29亿同比+14%</td></tr>
+  <tr><td>融资成本 Financing Costs</td><td>5.41亿 (租赁4.25+债务1.16)</td><td>4.42亿 (3.63+0.79)</td><td class="bad">+22.4%</td><td>6亿债全年息+3亿MTN新增</td></tr>
+  <tr><td>税前利润 PBT</td><td>15.36亿</td><td>16.15亿</td><td class="bad">-4.9%</td><td>利息侵蚀</td></tr>
+  <tr><td>所得税</td><td>4.57亿</td><td>4.87亿</td><td class="good">-6.2%</td><td>有效税率29.7%</td></tr>
+  <tr><td>归母净利润 NPAT (持续)</td><td>10.79亿</td><td>11.28亿</td><td class="bad">-4.3%</td><td>含显著-0.25亿</td></tr>
+  <tr><td>归母净利润 (含终止)</td><td>10.79亿</td><td>11.18亿</td><td class="bad">-3.5%</td><td>FY24终止亏0.10亿</td></tr>
+  <tr><td>净利率</td><td>2.43%</td><td>2.56%</td><td class="bad">-13bps</td><td>费用+利息抵消毛利提升</td></tr>
+  <tr><td>EPS (摊薄)</td><td>0.81 AUD</td><td>0.84 AUD</td><td class="bad">-3.65%</td><td>股本13.37亿微增</td></tr>
+  <tr><td>DPS (全年)</td><td>0.69 AUD (37c+32c)</td><td>0.68 AUD</td><td class="good">+1.47%</td><td>100% franked, payout 85%</td></tr>
+</table>
+<p style="font-size:12px;color:#888;">注：FY24为53周，normalised剔除第53周后 Group EBIT normalised +6.8%至7.5%（管理层口径），Supermarkets EBIT normalised +9.0%。1H25 NPAT 5.76亿(-2.2%) vs underlying 6.66亿(+6.4%)。FY26Q3(至2026-04-15)超市销售约+3.0%继续领跑WOW约2%+。</p>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong> <strong>“增收微增、增利停滞”</strong>——FY25在烟草新规前销量下滑+ADC/CFC双运行成本（1.03亿）+工资通胀下，靠Supermarkets量价双升（销量+2.8%、剔烟草5.7%）、自有品牌与eCommerce +22.6%及Simplify & Save降本对冲，毛利率仍+76bps至26.61%，underlying EBIT +2.2%（normalised +6.8%），但融资成本飙升99m（租赁+62m、债务+37m）完全吞噬EBIT增量，致PBT/NPAT负增长。分季度看1Q +3.5%、2Q +4.9%、3Q +3.7%、4Q normalised +4.8%逐季提速，显示下半年供给链韧性恢复。显著项目0.35亿（Truganina ADC关闭重组）为一次性，若剔除则利润 normalised +3.1%转正。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY25</th><th>FY24</th><th>变动</th><th>评价</th></tr>
+  <tr><td>货币资金 Cash & Equivalents</td><td>7.05亿</td><td>6.75亿</td><td class="neutral">+4.4%</td><td>现金薄，含在途3.70亿</td></tr>
+  <tr><td>应收账款 Receivables</td><td>5.15亿</td><td>4.96亿</td><td class="neutral">+3.8%</td><td>增速≈营收，管理稳</td></tr>
+  <tr><td>存货 Inventory</td><td>27.33亿</td><td>27.03亿</td><td class="neutral">+1.1%</td><td>占营收6.2%，周转12次</td></tr>
+  <tr><td>流动资产合计</td><td>41.78亿</td><td>39.86亿</td><td class="neutral">+4.8%</td><td></td></tr>
+  <tr><td>固定资产 PPE (含使用权)</td><td>128.08亿</td><td>126.67亿</td><td class="neutral">+1.1%</td><td>重租赁资产</td></tr>
+  <tr><td>商誉 Goodwill</td><td>11.51亿</td><td>11.51亿</td><td class="neutral">0%</td><td>占净资产30%</td></tr>
+  <tr><td>其他无形资产</td><td>10.95亿</td><td>10.52亿</td><td class="neutral">+4.1%</td><td>软件/牌照</td></tr>
+  <tr><td>总资产</td><td>202.94亿</td><td>198.70亿</td><td class="neutral">+2.1%</td><td>租赁占比41%</td></tr>
+  <tr><td>应付账款 Payables</td><td>35.95亿</td><td>34.14亿</td><td class="neutral">+5.3%</td><td>占用上游资金</td></tr>
+  <tr><td>其中：短期有息+一年内租赁</td><td>10.78亿 (1.50+9.28)</td><td>9.11亿</td><td class="bad">+18.3%</td><td>短期压力升</td></tr>
+  <tr><td>流动负债合计</td><td>68.56亿</td><td>67.71亿</td><td class="neutral">+1.3%</td><td>流动比0.61</td></tr>
+  <tr><td>长期有息 Long-term Debt</td><td>18.34亿</td><td>16.52亿</td><td class="neutral">+11.0%</td><td>新增3亿MTN 2032到期</td></tr>
+  <tr><td>长期租赁 Long-term Leases</td><td>74.15亿</td><td>75.06亿</td><td class="good">-1.2%</td><td>平均剩余8-10年</td></tr>
+  <tr><td>总负债</td><td>164.88亿</td><td>162.53亿</td><td class="neutral">+1.4%</td><td>负债率81.3%</td></tr>
+  <tr><td>归母净资产</td><td>38.06亿</td><td>36.17亿</td><td class="good">+5.2%</td><td>留存收益19.96亿</td></tr>
+  <tr><td>资产负债率</td><td>81.3%</td><td>81.8%</td><td class="neutral">-0.5pp</td><td>剔租赁约41%</td></tr>
+  <tr><td>流动比率 / 速动比率</td><td>0.61 / 0.15</td><td>0.59 / 0.17</td><td class="bad">仍&lt;1</td><td>超市负营运资本常态</td></tr>
+  <tr><td>净负债 (含租赁) / 杠杆率</td><td>96.22亿 / 2.6x</td><td>93.94亿 / 2.7x</td><td class="good">降0.1x</td><td>BBB+/Baa1</td></tr>
+  <tr><td>未动用授信</td><td>25.82亿</td><td>—</td><td>—</td><td>平均债务期限5.0年</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>典型 <strong>“轻存货、重租赁”</strong> 超市模型：存货27.3亿周转12次（约30天）、应收仅5.15亿（周转天数约4天，几乎现销），但租赁负债83.43亿（占总负债51%）推高报表杠杆至81%。“负债高≠危险”：35.95亿应付（占流动负债52%）是无息占用上游资金的好负债，合同负债/预收隐含在Other中。真正压力是有息+租赁合计103.27亿（债务18.34+租赁83.43+短期10.78已分拆），但平均期限5.0年、授信25.8亿覆盖，杠杆率2.6x较1H25 2.8x改善，评级稳。商誉11.51亿占净资产30%（较CWY 80%温和），无形资产10.95亿需关注ADC软件资本化减值风险（1H25 IT核销0.11亿先例）。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY25</th><th>FY24</th><th>同比</th><th>评价</th></tr>
+  <tr><td>CFO 经营现金流</td><td>29.36亿</td><td>27.93亿</td><td class="good">+5.1%</td><td>EBITDA驱动+营运改善</td></tr>
+  <tr><td>其中：收现 Receipts</td><td>467.87亿</td><td>461.45亿</td><td class="neutral">+1.4%</td><td>与营收匹配</td></tr>
+  <tr><td>付现 Payments</td><td>428.06亿</td><td>425.56亿</td><td class="neutral">+0.6%</td><td>成本控制优于收现</td></tr>
+  <tr><td>利息支付 (含租赁) </td><td>5.33亿 (1.08+4.25)</td><td>4.20亿</td><td class="bad">+26.9%</td><td>侵蚀现金</td></tr>
+  <tr><td>所得税支付</td><td>5.15亿</td><td>3.82亿</td><td class="bad">+34.8%</td><td>补缴FY24</td></tr>
+  <tr><td>CFI 投资现金流</td><td>-13.64亿</td><td>-15.13亿</td><td class="good">流出收窄9.8%</td><td>CapEx下降</td></tr>
+  <tr><td>CFF 筹资现金流</td><td>-15.42亿</td><td>-12.02亿</td><td class="neutral">—</td><td>分红+租赁本金</td></tr>
+  <tr><td>资本开支 CapEx</td><td>-14.87亿</td><td>-16.71亿</td><td class="good">-11.0%</td><td>ADC投建高峰已过</td></tr>
+  <tr><td>自由现金流 FCF (S&P)</td><td>14.49亿</td><td>11.22亿</td><td class="good">+29.1%</td><td>FCF Margin 3.26%</td></tr>
+  <tr><td>CFO / 净利润</td><td>2.72x</td><td>2.50x</td><td class="good">>1极优</td><td>利润全现金化</td></tr>
+  <tr><td>分红支付 Dividends Paid</td><td>8.89亿</td><td>8.53亿</td><td class="neutral">+4.2%</td><td>FCF覆盖1.63倍</td></tr>
+  <tr><td>租赁本金偿还</td><td>9.11亿</td><td>8.34亿</td><td class="neutral">—</td><td>占CFO 31%</td></tr>
+  <tr><td>净现金变动</td><td>+0.30亿</td><td>+0.78亿</td><td class="neutral">—</td><td>期末7.05亿</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong> <strong>造血能力顶级但资本密集</strong>。CFO 29.36亿是净利2.7倍，现金实现率远超100%，即使扣除5.33亿利息与5.15亿税仍强劲，证明超市“现金奶牛”属性。FCF 14.49亿同比+29%（S&P口径），FY26 TTM进一步升至18.53亿（CFO 33.44亿-CapEx 14.91亿），分红8.89亿覆盖率1.63倍，仍有余量支撑回购/降杠杆。CapEx从16.7亿降至14.87亿（FY26指引约12亿），ADC/CFC资本化高峰回落是关键。隐患：租赁本金9.11亿占CFO 31%，实质“刚性租金”使自由现金大打折扣，True FCF（扣除租赁）约5.38亿，估值需用P/FCF 17.15x而非名义FCF。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY25</th><th>FY24</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE（平均）</td><td>29.07%</td><td>32.35%</td><td>＞15%</td><td class="good">优秀 — 杠杆放大</td></tr>
+  <tr><td>ROIC</td><td>10.38%</td><td>11.10%</td><td>＞10%</td><td class="good">达标，微降</td></tr>
+  <tr><td>毛利率</td><td>26.61%</td><td>25.85%</td><td>稳定或提升</td><td class="good">优 — +76bps</td></tr>
+  <tr><td>净利率</td><td>2.43%</td><td>2.56%</td><td>＞10%</td><td class="bad">低 — 薄利</td></tr>
+  <tr><td>营收增长 (财报/ normalised)</td><td>1.84% / 2.8%</td><td>7.62%</td><td>＞10%</td><td class="bad">慢</td></tr>
+  <tr><td>利润增长 Stat / normalised</td><td>-3.5% / +3.1%</td><td>+1.79%</td><td>＞10%</td><td class="bad">财报负，normalised微正</td></tr>
+  <tr><td>CFO / 净利润</td><td>2.72x</td><td>2.50x</td><td>＞1.0</td><td class="good">极优</td></tr>
+  <tr><td>资产负债率</td><td>81.3%</td><td>81.8%</td><td>＜50%</td><td class="bad">高 — 租赁推升</td></tr>
+  <tr><td>流动比率</td><td>0.61</td><td>0.59</td><td>＞1.5</td><td class="bad">低 — 行业特性</td></tr>
+  <tr><td>FCF Margin</td><td>3.26%</td><td>2.57%</td><td>＞5%</td><td class="neutral">一般，改善中</td></tr>
+  <tr><td>分红率 Payout / 股息率</td><td>85.2% / 3.43%</td><td>80.9% / 4.28%</td><td>30-60% / 3%+</td><td class="neutral">偏高但100% franked</td></tr>
+  <tr><td>Debt/EBITDA (含租赁)</td><td>2.91x</td><td>2.96x</td><td>＜3.0</td><td class="good">临界安全</td></tr>
+</table>
+
+<h3>3.2 分业务分析</h3>
+<table>
+  <tr><th>业务板块</th><th>FY25营收</th><th>占比</th><th>同比 (normalised)</th><th>EBIT贡献 (估)</th><th>评价</th></tr>
+  <tr><td>Supermarkets 超市</td><td>399.87亿</td><td>90.1%</td><td class="good">+4.3% (剔烟草+5.7%)</td><td class="good">~22-23亿 (占100%+，抵消其他亏损)</td><td>核心引擎，Q4 normalised +4.8%加速</td></tr>
+  <tr><td>Liquor 酒类 (Liquorland/First Choice)</td><td>36.67亿</td><td>8.3%</td><td class="neutral">+1.1%</td><td class="bad">约1.5-2亿，同比-8.6% normalised</td><td>市场疲软，Simply Liquorland投入+IT拖累，下半年已改善 (+6.8% EBIT H2)</td></tr>
+  <tr><td>Other (Flybuys 50% + 财产 + Viva PSA)</td><td>6.98亿</td><td>1.6%</td><td class="bad">-15.2%</td><td class="bad">-1.09亿 (FY24 -0.94亿)</td><td>PSA烟草下滑、保险成本+12m、Flybuys亏0.05亿</td></tr>
+  <tr><td>合计 Sales Revenue</td><td>443.52亿</td><td>100%</td><td class="neutral">+1.8% (normalised +2.8%)</td><td>21.12亿 (报告) /22.23亿 underlying</td><td>超市一柱擎天</td></tr>
+</table>
+<p style="font-size:12px;color:#888;">注：Supermarkets eCommerce FY25 +24.4%至约24亿，渗透率约6%；Exclusive品牌占比提升至约33%（公司披露196个新品）；销售密度约1,800 AUD/㎡。</p>
+<div class="highlight-box">
+  <strong>分业务解读：</strong> <strong>一强一弱一亏</strong>。Supermarkets是绝对主战场：400亿体量在剔烟草后实现5.7%增长（可比销售+3.7%），靠销量+2.8%与自有品牌溢价驱动，underlying EBIT normalised +8.3%至约23亿，抵消Liquor/Other全部亏损。Liquor在成本通胀与IT投入下EBIT -10.1% underlying，但H2已企稳（+6.8%），Simply Liquorland重塑为看点。Other的PSA 6.98亿同比-15%反映烟草新规冲击，长期趋势向下。结论：利润集中度极高，超市基本面决定估值90%。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险项</th><th>严重程度</th><th>依据</th></tr>
+  <tr><td>高杠杆与租赁</td><td class="bad">🔴 高</td><td style="text-align:left">总债务103.27亿(租赁83.43亿+有息19.84亿) / 权益38.06亿=2.71倍，杠杆率2.6x虽BBB+，但租赁本息合计14.36亿占CFO 49%，对利率敏感（+100bps税后-6m）</td></tr>
+  <tr><td>流动性 (流动比&lt;1)</td><td class="neutral">🟡 中</td><td style="text-align:left">流动比0.61、速动0.15，净营运资本-27.8亿（-28.5→-27.8亿微改善），超市负营运资本为常态但现金7.05亿仅覆盖短期有息1.5亿，依赖授信25.8亿，1H25 1H26净负债曾升至106.7亿</td></tr>
+  <tr><td>商誉与无形资产</td><td class="neutral">🟡 中</td><td style="text-align:left">商誉11.51亿+无形10.95亿合计22.46亿占净资产59%、占总资产11%，若ADC/CFC技术或Liquor转型不及预期需减值（1H25已现IT核销0.06亿）</td></tr>
+  <tr><td>利润集中与薄利</td><td class="neutral">🟡 中</td><td style="text-align:left">净利率仅2.43%、超市EBIT margin约5.5%，对工资/租金/损耗极敏感；Liquor/Other合计拖累约2.5亿利润， diversification失效</td></tr>
+  <tr><td>烟草与监管</td><td class="neutral">🟡 中</td><td style="text-align:left">烟草占Other PSA大头，新规2025-07-01生效致Q4烟草销量进一步下滑，Other收入-15%；ACCC 2025-02超市调查虽未认定哄抬但建议17项，价格监管趋严</td></tr>
+  <tr><td>应收/存货</td><td class="good">🟢 低</td><td style="text-align:left">应收5.15亿占营收1.2%、存货27.33亿周转12次（约30天），无坏账/跌价堆积，营运效率健康</td></tr>
+  <tr><td>关联交易/治理</td><td class="good">🟢 低</td><td style="text-align:left">无控股股东，BlackRock 20%+Vanguard 6%+State Street 7%机构持股分散，审计无保留，董事会9人独立性强</td></tr>
+  <tr><td>显著项目频繁</td><td class="neutral">🟡 中</td><td style="text-align:left">FY25 0.35亿（Truganina关闭重组）、FY24 1.07亿（ADC/CFC双运行）、1H25 1.03亿，若长期化则underlying可信度打折</td></tr>
+  <tr><td>分红可持续</td><td class="good">🟢 低</td><td style="text-align:left">Payout 85%偏高但FCF 14.49亿覆盖1.63倍、留存收益19.96亿为正，100% franked有税盾优势</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>正面项：</strong>① CFO/净利2.72倍极优、FCF持续为正；② 存货/应收周转健康，无虚增营收；③ 分红现金覆盖足、治理分散无隧道风险。<br>
+  <strong>核心雷区：</strong>杠杆（🔴）是唯 一红灯，薄利+流动性+商誉+烟草监管为黄灯，本质是“高杠杆现金牛”——赚的钱真，但赚得薄、且靠租赁放大，抗利率与竞争冲击能力弱于轻资产成长股。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值</h3>
+<table>
+  <tr><th>指标</th><th>当前值 (23.75 AUD)</th><th>历史分位</th><th>行业均值参考</th></tr>
+  <tr><td>股价 Close</td><td>23.75 AUD (2026-08-25)</td><td>52周 19.71-24.59</td><td>—</td></tr>
+  <tr><td>总市值</td><td>317.88亿 (13.39亿股)</td><td>FY25 278.30亿 @20.14</td><td>WOW 380亿</td></tr>
+  <tr><td>企业价值 EV</td><td>411.12亿</td><td>FY25 379.20亿</td><td>—</td></tr>
+  <tr><td>PE (TTM)</td><td>29.25x</td><td>FY24 20.32 / FY23 22.34</td><td>消费必需品 ~22x</td></tr>
+  <tr><td>PE (TTM 扣非 underlying)</td><td>约26-27x (按underlying 0.87 EPS)</td><td>—</td><td>—</td></tr>
+  <tr><td>Forward PE (2026E)</td><td>23.51x</td><td>FY25 Forward 22.44</td><td>券商一致 23-25x</td></tr>
+  <tr><td>PB</td><td>8.06x</td><td>FY25 7.31 / FY24 6.28</td><td>ASX 300 ~2.0x / 超市 5-7x</td></tr>
+  <tr><td>P/Tangible BV</td><td>18.43x</td><td>FY25 17.84</td><td>—</td><td></td></tr>
+  <tr><td>PS</td><td>0.70x</td><td>FY25 0.63 / FY24 0.52</td><td>零售 0.5-0.7x</td></tr>
+  <tr><td>PCF (P/OCF)</td><td>9.51x</td><td>FY25 9.48</td><td>8-10x</td></tr>
+  <tr><td>P/FCF</td><td>17.15x</td><td>FY25 19.21</td><td>15-18x</td></tr>
+  <tr><td>股息率 (TTM)</td><td>3.20% (0.73 AUD)</td><td>FY25 3.43%</td><td>ASX防御~3.5%</td></tr>
+  <tr><td>Payout / Franking</td><td>86.06% / 100%</td><td>FY25 82.39%</td><td>franked溢价约1.3x</td></tr>
+  <tr><td>EV/EBITDA</td><td>11.40x</td><td>FY25 14.44</td><td>基建/零售 10-12x</td></tr>
+  <tr><td>EV/EBIT</td><td>21.04x</td><td>FY25 19.41</td><td>~18-20x</td></tr>
+  <tr><td>PEG</td><td>2.58x</td><td>FY25 2.46</td><td>&lt;1.5合理</td></tr>
+</table>
+<p style="font-size:12px;color:#888;">注：EPS FY25 0.81（S&P），FY26E 0.81-1.01（Morningstar/Bell Potter 0.87-1.01），DPS FY26E 0.73-0.78。52周低19.71(2025-07)高24.59，当前距高点-3.4%、距低点+20.5%。</p>
+
+<h3>4.2 估值区间</h3>
+<p style="font-size:13px;margin-bottom:8px;"><strong>非周期股 PE Band（首选）+ PB/EV辅助（重租赁校正）</strong></p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价 (按EPS 0.81)</th><th>对应说明</th></tr>
+  <tr><td>悲观</td><td>18x</td><td>14.58 AUD</td><td>消费降级+份额丢至WOW/ALDI、利率5%+，ROE回落</td></tr>
+  <tr><td>保守</td><td>22x</td><td>17.82 AUD</td><td>成熟超市中枢，匹配2-3%营收+franked股息</td></tr>
+  <tr><td>中性</td><td>26x</td><td>21.06 AUD</td><td>当前历史均值附近，FY25 Underlying 26x即中性</td></tr>
+  <tr><td>券商目标 (23.74-25.00)</td><td>28-30x</td><td>22.68-24.30 AUD</td><td>The Bull目标23.74(Forward 23.5x)，Intelligent Investor HOLD至30</td></tr>
+  <tr><td>当前价</td><td>29.25x TTM / 23.51x Forward</td><td>23.75 AUD</td><td>TTM偏上沿、Forward中枢，franked溢价支撑</td></tr>
+  <tr><td>历史高位</td><td>32x+</td><td>25.92 AUD+</td><td>2024-25估值扩张高点</td></tr>
+</table>
+
+<table>
+  <tr><th>PB区间（辅助，重租赁需折扣）</th><th>PB</th><th>对应股价 (BVPS 2.85)</th><th>说明</th></tr>
+  <tr><td>历史低位 (2023)</td><td>6.28x</td><td>17.90 AUD</td><td>WOW折价期</td></tr>
+  <tr><td>20%分位</td><td>7.31x</td><td>20.83 AUD</td><td>FY25 PB 7.31</td></tr>
+  <tr><td>50%分位（中位）</td><td>7.59-8.06x</td><td>21.6-23.0 AUD</td><td>当前8.06即中位以上</td></tr>
+  <tr><td>80%分位</td><td>8.50x+</td><td>24.23 AUD+</td><td>接近当前高点</td></tr>
+  <tr><td>P/Tangible BV当前</td><td>18.43x</td><td>23.75 AUD (TBV 1.17)</td><td>无形/商誉占比高，PB虚高</td></tr>
+</table>
+
+<p style="font-size:12px;color:#888;">历史PE区间：最大值~32x(FY24 30x附近) / 80%分位~29x / 50%分位~24x / 20%分位~20x / 最小值~18x。周期股PE失真不适用，COL非周期以PE+股息率为锚。</p>
+
+<div class="highlight-box">
+  <strong>估值判断：合理偏高，需增长兑现支撑。</strong>ROE>20%合理PE 20-30x，当前TTM 29.25x已处上限、Forward 23.51x处中枢，叠加PB 8.06x（Tangible 18.4x）与PEG 2.58，估值不便宜但未泡沫。PCF 9.51x与P/FCF 17.15x显示现金回报尚可（FCF Yield 5.83%），3.20%股息率+100% franked（税后等效约4.6%）提供防御垫。52周当前位置距顶部仅-3.4%，向上需FY26 2.8%营收+ADC效率兑现，倘营收/毛利不及预期或利率上行，估值有10-15%回调风险。<strong>建议：持有者以股息+温和增值为主；新增配置宜等回调至22-23x Forward（约20-21 AUD）或股息率>3.5%时再介入。</strong>
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析（L4框架）</h2>
+
+<h3>5.1 杜邦拆解</h3>
+<table>
+  <tr><th>指标</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>判断</th></tr>
+  <tr><td>净利润率</td><td>2.73%</td><td>2.71%</td><td>2.56%</td><td>2.43%</td><td class="bad">极低且逐年下滑</td></tr>
+  <tr><td>资产周转率</td><td>2.08</td><td>2.19</td><td>2.29</td><td>2.22</td><td class="good">高 — 超市高周转</td></tr>
+  <tr><td>权益乘数</td><td>5.98</td><td>5.44</td><td>5.62</td><td>5.41</td><td class="bad">极高杠杆</td></tr>
+  <tr><td>ROE (平均)</td><td>35.20%</td><td>32.16%</td><td>32.35%</td><td>29.07%</td><td class="good">高但下行</td></tr>
+  <tr><td>ROA (去杠杆)</td><td>5.89%</td><td>5.72%</td><td>6.44%</td><td>5.39%</td><td class="neutral">真实回报仅5-6%</td></tr>
+  <tr><td>ROIC</td><td>10.21%</td><td>10.05%</td><td>11.10%</td><td>10.38%</td><td class="good">稳定10%+</td></tr>
+</table>
+<p style="font-size:12px;color:#888;">计算：ROE=净利率×周转×乘数；FY25用平均资产200.82亿、平均权益37.12亿、营收444.87亿、净利10.79亿；ROA=净利率×周转。</p>
+
+<h3>5.2 赚钱模式判断</h3>
+<div class="highlight-box">
+  <strong>赚钱模式：高杠杆型（叠加高周转）。</strong> 净利率2.43%远低于茅台式高利润（49%），周转2.22次接近沃尔玛高周转（2.4次），乘数5.41接近银行高杠杆（但银行~12倍更极端）。COL本质是 <strong>“薄利多销×杠杆放大”</strong>：靠双寡头密度+自动化供链赚“过路费”，单品利润薄但一年周转2.2次（约5个月一轮），再用租赁杠杆将5.39% ROA放大至29% ROE。去杠杆ROA仅5.39%，说明去掉杠杆后真实资产回报中等，印证零售现金牛但非暴利。资产回报效率：每1元资产仅产生0.024元净利润，需靠周转与成本控制维系。
+</div>
+
+<table>
+  <tr><th>对比项</th><th>COL FY25</th><th>茅台（高利润）</th><th>沃尔玛（高周转）</th><th>银行（高杠杆）</th></tr>
+  <tr><td>净利润率</td><td>2.43%</td><td>49%</td><td>2.5%</td><td>25%</td></tr>
+  <tr><td>周转率</td><td>2.22</td><td>0.5</td><td>2.4</td><td>0.05</td></tr>
+  <tr><td>乘数</td><td>5.41</td><td>1.23</td><td>2.5</td><td>12</td></tr>
+  <tr><td>ROE</td><td>29.07%</td><td>30%</td><td>15%</td><td>10%</td></tr>
+</table>
+
+<h3>5.3 核心结论</h3>
+<div class="summary-box">
+  <strong>杜邦结论：ROE靠杠杆+周转双轮驱动，利润率是短板且趋势向下。</strong> 五年看：净利率2.73%→2.43%逐年-10bps（竞争与成本通胀侵蚀），周转2.08→2.22提升（营收增长快于资产），乘数5.98→5.41下降（权益增厚快于负债），ROE 35.2%→29.1%回落主因净利率下滑，而非杠杆去化。去杠杆ROA 5.89%→5.39%同样下行，说明 <strong>核心问题是商品差价与费用控制，而非资产效率</strong>。若FY26毛利+76bps趋势延续且CapEx回落提升周转，ROA有望企稳6%；但要重回32%+ ROE需净利率回升至2.8%+（需人力/租金/损耗三降），短期难。投资信号：跟踪毛利率与周转，而非单纯ROE——杠杆放大不可持续，降杠杆后的ROA/ROIC才是真实改善锚。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：非周期股 — 防御型（消费必需品/零售）+ 价值底色</strong><br>
+  <strong>判断依据：</strong>① 需求刚性：生鲜/日杂为非可选消费，经济下行时需求仍稳（FY20-25营收CAGR约3.5%平滑）；② 供给受限：双寡头WOW+COL合计>65%份额，ACCC认定全国集中但区域竞争激烈，新增全国性网络几乎不可能；③ 财务特征：营收低增速（+1.8-4.3%）、净利薄（2-3%）、现金流可预测、分红高且100% franked，符合防御/基建特征，而非成长烧钱或周期暴利。按 <code>industry-classification.md</code>，食品饮料/超市不属纯/混合周期，<strong>选用非周期股评分体系</strong>。<br>
+  <strong>生命周期：</strong>成熟期 → 向“数字化+自有品牌”二次成长过渡（线上渗透、零售媒体Coles 360、自动化），增速3-5%而非20%+，投资重点是效率与份额而非颠覆。
+</div>
+
+<h3>6.2 集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>行业集中度 CR2/CR3</td><td>高度集中</td><td style="text-align:left">COL+WOW约65-67%（ACCC 2024），CR3加ALDI约75%+；市政无但零售选址为稀缺</td></tr>
+  <tr><td>竞争格局</td><td>双寡头，价格战常态</td><td style="text-align:left">COL 860+超市 vs WOW 1,000+，ALDI 600+低价搅局，Metcash IGA 1,279分散，价格透明（半价/货架）</td></tr>
+  <tr><td>品牌壁垒</td><td>中</td><td style="text-align:left">Coles自有品牌(Coles Finest等)占比约33%，branded vs Exclusive差异化弱于白酒/LV</td></tr>
+  <tr><td>供应链壁垒</td><td><strong>极强</strong></td><td style="text-align:left">两大ADC（昆州 Redbank/新州 Kemps Creek）+ CFC自动化履约，FY25全面运营，履约成本-10-15%</td></tr>
+  <tr><td>规模/网络壁垒</td><td>极强</td><td style="text-align:left">1,853店+物流网形成密度经济，单店销售约4600万/年，采购议价对供应商强</td></tr>
+  <tr><td>渠道壁垒</td><td>强</td><td style="text-align:left">线上+线下全渠道，生鲜供应链+冷链高投入，进入者需50亿+级投资</td></tr>
+  <tr><td>客户粘性</td><td>中</td><td style="text-align:left">Flybuys 50%联营900万活跃，粘性低于微信/茅台，切换成本低（比价易）</td></tr>
+</table>
+
+<h3>6.3 生命周期与周期位置</h3>
+<div class="highlight-box">
+  <strong>生命周期：成熟期 — 数字化与效率驱动的二次成长。</strong> 传统门店扩张已饱和（FY25净增约5店），新增量来自：① 自有品牌提毛利（196新品）；② 线上+24.4%与CFC/ADC自动化；③ 零售媒体（Coles 360）与金融服务。当前周期位置：<strong>非周期股无顶点/底判断，但行业处“价值修复+份额再平衡”</strong>——FY25 COL超市+4.3%领跑WOW约2-3%（份额回升），连续7季度超越，短期景气上行；不过烟草下滑与工资通胀制约margin扩张。整体不适用PB底部/顶部判断，关注CPI与实际工资、线上渗透对margin的双刃效应。
+</div>
+
+<h3>6.4 同行对比</h3>
+<p style="font-size:12px;color:#666;">选取可比：Woolworths Group (WOW, 澳洲第一)、Metcash (MTS, IGA批发)、Endeavour Group (EDV, 酒旅分拆) — 均为ASX消费必需品龙头</p>
+<table>
+  <tr><th>指标</th><th>COL</th><th>WOW</th><th>EDV</th><th>行业中位</th><th>评价</th></tr>
+  <tr><td>ROE (平均)</td><td>29.07%</td><td>约26-28% (FY24 23.7%)</td><td>~12%</td><td>~22%</td><td class="good">COL高 — 杠杆推高</td></tr>
+  <tr><td>毛利率</td><td>26.61%</td><td>~28-30% (超市约29%)</td><td>~35% (酒+酒店)</td><td>~28%</td><td class="neutral">中 — 低于WOW</td></tr>
+  <tr><td>净利率</td><td>2.43%</td><td>~1.5-2.0% (FY25约2%)</td><td>~4%</td><td>~2.5%</td><td class="neutral">中</td></tr>
+  <tr><td>负债率</td><td>81.3%</td><td>~80-82% (租赁同高)</td><td>~65%</td><td>~78%</td><td class="neutral">中 — 行业共性</td></tr>
+  <tr><td>营收增速 FY25</td><td>1.84% (norm 2.8%)</td><td>~3.6% (食品2.7%)</td><td>~1-2%</td><td>~2.5%</td><td class="neutral">中</td></tr>
+  <tr><td>PB</td><td>8.06</td><td>约6-7x</td><td>~3x</td><td>~6x</td><td class="bad">COL偏高</td></tr>
+  <tr><td>PE (TTM)</td><td>29.25</td><td>约22-27x</td><td>~16x</td><td>~24x</td><td class="neutral">COL略贵</td></tr>
+  <tr><td>股息率</td><td>3.20%</td><td>~3.0% (100% franked)</td><td>~4.5%</td><td>~3.5%</td><td class="neutral">中 — franked加分</td></tr>
+  <tr><td>市占率 (超市)</td><td>29%</td><td>37-38%</td><td>—</td><td>—</td><td class="neutral">老二，近期回升</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>竞争位置：规模老二但动能领先，盈利效率与WOW打平、估值略贵。</strong> COL在体量上小于WOW约50%（400亿 vs 510亿食品），但FY25-26连续7季度增速超越（COL +4.3% vs WOW +2.7% food），UBS调研38%顾客以COL为首选超市首超WOW 37%，份额回升靠“有效促销+供给可靠性”（ADC优势）而非价格战。ROE 29%高于WOW约26%，但PB 8.06亦高于WOW~6.5倍，反映杠杆相近下COL估值溢价。结论：COL是“追赶者的形、防御股的实”，短期动能好但长期WOW在线上(38% vs 32%)与NZ/宠物等多元化上仍占优， Morningstar认为WOW折价更具长期价值。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<div class="summary-box">
+  <strong>估值方法：首选 PE + 股息率（含franking），辅助 EV/EBITDA、PS；PB需剔租赁/商誉校正。</strong> 成长型PS/PEG不适用（已盈利且低增速），周期型PB底部不适用（非周期）。当前市场对COL/WOW均用Forward PE 22-27x + DDM（股息贴现，考虑franking），EV/EBITDA 10-12x为交叉验证，匹配防御现金流属性。检验：① 若用PS会低估（PS 0.70但净利薄）；② PB 8x虚高（含租赁），P/Tangible 18x更失真；③ 对比国际Kroger/Costco PE 25-30x，COL 29x属合理上限。关注 franking价值——100% franked 69c分红税后等效约98c，对养老金/退休账户溢价约15-20%。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  Step 1 - 行业定位：防御型非周期（食品零售），CR2>65%双寡头，供链+网络极强壁垒，成熟期向数字化过渡<br>
+  Step 2 - 财务体检：ROE 29.1%高但高杠杆驱动，ROIC 10.38%达标，CFO/净利2.72倍极优，FCF 14.5亿五年为正，毛利率26.6%微升<br>
+  Step 3 - 估值判断：PE 29.25xTTM/23.51xForward（20-30x合理上限）、PB 8.06x高、股息3.20%+franked，整体合理偏贵<br>
+  Step 4 - 风险排查：杠杆🔴高（103亿债务/2.6x）、流动比0.61黄、烟草监管黄、利润薄黄，无应收/存货雷<br>
+  Step 5 - 结论：<strong>好行业、好公司（现金牛）、价偏贵</strong> — 行业防御、公司现金质地优但增长慢，价格需回调才有安全垫<br>
+  Step 6 - 跟踪：关键看 Supermarkets可比销售+毛利、FY26 EBIT normalised增速、净负债/EBITDA能否<2.5x、股息率是否>3.5%
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓ 是</td><td style="text-align:left">刚需消费+双寡头垄断+ACCC未认定垄断滥用，政策风险缓释，现金流可预测类公用事业</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓ 是</td><td style="text-align:left">CFO＞净利2.7倍、FCF五年正、ROIC 10.38%达标、超市份额回升+自动化兑现，唯净利率2.43%偏薄</td></tr>
+  <tr><td>③ 好价格</td><td class="neutral">△ 一般</td><td style="text-align:left">Forward PE 23.5x合理中枢但TTM 29x偏上沿、PB 8.06x高于WOW、PEG 2.58，franked股息提供底，新增宜等回调</td></tr>
+</table>
+
+<h3>7.3 风险评估</h3>
+<div class="danger-box">
+  ☐ 价值陷阱（低PE+低增长+高负债）→ <strong>未命中</strong>（PE不低 29x、高负债是但非低PE）<br>
+  ☐ 周期陷阱（低PE+周期顶点）→ <strong>未命中</strong>（非周期股，PE高非低，超市无暴利顶点）<br>
+  ☐ 烧钱陷阱（高PE+高增速+负现金流）→ <strong>未命中</strong>（高PE是、但增速低1.8%非高，且CFO/FCF为正非烧钱）
+</div>
+
+<p style="font-size:13px;margin:12px 0 6px;"><strong>管理层与治理风险</strong></p>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力与履历</td><td>好</td><td style="text-align:left">CEO Leah Weckert (2023-05上任，前CEO John Durkan/Steven Cain期已完成分拆)，CFO Charlie Elias，主导ADC/CFC投运与Simplify & Save，FY25 Supermarkets EBIT +9% normalised兑现</td></tr>
+  <tr><td>股权结构与利益一致性</td><td>一般</td><td style="text-align:left">无控股股东，BlackRock 20%+State Street 7%+Vanguard 6%合计33%机构分散，管理层持股低（Weckert约30万股），激励以LTIP为主</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td>无</td><td style="text-align:left">审计无保留，无重大违规；历史有2019分拆成本、2023-25 ADC核销但非隧道交易</td></tr>
+  <tr><td>资本配置记录</td><td>一般</td><td style="text-align:left">CapEx 14.87亿高位后FY26指引12亿回落，近3年累计40亿投自动化，ROI待ROE回升验证；分红率86%偏高但FCF覆盖</td></tr>
+  <tr><td>管理层增减持记录</td><td>无</td><td style="text-align:left">近12月无董监高大额减持公告（Weckert/Elias增持小额），董事交易中性</td></tr>
+  <tr><td>CEO交接/关键人员变动</td><td>需关注</td><td style="text-align:left">Weckert 2023年接任尚处早期，供应链总裁转岗至Witron JV，新ADC运营团队磨合期</td></tr>
+</table>
+
+<p style="font-size:13px;margin:12px 0 6px;"><strong>盈利可持续性</strong></p>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是靠价？</td><td>量价均衡</td><td style="text-align:left">Supermarkets销量+2.8%（量）+Exclusive提价+促销有效（价），非靠单一涨价，健康；剔烟草量增更明显</td></tr>
+  <tr><td>涨价能否持续？</td><td>需观察</td><td style="text-align:left">自有品牌+损耗改善可续，但生鲜通胀放缓、半价促销竞争加剧，毛利+76bps能否复制存疑</td></tr>
+  <tr><td>非经常性利润占比</td><td>低</td><td style="text-align:left">显著项目0.35亿占EBIT 1.7%（FY24 5.2%），占比低，underlying可信度高</td></tr>
+  <tr><td>大客户/大项目集中度</td><td>分散</td><td style="text-align:left">C端分散百万级，B端Viva PSA 6.98亿占比1.6%已大幅下降，无单一大客户风险</td></tr>
+  <tr><td>政策/监管依赖度</td><td>中</td><td style="text-align:left">正面：必需品无补贴依赖；风险：ACCC 17项建议、烟草新规2025-07、Wage/WHS合规成本，属中等监管</td></tr>
+</table>
+
+<p style="font-size:13px;margin:12px 0 6px;"><strong>关键变量敏感性</strong></p>
+<div class="highlight-box">
+  <strong>变量1: 可比销售与毛利率（量×价）</strong><br>
+  乐观: 可比+5%、毛利+50bps（自有品牌+损耗-0.5%） → EBIT +6-8%（约+1.3亿）、NPAT +8-10%<br>
+  中性: 可比+3%、毛利持平 → EBIT +2-3%<br>
+  悲观: 可比+1%、毛利-50bps（促销加剧+通胀） → EBIT -5-7%、NPAT -7-9%<br><br>
+  <strong>变量2: 利率与杠杆成本</strong><br>
+  乐观: RBA降息50bps且净负债降至90亿 → 利息-25m、NPAT +2-3%<br>
+  中性: 利率持稳、杠杆2.6x → 利息持平<br>
+  悲观: 利率再升50bps + 净负债>100亿 → 利息+37m、NPAT -3-4%（+100bps敏感-6m税后）<br><br>
+  <strong>变量3: 烟草与工资通胀</strong><br>
+  乐观: 烟草跌幅收窄至-5%、工资+3.0% → 收入+1%、成本-0.5%<br>
+  中性: 烟草-10-15%、工资+3.5-4.0% → 当前假设<br>
+  悲观: 烟草-20%+工资+5%（Award上调） → Other收入-20%、费用+1.5亿、EBIT -4%
+</div>
+
+<h3>7.4 前景展望</h3>
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. 份额与线上延续 — Supermarkets可比+3-5%、eCommerce +20%+、CFC/ADC效率释放，FY26 Q3已+3.0%领跑WOW<br>
+  2. 效率兑现 — Simplify & Save 1.5-2亿/年降本、CapEx回落至12亿、FCF向18亿+爬升，ROIC有望重回11%<br>
+  3. 防御与股息 — 100% franked 3.2%+股息在降息周期吸引退休/养老金配置，估值底支撑<br><br>
+  <strong>负向拖累：</strong><br>
+  1. 薄利天花板 — 净利率仅2.43%，工资/租金年增4%+易吞噬毛利提升<br>
+  2. 烟草与Other失血 — PSA年降15%、Liquor H1仍弱，合计-2.5亿利润缺口需超市填补<br>
+  3. 估值透支 — Forward 23.5x已price-in效率兑现，若Q4可比回落至2%或ACCC加码监管，易回调10%+
+</div>
+
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>EPS预估 (FY26)</th><th>PE区间</th><th>预期回报 (以23.75计)</th></tr>
+  <tr><td>乐观</td><td style="text-align:left">可比+5%+毛利+50bps+降息，EBIT 24-25亿</td><td>0.90-0.95</td><td>26-28x</td><td class="good">+8%至+15% → 25.5-27.5</td></tr>
+  <tr><td>中性</td><td style="text-align:left">可比+3%、毛利持平、利率稳</td><td>0.81-0.87</td><td>23-25x</td><td class="neutral">-8%至+5% → 21.8-25.0</td></tr>
+  <tr><td>悲观</td><td style="text-align:left">可比+1%+促销战+工资超预期+烟草-20%</td><td>0.68-0.73</td><td>18-20x</td><td class="bad">-25%至-15% → 17.5-20.0</td></tr>
+</table>
+<p style="font-size:12px;color:#888;">概率判断：中性50% / 乐观25% / 悲观25%。FY26E一致预期 EPS 0.81-0.87、DPS 0.73-0.78。</p>
+
+<h3>7.5 资金面信号</h3>
+<p style="font-size:12px;color:#666;margin-bottom:6px;">ASX无北向/两融，改为机构持仓+董事交易视角（A股特有项标注N/A）</p>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>机构持仓变动</td><td>中性</td><td style="text-align:left">BlackRock 20.12%、State 7.24%、Vanguard 6%合计33%，1H26无5%+变动公告，养老金长期配置稳定</td></tr>
+  <tr><td>董事增减持</td><td>中性</td><td style="text-align:left">近12月无董事大额减持/增持公告，Weckert持股稳定</td></tr>
+  <tr><td>大股东增减持</td><td>中性</td><td style="text-align:left">Top20持股约40%，无清仓式减持，ACCC后无结构性抛压</td></tr>
+  <tr><td>大宗交易</td><td>无显著折价</td><td style="text-align:left">日均成交270万股、成交额约6400万 AUD，流动性良好，无大额折价大宗</td></tr>
+  <tr><td>北向/两融</td><td>N/A</td><td style="text-align:left">ASX不适用</td></tr>
+  <tr><td>技术面</td><td>谨慎乐观</td><td style="text-align:left">股价低于50日线23.61约-3.34%、高于200日线22.22约+2.71%，52周高位回调中</td></tr>
+</table>
+<div class="summary-box">
+  <strong>资金面判断：</strong>机构底仓稳固、技术面短期弱于50日线但长期仍在200日线上，防御轮动中COL获资金青睐（8月 defensive rotation +8.5%周涨幅），但估值偏高制约追高。无A股式北向/融资信号，以ASX公告为准：关注FY26 08-25年报与股息指引。
+</div>
+
+<h3>7.6 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清COL怎么赚钱？（提示：靠双寡头门店与自动化供链赚生鲜/日杂的薄利差，薄利多销+租赁放大）<br>
+  2. 你最大的担忧是什么？是81%负债率/2.6x杠杆，还是2.43%净利率对工资/租金的敏感，或是烟草/ACCC监管？<br>
+  3. 如果现在买入，期待的回报来源是什么？（是3.2% franked股息的现金回报，还是超市份额回升带来的估值从23.5x向26x修复？）<br>
+  4. 什么情况下你会坚决卖出？（如可比转负、毛利-50bps+杠杆>3.0x、或股息率跌破2.5%且Forward PE>30x）
+</div>
+
+</div></div>
+
+<div class="footer">
+  免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+  数据来源：Coles Group FY25 Appendix 4E & Annual Report、FY24年报、2025 Full Year Results Release/Presentation (26 Aug 2025)、FY26Q3 Sales Results (15 Apr 2026)、S&P Global via StockAnalysis、ASX公告、Bell Potter/Morningstar/Intelligent Investor一致预期 | 分析日期 2026-08-25
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>
