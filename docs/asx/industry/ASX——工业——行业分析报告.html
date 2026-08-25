@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ASX——工业 行业分析报告</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f5f5f5;padding:0;color:#333}
+  .report-wrap{max-width:800px;margin:0 auto;background:#fff}
+  h1{font-size:22px;margin:0;padding:28px 0 4px;text-align:center}
+  h2{font-size:18px;margin:28px 0 12px;border-bottom:2px solid #1a1a1a;padding-bottom:4px}
+  h3{font-size:15px;margin:18px 0 8px}
+  .subtitle{color:#666;font-size:13px;text-align:center;margin-bottom:4px}
+  .meta{color:#999;font-size:12px;text-align:center;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #e0e0e0}
+  .tab-bar{position:sticky;top:0;z-index:10;background:#fff;display:flex;flex-wrap:wrap;border-bottom:2px solid #ddd;gap:0}
+  .tab-btn{padding:10px 14px;cursor:pointer;border:none;background:none;font-size:13px;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+  .tab-btn:hover{color:#333;background:#f9f9f9}
+  .tab-btn.active{color:#1a1a1a;font-weight:700;border-bottom-color:#1a1a1a}
+  .tab-content{display:none}
+  .tab-content.active{display:block}
+  .tab-inner{padding:0 12px}
+  table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:13px}
+  th{background:#f5f5f5;padding:8px 6px;text-align:left;border-bottom:2px solid #ddd;white-space:nowrap;font-weight:600}
+  td{padding:7px 6px;border-bottom:1px solid #eee}
+  tr:nth-child(even) td{background:#fafafa}
+  .summary-box{background:#fffde7;border-left:4px solid #f9a825;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .highlight-box{background:#e3f2fd;border-left:4px solid #1e88e5;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .danger-box{background:#ffebee;border-left:4px solid #e53935;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+  .verdict{text-align:center;padding:20px;margin:16px 0;border-radius:8px;font-size:18px;font-weight:700}
+  .verdict-ok{background:#e8f5e9;border:2px solid #4caf50;color:#2e7d32}
+  .verdict-caution{background:#fff3e0;border:2px solid #ff9800;color:#e65100}
+  .verdict-bad{background:#ffebee;border:2px solid #e53935;color:#c62828}
+  .score{font-size:36px;display:block;margin-bottom:4px}
+  .pass{color:#2e7d32;font-weight:700}
+  .skip{color:#666;font-style:italic}
+  .tag{display:inline-block;padding:2px 8px;border-radius:3px;font-size:11px;font-weight:700}
+  .tag-red{background:#ffebee;color:#c62828}
+  .tag-green{background:#e8f5e9;color:#2e7d32}
+  .tag-yellow{background:#fff8e1;color:#f57f17}
+  .footer{font-size:11px;color:#aaa;text-align:center;padding:24px 0 8px;border-top:1px solid #eee;margin-top:30px}
+  .card{background:#fafafa;border:1px solid #e0e0e0;border-radius:6px;padding:14px;margin:10px 0;font-size:13px}
+  .flex{display:flex;flex-wrap:wrap;gap:8px}
+  .tbl-wrap{border:1px solid #e0e0e0;border-radius:6px;overflow:hidden;margin:10px 0 18px}
+  .tbl-wrap table{margin:0}
+  .tbl-wrap th{background:#f5f5f5;padding:9px 8px;border-bottom:1px solid #ddd;font-weight:600;font-size:12px}
+  .tbl-wrap td{padding:8px;border-bottom:1px solid #f0f0f0;font-size:13px}
+  .tbl-wrap tr:last-child td{border-bottom:none}
+  .bar-wrap{display:inline-flex;align-items:center;width:60px;height:16px;vertical-align:middle}
+  .bar-bg{background:#eee;border-radius:4px;height:8px;width:100%;overflow:hidden;position:relative}
+  .bar{display:block;height:8px;border-radius:4px}
+  .score-cell{font-weight:700;font-size:15px;text-align:center;white-space:nowrap}
+  .tbl-wrap td,.tbl-wrap th{vertical-align:middle}
+  .metric-h{color:#1565c0;font-weight:700;font-size:13px}
+  .metric-l{color:#c62828;font-weight:700}
+  .metric-m{color:#e65100;font-weight:700}
+  .col-tag{display:inline-block;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600}
+  .col-win{background:#e8f5e9;color:#2e7d32}
+  .col-lose{background:#ffebee;color:#c62828}
+  .col-warn{background:#fff3e0;color:#e65100}
+  .col-info{background:#e3f2fd;color:#1565c0}
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>ASX——工业 行业分析报告</h1>
+<div class="subtitle">L5分类：价值型 + 混合周期 ｜ 上市公司：~192只（GICS Industrials） ｜ 总市值：~2330亿AUD</div>
+<div class="meta">生成日期：2026-08-25 ｜ 数据截至：2025年报 / H1 FY26 / 2026-08-22收盘 ｜ 框架：L7-L10</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l7">L7 量化初筛</button>
+  <button class="tab-btn" data-tab="l8">L8 行业画像</button>
+  <button class="tab-btn" data-tab="l9">L9 竞争格局</button>
+  <button class="tab-btn" data-tab="l10">L10 周期时机</button>
+</div>
+
+<div class="tab-content active" id="tab-summary">
+<div class="tab-inner">
+
+<h2>行业速览</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:30%">项目</th><th>内容</th></tr>
+<tr><td>行业名称</td><td><strong>工业 Industrials</strong>（GICS 20：资本品 + 商业服务 + 运输）</td></tr>
+<tr><td>市场</td><td>ASX（含XNJ 22只 + 中小工业股~170只）</td></tr>
+<tr><td>L5分类</td><td><span class="col-tag col-warn">价值型 + 混合周期</span> 基础设施（防御收租）+ 工程/航空（强周期）双结构</td></tr>
+<tr><td>上市公司</td><td>~192只，其中符合L7筛选条件 <span class="col-tag col-win">7只核心</span> + 4只观察</td></tr>
+<tr><td>行业总市值</td><td>~2330亿AUD（SimplyWallSt 2026-08-21）／ 收入~1466亿 ／ 盈利~81亿</td></tr>
+<tr><td>产业链利润核心</td><td><span class="col-tag col-win">收费公路/港口/检验认证</span>（TCL/QUB/ALS/IPH，EBITDA margin 40-70%）</td></tr>
+<tr><td>生命周期阶段</td><td><span class="col-tag col-info">成熟期</span> 整体增速3-5%，靠存量资产运营+政府基建管线驱动转型</td></tr>
+<tr><td>当前周期位置</td><td><span class="col-tag col-warn">分化</span> 收费公路/废物<span class="col-tag col-win">繁荣</span>｜航空/物流<span class="col-tag col-warn">复苏中位</span>｜工程服务<span class="col-tag col-warn">中位偏热</span></td></tr>
+</table>
+</div>
+
+<h2>综合评分</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>维度</th><th style="width:60px">得分</th><th>进度</th><th>说明</th></tr>
+<tr>
+  <td>行业规模与空间</td>
+  <td class="score-cell">13/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:65%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">总市值2330亿占ASX约9%，收入1466亿，联邦10年1200亿基建管线提供空间，但总量增速仅3-5%</td>
+</tr>
+<tr>
+  <td>产业链位置</td>
+  <td class="score-cell">9/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:60%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">收费公路/废物/检验认证吃肉（毛利25-70%），工程营造环节喝汤（毛利5-12%）</td>
+</tr>
+<tr>
+  <td>竞争格局</td>
+  <td class="score-cell">11/20</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:55%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">公路/铁路/港口/废物寡头，工程服务/建筑产品极度分散，整体CR3低但核心资产护城河深</td>
+</tr>
+<tr>
+  <td>增长驱动力</td>
+  <td class="score-cell">9/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:60%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">人口增长+住房短缺+国防/能源转型驱动，但航空/建筑高度依赖利率与大宗周期</td>
+</tr>
+<tr>
+  <td>周期位置</td>
+  <td class="score-cell">9/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:60%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#555">非周期公路/废物在繁荣，航空刚走出疫情修复，工程订单饱满但产能利用已处80%+中高位</td>
+</tr>
+<tr>
+  <td>政策环境</td>
+  <td class="score-cell">11/15</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:73%;background:#4caf50"></span></span></span></td>
+  <td style="font-size:12px;color:#555">联邦基建/国防/净零转型支出明确利好，但收费公路面临费率审查与航空有再监管风险</td>
+</tr>
+<tr style="background:#fafafa">
+  <td style="font-weight:700;font-size:14px">总分</td>
+  <td style="font-weight:700;font-size:16px;color:#e65100">62/100</td>
+  <td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:62%;background:#ff9800"></span></span></span></td>
+  <td style="font-size:12px;color:#e65100;font-weight:600">一般——值得精选，不值得重仓追高</td>
+</tr>
+</table>
+</div>
+
+<div class="verdict verdict-caution">
+  <span class="score">62</span>
+  一般——精选龙头，逆周期配置
+</div>
+
+<div class="summary-box">
+  <strong>核心结论</strong><br>
+  ① <strong>值不值得研究：值得精选，不适合行业Beta重仓。</strong>ASX工业是"收租+周期"双层结构——收费公路/港口/检验认证（TCL/QUB/ALS/IPH）是稳定现金牛，工程/建材/航空是强周期。<br>
+  ② <strong>筛选结果：192→7核心+4观察。</strong>市值/营收筛轻度，真正区分度是<span class="col-tag col-lose">毛利率≥15%</span>与<span class="col-tag col-lose">负债率≤65%</span>——工程类低毛利+基建类高杠杆被大量筛除，服务类胜出。<br>
+  ③ <strong>用什么框架：PB+ROE+股息率（收租资产）与 订单/利用率（工程周期）。</strong>公路/废物看EV/EBITDA与股息；工程/分销看订单增速与毛利率拐点；航空看ASK/客座率与油价。<br>
+  ④ <strong>现在能不能买：可分批，忌追高。</strong> 板块PE 18.8x（SimplyWallSt）、EV/EBITDA 9.1x 处历史中位；收租资产估值偏贵（PB 2-3x），工程类订单虽满但人力与分包成本侵蚀；适合<span class="col-tag col-win">回调分批</span>而非一次性重仓。
+</div>
+
+<div class="highlight-box">
+  <strong>行业公式</strong><br>
+  收入 = ①收租：车流量/吞吐量 × 费率 × 特许期 + ②工程：订单额 × 交付进度 + ③分销：分支数 × 单店销量 × 价格 + ④航空：ASK × 客座率 × 票价<br>
+  关键指标：1) TCL/ALX日均车流量 2) 联邦基建拨款与工程订单簿 3) 住房开工与建材销量 4) Qantas ASK/客座率 5) Brambles托盘周转与ROCI
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l7">
+<div class="tab-inner">
+
+<h2>筛子调整说明</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:12%">筛子</th><th style="width:35%">标准</th><th>调整说明</th></tr>
+<tr><td>①<span class="col-tag col-info">市值</span></td><td>ASX ≥ 2亿AUD</td><td>正常执行。192家中约60%为&lt;2亿微盘工程/服务公司（GoMarketCap 199家/2060亿中尾部极分散）</td></tr>
+<tr><td>②<span class="col-tag col-info">营收</span></td><td>ASX ≥ 1亿AUD</td><td>正常执行。剔除无收入壳与停工小承包商</td></tr>
+<tr><td>③<span class="col-tag col-lose">毛利率</span></td><td>制造业/服务 ≥15%</td><td><strong>最严一筛</strong>——工程营造（Downer/Worley/MND 5-12%）、工业分销（Reece 18%边缘、SGH混合）在此被区分</td></tr>
+<tr><td>④<span class="col-tag col-info">ROE</span></td><td>≥8%，连续3年&lt;5%剔除</td><td>正常执行。收租资产因特许权摊销ROE常被低估，需结合ROIC/ROCI复核（Brambles ROCI 21.9%）</td></tr>
+<tr><td>⑤<span class="col-tag col-lose">负债率</span></td><td>≤65%（制造业/服务）</td><td><strong>次严</strong>——收费公路/铁路基建天然高杠杆（TCL/AZJ/ALX &gt;70%）在此被筛至观察池，用Net Debt/EBITDA替代评估</td></tr>
+<tr><td>⑥<span class="col-tag col-info">估值</span></td><td>PE历史分位≤70% / PB周期≤80%</td><td>正常执行。周期底部工程股用PB替代PE；当前板块PE 18.8x处于50-60%分位，多数通过</td></tr>
+</table>
+</div>
+
+<h2>候选池（7只）</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>环节</th><th>市值</th><th>毛利率</th><th>ROE</th><th>负债率</th><th>PE/PB分位</th><th>通过</th></tr>
+<tr>
+  <td><strong>Brambles</strong> BXB</td>
+  <td><span class="col-tag col-win">托盘物流</span></td>
+  <td style="font-weight:600">~260亿</td>
+  <td><span class="col-tag col-win">~31%</span><br><span style="font-size:11px;color:#666">EBIT margin 20.6%</span></td>
+  <td><span class="col-tag col-win">~21.9% ROCI</span></td>
+  <td><span class="col-tag col-win">~48%</span><br><span style="font-size:11px;color:#666">Net Debt/EBITDA 1.12x</span></td>
+  <td>PE ~23x / 55%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>Seven Group</strong> SGH</td>
+  <td><span class="col-tag col-win">工业综合</span></td>
+  <td style="font-weight:600">~178亿</td>
+  <td><span class="col-tag col-win">~22%</span></td>
+  <td><span class="col-tag col-win">~14%</span></td>
+  <td><span class="col-tag col-warn">~62%</span><br><span style="font-size:11px;color:#666">Net Debt/EBITDA 2.0x</span></td>
+  <td>PE ~15x / 45%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>ALS Ltd</strong> ALQ</td>
+  <td><span class="col-tag col-win">检验认证</span></td>
+  <td style="font-weight:600">~111亿</td>
+  <td><span class="col-tag col-win">~32%</span></td>
+  <td><span class="col-tag col-win">~11%</span></td>
+  <td><span class="col-tag col-win">~38%</span></td>
+  <td>PE ~28x / 60%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>Qube Holdings</strong> QUB</td>
+  <td><span class="col-tag col-info">港口物流</span></td>
+  <td style="font-weight:600">~90亿</td>
+  <td><span class="col-tag col-win">~28%</span></td>
+  <td><span class="col-tag col-win">~9.5%</span></td>
+  <td><span class="col-tag col-win">~42%</span></td>
+  <td>PE ~22x / 50%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr>
+  <td><strong>Cleanaway</strong> CWY</td>
+  <td><span class="col-tag col-win">废物管理</span></td>
+  <td>~52亿</td>
+  <td><span class="col-tag col-win">~24%</span></td>
+  <td><span class="col-tag col-win">~8.5%</span></td>
+  <td><span class="col-tag col-win">~48%</span></td>
+  <td>PE ~32x / 65%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>IPH Ltd</strong> IPH</td>
+  <td><span class="col-tag col-win">知识产权服务</span></td>
+  <td>~10.6亿</td>
+  <td><span class="col-tag col-win">~38%</span></td>
+  <td><span class="col-tag col-win">~12%</span></td>
+  <td><span class="col-tag col-win">~25%</span></td>
+  <td>PE ~17x / 40%</td>
+  <td class="pass">6/6</td>
+</tr>
+<tr style="background:#fafafa">
+  <td><strong>Monadelphous</strong> MND</td>
+  <td><span class="col-tag col-warn">工程服务</span></td>
+  <td>~29亿</td>
+  <td><span class="col-tag col-warn">~15.5%</span></td>
+  <td><span class="col-tag col-win">~18%</span></td>
+  <td><span class="col-tag col-win">~28%</span></td>
+  <td>PE ~21x / 55%</td>
+  <td class="pass">6/6</td>
+</tr>
+</table>
+</div>
+<div style="font-size:11px;color:#888;margin:-10px 0 14px">注：市值按2026-06-30收盘（TCL 46.2B/BXB 26.7B/SGH 17.8B/QAN 15.6B等来自MarketIndex/GoMarketCap）；BXB营收66.7亿USD/ROCI 21.9%/Net Debt/EBITDA 1.12x来自FY25年报2025-08-21；SGH营收107亿/EBIT 15.37亿/Net Debt/EBITDA 2.0x来自FY25公告2025-08-12；CWY/QUB/ALQ毛利率/ROE为FY25或近12月历史参考；PE分位为近5-10年SimplyWallSt/行情区间参考，非精确分位。</div>
+
+<h2>观察池</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>股票</th><th>卡在哪筛</th><th>备注</th></tr>
+<tr>
+  <td><strong>Transurban</strong> TCL</td>
+  <td><span class="col-tag col-lose">④ROE~5%</span> <span class="col-tag col-lose">⑤负债率~75%</span></td>
+  <td>澳洲最大收费公路，特许权摊销压低ROE、资产负债率高是行业特性，EV/EBITDA 9-10x、股息率4%+股息增长稳定，<span style="color:#2e7d32">触发：负债率用Net Debt/EBITDA&lt;6x替代评估则可入池</span></td>
+</tr>
+<tr>
+  <td><strong>Reece</strong> REH</td>
+  <td><span class="col-tag col-warn">③毛利率~18%临界</span> <span class="col-tag col-warn">④ROE~7%</span> <span class="col-tag col-warn">⑥PE~28x/65%</span></td>
+  <td> plumbing分销龙头，FY25营收89.8亿-1%/EBIT-20%至5.48亿（2025-08-25公告），住房周期低谷承压，等待毛利率企稳+ROE回升至8%+再评估</td>
+</tr>
+<tr>
+  <td><strong>Qantas</strong> QAN</td>
+  <td><span class="col-tag col-lose">⑤负债率&gt;70%</span></td>
+  <td>航空周期龙头，FY25 Underlying PBT 23.9亿+15%/ROIC 50.8%（2025-08-28公告），但资本结构高杠杆（Net Debt 50亿/目标区间4.6-5.7B）、权益薄，筛除系资产负债表特性，跟踪ASK与油价</td>
+</tr>
+<tr>
+  <td><strong>Atlas Arteria</strong> ALX</td>
+  <td><span class="col-tag col-lose">⑤负债率~70%</span></td>
+  <td>收费公路（法国/美国+澳洲），与TCL同逻辑，股息率5%+French toll通胀联动，适合收息但会计杠杆高</td>
+</tr>
+<tr>
+  <td><strong>Worley / Downer</strong> WOR/DOW</td>
+  <td><span class="col-tag col-lose">③毛利率8-11%</span></td>
+  <td>能源/基建工程服务，毛利率天然低于15%阈值，非财务差而是商业模式决定，跟踪订单簿与人力利用率，不适用毛利率硬门槛</td>
+</tr>
+</table>
+</div>
+
+<h2>筛除记录</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>筛子</th><th style="width:60px">筛除数</th><th>知名示例</th></tr>
+<tr><td>①市值</td><td style="text-align:center">~82</td><td>~110家微盘工程/服务/运输小票市值&lt;2亿（CTI Logistics / BSA / GO2 People等）</td></tr>
+<tr><td>②营收</td><td style="text-align:center">~35</td><td>无/低收入壳公司、停工承包商（XRF Scientific小市值、部分勘探服务公司）</td></tr>
+<tr><td>③毛利率 <span class="col-tag col-lose">最严</span></td><td style="text-align:center">~40</td><td>Worley/Downer/Ventia/SRG/NRW等工程营造毛利率5-12%（商业模式非财务问题）</td></tr>
+<tr><td>④ROE</td><td style="text-align:center">~12</td><td>Reece（~7%周期低谷）、Transurban（摊销压低）、部分建筑产品公司（GWA 5-6%）</td></tr>
+<tr><td>⑤负债率 <span class="col-tag col-warn">次严</span></td><td style="text-align:center">~14</td><td>Transurban/Atlas Arteria/Aurizon（AZJ ~70%+轨道资产高杠杆）、Qantas</td></tr>
+<tr><td>⑥估值</td><td style="text-align:center">~2</td><td>部分AI/国防概念股（DRO/EOS PS 15x+）估值分位偏高</td></tr>
+<tr style="background:#fffde7"><td><strong>剩余</strong></td><td style="text-align:center;font-weight:700;color:#2e7d32"><strong>7</strong></td><td>192→~110→~75→~35→~23→~9→<strong>7核心</strong>（-96%，筛选力度极大）</td></tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <strong>L7筛选结论</strong><br>
+  ASX工业的L7是<strong>"哑铃分化"</strong>——一头是低毛利的重资产工程（天然被③筛除），一头是高杠杆的收租基建（被⑤筛除至观察池），中间胜出的是<span class="col-tag col-win">轻/中资产的物流与专业服务</span>。<strong>7只核心</strong>中：<span class="col-tag col-win">Brambles（全球托盘网络+ROCI 21.9%）/ Seven Group（CAT代理+Boral建材+Coates租赁三引擎）/ ALS（检验认证）/ Qube（港口）/ Cleanaway（废物寡头）/ IPH / Monadelphous</span>已覆盖质量最优且账户可验证的标的。观察池的<span class="col-tag col-warn">TCL/QAN/REH/ALX/WOR/DOW</span>需用替代指标（Net Debt/EBITDA、订单簿）二次评估，不宜用15%/65%硬门槛直接判死刑。下一步对7只逐一跑L1-L6，重点比三力：<strong>网络规模与资产周转、分支/客户粘性、资本配置纪律</strong>。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l8">
+<div class="tab-inner">
+
+<h2>产业链</h2>
+<div class="card" style="font-size:13px;line-height:1.7">
+
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px">
+
+<div style="flex:1.2;min-width:180px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#2e7d32;font-size:14px">上游要素</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">建材/装备/人力</div>
+    <div style="text-align:center;font-size:11px;color:#666">钢材·水泥·CAT设备<br>Boral·WesTrac·RWC·JHX</div>
+    <div style="margin:10px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-weight:600;font-size:13px">政府与业主</div>
+    <div style="text-align:center;font-size:11px;color:#666">联邦/州政府·矿企·开发商<br>基建拨款·国防预算</div>
+  </div>
+</div>
+
+<div style="flex:2;min-width:280px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#1565c0;font-size:14px">中游制造与服务（我们的主战场）</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+
+    <div style="display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:70px;background:#ffebee;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">工程营造</div>
+        <div style="font-size:10px;color:#666">CIMIC·Downer·Worley<br>MND·Ventia·SRG·NRW</div>
+      </div>
+      <div style="font-size:20px;color:#999;line-height:36px">↔</div>
+      <div style="flex:1;min-width:70px;background:#fff3e0;border-radius:4px;padding:6px 4px;text-align:center">
+        <div style="font-weight:700;font-size:12px">建筑产品</div>
+        <div style="font-size:10px;color:#666">James Hardie·GWA·RWC<br>Boral(Cat/SGH内)</div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:11px;color:#c62828;margin-bottom:8px">▲ 工程毛利率5-12%（靠规模与人力利用率），建筑产品15-27%</div>
+
+    <div style="margin:6px 0 4px;font-weight:600;font-size:12px;color:#1565c0">工业服务</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">分销/租赁<br><span style="font-size:10px;color:#666">Reece·SGH(Coates/WesTrac)</span></div>
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">托盘物流<br><span style="font-size:10px;color:#666">Brambles BXB</span></div>
+      <div style="flex:1;background:#e3f2fd;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">检验认证<br><span style="font-size:10px;color:#666">ALS·IPH</span></div>
+    </div>
+
+    <div style="margin:8px 0 4px;font-weight:600;font-size:12px;color:#2e7d32">物流与运输</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">港口/供应链<br><span style="font-size:10px;color:#666">Qube QUB</span></div>
+      <div style="flex:1;background:#e8f5e9;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">废物管理<br><span style="font-size:10px;color:#666">Cleanaway CWY</span></div>
+      <div style="flex:1;background:#fff3e0;border-radius:4px;padding:6px 8px;text-align:center;font-size:12px">人力/技术服务<br><span style="font-size:10px;color:#666">SEEK·MMS·SIQ</span></div>
+    </div>
+
+  </div>
+</div>
+
+<div style="flex:1;min-width:160px;background:#f5f5f5;border-radius:6px;padding:10px">
+  <div style="font-weight:700;text-align:center;margin-bottom:6px;color:#c62828;font-size:14px">下游运营</div>
+  <div style="border-top:1px solid #ddd;padding-top:6px">
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:8px 6px;text-align:center;font-size:12px"><strong>收费公路/铁路</strong><br><span style="font-size:10px;color:#666">TCL·ALX·AZJ·DBI</span></div>
+    <div style="margin:6px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#ffebee;border-radius:4px;padding:8px 6px;text-align:center;font-size:12px"><strong>航空</strong><br><span style="font-size:10px;color:#666">Qantas QAN</span></div>
+    <div style="margin:6px 0;text-align:center;color:#999;font-size:18px">↓</div>
+    <div style="margin-bottom:6px;background:#f5f5f5;border:1px solid #ccc;border-radius:4px;padding:8px;text-align:center;font-weight:600;font-size:13px">终端用户</div>
+    <div style="text-align:center;font-size:11px;color:#666">通勤者·货主·旅客·政府</div>
+  </div>
+</div>
+
+</div>
+
+<div style="background:#fffde7;border-left:3px solid #f9a825;padding:8px 12px;font-size:12px;border-radius:0 4px 4px 0">
+  <strong>利润最厚环节：</strong>收费公路（EBITDA margin 60-70%）→ 港口/检验认证/IP服务（25-40%）→ 废物/托盘物流（15-25%）→ 工程营造（5-12%）<br>
+  <span style="color:#999">中游工程是最辛苦环节——人力占收入60%+、分包与设备租赁侵蚀利润，靠订单规模与人力利用率>75%才能盈利</span>
+</div>
+
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>环节</th><th>代表公司</th><th>毛利率</th><th>集中度</th><th>议价能力</th></tr>
+<tr>
+  <td><span class="col-tag col-win">收费公路</span></td>
+  <td>TCL · ALX</td>
+  <td><span class="col-tag col-win">60-70% EBITDA</span></td>
+  <td>寡头（CR2~80% 东海岸）</td>
+  <td><span class="col-tag col-win">强（特许30年+通胀联动）</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-win">港口物流</span></td>
+  <td>QUB</td>
+  <td><span class="col-tag col-win">25-30%</span></td>
+  <td>寡头（QUB+DP World）</td>
+  <td><span class="col-tag col-win">强</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-win">检验认证</span></td>
+  <td>ALS · IPH</td>
+  <td><span class="col-tag col-win">30-40%</span></td>
+  <td>分散但技术壁垒高</td>
+  <td><span class="col-tag col-win">中强</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-win">废物管理</span></td>
+  <td>CWY</td>
+  <td><span class="col-tag col-win">20-25%</span></td>
+  <td>双寡头（CWY+Bingo）</td>
+  <td><span class="col-tag col-win">强（ landfill稀缺）</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-win">托盘物流</span></td>
+  <td>BXB</td>
+  <td><span class="col-tag col-win">~31%</span></td>
+  <td>全球寡头（CHEP）</td>
+  <td><span class="col-tag col-win">强</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-warn">工业分销</span></td>
+  <td>REH · SGH</td>
+  <td><span class="col-tag col-warn">15-22%</span></td>
+  <td>REH澳新领先/SGH垄断CAT</td>
+  <td><span class="col-tag col-warn">中</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-lose">工程营造</span></td>
+  <td>WOR · DOW · MND</td>
+  <td><span class="col-tag col-lose">5-12%</span></td>
+  <td>极分散 CR5&lt;25%</td>
+  <td><span class="col-tag col-lose">弱</span></td>
+</tr>
+<tr>
+  <td><span class="col-tag col-warn">航空</span></td>
+  <td>QAN</td>
+  <td><span class="col-tag col-warn">10-14% EBIT margin</span></td>
+  <td>双寡头（QAN/VA 65/35）</td>
+  <td><span class="col-tag col-warn">中（受油价/监管）</span></td>
+</tr>
+</table>
+</div>
+
+<h2>市场规模</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:28%">指标</th><th style="width:30%">数值</th><th>说明</th></tr>
+<tr><td><strong>TAM</strong>（理论可触达）</td><td><span class="col-tag col-info" style="font-size:13px">全澳基建管线+存量维护数万亿</span></td><td>联邦10年管线~1200亿 + 国防/能源转型千亿级</td></tr>
+<tr><td><strong>SAM</strong>（上市工业可服务）</td><td>~1466亿AUD/年（营收）</td><td>SimplyWallSt 2026-08-21：XNJ收入146.6B/盈利8.1B</td></tr>
+<tr><td><strong>SOM</strong>（头部可得）</td><td>Top10占~65%营收（~950亿）</td><td>TCL/BXB/SGH/QAN四家占~40%市值</td></tr>
+<tr><td><strong>近年增速</strong>（3年CAGR）</td><td><span class="col-tag col-warn">3-5%</span></td><td>2024-26工程与物流量6-8%，建筑产品-1~2%拖累均值</td></tr>
+</table>
+</div>
+
+<h2>生命周期</h2>
+<div class="summary-box">
+  <strong><span class="col-tag col-info" style="font-size:14px">成熟期</span>（分化转型）</strong><br>
+  判断依据：收费公路/废物已成熟（存量运营+提费）；工程服务处"量饱利薄"——订单簿创历史高但分包与工资通胀压制利润率；建筑产品处下行周期（住房开工-10%）；托盘/检验认证靠全球网络与技术升级驱动稳增长。整体增速低于GDP+1-2pct，靠提效与并购驱动EPS。
+</div>
+
+<h2>增长驱动力</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动力</th><th>类型</th><th>可持续性</th><th>量化指标</th></tr>
+<tr>
+  <td>人口增长与住房短缺</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长（10年+）</span></td>
+  <td>年净移民22-25万、住房缺口10万套+/年</td>
+</tr>
+<tr>
+  <td>联邦/州基建与国防开支</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>10年1200亿管线、AUKUS/能源转型投资</td>
+</tr>
+<tr>
+  <td>能源转型与矿业资本开支</td>
+  <td><span class="col-tag col-win">结构</span></td>
+  <td><span class="col-tag col-warn">中长</span></td>
+  <td>Worley能源订单、WestTrac CAT销量</td>
+</tr>
+<tr>
+  <td>航空出行与物流恢复</td>
+  <td><span class="col-tag col-warn">周期</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>Qantas ASK +8%/客座率、港口吞吐量</td>
+</tr>
+<tr>
+  <td>利率与大宗价格</td>
+  <td><span class="col-tag col-lose">周期</span></td>
+  <td><span class="col-tag col-lose">短</span></td>
+  <td>RBA现金利率、钢材/水泥价</td>
+</tr>
+</table>
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l9">
+<div class="tab-inner">
+
+<h2>市场结构</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>市场结构类型</td>
+  <td>收费公路/铁路/废物：<span class="col-tag col-win">寡头垄断</span>；工程/建材：<span class="col-tag col-lose">完全竞争/垄断竞争</span></td>
+</tr>
+<tr>
+  <td>CR3 / CR5</td>
+  <td>收费公路CR2~80%（TCL+ALX东海岸）｜废物CR2~65%（CWY+Bingo）｜工程CR5&lt;25%（CIM/DOW/WOR/MND分散）</td>
+</tr>
+<tr>
+  <td>格局象限</td>
+  <td>收租资产：<span class="col-tag col-win">寡头稳定</span>；工程服务：<span class="col-tag col-lose">价格战泥潭</span>；托盘/检验：<span class="col-tag col-win">赢家通吃</span></td>
+</tr>
+<tr>
+  <td>新进入者威胁</td>
+  <td><span class="col-tag col-warn">分化</span>——基建特许<span class="col-tag col-win">极低</span>（30年+牌照/资本），工程/分销<span class="col-tag col-lose">高</span>（轻资产+人力可复制）</td>
+</tr>
+</table>
+</div>
+
+<h2>竞争壁垒</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>壁垒类型</th><th>强度</th><th>可持续性</th><th>具体表现</th></tr>
+<tr>
+  <td>特许经营权</td>
+  <td><span class="col-tag col-win">极强</span></td>
+  <td><span class="col-tag col-win">长（至2050年+）</span></td>
+  <td>TCL拥有13条收费公路加权剩余23年，ALX法国APRR至2036年，立法+通胀联动调费</td>
+</tr>
+<tr>
+  <td>网络效应（托盘）</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">长</span></td>
+  <td>Brambles CHEP全球60国+75万服务点，客户切换成本高，ROCI 21.9%全球第一</td>
+</tr>
+<tr>
+  <td>地理位置（港口/铁路）</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">无限</span></td>
+  <td>Qube港口+铁路短驳垄断东海岸集装箱；Aurizon昆士兰煤运网络唯一</td>
+</tr>
+<tr>
+  <td>规模与分支网络</td>
+  <td><span class="col-tag col-warn">中强</span></td>
+  <td><span class="col-tag col-warn">中</span></td>
+  <td>Reece 900+分支、SGH WesTrac独家CAT代理（全澳）、Cleanaway 300+站点 landfill稀缺</td>
+</tr>
+<tr>
+  <td>技术/认证（检验）</td>
+  <td><span class="col-tag col-win">强</span></td>
+  <td><span class="col-tag col-win">中长</span></td>
+  <td>ALS全球实验室资质+矿业/生命科学客户粘性，IPH专利代理牌照</td>
+</tr>
+</table>
+</div>
+
+<div class="summary-box">
+  <strong>定价权测试</strong><br>
+  🔹 龙头能涨价吗？<strong>收租能，工程不能。</strong> TCL费率每年CPI+1-2%（通胀联动条款）且车流量对价格不敏感；Qube港口费率跟随集装箱吞吐；但Downer/Worley投标价由业主定，涨价即丢单<br>
+  🔹 毛利率趋势：收费公路/检验认证稳定或提升（TCL 62%附近/ALS 30%+）；工程持续承压（人力+分包通胀>报价涨幅）<br>
+  🔹 ROE趋势：Brambles ROCI 21.9%↑1.4pts、ALS 11%稳、SGH 14%↑；Qantas ROIC 50.8%处于不可持续高位（Invested Capital因疫情摊薄）
+</div>
+
+<h2>驱动力拆解</h2>
+<div class="highlight-box">
+  <strong>行业收入公式</strong><br>
+  收费公路：收入 = 日均车流量 × 费率 × 天数<br>
+  工程：收入 = 期初订单簿 × 交付率（人力利用率）<br>
+  分销：收入 = 分支数 × 单店日销 × 毛差<br>
+  航空：收入 = ASK × 客座率 × 票价 + Loyalty<br><br>
+  当前组合：<span style="color:#2e7d32;font-weight:700">量 ↑（车流量/吞吐量/订单量）</span> ＋ <span style="color:#e65100;font-weight:700">价 →↑（费率CPI+1%/建材价弱）</span> ＝ <span class="col-tag col-warn">量价温和齐升，以量为主</span>
+</div>
+
+<div class="tbl-wrap">
+<table>
+<tr><th>驱动因子</th><th>最新值</th><th>历史区间</th><th>当前分位</th></tr>
+<tr>
+  <td>TCL日均车流量</td>
+  <td><span class="col-tag col-win">~250万次/日 +2-3%</span></td>
+  <td>-30%~+8%（疫情至恢复）</td>
+  <td><span class="col-tag col-win">70%</span></td>
+</tr>
+<tr>
+  <td>澳洲住房开工</td>
+  <td><span class="col-tag col-lose">~16万套/年 -10%</span></td>
+  <td>15-22万套</td>
+  <td><span class="col-tag col-lose">20%</span></td>
+</tr>
+<tr>
+  <td>工程订单簿/收入比</td>
+  <td><span class="col-tag col-win">~1.3x（饱满）</span></td>
+  <td>0.8-1.5x</td>
+  <td><span class="col-tag col-win">75%</span></td>
+</tr>
+<tr>
+  <td>Qantas ASK增速</td>
+  <td><span class="col-tag col-win">+8%</span></td>
+  <td>-80%~+30%</td>
+  <td><span class="col-tag col-win">65%</span></td>
+</tr>
+<tr>
+  <td>RBA现金利率</td>
+  <td><span class="col-tag col-lose">~4.10%</span></td>
+  <td>0.10-4.35%</td>
+  <td><span class="col-tag col-lose">85%</span></td>
+</tr>
+</table>
+</div>
+
+<h2>成本结构</h2>
+<div class="summary-box">
+  🔹 <strong>类型：</strong>收费公路/港口——<span class="col-tag col-lose">重资产</span>（折旧+财务费用高，经营杠杆大）；工程/服务——<span class="col-tag col-info">轻/中资产</span>（人力60-70%+分包）<br>
+  🔹 <strong>成本敏感性：</strong>人力成本+1% → 工程利润-5~8%；油价±10% → Qantas利润±12-15%；利率+1% → TCL财务费用+8-10%<br>
+  🔹 <strong>盈亏平衡：</strong>收费公路利用率&gt;55%即高盈利；工程需人力利用率&gt;70%+订单饱满；航空客座率需&gt;75%
+</div>
+
+<h2>竞争格局总结</h2>
+<div class="highlight-box">
+  ASX工业是<strong>"护城河在两头、红海在中间"</strong>——最深护城河在<span class="col-tag col-win">特许资产与网络</span>，最薄在中间的工程投标。<strong>投资含义：</strong>要么买深护城河的收租资产（TCL/QUB/CWY/BXB/ALS），赚稳定现金与分红；要么买执行力极强的工程龙头（MND/SGH），赚订单交付与并购整合；回避无差异的纯施工与建材分销（低毛利+高人力弹性）。真正的α不在份额争夺而在<strong>资本配置</strong>——Brambles的资产效率与回购、SGH的低价并购Boral/Coates、Qube的港口整合。
+</div>
+
+</div>
+</div>
+
+<div class="tab-content" id="tab-l10">
+<div class="tab-inner">
+
+<h2>周期位置</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:25%">维度</th><th>判断</th></tr>
+<tr>
+  <td>库存周期阶段</td>
+  <td><span class="col-tag col-warn">复苏/繁荣交界</span>（基建/工程订单饱满，物流与航空已从疫情萧条修复至复苏后期）</td>
+</tr>
+<tr>
+  <td>产能利用率</td>
+  <td><span class="col-tag col-warn">~78-82%</span>（工程人力与设备利用已偏高，历史区间55-85%）</td>
+</tr>
+<tr>
+  <td>价格分位<br><span style="font-size:11px;color:#999">（费率/票价/建材价）</span></td>
+  <td>收费费率<span class="col-tag col-win">中高位（CPI+1%联动）</span>｜机票<span class="col-tag col-warn">中位（+1% RASK）</span>｜建材<span class="col-tag col-lose">低位（-1~-5%）</span></td>
+</tr>
+<tr>
+  <td>行业盈利状态</td>
+  <td><span class="col-tag col-win">整体盈利但分化</span>——Brambles/SGH/QAN盈利创高，Reece-24%拖累，工程整体EBIT margin 4-6%承压</td>
+</tr>
+</table>
+</div>
+
+<div class="danger-box">
+  <strong>⚠ PE悖论检查</strong><br>
+  工业是<strong>周期与收租混合，PE会双向误导</strong>：①工程服务在订单饱满、利润率高点时PE极低（MND PE 15x看似便宜实为顶点）；②收费公路因摊销PE常偏高（TCL PE 30x+看似贵实为现金牛）；③Qantas ROIC 50.8%不可持续（疫后Invested Capital异常低）。<br>
+  正确视角：收租看<span class="col-tag col-win">EV/EBITDA 9.1x + 股息率4-5%</span>（InterFinancial 2026-02），工程看<span class="col-tag col-win">PB 1.5-2.5x + 订单/毛利率拐点</span>，航空看<span class="col-tag col-win">EV/EBITDAR + 客座率</span>。<strong>当前：</strong>EV/EBITDA 9.1x vs ASX200 10.0x略折价但非底部，PB 2-3x处中高位，警惕"低PE陷阱"（工程）与"高PE恐慌"（公路）。
+</div>
+
+<h2>估值水平</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th>估值指标</th><th>行业当前</th><th>历史中位数</th><th>80%分位</th><th>20%分位</th></tr>
+<tr>
+  <td><strong>EV/EBITDA</strong>（行业）</td>
+  <td><span class="col-tag col-warn">9.1x</span></td>
+  <td>9.5-10.0x</td>
+  <td>11-12x</td>
+  <td>7.5-8.0x</td>
+</tr>
+<tr>
+  <td><strong>PE</strong>（行业 18.8x）</td>
+  <td><span class="col-tag col-warn">18.8x</span></td>
+  <td>17-19x</td>
+  <td>22-25x</td>
+  <td>14-15x</td>
+</tr>
+<tr>
+  <td><strong>PB</strong>（工程/分销）</td>
+  <td><span class="col-tag col-warn">2.0-3.0x</span></td>
+  <td>1.8-2.2x</td>
+  <td>3.0-4.0x</td>
+  <td>1.2-1.5x</td>
+</tr>
+<tr>
+  <td><strong>股息率</strong>（收租）</td>
+  <td><span class="col-tag col-win">4.0-5.5%</span>（TCL~4.1%/QUB~2.5%/CWY~1.2%）</td>
+  <td>3.5-4.0%</td>
+  <td>5.0%+</td>
+  <td>2.0%</td>
+</tr>
+</table>
+</div>
+<div style="font-size:11px;color:#888;margin:-12px 0 14px">注：EV/EBITDA 9.1x与PE 18.8x来自InterFinancial 2026-02与SimplyWallSt 2026-08-21行业汇总；TCL/QAN等个股估值来自MarketIndex/公司年报。</div>
+
+<h2>政策环境</h2>
+<div class="summary-box">
+  🔹 <strong>政策方向：</strong><span class="col-tag col-win">偏利好但结构分化</span><br>
+  🔹 <strong>关键政策：</strong><br>
+  &emsp;• <strong>联邦基建管线</strong>：10年1200亿（公路/铁路/能源）+ 各州住房目标120万套5年，直接利好QUB/SGH/CWY/ALS<br>
+  &emsp;• <strong>国防与AUKUS</strong>：潜艇/造船/基地投资，利好Austal/工程服务<br>
+  &emsp;• <strong>净零与废物新政</strong>：废物填埋税上调+回收目标，利好Cleanaway定价权<br>
+  &emsp;• <strong>航空监管</strong>：ACCC关注票价与时刻，Qantas再定价受政治约束<br>
+  &emsp;• <strong>RBA利率</strong>：4.10%高位压制住房与建材（Reece/JHX/GWA），但利好现金充裕的收租资产<br>
+  🔹 <strong>政策周期位置：</strong><span class="col-tag col-info">宽松期（财政发力）/ 紧缩期（货币）对冲</span>
+</div>
+
+<h2>买入清单</h2>
+<div class="tbl-wrap">
+<table>
+<tr><th style="width:28%">条件</th><th style="width:16%">结果</th><th>备注</th></tr>
+<tr>
+  <td>周期位置：不在繁荣顶点</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td>收租在繁荣（费率中高位），工程订单饱满但人力成本顶峰，非顶点但接近中高位</td>
+</tr>
+<tr>
+  <td>估值：PE/PB/EV/EBITDA偏低</td>
+  <td style="text-align:center"><span class="col-tag col-warn">⚠️</span></td>
+  <td>EV/EBITDA 9.1x处中位，PB 2-3x处60-65%分位，非低位；股息率4-5%提供底</td>
+</tr>
+<tr>
+  <td>政策：基建/转型扩张期</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>联邦基建与国防确定性强，废物新政利好，整体政策友好</td>
+</tr>
+<tr>
+  <td>格局：龙头壁垒稳固</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>收租/检验/托盘壁垒极深（TCL/BXB/ALS/QUB/CWY），工程龙头分散但MND/SGH执行力强</td>
+</tr>
+<tr>
+  <td>增长：有可见驱动力</td>
+  <td style="text-align:center"><span class="col-tag col-win">✅</span></td>
+  <td>人口/基建/国防/AUKUS/能源转型长期驱动，短期靠费率与并购</td>
+</tr>
+</table>
+</div>
+
+<div class="highlight-box">
+  <div style="font-size:16px;font-weight:700;margin-bottom:8px">综合判断：<span class="col-tag col-warn" style="font-size:15px">等待回调 + 分批配置</span></div>
+  <div style="margin-bottom:6px">3胜2⚠️——格局与政策/增长3项通过，周期与估值2项中高位制约弹性。不具备戴维斯双击，但<span class="col-tag col-win">收租资产提供4-5%股息底仓价值</span>。</div>
+  <table style="font-size:12px;margin:6px 0;border:none;background:transparent">
+    <tr><td style="border:none;padding:3px 6px;background:transparent;width:90px;font-weight:600">预期回报</td><td style="border:none;padding:3px 6px;background:transparent">股息4-5% + 盈利个位数增长，年化6-10%（1-2年），资本利得有限；工程类若利率下行或有估值修复15-25%</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">仓位建议</td><td style="border:none;padding:3px 6px;background:transparent"><span class="col-tag col-warn">不超过组合10-12%</span>（防御底仓，单只不超4%，收租与工程各半）</td></tr>
+    <tr><td style="border:none;padding:3px 6px;background:transparent;font-weight:600">跟踪指标</td><td style="border:none;padding:3px 6px;background:transparent">TCL车流量 · 住房开工 · 工程订单簿/人力利用率 · Qantas客座率/B102 · RBA利率 · Brambles ROCI</td></tr>
+  </table>
+  <div style="margin-top:8px;padding:8px;background:#e8f5e9;border-radius:4px;font-size:12px">
+    <strong>分批策略：</strong><br>
+    <span class="col-tag col-win">收租底仓（BXB/QUB/CWY/ALS）</span>：回调至EV/EBITDA &lt;8.5x或股息率&gt;5%时建仓，BXB ROCI&gt;20%可持续即加仓<br>
+    <span class="col-tag col-win">困境反转型（REH）</span>：等住房开工企稳+毛利率回升至20%+ROE&gt;8%再左侧分批<br>
+    <span class="col-tag col-info">基建弹性（SGH/MND）</span>：订单消化+人力成本拐点（工资增速&lt;3%）时加仓<br>
+    <span class="col-tag col-warn">观察（TCL/QAN）</span>：TCL等回购或股息&gt;5.5%再重仓；QAN等油价回落+Net Debt回至区间下沿再考虑<br>
+    加仓触发：EV/EBITDA回落至20%分位（~7.5x）或RBA降息50bp+住房开工回升至18万套+<br>
+    止盈参考：EV/EBITDA&gt;11x或PB&gt;3.5x或股息率&lt;3%或工程毛利率连续两季-2pct
+  </div>
+</div>
+
+<h2>卖出信号</h2>
+<div class="danger-box">
+  <strong>出现以下信号考虑卖出：</strong><br>
+  <div style="margin-top:6px">
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px">1</span>
+    联邦基建拨款削减或住房开工连续两季&lt;15万套且建材价再跌5%+（分销/建材需求崩塌）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">2</span>
+    工程人力成本失控（工资增速&gt;5%或利用率跌破65%，EBIT margin破5%）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">3</span>
+    Qantas客座率跌破75%或油价飙升30%+且无法转嫁（航空利润快速侵蚀）<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">4</span>
+    收租资产费率被管制（政府限价）或特许期缩短传闻<br>
+    <span style="display:inline-block;background:#ffebee;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;color:#c62828;font-weight:700;margin-right:6px;margin-top:4px">5</span>
+    估值推升至EV/EBITDA&gt;11x且股息率&lt;3%（安全边际消失）
+  </div>
+</div>
+
+<div style="margin-top:16px;padding:10px;background:#f5f5f5;border-radius:6px;font-size:11px;color:#888;line-height:1.6">
+<strong>数据来源与口径说明（2026-08-25）：</strong>192家/GICS定义来自MarketIndex/ASX XNJ；总市值2330亿/收入1466亿/盈利81亿/PE 18.8x来自SimplyWallSt 2026-08-21；EV/EBITDA 9.1x与分行业倍数来自InterFinancial Industrials Dashboard 2026-02（FactSet FY2025）；个股市值来自GoMarketCap/MarketIndex 2026-06-30收盘；BXB营收66.7亿USD/ROCI 21.9%/Net Debt/EBITDA 1.12x来自Brambles FY25公告2025-08-21；SGH营收107.4亿/EBIT 15.37亿/Net Debt/EBITDA 2.0x来自SGH FY25公告2025-08-12；QAN营收238亿/Underlying PBT 23.9亿/ROIC 50.8%/Net Debt 50亿来自Qantas FY25年报2025-08-28；Reece营收89.8亿/EBIT 5.48亿-20%来自REH FY25初步报告2025-08-25；其余ALQ/QUB/CWY等为公司年报/H1 FY26历史参考。PE/PB/EV/EBITDA分位为近5-10年参考区间，精确历史分位待补充处已标注"参考区间"。
+</div>
+
+</div>
+</div>
+
+<div class="footer">Generated by Industry Analysis · L7-L10 Framework · Stock Selection · 数据截至2026-08-25</div>
+
+</div>
+
+<script>
+var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+var contents = document.querySelectorAll('.tab-content');
+btns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    btns.forEach(function(b) { b.classList.remove('active'); });
+    contents.forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    var tab = btn.getAttribute('data-tab');
+    document.getElementById('tab-' + tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
