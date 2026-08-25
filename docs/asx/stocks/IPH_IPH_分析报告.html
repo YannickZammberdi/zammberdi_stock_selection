@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IPH Limited(IPH) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .score-note { font-size: 13px; color: #666; background: #fafafa; border: 1px dashed #ccc; padding: 8px 12px; margin: 10px 0; }
+  .history-table td:first-child { white-space: nowrap; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>IPH Limited（IPH）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026-08-25 | 数据来源：FY25年报（截至2025-06-30）+ HY26半年报 + 2025年8月投资者演示 | 代码：IPH.ASX | 货币单位：AUD</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>IPH Limited</td></tr>
+  <tr><td>股票代码</td><td>IPH.ASX</td></tr>
+  <tr><td>所属行业</td><td>知识产权服务（专利/商标/外观设计代理、法律服务）——专业服务</td></tr>
+  <tr><td>行业地位</td><td>澳洲#1知识产权服务集团；加拿大#1（通过Smart & Biggar / ROBIC / Ridout & Maybee / Bereskin & Parr四次并购）；ASX约361位，市值约A$10亿</td></tr>
+  <tr><td>FY25 营收</td><td><strong>A$710.3m（+16.5%）</strong>；FY24 A$609.9m</td></tr>
+  <tr><td>归母净利润（法定）</td><td><strong>A$68.8m（+13.2%）</strong>；FY24 A$60.8m；Underlying NPAT A$82.0m / NPATA A$120.6m</td></tr>
+  <tr><td>经营现金流</td><td><strong>A$133.7m（+1.4%）</strong>；FCF A$114.9m</td></tr>
+  <tr><td>总资产</td><td>A$1,350.5m（无形资产A$1,006.8m占比74.6%）</td></tr>
+  <tr><td>归母净资产</td><td>A$699.4m；每股净资产A$2.68（每股有形净资产 -A$1.05）</td></tr>
+  <tr><td>ROE</td><td><strong>9.8%（法定）/ 17.2%（Underlying NPATA口径）</strong>；FY24法定10.0%</td></tr>
+</table>
+
+<p style="font-size:13px;color:#666;margin:8px 0"><strong>行业类型标注：非周期股</strong> —— 知识产权服务需求与研发投入、专利申请量相关，虽受宏观影响但无强周期性，利润可预测性较高；适用<strong>非周期股评分体系</strong>（价值型/成熟专业服务特征）。</p>
+
+<p class="score-note"><strong>评分口径说明：</strong><span>采用非周期股评分体系；首次分析，无历史版本</span></p>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">采用非周期股评分体系（10维度），专业服务行业调整——以EBITDA Margin替代毛利率维度</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="neutral" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">法定ROE 9.8%（68.8/699.4），<10%档；若按Underlying NPATA 17.2%则≥15%可得15分，法定口径受大额无形资产摊销压制</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td style="font-weight:bold;font-size:15px">3</td><td style="text-align:left">均衡偏低利润型：净利率9.7%×周转0.53×杠杆1.93，非高利润也非高杠杆，驱动质量一般</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">CFO 133.7m / 法定净利68.8m =1.94 ≥1.0；EBITDA现金转化103%符合轻资产特征</td></tr>
+  <tr><td>营收增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">法定+16.5% ≥10%满分；但like-for-like有机仅+1.1%（ANZ），收购驱动占比高，质量扣分在L2体现</td></tr>
+  <tr><td>利润增长（10分）</td><td style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">法定NPAT +13.2%（≥5%档）；Underlying NPAT +5.3% / NPATA +7.3%，均处7分档</td></tr>
+  <tr><td>负债率（10分）</td><td style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">资产负债率48.2%（651.1/1350.5），<55%档；净负债/EBITDA 1.9x在目标≤2.0x内</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">现金A$59m覆盖短期有息11.6m充裕；流动比率2.72，速动比率2.72</td></tr>
+  <tr><td>盈利能力（毛利率替代 10分）</td><td style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">专业服务无传统毛利率，EBITDA Margin 29.2%且稳定（FY24 32.1%），≥15%且稳定档，下滑2.9pp扣分</td></tr>
+  <tr><td>估值 PE vs合理区间（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">PE(TTM法定)14-15.5x在合理区间10-18x内（ROE 10%档）；Underlying PE(NPATA)约8.8x更低，PB 1.46x合理</td></tr>
+  <tr><td>自由现金流（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">FCF A$114.9m持续为正（FY24 A$110.6m），轻资产模式FCF稳健</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">79/100</td><td style="text-align:left">一般关注（79/100分）——现金造血与估值优秀，但ROE与有机增长偏弱，无形资产占比高</td></tr>
+</table>
+
+<div class="verdict verdict-caution">一般关注（79/100分）</div>
+
+<h2 style="margin-top:16px">评分沿革</h2>
+<style>.history-table{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:13px}.history-table th,.history-table td{border:1px solid #ddd;padding:6px 8px;text-align:center}.history-table th{background:#f0f0f0;font-weight:bold}.history-table td.good{color:#27ae60}.history-table td.neutral{color:#e67e22}.history-table td.bad{color:#c0392b}</style><table class="history-table">
+  <tr><th>日期</th><th>评分</th><th>评分体系</th><th>变化原因</th></tr>
+  <tr><td>2026-08-25</td><td class="neutral" style="font-weight:bold">79/100</td><td>价值型</td><td style="text-align:left">采用非周期股评分体系；首次分析，无历史版本</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>IPH是澳加两地知识产权服务的绝对龙头，通过14次并购构建跨国网络，FY25营收A$7.1亿为澳洲最大IP集团。法定ROE仅9.8%受大额收购无形资产摊销压制，但Underlying NPATA ROE 17.2%显示真实资本回报优秀；CFO/净利1.94、EBITDA现金转化103%、FCF持续A$1.1亿+，轻资产现金奶牛特征突出。隐忧在于增长高度依赖收购（有机仅1%+）、EBITDA Margin下滑2.9pp、资产负债表中无形资产占比74.6%及分红支付率113%不可持续。<br><br>
+  <strong>核心优势：</strong>① 澳加双市场#1，4倍于追赶者的网络与规模壁垒，已完成加拿大市场整合；② 轻资产+高现金转化（103%），FCF稳定，HY26仍保持增长（营收+6.5%）；③ 估值已回调至历史低位区间（PE 14x vs 历史中枢17x），股息率~9%具防御性；④ 客户分散（全球TOP企业/高校/机构），无单一大客户依赖。<br><br>
+  <strong>核心风险：</strong>① 有机增长乏力：like-for-like EBITDA -3.9%（集团），ANZ仅+1.1%/加拿大-1.3%，收购红利边际递减；② 利润质量受摊销侵蚀：法定EPS 25.8c vs Underlying EPSA 45.3c，差额A$38.6m为收购无形资产摊销；③ 高分红压力：支付率113%（法定口径），靠FCF覆盖（76-77%现金支付率）但法定覆盖不足；④ 无形资产与商誉A$10.07亿，若整合不及预期有减值风险；⑤ CIPO系统故障导致加拿大收入递延的运营风险。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY25 / HY26）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY25</th><th>FY24</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td><strong>A$710.3m</strong></td><td>A$609.9m</td><td><strong>+16.5%</strong></td><td class="neutral">收购驱动</td></tr>
+  <tr><td>其他收入</td><td>A$4.1m</td><td>A$4.3m</td><td>-4.7%</td><td class="neutral">—</td></tr>
+  <tr><td>总营收（含可收回费用）</td><td>A$710.3m</td><td>A$609.9m</td><td>+16.5%</td><td class="neutral">—</td></tr>
+  <tr><td>员工薪酬等营业支出</td><td>A$506.2m</td><td>A$414.4m</td><td>+22.2%</td><td class="neutral">随并购扩张</td></tr>
+  <tr><td>EBITDA（法定）</td><td>A$186.4m</td><td>A$175.7m</td><td>+6.1%</td><td class="neutral">增速远低于营收</td></tr>
+  <tr><td>Underlying EBITDA</td><td><strong>A$207.2m</strong></td><td>A$195.5m</td><td><strong>+6.0%</strong></td><td class="neutral">剔除一次性并购重组费用</td></tr>
+  <tr><td>Underlying EBITDA Margin</td><td><strong>29.2%</strong></td><td>32.1%</td><td class="bad">-2.9pp</td><td class="bad">❌ 明显下滑</td></tr>
+  <tr><td>折旧摊销（D&A）</td><td>A$72.1m（摊销A$56m）</td><td>A$65.0m</td><td>+11%</td><td class="neutral">收购摊销增加</td></tr>
+  <tr><td>EBIT（Underlying）</td><td>A$135.1m</td><td>A$130.5m</td><td>+3.5%</td><td class="neutral">—</td></tr>
+  <tr><td>法定净利润（NPAT）</td><td><strong>A$68.8m</strong></td><td>A$60.8m</td><td><strong>+13.2%</strong></td><td class="good">✅ 增长</td></tr>
+  <tr><td>Underlying NPAT</td><td>A$82.0m</td><td>A$77.9m</td><td>+5.3%</td><td class="neutral">—</td></tr>
+  <tr><td>Underlying NPATA* </td><td><strong>A$120.6m</strong></td><td>A$112.4m</td><td><strong>+7.3%</strong></td><td class="good">✅ 真实盈利口径</td></tr>
+  <tr><td>法定EPS（Basic）</td><td>25.8c</td><td>25.1c</td><td>+2.9%</td><td class="neutral">被增发稀释</td></tr>
+  <tr><td>Underlying EPSA（摊销加回）</td><td>45.3c</td><td>46.4c</td><td class="bad">-2.3%</td><td class="bad">❌ 稀释后下滑</td></tr>
+  <tr><td>总股息</td><td>36.5c</td><td>35.0c</td><td>+4.3%</td><td class="good">✅ 连续增长</td></tr>
+</table>
+<p style="font-size:12px;color:#999">*NPATA = NPAT + 收购无形资产摊销（税后A$38.6m），为IPH管理层强调的底层盈利口径，更反映收购驱动型公司的真实回报。</p>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>FY25营收大增16.5%主要来自加拿大并购（Bereskin & Parr 9个月 + ROBIC/Ridout全年贡献），有机增长微弱——ANZ like-for-like +1.1%、加拿大-1.3%、集团like-for-like EBITDA -3.9%。Underlying EBITDA仅+6%，Margin从32.1%降至29.2%（-2.9pp），显示并购资产盈利能力低于原有业务且整合成本仍在。法定NPAT增速（+13.2%）优于Underlying（+5.3%）主因财务费用下降及非经常费用减少（A$20.8m vs A$19.8m）。关键矛盾：摊销压力巨大——FY25无形资产摊销A$56m，导致法定与Underlying盈利差距近一倍（68.8m vs 120.6m），EPSA被2024年8月A$125m增发稀释9.8%后不增反降（45.3c vs 46.4c）。HY26出现改善：营收+6.5%、NPAT+10.5%，4个月未经审计数据显示Underlying EBITDA +13%。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>FY25（A$m）</th><th>FY24（A$m）</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td><strong>59.0</strong></td><td>75.5</td><td class="neutral">下降但仍覆盖短期债务</td></tr>
+  <tr><td>应收账款（含合同资产）</td><td><strong>174.9</strong>（+16.7m，剔除B&P收购则-2.2m）</td><td>158.2</td><td class="good">✅ 回款改善</td></tr>
+  <tr><td>其他流动资产（含合同资产32.7）</td><td>43.6</td><td>41.4</td><td class="neutral">—</td></tr>
+  <tr><td>流动资产合计</td><td>277.5</td><td>275.1</td><td class="neutral">—</td></tr>
+  <tr><td>无形资产（商誉644.0 + 其他362.8）</td><td><strong>1,006.8</strong></td><td>968.7</td><td class="bad">占总资产74.6%</td></tr>
+  <tr><td>固定资产 + 使用权资产</td><td>66.2（19.4+46.8）</td><td>67.5</td><td class="good">轻资产</td></tr>
+  <tr><td>总资产</td><td><strong>1,350.5</strong></td><td>1,313.4</td><td class="neutral">—</td></tr>
+  <tr><td>短期借款/租赁等</td><td>11.6 + 租赁</td><td>9.9</td><td class="good">低</td></tr>
+  <tr><td>总借款（含租赁）</td><td><strong>469.7</strong>（长期413.4）</td><td>491.8</td><td class="neutral">略降</td></tr>
+  <tr><td>净负债</td><td><strong>356.3</strong></td><td>359.9</td><td class="neutral">杠杆1.9x</td></tr>
+  <tr><td>总负债</td><td>651.1</td><td>679.1</td><td class="good">资产负债率48.2%</td></tr>
+  <tr><td>归母净资产</td><td>699.4</td><td>634.3</td><td class="good">增发+留存推动</td></tr>
+  <tr><td>每股有形净资产</td><td><strong>-A$1.05</strong></td><td>-A$1.18</td><td class="bad"> intangible-heavy</td></tr>
+  <tr><td>每股净资产（含无形）</td><td>A$2.81</td><td>A$2.73</td><td class="neutral">—</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>典型的“收购驱动型”轻资产负债表——有形资产极少，无形资产A$10.07亿占总资产74.6%（其中商誉A$6.44亿），导致每股有形净资产为负（-A$1.05），这是最大结构性特征。好的一面：负债率48.2%不算高，流动比率2.72、速动比率2.72均优秀；净负债/Underlying EBITDA 1.9x处于目标上限2.0x内，且FY25偿还债务A$26.4m；发行A$125m股权融资后净资产增至A$699m。关注点：① 商誉占净资产92%（644/699），若加拿大业务整合不及预期或行业下行有减值风险；② FY25年内完成A$74.2m股票回购（注销15.9m股，均价A$4.66），杠杆从1.6x回升至1.9x，资本操作频繁。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY25</th><th>FY24</th><th>评价</th></tr>
+  <tr><td>Underlying EBITDA</td><td>207.2</td><td>195.5</td><td class="good">—</td></tr>
+  <tr><td>毛经营现金流（Gross OCF）</td><td>192.7</td><td>194.0</td><td class="neutral">—</td></tr>
+  <tr><td>现金转化率（Gross OCF/EBITDA）</td><td><strong>103%</strong></td><td>110%</td><td class="good">✅ 超100%</td></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>133.7</strong></td><td>131.9</td><td class="good">✅ 稳定</td></tr>
+  <tr><td>CFO / 法定净利润</td><td><strong>1.94</strong></td><td>2.17</td><td class="good">✅ 远>1</td></tr>
+  <tr><td>资本开支（Capex）</td><td>7.9</td><td>11.0</td><td class="good">轻资产（占营收1.1%）</td></tr>
+  <tr><td>自由现金流（FCF）</td><td><strong>114.9</strong></td><td>110.6</td><td class="good">✅ 强劲</td></tr>
+  <tr><td>FCF / 法定净利润</td><td>1.67</td><td>1.82</td><td class="good">✅ 高覆盖</td></tr>
+  <tr><td>已付所得税</td><td>37.6</td><td>36.9</td><td class="neutral">—</td></tr>
+  <tr><td>已付利息</td><td>21.4</td><td>25.2</td><td class="good">财务费用下降</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>IPH现金流是全表最大亮点，完美体现轻资产专业服务的“收租”特性。尽管FY25现金转化率从110%回落至103%（因FY24基数受2023年3月网络事件后集中回款推高），但仍>100%，说明EBITDA几乎全额转化为现金。CFO 133.7m是法定净利的1.94倍、FCF 114.9m是1.67倍，利润含金量极高。资本开支仅A$7.9m（占营收1.1%），FCF充裕。问题在于：FCF虽强但被高分红与回购消耗——FY25分红A$97.5m + 回购A$74.2m = A$171.7m > FCF，依赖增发（A$125m）平衡。若剔除收购摊销，现金分红覆盖率约76%（现金口径），但法定口径支付率113%不可持续。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY25</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE（法定）</td><td><strong>9.8%</strong>（Underlying NPATA 17.2%）</td><td>>15%优秀 / >10%及格</td><td class="neutral">⚠ 法定偏低，Underlying优秀</td></tr>
+  <tr><td>ROA</td><td><strong>7.86%</strong>（MarketIndex）</td><td>>5%</td><td class="good">✅ 轻资产下优秀</td></tr>
+  <tr><td>Underlying EBITDA Margin</td><td><strong>29.2%</strong></td><td>稳定或提升</td><td class="neutral">⚠ 下滑2.9pp</td></tr>
+  <tr><td>营收增长率（法定）</td><td><strong>+16.5%</strong>（有机+1.1%）</td><td>>10%</td><td class="neutral">⚠ 收购驱动，有机乏力</td></tr>
+  <tr><td>利润增长率（法定NPAT）</td><td><strong>+13.2%</strong></td><td>>10%</td><td class="good">✅ 双位数</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>1.94</strong></td><td>>1.0</td><td class="good">✅ 极好</td></tr>
+  <tr><td>资产负债率</td><td><strong>48.2%</strong></td><td><55%安全（专业服务）</td><td class="good">✅ 安全</td></tr>
+  <tr><td>流动比率 / 速动比率</td><td><strong>2.72 / 2.72</strong></td><td>>1.5</td><td class="good">✅ 充裕</td></tr>
+  <tr><td>分红率（法定）</td><td><strong>113%</strong>（现金口径76%）</td><td>60-90%（公司指引80-90%现金NPAT）</td><td class="bad">❌ 法定超额</td></tr>
+  <tr><td>股息率</td><td><strong>7.97%（FY25末价）/ 9.1%（现价）</strong></td><td>—</td><td class="neutral">高股息但覆盖存疑</td></tr>
+</table>
+
+<h3>3.2 分业务/分地区分析</h3>
+<table>
+  <tr><th>业务板块</th><th>FY25营收</th><th>占比</th><th>同比（法定）</th><th>Underlying EBITDA Margin</th><th>评价</th></tr>
+  <tr><td>澳洲/新西兰 IP</td><td>A$310.6m</td><td>44%</td><td>+2.0%（有机+1.1%）</td><td>35.4%（-0.4pp）</td><td class="neutral">有机微增，市场份额差距收窄</td></tr>
+  <tr><td>亚洲 IP（新加坡等）</td><td>A$120.7m</td><td>17%</td><td>-0.6%</td><td>41.6%（估，-6.5%）</td><td class="bad">❌ 持续受新加坡申请量下滑拖累</td></tr>
+  <tr><td>加拿大 IP（4家律所）</td><td>A$293.3m</td><td>41%</td><td>+49.3%（有机-1.3%）</td><td>25.9%（-4.6pp）</td><td class="neutral">并购驱动，Margin低于集团</td></tr>
+  <tr><td>集团合计</td><td>A$710.3m</td><td>100%</td><td>+16.5%</td><td>29.2%</td><td class="neutral">第二大市场已成加拿大</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>分业务解读：</strong>IPH已从“澳洲公司”转型为“澳加双支柱”——加拿大41%营收、ANZ 44%、亚洲17%。ANZ是基本盘：FY25在澳洲专利申请量-0.8%的逆风下实现+1.1%有机增长，连续3年收窄与市场差距（从-6pp→-2.3pp），韧性可嘉。亚洲是拖累：受新加坡申请量-6.7%影响连续两年下滑，EBITDA -6.3%。加拿大是增量但质量待考：FY25贡献近半营收增量，但有机-1.3%且Margin 25.9%显著低于ANZ 35.4%和亚洲40%+，整合协同（目标A$8-10m年化节约）尚未完全兑现；CIPO（加拿大知识产权局）系统故障导致收入递延是短期扰动，但亦暴露运营风险。IP filings领先指标向好：IPH Asia专利申请量FY25 +16.5%，为未来2-3年收入储备。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险项</th><th>严重程度</th><th>依据</th></tr>
+  <tr><td>无形资产占比74.6%（A$10.07亿），商誉A$6.44亿占净资产92%</td><td class="bad">🔴 高</td><td>收购驱动型，每股有形净资产-A$1.05，若加拿大整合不及预期有减值风险</td></tr>
+  <tr><td>法定分红支付率113% >100%，股息可持续性存疑</td><td class="bad">🔴 高</td><td>FY25派息A$97.5m > 法定净利68.8m；现金口径76%尚可但法定不可持续，需依赖摊销加回口径</td></tr>
+  <tr><td>有机增长乏力：集团like-for-like EBITDA -3.9%，加拿大有机-1.3%</td><td class="neutral">🟡 中</td><td>营收+16.5%全靠并购，剔除并购后近乎零增长，收购边际递减风险</td></tr>
+  <tr><td>EBITDA Margin持续下滑：29.2% vs 32.1%（-2.9pp），FY24亦下滑2.6pp</td><td class="neutral">🟡 中</td><td>加拿大业务Margin低于集团均值，拉低整体盈利能力</td></tr>
+  <tr><td>EPA摊薄：Underlying EPSA 45.3c（-2.3%），法定EPS仅25.8c，增发9.8%稀释股东</td><td class="neutral">🟡 中</td><td>为收购增发A$125m（5.65价）+ 随后A$74.2m回购（均价4.66），资本运作频繁</td></tr>
+  <tr><td>杠杆处于目标上限：净负债/EBITDA 1.9x（目标≤2.0x），回购后从1.6x回升</td><td class="neutral">🟡 中</td><td>截至FY25借款A$413.4m，利息支出A$28.1m虽下降但仍侵蚀利润</td></tr>
+  <tr><td>CIPO系统故障致加拿大收入递延</td><td class="neutral">🟡 中</td><td>FY25公告披露，FY26初现恢复但运营风险未完全消除</td></tr>
+  <tr><td>应收账款A$174.9m占营收24.6%，WIP及合同资产A$32.7m</td><td class="neutral">🟡 轻</td><td>但FY25剔除收购后实际下降A$2.2m，现金转化103%显示回款良好，正面</td></tr>
+  <tr><td class="good">正面：CFO/净利1.94、FCF 1.67倍覆盖，轻资产高现金转化</td><td class="good">🟢 正面</td><td>L1现金流量表，资本开支仅1.1%营收</td></tr>
+  <tr><td class="good">正面：ANZ有机增长转正，IP filings领先指标+16.5%（亚洲）</td><td class="good">🟢 正面</td><td>2025年8月公告及投资者演示</td></tr>
+  <tr><td class="good">正面：连续10年分红增长（2015 10c→2025 36.5c），DRP支持</td><td class="good">🟢 正面</td><td>股息历史，分红政策80-90%现金NPAT</td></tr>
+</table>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值</h3>
+<p style="font-size:13px;color:#666;">股价基准：FY25末收盘A$4.58（2025-06-30）及现价A$3.99（2026-08，上周收盘3.97-4.00区间）</p>
+<table>
+  <tr><th>指标</th><th>FY25末（A$4.58）</th><th>现价（A$3.99）</th><th>历史/行业</th></tr>
+  <tr><td>总市值</td><td>A$11.93亿（260.5m股）</td><td>A$10.2-10.3亿（256.3m股）</td><td>ASX 361位</td></tr>
+  <tr><td>PE（TTM 法定）</td><td><strong>17.8x</strong>（4.58/0.258）</td><td><strong>14.5-15.5x</strong>（3.99/0.258-0.275）</td><td>FY24 18.97x；MarketIndex 14.16x</td></tr>
+  <tr><td>PE（TTM Underlying NPAT）</td><td>14.9x（4.58/0.308）</td><td>13.0x</td><td>—</td></tr>
+  <tr><td>PE（TTM NPATA）</td><td>10.1x（4.58/0.453）</td><td><strong>8.8x</strong>（3.99/0.453）</td><td>Forward PE 8.3x</td></tr>
+  <tr><td>PB</td><td>1.71x（4.58/2.68）</td><td><strong>1.46-1.51x</strong></td><td>FY24 2.45x；StockAnalysis 1.51x</td></tr>
+  <tr><td>PS（TTM）</td><td>1.68x</td><td><strong>1.41-1.44x</strong></td><td>Reuters 1.78x</td></tr>
+  <tr><td>PCF（TTM CFO）</td><td>8.9x</td><td><strong>7.3-7.6x</strong></td><td>MarketIndex 7.25x</td></tr>
+  <tr><td>P/FCF</td><td>10.4x</td><td><strong>7.3-8.9x</strong></td><td>StockAnalysis 7.33x</td></tr>
+  <tr><td>股息率（TTM 36.5c）</td><td>7.97%</td><td><strong>9.1-9.6%</strong>（含H1 19c则38.5c→9.6%）</td><td>FY24 5.58%；franking 25-30%</td></tr>
+  <tr><td>股息率（Gross）</td><td>8.83%</td><td>~10.1%</td><td>FY24 6.35%</td></tr>
+  <tr><td>PEG</td><td colspan="2" style="text-align:center">1.72（StockAnalysis）—— PE 14.5x / 增长预期~8%</td><td>—</td></tr>
+</table>
+
+<h3>4.2 估值区间（PE Band）</h3>
+<p style="font-size:13px;color:#666;">ROE法定9.8%（Underlying NPATA 17.2%）→ 合理PE参考区间：10-18x（法定）/ 15-25x（Underlying口径）。FY26E一致预期EPS约A$0.33（Simply Wall St下调后）/ EPSA约A$0.48</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价（法定EPS 0.258）</th><th>对应股价（EPSA 0.453）</th><th>vs现价A$3.99</th></tr>
+  <tr><td>悲观（有机持续负增长+Margin再降）</td><td>10x / 6x(EPSA)</td><td>A$2.58</td><td>A$2.72</td><td class="bad">-32%-35%</td></tr>
+  <tr><td>保守（历史低位）</td><td>12x / 7.5x</td><td>A$3.10</td><td>A$3.40</td><td class="neutral">-15%至-22%</td></tr>
+  <tr><td>中性（合理中枢）</td><td>15x / 9x</td><td><strong>A$3.87</strong></td><td><strong>A$4.08</strong></td><td class="neutral">-3%至+2%</td></tr>
+  <tr><td>券商目标（共识A$4.72-4.80）</td><td>18x / 10.5x</td><td>A$4.64</td><td>A$4.76</td><td class="good">+16-19%</td></tr>
+  <tr><td>历史均值（FY22-23高位）</td><td>20-25x</td><td>A$5.16-6.45</td><td>A$9.06-11.3（不适用）</td><td class="good">+29%以上</td></tr>
+</table>
+<p style="font-size:12px;color:#999">注：IPH法定PE因大额摊销而虚高，Underlying PE（NPATA）更适合与同行比较；中性情景下15x法定PE≈9x NPATA PE，对应股价与现价基本一致。</p>
+
+<h3>4.3 历史PE/PB区间</h3>
+<table>
+  <tr><th>指标</th><th>数值</th><th>当前分位</th></tr>
+  <tr><td>PE(TTM法定) 历史最大值（2022-23）</td><td>~28x（股价A$8.16/EPS 0.29）</td><td rowspan="6" style="vertical-align:middle" class="good">当前14.5x处于历史偏低分位（约20-30%分位），接近5年低点</td></tr>
+  <tr><td>PE 80%分位</td><td>~22x</td></tr>
+  <tr><td>PE 50%分位（中位数）</td><td>~17x</td></tr>
+  <tr><td>PE 20%分位</td><td>~13x</td></tr>
+  <tr><td>PE 历史最小值（2025-26）</td><td>~11-12x（股价A$3.16）</td></tr>
+  <tr><td>当前PE（法定TTM）</td><td><strong>14.5-15.5x</strong></td></tr>
+  <tr><td>PB 历史最大值（2022）</td><td>~3.0x（股价8.16/净资产2.7）</td><td rowspan="5" style="vertical-align:middle">当前PB 1.46x处于历史底部区间</td></tr>
+  <tr><td>PB 50%分位</td><td>~2.0x</td></tr>
+  <tr><td>PB 20%分位</td><td>~1.6x</td></tr>
+  <tr><td>PB 最小值</td><td>~1.2x</td></tr>
+  <tr><td>当前PB</td><td><strong>1.46-1.51x</strong></td></tr>
+  <tr><td>股息率历史均值</td><td>~4-5%（股价7-8时）</td><td>当前9%+为历史高位（因股价腰斩）</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>估值总结：</strong>IPH当前估值处于历史偏低区间——PE(TTM法定)14.5x低于50%分位17x，PB 1.46x接近20%分位，PS 1.41x为近年低点。以更反映真实盈利的NPATA口径看，PE仅8.8x、Forward 8.3x，对应FY26E EPSA增速~20-30%则PEG<0.5，表面上极便宜。<br><br>
+  但“便宜”需打折扣：① 法定PE 14x实则不低（因ROE仅9.8%，合理区间仅10-18x），14x已处上沿；② 高股息率9%+是股价从A$8.16腰斩至A$3.99的被动结果，支付率113%不可持续；③ Underlying PE 8.8x虽低，但建立在加回A$56m摊销基础上，真实经济利润仍需承担商誉减值风险。<br><br>
+  <strong>结论：估值合理偏低，但非“捡烟蒂”——</strong> 现价A$3.99基本反映对有机增长乏力和Margin下滑的悲观预期（中性情景A$3.87-4.08），向下至A$3.1-3.4（12x PE）有约15-20%安全垫，向上至券商目标A$4.72需依赖H1 FY26 organic改善及CIPO恢复兑现。若以FCF Yield 13.65%（StockAnalysis）看，现价对长期现金流投资者具吸引力。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析（L4框架）</h2>
+
+<h3>5.1 杜邦拆解表</h3>
+<table>
+  <tr><th>指标</th><th>FY23</th><th>FY24</th><th>FY25</th><th>趋势</th></tr>
+  <tr><td>净利润率（法定）</td><td>13.0%（64.5/496.2）</td><td>10.0%（60.8/609.9）</td><td><strong>9.7%</strong>（68.8/710.3）</td><td class="bad">⬇ 连续下滑</td></tr>
+  <tr><td>净利润率（Underlying NPATA）</td><td>~20.0%（99/496）</td><td>18.4%（112.4/609.9）</td><td><strong>17.0%</strong>（120.6/710.3）</td><td class="bad">⬇ 同步下滑</td></tr>
+  <tr><td>资产周转率（营收/总资产）</td><td>0.42（496/1185）</td><td>0.46（609/1313）</td><td><strong>0.53</strong>（710/1350）</td><td class="good">⬆ 提升（收购并表）</td></tr>
+  <tr><td>权益乘数（总资产/净资产）</td><td>2.05（1185/577）</td><td>2.07（1313/634）</td><td><strong>1.93</strong>（1350/699）</td><td class="good">⬇ 增发后略降</td></tr>
+  <tr><td><strong>ROE（法定）</strong></td><td><strong>11.2%</strong></td><td><strong>9.6%</strong>（60.8/634）</td><td><strong>9.8%</strong>（68.8/699）</td><td class="neutral">➡ 筑底</td></tr>
+  <tr><td>ROE（Underlying NPATA）</td><td>17.2%</td><td>17.7%</td><td><strong>17.2%</strong></td><td class="neutral">➡ 稳定高位</td></tr>
+  <tr><td>去杠杆ROA（法定：净利率×周转）</td><td>5.5%</td><td>4.6%</td><td><strong>5.1%</strong></td><td class="neutral">➡ 略回升</td></tr>
+  <tr><td>去杠杆ROA（NPATA）</td><td>8.4%</td><td>8.5%</td><td><strong>9.0%</strong></td><td class="good">⬆ 真实回报提升</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：均衡型偏低利润型（非典型高杠杆/高利润）</strong><br>
+  按L4三因子模型：净利率9.7%（中低）、周转0.53（中等）、杠杆1.93（中等），三者均不突出，故归为“均衡型”。若按Underlying NPATA口径（净利率17%、周转0.53、杠杆1.93），则接近“高利润型”特征。<br><br>
+  <strong>关键洞察：</strong>① 法定ROE 9.8%的“平庸”表象完全由大额收购摊销导致——剔除摊销后NPATA ROE 17.2%属优秀（>15%），去杠杆ROA 9.0%亦优秀，说明底层生意真实回报并不差；② 杠杆1.93x在专业服务行业中属中等偏高，但远低于金融/地产，风险可控（净负债/EBITDA 1.9x）；③ 趋势上：净利率连续3年下滑（13%→10%→9.7%）是最大警示，反映加拿大低Margin业务稀释；周转提升（0.42→0.53）是收购并表拉动；杠杆从2.07降至1.93是增发后被动去杠杆。
+</div>
+
+<h3>5.2 资产回报效率</h3>
+<table>
+  <tr><th>指标</th><th>IPH FY25</th><th>同行对比（估）</th><th>评价</th></tr>
+  <tr><td>每A$1总资产产生营收</td><td><strong>A$0.53</strong></td><td>专业服务0.4-0.6（轻资产）</td><td class="neutral">中等</td></tr>
+  <tr><td>每A$1总资产产生法定净利</td><td><strong>A$0.051</strong></td><td>—</td><td class="neutral">偏低</td></tr>
+  <tr><td>每A$1总资产产生NPATA</td><td><strong>A$0.089</strong></td><td>—</td><td class="good">优秀</td></tr>
+  <tr><td>每A$1净资产产生NPATA</td><td><strong>A$0.172</strong></td><td>ASX专业服务中位数~0.12</td><td class="good">✅ 高于同行</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>杜邦结论：</strong><br>
+  ① ROE靠什么驱动？——法定口径下，三因子均平庸导致ROE仅9.8%；但加回摊销后，驱动转为“中高利润率（17%）+ 中周转（0.53）+ 中杠杆（1.93）”，属健康的高利润驱动型，杠杆贡献有限（ROE 17.2% - ROA 9.0% = 8.2pp），非“借鸡生蛋”。<br>
+  ② 趋势是否健康？——不健康：法定净利率3年下滑3.3pp、Underlying净利率下滑3pp，核心盈利能力在稀释；唯一改善的是周转率（收购拉动），这非内生改善。ROE法定筑底（9.6%→9.8%）、NPATA ROE稳定（17.2%）显示最差时点或已过，但需观察FY26 Margin能否企稳。<br>
+  ③ 去杠杆后真实回报9.0%（NPATA）在ASX专业服务中属中上，若按法定仅5.1%则平庸——估值时需明确使用哪一口径。<br>
+  ④ 未来ROE提升路径：a) 提升净利率——加拿大业务协同降本（目标A$8-10m年化节约）+ 亚洲止跌；b) 不再大额稀释性收购，避免杠杆与股本双重摊薄。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类与特征（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：非周期股——价值型（成熟专业服务/知识产权服务）</strong><br>
+  <strong>判断依据（对照industry-classification.md）：</strong>知识产权服务不属于纯周期（钢铁/煤炭等）或混合周期（半导体/光伏等），需求由全球研发投入、企业专利布局和商标保护驱动，具有稳定性和可预测性，属<strong>非周期股</strong>。在非周期细分中，IPH更符合<strong>价值型/成熟型</strong>而非成长型：① 行业增速低——全球专利申请量年增仅2-4%（澳洲FY24 -0.8%），IPH ANZ有机仅+1.1%；② 商业模式成熟——靠人力资本（专利代理人/律师）+ 客户关系+ 牌照资质赚钱，非技术颠覆型；③ 财务特征成熟——高现金转化、低资本开支、高分红（80-90%现金NPAT），符合价值型“稳定现金流+股息”特征。虽有“成长”表象（营收+16.5%），但为收购驱动而非内生高增长。采用<strong>非周期股评分体系</strong>。<br><br>
+  <strong>与总结论评分体系一致：</strong>非周期股体系，10维度，PB/PE均适用。
+</div>
+
+<h3>6.2 行业集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>行业集中度</td><td><strong>高度集中（澳加双寡头→IPH绝对领先）</strong></td><td>澳洲：IPH旗下Spruson & Ferguson等占专利代理市场~30-35%（#1）；加拿大：四家律所合计占加国专利代理~35-40%，为#1，CR3>60%</td></tr>
+  <tr><td>牌照/资质壁垒</td><td><strong>极强</strong></td><td>专利代理人需国家注册（澳洲Trans-Tasman IP Attorney、加拿大注册代理人），年限+考试+执业要求；客户信任壁垒高（专利关乎企业核心资产）</td></tr>
+  <tr><td>客户关系/网络壁垒</td><td><strong>强</strong></td><td>服务全球TOP企业、高校、跨国所；14次并购积累的客户库+跨所转介FY24 +17%（500+转介），网络效应初现</td></tr>
+  <tr><td>规模壁垒</td><td><strong>中等偏强</strong></td><td>1,600+员工、25国网络，规模化分摊合规/IT/品牌成本；但人力密集型，规模经济不如平台型</td></tr>
+  <tr><td>技术壁垒</td><td><strong>中等</strong></td><td>AI对专利撰写/检索的颠覆风险存在，但短期内代理人的法律专业判断难以替代；公司投入AI及流程自动化应对</td></tr>
+  <tr><td>转换成本</td><td><strong>中等</strong></td><td>企业更换代理所成本高（历史档案、信任关系），但非不可替代；大客户议价能力较强</td></tr>
+</table>
+
+<h3>6.3 生命周期与周期位置</h3>
+<div class="highlight-box">
+  <strong>生命周期：成熟期（澳洲/新西兰）+ 整合期（加拿大）+ 承压期（亚洲）</strong><br>
+  澳洲IP市场：年申请量数万件，增速≈GDP，成熟期——IPH策略是“整合+份额提升”（14次并购）而非行业高增长。加拿大：通过4次并购完成市场整合，进入协同释放期。亚洲：新加坡市场-6.7%拖累，处于周期底部。整体看，行业处<strong>成熟期</strong>，投资策略重点应为“分红+效率提升”而非“高增长溢价”。<br><br>
+  <strong>当前周期位置：底部附近徘徊（非强周期行业，弱周期属性）</strong><br>
+  IP行业与研发周期、企业信心相关：FY25全球宏观紧张、地缘冲突、数字颠覆导致申请量承压，但IPH Asia filings +16.5%领先指标已现复苏；CIPO系统故障属一次性扰动。非周期股评分体系下，周期位置不作为核心评分维度，但可判断：行业未处暴利顶部（无需警惕），亦非深度亏损底部（无抄底机会），属<strong>中周期偏底部</strong>。
+</div>
+
+<h3>6.4 同行对比</h3>
+<table>
+  <tr><th>指标</th><th>IPH</th><th>QANTM IP (QIP.ASX)* 已退市参考</th><th>Xenith IP (已并入IPH)</th><th>ASX专业服务中位</th><th>评价</th></tr>
+  <tr><td>ROE（法定）</td><td>9.8%</td><td>~8%</td><td>~12%</td><td>~12%</td><td class="neutral">中下</td></tr>
+  <tr><td>ROE（NPATA）</td><td>17.2%</td><td>~14%</td><td>—</td><td>—</td><td class="good">中上</td></tr>
+  <tr><td>EBITDA Margin</td><td>29.2%</td><td>~25%</td><td>~28%</td><td>~22%</td><td class="good">高</td></tr>
+  <tr><td>CFO/净利</td><td>1.94</td><td>~1.3</td><td>~1.2</td><td>~1.1</td><td class="good">显著高</td></tr>
+  <tr><td>资产负债率</td><td>48.2%</td><td>~45%</td><td>~50%</td><td>~40%</td><td class="neutral">中</td></tr>
+  <tr><td>营收增速（法定）</td><td>16.5%</td><td>~5%</td><td>~8%</td><td>~6%</td><td class="good">高（收购）</td></tr>
+  <tr><td>PB</td><td>1.46x</td><td>~2.0x</td><td>—</td><td>~2.5x</td><td class="good">低</td></tr>
+  <tr><td>PE(法定TTM)</td><td>14.5x</td><td>~16x</td><td>—</td><td>~18x</td><td class="good">低</td></tr>
+  <tr><td>股息率</td><td>9.1%</td><td>~5%</td><td>—</td><td>~3.5%</td><td class="good">显著高</td></tr>
+</table>
+<p style="font-size:12px;color:#999">*QANTM IP于2024年被IPH竞争对手收购退市，数据为退市前FY23参考；Xenith IP于2019年被IPH收购，此前公开数据。</p>
+
+<div class="summary-box">
+  <strong>竞争位置：</strong>IPH在同行中呈现“现金与估值领先、ROE与增长质量居中”格局。优势：EBITDA Margin 29.2%高于昔日同行QANTM的25%、CFO覆盖1.94倍显著高于行业、PB/PE低于同行中位、股息率9%+为同行2倍。劣势：法定ROE 9.8%低于专业服务中位12%（因商誉拖累）、有机增长1.1%弱于Xenith历史8%、资产负债率48%略高于中位。一句话：<strong>IPH是“并购整合后的规模龙头”——规模与现金流领先，但盈利效率与内生增长尚未证明优于被整合标的，整合协同是关键。</strong>
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>价值型（成熟专业服务）</td><td><strong>PE（Underlying NPATA）+ PB + FCF Yield</strong></td><td>股息率、EV/EBITDA、CFO转化率</td><td class="good">✅ 匹配</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>估值方法：</strong>对IPH这类“轻资产+高摊销+高现金转化”的成熟专业服务公司，单一PE（法定）会失真，正确做法是：<strong>① 主估值用Underlying PE（NPATA 8.8x）或EV/EBITDA（~7x）</strong>——剔除收购摊销更反映经济利润；<strong>② 辅助用PB 1.46x</strong>——虽有形净资产为负，但PB仍可反映市场对无形资产定价；<strong>③ 交叉用FCF Yield 13.65% / 股息率9.1%</strong>——对价值型公司，现金回报是核心。当前市场以PE(法定) 14.5x定价，隐含对摊销的悲观；若以NPATA 8.8x + FCF Yield 13.65%看，现价对现金流投资者具吸引力。历史看，IPH股价高点A$8.16对应PE 28x/PB 3.0x，现PB 1.46x处历史底部区间，估值方法匹配且当前处于偏低分位。
+</div>
+
+<h3>6.6 成长股成色检验（IP services非典型成长股，PS>10预警线检验）</h3>
+<p style="font-size:13px;color:#666;">IPH PS 1.41x远低于10x，无需成色检验；但收购驱动型“伪成长”需警惕，补充检验：</p>
+<table>
+  <tr><th>步骤</th><th>检验内容</th><th>数据</th><th>判定</th></tr>
+  <tr><td>① 营收</td><td>有没有实在生意？</td><td>营收A$7.10亿规模大，但有机仅+1.1%，16.5%靠收购</td><td class="neutral">⚠ 规模真实但增长不实在</td></tr>
+  <tr><td>② 盈利质量</td><td>利润是否被摊销吞噬？</td><td>法定净利A$68.8m vs NPATA A$120.6m，差额72%为摊销</td><td class="neutral">⚠ 报表利润失真</td></tr>
+  <tr><td>③ 现金流</td><td>能否自己造血？</td><td>CFO 133.7m、FCF 114.9m，现金转化103%</td><td class="good">✅ 能造血</td></tr>
+  <tr><td>④ 估值梦想溢价</td><td>PS是否透支？</td><td>PS 1.41x极低，无梦想溢价</td><td class="good">✅ 无泡沫</td></tr>
+</table>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  Step 1 - 行业定位：非周期股-价值型（成熟知识产权专业服务），澳加高度集中，牌照+客户关系壁垒强，处成熟期<br>
+  Step 2 - 财务体检：ROE法定9.8%平庸/NPATA 17.2%优秀，均衡型杜邦，CFO/净利1.94极好但Margin下滑，有形净资产为负<br>
+  Step 3 - 估值判断：PE法定14.5x/PB 1.46x/NPATA PE 8.8x均处历史底部20-30%分位，FCF Yield 13.65%吸引，股息率9%+但支付率过高<br>
+  Step 4 - 风险排查：核心风险为无形资产占比74.6%+有机增长乏力+分红不可持续（113%）<br>
+  Step 5 - 结论：好公司（现金奶牛+双市场#1）但非高增长，价格合理偏低，适合价值/股息投资者但需跟踪有机改善<br>
+  Step 6 - 跟踪：看ANZ like-for-like增速、加拿大协同兑现（A$8-10m）、CIPO恢复、Margin企稳、分红政策调整
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>知识产权服务需求稳定（研发驱动），澳加市场高度集中，牌照壁垒极强，轻资产商业模式，年增速虽低但可预测</td></tr>
+  <tr><td>② 好公司</td><td class="neutral">⚠ 部分满足</td><td>ROE法定9.8%未达15%优秀线（NPATA 17.2%达标但法定为监管口径）；EBITDA Margin下滑、CFO优秀但有机增长乏力，算“现金好但成长差”的公司</td></tr>
+  <tr><td>③ 好价格</td><td class="good">✓</td><td>PE 14.5x / PB 1.46x / PS 1.41x 均处历史底部区间，FCF Yield 13.65%为ASX前列，估值具安全垫</td></tr>
+</table>
+
+<h3>7.3 风险评估</h3>
+
+<h4>a. 三个陷阱排查</h4>
+<div class="danger-box">
+  ☐ 价值陷阱（低PE+低增长+高负债）→ <strong>部分命中警示</strong>：PE 14.5x不算极低但有机增长仅1.1%确属低增长，负债48.2%+净负债/EBITDA 1.9x不算高负债，故不完全命中但需警惕“收购驱动的伪价值”<br>
+  ☐ 周期陷阱（低PE+周期顶点）→ <strong>未命中</strong>：IP服务非强周期行业，PE 14x非周期顶点（8.8x NPATA更低），行业未处暴利期<br>
+  ☐ 烧钱陷阱（高PE+高增速+负现金流）→ <strong>未命中</strong>：恰恰相反——低PS 1.41x + 正FCF 114.9m + CFO/净利1.94，现金极好
+</div>
+
+<h4>b. 管理层与治理风险</h4>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力与履历</td><td class="neutral">一般</td><td>CEO Andrew Blattman博士（2021年起任CEO），推行澳加整合战略14次并购；但FY25 like-for-like EBITDA -3.9%显示整合效果未达预期，2025年11月AGM披露4个月营收+7%/EBITDA+13%有所回升</td></tr>
+  <tr><td>股权结构与利益一致性</td><td class="neutral">一般</td><td>无控股股东，机构持仓为主；2024年8月增发A$125m稀释9.8%后又回购A$74.2m，资本运作频繁，管理层持股比例未披露显著增持</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td class="good">无</td><td>无重大违规、监管处罚或关联交易暴雷；2023年3月网络事件后已恢复，FY24-25现金转化回升至103-107%</td></tr>
+  <tr><td>资本配置记录</td><td class="neutral">激进</td><td>10年14次并购构建澳加#1，战略清晰但商誉A$6.44亿累积；分红率113%（法定）超出指引80-90%现金NPAT，回购均价A$4.66高于现价A$3.99，资本配置偏激进</td></tr>
+  <tr><td>管理层增减持</td><td class="neutral">无显著信号</td><td>近一年未披露董监高大额增持；反向操作为公司层面回购15.9m股（占股6%）</td></tr>
+  <tr><td>CEO交接/关键人员变动</td><td class="good">无风险</td><td>CEO任期稳定，无交接期；2024年推行区域CEO新运营模式，决策效率提升</td></tr>
+</table>
+
+<h4>c. 盈利可持续性</h4>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是靠价？</td><td>量价均乏力</td><td>ANZ量：专利申请量-0.8%但IPH +1.1%（量微增）；价：Fee上涨但Margin -2.9pp，提价未覆盖成本</td></tr>
+  <tr><td>涨价能否持续？</td><td>需观察</td><td>专业服务议价能力受客户预算约束，FY25 Margin下滑显示涨价能力有限；加拿大协同降本（A$8-10m）是更现实的利润来源</td></tr>
+  <tr><td>非经常性利润占比</td><td>高（需剔除）</td><td>法定与Underlying差额：非经常费用A$20.8m（并购/重组/减值）+ 摊销A$56m，合计占EBITDA 37%，利润“水分”大</td></tr>
+  <tr><td>大客户集中度</td><td>分散</td><td>服务全球TOP企业/高校/机构，客户分散，无单一客户>5%；但加拿大市场客户集中度略高</td></tr>
+  <tr><td>政策/监管依赖度</td><td>中</td><td>依赖专利/商标制度（政府收费、审查周期），CIPO系统故障已证明运营受公共系统影响；无补贴依赖</td></tr>
+</table>
+
+<h4>d. 关键变量敏感性</h4>
+<div class="summary-box">
+  <strong>变量1: 有机营收增速（ANZ + 加拿大 like-for-like）</strong><br>
+  乐观：ANZ +3-4% + 加拿大协同释放 + 亚洲止跌 → 营收+5% → EBITDA +8-10% → EPSA 50c (+10%)<br>
+  中性：ANZ +1-2% + 加拿大持平 → 营收+2-3% → EBITDA +3-5% → EPSA 45-46c（持平）<br>
+  悲观：ANZ负增长 + 加拿大递延未恢复 → 营收-2% → EBITDA -5% → EPSA 40c (-12%)<br><br>
+  <strong>变量2: EBITDA Margin（加拿大整合效果）</strong><br>
+  乐观：协同A$8-10m兑现 + 费用管控 → Margin回升至31% → 净利+15%<br>
+  中性：Margin维持29% → 净利持平<br>
+  悲观：Margin再降至27%（加拿大低Margin稀释）→ 净利-10%<br><br>
+  <strong>变量3: 资本配置（分红/回购 vs 再并购）</strong><br>
+  乐观：暂停大额并购，FCF用于回购+降杠杆 → 每股收益增厚 + 杠杆降至1.5x → 估值修复<br>
+  中性：维持80-90%现金分红 + 小额回购 → 杠杆1.9x维持<br>
+  悲观：再启大额稀释性收购 → 商誉进一步膨胀 + 股本稀释 → ROE再降
+</div>
+
+<h3>7.4 前景展望</h3>
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. 加拿大协同释放 — Bereskin & Parr与Smart & Biggar合并、公司职能精简，A$8-10m年化节约从FY26起逐步兑现，直接增厚EBITDA 4-5%<br>
+  2. 亚洲领先指标转好 — IPH Asia filings +16.5%（FY25），新加坡市场企稳后将带动FY26-27收入确认<br>
+  3. 现金流支撑股东回报 — FCF 114.9m + 现金转化103% + 已宣布A$75m回购额度（已用74.2m）+ 4%股息增长，股东回报有现金背书<br><br>
+  <strong>负向拖累：</strong><br>
+  1. 有机增长天花板 — 澳加IP市场成熟，全球申请量年增2-4%，缺乏内生高增长引擎，长期增速≈GDP<br>
+  2. 盈利质量稀释 — 法定净利仅为NPATA的57%，大额摊销将持续至2030+年，报表ROE难回15%+<br>
+  3. 高分红不可持续 — 113%法定支付率 vs 指引80-90%现金口径，若FCF下滑或需再融资，股息或面临削减风险（Simply Wall St提示需EPS+55%才能覆盖）
+</div>
+
+<h3>7.5 三情景简表</h3>
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>FY26E EPSA预估</th><th>PE(NPATA)区间</th><th>预期股价 vs A$3.99</th></tr>
+  <tr><td>乐观（概率25%）</td><td>有机+3% + Margin回31% + CIPO完全恢复</td><td>50-52c</td><td>10-11x</td><td>A$5.00-5.70 (+25%至+43%)</td></tr>
+  <tr style="background:#f0faf0"><td>中性（概率50%）</td><td>有机+1% + Margin 29%持平 + 协同部分兑现</td><td>45-47c</td><td>8.5-9.5x</td><td>A$3.85-4.45 (-3%至+12%)</td></tr>
+  <tr><td>悲观（概率25%）</td><td>有机负增长 + Margin再降 + 商誉减值</td><td>38-40c</td><td>7-8x</td><td>A$2.70-3.20 (-20%至-32%)</td></tr>
+</table>
+<p style="font-size:13px;color:#666;margin:6px 0">概率判断：中性50%，乐观25%，悲观25%。中性情景下现价基本合理，安全边际约15%（至保守情景A$3.4）。</p>
+
+<h3>7.6 资金面信号（ASX/N/A）</h3>
+<p style="font-size:13px;color:#666;">ASX无北向资金/两融数据，此节标注N/A，改为关注本地指标：机构持仓、董事增减持、大宗交易</p>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>股价表现（1年）</td><td class="bad">-16.5%（vs ASX200 +约6%）</td><td>跑输大盘22pp，跑输专业服务板块20pp，机构减配</td></tr>
+  <tr><td>机构持仓/券商预期</td><td class="neutral">分歧</td><td>7家券商平均“买入”，目标A$4.72-5.86，但FY26 EPS预期从0.389下调至0.33，预期下修</td></tr>
+  <tr><td>大股东/回购</td><td class="good">积极回购</td><td>FY25回购15.9m股（6%股本，A$74.2m均价4.66），2026年2月再授权A$75m回购，管理层视股价低估</td></tr>
+  <tr><td>董事增减持</td><td class="neutral">无显著增持公告</td><td>未见董监高大额增持，需关注后续公告</td></tr>
+  <tr><td>大宗交易/流动性</td><td class="neutral">成交量1.13m（日均），流动性中等</td><td>Beta 0.12-0.14，波动率远低于市场，防御性特征</td></tr>
+</table>
+<div class="summary-box">
+  资金面整体判断：<strong>偏弱但现回购支撑</strong>——股价1年-16.5%跑输板块与大盘，反映市场对有机增长与Margin下滑的悲观；机构预期EPS持续下调（0.389→0.33）亦压制情绪。正面是公司层面大额回购（6%股本）及Beta 0.12的防御性，显示在市场波动中具抗跌性。ASX资金面信号对IPH定价影响弱于基本面，中长期仍看有机改善兑现。
+</div>
+
+<h3>7.7 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——IPH帮全球企业/高校申请和维护专利商标，按件收费+年费，靠1,600名代理人的人力资本和澳加#1的网络规模赚钱，轻资产收“知识保护费”。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——无形资产A$10亿占总资产74.6%但有形净资产为负，若加拿大整合失败需计提商誉减值；另：有机增长仅1.1%却派息113%，现金奶牛能否持续？<br>
+  3. 如果现在买入，期待的回报来源是什么？——a) 估值修复（PB从1.46x向2.0x中枢修复+FCF Yield 13.65%支撑）；b) 股息（9%+现金股息率）；c) 协同释放（A$8-10m年化节约增厚EPS 7-8%）。非高增长，需以股息+修复为主要回报。<br>
+  4. 什么情况下你会坚决卖出？——连续2季like-for-like负增长 / EBITDA Margin再降2pp以上 / 宣布大额稀释性收购 / 商誉减值公告 / 分红政策下调（支付率被迫降至<60%）。
+</div>
+
+</div></div>
+
+<div class="footer">
+  免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+  数据来源：IPH Limited FY25 Annual Report、FY25 Results Presentation（2025-08-21）、FY24 Annual Report、Appendix 4E/4D（ASX公告）、MarketIndex、StockAnalysis、Simply Wall St、Reuters。所有金额单位为AUD，已按FY25 710.3m营收口径统一。
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>
