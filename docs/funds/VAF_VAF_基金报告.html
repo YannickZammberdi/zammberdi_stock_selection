@@ -5,36 +5,36 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>VAF(VAF) 基金体检报告</title>
 <style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f5f5f5;padding:0;color:#333}
-  .report-wrap{max-width:800px;margin:0 auto;background:#fff}
-  h1{font-size:22px;margin:0;padding:28px 0 4px;text-align:center}
-  h2{font-size:18px;margin:28px 0 12px;border-bottom:2px solid #1a1a1a;padding-bottom:4px}
-  .subtitle{color:#666;font-size:13px;text-align:center;margin-bottom:4px}
-  .meta{color:#999;font-size:12px;text-align:center;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #e0e0e0}
-  table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:13px}
-  th{background:#f5f5f5;padding:8px 6px;text-align:left;border-bottom:2px solid #ddd;white-space:nowrap;font-weight:600}
-  td{padding:7px 6px;border-bottom:1px solid #eee}
-  tr:nth-child(even) td{background:#fafafa}
-  .summary-box{background:#fffde7;border-left:4px solid #f9a825;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
-  .highlight-box{background:#e3f2fd;border-left:4px solid #1e88e5;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
-  .verdict{text-align:center;padding:20px;margin:16px 0;border-radius:8px;font-size:18px;font-weight:700}
-  .verdict-ok{background:#e8f5e9;border:2px solid #4caf50;color:#2e7d32}
-  .verdict-caution{background:#fff3e0;border:2px solid #ff9800;color:#e65100}
-  .tbl-wrap{border:1px solid #e0e0e0;border-radius:6px;overflow:hidden;margin:10px 0 18px}
-  .tbl-wrap table{margin:0}
-  .tbl-wrap th{background:#f5f5f5;padding:9px 8px;border-bottom:1px solid #ddd;font-weight:600;font-size:12px}
-  .tbl-wrap td{padding:8px;border-bottom:1px solid #f0f0f0;font-size:13px}
-  .bar-wrap{display:inline-flex;align-items:center;width:60px;height:16px;vertical-align:middle}
-  .bar-bg{background:#eee;border-radius:4px;height:8px;width:100%;overflow:hidden;position:relative}
-  .bar{display:block;height:8px;border-radius:4px}
-  .score-cell{font-weight:700;font-size:15px;text-align:center;white-space:nowrap}
-  .col-tag{display:inline-block;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600}
-  .col-win{background:#e8f5e9;color:#2e7d32}
-  .col-lose{background:#ffebee;color:#c62828}
-  .col-warn{background:#fff3e0;color:#e65100}
-  .col-info{background:#e3f2fd;color:#1565c0}
-  .footer{font-size:11px;color:#aaa;text-align:center;padding:24px 0 8px;border-top:1px solid #eee;margin-top:30px}
+ *{margin:0;padding:0;box-sizing:border-box}
+ body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f5f5f5;padding:0;color:#333}
+ .report-wrap{max-width:800px;margin:0 auto;background:#fff}
+ h1{font-size:22px;margin:0;padding:28px 0 4px;text-align:center}
+ h2{font-size:18px;margin:28px 0 12px;border-bottom:2px solid #1a1a1a;padding-bottom:4px}
+ .subtitle{color:#666;font-size:13px;text-align:center;margin-bottom:4px}
+ .meta{color:#999;font-size:12px;text-align:center;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #e0e0e0}
+ table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:13px}
+ th{background:#f5f5f5;padding:8px 6px;text-align:left;border-bottom:2px solid #ddd;white-space:nowrap;font-weight:600}
+ td{padding:7px 6px;border-bottom:1px solid #eee}
+ tr:nth-child(even) td{background:#fafafa}
+ .summary-box{background:#fffde7;border-left:4px solid #f9a825;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+ .highlight-box{background:#e3f2fd;border-left:4px solid #1e88e5;padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0;font-size:13px}
+ .verdict{text-align:center;padding:20px;margin:16px 0;border-radius:8px;font-size:18px;font-weight:700}
+ .verdict-ok{background:#e8f5e9;border:2px solid #4caf50;color:#2e7d32}
+ .verdict-caution{background:#fff3e0;border:2px solid #ff9800;color:#e65100}
+ .tbl-wrap{border:1px solid #e0e0e0;border-radius:6px;overflow:hidden;margin:10px 0 18px}
+ .tbl-wrap table{margin:0}
+ .tbl-wrap th{background:#f5f5f5;padding:9px 8px;border-bottom:1px solid #ddd;font-weight:600;font-size:12px}
+ .tbl-wrap td{padding:8px;border-bottom:1px solid #f0f0f0;font-size:13px}
+ .bar-wrap{display:inline-flex;align-items:center;width:60px;height:16px;vertical-align:middle}
+ .bar-bg{background:#eee;border-radius:4px;height:8px;width:100%;overflow:hidden;position:relative}
+ .bar{display:block;height:8px;border-radius:4px}
+ .score-cell{font-weight:700;font-size:15px;text-align:center;white-space:nowrap}
+ .col-tag{display:inline-block;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600}
+ .col-win{background:#e8f5e9;color:#2e7d32}
+ .col-lose{background:#ffebee;color:#c62828}
+ .col-warn{background:#fff3e0;color:#e65100}
+ .col-info{background:#e3f2fd;color:#1565c0}
+ .footer{font-size:11px;color:#aaa;text-align:center;padding:24px 0 8px;border-top:1px solid #eee;margin-top:30px}
 </style>
 </head>
 <body>
@@ -65,14 +65,14 @@
 <tr><td>F1 业绩</td><td class="score-cell">24/40</td><td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:60%;background:#ff9800"></span></span></span></td><td style="font-size:12px;color:#555">YTD 1.62%/1年0.6%/3年3.67%/5年-0.25%，利率冲击后修复中</td></tr>
 <tr><td>F2 持仓</td><td class="score-cell">18/20</td><td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:90%;background:#4caf50"></span></span></span></td><td style="font-size:12px;color:#555">843只国债为主，Top10 22%分散，跟踪误差<0.15%</td></tr>
 <tr><td>F3 费率与人</td><td class="score-cell">18/20</td><td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:90%;background:#4caf50"></span></span></span></td><td style="font-size:12px;color:#555">0.15%为澳债ETF最低梯队，Vanguard被动无经理风险</td></tr>
-<tr><td>F4 适配</td><td class="score-cell">18/20</td><td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:90%;background:#4caf50"></span></span></span></td><td style="font-size:12px;color:#555">与VAS相关0.1、与IVV 0.0，家庭组合压舱石，2022 VAS-16%时仅-1.5%</td></tr>
+<tr><td>F4 适配</td><td class="score-cell">18/20</td><td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:90%;background:#4caf50"></span></span></span></td><td style="font-size:12px;color:#555">与VAS相关0.1、与IVV 0.0，组合压舱石，2022 VAS-16%时仅-1.5%</td></tr>
 <tr style="background:#fafafa"><td style="font-weight:700">总分</td><td style="font-weight:700;font-size:16px;color:#2e7d32">78/100</td><td><span class="bar-wrap"><span class="bar-bg"><span class="bar" style="width:78%;background:#4caf50"></span></span></span></td><td style="font-size:12px;color:#2e7d32;font-weight:600">良好 — 防御压舱石</td></tr>
 </table>
 </div>
 <div class="verdict verdict-ok"><span class="score">78</span>良好 — 防御压舱石</div>
 
 <div class="summary-box">
-<strong>核心结论：</strong>家庭计划中现金（麦夸里5%）之外唯一的<strong>防御压舱石</strong>。F1业绩受2022-23加息冲击（5年-0.25%），但3年已修复至3.67%（YTD 1.62%）；F2持仓843只国债分散、跟踪误差<0.15%未漂移；F3 0.15%为澳债ETF最低（IAF 0.15%同档）；F4与你VAS/IVV/景顺均相关<0.2，2022股债双杀前唯一正收益对冲（VAF仅-1.68% vs VAS-16%）。结论：<strong>可作为麦夸里之外的第二防御层，每年审一次</strong>，触发重审仅当久期>7年或费率上调。
+<strong>核心结论：</strong>现金之外唯一的<strong>防御压舱石</strong>。F1业绩受2022-23加息冲击（5年-0.25%），但3年已修复至3.67%（YTD 1.62%）；F2持仓843只国债分散、跟踪误差<0.15%未漂移；F3 0.15%为澳债ETF最低（IAF 0.15%同档）；F4与你VAS/IVV/景顺均相关<0.2，2022股债双杀前唯一正收益对冲（VAF仅-1.68% vs VAS-16%）。结论：<strong>可作为现金之外的第二防御层，每年审一次</strong>，触发重审仅当久期>7年或费率上调。
 </div>
 
 <h2>F1 业绩（40分）— 24/40</h2>
@@ -135,11 +135,11 @@
 <tr><td>与 IVV 相关系数</td><td><strong>约0.05</strong></td><td>同上</td><td><span class="col-tag col-win">不相关</span></td></tr>
 <tr><td>与 景顺 相关系数</td><td><strong>约0.65</strong>（同为债）</td><td>>0.85重复</td><td><span class="col-tag col-warn">中度相关</span></td></tr>
 <tr><td>回撤对冲（2022）</td><td>VAS -16% 时 VAF -1.68%（1年），跌幅1/10</td><td><1/2为对冲好</td><td><span class="col-tag col-win">对冲极佳</span></td></tr>
-<tr><td>家庭组合占比建议</td><td>现金5%已覆盖短端，VAF可作<span class="col-tag col-info">麦夸里之外的第二防御层</span>，5-10%即可</td><td>5-10%目标</td><td>补充</td></tr>
+<tr><td>组合占比建议</td><td>VAF可作<span class="col-tag col-info">现金之外的第二防御层</span>，5-10%即可</td><td>5-10%目标</td><td>补充</td></tr>
 </table>
 </div>
 <div class="highlight-box">
-<strong>F4小结：</strong>与VAS/IVV相关~0.1完美对冲，是家庭计划“VAS 50%+IVV 30%+景顺10%”之外、可替代部分麦夸里现金的第二防御层。2022对冲效果（-1.68% vs VAS -16%）已验证。扣2分在与景顺相关0.65中度相关（同为利率债），若已配景顺10%再配VAF 10%则债性重复，需二选一或合计≤15%。
+<strong>F4小结：</strong>与VAS/IVV相关~0.1完美对冲，是股票组合之外、可替代现金的第二防御层。2022对冲效果（-1.68% vs VAS -16%）已验证。扣2分在与景顺相关0.65中度相关（同为利率债），若已配景顺10%再配VAF 10%则债性重复，需二选一或合计≤15%。
 </div>
 
 <div class="summary-box">
