@@ -31,6 +31,7 @@ HISTORY_MARKER = "<!-- HISTORY-TABLE -->"
 
 STOCK_TARGETS = [("A股", DOCS / "stocks"), ("ASX", DOCS / "asx" / "stocks")]
 INDUSTRY_TARGETS = [("A股", DOCS / "industry"), ("ASX", DOCS / "asx" / "industry")]
+FUNDS_TARGET = DOCS / "funds"
 
 DATA_MARKER = "const data = ["
 EMPTY_ASX_PLANS = """<!DOCTYPE html>
@@ -81,6 +82,7 @@ def collect_sources():
         "macro": [],       # (Path, basename, market)
         "plans": [],       # (Path, basename, market, code)
         "verify": [],      # (Path, basename, market, code)
+        "funds": [],       # (Path, basename, market)
     }
 
     for market, sub in (("A股", "A股"), ("ASX", "ASX")):
@@ -114,6 +116,17 @@ def collect_sources():
     for f in (SRC / "验证").glob("*_C方案验证.html"):
         market, code = judge_verify_market_code(f)
         sources["verify"].append((f, f.name, market, code))
+
+    # 基金体检: 基金/ 目录（中澳通用，支付宝/RMB 与 ASX/AUD 均在同一池）
+    if (SRC / "基金").exists():
+        for f in (SRC / "基金").rglob("*.html"):
+            # 市场按文件名或父目录推断：含 ASX/VAS/IVV 视为 ASX，否则支付宝
+            name_lower = f.name.lower()
+            if any(k in name_lower for k in ["vas", "ivv", "asx", "qbe", "iag"]):
+                market = "ASX"
+            else:
+                market = "支付宝"
+            sources["funds"].append((f, f.name, market))
 
     return sources
 
@@ -175,6 +188,8 @@ def copy_files():
         do_copy(f, DOCS / "plans" if market == "A股" else DOCS / "asx" / "plans")
     for f, _, market, _ in sources["verify"]:
         do_copy(f, DOCS / "verify" if market == "A股" else DOCS / "asx" / "verify")
+    for f, _, _ in sources["funds"]:
+        do_copy(f, FUNDS_TARGET)
 
     prune_stale(sources)
     return copied, skipped
@@ -191,6 +206,7 @@ def prune_stale(sources):
     plan_asx = {s[1] for s in sources["plans"] if s[2] == "ASX"}
     verify_a = {s[1] for s in sources["verify"] if s[2] == "A股"}
     verify_asx = {s[1] for s in sources["verify"] if s[2] == "ASX"}
+    funds = {s[1] for s in sources["funds"]}
 
     rules = [
         (DOCS / "stocks", stock_a),
@@ -202,6 +218,7 @@ def prune_stale(sources):
         (DOCS / "asx" / "plans", plan_asx),
         (DOCS / "verify", verify_a),
         (DOCS / "asx" / "verify", verify_asx),
+        (FUNDS_TARGET, funds),
     ]
     for d, keep in rules:
         if not d.exists():
@@ -508,6 +525,37 @@ def build_verify_index(market):
     log(f"[index] {market} verify: {len(rows)} 份 -> {idx}")
 
 
+def build_funds_index():
+    target = FUNDS_TARGET
+    target.mkdir(parents=True, exist_ok=True)
+    idx = target / "index.html"
+    # create from template if missing (copy stocks template structure)
+    if not idx.exists():
+        tmpl = DOCS / "stocks" / "index.html"
+        if tmpl.exists():
+            html = read_utf8(tmpl)
+            html = re.sub(r"<title>.*?</title>", "<title>基金体检 – 股票研究笔记</title>", html, count=1)
+            html = html.replace("<h1>📄 个股报告</h1>", "<h1>📈 基金体检</h1>")
+            html = html.replace('placeholder="搜索股票名称', 'placeholder="搜索基金名称')
+            idx.write_text(html, encoding="utf-8")
+        else:
+            idx.write_text('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>基金体检</title></head><body>基金</body></html>', encoding="utf-8")
+    rows = []
+    for f, _, _ in collect_sources()["funds"]:
+        html = read_utf8(f)
+        name, code = parse_stock_name_code(html, f.name)
+        # funds: try to extract market from filename
+        rows.append({
+            "name": name,
+            "code": code,
+            "type": "ETF" if any(k in f.name.lower() for k in ["vas","ivv"]) else "固收+",
+            "score": parse_score(html),
+            "date": parse_date(html),
+            "file": f.name,
+        })
+    replace_data_array(idx, render_data(rows, ["name", "code", "type", "score", "date", "file"], ["score", "name"]))
+    log(f"[index] funds: {len(rows)} 份 -> {idx}")
+
 def build_macro_index():
     target = DOCS / "macro"
     target.mkdir(parents=True, exist_ok=True)
@@ -701,6 +749,7 @@ def update_home_counts():
         "stocks": count_html_files(DOCS / "stocks"),
         "plans": count_html_files(DOCS / "plans"),
         "verify": count_html_files(DOCS / "verify"),
+        "funds": count_html_files(FUNDS_TARGET),
     }
     counts_asx = {
         "macro": macro_asx,
@@ -708,6 +757,7 @@ def update_home_counts():
         "stocks": count_html_files(DOCS / "asx" / "stocks"),
         "plans": count_html_files(DOCS / "asx" / "plans"),
         "verify": count_html_files(DOCS / "asx" / "verify"),
+        "funds": count_html_files(FUNDS_TARGET),
     }
 
     def patch(path, counts):
@@ -744,6 +794,8 @@ def _count_for(card, counts):
         return counts["plans"]
     if href.endswith("verify/index.html"):
         return counts["verify"]
+    if href.endswith("funds/index.html"):
+        return counts.get("funds", 0)
     return None  # untouched
 
 
@@ -769,6 +821,7 @@ def main():
     build_plans_index("ASX")
     build_verify_index("A股")
     build_verify_index("ASX")
+    build_funds_index()
     build_macro_index()
     update_home_counts()
     log(f"完成：复制 {copied}，跳过 {skipped}（内容一致）")

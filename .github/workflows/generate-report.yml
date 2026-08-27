@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       type:
-        description: '报告类型：stock=个股财务分析 / industry=行业分析 / macro=宏观环境 / plan=交易计划 / verify=C方案验证'
+        description: '报告类型：stock=个股财务分析 / industry=行业分析 / macro=宏观环境 / plan=交易计划 / verify=C方案验证 / fund=基金体检'
         required: true
         type: choice
         options:
@@ -13,6 +13,7 @@ on:
           - macro
           - plan
           - verify
+          - fund
       market:
         description: '市场'
         required: true
@@ -86,6 +87,7 @@ jobs:
             macro)     P="使用 macro-report skill，生成 $RMARKET 大盘宏观环境分析报告" ;;
             plan)      P="使用 stock-trade-plan skill，为 $RMARKET 股票 $RNAME 生成交易计划" ;;
             verify)    P="使用 c-plan-verify skill，为 $RMARKET 股票 $RNAME 跑 C方案验证" ;;
+            fund)      P="使用 fund-report skill，为 $RMARKET 基金 $RNAME 生成基金体检报告（F1-F4，单页），保存到 stock-learning/stocks-analysis/基金/ 下" ;;
             *)         echo "未知报告类型: $RTYPE"; exit 1 ;;
           esac
           echo "PROMPT=$P" >> "$GITHUB_ENV"
