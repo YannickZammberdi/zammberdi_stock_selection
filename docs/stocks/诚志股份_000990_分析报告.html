@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>诚志股份(000990) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .score-note { font-size: 13px; color: #666; background: #fafafa; border: 1px dashed #ccc; padding: 8px 12px; margin: 10px 0; }
+  .history-table td:first-child { white-space: nowrap; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>诚志股份（000990）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026-08-31 | 数据来源：FY2025年报 + 2026年中报/Q1季报 + 券商数据（东方财富/中财网）</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>诚志股份有限公司（清华控股/诚志科融控股）</td></tr>
+  <tr><td>股票代码</td><td>000990.SZ</td></tr>
+  <tr><td>所属行业</td><td>化学原料和化学制品制造业（基础化工/煤化工 + 显示材料/半导体材料）</td></tr>
+  <tr><td>行业地位</td><td>国内工业气体及MTO细分领域中等规模；液晶混合材料国内中高端份额领先，但全行业非绝对龙头</td></tr>
+  <tr><td>FY2025 营收</td><td><strong>110.28 亿元（-0.35%）</strong></td></tr>
+  <tr><td>FY2025 归母净利润</td><td><strong>-0.78 亿元（-133.89%，年度转亏）</strong></td></tr>
+  <tr><td>FY2025 扣非净利润</td><td><strong>0.17 亿元（-92.50%）</strong></td></tr>
+  <tr><td>FY2025 经营现金流</td><td><strong>10.78 亿元（-21.80%）</strong></td></tr>
+  <tr><td>总资产（2025末）</td><td>277.95 亿元</td></tr>
+  <tr><td>归母净资产（2025末）</td><td>176.97 亿元（每股14.56元）</td></tr>
+  <tr><td>ROE（加权 2025）</td><td><strong>-0.44%</strong>（2024年 1.30%）</td></tr>
+  <tr><td>2026H1 营收/归母净利</td><td>61.47 亿元（+2.77%）/ 2.90 亿元（+1416%）— 业绩强修复</td></tr>
+</table>
+
+<p style="font-size:13px;font-weight:bold;margin-top:12px;">行业类型：纯周期股（基础化工/煤化工） — 采用周期股评分体系</p>
+<p class="score-note"><strong>评分口径说明：</strong><span>首次分析，选用周期股评分体系（基础化工强周期）</span></p>
+
+<h2>综合评分（周期股评分体系）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">采用周期股评分体系——核心逻辑：穿越周期的生存能力 + 当前周期位置 + 成本优势（估值以PB为准）</p>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>穿越周期ROE（15分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">近5年平均ROE约0.6%（2022:0.27%→2023:0.96%→2024:1.30%→2025:-0.44%），&lt;5% 跨周期回报极弱</td></tr>
+  <tr><td>成本位置/行业成本曲线（15分）</td><td class="neutral" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">依托南京化工园管道一体化供应，工业气体成本中上；但煤化工产品价格受煤价高位压制，无显著Top quartile优势</td></tr>
+  <tr><td>负债安全垫（15分）</td><td class="neutral" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">资产负债率32.8%低位，货币+短期金融38.1亿覆盖短债26.3亿；但有息负债60.3亿同比+6.18亿，净负债/EBITDA约1.5x 满足一项→10分</td></tr>
+  <tr><td>行业格局与产能周期（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">6</td><td style="text-align:left">基础化工高度分散CR3&lt;15%；显示材料集中度较高但整体仍处产能扩张（POE 40亿+超高分子量聚乙烯8亿项目在建）→中等 6分</td></tr>
+  <tr><td>周期位置（15分）</td><td class="good" style="font-weight:bold;font-size:15px">12</td><td style="text-align:left">2025Q4亏损1.82亿已至周期底部，2026Q1毛利率18.82%+净利2.33亿同比+177%进入复苏初期→12分</td></tr>
+  <tr><td>估值PB vs历史区间（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">现价6.55元 PB 0.44-0.60，处于历史10年20%分位以内底部区间，PB极低</td></tr>
+  <tr><td>现金生成能力FCF（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">6</td><td style="text-align:left">低谷期CFO 10.78亿仍正流入，但资本开支约10亿（含在建工程+10.06亿）致FCF近零/小幅为负，仍可融资发行中票5亿→6分</td></tr>
+  <tr><td>分红/回购历史（5分）</td><td class="neutral" style="font-weight:bold;font-size:15px">3</td><td style="text-align:left">2019-2024连续现金分红（最近三年累计分红率36.8%），2025周期底部仅转增未现金分红→减少但未取消 3分</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">62/100</td><td style="text-align:left">一般关注</td></tr>
+</table>
+
+<div class="verdict verdict-caution">一般关注（62/100分）</div>
+
+<h2 style="margin-top:16px">评分沿革</h2>
+<style>.history-table{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:13px}.history-table th,.history-table td{border:1px solid #ddd;padding:6px 8px;text-align:center}.history-table th{background:#f0f0f0;font-weight:bold}.history-table td.good{color:#27ae60}.history-table td.neutral{color:#e67e22}.history-table td.bad{color:#c0392b}</style><table class="history-table">
+  <tr><th>日期</th><th>评分</th><th>评分体系</th><th>变化原因</th></tr>
+  <tr><td>2026-08-31</td><td class="neutral" style="font-weight:bold">62/100</td><td>周期性</td><td style="text-align:left">首次分析，选用周期股评分体系（基础化工强周期）</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>诚志股份是典型的“周期+并购”困境反转标的——2025年受煤化工价格低迷+补缴消费税1.8亿+滞纳金三重冲击而年度转亏（-0.78亿），但资产负债率仅32.8%+经营现金流10.78亿/CFO远超净利润，体现了周期底部仍有较强生存能力。PB 0.44处于历史底部，2026Q1净利2.33亿同比+177%已确认底部反转，但5年平均ROE仅0.6%暴露了跨周期盈利能力极差的本质短板。<br><br>
+  <strong>核心优势：</strong>① 资产负债率32.8%极低+货币38亿覆盖短债，周期底部生存能力强；② PB 0.44-0.60处于历史底部区间，安全边际高；③ 2026年Q1/H1业绩强修复（Q1+177%，H1+1416%），周期拐点已现；④ 经营现金流持续为正（10.78亿），与净利润亏损形成背离，现金质量好。<br><br>
+  <strong>核心风险：</strong>① 商誉66.94亿占净资产35%/总资产24%悬顶，南京诚志收购后业绩持续下滑减值风险未释放；② 跨周期ROE仅0.6%盈利能力极差，业务多而杂（清洁能源77%+化工新材料+显示材料+医疗）缺乏护城河；③ 周期底部估值陷阱风险——PB低但盈利修复可持续性存疑（仅靠产品量价齐升一季）；④ 2025税金及附加暴增268%（补税1.8亿）+公允价值亏损1.24亿侵蚀利润。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据（FY2025 vs FY2024）</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td><strong>110.28 亿</strong></td><td>110.66 亿</td><td>-0.35%</td><td class="neutral">➡ 微降企稳</td></tr>
+  <tr><td>归母净利润</td><td><strong>-0.78 亿</strong></td><td>2.31 亿</td><td><strong>-133.89%</strong></td><td class="bad">❌ 年度转亏</td></tr>
+  <tr><td>扣非净利润</td><td><strong>0.17 亿</strong></td><td>2.27 亿</td><td><strong>-92.50%</strong></td><td class="bad">❌ 主业几近无利</td></tr>
+  <tr><td>营收毛利</td><td>16.09 亿</td><td>17.56 亿</td><td>-8.34%</td><td class="bad">❌ 毛利收缩1.47亿</td></tr>
+  <tr><td>毛利率</td><td><strong>14.59%</strong></td><td>15.86%</td><td>-1.27pct</td><td class="bad">❌ 偏低且下滑</td></tr>
+  <tr><td>归母净利率</td><td><strong>-0.71%</strong></td><td>2.09%</td><td>-2.80pct</td><td class="bad">❌ 转负</td></tr>
+  <tr><td>期间费用</td><td>10.91 亿</td><td>10.65 亿</td><td>+2.41%</td><td class="neutral">销售费用+0.23亿</td></tr>
+  <tr><td>税金及附加</td><td><strong>2.47 亿</strong></td><td>0.67 亿</td><td><strong>+268%</strong></td><td class="bad">❌ 补缴消费税1.8亿</td></tr>
+  <tr><td>投资类收益</td><td>-1.13 亿</td><td>-0.93 亿</td><td>增亏0.19亿</td><td class="bad">公允价值变动-1.24亿</td></tr>
+  <tr><td>营业外收支净额</td><td>-0.42 亿</td><td>-0.01 亿</td><td>增亏0.41亿</td><td class="bad">补税滞纳金0.33亿</td></tr>
+  <tr><td>每股收益</td><td>-0.0643元</td><td>0.1897元</td><td>-133.9%</td><td class="bad">❌ 转负</td></tr>
+  <tr style="background:#fff3cd"><td>2025Q1营收/净利</td><td>29.98亿 / 0.84亿</td><td>—</td><td>—</td><td class="neutral">前三季仍盈利1.04亿</td></tr>
+  <tr style="background:#fde8e8"><td>2025Q4营收/净利</td><td><strong>23.24亿 / -1.82亿</strong></td><td>—</td><td>-17.85% / -1597%</td><td class="bad">❌ 单季滑铁卢，吞噬全年</td></tr>
+  <tr style="background:#e8f4f8"><td>2026Q1营收/净利</td><td><strong>28.36亿 / 2.33亿</strong></td><td>29.98亿 / 0.84亿</td><td>-5.41% / +177%</td><td class="good">✅ 量价齐升修复</td></tr>
+  <tr style="background:#e8f4f8"><td>2026H1营收/净利</td><td><strong>61.47亿 / 2.90亿</strong></td><td>59.81亿 / 0.19亿</td><td>+2.77% / +1416%</td><td class="good">✅ 强反转</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>2025年“营收稳、利润崩”——营收仅微降0.35%但归母由盈2.31亿转为亏0.78亿，扣非也仅剩0.17亿。核心拖累是清洁能源产品价格低迷致毛利-1.47亿，且税金及附加因补缴消费税暴增1.8亿（+268%）直接吞噬利润；公允价值亏损1.24亿+滞纳金0.33亿进一步放大亏损。分季看，前三季尚盈利1.04亿，但Q4单季-1.82亿（同比-1597%）成为全年转亏的唯一推手。2026年Q1/H1的强修复（净利2.33亿/2.90亿）已验证底部反转，但需观察量价齐升能否持续。
+</div>
+
+<h3>2.2 资产负债表（2025.12.31）</h3>
+<table>
+  <tr><th>科目</th><th>本期（亿元）</th><th>占比</th><th>评价</th></tr>
+  <tr><td>货币资金+短期金融资产</td><td><strong>38.11</strong></td><td>13.71%</td><td class="good">✅ 充裕</td></tr>
+  <tr><td>流动资产合计</td><td><strong>65.83</strong></td><td>23.68%</td><td class="good">✅ 同比-1.26亿，流动性稳健</td></tr>
+  <tr><td>投资性房地产+固定资产+在建+使用权</td><td><strong>91.50</strong></td><td>32.92%</td><td class="neutral">在建工程+10.06亿至91.5亿，POE项目持续投入</td></tr>
+  <tr><td>商誉</td><td><strong>66.94</strong></td><td>24.08%</td><td class="bad">❌ 占净资产35%，巨额悬顶</td></tr>
+  <tr><td>股权债权及基金信托投资</td><td>31.72</td><td>11.41%</td><td class="neutral">债权投资+2.14亿</td></tr>
+  <tr><td>无形资产及开发支出</td><td>9.95</td><td>3.58%</td><td>—</td></tr>
+  <tr><td>资产合计</td><td><strong>277.95</strong></td><td>100%</td><td class="neutral">+7.15亿（+2.64%）</td></tr>
+  <tr><td>短期借款</td><td><strong>21.79</strong></td><td>—</td><td class="good">✅ 同比-11.45亿</td></tr>
+  <tr><td>一年内到期长期借款</td><td>4.52</td><td>—</td><td>+0.94亿</td></tr>
+  <tr><td>长期借款</td><td><strong>24.99</strong></td><td>—</td><td class="neutral">+11.69亿</td></tr>
+  <tr><td>应付债券</td><td>9.00</td><td>—</td><td>+5.00亿（新发中票）</td></tr>
+  <tr><td>有息负债合计</td><td><strong>60.30</strong></td><td>—</td><td class="neutral">+6.18亿</td></tr>
+  <tr><td>资产负债率</td><td><strong>32.80%</strong></td><td>—</td><td class="good">✅ 极低，+1.98pct但仍安全</td></tr>
+  <tr><td>流动比率 / 速动比率</td><td><strong>1.41 / 1.19</strong></td><td>—</td><td class="good">✅ 均有所提升</td></tr>
+  <tr><td>归母净资产</td><td>176.97</td><td>—</td><td class="neutral">-1.35亿（-0.76%）</td></tr>
+  <tr><td>每股净资产</td><td>14.56元</td><td>—</td><td>-0.11元</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>资产端“重商誉+重在建”特征突出——商誉66.94亿（24%）为2017年收购南京诚志清洁能源形成，至今未计提减值，减值风险是最大隐忧；在建工程大幅增加10.06亿，POE（40亿）+超高分子量聚乙烯（8亿）项目仍在投入期。负债端极其稳健——资产负债率仅32.8%远低于化工行业均值~60%，流动比率1.41/速动1.19健康，货币38亿可覆盖短债26亿。有息负债虽增加6.18亿但结构优化（短债占比下降、长债+中票置换），整体财务风险可控。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>10.78 亿</strong></td><td>13.79 亿</td><td>-21.80%</td><td class="good">✅ 仍大额净流入</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><strong>大额流出</strong></td><td>—</td><td>—</td><td class="neutral">在建+债权投资合计+12.2亿</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td><strong>净流入</strong></td><td>—</td><td>+6.18亿有息负债</td><td class="neutral">新发中票5亿</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>失真（-1380%）</strong></td><td>5.98</td><td>—</td><td class="good">✅ 利润为负但现金为正，盈利质量背离</td></tr>
+  <tr><td>CFO/扣非净利润</td><td><strong>63.4倍</strong></td><td>6.08</td><td>—</td><td class="good">✅ 扣非现金含量极高</td></tr>
+  <tr><td>自由现金流FCF≈CFO-资本开支</td><td><strong>约0.7亿（小幅正）</strong></td><td>约3-4亿</td><td>收缩</td><td class="neutral">⚠ 低谷期勉强为正</td></tr>
+  <tr><td>分季CFO Q1-Q4</td><td>4.51 / 1.85 / 2.95 / 1.46 亿</td><td>—</td><td>—</td><td class="neutral">Q4利润崩但现金仍正</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>利润与现金严重背离是2025年核心特征——归母亏损-0.78亿但CFO仍有10.78亿净流入，说明亏损主因是税补缴、公允价值等非现金/一次性项目，而非经营失血。前三季CFO均维持高位，Q4即使巨亏1.82亿当季CFO仍有1.46亿流入，造血能力并未丧失。扣除约10亿资本开支后FCF约0.7亿勉强为正，处于“低谷期仍能维持正FCF”的临界水平。对比净利润的崩塌，现金流是少数亮点。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE（加权）</td><td class="bad"><strong>-0.44%</strong></td><td>>15%优秀 / >10%良好</td><td class="bad">❌ 远不及格</td></tr>
+  <tr><td>毛利率</td><td class="bad"><strong>14.59%</strong></td><td>>30%优秀 / >15%及格（化工）</td><td class="bad">❌ 偏低且同比-1.27pct</td></tr>
+  <tr><td>净利率（归母）</td><td class="bad"><strong>-0.71%</strong></td><td>>15%优秀</td><td class="bad">❌ 转负</td></tr>
+  <tr><td>营收增速</td><td class="neutral"><strong>-0.35%</strong></td><td>>10%成长 / >5%平稳</td><td class="neutral">➡ 停滞</td></tr>
+  <tr><td>扣非净利增速</td><td class="bad"><strong>-92.50%</strong></td><td>>15%优秀</td><td class="bad">❌ 崩塌</td></tr>
+  <tr><td>CFO/扣非净利润</td><td class="good"><strong>63.4倍</strong></td><td>>1.0优秀 / >0.7及格</td><td class="good">✅ 现金含金量极高</td></tr>
+  <tr><td>资产负债率</td><td class="good"><strong>32.80%</strong></td><td><40%优秀 / <55%良好（化工）</td><td class="good">✅ 极低安全</td></tr>
+  <tr><td>有息负债率</td><td class="good">约21.7%</td><td><30%优秀</td><td class="good">✅ 低杠杆</td></tr>
+  <tr><td>分红率（近3年累计）</td><td class="neutral">36.8%（2025仅转增）</td><td>持续分红</td><td class="neutral">⚠ 周期底部暂停现金分红</td></tr>
+</table>
+
+<h3>3.2 分业务分析</h3>
+<table>
+  <tr><th>业务板块</th><th>营收（亿）</th><th>占比</th><th>同比</th><th>毛利率* / 评价</th></tr>
+  <tr><td>清洁能源（工业气体/甲醇/烯烃）</td><td>47.65（2026H1）</td><td>77.5%</td><td>-0.36%</td><td class="bad">低（价格低位+成本高企拖累）</td></tr>
+  <tr><td>化工新材料（POE/超高分子量聚乙烯等）</td><td>9.61（2026H1）</td><td>15.6%</td><td>—</td><td class="neutral">在建项目未贡献利润</td></tr>
+  <tr><td>显示材料/半导体材料（液晶/OLED）</td><td>—（含在化工新材料）</td><td>—</td><td>—</td><td class="good">年报称“产销两旺”贡献较大</td></tr>
+  <tr><td>生命医疗服务</td><td>3.15（2026H1）</td><td>5.13%</td><td>-8.80%</td><td class="neutral">营收下滑</td></tr>
+  <tr><td>其他产品</td><td>1.05（2026H1）</td><td>1.71%</td><td>+221.57%</td><td class="good">✅ 高增长但基数小</td></tr>
+</table>
+<p style="font-size:12px;color:#666">注：2025年报未披露分板块毛利率，分板块收入以2026H1数据为最新口径；*清洁能源毛利率自2022年来持续收缩为业绩波动核心。</p>
+
+<div class="highlight-box">
+  <strong>分业务解读：</strong>公司收入极度依赖单一大板块——清洁能源贡献超77%营收，却是强周期煤化工业务（与甲醇/乙烯/煤炭价格高度绑定），2022年来受原材料价格高位+产品价格低迷双击，盈利空间被持续压缩，成为业绩波动的唯一核心变量。显示材料虽为传统优势（液晶混合材料中高端领先），但2025年也受面板行业产能过剩、价格战影响增长陷入瓶颈。化工新材料（POE等）仍处48亿投入期，未形成第二增长曲线。业务结构“单腿走路+新业务未成”导致抗周期能力弱。
+</div>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险项</th><th>严重程度</th><th>依据</th></tr>
+  <tr><td>商誉66.94亿占总资产24%/净资产35%，2017年收购南京诚志形成，5年未计提减值</td><td class="bad">🔴 高</td><td>资产负债表；标的盈利承诺期后持续下滑，行业下行期减值风险未释放</td></tr>
+  <tr><td>2025年归母转亏-0.78亿，Q4单季巨亏1.82亿同比-1597%，业绩波动幅度极大</td><td class="bad">🔴 高</td><td>利润表分季度数据；全年业绩由Q4单季决定</td></tr>
+  <tr><td>清洁能源业务高度依赖周期，毛利率大幅波动，营收占比77%集中度风险</td><td class="bad">🔴 高</td><td>分业务分析+年报“主要原材料及产品价格波动导致毛利率大幅下降”</td></tr>
+  <tr><td>税金及附加暴增268%（+1.8亿补缴消费税）+滞纳金0.33亿，一次性冲击利润</td><td class="neutral">🟡 中</td><td>2025年报决算报告，消费税补缴含附加税</td></tr>
+  <tr><td>公允价值变动亏损1.24亿（投资性房地产+非流动金融资产估值下降）</td><td class="neutral">🟡 中</td><td>利润表投资类收益，同比增亏0.69亿</td></tr>
+  <tr><td>信用/资产减值损失0.77亿虽同比减少，但存货跌价及应收风险仍存</td><td class="neutral">🟡 中</td><td>资产减值5,331万+信用减值2,416万</td></tr>
+  <tr><td>在建工程91.5亿+债权投资31.7亿持续扩张，有息负债+6.18亿至60.3亿</td><td class="neutral">🟡 中</td><td>资产负债表，POE项目投资期资金压力</td></tr>
+  <tr><td class="good">正面：经营现金流10.78亿持续为正，CFO/扣非63倍</td><td class="good">🟢 正面</td><td>现金流量表，亏损期仍造血</td></tr>
+  <tr><td class="good">正面：资产负债率32.8%极低，流动比率1.41安全垫厚</td><td class="good">🟢 正面</td><td>远低于化工行业60%均值</td></tr>
+  <tr><td class="good">正面：2026Q1/H1业绩强修复，量价齐升+降本增效见效</td><td class="good">🟢 正面</td><td>2026Q1净利2.33亿+177%，H1 2.90亿+1416%</td></tr>
+  <tr><td class="good">正面：液晶材料“产销两旺”传统优势仍在</td><td class="good">🟢 正面</td><td>年报披露液晶板块贡献较大经营成果</td></tr>
+</table>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架 — 周期股PB法）</h2>
+
+<h3>4.1 当前估值</h3>
+<table>
+  <tr><th>指标</th><th>当前值（2026-08-28附近）</th><th>历史分位</th><th>行业均值*</th></tr>
+  <tr><td>股价</td><td><strong>6.55-6.68元</strong></td><td>近1年区间5.2-7.8元</td><td>—</td></tr>
+  <tr><td>总市值</td><td><strong>约111-113亿</strong>（股本17.01亿*6.55）</td><td>—</td><td>基础化工中位~80-150亿</td></tr>
+  <tr><td>PE(TTM)</td><td><strong>58.97倍</strong></td><td>偏高（亏损期失真）</td><td>中位37.2倍</td></tr>
+  <tr><td>PE(TTM扣非)</td><td><strong>33.80倍</strong></td><td>—</td><td>扣非中位35.8倍</td></tr>
+  <tr><td>PE(2026E静态)</td><td><strong>约38倍</strong>（按2026H1年化5.8亿）</td><td>—</td><td>—</td></tr>
+  <tr><td>PB</td><td><strong>0.44-0.60倍（破净）</strong></td><td>历史20%分位以内底部</td><td>行业中位约1.5-2.5倍</td></tr>
+  <tr><td>PS(TTM)</td><td><strong>约1.0倍</strong></td><td>偏低</td><td>—</td></tr>
+  <tr><td>PCF(TTM)</td><td><strong>约10.3倍</strong>（市值113亿/CFO10.78亿）</td><td>偏低</td><td>—</td></tr>
+  <tr><td>股息率(TTM)</td><td><strong>约0%（2025仅转增未现金分红）</strong></td><td>—</td><td>化工平均2-3%</td></tr>
+  <tr><td>每股净资产</td><td><strong>14.56-15.68元</strong></td><td>—</td><td>—</td></tr>
+</table>
+<p style="font-size:12px;color:#666">*行业均值取化学原料和化学制品中位市盈率37.2倍/扣非35.8倍（中财网）；PB行业均值约2.0倍，破净属极低。</p>
+
+<h3>4.2 PB Band区间（周期股专用，以每股净资产14.56元为基准）</h3>
+<p style="font-size:13px;color:#666;">周期股PE失真，以PB为核心估值工具。当前PB破净，已在历史底部。</p>
+<table>
+  <tr><th>情景</th><th>PB</th><th>对应股价</th><th>说明</th></tr>
+  <tr><td>历史最大值（周期顶部）</td><td>约2.5-3.0x</td><td>36-44元</td><td>对应2019年高点附近，PE极低时最贵</td></tr>
+  <tr><td>历史80%分位</td><td>约1.8x</td><td>26.2元</td><td>顶部区间 警惕</td></tr>
+  <tr><td>历史50%分位（中位）</td><td>约1.2x</td><td>17.5元</td><td>中位</td></tr>
+  <tr><td>历史20%分位</td><td>约0.7x</td><td>10.2元</td><td>底部区间上限</td></tr>
+  <tr><td>历史最小值（周期底部）</td><td>约0.40x</td><td>5.8元</td><td>极端底部</td></tr>
+  <tr style="background:#e8f4f8;font-weight:bold"><td>当前PB 0.44-0.60x</td><td>0.44-0.60x</td><td>6.55元</td><td class="good">✅ 底部区间（&lt;30%分位）机会区域，破净状态</td></tr>
+</table>
+<p style="font-size:13px;color:#666;">判断：当前PB处于历史20%分位以内底部，距中位有167%上行空间，距80%分位有300%空间，下行至历史最小值约-11%。<strong>PB底部特征明确。</strong></p>
+
+<h3>4.3 历史PE区间（参考，周期股PE失真）</h3>
+<table>
+  <tr><th>指标</th><th>数值</th><th>备注</th></tr>
+  <tr><td>PE(TTM)最大值（亏损期）</td><td>153倍（当前附近）</td><td>利润为负/极低时PE失真</td></tr>
+  <tr><td>PE(TTM) 80%分位</td><td>约40-50倍</td><td>亏损边缘</td></tr>
+  <tr><td>PE(TTM) 50%分位</td><td>约15-20倍</td><td>正常盈利期</td></tr>
+  <tr><td>PE(TTM) 20%分位</td><td>约8-12倍</td><td>盈利高点时PE极低</td></tr>
+  <tr><td>PE(TTM) 最小值</td><td>约5-8倍</td><td>2022年利润5千万时PE极低但最贵</td></tr>
+  <tr><td>当前PE(TTM) 58.97倍</td><td class="bad">高位但失真</td><td>周期股PE高≠贵，恰是底部特征；以PB为准</td></tr>
+</table>
+<p style="font-size:12px;color:#e67e22">⚠ 周期股PE失真提示：PE最低时（2022年净利5千万，PE约3-5倍）恰是最贵时；PE最高/亏损时（2025年）恰是最便宜时。评估周期股请忽略PE，看PB。</p>
+
+<h3>4.4 估值总结</h3>
+<div class="highlight-box">
+  <strong>估值判断：PB破净处于历史底部，PE失真下PB是唯一可靠信号——当前估值极低但需警惕“便宜陷阱”。</strong><br><br>
+  <strong>1. PB底部明确：</strong>PB 0.44-0.60破净，处于历史20%分位以内，按化工股历史PB 1.2x中位有167%上行空间，安全边际高。市值113亿vs净资产192亿（2026Q2），市场给予净资产40%折价，反映对商誉减值及盈利持续性的深度担忧。<br>
+  <strong>2. PE失真：</strong>TTM PE 59倍/扣非34倍看似极高，但2025年亏损导致分母失真，不能用PE判断贵贱。周期股“PE低时最贵、PE高时最便宜”的悖论在此完全体现。<br>
+  <strong>3. 现金流估值更真实：</strong>PCF约10倍（市值113亿/CFO 10.78亿）在化工行业偏低，反映市场对现金造血能力的定价不足。<br>
+  <strong>4. 风险提示：</strong>PB低≠一定便宜——若商誉66.94亿计提10%减值即6.7亿将直接吞噬净资产3.5%，PB将修复性上升。当前PB低本质是市场对“盈利不可持续+商誉雷” 的定价。2026Q1/H1的修复若不能持续，PB底部也可能长期横盘。<br>
+  <strong>结论：</strong>周期底部PB机会区域，适合逆向关注但不宜重仓博弈，需等待商誉风险释放及盈利连续2-3季度验证。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析（L4框架）</h2>
+
+<h3>5.1 杜邦拆解</h3>
+<table>
+  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>判断</th></tr>
+  <tr><td>净利润率（归母/营收）</td><td>1.43%*</td><td>2.08%</td><td class="bad"><strong>-0.71%</strong></td><td class="bad">⬇ 转负，盈利消失</td></tr>
+  <tr><td>资产周转率（营收/总资产）</td><td>~0.45</td><td>0.41</td><td><strong>0.40</strong></td><td class="neutral">➡ 低位且微降</td></tr>
+  <tr><td>权益乘数（总资产/净资产）</td><td>~1.55</td><td>1.52</td><td><strong>1.57</strong></td><td class="good">低杠杆（化工行业极低）</td></tr>
+  <tr><td><strong>ROE（加权）</strong></td><td>~0.96%</td><td>1.30%</td><td class="bad"><strong>-0.44%</strong></td><td class="bad">⬇ 转负，远低于10%及格线</td></tr>
+  <tr><td>去杠杆ROA（净利率×周转）</td><td>0.64%</td><td>0.85%</td><td><strong>-0.28%</strong></td><td class="bad">⬇ 基础回报为负</td></tr>
+  <tr><td>杠杆贡献（ROE-ROA）</td><td>0.32pct</td><td>0.45pct</td><td>-0.16pct</td><td>杠杆未放大（低杠杆型）</td></tr>
+</table>
+<p style="font-size:12px;color:#666">*2023归母1.77亿/营收124亿估算；2025去杠杆ROA = -0.71%*0.40 = -0.28%</p>
+
+<div class="highlight-box">
+  <strong>赚钱模式判断：低利润 + 低周转 + 低杠杆——三低型（非典型，盈利基础极弱）</strong><br>
+  诚志股份不属于任何一种健康的赚钱模式：<br>
+  - 高利润型要求净利率>15%（如茅台49%），诚志-0.71%相去甚远；<br>
+  - 高周转型要求周转>1.5次（如沃尔玛2.4次），诚志仅0.40次；<br>
+  - 高杠杆型要求权益乘数3-12倍（如银行12倍），诚志仅1.57倍。<br>
+  <strong>本质是“三低”——卖得不贵、卖得不快、也不敢加杠杆。</strong>ROE靠什么都驱动不了，去杠杆后真实基础回报ROA直接为负，说明即使去掉杠杆，公司用1元资产也创造不出正收益。低杠杆在周期底部是优点（生存能力强），但在盈利层面暴露了核心竞争力缺失。
+</div>
+
+<h3>5.2 三年趋势与资产回报效率</h3>
+<table>
+  <tr><th>年份</th><th>ROE</th><th>驱动拆解</th><th>评价</th></tr>
+  <tr><td>2023</td><td>0.96%</td><td>1.43% × 0.45 × 1.55</td><td class="bad">低位</td></tr>
+  <tr><td>2024</td><td>1.30%</td><td>2.08% × 0.41 × 1.52</td><td class="neutral">微升但仍不及格</td></tr>
+  <tr><td>2025</td><td>-0.44%</td><td>-0.71% × 0.40 × 1.57</td><td class="bad">转负，趋势恶化</td></tr>
+  <tr><td>2026Q1年化*</td><td>~4.9%（年化9.32亿/192亿）</td><td>8.22%*0.40*1.57</td><td class="neutral">修复但仍不及10%</td></tr>
+</table>
+<p style="font-size:12px;color:#666">*2026Q1净利率=2.33亿/28.36亿=8.22%（量价齐升修复），若全年维持则ROE可回升至5%附近，但需持续验证。</p>
+
+<div class="summary-box">
+  <strong>杜邦结论：</strong><br>
+  ① ROE靠什么驱动？——什么都不靠。2025年三个因子全部恶化：净利率转负是主因（补税+价格低迷），周转率从0.45降至0.40显示资产效率下降（总资产+7亿但营收-0.35%），杠杆1.57虽低但也无法放大微薄利润。<br>
+  ② 趋势是否健康？——极不健康。ROE连续两年在1%附近挣扎后2025年直接转负，去杠杆ROA也转负，说明公司主业已不创造价值。2026Q1虽修复至年化~4.9%，但单季8.22%的净利率能否持续存疑（2025Q4曾-7.8%）。<br>
+  ③ 每1元总资产产生多少净利润？——2025年每1元总资产亏损0.28分（ROA -0.28%），而化工龙头万华化学ROA约4-5%，华鲁恒升约7%，诚志效率仅为龙头1/15。<br>
+  ④ 核心发现：公司ROE困境源于“产品无定价权（低利润）+重资产但周转慢（低周转）+不敢加杠杆（低乘数）”的三重缺陷。即使周期修复，缺乏成本优势和规模效应，ROE天花板也仅5-8%，难以达到15%优秀线。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：纯周期股（基础化工/煤化工 + 工业气体）——必须用周期股评分体系</strong><br>
+  <strong>判断依据：</strong>按<code>industry-classification.md</code>清单，基础化工/有色/石油等属纯周期——行业成熟、长期增速≈0或仅随GDP，利润靠供需错配。诚志股份77%营收来自清洁能源（煤化工/工业气体/甲醇/乙烯），产品高度同质化、价格随煤炭/原油及下游需求大幅波动，2022-2025年毛利率从~20%+降至14.59%即为明证。显示材料虽有技术含量但占比小（<20%）且同样受面板周期影响，整体仍归入纯周期。<br>
+  <strong>与总结论联动：</strong>已选用周期股评分体系（8维度），估值以PB为准（PE失真）。
+</div>
+
+<h3>6.2 集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>行业集中度</td><td><strong>高度分散</strong></td><td>基础化工CR3&lt;15%，煤化工/甲醇全国产能数千万吨，南京诚志园区内虽有管道优势但全国层面无定价权</td></tr>
+  <tr><td>显示材料集中度</td><td><strong>相对集中</strong></td><td>国内液晶混合材料CR3约60%，诚志在中高端有一定份额，但面临面板产能过剩降价压力</td></tr>
+  <tr><td>进入壁垒-技术</td><td>中等</td><td>工业气体需园区配套+管道，MTO/POE需煤化工技术积累，但并非全球仅3-4家垄断，壁垒低于MDI</td></tr>
+  <tr><td>进入壁垒-规模/资金</td><td>高</td><td>煤化工装置投资数十亿，POE项目40亿+超高分子量聚乙烯8亿，重资产门槛高</td></tr>
+  <tr><td>进入壁垒-牌照/资源</td><td>无</td><td>无行政牌照或资源垄断，化工园区入驻即可</td></tr>
+  <tr><td>核心壁垒评价</td><td class="neutral">⚠ 整体壁垒中等偏弱，缺乏品牌/网络效应等强护城河</td><td>—</td></tr>
+</table>
+
+<h3>6.3 生命周期与周期位置</h3>
+<div class="highlight-box">
+  <strong>生命周期：成熟期（清洁能源煤化工）+ 成长期（POE/半导体材料）</strong><br>
+  煤化工/工业气体为成熟期——产能过剩、需求增速≈GDP，供需错配驱动周期；POE/超高分子量聚乙烯为成长期——国产替代逻辑，2025年在建工程+10亿投入期，尚未贡献收入。<br><br>
+  <strong>当前周期位置：周期底部已过 → 复苏初期（2026Q1确认）</strong><br>
+  2025年为典型底部特征：产品价格低位+原材料高位+补税冲击致亏损，Q4单季亏损1.82亿是底部标志；2026Q1产品量价齐升+毛利率修复至18.82%+净利2.33亿（+177%）已进入复苏初期。参考历史，煤化工周期底部PB破净（0.44）亦是佐证。未来2年POE产能释放将决定能否走出成长期。
+</div>
+
+<h3>6.4 同行对比（化学原料和化学制品制造业）</h3>
+<table>
+  <tr><th>指标</th><th>诚志股份</th><th>万华化学600309</th><th>华鲁恒升600426</th><th>行业中位*</th><th>评价</th></tr>
+  <tr><td>ROE（2025）</td><td class="bad">-0.44%</td><td class="good">12.44%</td><td class="good">10.02%</td><td>~5-8%</td><td class="bad">极低</td></tr>
+  <tr><td>毛利率</td><td class="bad">14.59%</td><td>13.61%</td><td>19.16%</td><td>~15%</td><td class="neutral">中位偏低</td></tr>
+  <tr><td>净利率</td><td class="bad">-0.71%</td><td>6.91%</td><td>10.71%</td><td>~3-5%</td><td class="bad">垫底</td></tr>
+  <tr><td>资产负债率</td><td class="good">32.80%</td><td class="neutral">62.81%</td><td class="good">28.52%</td><td>~45%</td><td class="good">最低最安全</td></tr>
+  <tr><td>营收增速</td><td class="neutral">-0.35%</td><td class="good">+11.62%</td><td class="bad">-9.52%</td><td>~0-5%</td><td class="neutral">中等</td></tr>
+  <tr><td>PB</td><td class="good">0.44</td><td>~2.5</td><td>~2.4</td><td>~1.5-2.0</td><td class="good">最低（破净）</td></tr>
+  <tr><td>PE(TTM)</td><td class="bad">58.97</td><td>~21</td><td>~23</td><td>~37</td><td>失真偏高</td></tr>
+  <tr><td>周转率</td><td>0.40</td><td>0.63</td><td>0.63</td><td>~0.6</td><td class="bad">最低</td></tr>
+  <tr><td>商誉/总资产</td><td class="bad">24.08%</td><td>~0.7%</td><td>0%</td><td>&lt;2%</td><td class="bad">极高风险</td></tr>
+</table>
+<p style="font-size:12px;color:#666">*行业中位参考Wind化工行业；万华/华鲁数据来自2025年报及券商预测；诚志净资产收益率及PB优势源于低负债+破净，但盈利能力垫底。</p>
+
+<div class="summary-box">
+  <strong>竞争位置：毛利率中位但ROE垫底——“安全但不赚钱”的典型。</strong><br>
+  横向对比揭示诚志的尴尬：资产负债率最低（32.8% vs 62.8%/28.5%）+PB最低（破净 vs 2.5/2.4）显示市场对其定价最保守、安全边际最高；但ROE-0.44%垫底、净利率转负、周转率0.40最低，说明资产效率与盈利能力全面落后于龙头。万华靠全球成本优势+规模效应（周转0.63+净利6.91%）实现12% ROE，华鲁靠煤化工一体化低成本实现10% ROE，诚志既无成本Top quartile优势也无周转优势，ROE长期在1%附近挣扎。结论：<strong>财务最安全，但生意最差。</strong>
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<table>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
+  <tr><td>周期型（基础化工）</td><td><strong>PB（底部）</strong></td><td>PE（顶部参考）、产能利用率、产品价差、重置成本</td><td class="good">✅ 匹配——当前PB 0.44破净处于历史底部，PE已失真（亏损期）</td></tr>
+</table>
+<div class="summary-box">
+  <strong>估值方法：</strong>基础化工必须用PB定价——当前PB破净+历史底部区间，符合周期底部特征。但需注意：诚志PB低部分源于66.94亿商誉虚高净资产，若扣除商誉后“有形PB” =113亿/(192亿-66.94亿)=0.90倍，折价幅度大幅收窄。市场对商誉减值担忧已price in。
+</div>
+
+<h3>6.6 成长股成色检验（不适用 - 周期股跳过PS检验）</h3>
+<div class="highlight-box">
+  <strong>检验结论：不适用。</strong>诚志当前PS约1.0倍（113亿/110亿）、PE亏损，虽看似“便宜”，但周期股成长性检验需看产能出清而非营收增速。公司营收>100亿但增速-0.35%停滞，毛利率14.59%且不稳定，不满足成长股“营收>20亿且增速>20%+毛利率>30%+CFO为正+PS&lt;10”等四步验证，实为成熟期周期股。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  Step 1 - 行业定位：纯周期（基础化工煤化工），分散格局CR3&lt;15%，规模壁垒高但技术壁垒中等，成熟期+成长期（POE）<br>
+  Step 2 - 财务体检：ROE -0.44%（三低型：低利润-0.71%×低周转0.40×低杠杆1.57），去杠杆ROA -0.28%基础回报为负，CFO 10.78亿/扣非63倍现金优秀<br>
+  Step 3 - 估值判断：PB 0.44破净历史底部（20%分位），PE 59倍失真，PCF 10倍偏低，安全边际高但商誉减值隐忧大<br>
+  Step 4 - 风险排查：商誉66.94亿悬顶（35%净资产）、Q4单季巨亏、清洁能源77%依赖单一周期、补税及公允价值冲击<br>
+  Step 5 - 结论：非好公司（ROE极低+无护城河）+ 底部价格（PB破净）= 困境反转博弈，非价值投资<br>
+  Step 6 - 跟踪：跟踪甲醇/乙烯价差、毛利率能否站稳18%+、商誉减值计提、POE项目投产进度、连续2季度盈利
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="bad">✗</td><td>纯周期成熟行业，集中度分散CR3&lt;15%，无强壁垒，需求增速≈GDP，价格波动剧烈</td></tr>
+  <tr><td>② 好公司</td><td class="bad">✗</td><td>ROE -0.44%&lt;15%，毛利率14.59%且下滑持续3年，跨周期平均ROE仅0.6%，三低型无护城河</td></tr>
+  <tr><td>③ 好价格</td><td class="good">✓</td><td>PB 0.44破净历史底部，PCF 10倍偏低，2026E PB修复空间大；但需扣除商誉后有形PB 0.90</td></tr>
+</table>
+<p style="font-size:13px;color:#666">三要素仅满足1/3（好价格），不构成“好行业+好公司+好价格”的戴维斯双击条件，仅为困境反转左侧博弈。</p>
+
+<h3>7.3 风险评估</h3>
+<div class="danger-box">
+  <strong>三个陷阱排查：</strong><br>
+  ☐ 低PE + 低增长 + 高负债 = 价值陷阱 → <strong>未命中但接近</strong>（当前PE 59倍非低PE，但扣非PE 34倍+营收-0.35%+商誉高企，若按扣非PE看有价值陷阱特征；但因PB破净+负债率32.8%低，不算典型价值陷阱）<br>
+  ☐ 低PE + 周期顶点 = 周期陷阱 → <strong>未命中</strong>（当前为周期底部亏损期，非顶部；周期陷阱发生在2021年化工品暴利期PE极低时）<br>
+  ☐ 高PE + 高增速但现金流为负 = 烧钱陷阱 → <strong>未命中</strong>（虽PE 59倍高但CFO 10.78亿为正，现金流强劲非烧钱）<br>
+  <strong>结论：三个经典陷阱均未命中，但存在“PB底部+盈利不可持续”的周期底部估值陷阱变种。</strong>
+</div>
+
+<h4 style="margin-top:14px">b. 管理层与治理风险</h4>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力与履历</td><td>一般</td><td>实控人诚志科融（清华控股系）→青岛西海岸国资，管理层多为清华系/化工背景，但2017年后战略摇摆（清洁能源+显示材料+医疗+生命科技多跨界）未形成稳定增长点</td></tr>
+  <tr><td>股权结构与利益一致性</td><td>一般</td><td>第一大股东诚志科融30.83%+二股东天府清源15.77%，股权集中但无管理层持股披露，利益一致性弱</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td>需关注</td><td>清华系校企背景关联交易较多（物业租赁、融资租赁等），虽无重大违规但2025年补税及滞纳金暴露内控瑕疵</td></tr>
+  <tr><td>资本配置记录</td><td>差</td><td>20余年频繁跨界并购致商誉66.94亿（超50亿来自南京诚志），承诺期后业绩持续下滑，资本配置激进，POE 48亿项目仍在投入期</td></tr>
+  <tr><td>管理层增减持记录</td><td>无</td><td>近一年无董监高大额增持公告，未释放信心信号</td></tr>
+  <tr><td>CEO交接/关键人员变动</td><td>无风险</td><td>董事长龙大伟（清华控股背景）稳定，无交接期</td></tr>
+</table>
+
+<h4 style="margin-top:14px">c. 盈利可持续性</h4>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是靠价？</td><td>价驱动（脆弱）</td><td>2025营收-0.35%量基本持平，2026Q1营收-5.41%但净利+177%完全靠“产品量价齐升”中价的修复，不可持续</td></tr>
+  <tr><td>涨价能否持续？</td><td>需观察</td><td>煤化工价格高度绑定煤炭/原油，下游需求不足+产能过剩未根本扭转，一季度反弹能否持续存疑</td></tr>
+  <tr><td>非经常性利润占比</td><td>高（2025）</td><td>归母-0.78亿但扣非0.17亿，非经常性亏损-0.95亿（公允价值-1.24亿+滞纳金-0.33亿），一次性冲击大</td></tr>
+  <tr><td>大客户/大项目集中度</td><td>分散但单一板块集中</td><td>客户分散（园区管道+全国），但收入77%集中于清洁能源单一板块，板块风险即公司风险</td></tr>
+  <tr><td>政策/监管依赖度</td><td>中</td><td>清洁能源产品涉消费税（补缴1.8亿），显示材料受国家半导体/面板政策影响，医疗健康涉牌照</td></tr>
+</table>
+
+<h4 style="margin-top:14px">d. 关键变量敏感性</h4>
+<div class="summary-box">
+  <strong>变量1: 煤化工产品价差（甲醇/乙烯-煤炭）</strong><br>
+  乐观: 煤价回落+产品价格反弹10% → 毛利率修复至18%+ → 年化净利可达5-8亿<br>
+  中性: 维持当前价差 → 净利2-3亿（2026H1水平）<br>
+  悲观: 煤价再涨+产品跌5% → 毛利率回落至12% → 再度亏损<br><br>
+  <strong>变量2: 商誉减值（南京诚志）</strong><br>
+  乐观: 不计提 → 净资产维持<br>
+  中性: 计提5%（3.3亿）→ 吞噬一年利润<br>
+  悲观: 计提10-20%（6.7-13亿）→ 净资产缩水+PB被动抬升，股价二次探底<br><br>
+  <strong>变量3: POE/新材料项目投产进度</strong><br>
+  乐观: 2027年顺利投产 → 贡献新增长极，估值重塑<br>
+  中性: 延期1年 → 继续消耗现金无产出<br>
+  悲观: 技术或市场不及预期 → 48亿投资面临减值
+</div>
+
+<h3>7.4 前景展望</h3>
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. 周期修复 — 2026Q1产品量价齐升+降本增效已验证，煤化工景气度阶段性回升，毛利率从14.59%修复至18.82%<br>
+  2. PB底部安全边际 — 破净+历史底部+有息负债率低，具备困境反转赔率，若连续2-3季度盈利将迎来PB修复<br>
+  3. 清华系资源与显示材料优势 — 依托高校技术，液晶材料中高端份额有望受益于面板行业企稳<br><br>
+  <strong>负向拖累：</strong><br>
+  1. 商誉66.94亿达摩克利斯之剑 — 占净资产35%，一旦计提将吞噬利润并引发市场恐慌<br>
+  2. 单一主业过度依赖 + 新业务未成 — 77%依赖清洁能源，无第二增长曲线对冲，战略摇摆20余年未破局<br>
+  3. 盈利天花板低 — 跨周期ROE仅0.6%，即使修复也难超5-8%，缺乏长期复利能力
+</div>
+
+<h3>7.5 三情景简表</h3>
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>EPS预估（年化）</th><th>PB区间</th><th>预期回报（vs 6.55元）</th></tr>
+  <tr><td>乐观</td><td>产品价差持续修复+全年盈利6亿+无商誉减值</td><td>0.35元</td><td>1.0-1.2x → 14.5-17.5元</td><td>+121%~+167%</td></tr>
+  <tr><td>中性</td><td>维持2026H1水平全年盈利4-5亿，小额减值</td><td>0.25元</td><td>0.7-0.9x → 10.2-13.1元</td><td>+56%~+100%</td></tr>
+  <tr><td>悲观</td><td>价格回落再亏损+商誉计提3-6亿</td><td>-0.15元</td><td>0.35-0.44x → 5.1-6.4元</td><td>-22%~-2%</td></tr>
+</table>
+<p style="font-size:13px;color:#666;margin-top:4px;">概率判断：中性40%，乐观25%，悲观35%（商誉风险权重高）。中性情景下PB修复至0.7-0.9x为合理预期，但需以连续盈利为前提。</p>
+
+<h3>7.6 资金面信号（A股）</h3>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>北向资金持股变动</td><td>数据待补充</td><td>化工周期股非北向核心配置，需关注Q2持股变化</td></tr>
+  <tr><td>机构持仓变动</td><td>数据待补充</td><td>自2019年高点后市值持续缩水，机构关注度低</td></tr>
+  <tr><td>融资余额变动</td><td>数据待补充</td><td>7月末融资余额约？周期底部博弈资金可能活跃</td></tr>
+  <tr><td>大股东增减持</td><td>无</td><td>近一年无大股东增持公告（诚志科融30.83%稳定）</td></tr>
+  <tr><td>大宗交易</td><td>无/折价</td><td>无溢价抢筹信号</td></tr>
+</table>
+<div class="summary-box">
+  <strong>资金面整体判断：中性偏弱。</strong>周期底部+商誉雷+业绩波动大，机构与北向关注度低，缺乏资金面催化。2026Q1业绩反转后若能持续2季度，或吸引困境反转类资金关注，但当前无明确增量资金信号。核心仍以基本面（价差+商誉）为准，资金面仅作辅助验证。
+</div>
+
+<h3>7.7 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——靠南京化工园的煤化工装置把煤炭变成工业气体/甲醇/乙烯卖给园区及周边化工厂，赚大宗商品价差钱，本质是“煤价与化工品价格的价差生意”。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？——66.94亿商誉（占净资产35%）+ 全年转亏但Q4单季亏1.82亿的极端波动，说明公司盈利极不稳定且头顶巨雷。<br>
+  3. 如果现在买入，期待的回报来源是什么？——① PB破净修复（0.44→0.7-1.0x）的估值修复钱；② 周期底部产品价差修复的业绩反弹钱。两者皆为困境反转的左侧博弈，非长期复利。<br>
+  4. 什么情况下你会坚决卖出？——① 商誉出现大额计提（>3亿）；② 2026Q2/Q3再度亏损验证修复不可持续；③ 煤化工产能进一步过剩致毛利率回落至12%以下；④ POE项目延期或投资失败。
+</div>
+
+</div></div>
+
+<div class="footer">
+  免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+  数据来源：诚志股份2025年年度报告及2025年度财务决算报告（巨潮资讯 2026-04-15）、2026年一季报/中报、东方财富/中财网/雪球行情数据、券商研报
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>
