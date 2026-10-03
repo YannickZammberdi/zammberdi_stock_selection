@@ -30,20 +30,24 @@ on:
       model:
         description: '模型（zen免费 / deepseek官方API）'
         required: false
-        default: 'opencode/nemotron-3.5-lightning-free'
+        default: 'opencode/space-bunny-free'
         type: choice
         options:
-          - opencode/nemotron-3.5-lightning-free
-          - opencode/nemotron-3-ultra-free
-          - opencode/hy3-free
-          - opencode/x-preview-f-free
-          - opencode/mimo-v2.5-free
+          - opencode/muse-spark-1.3-contributor-free
           - opencode/muse-spark-1.2-contributor-free
+          - opencode/space-bunny-free
+          - opencode/longcat-2.5-preview-free
+          - opencode/ling-3.1-flash-free
+          - opencode/mimo-v2.6-flash-free
+          - opencode/deepseek-v4-flash-free
           - opencode/big-pickle
-          - deepseek/deepseek-v4-flash
-          - deepseek/deepseek-chat
-          - deepseek/deepseek-reasoner
+          - opencode/fledge-alpha-free
+          - opencode/mimo-v2.5-free
+          - opencode/ling-3.0-flash-fin-free
           - deepseek/deepseek-v4-pro
+          - deepseek/deepseek-v4-flash
+          - deepseek/deepseek-reasoner
+          - deepseek/deepseek-chat
 
 permissions:
   contents: write
