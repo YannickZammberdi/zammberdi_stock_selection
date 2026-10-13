@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
-"""Sync stock-learning/stocks-analysis reports to docs/ (GitHub Pages).
+"""Refresh 评分沿革 + rebuild index.html in docs/ (GitHub Pages).
 
-Replaces the gh-pages-sync skill: copies reports, prunes stale files,
-regenerates all index.html data arrays, and updates home page counts.
+架构（2026-10-13 起）：docs/ 是唯一真身。
+    docs/            报告 + history/scores.json + index.html，直接被 Pages 消费
+    stock-learning/  只保留学习资料（materials / notes / quizzes），不含任何报告
 
-Rules mirror stock-learning/stocks-analysis layout:
-    A股/**/*.html            -> docs/stocks/        (flattened)
-    ASX/**/*.html            -> docs/asx/stocks/    (flattened)
-    宏观报告/*.html           -> docs/macro/
-    行业报告/A股——*.html       -> docs/industry/
-    行业报告/ASX——*.html       -> docs/asx/industry/
-    *_交易计划.html (root/交易计划/) -> docs/plans/ or docs/asx/plans/
-    验证/*_C方案验证.html        -> docs/verify/ or docs/asx/verify/  (market by code)
+本脚本只做三件事：
+    1. 扫描 docs/
+    2. 刷新每份报告的「评分沿革」表格，并把分数/体系/口径说明回写 history/scores.json
+    3. 重建各级 index.html 的表格数据 + 首页计数
+
+不再做文件拷贝，也不再删除任何报告——copy_files / prune_stale 已于 2026-10-13 停用。
+旧实现会无条件 shutil.copy2 覆盖 docs（导致 Pages 滞后），且 prune_stale 会删除
+"没有源文件对应物"的报告（实测会误删 13 份 ASX 行业报告与皖维高新交易计划）。
 """
 
 import datetime
@@ -22,12 +23,25 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SRC = ROOT / "stock-learning" / "stocks-analysis"
 DOCS = ROOT / "docs"
+
+# ---------------------------------------------------------------------------
+# 架构（2026-10-13 起）：docs/ 是唯一真身。
+#   docs/            报告 + 评分历史 + 索引，直接被 GitHub Pages 消费
+#   stock-learning/  只保留学习资料（materials / notes / quizzes），不含任何报告
+# 因此本脚本不再做「源 → 副本」的拷贝，也不再清理"陈旧副本"——
+# 那些操作在双层结构下会造成误删，且保证不了 Pages 是最新版。
+# 脚本现在只负责：评分沿革注入 → scores.json 回写 → 各级 index.html 重建。
+# ---------------------------------------------------------------------------
 
 HISTORY_DIR = DOCS / "history"
 HISTORY_FILE = HISTORY_DIR / "scores.json"
 HISTORY_MARKER = "<!-- HISTORY-TABLE -->"
+# 已注入的评分沿革表格：用于幂等替换（否则 marker 被消费后表格会永久冻结）
+HISTORY_TABLE_RE = re.compile(
+    r'\s*<h2[^>]*>\s*评分沿革\s*</h2>.*?<table class="history-table">.*?</table>',
+    re.S,
+)
 
 STOCK_TARGETS = [("A股", DOCS / "stocks"), ("ASX", DOCS / "asx" / "stocks")]
 INDUSTRY_TARGETS = [("A股", DOCS / "industry"), ("ASX", DOCS / "asx" / "industry")]
@@ -75,7 +89,10 @@ def log(msg):
 # ---------------------------------------------------------------- collect sources
 
 def collect_sources():
-    """Return dict: category -> list of (rel_source, basename, market_or_type)."""
+    """Return dict: category -> list of (path, basename, market_or_type[, code]).
+
+    2026-10-13 起直接扫描 docs/（唯一真身），不再从 stock-learning 拷贝。
+    """
     sources = {
         "stocks": [],      # (Path, basename, market)
         "industry": [],    # (Path, basename, market)
@@ -85,47 +102,51 @@ def collect_sources():
         "funds": [],       # (Path, basename, market)
     }
 
-    for market, sub in (("A股", "A股"), ("ASX", "ASX")):
-        for f in (SRC / sub).rglob("*.html"):
-            sources["stocks"].append((f, f.name, market))
+    for market, d in (("A股", DOCS / "stocks"), ("ASX", DOCS / "asx" / "stocks")):
+        if d.exists():
+            for f in sorted(d.glob("*.html")):
+                if f.name == "index.html":
+                    continue
+                sources["stocks"].append((f, f.name, market))
 
-    for f in (SRC / "行业报告").glob("*.html"):
-        name = f.name
-        if name.startswith("A股——"):
-            market = "A股"
-        elif name.startswith("ASX——"):
-            market = "ASX"
-        else:
-            log(f"[skip] 行业报告文件名无法识别市场: {name}")
+    for market, d in (("A股", DOCS / "industry"), ("ASX", DOCS / "asx" / "industry")):
+        if d.exists():
+            for f in sorted(d.glob("*.html")):
+                if f.name == "index.html":
+                    continue
+                sources["industry"].append((f, f.name, market))
+
+    for market, d in (("A股", DOCS / "macro"), ("ASX", DOCS / "macro")):
+        if not d.exists():
             continue
-        sources["industry"].append((f, name, market))
+        for f in sorted(d.glob("*.html")):
+            if f.name == "index.html":
+                continue
+            m = re.match(r"(A股|ASX)_宏观环境报告_(\d{4}-\d{2}-\d{2})\.html", f.name)
+            sources["macro"].append((f, f.name, m.group(1) if m else market))
 
-    for f in (SRC / "宏观报告").glob("*.html"):
-        m = re.match(r"(A股|ASX)_宏观环境报告_(\d{4}-\d{2}-\d{2})\.html", f.name)
-        market = m.group(1) if m else "unknown"
-        sources["macro"].append((f, f.name, market))
+    for market, d in (("A股", DOCS / "plans"), ("ASX", DOCS / "asx" / "plans")):
+        if not d.exists():
+            continue
+        for f in sorted(d.glob("*_交易计划.html")):
+            _m, code = judge_plan_market_code(f)
+            sources["plans"].append((f, f.name, market, code))
 
-    # trade plans: root and 交易计划/ subdir
-    plan_files = list((SRC / "交易计划").glob("*_交易计划.html"))
-    plan_files += list(SRC.glob("*_交易计划.html"))
-    for f in plan_files:
-        market, code = judge_plan_market_code(f)
-        sources["plans"].append((f, f.name, market, code))
+    for market, d in (("A股", DOCS / "verify"), ("ASX", DOCS / "asx" / "verify")):
+        if not d.exists():
+            continue
+        for f in sorted(d.glob("*_C方案验证.html")):
+            _m, code = judge_verify_market_code(f)
+            sources["verify"].append((f, f.name, market, code))
 
-    # C方案验证: flat 验证/ dir, market judged by code
-    for f in (SRC / "验证").glob("*_C方案验证.html"):
-        market, code = judge_verify_market_code(f)
-        sources["verify"].append((f, f.name, market, code))
-
-    # 基金体检: 基金/ 目录（中澳通用，支付宝/RMB 与 ASX/AUD 均在同一池）
-    if (SRC / "基金").exists():
-        for f in (SRC / "基金").rglob("*.html"):
-            # 市场按文件名或父目录推断：含 ASX/VAS/IVV 视为 ASX，否则支付宝
+    # 基金体检：中澳通用，与支付宝/RMB 同池
+    fd = FUNDS_TARGET
+    if fd.exists():
+        for f in sorted(fd.glob("*.html")):
+            if f.name == "index.html":
+                continue
             name_lower = f.name.lower()
-            if any(k in name_lower for k in ["vas", "ivv", "asx", "qbe", "iag"]):
-                market = "ASX"
-            else:
-                market = "支付宝"
+            market = "ASX" if any(k in name_lower for k in ["vas", "ivv", "asx", "qbe", "iag", "vaf"]) else "支付宝"
             sources["funds"].append((f, f.name, market))
 
     return sources
@@ -139,14 +160,7 @@ def judge_plan_market_code(path):
         return "A股", code
     if re.search(r"[A-Za-z]", code):
         return "ASX", code
-    # fallback: index.md table
-    idx = SRC / "index.md"
-    if idx.exists():
-        for line in idx.read_text(encoding="utf-8").splitlines():
-            if f"| {code} |" in line:
-                if "ASX" in path.parent.name or "/ASX" in line:
-                    return "ASX", code
-                return "A股", code
+    # fallback: 已按目录归置，无需再猜市场
     return "A股", code
 
 
@@ -164,39 +178,35 @@ def judge_verify_market_code(path):
 # ---------------------------------------------------------------- copy + prune
 
 def copy_files():
-    sources = collect_sources()
-    copied, skipped = 0, 0
+    """已停用：docs/ 即唯一真身，不存在「源 → 副本」拷贝。
 
-    def do_copy(src_path, dst_dir):
-        nonlocal copied, skipped
-        dst_dir.mkdir(parents=True, exist_ok=True)
-        dst = dst_dir / src_path.name
-        if dst.exists() and dst.read_bytes() == src_path.read_bytes():
-            skipped += 1
-            return
-        shutil.copy2(src_path, dst)
-        copied += 1
-        log(f"[copy] {src_path.name} -> {dst_dir.name}/")
-
-    for f, _, market in sources["stocks"]:
-        do_copy(f, STOCK_TARGETS[0][1] if market == "A股" else STOCK_TARGETS[1][1])
-    for f, _, market in sources["industry"]:
-        do_copy(f, INDUSTRY_TARGETS[0][1] if market == "A股" else INDUSTRY_TARGETS[1][1])
-    for f, _, _ in sources["macro"]:
-        do_copy(f, DOCS / "macro")
-    for f, _, market, _ in sources["plans"]:
-        do_copy(f, DOCS / "plans" if market == "A股" else DOCS / "asx" / "plans")
-    for f, _, market, _ in sources["verify"]:
-        do_copy(f, DOCS / "verify" if market == "A股" else DOCS / "asx" / "verify")
-    for f, _, _ in sources["funds"]:
-        do_copy(f, FUNDS_TARGET)
-
-    prune_stale(sources)
-    return copied, skipped
+    2026-10-13 移除。原实现在 pipeline 中会无条件 shutil.copy2 覆盖 docs，
+    且 prune_stale() 会删除没有源文件的报告（实测会误删 14 份 ASX 行业报告与皖维交易计划）。
+    保留函数名仅为兼容调用点。
+    """
+    log("[skip] copy_files 已停用：docs 为唯一真身，无拷贝动作")
+    return 0, 0
 
 
 def prune_stale(sources):
-    """Delete report .html in docs/ that have no corresponding source file."""
+    """已停用：docs 为唯一真身，不再存在「陈旧副本」需要清理。
+
+    2026-10-13 移除。清理逻辑在双层结构下是误删源。
+    """
+    log("[skip] prune_stale 已停用：docs 为唯一真身，无副本可清理")
+
+
+def prune_stale_deprecated_body(sources):
+    """已废弃：原始清理实现，仅作参考保留，禁止调用。
+
+    该实现会删除 docs/ 中没有"源文件"对应物的报告。在旧双层结构下会误删
+    13 份 ASX 行业报告与皖维高新交易计划；docs 改为唯一真身后已无必要。
+    """
+    raise RuntimeError(
+        "prune_stale 已废弃：docs/ 是唯一真身，不存在需要清理的副本。"
+        "如确需删除报告，请直接从 docs/ 手动删除对应文件。"
+    )
+    # ---- 以下为原始实现，仅供追溯 ----
     stock_a = {s[1] for s in sources["stocks"] if s[2] == "A股"}
     stock_asx = {s[1] for s in sources["stocks"] if s[2] == "ASX"}
     ind_a = {s[1] for s in sources["industry"] if s[2] == "A股"}
@@ -294,6 +304,38 @@ def code_key(filename):
 
 def normalize_type(dirname):
     return "防御性" if dirname == "防御型" else dirname
+
+
+TYPE_RULES = [
+    ("周期性", ("周期股评分体系", "纯周期", "采用周期股评分体系")),
+    ("混合周期", ("混合周期",)),
+    ("价值型", ("价值型",)),
+    ("防御性", ("防御型", "防御性")),
+    ("成长性", ("成长性", "成长型", "非周期股评分体系")),
+]
+
+
+def guess_type_from_html(html, market):
+    """从报告正文推断 L5 分类（docs 单层结构下已无分类目录可读）。
+
+    判定顺序：先看报告里自述的行业类型，再退化为评分体系关键词，最后按市场兜底。
+    """
+    # 1) 报告自述的行业类型句最可靠
+    m = re.search(r"行业类型[：:]\s*<strong>([^<]{2,12})</strong>", html)
+    if m:
+        return m.group(1).strip()
+    m = re.search(r"行业类型[：:]\s*([^<\n]{2,12})", html)
+    if m:
+        seg = m.group(1).strip()
+        for label, kws in TYPE_RULES:
+            if any(k in seg for k in kws):
+                return label
+    # 2) 退化为评分体系关键词
+    head = html[:20000]
+    for label, kws in TYPE_RULES:
+        if any(k in head for k in kws):
+            return label
+    return "成长性" if market == "A股" else "成长性"
 
 
 def parse_plan(html, filename):
@@ -420,10 +462,11 @@ def render_data(rows, fields, sort_keys):
 # ---------------------------------------------------------------- per-category index build
 
 def build_stocks_index(market):
-    src_sub = SRC / ("A股" if market == "A股" else "ASX")
     target = DOCS / "stocks" if market == "A股" else DOCS / "asx" / "stocks"
     rows = []
-    for f in src_sub.rglob("*.html"):
+    for f in sorted(target.glob("*.html")) if target.exists() else []:
+        if f.name == "index.html":
+            continue
         html = read_utf8(f)
         name, code = parse_stock_name_code(html, f.name)
         rows.append({
@@ -442,7 +485,9 @@ def build_industry_index(market):
     target = DOCS / "industry" if market == "A股" else DOCS / "asx" / "industry"
     old = {r.get("file"): r for r in read_data_array(target / "index.html")}
     rows = []
-    for f in (SRC / "行业报告").glob("*.html"):
+    for f in sorted(target.glob("*.html")) if target.exists() else []:
+        if f.name == "index.html":
+            continue
         if market == "A股" and not f.name.startswith("A股——"):
             continue
         if market == "ASX" and not f.name.startswith("ASX——"):
@@ -678,32 +723,58 @@ def render_history_table(hist, key):
 
 
 def inject_history(dst_path, hist, key):
-    """Replace HISTORY_MARKER in a docs copy with the 评分沿革 table."""
+    """幂等注入/刷新评分沿革表。
+
+    2026-10-13 修复：原实现用 marker 替换后 marker 即消失，导致表格在首次注入后
+    永久冻结，后续改分不再更新。现在先移除既有表格，再在 marker 处（或 verdict 后）写入。
+    """
     html = read_utf8(dst_path)
-    if HISTORY_MARKER not in html:
-        return False
     table = render_history_table(hist, key)
-    new_html = html.replace(HISTORY_MARKER, table)
-    if new_html != html:
-        dst_path.write_text(new_html, encoding="utf-8")
-        log(f"[history] 注入评分沿革 -> {dst_path.name}")
-        return True
-    return False
+
+    # 1) 清掉历史遗留的评分沿革表（可能已无 marker）
+    stripped, n = HISTORY_TABLE_RE.subn("", html)
+    html = stripped
+
+    if not table:
+        if n:
+            dst_path.write_text(html, encoding="utf-8")
+            log(f"[history] 清空评分沿革（无历史记录） -> {dst_path.name}")
+            return True
+        return False
+
+    if HISTORY_MARKER in html:
+        html = html.replace(HISTORY_MARKER, table)
+    else:
+        # marker 已丢失：插到 verdict 框之后（若有），否则插到 tab-inner 结束前
+        m = re.search(r'(<div class="verdict[^"]*">.*?</div>)', html, re.S)
+        if m:
+            html = html[: m.end()] + "\n" + table + html[m.end():]
+        else:
+            m2 = re.search(r'(<div class="tab-inner">)', html)
+            if m2:
+                html = html[: m2.end()] + "\n" + table + "\n" + html[m2.end():]
+            else:
+                return False
+
+    dst_path.write_text(html, encoding="utf-8")
+    log(f"[history] 刷新评分沿革 -> {dst_path.name}")
+    return True
 
 
 def sync_stock_history(market):
-    """Upsert current stock report scores into history, inject 沿革 into docs copies."""
-    src_sub = SRC / ("A股" if market == "A股" else "ASX")
+    """Upsert current stock report scores into history, refresh 沿革 in-place."""
     target = DOCS / "stocks" if market == "A股" else DOCS / "asx" / "stocks"
     hist = load_history()
     changed = False
-    for f in sorted(src_sub.rglob("*.html")):
-        html = read_utf8(f)
+    for f in sorted(target.glob("*.html")) if target.exists() else []:
+        if f.name == "index.html":
+            continue
         key = code_key(f.name)
+        html = read_utf8(f)
         name, code = parse_stock_name_code(html, f.name)
         date = parse_date(html)
         score = parse_score(html)
-        type_ = normalize_type(f.parent.name)
+        type_ = guess_type_from_html(html, market)
         note = parse_score_note(html)
         if not key or not date or not score:
             continue
@@ -722,9 +793,7 @@ def sync_stock_history(market):
         if not found:
             st["series"].append({"d": date, "s": score, "t": type_, "n": note})
             changed = True
-        dst = target / f.name
-        if dst.exists():
-            inject_history(dst, hist, key)
+        inject_history(f, hist, key)
     for st in hist.values():
         st["series"].sort(key=lambda p: p.get("d", ""))
     if changed:
@@ -741,8 +810,9 @@ def count_html_files(d):
 
 
 def update_home_counts():
-    macro_a = sum(1 for f in (SRC / "宏观报告").glob("A股_*.html"))
-    macro_asx = sum(1 for f in (SRC / "宏观报告").glob("ASX_*.html"))
+    macro_dir = DOCS / "macro"
+    macro_a = sum(1 for f in macro_dir.glob("A股_*.html")) if macro_dir.exists() else 0
+    macro_asx = sum(1 for f in macro_dir.glob("ASX_*.html")) if macro_dir.exists() else 0
     counts_a = {
         "macro": macro_a,
         "industry": count_html_files(DOCS / "industry"),
@@ -807,10 +877,11 @@ def main():
         sys.stderr.reconfigure(encoding="utf-8")
     except Exception:
         pass
-    dry = "--dry-run" in sys.argv
-    if dry:
-        print("dry-run 模式：不写文件（本脚本当前只支持直接执行，dry-run 仅提示）")
-    copied, skipped = copy_files()
+    if "--dry-run" in sys.argv:
+        print("dry-run 模式：本脚本直接执行，dry-run 仅提示")
+    log("架构：docs/ 为唯一真身，本脚本不做拷贝、不做清理")
+    sources = collect_sources()
+    log("[scan] " + "，".join(f"{k} {len(v)}" for k, v in sources.items()))
     build_stocks_index("A股")
     build_stocks_index("ASX")
     sync_stock_history("A股")
@@ -824,7 +895,7 @@ def main():
     build_funds_index()
     build_macro_index()
     update_home_counts()
-    log(f"完成：复制 {copied}，跳过 {skipped}（内容一致）")
+    log("完成：评分沿革已刷新，各级 index.html 已重建")
 
 
 if __name__ == "__main__":

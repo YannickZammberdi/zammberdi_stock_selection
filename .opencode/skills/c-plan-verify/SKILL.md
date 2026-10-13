@@ -20,7 +20,7 @@ C方案的本质一句话：**用公开信息，低成本验证"这家公司是�
 **执行顺序：先有L1-L6报告，再跑C方案。** 没有报告的股票，先跑 `stock-report-tab` 生成报告，或明确标注"此验证无L1-L6基础，仅供参考"。
 
 **执行流程：**
-1. 先读该股已有L1-L6报告（`stock-learning/stocks-analysis/{市场}/{L5分类}/{简称}_{代码}_分析报告.html`）
+1. 先读该股已有L1-L6报告（`docs/stocks/{简称}_{代码}_分析报告.html（A股）或 docs/asx/stocks/{简称}_{代码}_分析报告.html（ASX）`）
 2. 从报告中提取**待验证的具体判断**，报告里有现成素材的tab：
    - **L6 资金面信号**（北向、机构持仓、融资、大股东增减持）→ C方案②③④去核实这些信号的细节和最新变化
    - **L6 风险评估-管理层增减持记录** → C方案②深挖
@@ -149,9 +149,9 @@ C方案的本质一句话：**用公开信息，低成本验证"这家公司是�
 
 ### 路径
 
-`stock-learning/stocks-analysis/验证/{股票简称}_{代码}_C方案验证.html`
+`docs/verify/{股票简称}_{代码}_C方案验证.html（A股）或 docs/asx/verify/（ASX）`
 
-> 示例：`stock-learning/stocks-analysis/验证/新和成_002001_C方案验证.html`
+> 示例：`docs/verify/新和成_002001_C方案验证.html`
 
 ### 单页HTML结构（比stock-report-tab精简，无tab）
 
@@ -220,4 +220,4 @@ Best regards,
 - [ ] 数据待补充项有灰色标注，未参与判定
 - [ ] 与已有L1-L6报告冲突处已标注
 - [ ] 用户待办清单单独列出（IR邮件/AGM/渠道验证）
-- [ ] 输出路径在 `stock-learning/stocks-analysis/验证/` 下
+- [ ] 输出路径在 `docs/verify/` 下

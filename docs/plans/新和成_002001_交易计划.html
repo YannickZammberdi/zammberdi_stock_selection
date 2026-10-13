@@ -31,6 +31,11 @@
   .section{margin:14px 0}
   .section h2{font-size:16px;margin-bottom:8px;border-bottom:2px solid #333;padding-bottom:3px}
   .plan-footer{font-size:11px;color:#aaa;text-align:center;padding:20px 0 8px;border-top:1px solid #eee;margin-top:20px}
+  .alert{background:#ffebee;border-left:4px solid #c62828;padding:10px 12px;margin:10px 0;font-size:12px;border-radius:0 4px 4px 0;line-height:1.7}
+  .alert b{color:#c62828}
+  .warnbox{background:#fff8e1;border-left:4px solid #f9a825;padding:10px 12px;margin:10px 0;font-size:12px;border-radius:0 4px 4px 0;line-height:1.7}
+  .exec{background:#f5f5f5;border:1px dashed #bbb;border-radius:6px;padding:10px 12px;margin-top:14px;font-size:12px;line-height:1.7}
+  .exec h3{font-size:13px;margin-bottom:6px;color:#333;border-bottom:1px solid #ddd;padding-bottom:3px}
   .bar{height:6px;border-radius:3px;background:#eee;overflow:hidden;margin-top:3px}
   .bar-fill{height:6px;border-radius:3px}
   .sig{font-size:11px;padding:1px 5px;border-radius:3px;font-weight:600;display:inline-block;margin-top:4px}
@@ -43,8 +48,16 @@
 <div class="plan-wrap" style="padding:0 12px">
 
 <h1>📄 新和成 (002001) 交易计划</h1>
-<div class="sub">生成：2026-08-28 ｜ L5分类：纯周期（基础化工/精细化工） ｜ 状态：<span class="tag blue">计划中</span> ｜ 评分：83/100 · 品质优秀</div>
-<div style="font-size:11px;color:#888;text-align:center;margin:-8px 0 10px">现价 26.80元（2026-08-26收盘26.46元/总市值约825亿）｜ 数据来源：2026半年报+券商一致预期+博亚和讯/Investing | 2026H1已披露</div>
+<div class="sub">生成：2026-08-28 ｜ <b style="color:#c62828">更新：2026-10-13 · 修正持仓状态</b> ｜ L5分类：纯周期（基础化工/精细化工） ｜ 状态：<span class="tag red">持有中 · 浮亏 -9.0%</span> ｜ 评分：83/100 · 品质优秀</div>
+<div style="font-size:11px;color:#888;text-align:center;margin:-8px 0 10px">现价 <b>25.95元</b>（2026-10-13收盘 / 总市值约797.6亿）｜ 实际成本 <b>28.52元</b> ｜ 数据来源：2026半年报+爱股网F10+中银证券行业周报</div>
+
+<div class="alert">
+<b>⚠️ 计划状态修正：实际已持仓，本计划不再是「建仓计划」而是「持有决策」。</b><br>
+实际成本 <b>28.52 元</b>（计划生成时假设为 0 仓位）｜ 现价 25.95 元 → 浮亏 <b>-9.01%</b>，回本需 <b>+9.9%</b><br>
+<b>买入价高于原计划区间：</b>计划第一批设为 26.0-27.0 元，实际 28.52 元高出上沿 <b>5.6%</b>——按纪律这批是"抢跑"了。<br>
+<b>好消息：</b>现价 25.95 元已跌回原计划第一批建仓区内，比你的成本便宜 9%。<br>
+<b>需要重算的：</b>硬止损原按均价 26.80 定在 22.78 元（-15%），按实际成本 28.52 应为 <b>24.24 元</b>。
+</div>
 
 <div class="grid">
   <div class="card">
@@ -62,27 +75,35 @@
   </div>
   <div class="card">
     <h3>📊 估值目标</h3>
-    <div class="row"><span class="label">现价</span><span class="val">~26.80元</span></div>
-    <div class="row"><span class="label">EPS(TTM)</span><span class="val">~2.33元 (H1 1.305+H2'25 1.03)</span></div>
+    <div class="row"><span class="label">现价</span><span class="val">25.95元（10/13收盘）</span></div>
+    <div class="row"><span class="label">EPS(TTM)</span><span class="val">~2.33元 (H1 1.30 + H2'25 1.03)</span></div>
     <div class="row"><span class="label">EPS(2026E)</span><span class="val">~2.82元 (一致预期86.6亿)</span></div>
-    <div class="row"><span class="label">PE(TTM) 11.5x → 16x</span><span class="val" style="color:#2e7d32">~37.3元 +39%</span></div>
-    <div class="row"><span class="label">PE(TTM) 11.5x → 18x</span><span class="val" style="color:#2e7d32">~42.0元 +56%</span></div>
-    <div class="row"><span class="label">PB 2.36x → 3.5x</span><span class="val" style="color:#2e7d32">~39.7元 +48%</span></div>
-    <div class="row"><span class="label">券商目标均值</span><span class="val">38.01元 +42%（7买入1卖出）</span></div>
+    <div class="row"><span class="label">PE(TTM) 11.1x → 16x</span><span class="val" style="color:#2e7d32">37.3元 <b>+44%</b></span></div>
+    <div class="row"><span class="label">PE(TTM) 11.1x → 18x</span><span class="val" style="color:#2e7d32">42.0元 <b>+62%</b></span></div>
+    <div class="row"><span class="label">PB 2.29x → 3.5x</span><span class="val" style="color:#2e7d32">39.7元 <b>+53%</b></span></div>
+    <div class="row"><span class="label">券商目标均值</span><span class="val">38.01元 +46%（7买入1卖出）</span></div>
     <div class="row"><span class="label">股息率</span><span class="val">3.28% (10派8+2) 提供底部支撑</span></div>
     <div class="row"><span class="label">时间预期</span><span class="val">12-18个月（至2027H1）</span></div>
-    <div style="font-size:11px;color:#888;margin-top:6px">注：PE目标价=EPS(TTM)×目标PE；PB目标价=净资产11.35×目标PB。52周区间22.42-40.19元。</div>
+    <div style="font-size:11px;color:#888;margin-top:6px">注：PE目标价=EPS(TTM)×目标PE；PB目标价=净资产11.35×目标PB。52周区间 23.59 – 28.83。</div>
   </div>
 </div>
 
 <div style="background:#e8f4f8;border:1px solid #bbdefb;border-radius:6px;padding:10px;font-size:12px;color:#333;margin:10px 0">
-  <strong>🔍 买入前置判断（五大闸门）—— 全部通过 ✅</strong><br>
-  1) 估值安全边际：现价26.80远低于合理PE 16x对应37.3元，PB仅28%分位，未触及&gt;70%高位闸门 &nbsp;✅<br>
-  2) 基本面达标：L5评分83/100，周期评分体系下 穿越周期ROE 15/15、负债安全15/15，无硬伤 &nbsp;✅<br>
-  3) 逻辑未证伪：2026H1营收131.29亿+18.28%、净利40.11亿+11.31%，蛋氨酸量价齐升验证，氨基酸子公司净利20.13亿+39.9% &nbsp;✅<br>
-  4) 未触发卖出：未触及L13止损，PB仍&lt;40%分位，非顶部 &nbsp;✅<br>
-  5) 能讲清生意：全球维生素VA/VE寡头+蛋氨酸全球第三+一体化成本领先，靠寡头定价赚取44.67%毛利 &nbsp;✅<br>
-  → <strong>结论：可进入分批建仓流程</strong>，非“不建议买入”情形。
+  <strong>🔍 买入前置判断（五大闸门）—— 2026-10-13 复检，全部通过 ✅</strong><br>
+  1) 估值安全边际：现价 <b>25.95</b> 低于合理 PE 16x 对应 37.3 元（+44%），PB 2.29x 处低位，未触及 &gt;70% 高位闸门 &nbsp;✅<br>
+  2) 基本面达标：L5评分 83/100，周期体系下穿越周期ROE、负债安全均满分，无硬伤 &nbsp;✅<br>
+  3) 逻辑未证伪：H1 营收 131.29 亿(+18.28%)、净利 40.11 亿(+11.31%)，蛋氨酸量价齐升，氨基酸子公司净利 20.13 亿(+39.9%) &nbsp;✅（但增速差扩大，见风险栏）<br>
+  4) 未触发卖出：未建仓，无止损；PB 2.29x &lt;40% 分位，非顶部 &nbsp;✅<br>
+  5) 能讲清生意：全球维生素 VA/VE 寡头 + 蛋氨酸全球第三 + 一体化成本领先 &nbsp;✅<br>
+  → <strong>结论：仍可进入分批建仓流程，且价格比 8/28 计划时更低（-3.2%）。</strong>
+</div>
+
+<div style="background:#fff8e1;border:1px solid #ffe082;border-radius:6px;padding:10px;font-size:12px;color:#333;margin:10px 0">
+  <strong>⚠️ 但新增两条红灯，必须在建仓前想清楚</strong><br>
+  🔴 <b>H1 增收不增利且差距扩大</b>：营收 +18.28% vs 净利 +11.31%，7 个百分点的剪刀差，说明成本抬升的传导滞后于售价回落。这是纯周期股最典型的"利润顶在前面回落"信号。<br>
+  🔴 <b>维生素 E 价格在跌</b>：中银证券 10/12 基础化工周报明确「周均价跌幅居前品种：<b>维生素 E</b>、炭黑、电石」。VE 是新和成的核心盈利品种之一，价格走弱会直接压制 Q3 业绩。<br><br>
+  <strong>建议：✅ 建第一批 8%（原计划 26.0-27.0 元区间），但把第二批的触发条件从「跌至 24.0 元」改为「<b>10/28 三季报确认量价</b>」。</strong><br>
+  理由：价格已经比计划时更便宜，估值闸门全通过，跌下去可能拿不到；但基本面已出现两处边际转弱，不宜一次性把 20% 打满。把「等三季报」写进第二批，等于用时间换验证——若三季报证实 VE 已止跌，第二批在 24 元上方也能加；若证实继续走弱，则省下这笔。
 </div>
 
 <div class="section">
@@ -120,27 +141,31 @@
     <h3>💰 仓位计划（L12）</h3>
     <div class="row"><span class="label">账户类型</span><span class="val">10-50万档 · 单只上限20%</span></div>
     <div class="row"><span class="label">总计划仓位</span><span class="val">15-20%（信心⭐⭐⭐）</span></div>
-    <div class="row"><span class="label">已买</span><span class="val">0%（新计划）</span></div>
-    <div class="row"><span class="label">剩余</span><span class="val">15-20%</span></div>
-    <div style="margin-top:8px;font-size:12px;background:#e8f5e9;border-radius:4px;padding:6px;color:#2e7d32">
-      <strong>标准三批法（按估值20-40%分位）：</strong><br>
-      第一批 40%仓位 = 8% @ <strong>26.0-27.0元现价区</strong><br>
-      &nbsp;&nbsp;→ 发现机会时建观察仓<br>
-      第二批 35%仓位 = 7% @ <strong>24.0元（-10%）或Q3财报验证量价</strong><br>
-      &nbsp;&nbsp;→ 需同时满足：跌幅&gt;10% + 基本面未恶化 + 估值更低<br>
-      第三批 25%仓位 = 5% @ <strong>22.5元（-16%）或蛋氨酸价格企稳回升确认</strong><br>
-      <span style="color:#666">若买后涨20%至32元以上 → 停止加仓，不追高；若涨至PB&gt;60%分位(约4.5x/51元)考虑止盈。</span>
+    <div class="row"><span class="label">已买</span><span class="val" style="color:#c62828">成本 28.52 元（实际持仓）</span></div>
+    <div class="row"><span class="label">当前盈亏</span><span class="val" style="color:#c62828">-9.01%（回本需 +9.9%）</span></div>
+    <div class="row"><span class="label">剩余</span><span class="val"><span class="nd">仓位比例待确认</span></span></div>
+    <div style="margin-top:8px;font-size:12px;background:#fff3e0;border-radius:4px;padding:6px;color:#e65100">
+      <b>已建成实际持仓，不再是「分批建仓」框架</b><br>
+      买入价 28.52 高于原计划第一批上沿（27.0）<b>5.6%</b>，属抢跑<br>
+      现价 25.95 反而比成本便宜 9%，已回落进原定建仓区<br>
+      <br>
+      <b>当前决策：持有，等 10/28 三季报</b><br>
+      ▸ 三季报确认 VE 止跌 + 净利增速追上营收 → 继续持有，目标回本 28.52 / 修复 37.3<br>
+      ▸ Q3 增收不增利加剧 或 VE 继续跌 → 减仓，不摊平<br>
+      ▸ <b>加仓需重新评估</b>：摊低至 25.95 本身可行，但基本面有两处红灯，不建议在验证前加
     </div>
-    <div style="font-size:11px;color:#888;margin-top:6px">纪律：三条件不齐不加仓；买多了拿不住，买少了赚也没意义。</div>
+    <div style="font-size:11px;color:#888;margin-top:6px">原三批法计划（26.0/24.0/22.5 分批建仓）已不适用，改按「持有-验证-决策」执行。</div>
   </div>
   <div class="card">
-    <h3>🛑 止损（L13）</h3>
-    <div class="row"><span class="label">硬止损</span><span class="val" style="color:#c62828">22.78元 (-15%)</span></div>
+    <h3>🛑 止损（L13·已按实际成本重算）</h3>
+    <div class="row"><span class="label">硬止损</span><span class="val" style="color:#c62828">24.24元 (-15%)</span></div>
     <div style="font-size:12px;margin-top:6px;color:#666">
-      以首批均价26.80计，-15%硬止损。当天触发、当天卖出，不等反弹。
+      按<b>实际成本 28.52</b> 计 -15%。当天触发、当天卖出，不等反弹。<br>
+      <b style="color:#e65100">⚠ 原计划 22.78 元（按 26.80 均价算）已作废——用更宽的线会放大实际亏损</b><br>
+      <b style="color:#c62828">现价 25.95 距止损 24.24 仅 6.6% ⚠ 进入警戒区</b>
     </div>
     <div style="font-size:12px;margin-top:6px;background:#ffebee;border-radius:4px;padding:6px;color:#c62828">
-      纯周期/混合周期止损幅度 -15%（化工中波动）
+      纯周期/混合周期止损幅度 -15%（化工中波动）· 已用满，无放宽空间
     </div>
     <div class="row" style="margin-top:8px"><span class="label">基本面止损（任一触发即走）</span></div>
     <div style="font-size:12px;color:#666">
@@ -155,6 +180,7 @@
   <div class="card">
     <h3>📈 止盈（L13）</h3>
     <div class="row"><span class="label">第一批止盈</span><span class="val" style="color:#2e7d32">PE 16x ≈37.3元 卖50%</span></div>
+    <div class="row"><span class="label">回本参考</span><span class="val" style="color:#e65100">28.52 元（需 +9.9%）</span></div>
     <div style="font-size:11px;color:#888">或 PB 3.5x(50%分位)≈39.7元</div>
     <div class="row"><span class="label">第二批止盈</span><span class="val" style="color:#2e7d32">PE 18x ≈42元 清仓</span></div>
     <div style="font-size:11px;color:#888">或 PB&gt;4.5x 或 券商目标45.22元对应区</div>
@@ -267,12 +293,22 @@
 
 <div style="margin-top:14px;background:#f9f9f9;border:1px solid #e0e0e0;border-radius:6px;padding:10px;font-size:12px">
   <strong>📝 执行记录（持有期间更新）</strong><br>
-  <span style="color:#888">2026-08-28 生成初版计划，现价26.80/PE11.5/PB2.36处买入区。待建仓，每次触及买入/止盈/止损后在此追加记录，不覆盖原计划。</span>
+  <b style="color:#333">2026-08-28</b>｜生成初版计划，现价 26.80 / PE 11.5 / PB 2.36 处买入区。待建仓。<br>
+  <b style="color:#333">2026-10-13</b>｜<b style="color:#c62828">持仓状态修正</b>——实际已有持仓，成本 <b>28.52 元</b>，非计划假设的 0 仓位。<br>
+  　├ 现价 25.95，浮亏 <b>-9.01%</b>，回本需 +9.9%<br>
+  　├ 买入价高于原计划第一批上沿（27.0）<b>5.6%</b>，属抢跑；现价已回落进原建仓区<br>
+  　├ <b style="color:#c62828">硬止损从 22.78 重算为 24.24</b>（按实际成本 -15%），距现价仅 6.6%<br>
+  　├ 原「三批法建仓」框架作废，改为「持有 → 10/28 三季报验证 → 决策」<br>
+  　├ 估值仍支持持有：PE(TTM) 11.12x、PB 2.29x，PE 16x 对应 37.3 元（<b>+44%</b>）<br>
+  　├ 🔴 红灯①：H1 营收 +18.28% vs 净利 +11.31%，增收不增利<br>
+  　├ 🔴 红灯②：中银证券 10/12 周报「维生素 E 周均价跌幅居前」<br>
+  　└ 结论：<b>持有等 10/28 三季报</b>，验证前不加仓；跌破 24.24 无条件走<br>
+  　<span style="color:#c62828">⚠ 待补：实际仓位百分比未提供，无法校验是否在 15-20% 总计划上限内</span>
 </div>
 
 <div class="plan-footer">
-  交易计划书 · L11估值+ L12仓位+ L13止盈止损 · 买之前写，持有期间执行 ｜ 免责：仅个人学习分析，不构成投资建议<br>
-  数据：新和成2025年报/2026半年报/2026Q1、券商研报（国信/中泰/山证）、博亚和讯/百川盈孚、中财网/新浪财经/Investing<br>
+  交易计划书 · L11估值+ L12仓位+ L13止盈止损 · 买之前写，持有期间执行 · 更新：<b>2026-10-13</b> ｜ 免责：仅个人学习分析，不构成投资建议<br>
+  数据：腾讯行情（2026-10-13 收盘）、新和成 2025年报/2026半年报、爱股网F10、中银证券基础化工周报（2026-10-12）、券商研报（国信/中泰/山证）<br>
   L5分类：纯周期（基础化工）｜ 周期股PB为核心估值，PE为辅助（利润波动大易失真）
 </div>
 

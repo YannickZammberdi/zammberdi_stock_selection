@@ -26,22 +26,22 @@ L11-L13 框架定义在 `stock-learning/materials/`，生成前必须通读对�
 生成交易计划前，必须读取该股已生成的 L1-L5 分析报告作为数据基础：
 
 ```
-stock-learning/stocks-analysis/{市场}/{L5分类}/{股票简称}_{股票代码}_分析报告.html
+docs/stocks/{股票简称}_{股票代码}_分析报告.html（A股）或 docs/asx/stocks/{股票简称}_{股票代码}_分析报告.html（ASX）
 ```
 
-> 查找规则：先在 `stock-learning/stocks-analysis/{市场}/` 下按代码搜索（如 `002001`），再按简称搜索。找到后读取其中的 L1-L4 财务数据、L5 分类结论、L3 估值结论，交易计划中的估值/合理PE目标必须与之一致。找不到分析报告时，先提示用户生成报告，或标注"数据待补充"。
+> 查找规则：先在 `docs/` 下按代码搜索（如 `002001`），再按简称搜索。找到后读取其中的 L1-L4 财务数据、L5 分类结论、L3 估值结论，交易计划中的估值/合理PE目标必须与之一致。找不到分析报告时，先提示用户生成报告，或标注"数据待补充"。
 
 ## 参考模板
 
-参考 `stock-learning/stocks-analysis/交易计划/新和成_002001_交易计划.html` 的HTML结构和内容布局。
+参考 `docs/plans/新和成_002001_交易计划.html` 的HTML结构和内容布局。
 
 ## 输出路径
 
 ```
-stock-learning/stocks-analysis/交易计划/{股票简称}_{股票代码}_交易计划.html
+docs/plans/{股票简称}_{股票代码}_交易计划.html（A股）或 docs/asx/plans/{股票简称}_{股票代码}_交易计划.html（ASX）
 ```
 
-> 示例：`stock-learning/stocks-analysis/交易计划/新和成_002001_交易计划.html`
+> 示例：`docs/plans/新和成_002001_交易计划.html`
 
 ## 报告结构
 
@@ -166,4 +166,4 @@ CSS全部内联在HTML中，无需外部依赖。配色沿用已有的`col-tag`�
 - `check` 检查清单（圆点+打勾/感叹号）
 - `grid-3` 三列仓位/止损/止盈卡片
 
-参考现有 `stock-learning/stocks-analysis/交易计划/新和成_002001_交易计划.html` 的全部样式和结构，生成时替换数据和内容即可。
+参考现有 `docs/plans/新和成_002001_交易计划.html` 的全部样式和结构，生成时替换数据和内容即可。

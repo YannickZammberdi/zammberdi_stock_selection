@@ -25,13 +25,13 @@ L0 宏观框架定义在 `stock-learning/materials/`，分析前必须通读对�
 
 ## 参考模板
 
-参考 `stock-learning/stocks-analysis/宏观报告/A股_宏观环境报告_2026-07-09.html` 的HTML结构和CSS样式（Tab导航+verdict框）。
+参考 `docs/macro/A股_宏观环境报告_2026-07-09.html` 的HTML结构和CSS样式（Tab导航+verdict框）。
 
 ## 输出路径
 
-`stock-learning/stocks-analysis/宏观报告/{市场}_宏观环境报告_{YYYY-MM-DD}.html`
+`docs/macro/{市场}_宏观环境报告_{YYYY-MM-DD}.html`
 
-> 示例：`stock-learning/stocks-analysis/宏观报告/A股_宏观环境报告_2026-07-09.html`
+> 示例：`docs/macro/A股_宏观环境报告_2026-07-09.html`
 
 ## 报告结构
 

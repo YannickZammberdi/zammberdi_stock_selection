@@ -33,7 +33,7 @@ description: 生成基金体检HTML报告（中澳通用，支付宝/RMB与ASX/A
 
 ## 输出文件
 
-单页基金体检报告存入 `stock-learning/stocks-analysis/基金/{名称}_{代码}_基金报告.html`。
+单页基金体检报告存入 `docs/funds/{名称}_{代码}_基金报告.html`。
 
 > 示例：`基金/景顺长城安享回报A_001422_基金报告.html`、`基金/VAS_VAS_基金报告.html`
 
@@ -72,7 +72,7 @@ CSS/JS 与 `stock-report-tab` 模板一致。`meta` 中日期统一 `YYYY-MM-DD`
 
 优先级：
 1. **websearch 实时搜索** — 业绩/持仓/费率/经理，优先 `天天基金/晨星中国`（RMB）与 `Morningstar AU / ASX 公告`（AUD）
-2. **已生成报告** — `stock-learning/stocks-analysis/基金/` 下历史报告
+2. **已生成报告** — `docs/funds/` 下历史报告
 3. **用户提供** — 用户给出的持仓/费率
 4. **知识内已知数据** — 仅用于历史参考值，标注"历史参考"
 

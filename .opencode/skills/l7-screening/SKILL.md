@@ -31,7 +31,7 @@ description: 对A股/ASX指定行业进行完整分析（L7-L10），生成带Ta
 
 ## 输出文件
 
-完整行业分析报告存入 `stock-learning/stocks-analysis/行业报告/{市场}——{行业名}——行业分析报告.html`。
+完整行业分析报告存入 `docs/industry/{市场}——{行业名}——行业分析报告.html（A股）或 docs/asx/industry/（ASX）`。
 
 ## 参考框架
 
@@ -48,7 +48,7 @@ L7-L10 框架定义在 `stock-learning/materials/`，分析前必须通读对应
 
 ## 参考模板
 
-参考 `stock-learning/stocks-analysis/行业报告/A股——光伏——行业分析报告.html` 的HTML结构和CSS样式。模板已包含完整的CSS、tab-bar和JS交互，直接复制后替换数据和内容即可。
+参考 `docs/industry/A股——光伏——行业分析报告.html` 的HTML结构和CSS样式。模板已包含完整的CSS、tab-bar和JS交互，直接复制后替换数据和内容即可。
 
 ## Tab结构
 
@@ -136,7 +136,7 @@ CSS/JS与参考模板完全一致。meta中日期统一 `YYYY-MM-DD` 格式。
 
 **获取顺序（优先级从高到低）：**
 1. **websearch 实时搜索** — 个股市值/ROE/毛利率/PE/PB分位等，优先用 `websearch` 获取，记录来源和日期
-2. **已生成个股报告** — `stock-learning/stocks-analysis/{市场}/{L5分类}/{简称}_{代码}_分析报告.html`，读取其 L1-L4 财务数据和 L5 分类结论
+2. **已生成个股报告** — `docs/stocks/{简称}_{代码}_分析报告.html（A股）或 docs/asx/stocks/{简称}_{代码}_分析报告.html（ASX）`，读取其 L1-L4 财务数据和 L5 分类结论
 3. **用户提供** — 用户消息中给出的数据
 4. **知识内已知数据** — 仅用于无法搜索到的历史参考值，必须标注"历史参考"
 

@@ -35,9 +35,9 @@ L1-L6 框架定义在 `stock-learning/materials/`，分析前必须通读对应�
 
 ## 输出路径
 
-`stock-learning/stocks-analysis/{市场}/{L5分类}/{股票简称}_{股票代码}_分析报告.html`
+`docs/stocks/{股票简称}_{股票代码}_分析报告.html（A股）或 docs/asx/stocks/{股票简称}_{股票代码}_分析报告.html（ASX）`
 
-> 示例：`A股/成长性/雅克科技_002409_分析报告.html`
+> 示例：`docs/stocks/雅克科技_002409_分析报告.html`（A股）／`docs/asx/stocks/xxx_XXX_分析报告.html`（ASX）
 
 ## 报告结构
 

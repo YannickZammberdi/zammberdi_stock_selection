@@ -51,23 +51,26 @@
   .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
   .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
   .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .score-note { font-size: 13px; color: #666; background: #fafafa; border: 1px dashed #ccc; padding: 8px 12px; margin: 10px 0; }
+  .history-table td:first-child { white-space: nowrap; }
   .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
   ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
   li { margin-bottom: 4px; }
+  .nd { background: #f0f0f0; color: #999; padding: 0 4px; border-radius: 3px; font-size: 11px; }
 </style>
 </head>
 <body>
 <div class="report-wrap">
 
 <h1>东鹏饮料（605499）财务分析报告</h1>
-<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（PE Band估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
-<p class="meta">分析日期：2026-08-03 | 数据来源：FY2025 年报 + 2026Q1 季报 + 2026H1 半年报 | 行业定位：非周期/成长性（消费品高增长赛道）</p>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026-10-13 | 数据来源：FY2025 年报 + 2026H1 半年报（2026-07-31 披露）+ 腾讯行情（2026-10-13 收盘）+ 爱股网 F10 + 券商研报 | 下一关键节点：2026-10-30 三季报</p>
 
 <div class="tab-bar">
   <button class="tab-btn active" data-tab="summary">总结论</button>
   <button class="tab-btn" data-tab="l1">L1 三张报表</button>
   <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
-  <button class="tab-btn" data-tab="l3">L3 PE Band估值</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
   <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
   <button class="tab-btn" data-tab="l5">L5 行业分类</button>
   <button class="tab-btn" data-tab="l6">L6 综合实战</button>
@@ -78,433 +81,518 @@
 <h2>一、公司基本画像</h2>
 <table>
   <tr><th style="width:30%">项目</th><th>内容</th></tr>
-  <tr><td>公司名称</td><td>东鹏饮料（集团）股份有限公司</td></tr>
-  <tr><td>股票代码</td><td>605499.SH</td></tr>
-  <tr><td>行业类型（L5）</td><td>非周期/成长性（消费品高增长赛道）</td></tr>
-  <tr><td>行业地位</td><td>中国能量饮料销量第一（份额51.6%），销售额第一（38.3%）</td></tr>
-  <tr><td>FY2025 营收</td><td><strong>208.75 亿（+31.80%）</strong></td></tr>
-  <tr><td>FY2025 归母净利润</td><td><strong>44.15 亿（+32.72%）</strong></td></tr>
-  <tr><td>FY2025 经营现金流</td><td><strong>61.74 亿（+6.65%）</strong></td></tr>
-  <tr><td>2026H1 营收</td><td><strong>124.43 亿（+15.89%）</strong></td></tr>
-  <tr><td>2026H1 归母净利润</td><td><strong>28.67 亿（+约21%）</strong></td></tr>
-  <tr><td>2026H1 经营现金流</td><td><strong>24.93 亿</strong></td></tr>
-  <tr><td>2026H1 毛利率</td><td><strong>48.36%（较FY2025 +3.4pct）</strong></td></tr>
-  <tr><td>总资产</td><td>267.21 亿</td></tr>
-  <tr><td>归母净资产</td><td>94.21 亿</td></tr>
-  <tr><td>ROE</td><td><strong>51.61%</strong></td></tr>
+  <tr><td>公司名称</td><td>东鹏饮料（集团）股份有限公司（EASTROC BEVERAGE）</td></tr>
+  <tr><td>股票代码</td><td>605499.SH（A）/ 09980.HK（H股，2026-02 上市）</td></tr>
+  <tr><td>所属行业</td><td>食品饮料 — 软饮料 / 能量饮料</td></tr>
+  <tr><td>行业类型（L5）</td><td><strong>非周期 — 成长型</strong></td></tr>
+  <tr><td>行业地位</td><td>中国能量饮料绝对龙头，销量市占率约 51%，连续多年销量第一</td></tr>
+  <tr><td>FY2025 营收</td><td>207.75 亿元（+31.83%）</td></tr>
+  <tr><td>FY2025 归母净利润</td><td>44.15 亿元（+35.0%）｜EPS 6.01 元（除权后）</td></tr>
+  <tr><td>FY2025 经营现金流</td><td>61.74 亿元（CFO/净利 = 1.40）</td></tr>
+  <tr><td>2026H1 营收</td><td><strong>124.43 亿元（+15.89%）</strong></td></tr>
+  <tr><td>2026H1 归母净利润</td><td><strong>28.67 亿元（+20.72%）</strong>｜EPS 3.99 元</td></tr>
+  <tr><td>2026H1 经营现金流</td><td>24.93 亿元（+43.22%）</td></tr>
+  <tr><td>2026H1 毛利率 / 净利率</td><td><strong>48.36%（+3.46pct）/ 23.04%（+0.92pct）</strong></td></tr>
+  <tr><td>总资产（2026H1）</td><td>358.00 亿元（上年度末 267.21 亿，+33.98%）</td></tr>
+  <tr><td>归母净资产（2026H1）</td><td><strong>194.75 亿元（上年度末 94.21 亿，+106.72%）</strong></td></tr>
+  <tr><td>每股净资产</td><td>26.53 元</td></tr>
+  <tr><td>ROE</td><td>H1 报告口径 19.03%｜<strong>年化约 29.5%</strong>（净资产翻倍所致，见 L4）</td></tr>
+  <tr><td>资产负债率</td><td>45.47%</td></tr>
+  <tr><td>现价 / 市值</td><td>111.98 元（2026-10-13）/ 822.16 亿元</td></tr>
 </table>
 
-<p style="font-size:13px;color:#666;margin:4px 0 2px"><strong>行业类型：非周期/成长性（消费品高增长赛道）</strong></p>
-<p style="font-size:13px;color:#666;margin-bottom:8px">采用<strong>非周期股评分体系（10维度）</strong>——东鹏饮料属于消费品行业，软饮料消费需求刚性，无显著周期波动，处于能量饮料渗透率持续提升的高成长阶段，适用非周期股评分体系（10维度：ROE+杜邦质量+CFO/净利+营收增长+利润增长+负债率+短期偿债+毛利率+估值+FCF）。</p>
-
-<div class="highlight-box">
-  <strong>2026H1 半年报速览（2026-07-31 披露）：</strong><br>
-  ① 营收 124.43 亿（+15.89%），归母净利 28.67 亿（+约21%），经营现金流 24.93 亿，盈利质量延续优秀；<br>
-  ② <strong>毛利率 48.36% 同比明显提升</strong>（PET/白砂糖成本下行 + 产品结构），反映在净利增速（约21%）显著快于营收增速（15.89%）上；<br>
-  ③ 拟中期分红每 10 股派 30 元，高分红延续；<br>
-  ④ <strong>核心关注：营收增速由 FY2025 的 +31.8% 降至 +15.89%</strong>，已低于交易计划">20% 为健康"舒适区，但仍高于">15% 触发看空"风险线——增速中枢下移是本报告最重要的边际变化，Q2 单季增速约 +11%（受天气/雨水扰动+特饮高基数影响），需持续跟踪 Q3 旺季动销能否修复。
+<h2>二、周期 / 非周期分类与评分体系</h2>
+<div class="summary-box">
+<strong>行业类型：非周期 — 成长型。</strong>软饮料是典型的必需消费品，需求刚性、无库存周期、无产能周期，利润由品牌力与渠道效率决定而非供需错配。能量饮料渗透率仍处上行期（公司市占率 51%，人均消费量对标欧美仍有 3-5 倍空间），属成长赛道。<br><br>
+<strong>采用非周期股评分体系（10 维度，100 分）。</strong>
 </div>
 
-<h2>综合评分（非周期股评分体系·10维度·100分）</h2>
+<p class="score-note"><strong>评分口径说明：</strong><span>维持非周期股体系。ROE 按年化口径重估，因 H 股募资致净资产翻倍。</span></p>
+
+<h2>三、综合评分（非周期股评分体系 · 10 维度）</h2>
 <table>
   <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
-  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">51.61% ≥ 15%，A股顶级</td></tr>
-  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">高利润型——净利率21.14%+周转0.78+杠杆2.84，利润驱动为主</td></tr>
-  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">1.40 ≥ 1.0，现金质量极好</td></tr>
-  <tr><td>营收增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+31.80% ≥ 10%，高增长</td></tr>
-  <tr><td>利润增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">扣非+28.26% ≥ 15%，高质量增长</td></tr>
-  <tr><td>负债率（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">64.71% < 70%，偏高但主要是经营性负债</td></tr>
-  <tr><td>短期偿债（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">货币资金56.8亿 vs 短借66.3亿，缺口~14% < 30%</td></tr>
-  <tr><td>毛利率水平与趋势（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">44.91% ≥ 30%且稳定（+0.1pct）</td></tr>
-  <tr><td>估值 PE（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">PE 20x在合理区间（ROE 51.61% → 合理PE 20-30x），历史最低位</td></tr>
-  <tr><td>自由现金流 FCF（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">CFO强劲（61.74亿），轻资产模式FCF持续为正</td></tr>
-  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">88/100</td><td style="text-align:left">品质优秀（88/100分）</td></tr>
+  <tr><td>ROE（15分）</td><td class="good">13</td><td style="text-align:left">年化约 29.5%（H1 报告口径 19.03%）。按 2026E 归母 51.92 亿 ÷ 净资产 194.75 亿 = 26.7%。≥10% 档，但未达 15% 满分线——<b>因净资产翻倍摊薄，非盈利能力下降</b></td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="good">5</td><td style="text-align:left"><b>高利润型</b>：净利率 23.04%（行业顶级），权益乘数仅 1.84（几乎不借钱），ROE 靠真实盈利能力而非杠杆</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good">15</td><td style="text-align:left">H1 为 24.93/28.67 = <b>0.87</b>；FY2025 为 61.74/44.15 = <b>1.40</b>。半年数为 H1 季节性所致，全年口径 ≥1.0 达标</td></tr>
+  <tr><td>营收增长（10分）</td><td class="neutral">7</td><td style="text-align:left">H1 +15.89%（Q2 单季降至 +11.31%）。≥10% 档得 7 分，较上一版（+31.8%）明显降档</td></tr>
+  <tr><td>利润增长（10分）</td><td class="good">10</td><td style="text-align:left">H1 归母 +20.72%、Q2 单季 +15.39%，≥15% 满分。扣非 Q2 +6.56% 略低</td></tr>
+  <tr><td>负债率（10分）</td><td class="neutral">7</td><td style="text-align:left">45.47%，落在 &lt;55% 档。绝对水平健康，但短期借款仍有规模</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="good">10</td><td style="text-align:left">货币资金约 149 亿（占总资产 42%），H 股募资后已完全覆盖短期有息负债，<b>由上一版的「缺口」修复为「充裕覆盖」</b></td></tr>
+  <tr><td>毛利率水平与趋势（10分）</td><td class="good">10</td><td style="text-align:left">48.36%，≥30% 且<b>趋势向上</b>（+3.46pct）。PET/白砂糖成本下行 + 产品结构改善</td></tr>
+  <tr><td>估值 PE（10分）</td><td class="neutral">7</td><td style="text-align:left">PE(TTM) 16.75x。相对 A 股消费龙头偏低，但 ROE 年化降至 29.5% 使「合理 PE」同步下移，属「合理偏上沿」</td></tr>
+  <tr><td>自由现金流 FCF（5分）</td><td class="good">5</td><td style="text-align:left">轻资产 + 先款后货模式，FCF 持续为正且充裕</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">89/100</td><td style="text-align:left">品质优秀。较上一版 88 分微升 1 分——营收增速降档（-3 分）被短期偿债修复（+3 分）与利润增长满分对冲</td></tr>
 </table>
 
-<div class="verdict verdict-ok">品质优秀（88/100分）</div>  <h2 style="margin-top:16px">评分沿革</h2>
+<div class="verdict verdict-ok">品质优秀（89/100分）</div>
+<h2 style="margin-top:16px">评分沿革</h2>
 <style>.history-table{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:13px}.history-table th,.history-table td{border:1px solid #ddd;padding:6px 8px;text-align:center}.history-table th{background:#f0f0f0;font-weight:bold}.history-table td.good{color:#27ae60}.history-table td.neutral{color:#e67e22}.history-table td.bad{color:#c0392b}</style><table class="history-table">
   <tr><th>日期</th><th>评分</th><th>评分体系</th><th>变化原因</th></tr>
   <tr><td>2026-08-03</td><td class="good" style="font-weight:bold">88/100</td><td>成长性</td><td style="text-align:left">—</td></tr>
+  <tr><td>2026-10-13</td><td class="good" style="font-weight:bold">89/100</td><td>成长性</td><td style="text-align:left">维持非周期股体系。ROE 按年化口径重估，因 H 股募资致净资产翻倍。</td></tr>
 </table>
 
-
 <div class="summary-box">
-  <strong>综合诊断：</strong>东鹏饮料是中国能量饮料绝对龙头，FY2025营收突破200亿（+32%），连续五年销量第一，ROE高达51.61%。公司通过"1+6"多品类战略成功打造第二增长曲线——补水啦电解质饮料年销32.74亿（+119%），全国化布局持续推进（非华南收入占比已超70%）。<br><br>
-  <strong>半年报后确认（2026H1）：</strong>毛利率显著提升至48.36%，净利增速（约21%）快于营收增速，盈利质量优秀；但营收增速中枢下移至+15.89%（Q2单季约+11%），低于20%健康线。增速降档是本报告最需警惕的变化——若Q3动销不能修复，交易计划需按"增速跌破15%"逻辑启动减仓评估。<br><br>
-  <strong>核心优势：</strong>① ROE 51.61%，A股顶级回报率；② 能量饮料销量份额51.6%，品牌壁垒极强；③ CFO 61.74亿是净利的1.4倍，现金质量优秀；④ 补水啦+其他饮料第二曲线成型，营收占比从15.9%升至25.2%。<br><br>
-  <strong>核心风险：</strong>① 营收增速中枢下移（H1 +15.89%，Q2单季+11%），若Q3不能修复则接近15%风险线；② 短期借款66.3亿偏高，货币资金56.8亿无法完全覆盖（H股上市后已改善）；③ 补水啦增速自+119%大幅放缓（Q1 +13%），电解质赛道竞争加剧（农夫山泉入局）；④ 能量饮料大单品特饮增速降至低双位数，全国化红利边际递减。
+<strong>综合诊断：</strong>东鹏饮料是 A 股少见的「高利润率 + 几乎不借钱 + 强现金流」消费龙头。净利率 23.04%、权益乘数仅 1.84、FY2025 CFO/净利 1.40，生意质量在 A 股软饮料中排名第一。但 2026 年增速明显换挡（营收 +31.8% → +15.89%，Q2 单季仅 +11.31%），且 H 股募资使净资产翻倍、常态化 ROE 从 50%+ 降至约 30%——<b>这不是生意变差，而是「原来钱太少」和「现在钱太多」两个问题叠加</b>。<br><br>
+<strong>核心优势：</strong>① 能量饮料市占率约 51%，品牌与渠道壁垒极强；② 净利率 23.04%、毛利率 48.36% 且双升，盈利质量顶级；③ 账上约 149 亿货币资金 + 公司自身回购 10.4 亿（沪市主板第 2），现金极其充裕；④ 茶饮料 +208.99%、其他饮料接棒，第三曲线成型；⑤ ROE 年化约 29.5%，在 A 股消费股中仍属前列。<br><br>
+<strong>核心风险：</strong>① <b>大股东累计减持超 70 亿元、解禁后已 7 次减持公告</b>，结构性压制估值；② 营收增速换挡，Q2 单季仅 +11.31%、扣非 +6.56%，若 Q3 不修复将逼近 15% 看空线；③ H 股破发（发行价 248 港元 → 现约 118 港元，-52%）；④ <b>149 亿货币资金趴在账上只赚约 1.5% 利息，永久性压住 ROE 上限</b>；⑤ 2026-03-31 异动显示机构专用席位净卖出 4.73 亿、沪股通净卖出 5.74 亿。
 </div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l1"><div class="tab-inner">
 
-<h2>二、核心财务数据（FY2025）</h2>
+<h2>四、核心财务数据</h2>
 
-<h3>2.1 利润表</h3>
+<h3>4.1 利润表</h3>
 <table>
   <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
-  <tr><td>营业收入</td><td>208.75 亿</td><td>158.39 亿</td><td>+31.80%</td><td class="good">✅ 高增长</td></tr>
-  <tr><td>归母净利润</td><td><strong>44.15 亿</strong></td><td>33.27 亿</td><td><strong>+32.72%</strong></td><td class="good">✅ 与营收同步</td></tr>
-  <tr><td>扣非净利润</td><td><strong>41.84 亿</strong></td><td>32.62 亿</td><td><strong>+28.26%</strong></td><td class="good">✅ 高质量增长</td></tr>
-  <tr><td>毛利率</td><td><strong>44.91%</strong></td><td>44.81%</td><td>+0.10pct</td><td class="good">✅ 稳定略升</td></tr>
-  <tr><td>归母净利率</td><td><strong>21.14%</strong></td><td>21.00%</td><td>+0.14pct</td><td class="good">✅ 稳定</td></tr>
-  <tr><td>期间费用率</td><td><strong>~18.9%</strong></td><td>18.8%</td><td>+0.1pct</td><td class="neutral">基本持平</td></tr>
-  <tr><td>Q1 营收</td><td>48.48 亿</td><td>34.54 亿</td><td>+40.36%</td><td class="good">✅</td></tr>
-  <tr><td>Q2 营收</td><td>58.89 亿</td><td>45.67 亿</td><td>+28.95%</td><td class="good">✅</td></tr>
-  <tr><td>Q3 营收</td><td>61.07 亿</td><td>46.47 亿</td><td>+31.42%</td><td class="good">✅</td></tr>
-  <tr><td>Q4 营收</td><td>40.31 亿</td><td>31.71 亿</td><td>+27.12%</td><td class="good">✅</td></tr>
-  <tr><td>Q4 净利润</td><td><strong>6.54 亿</strong></td><td>6.19 亿</td><td><strong>+5.66%</strong></td><td class="neutral">⚠ 增速放缓</td></tr>
-  <tr><td>2026H1 营收</td><td><strong>124.43 亿</strong></td><td>107.37 亿</td><td><strong>+15.89%</strong></td><td class="neutral">⚠ 降至20%以下</td></tr>
-  <tr><td>2026H1 归母净利</td><td><strong>28.67 亿</strong></td><td>~23.7 亿</td><td><strong>+约21%</strong></td><td class="good">✅ 快于营收</td></tr>
-  <tr><td>2026H1 毛利率</td><td><strong>48.36%</strong></td><td>44.90%</td><td><strong>+3.46pct</strong></td><td class="good">✅ 显著提升</td></tr>
+  <tr><td>营业收入</td><td><strong>207.75 亿</strong></td><td>158.39 亿</td><td class="good">+31.83%</td><td class="good">高速增长</td></tr>
+  <tr><td>归母净利润</td><td><strong>44.15 亿</strong></td><td>32.72 亿</td><td class="good">+35.0%</td><td class="good">快于营收</td></tr>
+  <tr><td>扣非净利润</td><td>41.88 亿</td><td>31.94 亿</td><td class="good">+31.1%</td><td class="good">占归母 94.9%</td></tr>
+  <tr><td>毛利率</td><td>44.91%</td><td>44.07%</td><td class="good">+0.84pct</td><td class="good">稳步提升</td></tr>
+  <tr><td>归母净利率</td><td>21.25%</td><td>20.66%</td><td class="good">+0.59pct</td><td class="good">行业顶级</td></tr>
+  <tr><td>期间费用率</td><td>约 18.5%</td><td>约 19.2%</td><td class="good">-0.7pct</td><td class="good">规模效应显现</td></tr>
+</table>
+
+<h4>2026H1（半年报口径，同比对比同口径）</h4>
+<table>
+  <tr><th>指标</th><th>2026H1</th><th>2025H1</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td><strong>124.43 亿</strong></td><td>107.37 亿</td><td class="neutral">+15.89%</td><td class="neutral"><b>增速换挡</b></td></tr>
+  <tr><td>归母净利润</td><td><strong>28.67 亿</strong></td><td>23.75 亿</td><td class="good">+20.72%</td><td class="good">仍快于营收</td></tr>
+  <tr><td>扣非净利润</td><td>25.98 亿</td><td>22.70 亿</td><td class="neutral">+14.41%</td><td class="neutral">慢于归母，差 6.3pct</td></tr>
+  <tr><td>毛利率</td><td><strong>48.36%</strong></td><td>45.15%</td><td class="good">+3.21pct</td><td class="good">成本红利 + 结构改善</td></tr>
+  <tr><td>净利率</td><td><strong>23.04%</strong></td><td>22.12%</td><td class="good">+0.92pct</td><td class="good">仍在提升</td></tr>
+  <tr><td>基本每股收益</td><td>3.9949 元</td><td>3.4444 元</td><td class="good">+15.98%</td><td>已按 10转3 追溯调整</td></tr>
+  <tr><td>加权平均 ROE</td><td>19.03%</td><td>28.18%</td><td class="bad">-9.15pct</td><td class="bad"><b>分母翻倍所致，非分子恶化</b></td></tr>
+</table>
+
+<h4>分季度营收与净利</h4>
+<table>
+  <tr><th>季度</th><th>营收</th><th>归母净利</th><th>净利率</th><th>备注</th></tr>
+  <tr><td>2025 Q1</td><td>40.31 亿</td><td>9.80 亿</td><td>24.31%</td><td>淡季</td></tr>
+  <tr><td>2025 Q2</td><td>48.48 亿</td><td>13.95 亿</td><td>28.77%</td><td>旺季启动</td></tr>
+  <tr><td>2025 Q3</td><td>58.89 亿</td><td>13.86 亿</td><td>23.53%</td><td>全年旺季</td></tr>
+  <tr><td>2025 Q4</td><td>61.07 亿</td><td>6.54 亿</td><td>10.71%</td><td class="neutral">净利率骤降：冰柜投放 + 海外拓展费用前置</td></tr>
+  <tr><td>2026 Q1</td><td>58.88 亿</td><td>12.58 亿</td><td>21.36%</td><td>同比 +46.1%（H1-Q2 倒推）</td></tr>
+  <tr><td>2026 Q2</td><td>65.55 亿</td><td>16.09 亿</td><td>24.55%</td><td class="neutral">同比 <b>仅 +11.31%</b>，扣非 13.98 亿（+6.56%）</td></tr>
 </table>
 
 <div class="summary-box">
-  <strong>利润表解读：</strong>FY2025营收增长31.8%表现亮眼，净利增速32.7%与营收基本同步，说明规模效应良好。毛利率44.91%稳中有升（PET锁价+成本管控）。Q4净利增速仅5.66%，主因公司淡季前置投放冰柜抢占终端、海外拓展等费用增加。整体盈利质量高——扣非净利占比94.8%，利润几乎全部来自主业。<br><br>
-  <strong>2026H1 更新：</strong>毛利率大幅升至48.36%（+3.46pct，成本下行+结构改善），净利增速约21%显著快于营收增速15.89%，说明"利润弹性>收入弹性"。营收增速降至20%以下，主因特饮高基数+Q2天气/雨水扰动+补水啦增速放缓，为半年报最需关注的边际变化。
+<strong>利润表解读：</strong>2026H1 是「<b>利润质量改善、收入增速换挡</b>」的一年。毛利率升 3.21pct、净利率升 0.92pct，归母净利 +20.72% 仍快于营收 +15.89%——生意本身在变好，不是变差。<br><br>
+<b>但 Q2 单季营收仅 +11.31%、扣非仅 +6.56%</b>，是本报告最需警惕的数字。Q2 是能量饮料旺季起点，旺季增速落到个位数，说明不是季节性扰动，而是渗透率提升的红利在减速。归母与扣非 6.3pct 的差距也提示非经常性损益贡献上升。<br><br>
+2025 Q4 净利率骤降至 10.71% 是费用前置（冰柜投放抢终端 + 海外拓展）所致，属主动投入，非盈利能力问题。
 </div>
 
-<h3>2.2 资产负债表</h3>
+<h3>4.2 资产负债表</h3>
 <table>
-  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
-  <tr><td>货币资金</td><td><strong>56.80 亿</strong></td><td class="good">✅ 较充裕</td></tr>
-  <tr><td>应收账款</td><td><strong>0.91 亿</strong></td><td class="good">✅ 极低，占营收0.44%</td></tr>
-  <tr><td>存货</td><td><strong>6.57 亿</strong></td><td class="good">✅ 占资产2.5%，极合理</td></tr>
-  <tr><td>短期借款</td><td><strong>66.30 亿</strong></td><td class="neutral">⚠ 偏高</td></tr>
-  <tr><td>长期借款</td><td><strong>0</strong></td><td class="good">✅ 无长期有息负债</td></tr>
-  <tr><td>资产负债率</td><td><strong>64.71%</strong></td><td class="neutral">⚠ 偏高（H股上市后降至45.47%）</td></tr>
-  <tr><td>归母净资产</td><td>94.21 亿</td><td class="good">✅ 同比+22.54%</td></tr>
-  <tr><td>总资产</td><td>267.21 亿</td><td class="good">✅ 同比+17.84%</td></tr>
+  <tr><th>科目</th><th>2026H1</th><th>上年度末</th><th>变化</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td><strong>约 149 亿</strong></td><td>约 57 亿</td><td class="good">大幅增加</td><td class="good">H 股募资到账</td></tr>
+  <tr><td>总资产</td><td><strong>358.00 亿</strong></td><td>267.21 亿</td><td>+33.98%</td><td>—</td></tr>
+  <tr><td>归母净资产</td><td><strong>194.75 亿</strong></td><td>94.21 亿</td><td class="good">+106.72%</td><td class="good">H 股募资 + 分红</td></tr>
+  <tr><td>权益乘数（总资产/净资产）</td><td><strong>1.84</strong></td><td>2.84</td><td class="good">-35%</td><td class="good"><b>杠杆被动去化，更健康</b></td></tr>
+  <tr><td>资产负债率</td><td>45.47%</td><td>约 64.7%</td><td class="good">-19pct</td><td class="good">大幅改善</td></tr>
+  <tr><td>应收账款</td><td>0.91 亿（FY2025）</td><td>—</td><td class="good">极低</td><td class="good">仅为营收 0.44%，先款后货</td></tr>
+  <tr><td>存货</td><td>6.57 亿（FY2025）</td><td>—</td><td class="good">极低</td><td class="good">占营收 2.5%</td></tr>
+  <tr><td>长期借款</td><td>0</td><td>0</td><td class="good">—</td><td class="good">无长期有息负债</td></tr>
+  <tr><td>短期借款</td><td><span class="nd">待补充最新数</span></td><td>约 66.3 亿（FY2025）</td><td>—</td><td class="neutral">H 股募资后覆盖压力已解除</td></tr>
 </table>
 
 <div class="highlight-box">
-  <strong>资产负债表解读：</strong>资产负债表结构非常"干净"——应收账款仅0.91亿（营收的0.44%），存货6.57亿（2.5%），说明产品供不应求、回款极快。短期借款66.3亿是主要负债项，但结合公司强劲的CFO（61.74亿/年），实际偿债压力可控。2026Q1因H股上市募资到账，货币资金已增至149.54亿，短期偿债能力大幅改善。长期借款为零——公司经营模式是"先收款后发货"，现金流极好。
+<strong>资产负债表解读：</strong>这是本次更新中最亮眼的部分。<b>归母净资产从 94.21 亿暴增至 194.75 亿（+106.72%），而总资产只增 33.98%</b>——差额趴在货币资金上（约 149 亿，占总资产 42%）。<br><br>
+结果是 <b>权益乘数从 2.84 降至 1.84，资产负债率从约 64.7% 降至 45.47%</b>。对一家消费龙头来说，这比「ROE 51%」更值得高兴：公司从「借钱做生意」变成了「用自己的钱做生意」，财务风险实质下降。<br><br>
+应收账款 0.91 亿、存货 6.57 亿的极低水平，说明「先款后货 + 快周转」模式未变，这是 A 股软饮料里最好的营运资本结构。
 </div>
 
-<h3>2.3 现金流量表</h3>
+<h3>4.3 现金流量表</h3>
 <table>
-  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
-  <tr><td>经营现金流（CFO）</td><td><strong>61.74 亿</strong></td><td>57.89 亿</td><td class="good">✅ +6.65%</td></tr>
-  <tr><td>投资现金流（CFI）</td><td><strong>—</strong></td><td>—</td><td class="neutral">扩产投入中</td></tr>
-  <tr><td>筹资现金流（CFF）</td><td><strong>—</strong></td><td>—</td><td class="neutral">H股上市补充资本</td></tr>
-  <tr><td>CFO/净利润</td><td><strong>1.40</strong></td><td>1.74</td><td class="good">✅ 现金质量优秀</td></tr>
-  <tr><td>自由现金流（FCF）</td><td><strong>充裕</strong></td><td>—</td><td class="good">✅ 轻资产模式</td></tr>
+  <tr><th>指标</th><th>2026H1</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>24.93 亿（+43.22%）</strong></td><td>61.74 亿</td><td class="good">强劲</td></tr>
+  <tr><td>投资现金流（CFI）</td><td><span class="nd">待补充</span></td><td><span class="nd">待补充</span></td><td>—</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td><span class="nd">待补充</span></td><td><span class="nd">待补充</span></td><td>H 股募资应体现为大幅流入</td></tr>
+  <tr><td>CFO / 归母净利</td><td>0.87</td><td class="good"><strong>1.40</strong></td><td class="neutral">H1 偏低属季节性，全年口径优秀</td></tr>
+  <tr><td>自由现金流（FCF）</td><td class="good">持续为正</td><td class="good">持续为正</td><td>轻资产模式</td></tr>
 </table>
 
 <div class="summary-box">
-  <strong>现金流解读：</strong>CFO 61.74亿是净利润的1.4倍，现金质量在A股中属于第一梯队。饮料行业是典型的"先款后货"模式，应收账款仅0.91亿，几乎没有坏账风险。公司是轻资产运营（存货6.57亿+固定资产相对有限），FCF充裕。2026年H股上市进一步补充资本，为全国化和国际化扩张提供弹药。
+<strong>现金流解读：</strong>CFO 24.93 亿（+43.22%）增速远高于净利增速（+20.72%），说明利润的现金含量在 H1 反而改善了。H1 的 CFO/净利 0.87 低于全年 1.40，主要是 H1 有大额分红与备货节奏差异，全年口径仍属 A 股软饮料第一梯队。<br><br>
+<span style="color:#888;font-size:12px">数据缺失说明：CFI / CFF 明细本次未取得，已标注「待补充」，未参与评分。</span>
 </div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l2"><div class="tab-inner">
 
-<h2>三、关键指标与排雷（L2框架）</h2>
+<h2>五、关键指标与排雷（L2 框架）</h2>
 
-<h3>3.1 关键盈利指标</h3>
+<h3>5.1 关键盈利指标</h3>
 <table>
-  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
-  <tr><td>ROE</td><td><strong>51.61%</strong></td><td>> 15% 优秀</td><td class="good">✅ 顶级</td></tr>
-  <tr><td>毛利率</td><td><strong>44.91%</strong></td><td>稳定或提升</td><td class="good">✅ +0.1pct稳定</td></tr>
-  <tr><td>净利率</td><td><strong>21.14%</strong></td><td>> 10%</td><td class="good">✅ 优秀</td></tr>
-  <tr><td>营收增长率</td><td><strong>+31.80%</strong></td><td>> 10%</td><td class="good">✅ 高增长</td></tr>
-  <tr><td>扣非增长率</td><td><strong>+28.26%</strong></td><td>> 15%</td><td class="good">✅ 优秀</td></tr>
-  <tr><td>CFO/净利润</td><td><strong>1.40</strong></td><td>> 1</td><td class="good">✅ 优秀</td></tr>
-  <tr><td>资产负债率</td><td><strong>64.71%</strong></td><td>消费品<60%</td><td class="neutral">⚠ 略高</td></tr>
-  <tr><td>分红率</td><td><strong>61.4%</strong></td><td>稳定分红</td><td class="good">✅ 慷慨分红</td></tr>
+  <tr><th>指标</th><th>2026H1</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE（年化）</td><td class="neutral"><strong>约 29.5%</strong></td><td>46.9%（加权口径 51.61%）</td><td>&gt;15%</td><td class="good">达标。分母翻倍所致</td></tr>
+  <tr><td>毛利率</td><td class="good"><strong>48.36%</strong></td><td>44.91%</td><td>&gt;30% 且稳定/上升</td><td class="good">优秀且上升</td></tr>
+  <tr><td>净利率</td><td class="good"><strong>23.04%</strong></td><td>21.25%</td><td>&gt;15%</td><td class="good">A 股软饮料顶级</td></tr>
+  <tr><td>营收增长</td><td class="neutral">+15.89%（Q2 单季 +11.31%）</td><td>+31.83%</td><td>&gt;10%</td><td class="neutral">达标但明显降档</td></tr>
+  <tr><td>利润增长</td><td class="good">+20.72%</td><td>+35.0%</td><td>&gt;15%</td><td class="good">达标</td></tr>
+  <tr><td>CFO / 净利润</td><td class="neutral">0.87</td><td class="good">1.40</td><td>&gt;1.0</td><td class="neutral">全年口径优秀</td></tr>
+  <tr><td>资产负债率</td><td class="good">45.47%</td><td>约 64.7%</td><td>&lt;55%</td><td class="good">大幅改善</td></tr>
+  <tr><td>权益乘数</td><td class="good">1.84</td><td>2.84</td><td>越低越稳健</td><td class="good">几乎不借钱</td></tr>
+  <tr><td>分红率</td><td class="good">规划 ≥80%</td><td class="good">中期 10派30（9/24除息）</td><td>&gt;30%</td><td class="good">A 股消费股前列</td></tr>
+  <tr><td>回购</td><td class="good">10.4 亿（沪市主板第 2）</td><td>—</td><td>—</td><td class="good">真金白银</td></tr>
 </table>
 
-<h3>3.2 分业务分析（2025年度）</h3>
+<h3>5.2 分业务分析</h3>
 <table>
-  <tr><th>业务板块</th><th>营收（亿）</th><th>占比</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
-  <tr><td>东鹏特饮（能量饮料）</td><td>155.99</td><td>74.8%</td><td>+17%</td><td><strong>50.79%</strong></td><td class="good">✅ 现金牛</td></tr>
-  <tr><td>补水啦（电解质饮料）</td><td>32.74</td><td>15.7%</td><td><strong>+119%</strong></td><td>34.77%</td><td class="good">✅ 第二曲线</td></tr>
-  <tr><td>其他饮料</td><td>19.86</td><td>9.5%</td><td><strong>+94%</strong></td><td>15.53%</td><td class="neutral">⚠ 毛利偏低</td></tr>
+  <tr><th>业务板块</th><th>H1 表现</th><th>评价</th></tr>
+  <tr><td>东鹏特饮（能量饮料）</td><td>核心基本盘，市占率约 51%，连续多年销量第一。Q1 增速约 +13.1%</td><td class="neutral">增速放缓但份额稳固</td></tr>
+  <tr><td>补水啦（电解质）</td><td>Q1 增速约 +13.2%，较 FY2025 的 +119% 大幅放缓</td><td class="neutral">第二曲线增速正常化</td></tr>
+  <tr><td><b>茶饮料（第三曲线）</b></td><td><strong>H1 同比 +208.99%</strong></td><td class="good">爆发式增长，最强亮点</td></tr>
+  <tr><td>其他饮料</td><td>FY2025 口径 +120%，占比持续提升</td><td class="good">接棒增长</td></tr>
 </table>
 
-<h3>3.2b 分业务趋势（2026Q1 最新）</h3>
+<h3>5.3 排雷清单</h3>
 <table>
-  <tr><th>业务板块</th><th>Q1营收（亿）</th><th>占比</th><th>同比</th><th>趋势判断</th></tr>
-  <tr><td>能量饮料（特饮为主）</td><td>44.12</td><td>75.0%</td><td>+13.11%</td><td class="neutral">⚠ 高基数下放缓至13%</td></tr>
-  <tr><td>电解质饮料（补水啦）</td><td>6.45</td><td>11.0%</td><td>+13.21%</td><td class="neutral">⚠ 增速自+119%骤降至13%</td></tr>
-  <tr><td>其他饮料（茶/咖等）</td><td><strong>8.26</strong></td><td>14.0%</td><td><strong>+120.36%</strong></td><td class="good">✅ 第二曲线转向"其他饮料"</td></tr>
+  <tr><th>风险项</th><th>严重程度</th><th>依据</th></tr>
+  <tr><td><b>大股东持续减持</b></td><td class="bad">🔴 高</td><td>实控人关联方（烟台鲲鹏）及员工持股平台累计减持超 <b>70 亿元</b>，自 2022 年解禁以来已发布 7 次减持公告</td></tr>
+  <tr><td><b>H 股破发</b></td><td class="bad">🔴 高</td><td>发行价 248.00 港元（2026-02），现约 118 港元，<b>-52%</b>，拖累 A 股估值锚</td></tr>
+  <tr><td><b>营收增速换挡</b></td><td class="neutral">🟡 中高</td><td>Q2 单季营收 +11.31%、扣非 +6.56%，已低于 15% 看空线一步之遥</td></tr>
+  <tr><td><b>ROE 被新增资本永久摊薄</b></td><td class="neutral">🟡 中</td><td>约 149 亿货币资金仅赚约 1.5% 利息，占总资产 42%</td></tr>
+  <tr><td>机构减持</td><td class="neutral">🟡 中</td><td>2026-03-31 异动：机构专用净卖出 4.73 亿、沪股通净卖出 5.74 亿</td></tr>
+  <tr><td>电解质赛道竞争</td><td class="neutral">🟡 中</td><td>农夫山泉等巨头入局，补水啦增速自 +119% 降至 +13%</td></tr>
+  <tr><td>单一大单品依赖</td><td>🟢 低中</td><td>东鹏特饮仍占营收主体，多品类战略在推进但尚未完成分散</td></tr>
+  <tr><td>财务造假 / 质押</td><td class="good">🟢 低</td><td>应收 0.91 亿、存货 6.57 亿，无长期有息负债，H1 净利与 CFO 方向一致</td></tr>
 </table>
 
-<div class="highlight-box">
-  <strong>业务解读（更新）：</strong>2026Q1 出现清晰的结构切换——传统亮点"东鹏特饮"（+13.11%）与"补水啦"（+13.21%）在高基数下增速双双回落到低双位数（H1 整体营收增速降至15.89%），而第三增长曲线"其他饮料"（果之茶/咖啡/茶饮）同比+120.36%，占比升至14.0%。这意味着：① 核心大单品进入成熟期，总量增长依赖于品类扩张与渗透率，而非大单品高速放量；② "1+6"多品类战略成功接棒，其他饮料正成为新的增长引擎；③ 管理层寻找的"第三增长曲线"已逐步兑现。电解质赛道因农夫山泉等巨头入局，竞争加剧，是补水啦增速骤降的重要原因。
+<div class="summary-box">
+<strong>排雷结论：</strong>财务层面<b>无造假、无高质押、无现金流背离</b>，三项硬伤均未命中——这是 A 股消费股少见的干净报表。<br><br>
+真正的风险全部集中在<b>治理与资本配置</b>两个维度：① 大股东 70 亿+ 的持续减持（结构性压制）；② 149 亿新增资金的使用效率（决定 ROE 走向）。这两项都不是「财务排雷」能覆盖的，需要靠跟踪验证。
 </div>
-
-<h3>3.3 排雷清单</h3>
-<table>
-  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
-  <tr><td class="neutral">🟡 中等</td><td>短期借款66.3亿 > 货币资金56.8亿</td><td>L1 资产负债表（H股上市后已补足）</td></tr>
-  <tr><td class="neutral">🟡 中等</td><td>负债率64.7%，在消费品行业中偏高</td><td>L1 资产负债表</td></tr>
-  <tr><td class="neutral">🟡 中等</td><td>东鹏特饮增速放缓至17%，核心产品增速下降</td><td>L2 分业务分析</td></tr>
-  <tr><td class="bad">🔴 警示</td><td><strong>2026H1 营收增速降至15.89%（Q2单季约+11%），跌破20%健康线</strong></td><td>L1 利润表（2026H1）——低于交易计划"20%健康线"，仍高于"15%看空线"，需Q3验证</td></tr>
-  <tr><td class="bad">🔴 警示</td><td><strong>补水啦增速自+119%骤降至+13%（Q1），电解质赛道竞争加剧</strong></td><td>L2 分业务（农夫山泉入局）</td></tr>
-  <tr><td class="neutral">🟡 中等</td><td>补水啦+其他饮料毛利率低于特饮，品类结构变化拉低整体毛利</td><td>L2 分业务分析</td></tr>
-  <tr><td class="neutral">🟡 中等</td><td>Q4净利增速仅5.66%，费用前置影响短期盈利</td><td>L1 利润表</td></tr>
-  <tr><td class="good">🟢 正面</td><td>ROE 51.61%，A股顶级</td><td>L2 盈利指标</td></tr>
-  <tr><td class="good">🟢 正面</td><td>CFO 61.74亿，现金质量优秀</td><td>L1 现金流量表</td></tr>
-  <tr><td class="good">🟢 正面</td><td>营收连续高增，3年CAGR ~36%</td><td>L2 盈利指标</td></tr>
-  <tr><td class="good">🟢 正面</td><td>应收账款仅0.91亿，几乎没有坏账</td><td>L1 资产负债表</td></tr>
-  <tr><td class="good">🟢 正面</td><td>分红率61.4%，慷慨回报股东</td><td>L2 分红</td></tr>
-</table>
-
-<div class="verdict verdict-ok">✅ L2综合判定：品质优秀（ROE顶级+增长强劲+现金质量好）</div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l3"><div class="tab-inner">
 
-<h2>四、PE Band估值分析（L3框架）</h2>
+<h2>六、估值分析（L3 框架）</h2>
 
-<h3>4.1 当前估值水平</h3>
+<h3>6.1 当前估值</h3>
 <table>
-  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
-  <tr><td>股价（2026.07.14，除权后）</td><td><strong>~125 元</strong></td><td>2026/5/18每10股转增3股</td></tr>
-  <tr><td>总市值</td><td><strong>~920 亿</strong></td><td>除权后总股本7.34亿股</td></tr>
-  <tr><td>PE（TTM）</td><td><strong>~20.1x</strong></td><td>基于2025 EPS 6.01元（除权后）</td></tr>
-  <tr><td>PE（2026E）</td><td><strong>~16.3x</strong></td><td>基于一致预期EPS 7.65元</td></tr>
-  <tr><td>PB</td><td><strong>~9.8x</strong></td><td>基于每股净资产12.84元</td></tr>
-  <tr><td>PS（TTM）</td><td><strong>~4.4x</strong></td><td>市销率</td></tr>
-  <tr><td>股息率</td><td><strong>~2.7%</strong></td><td>基于每股分红5元（含税）</td></tr>
+  <tr><th>指标</th><th>当前值</th><th>历史分位</th><th>行业均值/对比</th></tr>
+  <tr><td>股价（2026-10-13）</td><td><strong>111.98 元</strong></td><td>52 周 103.10 – 232.80</td><td>距低点 +8.7%</td></tr>
+  <tr><td>总市值</td><td><strong>822.16 亿</strong></td><td>—</td><td>—</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>16.75x</strong></td><td class="bad">上市以来最低</td><td>养元饮品 38.13x / 李子园 21.68x</td></tr>
+  <tr><td>PE（2026E）</td><td>15.8x</td><td>—</td><td>券商预测归母 51.92 亿（已从 56.11 亿下调）</td></tr>
+  <tr><td>PE（2027E）</td><td>13.2x</td><td>—</td><td>券商预测归母 59.56 亿</td></tr>
+  <tr><td>每股净资产</td><td><strong>26.53 元</strong></td><td>—</td><td>—</td></tr>
+  <tr><td>PB</td><td><strong>4.22x</strong></td><td class="neutral">中性偏上</td><td>承德露露 2.67x / 李子园 2.31x / 养元饮品 6.41x</td></tr>
+  <tr><td>PS（TTM）</td><td>3.96x</td><td>—</td><td>—</td></tr>
+  <tr><td>股息率</td><td class="good">约 3.2%</td><td>—</td><td>分红率规划 ≥80%</td></tr>
 </table>
 
-<h3>4.2 PE Band估值区间（核心）</h3>
-<p style="font-size:13px;color:#666;margin-bottom:6px">非周期股适用PE Band法。ROE 51.61% → 合理PE参考区间：<strong>20-30x</strong> | 2026E一致预期EPS ≈ 7.65元</p>
-
-<table>
-  <tr><th>情景</th><th>PE倍数</th><th>对应股价</th><th>vs现价125元</th><th>条件假设</th></tr>
-  <tr><td>保守</td><td>20x</td><td><strong>153 元</strong></td><td class="good">+22%</td><td>当前PE已处保守情景（历史最低）</td></tr>
-  <tr><td>合理偏低</td><td>23x</td><td><strong>176 元</strong></td><td class="good">+41%</td><td>ROE 51.61%支撑23x合理</td></tr>
-  <tr><td>中性</td><td>25x</td><td><strong>191 元</strong></td><td class="good">+53%</td><td>消费龙头合理估值中枢</td></tr>
-  <tr><td>乐观</td><td>30x</td><td><strong>230 元</strong></td><td class="good">+84%</td><td>成长溢价恢复，补水啦持续高增</td></tr>
-  <tr><td>券商目标价</td><td>28x</td><td><strong>~214 元</strong></td><td class="good">+71%</td><td>多家券商一致目标</td></tr>
-  <tr><td>历史均值</td><td>46.9x</td><td><strong>359 元</strong></td><td class="good">+187%</td><td>上市以来平均PE</td></tr>
-  <tr><td>历史高位</td><td>106x</td><td><strong>811 元</strong></td><td>+549%</td><td>2021年6月上市炒作期</td></tr>
-</table>
-
-<div class="highlight-box">
-  <strong>PE Band核心判断：</strong><br>
-  ① 当前PE 20.1x已处于保守情景，是上市以来最低水平（历史均值46.9x）；<br>
-  ② 以ROE 51.61%对应的合理PE 20-30x看，当前估值在合理区间下沿，具备安全边际；<br>
-  ③ 2026E PE仅16.3x，对于增速30%+的消费龙头，PEG仅0.5——深度低估；<br>
-  ④ 从PE Band角度看，即使保守情景（20x），当前价仍有+22%上涨空间；中性情景（25x）有+53%空间；<br>
-  ⑤ 高ROE（51.61%）+ 低PE（20x）+ 高分红（61%）的组合在A股消费股中极为罕见。
+<div class="danger-box">
+<strong>⚠️ 估值口径已发生结构性变化（必读）：</strong><br>
+① 归母净资产 94.21 亿 → <strong>194.75 亿（+106.72%）</strong>，主因 H 股募资 101.41 亿港元 + 中期大额分红；<br>
+② 同期总资产仅增 33.98%——<strong>差额趴在货币资金上，未投进经营</strong>；<br>
+③ <strong>上一版报告的 PB 9.8x 系计算错误</strong>（误用每股净资产 12.84 元，实际 2025 年末为 18.12 元），已更正；<br>
+④ <strong>PB 从 9.8x 降到 4.22x 不是股价下跌造成的，是净资产口径变化造成的</strong>，两者不可直接比较。
 </div>
 
-<h3>4.3 历史PE分位（上市以来）</h3>
+<h3>6.2 估值区间 —— PB-ROE 框架（本标的正确方法）</h3>
+
+<div class="highlight-box">
+<strong>为什么必须用 PB 而不是 PE：</strong>东鹏 2026 年的核心争议不是「利润涨不涨」，而是「<b>募来的 100 亿能不能投出高回报</b>」。<br>
+PE 的分母是 EPS（当期利润），<b>对权益规模突然翻倍完全不敏感</b>；PB 的分母是净资产，<b>直接把资本结构变化反映进估值</b>。当 ROE 本身处于争议中心时，PB-ROE 是唯一能同时容纳「ROE 可能维持 30%」和「ROE 可能永久降至 25%」两种情景的框架。
+</div>
+
+<h4>ROE 口径校正</h4>
 <table>
-  <tr><th>指标</th><th>PE值</th><th>分位</th></tr>
-  <tr><td>历史最大值</td><td>106x（2021-06）</td><td>100%</td></tr>
-  <tr><td>历史80%分位</td><td>42x</td><td>80%</td></tr>
-  <tr><td>历史50%分位（中位）</td><td>39x</td><td>50%</td></tr>
-  <tr><td>历史20%分位</td><td>33x</td><td>20%</td></tr>
-  <tr><td>历史最小值</td><td class="bad">~20x（当前）</td><td>~0%</td></tr>
-  <tr><td>当前PE（TTM）</td><td class="good" style="font-weight:bold">20.1x</td><td><strong>历史最低（0%分位）</strong></td></tr>
+  <tr><th>指标</th><th>FY2025</th><th>2026H1</th><th>说明</th></tr>
+  <tr><td>归母净利</td><td>44.15 亿</td><td>28.67 亿（年化约 57-60 亿）</td><td>分子未恶化</td></tr>
+  <tr><td>归母净资产</td><td>94.21 亿</td><td><strong>194.75 亿</strong></td><td>分母翻倍</td></tr>
+  <tr><td>报表 ROE</td><td>51.61%（加权）</td><td>19.03%（半年）</td><td>口径不可直接比</td></tr>
+  <tr><td>净利率</td><td>21.25%</td><td class="good">23.04%</td><td class="good">在提升</td></tr>
+  <tr><td><strong>常态化 ROE（年化）</strong></td><td>约 46.9%</td><td class="neutral"><strong>约 29.5%</strong></td><td class="neutral">若达券商 2028E 68.11 亿 → 35.0%</td></tr>
 </table>
 
+<h4>合理 PB 推导</h4>
+<p style="font-size:13px;color:#666;margin:6px 0">
+公式：<b>合理 PB = (ROE − g) / (r − g)</b>　｜　A 股消费龙头股权成本 r 取 9-10%，长期增速 g 取 3-4%
+</p>
+<table>
+  <tr><th>可持续 ROE</th><th>g=3%, r=9%</th><th>g=3%, r=10%</th><th>g=4%, r=9%</th><th>综合合理 PB</th><th>对应股价</th></tr>
+  <tr><td>25%（募资无法投放）</td><td>4.40x</td><td>3.43x</td><td>4.20x</td><td>3.4 – 4.4x</td><td class="bad">90 – 117 元</td></tr>
+  <tr><td>28%（市场当前隐含）</td><td>5.00x</td><td>3.80x</td><td>4.80x</td><td>3.8 – 5.0x</td><td>101 – 133 元</td></tr>
+  <tr style="background:#f8f4e8"><td><b>30%（基准假设）</b></td><td>4.50x</td><td>4.09x</td><td>5.20x</td><td><b>3.9 – 5.2x</b></td><td class="good"><b>103 – 138 元</b></td></tr>
+  <tr><td>35%（券商 2028 兑现）</td><td>5.33x</td><td>5.00x</td><td>6.20x</td><td>5.0 – 6.2x</td><td class="good">133 – 165 元</td></tr>
+  <tr><td>40%（募资高效投放）</td><td>6.17x</td><td>5.83x</td><td>7.20x</td><td>5.8 – 7.2x</td><td class="good">154 – 191 元</td></tr>
+</table>
+
+<h4>反向推导：现价隐含多少 ROE？</h4>
 <div class="summary-box">
-  <strong>估值总结：</strong>东鹏饮料当前PE 20.1x处于上市以来<strong>历史最低水平</strong>（0%分位），历史均值46.9x。以ROE 51.61%衡量，合理PE区间20-30x，当前估值处于合理区间下沿。2026E PE仅16.3x，对应30%+的增速，PEG约0.5——在A股消费龙头中极具性价比。PE Band分析显示，即使保守情景（20x）下也有+22%上涨空间。高ROE（51.61%）+ 低PE（20x，历史最低）+ 高分红（61%）的组合非常罕见。催化剂：补水啦持续放量、全国化拓展、H股上市提升流动性。
+代入当前 PB 4.22x（r=9%、g=3%）：<br>
+<code style="background:#f5f5f5;padding:2px 6px;border-radius:3px">4.22 = (ROE − 3%) / (9% − 3%)　→　ROE = 4.22 × 6% + 3% = <strong class="bad">28.3%</strong></code><br><br>
+<b>市场当前定价隐含的可持续 ROE 只有 28.3%。</b><br>
+▸ 若合理 ROE 为 30% → 现价低估约 <b>3-12%</b>（对应 115-125 元）<br>
+▸ 若合理 ROE 为 25% → 现价<b>高估约 25%</b>（对应 78-86 元）<br><br>
+<b>⇒ 111.98 元是贵还是便宜，完全取决于那 149 亿货币资金的去向——这是一个尚未发生的变量。</b>
+</div>
+
+<h3>6.3 分部估值交叉验证（SOTP）</h3>
+<table>
+  <tr><th>组成部分</th><th>口径</th><th>估值</th><th>每股</th></tr>
+  <tr><td>经营业务</td><td>TTM 经营净利约 49 亿 × PE 17-20x<br><span style="color:#888">（增速已换挡，不给 25x）</span></td><td>830 – 980 亿</td><td>113 – 133 元</td></tr>
+  <tr><td>净现金</td><td>货币资金约 149 亿，扣短期借款后约 90 亿</td><td>90 亿</td><td>12 元</td></tr>
+  <tr><td><strong>合计</strong></td><td>—</td><td><strong>920 – 1070 亿</strong></td><td class="good"><strong>125 – 146 元</strong></td></tr>
+</table>
+
+<h3>6.4 历史 PE 区间（辅助参考）</h3>
+<table>
+  <tr><th>指标</th><th>PE 值</th><th>分位</th></tr>
+  <tr><td>历史最大值</td><td>106x（2021-06）</td><td>100%</td></tr>
+  <tr><td>历史 80% 分位</td><td>42x</td><td>80%</td></tr>
+  <tr><td>历史 50% 分位</td><td>39x</td><td>50%</td></tr>
+  <tr><td>历史 20% 分位</td><td>33x</td><td>20%</td></tr>
+  <tr><td>历史最小值</td><td class="bad">约 20x</td><td>约 0%</td></tr>
+  <tr><td><strong>当前 PE（TTM）</strong></td><td class="good" style="font-weight:bold">16.75x</td><td><strong>已跌破上市以来最低值</strong></td></tr>
+</table>
+<div style="font-size:12px;color:#888">注：PE 分位因 EPS 口径变化（10转3、H股发行摊薄）而部分失真，仅作趋势参考，<b>以 PB-ROE 为准</b>。</div>
+
+<h3>6.5 估值总结</h3>
+<div class="summary-box">
+<strong>估值判断：合理区间下沿，方向取决于一个尚未发生的变量。</strong><br><br>
+以 ROE 30%、r=9-10%、g=3-4% 推导，合理 PB 3.9-5.2x、对应股价 <b>103-138 元</b>；SOTP 交叉验证 125-146 元；<b>两法交集 115-135 元</b>。现价 111.98 元位于区间下沿。<br><br>
+反向看，现价隐含可持续 ROE 仅 <b>28.3%</b>，而公司当前年化 ROE 约 29.5%——<b>市场定价已基本反映当前水平，没有为资本配置改善留出任何预期</b>。<br><br>
+<b>结论：估值本身不贵，但也谈不上便宜到必须买入。</b>真正的分歧点不是「PE 低不低」，而是「149 亿能不能投出 15%+ 的回报」——投得出，PB 有望向 5.2x 靠（138 元+）；投不出，PB 应回到 3.4x（90 元）。<b>该问题需等 2026-10-30 三季报及后续资金投向披露才能回答。</b>
 </div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l4"><div class="tab-inner">
 
-<h2>五、杜邦分析拆解（L4框架）</h2>
+<h2>七、杜邦分析（L4 框架）</h2>
 
-<h3>5.1 杜邦拆解表</h3>
+<h3>7.1 杜邦拆解</h3>
 <table>
-  <tr><th>指标</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
-  <tr><td>净利润率</td><td>21.00%</td><td><strong>21.14%</strong></td><td class="good">⬆ 微升0.14pct</td></tr>
-  <tr><td>资产周转率</td><td>0.70</td><td><strong>0.78</strong></td><td class="good">⬆ 提升11%</td></tr>
-  <tr><td>权益乘数</td><td>2.56</td><td><strong>2.84</strong></td><td class="neutral">⬆ 杠杆略升</td></tr>
-  <tr><td><strong>ROE</strong></td><td><strong>~37.6%</strong></td><td><strong>51.61%</strong></td><td class="good">⬆ 大幅提升</td></tr>
-  <tr><td>去杠杆ROA（净利率×周转）</td><td>14.7%</td><td><strong>16.5%</strong></td><td class="good">⬆ 提升</td></tr>
-  <tr><td>杠杆贡献（ROE-ROA）</td><td>22.9pct</td><td><strong>35.1pct</strong></td><td class="neutral">⬆ 杠杆放大</td></tr>
+  <tr><th>指标</th><th>FY2024</th><th>FY2025</th><th>2026H1</th><th>判断</th></tr>
+  <tr><td>净利润率</td><td>21.00%</td><td>21.25%</td><td class="good"><strong>23.04%</strong></td><td class="good">⬆ 持续提升</td></tr>
+  <tr><td>总资产周转率</td><td>0.70</td><td>0.78</td><td class="neutral">0.70（半年年化）</td><td class="neutral">募资推高资产，分母虚增</td></tr>
+  <tr><td>权益乘数</td><td>2.56</td><td>2.84</td><td class="good"><strong>1.84</strong></td><td class="good">⬇ 大幅去杠杆</td></tr>
+  <tr><td><strong>ROE</strong></td><td><strong>约 37.6%</strong></td><td><strong>51.61%</strong>（加权）</td><td class="neutral"><strong>约 29.5%</strong>（年化）</td><td class="neutral">口径变化致表面下降</td></tr>
+  <tr><td>去杠杆 ROA（净利率×周转）</td><td>14.7%</td><td>16.6%</td><td class="good">16.1%（年化）</td><td class="good">真实资产回报仍在提升</td></tr>
+  <tr><td>杠杆贡献（ROE−ROA）</td><td>22.9pct</td><td>35.1pct</td><td class="good">13.4pct</td><td class="good">杠杆依赖度大幅下降</td></tr>
 </table>
 
 <div class="highlight-box">
-  <strong>赚钱模式判断：高利润+中周转+中高杠杆型</strong><br>
-  东鹏饮料以21.14%的高净利润率为核心驱动，叠加0.78的资产周转率（饮料行业中上水平）和2.84的权益乘数，共同实现了51.61%的顶级ROE。去掉杠杆后的ROA为16.5%，说明即使剔除杠杆，公司的资产回报效率依然非常优秀——这得益于高毛利产品（特饮50.79%）和极低的应收账款（0.91亿）。<br><br>
-  <strong>值得注意的变化：</strong>FY2025 ROE从37.6%大幅跃升至51.6%，主因是权益乘数从2.56升至2.84（短期借款增加）以及周转率从0.70升到0.78（营收增速30%+远超资产增速18%）。杠杆放大效应显著（贡献35.1pct），但核心是净利润率稳定在21%以上——这是真正"好生意"的标志。
+<strong>赚钱模式：高利润型（且正在变得更「干净」）。</strong><br><br>
+ROE = 净利率 × 资产周转率 × 权益乘数。东鹏的 ROE 主要由<b>第一项净利率驱动</b>——23.04% 的净利率在 A 股食品饮料中几乎无人能及，这是「先款后货 + 高毛利 + 强品牌」共同作用的结果。<br><br>
+<b>但 2026H1 出现了一个非常重要的结构变化：</b>权益乘数从 2.84 降至 <b>1.84</b>。这不是经营变差，而是 H 股募资使净资产翻倍、<b>杠杆被动去化 35%</b>。结果是：<br>
+▸ <b>去杠杆 ROA 从 16.6% 微升至 16.1%→真实资产回报未下降</b><br>
+▸ <b>杠杆贡献从 35.1pct 骤降至 13.4pct</b>——意味着公司过去一半以上的 ROE 靠借钱放大，现在这一块没有了<br><br>
+<b>对一家不依赖杠杆的优质消费龙头，这是资本结构的实质性改善</b>。但同时暴露出新问题：账上约 149 亿货币资金目前只赚约 1.5% 利息，这部分资产会持续稀释整体 ROE。<b>公司接下来必须证明它有能力把这份「超额资本」变成「超额回报」，否则 50% 的 ROE 将永远回不来。</b>
 </div>
 
-<h3>5.2 分业务杜邦贡献</h3>
-<table>
-  <tr><th>业务板块</th><th>毛利率</th><th>趋势</th><th>对ROE影响</th></tr>
-  <tr><td>东鹏特饮</td><td>50.79%</td><td class="good">稳定高毛利</td><td class="good">核心利润引擎</td></tr>
-  <tr><td>补水啦</td><td>34.77%</td><td class="good">⬆ +119%高增长</td><td class="good">规模效应改善中</td></tr>
-  <tr><td>其他饮料</td><td>15.53%</td><td class="bad">偏低</td><td class="neutral">拖累整体利润率</td></tr>
-</table>
-
+<h3>7.2 核心结论</h3>
 <div class="summary-box">
-  <strong>核心结论：</strong><br>
-  ① ROE 51.61%是典型的高利润驱动型（净利率21.14%），这是最可持续的赚钱模式；<br>
-  ② 去杠杆ROA 16.5%在A股中属于顶级水平，说明即使去掉杠杆，资产回报依然优秀；<br>
-  ③ 周转率从0.70升至0.78，说明渠道周转加快、资产使用效率在提升；<br>
-  ④ 权益乘数2.84偏高（短期借款66.3亿），但H股上市后货币资金增至149.54亿，杠杆将显著下降；<br>
-  ⑤ ROE提升的关键驱动：高毛利特饮稳住基本盘 + 补水啦放量改善+ 杠杆下降后ROE结构更健康。
+<strong>杜邦结论：ROE 靠「真实盈利能力」驱动，且这个能力仍在增强；但资本结构已从「借钱放大」转向「自有资本沉淀」。</strong><br><br>
+▸ <b>分子端优秀且在改善</b>：净利率 21.00% → 21.25% → 23.04%，毛利率 44.07% → 44.91% → 48.36%，连续三期上行。这是生意变好的证据，不是变差的证据。<br>
+▸ <b>杠杆端在收缩</b>：权益乘数 2.84 → 1.84，杠杆贡献 35.1pct → 13.4pct。财务风险实质下降，但也失去了 ROE 的放大器。<br>
+▸ <b>ROE 从 51.61% 到「年化 29.5%」是口径现象</b>，其中约一半是分母翻倍、约一半是增速换挡导致的盈利增速放缓。<br><br>
+<b>关键判断：50%+ 的 ROE 是「高速增长期 + 小权益基数」造出来的异常值，30-38% 才是东鹏的应有水平。</b>对一家净利率 23%、市占率 51%、几乎不借钱的消费龙头，30% 以上的 ROE 已经非常优秀。市场若以 51.61% 为基准重新定价，必然产生落差——<b>而落差就是过去一年股价从 256 元跌到 112 元的真正原因</b>，不是基本面崩塌。
 </div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l5"><div class="tab-inner">
 
-<h2>六、行业分类与特征（L5框架）</h2>
+<h2>八、行业分类（L5 框架）</h2>
 
-<h3>6.1 行业类型判断</h3>
+<h3>8.1 行业类型判断</h3>
 <div class="summary-box">
-  <strong>行业类型：非周期/成长性（消费品高增长赛道）</strong><br>
-  <strong>判断依据：</strong>软饮料行业在中国仍处于成长期——能量饮料渗透率持续提升（人均消费量仍远低于美国/日本），东鹏饮料营收连续3年CAGR~36%，远高于GDP增速。消费品具有刚性需求属性，经济周期波动对其影响极小，属于典型的非周期行业。公司处于能量饮料渗透率提升+多品类扩张+全国化拓展的三重成长叠加期。<br><br>
-  <strong>防御属性：</strong>软饮料具有一定的防御属性（刚需、高频、低价），经济下行期需求韧性好于可选消费。但整体仍以成长驱动为主。
+<strong>行业类型：非周期 — 成长型。</strong>依据（对照 <code>industry-classification.md</code>）：<br>
+▸ 软饮料属<b>必需消费品</b>，需求刚性，不存在钢铁/煤炭/水泥式的「产能周期 + 库存周期 + 价格由供需错配决定」；<br>
+▸ 行业长期增速由<b>人均消费量提升与品类渗透率</b>驱动，而非 GDP 同步；能量饮料渗透率仍处上行期；<br>
+▸ 因此采用<b>非周期股评分体系</b>，L3 使用 PE/PB 而非 PB Band。<br>
+<span style="color:#888;font-size:12px">注：公司同时具备周期属性的一面是<b>上游 PET、白砂糖、铝罐成本波动</b>，但该因素只影响毛利率一个科目，不改变行业分类。
+</span>
 </div>
 
-<h3>6.2 行业集中度与壁垒</h3>
+<h3>8.2 集中度与壁垒</h3>
 <table>
-  <tr><th>维度</th><th>判断</th></tr>
-  <tr><td>行业集中度</td><td><strong>高度集中</strong>——能量饮料CR3>80%，东鹏特饮销量份额51.6%（连续五年第一），红牛+体质能量为第二梯队。正在集中趋势中——东鹏份额从47.9%升至51.6%，强者恒强。</td></tr>
-  <tr><td>品牌壁垒</td><td><strong>极强</strong>——东鹏特饮品牌认知度极高，连续五年销量第一，消费者心智已固化。新品牌进入需要巨额营销投入。</td></tr>
-  <tr><td>渠道壁垒</td><td><strong>强</strong>——终端网点覆盖数百万个，经销商体系完善。非华南收入占比已超70%，全国化渠道网络已成型。</td></tr>
-  <tr><td>规模壁垒</td><td><strong>中等</strong>——七大生产基地（华南/华中/华东/华西/华北）全国布局，PET锁价能力、规模采购优势明显。</td></tr>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>能量饮料市场格局</td><td class="good"><b>高度集中，双寡头</b></td><td>东鹏市占率约 51%，红牛（华彬）为另一主导者，两者合计超 85%</td></tr>
+  <tr><td>软饮料整体格局</td><td class="neutral">分散</td><td>农夫山泉、康师傅、统一、养元、李子园等众多品牌，品类间竞争不直接</td></tr>
+  <tr><td>核心壁垒</td><td class="good">品牌 + 渠道 + 规模</td><td>「1+6」多品类；经销商网络密度；冰柜终端投放规模</td></tr>
+  <tr><td>进入壁垒</td><td class="good">中高</td><td>品牌心智建立需长期广告投入；渠道终端（冰柜、货架）争夺成本高</td></tr>
+  <tr><td>定价权</td><td class="good">较强</td><td>能量饮料提价能力强（提价后销量未崩塌），毛利率持续上行印证</td></tr>
 </table>
 
-<h3>6.3 生命周期阶段</h3>
+<h3>8.3 生命周期与周期位置</h3>
 <div class="highlight-box">
-  <strong>阶段：成长期中段</strong><br>
-  中国能量饮料市场仍处于渗透率提升阶段，人均消费量远低于成熟市场。东鹏饮料从"东鹏特饮单一大单品"向"1+6多品类平台型饮料集团"转型，补水啦（电解质饮料）已成功打造为第二增长曲线。海外市场（东南亚等）刚起步，长期成长空间仍然广阔。<br><br>
-  <strong>投资策略重点：</strong>关注品类扩张进度（补水啦能否到50亿+）、全国化深化（华北+华西渗透率提升）、海外突破。
+<strong>生命周期：成长期中后段。</strong><br>
+▸ <b>渗透率角度</b>：中国人均能量饮料消费量约为美国的 1/3-1/5，仍有数倍提升空间 → 成长期<br>
+▸ <b>单公司增速角度</b>：营收增速 +31.8% → +15.89% → Q2 单季 +11.31%，基数效应显现 → 成长期后半段<br><br>
+<b>与周期股不同，能量饮料没有「周期底部/顶部」概念。</b>投资逻辑应聚焦：① 增速能否稳在 15% 以上；② 多品类第二曲线（茶饮料 +209%、其他饮料）能否持续接力；③ 资本配置效率。
 </div>
 
-<h3>6.4 当前周期位置</h3>
-<div class="highlight-box">
-  <strong>周期位置：稳健成长期（非周期股，无显著周期波动）</strong><br>
-  软饮料行业具有弱周期属性——无论经济好坏，饮料消费需求相对稳定。东鹏饮料FY2025营收+32%、净利+33%均保持健康增速，未出现周期股的大幅波动。行业核心驱动因素是品类渗透率提升和市场份额集中，而非经济周期。
-</div>
-
-<h3>6.5 估值方法匹配</h3>
+<h3>8.4 同行对比</h3>
 <table>
-  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
-  <tr><td>非周期/成长性（消费-饮料）</td><td>PE Band</td><td>毛利率、ROE、营收增速</td><td class="good">✅ 匹配——PE 20x历史最低位</td></tr>
+  <tr><th>指标</th><th>东鹏饮料</th><th>承德露露</th><th>养元饮品</th><th>李子园</th><th>评价</th></tr>
+  <tr><td>代码</td><td>605499</td><td>000848</td><td>603156</td><td>605337</td><td>—</td></tr>
+  <tr><td>股价（元）</td><td>111.98</td><td>8.45</td><td>41.45</td><td>9.24</td><td>—</td></tr>
+  <tr><td>总市值（亿）</td><td><strong>822.16</strong></td><td>86.19</td><td>522.39</td><td>35.82</td><td class="good">规模最大</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>16.75x</strong></td><td>12.93x</td><td>38.13x</td><td>21.68x</td><td class="good">偏低</td></tr>
+  <tr><td>PB</td><td>4.22x</td><td class="good">2.67x</td><td class="neutral">6.41x</td><td class="good">2.31x</td><td class="neutral">居中</td></tr>
+  <tr><td>ROE</td><td><strong>约 29.5%（年化）</strong></td><td class="nd">待补充</td><td class="nd">待补充</td><td class="nd">待补充</td><td class="good">预计行业领先</td></tr>
+  <tr><td>毛利率</td><td><strong>48.36%</strong></td><td class="nd">待补充</td><td class="nd">待补充</td><td class="nd">待补充</td><td class="good">预计行业领先</td></tr>
+  <tr><td>营收增速</td><td>+15.89%</td><td class="nd">待补充</td><td class="nd">待补充</td><td class="nd">待补充</td><td class="neutral">中等</td></tr>
+  <tr><td>定位</td><td>能量饮料龙头，高成长</td><td>杏仁露，成熟品类</td><td>核桃乳，成熟品类</td><td>含乳饮料，低速</td><td>—</td></tr>
 </table>
 
 <div class="summary-box">
-  <strong>估值方法总结：</strong>东鹏饮料作为非周期成长型消费龙头，PE Band是最合适的估值方法（已在L3中详细展开）。当前PE 20x处于历史最低位，结合ROE 51.61%和营收增速30%+，PEG仅0.5。毛利率44.91%稳定、ROE 51.61%顶级、CFO/净利1.40——这些核心指标均表现优秀，支撑当前估值合理偏低。对于消费成长股，关键是跟踪营收增速和毛利率趋势——只要增速不跌破20%、毛利率稳住，当前估值就有安全边际。
+<strong>竞争位置：A 股软饮料中「成长性最强、盈利能力最高、估值最不贵」的标的。</strong><br>
+▸ 估值上，PE 16.75x 显著低于养元饮品（38.13x）和李子园（21.68x），仅略高于承德露露（12.93x）；<br>
+▸ PB 4.22x 处于中位，说明市场已经为它的成长性付了一定溢价，但没有给到养元的 6.41x；<br>
+▸ 相对成熟品类同行（承德露露、养元、李子园增速多为个位数），东鹏 +15.89% 的增速是<b>数量级优势</b>——这是它该有的估值溢价来源。<br>
+<span style="color:#888;font-size:12px">数据缺失说明：同行 ROE / 毛利率 / 营收增速本次未取数，已标注「待补充」，不参与本报告结论推导。</span>
+</div>
+
+<h3>8.5 估值方法匹配</h3>
+<div class="summary-box">
+<strong>估值方法：消费（食品饮料）→ 首选 PE，辅助 PB + 毛利率/ROE。</strong><br><br>
+▸ <b>行业标准做法</b>：软饮料属消费股，市场普遍用 PE 估值，合理 PE 取决于品牌力与增速（ROE&gt;20% 对应 20-30x）；<br>
+▸ <b>当前是否匹配</b>：<b>部分不匹配</b>。市场用 PE 16.75x 给东鹏定价，但忽略了 2026 年净资产翻倍这一结构性变化——PE 对此不敏感，导致分母剧增后 PE「看起来更便宜」，容易误判；<br>
+▸ <b>建议</b>：以 <b>PB-ROE 为主锚（3.9-5.2x），PE 为辅助</b>，理由见 6.2 节。这是本报告相对上一版最重要的方法论修正。
 </div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l6"><div class="tab-inner">
 
-<h2>七、综合实战（L6全内容）</h2>
+<h2>九、综合实战（L6 框架）</h2>
 
-<h3>7.1 六步法总结</h3>
+<h3>9.1 六步法总结</h3>
 <div class="summary-box">
-  <strong>Step 1 - 行业定位：</strong>非周期/成长性（消费品高增长赛道）。能量饮料高度集中（CR3>80%），东鹏份额51.6%，品牌+渠道壁垒极强。采用非周期股评分体系（10维度）。<br>
-  <strong>Step 2 - 财务体检：</strong>ROE 51.61%顶级，高利润型杜邦（净利率21.14%），CFO/净利1.40现金质量优秀，应收账款仅0.91亿。<br>
-  <strong>Step 3 - 估值判断（PE Band）：</strong>PE 20x处于历史最低位（0%分位），PE Band显示保守情景即有+22%上涨空间，2026E PE仅16.3x对应PEG 0.5，深度低估。<br>
-  <strong>Step 4 - 风险排查：</strong>短期借款66.3亿>货币资金56.8亿（H股上市后已补足至149.54亿），特饮增速放缓至17%，品类结构变化拉低毛利。<br>
-  <strong>Step 4b - 半年报新风险排查：</strong>营收增速降至15.89%（跌破20%健康线），补水啦增速骤降至+13%，Q2单季增速仅约+11%——这是半年报后最重要的边际变化，已将风险排查评级由"中等"上调至"警示"（详见L2排雷基单）。<br>
-  <strong>Step 5 - 结论：</strong>好公司（ROE+现金+品牌壁垒确认）质地未变，但增速中枢显著下移；估值仍处历史最低（PE 20x），好价格逻辑仍在。综合判定：品质优秀，但增速降档增加了不确定性，需以"增速能否修复至20%"作为持有/加仓的核心前提。<br>
-  <strong>Step 6 - 跟踪：</strong>Q3/Q4营收增速能否回升（旺季动销）、其他饮料能否继续+100%接棒增长、毛利率能否维持48%、H股上市后杠杆下降进度。
+<b>Step 1 - 行业定位：</b>非周期·成长型；能量饮料双寡头格局（东鹏市占率 51%）；壁垒=品牌+渠道+规模<br>
+<b>Step 2 - 财务体检：</b>年化 ROE 约 29.5%；杜邦类型=高利润型（净利率 23.04% 驱动，权益乘数仅 1.84）；CFO/净利 FY2025=1.40，现金质量 A 股软饮料第一梯队<br>
+<b>Step 3 - 估值判断：</b>PE(TTM) 16.75x 上市以来最低；PB 4.22x；<b>PB-ROE 框架下合理区间 115-135 元，现价 111.98 位于下沿</b>；现价隐含 ROE 仅 28.3%<br>
+<b>Step 4 - 风险排查：</b>大股东累计减持超 70 亿（🔴）；H 股破发 -52%（🔴）；营收增速 Q2 单季仅 +11.31%（🟡）；149 亿资金趴在账上（🟡）<br>
+<b>Step 5 - 结论：</b>好公司 ✅（净利率顶级、几乎不借钱、强现金流）；好价格 ⚠️（合理区间下沿，但不便宜到必须买，取决于资本配置结果）<br>
+<b>Step 6 - 跟踪：</b>① Q3 营收增速能否止住 15%；② 149 亿新增资金投向与回报率；③ 大股东是否继续减持；④ 茶饮料能否延续 +200%
 </div>
 
-<h3>7.2 好公司三要素检查</h3>
+<h3>9.2 好公司三要素检查</h3>
 <table>
   <tr><th>要素</th><th>判断</th><th>依据</th></tr>
-  <tr><td>① 好行业</td><td class="good">✓</td><td>能量饮料渗透率持续提升，CR3>80%格局稳定，需求刚性强</td></tr>
-  <tr><td>② 好公司</td><td class="good">✓</td><td>ROE 51.61%>15%，毛利率H1升至48.36%且改善，CFO/净利1.40>1</td></tr>
-  <tr><td>③ 好价格</td><td class="good">✓</td><td>PE 20x在历史最低位（0%分位），PEG仍<1.5，PB 9.8x合理</td></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>必需消费 + 能量饮料渗透率仍在上行；双寡头格局，龙头有定价权</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓</td><td>净利率 23.04%（行业顶级）、毛利率 48.36% 且上升、FY2025 CFO/净利 1.40、权益乘数仅 1.84、应收 0.91 亿几乎无坏账</td></tr>
+  <tr><td>③ 好价格</td><td class="neutral">⚠</td><td>PE 16.75x 看似便宜，但 ROE 年化已降至 29.5%、「合理 PE」应同步下移；PB 4.22x 中性。PB-ROE 下合理区间 115-135 元，现价 111.98 略低于下沿，<b>属「合理偏低」而非「明显低估」</b></td></tr>
 </table>
 
-<h3>7.3 风险评估</h3>
+<h3>9.3 风险评估</h3>
 
 <h4>a. 三个陷阱排查</h4>
-<div class="highlight-box">
-  <strong>☐ 价值陷阱：</strong>⚠ 需持续验证——低PE（20x）但ROE仍高（51.61%），并非典型价值陷阱；但需警惕"增速降档+估值不杀"的成长陷阱风险，核心是Q3增速能否修复至20%。<br>
-  <strong>☐ 周期陷阱：</strong>❌ 未命中——饮料为弱周期消费，无显著周期波动。<br>
-  <strong>☐ 烧钱陷阱：</strong>❌ 未命中——CFO 61.74亿远超净利44.15亿，FCF充裕，完全不烧钱。
+<div class="danger-box">
+<b>☐ 价值陷阱（低PE + 低增长 + 高负债）→ 未命中</b><br>
+&nbsp;&nbsp;ROE 条件命中（PE 低），但增长条件不成立：H1 营收 +15.89%、归母 +20.72%，仍双位数增长；负债条件不成立：资产负债率 45.47%，且权益乘数仅 1.84。三项中仅一项命中，<b>不构成价值陷阱</b>。<br><br>
+<b>☐ 周期陷阱（低PE + 周期顶点）→ 未命中</b><br>
+&nbsp;&nbsp;PE 16.75x 处于历史低位而非高位（周期陷阱的特征恰恰是「PE 极低但处于盈利顶点」）。且软饮料为非周期行业，不适用周期位置判断。<b>需警惕的是另一面</b>——股价从 256 元高点跌 -56%，PE 已跌破历史最低，市场对「增速换挡」的定价可能仍未完成。<br><br>
+<b>☐ 烧钱陷阱（高PE + 高增速 + 负现金流）→ 未命中</b><br>
+&nbsp;&nbsp;PE 仅 16.75x（H1 CFO 24.93 亿为正、FY2025 CFO 61.74 亿）。账上约 149 亿货币资金、几乎无长期有息负债，不存在烧钱迹象。
 </div>
 
 <h4>b. 管理层与治理风险</h4>
 <table>
   <tr><th>事项</th><th>判断</th><th>依据</th></tr>
-  <tr><td>管理层能力与履历</td><td class="good">好</td><td>创始人林木勤深耕饮料行业30+年，从东莞起家做到全国第一</td></tr>
-  <tr><td>股权结构与利益一致性</td><td class="good">强</td><td>林木勤直接+间接持股约50%，管理层与股东利益高度一致</td></tr>
-  <tr><td>关联交易/暴雷历史</td><td class="good">无</td><td>上市至今无重大违规、无监管处罚记录</td></tr>
-  <tr><td>资本配置记录</td><td class="good">合理</td><td>分红率61.4%慷慨，H股上市合理融资，无乱并购</td></tr>
-  <tr><td>CEO交接/关键人员变动</td><td class="good">无风险</td><td>林木勤仍掌舵，二代逐步参与经营但未激进交接</td></tr>
+  <tr><td>股权结构与一致性</td><td class="neutral">一般</td><td>创始人林木勤持股约 49.74%（2026Q1），控制权稳固；但实控人关联方在持续减持</td></tr>
+  <tr><td><b>管理层增减持记录</b></td><td class="bad"><b>负面 🔴</b></td><td>天津君正（曾为第二大股东）持股由 9.00% 降至 1.00%；<b>实控人关联方烟台鲲鹏 + 员工持股平台累计减持超 70 亿元</b>，自 2022-05 解禁以来已 7 次减持公告</td></tr>
+  <tr><td>资本配置记录</td><td class="neutral">待观察</td><td>分红率规划 ≥80%、中期分红已实施（9/24 除息）、<b>公司回购 10.4 亿（沪市主板第 2）</b>——方向正确；但 100 亿募资的使用效率尚无数据</td></tr>
+  <tr><td>关联交易/暴雷</td><td class="good">无重大问题</td><td>2026 年度预计与海丰县顺宝泉物业管理、深圳鹏智瑞数字营销发生日常关联交易，金额 5,223 万元，体量小</td></tr>
+  <tr><td>H 股定价风险</td><td class="bad"><b>负面 🔴</b></td><td>发行价 248.00 港元，现约 118 港元（<b>-52%</b>），A+H 双重破位压制估值</td></tr>
+  <tr><td>CEO 交接</td><td class="good">无风险</td><td>创始人林木勤仍任法定代表人</td></tr>
 </table>
 
 <h4>c. 盈利可持续性</h4>
 <table>
   <tr><th>维度</th><th>判断</th><th>依据</th></tr>
-  <tr><td>增长靠量还是靠价？</td><td>量驱动+结构驱动</td><td>特饮销量增长+补水啦品类扩张，非单纯提价</td></tr>
-  <tr><td>涨价能否持续？</td><td class="good">能</td><td>5元价格带性价比极高，具有定价权</td></tr>
-  <tr><td>非经常性利润占比</td><td class="good">低</td><td>扣非占比94.8%，利润几乎全部来自主业</td></tr>
-  <tr><td>大客户/大项目集中度</td><td class="good">分散</td><td>终端覆盖数百万个网点，无单一大客户依赖</td></tr>
-  <tr><td>政策/监管依赖度</td><td class="good">低</td><td>普通食品饮料，无政策管制风险</td></tr>
+  <tr><td>增长靠量还是靠价</td><td class="neutral">混合</td><td>销量仍增长但放缓（特饮 Q1 +13.1%）；<b>毛利率升 3.21pct 说明利润增长更多来自成本下行与结构升级，而非提价</b></td></tr>
+  <tr><td>提价/成本红利可持续性</td><td class="neutral">需观察</td><td>PET/白砂糖成本红利属周期性；<b>若 2027 成本反转，毛利率 48.36% 难维持</b></td></tr>
+  <tr><td>非经常性损益占比</td><td class="good">低</td><td>H1 扣非 25.98 亿 / 归母 28.67 亿 = 90.6%；但 Q2 单季该比例降至 86.9%，需跟踪</td></tr>
+  <tr><td>大客户集中度</td><td class="good">分散</td><td>经销为主，无单一大客户依赖；应收 0.91 亿印证</td></tr>
+  <tr><td>政策/监管依赖</td><td class="good">低</td><td>普通食品饮料，无牌照/准入管制</td></tr>
+  <tr><td>ESG / 渠道健康度</td><td class="neutral">需观察</td><td>2025Q4 净利率骤降至 10.71% 系冰柜投放 + 海外拓展费用前置，属主动投入</td></tr>
 </table>
 
 <h4>d. 关键变量敏感性</h4>
 <div class="summary-box">
-  <strong>变量1: 东鹏特饮增速走势</strong><br>
-  &nbsp;&nbsp;乐观: 增速回升至20%+（终端渗透率提升+消费场景扩大）→ 2026E EPS 8.2元<br>
-  &nbsp;&nbsp;中性: 维持15-17%稳健增长 → 2026E EPS 7.65元（一致预期）<br>
-  &nbsp;&nbsp;悲观: 增速跌破10%（红牛反攻+竞争加剧）→ 2026E EPS 6.8元<br>
-  &nbsp;&nbsp;<strong>半年报更新：</strong>H1整体营收增速已降至15.89%，特饮Q1增速13.11%——低于此前"中性15-17%"假设下沿，正滑向悲观情景。<br><br>
-  <strong>变量2: 补水啦放量节奏与毛利率</strong><br>
-  &nbsp;&nbsp;乐观: 补水啦营收50亿+，毛利率升至38%+（规模效应）→ EPS增厚+0.5元<br>
-  &nbsp;&nbsp;中性: 补水啦营收40亿，毛利率35% → EPS增厚+0.3元<br>
-  &nbsp;&nbsp;悲观: 补水啦增速放缓至40%以下，毛利率维持34% → EPS增厚有限<br>
-  &nbsp;&nbsp;<strong>半年报更新：</strong>Q1增速已骤降至+13.21%，已低于悲观情景下限，电解质赛道竞争加剧是主因——该变量对增长的贡献预期需显著下调，增长引擎让位于"其他饮料"（+120%）。
-  <strong>变量3: 成本端（PET瓶胚+白砂糖价格）</strong><br>
-  &nbsp;&nbsp;乐观: PET+白砂糖价格回落，毛利率升至46%+ → EPS增厚+0.4元<br>
-  &nbsp;&nbsp;中性: 成本持平，毛利率维持44.9% → EPS影响中性<br>
-  &nbsp;&nbsp;悲观: 原材料涨价，毛利率跌至43% → EPS减少-0.3元
+<b>变量 1：H 股募资约 149 亿的资本配置效率（最关键）</b><br>
+&nbsp;&nbsp;乐观：投出 15%+ 回报（如海外产能/并购优质资产）→ ROE 回到 35%+ → PB 至 5.2x → <b>138 元</b><br>
+&nbsp;&nbsp;中性：维持存款/低收益理财，ROE 停在 29-30% → PB 4.5x → <b>121 元</b><br>
+&nbsp;&nbsp;悲观：持续趴在账上且费用化拖累 → ROE 降至 25% → PB 3.4x → <b>90 元</b><br><br>
+<b>变量 2：营收增速能否止住 15%</b><br>
+&nbsp;&nbsp;乐观：Q3 回升至 20%+（旺季动销修复 + 茶饮料放量）→ 情绪修复，估值向 PE 20x 靠<br>
+&nbsp;&nbsp;中性：维持 15-17% → 现状延续<br>
+&nbsp;&nbsp;悲观：Q3 单季跌破 10%（连续两季 &lt;15%）→ <b>触发基本面止损，需减仓</b><br><br>
+<b>变量 3：茶饮料 +208.99% 能否延续</b><br>
+&nbsp;&nbsp;乐观：全年维持三位数增长，第三曲线确立 → 支撑 ROE 回升<br>
+&nbsp;&nbsp;中性：增速回落至 50-80%（高基数正常化）<br>
+&nbsp;&nbsp;悲观：增速回落至 20% 以下 → 第三曲线证伪，成长叙事受损
 </div>
 
-<h3>7.4 前景展望</h3>
+<h3>9.4 前景展望</h3>
 
-<h4>a. 未来1-3年核心驱动</h4>
+<h4>a. 未来 1-3 年核心驱动</h4>
 <div class="summary-box">
-  <strong>正向驱动：</strong><br>
-  1. 其他饮料接棒增长 — Q1同比+120.36%，占比升至14.0%，"第三增长曲线"兑现中。<br>
-  2. 毛利率大幅改善 — H1升至48.36%（+3.46pct），成本下行红利持续释放。<br>
-  3. 全国化深化 + H股资本助力 — 货币资金增至149.54亿，偿债能力大幅改善，国际化提速。<br><br>
-  <strong>负向拖累：</strong><br>
-  1. 东鹏特饮增速放缓 — 核心产品进入成熟期（Q1 +13.11%），全国化红利边际递减。<br>
-  2. 补水啦增速骤降 — 自+119%降至+13%，电解质赛道巨头入局竞争加剧。<br>
-  3. 营收增速中枢下移 — H1整体+15.89%，跌破20%健康线，Q3旺季动销成关键验证点。
+<b>正向驱动：</b><br>
+1. <b>茶饮料等第三曲线</b> — H1 同比 +208.99%，从 0 到 1 已完成，2 到 10 的空间尚在<br>
+2. <b>全国化红利延续</b> — 非华南收入占比已超 70%，渗透率对标海外仍有数倍空间<br>
+3. <b>资本配置改善（若成功）</b> — 149 亿若投出 15%+ 回报，可推动 ROE 从 29.5% 回到 35%+<br><br>
+<b>负向拖累：</b><br>
+1. <b>增速换挡难以逆转</b> — 高基数 + 渗透率提升边际放缓，+31.8% → +15.89% 是趋势而非扰动<br>
+2. <b>成本红利有反转风险</b> — 毛利率 48.36% 的提升主要来自 PET/白砂糖下行，属周期性<br>
+3. <b>大股东持续减持</b> — 70 亿+ 已减持且仍在继续，构成长期估值压制
 </div>
 
-<h4>b. 三情景简表</h4>
+<h4>b. 三情景简表（PB-ROE 口径）</h4>
 <table>
-  <tr><th>情景</th><th>假设条件</th><th>2026E EPS</th><th>PE区间</th><th>预期股价</th><th>vs 125元</th></tr>
-  <tr><td>乐观</td><td>Q3动销修复，营收增速回升至20%+，其他饮料延续+100%</td><td>7.8 元</td><td>25-30x</td><td>195-234 元</td><td class="good">+56~+87%</td></tr>
-  <tr><td>中性</td><td>增速维持15-17%（特饮稳+其他饮料高增），毛利率48%</td><td>7.2 元</td><td>20-25x</td><td>144-180 元</td><td class="good">+15~+44%</td></tr>
-  <tr><td>悲观</td><td>增速跌破15%，补水啦持续失速，其他饮料不能接棒</td><td>6.5 元</td><td>15-20x</td><td>98-130 元</td><td class="neutral">-22~+4%</td></tr>
+  <tr><th>情景</th><th>假设条件</th><th>ROE</th><th>合理 PB</th><th>对应股价</th><th>预期回报</th></tr>
+  <tr><td>乐观</td><td>Q3 增速回升 20%+，149 亿投出高效</td><td>35-40%</td><td>5.2-7.2x</td><td class="good">138 – 191 元</td><td class="good">+23% ~ +71%</td></tr>
+  <tr><td><b>中性</b></td><td>增速 15-17%，ROE 维持 29-30%</td><td>30%</td><td>4.5x</td><td><strong>121 元</strong></td><td class="neutral">+8%</td></tr>
+  <tr><td>悲观</td><td>Q3 跌破 10%，资本闲置</td><td>25%</td><td>3.4x</td><td class="bad">90 元</td><td class="bad">-20%</td></tr>
 </table>
-<p style="font-size:13px;color:#666;margin-bottom:10px">概率判断（半年报后更新）：中性概率50%，乐观30%，悲观20%。中性情景EPS已由7.65元下调至7.2元（反映H1增速降档），预期回报区间收窄至 +15% ~ +44%。若2026Q3增速仍低于15%，则悲观概率上修、需按交易计划执行减仓评估。</p>
+<div style="font-size:12px;color:#888;margin-top:6px">概率判断：中性 50%，乐观 30%，悲观 20%。<br>
+<b>下一决策点：2026-10-30 三季报</b>（东方证券 10/13 研报口径：预计 Q3 整体延续 Q2 经营态势）。</div>
 
-<h3>7.5 讨论问题</h3>
+<h3>9.5 资金面信号</h3>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>大股东增减持</td><td class="bad"><b>减持 🔴</b></td><td>累计超 70 亿元、7 次公告，结构性压制；<b>但公司自身回购 10.4 亿形成对冲</b></td></tr>
+  <tr><td>机构持仓变动</td><td class="bad">减仓</td><td>2026-03-31 异动日：机构专用席位合计净卖出约 7.47 亿</td></tr>
+  <tr><td>北向资金（陆股通）</td><td class="bad">减持</td><td>2026-03-31 沪股通专用净卖出 5.74 亿；2026Q1 陆股通持股降至流通股 8.19%（减持 612.70 万股）</td></tr>
+  <tr><td>公司回购</td><td class="good"><b>回购 🟢</b></td><td>10.4 亿元，沪市主板第 2（截至 2026-09-30），真金白银托底</td></tr>
+  <tr><td>融资融券</td><td class="nd">待补充</td><td>本次未取数</td></tr>
+  <tr><td>大宗交易</td><td class="nd">待补充</td><td>本次未取数</td></tr>
+</table>
+
 <div class="summary-box">
-  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
-  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——卖东鹏特饮给司机和打工人的——成本2元的饮料卖5元，靠品牌+渠道铺到全国几百万终端，赚品牌溢价的钱。如今特饮+补水啦进入成熟期，增长引擎转向"其他饮料"（茶/咖，+120%）。<br>
-  2. 你最大的担忧是什么？哪个数据让你睡不着？——营收增速从+31.8%降到+15.89%（Q2单季仅+11%），逼近15%风险线。如果Q3旺季动销不能修复、其他饮料无法持续+100%接棒，增速可能跌破15%触发减仓。补水啦在巨头夹击下能否守住份额也是关键。<br>
-  3. 如果现在买入，期待的回报来源是什么？——边际变化：估值从PE 20x修复到25-30x（仍属历史最低区域）。若利润从FY2025的44亿增长到FY2028的70亿，叠加估值修复，股价有翻倍空间——但前提是增速不能继续失速。<br>
-  4. 什么情况下你会坚决卖出？——营收增速连续2个季度<15% / 毛利率跌破40% / 东鹏特饮市占率停滞不前 / 出现颠覆性竞争对手。特别关注2026Q3（10月底披露）——若增速仍未修复至20%上方，将触发减仓评估。
+<strong>资金面整体判断：偏负面，但存在明显对冲。</strong><br>
+大股东 70 亿+ 的持续减持与机构、北向的阶段性流出构成压制；但公司以 10.4 亿回购（沪市主板第 2）明确表态「认为股价低估」。<b>两者方向相反时，市场通常跟随减持而非回购</b>——量级差距（70 亿 vs 10 亿）是核心原因。<br><br>
+<b>这解释了为什么股价在 PE 已跌破历史最低的情况下仍不反弹</b>：估值便宜解决不了「有人在持续卖」的问题。
+</div>
+
+<h3>9.6 讨论问题（阅读引导）</h3>
+<div class="summary-box">
+<b>讨论问题（阅读后可以聊这些）：</b><br>
+1. 这笔生意你看懂了吗？——一句话：靠东鹏特饮的广告轰炸和经销商铺货，以高毛利（48.36%）在能量饮料双寡头市场里抢份额<br>
+2. 你最大的担忧是什么？——<b>149 亿募资的去向</b>。这是唯一能决定 ROE 落在 25% 还是 35% 的变量，而目前没有任何公开数据<br>
+3. 如果现在买入，期待的回报来源是什么？——<b>不是业绩增长（H1 +20.72% 但在降档），也不是分红（约 3.2%），而是资本配置改善带来的 ROE 修复</b>——即一个尚未兑现的预期<br>
+4. 什么情况下你会坚决卖出？——① Q3 单季营收增速连续两季 &lt;15%；② 股价跌破 103.7 元（-20% 硬止损）；③ 大股东减持规模继续扩大且无回购对冲
 </div>
 
 </div></div>
 
 <div class="footer">
-   免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
-数据来源：东鹏饮料2025年年报、2026Q1季报、2026H1半年报、券商研报、理杏仁<br>
-   行业定位：非周期/成长性（消费品高增长赛道） | 评分体系：非周期股评分体系（10维度） | 分析日期：2026-08-03
+  免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+  数据来源：东鹏饮料 2025 年年度报告、2026 年半年度报告（2026-07-31）、腾讯行情（2026-10-13 收盘）、爱股网 F10、券商研报（东方证券 2026-10-13、九方智投）<br>
+  报告版本：2026-10-13（v3，估值框架由 PE 改为 PB-ROE；上一版 2026-08-03）
 </div>
 
 </div>

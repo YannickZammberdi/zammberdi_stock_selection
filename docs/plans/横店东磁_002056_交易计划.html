@@ -33,64 +33,90 @@
   .plan-footer{font-size:11px;color:#aaa;text-align:center;padding:20px 0 8px;border-top:1px solid #eee;margin-top:20px}
   .bar{height:6px;border-radius:3px;background:#eee;overflow:hidden;margin-top:3px}
   .bar-fill{height:6px;border-radius:3px}
+  .alert{background:#ffebee;border-left:4px solid #c62828;padding:10px 12px;margin:10px 0;font-size:12px;border-radius:0 4px 4px 0;line-height:1.7}
+  .alert b{color:#c62828}
+  .warnbox{background:#fff8e1;border-left:4px solid #f9a825;padding:10px 12px;margin:10px 0;font-size:12px;border-radius:0 4px 4px 0;line-height:1.7}
+  .exec{background:#f5f5f5;border:1px dashed #bbb;border-radius:6px;padding:10px 12px;margin-top:14px;font-size:12px;line-height:1.7}
+  .exec h3{font-size:13px;margin-bottom:6px;color:#333;border-bottom:1px solid #ddd;padding-bottom:3px}
 </style>
 </head>
 <body>
 <div class="plan-wrap">
 
 <h1>横店东磁 (002056) 交易计划</h1>
-<div class="sub">生成：2026-07-16 ｜ L5分类：混合周期型（磁材+光伏） ｜ 状态：<span class="tag blue">持有中</span></div>
+<div class="sub">生成：2026-07-16 ｜ <b style="color:#e65100">更新：2026-10-13 · 持有等三季报</b> ｜ L5分类：混合周期型（磁材+光伏+锂电） ｜ 状态：<span class="tag yellow">持有中 · 浮亏 -27% · 止损临界</span></div>
+
+<div class="alert">
+<b>🟠 当前状态：不补仓、不减仓，等 2026-10-24 三季报（11 天后）。</b><br>
+现价 <b>18.08 元</b>｜成本 25.17｜计入已除息分红 0.23 元后浮亏约 <b>-27.3%</b><br>
+硬止损 17.0 元 → <b>距现价仅 6.0%</b>，已近在咫尺。<br><br>
+<b>为何不立即止损：</b>距三季报仅 11 天，若 Q3 扣非转正 + CFO 回正，此笔止损可避免。按 L13「止损不需要确认」原则，本应立刻走；<b>但本次为模拟盘，时间成本低，优先换取一次完整的数据验证</b>。<br>
+<b>为何不补仓：</b>摊低成本的正确前提是「基本面在改善」，目前只有 Q2 环比 +45.76% 改善，同比仍在恶化，且距止损仅 6%。<br><br>
+<b>基本面止损清单已命中 3 条（若届时未修复，即按此离场）：</b><br>
+① 营收增速连续两季 &lt;5% → Q1 +4.92%、Q2 +2.23%<br>
+② 光伏毛利率跌破 12% → H1 实际 11.18%<br>
+③ CFO 大幅下降 → H1 7.29 亿（-57.12%）<br><br>
+<b>反向证据：</b>Q2 单季归母环比 +45.76%、同比转正；磁材器件 +25.93%（振动器件 +86.5%，AI 拉动）；锂电毛利率 +7.20pct；券商 2026E 归母 19.4-20.0 亿，对应 <b>15.2x 2026E PE</b>。
+</div>
 
 <div class="grid">
   <div class="card">
     <h3>赚什么钱</h3>
-    <div class="row"><span class="label">回报来源</span><span class="val">周期反转（EPS修复+PE回归）</span></div>
-    <div class="row"><span class="label">当前PE</span><span class="val">22.9x（~55%分位）</span></div>
-    <div class="row"><span class="label">当前PB</span><span class="val">4.05x</span></div>
-    <div class="row"><span class="label">ROE</span><span class="val">17.4%</span></div>
-    <div class="row"><span class="label">合理PE</span><span class="val">15-20x（EPS修复后）</span></div>
-    <div class="bar"><div class="bar-fill" style="width:55%;background:#ff9800"></div></div>
-    <div style="font-size:11px;color:#888;margin-top:2px">PE分位 0% ────────▣──── 100%</div>
+    <div class="row"><span class="label">回报来源</span><span class="val">周期反转（光伏拐点）+ AI 磁材新增长</span></div>
+    <div class="row"><span class="label">当前PE(TTM)</span><span class="val">16.53x</span></div>
+    <div class="row"><span class="label">2026E PE</span><span class="val" style="color:#2e7d32">15.2x（券商预测 EPS 1.19-1.23）</span></div>
+    <div class="row"><span class="label">当前PB</span><span class="val">2.77x（BVPS 6.52）</span></div>
+    <div class="row"><span class="label">ROE</span><span class="val" style="color:#e65100">H1 8.80%（FY2025 17.42%）</span></div>
+    <div class="row"><span class="label">合理估值锚</span><span class="val">改用 PB（EPS 波动大）</span></div>
+    <div class="bar"><div class="bar-fill" style="width:35%;background:#ff9800"></div></div>
+    <div style="font-size:11px;color:#888;margin-top:2px">估值分位 低位区 ────▣──────────── 100%</div>
   </div>
   <div class="card">
-    <h3>估值目标</h3>
-    <div class="row"><span class="label">现价</span><span class="val">25.06元</span></div>
-    <div class="row"><span class="label">EPS(TTM)</span><span class="val">~1.09元（周期底部）</span></div>
-    <div class="row"><span class="label">EPS修复至1.50，PE 18x</span><span class="val" style="color:#2e7d32">+8%（27.0元）</span></div>
-    <div class="row"><span class="label">EPS修复至2.00，PE 18x</span><span class="val" style="color:#2e7d32">+44%（36.0元）</span></div>
-    <div class="row"><span class="label">时间预期</span><span class="val">12-24个月</span></div>
+    <h3>估值目标（已重设）</h3>
+    <div class="row"><span class="label">现价</span><span class="val">18.08元（10/13收盘，已除息）</span></div>
+    <div class="row"><span class="label">每股净资产</span><span class="val">6.52元</span></div>
+    <div class="row"><span class="label">PB 3.0x</span><span class="val" style="color:#2e7d32">19.6元（+8%）</span></div>
+    <div class="row"><span class="label">PB 3.5x</span><span class="val" style="color:#2e7d32">22.8元（+26%）</span></div>
+    <div class="row"><span class="label">27E EPS 1.44×18x</span><span class="val" style="color:#2e7d32">25.9元（+43%）</span></div>
+    <div class="row"><span class="label">时间预期</span><span class="val">18-30个月</span></div>
+    <div class="row"><span class="label">52周区间</span><span class="val">16.95 – 33.50</span></div>
   </div>
 </div>
 
 <div class="section">
   <h2>买入前检查清单</h2>
-  <div style="font-size:12px;color:#888;margin-bottom:8px">注意：当前PE 23x表面不便宜，实因EPS被光伏周期压缩。核心矛盾在盈利拐点何时出现。</div>
+  <div style="font-size:12px;color:#888;margin-bottom:8px">2026 半年报已出：增收不增利 + 现金流恶化 + 存货激增三项硬伤齐现，但 Q2 单季环比 +45.76% 是拐点的第一个正面信号。</div>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
     <div style="background:#f5f5f5;border-radius:6px;padding:10px">
-      <div style="font-weight:700;color:#2e7d32;font-size:13px;margin-bottom:6px">利好因素</div>
-      <div class="check"><span class="dot dot-yes">✓</span> 磁材全球龙头，毛利率28%+稳定</div>
-      <div class="check"><span class="dot dot-yes">✓</span> ROE 17.4%优秀</div>
-      <div class="check"><span class="dot dot-yes">✓</span> CFO/净利1.76，现金质量极优</div>
-      <div class="check"><span class="dot dot-yes">✓</span> FCF ~18.68亿持续为正</div>
-      <div class="check"><span class="dot dot-yes">✓</span> 货币资金92.86亿>>短借16亿</div>
-      <div class="check"><span class="dot dot-yes">✓</span> 无长期有息负债</div>
-      <div class="check"><span class="dot dot-yes">✓</span> 股息率~3.9%，高分红55-60%</div>
-      <div class="check"><span class="dot dot-yes">✓</span> 股价从高位33.7已回落25%</div>
+      <div style="font-weight:700;color:#2e7d32;font-size:13px;margin-bottom:6px">利好因素（H1 更新）</div>
+      <div class="check"><span class="dot dot-yes">✓</span> <b>磁材器件收入 29.85 亿（+25.93%）</b>，振动器件 +86.5%</div>
+      <div class="check"><span class="dot dot-yes">✓</span> AI 服务器拉动芯片电感，产能利用率高位</div>
+      <div class="check"><span class="dot dot-yes">✓</span> <b>锂电池 17.48 亿（+35.91%）</b>，毛利率 +7.20pct 至 20.09%</div>
+      <div class="check"><span class="dot dot-yes">✓</span> <b>Q2 单季归母 5.62 亿，环比 +45.76%</b>，同比转正</div>
+      <div class="check"><span class="dot dot-yes">✓</span> 光伏在行业下行期<b>仍保持盈利</b>，出货超 12GW 全球前十</div>
+      <div class="check"><span class="dot dot-yes">✓</span> 半年报分红 3.68 亿落地（10/12 除息，每股 0.23 元）</div>
+      <div class="check"><span class="dot dot-yes">✓</span> 现价 18.08 接近 52 周低点 16.95</div>
     </div>
     <div style="background:#f5f5f5;border-radius:6px;padding:10px">
-      <div style="font-weight:700;color:#c62828;font-size:13px;margin-bottom:6px">风险因素</div>
-      <div class="check"><span class="dot dot-no">!</span> 增收不增利——净利仅+1.34%</div>
-      <div class="check"><span class="dot dot-no">!</span> Q4净利-55.72%、扣非-62.48%</div>
-      <div class="check"><span class="dot dot-no">!</span> 2026Q1营收增速骤降至+4.92%</div>
-      <div class="check"><span class="dot dot-no">!</span> 2026Q1扣非-30.58%，恶化延续</div>
-      <div class="check"><span class="dot dot-no">!</span> 光伏毛利率15.25%持续下滑</div>
-      <div class="check"><span class="dot dot-no">!</span> PE 23x高于历史中枢20x</div>
-      <div class="check"><span class="dot dot-no">!</span> 负债率61%偏高</div>
+      <div style="font-weight:700;color:#c62828;font-size:13px;margin-bottom:6px">风险因素（H1 更新）</div>
+      <div class="check"><span class="dot dot-no">!</span> <b>扣非净利 8.11 亿（-24.28%）</b>，真实盈利大幅恶化</div>
+      <div class="check"><span class="dot dot-no">!</span> <b>CFO 7.29 亿（-57.12%）</b>，现金流腰斩</div>
+      <div class="check"><span class="dot dot-no">!</span> <b>存货 64.17 亿，占总资产 22.60%</b>（23年19.55→25年58.73→26H1 64.17）</div>
+      <div class="check"><span class="dot dot-no">!</span> <b>汇兑损失约 3.5 亿</b>，财务费用由 -3.14 亿转为 +2.64 亿</div>
+      <div class="check"><span class="dot dot-no">!</span> 光伏毛利率 11.18%（-5.52pct），<b>已跌破 12% 止损线</b></div>
+      <div class="check"><span class="dot dot-warn">!</span> 研发费用 +59.88% 至 3.63 亿，压制短期利润</div>
+      <div class="check"><span class="dot dot-warn">!</span> 境外毛利率 18.77% 远高于境内 12.26%，汇率敞口大</div>
     </div>
   </div>
-  <div style="background:#fffde7;border-left:3px solid #f9a825;padding:8px 10px;margin-top:8px;font-size:12px;border-radius:0 4px 4px 0">
-    <strong>综合判断：</strong>公司品质优秀（80/100），现金牛属性极强。但光伏周期底部+Q4利润骤降+2026Q1持续恶化，基本面仍在下行。当前价格已反映部分悲观预期（从33.7跌至25.0），但盈利拐点尚未确认。<br>
-    <strong>建议：</strong>✅ 已建仓(成本25.17)。注意：当前PE~23x偏高(成本处盈利拐点未确认)。严格按止损纪律执行：硬止损17.0元(-32%)或基本面止损触发随时出局。剩余仓位等待光伏毛利率企稳或半年报确认拐点后再加。
+  <div class="warnbox">
+    <strong>综合判断（2026-10-13）：</strong>半年报把原计划里最乐观的假设全部打掉了。<b>「等半年报确认拐点再加仓」的条件没有达成</b>——半年报确认的是「Q2 环比改善」，不是「同比反转」；扣非 -24.28%、CFO -57.12%、存货占总资产 22.6% 意味着光伏这轮下行还没见到利润底。<br><br>
+    <strong>建议：⏸ 不加仓、不减仓，等 2026-10-24 三季报。</strong><br>
+    <b>为什么不按止损规则立刻走？</b>因为三季报 11 天后就到，届时信息成本几乎为零；而 Q2 环比 +45.76% 与券商 15.2x 2026E PE（并不贵）说明再等 11 天的机会成本低于现在拍脑袋出手。<br>
+    <b>为什么不补仓摊低成本？</b>因为摊低成本的正确前提是「基本面在改善」，而目前只有环比改善、同比仍在恶化，且股价距硬止损仅 6%。<br>
+    <b>三季报后的明确规则：</b>
+    ▸ 扣非增速转正 + CFO 回正 → 视为拐点确认，可考虑补至 15%<br>
+    ▸ 扣非继续双位数下滑 或 CFO 再降 → <b>执行硬止损离场，不再等</b><br>
+    ▸ 无论结果如何，<b>跌破 17.0 元无条件卖出</b>
   </div>
 </div>
 
@@ -99,37 +125,42 @@
     <h3>仓位计划</h3>
     <div class="row"><span class="label">总计划仓位</span><span class="val">10-15%</span></div>
     <div class="row"><span class="label">已买</span><span class="val">10% @ 25.17</span></div>
-    <div class="row"><span class="label">剩余</span><span class="val">0-5%</span></div>
-    <div style="margin-top:8px;font-size:12px;background:#e8f5e9;border-radius:4px;padding:6px;color:#2e7d32">
-      第一批 10% ✅ 已建仓 @ 25.17（成本价，PE~23x偏高需关注）<br>
-      剩余 0-5% @ 半年报确认拐点后<br>
-      或光伏毛利率企稳信号出现
+    <div class="row"><span class="label">剩余</span><span class="val">0-5%（冻结）</span></div>
+    <div style="margin-top:8px;font-size:12px;background:#ffebee;border-radius:4px;padding:6px;color:#c62828">
+      第一批 10% ✅ 已建仓 @ 25.17 → 现价 18.08，浮亏 <b>-28.2%</b><br>
+      剩余 0-5% <b>❌ 冻结</b>｜原条件「半年报确认拐点」<b>未达成</b><br>
+      （半年报只给出环比改善，未给同比反转）<br>
+      解锁条件：<b>10/24 三季报扣非转正 + CFO 回正</b>
     </div>
   </div>
   <div class="card">
     <h3>止损</h3>
     <div class="row"><span class="label">硬止损</span><span class="val" style="color:#c62828">17.0元(-32%)</span></div>
     <div style="font-size:12px;margin-top:6px;color:#666">
-      以25.17元建仓计算，跌破17元无条件卖出（接近52周低点14.2，对应PB~2.7x）
+      以25.17元建仓计算，跌破17元无条件卖出<br>
+      <b style="color:#c62828">🔴 距现价 18.08 仅 6.0%，进入临界区</b>
     </div>
-    <div class="row" style="margin-top:8px"><span class="label">基本面止损</span></div>
+    <div class="row" style="margin-top:8px"><span class="label">基本面止损（已触发3条）</span></div>
     <div style="font-size:12px;color:#666">
-      • 营收增速连续两季<5%<br>
-      • 光伏毛利率跌破12%<br>
-      • 磁材毛利率跌破25%（基本盘动摇）<br>
-      • 存货减值>5亿<br>
-      • CFO大幅下降或FCF转负<br>
-      • 分红率大幅下调
+      • <s>营收增速连续两季&lt;5%</s> → <b style="color:#c62828">已触发</b>（Q1 +4.92%、Q2 +2.23%）<br>
+      • <s>光伏毛利率跌破12%</s> → <b style="color:#c62828">已触发</b>（H1 11.18%）<br>
+      • <s>CFO大幅下降</s> → <b style="color:#c62828">已触发</b>（-57.12%）<br>
+      • 存货减值&gt;5亿 → 未发生，但存货 64.17 亿、占比 22.6% ⚠<br>
+      • 磁材毛利率跌破25% → <span style="color:#888">数据待补充</span><br>
+      • 分红率大幅下调 → 未发生（半年报已派 3.68 亿）
     </div>
   </div>
   <div class="card">
-    <h3>止盈</h3>
-    <div class="row"><span class="label">第一批</span><span class="val" style="color:#2e7d32">EPS修复至1.50~18x PE(~27元) 卖50%</span></div>
-    <div class="row"><span class="label">第二批</span><span class="val" style="color:#2e7d32">EPS修复至2.00~18x PE(~36元) 卖剩余</span></div>
+    <h3>止盈（已重设，改用 PB 锚）</h3>
+    <div class="row"><span class="label">第一批</span><span class="val" style="color:#2e7d32">PB 3.0x(~19.6元) 卖50%</span></div>
+    <div class="row"><span class="label">第二批</span><span class="val" style="color:#2e7d32">PB 3.5x(~22.8元) 卖剩余</span></div>
     <div class="row"><span class="label">移动止盈</span><span class="val">涨25%后上移止损</span></div>
     <div style="font-size:12px;margin-top:6px;color:#666">
+      <b style="color:#888">当前浮亏，止盈规则暂不适用</b><br>
       25.17→31.46(+25%) → 止损上移至25.17(保本)<br>
-      25.17→37.76(+50%) → 止损上移至31.47(锁一半利润)
+      25.17→37.76(+50%) → 止损上移至31.47(锁一半利润)<br>
+      <span style="color:#c62828">原「EPS 1.50→27元 / 2.00→36元」已失效</span>
+      <span style="color:#888">（券商2026E EPS 仅 1.19-1.23，需等 2027+）</span>
     </div>
   </div>
 </div>
@@ -139,35 +170,46 @@
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:13px">
     <div style="background:#f5f5f5;border-radius:4px;padding:8px">
       <strong>光伏毛利率</strong><br>
-      <span style="color:#888;font-size:11px">周期位置核心指标，企稳是买入信号</span><br>
-      <span style="font-size:12px;font-weight:600;color:#c62828">15.25%，持续下滑（恶化）</span>
+      <span style="color:#888;font-size:11px">周期位置核心指标，原止损线 12%</span><br>
+      <span style="font-size:12px;font-weight:600;color:#c62828">H1 11.18%（-5.52pct）🔴 已破止损线</span>
     </div>
-    <div style="background:#f5f5f5;border-radius:4px;padding:8px">
-      <strong>营收增速</strong><br>
-      <span style="color:#888;font-size:11px">Q1骤降至+4.92%，需跟踪是否回稳</span><br>
-      <span style="font-size:12px;font-weight:600;color:#c62828">2026Q1 +4.92%（大幅放缓）</span>
-    </div>
-    <div style="background:#f5f5f5;border-radius:4px;padding:8px">
-      <strong>磁材毛利率</strong><br>
-      <span style="color:#888;font-size:11px">基本盘健康度核心指标</span><br>
-      <span style="font-size:12px;font-weight:600;color:#2e7d32">28.14%（稳定+0.82pct）</span>
-    </div>
-    <div style="background:#f5f5f5;border-radius:4px;padding:8px">
+    <div style="background:#ffebee;border-radius:4px;padding:8px">
       <strong>扣非净利润增速</strong><br>
-      <span style="color:#888;font-size:11px">盈利趋势是否触底</span><br>
-      <span style="font-size:12px;font-weight:600;color:#c62828">2026Q1 -30.58%（恶化）</span>
+      <span style="color:#888;font-size:11px">真实盈利趋势，最关键指标</span><br>
+      <span style="font-size:12px;font-weight:600;color:#c62828">H1 -24.28% / Q2 -19.58% 🔴</span>
     </div>
-    <div style="background:#f5f5f5;border-radius:4px;padding:8px">
+    <div style="background:#ffebee;border-radius:4px;padding:8px">
+      <strong>经营现金流 CFO</strong><br>
+      <span style="color:#888;font-size:11px">利润的现金含量</span><br>
+      <span style="font-size:12px;font-weight:600;color:#c62828">7.29 亿（-57.12%）🔴</span>
+    </div>
+    <div style="background:#fff3e0;border-radius:4px;padding:8px">
+      <strong>存货规模</strong><br>
+      <span style="color:#888;font-size:11px">减值风险 + 需求是否真实</span><br>
+      <span style="font-size:12px;font-weight:600;color:#c62828">64.17 亿（占总资产 22.60%）🔴</span>
+    </div>
+    <div style="background:#e8f5e9;border-radius:4px;padding:8px">
+      <strong>磁材器件（AI 弹性）</strong><br>
+      <span style="color:#888;font-size:11px">能否接棒成为新增长引擎</span><br>
+      <span style="font-size:12px;font-weight:600;color:#2e7d32">H1 +25.93%，振动器件 +86.5% 🟢</span>
+    </div>
+    <div style="background:#e8f5e9;border-radius:4px;padding:8px">
       <strong>锂电池毛利率</strong><br>
       <span style="color:#888;font-size:11px">第二成长曲线验证</span><br>
-      <span style="font-size:12px;font-weight:600;color:#2e7d32">15.38%（+2.72pct，改善）</span>
+      <span style="font-size:12px;font-weight:600;color:#2e7d32">20.09%（+7.20pct）🟢</span>
     </div>
     <div style="background:#f5f5f5;border-radius:4px;padding:8px">
-      <strong>存货规模</strong><br>
-      <span style="color:#888;font-size:11px">减值风险监控</span><br>
-      <span style="font-size:12px;font-weight:600;color:#ff9800">58.70亿（占总资产21.4%）</span>
+      <strong>Q2 环比趋势</strong><br>
+      <span style="color:#888;font-size:11px">拐点的第一个正面信号</span><br>
+      <span style="font-size:12px;font-weight:600;color:#2e7d32">归母环比 +45.76% 🟢</span>
+    </div>
+    <div style="background:#f5f5f5;border-radius:4px;padding:8px">
+      <strong>稀土价格（氧化镨钕）</strong><br>
+      <span style="color:#888;font-size:11px">磁材成本与售价的外部锚</span><br>
+      <span style="font-size:12px;font-weight:600;color:#e65100">74 万元/吨（10/10，8月低点后小涨）</span>
     </div>
   </div>
+  <div style="font-size:11px;color:#888;margin-top:6px">下一个决策点：<b>2026-10-24 三季报</b>（11 天后）。另可参考 CPIA：预计 2026 全球新增装机 612GW（-8%），行业仍在筑底。</div>
 </div>
 
 <div class="section">
@@ -187,10 +229,11 @@
     </div>
   </div>
   <div style="font-size:12px;color:#666;margin-top:6px;background:#f5f5f5;border-radius:4px;padding:8px">
-    <strong>三种情景：</strong><br>
-    ▸ 光伏先反弹（EPS修复至1.5+）→ 等PE回归20x卖50%，剩下一半拿到2.0<br>
-    ▸ 业绩持续兑现 → 一直拿着，每半年检查一次<br>
-    ▸ 逻辑证伪（光伏持续恶化/磁材基本面动摇）→ 随时结束
+    <strong>三种情景（2026-10-13 修订）：</strong><br>
+    ▸ 三季报扣非转正 + CFO 回正 → 拐点确认，维持持有，可考虑补至 15%<br>
+    ▸ 扣非仍双位数下滑 / CFO 再降 → <b style="color:#c62828">执行止损离场，不再等</b><br>
+    ▸ 磁材 AI 订单超预期 → 上修 EPS 预期，止盈锚随之上移<br>
+    ▸ <b>跌破 17.0 元无条件离场</b>（距现价仅 6.0%）
   </div>
 </div>
 
@@ -199,25 +242,45 @@
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:13px">
     <div style="background:#fffde7;border-left:3px solid #f9a825;padding:8px;border-radius:0 4px 4px 0">
       <strong>利好催化剂</strong><br>
-      • 光伏毛利率企稳回升（>16%）<br>
-      • 半年报营收增速重回>10%<br>
-      • 光伏行业出清加速（竞争对手退出）<br>
-      • 储能/锂电业务超预期<br>
-      • 美国双反调查结果好于预期
+      • <b>10/24 三季报扣非转正、CFO 回正</b>（最直接）<br>
+      • 光伏毛利率企稳回升至 12% 以上<br>
+      • AI 服务器磁材订单持续放量（振动器件已 +86.5%）<br>
+      • 光伏行业「反内卷」出清加速，落后产能退出<br>
+      • 稀土价格（镨钕）继续走强，支撑磁材盈利
     </div>
     <div style="background:#ffebee;border-left:3px solid #e53935;padding:8px;border-radius:0 4px 4px 0">
       <strong>利空风险</strong><br>
-      • 光伏毛利率继续下滑<14%<br>
-      • Q2利润继续双位数下滑<br>
-      • 美国双反调查落地冲击出口<br>
-      • 磁材毛利率跌破26%<br>
-      • 大额存货减值发生
+      • <b>存货 64.17 亿计提减值</b>（占总资产 22.6%）<br>
+      • 人民币继续升值 → 汇兑损失扩大（H1 已 3.5 亿）<br>
+      • 光伏毛利率继续下滑至 10% 以下<br>
+      • Q3 扣非继续双位数下滑<br>
+      • <b>跌破硬止损 17.0 元</b>（距现价仅 6.0%）
     </div>
   </div>
 </div>
 
+<div class="exec">
+  <h3>执行记录</h3>
+  <b>2026-07-16</b>｜建仓 10% @ 25.17。现价 25.06，PE~23x，硬止损 17.0。<br>
+  <b>2026-08-20</b>｜2026 半年报披露：营收 123.42 亿(+3.41%)、归母 9.48 亿(-7.03%)、<b>扣非 -24.28%</b>、<b>CFO -57.12%</b>。<br>
+  <b>2026-10-12</b>｜半年报分红除权除息，每股 0.23 元。<br>
+  <b style="color:#e65100">2026-10-13 ｜ 🟠 决定等三季报，不动</b><br>
+  　├ 现价 18.08，成本 25.17，浮亏约 -27.3%（计入分红）<br>
+  　├ 距硬止损 17.0 仅 6.0%——<b>接受这段时间的波动，换取 10/24 三季报的数据</b><br>
+  　├ 明确不做：不补仓（基本面未改善）、不提前减仓（信息即将到来）<br>
+  　└ <b>三季报后的执行规则（届时无条件照做）</b>：<br>
+  　　• 扣非转正 <b>且</b> CFO 回正 → 视为拐点确认，维持持有<br>
+  　　• 扣非仍双位数下滑 <b>或</b> CFO 再降 → <b>立即离场，不再等</b><br>
+  　• 期间<b>跌破 17.0 元无条件卖出</b>，不等三季报<br><br>
+  <b>📌 复盘要点（已在横店止损中记过一次，此处为待验证）</b><br>
+  <b>止损线设得太宽：</b>-32% 远超 L13 对混合周期股建议的 -15%。它让「止损」这件事变得像可选项。下一只<b>统一压到 -18%~-20%</b>。<br>
+  <b>教训候选：</b>若 8/20 半年报（扣非 -24.28%、CFO -57.12%）后就进入「待离场」状态，而不是拖到 10 月，浮亏可以从 -27% 收窄到 -21%。<b>半年报出现「现金流腰斩 + 扣非恶化超 20%」组合时，应该直接进入减仓流程，不等第二个报告期。</b><br>
+  <b>仍然成立的基本面观察（供日后参考）：</b>AI 服务器拉动磁材器件（振动器件 +86.5%）是真趋势，若后续扣非转正且光伏毛利率回到 12% 以上，可重新评估。
+</div>
+
 <div class="plan-footer">
-  交易计划书 · L11估值+L12仓位+L13止盈止损 · 买之前写，持有期间执行
+  交易计划书 · L11估值+L12仓位+L13止盈止损 · 买之前写，持有期间执行<br>
+  数据来源：腾讯行情（2026-10-13 收盘）、公司 2026 半年报摘要（8/20）、光大证券 8/24 中报点评、太平洋证券 9/2 中报点评、卓创资讯 CPIA
 </div>
 
 </div>
