@@ -51,9 +51,12 @@
   .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
   .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
   .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .score-note { font-size: 13px; color: #666; background: #fafafa; border: 1px dashed #ccc; padding: 8px 12px; margin: 10px 0; }
+  .history-table td:first-child { white-space: nowrap; }
   .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
   ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
   li { margin-bottom: 4px; }
+  .nd { background: #f0f0f0; color: #999; padding: 0 4px; border-radius: 3px; font-size: 11px; }
 </style>
 </head>
 <body>
@@ -61,7 +64,7 @@
 
 <h1>新和成（002001）财务分析报告</h1>
 <p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
-<p class="meta">分析日期：2026-08-19 | 数据来源：FY2025 年报 + 2026Q1 季报 + 券商研报（国信/东吴/国泰海通）</p>
+<p class="meta">分析日期：2026-10-13 | 数据来源：2026 半年报（2026-08-20 披露）+ FY2025 年报 + 东方财富 F10 财务接口 + 爱股网 F10 + 腾讯行情（2026-10-13 收盘）+ Mysteel/隆众资讯产品价格 + 券商研报（2026-08~10） | 下一关键节点：2026-10-28 三季报</p>
 
 <div class="tab-bar">
   <button class="tab-btn active" data-tab="summary">总结论</button>
@@ -80,31 +83,40 @@
   <tr><th style="width:30%">项目</th><th>内容</th></tr>
   <tr><td>公司名称</td><td>浙江新和成股份有限公司</td></tr>
   <tr><td>股票代码</td><td>002001.SZ</td></tr>
-  <tr><td>所属行业</td><td>基础化工（精细化工 — 维生素/蛋氨酸/香精香料/高分子新材料）</td></tr>
-  <tr><td>行业地位</td><td>全球维生素龙头（VA 全球产能前二、VE 全球第二）、蛋氨酸全球第三、PPS 国内第一</td></tr>
-  <tr><td>FY2025 营收</td><td><strong>222.51 亿（+2.97%）</strong></td></tr>
-  <tr><td>FY2025 归母净利润</td><td><strong>67.64 亿（+15.26%）</strong></td></tr>
-  <tr><td>FY2025 经营现金流</td><td><strong>87.97 亿（+24.38%）</strong></td></tr>
-  <tr><td>总资产</td><td>456.06 亿</td></tr>
-  <tr><td>归母净资产</td><td>328.06 亿</td></tr>
-  <tr><td>ROE（加权）</td><td>21.77%</td></tr>
+  <tr><td>所属行业</td><td>基础化工 — 精细化工（营养品：维生素 VA/VE + 蛋氨酸；香精香料；高分子新材料 PPS/尼龙 66；原料药）</td></tr>
+  <tr><td>行业类型（L5）</td><td><strong>纯周期</strong>（industry-classification.md：基础化工 → 纯周期）</td></tr>
+  <tr><td>行业地位</td><td>维生素全球龙头：VA 产能全球第一（8,000 吨/年）、VE（50% 粉）产能全球第一（6 万吨/年，全球份额约 23%）；蛋氨酸全球第三（固体 37 万吨 + 液体 18 万吨权益，合计 55 万吨/年，前二为赢创 85 万吨、安迪苏 67 万吨）</td></tr>
+  <tr><td>FY2025 营收 / 归母</td><td>222.51 亿元（+2.97%）/ 67.64 亿元（+15.26%）</td></tr>
+  <tr><td>2026H1 营收</td><td><strong>131.29 亿元（+18.28%）</strong></td></tr>
+  <tr><td>2026H1 归母净利润</td><td><strong>40.11 亿元（+11.31%）</strong>｜扣非 39.19 亿元（<strong>+6.53%</strong>）｜EPS 1.30 元</td></tr>
+  <tr><td>2026H1 毛利率 / 净利率</td><td><strong>44.22%（-1.67pct）/ 30.68%（-1.92pct）</strong></td></tr>
+  <tr><td>2026H1 经营现金流（CFO）</td><td>36.40 亿元（+12.24%）｜CFO/归母 = 0.91</td></tr>
+  <tr><td>总资产 / 归母净资产</td><td>466.85 亿元 / <strong>348.80 亿元</strong>（BVPS 11.3489 元）</td></tr>
+  <tr><td>ROE</td><td>2026H1 加权 <strong>11.39%</strong>（去年同期 11.87%，<strong>-0.48pct</strong>）｜摊薄 11.50%｜<strong>穿越周期（2016–2025 摊薄 ROE 均值）16.42%</strong></td></tr>
+  <tr><td>资产负债率</td><td><strong>24.96%</strong>（同比 -1.99pct）｜类现金 100.42 亿 vs 有息负债 68.77 亿 → <strong>净现金 31.65 亿</strong></td></tr>
+  <tr><td>现价 / 市值（2026-10-13）</td><td>25.95 元（-0.99%）/ 797.55 亿元｜52 周 23.59–28.83</td></tr>
 </table>
 
-<p style="font-size:13px;font-weight:bold;margin-top:12px;">行业类型：纯周期股（基础化工/精细化工） — 采用周期股评分体系</p>
+<div class="summary-box">
+  <strong>行业类型：纯周期股（基础化工 — 精细化工）。→ 必须使用周期股评分体系（8 维度），L3 用 PB Band 不用 PE Band。</strong><br><br>
+  <strong>分类依据（与 industry-classification.md 一致）：</strong>核心业务营养品（2026H1 占主营 67.07%）的终端需求是饲料/食品添加刚需，年增速约 3–5%（随人口与养殖），长期增速≈GDP；<b>利润波动几乎全部来自价格与供需错配</b>——归母净利润 2023 年 27.04 亿 → 2024 年 58.69 亿 → 2025 年 67.64 亿，2026H1 单半年 40.11 亿，产品价格一年内可以把利润放大 3 倍（2026 年 4 月 VE/VA 冲到 116.5 元/kg、蛋氨酸 52 元/kg）。这是教科书式的纯周期特征。香精香料（15.40%）与新材料（8.88%）有成长属性，但合计毛利贡献仅约 1/4，不改变整体周期属性。
+</div>
 
-<h2>综合评分（周期股评分体系）</h2>
-<p style="font-size:13px;color:#666;margin-bottom:8px">采用周期股评分体系——核心逻辑：穿越周期的生存能力 + 当前周期位置 + 成本优势</p>
+<p class="score-note"><strong>评分口径说明：</strong><span>周期股8维度体系；穿越周期ROE改用近10年均值，周期位置因维生素见顶降档</span></p>
+
+<h2>综合评分（周期股评分体系 · 8 维度 · 100 分）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">采用<b>周期股评分体系</b>——核心逻辑是"穿越周期的生存能力 + 当前在周期中的位置 + 成本优势"，而非当期利润高低。周期股 ROE 必须用多周期均值，估值禁止用 PE、统一用 PB 历史分位。</p>
 <table>
   <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
-  <tr><td>穿越周期ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">近5年ROE均值约18%（2021~28%→2022~16%→2023~11%→2024~21%→2025 21.8%），穿越两轮维生素周期ROE仍≥12%</td></tr>
-  <tr><td>成本位置/行业成本曲线（15分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">行业中上——一体化产业链（原料自供率高），毛利率44.67%为行业顶级（浙江医药34.9%/安迪苏~30%），但优势源于规模+品类多元化+寡头格局，非极致成本曲线</td></tr>
-  <tr><td>负债安全垫（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">资产负债率仅27.73%，货币资金+理财101.35亿 > 有息负债约80亿，净现金状态，大股东质押率0%</td></tr>
-  <tr><td>行业格局与产能周期（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">6</td><td style="text-align:left">VA CR5=77%、VE CR5=92%高度集中，蛋氨酸全球寡头；但公司自身蛋氨酸55万吨/新材料产能持续扩张，未来2年新增供给较多</td></tr>
-  <tr><td>周期位置（15分）</td><td class="good" style="font-weight:bold;font-size:15px">12</td><td style="text-align:left">2025H2维生素价格触底（Q4净利-23%），2026年蛋氨酸+195%、VA+86%、VE+110%暴涨，底部已过、复苏初期至上行期</td></tr>
-  <tr><td>估值PB vs历史区间（15分）</td><td class="neutral" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">PB约2.53x，处于5年约30-35%分位（中偏低区间），距历史底部（~1.9x）下行空间有限</td></tr>
-  <tr><td>现金生成能力FCF（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">CFO 87.97亿极强，资本开支仅约17.7亿，FCF约70亿，净现比1.30，造血能力卓越</td></tr>
-  <tr><td>分红/回购历史（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">连续23年分红（累计185.7亿），2025年分红率45.36%，2026年6月推出3-6亿回购计划</td></tr>
-  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">83/100</td><td style="text-align:left">品质优秀（83/100分）</td></tr>
+  <tr><td>穿越周期 ROE<br>（15 分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">摊薄 ROE（归母净利/期末归母净资产）2016–2025 十年均值 <b>16.42%</b>（2016 14.92 / 2017 12.21 / 2018 19.04 / 2019 12.73 / 2020 18.43 / 2021 19.95 / 2022 15.36 / <b>2023 谷底 10.90</b> / 2024 20.01 / 2025 20.62）。近 5 年均值 17.37%、近 15 年（2011–2025）均值 15.30%，三个窗口一致 ≥12% → 满分。谷底年（2023 维生素低谷 10.90%、2015 大熊市 5.70%）仍显著高于多数化工同行正常年份</td></tr>
+  <tr><td>成本位置<br>（行业成本曲线，15 分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">行业 <b>Top quartile</b>，断层第一。2026H1 毛利率 <b>44.22%</b> vs 浙江医药 37.15% / 安迪苏 28.38% / 兄弟科技 19.44%；净利率 30.68% 为同行（4.76%–11.75%）的 2.6–6.4 倍；去杠杆 ROA 8.54% vs 同行 1.55%–4.38%。技术路线：VE 酶法裂解（成本较传统路线低约 30%）、柠檬醛自供 1.5 万吨（全球仅 4 家可产，较外购中间体低 10–15%）、18 万吨液体蛋氨酸单吨成本低约 15%</td></tr>
+  <tr><td>负债安全垫<br>（15 分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">两项硬指标同时满足：① <b>净负债/EBITDA 远小于 3x</b>——货币资金 74.58 亿 + 交易性金融资产 25.84 亿 = 100.42 亿，有息负债（短借 9.62 + 一年内到期 27.45 + 长借 31.70）仅 68.77 亿，<b>净现金 +31.65 亿</b>；② <b>货币资金可覆盖 1 年固定支出</b>——100.42 亿 vs 26H1 资本开支 13.71 亿（年化约 27–55 亿），覆盖 2–7 倍。资产负债率 24.96%、利息保障倍数 47.10、有息负债率 14.74%、商誉仅 0.04 亿</td></tr>
+  <tr><td>行业格局与产能周期<br>（10 分）</td><td class="neutral" style="font-weight:bold;font-size:15px">6</td><td style="text-align:left">集中度达标（VA 全球 CR5≈77%、VE CR5≈92%、蛋氨酸 CR5&gt;90%，CR3 均 &gt;50%），但<b>"未来 2 年无大量新增供给"不满足</b>：万华化学柠檬醛 4.8 万吨（2024-08 投产）+ VA 1 万吨（2025-03 投产）、浙江医药 VE 2 万吨、公司自身 18 万吨液体蛋氨酸 + 7 万吨固体提升 + PPS 扩产。按 rubric 不取满分档，给中间档 6 分（与上一版同分，但依据由"集中度中等"改为"集中度高 + 供给增量未出清"）</td></tr>
+  <tr><td>周期位置<br>（15 分）</td><td class="bad" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left"><b>核心盈利品种已从顶部大幅回落，但行业远未到出清</b>——维生素E（50% 粉）4 月峰值 116.5 元/kg → <b>10-13 报 44 元/kg（-62.2%，且已跌破年初 55.5 元/kg 的 20.7%）</b>；VA 从 116.5 → 53 元/kg（-54.5%，低于年初 62.5）；固体蛋氨酸 52 → <b>24.4 元/kg（-53.1%，仍高于年初 17.6 达 38.6%）</b>。中银证券 2026-10-12 基础化工周报明确"周均价跌幅居前品种：维生素E、炭黑、电石"；行业毛利率仍高达 44.22%、FY2025 蛋氨酸子公司净利率高达 38.82%，距"亏损出清"的底部特征很远 → 不给"底部/复苏初期"的 12–15 分；但也已明确过顶 → 给 5 分（较上一版 12 分<b>降 7 分</b>）</td></tr>
+  <tr><td>估值（PB vs 历史区间）<br>（15 分）</td><td class="neutral" style="font-weight:bold;font-size:15px">12</td><td style="text-align:left">当前 PB <b>2.2866x</b>（= 25.95 / 11.3489）。日频 PB_MRQ（2018-01-02 起 2,127 个交易日）<b>25.1% 分位，纯按分位 &lt;30% 本应给 15 分</b>；但两项交叉校验要求扣分：① <b>分位对回看窗口高度敏感</b>——2021 年起 29.2% 分位（临界）、2023 年起 <b>44.7% 分位（落入 30–50% 中位档）</b>；② <b>PB/ROE 交叉校验</b>——以 26H1 摊薄 ROE 11.50% 计 PB/ROE = 0.199，<b>高于 2018–2025 年末均值 0.165</b>（即当期盈利口径下 PB 并不便宜）；只有用穿越周期 ROE 16.42% 计（0.139）才低于历史均值。低 PB 分位伴随 ROE 从 FY2025 的 20.62% 快速回落，存在"分母失真"成分 → 12 分</td></tr>
+  <tr><td>现金生成能力（FCF）<br>（10 分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">FCF = CFO − 购建长期资产支出。26H1 = 36.40 − 13.71 = <b>+22.69 亿</b>；FY2025 = 87.97 − 19.00 = <b>+68.97 亿</b>；FY2024 = +54.73 亿。<b>周期低点年份 FCF 仍为正或仅小幅为负</b>：2015（ROE 仅 5.70% 的维生素大熊市）CFO +9.72 亿、FCF -1.74 亿；2023（ROE 10.90%）FCF 已转正 +6.74 亿。15 年中 FCF 为负的 6 个年份（2015/2016/2018/2019/2022）全部由扩产资本开支造成（2019 资本开支 45.82 亿、FCF -24.75 亿、CFF +30.34 亿净融入），<b>没有一年是经营性失血</b></td></tr>
+  <tr><td>分红/回购历史<br>（5 分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left"><b>经历完整下行周期仍维持分红与回购</b>。分红记录（每 10 股含税）：2016 年度 6.0 / 2017 年度 7.0 / 2018 年度 7.0 / 2019 年度 5.0 / 2020 年度 7.0 / 2021 年度 7.0 / 2022 年度 5.0 / <b>2023 年度（ROE 谷底 10.90%）4.5</b> / 2024 年度 5.0 / 2024 中期 2.0 / 2025 中期 2.0 / <b>2025 年度 8.0</b> / 2026 中期 2.0，无一期中断。回购：2021-08 约 5 亿元（1,748.57 万股，2024-12 完成注销）、2025-04 约 5.56 亿元（2,459.26 万股）、<b>2026-06-16 实控人胡柏藩提议新一轮 3–6 亿元</b>（2026-07-02 首次回购约 2,152.61 万元）。TTM 累计派息 1.00 元/股，<b>股息率 3.85%</b>，TTM 分红率 42.9%</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">83/100</td><td style="text-align:left"><b>品质优秀（83/100）</b>。总分不变，但内部结构显著变化：周期位置 12→<b>5</b>（-7）、成本位置 10→<b>15</b>（+5，本版首次用四家同业硬数据实测断层领先）、估值 10→<b>12</b>（+2）。即"公司质地比上版认定的更好、但周期位置比上版认定的差得多"——结构性优势与周期性劣势恰好抵消</td></tr>
 </table>
 
 <div class="verdict verdict-ok">品质优秀（83/100分）</div>
@@ -112,394 +124,616 @@
 <style>.history-table{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:13px}.history-table th,.history-table td{border:1px solid #ddd;padding:6px 8px;text-align:center}.history-table th{background:#f0f0f0;font-weight:bold}.history-table td.good{color:#27ae60}.history-table td.neutral{color:#e67e22}.history-table td.bad{color:#c0392b}</style><table class="history-table">
   <tr><th>日期</th><th>评分</th><th>评分体系</th><th>变化原因</th></tr>
   <tr><td>2026-08-19</td><td class="good" style="font-weight:bold">83/100</td><td>周期性</td><td style="text-align:left">—</td></tr>
+  <tr><td>2026-10-13</td><td class="good" style="font-weight:bold">83/100</td><td>周期性</td><td style="text-align:left">周期股8维度体系；穿越周期ROE改用近10年均值，周期位置因维生素见顶降档</td></tr>
 </table>
 
+<!-- 评分沿革：由sync脚本从 scores.json 注入，生成时保留此注释不动 -->
 
 <div class="summary-box">
-  <strong>综合诊断：</strong>新和成是全球精细化工龙头，以维生素（VA/VE）、蛋氨酸、香精香料构筑"营养品基本盘"，PPS、尼龙66等新材料提供成长第二曲线。公司凭借一体化产业链和寡头竞争格局，穿越多轮维生素周期ROE仍维持18%左右均值，财务极其健康（负债率27.7%、净现金、FCF约70亿）、连续23年分红。2026年蛋氨酸/VA/VE价格大幅上涨，周期上行叠加新产能释放，业绩弹性可期。<br><br>
-  <strong>核心优势：</strong>① 全球龙头地位（VA/VE全球前二、蛋氨酸全球第三、PPS国内第一），寡头格局定价权强；② 毛利率44.67%、净利率30.57%行业顶级，一体化产业链成本领先；③ 资产负债表极健康——负债率27.73%、净现金、大股东零质押；④ 2026年产品价格暴涨（蛋氨酸+195%/VA+86%/VE+110%），周期上行+量增双击。<br><br>
-  <strong>核心风险：</strong>① 营收增速仅+2.97%，2025年维生素价格下行拖累明显，业绩对价格高度敏感；② 蛋氨酸/新材料产能集中投放，2027年后供给压力或再现；③ 2026Q1增收不增利（净利-2.8%），涨价传导存在时滞；④ 美伊战争推涨是"事件性"利好，若地缘缓和价格存在回落风险。
+  <strong>综合诊断：</strong>新和成是一家<b>结构性一流、周期性正在退潮</b>的精细化工龙头。2026H1 表面成绩不差——营收 +18.28%、归母 +11.31%——但拆开看，营业成本 +21.94% 已快于营收 1.66 亿，<b>扣非归母只有 +6.53%，与营收增速形成 11.75 个百分点的剪刀差</b>；4.07 亿的归母净利增量里，毛利贡献 +7.11 亿，却被<b>财务费用 +4.36 亿（汇兑）吞掉 61%</b>，剩余部分几乎全部由投资收益 +1.86 亿与公允价值变动 +1.73 亿这两项非经营性科目贡献，<b>主业经营性利润增量仅约 +0.48 亿</b>。同时三个核心盈利品种已集体见顶回落（VE -62%、VA -55%、蛋氨酸 -53%），行业毛利率仍处 44% 高位，典型的"利润还在表上、周期已经拐头"。<br><br>
+  <strong>核心优势：</strong>① 穿越周期能力经得起检验——2016–2025 摊薄 ROE 均值 16.42%，穿越两轮维生素周期（2023 谷底 10.90%、2015 谷底 5.70%）；② 成本曲线断层第一，毛利率 44.22% 高出第二名浙江医药 7.07pct、净利率 2.6–6.4 倍于同业；③ 资产负债表零风险——净现金 31.65 亿、负债率 24.96%、利息保障 47.10 倍、商誉 0.04 亿、大股东持股 50.082% 零变动；④ 股东回报机制稳定——分红无一期中断（含 2023 谷底年）、三轮回购、TTM 股息率 3.85%。<br><br>
+  <strong>核心风险：</strong>① <b>增收不增利已从"剪刀差 7pct"扩大为"营收+18.28% vs 扣非+6.53% 的 11.75pct"</b>，成本抬升与售价回落的传导时滞正在反向作用；② 维生素 E 跌至 44 元/kg、跌破年初，中银证券已将其列为周均价跌幅居前品种，Q3 起直接压制利润表；③ 蛋氨酸从 4 月 52 元/kg 回落至 24.4 元/kg（-53%），弹性回吐过半，而蛋氨酸子公司贡献了 26H1 归母的 50.2%；④ 汇兑成为新的利润变量——26H1 财务费用从 -1.78 亿逆转为 +2.58 亿，而境外收入占比 58.43%，人民币升值会持续侵蚀利润。
 </div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l1"><div class="tab-inner">
 
-<h2>二、核心财务数据（FY2025 + 2026Q1）</h2>
+<h2>二、核心财务数据（2026H1 vs 2025H1，附 FY2025/FY2024/FY2023 对照）</h2>
 
 <h3>2.1 利润表</h3>
 <table>
-  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
-  <tr><td>营业收入</td><td>222.51 亿</td><td>216.10 亿</td><td>+2.97%</td><td class="neutral">⚠ 价减量增</td></tr>
-  <tr><td>归母净利润</td><td><strong>67.64 亿</strong></td><td>58.69 亿</td><td><strong>+15.26%</strong></td><td class="good">✅ 利润韧性</td></tr>
-  <tr><td>扣非净利润</td><td><strong>67.38 亿</strong></td><td>58.30 亿</td><td><strong>+15.59%</strong></td><td class="good">✅ 主业驱动</td></tr>
-  <tr><td>毛利率</td><td><strong>44.67%</strong></td><td>41.78%</td><td>+2.90pct</td><td class="good">✅ 逆势提升</td></tr>
-  <tr><td>归母净利率</td><td><strong>30.57%</strong></td><td>27.29%</td><td>+3.28pct</td><td class="good">✅ 行业顶级</td></tr>
-  <tr><td>期间费用率</td><td><strong>~8.7%</strong></td><td>~8.6%</td><td>基本持平</td><td class="good">✅ 低费用率</td></tr>
-  <tr><td>2025Q1 营收</td><td>54.40 亿</td><td>40.07 亿</td><td>+35.8%</td><td class="good">✅ 高增长</td></tr>
-  <tr><td>2025Q2 营收</td><td>56.61 亿</td><td>51.50 亿</td><td>+9.9%</td><td class="good">✅ 稳健</td></tr>
-  <tr><td>2025Q3 营收</td><td>55.41 亿</td><td>58.19 亿</td><td>-4.8%</td><td class="neutral">⚠ 承压</td></tr>
-  <tr><td>2025Q4 营收</td><td>56.09 亿</td><td>58.27 亿</td><td>-3.75%</td><td class="neutral">⚠ 价格底部</td></tr>
-  <tr><td>2025Q4 净利润</td><td><strong>14.43 亿</strong></td><td>18.79 亿</td><td><strong>-23.18%</strong></td><td class="neutral">⚠ 全年低点</td></tr>
+  <tr><th>指标</th><th>2026H1</th><th>2025H1</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td><strong>131.29 亿</strong></td><td>111.01 亿</td><td class="good">+18.28%</td><td class="good">✅ 量增明显</td></tr>
+  <tr><td>营业成本</td><td>73.24 亿</td><td>60.06 亿</td><td class="bad">+21.94%</td><td class="bad">❌ 增速快于收入 1.66pct</td></tr>
+  <tr><td>毛利</td><td>58.06 亿</td><td>50.94 亿</td><td>+13.96%</td><td class="neutral">⚠ 远慢于收入</td></tr>
+  <tr><td>毛利率</td><td><strong>44.22%</strong></td><td>45.89%</td><td class="bad"><strong>-1.67pct</strong></td><td class="bad">❌ 剪刀差根源</td></tr>
+  <tr><td>税金及附加</td><td>1.47 亿</td><td>1.26 亿</td><td>+16.64%</td><td class="neutral">⚠ 快于收入</td></tr>
+  <tr><td>销售费用</td><td>0.89 亿</td><td>0.89 亿</td><td>+0.44%</td><td class="good">✅ 极低费用率</td></tr>
+  <tr><td>管理费用</td><td>2.93 亿</td><td>3.10 亿</td><td class="good">-5.50%</td><td class="good">✅ 精简</td></tr>
+  <tr><td>研发费用</td><td>6.06 亿</td><td>5.23 亿</td><td class="neutral">+15.87%</td><td class="neutral">⚠ 占收入 4.61%</td></tr>
+  <tr><td><b>财务费用</b></td><td class="bad"><strong>+2.58 亿</strong></td><td class="good"><strong>-1.78 亿</strong></td><td class="bad"><strong>+4.36 亿</strong></td><td class="bad">❌ 由负转正，最大单项拖累</td></tr>
+  <tr><td>其中：利息支出 / 利息收入</td><td>0.77 / 0.34 亿</td><td>1.13 / 0.40 亿</td><td>净利息支出 0.43 亿</td><td class="neutral">利息不是主因</td></tr>
+  <tr><td>资产+信用减值损失</td><td class="bad">-0.64 亿</td><td>-0.26 亿</td><td class="bad">多减 0.38 亿</td><td class="neutral">⚠ 存货/应收计提</td></tr>
+  <tr><td>投资收益</td><td class="good">+2.05 亿</td><td>0.18 亿</td><td class="good">+1.86 亿</td><td class="neutral">⚠ 含联营 1.53 亿</td></tr>
+  <tr><td>公允价值变动损益</td><td>+0.66 亿</td><td class="bad">-1.07 亿</td><td class="good">+1.73 亿</td><td class="neutral">⚠ 非经营性</td></tr>
+  <tr><td>其他收益</td><td>1.21 亿</td><td>1.22 亿</td><td>-0.01 亿</td><td class="neutral">持平</td></tr>
+  <tr><td>营业利润</td><td>47.42 亿</td><td>42.31 亿</td><td>+12.08%</td><td class="neutral">⚠ 慢于收入</td></tr>
+  <tr><td>营业外收支净额</td><td class="bad">-0.45 亿</td><td>-0.02 亿</td><td class="bad">-0.43 亿</td><td class="neutral">营业外支出增加</td></tr>
+  <tr><td>利润总额</td><td>46.97 亿</td><td>42.29 亿</td><td>+11.06%</td><td class="neutral">⚠</td></tr>
+  <tr><td>所得税（实际税率）</td><td>6.69 亿（14.25%）</td><td>6.08 亿（14.37%）</td><td>+10.10%</td><td class="good">✅ 税率稳定</td></tr>
+  <tr><td>净利润（含少数股东）</td><td>40.28 亿</td><td>36.22 亿</td><td>+11.24%</td><td class="neutral">⚠</td></tr>
+  <tr><td><b>归母净利润</b></td><td class="neutral"><strong>40.11 亿</strong></td><td>36.03 亿</td><td class="neutral"><strong>+11.31%</strong></td><td class="neutral">⚠ 低于收入 7pct（表观）</td></tr>
+  <tr><td><b>扣非归母净利润</b></td><td class="bad"><strong>39.19 亿</strong></td><td>36.79 亿</td><td class="bad"><strong>+6.53%</strong></td><td class="bad">❌ 低于收入 <b>11.75pct</b>（实质）</td></tr>
+  <tr><td>非经常性损益</td><td class="neutral">+0.92 亿（占归母 2.29%）</td><td>-0.75 亿</td><td class="neutral">由负转正</td><td class="neutral">⚠ 利润质量小幅下降</td></tr>
+  <tr><td>期间费用率</td><td class="bad"><strong>9.48%</strong></td><td class="good">6.69%</td><td class="bad"><strong>+2.79pct</strong></td><td class="bad">❌ 全部由财务费用造成</td></tr>
+  <tr><td>净利率</td><td><strong>30.68%</strong></td><td>32.61%</td><td class="bad">-1.92pct</td><td class="good">✅ 绝对值仍行业顶级</td></tr>
 </table>
 
 <div class="summary-box">
-  <strong>利润表解读：</strong>2025年营收+2.97%但归母净利+15.26%，利润增速远超营收——核心是营养品板块成本端改善（营业成本-9.7%）推动毛利率大幅提升4.59pct至47.77%。分季度看前高后低：Q1-Q4净利分别为18.80/17.23/17.17/14.43亿，Q4为全年低点，与蛋氨酸/VE价格四季度触底相对应。2026Q1营收62.95亿（+15.72%）但净利18.27亿（-2.8%）——收入端已反映量增+部分涨价，利润端受成本抬升（美伊战争推高原料）滞后传导。综合净利率29.16%仍处于行业顶级水平。
+  <strong>利润表解读：</strong>2026H1 的表观与实质是两件事。<b>表观</b>是"营收 +18.28%、归母 +11.31%"，7 个百分点的剪刀差；<b>实质</b>是"营收 +18.28%、扣非 +6.53%"，<b>11.75 个百分点</b>的剪刀差。差异来自两处：① <b>营业成本增速（+21.94%）跑赢收入增速（+18.28%）</b>，毛利率被压 1.67pct——这是美伊冲突推高的石化原料成本仍在滞后传导，而产品价格（VE/VA/蛋氨酸）已从 4 月峰值回落，售价与成本的传导方向在 Q2 中途交叉；② <b>财务费用由 -1.78 亿逆转为 +2.58 亿</b>，单项吞掉 4.36 亿，相当于毛利增量的 61%。期间费用率从 6.69% 跳到 9.48%，全部由财务费用贡献（销售/管理/研发三项费用率反而从 8.53% 降到 8.58% 中的可控部分）。<br><br>
+  好的一面：销售费用率仅 0.68%、管理费用绝对额同比下降 5.50%、实际税率稳定在 14.25%、商誉仅 0.04 亿、无大额资产减值。净利率 30.68% 在 A 股化工中仍是断层第一。
 </div>
 
-<h3>2.2 资产负债表</h3>
+<h3>2.2 利润增量归因桥（YoY 归母 +4.07 亿拆解）</h3>
 <table>
-  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
-  <tr><td>货币资金+交易性金融资产</td><td><strong>101.35 亿</strong></td><td class="good">✅ 极其充裕</td></tr>
-  <tr><td>应收账款</td><td><strong>36.05 亿</strong></td><td class="neutral">占营收16.2%，2026Q1升至36.39亿，需关注</td></tr>
-  <tr><td>存货</td><td><strong>46.49 亿</strong></td><td class="neutral">占资产10.2%，适中</td></tr>
-  <tr><td>短期借款（含一年内到期）</td><td><strong>38.41 亿</strong></td><td class="good">✅ 远低于现金</td></tr>
-  <tr><td>长期借款</td><td><strong>41.87 亿</strong></td><td class="neutral">适中</td></tr>
-  <tr><td>有息负债合计</td><td><strong>~80 亿</strong></td><td class="good">✅ 净现金（现金101亿&gt;有息负债80亿）</td></tr>
-  <tr><td>资产负债率</td><td><strong>27.73%</strong></td><td class="good">✅ 化工行业极低</td></tr>
-  <tr><td>归母净资产</td><td>328.06 亿</td><td class="good">✅ 同比+11.9%</td></tr>
-  <tr><td>总资产</td><td>456.06 亿</td><td class="good">✅ 同比+6.1%</td></tr>
-  <tr><td>在建工程</td><td>7.45 亿</td><td class="good">✅ 高峰期已过，资本开支收敛</td></tr>
+  <tr><th>驱动项</th><th>金额（亿元）</th><th>性质</th><th>说明</th></tr>
+  <tr><td>毛利增加</td><td class="good">+7.11</td><td class="good">主业</td><td>唯一的主业正向来源；其中营养品 +22.31% 是主因</td></tr>
+  <tr><td>财务费用增加</td><td class="bad"><strong>-4.36</strong></td><td class="bad">财务/汇兑</td><td><b>吞掉毛利增量的 61%</b>；利息净支出仅 0.43 亿，其余约 2.14 亿为汇兑及其他财务性损益（公司未单独披露汇兑明细）</td></tr>
+  <tr><td>投资收益增加</td><td class="good">+1.86</td><td class="neutral">非主营</td><td>其中联营/合营 1.53 亿（去年同期 0.25 亿）——主要为中国石化镇海炼化合资的液体蛋氨酸公司</td></tr>
+  <tr><td>公允价值变动</td><td class="good">+1.73</td><td class="neutral">非主营</td><td>由 -1.07 亿转正至 +0.66 亿，非现金、非经营</td></tr>
+  <tr><td>研发费用增加</td><td class="bad">-0.83</td><td class="good">长期</td><td>投入性质，短期压制利润</td></tr>
+  <tr><td>营业外收支净额</td><td class="bad">-0.43</td><td class="neutral">—</td><td>营业外支出增加</td></tr>
+  <tr><td>资产+信用减值增加</td><td class="bad">-0.38</td><td class="neutral">—</td><td>计提增加</td></tr>
+  <tr><td>所得税增加</td><td class="bad">-0.61</td><td class="neutral">—</td><td>税率稳定，纯粹是利润总额增加带来</td></tr>
+  <tr><td>税金及附加增加</td><td class="bad">-0.21</td><td class="neutral">—</td><td>—</td></tr>
+  <tr><td>管理费用下降 / 销售费用 / 其他收益 / 资产处置 / 少数股东</td><td class="neutral">+0.19（净额）</td><td class="neutral">—</td><td>—</td></tr>
+  <tr style="font-weight:bold"><td>归母净利润净变动</td><td><strong>+4.07</strong></td><td>—</td><td>40.11 − 36.03</td></tr>
+  <tr style="font-weight:bold;background:#fde8e8"><td>其中：剔除投资收益与公允价值变动后的<b>经营性</b>增量</td><td><strong>+0.48</strong></td><td class="bad">—</td><td><b>4.07 − 1.86 − 1.73 = 0.48 亿元，仅相当于 20.29 亿营收增量的 2.4%</b>——这就是"增收不增利"的量化本质</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>核心矛盾警示：</strong>纯周期股的利润顶往往出现在报表上还很漂亮、但价格已经掉头的时候。新和成 26Q2 单季归母 <b>21.92 亿是上市以来的单季最高</b>（同比 +26.49%），原因正是 4 月 VE/VA 冲到 116.5 元/kg、蛋氨酸冲到 52 元/kg 的峰值订单在 Q2 集中确认。但截至 10 月 13 日，VE 报 44 元/kg、VA 报 53 元/kg、固体蛋氨酸报 24.4 元/kg——<b>Q3 起进入报表的价格，与 Q2 确认的价格已经完全不是一个东西</b>。扣非增速（+6.53%）而非归母增速（+11.31%）才是这套报表真实的盈利能力刻度。
+</div>
+
+<h3>2.3 分季度节奏（单位：亿元）</h3>
+<table>
+  <tr><th>项目</th><th>25Q1</th><th>25Q2</th><th>25Q3</th><th>25Q4</th><th>26Q1</th><th>26Q2</th></tr>
+  <tr><td>营业收入</td><td>54.40</td><td>56.61</td><td>55.41</td><td>56.09</td><td>62.95</td><td><strong>68.34</strong></td></tr>
+  <tr><td>营收同比</td><td>+35.8%</td><td>+5.9%</td><td>-6.7%</td><td>-3.8%</td><td>+15.7%</td><td class="good">+20.7%</td></tr>
+  <tr><td>归母净利润</td><td>18.80</td><td>17.33</td><td>17.33</td><td class="bad">14.48</td><td>18.27</td><td class="good"><strong>21.92</strong></td></tr>
+  <tr><td>归母同比</td><td>+63.3%</td><td>+28.9%</td><td>-3.3%</td><td class="bad">-23.3%</td><td class="bad">-2.8%</td><td class="good">+26.5%</td></tr>
+  <tr><td>营业利润率</td><td>39.41%</td><td>36.87%</td><td>36.47%</td><td class="bad">28.56%</td><td>34.07%</td><td class="good"><strong>38.02%</strong></td></tr>
+  <tr><td>经营活动现金流</td><td>15.96</td><td>16.47</td><td>23.99</td><td>31.55</td><td>16.84</td><td>19.56</td></tr>
+  <tr><td>投资活动现金流</td><td>—</td><td>+3.36</td><td>-5.19</td><td>-4.16</td><td>-5.19</td><td class="bad">-11.24</td></tr>
+  <tr><td>筹资活动现金流</td><td>—</td><td>-16.09</td><td>+0.11</td><td>-23.35</td><td>+4.65</td><td class="bad">-28.93</td></tr>
 </table>
 
 <div class="highlight-box">
-  <strong>资产负债表解读：</strong>这是新和成最突出亮点之一——资产负债率仅27.73%，货币资金+理财高达101.35亿，完全覆盖约80亿有息负债，处于"净现金"状态。大股东质押率0%，无商誉风险（商誉仅362万）。在建工程从高峰期大幅收敛至7.45亿，蛋氨酸等大型项目已建成转固，未来资本开支压力显著下降。对比同行：浙江医药/安迪苏负债率均高于新和成，新和成的资产负债表在化工行业中属于最健康梯队。
+  <strong>季度节奏解读：</strong>① <b>26Q2 是本轮周期的利润顶点</b>——单季营收 68.34 亿、归母 21.92 亿双双创单季新高，营业利润率 38.02% 为近 6 个季度次高（仅次于 25Q1 的 39.41%）；② 但 <b>25Q4（14.48 亿、营业利润率 28.56%）才是上一轮价格底部的读数</b>，两轮顶点之间正好是一个完整的"营收持平、利润塌陷"周期——这是周期股最典型的形态，也说明 Q2 的高点对应的是价格而非经营改善；③ 26Q2 投资现金流 -11.24 亿（25Q2 还是 +3.36 亿）、筹资现金流 -28.93 亿（主要为 5 月派发的 24.59 亿年度分红），说明公司在利润顶点选择了"大额分红 + 恢复资本开支"，而不是扩产冲动——现金流管理是克制的；④ <b>季度毛利率未单独取数</b>，表中"营业利润率"为营业利润/营业收入口径（可跨季可比），2026H1 真实毛利率 44.22%、2025H1 为 45.89%。
 </div>
 
-<h3>2.3 现金流量表</h3>
+<h3>2.4 资产负债表（2026-06-30 vs 2025-12-31）</h3>
 <table>
-  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
-  <tr><td>经营现金流（CFO）</td><td><strong>87.97 亿</strong></td><td>70.73 亿</td><td class="good">✅ 强劲+24.4%</td></tr>
-  <tr><td>投资现金流（CFI）</td><td><strong>-20.43 亿</strong></td><td>-37.76 亿</td><td class="good">✅ 资本开支大幅收敛</td></tr>
-  <tr><td>筹资现金流（CFF）</td><td><strong>-44.78 亿</strong></td><td>-22.68 亿</td><td class="neutral">⚠ 大额分红+还债</td></tr>
-  <tr><td>CFO/净利润</td><td><strong>1.30</strong></td><td>1.20</td><td class="good">✅ 优秀</td></tr>
-  <tr><td>自由现金流（FCF）</td><td><strong>~70 亿</strong></td><td>~40 亿</td><td class="good">✅ 极强</td></tr>
+  <tr><th>科目</th><th>2026H1</th><th>2025 年末</th><th>变动</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td>74.58 亿</td><td>79.66 亿</td><td>-6.4%</td><td class="good">✅ 充裕</td></tr>
+  <tr><td>交易性金融资产</td><td>25.84 亿</td><td>21.68 亿</td><td>+19.2%</td><td class="good">✅ 类现金</td></tr>
+  <tr><td><b>类现金合计</b></td><td class="good"><strong>100.42 亿</strong></td><td>101.34 亿</td><td>-0.9%</td><td class="good">✅ 基本持平</td></tr>
+  <tr><td>应收票据及账款</td><td>37.70 亿</td><td>33.31 亿</td><td class="neutral">+13.2%</td><td class="neutral">⚠ 周转 48.68 天，尚属正常</td></tr>
+  <tr><td>预付款项</td><td>2.97 亿</td><td>1.78 亿</td><td>+66.9%</td><td class="neutral">⚠ 绝对额小</td></tr>
+  <tr><td>存货</td><td>47.69 亿</td><td>46.49 亿</td><td>+2.6%</td><td class="neutral">⚠ 周转 115.74 天；价格下行期有跌价风险</td></tr>
+  <tr><td>流动资产合计</td><td>201.45 亿</td><td>194.35 亿</td><td>+3.7%</td><td>—</td></tr>
+  <tr><td>固定资产</td><td>195.38 亿</td><td>202.99 亿</td><td>-3.7%</td><td class="neutral">正常折旧</td></tr>
+  <tr><td><b>在建工程</b></td><td class="neutral"><strong>10.07 亿</strong></td><td>7.45 亿</td><td class="neutral"><strong>+35.2%</strong></td><td class="neutral">⚠ 资本开支重新上行</td></tr>
+  <tr><td>无形资产</td><td>36.27 亿</td><td>25.90 亿</td><td class="neutral">+40.0%</td><td class="neutral">⚠ 增加 10.37 亿，构成未披露</td></tr>
+  <tr><td>长期股权投资</td><td>11.45 亿</td><td>9.65 亿</td><td>+18.7%</td><td class="neutral">联营企业（含液体蛋氨酸合资公司）</td></tr>
+  <tr><td><b>总资产</b></td><td><strong>466.85 亿</strong></td><td>456.06 亿</td><td>+2.4%</td><td>—</td></tr>
+  <tr><td>短期借款</td><td>9.62 亿</td><td>6.75 亿</td><td>+42.5%</td><td class="good">✅ 绝对额小</td></tr>
+  <tr><td>一年内到期非流动负债</td><td>27.45 亿</td><td>31.65 亿</td><td>-13.3%</td><td class="good">✅ 下降</td></tr>
+  <tr><td>应付票据及账款</td><td>19.33 亿</td><td>18.50 亿</td><td>+4.5%</td><td class="good">✅ 占用上游资金</td></tr>
+  <tr><td>合同负债</td><td>3.51 亿</td><td>2.95 亿</td><td class="good">+19.0%</td><td class="neutral">景气上行期预收款增加</td></tr>
+  <tr><td>流动负债合计</td><td>74.90 亿</td><td>73.98 亿</td><td>+1.2%</td><td>—</td></tr>
+  <tr><td>长期借款</td><td>31.70 亿</td><td>41.87 亿</td><td class="good">-24.3%</td><td class="good">✅ 主动去杠杆</td></tr>
+  <tr><td><b>负债合计</b></td><td><strong>116.51 亿</strong></td><td>126.46 亿</td><td class="good">-7.9%</td><td>—</td></tr>
+  <tr><td><b>归母净资产</b></td><td class="good"><strong>348.80 亿</strong></td><td>328.06 亿</td><td>+6.3%</td><td>—</td></tr>
+  <tr><td>资产负债率</td><td class="good"><strong>24.96%</strong></td><td>27.73%</td><td class="good">-2.78pct</td><td class="good">✅ 化工行业最低梯队</td></tr>
+  <tr><td>有息负债合计</td><td>68.77 亿</td><td>80.27 亿</td><td class="good">-14.3%</td><td class="good">✅</td></tr>
+  <tr><td><b>净现金（类现金 − 有息负债）</b></td><td class="good"><strong>+31.65 亿</strong></td><td>+21.07 亿</td><td class="good">+50.3%</td><td class="good">✅ 周期底部最大保护垫</td></tr>
+  <tr><td>流动比率 / 速动比率</td><td>2.69 / 2.05</td><td>—</td><td>—</td><td class="good">✅ 短期偿债无忧</td></tr>
+  <tr><td>利息保障倍数 / 有息负债率</td><td>47.10 倍 / 14.74%</td><td>—</td><td>—</td><td class="good">✅</td></tr>
+  <tr><td>商誉</td><td class="good">0.04 亿</td><td>0.04 亿</td><td>—</td><td class="good">✅ 无减值地雷</td></tr>
 </table>
 
 <div class="highlight-box">
-  <strong>现金流解读：</strong>CFO 87.97亿创历史新高（+24.4%），净现比1.30——利润100%真金白银且含金量极高。资本开支从37.76亿收窄至20.43亿，FCF高达约70亿，公司进入"收获期"。筹资现金流-44.78亿主因大额分红（30.68亿）和偿还债务，说明公司已从"扩张投入期"转向"现金回报期"，这是周期股进入成熟收获阶段的典型特征。
+  <strong>资产负债表解读：</strong>这是新和成最没有争议的一块。26H1 出现了一个教科书式的组合：<b>利润表受压、资产负债表继续变厚</b>——归母净资产半年增 20.74 亿（+6.3%），资产负债率从 27.73% 降到 24.96%，长期借款主动压降 10.17 亿，净现金从 21.07 亿扩到 <b>31.65 亿</b>。即使产品价格回到 2025 年水平甚至更低，公司也不存在流动性风险，这是"周期股能穿越周期"的必要条件。<br><br>
+  两点需要盯：① <b>在建工程从 7.45 亿回升至 10.07 亿（+35.2%）、无形资产从 25.90 亿增至 36.27 亿（+40.0%，+10.37 亿）</b>，合计新增 12.99 亿，与 26H1 资本开支 13.71 亿基本吻合，意味着一轮新的产能/资产投入已经启动——这会同时带来未来折旧压力和新增供给；② <b>存货 47.69 亿（周转 115.74 天）</b>，在 VE 从 116.5 跌到 44 元/kg 的过程中，存货跌价准备的计提需要跟踪（26H1 资产减值损失已从 -0.33 亿扩大至 -0.64 亿）。<br><br>
+  <span class="nd">待补充</span>：无形资产 26H1 增加 10.37 亿元的具体构成（土地使用权/专利/并购）未从公开披露中取得；控股股东股权质押比例未取得公开数据。
 </div>
+
+<h3>2.5 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>2026H1</th><th>2025H1</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>经营活动现金流（CFO）</td><td><strong>36.40 亿</strong></td><td>32.43 亿</td><td>87.97 亿</td><td class="good">✅ +12.24%，仍强劲</td></tr>
+  <tr><td>销售商品提供劳务收到的现金</td><td>119.35 亿</td><td><span class="nd">待补充</span></td><td><span class="nd">待补充</span></td><td class="neutral">收现比 0.91</td></tr>
+  <tr><td>投资活动现金流（CFI）</td><td class="neutral"><strong>-16.43 亿</strong></td><td>-11.08 亿</td><td>-20.43 亿</td><td class="neutral">⚠ 资本开支重新上行</td></tr>
+  <tr><td>其中：购建长期资产支出（capex）</td><td><strong>13.71 亿</strong></td><td>6.34 亿</td><td>19.00 亿</td><td class="bad">⚠ 同比 +116%</td></tr>
+  <tr><td>其中：支付其他投资 / 收回其他投资</td><td>25.70 / 22.52 亿</td><td>—</td><td>—</td><td class="neutral">理财滚动</td></tr>
+  <tr><td>筹资活动现金流（CFF）</td><td class="neutral"><strong>-24.28 亿</strong></td><td>-21.54 亿</td><td>-44.78 亿</td><td class="neutral">大额分红</td></tr>
+  <tr><td>其中：分配股利/偿付利息</td><td>25.47 亿</td><td>—</td><td>30.03 亿</td><td class="neutral">5 月派发 2025 年度分红 24.59 亿</td></tr>
+  <tr><td>其中：取得借款 / 偿还债务</td><td>23.14 / 27.14 亿</td><td>—</td><td>34.36 / 43.52 亿</td><td class="good">✅ 净偿还 4.00 亿</td></tr>
+  <tr><td><b>自由现金流 FCF（CFO − capex）</b></td><td class="good"><strong>+22.69 亿</strong></td><td>+26.09 亿</td><td class="good"><strong>+68.97 亿</strong></td><td class="good">✅ 持续为正</td></tr>
+  <tr><td>CFO / 归母净利润（净现比）</td><td class="neutral">0.91</td><td>0.90</td><td class="good">1.30</td><td class="neutral">⚠ 半年口径 &lt;1</td></tr>
+  <tr><td>期末现金及等价物</td><td>73.96 亿</td><td>—</td><td>78.20 亿</td><td>—</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>CFO 36.40 亿（+12.24%）与归母净利 40.11 亿基本匹配，净现比 0.91，半年口径下属于正常（化工企业下半年回款与备货节奏通常使全年净现比回到 1 以上，FY2025 为 1.30）。FCF 22.69 亿，规模比去年同期小（26.09 亿），唯一原因是资本开支翻倍（13.71 亿 vs 6.34 亿）——这是主动的产能再投资，不是盈利质量恶化。<br><br>
+  <b>值得肯定的一点：</b>26H1 归母净利只增 4.07 亿，账上现金却净减 4.23 亿，而同期公司还在净还债 4.00 亿、分红 24.59 亿。做到这一点的公司，要么是真的自由现金流厚实，要么是现金流管理克制——新和成两者都占。
+</div>
+
+<p style="font-size:12px;color:#999;margin-top:10px"><b>本 tab 数据缺失说明：</b>① 2025H1 与 FY2025 的"销售商品、提供劳务收到的现金"未取数，故收现比仅给出 2026H1 的 0.91，缺少年份对照 <span class="nd">待补充</span>；② 无形资产 2026H1 增加 10.37 亿元的具体构成（土地使用权/专利/外购）未从公开披露取得 <span class="nd">待补充</span>；③ 控股股东股权质押比例未取得公开数据 <span class="nd">待补充</span>；④ 分季度"毛利率"未单独取数，2.3 表中提供的是"营业利润率"（营业利润/营业收入）口径，真实毛利率仅在半年/年度口径给出。以上缺失项均未参与评分。</p>
 
 </div></div>
 
 <div class="tab-content" id="tab-l2"><div class="tab-inner">
 
-<h2>三、关键指标与排雷（L2框架）</h2>
+<h2>三、关键指标与排雷（L2 框架）</h2>
 
 <h3>3.1 关键盈利指标</h3>
 <table>
-  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
-  <tr><td>ROE（加权）</td><td><strong>21.77%</strong></td><td>> 15% 优秀</td><td class="good">✅ 优秀（穿越周期均值~18%）</td></tr>
-  <tr><td>毛利率</td><td><strong>44.67%</strong></td><td>稳定或提升</td><td class="good">✅ 逆势提升2.90pct</td></tr>
-  <tr><td>净利率</td><td><strong>30.57%</strong></td><td>> 15%</td><td class="good">✅ 行业顶级</td></tr>
-  <tr><td>营收增长率</td><td><strong>+2.97%</strong></td><td>周期底部看量</td><td class="neutral">⚠ 价格拖累，量实际增长</td></tr>
-  <tr><td>利润增长率</td><td><strong>+15.26%</strong></td><td>正增长</td><td class="good">✅ 稳健</td></tr>
-  <tr><td>CFO/净利润</td><td><strong>1.30</strong></td><td>> 1</td><td class="good">✅ 优秀</td></tr>
-  <tr><td>资产负债率</td><td><strong>27.73%</strong></td><td>化工<40% 优秀</td><td class="good">✅ 极其健康</td></tr>
-  <tr><td>分红率</td><td><strong>45.36%</strong></td><td>持续分红</td><td class="good">✅ 连续23年+回购</td></tr>
+  <tr><th>指标</th><th>2026H1</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE（加权）</td><td><strong>11.39%</strong></td><td>&gt; 15% 优秀</td><td class="neutral">⚠ 同比 -0.48pct（25H1 为 11.87%）；但穿越周期均值 16.42% 优秀</td></tr>
+  <tr><td>ROE（摊薄，归母/期末归母净资产）</td><td>11.50%</td><td>&gt; 15%</td><td class="neutral">⚠ 单期看偏弱，须看多周期均值</td></tr>
+  <tr><td>ROE（扣非加权）</td><td>11.12%</td><td>&gt; 15%</td><td class="neutral">⚠ 与加权口径基本一致</td></tr>
+  <tr><td>毛利率</td><td><strong>44.22%</strong></td><td>稳定或提升</td><td class="bad">❌ 同比 -1.67pct（本版首次由升转降）</td></tr>
+  <tr><td>净利率</td><td><strong>30.68%</strong></td><td>&gt; 15%</td><td class="good">✅ 同比 -1.92pct 但绝对值仍是 A 股化工第一</td></tr>
+  <tr><td>营收增长率</td><td>+18.28%</td><td>&gt; 10%</td><td class="good">✅ 达标</td></tr>
+  <tr><td>利润增长率（归母）</td><td>+11.31%</td><td>—</td><td class="neutral">⚠ 低于营收 7pct</td></tr>
+  <tr><td>利润增长率（扣非）</td><td class="bad"><strong>+6.53%</strong></td><td>—</td><td class="bad">❌ 低于营收 11.75pct，真实盈利能力刻度</td></tr>
+  <tr><td>CFO / 净利润</td><td>0.91</td><td>&gt; 1</td><td class="neutral">⚠ 半年口径；全年口径 1.30</td></tr>
+  <tr><td>资产负债率</td><td><strong>24.96%</strong></td><td>行业中低</td><td class="good">✅ 化工行业最低梯队</td></tr>
+  <tr><td>应收账款周转天数</td><td>48.68 天</td><td>&lt; 60 天</td><td class="good">✅ 回款正常</td></tr>
+  <tr><td>存货周转天数</td><td>115.74 天</td><td>行业正常</td><td class="neutral">⚠ 重资产化工正常，但价格下行期关注跌价</td></tr>
+  <tr><td>自由现金流 FCF</td><td>+22.69 亿</td><td>持续为正</td><td class="good">✅</td></tr>
+  <tr><td>分红率（TTM）</td><td><strong>42.9%</strong></td><td>持续分红</td><td class="good">✅ TTM 派息 1.00 元/股，股息率 3.85%</td></tr>
+  <tr><td>ROIC（26H1 口径）</td><td>9.82%</td><td>&gt; 10%</td><td class="neutral">半年数据</td></tr>
 </table>
 
-<h3>3.2 分业务分析（2025年度）</h3>
+<h3>3.2 分业务分析（2026H1，半年报口径）</h3>
+<p style="font-size:13px;color:#666">按产品：营养品大类合计（维生素 + 蛋氨酸 + 色素）未进一步拆分 VA / VE / 蛋氨酸单项收入 <span class="nd">待补充</span>（半年报披露粒度所限）。</p>
 <table>
-  <tr><th>业务板块</th><th>营收（亿）</th><th>占比</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
-  <tr><td>营养品（维生素+蛋氨酸+色素）</td><td>147.84</td><td>66.4%</td><td>-1.79%</td><td><strong>47.77%</strong></td><td class="good">✅ 基本盘，毛利+4.59pct</td></tr>
-  <tr><td>香精香料</td><td>38.66</td><td>17.4%</td><td>-1.29%</td><td><strong>53.14%</strong></td><td class="good">✅ 高毛利现金牛</td></tr>
-  <tr><td>新材料（PPS/尼龙66/IPDI）</td><td>21.15</td><td>9.5%</td><td><strong>+26.17%</strong></td><td>29.5%</td><td class="good">✅ 第二增长曲线</td></tr>
-  <tr><td>其他（原料药等）</td><td>14.87</td><td>6.7%</td><td>+54.41%</td><td>13.4%</td><td class="neutral">体量小</td></tr>
+  <tr><th>业务板块</th><th>收入（亿元）</th><th>占比</th><th>同比</th><th>毛利率</th><th>毛利率变动</th><th>评价</th></tr>
+  <tr><td><b>营养品</b>（维生素 VA/VE + 蛋氨酸 + 色素）</td><td><strong>88.06</strong></td><td><strong>67.07%</strong></td><td class="good"><strong>+22.31%</strong></td><td><strong>46.87%</strong></td><td class="neutral">-0.92pct</td><td class="good">✅ 基本盘，量增抵消价跌；但毛利率已开始松动</td></tr>
+  <tr><td>香精香料</td><td>20.22</td><td>15.40%</td><td class="bad">-3.95%</td><td>48.96%</td><td class="bad"><strong>-5.05pct</strong></td><td class="bad">❌ 唯一收入下滑的板块，毛利率大幅回落（原最高毛利板块）</td></tr>
+  <tr><td>高分子新材料（PPS/尼龙 66/IPDI 等）</td><td>11.66</td><td>8.88%</td><td class="good">+12.33%</td><td>32.68%</td><td class="good">+1.20pct</td><td class="good">✅ 唯一毛利率提升的板块，第二曲线</td></tr>
+  <tr><td>其他（原料药等）</td><td>11.35</td><td>8.65%</td><td class="good">+49.74%</td><td>27.10%</td><td>+2.01pct</td><td class="neutral">体量小（8.65%），毛利率最低</td></tr>
+  <tr style="font-weight:bold"><td>主营业务合计</td><td>131.29</td><td>100%</td><td>+18.28%</td><td>44.22%</td><td class="bad">-1.67pct</td><td>—</td></tr>
+</table>
+<table>
+  <tr><th>分地区</th><th>收入（亿元）</th><th>占比</th><th>同比</th><th>毛利率</th><th>毛利率变动</th><th>评价</th></tr>
+  <tr><td>境外</td><td>76.72</td><td>58.43%</td><td>+19.07%</td><td>49.26%</td><td class="neutral">-0.10pct</td><td class="good">✅ 高毛利基本盘，韧性最强</td></tr>
+  <tr><td>境内</td><td>54.57</td><td>41.57%</td><td>+17.15%</td><td>37.14%</td><td class="bad"><strong>-4.23pct</strong></td><td class="bad">❌ 境内毛利率塌陷，与汇兑损失方向一致</td></tr>
 </table>
 
 <div class="highlight-box">
-  <strong>业务解读：</strong>新和成是"寡头营养品基本盘+成长新材料"结构。① 营养品占营收66.4%、毛利率47.77%——VA/VE/蛋氨酸均为全球寡头格局，蛋氨酸子公司（山东新和成氨基酸）2025年净利29.72亿（+31%）、净利率38.82%，维生素子公司净利18.11亿、净利率45.95%，盈利质量极高；② 香精香料毛利率53.14%为全公司最高，是国内最大合成香料企业；③ 新材料营收+26.17%突破20亿，PPS国内产能第一（2.2万吨），天津尼龙66项目2027年建成，提供长期成长动能。
+  <strong>分业务解读：</strong>三条线索。第一，<b>营养品（67.07% 收入、46.87% 毛利）就是新和成</b>——它贡献了主营毛利的约 71%，+22.31% 的增速撑起了整个报表，而它的毛利率只跌了 0.92pct，说明 26H1 的量增（蛋氨酸 18 万吨液体装置满产 + 7 万吨固体提升）确实在抵消价跌，这是管理层做对了的证据。<b>蛋氨酸子公司 2026H1 净利 20.13 亿元（+39.9%）、净利率约 38.8%，单项占归母净利润的 50.2%</b>——这既是亮眼成绩，也是最大的单点风险敞口。<br><br>
+  第二，<b>香精香料是本报告最容易被忽略的坏消息</b>：收入 -3.95%、毛利率 -5.05pct，两头都在恶化。它原本是全公司毛利率最高的板块（26H1 仍有 48.96%），却唯独掉了链子，说明这块业务既没跟上营养品的量，也没扛住柠檬醛等原料的成本。<br><br>
+  第三，<b>新材料是唯一"收入 + 毛利率"双升的板块</b>（+12.33%、+1.20pct），但体量只占 8.88%，短期内还托不住大局。分地区看更微妙：境外毛利率几乎没动（-0.10pct），境内掉了 4.23pct——与 2.1 节里 2.58 亿财务费用（汇兑）的方向完全吻合，境外收入占比 58.43%，人民币升值同时打击"折算收入"和"汇兑损益"两头。
 </div>
 
-<h3>3.3 排雷清单</h3>
+<h3>3.3 产品价格跟踪（本报告核心指标）</h3>
+<p style="font-size:13px;color:#666">价格源：Mysteel/我的钢铁网"维生素价格指数"（日均价，2026-10-13 更新）与"饲料级蛋氨酸市场价格"（2026-10-10 更新）；2026 年初与 4 月峰值取自公司公开交流与券商研报披露口径（VA/VE 55.5–62.5 元/kg、固体蛋氨酸 17.6 元/kg → 4 月中旬 116.5 / 116.5 / 52 元/kg）。博亚和讯、百川盈孚的原始价格表本次未取得 <span class="nd">待补充</span>，已用 Mysteel 同口径替代。</p>
 <table>
-  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
-  <tr><td class="neutral">🟡 中等</td><td>营收增速仅+2.97%，2025年维生素价格下行拖累</td><td>L1 利润表，VA全年均价-42.6%、VE-14.4%</td></tr>
-  <tr><td class="neutral">🟡 中等</td><td>2026Q1增收不增利（净利-2.8%），成本抬升传导时滞</td><td>L1 利润表，毛利率-3.82pct</td></tr>
-  <tr><td class="neutral">🟡 中等</td><td>蛋氨酸产能集中投放（自身55万吨+同行扩产），2027年后供给压力</td><td>行业产能周期</td></tr>
-  <tr><td class="neutral">🟡 中等</td><td>应收账款36.39亿（2026Q1）环比上升，需关注回款</td><td>L1 资产负债表</td></tr>
-  <tr><td class="neutral">🟡 中等</td><td>美伊战争推涨依赖地缘事件，若缓和价格存回落风险</td><td>2026年产品价格数据</td></tr>
-  <tr><td class="good">🟢 正面</td><td>2026年蛋氨酸+195%、VA+86%、VE+110%，周期上行确认</td><td>博亚和讯/国信证券研报</td></tr>
-  <tr><td class="good">🟢 正面</td><td>毛利率44.67%、净利率30.57%均为行业顶级</td><td>L2 盈利指标</td></tr>
-  <tr><td class="good">🟢 正面</td><td>净现金+负债率27.73%+大股东零质押，财务极安全</td><td>L1 资产负债表</td></tr>
-  <tr><td class="good">🟢 正面</td><td>FCF约70亿，连续23年分红（分红率45.36%）+3-6亿回购</td><td>L1 现金流量表</td></tr>
+  <tr><th>品种</th><th>2026 年初</th><th>2026 年 4 月中旬峰值</th><th>最新价（时点）</th><th>较峰值</th><th>较年初</th><th>趋势判读</th></tr>
+  <tr><td class="bad"><b>维生素 E（50% 粉）</b></td><td>55.5 元/kg</td><td class="good">116.5 元/kg</td><td class="bad"><b>44 元/kg</b>（10-13，当日 -2.00）</td><td class="bad"><b>-62.2%</b></td><td class="bad"><b>-20.7%</b></td><td class="bad">❌ 已跌破年初，中银证券 10-12 周报列为"周均价跌幅居前品种"</td></tr>
+  <tr><td><b>维生素 A（50 万 IU/g）</b></td><td>62.5 元/kg</td><td class="good">116.5 元/kg</td><td class="neutral"><b>53 元/kg</b>（10-13，持平）</td><td class="bad"><b>-54.5%</b></td><td class="bad">-15.2%</td><td class="neutral">⚠ 跌幅见底迹象，10-13 环比持平</td></tr>
+  <tr><td><b>固体蛋氨酸（99%）</b></td><td>17.6 元/kg</td><td class="good">52 元/kg</td><td class="neutral"><b>24.4 元/kg</b>（10-10，上海/合肥/长沙国产与进口均报 24,400 元/吨）</td><td class="bad"><b>-53.1%</b></td><td class="good">+38.6%</td><td class="neutral">⚠ 已回落过半但仍高于年初；9 月初见底 21.5 后企稳反弹，厂家 10-09 上调报价至 24.5 元/kg 后暂停签单</td></tr>
+  <tr><td>液体蛋氨酸</td><td><span class="nd">待补充</span></td><td><span class="nd">待补充</span></td><td>约 19 元/kg（9 月下旬–10 月上旬周报口径）</td><td>—</td><td>—</td><td class="neutral">液体因成本低而价格显著低于固体，是大型饲料厂首选</td></tr>
+</table>
+<p style="font-size:13px;color:#666"><b>月度路径（维生素 E 50% 粉，元/kg，Mysteel 日均价/现货口径）：</b>4 月中 116.5 → 4 月底 99.5 → 8-28 报 74 → 8-31 报 73 → 9-03 报 72 → 9-23 报 63 → 9-29 报 58 → <b>10-13 报 44</b>。10 月 12 日产地报价：吉林 42、沈阳/青岛/上海/绍兴 44。<br>
+<b>月度路径（固体蛋氨酸，元/kg，Mysteel）：</b>3-04 报 21.2–21.5 → 3-09 报 27–27.5 → 4 月中峰值 52 → 4 月底 44 → 8-21 报 24.25 → 8-28~9-03 报 21.5–23（区间低点）→ 9-10 报 22–23 → 9-18 成交 23.5 → 9-22~9-30 报 23.2–24 → 10-09 报 23.5–24（厂家报价 24.5 后停签）→ <b>10-10 成交 24–25</b>。<br>
+<b>需求端参照：</b>全国生猪均价 10.18 元/kg（10-10，Mysteel），较 8-28 的 10.62 元/kg 继续走低；玉米 2,194 元/吨（10-10）。Mysteel 蛋氨酸周报（8.27–9.3）明确指出"养殖亏损抑制采购，供增需弱致行情承压"。<br>
+<b>成本端参照（2026-10-11）：</b>WTI 原油 91.85 美元/桶（周 +0.81%）、布伦特 104.72 美元/桶（周 +2.42%）；合成氨均价 2,623 元/吨（周 +7.37%、同比 +18.74%，百川盈孚），合成氨毛利润 365.32 元/吨、毛利率 14.09%。<b>成本端仍在涨、售价端在跌——这正是 26H1 成本增速跑赢收入增速的宏观背景，也是 2.1 节剪刀差的外部解释。</b></p>
+
+<div class="danger-box">
+  <strong>价格结论：</strong>2026 年的涨价行情已经走完。四个数据点足以定性：① VE 跌破年初（44 vs 55.5）；② 蛋氨酸从峰值回落 53%；③ 隆众资讯 9 月专文标题即为"从 8 月至今，国内维生素 E 市场走出一轮'先扬后抑'的快速反转行情"；④ Mysteel 10-08 维生素日评标题直接是"<b>VE 下行明显</b>"。中银证券 2026-10-12 基础化工周报（跟踪 10.05–10.11 区间）把维生素 E 列为"周均价跌幅居前品种"第一位。<b>对 26Q3 报表的含义：Q2 确认的是 4 月峰值订单，Q3 起确认的是 8–9 月的 58–74 元/kg，Q4 起是 44 元/kg —— 报表利润的单季高点 26Q2 就是这一轮的顶。</b>
+</div>
+
+<h3>3.4 排雷清单</h3>
+<table>
+  <tr><th>风险项</th><th>严重程度</th><th>依据</th></tr>
+  <tr><td class="bad"><b>增收不增利（实质剪刀差 11.75pct）</b></td><td class="bad">🔴 高</td><td>26H1 营收 +18.28% vs 扣非归母 +6.53%；营业成本 +21.94% &gt; 营收 +18.28%；剔除投资收益与公允价值变动后经营性利润增量仅 +0.48 亿（L1 归因桥）</td></tr>
+  <tr><td class="bad"><b>维生素 E 价格跌破年初</b></td><td class="bad">🔴 高</td><td>Mysteel 2026-10-13 报 44 元/kg，较 4 月峰值 -62.2%、较年初 -20.7%；中银证券 10-12 周报列为跌幅居前品种</td></tr>
+  <tr><td class="bad"><b>汇兑侵蚀利润（财务费用由 -1.78 亿转 +2.58 亿）</b></td><td class="bad">🔴 高</td><td>利息净支出仅 0.43 亿，差额约 2.14 亿为汇兑及其他财务性损益；境外收入占比 58.43%，人民币升值同时压制折算收入与汇兑损益</td></tr>
+  <tr><td class="bad"><b>毛利率首次由升转降</b></td><td class="bad">🔴 高</td><td>26H1 毛利率 44.22%，同比 -1.67pct（FY2025 44.67%、FY2024 41.78%、FY2023 21.57%）；营养品 -0.92pct、香精香料 -5.05pct</td></tr>
+  <tr><td class="neutral"><b>蛋氨酸弹性回吐过半</b></td><td class="neutral">🟡 中</td><td>固体蛋氨酸 4 月峰值 52 元/kg → 10-10 报 24.4 元/kg（-53.1%）；蛋氨酸子公司 26H1 净利 20.13 亿（+39.9%）占归母 50.2%，价格回落的利润杠杆极大</td></tr>
+  <tr><td class="neutral"><b>资本开支重新上行 + 新增供给</b></td><td class="neutral">🟡 中</td><td>26H1 capex 13.71 亿（25H1 仅 6.34 亿，+116%）；在建工程 +35.2%、无形资产 +40.0%；叠加万华柠檬醛/VA、浙江医药 VE 的新增供给，2027 年供给压力上升</td></tr>
+  <tr><td class="neutral"><b>香精香料量价齐跌</b></td><td class="neutral">🟡 中</td><td>26H1 收入 -3.95%、毛利率 -5.05pct（48.96%），原最高毛利板块率先失速</td></tr>
+  <tr><td class="neutral"><b>应收账款环比 +13.2%</b></td><td class="neutral">🟡 中</td><td>37.70 亿（25 年末 33.31 亿），应收周转 48.68 天仍属正常区间，但价格下行期需盯账期放宽</td></tr>
+  <tr><td class="neutral"><b>存货跌价风险</b></td><td class="neutral">🟡 中</td><td>存货 47.69 亿、周转 115.74 天；VE 从 116.5 跌至 44 元/kg；26H1 资产减值损失已从 -0.33 亿扩大至 -0.64 亿</td></tr>
+  <tr><td class="neutral"><b>机构持仓结构变化（主动型基金退出、北向大幅增持）</b></td><td class="neutral">🟡 中</td><td>2025 年末十大股东中上海重阳旗下 4 只产品合计持股 2.44%，2026H1 十大股东已无重阳产品；同期香港中央结算持股 1.849 亿股（6.016%），环比 +5,146 万股（+38.6%）</td></tr>
+  <tr><td class="good"><b>商誉仅 0.04 亿，无减值地雷</b></td><td class="good">🟢 正</td><td>26H1 资产负债表，上市以来无大额并购形成的商誉包袱</td></tr>
+  <tr><td class="good"><b>净现金 31.65 亿，负债率 24.96%</b></td><td class="good">🟢 正</td><td>类现金 100.42 亿 &gt; 有息负债 68.77 亿；流动比率 2.69、速动比率 2.05、利息保障 47.10 倍</td></tr>
+  <tr><td class="good"><b>分红从未中断 + 三轮回购</b></td><td class="good">🟢 正</td><td>2016–2026 无一期中断（含 ROE 谷底年 2023 仍派 4.5 元/10 股）；2026-06-16 实控人提议新一轮 3–6 亿回购</td></tr>
+  <tr><td class="good"><b>控股股东持股零变动</b></td><td class="good">🟢 正</td><td>新和成控股集团 15.39 亿股、50.082%，2026H1 与 2025 年末完全一致</td></tr>
 </table>
 
-<div class="verdict verdict-ok">✅ L2综合判定：良好（盈利质量顶级+财务极健康+周期上行确立）</div>
+<p style="font-size:12px;color:#999;margin-top:10px"><b>本 tab 数据缺失说明：</b>① 营养品大类未拆分 VA / VE / 蛋氨酸单项收入与毛利率（半年报披露粒度所限）→ <span class="nd">待补充</span>；② 液体蛋氨酸 2026 年初与 4 月峰值价格 → <span class="nd">待补充</span>；③ 博亚和讯、百川盈孚的维生素原始价格表未取得，已用 Mysteel 同口径替代；④ 2025H1 / FY2025 的"销售商品提供劳务收到的现金"未取数，故收现比仅给 26H1；⑤ 前五大客户集中度半年报未披露 → <span class="nd">待补充</span>。以上缺失项均未参与评分。</p>
 
 </div></div>
 
 <div class="tab-content" id="tab-l3"><div class="tab-inner">
 
-<h2>四、估值分析（L3框架 — 周期股专用PB法）</h2>
+<h2>四、估值分析（L3 框架 — 纯周期股专用 PB Band）</h2>
 
-<h3>4.1 当前估值水平（2026-08-19）</h3>
+<h3>4.1 当前估值（2026-10-13 收盘）</h3>
 <table>
-  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
-  <tr><td>股价</td><td><strong>~29.04 元</strong></td><td>52周区间21.48-40.19元</td></tr>
-  <tr><td>总市值</td><td><strong>~892 亿</strong></td><td>总股本30.73亿股</td></tr>
-  <tr><td>PE（TTM）</td><td><strong>~13.3x</strong></td><td>基于TTM净利约67亿</td></tr>
-  <tr><td>PE（TTM扣非）</td><td><strong>~13.5x</strong></td><td>扣非口径</td></tr>
-  <tr><td>PE（2026E）</td><td><strong>~10.7x</strong></td><td>基于券商一致预期EPS 2.74元（净利83.7亿）</td></tr>
-  <tr><td>PB</td><td><strong>~2.53x</strong></td><td>基于每股净资产11.43元（2026Q1）</td></tr>
-  <tr><td>PS（TTM）</td><td><strong>~4.1x</strong></td><td>市销率</td></tr>
-  <tr><td>PCF</td><td><strong>~11x</strong></td><td>基于CFO 87.97亿</td></tr>
-  <tr><td>股息率</td><td><strong>~3.3%</strong></td><td>2025年度每股派息1.00元（10派10）</td></tr>
+  <tr><th>指标</th><th>当前值</th><th>历史分位</th><th>行业参考</th></tr>
+  <tr><td>股价</td><td>25.95 元（-0.99%）</td><td>52 周 23.59–28.83，处于区间 <b>45.0%</b> 位置</td><td>—</td></tr>
+  <tr><td>总市值 / 流通市值</td><td>797.55 亿 / 788.06 亿</td><td>—</td><td>总股本 30.7342 亿股</td></tr>
+  <tr><td>PE（TTM）</td><td class="neutral"><strong>11.12x</strong></td><td><b>13.0% 分位</b>（2021 年起 1,397 个交易日）</td><td>SW 基础化工 22.14x（历史 59.90% 分位，中银证券 10-11）</td></tr>
+  <tr><td>PE（静态，FY2025）</td><td>11.79x</td><td>—</td><td>—</td></tr>
+  <tr><td>PE（TTM 扣非）</td><td>11.43x</td><td>—</td><td class="neutral">TTM 扣非归母 = 67.38 − 36.79 + 39.19 = 69.78 亿</td></tr>
+  <tr><td>PE（动态，券商 2026E EPS 2.78）</td><td>9.33x</td><td>—</td><td class="neutral">一致预期归母 85.51 亿</td></tr>
+  <tr><td><b>PB（MRQ，主口径）</b></td><td class="good"><strong>2.2866x</strong></td><td class="good"><b>25.1% 分位</b>（2018-01-02 起 2,127 个交易日）</td><td>SW 基础化工 2.22x（历史 52.00% 分位）</td></tr>
+  <tr><td>PS（TTM）</td><td>3.285x</td><td>—</td><td>—</td></tr>
+  <tr><td>PCF（经营现金流 TTM）</td><td class="good">8.674x</td><td>—</td><td class="neutral">TTM CFO = 87.97 − 32.43 + 36.40 = 91.94 亿</td></tr>
+  <tr><td>股息率（TTM）</td><td class="good"><strong>3.85%</strong></td><td>—</td><td class="neutral">TTM 派息 1.00 元/股（2025 年度 0.80 + 2026 中期 0.20），TTM 分红率 42.9%</td></tr>
 </table>
 
-<h3>4.2 PB Band区间（周期股专用）</h3>
-<p style="font-size:13px;color:#666;">周期股PE失真，以PB为估值基准。每股净资产约11.43元（2026Q1末），分位为历史区间估算值</p>
-<table>
-  <tr><th>分位</th><th>PB</th><th>对应股价</th><th>vs现价29.04元</th></tr>
-  <tr><td>历史最大值（2017-2018 牛市）</td><td>~9.0x</td><td>102.9 元</td><td class="good">+254%</td></tr>
-  <tr><td>历史80%分位（估）</td><td>~5.0x</td><td>57.2 元</td><td class="good">+97%</td></tr>
-  <tr><td>历史50%分位（估）</td><td>~3.5x</td><td>40.0 元</td><td class="good">+38%</td></tr>
-  <tr><td>历史20%分位（估）</td><td>~2.3x</td><td>26.3 元</td><td class="neutral">-9%</td></tr>
-  <tr><td>历史最小值（2014 底部）</td><td>~1.3x</td><td>14.9 元</td><td class="bad">-49%</td></tr>
-  <tr><td><strong>当前PB 2.53x</strong></td><td>2.53x</td><td>29.04 元</td><td>—</td></tr>
-</table>
-<p style="font-size:13px;color:#666;">当前PB 2.53x处于5年约30-35%分位、10年约25-30%分位 — <strong>中偏低区间</strong>，接近底部区域但非极端便宜（2024年低点PB约1.9x）</p>
+<div class="danger-box">
+  <strong>⚠️ 周期股 PE 失真声明：</strong>新和成是<b>纯周期股</b>，按 L3 框架与 industry-classification.md §2.2，<b>PE 禁止作为估值依据</b>。上表 PE(TTM) 11.12x 看似"历史 13% 分位、只有行业一半"，但周期股 PE 的悖论在于：<b>利润高点时 PE 最低（恰恰是最不该买的时候），利润低点时 PE 最高（往往才是买点）</b>。当前 11.12x 低 PE 的真实含义不是"便宜"，而是"市场已经在为利润见顶回落定价"。以下 PB Band 才是本报告的估值主口径。
+</div>
 
-<h3>4.3 历史PE区间（参考，周期股PE失真）</h3>
+<h3>4.2 PB Band（周期股主口径）</h3>
+<p style="font-size:13px;color:#666">口径：PB_MRQ（每日，最新一期净资产），样本 = 东方财富日频估值序列 2018-01-02 至 2026-10-13 共 <b>2,127 个交易日</b>（数据源可回溯区间起点为 2018-01，未覆盖 2015–2017 维生素大牛市）。对应股价 = 该 PB × 2026H1 每股净资产 11.3489 元。</p>
 <table>
-  <tr><th>指标</th><th>数值</th><th>备注</th></tr>
-  <tr><td>PE（TTM）最大值</td><td>~40x</td><td>利润低谷期（2023-2024）</td></tr>
-  <tr><td>PE（TTM）80%分位</td><td>~28x</td><td>估算</td></tr>
-  <tr><td>PE（TTM）50%分位</td><td>~17x</td><td>估算</td></tr>
-  <tr><td>PE（TTM）20%分位</td><td>~12x</td><td>估算</td></tr>
-  <tr><td>PE（TTM）最小值</td><td>~8x</td><td>2021年利润高峰</td></tr>
-  <tr><td>当前PE（TTM）</td><td class="neutral">~13.3x</td><td>处于历史中低位，但周期股PE失真！利润仍处修复期</td></tr>
+  <tr><th>分位</th><th>PB</th><th>对应股价（元）</th><th>vs 现价 25.95 元</th><th>区间判断</th></tr>
+  <tr><td>历史最大值</td><td>5.00x</td><td>56.74</td><td class="good">+118.6%</td><td class="bad">2021 年初维生素超级周期顶部</td></tr>
+  <tr><td>90% 分位</td><td>3.76x</td><td>42.67</td><td class="good">+64.4%</td><td>顶部区间</td></tr>
+  <tr><td>80% 分位</td><td>3.45x</td><td>39.15</td><td class="good">+50.9%</td><td>顶部区间</td></tr>
+  <tr><td>70% 分位</td><td>3.14x</td><td>35.64</td><td class="good">+37.3%</td><td>偏贵区间</td></tr>
+  <tr><td>50% 分位（中位）</td><td>2.62x</td><td>29.73</td><td class="good">+14.6%</td><td class="neutral">中枢</td></tr>
+  <tr><td>30% 分位</td><td>2.33x</td><td>26.44</td><td class="good">+1.9%</td><td class="neutral">底部区间上沿</td></tr>
+  <tr><td>20% 分位</td><td>2.24x</td><td>25.42</td><td class="neutral">-2.0%</td><td class="neutral">底部区间</td></tr>
+  <tr><td>10% 分位</td><td>2.12x</td><td>24.06</td><td class="bad">-7.3%</td><td class="neutral">底部区间</td></tr>
+  <tr><td>历史最小值</td><td>1.84x</td><td>20.88</td><td class="bad">-19.5%</td><td class="bad">历史极端底部</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td><b>当前（2026-10-13）</b></td><td><b>2.2866x</b></td><td><b>25.95</b></td><td>—</td><td class="good"><b>25.1% 分位 — 底部区间</b></td></tr>
+</table>
+<p style="font-size:13px;color:#666">对应券商一致预期与市场常用价格锚：券商目标价均值 <b>38.01 元</b>（7 买入 1 卖出）对应 PB 3.35x（85% 分位）；天风证券 2026-09-28 首次覆盖目标价区间 31.7–37.0 元（给予 2026 年 12–14x PE）对应 PB 2.79–3.26x。<b>注意：这些目标价形成于 2026 年 8–9 月，当时蛋氨酸与 VE 仍在高位，10 月 VE 跌至 44 元/kg 后尚未见券商更新目标价，存在系统性下修风险。</b></p>
+
+<h3>4.3 PB 分位的两项交叉校验（为什么只给 12 分而不是 15 分）</h3>
+<p style="font-size:13px;color:#666">周期股评分体系中"估值"维度按 PB 历史分位机械打分是 25.1% → 满分。但两项校验指向相反结论，必须写明：</p>
+<table>
+  <tr><th>校验方式</th><th>结果</th><th>解读</th></tr>
+  <tr><td><b>① 回看窗口敏感性</b></td><td>8.8 年窗口（2018 起，2,127 日）：<b>25.1% 分位</b><br>5.6 年窗口（2021 起，1,397 日）：<b>29.2% 分位</b><br>3.8 年窗口（2023 起，912 日）：<b class="bad">44.7% 分位</b></td><td class="bad">❌ 窗口一缩到 3.8 年，分位从"底部"跳到 30–50% 的中位档。当前 PB 的"低分位"很大程度上来自 2020–2021 高 PB 基数被纳入样本，而非当前真的便宜</td></tr>
+  <tr><td><b>② PB / ROE 交叉校验</b></td><td>2018–2025 各年末 PB ÷ 当年摊薄 ROE：2.06/19.04=0.108、2.97/12.73=0.233、3.74/18.43=0.203、3.68/19.95=0.184、2.52/15.36=0.164、2.17/10.90=0.199、2.30/20.01=0.115、2.36/20.62=0.114 → <b>均值 0.165</b><br>当前 2.2866 ÷ 26H1 摊薄 ROE 11.50% = <b class="bad">0.199</b>（高于历史均值）<br>当前 2.2866 ÷ 穿越周期 ROE 16.42% = <b class="good">0.139</b>（低于历史均值）</td><td class="neutral">⚠ 结论完全取决于用哪个 ROE：<b>用当期（已明显回落的半年）ROE 看，PB 并不便宜</b>；只有用穿越周期 ROE 看才便宜。这正是周期股估值的本质困难——也正是铁律要求"周期股 ROE 必须用多周期均值"的原因</td></tr>
+</table>
+<p style="font-size:13px;color:#666"><b>结论：</b>PB 2.29x 落在历史底部区间（20%–30% 分位）是事实，但"低 PB 分位 + ROE 从 FY2025 的 20.62% 快速回落至 26H1 的 11.50%"的组合意味着<b>分母在缩水而分子已下跌，PB 的低分位有相当部分是"分母失真 + 分子已跌"共同造成的</b>。若 ROE 继续向穿越周期均值 16.42% 甚至更低回归，当前 PB 2.29x 并不构成极端低估。综合两项校验，估值维度给 12 分（满分 15 分区间内），详见总结论评分表。</p>
+
+<h3>4.4 历史 PE 区间（参考，周期股失真）</h3>
+<table>
+  <tr><th>分位（2018-01 起 2,127 个交易日）</th><th>PE(TTM)</th><th>分位（2021 起 1,397 个交易日）</th><th>PE(TTM)</th><th>解读</th></tr>
+  <tr><td>历史最大值</td><td>44.96x</td><td>历史最大值</td><td>28.44x</td><td class="neutral">利润低谷期</td></tr>
+  <tr><td>90% 分位</td><td>23.88x</td><td>90% 分位</td><td>21.27x</td><td>—</td></tr>
+  <tr><td>80% 分位</td><td>21.34x</td><td>80% 分位</td><td>19.93x</td><td>—</td></tr>
+  <tr><td>50% 分位</td><td>17.37x</td><td>50% 分位</td><td>16.04x</td><td>—</td></tr>
+  <tr><td>20% 分位</td><td>13.07x</td><td>20% 分位</td><td>13.74x</td><td class="neutral">现价已低于此线</td></tr>
+  <tr><td>10% 分位</td><td>10.39x</td><td>10% 分位</td><td>10.53x</td><td class="neutral">现价接近此线</td></tr>
+  <tr><td>历史最小值</td><td>8.88x</td><td>历史最小值</td><td>9.49x</td><td class="bad">2021 年利润高峰</td></tr>
+  <tr style="font-weight:bold;background:#fde8e8"><td><b>当前</b></td><td><b>11.12x</b></td><td><b>当前（13.0% 分位）</b></td><td><b>11.12x</b></td><td class="bad"><b>周期股 PE 失真，以 PB 为准</b></td></tr>
 </table>
 
-<div class="highlight-box">
-  <strong>估值总结：</strong>新和成作为纯周期股，当前PB 2.53x处于5年约30-35%分位（中偏低区间），PE(TTM)13.3x看似低位但属周期股"利润低点PE偏高/利润回升PE走低"的典型特征——真正衡量标准是PB。2026E PE仅约10.7x，基于蛋氨酸/维生素涨价+新产能爬坡的盈利修复预期，估值具备吸引力。<br><br>
-  <strong>核心观点：</strong>① PB 2.53x处于5年30-35%分位，距20%分位（2.3x）仅约9%下行空间，距50%分位（3.5x）约38%上行空间——赔率中性偏好；② 2026E PE约10.7x，对应一致预期净利+24%增长，PEG&lt;0.5极具吸引力；③ 券商目标价均值38元（对应+31%空间），国泰海通目标价45.22元（17x 2026E）；④ 股息率3.3%+回购提供估值底部支撑；⑤ 当前属于<strong>周期上行初期+PB中偏低+业绩弹性大</strong>的组合，是"业绩右侧、估值未充分反映"的布局窗口，但需注意地缘溢价回吐风险。
+<h3>4.5 估值总结</h3>
+<div class="danger-box">
+  <strong>估值判断：中性偏谨慎——PB 在底部区间，但"低 PB + 盈利刚见顶"的组合不是买点，是陷阱区。</strong><br><br>
+  <strong>① 主口径 PB 确实在低位：</strong>2.2866x 处于 2018 年以来 25.1% 分位，20% 分位对应股价 25.42 元、30% 分位 26.44 元 —— 现价几乎就在底部区间的中枢位置，下行到 10% 分位（24.06 元）只有 7.3% 空间，往上到中位（29.73 元）有 14.6% 空间。<b>赔率接近对称，不构成明显不对称机会。</b><br><br>
+  <strong>② 但周期股的买点要求是"PB 在底部 <i>且</i> 周期也在底部"：</strong>行业当前毛利率仍高达 44.22%、蛋氨酸子公司净利率约 38.8%、产品绝对价格（蛋氨酸 24.4 元/kg、VA 53 元/kg）仍在历史高位区间，<b>行业尚未出现亏损停产或库存出清</b>，距真正的周期底部很远。周期股铁律是"利润在顶部卖、PB 在底部买"；现在利润刚过顶部、PB 已跌到中低分位——这个位置最容易发生"PB 继续下杀、利润继续下杀"的双杀。<br><br>
+  <strong>③ PB/ROE 交叉校验不给便宜背书：</strong>以 26H1 摊薄 ROE 11.50% 计，PB/ROE = 0.199，<b>高于</b> 2018–2025 年末均值 0.165。也就是说，如果相信 ROE 就停在 11% 附近，当前 PB 相对历史是偏贵的；只有相信 ROE 会回到穿越周期的 16.42% 水平，PB 才显得便宜。<b>换句话说，这笔投资的多头论点必须建立在"ROE 均值回归"之上，而不是建立在"当前估值低"之上。</b><br><br>
+  <strong>④ 卖方目标价存在系统性下修风险：</strong>券商目标价均值 38.01 元（7 买入 1 卖出）对应 PB 3.35x（85% 分位），但这些目标价主要形成于 2026 年 8–9 月。10 月 8 日 Mysteel 维生素日评标题即"VE 下行明显"，10-12 中银证券周报把维生素 E 列为周均价跌幅居前品种——<b>这些变化尚未反映在任何已披露的券商目标价中</b>，38.01 元不宜作为决策锚。<br><br>
+  <strong>⑤ 唯一确定的估值支撑是股息率：</strong>TTM 股息率 3.85%、TTM 分红率 42.9%、分红无一期中断（含 2023 年 ROE 谷底年）、三轮回购。在 PB 2.2–2.3x 区间，股息率基本构成硬底——这是周期股在 PB 中低分位时最可靠的持有理由，也是本报告给出 12 分（而非 10 分或 15 分）的原因：<b>下行有股息垫住，上行受制于周期位置。</b>
 </div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l4"><div class="tab-inner">
 
-<h2>五、杜邦分析拆解（L4框架）</h2>
+<h2>五、杜邦分析（L4 框架）</h2>
 
-<h3>5.1 杜邦拆解表</h3>
+<h3>5.1 杜邦拆解（归母口径 · 摊薄）</h3>
 <table>
-  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
-  <tr><td>净利润率</td><td>18.03%</td><td>27.29%</td><td><strong>30.57%</strong></td><td class="good">⬆ 连续大幅提升</td></tr>
-  <tr><td>资产周转率</td><td>0.40</td><td>0.53</td><td><strong>0.50</strong></td><td class="neutral">➡ 稳定（重资产行业正常）</td></tr>
-  <tr><td>权益乘数</td><td>1.52</td><td>1.46</td><td><strong>1.38</strong></td><td class="good">⬇ 杠杆持续下降</td></tr>
-  <tr><td><strong>ROE</strong></td><td><strong>~11%</strong></td><td><strong>~21%</strong></td><td><strong>21.77%</strong></td><td class="good">⬆ 周期回升后高位</td></tr>
-  <tr><td>去杠杆ROA（净利率×周转）</td><td>7.2%</td><td>14.5%</td><td><strong>15.3%</strong></td><td class="good">✅ 真实回报极高</td></tr>
-  <tr><td>杠杆贡献（ROE-ROA）</td><td>3.8pct</td><td>6.5pct</td><td><strong>6.5pct</strong></td><td class="neutral">➡ 杠杆依赖小</td></tr>
+  <tr><th>指标</th><th>2023 年</th><th>2024 年</th><th>2025 年</th><th>2026H1</th><th>趋势判断</th></tr>
+  <tr><td>归母净利率</td><td>17.89%</td><td>27.16%</td><td><strong>30.40%</strong></td><td><strong>30.55%</strong></td><td class="good">⬆ 三年持续大幅抬升，H1 持平</td></tr>
+  <tr><td>资产周转率（半年未年化）</td><td>0.386</td><td>0.503</td><td>0.488</td><td>0.281</td><td class="neutral">➡ 重资产化工正常水平，H1 年化约 0.562</td></tr>
+  <tr><td>权益乘数</td><td>1.579</td><td>1.466</td><td>1.390</td><td class="good">1.339</td><td class="good">⬇ 杠杆持续下降，财务结构越干净</td></tr>
+  <tr><td><b>ROE（摊薄）</b></td><td><strong>10.90%</strong></td><td><strong>20.01%</strong></td><td><strong>20.62%</strong></td><td><strong>11.50%</strong></td><td class="neutral">➡ H1 与 25H1（11.82%）基本持平</td></tr>
+  <tr><td>ROE（加权，公司披露）</td><td>10.90%</td><td>20.01%</td><td>20.62%</td><td class="bad">11.39%（25H1 11.87%，-0.48pct）</td><td class="neutral">➡ 小幅下滑</td></tr>
+  <tr><td><b>去杠杆 ROA</b>（净利率×周转率）</td><td>6.91%</td><td>13.66%</td><td>14.84%</td><td><strong>8.59%</strong>（年化约 17.2%）</td><td class="good">✅ 真实资产回报效率极高</td></tr>
+  <tr><td>杠杆贡献（ROE − ROA）</td><td>3.99pct</td><td>6.35pct</td><td>5.78pct</td><td>2.91pct</td><td class="good">✅ ROE 主要靠经营而非借钱</td></tr>
+</table>
+<p style="font-size:13px;color:#666">口径说明：净利率 = 归母净利润/营业收入；资产周转率 = 营业收入/期末总资产；权益乘数 = 期末总资产/期末归母净资产；2026H1 各因子为半年口径不年化（年化 ROE 见 L5 穿越周期表）。三年可用同一公式复核：2025 年 30.40% × 0.488 × 1.390 = 20.63% ≈ 20.62%。</p>
+
+<h3>5.2 穿越周期 ROE（周期股必查项：不能只看当期）</h3>
+<table>
+  <tr><th>年度</th><th>归母净利（亿）</th><th>期末归母净资产（亿）</th><th>摊薄 ROE</th><th>当年周期位置</th></tr>
+  <tr><td>2011</td><td>11.64</td><td>56.35</td><td>20.66%</td><td>维生素上行</td></tr>
+  <tr><td>2012</td><td>8.50</td><td>60.52</td><td>14.05%</td><td>下行</td></tr>
+  <tr><td>2013</td><td>8.82</td><td>65.71</td><td>13.43%</td><td>低位震荡</td></tr>
+  <tr><td>2014</td><td>8.08</td><td>70.15</td><td>11.52%</td><td class="neutral">下行</td></tr>
+  <tr><td class="bad"><b>2015</b></td><td>4.02</td><td>70.48</td><td class="bad"><b>5.70%</b></td><td class="bad"><b>维生素大熊市谷底</b></td></tr>
+  <tr><td>2016</td><td>12.03</td><td>80.63</td><td>14.92%</td><td class="good">复苏</td></tr>
+  <tr><td>2017</td><td>17.04</td><td>139.57</td><td>12.21%</td><td>上涨中段（股本扩张摊薄）</td></tr>
+  <tr><td>2018</td><td>30.79</td><td>161.70</td><td>19.04%</td><td class="good">2017–18 超级周期</td></tr>
+  <tr><td>2019</td><td>21.65</td><td>170.11</td><td>12.73%</td><td class="neutral">回落</td></tr>
+  <tr><td>2020</td><td>35.64</td><td>193.36</td><td>18.43%</td><td class="good">上行</td></tr>
+  <tr><td>2021</td><td>43.56</td><td>218.32</td><td>19.95%</td><td class="bad">维生素超级周期顶部</td></tr>
+  <tr><td>2022</td><td>36.20</td><td>235.75</td><td>15.36%</td><td class="neutral">回落</td></tr>
+  <tr><td class="bad"><b>2023</b></td><td>27.04</td><td>248.05</td><td class="bad"><b>10.90%</b></td><td class="bad"><b>维生素价格低谷</b></td></tr>
+  <tr><td>2024</td><td>58.69</td><td>293.25</td><td>20.01%</td><td class="good">蛋氨酸放量修复</td></tr>
+  <tr><td>2025</td><td>67.64</td><td>328.06</td><td>20.62%</td><td class="good">高位</td></tr>
+  <tr><td>2026H1</td><td>40.11</td><td>348.80</td><td>11.50%（半年）</td><td class="bad">价格见顶回落</td></tr>
+</table>
+<table>
+  <tr><th>多周期窗口</th><th>ROE 均值</th><th>结论</th></tr>
+  <tr><td>近 5 年（2021–2025）</td><td><strong>17.37%</strong></td><td class="good">≥12%</td></tr>
+  <tr><td><b>近 10 年（2016–2025）← 本报告采用</b></td><td class="good"><strong><b>16.42%</b></strong></td><td class="good">≥12%，覆盖 2018 顶部、2019 回落、2021 顶部、2023 谷底</td></tr>
+  <tr><td>近 15 年（2011–2025）</td><td>15.30%</td><td class="good">≥12%，含 2015 年 5.70% 的历史大熊市</td></tr>
+  <tr><td>谷底年份单点</td><td class="bad">2015 年 5.70%／2023 年 10.90%</td><td class="neutral">两年谷底仍显著高于多数化工同行的正常年份 ROE</td></tr>
 </table>
 
 <div class="highlight-box">
-  <strong>赚钱模式判断：高利润+低杠杆型（化工行业最优模式）</strong><br>
-  新和成的杜邦结构是教科书式的"高利润+低杠杆"：净利率30.57%（行业顶级）、周转率0.50（重资产化工行业正常水平）、权益乘数1.38（极低杠杆）。去掉杠杆后的真实基础回报（去杠杆ROA）高达15.3%，在A股化工中属于顶尖水平——对比万华化学约7%左右，新和成的资产回报效率远超同行。杠杆贡献仅6.5个百分点，ROE主要靠经营效率而非加杠杆，意味着低负债状态下未来仍有加杠杆空间（若加至行业平均1.8x，ROE可达27%+）。<br><br>
-  <strong>结构性亮点：</strong>净利率从2023年18%提升至2025年30.6%，是ROE回升的核心驱动——并非靠涨价，而是成本下降（一体化产业链+新产能规模效应）+蛋氨酸放量。这种"成本驱动型"利润改善比"涨价驱动型"更可持续。
+  <strong>穿越周期 ROE 结论：</strong>三个窗口（5 年 17.37% / 10 年 16.42% / 15 年 15.30%）结论完全一致，<b>远高于周期股评分体系 12% 的满分线</b>。这不是单年虚高数字：<b>2016–2025 这十年完整覆盖了两轮维生素周期</b>——2018 年顶部（ROE 19.04%）、2019–2020 回落（12.73% → 18.43%）、2021 年超级周期顶部（19.95%）、2023 年价格低谷（10.90%）。即使把 2015 年那次把 ROE 压到 5.70% 的历史大熊市算进 15 年窗口，均值仍有 15.30%。<b>因此"穿越周期 ROE"维度给满分 15 分，这是全表中最扎实的一项。</b><br><br>
+  但必须同时指出反面：<b>穿越周期均值 16.42% 与 26H1 摊薄 ROE 11.50% 之间存在 4.9 个百分点的缺口</b>。这个缺口不是经营问题（净利率仍在 30% 以上、杠杆还在下降），而是纯粹的"价格周期回吐"。若价格进一步下行把 ROE 压到 8–10%，L3 的 PB/ROE 校验会立刻从"偏贵"变成"更贵"——<b>穿越周期 ROE 是估值的分母锚，不是当期 ROE 的免罪符。</b>
 </div>
 
-<h3>5.2 历史周期ROE追踪</h3>
-<table>
-  <tr><th>年份</th><th>ROE（估）</th><th>周期位置</th></tr>
-  <tr><td>2021年</td><td>~28%</td><td class="bad">顶部（维生素超级周期）</td></tr>
-  <tr><td>2022年</td><td>~16%</td><td class="neutral">下行</td></tr>
-  <tr><td>2023年</td><td>~11%</td><td class="neutral">底部（维生素价格低谷）</td></tr>
-  <tr><td>2024年</td><td>~21%</td><td class="good">修复（蛋氨酸放量）</td></tr>
-  <tr><td>2025年</td><td>21.77%</td><td class="good">高位（2026年周期上行在途）</td></tr>
-</table>
+<h3>5.3 赚钱模式判断</h3>
+<div class="highlight-box">
+  <strong>赚钱模式：高利润型 + 极低杠杆（化工行业最优模式）。</strong><br>
+  新和成的杜邦结构是 A 股化工中少见的组合：<b>净利率 30.55%（行业顶级） × 资产周转率 0.562（年化，重资产化工正常） × 权益乘数 1.339（极低杠杆）</b>。三个维度里有<b>两个是"质量维度"</b>（利润率、极低杠杆），唯一偏弱的是重资产导致的低周转——而这恰恰是化工行业形态决定的，不可能也不需要改变。<br><br>
+  <b>去杠杆 ROA 8.59%（半年，年化约 17.2%）是最有说服力的一项</b>：完全剔除杠杆后，公司每 1 元总资产在半年里就产生 0.086 元净利润。横向对比（由 ROE 与负债率反推权益乘数后计算）：新和成 8.54% vs 浙江医药 4.38% vs 安迪苏 3.15% vs 兄弟科技 1.55% —— <b>新和成的资产回报效率是同业的 2.2–5.5 倍</b>。这意味着即使未来产品价格完全回落到行业成本线，新和成依然能赚钱，而同行大概率亏损。<br><br>
+  <b>杠杆贡献仅 2.91pct（26H1）</b>且呈下降趋势（2023 年 3.99pct → 2025 年 5.78pct → 26H1 2.91pct），说明 ROE 完全靠真实盈利能力而非财务杠杆——这是"利润顶在前面回落"时最抗跌的结构。<b>反过来说，这也意味着 ROE 没有杠杆这个"缓冲垫"可用：如果净利率继续下滑，ROE 会线性地跟着掉。</b>
+</div>
 
+<h3>5.4 核心结论</h3>
 <div class="summary-box">
-  <strong>核心结论：</strong><br>
-  ① 新和成是"高净利率+低杠杆+中周转"的优质杜邦结构，化工行业中稀缺的"类茅台"模式（净利率30%+杠杆1.38）；<br>
-  ② ROE从2021年28%回落至2023年11%再回升至21.8%，波动完全由维生素价格周期驱动，但谷底ROE（11%）仍高于大部分化工同行正常年份，体现穿越周期能力；<br>
-  ③ 去杠杆ROA 15.3%是A股化工顶级水平，真实资产回报效率极高，靠的是产品定价权+一体化成本优势；<br>
-  ④ 权益乘数仅1.38且还在下降，财务结构极为安全，为周期下行期提供最大保护垫；<br>
-  ⑤ ROE提升路径：2026年产品涨价推动净利率再创新高（券商预计净利率33%+），叠加周转率稳定，ROE有望维持20%+。
+  <strong>杜邦结论：</strong><br>
+  ① <b>ROE 靠什么驱动？</b>靠净利率（贡献约 95%），不靠杠杆、不靠周转。这是全表最重要的判断——意味着 ROE 的每一次波动都直接映射到"产品价格 × 成本"的价差，而不是财务结构。<br>
+  ② <b>趋势是否健康？</b>结构性趋势健康（净利率三年从 17.89% 抬到 30.55%、杠杆从 1.579 降到 1.339、资产回报效率同业第一）；周期性趋势正在转弱（毛利率 44.22%，同比首次 -1.67pct；香精香料 -5.05pct；扣非增速仅 +6.53%）。<b>两种趋势叠加的结果是：26H1 加权 ROE 11.39% 同比 -0.48pct——不是塌方，是高原开始下坡。</b><br>
+  ③ <b>与上一版报告的差异：</b>上一版（2026-08-19，基于 FY2025）用 21.77% 的加权 ROE 判断"高利润+低杠杆型、化工行业最优模式"，结论方向正确；本版把 2023 年（ROE 10.90%）与 2026H1（11.39%）纳入后，可以看到<b>这家公司 20% 以上的 ROE 只在周期上行期出现，穿越周期的真实水平是 16.42%</b>。按 16.42% 的穿越周期 ROE 施加"合理 PB ≈ ROE / 股权成本 ≈ 1.6x（股权成本取 10%）"，当前 2.29x 相对穿越周期盈利能力的溢价约 40%——<b>这个溢价需要靠"ROE 不会跌回 10%"来消化，而 26H1 的扣非数据正在提出反证。</b>
 </div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l5"><div class="tab-inner">
 
-<h2>六、行业分类与特征（L5框架）</h2>
+<h2>六、行业分类（L5 框架）</h2>
 
 <h3>6.1 行业类型判断</h3>
 <div class="summary-box">
-  <strong>行业类型：纯周期股（基础化工—精细化工：维生素/蛋氨酸/香精香料）</strong><br>
-  <strong>判断依据：</strong>新和成主营维生素（VA/VE）、蛋氨酸、香精香料、PPS/尼龙新材料。核心业务中，维生素和蛋氨酸需求增速约3-5%/年（随人口/养殖/消费增长），长期增速≈GDP，但价格和利润剧烈波动——2021年净利46亿→2023年27亿→2025年67.6亿，完全符合"利润靠供需错配和价格周期"的纯周期特征。维生素行业的暴利期（2017-2018、2020-2021）和亏损边缘期（2023）交替出现，是典型的周期股。<br><br>
-  <strong>与成长股的区分：</strong>虽然香精香料、新材料（PPS/尼龙66）具成长属性且营收占比已超26%，但营养品（66.4%）仍是利润绝对来源，公司盈利波动主要由维生素/蛋氨酸价格周期决定。因此按 industry-classification.md 归入<strong>纯周期股（基础化工）</strong>，采用周期股评分体系。
+  <strong>行业类型：纯周期股（基础化工 — 精细化工：营养品 / 香精香料 / 高分子新材料 / 原料药）。</strong><br><br>
+  <strong>判断依据（三条）：</strong><br>
+  ① <b>需求端长期增速≈GDP</b>——维生素与蛋氨酸是饲料、食品的必需添加成分，添加比例刚性（蛋氨酸在饲料成本中占比仅 0.1%–0.3%，下游对涨价不敏感），需求随人口与养殖量缓慢增长，年增速约 3–5%；<br>
+  ② <b>利润完全由供需错配驱动</b>——归母净利从 2023 年 27.04 亿（ROE 10.90%）到 2025 年 67.64 亿（ROE 20.62%）再到 2026H1 单半年 40.11 亿，公司经营要素（产能、渠道、客户）几乎没变，变的只有价格；2026 年一年内 VE/VA 从 55.5/62.5 冲到 116.5 再跌回 44/53，蛋氨酸从 17.6 冲到 52 再回落至 24.4；<br>
+  ③ <b>暴利期与亏损边缘期交替出现</b>——2015 年 ROE 5.70%、2023 年 ROE 10.90%，2021 年 ROE 19.95%、2025 年 ROE 20.62%，十年内四轮起落。<br><br>
+  <strong>与成长股的区分：</strong>香精香料（26H1 占 15.40%）与高分子新材料（8.88%）确有成长属性，新材料收入 +12.33%、毛利率 +1.20pct 是全公司最好的板块；但两者合计毛利贡献仅约 1/4，且营养品（67.07% 收入、约 71% 主营毛利）才是利润的绝对来源，盈利波动由价格周期决定。<strong>按 industry-classification.md「纯周期股：基础化工」归类，采用周期股评分体系，L3 使用 PB Band。</strong>
 </div>
 
-<h3>6.2 行业集中度与壁垒</h3>
+<h3>6.2 集中度与壁垒</h3>
 <table>
-  <tr><th>维度</th><th>判断</th></tr>
-  <tr><td>行业集中度</td><td><strong>高度集中</strong>——VA 全球CR5=77%、VE CR5=92%，新和成产能占全球VA 13%、VE 23%；蛋氨酸全球寡头（赢创/安迪苏/希杰/诺伟司/新和成五强，CR5&gt;90%），新和成产能全球第三；香精香料全球由奇华顿/芬美意/IFF/帝斯曼主导，新和成是国内最大合成香料企业。</td></tr>
-  <tr><td>规模壁垒</td><td><strong>极高</strong>——单套维生素/蛋氨酸装置投资数十亿，全球产能向寡头集中，新进入者极难在5年内建成有竞争力的装置。</td></tr>
-  <tr><td>一体化/技术壁垒</td><td><strong>强</strong>——新和成"原料-中间体-终端品"一体化自供率高，拥有完整香精香料技术体系和全球领先的PPS合成工艺（与浙大联合研发），研发费用11亿（占营收4.9%）。</td></tr>
-  <tr><td>渠道/认证壁垒</td><td><strong>中等</strong>——维生素/蛋氨酸下游为饲料/食品大客户，认证与供货关系稳定，但属大宗品，价格是核心竞争要素。</td></tr>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>行业集中度</td><td class="good"><b>高度集中</b>（CR3 均 &gt;50%）</td><td>维生素 A：全球产能约 6 万吨/年，新和成 0.8 万吨（份额约 26%–38.7%）、巴斯夫 1.44 万吨、万华 1 万吨、帝斯曼 0.75 万吨、浙江医药 0.5 万吨，全球 CR5≈77%；维生素 E（油）：总产能约 12.5 万吨/年，新和成 3 万吨、帝斯曼 3 万吨、益曼特 1.5 万吨、巴斯夫 2 万吨、浙江医药 2 万吨，<b>CR5≈92%</b>；蛋氨酸：全球寡头（赢创 85 万吨、安迪苏 67 万吨、新和成权益 55 万吨、希杰、诺伟司），CR5&gt;90%</td></tr>
+  <tr><td>规模壁垒</td><td class="good"><b>极高</b></td><td>单套维生素/蛋氨酸装置投资数十亿元，需通过长期环保与安全审批；18 万吨液体蛋氨酸为全球单套最大液体蛋氨酸装置。全球产能持续向少数龙头集中</td></tr>
+  <tr><td>技术/一体化壁垒</td><td class="good"><b>强</b></td><td>关键中间体柠檬醛全球仅 4 家可产（新和成 1.5 万吨、巴斯夫 5 万吨、万华 4.8 万吨、可乐丽 0.5 万吨），新和成自供使成本较外购中间体低 10%–15%；VE 采用酶法裂解工艺，成本较传统路线低约 30%；18 万吨液体蛋氨酸单吨成本低约 15%；26H1 研发费用 6.06 亿（占收入 4.61%，同比 +15.87%）</td></tr>
+  <tr><td>渠道/认证壁垒</td><td class="neutral"><b>中等</b></td><td>下游为全球饲料厂、食品与养殖企业，供货关系与质量认证稳定；但属大宗工业品，<b>价格是核心竞争要素，护城河挡不住周期</b>——这一点在 2026 年被 VE 价格 -62% 完整验证</td></tr>
+  <tr><td>新增供给（未来 2 年）</td><td class="bad"><b>有，且已部分兑现</b></td><td>万华化学柠檬醛 4.8 万吨（2024-08 投产）+ VA 1 万吨（2025-03 投产）；浙江医药 VE 2 万吨项目进入调试；新和成自身 18 万吨液体蛋氨酸（2025H2 投产）+ 7 万吨固体蛋氨酸提升 + PPS 扩产。<b>柠檬醛投产会同时放松 VA 与 VE 两条链的中间体约束——这是被低估的供给变量</b></td></tr>
+  <tr><td>行业政策</td><td class="neutral"><b>中性偏正面</b></td><td>中银证券 2026-10-12 周报：本轮行业扩产已近尾声，"反内卷"等措施有望催化行业盈利底部修复；出口占收入 58.43%，受贸易政策与反倾销影响</td></tr>
 </table>
 
-<h3>6.3 生命周期阶段</h3>
-<div class="highlight-box">
-  <strong>阶段：维生素/蛋氨酸/香精香料（成熟期）+ 新材料（成长期）</strong><br>
-  核心营养品业务处于成熟期——需求稳定（3-5%/年），格局固化，利润随价格周期波动。新和成在成熟期扮演"成本+规模+一体化"领先者角色，靠成本优势和寡头格局赚取超额利润。新材料（PPS/尼龙66/IPDI）处于成长期——营收+26%突破20亿，PPS产能国内第一，天津尼龙66项目2027年建成，受益高端材料国产替代。<br><br>
-  <strong>投资策略重点：</strong>成熟期业务看价格周期位置（底部布局、顶部兑现），成长期业务看放量节奏和毛利率（PPS/尼龙66客户认证进展）。
+<h3>6.3 生命周期与当前周期位置</h3>
+<div class="danger-box">
+  <strong>生命周期：核心业务（营养品 67.07% 收入）处于成熟期；新材料（8.88%）处于成长期。</strong><br>
+  成熟期业务的投资策略重点是"价格周期位置"（底部布局、顶部兑现）；成长期业务看放量节奏与毛利率。香精香料（15.40%）介于两者之间，增长停滞（-3.95%）已现成熟特征。<br><br>
+  <strong>当前周期位置：<b>上行周期的后半段 / 顶部回落初期 —— 距真正的周期底部仍远</b></strong><br><br>
+  判断依据（五条）：<br>
+  ① <b>价格已从顶部大幅回落</b>：VE 116.5 → 44 元/kg（-62.2%，且跌破年初 55.5）；VA 116.5 → 53 元/kg（-54.5%）；固体蛋氨酸 52 → 24.4 元/kg（-53.1%）。<br>
+  ② <b>回落路径是"冲高—震荡—崩塌"而非"温和回归"</b>：VE 在 9-23 报 63、9-29 报 58、10-13 报 44，半个月内再跌 30%，说明抛压尚未出清；Mysteel 10-08 日评标题即"VE 下行明显"，中银证券 10-12 周报把维生素 E 列为周均价跌幅居前品种。<br>
+  ③ <b>行业绝对盈利水平仍在历史高位</b>：26H1 毛利率 44.22%、净利率 30.68%、营养品毛利率 46.87%，FY2025 蛋氨酸子公司净利率高达 38.82%。周期底部（评分体系 15 分档）的特征是"行业亏损 / 产能停产 / 库存出清 / 价格破成本"——<b>一条都不满足</b>。<br>
+  ④ <b>需求端没有支撑</b>：全国生猪均价 10.18 元/kg（10-10）且仍在下行，养殖亏损直接抑制饲料添加剂采购（Mysteel 蛋氨酸周报原话"养殖亏损抑制采购，供增需弱致行情承压"）。<br>
+  ⑤ <b>供给端还在加</b>：万华柠檬醛/VA、浙江医药 VE、公司自身蛋氨酸新装置。<br><br>
+  <b>对评分的影响：</b>周期位置维度（15 分权重）给 <b>5 分</b>——不给"底部/复苏初期"的 12–15 分（行业无亏损出清），也不给"顶部/暴利期"的 2 分（价格已回落 53%–62% 且 VE 跌破年初）。<b>较上一版（基于 FY2025、价格仍在暴涨途中）的 12 分大幅下调 7 分。</b>
 </div>
 
-<h3>6.4 当前周期位置与判断</h3>
-<div class="highlight-box">
-  <strong>当前周期位置：底部已过 → 复苏初期/上行期（2026年价格暴涨确认）</strong><br>
-  判断依据：① 2025年维生素价格全年低迷（VA均价76.57元/kg，-42.6%；VE 86.80元/kg，-14.4%），Q4净利-23%触底；② 2026年2月美伊战争爆发，蛋氨酸原料成本抬升+部分海外产能停产造成供需缺口，固体蛋氨酸价格从17.6元/kg涨至52元/kg（+195%）；VA/VE同步暴涨（年内+86%/+110%）；③ 公司蛋氨酸产能正常开工+新产能爬坡，2026年充分享受量价齐升。<br><br>
-  <strong>判断对评分的影响：</strong>周期位置维度（15分权重）可得12分——底部已过、复苏初期至上行期，业绩弹性已确认但价格涨幅含地缘事件溢价，持续性有待观察。
-</div>
-
-<h3>6.5 同行对比分析</h3>
+<h3>6.4 同行对比（2026H1，同一数据源：东方财富 F10 财务接口 + 腾讯行情 2026-10-13）</h3>
 <table>
-  <tr><th>指标（2025年报）</th><th>新和成</th><th>浙江医药</th><th>安迪苏</th><th>行业参考</th><th>评价</th></tr>
-  <tr><td>ROE</td><td><strong>21.77%</strong></td><td>8.05%</td><td>~8%</td><td>~10%</td><td class="good">✅ 最高</td></tr>
-  <tr><td>毛利率</td><td><strong>44.67%</strong></td><td>34.91%</td><td>~30%</td><td>~35%</td><td class="good">✅ 最高</td></tr>
-  <tr><td>净利率</td><td><strong>30.57%</strong></td><td>~9.8%</td><td>~10%</td><td>~10%</td><td class="good">✅ 最高（碾压）</td></tr>
-  <tr><td>资产负债率</td><td><strong>27.73%</strong></td><td>~38%</td><td>~40%</td><td>~40%</td><td class="good">✅ 最低</td></tr>
-  <tr><td>营收增速</td><td>+2.97%</td><td>-5.28%</td><td>+11%</td><td>—</td><td class="neutral">中游（价格拖累）</td></tr>
-  <tr><td>归母净利（亿）</td><td><strong>67.64</strong></td><td>8.73</td><td>11.55</td><td>—</td><td class="good">✅ 体量最大</td></tr>
-  <tr><td>PB</td><td>2.53x</td><td>~1.3x</td><td>~1.6x</td><td>~1.5x</td><td class="neutral">偏高（高ROE支撑）</td></tr>
-  <tr><td>PE（TTM）</td><td>~13.3x</td><td>~10x</td><td>~25x</td><td>~15x</td><td class="neutral">中等</td></tr>
+  <tr><th style="width:20%">指标</th><th>新和成<br>002001</th><th>浙江医药<br>600216</th><th>安迪苏<br>600299</th><th>兄弟科技<br>002562</th><th>行业中位</th><th>评价</th></tr>
+  <tr><td>总市值（亿元）</td><td class="good"><strong>797.55</strong></td><td>117.22</td><td>249.46</td><td>56.91</td><td>183.34</td><td class="good">体量断层第一</td></tr>
+  <tr><td>2026H1 营收（亿元）</td><td class="good"><strong>131.29</strong></td><td>43.86</td><td>97.07</td><td>20.61</td><td>70.47</td><td class="good">最高</td></tr>
+  <tr><td>营收同比</td><td class="good">+18.28%</td><td class="bad">+1.46%</td><td>+14.04%</td><td>+13.82%</td><td>+13.93%</td><td class="good">最高</td></tr>
+  <tr><td>2026H1 归母净利（亿元）</td><td class="good"><strong>40.11</strong></td><td>6.06</td><td>9.05</td><td>0.98</td><td>7.56</td><td class="good">最高，是第二名的 4.4 倍</td></tr>
+  <tr><td>归母净利同比</td><td class="neutral">+11.31%</td><td class="bad">-9.99%</td><td>+22.25%</td><td>+51.89%</td><td>+16.78%</td><td class="bad">❌ <b>跑输行业中位 5.5pct</b></td></tr>
+  <tr><td>毛利率</td><td class="good"><strong>44.22%</strong></td><td>37.15%</td><td>28.38%</td><td>19.44%</td><td>32.76%</td><td class="good">✅ 高出第二名 7.07pct</td></tr>
+  <tr><td>净利率</td><td class="good"><strong>30.68%</strong></td><td>11.75%</td><td>9.33%</td><td>4.76%</td><td>10.54%</td><td class="good">✅ 同业的 2.6–6.4 倍</td></tr>
+  <tr><td>ROE（加权，26H1）</td><td class="good"><strong>11.39%</strong></td><td>5.37%</td><td>4.55%</td><td>2.62%</td><td>4.96%</td><td class="good">✅ 2.3 倍</td></tr>
+  <tr><td>去杠杆 ROA（推算）</td><td class="good"><strong>8.54%</strong></td><td>4.38%</td><td>3.15%</td><td>1.55%</td><td>3.77%</td><td class="good">✅ 2.3 倍</td></tr>
+  <tr><td>资产负债率</td><td class="good">24.96%</td><td class="good">18.48%</td><td>30.83%</td><td class="bad">40.78%</td><td>27.90%</td><td class="neutral">第二低（浙江医药更低）</td></tr>
+  <tr><td>每股经营现金流（元）</td><td class="good"><strong>1.1844</strong></td><td>0.4703</td><td>0.3895</td><td>0.2054</td><td>0.4299</td><td class="good">✅ 最高</td></tr>
+  <tr><td>每股净资产（元）</td><td>11.3489</td><td>12.1253</td><td>6.4020</td><td>3.1910</td><td>9.2632</td><td>—</td></tr>
+  <tr><td><b>PB（MRQ）</b></td><td class="neutral"><b>2.29x</b></td><td>1.03x</td><td>1.27x</td><td>1.56x</td><td>1.42x</td><td class="neutral">⚠ 四家中最高</td></tr>
+  <tr><td>PE（TTM）</td><td class="good"><b>11.12x</b></td><td>14.54x</td><td>18.91x</td><td class="bad">44.26x</td><td>16.73x</td><td class="good">✅ 最低</td></tr>
+  <tr><td><b>PB / ROE</b></td><td class="good"><b>0.201</b></td><td>0.192</td><td>0.279</td><td class="bad">0.595</td><td>0.240</td><td class="good">✅ 单位 ROE 最便宜</td></tr>
 </table>
+<p style="font-size:12px;color:#999">口径说明：ROE 为 2026H1 加权（东方财富 ROEJQ）；去杠杆 ROA = ROE ÷ (1 − 资产负债率)；PB 为 2026-10-13 腾讯行情 PB(MRQ)；PB/ROE = PB ÷ 加权 ROE；行业中位为四家的中位数。新和成为维生素+蛋氨酸双龙头，浙江医药/兄弟科技为维生素同业，安迪苏为蛋氨酸全球第二。</p>
 
 <div class="summary-box">
-  <strong>同行对比结论：</strong>新和成在维生素/蛋氨酸同行中盈利质量全面碾压——净利率30.57%是浙江医药（9.8%）的3倍、安迪苏的3倍，ROE 21.77%是两家同行的2.5倍以上，负债率27.73%最低。核心差异在于：新和成产品矩阵更完整（维生素+蛋氨酸+香精香料+新材料四大板块协同）、一体化程度更高、成本控制更强。市场给出PB 2.53x（同行~1.5x）的溢价是合理的——高ROE对应高PB，用PB/ROE衡量新和成（2.53/21.8=0.12）甚至优于同行（浙江医药1.3/8=0.16）。
+  <strong>竞争位置：盈利质量断层第一，但增速已跑输同业，估值是"高 PB + 低 PE"的典型周期股定价。</strong><br><br>
+  <b>① 盈利质量全面碾压：</b>毛利率 44.22%（第二名浙江医药 37.15%）、净利率 30.68%（浙江医药 11.75%、安迪苏 9.33%）、ROE 11.39%（第二名浙江医药 5.37%）、去杠杆 ROA 8.54%（第二名 4.38%）。<b>在同一个 VE 价格环境里，浙江医药归母 -9.99%、新和成 +11.31%</b>——这直接证明了成本曲线与产品矩阵（维生素+蛋氨酸+香精香料+新材料四板块协同）的差距不是周期给的，是结构给的。<br><br>
+  <b>② 但增速已经跑输：</b>营收增速 +18.28% 仍是第一，归母增速 +11.31% 却低于行业中位（+16.78%）；安迪苏 +22.25%、兄弟科技 +51.89%（低基数）。<b>新和成的问题不是"跑得慢"，而是"跑得快但赚不到钱"——这与 2.1 节的剪刀差是同一件事。</b><br><br>
+  <b>③ 估值是典型的周期股定价：</b>PB 2.29x 是四家最高（市场给它的净资产溢价最大），PE(TTM) 11.12x 是四家最低（市场预期它的利润要掉）。<b>关键看 PB/ROE：0.201 为四家最低</b>（浙江医药 0.192、安迪苏 0.279、兄弟科技 0.595）——<b>按每单位净资产收益率计价，新和成是这组里最便宜的</b>，也解释了为什么它值得比同行更高的 PB。反过来说，它的 PB 溢价完全依赖 ROE 维持；若 ROE 从 11.39% 掉到浙江医药的 5% 水平，2.29x 的 PB 会立刻显得荒谬。<br><br>
+  <b>④ 资产负债表：</b>资产负债率 24.96% 仅次于浙江医药（18.48%），远优于兄弟科技（40.78%）与安迪苏（30.83%）；净现金 31.65 亿而安迪苏等蛋氨酸同业负债率更高——周期下行时这层垫子的差别会被放大。
 </div>
 
-<h3>6.6 估值方法匹配</h3>
+<h3>6.5 估值方法匹配</h3>
 <table>
-  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
-  <tr><td>周期型（精细化工）</td><td>PB（周期性底部）</td><td>PE（顶部参考）、产品价格、产能利用率</td><td class="good">✅ 匹配——PB 2.53x处于5年30-35%分位，估值中偏低</td></tr>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前市场用法是否匹配</th></tr>
+  <tr><td>周期型（精细化工 / 基础化工）</td><td class="good"><b>PB（周期底部）</b></td><td>PE（周期顶部参考）、产品价格、产能利用率、股息率</td><td class="neutral"><b>部分匹配</b>：市场当前给 PB 2.29x（同业最高）+ PE 11.12x（同业最低）的组合，方向上是对的——PB 反映资产溢价、PE 反映利润见顶预期；但如 L3 4.3 节所示，PB 25.1% 分位在 3.8 年窗口下跳到 44.7% 分位，且 PB/ROE（0.199）高于历史均值（0.165），<b>"PB 便宜"这个结论并不牢靠</b></td></tr>
 </table>
-
 <div class="summary-box">
-  <strong>估值方法总结：</strong>对新和成这类纯周期股，PB是正确估值框架。当前PB 2.53x处于5年30-35%分位、10年25-30%分位，属于中偏低区间。与历史顶部PB 9x（2017-18牛市）相比有巨大空间，但当前盈利已从底部修复，需警惕"利润上行、PB被动抬升"后的均值回归。周期股投资铁律：PB在底部买、利润在顶部卖。当前处于"PB中偏低+利润底部刚过"阶段，是布局窗口而非兑现窗口。同时可关注2026E PE 10.7x（盈利修复预期）作为辅助验证。
+  <strong>估值方法总结：</strong>对新和成这类纯周期股，<b>PB + 产品价格 + 产能周期</b>是唯一正确的框架，PE 只能当反向指标用（PE 极低 = 利润极高 = 该卖了）。本报告 L3 已按此执行。<br><br>
+  <strong>三条必须同时看的指标：</strong>① <b>PB 历史分位</b>（当前 25.1%，20% 分位对应 25.42 元、30% 分位 26.44 元）；② <b>产品价格拐点</b>（VE 已跌破年初、蛋氨酸较峰值 -53%，拐点已过）；③ <b>股息率</b>（3.85%，构成硬底）。<br><br>
+  <strong>周期股铁律在本标的上的翻译：</strong>「PB 在底部买、利润在顶部卖」。当前 PB 2.29x（25.1% 分位，接近底部）但利润刚过顶部（26Q2 单季 21.92 亿是历史峰值）——<b>这是"PB 到底了、利润刚开始掉"的错位阶段，最容易出现 PB 与利润双杀</b>。真正符合铁律的时点需要等两件事同时成立：PB 回到 20% 分位以下（≤2.24x / ≤25.42 元），且行业出现亏损出清信号（毛利率跌破 35%、蛋氨酸跌破成本线）。
 </div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l6"><div class="tab-inner">
 
-<h2>七、综合实战（L6框架）</h2>
+<h2>七、综合实战（L6 框架）</h2>
 
 <h3>7.1 六步法总结</h3>
 <div class="summary-box">
-  <strong>Step 1 - 行业定位：</strong>纯周期（精细化工），维生素/蛋氨酸全球寡头（VA CR5 77%、VE CR5 92%），规模+一体化+技术壁垒，核心业务成熟+新材料成长期。<br>
-  <strong>Step 2 - 财务体检：</strong>ROE 21.77%（穿越周期均值~18%），杜邦高利润低杠杆型（30.6%净利率×1.38权益乘数），CFO/净利1.30优秀，FCF约70亿。负债率27.73%净现金。<br>
-  <strong>Step 3 - 估值判断：</strong>PB 2.53x（5年30-35%分位）中偏低，PE TTM 13.3x，2026E PE约10.7x有吸引力。<br>
-  <strong>Step 4 - 风险排查：</strong>营收低速（价格拖累）、2026Q1增收不增利、蛋氨酸供给扩张、地缘溢价回吐风险，均处于可控范围。<br>
-  <strong>Step 5 - 结论：</strong>好公司（全球龙头+财务极健康+穿越周期强）+ 中偏低估值的价格 = 周期上行初期的优质布局标的。<br>
-  <strong>Step 6 - 跟踪：</strong>看蛋氨酸/VA/VE价格走势、2026H1业绩验证、天津尼龙66项目进度、应收账款、海外产能复产情况。
+  <strong>Step 1 — 行业定位：</strong>纯周期（基础化工 — 精细化工）。VA 产能全球第一、VE 全球第一、蛋氨酸全球第三、PPS 国内领先；VA CR5≈77%、VE CR5≈92%、蛋氨酸 CR5>90%，规模 + 一体化 + 技术三重壁垒。核心营养品业务成熟，新材料成长期。<br><br>
+  <strong>Step 2 — 财务体检：</strong>穿越周期 ROE（2016–2025 摊薄均值）<b>16.42%</b>，三个窗口一致（5 年 17.37% / 15 年 15.30%），谷底年 2023 为 10.90%、2015 为 5.70%。杜邦为高利润型 + 极低杠杆：净利率 30.55%、权益乘数 1.339、去杠杆 ROA 8.59%（同业 2.2–5.5 倍）。CFO 36.40 亿、净现比 0.91、FCF +22.69 亿。<b>⚠ 体检结论：质地极好，但当期体检指标全面转弱——毛利率 -1.67pct、扣非增速仅 +6.53%、财务费用 +4.36 亿。</b><br><br>
+  <strong>Step 3 — 估值判断：</strong><b>PB 为主口径，不用 PE。</b>PB 2.2866x 处于 2018 年以来 25.1% 分位（20% 分位 2.24x / 25.42 元，30% 分位 2.33x / 26.44 元）；但 3.8 年窗口下为 44.7% 分位，且 PB/ROE 0.199 高于历史均值 0.165。PE(TTM) 11.12x 处 13.0% 分位但周期股失真。股息率 3.85% 是唯一确定的支撑。<br><br>
+  <strong>Step 4 — 风险排查：</strong>① 增收不增利的实质剪刀差 11.75pct（营收 +18.28% vs 扣非 +6.53%）；② VE 跌破年初至 44 元/kg（-62%）、VA -54%、蛋氨酸 -53%；③ 汇兑吞噬毛利增量 61%（财务费用 +4.36 亿）；④ 香精香料量价齐跌；⑤ 资本开支重启 + 万华/浙江医药新增供给。<b>无商誉（0.04 亿）、无流动性风险（净现金 31.65 亿）、无分红中断风险。</b><br><br>
+  <strong>Step 5 — 结论：</strong><b>好公司（结构分 83 分里有 60 分来自"穿越周期生存能力 + 成本优势"），但当前价格既不便宜（PB/ROE 偏高）也不极端（仅 25% 分位），且周期位置已从上一版的"复苏初期"降级为"顶部回落初期"。</b>这是一只需要用"均值回归"逻辑而不是"便宜"逻辑来持有的标的。<br><br>
+  <strong>Step 6 — 跟踪：</strong><b>① 维生素 E 价格（Mysteel 日均价，本报告核心跟踪项，44 元/kg，破 40 报警）；② 固体蛋氨酸价格（24.4 元/kg，破 21.5 = 前低，破 26 = 复苏）；③ 季度毛利率（跌破 40% 预警、跌破 35% 危险）；④ 扣非归母同比（连续两季 &lt;5% 预警）；⑤ 财务费用/汇兑（季度环比转正是人民币升值加速的信号）；⑥ 2026-10-28 三季报（核心验证点）。</b>
 </div>
 
 <h3>7.2 好公司三要素检查</h3>
 <table>
   <tr><th>要素</th><th>判断</th><th>依据</th></tr>
-  <tr><td>① 好行业</td><td class="neutral">⚠</td><td>维生素/蛋氨酸是强周期行业，但寡头格局+需求刚性（饲料刚需），龙头能穿越周期赚取超额利润；新材料赛道成长性好</td></tr>
-  <tr><td>② 好公司</td><td class="good">✓</td><td>ROE 21.77%&gt;15%，毛利率44.67%逆势提升，CFO/净利1.30&gt;1，负债率27.73%极低，连续23年分红</td></tr>
-  <tr><td>③ 好价格</td><td class="neutral">⚠</td><td>PB 2.53x处于5年30-35%分位（中偏低），2026E PE 10.7x、PEG&lt;0.5，但非极端底部（PB 1.9x为2024年低点）</td></tr>
+  <tr><td>① 好行业</td><td class="neutral">⚠ 部分满足</td><td>需求端刚需（饲料/食品添加，蛋氨酸在饲料成本中占比仅 0.1%–0.3%，下游对涨价不敏感）+ 格局高度集中（CR3 全部 &gt;50%）+ 壁垒高（规模/技术/一体化三重）——<b>这些都是"好行业"要件</b>。但行业长期增速≈GDP，且利润完全由价格周期决定，2026 年 VE 价格 -62% 就把一整年的行业定价权打回了原形。<b>好行业 ≠ 好投资，时点决定一切</b></td></tr>
+  <tr><td>② 好公司</td><td class="good">✓ 满足</td><td>穿越周期 ROE 16.42%（≥15% 的好公司标准，且是穿越周期口径而非高点口径）；毛利率 44.22% 稳定在高位（四家断层第一）；CFO/净利 0.91（半年口径）/ 1.30（全年口径）；负债率 24.96%、净现金 31.65 亿；分红无一期中断。<b>唯一瑕疵是当期毛利率首次同比转负（-1.67pct）</b></td></tr>
+  <tr><td>③ 好价格</td><td class="bad">✗ 不满足</td><td>PB 2.29x 虽处 25.1% 分位，但 ① 3.8 年窗口分位跳到 44.7%；② PB/ROE 0.199 高于 2018–2025 年末均值 0.165；③ PE 11.12x 的低分位是"利润见顶定价"而非"便宜定价"；④ 券商目标价均值 38.01 元形成于 8–9 月，10 月 VE 跌至 44 元/kg 后未更新，存在下修风险。<b>按"PB 在底部 + 周期也在底部"的双条件，当前只满足前一半</b></td></tr>
 </table>
 
 <h3>7.3 三个陷阱排查</h3>
 <div class="danger-box">
-  <strong>☐ 价值陷阱：</strong>❌ 未命中——营收低速（+3%）但净利率30.57%行业顶级，毛利率逆势提升，2026年产品价格暴涨驱动业绩弹性，利润是周期性回升而非结构性衰退。<br>
-  <strong>☐ 周期陷阱：</strong>⚠ 需警惕——当前处于"利润低点刚过、PB中偏低"阶段，尚未到"利润暴利顶+PE极低"的卖出区，买入位置正确。但需警惕2026年涨价若含地缘事件溢价，一旦地缘缓和价格回落，市场可能"利润见顶PE极低"时才是陷阱，需跟踪价格持续性。<br>
-  <strong>☐ 烧钱陷阱：</strong>❌ 未命中——CFO 87.97亿强劲，FCF约70亿，净现比1.30，完全不涉及烧钱，公司进入现金收获期。
+  <b>☐ 价值陷阱（低 PE + 低增长 + 高负债）→ ❌ 未命中。</b>归母增速 +11.31% 不算低增长，资产负债率仅 24.96%（四家第二低）且是净现金 31.65 亿，高负债条件完全不成立。<br><br>
+  <b>☐ 周期陷阱（低 PE + 周期顶点）→ ✅ 高度接近命中（本报告最核心的风险提示）。</b><br>
+  命中证据：① <b>PE(TTM) 11.12x 处于 13.0% 历史分位</b>，是典型的"低 PE"表象；② <b>26Q2 单季归母 21.92 亿是上市以来单季最高</b>，行业毛利率 44.22% 仍在历史高位——PE 最低的时候恰恰是利润最高的时候，这正是 L3 框架所说的周期股 PE 悖论；③ PE/静态 11.79x、PE/动态仅 9.33x，越多"看起来便宜"的口径，越说明市场在为利润下行定价；④ 三季报（10-28）大概率是本轮利润的环比高点。<br><br>
+  <b>本周期股评分体系已通过"周期位置（5/15 分）+ PB 估值（12/15 分）"两项覆盖了这个陷阱</b>（合计 17/30 分，是全表最弱的一块），<b>但必须明确：覆盖不等于消除</b>。周期陷阱的杀伤方式不是"估值贵"，而是"PB 与利润双杀"——若 2026H2–2027 利润继续下滑把 ROE 压到 8%–10%，当前 2.29x 的 PB 会显得很贵，PB 可能向 20% 分位（2.24x）乃至 10% 分位（2.12x）继续下探，对应股价 25.42 元 / 24.06 元。<br><br>
+  <b>☐ 烧钱陷阱（高 PE + 高增速 + 负现金流）→ ❌ 未命中（双重否定）。</b>PE 11.12x 属低估值；CFO 36.40 亿、FCF +22.69 亿、净现金 31.65 亿、经营现金流为正且同比增长 12.24%。完全不存在烧钱问题。
 </div>
 
-<h3>7.4 管理层与治理风险</h3>
+<h3>7.4 管理层与治理</h3>
 <table>
   <tr><th>事项</th><th>判断</th><th>依据</th></tr>
-  <tr><td>管理层能力与履历</td><td>好</td><td>创始人胡柏藩（董事长）深耕精细化工40年，总经理胡柏剡化工出身，团队稳定，成功从维生素扩展到蛋氨酸/香精香料/新材料多品类，执行力强</td></tr>
-  <tr><td>股权结构与利益一致性</td><td>强</td><td>控股股东新和成控股集团持股50.13%，胡氏家族持股集中，利益与公司高度绑定；大股东质押率0%</td></tr>
-  <tr><td>关联交易/暴雷历史</td><td>无</td><td>上市22年无重大违规、处罚记录，商誉仅362万，财务造假风险极低</td></tr>
-  <tr><td>资本配置记录</td><td>合理</td><td>聚焦主业持续扩产（蛋氨酸/新材料），分红率45.36%+2026年3-6亿回购，无盲目并购，资本配置审慎</td></tr>
-  <tr><td>管理层增减持记录</td><td>增持（正面）</td><td>2025年6月董秘石观群增持20万股（21.4元），2022年胡柏藩/胡柏剡等大规模增持，传递信心</td></tr>
-  <tr><td>CEO交接/关键人员变动</td><td>无风险</td><td>创始人仍任董事长，管理团队稳定，无交接风险</td></tr>
+  <tr><td>管理层能力与履历</td><td class="good">好</td><td>董事长/实控人胡柏藩深耕精细化工数十年，总经理胡柏剡、董秘石观群、CFO 王晓碧，核心团队长期稳定。从维生素单一品类成功扩展到蛋氨酸/香精香料/新材料四大板块并做到全球前三，执行力有实证</td></tr>
+  <tr><td>股权结构与利益一致性</td><td class="good">强</td><td>控股股东新和成控股集团有限公司持股 <b>15.39 亿股（50.082%）</b>，2026H1 与 2025 年末完全一致，无任何变动；第五期员工持股计划持有 2,145.43 万股（0.6981%）并锁定至 2027-01-26</td></tr>
+  <tr><td>关联交易</td><td class="neutral">有但性质合理</td><td>2026 年度预计日常关联交易合同金额 13.72 亿元（约占营收 10.4%），主要是与中国石化镇海炼化合资的宁波镇海炼化新和成生物（液体蛋氨酸）之间的关联销售与设备采购；2025 年实际发生 7.25 亿元。2025-04 曾以 8,279.10 万元向控股股东出售丽都置业 100% 股权（关联交易，聚焦精细化工主业）。<span class="nd">待补充</span>：未见监管处罚或重大诉讼的公开记录，但本次未逐项核查交易所问询与处罚数据库</td></tr>
+  <tr><td>资本配置记录</td><td class="good">合理</td><td>分红率稳定（TTM 42.9%）、三轮回购（2021-08 约 5 亿并于 2024-12 注销、2025-04 约 5.56 亿、2026-06 提议 3–6 亿新轮回购）、2025 年出台《市值管理制度》。<b>扣分项：26H1 capex 从 6.34 亿翻倍至 13.71 亿、在建工程 +35.2%、无形资产 +40.0%，在周期已见顶时重启大额资本开支，时点值得商榷</b></td></tr>
+  <tr><td>管理层增减持记录</td><td class="neutral">中性偏正面</td><td>2026-06-16 实控人胡柏藩<b>主动提议</b>新一轮 3–6 亿元回购（用于股权激励/员工持股），2026-07-02 首次回购约 2,152.61 万元。<span class="nd">待补充</span>：本次未取得近一年董监高逐笔增减持的完整清单及控股股东股权质押比例</td></tr>
+  <tr><td>商誉与减值历史</td><td class="good">优</td><td>商誉仅 0.04 亿元，无商誉减值包袱——这在 A 股化工并购普遍的背景下是显著优势</td></tr>
+  <tr><td>CEO 交接/关键人员变动</td><td class="good">无风险</td><td>创始人胡柏藩仍任董事长并亲自提议回购，管理团队稳定，未见交接信号</td></tr>
 </table>
 
 <h3>7.5 盈利可持续性</h3>
 <table>
   <tr><th>维度</th><th>判断</th><th>依据</th></tr>
-  <tr><td>增长靠量还是靠价？</td><td>价驱动（短期）/量驱动（中期）</td><td>2026年短期利润弹性来自产品涨价（蛋氨酸+195%），中期靠蛋氨酸新产能爬坡（55万吨）+新材料放量</td></tr>
-  <tr><td>涨价能否持续？</td><td>需观察</td><td>当前涨价含美伊战争地缘溢价（海外产能停产+原料成本抬升），若海外产能复产/地缘缓和，价格存在回落风险；但寡头格局下价格中枢有望高于2025年</td></tr>
-  <tr><td>非经常性利润占比</td><td>低</td><td>2025年归母净利67.64亿 vs 扣非67.38亿，非经常仅0.26亿（占0.4%），利润质量极高</td></tr>
-  <tr><td>大客户/大项目集中度</td><td>分散</td><td>下游为全球饲料/食品/养殖大客户，客户分散，无单一客户依赖</td></tr>
-  <tr><td>政策/监管依赖度</td><td>中</td><td>无补贴依赖，但维生素反倾销（PPS曾申请反倾销）、环保政策对行业格局有影响，出口占比58%受贸易政策影响</td></tr>
+  <tr><td>增长靠量还是靠价？</td><td class="bad">价驱动为主，量已开始接力</td><td>26H1 营收 +18.28% 中，营养品收入 +22.31% 是主因；2026 年 4 月价格峰值时 VE/VA 较年初 +110%/+86%、蛋氨酸 +195%——<b>这一轮收入高增长的价格红利在 26Q2 达到顶点</b>。量的证据是蛋氨酸 18 万吨液体装置（2025H2 投产）+ 7 万吨固体提升，使 H2 有量增可以对冲价跌，这是管理层做对的地方</td></tr>
+  <tr><td>涨价能否持续？</td><td class="bad">不能——已经结束</td><td>VE 44 元/kg（较 4 月峰值 -62.2%、较年初 -20.7%）、VA 53 元/kg（-54.5%）、固体蛋氨酸 24.4 元/kg（-53.1%）。<b>涨价的驱动力（美伊冲突 2026-02-28 爆发、赢创新加坡 34 万吨与住友化学亚洲 18 万吨停产）属事件性，一旦海外产能复产或地缘缓和，溢价会消失</b>；隆众资讯 9 月专文已定性为"先扬后抑的快速反转行情"</td></tr>
+  <tr><td>非经常性利润占比</td><td class="neutral">低但显著上升</td><td>26H1 非经常性损益 +0.92 亿元，占归母 2.29%（绝对额低）；但 25H1 为 -0.75 亿元。<b>真正的信号是扣非增速（+6.53%）远低于归母增速（+11.31%），归母增量的 85% 来自投资收益（+1.86 亿）与公允价值变动（+1.73 亿）</b></td></tr>
+  <tr><td>大客户/大项目集中度</td><td class="neutral">分散（推测）</td><td>下游为全球饲料厂、食品与养殖企业，客户分散。境外收入占 58.43%，相对集中于"海外"这一区域。<span class="nd">待补充</span>：2026 半年报未披露前五大客户合计占比（该项在年报中披露，本次未取得 2025 年报口径）</td></tr>
+  <tr><td>政策/监管依赖度</td><td class="neutral">中</td><td>无政府补贴依赖；出口占收入 58.43% 受贸易政策与反倾销影响；PPS 曾申请反倾销；环保政策直接决定行业格局与中小产能出清速度（"反内卷"措施是潜在正向变量，中银证券 10-12 周报观点）</td></tr>
+  <tr><td>汇率依赖度</td><td class="bad">显著上升</td><td>境外收入占 58.43%，26H1 财务费用由 -1.78 亿逆转为 +2.58 亿（利息净支出仅 0.43 亿），境外毛利率却几乎未变（-0.10pct）而境内毛利率塌 4.23pct——<b>汇率已成为独立于产品价格的第二个利润变量</b></td></tr>
 </table>
 
 <h3>7.6 关键变量敏感性</h3>
 <div class="summary-box">
-  <strong>变量1: 蛋氨酸/维生素价格（最核心变量）</strong><br>
-  乐观: 地缘持续紧张+海外产能复产延迟 → 价格维持高位，2026年净利超90亿 → EPS超3元<br>
-  中性: 涨价部分回吐后维持高于2025年中枢 → 净利约83.7亿（一致预期） → EPS约2.74元<br>
-  悲观: 海外产能快速复产+地缘缓和 → 价格回落至2025年水平 → 净利约60-65亿 → EPS约2.0元<br><br>
-  <strong>变量2: 蛋氨酸新产能放量节奏</strong><br>
-  乐观: 18万吨液体蛋氨酸满产+满销 → 量增超预期 → EPS额外增加0.2-0.3元<br>
-  中性: 按计划爬坡，2026-2027年逐步满产 → 量增符合预期<br>
-  悲观: 行业供给过剩价格战 → 毛利率承压 → 拖累ROE<br><br>
-  <strong>变量3: 新材料放量（PPS/尼龙66）</strong><br>
-  乐观: 天津尼龙66项目（2027年）提前投产+客户认证顺利 → 新材料毛利率升至35%+<br>
-  中性: 按计划推进 → 新材料营收占比提升至15%+<br>
-  悲观: 项目延期/客户认证不达预期 → 新材料增速放缓，成长故事打折
+  <b>变量 1：营养品综合售价（维生素 E 是最大单项，本报告核心跟踪项）</b><br>
+  测算基准：26H1 营养品收入 88.06 亿元、毛利率 46.87%。假设 H2 营养品收入与 H1 持平（约 88 亿元），销量与单位成本不变：<br>
+  　<b>综合售价 ±10%</b> → 收入 ±8.81 亿 → 毛利 ±4.13 亿 → 税后归母（实际税率 14.25%）<b>±3.54 亿 → EPS ±0.115 元</b><br>
+  乐观（VE 回到 55–60 元/kg 年初水平、蛋氨酸站稳 25–26）：营养品售价 +10% → H2 归母增厚约 3.5 亿<br>
+  中性（VE 在 44–50 震荡、蛋氨酸 23–25）：H2 营养品毛利与 H1 基本持平<br>
+  悲观（VE 跌破 40 元/kg、VA 跌破 50、蛋氨酸回 21.5 前低）：营养品售价 -15% → H2 归母减少约 5.3 亿<br><br>
+  <b>变量 2：蛋氨酸量价（26H1 蛋氨酸子公司净利 20.13 亿元、+39.9%，占归母 50.2%）</b><br>
+  乐观：价格稳在 25–26 元/kg + 18 万吨液体装置满产满销 → H2 蛋氨酸净利与 H1 持平（约 20 亿）<br>
+  中性：价格 23–25 元/kg 横盘、销量持平 → H2 蛋氨酸净利降至 13–16 亿<br>
+  悲观：价格回落至 21.5 元/kg 前低 + 检修影响出货 → H2 蛋氨酸净利 8–11 亿<br><br>
+  <b>变量 3：人民币汇率（26H1 财务费用 +2.58 亿，境外收入占比 58.43%）</b><br>
+  乐观：人民币回落 → 汇兑损益转正 → 半年增厚净利 1–2 亿<br>
+  中性：汇率持平 → 影响为零<br>
+  悲观：人民币再升值 3% → 半年再损失 2–2.5 亿（26H1 已损失约 2.14 亿）
 </div>
 
 <h3>7.7 前景展望</h3>
 <div class="summary-box">
-  <strong>正向驱动：</strong><br>
-  1. 周期上行 — 蛋氨酸+195%、VA+86%、VE+110%涨价，2026年净利一致预期83.7亿（+24%），业绩弹性大<br>
-  2. 蛋氨酸产能全球第三 — 固体37万吨+液体18万吨=55万吨（权益46万吨），2026年量价齐升，成本随规模摊薄<br>
-  3. 新材料放量 — PPS国内第一（2.2万吨）+天津尼龙66（2027年建成），第二增长曲线打开估值天花板<br>
-  4. 高分红+回购 — 分红率45.36%+3-6亿回购，股息率3.3%提供估值底部支撑<br><br>
-  <strong>负向拖累：</strong><br>
-  1. 价格回落风险 — 涨价含地缘溢价，海外产能复产/地缘缓和后价格或回落，2027年业绩存不确定性<br>
-  2. 蛋氨酸供给扩张 — 自身+同行产能集中投放，2027年后行业或再进入价格竞争<br>
-  3. 原料成本上升 — 美伊战争推高石化原料成本，成本传导存在时滞（2026Q1已现增收不增利）
+  <b>正向驱动：</b><br>
+  1. <b>量的增长确定性高于价格</b> — 18 万吨液体蛋氨酸装置（全球单套最大，与中国石化镇海炼化合资，单吨成本低约 15%）已于 2025H2 投产，7 万吨固体蛋氨酸一体化提升项目已运行；PPS 扩产持续。价格跌 50% 时，这些增量仍能贡献正增长。<br>
+  2. <b>新材料是唯一"量价齐升"的板块</b> — 26H1 收入 +12.33%、毛利率 +1.20pct（32.68%），是全公司唯一毛利率提升的板块，PPS 产能国内领先、尼龙 66 项目推进中。第二曲线在慢慢长大，但体量仅 8.88%，短期托不住大盘。<br>
+  3. <b>股息率 3.85% 提供硬底</b> — TTM 分红率 42.9%、分红无一期中断（含 2023 年 ROE 谷底年仍派 4.5 元/10 股）、三轮回购、2026-06 实控人主动提议 3–6 亿新轮回购。在 PB 2.2x 附近，向下的空间被股息率部分锁定。<br>
+  4. <b>成本曲线断层第一</b> — 毛利率 44.22% vs 同行 19.44%–37.15%。价格跌到行业成本线时，同行亏损、新和成仍赚钱，供给出清后份额与价格的弹性最大。<br><br>
+  <b>负向拖累：</b><br>
+  1. <b>价格拐点已经过去</b> — VE 44 元/kg 已跌破年初 55.5，VA 53 元/kg 低于年初 62.5，固体蛋氨酸 24.4 元/kg 较峰值 -53%。26Q2 单季归母 21.92 亿是本轮报表顶点，Q3 起进入的是完全不同的价格环境。<br>
+  2. <b>供给增量在 2027 年集中兑现</b> — 万华柠檬醛 4.8 万吨（2024-08）+ VA 1 万吨（2025-03）同时放松 VA/VE 两条链的中间体约束；浙江医药 VE 2 万吨进入调试；公司自身蛋氨酸新装置满产。<b>这是压制价格中枢回不去的根本力量</b>。<br>
+  3. <b>汇兑成为第二利润变量</b> — 境外收入占 58.43%，26H1 财务费用 +2.58 亿（同比恶化 4.36 亿，吞掉毛利增量 61%）。人民币升值是持续性压力，不是可以忽略的噪音。<br>
+  4. <b>成本端仍在抬升</b> — WTI 91.85 美元/桶、布伦特 104.72 美元/桶、合成氨 2,623 元/吨（周 +7.37%、同比 +18.74%）。售价在跌、成本在涨，Q3/Q4 毛利率会继续承压。<br>
+  5. <b>需求端没有支撑</b> — 全国生猪均价 10.18 元/kg 且仍在下行，养殖亏损直接抑制饲料添加剂采购（Mysteel 蛋氨酸周报原话）。饲料添加剂的需求弹性在猪价上行前不会回来。
 </div>
 
-<h3>7.8 三情景简表</h3>
 <table>
-  <tr><th>情景</th><th>假设条件</th><th>EPS预估</th><th>PE区间</th><th>预期回报</th></tr>
-  <tr><td>乐观</td><td>价格高位维持+蛋氨酸满产放量</td><td>~3.0元</td><td>10-13x</td><td>30-39元（+3%~+34%）</td></tr>
-  <tr><td>中性</td><td>价格部分回吐但高于2025年中枢</td><td>~2.74元</td><td>11-14x</td><td>30-38元（0%~+31%）</td></tr>
-  <tr><td>悲观</td><td>海外产能复产+地缘缓和，价格回落</td><td>~2.0元</td><td>12-16x</td><td>24-32元（-17%~+10%）</td></tr>
+  <tr><th>情景</th><th>假设条件</th><th>2026E 归母（亿元）</th><th>2026E EPS</th><th>合理 PB</th><th>对应股价</th><th>相对 25.95 元</th></tr>
+  <tr><td class="good">乐观（25%）</td><td>VE 回到 55–60 元/kg（年初水平）、蛋氨酸站稳 25–26 且液体装置满产满销、人民币回落带来汇兑改善</td><td class="good">81（对应天风 81.23 / 长城 80.48 / 中银 82.40）</td><td>2.64</td><td>2.8–3.0x</td><td>31.8–34.1 元</td><td class="good">+23% ~ +31%</td></tr>
+  <tr class="neutral"><td><b>中性（50%）</b></td><td>VE 在 44–50 元/kg 区间震荡、蛋氨酸 23–25 元/kg、量增部分对冲价跌、汇率持平</td><td><b>74–78</b>（低于一致预期 85.51 约 8%–13%）</td><td>2.41–2.54</td><td>2.3–2.6x</td><td><b>26.4–29.5 元</b></td><td><b>+2% ~ +14%</b></td></tr>
+  <tr class="bad"><td class="bad">悲观（25%）</td><td>VE 跌破 40 元/kg、VA 跌破 50、蛋氨酸回到 21.5 元/kg 前低、2027 新产能集中投放、人民币继续升值</td><td class="bad">66</td><td>2.15</td><td>1.9–2.2x</td><td class="bad">20.9–24.9 元</td><td class="bad">-19% ~ -4%</td></tr>
 </table>
-<p style="font-size:13px;color:#666;margin-top:4px;">概率判断：中性50%，乐观30%，悲观20%。基于PB 2.53x中偏低分位+股息率3.3%保护，下行风险有限，上行空间看涨价持续性和蛋氨酸放量节奏。</p>
+<p style="font-size:13px;color:#666"><b>概率判断：中性 50%、乐观 25%、悲观 25%。</b>测算基准：26H1 归母 40.11 亿为已实现；H2 按上述价格路径推演。一致预期 2026E 归母 85.51 亿（EPS 2.78）隐含 H2 归母 45.4 亿（同比 +43.6%），<b>而 H2 的平均售价将显著低于 H1（VE 从约 98 元/kg 降至约 45 元/kg、蛋氨酸从约 40 元/kg 降至约 24 元/kg）</b>——本报告认为一致预期尚未充分反映 7–10 月的价格回落，10-28 三季报是第一个证伪/证实窗口。<br><br>
+<b>与券商的差异来源：</b>券商目标价均值 38.01 元对应 PB 3.35x（85% 分位），其核心假设是"蛋氨酸量价齐升、项目建设有序推进"（长城 9-02、天风 9-28 的原话），对 2027–2028 给了 2.92–3.28 元 EPS 的成长假设。本报告不否认长期成长，但认为<b>2026H2 的价格现实与 8–9 月形成目标价时的价格现实之间存在 50% 的落差</b>，且该落差尚未被任何公开目标价反映。</p>
 
-<h3>7.9 资金面信号</h3>
+<h3>7.8 资金面信号（A股）</h3>
 <table>
   <tr><th>维度</th><th>信号</th><th>解读</th></tr>
-  <tr><td>北向资金（深股通）</td><td>持有~6.15%（1.89亿股）</td><td>香港中央结算持仓占比高，北向长期配置，2026年未现大幅减持</td></tr>
-  <tr><td>机构持仓</td><td>基金+ETF持股~8.6%</td><td>4位明星基金经理持有且近期加仓（华安基金王斌等），医药/农业ETF（易方达医药ETF等）重仓</td></tr>
-  <tr><td>融资余额</td><td>~11.37亿（2026-08-18）</td><td>杠杆资金平稳，无明显过热；8月18日主力资金净买入6958万</td></tr>
-  <tr><td>大股东增减持</td><td>回购+增持</td><td>2026年6月公告3-6亿回购计划；董监高2025年增持，大股东零质押</td></tr>
-  <tr><td>大宗交易</td><td>—</td><td>近期无异常大宗交易</td></tr>
+  <tr><td>北向资金（深股通）持股</td><td class="good">大幅增持</td><td>香港中央结算 2026-06-30 持有 1.849 亿股、占总股本 <b>6.016%</b>，较 2026-03-31 的 1.334 亿股（4.34%）<b>增持 5,146 万股（+38.6%）</b>；2026-06-23 曾达 1.887 亿股（6.14%）。相对 2025 年末的 1.789 亿股（5.82%）净增 598 万股。<b>外资在价格高位区间持续加仓，与"周期见顶"的市场共识相反，值得留意</b></td></tr>
+  <tr><td>机构持仓（十大股东口径，权威）</td><td class="neutral">结构分化</td><td>2026-06-30 十大股东中：全国社保基金五零三组合 0.866%（-140 万股）、易方达沪深300 医药卫生 ETF 0.813%（+336 万股）、汇添富-社保基金16032 组合 0.383%（+127 万股）、汇添富价值精选混合 0.353%（<b>新进</b>）。<b>但 2025 年末十大股东中上海重阳旗下 4 只产品合计持股 2.44%（汇智 0.876% + 才智 0.623% + 聚智 0.491% + 英智 0.453%），2026H1 十大股东已无重阳产品</b>——主动型基金退出、被动指数 + 北向 + 社保进入</td></tr>
+  <tr><td>机构持仓（第三方汇总口径，参考）</td><td class="bad">基金持仓显著下降</td><td>爱股网汇总：截至 2026-06-30 共 706 家主力机构持股 20.57 亿股（占流通 A 股 66.93%），其中基金 0.358 亿股（占流通 1.16%），而 2025-12-31 为 1.390 亿股（4.52%）、2026-03-31 为 0.547 亿股（1.77%）。<b>⚠ 该口径由十大股东披露重构，可能低估实际基金持仓（且 2026-06-23 一天内"新出现在主力名单"的机构达 696 家），仅作方向性参考，不作为结论依据</b></td></tr>
+  <tr><td>股东户数</td><td class="neutral">高度稳定</td><td>2026-06-30 为 <b>78,891 户</b>（环比 -79 户，-0.10%）；2026-03-31 为 78,970 户（+652 户，+0.83%）；2025-12-31 为 78,318 户（-4,153 户，-5.04%）。<b>15 个月内基本稳定在 7.8–8.2 万户，筹码无明显分散或集中，户均持股 38,958 股</b>——既没有散户接盘迹象，也没有恐慌出逃迹象</td></tr>
+  <tr><td>融资余额</td><td class="neutral">温和下降</td><td>2026-10-12 融资余额 10.92 亿元，2026-09-28 为 11.60 亿元，<b>两周降 5.9%</b>；融资余量 11.08 亿股占流通 A 股 3.65%；融券余额仅 0.16 亿元（可忽略）。<b>杠杆资金在价格下行中温和撤退，无恐慌性平仓迹象，也未见加仓抄底</b></td></tr>
+  <tr><td>大股东增减持</td><td class="good">无减持 + 主动回购</td><td>控股股东新和成控股集团 15.39 亿股（50.082%）2026H1 <b>零变动</b>；2026-06-16 实控人胡柏藩提议 3–6 亿元新一轮回购，2026-07-02 首次回购约 2,152.61 万元；第五期员工持股计划持有 0.6981% 锁定至 2027-01-26</td></tr>
+  <tr><td>大宗交易</td><td class="neutral">信息不足</td><td>2026-06-23 有 1 笔大宗交易披露，折溢价率与成交金额 <span class="nd">待补充</span></td></tr>
 </table>
-
 <div class="summary-box">
-  <strong>资金面判断：</strong>新和成是机构"压舱石"型标的——北向持股6.15%、基金+ETF持股8.6%，且明星基金经理近期加仓，机构认可度高。公司自身通过高分红（45.36%）+回购（3-6亿）回馈股东，大股东零质押、无减持压力。整体资金面稳定偏正面，符合"高股息+周期反转"资金偏好。
+  <strong>资金面判断：中性偏矛盾——外资与被动资金在加仓，主动型基金与杠杆资金在撤退，而股价与基本面同步走弱。</strong><br><br>
+  正面：① 深股通 Q2 单季增持 38.6% 至 6.016%，是过去两年最快的加仓速度；② 社保基金、沪深300 医药 ETF、汇添富产品同时在十大股东中；③ 股东户数稳定在 7.9 万户附近，无散户化迹象；④ 控股股东零变动 + 实控人主动提议 3–6 亿回购。<br>
+  负面：① 2025 年末的重阳系 4 只产品（合计 2.44%）已退出十大股东；② 融资余额两周降 5.9%；③ 第三方口径下基金持仓从 4.52% 降到 1.16%；④ 股价从 2026-03-31 的 34.55 元跌到 10-13 的 25.95 元（-24.9%），同期 52 周高点为 28.83 元。<br><br>
+  <b>解读：</b>深股通在 PE 11x、PB 2.3x、股息率 3.85% 的位置大举加仓，与"周期见顶"的判断是矛盾的——要么外资看到了周期错杀，要么它们在赌均值回归。<b>这是本报告最值得跟踪的分歧点：北向持股比例若在 Q3 继续上升而价格继续下跌，说明外资在逆势建仓；若北向开始回吐，则本报告的周期位置判断得到验证。</b>
 </div>
 
-<h3>7.10 讨论问题</h3>
+<h3>7.9 跟踪清单与讨论问题</h3>
+<div class="danger-box">
+  <strong>2026-10-28 三季报必须验证的五项（按重要性排序）：</strong><br>
+  ① <b>Q3 单季毛利率</b>——从 Q2 的营业利润率 38.02% 回落多少？单季毛利率跌破 40% 说明成本传导彻底失败；<br>
+  ② <b>Q3 单季归母净利</b>——是否低于 Q2 的 21.92 亿（大概率是），以及是否低于 2025Q3 的 17.33 亿；<br>
+  ③ <b>财务费用</b>——是否继续放大（26H1 已 +2.58 亿），这是人民币汇率的实时读数；<br>
+  ④ <b>香精香料毛利率</b>——是否继续下滑（26H1 已 -5.05pct 至 48.96%）；<br>
+  ⑤ <b>存货跌价准备与资产减值</b>——存货 47.69 亿，VE 从 116.5 跌到 44 元/kg，跌价计提是否充分。<br><br>
+  <strong>产品价格的量化触发线：</strong><br>
+  🔴 维生素 E（Mysteel 日均价）：<b>跌破 40 元/kg</b> = 悲观情景确认；<b>站上 50 元/kg</b> = 乐观情景启动；当前 44 元/kg。<br>
+  🔴 固体蛋氨酸：<b>跌破 21.5 元/kg</b> = 跌破 9 月前低，悲观情景；<b>站上 26 元/kg</b> = 厂家报价兑现；当前 24.4 元/kg（2026-10-10）。<br>
+  🔴 维生素 A：<b>跌破 50 元/kg</b> = 弱势延续；当前 53 元/kg。<br><br>
+  <strong>卖出信号（自上而下）：</strong>① PB 升破 3.14x（70% 分位，35.64 元）而利润未同步上修；② 单季毛利率跌破 35%；③ 扣非归母同比连续两个季度为负；④ 北向持股比例从 6.0% 回落至 4.3% 以下（即 26Q1 水平）；⑤ 资产负债率突破 40% 或出现股权质押。
+</div>
+
 <div class="summary-box">
   <strong>讨论问题（阅读后可以聊这些）：</strong><br>
-  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——做全球寡头垄断的维生素、蛋氨酸、香精香料，靠"规模+一体化+寡头定价"赚取高毛利（47.8%），价格涨时赚暴利、价格跌时靠成本优势扛过去。<br>
-  2. 你最大的担忧是什么？哪个数据让你睡不着？——2026年蛋氨酸涨195%里有多少是美伊战争的地缘溢价？如果海外产能复产、地缘缓和，价格回落20%对应业绩缩水多少？2027年蛋氨酸新产能集中投放后行业会不会再打价格战？<br>
-  3. 如果现在买入，期待的回报来源是什么？——① 周期上行赚业绩的钱（净利从67.6亿修复到83.7亿+，PE被动消化）；② 蛋氨酸量增+新材料放量的成长钱；③ 高股息（3.3%）+回购提供的时间价值。核心假设是2026年涨价能部分延续至2027年。<br>
-  4. 什么情况下你会坚决卖出？——① 蛋氨酸/VA/VE价格连续两个季度环比下跌（周期见顶信号）；② PB突破4x（历史50%分位以上，周期已充分反映）；③ 毛利率跌破35%（成本优势或定价权弱化）；④ 海外产能大规模复产+新产能集中投放导致行业重新过剩。
+  <b>1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？</b><br>
+  ——在只有 4–5 家玩家的全球维生素/蛋氨酸市场里，卖"饲料级必需添加成分"。成本比同行低 20–30%（一体化 + 酶法工艺 + 规模），所以价格下行时同行亏钱它赚钱；价格上行时它赚更多。赚的是<b>周期价差</b>的钱，不是品牌溢价的钱——所以它的盈利必然是锯齿状的。<br><br>
+  <b>2. 你最大的担忧是什么？哪个数据让你睡不着？</b><br>
+  ——26H1 扣非只涨 6.53%，而营收涨 18.28%。归母那 4.07 亿增量里，主业经营只贡献 0.48 亿，其余靠投资收益和公允价值变动。<b>更睡不着的是 VE：44 元/kg，比年初还低 20.7%</b>。这意味着 2026H2 报表里的产品，比 2026H1 更便宜。<br><br>
+  <b>3. 如果现在买入，期待的回报来源是什么？</b><br>
+  ——<b>不是估值修复（PB/ROE 0.199 已经高于历史均值，估值并不便宜）</b>，只能是两个来源：① 穿越周期 ROE 16.42% 的均值回归（但 H1 已降到 11.50%，回归需要价格先稳）；② 股息率 3.85% 的时间价值 + 回购的托底。也就是说，<b>这是一笔"买均值回归 + 收股息"的钱，不是"买低估"的钱</b>。如果你要的是"买低估"，更好的位置是 PB 回到 20% 分位（2.24x / 25.42 元）以下，或等三季报把价格底部确认出来。<br><br>
+  <b>4. 什么情况下你会坚决卖出？</b><br>
+  ——① 维生素 E 跌破 40 元/kg 且蛋氨酸跌破 21.5 元/kg（两个核心品种同时确认底部区域）；② 单季毛利率跌破 35%（成本优势或定价权被侵蚀）；③ 扣非归母连续两季负增长；④ PB 升破 3.14x 而利润未上修（周期顶部特征）；⑤ 深股通持股比例从 6.0% 回落到 4.3% 以下——意味着连最逆势的外资都开始撤退。
 </div>
+
+<p style="font-size:12px;color:#999;margin-top:10px"><b>本 tab 数据缺失说明：</b>① 近一年董监高逐笔增减持的完整清单、控股股东股权质押比例 <span class="nd">待补充</span>；② 交易所问询函与监管处罚记录的逐项核查 <span class="nd">待补充</span>（本报告仅基于已披露公告作定性判断）；③ 2026 半年报未披露前五大客户合计占比（该项通常在年报披露），本次亦未取得 2025 年报口径 <span class="nd">待补充</span>；④ 2026-06-23 大宗交易的成交金额与折溢价率 <span class="nd">待补充</span>；⑤ 员工人数与人均指标未取数。以上缺失项均未参与评分。</p>
 
 </div></div>
 
 <div class="footer">
-    免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
-    数据来源：新和成2025年年报、2026Q1季报、券商研报（国信/东吴/国泰海通/长城）、中财网/搜狐证券/英为财情/盈慢网
+  免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+  数据来源：新和成 2026 年半年报（2026-08-20 披露）与 FY2025 年报、东方财富 F10 财务/估值接口、爱股网 F10、腾讯行情（2026-10-13 收盘）、Mysteel 我的钢铁网维生素与氨基酸价格、隆众资讯、百川盈孚、中银证券《基础化工行业周报》2026-10-12、券商研报（天风/中银/长城/山西证券等，2026-08~10）<br>
+  缺失数据已标注 <span class="nd">待补充</span> 并在各 tab 末尾说明，未参与评分
 </div>
 
 </div>

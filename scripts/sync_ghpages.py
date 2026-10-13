@@ -307,35 +307,53 @@ def normalize_type(dirname):
 
 
 TYPE_RULES = [
-    ("周期性", ("周期股评分体系", "纯周期", "采用周期股评分体系")),
-    ("混合周期", ("混合周期",)),
-    ("价值型", ("价值型",)),
-    ("防御性", ("防御型", "防御性")),
-    ("成长性", ("成长性", "成长型", "非周期股评分体系")),
+    # 顺序即优先级：越具体的类型越先匹配
+    ("混合周期", ("混合周期", "混合型")),
+    ("周期性", ("纯周期", "周期性", "周期型")),
+    ("防御性", ("防御型", "防御性", "价值型", "价值/成熟")),
+    ("成长性", ("成长性", "成长型", "非周期")),
+    ("特殊行业", ("特殊行业",)),
 ]
+
+# 规范口径：周期性 / 混合周期 / 成长性 / 防御性 / 价值型 / 特殊行业
+CANONICAL_TYPES = ("周期性", "混合周期", "成长性", "防御性", "价值型", "特殊行业")
 
 
 def guess_type_from_html(html, market):
-    """从报告正文推断 L5 分类（docs 单层结构下已无分类目录可读）。
+    """从报告正文推断 L5 分类，并归一到固定口径（docs 单层结构下已无分类目录可读）。
 
-    判定顺序：先看报告里自述的行业类型，再退化为评分体系关键词，最后按市场兜底。
+    归一后的口径与历史 scores.json 保持一致（旧实现取目录名，得到的就是这几类），
+    避免同一分类出现「纯周期股」「混合周期股（半导体）」等十几种写法。
     """
-    # 1) 报告自述的行业类型句最可靠
-    m = re.search(r"行业类型[：:]\s*<strong>([^<]{2,12})</strong>", html)
+    seg = ""
+    m = re.search(r"行业类型[：:]\s*(?:<strong>)?([^<\n]{2,40})", html)
     if m:
-        return m.group(1).strip()
-    m = re.search(r"行业类型[：:]\s*([^<\n]{2,12})", html)
-    if m:
-        seg = m.group(1).strip()
-        for label, kws in TYPE_RULES:
-            if any(k in seg for k in kws):
-                return label
-    # 2) 退化为评分体系关键词
-    head = html[:20000]
+        seg = m.group(1)
+    else:
+        # 退化：在报告前部找分类关键词
+        seg = html[:20000]
+    for label, kws in TYPE_RULES:
+        if any(k in seg for k in kws):
+            return label
+    # 再退一步：全文找
+    head = html[:40000]
     for label, kws in TYPE_RULES:
         if any(k in head for k in kws):
             return label
-    return "成长性" if market == "A股" else "成长性"
+    return "成长性"
+
+
+def normalize_type_value(v):
+    """把历史遗留的杂乱取值归一（用于一次性迁移 scores.json）。"""
+    if not v:
+        return ""
+    v = v.strip()
+    if v in CANONICAL_TYPES:
+        return v
+    for label, kws in TYPE_RULES:
+        if any(k in v for k in kws):
+            return label
+    return v
 
 
 def parse_plan(html, filename):
