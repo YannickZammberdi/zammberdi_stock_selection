@@ -51,6 +51,8 @@
   .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
   .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
   .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .score-note { font-size: 13px; color: #666; background: #fafafa; border: 1px dashed #ccc; padding: 8px 12px; margin: 10px 0; }
+  .history-table td:first-child { white-space: nowrap; }
   .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
   ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
   li { margin-bottom: 4px; }
@@ -61,7 +63,7 @@
 
 <h1>ResMed（RMD）财务分析报告</h1>
 <p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
-<p class="meta">分析日期：2026-07-14 | 数据来源：FY2025 10-K年报（截至2025.6.30）+ FY2026 Q3 10-Q（截至2026.3.31）+ 券商一致预期 | 货币：AUD（ASX CDI报价）</p>
+<p class="meta">分析日期：2026-10-14 | 数据来源：ResMed FY2026 Q4/全年业绩公告（2026-08-06）+ FY2026 Form 10-K（2026-08-13）+ Q4 FY26 业绩电话会 + stockanalysis.com（S&amp;P Global，截至 2026-10-14） | 货币：USD（NYSE:RMD 主上市；ASX:RMD 为 CDI，10 CDI = 1 股 NYSE） | 财年：7月1日–6月30日，FY2026 = 截至 2026-06-30</p>
 
 <div class="tab-bar">
   <button class="tab-btn active" data-tab="summary">总结论</button>
@@ -79,264 +81,288 @@
 <table>
   <tr><th style="width:30%">项目</th><th>内容</th></tr>
   <tr><td>公司名称</td><td>ResMed Inc.</td></tr>
-  <tr><td>股票代码</td><td>RMD（NYSE）/ RMD（ASX，10 CDIs = 1 NYSE share）</td></tr>
-  <tr><td>所属行业</td><td>医疗设备——睡眠呼吸暂停（CPAP/APAP 设备、面罩、云软件）</td></tr>
-  <tr><td>行业地位</td><td>全球睡眠呼吸暂停治疗龙头（~40%份额），Connected Health SaaS领先者</td></tr>
-  <tr><td>FY2025 营收</td><td><strong>$5,146M USD（+10%）</strong></td></tr>
-  <tr><td>FY2025 归母净利润</td><td><strong>$1,401M USD（+37%）</strong></td></tr>
-  <tr><td>FY2025 经营现金流</td><td><strong>$1,752M USD</strong></td></tr>
-  <tr><td>总资产</td><td>$8,174M USD</td></tr>
-  <tr><td>归母净资产</td><td>$5,968M USD</td></tr>
-  <tr><td>ROE</td><td>23.5%</td></tr>
+  <tr><td>股票代码</td><td>RMD（NYSE，USD 主上市）／ RMD（ASX，CDI，10 CDI = 1 股 NYSE）</td></tr>
+  <tr><td>所属行业</td><td>医疗设备——睡眠呼吸暂停（OSA）诊疗：CPAP/APAP 设备、面罩配件、云端管理软件</td></tr>
+  <tr><td>行业地位</td><td>全球 OSA 治疗龙头，份额约 40%；CR2 高度集中（ResMed + Philips Respironics）</td></tr>
+  <tr><td>FY2026 营收</td><td><strong>US$5,653.4M（+10%，不变汇率 +8%）</strong></td></tr>
+  <tr><td>FY2026 归母净利润</td><td><strong>US$1,523.3M（GAAP，+9%）；non-GAAP US$1,631.8M（+16%）</strong></td></tr>
+  <tr><td>FY2026 经营现金流</td><td><strong>US$1,806M（+3%）</strong></td></tr>
+  <tr><td>总资产（2026-06-30）</td><td>US$8,966M</td></tr>
+  <tr><td>归母净资产（2026-06-30）</td><td>US$6,585M（BVPS US$45.66）</td></tr>
+  <tr><td>ROE</td><td><strong>24.3%</strong>（平均权益口径；期末权益口径为 23.1%）</td></tr>
 </table>
 
-<h2>非周期股评分体系（百分制·10维度）</h2>
-<p style="font-size:13px;color:#666;margin-bottom:8px">针对非周期/成长型公司的10维度评分体系（财务健康度、关键指标、估值、杜邦分析、行业分类），对各维度打分求和</p>
+<div class="summary-box">
+  <strong>行业类型：非周期股（成长型 / 防御型兼具）→ 采用【非周期股评分体系】。</strong><br>
+  判断依据：① 慢病（睡眠呼吸暂停）诊疗需求由人口老龄化驱动，与宏观经济周期弱相关，需求刚性；② 产品为医疗器械，受医保/监管定价但销量不由价格弹性决定；③ 与 <code>industry-classification.md</code> 中"医疗器械"归入非周期股的分类一致。<br>
+  提示：ASX:RMD 为 CDI（存托凭证），10 CDI = 1 股 NYSE，报告财务数据一律为 USD 报表口径，估值同时给出两个市场的报价。
+</div>
+
+<p class="score-note"><strong>评分口径说明：</strong><span>仍用非周期股体系，FY2026年报落地，GAAP净利增速降至9%</span></p>
+
+<h2>综合评分（百分制）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px">采用<strong>非周期股评分体系</strong>（10 维度，合计 100 分）。上一版（2026-07-14）100/100，数据基准为 FY2025 年报 + FY2026 Q3；本次 97 分。</p>
 <table>
   <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
-  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">23.5% ≥ 15%</td></tr>
-  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">高利润型（净利率27%+中高周转+低杠杆）</td></tr>
-  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">1.25 ≥ 1.0</td></tr>
-  <tr><td>营收增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+10% ≥ 10%</td></tr>
-  <tr><td>利润增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+37%（含legal settlement，Non-GAAP +19%）≥ 15%</td></tr>
-  <tr><td>负债率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">27% < 40%</td></tr>
-  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">现金$1,209M >> 短期有息负债$163M</td></tr>
-  <tr><td>毛利率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">59.4%（同比+270bps，持续提升）</td></tr>
-  <tr><td>估值 PE（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">~19x PE（基于FY2025 GAAP EPS），合理偏低</td></tr>
-  <tr><td>自由现金流（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">FCF ~$1.66B，持续为正且充裕</td></tr>
-  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">100/100</td><td style="text-align:left">品质优秀（100/100分）</td></tr>
+  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">ROE 24.3%，远高于 15% 门槛</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">高利润型——净利率 26.9% 主导，周转 0.66，权益乘数仅 1.37，无杠杆成分</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">CFO/净利 = 1,806/1,523.3 = 1.19 ≥ 1.0</td></tr>
+  <tr><td>营收增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+10%（不变汇率 +8%），达到 ≥10% 档</td></tr>
+  <tr><td>利润增长（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">GAAP 净利 +9%，且 Q4 GAAP EPS 仅 +2%，落在 5%~15% 档（non-GAAP 净利 +16% / non-GAAP EPS +17%）</td></tr>
+  <tr><td>负债率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">2,381/8,966 = 26.6% &lt; 40%</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">现金 1,469 覆盖短期有息债务 259.9 + 一年内到期租赁 29.1，充裕</td></tr>
+  <tr><td>毛利率水平与趋势（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">GAAP 毛利率 61.1% ≥ 30%，且同比 +170bps 改善（non-GAAP 62.4%，+240bps）</td></tr>
+  <tr><td>估值 PE vs 合理区间（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">ROE 24.3% 对应合理 PE 20-30x；实际 22.5x（TTM）／19.4x（FY27E），落在区间内</td></tr>
+  <tr><td>自由现金流 FCF（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">FCF US$1,650M 持续为正（约市值的 4.9%）</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">97/100</td><td style="text-align:left">品质优秀（≥80 分）——财务质地顶级，扣分点集中在 GAAP 利润增速放缓这一维度</td></tr>
 </table>
 
-<div class="verdict verdict-ok">品质优秀（100/100分）</div>
+<div class="verdict verdict-ok">品质优秀（97/100分）</div>
+
+<!-- 评分沿革：由sync脚本从 scores.json 注入，生成时保留此注释不动 -->
 <h2 style="margin-top:16px">评分沿革</h2>
 <style>.history-table{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:13px}.history-table th,.history-table td{border:1px solid #ddd;padding:6px 8px;text-align:center}.history-table th{background:#f0f0f0;font-weight:bold}.history-table td.good{color:#27ae60}.history-table td.neutral{color:#e67e22}.history-table td.bad{color:#c0392b}</style><table class="history-table">
   <tr><th>日期</th><th>评分</th><th>评分体系</th><th>变化原因</th></tr>
   <tr><td>2026-07-14</td><td class="good" style="font-weight:bold">100/100</td><td>周期性</td><td style="text-align:left">—</td></tr>
+  <tr><td>2026-10-14</td><td class="good" style="font-weight:bold">97/100</td><td>防御性</td><td style="text-align:left">仍用非周期股体系，FY2026年报落地，GAAP净利增速降至9%</td></tr>
 </table>
 
 <div class="summary-box">
-  <strong>综合诊断：</strong>ResMed 是全球睡眠呼吸暂停（OSA）治疗的绝对龙头，拥有从 CPAP/APAP 设备、面罩配件到云端管理软件的完整产品矩阵。FY2025 营收 $5.15B（+10%），毛利率 59.4% 持续改善，营业利润率 32.7%，ROE 23.5%。公司受益于老龄化+肥胖率上升+Philips Respironics 召回后市场格局改善的三重结构性驱动力，增长稳健且利润率持续提升。FY2026 前三季度延续 11% 收入增长和毛利率扩张趋势。<br><br>
-  <strong>核心优势：</strong>① 全球 OSA 治疗龙头（~40% 份额），品牌+临床数据+医生偏好构筑极深护城河；② 毛利率 59.4%→FY2026 61%+ 持续提升，规模效应显著；③ 零杠杆运营（净现金 $550M+），资产负债表极强；④ 面罩配件每 3-6 月替换一次，形成自然经常性收入（占收入 ~36%），加上 SaaS 软件（~12%）。<br><br>
-  <strong>核心风险：</strong>① GLP-1 减肥药可能减少 OSA 患者数量（结构性威胁）；② 营收增速 10% 左右，不是高成长股，但 PE ~19x 也已经反映了合理预期；③ 商誉+无形资产 $3.5B（占总资产 43%），收购整合风险；④ ASX 股价从 $45.25 高点跌至 $27.75（-39%），技术面偏弱。
+  <strong>综合诊断：</strong>ResMed 是全球睡眠呼吸暂停（OSA）治疗的绝对龙头，商业模式为"高毛利耗材（面罩）+ 设备 + 云软件"的耗材复购模式。FY2026 是一份<strong>干净但带有一次性伤疤</strong>的年报：营收 US$5,653.4M（+10%，不变汇率 +8%）、Q4 单季 US$1,463.6M 创历史纪录、GAAP 毛利率 61.1%（+170bps）创历史新高；但同时 Q4 因 Astral 呼吸机全球现场安全通知一次性计提 US$42M，把 Q4 GAAP 毛利率压到 58.8%、GAAP EPS 增速压到 +2%（non-GAAP EPS 仍 +16%）。财务结构仍是教科书级：ROE 24.3%、CFO/净利 1.19、净现金 US$643.3M、负债率 26.6%。真正的变量不在 FY2026 而在 FY2027——Astral 停售（约 130bps / US$7,500 万逆风）+ MatrixCare 剥离（US$4.90 亿对价、已于 2026-09 交割）把报表口径营收压到 US$57.5~58.5 亿，即仅 +2~3%；但剔除这两项后的核心 non-GAAP EPS 增长仍有 +12%~14%。<br><br>
+  <strong>核心优势：</strong>① ROE 24.3%，其中去杠杆 ROA 17.8%、权益乘数仅 1.37——回报完全由生意质量驱动，几乎不含杠杆成分；② 毛利率 61.1%（non-GAAP 62.4%）连续改善，产品定价权与成本控制双验证；③ 净现金从 US$357.6M 扩至 US$643.3M，负债率 26.6%，资产负债表无瑕疵；④ 资本回报大幅加码——FY2026 向股东返还超 US$10 亿（+70%），FY2027 承诺超 US$18.5 亿、季度股息上调 10% 至 US$0.66。<br><br>
+  <strong>核心风险：</strong>① Astral 质量事件——全球现场安全通知导致停售，Q4 已计提 US$42M，FY27 营收逆风约 130bps，且存在升级为召回或监管强制整改的尾部风险；② FY2027 报表口径营收指引仅 +2~3%，"增长失速"的现象会持续压制估值叙事；③ MatrixCare 剥离后营收基数与利润结构同时缩小（FY26 该业务贡献营收约 US$2.20 亿、营业利润约 US$0.28 亿，含收购无形资产摊销约 US$0.28 亿）；④ 美国医保定价政策压制 ASP，以及 GLP-1 与消费电子对患者漏斗/单患者价值量的双向影响。
 </div>
 
 </div></div>
-
 <div class="tab-content" id="tab-l1"><div class="tab-inner">
 
-<h2>二、核心财务数据（FY2025年度，截至2025.6.30）</h2>
-<p style="font-size:12px;color:#999">注：ResMed 为美国上市公司（NYSE），报表货币为 USD。ASX CDI 转换：10 CDIs = 1 NYSE Share</p>
+<h2>二、核心财务数据（FY2026 全年，截至 2026-06-30）</h2>
+<p style="font-size:12px;color:#999">注：ResMed 为美国上市公司（NYSE:RMD 主上市），报表货币为 USD，财年为 7/1–6/30。ASX 以 CDI 形式交易（10 CDI = 1 股 NYSE），下文估值同时给出两市场报价。</p>
 
 <h3>2.1 利润表</h3>
 <table>
-  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
-  <tr><td>营业收入</td><td>$5,146M</td><td>$4,685M</td><td>+9.8%</td><td class="good">✅ 稳健增长</td></tr>
-  <tr><td>毛利润</td><td><strong>$3,055M</strong></td><td>$2,655M</td><td>+15.1%</td><td class="good">✅ 毛利率 59.4%</td></tr>
-  <tr><td>营业利润</td><td><strong>$1,685M</strong></td><td>$1,320M</td><td>+27.7%</td><td class="good">✅ 运营杠杆显著</td></tr>
-  <tr><td>净利润（GAAP）</td><td><strong>$1,401M</strong></td><td>$1,021M</td><td><strong>+37.2%</strong></td><td class="good">✅ 高增长</td></tr>
-  <tr><td>Non-GAAP 净利润</td><td><strong>$1,407M</strong></td><td>$1,139M</td><td><strong>+23.5%</strong></td><td class="good">✅ 核心利润增长强劲</td></tr>
-  <tr><td>毛利率</td><td><strong>59.4%</strong></td><td>56.7%</td><td>+270bps</td><td class="good">✅ 大幅改善</td></tr>
-  <tr><td>营业利润率（GAAP）</td><td><strong>32.7%</strong></td><td>28.2%</td><td>+450bps</td><td class="good">✅ 持续提升</td></tr>
-  <tr><td>净利率（GAAP）</td><td><strong>27.2%</strong></td><td>21.8%</td><td>+540bps</td><td class="good">✅ 显著提升</td></tr>
-  <tr><td>SG&A 费用率</td><td><strong>~20%</strong></td><td>~20%</td><td>持平</td><td class="neutral">规模效应被投资抵消</td></tr>
-  <tr><td>R&D 费用率</td><td><strong>~6.5%</strong></td><td>~6.5%</td><td>持平</td><td class="good">✅ 投入稳定</td></tr>
-  <tr><td>GAAP 摊薄 EPS</td><td><strong>$9.51</strong></td><td>$6.92</td><td>+37.4%</td><td class="good">✅</td></tr>
-  <tr><td>Non-GAAP 摊薄 EPS</td><td><strong>$9.55</strong></td><td>$7.72</td><td>+23.7%</td><td class="good">✅</td></tr>
-  <tr><td>FY2026 Q1 营收</td><td>$1,336M</td><td>$1,225M</td><td>+9.1%</td><td class="good">✅ 持续增长</td></tr>
-  <tr><td>FY2026 Q2 营收</td><td>$1,423M</td><td>$1,282M</td><td>+11.0%</td><td class="good">✅ 加速</td></tr>
-  <tr><td>FY2026 Q3 营收</td><td>$1,431M</td><td>$1,292M</td><td>+10.8%</td><td class="good">✅ 稳健</td></tr>
-  <tr><td>FY2026 前三季度净利</td><td><strong>$1,140M</strong></td><td>$1,021M</td><td>+11.6%</td><td class="good">✅ 持续</td></tr>
+  <tr><th>指标</th><th>FY2026</th><th>FY2025</th><th>同比</th><th>评价</th></tr>
+  <tr><td>净营收（US$M）</td><td><strong>5,653.4</strong></td><td>5,146.3</td><td><strong>+10%</strong>（不变汇率 +8%）</td><td class="good">✅ 稳健增长</td></tr>
+  <tr><td>GAAP 毛利率</td><td><strong>61.1%</strong></td><td>59.4%</td><td>+170bps</td><td class="good">✅ 历史新高</td></tr>
+  <tr><td>Non-GAAP 毛利率</td><td><strong>62.4%</strong></td><td>数据待补充</td><td>+240bps</td><td class="good">✅ 核心口径更强</td></tr>
+  <tr><td>研发费用（US$M）</td><td>378</td><td>331</td><td>+14%</td><td class="good">✅ 投入加码（占营收 6.7%）</td></tr>
+  <tr><td>销售及管理费用 SG&amp;A（US$M）</td><td>1,120</td><td>993</td><td>+13%</td><td class="neutral">⚠ 快于营收增速（占营收 19.8%）</td></tr>
+  <tr><td>营业利润（US$M）</td><td><strong>1,886.7</strong></td><td>1,685.4</td><td>+12%</td><td class="good">✅</td></tr>
+  <tr><td>GAAP 营业利润率</td><td>33.4%</td><td>32.7%（推算）</td><td>+70bps</td><td class="good">✅ 扩张</td></tr>
+  <tr><td>Non-GAAP 营业利润率</td><td>36.1%</td><td>34.3%（推算）</td><td>+180bps</td><td class="good">✅ 扩张更快</td></tr>
+  <tr><td>净利润 GAAP（US$M）</td><td><strong>1,523.3</strong></td><td>1,400.7</td><td>+9%</td><td class="good">✅ 但增速已放缓</td></tr>
+  <tr><td>净利润 non-GAAP（US$M）</td><td>1,631.8</td><td>数据待补充</td><td>+16%</td><td class="good">✅ 核心利润增长更快</td></tr>
+  <tr><td>净利率</td><td><strong>26.9%</strong></td><td>27.2%（推算）</td><td>-30bps</td><td class="neutral">⚠ 仍处高位，小幅回落</td></tr>
+  <tr><td>GAAP 摊薄 EPS</td><td><strong>US$10.43</strong></td><td>US$9.51</td><td>+10%</td><td class="good">✅ 快于净利增速（回购缩股）</td></tr>
+  <tr><td>Non-GAAP 摊薄 EPS</td><td>US$11.17</td><td>数据待补充</td><td>+17%</td><td class="good">✅</td></tr>
+</table>
+
+<h3>Q4 FY2026 单季（截至 2026-06-30）</h3>
+<table>
+  <tr><th>指标</th><th>Q4 FY2026</th><th>同比 / 说明</th></tr>
+  <tr><td>净营收</td><td><strong>US$1,463.6M</strong></td><td>+9%（不变汇率 +8%），<span class="good">单季历史纪录</span></td></tr>
+  <tr><td>GAAP 毛利率</td><td>58.8%</td><td class="bad">受 Astral 安全通知费用 US$42M 拖累</td></tr>
+  <tr><td>Non-GAAP 毛利率</td><td>62.3%</td><td class="good">剔除 Astral 费用后与全年一致</td></tr>
+  <tr><td>GAAP 营业利润</td><td>US$449M</td><td>数据待补充</td></tr>
+  <tr><td>Non-GAAP 营业利润</td><td>US$515M</td><td>Non-GAAP 营业利润率 35.2%</td></tr>
+  <tr><td>净利润</td><td>US$383.4M</td><td>数据待补充</td></tr>
+  <tr><td>GAAP 摊薄 EPS</td><td>US$2.64</td><td class="neutral">仅 +2%（Astral 费用集中体现）</td></tr>
+  <tr><td>Non-GAAP 摊薄 EPS</td><td>US$2.95</td><td class="good">+16%</td></tr>
+  <tr><td>Astral 全球现场安全通知费用</td><td><strong>US$42M</strong></td><td class="bad">GAAP 与 non-GAAP 毛利率差异的主因</td></tr>
+  <tr><td>利息净收入</td><td>US$21M</td><td>含 2026-02 执行的 10 年期新元/美元净投资套保，预计未来每季稳定贡献约 US$9M</td></tr>
+</table>
+
+<h3>Q4 分区域（不变汇率）</h3>
+<table>
+  <tr><th>区域 / 业务</th><th>Q4 FY2026 增速</th><th>评价</th></tr>
+  <tr><td>美洲 睡眠与呼吸健康</td><td><strong>+8%</strong></td><td class="good">✅ 基本盘稳定</td></tr>
+  <tr><td>除美洲外 睡眠与呼吸健康</td><td><strong>+10%</strong></td><td class="good">✅ 快于美洲</td></tr>
+  <tr><td>Residential Care Software</td><td><strong>+2%</strong></td><td class="neutral">⚠ 明显偏弱（MatrixCare 剥离前的最后一段）</td></tr>
 </table>
 
 <div class="summary-box">
-  <strong>利润表解读：</strong>ResMed 的利润表呈现出清晰的"运营杠杆"模型——营收增长 10% 带来营业利润增长 28%，利润率持续扩张。毛利率从 56.7%→59.4%（+270bps）主要来自制造成本优化和组件成本下降，FY2026 进一步升至 61%+。Non-GAAP 净利润增长 23.5% 反映了健康的经营趋势。FY2026 前三季度延续 11% 的营收增长和利润率提升趋势，11月 F2026 Q4（截至 6.30.2026）将于 8月6日公布。
+  <strong>利润表解读：</strong>增长与盈利质量在 FY2026 同时得到验证——营收 +10%（不变汇率 +8%），Q4 单季 US$1,463.6M 创历史纪录，GAAP 毛利率 61.1%（+170bps）与 non-GAAP 62.4%（+240bps）双双创历史新高，营业利润 +12%，non-GAAP 营业利润率 36.1%。利润率扩张来自<strong>毛利率端而非费用端</strong>：研发 +14%、SG&amp;A +13% 都快于营收的 +10%，但毛利率多赚的 170bps 仍能覆盖费用率的抬升。三点需要注意：① <strong>净利率 26.9% 小幅回落 30bps</strong>，是利息/非经常项及费用率抬升共同作用的结果，不影响绝对盈利水平；② <strong>Astral 安全通知费用 US$42M 是 Q4 的口径分水岭</strong>——GAAP 毛利率 58.8% vs non-GAAP 62.3%，GAAP EPS 仅 +2% vs non-GAAP EPS +16%，两个口径在 Q4 差异最大，评价经营趋势应以 non-GAAP 为主、GAAP 为底线；③ <strong>CFO 增速（+3%）慢于净利增速（+9%）</strong>，说明本年利润的现金转化边际走弱，具体归因未在本次数据中拆分，需在 10-K 现金流量表附注核实。
 </div>
 
 <h3>2.2 资产负债表</h3>
 <table>
-  <tr><th>科目</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
-  <tr><td>现金及现金等价物</td><td><strong>$1,209M</strong></td><td>$238M</td><td class="good">✅ 大幅增加</td></tr>
-  <tr><td>应收账款</td><td><strong>$939M</strong></td><td>$837M</td><td class="good">✅ 占营收 18%，合理</td></tr>
-  <tr><td>存货</td><td><strong>$928M</strong></td><td>$822M</td><td class="neutral">占营收 18%，适中</td></tr>
-  <tr><td>流动资产合计</td><td><strong>$3,506M</strong></td><td>$2,358M</td><td class="good">✅ 流动性强</td></tr>
-  <tr><td>商誉+无形资产</td><td><strong>$3,512M</strong></td><td>$3,328M</td><td class="neutral">占总资产 43%，偏高</td></tr>
-  <tr><td>总资产</td><td><strong>$8,174M</strong></td><td>$6,872M</td><td class="good">✅</td></tr>
-  <tr><td>短期借款+一年内到期LTD</td><td><strong>$163M</strong></td><td>$393M</td><td class="good">✅ 大幅下降</td></tr>
-  <tr><td>长期借款</td><td><strong>$658M</strong></td><td>$697M</td><td class="good">✅ 逐步偿还</td></tr>
-  <tr><td>总负债</td><td><strong>$2,207M</strong></td><td>$2,008M</td><td class="good">✅ 低负债</td></tr>
-  <tr><td>资产负债率</td><td><strong>27.0%</strong></td><td>29.2%</td><td class="good">✅ 持续改善</td></tr>
-  <tr><td>归母净资产</td><td><strong>$5,968M</strong></td><td>$4,864M</td><td class="good">✅ 同比+22.7%</td></tr>
-  <tr><td>净有息负债</td><td><strong>-$388M（净现金）</strong></td><td>$853M（净负债）</td><td class="good">✅ 从净负债转为净现金</td></tr>
+  <tr><th>科目</th><th>2026-06-30</th><th>2025-06-30</th><th>评价</th></tr>
+  <tr><td>现金及现金等价物（US$M）</td><td><strong>1,469</strong></td><td>1,209</td><td class="good">✅ +21.5%</td></tr>
+  <tr><td>应收款项合计（US$M）</td><td>1,085</td><td>990.7</td><td class="good">✅ 随营收同向增长</td></tr>
+  <tr><td>存货（US$M）</td><td>972.9</td><td>976.0</td><td class="good">✅ 基本持平，未见积压</td></tr>
+  <tr><td>商誉（US$M）</td><td>2,910</td><td>3,047</td><td class="neutral">⚠ 下降，MatrixCare 剥离已于 2026-09 完成</td></tr>
+  <tr><td>其他无形资产（US$M）</td><td>452.7</td><td>464.9</td><td class="neutral">⚠ 占总资产 5.0%</td></tr>
+  <tr><td>总资产（US$M）</td><td><strong>8,966</strong></td><td>8,174</td><td class="good">✅</td></tr>
+  <tr><td>一年内到期的长期债务（US$M）</td><td>259.9</td><td>数据待补充</td><td class="good">✅ 现金 1,469 完全覆盖</td></tr>
+  <tr><td>一年内到期的租赁负债（US$M）</td><td>29.1</td><td>数据待补充</td><td class="good">✅</td></tr>
+  <tr><td>应付账款（US$M）</td><td>308.9</td><td>数据待补充</td><td class="neutral">—</td></tr>
+  <tr><td>应计费用（US$M）</td><td>438.6</td><td>数据待补充</td><td class="neutral">—</td></tr>
+  <tr><td>流动负债合计（US$M）</td><td>1,395</td><td>数据待补充</td><td class="good">✅</td></tr>
+  <tr><td>长期债务（US$M）</td><td>399.4</td><td>数据待补充</td><td class="good">✅</td></tr>
+  <tr><td>长期租赁负债（US$M）</td><td>137.4</td><td>数据待补充</td><td class="good">✅</td></tr>
+  <tr><td>总负债（US$M）</td><td><strong>2,381</strong></td><td>2,207</td><td class="good">✅</td></tr>
+  <tr><td>资产负债率</td><td><strong>26.6%</strong></td><td>27.0%</td><td class="good">✅ 远低于 40%</td></tr>
+  <tr><td>股东权益（US$M）</td><td><strong>6,585</strong></td><td>5,968</td><td class="good">✅ +10.3%</td></tr>
+  <tr><td>其中：库存股（US$M）</td><td>-2,779</td><td>数据待补充</td><td class="neutral">回购累计形成的负项</td></tr>
+  <tr><td>总有息债务（US$M）</td><td>825.9</td><td>数据待补充</td><td class="good">✅</td></tr>
+  <tr><td><strong>净现金</strong></td><td><strong>+643.3</strong></td><td>+357.6</td><td class="good">✅ 净现金扩大 80%</td></tr>
+  <tr><td>每股净资产 BVPS</td><td><strong>US$45.66</strong></td><td>数据待补充</td><td class="good">✅（期末股数 144.25M）</td></tr>
 </table>
 
 <div class="highlight-box">
-  <strong>资产负债表解读：</strong>FY2025 资产负债表发生质变——现金从 $238M 激增至 $1,209M（主要是经营现金流强劲驱动），同期债务从 $1,090M 降至 $821M，公司从净负债 $853M 转为净现金 $388M。流动比率 3.44x，资产负债表在所有指标上都达到了"教科书级"水平。唯一需要关注的是商誉+无形资产 $3.5B（占总资产 43%），来自历次收购（Brightree、MatrixCare 等），但考虑到这些 SaaS 业务贡献 ~$660M 年收入和稳定的经常性现金流，减值风险不高。
+  <strong>资产负债表解读：</strong>本表是全报告最没有争议的一节。现金从 US$1,209M 增至 US$1,469M（+21.5%），净现金从 US$357.6M 扩至 US$643.3M，资产负债率 26.6%——在一张账上还有 US$3,362.7M 商誉与其他无形资产的制造业公司里，这个负债水平属于极保守配置。存货 972.9 对 976.0 基本持平，说明 Astral 停售（发生在 FY26 第四季度）尚未在期末存货上留下明显积压痕迹；但 Astral 相关的存货与渠道退换货处理仍需在 FY2027 Q1（2026-10-29）验证。商誉从 US$3,047M 降至 US$2,910M，配合 MatrixCare 已于 2026 年 9 月完成交割，资产端已开始"瘦身"。股东权益 US$6,585M 中含 US$2,779M 库存股，说明历史回购规模可观——这一点在 ROE 解读时必须记住：净利与权益的口径均已扣除回购，是"真实"的股东回报基础。
 </div>
 
 <h3>2.3 现金流量表</h3>
 <table>
-  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
-  <tr><td>经营现金流（CFO）</td><td><strong>$1,752M</strong></td><td>$1,401M</td><td class="good">✅ 强劲 +25%</td></tr>
-  <tr><td>投资现金流（CFI）</td><td><strong>-$200M（估）</strong></td><td>-$270M</td><td class="good">✅ 资本开支温和</td></tr>
-  <tr><td>筹资现金流（CFF）</td><td><strong>-$926M</strong></td><td>-$1,690M</td><td class="good">✅ 持续回购+还债</td></tr>
-  <tr><td>CFO/净利润</td><td><strong>1.25</strong></td><td>1.37</td><td class="good">✅ 利润含金量极高</td></tr>
-  <tr><td>资本开支（CapEx）</td><td><strong>~$90M</strong></td><td>~$99M</td><td class="good">✅ 仅占营收 1.7%</td></tr>
-  <tr><td>自由现金流（FCF）</td><td><strong>~$1,662M</strong></td><td>~$1,302M</td><td class="good">✅ 充裕</td></tr>
-  <tr><td>FCF/营收</td><td><strong>32.3%</strong></td><td>27.8%</td><td class="good">✅ 极高利润率</td></tr>
-  <tr><td>股票回购</td><td><strong>$300M</strong></td><td>$590M</td><td class="good">✅ 持续回馈股东</td></tr>
-  <tr><td>分红</td><td><strong>$234M</strong></td><td>$220M</td><td class="good">✅ 持续增长</td></tr>
+  <tr><th>指标</th><th>FY2026</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>经营活动现金流 CFO（US$M）</td><td><strong>1,806</strong></td><td>1,752</td><td class="neutral">⚠ +3%，增速慢于净利 +9%</td></tr>
+  <tr><td>自由现金流 FCF（US$M）</td><td><strong>1,650</strong></td><td>1,662</td><td class="neutral">⚠ -1%，基本持平</td></tr>
+  <tr><td>CFO / 净利润</td><td><strong>1.19</strong></td><td>1.25（推算）</td><td class="good">✅ 仍 ≥ 1.0</td></tr>
+  <tr><td>折旧与摊销（US$M）</td><td>201.3</td><td>数据待补充</td><td class="neutral">—</td></tr>
+  <tr><td>使用权资产摊销（US$M）</td><td>42.8</td><td>数据待补充</td><td class="neutral">—</td></tr>
+  <tr><td>股份支付（US$M）</td><td>104.3</td><td>数据待补充</td><td class="neutral">非现金项，占 GAAP 净利 6.8%</td></tr>
+  <tr><td>投资活动现金流 CFI</td><td>数据待补充</td><td>数据待补充</td><td class="neutral">本次未取得</td></tr>
+  <tr><td>筹资活动现金流 CFF</td><td>数据待补充</td><td>数据待补充</td><td class="neutral">本次未取得</td></tr>
+  <tr><td>隐含资本开支及无形资产购置（US$M）</td><td>≈156</td><td>≈90（推算）</td><td class="neutral">由 CFO − FCF 倒算，非披露原值</td></tr>
+  <tr><td>FCF / 营收</td><td>29.2%</td><td>32.3%（推算）</td><td class="neutral">⚠ 回落 3.1pct</td></tr>
+  <tr><td>FCF / 总市值</td><td>4.9%</td><td>数据待补充</td><td class="neutral">绝对水平一般</td></tr>
+  <tr><td>向股东返还总额（US$M）</td><td><strong>&gt;1,000</strong></td><td>≈588（由 +70% 倒算）</td><td class="good">✅ +70%</td></tr>
+  <tr><td>FY2027 返还承诺（US$M）</td><td><strong>&gt;1,850</strong></td><td>—</td><td class="good">✅ 接近翻倍</td></tr>
+  <tr><td>季度股息（US$/股）</td><td>0.66</td><td>0.60（推算）</td><td class="good">✅ +10%，年化 US$2.64</td></tr>
 </table>
 
 <div class="summary-box">
-  <strong>现金流解读：</strong>ResMed 的现金流模型是典型的"现金牛"：CFO $1,752M 远超净利润 $1,401M（CFO/净利 1.25），CapEx 仅占营收 1.7%（轻资产制造+软件业务）。FCF $1,662M 对应当前市值 ~$43B AUD（~$29B USD），FCF 收益率 ~5.7%。公司用富余现金持续回购股票（FY2025 $300M）和增加分红（FY2025 +13%），同时偿还了大部分债务。FY2026 Q3 现金进一步增至 ~$1.5B+。
+  <strong>现金流解读：</strong>CFO US$1,806M 继续创历史新高，CFO/净利 1.19 说明利润<strong>仍然有现金支撑</strong>（≥1.0 是本报告评分中含金量 15/15 的依据），但边际上确实在走弱——CFO 增速 +3% 明显慢于净利 +9%，FCF 甚至小幅下滑 1% 至 US$1,650M，FCF/营收从约 32% 回落至 29%。CFO 与 FCF 的增速差也提示隐含的资本开支/无形资产购置从约 US$90M 抬升至约 US$156M（倒算值）。本次数据未拆分 CFO 增速放缓的具体归因（营运资金变动？Astral 相关支出？），建议在 10-K 现金流量表附注核实后再判断是结构性还是一次性。<br><br>
+  真正亮眼的是资本配置：FY2026 向股东返还超 US$10 亿（+70%），FY2027 承诺超 US$18.5 亿（接近翻倍），并把季度股息上调 10% 至 US$0.66（年化 US$2.64）。公司已经从 FY2025 的"去杠杆优先"阶段，正式切换到"净现金返还股东优先"阶段——这是股东回报的确定性提升信号，也是本报告估值判断的一个重要支撑。
 </div>
 
 </div></div>
-
 <div class="tab-content" id="tab-l2"><div class="tab-inner">
 
 <h2>三、关键指标与排雷（L2框架）</h2>
 
 <h3>3.1 关键盈利指标</h3>
 <table>
-  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
-  <tr><td>ROE</td><td><strong>23.5%</strong></td><td>> 15% 优秀 / > 10% 及格</td><td class="good">✅ 优秀</td></tr>
-  <tr><td>毛利率</td><td><strong>59.4%</strong></td><td>稳定或提升</td><td class="good">✅ +270bps，持续改善</td></tr>
-  <tr><td>净利率</td><td><strong>27.2%</strong></td><td>> 10%</td><td class="good">✅ 极高</td></tr>
-  <tr><td>营收增长率</td><td><strong>+9.8%</strong></td><td>> 10%</td><td class="good">✅ 接近 10%</td></tr>
-  <tr><td>Non-GAAP 利润增长</td><td><strong>+23.5%</strong></td><td>> 15%</td><td class="good">✅ 高质量增长</td></tr>
-  <tr><td>CFO/净利润</td><td><strong>1.25</strong></td><td>> 1</td><td class="good">✅ 现金质量极好</td></tr>
-  <tr><td>资产负债率</td><td><strong>27.0%</strong></td><td>制造业<60%</td><td class="good">✅ 偏低</td></tr>
-  <tr><td>分红率</td><td><strong>~17%（占GAAP净利）</strong></td><td>持续分红</td><td class="good">✅ 14年连续增长</td></tr>
+  <tr><th>指标</th><th>FY2026</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>24.3%</strong></td><td>&gt; 15% 优秀</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>毛利率</td><td><strong>61.1%</strong></td><td>稳定或提升</td><td class="good">✅ +170bps，创历史新高</td></tr>
+  <tr><td>净利率</td><td><strong>26.9%</strong></td><td>&gt; 10%</td><td class="good">✅ 极高</td></tr>
+  <tr><td>营收增长率</td><td><strong>+10%</strong>（不变汇率 +8%）</td><td>&gt; 10% 为佳</td><td class="good">✅ 达标</td></tr>
+  <tr><td>利润增长率</td><td>GAAP 净利 <strong>+9%</strong>／non-GAAP 净利 +16%</td><td>&gt; 15% 为佳</td><td class="neutral">⚠ GAAP 口径降至个位数</td></tr>
+  <tr><td>CFO / 净利润</td><td><strong>1.19</strong></td><td>&gt; 1</td><td class="good">✅ 但较 FY25 的 1.25 回落</td></tr>
+  <tr><td>资产负债率</td><td><strong>26.6%</strong></td><td>&lt; 40% 为佳</td><td class="good">✅ 净现金 US$643M</td></tr>
+  <tr><td>分红率</td><td>年化股息 US$2.64 / GAAP EPS US$10.43 ≈ <strong>25.3%</strong></td><td>持续分红且逐年上调</td><td class="good">✅ 季度股息 +10%；现金分红绝对额 数据待补充</td></tr>
 </table>
 
-<h3>3.2 分业务分析（FY2025）</h3>
+<h3>3.2 分业务分析</h3>
+<p style="font-size:12px;color:#999">FY2026 各分部营收金额与分部毛利率未在本次数据中取得可核实来源，下表仅列已核实口径，缺失项标注"数据待补充"，不参与评分。</p>
 <table>
-  <tr><th>业务板块</th><th>营收占比</th><th>FY2025 增长</th><th>毛利率</th><th>评价</th></tr>
-  <tr><td>CPAP/APAP 设备（Devices）</td><td>~52%</td><td>~+8%</td><td>~55%（估）</td><td class="good">✅ 核心现金流来源</td></tr>
-  <tr><td>面罩+配件（Masks & Accessories）</td><td>~36%</td><td>~+11%</td><td>~65%（估）</td><td class="good">✅ 高毛利消耗品，经常性收入</td></tr>
-  <tr><td>Residential Care Software</td><td>~12%</td><td>~+5%</td><td>~70%（估，SaaS）</td><td class="good">✅ 稳定增长，高毛利</td></tr>
+  <tr><th>业务板块</th><th>营收（US$M）</th><th>占比</th><th>同比（不变汇率）</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td>美洲 睡眠与呼吸健康</td><td>数据待补充</td><td>数据待补充</td><td>Q4 <strong>+8%</strong></td><td>数据待补充</td><td class="good">✅ 基本盘稳定</td></tr>
+  <tr><td>除美洲外 睡眠与呼吸健康</td><td>数据待补充</td><td>数据待补充</td><td>Q4 <strong>+10%</strong></td><td>数据待补充</td><td class="good">✅ 快于美洲</td></tr>
+  <tr><td>Residential Care Software（含 MatrixCare）</td><td>MatrixCare FY26 约 <strong>220</strong></td><td>约 3.9%</td><td>Q4 <strong>+2%</strong></td><td>数据待补充</td><td class="neutral">⚠ 增长最弱，已剥离</td></tr>
+  <tr><td>Noctrix（收购）</td><td>FY27 起并入 Sleep devices 口径</td><td>—</td><td>—</td><td>数据待补充</td><td class="neutral">新并表，摊薄 FY27 EPS 约 $0.20</td></tr>
 </table>
 
 <div class="highlight-box">
-  <strong>业务解读：</strong>ResMed 的业务模型是"设备+耗材+软件"三级火箭：① 设备（52%）—— AirSense 11 系列是市场标杆，每次新设备发布拉动一轮替换周期。FY2025 受益于飞利浦伟康（Philips Respironics）持续停产/召回后的市场份额转移；② 面罩配件（36%）—— 每 3-6 个月替换一次，是天然的经常性收入，毛利率 65%+。患者对特定面罩有品牌偏好，切换成本高；③ 软件（12%）—— Brightree/MatrixCare 是 Residential Care SaaS，稳定的经常性收入，毛利率 70%+。整体看，~48% 的收入具有经常性属性（配件+软件），且设备收入受更新换代支撑，波动性较低。
+  <strong>业务解读：</strong>ResMed 的收入结构本质是"<strong>设备铺装机 + 面罩耗材复购 + 云软件订阅</strong>"的耗材复购模型——面罩需每 3-6 个月更换一次，构成天然的高频经常性收入；设备则由新产品周期与 Philips Respironics 退出后的份额转移驱动。Q4 的区域数据印证了这个结构：除美洲外 +10% 快于美洲 +8%，说明增长引擎已部分转向海外新兴市场（诊断渗透率提升空间更大）。<br><br>
+  FY2027 起业务口径将发生两处结构性变化：① <strong>MatrixCare 出售</strong>——2026-06-30 签署最终协议，对价 US$4.90 亿全现金（买方 Frazier Healthcare Partners），预计 FY27 Q1 完成、已于 2026-09 交割；该业务 FY26 贡献营收约 US$2.20 亿、营业利润约 US$0.28 亿（含收购无形资产摊销约 US$0.28 亿）。注意：US$4.90 亿对价对应的账面营业利润贡献仅 US$0.28 亿（且几乎被无形摊销抵消），这是<strong>结构性瘦身而非高价套现</strong>——换来的是 US$4.9 亿现金去支撑 FY27 超 US$18.5 亿的股东返还。② <strong>Noctrix 收购并表</strong>（并入 Sleep devices 口径），对 FY27 non-GAAP EPS 摊薄约 US$0.20。
 </div>
 
 <h3>3.3 排雷清单</h3>
 <table>
-  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
-  <tr><td class="neutral">🟡 中等</td><td>GLP-1 减肥药潜在威胁</td><td>Novo Nordisk/Wegovy 等 GLP-1 药物可能减少 OSA 患者基数。ResMed 正布局"药物+设备"联合疗法，但长期影响不确定</td></tr>
-  <tr><td class="neutral">🟡 中等</td><td>商誉+无形资产 $3.5B（43% 总资产）</td><td>L1 资产负债表——主要来自 Brightree/MatrixCare 等收购，减值风险低但需关注</td></tr>
-  <tr><td class="neutral">🟡 中等</td><td>营收增速~10%，非高成长</td><td>L2 盈利指标——10% 增长稳健但算不上高成长，若市场风格切换可能面临估值中枢下移</td></tr>
-  <tr><td class="neutral">🟡 中等</td><td>FY2025 GAAP 净利+37%含一次性收益</td><td>$33M 法律和解收益，Non-GAAP 净利增长 23.5% 更反映真实经营趋势</td></tr>
-  <tr><td class="neutral">🟡 中等</td><td>ASX 股价从高点回落 39%</td><td>$45.25 → $27.75，技术面偏弱。可能反映 GLP-1 担忧 + 市场整体风险偏好下降</td></tr>
-  <tr><td class="good">🟢 正面</td><td>净现金状态，零财务风险</td><td>L1 资产负债表——$1.2B 现金 >> $821M 总债务</td></tr>
-  <tr><td class="good">🟢 正面</td><td>FCF 收益率 ~5.7%，价值凸显</td><td>L1 现金流量表——FCF $1.66B vs 市值 $29B USD</td></tr>
-  <tr><td class="good">🟢 正面</td><td>持续回购+分红，股东回报明确</td><td>FY2025 回购 $300M + 分红 $234M，合计 $534M</td></tr>
-  <tr><td class="good">🟢 正面</td><td>Philips 退出后竞争格局优化</td><td>飞利浦伟康因呼吸机召回事件持续停产，ResMed 是主要受益者</td></tr>
+  <tr><th>风险项</th><th>严重程度</th><th>依据</th></tr>
+  <tr><td><strong>Astral 呼吸机质量事件与全球停售</strong></td><td class="bad">🔴 高</td><td>因全球现场安全通知（field safety notification）暂停销售。Q4 一次性计提 US$42M，导致 Q4 GAAP 毛利率降至 58.8%、GAAP EPS 仅 +2%（non-GAAP +16%）；FY27 营收造成约 <strong>130bps / US$7,500 万</strong>逆风。尾部风险：该事件是否升级为召回或监管强制整改，公司未量化</td></tr>
+  <tr><td><strong>FY2027 报表口径营收指引仅 +2~3%</strong></td><td class="neutral">🟡 中</td><td>报表口径指引 US$57.5~58.5 亿，对 FY26 的 US$56.534 亿仅 +2~3%（含约 50bps 汇率逆风）；核心不变汇率口径为 +5%~7%。低增速表象会持续压制估值叙事（2026-08-07 已因此单日跌约 6%）</td></tr>
+  <tr><td><strong>MatrixCare 剥离后营收基数缩小</strong></td><td class="neutral">🟡 中</td><td>剥离业务 FY26 营收约 US$2.20 亿（约占总营收 3.9%）、营业利润约 US$0.28 亿。报表口径增长中约 4pct 被永久性下移；所换回的 US$4.90 亿现金提高了资本回报率，但收入规模不可逆变小</td></tr>
+  <tr><td><strong>美国医保定价 / 报销政策</strong></td><td class="neutral">🟡 中</td><td>产品为受医保定价与监管准入约束的医疗器械，ASP 与可及性直接受政策影响。FY2027 指引未单独量化该风险敞口，公司亦未给出敏感性</td></tr>
+  <tr><td><strong>GLP-1 与消费电子对患者漏斗的影响</strong></td><td class="neutral">🟡 中</td><td>管理层在 Q4 FY26 电话会提到二者正在<strong>推高患者 funnel</strong>（诊断/关注人群扩大，对新患者获取偏利好）；但对单患者价值量与长期 CPAP 依赖的净影响尚未明确，属需持续跟踪的双向变量</td></tr>
+  <tr><td>商誉与其他无形资产占比偏高</td><td class="neutral">🟡 中低</td><td>US$2,910M + US$452.7M = US$3,362.7M，占总资产 8,966 的 <strong>37.5%</strong>。商誉已同比下降（3,047 → 2,910），MatrixCare 交割完成；但 Noctrix 新收购会带来新一轮无形摊销（对应 FY27 EPS 摊薄约 $0.20）</td></tr>
+  <tr><td>CFO 增速（+3%）慢于净利增速（+9%）</td><td class="neutral">🟡 中低</td><td>CFO/净利由 FY25 的 1.25 回落至 1.19，FCF 小幅下滑 1%。本次数据未拆分归因，需在 10-K 现金流量表附注核实</td></tr>
+  <tr><td>净利率与 GAAP 利润增速放缓</td><td class="neutral">🟡 中低</td><td>净利率 26.9%（-30bps）；GAAP 净利 +9%，落在 5%~15% 档（评分扣分项，本版总分 97 的唯一来源）</td></tr>
+  <tr><td class="good">🟢 净现金 US$643.3M、负债率 26.6%</td><td class="good">正面</td><td>总负债 US$2,381M / 总资产 US$8,966M；现金 US$1,469M 完全覆盖短期有息债务 US$259.9M + 一年内到期租赁 US$29.1M</td></tr>
+  <tr><td class="good">🟢 毛利率创新高 61.1%（non-GAAP 62.4%）</td><td class="good">正面</td><td>GAAP +170bps、non-GAAP +240bps，且这是在 Q4 计提 US$42M 一次性费用之后取得的，含金量更高</td></tr>
+  <tr><td class="good">🟢 股东回报大幅加码</td><td class="good">正面</td><td>FY26 返还股东超 US$10 亿（+70%）；FY27 承诺超 US$18.5 亿；季度股息 +10% 至 US$0.66（年化 US$2.64）</td></tr>
+  <tr><td class="good">🟢 行业格局高度集中</td><td class="good">正面</td><td>全球份额约 40%，CR2 高度集中（ResMed + Philips Respironics），同业难以复制耗材复购 + 医生数据习惯的双重锁定</td></tr>
 </table>
 
-<div class="verdict verdict-ok">✅ L2综合判定：财务面优秀，核心风险可控</div>
-
 </div></div>
-
 <div class="tab-content" id="tab-l3"><div class="tab-inner">
 
 <h2>四、估值分析（L3框架）</h2>
-<p style="font-size:12px;color:#999">注：RMD 在 ASX 以 CDI 形式交易（10 CDIs = 1 NYSE share）。以下估值以 ASX CDI 价格 AUD $27.75 为基础，财务数据以 USD 报告</p>
+<p style="font-size:12px;color:#999">注：RMD 在 ASX 以 CDI 形式交易（10 CDI = 1 股 NYSE）。报价口径：ASX CDI 为 2026-10-14 收盘 A$33.58，NYSE 为 2026-10-13 收盘 US$235.04；两者倒算隐含 AUD/USD ≈ 0.700。下表所有"对应 ASX CDI 价格"均由 NYSE 口径价格按此比率换算。</p>
 
-<h3>4.1 当前估值水平</h3>
+<h3>4.1 当前估值</h3>
 <table>
-  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
-  <tr><td>ASX CDI 股价（2026.6）</td><td><strong>$27.75 AUD</strong></td><td>52周范围 $25.50 - $45.25</td></tr>
-  <tr><td>NYSE 等效股价</td><td><strong>~$277.50 AUD / ~$183 USD</strong></td><td>10 CDIs = 1 share</td></tr>
-  <tr><td>总市值（ASX）</td><td><strong>~$43B AUD</strong></td><td>ASX 第24大</td></tr>
-  <tr><td>总市值（NYSE）</td><td><strong>~$29B USD</strong></td><td></td></tr>
-  <tr><td>PE（FY2025 GAAP）</td><td><strong>~19.3x</strong></td><td>基于 EPS $9.51 USD / CDI $1.441 AUD</td></tr>
-  <tr><td>PE（FY2025 Non-GAAP）</td><td><strong>~19.2x</strong></td><td>基于 Non-GAAP EPS $9.55 USD</td></tr>
-  <tr><td>PE（FY2026E 一致预期）</td><td><strong>~17-18x</strong></td><td>基于 FY2026E EPS ~$10.50-11.00</td></tr>
-  <tr><td>PB</td><td><strong>~4.6x</strong></td><td>基于每股净资产 $62.3 USD（~$93 AUD/share → $9.30/CDI）</td></tr>
-  <tr><td>PS（TTM）</td><td><strong>~5.6x</strong></td><td>基于 TTM 收入 ~$5.6B USD</td></tr>
-  <tr><td>EV/EBIT</td><td><strong>~15x</strong></td><td>基于 FY2025 EBIT $1,685M</td></tr>
-  <tr><td>FCF 收益率</td><td><strong>~5.7%</strong></td><td>FCF $1,662M / 市值 $29B USD</td></tr>
-  <tr><td>股息率</td><td><strong>~0.9%</strong></td><td>年分红 ~$2.40 USD/share → ~$0.24/CDI AUD</td></tr>
+  <tr><th>指标</th><th>当前值</th><th>历史分位 / 参考</th><th>行业均值</th></tr>
+  <tr><td>ASX CDI 股价（2026-10-14）</td><td><strong>A$33.58</strong></td><td>52周区间 A$25.50 ~ A$41.86；距高点 <strong>-19.8%</strong>，距低点 <strong>+31.7%</strong></td><td>数据待补充</td></tr>
+  <tr><td>NYSE 股价（2026-10-13 收盘）</td><td><strong>US$235.04</strong></td><td>2026-08-07 因 FY27 营收指引低于华尔街预期，单日跌约 6%</td><td>—</td></tr>
+  <tr><td>总市值</td><td><strong>US$339 亿</strong>（A$473 亿）</td><td>同比 <strong>-22.5%</strong></td><td>数据待补充</td></tr>
+  <tr><td>PE（TTM，基于 GAAP EPS US$10.43）</td><td><strong>22.5x</strong></td><td>FY25 底约 20x；FY24 高点约 45x（历史参考，仅用于区间判断）</td><td>数据待补充</td></tr>
+  <tr><td>PE（FY27E，基于 non-GAAP EPS 指引中值 US$12.13）</td><td><strong>19.4x</strong></td><td>指引区间 US$12.00~12.25 对应 19.2x~19.6x</td><td>数据待补充</td></tr>
+  <tr><td>PB（US$235.04 / BVPS US$45.66）</td><td><strong>5.15x</strong></td><td>数据待补充</td><td>数据待补充</td></tr>
+  <tr><td>PS（33,914 / 5,653.4）</td><td><strong>6.0x</strong></td><td>数据待补充</td><td>数据待补充</td></tr>
+  <tr><td>PCF（33,914 / 1,806）</td><td><strong>18.8x</strong></td><td>数据待补充</td><td>数据待补充</td></tr>
+  <tr><td>股息率（US$2.64 / US$235.04）</td><td><strong>1.12%</strong></td><td>季度股息已上调 10% 至 US$0.66</td><td>数据待补充</td></tr>
+  <tr><td>隐含 AUD/USD</td><td>≈0.700</td><td>由两市场当日报价倒算（10 CDI = 1 股 NYSE）</td><td>—</td></tr>
 </table>
 
-<h3>4.2 PE Band 估值区间</h3>
-<p style="font-size:13px;color:#666;">ROE 23.5% → 合理PE参考区间：20-30x（优质医疗设备龙头） | FY2026E GAAP EPS ≈ $10.80（估）</p>
+<h3>4.2 PE Band 估值区间（六情景）</h3>
+<p style="font-size:13px;color:#666;">非周期股采用 <strong>PE Band</strong>。ROE 24.3% &gt; 20%，按框架对应合理 PE 区间 <strong>20-30x</strong>；EPS 基准采用 FY2027 non-GAAP 指引（US$12.00~12.25，中值 US$12.13），悲观情景取指引下方 US$11.5。</p>
 <table>
-  <tr><th>情景</th><th>PE</th><th>对应 ASX CDI 股价</th><th>vs 现价 $27.75</th></tr>
-  <tr><td>悲观（增长放缓+GLP-1冲击）</td><td>14x</td><td>$20.20</td><td class="bad">-27%</td></tr>
-  <tr><td>保守（防御估值）</td><td>17x</td><td>$24.50</td><td class="bad">-12%</td></tr>
-  <tr><td>中性（合理估值中枢）</td><td>22x</td><td>$31.70</td><td class="good">+14%</td></tr>
-  <tr><td>券商目标</td><td>~25x</td><td>$36.00</td><td class="good">+30%</td></tr>
-  <tr><td>当前价</td><td>~19x</td><td>$27.75</td><td>—</td></tr>
-  <tr><td>历史高位（2024-25）</td><td>~32x</td><td>$45.25</td><td>+63%</td></tr>
+  <tr><th>情景</th><th>EPS 基准（US$）</th><th>PE</th><th>对应 NYSE 价</th><th>对应 ASX CDI 价</th><th>vs 现价 A$33.58</th></tr>
+  <tr><td>悲观（Astral 处置恶化 + 医保定价压制 ASP）</td><td>11.5</td><td>17x</td><td>US$195.5</td><td><strong>A$27.9</strong></td><td class="bad">-17%</td></tr>
+  <tr><td>保守（防御性重估，取合理区间下沿）</td><td>12.13</td><td>20x</td><td>US$242.6</td><td><strong>A$34.7</strong></td><td class="good">+3%</td></tr>
+  <tr><td>中性（合理区间中枢）</td><td>12.13</td><td>23x</td><td>US$279.0</td><td><strong>A$39.8</strong></td><td class="good">+19%</td></tr>
+  <tr><td>券商目标（2026-09 上调后最高：KeyBanc US$267）</td><td>隐含约 12.13</td><td>约 22.0x</td><td>US$267</td><td><strong>A$38.1</strong></td><td class="good">+14%</td></tr>
+  <tr><td><strong>当前价（2026-10-14）</strong></td><td>12.13</td><td><strong>19.4x</strong></td><td><strong>US$235.04</strong></td><td><strong>A$33.58</strong></td><td>—</td></tr>
+  <tr><td>历史高位（52周高 A$41.86 → TTM GAAP 口径）</td><td>10.43（TTM）</td><td>28.1x</td><td>US$293.1</td><td><strong>A$41.9</strong></td><td class="good">+25%</td></tr>
 </table>
+<p style="font-size:12px;color:#999">补充参考：52 周低点 A$25.50 对应 TTM GAAP PE 约 17.1x；更长历史维度上 FY2024 高点 PE 约 45x 为历史峰值，本次未列入 Band 计算（该口径与当前 EPS 基数不可直接比较）。</p>
 
-<h3>4.3 历年 PE Band（基于 Non-GAAP EPS）</h3>
-<table>
-  <tr><th>财年</th><th>EPS (USD)</th><th>最高PE</th><th>最低PE</th><th>平均PE</th><th>CDI股价区间 (AUD)</th></tr>
-  <tr><td>FY2021（疫情居家）</td><td>$6.42</td><td>38x</td><td>24x</td><td>31x</td><td>$23.50-$37.00</td></tr>
-  <tr><td>FY2022（利率上升）</td><td>$6.97</td><td>30x</td><td>18x</td><td>24x</td><td>$19.00-$31.50</td></tr>
-  <tr><td>FY2023（正常化）</td><td>$7.20</td><td>28x</td><td>20x</td><td>24x</td><td>$21.50-$30.00</td></tr>
-  <tr><td>FY2024（AI医疗热潮）</td><td>$7.72</td><td>30x</td><td>22x</td><td>26x</td><td>$25.50-$35.00</td></tr>
-  <tr><td>FY2025（获利了结）</td><td>$9.55</td><td>32x</td><td>19x</td><td>25x</td><td>$28.00-$45.25</td></tr>
-  <tr><td>FY2026E（估）</td><td>$10.80</td><td>—</td><td>—</td><td class="neutral">~19x（当前）</td><td>$25.50-$31.50（YTD）</td></tr>
-</table>
-
-<h3>4.4 历史 PE 统计</h3>
-<table>
-  <tr><th>指标</th><th>数值</th></tr>
-  <tr><td>PE 最大值（2024-25 AI/医疗设备炒作期）</td><td>~32x</td></tr>
-  <tr><td>PE 80% 分位</td><td>~28x</td></tr>
-  <tr><td>PE 50% 分位（历史中位数）</td><td>~24x</td></tr>
-  <tr><td>PE 20% 分位</td><td>~20x</td></tr>
-  <tr><td>PE 最小值（2022 利率上升期）</td><td>~18x</td></tr>
-  <tr><td>当前 PE（FY2025 Non-GAAP）</td><td class="neutral">~19x（历史 20% 分位附近）</td></tr>
-</table>
-
+<h3>4.3 估值总结</h3>
 <div class="highlight-box">
-  <strong>估值总结：</strong>当前 PE ~19x 处于历史 20% 分位以下，接近历史最低水平。与 FY2020-2021 期间 PE 30-35x 相比，估值大幅压缩。主要原因：① GLP-1 减肥药对 OSA 治疗的潜在威胁；② 高利率环境下成长股估值整体承压；③ 营收增速~10%，市场不再给予超额成长溢价。<br><br>
-  <strong>与同行对比：</strong>PE ~19x 低于 Cobham/Cooper（~22x）、强生医疗（~24x），但高于 Baxter（~15x）。考虑到 ResMed 的行业龙头地位、持续利润率提升、净现金状态和 5.7% 的 FCF 收益率，当前估值在历史底部区间。对于长期投资者，若相信 OSA 治疗需求持续增长且 GLP-1 威胁可控，当前 PE ~19x 提供了不错的安全边际。
+  <strong>估值判断：当前估值合理，处在合理区间 20-30x 的下沿偏内。</strong><br>
+  ① <strong>区间判断</strong>：ROE 24.3% 对应合理 PE 20-30x。当前 PE(TTM, GAAP) 22.5x 落在区间内偏下位置；按 FY2027 non-GAAP 指引中值 US$12.13 计，前瞻 PE 仅 <strong>19.4x</strong>，已在区间下沿附近——市场对 Astral 停售与 MatrixCare 剥离的报表拖累基本已定价（2026-08-07 单日 -6% 即为定价事件）。<br>
+  ② <strong>核心 vs 报表的分歧</strong>：市场当前用的是报表口径（+2~3% 增长），但剔除 MatrixCare 出售摊薄（US$0.30）与 Noctrix 收购摊薄（US$0.20）后，隐含核心 EPS 增长仍有 <strong>+12%~14%</strong>。19.4x 对应核心 EPS 增速 12~14%，PEG 约 1.4-1.6，不算便宜但也不构成泡沫。<br>
+  ③ <strong>需要警惕的两个读数</strong>：PB 5.15x 偏高——这在 ROE 24.3%、净现金 US$643M 的结构下可以解释（净资产中 US$2,779M 是库存股负项），但意味着市场为"生意的盈利能力"付了高溢价，容错空间不大；股息率仅 1.12%，回报几乎全部依赖 EPS 增长与回购，现金回报的"下限保护"很薄。<br>
+  ④ <strong>结论</strong>：估值合理偏低，安全边际来自<strong>盈利质量</strong>（ROE 24.3% / CFO 净利 1.19 / 净现金）而非<strong>资产折价</strong>。若 Astral 事件升级为召回、或美国医保定价政策压制 ASP，合理区间下沿（20x 以下，即 A$29 以下）会被重新检验；反之若 Astral 在 FY27 内恢复销售、移除 130bps 逆风，估值向 23x 修复（A$39.8）并不困难。
 </div>
 
 </div></div>
-
 <div class="tab-content" id="tab-l4"><div class="tab-inner">
 
-<h2>五、杜邦分析拆解（L4框架）</h2>
+<h2>五、杜邦分析（L4框架）</h2>
 
-<h3>5.1 杜邦拆解表</h3>
+<h3>5.1 杜邦拆解</h3>
 <table>
-  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
-  <tr><td>净利润率</td><td>21.2%</td><td>21.8%</td><td><strong>27.2%</strong></td><td class="good">⬆ 显著提升</td></tr>
-  <tr><td>资产周转率</td><td>0.68</td><td>0.68</td><td><strong>0.63</strong></td><td class="neutral">⬇ 略降（现金大增）</td></tr>
-  <tr><td>权益乘数</td><td>1.53</td><td>1.41</td><td><strong>1.37</strong></td><td class="good">⬇ 杠杆持续降低</td></tr>
-  <tr><td><strong>ROE</strong></td><td><strong>21.7%</strong></td><td><strong>22.3%</strong></td><td><strong>23.5%</strong></td><td class="good">⬆ 持续提升</td></tr>
-  <tr><td>去杠杆 ROA（净利率×周转）</td><td>14.4%</td><td>14.8%</td><td><strong>17.1%</strong></td><td class="good">⬆ 基础回报提升</td></tr>
-  <tr><td>杠杆贡献（ROE-ROA）</td><td>7.3pct</td><td>7.5pct</td><td><strong>6.4pct</strong></td><td class="good">⬇ 不依赖杠杆</td></tr>
+  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>FY2026</th><th>判断</th></tr>
+  <tr><td>净利润率</td><td>16.6%</td><td>27.0%</td><td>27.2%</td><td><strong>26.9%</strong></td><td class="good">⬆ 高位稳定（FY23 受一次性项目影响）</td></tr>
+  <tr><td>资产周转率</td><td>0.604</td><td>0.620</td><td>0.684</td><td><strong>0.660</strong></td><td class="neutral">➡ 中位，FY26 因现金积累略降</td></tr>
+  <tr><td>权益乘数</td><td>1.582</td><td>1.515</td><td>1.389</td><td><strong>1.365</strong></td><td class="good">⬇ 持续下降（主动去杠杆）</td></tr>
+  <tr><td><strong>ROE</strong></td><td>15.8%</td><td>25.3%</td><td>25.9%</td><td><strong>24.3%</strong></td><td class="good">⬆ 绝对水平极高，FY26 小幅回落</td></tr>
+  <tr><td>去杠杆 ROA（净利率×周转率）</td><td>10.0%</td><td>16.7%</td><td>18.6%</td><td><strong>17.8%</strong></td><td class="good">⬆ 经营回报本身极高</td></tr>
+  <tr><td>杠杆贡献（ROE − ROA）</td><td>5.8pct</td><td>8.6pct</td><td>7.3pct</td><td><strong>6.5pct</strong></td><td class="good">⬇ 杠杆贡献占比小，不依赖负债</td></tr>
+  <tr><td>CFO / 净利润</td><td>数据待补充</td><td>数据待补充</td><td>1.25</td><td><strong>1.19</strong></td><td class="good">利润有现金支撑</td></tr>
+  <tr><td>每 1 美元总资产产生的净利润</td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td><strong>US$0.18</strong></td><td class="good">资产回报效率高</td></tr>
 </table>
+<p style="font-size:12px;color:#999">口径说明：全表统一采用<strong>平均权益 / 平均总资产</strong>口径。FY2026 平均总资产 =（8,174 + 8,966）/ 2 = 8,570，平均股东权益 =（5,968 + 6,585）/ 2 = 6,276.5 —— 与 L1 资产负债表期末数（总资产 8,966、股东权益 6,585）为同一数据源。FY2023–FY2025 各行为按同一公式由 stockanalysis 五年序列推算，非年报披露原值；FY2026 期末权益口径 ROE 为 23.1%。</p>
 
+<h3>5.2 赚钱模式判断</h3>
 <div class="highlight-box">
-  <strong>赚钱模式判断：高利润型——医疗设备龙头的典型杜邦画像</strong><br>
-  ResMed 的杜邦分析极其健康：净利润率 27.2%（高利润）+ 资产周转率 0.63（中偏低，因现金大量积累压低·分母）+ 权益乘数 1.37（低杠杆）。<br><br>
-  ROE 23.5% 的驱动结构：净利率贡献 17.1%（去掉杠杆的 ROA）+ 杠杆贡献仅 6.4pct。这意味着公司去掉所有杠杆后的基础回报率仍有 17.1%，这是真正由生意质量驱动的回报，不依赖任何财务杠杆。利润率的持续提升（21.2%→27.2%）是 ROE 提升的第一驱动力。
+  <strong>赚钱模式：高利润型（High-Margin）。</strong><br>
+  杜邦三项中<strong>净利率 26.9% 一项独大</strong>：资产周转率 0.660 属中位（重资产不高但绝非薄利多销），权益乘数 1.365 意味着账上每 US$1 权益只撬动 US$1.37 资产——几乎没有财务杠杆参与。<br><br>
+  拆开看 ROE 24.3% 的来源：去杠杆 ROA 贡献 <strong>17.8pct</strong>（占 73%），杠杆仅贡献 <strong>6.5pct</strong>（占 27%）。换句话说，<strong>把 ResMed 全部负债还清，它的净资产回报率仍有 17.8%</strong>——这是完全由生意模式（高毛利耗材复购 + 品牌定价权）驱动的回报，不依赖任何财务工程。这是本报告在"杜邦驱动质量"维度给满分（5/5）的依据。
 </div>
 
-<h3>5.2 去杠杆 ROA 分析</h3>
-<table>
-  <tr><th>指标</th><th>ResMed</th><th>CSL（对比）</th><th>典型医疗设备</th></tr>
-  <tr><td>净利润率</td><td>27.2%</td><td>~18%</td><td>15-20%</td></tr>
-  <tr><td>资产周转率</td><td>0.63</td><td>~0.35</td><td>0.5-0.7</td></tr>
-  <tr><td>去杠杆 ROA</td><td><strong>17.1%</strong></td><td>~6.3%</td><td>8-12%</td></tr>
-  <tr><td>权益乘数</td><td>1.37</td><td>~3.5</td><td>1.5-2.5</td></tr>
-  <tr><td>ROE</td><td><strong>23.5%</strong></td><td>~22%</td><td>15-22%</td></tr>
-</table>
-
+<h3>5.3 核心结论</h3>
 <div class="summary-box">
-  <strong>核心结论：</strong>ResMed 的 ROE 是"真功夫型"——23.5% 中 17.1% 来自经营本身（去杠杆 ROA），仅 6.4pct 来自杠杆。对比 CSL（ROE ~22% 但权益乘数 3.5，去杠杆 ROA 仅 ~6%），ResMed 的 ROE 质量更高，抗风险能力更强。过去三年 ROE 从 21.7%→22.3%→23.5%，核心驱动力是利润率提升（21.2%→27.2%）。<br><br>
-  <strong>未来 ROE 展望：</strong>提升的关键在于资金运用效率——如果公司将 $1.2B 超额现金用于更有意义的并购或加大回购，资产周转率将从 0.63 提升，ROE 有望突破 25%。但当前保守的现金管理也是一种审慎。
+  <strong>杜邦结论：ROE 靠"利润率"驱动，趋势整体健康但边际走平。</strong><br>
+  ① <strong>驱动结构健康</strong>：净利率 26.9% 是第一且几乎唯一的驱动力，权益乘数从 FY23 的 1.582 一路降至 FY26 的 1.365——公司在<strong>主动去杠杆的同时仍维持 24% 以上的 ROE</strong>，这是极高质量的财务结构。若未来把净现金 US$643M 用于加大回购或高回报并购，权益乘数可进一步下压而 ROE 反而上升。<br>
+  ② <strong>趋势解读</strong>：ROE 从 FY23 的 15.8% 跃升至 FY25 的 25.9%，FY26 小幅回落至 24.3%。回落原因<strong>不是盈利质量下滑</strong>（净利率仍 26.9%、毛利率还创了历史新高 61.1%），而是权益基数随留存收益与回购同步扩张（权益 +10.3% 至 US$6,585M）——分母变大而非分子变小，这是"好公司做大了"的正常现象。<br>
+  ③ <strong>需要盯住的地方</strong>：资产周转率 0.660 略低于 FY25 的 0.684，原因是现金从 US$1,209M 增至 US$1,469M 而未投入经营。若 FY27 超 US$18.5 亿的股东返还顺利执行，大量现金流出将<strong>重新抬升周转率与 ROE</strong>；反之若现金继续闲置堆积，周转率会继续稀释 ROA。<br>
+  ④ <strong>现金验证</strong>：CFO/净利 1.19 ≥ 1.0，说明这 26.9% 的净利率不是账面数字，每 US$1 净利背后有 US$1.19 的经营现金流入。
 </div>
 
 </div></div>
@@ -347,147 +373,200 @@
 
 <h3>6.1 行业类型判断</h3>
 <div class="summary-box">
-  <strong>判定：成长性行业（医疗设备——睡眠呼吸暂停治疗）</strong><br>
-  <strong>判断依据：</strong>ResMed 处于"老龄化+肥胖率上升+OSA诊断率提升"三重复合增长赛道。全球 OSA 患者约 10 亿人，目前仅 ~20% 获得诊断，治疗渗透率更低。行业增速 ~8-10%（有机），加上 Philips 退出后的份额转移，ResMed 可实现 ~10% 营收增长。不属于纯周期（医疗需求刚性），也不属于高成长（增速稳定在 8-12%），属于"稳健成长型"——增速不高但确定性极强。<br><br>
-  <strong>Note：</strong>ResMed 是美股（NYSE）ASX CDI 二次上市的美国公司（Delaware 注册），主业在全球（69%  Americas），不受澳洲经济周期影响。汇率风险（USD/AUD）是 ASX 投资者的特有考量因素。
+  <strong>行业类型：非周期股（成长型 / 防御型兼具）→ 采用非周期股评分体系。</strong><br>
+  判断依据：① <strong>需求端</strong>——睡眠呼吸暂停（OSA）是慢病，诊疗需求由人口老龄化驱动，与宏观经济周期弱相关，需求刚性；② <strong>供给端</strong>——产品为医疗器械，受医保/监管定价约束，价格受管制但销量不由价格弹性决定；③ <strong>分类归属</strong>——与 <code>industry-classification.md</code> 中"医疗器械"归入<strong>非周期股</strong>的清单一致，故本报告全程使用非周期股评分体系，并在 L3 使用 PE Band（而非周期股的 PB Band）。<br>
+  细分定位：<strong>成长型与防御型的混合体</strong>——营收仍有 +10%（核心口径 +5%~7%）的稳定成长，但需求刚性使其下行风险小于纯成长股；这类公司在估值上既不完全按成长股给溢价，也不应按防御股给低倍数，因此采用 ROE 锚定的 PE 合理区间法（ROE &gt; 20% → 20-30x）。
 </div>
 
-<h3>6.2 行业集中度与壁垒</h3>
+<h3>6.2 集中度与壁垒</h3>
 <table>
-  <tr><th>维度</th><th>判断</th></tr>
-  <tr><td>市场格局</td><td><span class="good">双寡头→单龙头</span>——全球 OSA 设备 CR2（ResMed + Philips Respironics）> 80%。Philips 因 2021 年呼吸机召回事件持续停产/退市（规模 ~$5B 营收），ResMed 是最大受益者，市占率从 ~35% 升至 ~40%+。新进入者威胁极低（FDA 审批周期 2-3 年 + 临床数据壁垒）。</td></tr>
-  <tr><td>核心壁垒</td><td>① 30 年临床数据积累——医生/医院对 ResMed 设备的熟悉度和信任度极高；② FDA 510(k) 认证——任何新竞争者需 2-3 年审批；③ 面罩专利壁垒——AirFit/ AirTouch 系列有强专利保护，患者难以切换品牌；④ 规模经济——年产数百万台设备，成本优势显著；⑤ Connected Health 生态系统——AirView/SmartStart 等云平台锁定用户。</td></tr>
-  <tr><td>转换成本</td><td><span class="good">极高</span>——患者习惯特定面罩佩戴感，医生习惯特定设备的临床数据解读。医院/睡眠中心的设备库存+培训也构成转换障碍。</td></tr>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>市场格局</td><td><span class="good">CR2 高度集中</span></td><td>全球 OSA 治疗市场 ResMed 份额约 40%，与 Philips Respironics 构成 CR2 高度集中的双头格局。多年维持，未见新进入者挑战</td></tr>
+  <tr><td>壁垒类型</td><td><span class="good">品牌 / 技术 / 牌照 / 规模 / 渠道 / 数据 六重叠加</span></td><td>品牌（医生与患者信任）+ 牌照（FDA 等监管准入）+ 技术（面罩与算法专利）+ 规模（百万台级制造摊薄成本）+ 渠道（医院/睡眠中心装机与培训）+ 数据（长期临床数据与医生解读习惯）</td></tr>
+  <tr><td>转换成本</td><td><span class="good">高</span></td><td>面罩需每 3-6 个月更换，患者对佩戴感敏感；医生习惯特定设备的临床数据解读；医院已有装机与培训体系</td></tr>
+  <tr><td>定价权受限于政策</td><td><span class="neutral">中</span></td><td>毛利率 61.1% 显示公司具备有效定价权，但作为医疗器械，价格端受医保报销政策直接约束（见 3.3 排雷清单）</td></tr>
+  <tr><td>行业数据</td><td>部分 数据待补充</td><td>CR2 具体百分比、全球患者渗透率、Philips Respironics 当前份额等定量口径本次未取得可核实来源</td></tr>
 </table>
 
-<h3>6.3 生命周期阶段</h3>
+<h3>6.3 生命周期与周期位置</h3>
 <div class="highlight-box">
-  <strong>阶段：成熟成长期</strong><br>
-  ResMed 不是初创公司（成立 36 年），也不是衰退行业（OSA 治疗市场仍在扩大）。公司处于"成熟龙头+持续渗透"阶段——行业已建立稳固格局（双寡头→单龙头），公司通过产品迭代（AirSense 11→下一代）、市场渗透（新兴市场+诊断率提升）、品类扩展（软件/心脏病学）维持 8-12% 增长。这类似于"稳定成长的现金牛"定位——不像 SaaS 那样高速增长，但确定性远高于 SaaS。核心矛盾不是"能否增长"而是"GLP-1 是否颠覆 OSA 治疗"。
+  <strong>生命周期：成熟成长期。</strong>公司已成立三十余年，行业格局稳固（CR2 高度集中），但需求端仍在扩张——老龄化与诊断渗透率提升共同推动。<br><br>
+  <strong>周期位置：不适用（行业为非周期）。</strong>按 SKILL 框架，"当前周期位置"维度仅对周期股评分体系适用，本报告使用非周期股体系，故不设该项评分。需要特别澄清的是：<strong>FY2027 的增长失速不是行业周期，而是两个一次性事件冲击叠加</strong>——Astral 全球安全通知导致的停售（约 130bps 逆风）与 MatrixCare 业务剥离（约 3.9% 的营收基数永久移出报表）。这两项在 FY2028 之后均不再重复，因此 FY2027 的低增速应作为<strong>单年异常</strong>处理，而非趋势外推的起点。
 </div>
 
-<h3>6.4 估值方法匹配</h3>
+<h3>6.4 同行对比</h3>
 <table>
-  <tr><th>公司类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
-  <tr><td>医疗设备龙头</td><td>PE（盈利成熟）</td><td>FCF Yield、毛利率趋势、ROE</td><td class="good">✅ 匹配——PE ~19x，FCF Yield ~5.7%</td></tr>
+  <tr><th>指标</th><th>ResMed</th><th>Philips<br>(Respironics)</th><th>Fisher &amp; Paykel<br>Healthcare</th><th>Inspire<br>Medical</th><th>评价</th></tr>
+  <tr><td>营收增速</td><td><strong>+10%</strong></td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td class="good">高（全球份额约 40%，CR2 高度集中）</td></tr>
+  <tr><td>ROE</td><td><strong>24.3%</strong></td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td class="good">医疗器械龙头中的顶级水平</td></tr>
+  <tr><td>毛利率</td><td><strong>61.1%</strong></td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td class="good">独家高壁垒"耗材 + 设备"模式，领先</td></tr>
+  <tr><td>净利率</td><td><strong>26.9%</strong></td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td class="good">高</td></tr>
+  <tr><td>资产负债率</td><td><strong>26.6%</strong></td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td class="good">低（且为净现金）</td></tr>
+  <tr><td>PB</td><td><strong>5.15x</strong></td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td class="neutral">偏高，可由 ROE 24.3% 与净现金部分解释</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>22.5x</strong></td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td class="good">落在 ROE 对应合理区间 20-30x 内</td></tr>
 </table>
-
-<h3>6.5 成长股成色检验（四步法）</h3>
-<table>
-  <tr><th>步骤</th><th>检验内容</th><th>数据</th><th>判定</th></tr>
-  <tr><td>① 营收</td><td>有没有实在的生意？</td><td>营收 $5.15B，+10% 增长稳健，体量大且真实</td><td class="good">✅ 过关</td></tr>
-  <tr><td>② 毛利率</td><td>产品竞争力如何？</td><td>毛利率 59.4%+且持续提升（+270bps）</td><td class="good">✅ 强竞争力</td></tr>
-  <tr><td>③ CFO</td><td>能不能自己造血？</td><td>CFO $1,752M，CFO/净利 1.25，远超标准</td><td class="good">✅ 造血能力极强</td></tr>
-  <tr><td>④ PS</td><td>梦想溢价多少？</td><td>PS 5.6x——远低于 SaaS 公司的 10-20x</td><td class="good">✅ 估值合理</td></tr>
-</table>
+<p style="font-size:12px;color:#999">注：同行财务数据本次未取得可核实来源，仅作定性竞争位置对比；表中"数据待补充"项不参与评分。选样理由：Philips（Respironics）是唯一直接对标的全球龙头（CR2 另一方）；Fisher &amp; Paykel Healthcare 为呼吸治疗设备同业；Inspire Medical 为神经刺激植入式 OSA 疗法新进入者，代表潜在替代技术的方向。</p>
 
 <div class="summary-box">
-  <strong>四步法结论：</strong>四项全过，ResMed 是"真·稳健成长型"公司。营收庞大（$5.15B）且增长真实（10%），毛利率高且提升（59.4%），现金流极其充裕（CFO/净利 1.25），PS 5.6x 估值合理。四步法确认：这不是一家"依靠故事撑估值"的公司，而是一家靠实实在在的产品和现金流撑起的龙头。
+  <strong>竞争位置：</strong>ResMed 在同行中是<strong>"规模、利润率、资产负债表"三项全优的绝对龙头</strong>——全球份额约 40% 且 CR2 高度集中，毛利率 61.1% 来自独有的"高毛利耗材（面罩）+ 设备 + 云软件"复购模型（这是纯设备型或纯耗材型对手难以同时复制的结构），ROE 24.3% 处于医疗器械行业顶级水平，同时是净现金 US$643M 的零杠杆资产负债表。Inspire Medical 所代表的植入式神经刺激疗法是长期潜在替代路径，但当前规模与 ResMed 不在同一量级。需要正视的是 Philips Respironics 的回归可能性——一旦其恢复供货，同行对比表中最关键的一行（营收增速）可能被重估。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<div class="summary-box">
+  <strong>估值方法：首选 PE，辅助看 FCF Yield / 毛利率趋势 / ROE —— 当前市场用法匹配。</strong><br>
+  依据：ResMed 属<strong>非周期 · 成熟盈利型</strong>医疗器械公司（营收体量已超 US$56 亿、净利率 26.9%、盈利高度可预测），不符合"成长初期需用 PS 定价"的条件，也不适用周期股的 PB Band。当前市场使用 PE（TTM 22.5x / FY27E 19.4x）定价，与框架推荐一致；PB 5.15x 仅作辅助交叉验证——虽高，但 ROE 24.3% 与净现金结构可解释（净资产 US$6,585M 中含 US$2,779M 库存股负项）。<br>
+  成长股成色检验：<strong>不触发</strong>（四步法适用于 PS &gt; 10 或 PE &gt; 50 的高估值成长股，本公司 PS 6.0x &lt; 10 且 PE 22.5x &lt; 50），无需额外验证。
 </div>
 
 </div></div>
-
 <div class="tab-content" id="tab-l6"><div class="tab-inner">
 
 <h2>七、综合实战（L6框架）</h2>
 
 <h3>7.1 六步法总结</h3>
 <div class="summary-box">
-  <strong>Step 1 - 行业定位：</strong>医疗设备（OSA 睡眠呼吸暂停），全球双寡头→单龙头格局，极高壁垒（FDA+品牌+专利），成熟成长期，需求刚需增长（老龄化+肥胖率）。<br>
-  <strong>Step 2 - 财务体检：</strong>ROE 23.5% 优秀，杜邦高利润型（27.2%净利率+0.63周转+1.37杠杆），CFO/净利 1.25，FCF 收益率 5.7%，财务面接近满分。<br>
-  <strong>Step 3 - 估值判断：</strong>PE ~19x（历史 20% 分位），PS 5.6x，FCF Yield 5.7%。估值处于历史底部区间，提供了良好的安全边际。<br>
-  <strong>Step 4 - 风险排查：</strong>核心风险是 GLP-1 结构性威胁+商誉占比较高（43%）。财务风险极低（净现金 $388M）。<br>
-  <strong>Step 5 - 结论：</strong>好公司（全球龙头 × 极高壁垒 × 高质量财务数据）× 好价格（PE ~19x 在历史低位）= 值得买入。<br>
-  <strong>Step 6 - 跟踪：</strong>FY2026 Q4 业绩（8月6日）、毛利率趋势、GLP-1 对 OSA 处方量的实际影响、Philips 是否会回归市场。
+  <strong>Step 1 - 行业定位：</strong>非周期（成长/防御兼具）· 医疗器械——睡眠呼吸暂停诊疗。全球份额约 40%，CR2 高度集中（ResMed + Philips Respironics），壁垒为品牌/牌照/技术/规模/渠道/数据六重叠加，成熟成长期。需求由人口老龄化驱动，与宏观周期弱相关。<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 24.3%（平均权益口径），杜邦为典型<strong>高利润型</strong>——净利率 26.9% 主导、去杠杆 ROA 17.8%、权益乘数仅 1.37。CFO/净利 1.19 ≥ 1.0，FCF US$1,650M 持续为正。净现金 US$643.3M、负债率 26.6%，零财务风险。唯一走弱项：GAAP 净利增速降至 +9%，CFO 增速 +3% 慢于净利。<br>
+  <strong>Step 3 - 估值判断：</strong>PE(TTM GAAP) 22.5x / PE(FY27E non-GAAP) 19.4x，落在 ROE 24.3% 对应的合理区间 20-30x 之内的偏下沿。PB 5.15x、PS 6.0x、PCF 18.8x、股息率 1.12%。市值同比 -22.5%，现价距 52 周高 -19.8%、距低 +31.7%。券商目标价区间 US$213~267 覆盖现价 US$235.04。<br>
+  <strong>Step 4 - 风险排查：</strong>① Astral 全球现场安全通知与停售（Q4 计提 US$42M，FY27 逆风约 130bps / US$7,500 万，存在升级风险）；② FY27 报表口径营收指引 US$57.5~58.5 亿，仅 +2~3%；③ MatrixCare 剥离后营收基数永久缩小约 3.9%；④ 美国医保定价政策；⑤ GLP-1 与消费电子对患者漏斗的双向影响。<br>
+  <strong>Step 5 - 结论：</strong><strong>好公司</strong>（ROE 24.3%、毛利率 61.1% 创新高、CFO/净利 1.19、零杠杆净现金）✓ × <strong>价格合理</strong>（前瞻 PE 19.4x 位于合理区间下沿）✓。核心口径 EPS +12%~14% 对应 PEG 约 1.4-1.6，不算深度低估但安全边际可接受。综合评分 97/100。<br>
+  <strong>Step 6 - 跟踪：</strong>① <strong>2026-10-29 FY2027 Q1 财报</strong>——首要观察 Astral 恢复销售的时点与措辞、MatrixCare 交割后的报表口径、净现金去向；② non-GAAP 与 GAAP 口径差额的收敛；③ CFO/净利能否回到 1.2 以上；④ 美国医保定价政策进展；⑤ Q4 存货 972.9 在 FY27 Q1 是否出现 Astral 相关减值/积压。
 </div>
 
 <h3>7.2 好公司三要素检查</h3>
 <table>
   <tr><th>要素</th><th>判断</th><th>依据</th></tr>
-  <tr><td>① 好行业</td><td class="good">✓</td><td>OSA 治疗需求刚需且持续增长（老龄化+肥胖），双寡头格局稳定，壁垒极高</td></tr>
-  <tr><td>② 好公司</td><td class="good">✓</td><td>ROE 23.5% > 15%，毛利率 59.4% 持续提升，CFO/净利 1.25 > 1.0</td></tr>
-  <tr><td>③ 好价格</td><td class="good">✓</td><td>PE ~19x 处于历史 20% 分位，PEG ~1.9，FCF Yield 5.7%</td></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>OSA 慢病诊疗需求由人口老龄化驱动、需求刚性、与宏观周期弱相关；全球份额约 40%，CR2 高度集中（ResMed + Philips Respironics），六重壁垒使格局稳固</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓</td><td>ROE 24.3% &gt; 15%；毛利率 61.1%（+170bps，创历史新高）；CFO/净利 1.19 &gt; 1.0；负债率 26.6% 且为净现金 US$643.3M；权益乘数仅 1.37，回报不含杠杆水分</td></tr>
+  <tr><td>③ 好价格</td><td class="good">✓（偏谨慎）</td><td>PE(TTM) 22.5x、前瞻 PE 19.4x 均落在 ROE 对应合理区间 20-30x 内；但 PB 5.15x、股息率 1.12% 偏高，说明安全边际来自<strong>盈利质量</strong>而非<strong>资产折价</strong>。PEG 参考：19.4x ÷ 核心 EPS 增速 12~14% ≈ <strong>1.4-1.6</strong>（&lt; 1.5 属合理区间上沿）</td></tr>
+  <tr><td>PEG 严格计算</td><td class="neutral">数据待补充</td><td>缺 3 年以上一致预期 EPS 增速序列，本次仅以 FY27 单年核心增速 +12%~14% 近似，无法给出严格 PEG</td></tr>
 </table>
 
-<h3>7.3 三个陷阱排查</h3>
+<h3>7.3 风险评估</h3>
+
+<h3 style="font-size:14px">a. 三个陷阱排查</h3>
 <div class="danger-box">
-  ☐ 低PE + 低增长 + 高负债 = <strong>价值陷阱</strong> → 不命中（PE ~19x 低+增长 10% 非低增长+零净负债）<br>
-  ☐ 低PE + 周期顶点 = <strong>周期陷阱</strong> → 不命中（非周期行业，OSA 需求刚性不受经济周期影响）<br>
-  ☐ 高PE + 高增速但现金流为负 = <strong>烧钱陷阱</strong> → 不命中（PE ~19x 正常 + 增速 ~10% 非高增速 + CFO/净利 1.25 现金流极好）
+  ☐ 低 PE + 低增长 + 高负债 = <strong>价值陷阱</strong> → <strong>未命中</strong>（PE 22.5x 不算低；负债率 26.6% 且净现金 US$643M；FY27 报表增速 +2~3% 偏低，但核心口径 +5%~7% 营收 / +12%~14% EPS 增长仍成立）<br>
+  ☐ 低 PE + 周期顶点 = <strong>周期陷阱</strong> → <strong>未命中</strong>（本报告使用非周期股评分体系，无"周期位置 + PB 估值"维度适用；且非周期行业不存在周期顶点概念）<br>
+  ☐ 高 PE + 高增速但现金流为负 = <strong>烧钱陷阱</strong> → <strong>未命中</strong>（PE 22.5x 不高；CFO US$1,806M、FCF US$1,650M 均为正且规模巨大，CFO/净利 1.19）<br><br>
+  <strong>额外排查（非框架三项，但本报告认为更关键）：</strong><br>
+  ☐ <strong>质量事件陷阱</strong>（高盈利增长 + 产品质量/合规瑕疵）→ <strong>命中（需警惕）</strong>。Astral 全球现场安全通知属重大质量问题，Q4 计提 US$42M，并直接造成 FY27 约 130bps 营收逆风。虽然财务影响目前可控（约占 FY26 营收 0.7%），但品牌与监管关系的长期影响尚未量化，且存在升级为召回的尾部风险。这是当前 97 分之外最需要盯住的变量。
 </div>
+
+<h3 style="font-size:14px">b. 管理层与治理风险</h3>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>资本配置记录</td><td class="neutral">合理（含争议）</td><td>FY26 返还股东超 US$10 亿（+70%）；FY27 承诺超 US$18.5 亿、季度股息 +10% 至 US$0.66，力度明确。但同时以 US$4.90 亿出售 MatrixCare，而该业务 FY26 仅贡献营业利润约 US$0.28 亿（其中约 US$0.28 亿为收购无形摊销）——<strong>属结构性瘦身而非高价套现</strong>，评价需两面看：换来现金提升回报率，但也永久移出约 3.9% 的营收</td></tr>
+  <tr><td>董事结构变动</td><td class="neutral">需关注（非负面）</td><td>2026-08-17 宣布 Carol Burt 任首席独立董事；董事 Ron Taylor 计划退休。独立董事领导层调整属常规治理安排，但需关注交接期对 Astral 质量事件监督的力度</td></tr>
+  <tr><td>治理/合规风险</td><td class="neutral">需关注</td><td>Astral 全球现场安全通知属重大质量问题，短期对监管关系与品牌有压力；具体监管后续（是否立案、是否要求召回）数据待补充</td></tr>
+  <tr><td>CEO 交接/关键人员变动</td><td class="good">无风险</td><td>本次披露中未见 CEO 或 CFO 变更</td></tr>
+  <tr><td>股权结构与利益一致性</td><td>数据待补充</td><td>本次未取得可核实的大股东持股与管理层持股比例数据</td></tr>
+  <tr><td>管理层增减持记录</td><td>数据待补充</td><td>本次未取得可核实的董监高增减持披露</td></tr>
+</table>
+
+<h3 style="font-size:14px">c. 盈利可持续性</h3>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是靠价？</td><td class="neutral">量驱动为主</td><td>营收 +10% 同时毛利率 +170bps，说明量价齐升但主要贡献来自量（设备铺装 + 面罩复购）；FY27 指引中的价格拆分数据待补充</td></tr>
+  <tr><td>涨价能否持续？</td><td class="neutral">需观察</td><td>61.1% 毛利率创新高显示定价权有效，但美国医保定价/报销政策是压制 ASP 的主要外生变量，公司未量化其影响</td></tr>
+  <tr><td>非经常性利润占比</td><td class="good">低</td><td>non-GAAP 与 GAAP 净利差额 108.5（占 GAAP 净利 7.1%），主要为股份支付 104.3 等非现金项；Astral 42 属真实现金支出，公司在 non-GAAP 中予以剔除，故 GAAP 口径更保守可靠</td></tr>
+  <tr><td>大客户/大项目集中度</td><td>数据待补充</td><td>本次未取得前五大客户/收入集中度数据</td></tr>
+  <tr><td>政策/监管依赖度</td><td class="neutral">中</td><td>医疗器械须经 FDA 等监管认证方可销售；美国医保报销政策直接影响 ASP 与患者可及性</td></tr>
+</table>
+
+<h3 style="font-size:14px">d. 关键变量敏感性</h3>
+<div class="summary-box">
+  <strong>变量1：Astral 安全事件的处置路径</strong>（影响 FY27 约 130bps / US$7,500 万营收）<br>
+  　乐观：Q1 明确整改完成、恢复销售且无进一步召回 → 移除 130bps 逆风，FY27 EPS 有望向指引上沿 US$12.25 靠拢<br>
+  　中性：分阶段恢复，FY27 内维持约 130bps 影响 → EPS 落在指引中值 US$12.13<br>
+  　悲观：升级为召回或监管强制整改，影响扩大至指引下方 → EPS ≈ US$11.5<br><br>
+  <strong>变量2：美国医保定价 / 报销政策</strong><br>
+  　乐观：政策落地温和或报销改善，ASP 稳定 → 支撑毛利率维持 61% 以上<br>
+  　中性：维持现状，毛利率与 FY26 持平<br>
+  　悲观：报销削减压制 ASP，毛利率回落 → 拖累 EPS（具体幅度公司未量化，数据待补充）<br><br>
+  <strong>变量3：GLP-1 与消费电子对患者漏斗的影响</strong><br>
+  　乐观：管理层在 Q4 FY26 电话会提到二者正在推高患者 funnel，若漏斗扩大转化为新患者销量 → 营收增速上修，核心口径突破 +7%<br>
+  　中性：漏斗扩大但单患者价值量被摊薄，营收维持核心 +5%~7%<br>
+  　悲观：GLP-1 长期替代 CPAP 使用 → 结构性下修（属长期变量，FY27 指引未体现）
+</div>
+
+<h3>7.4 前景展望</h3>
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. <strong>Astral 恢复销售</strong> — 移除 FY27 约 130bps / US$7,500 万逆风，是最快兑现的业绩修复来源<br>
+  2. <strong>股东回报翻倍</strong> — FY2026 返还超 US$10 亿（+70%），FY2027 承诺超 US$18.5 亿（约占当前市值的 5.5%），季度股息再 +10% 至 US$0.66，对长期持有人形成估值底部支撑<br>
+  3. <strong>MatrixCare 交割后的资本效率提升</strong> — US$4.90 亿现金回流，在净现金基础上进一步降低权益乘数、抬升 ROE；同时减少低增长软件业务的稀释<br><br>
+  <strong>负向拖累：</strong><br>
+  1. <strong>报表口径低增速</strong> — FY27 指引 US$57.5~58.5 亿仅 +2~3%（含约 50bps 汇率逆风），会持续压制市场对成长性的定价<br>
+  2. <strong>MatrixCare 剥离的永久性基数下移</strong> — 约 3.9% 的营收不再回到报表，报表口径增长的"分母效应"需一到两年消化<br>
+  3. <strong>Noctrix 收购摊薄 + 无形摊销上升</strong> — FY27 non-GAAP EPS 摊薄约 US$0.20，叠加新商誉/无形资产的减值敞口
+</div>
+
+<h3>7.5 三情景简表（FY27 non-GAAP 指引口径）</h3>
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>EPS 预估（US$）</th><th>PE 区间</th><th>对应 ASX CDI 价</th><th>预期回报</th></tr>
+  <tr><td class="good">乐观</td><td>Astral 在 FY27 内恢复销售、移除 130bps 逆风；医保定价温和；核心营收增速站上 +7% 上沿</td><td><strong>12.25</strong></td><td>25~30x</td><td>A$43.7 ~ A$52.6</td><td class="good">+30% ~ +57%</td></tr>
+  <tr><td class="neutral">中性</td><td>Astral 分阶段恢复维持约 130bps 影响；核心营收 +5%~7%；EPS 落在指引中值</td><td><strong>12.13</strong></td><td>20~25x</td><td>A$34.7 ~ A$43.3</td><td class="neutral">+3% ~ +29%</td></tr>
+  <tr><td class="bad">悲观</td><td>Astral 升级为召回或医保定价压制 ASP；指引下修</td><td><strong>11.5</strong></td><td>15~18x</td><td>A$24.6 ~ A$29.6</td><td class="bad">-27% ~ -12%</td></tr>
+</table>
+<p style="font-size:12px;color:#999">概率判断：中性 50%、乐观 30%、悲观 20%。上表为未来 12 个月的价格情景（对应 ASX CDI 价按隐含 AUD/USD ≈ 0.700 换算），未计入 FY27 股息 US$2.64（约 +7.8%），也未计入 FY2028 的 EPS 增长，故中性情景的"股价回报"并不等于"持有总回报"。</p>
+
+<h3>7.6 资金面信号</h3>
+<p style="font-size:12px;color:#999"><strong>N/A 说明：</strong>本节框架（北向资金持股、融资余额）仅适用于 A 股。RMD 为美股主上市（NYSE）、ASX 二次上市（CDI），<strong>无北向资金、无融资融券口径</strong>，相关栏位一律标注 N/A，改用美股/澳股可得指标。</p>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>北向资金持股变动</td><td class="neutral">N/A</td><td>美股/澳股无此口径</td></tr>
+  <tr><td>融资余额变动（两融）</td><td class="neutral">N/A</td><td>美股/澳股无公开两融数据</td></tr>
+  <tr><td>大宗交易折溢价</td><td>数据待补充</td><td>本次未取得可核实数据</td></tr>
+  <tr><td>机构持仓变动（13F/基金）</td><td>数据待补充</td><td>本次未取得可核实的季度持仓变动来源</td></tr>
+  <tr><td>大股东/董监高增减持</td><td>数据待补充</td><td>本次未取得可核实的增减持披露</td></tr>
+  <tr><td colspan="3" style="background:#f5f5f5;font-weight:600">↓ 以下为美股/澳股可得的替代指标 ↓</td></tr>
+  <tr><td>股东回报总额</td><td class="good">正面</td><td>FY2026 向股东返还超 US$10 亿（+70%）</td></tr>
+  <tr><td>FY2027 回报承诺</td><td class="good">正面</td><td>超 US$18.5 亿（回购 + 分红），约为当前市值的 5.5%</td></tr>
+  <tr><td>股息政策</td><td class="good">正面</td><td>季度股息上调 10% 至 US$0.66，年化 US$2.64，股息率 1.12%</td></tr>
+  <tr><td>卖方评级与目标价</td><td class="neutral">正面但分化</td><td>2026-09：Mizuho US$240、KeyBanc US$267、RBC（上调至 Outperform）US$262、Citi US$240；Baird US$213、Wells Fargo US$215、Redburn（首评 Neutral）US$230。区间 US$213~267 覆盖现价 US$235.04</td></tr>
+  <tr><td>股价动能</td><td class="bad">负面</td><td>2026-08-07 因 FY27 营收指引低于华尔街预期单日跌约 6%；市值同比 -22.5%；现价距 52 周高 -19.8%、距低 +31.7%</td></tr>
+  <tr><td>事件日历</td><td class="neutral">关注</td><td>FY2027 Q1 财报 2026-10-29（下一份财报，距分析日 15 天）</td></tr>
+  <tr><td>公司治理事件</td><td class="neutral">中性</td><td>2026-08-17 Carol Burt 任首席独立董事，董事 Ron Taylor 计划退休</td></tr>
+</table>
 
 <div class="summary-box">
-  <strong>最终判断：</strong><br>
-  ResMed 是三个陷阱都不命中的"真·价值成长股"——好行业 ✓ × 好公司 ✓ × 好价格 ✓。三个条件全部满足的情况在目前市场环境中并不多见。<br><br>
-  核心投资逻辑：PE ~19x（历史低位）+ FCF Yield 5.7%（有安全边际）+ ROE 23.5%（高质量回报）+ 全球 OSA 龙头（壁垒极高）+ 8-12% 稳定增长（确定性较强）。主要不确定因素是 GLP-1 的长期影响——如果减肥药证明能显著减少 OSA 患者对 CPAP 的依赖，ResMed 的增长故事将受到结构性影响；但如果 GLP-1 + CPAP 联合疗法成为标准方案，ResMed 甚至可能受益于患者基数的扩大。<br><br>
-  <strong>结论：三要素全满足的好机会。当前 PE ~19x 提供了足够的安全边际来应对 GLP-1 的不确定性。建议在 FY2026 Q4 业绩公布前建立初始仓位，止损设在 $24 AUD（PE ~16x，对应 GLP-1 worst case scenario）。</strong>
+  <strong>资金面整体判断：</strong>N/A 栏位已按框架标注；替代指标显示<strong>公司端（回购 + 股息）力度明显加码，而买方端（股价与评级）在指引低于预期后仍处于"温和修复"状态</strong>——卖方目标价区间 US$213~267 覆盖现价 US$235.04，说明市场分歧点不在公司质地，而在 FY27 报表口径的低增速（+2~3%）能否被核心口径 +12%~14% 的 EPS 增长消化。2026-10-29 的 Q1 财报是这一分歧的第一个检验点。
 </div>
 
-<h3>7.4 管理层评估</h3>
-<table>
-  <tr><th>维度</th><th>内容</th><th>评价</th></tr>
-  <tr><td>CEO Mick Farrell</td><td>创始人Peter Farrell之子，2013年接任CEO。战略清晰（AirSense迭代+SaaS收购+全球化），资本配置纪律强（去杠杆+回购+分红）。持股~$5M+，利益与股东一致。</td><td class="good">优秀</td></tr>
-  <tr><td>CFO Brett Sandercock</td><td>2019年入职，前Baxter CFO。FY2025完成债务重组（净负债$853M→净现金$388M），财务纪律严格。</td><td class="good">优秀</td></tr>
-  <tr><td>董事会构成</td><td>9人董事会，独立董事占多数。含OSA临床专家、SaaS行业高管、前医疗设备CEO。</td><td class="good">合理</td></tr>
-  <tr><td>资本配置能力</td><td>优先级：①R&D 6.5%有机增长→②补强收购（Brightree/MatrixCare）→③回购（FY2025 $300M）→④分红（$234M，连续14年增长）。</td><td class="good">优秀</td></tr>
-  <tr><td>激励设计</td><td>短期基于Non-GAAP EPS+营收增长，长期基于TSR+FCF。与股东利益高度一致。</td><td class="good">合理</td></tr>
-  <tr><td>整体评级</td><td colspan="2"><strong class="good">✅ 管理层经验丰富，资本配置审慎，激励绑定到位</strong></td></tr>
-</table>
-
-<h3>7.5 核心变量跟踪</h3>
-<table>
-  <tr><th>变量</th><th>当前状态</th><th>影响方向</th><th>关注频率</th></tr>
-  <tr><td>毛利率趋势</td><td>FY2025 59.4%→FY2026 ~61%+，持续改善（规模效应+组件成本下降）</td><td class="good">正面</td><td>每季度（8月Q4年报）</td></tr>
-  <tr><td>GLP-1对OSA影响</td><td>临床数据表明CPAP+GLP-1联合优于单药，尚不构成替代威胁</td><td class="neutral">需持续观察</td><td>每半年（临床更新）</td></tr>
-  <tr><td>Philips是否会回归</td><td>已停止在美销售呼吸机，但2027年后可能重新进入</td><td class="neutral">竞争加剧风险</td><td>每年（FDA动态）</td></tr>
-  <tr><td>AUD/USD汇率</td><td>AUD ~$0.67 USD（接近10年低位）</td><td class="good">ASX投资者受益</td><td>每月</td></tr>
-  <tr><td>OSA诊断率提升</td><td>全球~20%，仍有巨大提升空间（新兴市场+老龄化）</td><td class="good">长期正面</td><td>每年</td></tr>
-  <tr><td>商誉减值风险</td><td>$3.5B（总资产43%），SaaS业务收入~$660M且现金流稳定，减值风险低</td><td class="neutral">低短期风险</td><td>每年（减值测试）</td></tr>
-  <tr><td>回购节奏</td><td>FY2025完成$300M回购，剩余授权~$500M</td><td class="good">正面催化剂</td><td>每季度</td></tr>
-</table>
-
-<h3>7.6 三情景分析</h3>
-<table>
-  <tr><th>情景</th><th>假设条件</th><th>目标价（ASX CDI, AUD）</th><th>概率</th><th>3年年化回报</th></tr>
-  <tr><td class="good">乐观（牛市）</td><td>毛利率持续提升至63%+，GLP-1证明与CPAP协同而非替代，Philips不回归，PE修复至25x</td><td>$38-42</td><td>20-25%</td><td>+15-20%</td></tr>
-  <tr><td class="neutral">基准（中性）</td><td>营收增长8-10%，毛利率稳定61%，GLP-1影响中性，PE维持18-22x</td><td>$28-33</td><td>50-55%</td><td>+5-10%</td></tr>
-  <tr><td class="bad">悲观（熊市）</td><td>GLP-1显著减少OSA设备需求，营收增速降至5%以下，毛利率承压，PE压缩至14-16x</td><td>$18-22</td><td>20-25%</td><td>-8~12%</td></tr>
-</table>
-
+<h3>7.7 讨论问题</h3>
 <div class="summary-box">
-  <strong>三情景结论：</strong>基准情景（50-55%概率）下，ResMed凭借OSA龙头地位+毛利率持续提升+健康现金流，仍可实现5-10%年化回报。乐观情景下估值修复可带来15-20%年化回报。悲观情景下GLP-1冲击可能导致亏损，但当前PE~19x已部分反映此风险，下行空间有限。风险收益比偏向正面。
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. <strong>这笔生意你看懂了吗？</strong> ResMed 卖的是"让人能正常呼吸的睡眠"——CPAP 主机 + 每 3-6 个月换一次的面罩 + 云端管理软件。OSA 不治疗会显著增加心脑血管风险，所以是刚需。赚钱结构是"设备一次性铺装 → 面罩终身复购 → 软件持续订阅"。<br>
+  2. <strong>你最大的担忧是什么？哪个数据让你睡不着？</strong> Q4 的 US$42M。Astral 全球现场安全通知是一次性费用，但它同时是一个信号：公司的产品可靠性在最高价位的市场上被质疑了。这一次只是"通知"，下一次会不会是"召回"？<br>
+  3. <strong>如果现在买入，期待的回报来源是什么？</strong> ① FY27 核心 EPS +12%~14% 的盈利增长；② FY27 超 US$18.5 亿股东返还（约当前市值的 5.5%）对每股价值的支撑；③ Astral 恢复销售带来的估值修复（19.4x → 23x 对应 A$39.8）。<br>
+  4. <strong>什么情况下你会坚决卖出？</strong> ① Astral 事件升级为召回或引发 FDA 监管行动；② 核心（剔除两项一次性事件）营收增速跌破 +5%，说明"失速"不只是报表现象；③ 美国医保定价政策落地并压制 ASP；④ CFO/净利跌破 1.0，利润现金含量失守。<br>
+  5. <strong>分数从 100 掉到 97，问题出在哪？</strong> 只掉在"利润增长"一项（10 → 7 分）。值得思考的是：这是一个真实的经营恶化，还是 GAAP 口径被 US$42M 的一次性质量事件 + MatrixCare 出售摊薄扭曲后的算术结果？non-GAAP 净利 +16% 支持后一种解释。
 </div>
-
-<h3>7.7 讨论问题（阅读引导）</h3>
-<ol>
-  <li><strong>这笔生意你看懂了吗？</strong> ResMed 卖的是"睡个好觉"——CPAP 机器 + 面罩 + 云端管理软件。OSA 患者不治疗会大幅增加心脑血管疾病风险，所以这是刚需（不是锦上添花）。公司赚的是设备一次性销售+面罩每 3-6 月持续替换+云软件订阅费的钱。</li>
-  <li><strong>你最大的担忧是什么？</strong> GLP-1 减肥药。如果 Wegovy/Zepbound 等药能显著减肥并从根本上减少 OSA 患者数量，ResMed 的"渗透率提升"故事就要重写。好消息是临床数据初步表明 CPAP + GLP-1 联合使用效果最好，而非替代关系。</li>
-  <li><strong>如果现在买入，期待的回报来源是什么？</strong> ① 10% 的营收增长驱动 EPS ~12% CAGR；② PE 从 19x 回归历史中枢 24x（+26% 估值修复）；③ 合计年化回报 ~15-20%。无需依赖任何"奇迹"假设，只要公司继续做它一直在做的事。</li>
-  <li><strong>什么情况下你会坚决卖出？</strong> ① GLP-1 临床试验证明药物可替代 CPAP（结构性颠覆）；② 毛利率连续两个季度下降（+270bps 的趋势逆转）；③ Philips 重返市场并恢复竞争力；④ PE 重新涨到 30x 以上（估值不再有安全边际）。</li>
-  <li><strong>三个情景中你倾向于哪个？</strong> 基准情景（50-55%）合理——ResMed不是一夜暴富的故事，而是以合理价格（PE~19x）买入优质龙头，赚取EPS增长+估值修复的钱。你不需要相信牛市情景，只要相信公司能继续保持8-10%增长即可。</li>
-</ol>
 
 </div></div>
 
 <div class="footer">
   免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
-  数据来源：ResMed FY2025 10-K（SEC）、FY2026 Q3 10-Q、券商一致预期、ASX市场数据
+  数据来源：ResMed FY2026 Q4/全年业绩公告（2026-08-06）、FY2026 Form 10-K（2026-08-13）、Q4 FY26 业绩电话会、stockanalysis.com（S&amp;P Global，截至 2026-10-14）
 </div>
 
 </div>
 
 <script>
-var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
-var contents = document.querySelectorAll('.tab-content');
-btns.forEach(function(btn) {
-  btn.addEventListener('click', function() {
-    btns.forEach(function(b) { b.classList.remove('active'); });
-    contents.forEach(function(c) { c.classList.remove('active'); });
-    btn.classList.add('active');
-    var tab = btn.getAttribute('data-tab');
-    document.getElementById('tab-' + tab).classList.add('active');
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
   });
-});
+})();
 </script>
 </body>
 </html>

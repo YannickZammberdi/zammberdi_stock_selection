@@ -51,6 +51,8 @@
   .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
   .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
   .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .score-note { font-size: 13px; color: #666; background: #fafafa; border: 1px dashed #ccc; padding: 8px 12px; margin: 10px 0; }
+  .history-table td:first-child { white-space: nowrap; }
   .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
   ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
   li { margin-bottom: 4px; }
@@ -61,7 +63,7 @@
 
 <h1>Hub24（HUB:ASX）财务分析报告</h1>
 <p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
-<p class="meta">分析日期：2026-07-14 | 数据来源：FY2025 年报（截至2025年6月）| 货币单位：AUD</p>
+<p class="meta">分析日期：2026-10-14 | 数据来源：HUB24 FY26 年度报告与业绩公告（2026-08-18）、FY26 Analyst &amp; Investor Presentation、FY26 平台资金流公告（2026-07-21）、FY26 业绩电话会记录、APR/A*STAR 相关报道、stockanalysis.com（S&amp;P Global，截至 2026-10-14）| 货币单位：AUD | 财年：7月1日–6月30日（FY2026 = 截至 2026-06-30）</p>
 
 <div class="tab-bar">
   <button class="tab-btn active" data-tab="summary">总结论</button>
@@ -78,102 +80,172 @@
 <h2>一、公司基本画像</h2>
 <table>
   <tr><th style="width:30%">项目</th><th>内容</th></tr>
-  <tr><td>公司名称</td><td>HUB24 Limited</td></tr>
-  <tr><td>股票代码</td><td>HUB（ASX：澳大利亚证券交易所）</td></tr>
-  <tr><td>所属行业</td><td>金融服务——财富管理平台（SaaS型平台）</td></tr>
-  <tr><td>行业地位</td><td>澳大利亚#1净流入平台（连续8+季度），市场份额9.3%，#6最大平台</td></tr>
-  <tr><td>财年</td><td>7月1日–6月30日（FY2025 = 2024年7月–2025年6月）</td></tr>
-  <tr><td>FY2025 营收</td><td><strong>A$4.066 亿（+24%）</strong></td></tr>
-  <tr><td>FY2025 Underlying NPAT</td><td><strong>A$0.978 亿（+44%）</strong></td></tr>
-  <tr><td>FY2025 经营现金流（估）</td><td><strong>~A$1.59 亿</strong></td></tr>
-  <tr><td>总资产</td><td>A$6.624 亿</td></tr>
-  <tr><td>净资产</td><td>A$5.299 亿</td></tr>
-  <tr><td>ROE（TTM）</td><td><strong>~19.7%</strong></td></tr>
-  <tr><td>平台资产（FUA）</td><td><strong>A$1,364 亿（+30%）</strong></td></tr>
+  <tr><td>公司名称</td><td>Hub24 Limited（澳洲财富管理基础设施平台运营商，总部墨尔本，2007 年成立，员工约 1,096 人）</td></tr>
+  <tr><td>股票代码</td><td>ASX: HUB</td></tr>
+  <tr><td>所属行业</td><td>财富管理平台 / 金融科技基础设施（IDPS 投资与养老金托管平台、PARS、SMSF 信托会计软件）</td></tr>
+  <tr><td>行业地位</td><td>连续 10 个季度净流入第一；FY26 取得所有平台中最大的年度份额提升（8.6% → <b>9.9%</b>）；按 FUA 排名第 6（上年第 7）</td></tr>
+  <tr><td>FY 营收</td><td><b>501.1 百万澳元</b>（FY25 406.6，+23%）；Platform 406.9（+26%）、Tech Solutions 84.0（+9%）、Corporate 10.2（+65%）</td></tr>
+  <tr><td>归母净利润</td><td>法定 NPAT <b>120.2 百万澳元</b>（FY25 79.5，<b>+51%</b>）；Underlying NPAT 137.3（+40%）；基本 EPS 147 澳分（+50%）／Underlying 摊薄 EPS 167 澳分（+42%）</td></tr>
+  <tr><td>经营现金流</td><td><b>177.0 百万澳元</b>（FY25 149.0，+19%）；CFO/净利润 = <b>1.47</b></td></tr>
+  <tr><td>总资产</td><td>710.2 百万澳元（FY25 662.4）；总负债 157.4；负债率 22.2%</td></tr>
+  <tr><td>归母净资产</td><td><b>552.8 百万澳元</b>（FY25 529.9）；BVPS 6.76 澳元；净有形资产/股 1.79 澳元</td></tr>
+  <tr><td>ROE</td><td><b>22.2%</b>（平均权益口径；Underlying 口径 25.4%）</td></tr>
+  <tr><td>核心运营资产</td><td>总 FUA <b>1,643.2 亿澳元</b>（FY25 1,363.8，+20%）；Platform FUA 1,394.9 亿（+24%）、PARS FUA 248.3 亿（+5%）；活跃顾问 5,649（+11%）</td></tr>
 </table>
+
+<div class="summary-box">
+  <strong>行业类型标注：</strong><b>非周期股（成长型）</b> —— 采用<b>非周期股评分体系</b>。<br>
+  理由：收入与 FUA（管理资产）挂钩，属<b>经常性资产管理费</b>；澳洲强制养老金（superannuation）制度提供长期强制资金流入，需求不随商品周期波动。<br>
+  <b class="neutral">但必须同时指出：收入随股市水平波动的顺周期性不弱 —— L2 排雷已将"盈利高度顺周期"列为 🟡 级风险。</b>存托费基资产（spot custodial fee paying FUA）占 <b>79.6%</b>，即近八成管理资产是权益类，市场下跌会同时打击 FUA 与费率收入。
+</div>
+
+<p class="score-note"><strong>评分口径说明：</strong><span>仍用非周期股体系，FY26净利+51%业绩超强，但PE仍高于区间故分数上调有限</span></p>
 
 <h2>综合评分（百分制）</h2>
-<p style="font-size:13px;color:#666;margin-bottom:8px">采用非周期股评分体系（10维度），综合L1-L3所有因素（财务健康度、关键指标、估值），对各维度打分求和</p>
+<p style="font-size:13px;color:#666;margin:4px 0;">采用<b>非周期股评分体系</b>（上一版亦为非周期股体系，本次数据基准由 FY2025+1H26 更新为完整 FY2026）。</p>
 <table>
   <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
-  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">19.7%（TTM），超过15%门槛</td></tr>
-  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">高利润型——净利率~20%+极低杠杆+轻资产高FCF转化</td></tr>
-  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">~1.63-2.0x，现金质量极高（UEBITDA→OCF转化率98%）</td></tr>
-  <tr><td>营收增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+24% ≥ 10%</td></tr>
-  <tr><td>利润增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">Underlying NPAT +44% ≥ 15%</td></tr>
-  <tr><td>负债率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">11.5%，远低于40%（净现金状态）</td></tr>
-  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">货币资金A$1.148亿 >> 短期有息负债~A$0.03亿</td></tr>
-  <tr><td>毛利率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">平台型SaaS，毛利率~65-80%高毛利</td></tr>
-  <tr><td>估值 PE（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">PE ~64x远超合理区间（15-25x），虽然有所回调但绝对估值仍贵</td></tr>
-  <tr><td>自由现金流（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">FCF A$1.437亿，FCF margin 35.7%，极优秀</td></tr>
-  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">90/100</td><td style="text-align:left">品质优秀（90/100分）——业务面满分，唯估值偏高</td></tr>
+  <tr><td>ROE</td><td class="good">15/15</td><td style="text-align:left">法定口径 22.2%（平均权益 541.3），Underlying 口径 25.4%，远超 ≥15% 门槛</td></tr>
+  <tr><td>杜邦驱动质量</td><td class="good">5/5</td><td style="text-align:left">高利润型 —— 净利率 24.0%、权益乘数仅 1.27，几乎无杠杆驱动</td></tr>
+  <tr><td>利润含金量 CFO/净利</td><td class="good">15/15</td><td style="text-align:left">1.47 ≥ 1.0（177.0 / 120.2），利润全部转化为现金</td></tr>
+  <tr><td>营收增长</td><td class="good">10/10</td><td style="text-align:left">集团 +23%，Platform +26%，大幅超过 10% 门槛</td></tr>
+  <tr><td>利润增长</td><td class="good">10/10</td><td style="text-align:left">法定 NPAT +51%、Underlying NPAT +40%、UEBITDA +30%，远超 15%</td></tr>
+  <tr><td>负债率</td><td class="good">10/10</td><td style="text-align:left">157.36/710.16 = 22.2% &lt; 40% 门槛</td></tr>
+  <tr><td>短期偿债</td><td class="good">10/10</td><td style="text-align:left">现金 70.99 + 债务与权益类投资 35.2 = 1.062 亿；一年内到期长期债务已清零（FY25 亦为 0），充裕覆盖</td></tr>
+  <tr><td>毛利率水平与趋势</td><td class="good">10/10</td><td style="text-align:left"><b>替代口径</b>：按费用性质列报不披露毛利，改用 UEBITDA 利润率 42.2%（FY25 39.9%，+2.3pp），Platform 45.9%（+1.7pp），≥30% 且改善</td></tr>
+  <tr><td>估值 PE vs 合理区间</td><td class="neutral">4/10</td><td style="text-align:left">ROE 22.2% 对应合理 PE 20–30x；实际法定 PE 44.6x / Underlying 38.6x，<b>高出区间上沿约 30~49%</b>，落在"偏高&lt;50%"档。<b>本报告唯一扣分维度</b></td></tr>
+  <tr><td>FCF</td><td class="good">5/5</td><td style="text-align:left">经营现金流 1.77 亿（+19%），资本开支小，FCF 持续显著为正</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">94/100</td><td style="text-align:left">品质优秀（≥80 分）｜采用非周期股评分体系</td></tr>
 </table>
 
-<div class="verdict verdict-ok">品质优秀（90/100分）—— ROE 19.7%+高增长+净现金+FCF margin 36%，ASX顶级平台型公司</div>
+<div class="verdict verdict-ok">品质优秀（94/100分）</div>
+
+<!-- 评分沿革：由sync脚本从 scores.json 注入，生成时保留此注释不动 -->
 <h2 style="margin-top:16px">评分沿革</h2>
 <style>.history-table{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:13px}.history-table th,.history-table td{border:1px solid #ddd;padding:6px 8px;text-align:center}.history-table th{background:#f0f0f0;font-weight:bold}.history-table td.good{color:#27ae60}.history-table td.neutral{color:#e67e22}.history-table td.bad{color:#c0392b}</style><table class="history-table">
   <tr><th>日期</th><th>评分</th><th>评分体系</th><th>变化原因</th></tr>
   <tr><td>2026-07-14</td><td class="good" style="font-weight:bold">90/100</td><td>成长性</td><td style="text-align:left">—</td></tr>
+  <tr><td>2026-10-14</td><td class="good" style="font-weight:bold">94/100</td><td>成长性</td><td style="text-align:left">仍用非周期股体系，FY26净利+51%业绩超强，但PE仍高于区间故分数上调有限</td></tr>
 </table>
 
+<div class="danger-box">
+  <strong>⚠️ 评分口径的诚实性声明（本报告最重要的一条结论）：</strong><br>
+  HUB 的机械评分 <b>94 分（高于上一版 90 分）</b>，同时股价<b>距 52 周高点 −46.7%</b>（现价 A$65.08 vs 高点 A$122.03）—— 这不是矛盾：<br>
+  <b>FY26 是一份非常强的年报</b>（营收 +23%、法定净利 +51%、FUA +20%、份额从 8.6% 抢到 9.9%、UEBITDA 利润率 +2.3pp）。<b>股价的下跌反映的是市场对"未来流入能否延续"的贴现，而不是对已实现业绩的否定。</b><br>
+  <b class="bad">但必须同时点明：这套 94 分完全基于 FY2026 已实现的报表数据，对两个前瞻性风险完全不敏感 ——</b><br>
+  ① <b>IDPS（自主投资组合服务）流出在 2026 年 8 月仍处高位</b>，若持续，FUA 与收入增速将同时下台阶；<br>
+  ② <b>APRA 对 HUB24 养老金受托人施加新牌照条件</b>（本轮监管周期内第五家被采取执法行动的平台受托人），带来声誉、成本与潜在流向风险。<br>
+  <span class="bad">因此：94 分 = "已实现的 FY2026 是 excellent"，不等于"今天 A$65.08 是便宜的"。估值维度 4/10 已经承担了全部定价警示。</span>
+</div>
+
+<div class="highlight-box">
+  <strong>⏰ 关键时间点（距本报告仅 6 天）：</strong><b class="bad">下一份财报 / 交易更新 = 2026-10-20（FY27 Q1 平台资金流更新）</b>。这是最直接、最不可回避的验证／证伪节点 —— 它将回答两个核心问题：<b>① Q3 FY26 的机构 mandate 退出是一次性的还是趋势的开始；② IDPS 自主投资组合流出是否见顶回落。</b>
+</div>
+
 <div class="summary-box">
-  <strong>综合诊断：</strong>Hub24是澳大利亚财富管理行业的颠覆者——通过技术驱动的投资平台为财务顾问提供服务，连续8个季度净流入行业第一。FY2025营收增长24%，Underlying NPAT增长44%，FCF margin高达35.7%，体现出典型的SaaS平台规模效应。平台资产管理规模(FUA)达A$1,364亿（+30%），市场份额从8.7%升至9.3%，持续从传统平台（如BT/AMP）手中抢份额。<br><br>
-  <strong>核心优势：</strong>① 平台商业模式极好——AUM-based收入每季复利增长，边际成本趋近于零；② 净现金状态（现金A$1.148亿 > 总债务A$0.59亿），零流动性风险；③ 连续8+季度净流入#1，粘性极强（顾问转换平台成本高）；④ FCF margin 35.7%+ROE 19.7%，资本效率在ASX金融股中顶级；⑤ FY2027平台FUA目标A$1,480-1,620亿，增长可见度高。<br><br>
-  <strong>核心风险：</strong>① PE ~64x远超传统价值框架的合理区间（ROE 19.7%对应15-25x），即使考虑到ASX科技溢价仍偏高；② 竞争加剧——Netwealth、Macquarie等对手也在争夺顾问平台市场；③ 估值依赖增长持续——若FUA增速放缓至15%以下，估值有大幅收缩风险；④ 澳股市场整体下行将直接影响FUA和平台收入。
+  <strong>综合诊断：</strong>一家基本面极强、但增长质量正在被市场重新定价的澳洲财富管理基础设施龙头 —— 已实现的 FY2026 是一份无可挑剔的年报（营收 +23%、法定净利 +51%、CFO/净利 1.47、ROE 22.2%、零短期有息债务），而 −47% 的股价反映的不是过去，而是"未来 18 个季度的净流入还能不能维持"这一单一变量。<br><br>
+  <strong>核心优势：</strong><br>
+  ① <b>平台份额在加速集中</b>：FY26 份额 8.6% → 9.9%，是所有平台中最大的年度份额提升，连续 10 个季度净流入第一；活跃顾问 5,649（+11%）覆盖全行业约 37% 的顾问。<br>
+  ② <b>剔除大额迁移后的净流入创历史纪录</b>：表面 Platform 净流入 189.1 亿（表面 −4%），剔除 FY25 的 40 亿大额迁移后实为 <b>+20%（FY25 158 亿 → FY26 189 亿）</b>。<br>
+  ③ <b>现金流与利润高度匹配且杠杆极低</b>：CFO/净利 1.47，权益乘数仅 1.27，一年内到期长期债务为 0，负债率 22.2%。<br>
+  ④ <b>管理层给出了可见的规模路径</b>：FY28 Platform FUA 目标 1,860~2,000 亿澳元（不含 PARS），分红率 47–53% 稳定落在 40–60% 目标区间。<br><br>
+  <strong>核心风险：</strong><br>
+  ① <b class="bad">IDPS 自主投资组合段流出持续（2026 年 8 月仍处高位）</b> —— 熊方最核心的论点，可能是"一次性"，也可能标志增速下台阶。<br>
+  ② <b class="bad">APRA 对 super 受托人施加新牌照条件</b> —— 本轮第五家被行动的平台受托人；公司正以 10% 高息向该受托人关联方贷款 1 亿澳元（已提取 77.5m）以满足 CPS 230 / SPS 114 ORFR 要求，并已行使看涨期权拟收购受托人（尚待 APRA 批准）。<br>
+  ③ <b class="neutral">盈利高度顺周期</b> —— 79.6% 的存托费基为权益类资产，市场下跌同时打击 FUA 与费率收入；Q3 FY26 一笔机构 mandate 退出就让 Platform FUA 环比走平（127,915 → 127,829）。<br>
+  ④ <b class="neutral">估值仍不便宜</b> —— 法定 PE 44.6x 超出 ROE 22.2% 对应的 20–30x 区间，EV/UEBITDA 25.1x、PB 9.63x（有形 PB 高达 36.4x）；这是 10 个维度中唯一扣分项。
 </div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l1"><div class="tab-inner">
 
-<h2>二、核心财务数据（FY2025）</h2>
+<h2>二、核心财务数据（L1 · FY2026 vs FY2025）</h2>
+<p style="font-size:12px;color:#999;">口径说明：单位百万澳元（AUD m）；FY = 截至 6 月 30 日；Underlying（基础）口径为剔除一次性/非现金项目后的管理层调整口径。</p>
 
 <h3>2.1 利润表</h3>
 <table>
-  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
-  <tr><td>营收（客户收入）</td><td><strong>A$4.066 亿</strong></td><td>A$3.28 亿</td><td><strong>+24%</strong></td><td class="good">✅ 高增长</td></tr>
-  <tr><td>Underlying NPAT</td><td><strong>A$0.978 亿</strong></td><td>A$0.678 亿</td><td><strong>+44%</strong></td><td class="good">✅ 利润率提升</td></tr>
-  <tr><td>Statutory NPAT</td><td><strong>A$0.795 亿</strong></td><td>A$0.472 亿</td><td><strong>+68.6%</strong></td><td class="good">✅ 大幅改善</td></tr>
-  <tr><td>集团EBITDA</td><td><strong>A$1.624 亿</strong></td><td>A$1.18 亿</td><td><strong>+38%</strong></td><td class="good">✅ 规模效应</td></tr>
-  <tr><td>经营利润率</td><td><strong>24.6%</strong></td><td>17.9%</td><td>+6.7pct</td><td class="good">✅ 显著提升</td></tr>
-  <tr><td>净利率（Statutory）</td><td><strong>19.7%</strong></td><td>14.4%</td><td>+5.3pct</td><td class="good">✅ 高利润率</td></tr>
-  <tr><td>稀释EPS（Statutory）</td><td>A$0.96</td><td>A$0.56</td><td>+69.8%</td><td class="good">✅</td></tr>
-  <tr><td>稀释EPS（Underlying）</td><td>A$1.178</td><td>A$0.81</td><td>+45%</td><td class="good">✅</td></tr>
+  <tr><th>指标</th><th>FY2026</th><th>FY2025</th><th>同比</th><th>评价</th></tr>
+  <tr><td>集团营业收入</td><td><b>501.1</b></td><td>406.6</td><td class="good">+23%</td><td class="good">超预期</td></tr>
+  <tr><td>— Platform 分部</td><td>406.9</td><td>323.3</td><td class="good">+26%</td><td class="good">核心引擎</td></tr>
+  <tr><td>— Tech Solutions 分部</td><td>84.0</td><td>77.1</td><td class="good">+9%</td><td>稳健但增速偏低</td></tr>
+  <tr><td>— Corporate</td><td>10.2</td><td>6.2</td><td class="good">+65%</td><td>含 Count 股息收入，非经营性</td></tr>
+  <tr><td>集团费用总额</td><td>289.7</td><td>244.2</td><td>+19%</td><td class="good">费用增速 &lt; 收入增速</td></tr>
+  <tr><td>费用率（费用/营收）</td><td>57.8%</td><td>60.1%</td><td class="good">−2.3pp</td><td class="good">经营杠杆释放</td></tr>
+  <tr><td>毛利率</td><td colspan="2" style="text-align:center">按费用性质列报，<b>不披露毛利</b>（改用 UEBITDA 利润率）</td><td>—</td><td>替代口径见下行</td></tr>
+  <tr><td>UEBITDA 利润率（替代毛利率）</td><td><b>42.2%</b></td><td>39.9%</td><td class="good">+2.3pp</td><td class="good">≥30% 且改善</td></tr>
+  <tr><td>集团 UEBITDA</td><td><b>211.4</b></td><td>162.4</td><td class="good">+30%</td><td class="good">远超收入增速</td></tr>
+  <tr><td>— Platform UEBITDA</td><td>186.7</td><td>142.9</td><td class="good">+31%</td><td class="good">利润率 45.9%（+1.7pp）</td></tr>
+  <tr><td>— Tech Solutions UEBITDA</td><td>29.3</td><td>27.1</td><td>+8%</td><td>与收入增速基本匹配</td></tr>
+  <tr><td>含股份支付的 EBITDA</td><td>~198</td><td>数据待补充</td><td>+33%</td><td>股份支付为真实稀释成本</td></tr>
+  <tr><td>myprosperity UEBITDA</td><td class="bad">−2.5</td><td>−3.7</td><td class="good">亏损收窄 1.2</td><td class="good">投入期，接近盈亏平衡</td></tr>
+  <tr><td><b>法定 NPAT（归母净利润）</b></td><td><b>120.2</b></td><td>79.5</td><td class="good"><b>+51%</b></td><td class="good">超预期</td></tr>
+  <tr><td>Underlying NPAT（扣非口径）</td><td>137.3</td><td>97.8</td><td class="good">+40%</td><td class="good">法定与 Underlying 差 17.1（占 Underlying 12.5%）为股份支付等调整项</td></tr>
+  <tr><td>净利率</td><td><b>24.0%</b></td><td>19.6%</td><td class="good">+4.4pp</td><td class="good">平台型生意的高利润率特征</td></tr>
+  <tr><td>基本 EPS</td><td>147 澳分</td><td>98 澳分</td><td class="good">+50%</td><td>摊薄 EPS 146 澳分（FY25 96），+52%</td></tr>
+  <tr><td>Underlying 摊薄 EPS</td><td><b>167 澳分</b></td><td>数据待补充</td><td class="good">+42%</td><td>L3 估值双轨计算的第二条基准</td></tr>
+  <tr><td>季度收入 / 单季净利</td><td colspan="2" style="text-align:center">公司按财年披露损益、不按季披露损益表；季度仅披露平台资金流（见 L2 §3.3）</td><td>—</td><td>季度损益数据待补充</td></tr>
 </table>
 
 <div class="summary-box">
-  <strong>利润表解读：</strong>Hub24体现出典型的SaaS平台规模效应——营收+24%的同时，EBITDA和NPAT增速（38-68%）远超营收增速。经营利润率从17.9%跃升至24.6%（+670bps），净利率从14.4%升至19.7%（+530bps）。Statutory NPAT高于Underlying的差异来自收购相关摊销费用。核心驱动是平台FUA持续增长——从A$1,050亿增至A$1,364亿（+30%），AUM-based收入产生复利效应。
+  <strong>利润表解读：</strong>这是一份<b>质量很高的利润表</b>。收入 +23% 的同时费用只增长 19%，UEBITDA 利润率从 39.9% 提升到 42.2%（+2.3pp），法定净利 +51%、Underlying 净利 +40% —— <b>利润增速显著快于收入增速，说明经营杠杆正在释放，且这一杠杆来自"每多 1 元 FUA 的边际成本很低"的平台商业模式，而非削减投入。</b>Platform 分部 UEBITDA 利润率 45.9%（+1.7pp），是集团利润率的主要拉动项；Tech Solutions 利润率稳定但增速仅 9%，是集团的拖累项；myprosperity 亏损收窄至 −2.5，接近盈亏平衡。<br>
+  <b class="neutral">需要扣分的地方：</b>收入加速中约<b>相当一部分来自市场上涨（FY26 市场变动 +79.0 亿澳元）</b>，而非纯净净流入（剔除大额迁移后 +20%）。市场上涨是"借来的增长"，可逆。
 </div>
 
 <h3>2.2 资产负债表</h3>
 <table>
-  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
-  <tr><td>货币资金</td><td><strong>A$1.148 亿</strong></td><td class="good">✅ 充裕</td></tr>
-  <tr><td>商誉及无形资产</td><td><strong>A$4.301 亿</strong></td><td class="neutral">占资产65%，主要来自收购（Class等）</td></tr>
-  <tr><td>总负债</td><td><strong>A$1.325 亿</strong></td><td class="good">✅ 极低</td></tr>
-  <tr><td>总债务（含租赁）</td><td><strong>A$0.59 亿</strong></td><td class="good">✅ 几乎无债</td></tr>
-  <tr><td>净资产</td><td>A$5.299 亿</td><td class="good">✅ 稳健</td></tr>
-  <tr><td>资产负债率</td><td><strong>11.5%</strong></td><td class="good">✅ 极低</td></tr>
-  <tr><td>每股净资产</td><td>A$6.56</td><td class="good">✅ 稳健增长</td></tr>
+  <tr><th>科目</th><th>2026-06-30</th><th>2025-06-30</th><th>评价</th></tr>
+  <tr><td>现金及等价物</td><td>70.99</td><td>114.83</td><td class="neutral">下降 43.8（主因：对 HTFS 贷款提取 77.5 + 回购 56.0 + 偿还 30.0 到期债务）</td></tr>
+  <tr><td><b>债务与权益类投资</b></td><td class="neutral"><b>35.2</b></td><td>1.1</td><td class="neutral"><b>本年新增</b>：为满足 APRA 审慎标准而配置的金融资产</td></tr>
+  <tr><td>应收账款</td><td>54.34</td><td>43.55</td><td>+24.8%，与收入 +23% 匹配，健康</td></tr>
+  <tr><td>物业、厂房及设备</td><td>46.84</td><td>33.41</td><td>+40%，资本开支与研发投入加大</td></tr>
+  <tr><td><b>商誉</b></td><td>246.25</td><td>246.25</td><td class="neutral">多年持平，无新增并购溢价（暂未计提减值）</td></tr>
+  <tr><td>其他无形资产</td><td>160.41</td><td>183.88</td><td class="good">−23.5，摊销自然消化，是净有形资产改善的主因</td></tr>
+  <tr><td>存货</td><td colspan="2" style="text-align:center">平台业务无存货</td><td>不适用</td></tr>
+  <tr><td><b>总资产</b></td><td><b>710.16</b></td><td>662.41</td><td>+7.2%</td></tr>
+  <tr><td>应付账款</td><td>1.35</td><td>数据待补充</td><td>极小，符合平台轻资产特征</td></tr>
+  <tr><td>应计费用</td><td>40.49</td><td>数据待补充</td><td>—</td></tr>
+  <tr><td><b>一年内到期长期债务</b></td><td class="good"><b>0</b></td><td>0</td><td class="good">短期有息负债为零</td></tr>
+  <tr><td>一年内到期租赁</td><td>2.61</td><td>数据待补充</td><td>—</td></tr>
+  <tr><td>其他流动负债</td><td>18.71</td><td>数据待补充</td><td>—</td></tr>
+  <tr><td>流动负债合计</td><td>122.53</td><td>111.03</td><td>—</td></tr>
+  <tr><td>长期债务</td><td>29.98</td><td>29.98</td><td>FY26 年中已偿还 3,000 万到期债务并再融资，余额不变</td></tr>
+  <tr><td>长期租赁</td><td>39.07</td><td>数据待补充</td><td>—</td></tr>
+  <tr><td>长期递延收入</td><td>0</td><td>0.27</td><td>—</td></tr>
+  <tr><td>递延税负债</td><td>10.34</td><td>数据待补充</td><td>—</td></tr>
+  <tr><td>其他长期负债</td><td>11.01</td><td>数据待补充</td><td>—</td></tr>
+  <tr><td><b>总负债</b></td><td><b>157.36</b></td><td>132.53</td><td>负债率 <b>22.2%</b>（&lt;40% 门槛）</td></tr>
+  <tr><td><b>股东权益</b></td><td class="good"><b>552.75</b></td><td>529.89</td><td>BVPS <b>6.76 澳元</b>（FY22 5.71 → 逐年上行）</td></tr>
+  <tr><td>净有形资产</td><td class="good">146.09</td><td>99.78</td><td class="good">+46%，有形 BVPS <b>1.79 澳元</b>（FY25 1.23）</td></tr>
+  <tr><td>总债务</td><td>71.66</td><td>59.04</td><td>—</td></tr>
+  <tr><td>净现金 / (净债务)</td><td class="neutral">−0.67（净中性）</td><td>55.84（净现金）</td><td class="neutral">由净现金 5,584 万转为基本净中性，见下方风险项</td></tr>
+  <tr><td>流动比率</td><td colspan="2" style="text-align:center">流动资产科目本次未逐一披露</td><td>数据待补充（但一年内到期有息债务为 0，流动性无实质压力）</td></tr>
 </table>
 
 <div class="highlight-box">
-  <strong>资产负债表解读：</strong>Hub24的资产负债表极其健康——净现金状态（现金A$1.148亿 > 总债务A$0.59亿），资产负债率仅11.5%。这是典型SaaS平台公司的财务特征：轻资产运营、几乎没有生产性固定资产、高FCF、零净债务。商誉及无形资产A$4.301亿占资产65%，主要是历年收购Class、NowInfinity、myprosperity等科技公司形成的，但收购后的协同效应已体现在营收和利润增速上。
+  <strong>资产负债表解读：</strong>结构依然稳健 —— 负债率 22.2%、权益乘数仅 1.27、<b>一年内到期长期债务为零</b>，账面净有形资产 +46% 至 1.46 亿（每股 1.79 澳元），PB 的"账面"支撑在改善。<br>
+  <b class="neutral">但 FY26 有三处变化必须读出来：</b><br>
+  ① <b>净现金从 5,584 万转为净中性（−67 万）</b>：现金减少 4,380 万，是"向关联方放贷 7,750 万 + 回购 5,600 万 + 偿还 3,000 万到期债务"三件事共同作用的结果，不是经营性恶化，但改变了公司的净现金标签；<br>
+  ② <b>新增"债务与权益类投资"3,520 万</b>（FY25 仅 110 万），这是为满足 APRA 的操作风险财务要求而配置的金融资产；<br>
+  ③ <b class="bad">表外的关联方集中敞口（本年最大的新增风险项）：向 HUB24 Super Fund 受托人 HTFS（EQT Holdings 子公司）的贷款额度 1 亿澳元、年息 10%，2026-06-30 已提取 7,750 万（FY25 仅 500 万）。</b>目的是满足 APRA 审慎标准 SPS 114 的操作风险财务要求（ORFR）与 CPS 230 强化运营风险义务（2025-07-01 起生效）—— 这解释了现金去向。<b>同时公司已行使看涨期权收购 HTFS Nominees Pty Ltd（受托人本身），把 super 受托人转为自有，预计 1H FY27 完成，需 APRA 等监管批准，对价名义金额，对 EBITDA 无重大影响。</b>即：公司一边以 10% 高息向一个受监管机构刚开出罚牌的关联方放贷，一边准备把它买过来 —— 商业逻辑成立（牌照与 ORFR 是自有基础设施），但集中度与审批风险是实打实的。
 </div>
 
 <h3>2.3 现金流量表</h3>
 <table>
-  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
-  <tr><td>经营现金流（OCF，估）</td><td><strong>~A$1.59 亿</strong></td><td>A$1.18 亿</td><td class="good">✅ UEBITDA→OCF转化率98%</td></tr>
-  <tr><td>资本开支</td><td><strong>~A$0.15 亿</strong></td><td>~A$0.30 亿</td><td class="good">✅ 轻资产极低</td></tr>
-  <tr><td>自由现金流（FCF）</td><td><strong>A$1.437 亿</strong></td><td>A$0.869 亿</td><td class="good">✅ +65.3%</td></tr>
-  <tr><td>FCF Margin</td><td><strong>35.7%</strong></td><td>26.5%</td><td class="good">✅ 极优秀</td></tr>
-  <tr><td>OCF/Underlying NPAT</td><td><strong>~1.63</strong></td><td>~1.74</td><td class="good">✅ 现金质量极好</td></tr>
-  <tr><td>分红支付率</td><td><strong>44.4%</strong></td><td>~40%</td><td class="good">✅ 留足再投资</td></tr>
+  <tr><th>指标</th><th>FY2026</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>经营活动净现金流（CFO，所得税前口径）</td><td class="good"><b>177.0</b></td><td>149.0</td><td class="good">+19%</td></tr>
+  <tr><td>投资活动现金流（CFI）</td><td colspan="2" style="text-align:center">本次未取得分项数据</td><td>数据待补充</td></tr>
+  <tr><td>筹资活动现金流（CFF）</td><td colspan="2" style="text-align:center">本次未取得分项数据</td><td>数据待补充</td></tr>
+  <tr><td><b>CFO / 净利润</b></td><td class="good"><b>1.47</b></td><td>数据待补充</td><td class="good">≥1.0，净利 100% 转化为现金，另含折旧摊销</td></tr>
+  <tr><td>资本开支</td><td colspan="2" style="text-align:center">绝对额小（PP&amp;E 仅由 33.4 增至 46.8）</td><td class="good">轻资产，FCF 大幅为正</td></tr>
+  <tr><td><b>自由现金流（FCF）</b></td><td colspan="2" style="text-align:center" class="good"><b>经营现金流 1.77 亿 − 资本开支 → 持续强劲、显著为正</b></td><td class="good">FCF 5/5</td></tr>
+  <tr><td>二级市场回购（库存股，用于员工持股计划对冲）</td><td class="neutral">56.0</td><td>54.0</td><td>管理层称为"持续进行"的年度动作，对冲股份支付稀释</td></tr>
+  <tr><td>到期债务再融资</td><td>2026-06 滚动 3,000 万</td><td>—</td><td>保留灵活性，未去杠杆亦未加杠杆</td></tr>
 </table>
 
 <div class="summary-box">
-  <strong>现金流解读：</strong>Hub24的现金流是这家公司最亮眼的指标。UEBITDA→OCF转化率98%，意味着几乎每一块钱的EBITDA都变成了现金——这在ASX上市公司中极为罕见。FCF A$1.437亿（+65%），FCF Margin 35.7%堪比顶级SaaS公司。资本开支仅A$0.15亿（营收的0.37%），说明这是一个真正的轻资产平台——核心投入是工程师的工资和服务器费用，没有工厂或设备折旧。分红支付率44.4%，留有充足资金支持有机增长和收购。
+  <strong>现金流解读：</strong>CFO 1.77 亿（+19%）、CFO/净利 1.47 —— <b>对一家平台型公司而言这是应有之义：客户资产（FUA）在受托人层面属于代持，HUB 收到的是纯粹的管理费现金流，几乎没有营运资金占用和坏账风险。</b>应收账款 +24.8% 与收入 +23% 同步，未出现"利润涨、现金不涨"的常见问题。资本开支极小 → FCF 大幅为正，是本报告 FCF 维度 5/5 的依据。<br>
+  FY26 现金的三项去向（关联方贷款 7,750 万、回购 5,600 万、偿债 3,000 万）合计 1.635 亿，超过 CFO —— <b>公司的现金不是不够，而是被主动配置掉了</b>，这解释了从"净现金 5,584 万"到"净中性"的转变。
 </div>
 
 </div></div>
@@ -184,192 +256,264 @@
 
 <h3>3.1 关键盈利指标</h3>
 <table>
-  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
-  <tr><td>ROE（TTM）</td><td><strong>19.7%</strong></td><td>> 15% 优秀</td><td class="good">✅ 优秀</td></tr>
-  <tr><td>经营利润率</td><td><strong>24.6%</strong></td><td>稳定或提升</td><td class="good">✅ +6.7pct提升</td></tr>
-  <tr><td>净利率（Statutory）</td><td><strong>19.7%</strong></td><td>> 10%</td><td class="good">✅ 高利润率</td></tr>
-  <tr><td>营收增长率</td><td><strong>+24%</strong></td><td>> 10%</td><td class="good">✅ 高增长</td></tr>
-  <tr><td>NPAT增长率（Underlying）</td><td><strong>+44%</strong></td><td>> 15%</td><td class="good">✅ 超额增长</td></tr>
-  <tr><td>FCF Margin</td><td><strong>35.7%</strong></td><td>> 15%</td><td class="good">✅ 顶级</td></tr>
-  <tr><td>资产负债率</td><td><strong>11.5%</strong></td><td>< 40%</td><td class="good">✅ 极低</td></tr>
-  <tr><td>分红率</td><td><strong>44.4%</strong></td><td>持续分红</td><td class="good">✅ 合理</td></tr>
+  <tr><th>指标</th><th>FY2026</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE（平均权益口径）</td><td class="good"><b>22.2%</b>（Underlying 25.4%）</td><td>&gt;15%</td><td class="good">优秀</td></tr>
+  <tr><td>毛利率</td><td>不披露 → 替代 UEBITDA 利润率 <b>42.2%</b></td><td>稳定或提升</td><td class="good">+2.3pp，平台型高利润率</td></tr>
+  <tr><td>净利率</td><td class="good"><b>24.0%</b></td><td>&gt;15%</td><td class="good">优秀</td></tr>
+  <tr><td>营收增长</td><td class="good"><b>+23%</b></td><td>&gt;10%</td><td class="good">高速成长</td></tr>
+  <tr><td>利润增长（法定 / Underlying）</td><td class="good"><b>+51% / +40%</b></td><td>&gt;15%</td><td class="good">远超门槛</td></tr>
+  <tr><td>CFO / 净利润</td><td class="good"><b>1.47</b></td><td>&gt;1.0</td><td class="good">利润含金量充足</td></tr>
+  <tr><td>负债率</td><td class="good"><b>22.2%</b></td><td>&lt;50%</td><td class="good">极低杠杆</td></tr>
+  <tr><td>分红率（法定 / Underlying）</td><td class="good"><b>53% / 47%</b></td><td>稳定可持续</td><td class="good">落在公司 40–60% 目标区间内</td></tr>
+  <tr><td>Platform 收入率（revenue margin）</td><td class="neutral"><b>31bps（−1bp）</b></td><td>稳定或提升</td><td class="neutral">admin fee 分层与封顶（fee tiering and capping）压制</td></tr>
+  <tr><td>每股净资产 BVPS</td><td class="good">6.76 澳元</td><td>逐年上行</td><td class="good">FY22 5.71 → FY26 6.76，五年连续增长</td></tr>
 </table>
 
-<h3>3.2 分业务分析（FY2025）</h3>
+<h3>3.2 分业务与分部表现</h3>
 <table>
-  <tr><th>业务板块</th><th>营收（A$M）</th><th>占比</th><th>同比</th><th>EBITDA</th><th>EBITDA Margin</th><th>评价</th></tr>
-  <tr><td>Platform（核心平台）</td><td>323.3</td><td>79.5%</td><td><strong>+28%</strong></td><td>142.9</td><td>44.2%</td><td class="good">✅ 核心引擎</td></tr>
-  <tr><td>Tech Solutions（Class等）</td><td>77.1</td><td>19.0%</td><td><strong>+9%</strong></td><td>27.2</td><td>35.3%</td><td class="good">✅ 稳定增长</td></tr>
+  <tr><th>业务板块</th><th>FY26 营收</th><th>占比</th><th>同比</th><th>分部 UEBITDA 利润率</th><th>评价</th></tr>
+  <tr><td>Platform（HUB24 Platform / PARS）</td><td>406.9</td><td>81.2%</td><td class="good">+26%</td><td class="good">45.9%（+1.7pp）</td><td class="good">集团利润与估值的全部来源</td></tr>
+  <tr><td>Tech Solutions（Class / NowInfinity / HUBconnect）</td><td>84.0</td><td>16.8%</td><td>+9%</td><td>~34.9%（UEBITDA 29.3）</td><td class="neutral">增速偏低，但 Class 账户创 FY18 以来最大年度增幅</td></tr>
+  <tr><td>Corporate</td><td>10.2</td><td>2.0%</td><td>+65%</td><td>数据待补充</td><td class="neutral">含 Count 股息收入，非经营性，勿线性外推</td></tr>
+</table>
+
+<h3>3.3 平台运营指标（HUB 的核心资产，FUA 体系）</h3>
+<table>
+  <tr><th>指标</th><th>FY2026</th><th>FY2025</th><th>变化</th><th>解读</th></tr>
+  <tr><td><b>总 FUA（管理资产）</b></td><td class="good"><b>164,320</b></td><td>136,375</td><td class="good">+20%</td><td>收入的基础盘</td></tr>
+  <tr><td><b>Platform FUA</b></td><td class="good"><b>139,490</b></td><td>112,720</td><td class="good">+24%</td><td class="good">超过总 FUA 增速，PARS 拖累</td></tr>
+  <tr><td>PARS FUA</td><td>24,830</td><td>23,655</td><td>+5%</td><td>非托管组合管理、代理公司行动、税务报告</td></tr>
+  <tr><td>Platform FUA 拆解 — 净流入</td><td>18,910</td><td>19,739</td><td class="neutral">表面 −4%</td><td class="neutral"><b>口径陷阱</b>：FY25 含 40 亿大额迁移</td></tr>
+  <tr><td>Platform FUA 拆解 — <b>剔除大额迁移后的净流入</b></td><td class="good"><b>18,910（+20%）</b></td><td>15,800</td><td class="good">158 亿 → 189 亿</td><td class="good"><b>历史纪录</b>，真实竞争力得到验证</td></tr>
+  <tr><td>Platform FUA 拆解 — 市场变动</td><td>7,900</td><td>—</td><td>—</td><td class="neutral"><b>可逆项</b>：约相当于总增长的一半来自股市</td></tr>
+  <tr><td><b>平台市场份额</b></td><td class="good"><b>9.9%</b>（2026-03-31）</td><td>8.6%</td><td class="good">+1.3pp</td><td class="good">FY26 取得所有平台中<b>最大的年度份额提升</b>；按 FUA 排名升至第 6</td></tr>
+  <tr><td>净流入排名</td><td class="good">连续 10 个季度第一</td><td>—</td><td>—</td><td class="good">行业领先地位稳固</td></tr>
+  <tr><td><b>活跃顾问数</b></td><td class="good"><b>5,649</b></td><td>5,097</td><td class="good">+11%（年内 +552 人）</td><td class="good">覆盖全行业约 <b>37%</b> 的顾问</td></tr>
+  <tr><td>PARS 账户数</td><td>9,519</td><td>8,687</td><td>+10%</td><td class="good">与收入 +5% 背离（账户增速快于资产增速）</td></tr>
+  <tr><td>Class 账户数</td><td>226,767</td><td>215,675</td><td>+5%</td><td class="good">FY18 以来最大年度增幅</td></tr>
+  <tr><td>NowInfinity 公司注册增速</td><td colspan="2" style="text-align:center">为系统增速的 <b>2.1 倍</b></td><td class="good">生态协同在加速</td></tr>
+  <tr><td>myprosperity 覆盖</td><td colspan="2" style="text-align:center">545 家会计／财务顾问事务所、约 13.2 万家庭（+23%）</td><td class="good">C 端流量入口</td></tr>
+  <tr><td>存托费基资产占比（spot custodial fee paying FUA）</td><td class="neutral"><b>79.6%</b></td><td>79.9%</td><td>—</td><td class="neutral"><b>顺周期根源：近八成管理资产是权益类</b></td></tr>
+  <tr><td>战略持股</td><td colspan="2" style="text-align:center">Count (ASX:CUP) 13.03%（FY25 11.79%）、Finura 25%</td><td>生态绑定</td></tr>
+</table>
+
+<p style="font-size:13px;"><b>季度 Platform FUA 轨迹与净流入（百万澳元）—— 问题的全部在这里：</b></p>
+<table>
+  <tr><th>季度末</th><th>Jun-25</th><th>Sep-25</th><th>Dec-25</th><th>Mar-26</th><th>Jun-26</th></tr>
+  <tr><td>Platform FUA</td><td>112,720</td><td>121,967</td><td>127,915</td><td class="bad">127,829</td><td class="good">139,490</td></tr>
+  <tr><td>当季净流入</td><td>—</td><td>5,156</td><td>5,580</td><td class="bad">3,984</td><td>4,190</td></tr>
+  <tr><td>环比 FUA 变动</td><td>—</td><td class="good">+9,247</td><td class="good">+5,948</td><td class="bad">−86（走平）</td><td class="good">+11,661</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>⚠️ 三个必须贯穿全文的风险事件：</strong><br>
+  ① <b class="bad">Q3 FY26（2026-04-20）交易更新失手</b>：净流入虽为正（39.84 亿）但<b>远低于已被推高的市场预期</b>，当季包含一笔机构大额托管流出（institutional mandate exit）；Platform FUA 环比基本走平（127,915 → 127,829，仅 −86）。<b>股价当日／当周创 52 周新低 73.10</b>，2026-06-21 报道称 YTD 跌幅 23.21%。<br>
+  ② <b class="bad">IDPS（自主投资组合服务）流出持续</b>：FY26 业绩演示中管理层承认 IDPS 自主投资组合段流出上升；<b>2026 年 8 月仍处高位</b>（同期 super 流入相对稳健）。这是熊方最核心的论点 —— 可能只是"一次性"，也可能标志增速下台阶。<br>
+  ③ <b class="bad">APRA 对 HUB24 养老金受托人施加新牌照条件（2026 年年中）</b> —— <b>本轮监管周期内第五家被采取执法行动的平台受托人</b>。牌照条件通常涉及治理、风险管理、合规或运营缺陷，要求整改项目、强化报告与追加系统控制投入，并可能带来声誉成本与潜在流向风险。<br>
+  补充背景：联邦预算案提议的税改被管理层称为<b>反而强化了专业顾问需求与养老金吸引力</b>；财富管理行业持续动荡（大型财富集团分拆顾问业务、平台所有权不确定、私募资本回归）被管理层视作头部平台的<b>催化剂</b>；<b>myhub 生态</b>（与财务专业人士共创的开放式顾问生态，集成 HUB24 + Class + myprosperity + 第三方如 Finura 的 Advice Designer，用 AI 自然语言提示解决生产力问题，1H FY27 向部分客户试点）—— 但管理层明确表示 myhub 是"<b>随时间增加收入</b>"，<b>而非近期实质改变财务表现</b>，即<b class="bad">不会对冲近期的流向担忧</b>。
+</div>
+
+<h3>3.4 排雷清单</h3>
+<table>
+  <tr><th>风险项</th><th>严重程度</th><th>依据</th></tr>
+  <tr><td><b>IDPS 自主投资组合段流出在 2026 年 8 月仍处高位</b></td><td class="bad">🔴 高</td><td>管理层在 FY26 演示中承认该段流出上升；8 月未见缓解。若持续，FUA 与收入增速将同时下台阶，直接冲击估值。这是熊方核心论点，也是 2026-10-20 交易更新的首要观察项</td></tr>
+  <tr><td><b>APRA 对 super 受托人施加新牌照条件</b></td><td class="bad">🔴 高</td><td>2026 年年中发生，为本轮监管周期内第五家被采取执法行动的平台受托人。涉及治理／风险管理／合规／运营缺陷整改，追加系统控制投入，并带来声誉与潜在流向风险</td></tr>
+  <tr><td>对 HTFS 受托人的 1 亿澳元贷款已提取 7,750 万，年息 10%</td><td class="neutral">🟡 中</td><td>对受控关联方的集中敞口，以 10% 高息累积（每年利息成本可观）。虽为满足 SPR 114 ORFR / CPS 230 的正当需要，但同期公司正行使看涨期权收购 HTFS Nominees（预计 1H FY27 完成），<b>需 APRA 等监管批准，尚属待批事项</b></td></tr>
+  <tr><td><b>收入高度顺周期</b></td><td class="neutral">🟡 中</td><td>FUA 中 79.6% 为权益类存托资产（spot custodial fee paying FUA），市场下跌会同时打击 FUA 与费率收入。FY26 Platform FUA 增长 267.7 亿中 <b>79.0 亿来自市场变动（≈30%）</b>；Q3 一笔机构 mandate 退出即令季度 FUA 走平</td></tr>
+  <tr><td>估值仍不便宜</td><td class="neutral">🟡 中</td><td>法定 PE 44.6x 超出 ROE 22.2% 对应的 20–30x 区间约 49%；Underlying PE 38.6x 超出约 29%；EV/UEBITDA 25.1x、PB 9.63x、有形 PB 36.4x。<b>股价已跌 46.7% 但仍不在合理区间内</b></td></tr>
+  <tr><td>Platform 收入率被封顶机制压降</td><td class="neutral">🟡 中</td><td>收入率 31bps，同比 −1bp，原因是 admin fee 分层与封顶（fee tiering and capping）。<b>费率有上限意味着通胀环境下收入率结构性承压</b> —— 这是一个"规模换不来单价"的商业模式特征</td></tr>
+  <tr><td>客户／单笔委托集中度</td><td class="neutral">🟡 中</td><td>Q3 FY26 单笔机构 mandate 退出即导致当季净流入降至 39.84 亿且 FUA 环比走平，说明头部机构委托对单季资金流具备"一票否决"式影响</td></tr>
+  <tr><td>myprosperity 仍处投入期</td><td>🟡 低</td><td>UEBITDA −2.5（FY25 −3.7），亏损收窄但未盈利，短期无法贡献利润</td></tr>
+  <tr><td>myhub 短期无法对冲流向担忧</td><td>🟡 低</td><td>管理层明确表述为"随时间增加收入"而非近期改变财务表现，1H FY27 才向部分客户试点</td></tr>
+  <tr><td>商誉 2.46 亿减值敞口</td><td>🟡 低</td><td>占股东权益 44.6%、占总资产 34.7%。目前多年持平未减值，但净有形资产仅 1.46 亿；若并购资产不达预期，减值将显著侵蚀有形净资产</td></tr>
+  <tr><td>净现金转为净中性</td><td>🟡 低</td><td>由净现金 5,584 万转为 −67 万，系主动配置（关联方贷款＋回购＋偿债）所致，非经营性恶化</td></tr>
 </table>
 
 <div class="highlight-box">
-  <strong>业务解读：</strong>Platform业务是Hub24的核心（营收占比79.5%，EBITDA占比88%），增长28%驱动整体。平台商业模式的工作原理：顾问将客户资产托管在Hub24平台，Hub24按AUM收取年化费率（~0.3-0.5%），收入随FUA增长而增长。关键驱动力：① 净流入——FY2025创纪录A$198亿净流入（含A$40亿大单迁移）；② 市场增值——ASX上涨推高FUA；③ 加息环境下平台现金收益增加。Tech Solutions（Class超级基金软件、NowInfinity信托设立平台）增长9%较平稳，但具有高粘性，是顾问生态的重要组成部分。<br><br>
-  <strong>核心KPI——平台FUA：</strong>A$1,364亿（+30%），其中净流入A$198亿创纪录，FY2027目标A$1,480-1,620亿。活跃顾问数从5,097增至5,549（Q3 FY2026），持续渗透市场。
+  <strong>正面项（绿灯）：</strong><br>
+  🟢 <b>剔除大额迁移后净流入 +20% 创历史纪录</b>（158 亿 → 189 亿）—— 表面 −4% 是口径造成的错觉<br>
+  🟢 <b>份额 8.6% → 9.9%</b>，FY26 取得所有平台中最大的年度份额提升，按 FUA 排名升至第 6<br>
+  🟢 <b>连续 10 个季度净流入第一</b><br>
+  🟢 <b>活跃顾问 5,649（+11%），覆盖全行业约 37% 的顾问</b>；PARS 账户 +10%、Class 账户 +5%（FY18 以来最大年度增幅）<br>
+  🟢 <b>短期有息债务为零</b>（一年内到期长期债务 0），授信额度充裕：CBA 承诺额度 8,600 万（到期延至 2029-07-02）、500 万营运资金额度（未提取）、3,100 万循环额度（仅 100 万未提取）、5,000 万战略并购加项额度（未提取）<br>
+  🟢 <b>FY28 Platform FUA 目标 1,860~2,000 亿澳元</b>（不含 PARS），管理层给出可见的规模路径<br>
+  🟢 CFO/净利 1.47、UEBITDA 利润率 42.2%（+2.3pp）、FCF 显著为正、分红率 47–53% 落在 40–60% 目标区间<br>
+  🟢 <b>5 年绝对股东总回报（ATSR）165%</b>，同期 ASX 200 为 45%；即便股价自高点 −46.7%，5 年涨幅仍达 197%（同期 ASX 200 金融板块 XFJ +38.4%）
 </div>
-
-<h3>3.3 排雷清单</h3>
-<table>
-  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
-  <tr><td class="neutral">🟡 中等</td><td>PE ~64x远超传统估值框架</td><td>L3 估值</td></tr>
-  <tr><td class="neutral">🟡 中等</td><td>商誉A$4.301亿占资产65%，若收购标的业绩不及预期存在减值风险</td><td>L1 资产负债表</td></tr>
-  <tr><td class="neutral">🟡 中等</td><td>行业竞争加剧（Netwealth/Macquarie持续投入平台建设）</td><td>L2 行业分析</td></tr>
-  <tr><td class="neutral">🟡 中等</td><td>FUA增长依赖ASX市场表现，熊市将显著拖累FUA和收入</td><td>L2 业务模式</td></tr>
-  <tr><td class="neutral">🟡 中等</td><td>一致预期FY2026 EPS增速~37.5%，若低于预期估值承压</td><td>L3 估值</td></tr>
-  <tr><td class="good">🟢 正面</td><td>净现金状态，零流动性风险</td><td>L1 资产负债表</td></tr>
-  <tr><td class="good">🟢 正面</td><td>连续8+季度净流入#1，平台粘性极强</td><td>L2 业务数据</td></tr>
-  <tr><td class="good">🟢 正面</td><td>FCF Margin 35.7%，ASX顶级水平</td><td>L1 现金流量表</td></tr>
-  <tr><td class="good">🟢 正面</td><td>ROE 19.7%+净利率19.7%高资本效率</td><td>L2 盈利指标</td></tr>
-  <tr><td class="good">🟢 正面</td><td>分红连续3年增长，100% franking</td><td>L2 分红</td></tr>
-</table>
-
-<div class="verdict verdict-ok">✅ L2综合判定：顶级品质（高增长+高FCF+净现金+ROE优秀），商业模式极好</div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l3"><div class="tab-inner">
 
-<h2>四、估值分析（L3框架）</h2>
+<h2>四、估值分析（L3框架 · 非周期股 → PE Band）</h2>
+<p style="font-size:12px;color:#999;">基准日 2026-10-14，股价 A$65.08（当日 −0.70%，前收 A$65.54），期末股数 81.5M。</p>
 
-<h3>4.1 当前估值水平</h3>
+<h3>4.1 当前估值</h3>
 <table>
-  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
-  <tr><td>股价（2026.7.14）</td><td><strong>A$81.50</strong></td><td>52周区间A$74.92–A$122.03（已从低点反弹）</td></tr>
-  <tr><td>总市值</td><td><strong>A$66.6 亿</strong></td><td>~A$6.66B</td></tr>
-  <tr><td>PE（TTM）</td><td><strong>~63.7x</strong></td><td>基于TTM EPS ~A$1.28</td></tr>
-  <tr><td>PE（FY2026E）</td><td><strong>~50.3x</strong></td><td>基于一致预期EPS A$1.62</td></tr>
-  <tr><td>PB</td><td><strong>~12.4x</strong></td><td>基于每股净资产A$6.56</td></tr>
-  <tr><td>PS（TTM）</td><td><strong>~16.4x</strong></td><td>市销率</td></tr>
-  <tr><td>P/FCF</td><td><strong>~46.3x</strong></td><td>基于FCF A$1.437亿</td></tr>
-  <tr><td>股息率</td><td><strong>~0.88%</strong></td><td>TTM分红A$0.72/股</td></tr>
+  <tr><th>指标</th><th>当前值</th><th>历史分位</th><th>行业均值</th></tr>
+  <tr><td>股价</td><td><b>A$65.08</b></td><td>52 周区间 61.79–122.03；距高点 <b class="bad">−46.7%</b>，距低点仅 <b class="good">+5.3%</b></td><td>—</td></tr>
+  <tr><td>总市值</td><td>A$53.0 亿（同比 <b class="bad">−37.9%</b>）</td><td>—</td><td>—</td></tr>
+  <tr><td>PE（法定 EPS 1.46）</td><td class="neutral"><b>44.6x</b></td><td>PE 历史分位数据待补充</td><td>数据待补充</td></tr>
+  <tr><td>PE（Underlying 摊薄 EPS 1.67）</td><td class="neutral"><b>38.6x</b></td><td>PE 历史分位数据待补充</td><td>数据待补充</td></tr>
+  <tr><td>前瞻 PE（一致预期）</td><td class="neutral">35.13x</td><td>—</td><td>数据待补充</td></tr>
+  <tr><td>PB（BVPS 6.76）</td><td class="neutral">9.63x</td><td>—</td><td>数据待补充</td></tr>
+  <tr><td>PB（有形 BVPS 1.79）</td><td class="bad">36.4x</td><td>—</td><td>—</td></tr>
+  <tr><td>PS（营收 501.1）</td><td class="neutral">10.6x</td><td>—</td><td>数据待补充</td></tr>
+  <tr><td>PCF（CFO 177.0）</td><td>29.9x</td><td>—</td><td>数据待补充</td></tr>
+  <tr><td>EV</td><td>A$53.07 亿（市值 53.0 + 净债务 0.67）</td><td>—</td><td>—</td></tr>
+  <tr><td>EV / UEBITDA（211.4）</td><td class="neutral">25.1x</td><td>—</td><td>数据待补充</td></tr>
+  <tr><td>股息率（前瞻 84 澳分）</td><td>1.29%</td><td>—</td><td>—</td></tr>
+  <tr><td>股息率（FY26 实际全年 78.0 澳分）</td><td>1.20%</td><td>—</td><td>—</td></tr>
+  <tr><td>派息率（法定 78/146 / Underlying 78/167）</td><td class="good">53% / 47%</td><td>公司目标区间 40–60%</td><td class="good">区间内</td></tr>
+  <tr><td>Beta</td><td>1.02</td><td>与市场同步波动</td><td>—</td></tr>
+  <tr><td>分析师一致评级</td><td class="good">Buy（17 家覆盖）</td><td>另有 13 家口径</td><td>目标价 <b class="good">A$92.77（+42.6%）</b> / A$97.18（13 家口径）</td></tr>
 </table>
 
-<h3>4.2 PE Band估值区间</h3>
-<p style="font-size:13px;color:#666;">ROE 19.7% → 合理PE参考区间：15-25x（传统框架）| 但ASX优质SaaS通常享受溢价 | FY2026E一致预期EPS ≈ A$1.62</p>
+<p style="font-size:12px;color:#999;">注：市场口径的 PE(Underlying) 为 38.6x，若直接以 65.08/1.67 计算为 39.0x，差异来自数据源的股数／EPS 精度。下文 PE Band 两轨均以 1.46 / 1.67 计算。</p>
+
+<h3>4.2 估值区间（PE Band · 六情景）</h3>
+<p style="font-size:13px;">合理 PE 取值依据 L3 框架：<b>ROE &gt;20% → 20–30x</b>。HUB24 法定 ROE 22.2%、Underlying 口径 25.4%，均落在 &gt;20% 档，故合理区间取 <b>20–30x</b>。</p>
 <table>
-  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs现价A$81.50</th></tr>
-  <tr><td>保守（传统价值）</td><td>20x</td><td>A$32.4</td><td class="bad">-60%</td></tr>
-  <tr><td>中性合理</td><td>30x</td><td>A$48.6</td><td class="bad">-40%</td></tr>
-  <tr><td>成长溢价</td><td>45x</td><td>A$72.9</td><td class="bad">-11%</td></tr>
-  <tr><td>券商目标价</td><td>~62x</td><td>A$100.4</td><td class="good">+23%</td></tr>
-  <tr><td>当前价</td><td>~50x</td><td>A$81.50</td><td>—</td></tr>
-  <tr><td>历史中位</td><td>~83x</td><td>A$134.5</td><td>+65%</td></tr>
-  <tr><td>历史高位</td><td>173x</td><td>A$280.3</td><td>+244%</td></tr>
+  <tr><th style="width:14%">情景</th><th style="width:10%">估值倍数</th><th style="width:18%">法定 EPS 1.46<br>对应股价</th><th style="width:18%">Underlying EPS 1.67<br>对应股价</th><th>对应说明</th></tr>
+  <tr><td class="bad">悲观</td><td>20x（区间下沿）</td><td class="bad">A$29.20</td><td class="bad">A$33.40</td><td>IDPS 流出持续＋市场回落，估值向合理区间下沿收敛；此情景下 EPS 还需下修，实际目标价更低</td></tr>
+  <tr><td>保守</td><td>25x</td><td>A$36.50</td><td>A$41.75</td><td>增长放缓但份额继续提升，估值取区间中段</td></tr>
+  <tr><td class="good">中性</td><td>30x（区间上沿）</td><td>A$43.80</td><td>A$50.10</td><td>ROE 22% 对应区间上沿；<b>即使给到区间上沿，仍显著低于现价</b></td></tr>
+  <tr><td>券商目标</td><td>隐含 63.5x（法定）／ 55.6x（Underlying）</td><td colspan="2" class="good"><b>A$92.77</b>（17 家一致，+42.6%）</td><td>分析师维持高成长溢价定价，隐含 PE 远高于 ROE 对应的合理区间 —— 即<b>市场/卖方假设增长将显著超越当前水平</b></td></tr>
+  <tr><td><b>当前价</b></td><td class="neutral"><b>44.6x / 38.6x</b></td><td colspan="2" class="neutral"><b>A$65.08</b></td><td><b>高出合理区间上沿（30x）约 49%（法定）／ 29%（Underlying）</b></td></tr>
+  <tr><td>历史高位</td><td>83.6x / 73.1x</td><td colspan="2" class="bad">A$122.03（52 周高点）</td><td>现价距高点 −46.7%；高点时市场给出的是"净流入永远不失速"的定价</td></tr>
 </table>
 
-<div class="highlight-box">
-  <strong>估值分析：</strong><br>
-  ① 当前PE ~63.7x处于公司5年历史低位区（中位数~83x），但传统价值框架下依然很贵；<br>
-  ② 对于15-25%增速的SaaS公司，PEG 2.5-3.6x——在ASX科技股中属于合理水平；<br>
-  ③ 券商一致目标价A$100.4（62x FY2026E PE），较现价仍有23%上行空间；<br>
-  ④ PB 12.4x对于净资产中65%是商誉的公司来说偏高，但SaaS公司通常用PE而非PB估值；<br>
-  ⑤ 当前价格已从高点A$122回调至A$81.50，回调幅度超过30%，估值泡沫已大幅消化；<br>
-  ⑥ 关键估值锚定：FUA增速。若FUA保持25%+增长，45-55x PE可持续；若降至15%以下，PE可能收缩至30x。
+<div class="danger-box">
+  <strong>PE Band 的核心读数：</strong><br>
+  ① <b>唯一扣分维度就是估值</b> —— 10 个维度中 9 个满分，仅"估值 PE vs 合理区间"得 4/10（偏高但 &lt;50% 档）。<br>
+  ② <b>股价跌了 46.7%，估值仍未进入合理区间。</b>52 周低点 A$61.79 对应法定 PE 42.3x，仍高于 ROE 22.2% 对应区间上沿 41%。<b>这意味着：股价的下跌主要是"分子（EPS）变贵了"→ 其实是"分母（增长预期）被下调"，而不是"价格跌到了便宜区"。</b><br>
+  ③ 按中性情景（30x）计算的目标价为 A$43.80–50.10，较现价有 <b class="bad">−23% ~ −33%</b> 的空间；若要证明现价合理，需要 EPS 达到 2.17 澳元（65.08 ÷ 30），比 FY26 Underlying 1.67 高出 30%。<br>
+  ④ <b>PB 在本例中几乎没有信息量</b>：PB 9.63x 看似极高，但这是因为权益中含商誉 2.46 亿 + 无形资产 1.60 亿，<b>可辨认有形净资产仅 1.46 亿（每股 1.79）→ 有形 PB 高达 36.4x</b>。对一家靠并购（Count、Finura 25%、Class）搭建的平台，用 PB 估值会得出误导性结论。<b>PE + FUA 增速 + 收入率</b>才是本公司的正确估值坐标。
 </div>
 
-<h3>4.3 历史PE区间（5年FY-end）</h3>
-<table>
-  <tr><th>指标</th><th>PE值</th></tr>
-  <tr><td>历史最大值</td><td>173x（FY2021）</td></tr>
-  <tr><td>历史中位数</td><td>~83x</td></tr>
-  <tr><td>当前PE（TTM）</td><td class="neutral" style="font-weight:bold">~64x（5年低位附近）</td></tr>
-  <tr><td>历史最小值</td><td>56.5x（FY2023）</td></tr>
-</table>
-
-<div class="summary-box">
-  <strong>估值总结：</strong>Hub24是一个"完美业务+高估值"的典型。从业务面看，SaaS平台模式+高增长+高FCF+净现金几乎无可挑剔，90/100的分数当之无愧。但从估值面看，PE ~64x虽然处于自身历史低位区间，但放在传统价值框架中仍然昂贵。对于成长型投资者，当前价格从高点A$122回调34%至A$81.50，已消化了大量估值泡沫，PEG ~2.5x（基于25% EPS增速）在ASX高增长SaaS中已逐步进入可关注区间。但对于价值投资者，ROE 19.7%对应合理PE 15-25x的安全边际要求差距过大。<br><br>
-  <strong>催化剂：</strong>① FY2026年报（2026年8月18日）——FUA是否继续高增长；② Australia Super等大型养老金迁移至平台趋势加速；③ Class交叉销售深化。回调后的Hub24性价比已显著改善，但仓位大小应取决于对ASX科技估值的容忍度。
+<h3>4.3 估值总结</h3>
+<div class="danger-box">
+  <strong>估值判断：偏高（结构性偏高，而非情绪性高估）。</strong><br><br>
+  <b>理由：</b>① ROE 22.2%（Underlying 25.4%）对应合理 PE 20–30x，现价法定 PE 44.6x / Underlying 38.6x，高出上沿 29~49%；② EV/UEBITDA 25.1x 亦处偏高区间；③ 有形 PB 36.4x 说明账面资产无法支撑估值，估值完全建立在"未来 FUA 持续增长"之上。<br><br>
+  <b>但也必须承认：</b>① 股价已从 A$122.03 跌至 A$65.08（−46.7%），距 52 周低点仅 5.3%，悲观预期已被大量计入；② 前瞻 PE 35.13x、17 家券商一致 Buy、目标价 A$92.77（+42.6%）；③ 股息率虽低（1.20~1.29%），但派息率 47–53% 稳定、FY26 全年股息 78.0 澳分同比 +39%。<br><br>
+  <b>操作结论：</b><b class="neutral">这是"好公司 + 不便宜的价格"，不是"好公司 + 好价格"。</b>真正的决策点不是现在是否抄底，而是 <b class="bad">2026-10-20（6 天后）</b>的 FY27 Q1 资金流更新能否证伪 IDPS 流出趋势。在此之前，A$65.08 对应的隐含增长假设（EPS 需达 2.17）仍然偏乐观。<b>建议等待该节点，把"价格判断"让位于"趋势判断"。</b>
 </div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l4"><div class="tab-inner">
 
-<h2>五、杜邦分析拆解（L4框架）</h2>
+<h2>五、杜邦分析（L4框架）</h2>
 
-<h3>5.1 杜邦拆解表</h3>
+<h3>5.1 杜邦拆解（FY2026，平均权益／平均资产口径）</h3>
 <table>
-  <tr><th>指标</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
-  <tr><td>净利润率（Statutory）</td><td>14.4%</td><td><strong>19.6%</strong></td><td class="good">⬆ 大幅+5.2pct</td></tr>
-  <tr><td>净利润率（Underlying）</td><td>~20.7%</td><td><strong>24.1%</strong></td><td class="good">⬆ +3.4pct</td></tr>
-  <tr><td>资产周转率</td><td>0.53</td><td><strong>0.61</strong></td><td class="good">⬆ +15%提升</td></tr>
-  <tr><td>权益乘数</td><td>1.20</td><td><strong>1.25</strong></td><td class="neutral">➡ 极低杠杆，几乎不变</td></tr>
-  <tr><td><strong>ROE（Statutory）</strong></td><td><strong>~9.2%</strong></td><td><strong>15.0%</strong></td><td class="good">⬆ 大幅提升</td></tr>
-  <tr><td><strong>ROE（Underlying）</strong></td><td><strong>~13.2%</strong></td><td><strong>18.5%</strong></td><td class="good">⬆ +5.3pct</td></tr>
-  <tr><td>去杠杆ROA（Statutory）</td><td>7.6%</td><td><strong>12.0%</strong></td><td class="good">⬆ 大幅提升</td></tr>
-  <tr><td>杠杆贡献（Statutory ROE-ROA）</td><td>1.6pct</td><td><strong>3.0pct</strong></td><td class="neutral">低杠杆低贡献</td></tr>
+  <tr><th>指标</th><th>计算过程</th><th>FY2026</th><th>历史对照</th><th>判断</th></tr>
+  <tr><td><b>净利率</b></td><td>120.2 ÷ 501.1</td><td class="good"><b>24.0%</b></td><td>FY25 19.6%（+4.4pp）</td><td class="good">优秀。平台型收费模式，几乎无边际成本</td></tr>
+  <tr><td><b>资产周转率</b></td><td>501.1 ÷ 686.3（平均总资产）</td><td class="good"><b>0.730</b></td><td>FY25 资产周转率数据待补充（缺 FY24 期末总资产）</td><td class="good">高于 0.5，资产以流动资产＋无形资产为主</td></tr>
+  <tr><td><b>权益乘数</b></td><td>686.3 ÷ 541.32（平均权益）</td><td class="good"><b>1.268</b></td><td>—</td><td class="good"><b>几乎无杠杆</b>：资产只靠 1.27 倍自有资金支撑，负债率 22.2%</td></tr>
+  <tr><td><b>ROE</b></td><td>120.2 ÷ 541.32</td><td class="good"><b>22.2%</b></td><td>Underlying 口径 25.4%</td><td class="good">优秀（&gt;20% 巴菲特标准线）</td></tr>
+  <tr><td>ROE（期末权益口径，用于与 FY25 直接对比）</td><td>120.2 ÷ 552.75 ／ FY25：79.5 ÷ 529.89</td><td class="good">FY26 21.7%</td><td>FY25 <b>15.0%</b></td><td class="good">一年提升 6.7pp</td></tr>
+  <tr><td>CFO / 净利润</td><td>177.0 ÷ 120.2</td><td class="good"><b>1.47</b></td><td>FY25 数据待补充</td><td class="good">≥1，利润含金量充足</td></tr>
+  <tr><td><b>去杠杆 ROA（净利率 × 周转率）</b></td><td>24.0% × 0.730</td><td class="good"><b>17.5%</b></td><td>—</td><td class="good">每 1 澳元总资产产生 <b>0.175 澳元</b>净利润</td></tr>
 </table>
+<p style="font-size:12px;color:#999;">口径说明：L1 资产负债表的股东权益 552.75（期末）对应期末口径 ROE 21.7%；L4 杜邦主表采用平均权益 541.32（＝(552.75+529.89)/2）口径得 22.2%，两者基数一致、差异仅来自期初期末平均，不构成矛盾。FY2024 及 FY2022–FY2023 的杜邦项因缺期末总资产／权益数据标注"数据待补充"。</p>
 
+<h3>5.2 赚钱模式判断</h3>
 <div class="highlight-box">
-  <strong>赚钱模式判断：高利润+极低杠杆型</strong><br>
-  Hub24以19.6-24.1%的高净利润率为核心驱动，权益乘数仅1.25（净现金状态），0.61的资产周转率在SaaS平台中也属正常（AUM-based收入不依赖高频资产周转）。这是最理想的赚钱模式之一——高利润率说明产品有定价权或高附加值，低杠杆说明不依赖债务。去掉杠杆后的ROA仍有12.0%（Statutory），说明即使完全剔除杠杆，资产回报效率依然出色。<br><br>
-  <strong>ROE提升的驱动力（FY2024→FY2025）：</strong><br>
-  ① 净利润率从14.4%→19.6%（Statutory）是核心驱动——规模效应下费用率降低，FUA增长摊薄固定成本；<br>
-  ② 资产周转率从0.53→0.61——FUA增长（+30%）拉动营收增速（+24%）远超总资产增速（+6.4%），轻资产模型优势凸显；<br>
-  ③ 权益乘数仅从1.20→1.25——几乎无杠杆，ROE增长完全来自经营改善而非加杠杆。<br><br>
-  <strong>分业务对比：</strong>Platform业务EBITDA Margin 44.2%（营收占比79.5%）是ROE的核心引擎，Tech Solutions EBITDA Margin 35.3%为辅助。
+  <strong>赚钱模式：高利润型（High-margin business），且几乎不带杠杆。</strong><br>
+  驱动拆解：ROE 22.2% = 净利率 24.0% × 周转率 0.730 × 权益乘数 1.268。<b>三个乘数里唯一的"小"是权益乘数 1.27，而它是加分项而非减分项</b> —— 它意味着 ROE 完全来自"高利润率 × 高周转"，没有任何一根杠杆杆在放大回报。这是财务上最健康的一种 ROE 结构：<b>回报是真的，而不是借来的。</b><br>
+  商业本质：<b>按 FUA 收托管／管理费的"资产管理收费平台"</b>。收入随管理资产线性增长（无额外边际成本），而成本（技术、清算、合规）半固定 —— 这就是 FY26 收入 +23% 而 UEBITDA +30%、利润率 +2.3pp 的来源，即<b>经营杠杆</b>。只要 FUA 继续增长，利润率会继续扩张；反过来，若 FUA 停滞，固定成本无法削减，利润率会快速回落 —— <b class="neutral">高利润型模式的另一面是"高经营杠杆"，下行时同样放大。</b>
 </div>
 
-<h3>5.2 分业务杜邦贡献</h3>
-<table>
-  <tr><th>业务板块</th><th>营收占比</th><th>EBITDA Margin</th><th>趋势</th><th>对ROE影响</th></tr>
-  <tr><td>Platform（核心平台）</td><td>79.5%</td><td>44.2%</td><td class="good">⬆ +28%增长</td><td class="good">核心利润引擎</td></tr>
-  <tr><td>Tech Solutions（Class等）</td><td>19.0%</td><td>35.3%</td><td class="good">➡ +9%稳定</td><td class="good">稳定贡献</td></tr>
-</table>
-
+<h3>5.3 核心结论</h3>
 <div class="summary-box">
-  <strong>核心结论：</strong><br>
-  ① Hub24的财务模型是高利润（净利率~20%）+低杠杆（净现金）+轻资产（周转率0.61但持续提升）的SaaS黄金组合；<br>
-  ② FY2025 ROE的提升完全来自经营质量改善（利润率+周转率），而非加杠杆——这是最健康的ROE提升模式；<br>
-  ③ 去掉杠杆后的ROA 12.0%说明资产回报效率在ASX金融股中属于顶级水平；<br>
-  ④ 权益乘数1.25意味着公司有大量空间可以加杠杆来提升ROE（如果管理层选择），但净现金状态本身就是竞争优势（具备收购能力）；<br>
-  ⑤ ROE未来提升的关键驱动力：FUA增速（目前25-30%）+利润率继续改善（经营利润率目前24.6%，目标看30%+）。
+  <strong>杜邦结论：</strong>ROE 22.2% 靠<b>"净利率 24.0% × 周转率 0.73"</b>驱动，权益乘数仅 1.27，结构健康且趋势向上（期末权益口径 FY25 15.0% → FY26 21.7%，提升 6.7pp）。<br>
+  驱动力主要来自 <b>利润率扩张而非资产扩张</b>：收入 +23% 而总资产仅 +7.2%（总资产 662.4 → 710.2），说明每新增 1 元 FUA 几乎不占用资产负债表 —— 这是平台模式的定义性特征。<br>
+  <b class="neutral">需要警惕的转向：</b>资产周转率 0.73 意味着<b>收入高度绑定 FUA 存量</b>，而 FUA 中 79.6% 是权益类存托资产。因此 ROE 的稳定性并非来自经营惯性，而来自股市。若市场下跌 20%，FUA、收入、净利将同步下台阶，而固定成本不变 → <b>ROE 可能从 22% 回落到 12–15% 区间</b>。这是本报告认为"非周期股"分类需要加注"顺周期性不弱"的量化依据。
 </div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l5"><div class="tab-inner">
 
-<h2>六、行业分类与特征（L5框架）</h2>
+<h2>六、行业分类（L5框架）</h2>
 
 <h3>6.1 行业类型判断</h3>
 <div class="summary-box">
-  <strong>行业类型：成长性行业（金融科技-财富管理SaaS平台）——非周期股</strong><br>
-  <strong>判断依据：</strong>Hub24属于ASX分类中的"Tech/Growth"板块，是典型的高成长SaaS公司。核心增长逻辑：① 澳洲财富管理行业正在从传统银行系平台（BT/AMP等）向独立平台大规模迁移，Hub24作为#1净流入平台持续收割份额；② 澳洲养老保障体系（Superannuation）强制缴纳比例持续提升（从9.5%→12%），推动整体财富管理市场自然增长；③ 平台FUA FY2025达A$1,364亿（+30%），收入随FUA复利增长。<br><br>
-  <strong>非周期属性：</strong>财富管理SaaS平台属于纯非周期——收入基于AUM费率，长期增长趋势确定，不依赖宏观经济周期。采用非周期股评分体系（10维度）。<br><br>
-  <strong>成长性体现：</strong>FY2025营收+24%、Underlying NPAT+44%、FCF+65%、FUA+30%——量价齐升的高成长阶段。连续8+季度净流入行业第一，市场份额从8.7%→9.3%→目标10%+。
+  <strong>行业类型：非周期股（成长型）</strong> —— 采用<b>非周期股评分体系</b>（与总结论一致）。<br><br>
+  <b>归入非周期的依据：</b><br>
+  ① <b>收入性质是经常性资产管理费</b>，不是商品价差或产能利用率的函数；<br>
+  ② <b>需求端由制度锁定</b>：澳洲强制养老金（superannuation）制度提供长期强制资金流入，账户数增长不依赖经济周期；<br>
+  ③ <b>渗透率仍在提升</b>：份额 8.6% → 9.9%，顾问数 +11%，FY28 目标 Platform FUA 1,860~2,000 亿（较 FY26 的 1,394.9 亿仍有 33~43% 空间），长期增速 ≈ 0 的成熟行业标准不适用。<br><br>
+  <b class="neutral">但必须同时注明（与总结论一致）：</b>HUB 的<b>收入顺周期性并不弱</b> —— FUA 中 79.6% 为权益类存托资产，FY26 Platform FUA 增长 267.7 亿中 79.0 亿（≈30%）来自市场变动。L2 排雷已将"<b>盈利高度顺周期</b>"列为 🟡 级风险，并明确指出这是把 HUB 归入非周期股时必须承担的分类代价。
 </div>
 
-<h3>6.2 行业集中度与壁垒</h3>
+<h3>6.2 集中度与壁垒</h3>
 <table>
-  <tr><th>维度</th><th>判断</th></tr>
-  <tr><td>行业集中度</td><td><strong>中等集中，集中趋势中</strong>——澳洲投资平台CR5>70%，但Hub24作为#6正快速增长（市场份额8.7%→9.3%→目标10%+）。平台市场正经历"从分散到集中"的整合期，头部独立平台受益。</td></tr>
-  <tr><td>转换成本壁垒</td><td><strong>极高</strong>——财务顾问将客户资产从一个平台迁移到另一个平台，涉及大量的行政工作、税务报告处理、客户沟通。一旦顾问选择了Hub24平台，几乎不会轻易更换。这是Hub24最深的护城河。</td></tr>
-  <tr><td>监管合规壁垒</td><td><strong>强</strong>——澳洲金融服务牌照（AFSL）要求严格，平台需要满足资本充足率、客户资金隔离、合规报告等要求，新进入者门槛极高。</td></tr>
-  <tr><td>数据网络效应</td><td><strong>中等</strong>——更多顾问使用Hub24→平台积累更多数据→开发更好的功能→吸引更多顾问。目前已覆盖5,500+活跃顾问。</td></tr>
-  <tr><td>规模经济</td><td><strong>强</strong>——平台技术开发成本是固定的，FUA增长带来收入增加但边际成本极低。FY2025经营利润率+670bps就是规模效应的直接证明。</td></tr>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>竞争格局</td><td class="good"><b>正在集中</b></td><td>FY26 HUB 份额 8.6% → <b>9.9%（+1.3pp）</b>，是所有平台中<b>最大的年度份额提升</b>；按 FUA 排名第 6（上年第 7）；连续 10 个季度净流入第一；活跃顾问 5,649 覆盖全行业约 <b>37%</b></td></tr>
+  <tr><td>头部规模</td><td class="good">1,643.2 亿澳元 FUA</td><td>总 FUA +20%；Platform 1,394.9 亿（+24%）、PARS 248.3 亿（+5%）</td></tr>
+  <tr><td>CR3</td><td>数据待补充</td><td>本次未取得可核实的行业 CR3／CR5 数据</td></tr>
+  <tr><td><b>牌照壁垒</b></td><td class="good"><b>极强</b></td><td>APRA 受托人资质、养老金托管牌照、CPS 230 运营风险义务。<b>但牌照同时是风险源</b>：APRA 已对 HUB24 super 受托人施加新牌照条件（本轮第五家被行动的平台受托人）；公司正行使看涨期权收购 HTFS Nominees（预计 1H FY27 完成，需 APRA 批准）</td></tr>
+  <tr><td><b>规模壁垒</b></td><td class="good"><b>强</b></td><td>1,643 亿 FUA 的技术清算、对账、合规、灾备能力，小平台无法复制；大额机构委托对平台稳定性门槛极高</td></tr>
+  <tr><td><b>网络效应／渠道壁垒</b></td><td class="good"><b>强</b></td><td>5,649 活跃顾问 + myprosperity 的 545 家会计／财务事务所、13.2 万家庭（+23%）；Class 的 226,767 个 SMSF 账户；HUBconnect。顾问工作流一旦绑定，转换成本极高</td></tr>
+  <tr><td>费率上限的双面性</td><td class="neutral">结构性约束</td><td>fee tiering and capping 使收入率被封顶在 31bps（−1bp）—— <b>份额提升换不来单价上升</b>，护城河体现在份额而非定价权</td></tr>
+  <tr><td>行业动荡（机会）</td><td class="good">对头部有利</td><td>大型财富集团分拆顾问业务、平台所有权不确定、私募资本回归 —— 管理层视之为头部平台份额集中的<b>催化剂</b>；联邦预算案税改被管理层称为反而强化专业顾问需求与养老金吸引力</td></tr>
 </table>
 
-<h3>6.3 生命周期阶段</h3>
+<h3>6.3 生命周期与周期位置</h3>
 <div class="highlight-box">
-  <strong>阶段：成长期中段——高增长+利润率快速提升</strong><br>
-  Hub24处于典型SaaS公司的"规模化阶段"——营收增速20-30%, EBIT利润率快速提升（从17.9%→24.6%），FCF强劲增长。标志性的"Rule of 40"指标（增速+利润率）高达24+24.6=48.6，超过SaaS行业公认的40%健康线。FUA A$1,364亿对比澳洲财富管理市场总量~A$3.5万亿，渗透率仅~3.9%，成长空间仍然广阔。<br><br>
-  <strong>投资策略重点：</strong>关注FUA增速（目标25%+）、净流入趋势（是否持续行业第一）、经营利润率提升路径（目标30%+）、Tech Solutions交叉销售。
+  <strong>生命周期：成长期（中后段），正在向成熟期过渡。</strong><br>
+  依据：① Platform FUA 由 FY25 1,127.2 亿增至 FY26 1,394.9 亿（+24%），仍处双位数以上扩张；② 份额每年提升（8.6% → 9.9%）说明行业仍在整合中，尚未定型；③ <b>FY28 目标 Platform FUA 1,860~2,000 亿</b>（不含 PARS），意味着管理层自己给出的剩余两年增速将降至 <b>约 15~16% 年化（1,394.9 → 1,860~2,000）</b>—— 这是公司自己给出的"从成长期转向成熟期"的信号；④ 活跃顾问数 +11% 仍快于行业，但基数已达全行业约 37%，进一步提升的空间与难度同步上升。<br><br>
+  <b class="neutral">投资策略含义：</b>成长期后段的正确做法是<b>从"押注增速"切换到"要求价格"</b>。市场显然已经在做后一件事（股价 −46.7%、距低点仅 +5.3%），但 −46.7% 之后仍处 44.6x PE，说明<b>切换还没完成</b>。<br><br>
+  <b class="bad">非周期股分类的例外提示：</b>HUB 不适用"周期位置（底部／顶部）"评分维度（该维度属周期股体系）。但需注意其"市场位置"当前处于<b>高位</b>——FY26 的收入加速中约 30% 来自股市上涨，这部分属于顺周期红利而非结构性增长，在解读 FY27 时应当扣除。
 </div>
 
-<h3>6.4 当前周期位置</h3>
-<div class="highlight-box">
-  <strong>周期位置：成长扩张周期——独立平台替代传统平台的加速期</strong><br>
-  Hub24的业务不受宏观经济周期显著影响（财富管理是长期趋势驱动的慢变量），更多受行业结构性迁移周期驱动。当前澳洲财富管理行业正处于"从银行系平台到独立平台"的大迁移中期，Hub24作为独立平台的头部玩家正处于加速成长阶段。即便ASX市场下跌，平台现金收益（cash account interest）反而受益于高利率环境。
-</div>
-
-<h3>6.5 估值方法匹配</h3>
+<h3>6.4 同行对比</h3>
 <table>
-  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
-  <tr><td>SaaS/成长股</td><td>PE+PS</td><td>FUA增速、FCF Margin、经营利润率</td><td class="neutral">⚠ PE ~64x在ASX成长股中已显著回调（历史中位83x），但绝对估值仍高</td></tr>
+  <tr><th style="width:18%">指标</th><th>HUB24<br>（本公司）</th><th>Netwealth Group<br>(ASX:NEA)</th><th>Australian Wealth Mgmt<br>(ASX:AMH)</th><th>Perpetual<br>(ASX:PPH)</th><th>CMC Markets<br>(ASX:CMC)</th><th>评价</th></tr>
+  <tr><td>ROE</td><td class="good">22.2%</td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td>—</td></tr>
+  <tr><td>毛利率</td><td>不披露<br>（UEBITDA 率 42.2%）</td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td>—</td></tr>
+  <tr><td>净利率</td><td class="good">24.0%</td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td>—</td></tr>
+  <tr><td>负债率</td><td class="good">22.2%</td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td>—</td></tr>
+  <tr><td>营收增速</td><td class="good">+23%</td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td>—</td></tr>
+  <tr><td>PE</td><td class="neutral">44.6x / 38.6x</td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td>—</td></tr>
+  <tr><td>PB</td><td class="neutral">9.63x</td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td>—</td></tr>
+  <tr><td>CFO/净利润</td><td class="good">1.47</td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td>—</td></tr>
+  <tr><td>5 年股价涨幅</td><td class="good">+197%</td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td>对照基准：ASX 200 金融板块 (XFJ) +38.4%</td></tr>
+</table>
+<p style="font-size:12px;color:#999;">缺失范围说明：<b>本次未取得 Netwealth Group (ASX:NEA)、Australian Wealth Management (ASX:AMH)、Perpetual (ASX:PPH)、CMC Markets (ASX:CMC) 的可核实财务数据</b>，同行财务格全部标注"数据待补充"，不参与任何评分。下表改用<b>本公司自身 5 年序列</b>做纵向对比。</p>
+
+<table>
+  <tr><th style="width:26%">指标</th><th>FY2022</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>FY2026</th></tr>
+  <tr><td>总 FUA（十亿澳元）</td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td>136.4</td><td class="good">164.3</td></tr>
+  <tr><td>Platform FUA（十亿澳元）</td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td>112.7</td><td class="good">139.5</td></tr>
+  <tr><td>集团营收（百万澳元）</td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td>406.6</td><td class="good">501.1</td></tr>
+  <tr><td>UEBITDA（百万澳元）</td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td>162.4</td><td class="good">211.4</td></tr>
+  <tr><td>UEBITDA 利润率</td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td>39.9%</td><td class="good">42.2%</td></tr>
+  <tr><td>法定 NPAT（百万澳元）</td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td>79.5</td><td class="good">120.2</td></tr>
+  <tr><td>活跃顾问数</td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td>5,097</td><td class="good">5,649</td></tr>
+  <tr><td>BVPS（澳元）</td><td>5.71</td><td>6.29</td><td>6.41</td><td>6.53</td><td class="good">6.76</td></tr>
 </table>
 
 <div class="summary-box">
-  <strong>估值方法总结：</strong>Hub24作为SaaS型成长股，PE是主要估值方法，但传统价值框架下的合理PE区间（ROE 19.7%对应15-25x）显然不适用于高成长SaaS。市场通常用PEG来评估——当前PE ~50x（FY2026E）对应EPS增速38%，PEG ~1.3x，在ASX高增长SaaS中已具吸引力。核心估值锚定是FUA增速（若维持25%+则45-55x PE可持续）和经营利润率（若从24.6%升至30%+则提升估值天花板）。当前股价从A$122回调至A$81.50（-33%），已消化了大部分估值泡沫，处于5年估值低位区间的下沿。
+  <strong>结论：</strong>FUA 的增长与份额提升同步（份额 8.6% → 9.9% 意味着不只是行业水涨船高），顾问数与每股净资产逐年稳步上行（BVPS 五年 5.71 → 6.76，无一年倒退），UEBITDA 利润率从 39.9% 提升到 42.2% —— <b>纵向看，这是一家在正确方向上持续改善的公司。</b><br>
+  <b class="bad">但解读增长质量时必须扣除的部分：</b>FY2026 的收入加速（+23%）<b>很大程度来自市场上涨 +79.0 亿澳元</b>，而非纯净流入（剔除 FY25 的 40 亿大额迁移后，净流入 +20% 为 158 亿 → 189 亿）。<b>也就是说，约三成的 FUA 增长是"借来的"—— 股市一旦回调，这部分会在收入端原样消失。</b>因此纵向 5 年表中的"营收 +23%"与"净利 +51%"不能直接当作结构性增速外推。
+</div>
+
+<div class="summary-box">
+  <strong>竞争位置（同行对比替代结论）：</strong>在缺少可核实的同行财务数据的前提下，只能给出<b>定性竞争位置</b>：HUB24 是澳洲财富管理平台中<b>份额提升最快（+1.3pp）、净流入排名第一（连续 10 个季度）、顾问覆盖最广（约 37%）</b>的头部平台，ROE 22.2%、负债率 22.2%、CFO/净利 1.47 的财务质量在同业中应属第一梯队；但 <b>其估值（法定 PE 44.6x、EV/UEBITDA 25.1x）同样处于高位</b> —— <b>高增长与高估值是一体的两面，缺少同行分位数据时无法判定"相对同行是贵还是便宜"，这是本报告 L5 最大的已知盲区。</b>
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<div class="summary-box">
+  <strong>估值方法：PE 为主 + FUA 增速／收入率／EV-EBITDA 为辅 —— 当前市场做法基本正确，但使用不足。</strong><br><br>
+  HUB24 属"成长型（非周期）＋金融基础设施"的交叉地带。按 L5 对照表，成长型首选 PS/PEG、金融（银行/保险）首选 PB。<b>HUB 两者都不完全适用</b>：<br>
+  ① <b>PS 10.6x 已触及"10–20x 需高增长支撑"的警戒下沿</b>，而该高增长的可信度正在被 IDPS 流出质疑 → PS 已无安全垫；<br>
+  ② <b>PB 9.63x 完全失效</b>：权益 5.53 亿中商誉 2.46 亿 + 无形 1.60 亿，有形净资产仅 1.46 亿 → 有形 PB 36.4x，PB 对本公司无信息量；<br>
+  ③ <b>PEG 亦不可靠</b>：用 +51% 的法定净利增速算 PEG = 44.6/51 = 0.87（看似低估），但该增速含市场上涨红利与 FY25 低基数，剔除后并不成立 —— <b>这是本标的最容易踩的估值陷阱。</b><br><br>
+  <b class="good">正确的估值坐标应是：</b>① <b>PE（Underlying 口径 38.6x）× ROE 对应区间 20–30x</b>，判断溢价是否被增长支撑；② <b>季度净流入绝对额与 Platform FUA 环比变动</b>（真正的领先指标，2026-10-20 即将更新）；③ <b>收入率 31bps</b>（判断规模是否真能转化为收入）；④ <b>EV/UEBITDA 25.1x</b>（剔除资本结构影响）。<br>
+  <b class="neutral">匹配结论：市场用 PE 定价是<b>方法正确</b>，但对一家收入 79.6% 挂钩权益资产的资产收费平台，<b>必须叠加"净流入质量"而非仅"净利增速"</b>作为验证。当前 94 分的机械评分完全建立在已实现报表上，对这一点不敏感 —— 这是使用时必须人工补上的环节。
 </div>
 
 </div></div>
@@ -378,104 +522,151 @@
 
 <h2>七、综合实战（L6框架）</h2>
 
+<div class="highlight-box">
+  <strong>⏰ 首要跟踪节点：下一份财报／交易更新 = 2026-10-20（FY27 Q1 平台资金流更新），距本报告仅 6 天。</strong><br>
+  在此之前，任何对 HUB24 的多空判断都建立在三个月前的数据上。届时须核对：① Platform 季度净流入是否回到 50 亿以上（vs Q3 的 39.84）；② Platform FUA 是否恢复环比正增长（vs Mar-26 的 −86 走平）；③ <b>IDPS 自主投资组合流出是否见顶</b>；④ APRA 牌照条件整改的披露进展。
+</div>
+
 <h3>7.1 六步法总结</h3>
 <div class="summary-box">
-  <strong>Step 1 - 行业定位：</strong>成长性行业（财富管理SaaS平台），非周期股；中等集中度（CR5>70%向头部集中），极高转换成本+监管牌照+规模经济三重壁垒。<br>
-  <strong>Step 2 - 财务体检：</strong>ROE 19.7%（优秀），高利润型（净利率~20%）+极低杠杆（权益乘数1.25），CFO/净利~1.63（现金质量极好），FCF margin 35.7%。<br>
-  <strong>Step 3 - 估值判断：</strong>PE ~64x（TTM）处于5年历史低位但绝对估值仍高，PEG ~1.3x（基于FY2026E）在ASX成长股中合理。<br>
-  <strong>Step 4 - 风险排查：</strong>PE估值溢价过高、FUA增速放缓导致估值收缩、竞争加剧（Netwealth/Macquarie）、商誉减值风险。<br>
-  <strong>Step 5 - 结论：</strong>业务面顶级（90/100），但PE ~64x远超传统价值区间。成长型投资者可关注回调后的机会，价值投资者应回避。<br>
-  <strong>Step 6 - 跟踪：</strong>FUA增速（>25%为健康）、经营利润率（目标30%+）、净流入市场份额（是否持续#1）。
+  Step 1 - 行业定位：<b>非周期股（成长型）· 澳洲财富管理基础设施平台</b>；格局"正在集中"（份额 8.6%→9.9%，全平台最大年度提升）；壁垒 = 牌照（APRA 受托人）+ 规模（1,643 亿 FUA）+ 渠道网络（5,649 顾问 / 37% 行业覆盖 / 545 事务所）；成长期中后段，FY28 目标 Platform FUA 1,860~2,000 亿。<br>
+  Step 2 - 财务体检：ROE <b>22.2%</b>（Underlying 25.4%），杜邦为<b>高利润型</b>（净利率 24.0% × 周转 0.73 × 权益乘数仅 1.27，几乎无杠杆）；CFO/净利 <b>1.47</b>，UEBITDA 利润率 42.2%（+2.3pp），负债率 22.2%、短期有息债务 0，FCF 大幅为正。<b>财务质量无可挑剔。</b><br>
+  Step 3 - 估值判断：PE 法定 <b>44.6x</b> / Underlying <b>38.6x</b>，ROE 22.2% 对应合理区间 20–30x，<b>高出上沿 29~49%</b>；EV/UEBITDA 25.1x、PB 9.63x（有形 PB 36.4x 失效）。股价 52 周区间 61.79–122.03，现价距高点 −46.7%、距低点 +5.3%。<b>跌了很多，但仍未进合理区间</b>；17 家券商 Buy、目标价 92.77。<br>
+  Step 4 - 风险排查：<b>IDPS 自主投资组合流出 2026 年 8 月仍处高位（🔴）</b>；<b>APRA 对 super 受托人施加新牌照条件，本轮第五家被行动的平台受托人（🔴）</b>；<b>对 HTFS 受托人 1 亿贷款已提取 7,750 万 @10%、受托人收购待 APRA 批准（🟡）</b>；收入高度顺周期（79.6% 权益类存托资产，🟡）；估值仍偏高（🟡）；收入率被封顶压至 31bps（🟡）。<br>
+  Step 5 - 结论：<b>好公司（财务 A 级），价格不便宜（估值 C+）</b>。综合 94/100 = 品质优秀，但该分数对两个前瞻风险不敏感。<b>不是"闭眼买"的位置，是"等验证"的位置。</b><br>
+  Step 6 - 跟踪：<b>核心指标 = 季度 Platform 净流入绝对额、Platform FUA 环比变动、IDPS 自主组合流出趋势</b>；次要 = 收入率（是否守住 31bps）、份额（能否继续 +1pp/年）、APRA 整改进展。卖出信号：连续两个季度 Platform FUA 环比为负，或 IDPS 流出在 super 流入稳定的同时仍继续扩大。
 </div>
 
 <h3>7.2 好公司三要素检查</h3>
 <table>
-  <tr><th style="width:25%">要素</th><th>判断</th><th>依据</th></tr>
-  <tr><td>① 好行业</td><td class="good">✓</td><td>财富管理行业长期受益于澳洲养老体系强制储蓄增长，平台迁移趋势明确，转换成本极高</td></tr>
-  <tr><td>② 好公司</td><td class="good">✓</td><td>ROE 19.7% ✓, 毛利率~65-80%高且稳定 ✓, CFO/净利~1.63 ✓</td></tr>
-  <tr><td>③ 好价格</td><td class="neutral">⚠</td><td>PE ~64x远超传统价值区间15-25x，但PEG ~1.3x在ASX成长股中合理，历史低位区附近</td></tr>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>澳洲 superannuation 强制养老金制度提供长期强制资金流入，需求由制度锁定而非经济周期；行业正处整合期（大型财富集团分拆顾问业务、平台所有权不确定、私募资本回归），<b>份额向头部集中</b>；FY26 税改被管理层称为反而强化专业顾问需求与养老金吸引力</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓</td><td>ROE 22.2% &gt;15%；替代毛利率口径 UEBITDA 利润率 42.2% 且<b>在改善</b>（+2.3pp）；CFO 1.77 亿 &gt; 净利润 1.20 亿（CFO/净利 1.47）；营收 +23%；负债率 22.2%、短期有息债务 0；份额 +1.3pp、连续 10 季净流入第一、5 年 ATSR 165% vs ASX200 45%。<span class="neutral">扣分项：收入顺周期性不弱（79.6% 权益类存托资产）</span></td></tr>
+  <tr><td>③ 好价格</td><td class="neutral">△ 不满足</td><td>PE 44.6x（法定）/ 38.6x（Underlying）<b>高于</b> ROE 22.2% 对应的 20–30x 区间上沿 29~49%；EV/UEBITDA 25.1x；有形 PB 36.4x；PS 10.6x 已无安全垫；PEG 用 +51% 增速算出 0.87 属<b>低基数＋市场上涨红利造成的伪低估</b>。虽已较 52 周高点 −46.7%，但<b>尚未进入合理估值区</b>。<b>价格判定：偏贵，等待验证</b></td></tr>
 </table>
 
 <h3>7.3 风险评估</h3>
 
-<h4>a. 三个陷阱排查</h4>
-<div class="highlight-box">
-  <strong>☐ 价值陷阱：</strong>❌ 未命中——非低PE+低增长组合，营收增长24%强劲<br>
-  <strong>☐ 周期陷阱：</strong>❌ 未命中——成长型SaaS不受经济周期显著影响，非周期股<br>
-  <strong>☐ 烧钱陷阱：</strong>❌ 未命中——FCF margin 35.7%，现金流极强
+<h4 style="font-size:14px;margin:14px 0 6px;">a. 三个陷阱排查</h4>
+<div class="danger-box">
+  ☐ <b>价值陷阱</b>（低PE + 低增长 + 高负债）→ <b class="good">未命中</b>。PE 44.6x 不低、营收 +23%、负债率仅 22.2%，三条全不满足。<br>
+  ☐ <b>周期陷阱</b>（低PE + 周期顶点）→ <b class="good">未命中</b>。PE 高而非低，不具备"低 PE 买周期顶"的典型形态。但需注意一个<b>变体风险</b>：HUB 虽按非周期股体系评分，其收入 79.6% 挂钩权益资产，<b class="neutral">当前处于"股市红利期"的相对高位</b>（FY26 FUA 增长 30% 来自市场变动），若市场回调则 PE 会被动抬升而非下降。<br>
+  ☐ <b>烧钱陷阱</b>（高PE + 高增速 + 负现金流）→ <b class="good">未命中</b>。虽然 PE 高（44.6x）且增速高（+51%），但 <b>CFO 1.77 亿为正且 CFO/净利 = 1.47 &gt; 1</b>，FCF 大幅为正，完全不符合烧钱特征 —— HUB 是"高估值、但每 1 元利润都变成现金"的生意。<br><br>
+  <b class="bad">⚠️ 三个通用陷阱都没命中，但这不代表没有风险 —— HUB 的风险不在这三个模板里，而在两个专属项：</b><br>
+  <b class="bad">① 估值陷阱（专属）：</b>PE 44.6x 需要 EPS 达到 2.17 澳元（现价 ÷ 30x 合理上限）才能证成，比 FY26 Underlying 1.67 高 <b>30%</b>。若 FY27 净流入失速，当前价格缺乏盈利支撑。<br>
+  <b class="bad">② 监管陷阱（专属）：</b>APRA 已对 super 受托人施加牌照条件（本轮第五家被行动的平台受托人）；公司正以 10% 高息向该受托人关联方（HTFS）放贷 1 亿额度（已提 7,750 万）满足 CPS 230 / SPS 114 ORFR，同时拟收购该受托人（待 APRA 批准）。<b>牌照是护城河，也是悬在头上的政策风险。</b>
 </div>
 
-<h4>b. 管理层与治理风险</h4>
+<h4 style="font-size:14px;margin:14px 0 6px;">b. 管理层与治理风险</h4>
 <table>
   <tr><th>事项</th><th>判断</th><th>依据</th></tr>
-  <tr><td>管理层能力与履历</td><td class="good">好</td><td>CEO Andrew Alcock自2018年任职，此前为COO，带领公司市场份额从~5%提升至9.3%；多名高管有金融科技背景</td></tr>
-  <tr><td>股权结构与利益一致性</td><td class="neutral">一般</td><td>无控股大股东（前20大持仓~48%），管理层持股比例不高但激励与FUA增长和股价表现挂钩</td></tr>
-  <tr><td>关联交易/暴雷历史</td><td class="good">无</td><td>无重大违规、无监管处罚、无诉讼历史</td></tr>
-  <tr><td>资本配置记录</td><td class="good">合理</td><td>收购Class（超级基金软件）、NowInfinity（信托设立）、myprosperity（财富管理）均产生协同效应；FCF主要用于有机增长+适度收购+分红</td></tr>
-  <tr><td>CEO交接风险</td><td class="good">低</td><td>Andrew Alcock任期稳定（7年+），内部团队成熟，交接风险低</td></tr>
+  <tr><td>管理层能力与履历</td><td>数据待补充（经营结果优秀）</td><td>本次未取得高管履历明细。可确认的结果侧证据：FY26 营收 +23%、UEBITDA 利润率 +2.3pp、法定净利 +51%、份额 8.6%→9.9%、剔除大额迁移后净流入创纪录 +20% —— <b>FY26 的经营兑现度显著超预期，且 Q3 失手后并未伴随全年目标下修</b></td></tr>
+  <tr><td>股权结构与利益一致性</td><td class="neutral">一般—强</td><td>战略持股：Count (ASX:CUP) 13.03%（FY25 11.79%，增持）、Finura 25%；员工约 1,096 人；FY26 以 5,600 万澳元回购库存股对冲员工持股计划稀释（FY25 5,400 万）。<span style="color:#999;">大股东／管理层直接持股比例数据待补充</span></td></tr>
+  <tr><td>关联交易／暴雷历史</td><td class="neutral"><b>有但需重点监控</b></td><td>① 向受控关联方 HTFS（EQT Holdings 子公司）提供 <b>1 亿澳元贷款额度、年息 10%、已提取 7,750 万</b>（FY25 仅 500 万）；② 已行使看涨期权收购 HTFS Nominees Pty Ltd（受托人本身），预计 1H FY27 完成，<b>需 APRA 等监管批准</b>，对价名义金额。业务理由正当（牌照＋ORFR 是自有基础设施），但<b>集中度与审批时点不可控</b></td></tr>
+  <tr><td>资本配置记录</td><td class="good">合理</td><td>派息率 47–53%（法定／Underlying），稳定落在公司 40–60% 目标区间；全年股息 78.0 澳分（+39%，全额免税 franked）；年末回购 5,600 万对冲稀释（年度动作）；年中偿还 3,000 万到期债务并再融资（保留灵活性）；授信充裕（CBA 8,600 万承诺额度延至 2029-07-02、500 万营运资金、3,100 万循环、5,000 万战略并购加项，均基本未提取）</td></tr>
+  <tr><td>管理层增减持记录</td><td>数据待补充</td><td>本次未核实 ASX 董事权益披露（Appendix 3Y）明细</td></tr>
+  <tr><td>CEO 交接／关键人员变动</td><td>数据待补充</td><td>本次未核实高管变动公告</td></tr>
+  <tr><td>监管处罚（新增）</td><td class="bad"><b>命中</b></td><td><b>APRA 于 2026 年年中对 HUB24 养老金受托人施加新牌照条件</b>，为<b>本轮监管周期内第五家被采取执法行动的平台受托人</b>。牌照条件通常涉及治理、风险管理、合规或运营缺陷，要求整改项目、强化报告与追加系统控制投入 —— <b>既是成本，也是流出风险</b></td></tr>
 </table>
 
-<h4>c. 盈利可持续性</h4>
+<h4 style="font-size:14px;margin:14px 0 6px;">c. 盈利可持续性</h4>
 <table>
   <tr><th>维度</th><th>判断</th><th>依据</th></tr>
-  <tr><td>增长靠量还是靠价？</td><td class="neutral">量驱动</td><td>FUA增长（+30%）是核心驱动力，其中净流入A$198亿创纪录；费率相对稳定，量增>价增</td></tr>
-  <tr><td>涨价能否持续？</td><td class="neutral">需观察</td><td>平台费率有竞争性下行压力，但公司通过提升附加值（数据/工具/服务）维持费率稳定</td></tr>
-  <tr><td>非经常性利润占比</td><td class="good">低</td><td>核心利润干净，收购相关摊销为非现金项，对真实盈利能力影响有限</td></tr>
-  <tr><td>大客户/大项目集中度</td><td class="good">分散</td><td>服务5,500+活跃顾问，无单一顾问或客户占比>5%</td></tr>
-  <tr><td>政策/监管依赖度</td><td class="neutral">中</td><td>受ASIC/APRA监管；Superannuation强制缴纳比例提升（9.5%→12%）是长期行业驱动力</td></tr>
+  <tr><td>增长靠量还是靠价？</td><td class="neutral"><b>量驱动为主，价（费率）结构性微降</b></td><td>Platform FUA +24% 驱动收入 +26%；但收入率 <b>31bps（−1bp）</b> —— <b>"量"（FUA）在涨，"价"（费率）在跌</b>，两者方向相反。FY26 FUA 增长 267.7 亿中 79.0 亿来自市场变动（≈30%），属"量"中质量最低的部分</td></tr>
+  <tr><td>涨价能否持续？</td><td class="neutral"><b>不能（结构性封顶）</b></td><td>admin fee 分层与封顶（fee tiering and capping）是<b>商业模式设计的一部分</b>，意味着 HUB 无法通过提价对冲通胀与成本上升。护城河体现在<b>份额</b>而非定价权 —— 这是本商业模式最重要的约束</td></tr>
+  <tr><td>非经常性利润占比</td><td class="good">低</td><td>法定 NPAT 120.2 vs Underlying 137.3，差 17.1（占 Underlying <b>12.5%</b>），主要为股份支付等调整项（含股份支付的 EBITDA 198m，+33%）。约 87.5% 的 Underlying 利润为经营性</td></tr>
+  <tr><td>大客户／大项目集中度</td><td class="bad"><b>集中（单笔委托即可改变季度）</b></td><td>Q3 FY26 单笔机构 mandate 退出即令当季净流入降至 39.84 亿、Platform FUA 环比走平（127,915 → 127,829）。这是收入端的真实尾部风险</td></tr>
+  <tr><td>政策／监管依赖度</td><td class="bad"><b>高</b></td><td>APRA 受托人牌照、CPS 230 强化运营风险义务（2025-07-01 生效）、SPS 114 操作风险财务要求（ORFR）、联邦预算案税改、superannuation 制度本身 —— <b>牌照既是护城河也是最大依赖</b></td></tr>
+  <tr><td>会计口径透明度</td><td class="neutral">中等</td><td>按费用性质列报、不披露毛利与净有形资产以外的中间口径；净流入口径受大额迁移影响（表面 −4% vs 剔除后 +20%），<b>解读需自行还原</b></td></tr>
 </table>
 
-<h4>d. 关键变量敏感性</h4>
+<h4 style="font-size:14px;margin:14px 0 6px;">d. 关键变量敏感性（三情景）</h4>
 <div class="summary-box">
-  <strong>变量1: FUA增长率（核心增长引擎）</strong><br>
-  乐观: 净流入保持A$180-200亿/年 + 市场增值 → FUA +25-30% → EPS ~A$2.00<br>
-  中性: 净流入A$120-150亿/年 → FUA +15-20% → EPS ~A$1.60<br>
-  悲观: 净流入降至A$80亿以下 + 市场下跌 → FUA +5-10% → EPS ~A$1.20<br><br>
-  <strong>变量2: 经营利润率提升</strong><br>
-  乐观: 经营利润率从24.6%提升至30%+ → EPS增量~A$0.30<br>
-  中性: 经营利润率维持24-26% → EPS与预期一致<br>
-  悲观: 竞争加剧导致利润率降至20%以下 → EPS -15-20%<br><br>
-  <strong>变量3: ASX市场表现（影响FUA的市场增值部分）</strong><br>
-  乐观: ASX年涨10%+ → FUA额外+10% → EPS +8-10%<br>
-  中性: ASX持平 → FUA增长全靠净流入 → EPS中性<br>
-  悲观: ASX下跌15-20% → FUA缩水 → EPS -10-15%
+  <b>变量 1：Platform 净流入（含 IDPS 自主投资组合流出）—— 最核心变量</b><br>
+  <span class="bad">悲观：</span>IDPS 流出延续 + 机构 mandate 退出常态化，季度净流入降至 30~35 亿 → Platform FUA 年末约 145bn，收入 +6%，UEBITDA 利润率回落至 ~40%，法定 EPS 降至约 <b>1.42 澳元</b>（−3%）。对应合理 PE 20–25x → <b>A$28.4–35.5</b><br>
+  <span class="neutral">中性：</span>净流入维持 45~50 亿/季（FY27 指引节奏），FUA 增长靠流入＋温和市场贡献，年末约 160bn，收入 +15%，净利率维持 24% → 法定 EPS 约 <b>1.69 澳元</b>（+15%）。对应合理 PE 25–30x → <b>A$42.3–50.7</b><br>
+  <span class="good">乐观：</span>净流入重加速至 55~60 亿/季，IDPS 见底、super 流入提速，FY28 目标 1,860 亿下沿提前达成（年末约 190bn），收入 +26%，EPS 约 <b>1.82 澳元</b>（+30%）。对应合理 PE 30–35x → <b>A$54.6–63.7</b><br><br>
+  <b>变量 2：股市水平（79.6% 的存托费基为权益类）</b><br>
+  <span class="bad">悲观：</span>市场 −20% → FUA 被动缩水约 −15~18%，收入与净利同步下台阶，固定成本无法削减 → 净利率从 24% 回落至 ~20%，ROE 可能从 22% 降至 15~17%<br>
+  <span class="neutral">中性：</span>市场 ±0 → 增长完全由净流入决定，"最干净"的增长口径<br>
+  <span class="good">乐观：</span>市场 +15% → 在同等净流入下额外贡献约 +11% 收入（即"牛市补贴"）<br><br>
+  <b>变量 3：Platform 收入率（31bps，fee tiering and capping）</b><br>
+  <span class="bad">悲观：</span>被封顶效应持续，降至 30bps → FUA 增长 10% 只能转化为收入 8.7%<br>
+  <span class="neutral">中性：</span>守住 31bps，与 FY26 持平<br>
+  <span class="good">乐观：</span>myhub 生态／服务分层带来组合结构改善，升至 32bps（FY26 实际生效约 32.3bps，按平均 FUA 计）<br><br>
+  <b class="bad">注意：上述三情景均假设合理 PE 20–35x。若市场维持当前的 44.6x 高成长溢价，乐观／中性／悲观情景对应股价分别为 <b>81.2 / 75.4 / 63.3 澳元</b> —— 即"市场已预支了相当程度的增长"。</b>
 </div>
 
 <h3>7.4 前景展望</h3>
+
+<h4 style="font-size:14px;margin:14px 0 6px;">a. 未来 1–3 年核心驱动</h4>
 <div class="summary-box">
   <strong>正向驱动：</strong><br>
-  1. 独立平台替代银行系平台的大趋势——BT/AMP持续流失份额，Hub24作为#1净流入平台持续受益<br>
-  2. Australia Super等大型养老金迁移至平台——机构大单带来FUA跳跃式增长<br>
-  3. Tech Solutions交叉销售深化——Class超级基金软件+NowInfinity提升顾问粘性和ARPU<br><br>
+  1. <b>份额集中逻辑未走完</b> — FY26 份额 8.6% → 9.9% 是全平台最大年度提升；行业动荡（大型财富集团分拆顾问业务、平台所有权不确定、私募资本回归）为头部平台创造承接窗口，管理层明确视之为<b>催化剂</b><br>
+  2. <b>顾问与渠道持续扩张</b> — 活跃顾问 5,649（+11%）、覆盖全行业约 37%；myprosperity 545 家事务所、13.2 万家庭（+23%）；PARS 账户 +10%、Class 账户 +5%（FY18 以来最大年度增幅）；NowInfinity 公司注册增速为系统 2.1 倍<br>
+  3. <b>制度性资金流入 + 可见规模目标</b> — 澳洲 superannuation 强制缴投提供长期资金底；FY28 Platform FUA 目标 1,860~2,000 亿（较 FY26 的 1,394.9 亿仍有 33~43% 空间）；预算案税改被管理层称为反而强化专业顾问需求与养老金吸引力<br>
+  4. <b>经营杠杆释放</b> — 收入 +23% vs 费用 +19%，UEBITDA 利润率 42.2%（+2.3pp），myprosperity 亏损收窄至 −2.5 接近盈亏平衡；myhub 生态（与财务专业人士共创的开放式顾问生态，集成 HUB24 + Class + myprosperity + 第三方如 Finura 的 Advice Designer，用 AI 自然语言提示解决生产力问题）1H FY27 向部分客户试点<br>
+  5. <b>资本回报稳定</b> — 全年股息 78.0 澳分（+39%，全额免税 franked），末期 42.0 澳分已于 2026-10-13 支付；派息率 47–53% 落在 40–60% 目标区间内；5 年 ATSR 165% vs ASX200 45%<br><br>
   <strong>负向拖累：</strong><br>
-  1. 竞争加剧——Netwealth/Macquarie持续投入平台建设，争夺顾问资源<br>
-  2. 利率环境变化——若RBA降息，平台现金收益减少（FY2025利息收入贡献显著）<br>
-  3. 估值天花板——PE ~64x即使回调后仍高于传统框架，若市场风格转向价值将承压
+  1. <b class="bad">IDPS 自主投资组合段流出 2026 年 8 月仍处高位</b> — 最核心的下行风险，直接打击"净流入第一"这条最重要的护城河；管理层承认该段流出上升但未给出明确拐点时点<br>
+  2. <b class="bad">APRA 对 super 受托人施加新牌照条件</b> — 本轮第五家被行动的平台受托人；整改要求将追加系统控制投入（CPS 230 / SPS 114 ORFR），并带来声誉成本与潜在流向风险<br>
+  3. <b class="neutral">收入率被结构性封顶（31bps，−1bp）</b> — fee tiering and capping 意味着规模增长换不来单价提升，通胀环境下费率承压<br>
+  4. <b class="neutral">增长中约 30% 来自股市上涨（FY26 市场变动 +79.0 亿）</b> — 可逆；myhub 生态按管理层表述"随时间增加收入"，<b>不对冲近期流向担忧</b>
 </div>
 
-<h3>7.5 三情景简表</h3>
+<h4 style="font-size:14px;margin:14px 0 6px;">b. 三情景简表（FY2027 推演，基于 FUA 增长 × 收入率）</h4>
+<p style="font-size:12px;color:#999;">推演口径（可复核）：Platform 收入 ≈ 平均 Platform FUA × 收入率（FY26 实际生效约 32.3bps，按公布口径 31bps 保守取值）；Tech Solutions 按 +10%、Corporate 按持平推演；净利率按 FY26 的 24.0% 上下浮动。<b>以下为本报告推演值，非公司指引。</b></p>
 <table>
-  <tr><th>情景</th><th>假设条件</th><th>FY2027E EPS</th><th>PE区间</th><th>预期股价</th></tr>
-  <tr><td>乐观（概率30%）</td><td>FUA+30%+利润率28%</td><td>A$2.20</td><td>45-55x</td><td>A$99-121</td></tr>
-  <tr><td>中性（概率45%）</td><td>FUA+20%+利润率25%</td><td>A$1.80</td><td>40-50x</td><td>A$72-90</td></tr>
-  <tr><td>悲观（概率25%）</td><td>FUA+10%+利润率22%</td><td>A$1.40</td><td>30-40x</td><td>A$42-56</td></tr>
+  <tr><th style="width:8%">情景</th><th style="width:30%">假设条件</th><th style="width:10%">EPS 预估<br>（FY27，法定）</th><th style="width:10%">合理 PE 区间</th><th style="width:14%">对应股价</th><th>较现价 A$65.08</th></tr>
+  <tr><td class="good">乐观</td><td>净流入重加速（季度 55~60 亿），IDPS 见底、super 流入提速；Platform FUA 年末约 190bn（FY28 目标 1,860 亿下沿提前达成）；收入率 32bps；市场温和上涨</td><td class="good"><b>1.82</b></td><td>30–35x</td><td class="good">A$54.6–63.7</td><td class="neutral">−2% ~ −16%</td></tr>
+  <tr><td class="neutral">中性</td><td>净流入维持 45~50 亿/季（延续 FY27 指引节奏）；Platform FUA 年末约 160bn；收入率 31bps；净利率维持 24%</td><td class="neutral"><b>1.69</b></td><td>25–30x</td><td class="neutral">A$42.3–50.7</td><td class="bad">−22% ~ −35%</td></tr>
+  <tr><td class="bad">悲观</td><td>IDPS 流出持续 + 机构 mandate 退出常态化；季度净流入降至 30~35 亿；Platform FUA 年末约 145bn；收入率降至 30bps；净利率回落至 22%</td><td class="bad"><b>1.42</b></td><td>20–25x</td><td class="bad">A$28.4–35.5</td><td class="bad">−45% ~ −56%</td></tr>
 </table>
-<p style="font-size:13px;color:#666;margin:6px 0">概率判断：中性45%，乐观30%，悲观25%</p>
+<div class="danger-box">
+  <strong>概率判断与加权结论：</strong>中性 50% / 乐观 30% / 悲观 20%。<br>
+  概率加权对应股价约 <b>A$47</b>（0.3×59.2 + 0.5×46.5 + 0.2×32.0），较现价 A$65.08 低约 <b class="bad">−27%</b>。<br>
+  <b class="neutral">这意味着：现价已经把"净流入继续按 FY26 节奏跑 + 市场不回调"作为默认假设定价了</b>（维持 44.6x 则三情景股价为 81.2 / 75.4 / 63.3）。要证成现价，需要 FY27 EPS 达到 <b>2.17 澳元</b>（65.08 ÷ 30x 合理上限）—— 比 FY26 Underlying 1.67 高 <b>30%</b>，这恰好对应"乐观情景 + 35x 溢价"的组合，概率不高。<br>
+  <b class="bad">⚠️ 结论的前置条件：以上三情景全部指向"价格仍偏贵"。若 2026-10-20 的 FY27 Q1 资金流更新显示 IDPS 流出明显收窄、净流入重回 50 亿以上，则应上修中性情景的 EPS 与 PE 区间，重估结论。本报告在数据出来前不预判该节点。</b>
+</div>
 
-<h3>7.6 讨论问题</h3>
+<h3>7.5 资金面信号</h3>
 <div class="summary-box">
-  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
-  1. 这笔生意你看懂了吗？一句话说清Hub24怎么赚钱？——Hub24为财务顾问提供投资管理平台，按FUA收取年费，赚"规模复利"的钱。<br>
-  2. FUA增长是Hub24的核心驱动力——你能判断未来2-3年FUA增速会维持25%+还是放缓？<br>
-  3. PE ~64x vs ROE 19.7%——你愿意为这个"完美业务"支付多少溢价？PEG ~1.3x合理吗？<br>
-  4. 什么情况下你会坚决卖出Hub24？——FUA连续2季增速<15% / 净流入市场份额下滑 / 经营利润率持续下降。
+  <strong>⚠️ 本节原用于 A 股（北向资金持股 / 融资余额两融 / 大宗交易 / 机构持仓）—— ASX 无对应机制，整体标注 <b>N/A</b>。</strong>ASX 上市公司不披露陆股通持股，无融资融券余额，无大宗交易折溢价统计。以下改用<b>澳洲本地可得信号</b>替代。
+</div>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>北向资金持股变动</td><td class="neutral"><b>N/A</b></td><td>ASX 无北向／陆股通机制</td></tr>
+  <tr><td>融资余额变动（两融）</td><td class="neutral"><b>N/A</b></td><td>ASX 无融资融券余额数据</td></tr>
+  <tr><td>大宗交易折溢价</td><td class="neutral"><b>N/A</b></td><td>澳洲市场无该统计口径</td></tr>
+  <tr><td>分红兑现</td><td class="good"><b>正面</b></td><td>FY26 末期股息 <b>42.0 澳分（全额免税 franked）已于 2026-10-13 支付</b>；全年 <b>78.0 澳分（+39%）</b>（中期 36.0 + 末期 42.0；末期派息总额 3,434.5 万澳元、中期 2,943.9 万澳元）；派息率法定 53% / Underlying 47%，<b>落在 40–60% 目标区间内</b></td></tr>
+  <tr><td>回购 / 稀释对冲</td><td class="good"><b>正面</b></td><td>FY26 以 <b>5,600 万澳元</b>在二级市场回购库存股用于员工持股计划对冲（FY25 5,400 万）；管理层称对冲稀释是"持续进行"的年度动作 —— 反映管理层不认为当前股价低估</td></tr>
+  <tr><td>卖方一致预期</td><td class="good"><b>正面但需警惕</b></td><td><b>Buy（17 家覆盖），目标价 A$92.77（+42.6%）</b>；另有 13 家口径、目标价 A$97.18。<b>但目标价隐含 63.5x 法定 PE，远超 ROE 22.2% 对应区间 —— 卖方尚未下调预期，存在一致预期下修风险</b></td></tr>
+  <tr><td>股东总回报（ATSR）</td><td class="good"><b>正面</b></td><td>5 年绝对股东总回报 <b>165%</b> vs ASX 200 的 45%；即便股价自高点 −46.7%，5 年涨幅仍达 <b>197%</b>，同期 ASX 200 金融板块（XFJ）+38.4%</td></tr>
+  <tr><td>Beta</td><td class="neutral">1.02</td><td>与市场同步波动，无显著独立 Alpha 特征；熊市不会跌得少，只是涨得快 —— <b>需注意"高 Beta + 高估值"组合的下行放大效应</b></td></tr>
+  <tr><td>股价轨迹（FY26 年报至今）</td><td class="bad"><b>负面</b></td><td>年报前约 79.94 → 8/17 当周 −12.19% → 8/20 前跌至 76.48（YTD −20.15%）→ 9/17 跌至 70.38（年内 −27%）→ 现 65.08；市值 53.0 亿（同比 <b>−37.9%</b>）；52 周区间 <b>61.79–122.03</b>，现价距低点仅 +5.3%</td></tr>
+  <tr><td>⏰ <b>下一份财报／交易更新</b></td><td class="bad"><b>2026-10-20（6 天后）</b></td><td><b>FY27 Q1 平台资金流更新 —— 本报告最直接的验证／证伪节点。</b>须核对：季度净流入是否回到 50 亿以上、Platform FUA 是否恢复环比正增长、IDPS 自主组合流出是否见顶、APRA 牌照条件整改进展</td></tr>
+</table>
+<div class="summary-box">
+  <strong>资金面整体判断：中性偏正（分红与回购兑现到位、ATSR 优异），但市场预期尚未下修、股价已近 52 周低点。</strong><br>
+  分红（78.0 澳分、+39%）与回购对冲（5,600 万）说明公司层面的资本回报纪律未松；<b>但"持续回购对冲稀释"这一动作本身，等于管理层在用现金表达"当前价格不便宜"</b>。同时，17 家券商仍维持 Buy、A$92.77 目标价（隐含 63.5x PE），<b>一致预期尚未反映 Q3 失手与 IDPS 流出 —— 这是一个尚未释放的下修风险</b>，也是比基本面本身更需要警惕的短期因素。
+</div>
+
+<h3>7.6 讨论问题（阅读后可以聊这些）</h3>
+<div class="summary-box">
+  <strong>讨论问题：</strong><br>
+  1. <b>这笔生意你看懂了吗？一句话说清 HUB 怎么赚钱。</b>（提示：按 FUA 收托管／管理费，1,643 亿资产 × 约 31bps；费率有上限，规模是唯一杠杆）<br>
+  2. <b>你最大的担忧是哪一个数据？</b>① Mar-26 Platform FUA 环比 −86（走平）；② 收入率 31bps 且 −1bp（费率在跌）；③ 市场变动贡献了 FY26 FUA 增长的约 30%；④ 有息净负债从净现金 5,584 万转为 −67 万。<br>
+  3. <b>如果现在买入（A$65.08），你期待的回报来源是什么？</b>请先回答一个前置问题 —— <b class="bad">你是相信"净流入的周期低点就是现在"，还是相信"44.6x PE 仍然合理"？这两者只能选一个。</b><br>
+  4. <b>什么情况下你会坚决卖出？</b>（建议信号：连续两个季度 Platform FUA 环比为负；或 IDPS 流出在 super 流入稳定的同时仍扩大；或份额停止提升）<br>
+  5. <b class="bad">2026-10-20 就到了（6 天后）—— 在那之前，你的仓位是基于 FY26 的年报，还是基于一个即将更新的季度数字？</b>
 </div>
 
 </div></div>
 
 <div class="footer">
-   免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
-   数据来源：HUB24 FY2025年报、ASX公告、StockAnalysis、券商研报。所有金额单位为澳元(AUD)。
+  免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+  数据来源：HUB24 FY26 年度报告与业绩公告（2026-08-18）、FY26 Analyst &amp; Investor Presentation、FY26 平台资金流公告（2026-07-21）、FY26 业绩电话会记录、APR/A*STAR 相关报道、stockanalysis.com（S&amp;P Global，截至 2026-10-14）。货币单位 AUD；财年 7 月 1 日–6 月 30 日。<br>
+  标注"数据待补充"的条目为本次未取得可核实数据，不参与评分，亦不得据以推断。
 </div>
 
 </div>

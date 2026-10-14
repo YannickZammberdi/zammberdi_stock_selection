@@ -51,6 +51,8 @@
   .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
   .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
   .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .score-note { font-size: 13px; color: #666; background: #fafafa; border: 1px dashed #ccc; padding: 8px 12px; margin: 10px 0; }
+  .history-table td:first-child { white-space: nowrap; }
   .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
   ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
   li { margin-bottom: 4px; }
@@ -61,7 +63,7 @@
 
 <h1>REA Group（ASX:REA）财务分析报告</h1>
 <p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
-<p class="meta">分析日期：2026-07-14 | 数据来源：FY2025 年报（截至2025年6月）+ H1 FY26 半年报 | 货币单位：AUD</p>
+<p class="meta">分析日期：2026-10-14 | 数据来源：REA Group FY26 年度报告与 Appendix 4E（2026-08-06）、FY26 Results Presentation &amp; Analyst Briefing、ASX 公告 2026-09-14（ACCC 承诺）、stockanalysis.com（S&amp;P Global，截至 2026-10-14） | 货币单位：AUD | 财年：7月1日–6月30日，FY2026 = 截至 2026-06-30</p>
 
 <div class="tab-bar">
   <button class="tab-btn active" data-tab="summary">总结论</button>
@@ -79,104 +81,157 @@
 <table>
   <tr><th style="width:30%">项目</th><th>内容</th></tr>
   <tr><td>公司名称</td><td>REA Group Limited</td></tr>
-  <tr><td>股票代码</td><td>ASX:REA</td></tr>
-  <tr><td>所属行业</td><td>在线房地产广告（互联网内容与信息）——非周期股（轻度周期性的成长股）</td></tr>
-  <tr><td>行业地位</td><td>澳大利亚#1房产门户（realestate.com.au），流量约为第二名Domain的4倍；News Corp控股（61.9%）</td></tr>
-  <tr><td>FY2025 营收（核心）</td><td><strong>$16.73 亿（+15%）</strong></td></tr>
-  <tr><td>FY2025 归母净利润（核心）</td><td><strong>$5.64 亿（+23%）</strong></td></tr>
-  <tr><td>FY2025 经营现金流</td><td><strong>$6.75 亿（+14.6%）</strong></td></tr>
-  <tr><td>总资产</td><td>$28.33 亿</td></tr>
-  <tr><td>归母净资产</td><td>$19.12 亿</td></tr>
-  <tr><td>ROE（核心）</td><td><strong>~30%</strong></td></tr>
+  <tr><td>股票代码</td><td>ASX:REA（股价 A$156.90，市值 A$205.1 亿）</td></tr>
+  <tr><td>所属行业</td><td>房地产服务 / 互联网平台（房产中介广告门户 + 金融科技）</td></tr>
+  <tr><td>行业地位</td><td>澳洲第一大房产中介广告门户 realestate.com.au，流量约为第二名 Domain 的 4 倍；News Corp 控股 61.9%</td></tr>
+  <tr><td>FY 营收</td><td>报表口径 <strong>1,730.4m</strong>（FY25 1,543.6m，+12%）；核心经营口径（含 REA India）<strong>1,792.6m</strong>（FY25 1,672.8m，+7%）</td></tr>
+  <tr><td>归母净利润</td><td>报表口径 <strong>551.6m</strong>（FY25 677.9m，<span class="bad">-19%</span>）；核心经营口径 <strong>650.5m</strong>（FY25 564.4m，+15%）。差异主因 FY26 计提减值 -115.3m（FY25 为转回 +111.8m）</td></tr>
+  <tr><td>经营现金流</td><td>CFO <strong>771.4m</strong>（FY25 675.4m，+14.2%）；FCF 765.1m，FCF 利润率 38.7%</td></tr>
+  <tr><td>总资产</td><td>2,917m（FY25 2,833m）；其中商誉 610.7m + 其他无形资产 347.4m = 958.1m（占 32.9%）</td></tr>
+  <tr><td>归母净资产</td><td>股东权益 <strong>1,909m</strong>（FY25 1,951m）；BVPS A$14.52，有形每股 A$7.19；净现金 317.1m，长期借款已全额清零</td></tr>
+  <tr><td>ROE</td><td>报表口径 <strong>28.6%</strong>（551.6 / 平均权益 1,930）；核心口径 33.7%（650.5 / 1,930）</td></tr>
+  <tr><td>股本</td><td>130.71M 股；FY26 每股分红 A$2.97（+20%，全额免税 franked），派息率 60%</td></tr>
 </table>
+
+<p class="score-note"><strong>行业类型标注：</strong><strong class="good">非周期股（成长型，轻度周期）</strong>——核心收入是与房产成交量挂钩的广告展示费（yield / impressions），本身带地产周期属性，但 REA 已把收入结构转向"产品渗透率 + 每千次展示费率"，且澳洲强制养老金制度与人口结构提供长期需求底座，需求不由商品价格驱动。<strong>本报告采用非周期股评分体系。</strong></p>
+
+<p class="score-note"><strong>评分口径说明：</strong><span>仍用非周期股体系，改以报表口径打分，减值致净利-19%、ACCC和解压制估值</span></p>
+<p style="font-size:12px;color:#666;">口径决策说明：本报告除特别标注外，<strong>统一采用报表口径（statutory / 4E）实际数</strong>打分，同时并列披露核心经营口径。理由：报表口径是审计后的底线，核心口径排除了 India 减值等非经常性项目；不采用核心口径打分是为了避免"只挑好看的口径"。上一版评分 97/100（2026-07-14，数据基准 FY2025+1H26），本次 <strong>84/100</strong>。</p>
 
 <h2>综合评分（百分制）</h2>
-<p style="font-size:13px;color:#666;margin-bottom:8px">采用非周期股评分体系（10维度），综合L1-L5所有因素，对各维度打分求和</p>
+<p style="font-size:12px;color:#666;">采用<strong>非周期股评分体系</strong>（10 个维度，满分 100）。所有判断基于报表口径实际数，非经常性项目不剔除。</p>
 <table>
   <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
-  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">~30% ≥ 15%，优秀</td></tr>
-  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">高利润型——净利率~34% + 周转0.69 + 极低杠杆1.48</td></tr>
-  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">1.20 ≥ 1.0，现金流极好</td></tr>
-  <tr><td>营收增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+15% ≥ 10%</td></tr>
-  <tr><td>利润增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+23% ≥ 15%</td></tr>
-  <tr><td>负债率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">31% < 40%，几乎无净负债</td></tr>
-  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">现金$4.29亿，短期债务接近于零</td></tr>
-  <tr><td>毛利率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">62.2% ≥ 30%且稳定</td></tr>
-  <tr><td>估值 PE（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">PE ~34.5x（核心），略高于合理区间20-30x，偏高<30%</td></tr>
-  <tr><td>自由现金流（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">FCF $5.38亿，持续强健为正</td></tr>
-  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">97/100</td><td style="text-align:left">品质优秀（97/100分）</td></tr>
+  <tr><td>ROE</td><td class="good">15/15</td><td style="text-align:left">报表口径 28.6%（核心口径 33.7%），远超 15% 的满分线</td></tr>
+  <tr><td>杜邦驱动质量（ROE 来源）</td><td class="good">5/5</td><td style="text-align:left">高利润型——净利率 30.8%，权益乘数仅 1.49，ROE 无杠杆成分</td></tr>
+  <tr><td>利润含金量 CFO/净利</td><td class="good">15/15</td><td style="text-align:left">CFO 771.4 / 报表净利 551.6 = 1.40 ≥ 1.0</td></tr>
+  <tr><td>营收增长</td><td class="neutral">7/10</td><td style="text-align:left">核心口径 +7%（持续经营口径 +12%），落在 5%~10% 档</td></tr>
+  <tr><td>利润增长</td><td class="bad">0/10</td><td style="text-align:left">报表口径 -19%（因 1.153 亿减值，同比由转回转为计提）；核心口径 +15%。按统一口径取报表数，本维度为 0 分</td></tr>
+  <tr><td>负债率</td><td class="good">10/10</td><td style="text-align:left">34.6% &lt; 40%，且长期借款已从 201.8m 全额偿还至 0</td></tr>
+  <tr><td>短期偿债</td><td class="good">10/10</td><td style="text-align:left">现金 365.6 + 短投 27.1 = 392.7，流动有息债务约 0（仅一年内租赁 8.1），充裕覆盖</td></tr>
+  <tr><td>毛利率水平与趋势</td><td class="good">10/10</td><td style="text-align:left"><strong>替代口径</strong>：REA 不披露毛利，改用核心 EBITDA 利润率 60.7%（FY25 57.9%，+2.8pp）；澳洲经营 EBITDA 利润率 66%，且在和解前还能扩张</td></tr>
+  <tr><td>估值 PE vs 合理区间</td><td class="neutral">7/10</td><td style="text-align:left">ROE 28.6% 对应合理 PE 20-30x，实际报表 PE 37.5x / 核心 31.8x，均高于区间上沿约 25%，属"偏高&lt;30%"档；但已处 52 周区间中下部、距高点 -31%</td></tr>
+  <tr><td>FCF</td><td class="good">5/5</td><td style="text-align:left">FCF 7.651 亿澳元持续为正，FCF 利润率 38.7%（FY25 37.9%）</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">84/100</td><td style="text-align:left">品质优秀（≥80 分，绿色 verdict）</td></tr>
 </table>
 
-<div class="verdict verdict-ok">品质优秀（97/100分）—— ROE 30%+高利润型+净现金+FCF强劲，ASX顶级平台公司</div>
+<div class="verdict verdict-ok">品质优秀（84/100分）</div>
+
 <h2 style="margin-top:16px">评分沿革</h2>
 <style>.history-table{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:13px}.history-table th,.history-table td{border:1px solid #ddd;padding:6px 8px;text-align:center}.history-table th{background:#f0f0f0;font-weight:bold}.history-table td.good{color:#27ae60}.history-table td.neutral{color:#e67e22}.history-table td.bad{color:#c0392b}</style><table class="history-table">
   <tr><th>日期</th><th>评分</th><th>评分体系</th><th>变化原因</th></tr>
   <tr><td>2026-07-14</td><td class="good" style="font-weight:bold">97/100</td><td>周期性</td><td style="text-align:left">—</td></tr>
+  <tr><td>2026-10-14</td><td class="good" style="font-weight:bold">84/100</td><td>成长性</td><td style="text-align:left">仍用非周期股体系，改以报表口径打分，减值致净利-19%、ACCC和解压制估值</td></tr>
 </table>
 
 <div class="summary-box">
-  <strong>综合诊断：</strong>REA Group是澳大利亚在线房地产广告的绝对霸主，运营realestate.com.au等核心平台，拥有极强的网络效应和品牌护城河。FY2025营收增长15%至$16.73亿，核心净利润增长23%至$5.64亿，ROE高达30%，经营现金流$6.75亿强劲。公司几乎零负债（净现金状态），FCF持续为正，毛利率62%、净利率34%，是典型的高利润型平台经济典范。<br><br>
-  <strong>核心优势：</strong>① 澳大利亚房产门户绝对龙头（4倍于Domain），网络效应极强；② 轻资产平台模式，毛利率>60%，EBITDA利润率~58%；③ ROE 30%+，ROA 20%+，资本回报卓越；④ 资产负债率31%，净现金，财务极其稳健。<br><br>
-  <strong>核心风险：</strong>① 估值PE ~34.5x（核心），虽低于历史均值但绝对水平不低；② 业务与澳洲房市紧密相关，利率上升/经济放缓导致成交量和挂牌量下跌；③ 增长正放缓——H1 FY26营收增速从15%降至5%；④ 印度业务持续亏损（FY25 $0.29亿），国际化进展缓慢。
+  <strong>综合诊断：</strong>REA 是澳洲事实上的房产广告双寡头之一，凭 4 倍于第二名的流量把"流量—房源—买家"循环变成定价权，FY26 澳洲经营 EBITDA 利润率做到 66%、集团 CFO 7.71 亿、长期借款清零、净现金 3.17 亿——这是一台能自己造现金的机器。问题出在价格和规则两端：一是报表口径净利同比 -19%（1.153 亿减值）把利润增长分打到 0，二是 ACCC 三年可执行承诺正面切进 66% 利润率所依赖的"全量/多数房源挂牌排他"机制，这是结构性的、三年内不可逆。当前 A$156.90 对应报表 PE 37.5x，仍高于合理区间上沿，但已距 52 周高点 -30.6%，前瞻 PE 27.19x 已落入合理区间。<strong>质地优秀、规则生变、价格仍偏贵，适合分批而非追高。</strong><br><br>
+  <strong>核心优势：</strong>① 垄断级流量入口，realestate.com.au 流量约为 Domain 的 4 倍，双寡头格局稳固<br>② 澳洲经营 EBITDA 利润率 66%，且经营费用仅 +7%（686→586m）而 EBITDA +12%，经营杠杆仍在释放<br>③ 现金流质量极高：CFO 7.714 亿 / 报表净利 551.6m = 1.40，FCF 7.651 亿、FCF 利润率 38.7%，资本开支仅 630 万澳元<br>④ 资产负债表干净：长期借款全额清零、净现金 3.171 亿、负债率 34.6%，FY26 派息 3.461 亿 + 回购 2.224 亿（合计 5.685 亿，占 FCF 的 74.3%）<br><br>
+  <strong>核心风险：</strong>① <strong>ACCC 三年可执行承诺</strong>（2026-09-11 接受、09-14 公告）禁止"全量/多数房源必须挂牌"和与 listing 层级绑定的赞助条款，直接侵蚀 66% 利润率的地基，结构性、三年内不可逆<br>② 地产成交周期走平：全国 Buy 挂牌量已持平，增长只剩 yield（费率）+ 产品渗透，空间受监管压缩<br>③ News Corp 控股 61.9%，散户无控制权，且 News Corp 自身有房产媒体业务，存在关联关系<br>④ 长期应收 483.1m，加上短期应收 526.7m，合计约 10.1 亿占总资产 35%——按揭经纪的循环贷款让这门轻资产生意局部"重资产化"<br>⑤ 报表口径 PE 37.5x 高于合理区间上沿约 25%；国际业务 EBITDA -37m 仍亏损
 </div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l1"><div class="tab-inner">
 
-<h2>二、核心财务数据（FY2025）</h2>
-
-<h3>2.1 利润表（核心经营数据）</h3>
-<table>
-  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
-  <tr><td>营业收入</td><td>$16.73 亿</td><td>$14.53 亿</td><td>+15%</td><td class="good">✅ 双位数增长</td></tr>
-  <tr><td>EBITDA（不含联营）</td><td><strong>$9.69 亿</strong></td><td>$8.25 亿</td><td><strong>+18%</strong></td><td class="good">✅ 利润率~58%</td></tr>
-  <tr><td>归母净利润（核心）</td><td><strong>$5.64 亿</strong></td><td>$4.61 亿</td><td><strong>+23%</strong></td><td class="good">✅ 利润增速>营收</td></tr>
-  <tr><td>报告净利润（含PropertyGuru收益）</td><td>$6.78 亿</td><td>$3.03 亿</td><td>+124%</td><td class="neutral">包含一次性收益</td></tr>
-  <tr><td>核心 EPS</td><td><strong>4.27</strong></td><td>3.49</td><td>+23%</td><td class="good">✅ 稳健增长</td></tr>
-  <tr><td>毛利率</td><td><strong>62.19%</strong></td><td>61.32%</td><td>+0.87pct</td><td class="good">✅ 稳中有升</td></tr>
-  <tr><td>核心净利率</td><td><strong>~33.7%</strong></td><td>~31.7%</td><td>+2pct</td><td class="good">✅ 高利润率</td></tr>
-  <tr><td>经营费用率（运营费用/营收）</td><td><strong>~42%</strong></td><td>~43%</td><td>-1pct</td><td class="good">✅ 费用控制良好</td></tr>
-  <tr><td>澳大利亚营收</td><td>$15.44 亿</td><td>$13.50 亿</td><td>+14%</td><td class="good">✅ 核心市场稳健</td></tr>
-  <tr><td>印度营收</td><td>$1.29 亿</td><td>$1.03 亿</td><td>+25%</td><td class="good">✅ 高增长但基数小</td></tr>
-</table>
+<h2>二、核心财务数据</h2>
 
 <div class="highlight-box">
-  <strong>利润表解读：</strong>REA Group是典型的"高利润率平台型公司"——毛利率62%+核心净利率34%， EBITDA利润率高达58%。利润增速（+23%）持续跑赢营收增速（+15%），体现经营杠杆释放。分业务看，澳大利亚住宅业务增长16%为主要驱动力，商业和开发商业务+10%，金融服务+10%。印度营收增长25%至$1.29亿，但尚未盈利（EBITDA -$0.29亿）。H1 FY26营收$9.16亿（+5%），增速明显放缓，需关注。
+  <strong>口径警示（本 tab 最重要的一件事）：</strong>REA FY26 存在三套并存口径——<strong>①核心经营口径</strong>（含已列作终止经营的 REA India，反映经营全貌）、<strong>②持续经营口径</strong>（剔除 REA India，营收 1,730.4m，与报表营收一致）、<strong>③报表口径</strong>（statutory / Appendix 4E，计提减值后的审计底线）。评分只用报表口径，但看经营趋势必须看核心口径，否则会把"印度资产处置"误读成"澳洲业务恶化"。<br>
+  两套核心数字的差额主因：FY26 计提减值 <strong>-115.3m</strong>（FY25 为减值转回 <strong>+111.8m</strong>），加上重组 -7.8m、并购相关 -0.9m、金融资产重估 +1.2m 等非经常性项目，<strong>合计对 EBITDA 影响 -122.7m</strong>。
+</div>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>口径</th><th>FY2026</th><th>FY2025</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>报表</td><td>1,730.4</td><td>1,543.6</td><td class="good">+12%</td><td class="good">持续经营口径强劲</td></tr>
+  <tr><td>营业收入</td><td>核心（含 India）</td><td>1,792.6</td><td>1,672.8</td><td class="neutral">+7%</td><td>受 India 萎缩拖累，澳洲 +11%</td></tr>
+  <tr><td>经营费用</td><td>核心</td><td>-704.9</td><td>-703.6</td><td class="good">0%</td><td class="good">营收 +7% 而费用持平</td></tr>
+  <tr><td>EBITDA（关联方前）</td><td>核心</td><td>1,087.7</td><td>969.2</td><td class="good">+12%</td><td class="good">经营杠杆释放</td></tr>
+  <tr><td>联营企业损益</td><td>核心</td><td>-21.0</td><td>-25.9</td><td class="good">亏损收窄</td><td>Simpology / Arealytics 等</td></tr>
+  <tr><td>EBITDA（含联营）</td><td>核心</td><td>1,066.7</td><td>943.3</td><td class="good">+13%</td><td class="good">核心盈利质量指标</td></tr>
+  <tr><td>EBITDA</td><td><strong>报表</strong></td><td><strong>944.0</strong></td><td>1,047.8</td><td class="bad">-9.9%</td><td class="bad">减值/重组等非经常项拖累 122.7m</td></tr>
+  <tr><td>折旧摊销</td><td>核心</td><td>-140.7</td><td>-139.4</td><td>+0.9%</td><td class="neutral">稳定</td></tr>
+  <tr><td>EBIT</td><td>核心</td><td>926.0</td><td>803.9</td><td class="good">+15%</td><td class="good">EBIT 利润率 51.7%</td></tr>
+  <tr><td>利息收入</td><td>核心</td><td>13.5</td><td>3.0</td><td class="good">+350%</td><td>债务清零后利息转为收入</td></tr>
+  <tr><td>税前利润</td><td>核心</td><td>939.5</td><td>806.9</td><td class="good">+16%</td><td class="good">有效税率 31.7%</td></tr>
+  <tr><td>所得税</td><td>核心</td><td>-297.9</td><td>-252.0</td><td>+18.2%</td><td class="neutral">与税前利润同向</td></tr>
+  <tr><td>少数股东损益</td><td>核心</td><td>-8.9</td><td>数据待补充</td><td>—</td><td>Simplicity Loans 等少数股东</td></tr>
+  <tr><td>归属母公司净利润</td><td><strong>报表（打分口径）</strong></td><td><strong>551.6</strong></td><td>677.9</td><td class="bad"><strong>-19%</strong></td><td class="bad">减值从转回报计提，同比由正转负</td></tr>
+  <tr><td>归属母公司净利润</td><td>核心</td><td>650.5</td><td>564.4</td><td class="good">+15%</td><td class="good">核心经营实质两位数增长</td></tr>
+  <tr><td>归属母公司净利润</td><td>持续经营</td><td>682.1</td><td>598.8</td><td class="good">+14%</td><td>剔除 REA India 后</td></tr>
+  <tr><td>EPS</td><td><strong>报表</strong></td><td><strong>A$4.18</strong></td><td>数据待补充</td><td>—</td><td>加权股数口径</td></tr>
+  <tr><td>EPS</td><td>核心</td><td>493.5 澳分（A$4.935）</td><td>427.4 澳分</td><td class="good">+15%</td><td class="good">持续经营口径 517.4 澳分</td></tr>
+  <tr><td>每股分红 DPS</td><td>核心</td><td>297.0 澳分（A$2.97）</td><td>248.0 澳分</td><td class="good">+20%</td><td class="good">全额免税 franked，派息率 60%</td></tr>
+  <tr><td>毛利率</td><td>—</td><td colspan="2" class="neutral">N/A（REA 为广告平台，不披露毛利）</td><td>—</td><td>替代口径：核心 EBITDA 利润率 60.7%（FY25 57.9%）</td></tr>
+  <tr><td>净利率</td><td><strong>报表</strong></td><td><strong>30.8%</strong></td><td>数据待补充</td><td>—</td><td class="good">551.6 / 1,792.6</td></tr>
+  <tr><td>净利率</td><td>核心</td><td>36.3%</td><td>33.7%</td><td class="good">+2.6pp</td><td class="good">650.5 / 1,792.6</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>这是一份"经营报表与会计报表打架"的分歧年。<strong>经营层面是一份非常漂亮的报表</strong>：营收（持续经营口径）+12%、经营费用持平、EBITDA +12%、EBIT +15%、核心净利 +15%、DPS +20%，且澳洲经营 EBITDA 利润率从约 62% 抬到 66%（管理层称 "jaws open 4%"）。<strong>会计层面是一份难看的报表</strong>：1.153 亿减值（去年同期是 1.118 亿转回）把报表 EBITDA 打到 9.44 亿（同比 -9.9%）、报表归母净利打到 5.516 亿（同比 -19%）。减值主要指向 REA India（商誉从 651.3 降到 610.7）与正在关停的 Housing Edge，属于"把已经亏掉的国际业务一次性出清"，与澳洲主业无关。<br>
+  <strong>对本报告的意义：</strong>减值是一次性的、不可重复的（商誉已从 651.3 降到 610.7，继续减值空间收窄），因此利润增长维度打 0 分是"会计纪律"的结果而非"基本面恶化"的结论。但反过来也提醒：<strong>核心口径 650.5 与报表口径 551.6 相差 9,890 万</strong>，这个差额并不全是减值，还包含 REA India 终止经营的重分类与少数股东口径差异，所以两个数字都不能单独拿来做同比。
 </div>
 
 <h3>2.2 资产负债表</h3>
 <table>
-  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
-  <tr><td>货币资金</td><td><strong>$4.29 亿</strong></td><td class="good">✅ 充裕，同比翻倍</td></tr>
-  <tr><td>应收账款</td><td><strong>$4.66 亿</strong></td><td class="neutral">占营收27.9%，关注回收</td></tr>
-  <tr><td>流动资产合计</td><td><strong>$9.46 亿</strong></td><td class="good">✅ 流动性好</td></tr>
-  <tr><td>短期借款</td><td><strong>~$0</strong></td><td class="good">✅ 无短期债务</td></tr>
-  <tr><td>长期债务（含租赁）</td><td><strong>$0.61 亿（租赁负债）</strong></td><td class="good">✅ 金融负债已于FY25全部偿还</td></tr>
-  <tr><td>资产负债率</td><td><strong>31.1%</strong></td><td class="good">✅ 极低</td></tr>
-  <tr><td>归母净资产</td><td>$19.12 亿</td><td class="good">✅ 同比+24%</td></tr>
-  <tr><td>总资产</td><td>$28.33 亿</td><td class="good">✅ 同比+6.7%</td></tr>
-  <tr><td>净现金（现金-总债务）</td><td><strong>$3.58 亿</strong></td><td class="good">✅ 净现金状态</td></tr>
+  <tr><th>科目</th><th>FY2026</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>现金及等价物</td><td>365.6</td><td>428.8</td><td class="neutral">下降 63.2m（分红+回购所致）</td></tr>
+  <tr><td>短期投资</td><td>27.1</td><td>数据待补充</td><td>—</td></tr>
+  <tr><td>现金 + 短期投资</td><td><strong>392.7</strong></td><td>数据待补充</td><td class="good">充裕</td></tr>
+  <tr><td>应收账款 + 其他应收</td><td>526.7（364.4 + 162.3）</td><td>数据待补充</td><td class="neutral">占总资产约 18%</td></tr>
+  <tr><td><strong>长期应收</strong></td><td><strong>483.1</strong></td><td>数据待补充</td><td class="neutral"><strong>异常项</strong>：按揭经纪循环贷款 / 商业地产票据，是 REA 特有的重资产化特征</td></tr>
+  <tr><td>应收合计（含长期）</td><td><strong>约 1,010</strong></td><td>数据待补充</td><td class="bad">占总资产 <strong>35%</strong>——"轻资产平台"里最重的一块</td></tr>
+  <tr><td>流动资产合计</td><td>1,021</td><td>946.2</td><td class="good">+7.9%</td></tr>
+  <tr><td>物业厂房设备</td><td>74.1</td><td>数据待补充</td><td class="good">极轻固定资产</td></tr>
+  <tr><td>长期投资</td><td>328.6</td><td>数据待补充</td><td>Move Inc. 20%、Distilled 35% 等</td></tr>
+  <tr><td>商誉</td><td>610.7</td><td>651.3</td><td class="neutral">因 India 减值下降 40.6m</td></tr>
+  <tr><td>其他无形资产</td><td>347.4</td><td>332.4</td><td class="neutral">Planitar 并表推高</td></tr>
+  <tr><td>商誉 + 无形资产</td><td>958.1</td><td>983.7</td><td class="neutral">占总资产 32.9%</td></tr>
+  <tr><td><strong>总资产</strong></td><td><strong>2,917</strong></td><td>2,833</td><td>+3.0%</td></tr>
+  <tr><td>流动负债合计</td><td>470.8</td><td>442.9</td><td>含应计费用 218.8、流动递延收入 130.3、其他 63.9</td></tr>
+  <tr><td><strong>长期借款</strong></td><td><strong>0</strong></td><td>201.8</td><td class="good"><strong>本年全额偿还，本金减少 8m，差额为汇率/折溢价</strong></td></tr>
+  <tr><td>长期租赁</td><td>67.5</td><td>数据待补充</td><td class="good">总债务 75.6 全部为租赁</td></tr>
+  <tr><td>递延税负债</td><td>25.7</td><td>数据待补充</td><td>—</td></tr>
+  <tr><td>其他长期负债</td><td>438.4</td><td>数据待补充</td><td>—</td></tr>
+  <tr><td><strong>总负债</strong></td><td><strong>1,009</strong></td><td>881.3</td><td>+14.5%</td></tr>
+  <tr><td><strong>股东权益</strong></td><td><strong>1,909</strong></td><td>1,951</td><td class="neutral">-2.2%，含库存股 -37.5（本年新设回购）</td></tr>
+  <tr><td>资产负债率</td><td><strong>34.6%</strong></td><td>31.1%</td><td class="good">1,009 / 2,917，远低于 40% 警戒线</td></tr>
+  <tr><td>净现金</td><td>317.1</td><td>376.0</td><td class="good">总债务 75.6（全部租赁）− 现金 392.7</td></tr>
+  <tr><td>BVPS</td><td>A$14.52</td><td>数据待补充</td><td>130.71M 股</td></tr>
+  <tr><td>有形每股</td><td>A$7.19</td><td>数据待补充</td><td class="neutral">扣商誉 610.7 + 无形 347.4 后仍为正</td></tr>
 </table>
 
 <div class="highlight-box">
-  <strong>资产负债表解读：</strong>REA的资产负债表极其健康。FY2025通过出售PropertyGuru股权获得大量现金，偿还了所有外部金融债务（$2.09亿），期末现金$4.29亿。资产负债率仅31%，且几乎没有有息负债——仅存的$0.61亿为租赁负债。净现金$3.58亿（现金$4.29亿 - 总债务$0.71亿），这在科技平台公司中非常罕见。公司还有$4亿未提取的债务融资额度（2028年到期），财务弹性极强。
+  <strong>资产负债表解读：</strong>财务结构是这份报告里最没有争议的部分——<strong>零有息长期借款、净现金 3.171 亿、负债率 34.6%、有形每股仍为正 A$7.19</strong>，在 A 股/港股语境下这属于"教科书级干净"。三个需要盯住的点：<br>
+  ① <strong>应收约 10.1 亿、占总资产 35%</strong>。REA 名义上是广告平台（资本开支仅 630 万澳元），但 Mortgage Choice / Simplicity Loans 带来的按揭经纪循环贷款与商业地产票据被记为长期应收 4.831 亿。这块的信用周期风险与广告业务完全不同，需要单独跟踪坏账与逾期数据（数据待补充）。<br>
+  ② <strong>递延收入 130.3m（流动）</strong>说明部分订阅已收款未确认，是 FY27 收入的"蓄水池"，对收入能见度是正面的。<br>
+  ③ <strong>商誉 + 无形 958.1m 占总资产 32.9%</strong>，有形净资产安全垫只剩 A$7.19/股 vs 股价 A$156.90。考虑到 FY26 刚对 India 计提过减值、且 FY27 还要完成德国 Distilled 参股（€2.48 亿）与印度资产出售，后续商誉与投资减值的压力尚未解除——这是权益从 1,951 微降到 1,909 的背景。
 </div>
 
 <h3>2.3 现金流量表</h3>
 <table>
-  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
-  <tr><td>经营现金流（CFO）</td><td><strong>$6.75 亿</strong></td><td>$5.89 亿</td><td class="good">✅ 强劲+14.6%</td></tr>
-  <tr><td>投资现金流（CFI）</td><td><strong>+$0.71 亿</strong></td><td>-$2.05 亿</td><td class="neutral">PropertyGuru出售回笼资金</td></tr>
-  <tr><td>资本开支（PPE+无形资产）</td><td><strong>$1.38 亿</strong></td><td>~$1.25 亿</td><td class="good">✅ 占营收8.2%，合理</td></tr>
-  <tr><td>筹资现金流（CFF）</td><td><strong>-$5.22 亿</strong></td><td>-$4.39 亿</td><td class="neutral">分红+回购+还债</td></tr>
-  <tr><td>CFO/核心净利润</td><td><strong>1.20</strong></td><td>1.28</td><td class="good">✅ 利润含金量极高</td></tr>
-  <tr><td>自由现金流（FCF）</td><td><strong>$5.38 亿</strong></td><td>$4.65 亿</td><td class="good">✅ 持续强劲</td></tr>
-  <tr><td>FCF/核心净利润</td><td><strong>0.95</strong></td><td>1.01</td><td class="good">✅ 利润几乎全部转化为FCF</td></tr>
+  <tr><th>指标</th><th>FY2026</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td><strong>经营现金流 CFO</strong></td><td><strong>771.4</strong></td><td>675.4</td><td class="good">+14.2%，远高于报表净利 551.6</td></tr>
+  <tr><td>资本开支</td><td>-6.3</td><td>数据待补充</td><td class="good">极轻资产，仅 630 万澳元</td></tr>
+  <tr><td>无形资产购置（客户获取 / 产品）</td><td>-134.4</td><td>数据待补充</td><td>轻资产公司的真实再投资科目</td></tr>
+  <tr><td>收购付现（Planitar + Simplicity）</td><td>-90.1</td><td>数据待补充</td><td>商业地产 3D 看房 + 商业贷款经纪</td></tr>
+  <tr><td>证券投资</td><td>-25.7</td><td>数据待补充</td><td>—</td></tr>
+  <tr><td>CFI（分项加总）</td><td>-256.5</td><td>数据待补充</td><td>本报告按分项加总，未含零星项，与报表小计或有小差异</td></tr>
+  <tr><td>派息</td><td>-346.1</td><td>-280.1</td><td class="good">+23.6%，派息率 60%</td></tr>
+  <tr><td>回购</td><td>-222.4</td><td>-22.9</td><td class="good">+871%，本年新设回购（库存股 -37.5）</td></tr>
+  <tr><td>长期债务偿还</td><td>-8</td><td>数据待补充</td><td class="good">清零收尾</td></tr>
+  <tr><td>CFF（分项加总）</td><td>-576.5</td><td>数据待补充</td><td>同上口径说明</td></tr>
+  <tr><td><strong>自由现金流 FCF</strong></td><td><strong>765.1</strong></td><td>669.1</td><td class="good">+14.4%</td></tr>
+  <tr><td>FCF 利润率</td><td>38.7%</td><td>37.9%</td><td class="good">+0.8pp</td></tr>
+  <tr><td>CFO / 净利润（报表口径）</td><td><strong>1.40</strong></td><td>1.00（675.4 / 677.9）</td><td class="good">利润含金量满分</td></tr>
+  <tr><td>现金所得税实付</td><td>267.4</td><td>数据待补充</td><td>约为账面所得税 297.9 的 90%</td></tr>
+  <tr><td>股东回报合计（派息+回购）</td><td>568.5</td><td>303.0</td><td class="good">占 FCF 的 74.3%</td></tr>
 </table>
 
 <div class="summary-box">
-  <strong>现金流解读：</strong>REA的现金流是整份报告最亮眼的部分——CFO $6.75亿（净利润的1.2倍），FCF $5.38亿（净利润的95%）。轻资产平台模式下，资本开支仅占营收8.2%。公司将FCF用于分红（$2.80亿，每股$2.48，+31%）、股票回购（$0.23亿）和还债（$3.03亿）。FY2025现金余额翻倍至$4.29亿。这是典型的"现金奶牛"型企业。
+  <strong>现金流解读：</strong>CFO 7.714 亿 / 报表净利 5.516 亿 = <strong>1.40</strong>，这是本次评分里最没有争议的满分项之一。FY25 该比率仅 1.00（675.4 / 677.9），FY26 的改善既来自净利下滑也来自 CFO 增长 +14.2%，说明<strong>报表净利的下滑完全是会计减值造成的，现金层面毫无损伤</strong>。<br>
+  FCF 7.651 亿、FCF 利润率 38.7%，资本开支只有 630 万澳元——这门生意的现金转化率接近极限。管理层把 5.685 亿（74.3% 的 FCF）用于派息 3.461 亿 + 回购 2.224 亿，同时用 0.901 亿做收购、还在推进 €2.48 亿的 Distilled 参股。<strong>资本配置在"高分红 + 高回购 + 海外扩张"三条线上同时加杠杆，是这届管理层最需要被检验的地方</strong>（见 L6 风险表）。现金余额从 428.8 降到 365.6 属正常分配，不是经营性失血。
 </div>
 
 </div></div>
@@ -187,46 +242,53 @@
 
 <h3>3.1 关键盈利指标</h3>
 <table>
-  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
-  <tr><td>ROE</td><td><strong>~30%</strong></td><td>> 15% 优秀</td><td class="good">✅ 卓越</td></tr>
-  <tr><td>毛利率</td><td><strong>62.19%</strong></td><td>稳定或提升</td><td class="good">✅ 稳中有升+0.87pct</td></tr>
-  <tr><td>核心净利率</td><td><strong>~33.7%</strong></td><td>> 15%</td><td class="good">✅ 极其优秀</td></tr>
-  <tr><td>营收增长率</td><td><strong>+15%</strong></td><td>> 10%</td><td class="good">✅ 双位数增长</td></tr>
-  <tr><td>核心利润增长率</td><td><strong>+23%</strong></td><td>正增长</td><td class="good">✅ 利润加速增长</td></tr>
-  <tr><td>CFO/核心净利润</td><td><strong>1.20</strong></td><td>> 1</td><td class="good">✅ 现金质量高</td></tr>
-  <tr><td>资产负债率</td><td><strong>31.1%</strong></td><td>平台公司<50%</td><td class="good">✅ 极低</td></tr>
-  <tr><td>分红率</td><td><strong>~58%</strong></td><td>持续分红且增长</td><td class="good">✅ 31年连续增长</td></tr>
+  <tr><th>指标</th><th>报表口径</th><th>核心口径</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>28.6%</strong></td><td>33.7%</td><td>≥15%</td><td class="good">优秀（远超标准）</td></tr>
+  <tr><td>毛利率</td><td colspan="2" class="neutral">N/A（不披露）</td><td>≥30%</td><td>替代口径：核心 EBITDA 利润率 <strong>60.7%</strong>（FY25 57.9%，+2.8pp）；澳洲经营 EBITDA 利润率 <strong>66%</strong></td></tr>
+  <tr><td>净利率</td><td>30.8%</td><td>36.3%</td><td>≥10%</td><td class="good">优秀</td></tr>
+  <tr><td>营收增长</td><td>+12%（持续经营口径）</td><td>+7%</td><td>≥10% 优秀</td><td class="good">报表口径优秀；核心口径仅达"≥5%"档（评分按 7/10 取核心口径）</td></tr>
+  <tr><td>利润增长</td><td><strong class="bad">-19%</strong></td><td>+15%</td><td>≥15%</td><td class="bad"><strong>报表口径未达标，评分 0 分</strong>；核心口径达优秀线。差异 = 减值 -115.3m（FY25 转回 +111.8m）+ 重组 -7.8 + 并购 -0.9 + 重估 +1.2，EBITDA 影响 -122.7m</td></tr>
+  <tr><td>CFO / 净利润</td><td><strong>1.40</strong></td><td>1.19（771.4 / 650.5）</td><td>≥1.0</td><td class="good">优秀，两个口径都达标</td></tr>
+  <tr><td>资产负债率</td><td>34.6%</td><td>同左</td><td>&lt;40%</td><td class="good">优秀，长期借款已清零</td></tr>
+  <tr><td>短期偿债</td><td>现金+短投 392.7 / 流动有息债务约 0（一年内租赁 8.1）</td><td>同左</td><td>充裕覆盖</td><td class="good">充裕</td></tr>
+  <tr><td>分红率</td><td>60.2%（2.97 / 4.935 核心 EPS）</td><td>同左</td><td>稳定分红</td><td class="good">FY22 1.64 → FY26 2.97，连增四年；FY25 58% → FY26 60%</td></tr>
+  <tr><td>FCF / 净利润</td><td>1.39（765.1 / 551.6）</td><td>1.18</td><td>&gt;1</td><td class="good">优秀</td></tr>
+  <tr><td>商誉+无形 / 总资产</td><td>32.9%</td><td>同左</td><td>&lt;20% 较好</td><td class="neutral">偏高，有形每股 A$7.19 vs 股价 A$156.90</td></tr>
 </table>
 
-<h3>3.2 分业务分析（FY2025）</h3>
+<h3>3.2 分业务分析</h3>
 <table>
-  <tr><th>业务板块</th><th>营收（亿）</th><th>占比</th><th>同比</th><th>评价</th></tr>
-  <tr><td>澳大利亚 - 住宅</td><td>~10.50</td><td>63%</td><td>+16%</td><td class="good">✅ 核心增长引擎</td></tr>
-  <tr><td>澳大利亚 - 商业及开发商</td><td>~3.00</td><td>18%</td><td>+10%</td><td class="good">✅ 稳健增长</td></tr>
-  <tr><td>澳大利亚 - 金融服务</td><td>~0.80</td><td>5%</td><td>+10%</td><td class="good">✅ 策略性增长</td></tr>
-  <tr><td>澳大利亚 - 其他</td><td>~1.14</td><td>7%</td><td>+8%</td><td class="neutral">稳定</td></tr>
-  <tr><td>印度</td><td>1.29</td><td>8%</td><td>+25%</td><td class="neutral">高增长但尚未盈利</td></tr>
+  <tr><th>业务板块</th><th>FY26 营收</th><th>占比</th><th>同比</th><th>利润率</th><th>评价</th></tr>
+  <tr><td><strong>澳大利亚住宅</strong><br><span style="font-size:11px;color:#666">realestate.com.au，Buy + Rent</span></td><td><strong>1,290m</strong></td><td>72.0%</td><td class="good">+12%</td><td>澳洲经营 EBITDA 利润率 66%</td><td class="good"><strong>绝对主力。</strong>由 Buy 与 Rent 的 yield 增长驱动，<strong>全国 Buy 挂牌量持平</strong>——量已见顶，全靠价（费率）和产品渗透</td></tr>
+  <tr><td>商业与新房<br><span style="font-size:11px;color:#666">realcommercial.com.au 等</span></td><td>238m</td><td>13.3%</td><td class="good">+9%</td><td>数据待补充</td><td class="good">增速低于住宅主业，尚有渗透空间</td></tr>
+  <tr><td>金融服务<br><span style="font-size:11px;color:#666">Mortgage Choice / PropTrack / Simplicity / CampaignAgent</span></td><td>114m</td><td>6.4%</td><td class="good">+11%</td><td>数据待补充</td><td class="good">按揭结算量 + PropTrack 数据合约双驱动；是"轻资产"里最重的一块（长期应收 4.831 亿）</td></tr>
+  <tr><td>其他（主要 CampaignAgent）</td><td>70m</td><td>3.9%</td><td class="neutral">+5%</td><td>数据待补充</td><td class="neutral">增速最慢的一块</td></tr>
+  <tr><td>REA India</td><td>62m</td><td>3.5%</td><td class="bad">-52%</td><td>国际 EBITDA <strong>-37m</strong></td><td class="bad">主动收缩：PropTiger 2025-09 已售、Housing Edge FY26 Q2 关停。2026-06-30 已列为终止经营及待售</td></tr>
+  <tr><td><strong>集团合计（核心口径）</strong></td><td><strong>1,792.6m</strong></td><td>100%</td><td class="neutral">+7%</td><td>核心 EBITDA 利润率 60.7%</td><td>分板块数字按四舍五入加总与集团合计略有差异</td></tr>
+  <tr><td>澳大利亚合计（含商业/金融/其他）</td><td>1,711.9m</td><td>95.5%</td><td class="good">+11%</td><td class="good">澳洲经营 EBITDA 利润率 66%（FY25 约 62%）</td><td class="good">澳洲业务本身是两位数增长，集团 7% 的"减速"全部来自国际板块</td></tr>
+  <tr><td>国际合计</td><td>80.7m</td><td>4.5%</td><td class="bad">-38%</td><td class="bad">EBITDA -37m</td><td class="bad">账面仍在亏损；出售 Housing.com 给 Aurum PropTech（REA 持股将升至 24.9%）尚待 Aurum 股东批准，预计 FY27 Q1 完成</td></tr>
 </table>
-
-<div class="highlight-box">
-  <strong>业务解读：</strong>REA Group约92%的营收来自澳大利亚市场，住宅业务为核心（63%）。增长驱动来自两个维度——① 挂牌量（受房市周期影响）；② 每单均价（Buy Yield增长+高端产品渗透）。FY2025亮点是Buy Yield实现双位数增长，有效对冲了挂牌量波动的风险。金融服务业（Mortgage Choice）营收增长10%，是公司"房产交易全链条"策略的延伸。印度营收增长25%至$1.29亿但EBITDA -$0.29亿，仍需培育。
-</div>
 
 <h3>3.3 排雷清单</h3>
 <table>
-  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
-  <tr><td class="neutral">🟡 中等</td><td>营收增长放缓——H1 FY26仅+5%，远低于FY25的+15%</td><td>澳洲房市挂牌量下降6%，高基数效应</td></tr>
-  <tr><td class="neutral">🟡 中等</td><td>印度业务持续亏损（FY25 EBITDA -$0.29亿）</td><td>国际化进展缓慢，投入期较长</td></tr>
-  <tr><td class="neutral">🟡 中等</td><td>股票估值PE ~34.5x，绝对水平不低</td><td>虽低于历史均值，但仍需高增长支撑</td></tr>
-  <tr><td class="neutral">🟡 中等</td><td>业务高度集中于澳大利亚房市</td><td>地区集中度风险，澳洲房市若持续低迷将影响业绩</td></tr>
-  <tr><td class="neutral">🟡 中等</td><td>CEO交接风险——Owen Wilson退休，新CEO Cameron McIntyre</td><td>管理层变动带来策略不确定性</td></tr>
-  <tr><td class="good">🟢 正面</td><td>ROE 30%+，全ASX顶尖水平</td><td>资本回报卓越，股东价值创造能力强</td></tr>
-  <tr><td class="good">🟢 正面</td><td>净现金+$4亿未提取额度，财务极其安全</td><td>抗风险能力极强，可支持并购和股息</td></tr>
-  <tr><td class="good">🟢 正面</td><td>FCF $5.38亿，占净利润95%</td><td>轻资产平台，利润含金量极高</td></tr>
-  <tr><td class="good">🟢 正面</td><td>网络效应护城河极深，流量4倍于竞争对手</td><td>竞争地位稳固，议价能力强</td></tr>
+  <tr><th>风险项</th><th>严重程度</th><th>依据</th></tr>
+  <tr><td><strong>ACCC 三年可执行承诺直接侵蚀 66% 澳洲经营利润率的地基</strong></td><td class="bad">🔴 红</td><td>ACCC 依《竞争与消费者法 2010》第 87B 条，于 2026-09-11 接受 REA Group 与 realestate.com.au Pty Ltd 的法院可强制执行承诺（2026-09-14 公告）。承诺禁止①"全部或大部分房源必须挂牌到 realestate.com.au"的全量/多数挂牌排他要求；②与 listing 层级绑定的赞助条款；③允许中介将<strong>至少 25%</strong> 的合资格出售房源降级到更低 listing 层级。期限 <strong>3 年</strong>，24 个月后需与 ACCC 重新接触。<strong>这是结构性的、三年内不可逆的规则变更</strong>——而 66% 的澳洲经营利润率正是建立在这个排他机制上。ACCC 未提起法律程序、REA 未被认定违法，但其已承认关切"可能违反竞争法"</td></tr>
+  <tr><td>地产成交周期：全国 Buy 挂牌量已持平</td><td class="bad">🔴 红</td><td>FY26 澳洲住宅 +12% 的增长完全由 yield（每千次展示费率）驱动，<strong>挂牌量持平</strong>意味着量的杠杆已经用完；一旦费率增长被 ACCC 承诺压制，量的支撑也没有了。且 REA 不掌握成交价（佣金只在成交时变现，但收入确认按展示/订阅），周期敏感点在量与费率两端</td></tr>
+  <tr><td>News Corp 控股 61.9% 的治理与关联关系</td><td class="neutral">🟡 黄</td><td>单一控股股东掌握 61.9%，公众股东无控制权、无董事会多数；且 News Corp 自身拥有澳洲房产新闻业务，与 REA 存在潜在关联关系。小股东利益保护依赖 ASX 规则与独立董事，而非股权分散</td></tr>
+  <tr><td>报表口径净利 -19%（减值 1.153 亿）</td><td class="neutral">🟡 黄</td><td>FY25 减值转回 +111.8m → FY26 计提 -115.3m，一进一出形成 2.271 亿的同比逆风；商誉 610.7 + 无形 347.4 = 958.1m（占总资产 32.9%）仍有减值空间</td></tr>
+  <tr><td>长期应收 483.1m 带来的"重资产化"</td><td class="neutral">🟡 黄</td><td>加上短期应收 526.7m，应收合计约 10.1 亿、占总资产 35%。按揭经纪循环贷款与商业地产票据的信用风险与广告业务周期不同源，且不体现在"轻资产"标签下</td></tr>
+  <tr><td>国际业务 EBITDA -37m 亏损</td><td class="neutral">🟡 黄</td><td>国际合计营收 80.7m（-38%）而 EBITDA -37m；REA India 已列终止经营及待售，出售 Housing.com 给 Aurum PropTech 需 Aurum 股东批准，未必 100% 落地</td></tr>
+  <tr><td>Distilled Ltd 35% 少数股权（€2.48 亿）</td><td class="neutral">🟡 黄</td><td>2026-09 宣布，为参股非控股，不并表；金额相对 FY26 FCF 7.651 亿不小，属于用现金买"不掌控的增长"，回报依赖 Distilled 自身盈利</td></tr>
+  <tr><td>估值高于合理区间</td><td class="neutral">🟡 黄</td><td>报表 PE 37.5x / 核心 PE 31.8x，ROE 28.6% 对应合理区间 20-30x，报表口径高出上沿约 25%；PB 10.8x、PS 11.4x 亦不便宜</td></tr>
+  <tr><td>供应商 surcharging 成本上升</td><td class="neutral">🟡 黄</td><td>美国运通/信用卡 surcharging 禁令导致 REA 与 Shell Energy、Dicker Data 等同步对商户加收供应商手续费（2026-10 上旬），属成本端新变量，影响幅度数据待补充</td></tr>
+  <tr><td>住宅与商铺挂牌量 / Memory 展示量</td><td class="neutral">🟡 黄</td><td>全国 Buy 挂牌量已持平；Memory（求购登记）与 listing 的转化率、Buy vs Rent 的结构变化是 FY27 最重要的领先指标，当前具体数值数据待补充</td></tr>
 </table>
 
-<div class="verdict verdict-ok">✅ L2综合判定：品质优秀（ROE 30%+，高利润率，强现金流，低负债）</div>
+<p style="font-size:12px;color:#666;">数据缺失说明：本 tab 中各板块 EBITDA 利润率（除澳洲经营 66% 外）、前五大中介客户占比、Memory/Buy 挂牌量具体数值、长期应收逾期率均<strong>数据待补充</strong>，未参与本次评分。</p>
+
+<div class="highlight-box">
+  <strong>正面项单列：</strong>① 长期借款从 201.8m 全额清零至 0，净现金 317.1m；② CFO 7.714 亿 &gt; 报表净利 5.516 亿，含金量 1.40；③ FCF 7.651 亿、FCF 利润率 38.7%，资本开支仅 630 万澳元；④ 派息率 60%、DPS 连增四年（1.64→1.58→1.89→2.48→2.97），且全额免税 franked；⑤ 经营费用仅 +7% 而澳洲营收 +11%，经营杠杆仍在；⑥ 递延收入 130.3m 提供 FY27 收入蓄水池。
+</div>
 
 </div></div>
 
@@ -234,143 +296,165 @@
 
 <h2>四、估值分析（L3框架）</h2>
 
-<h3>4.1 当前估值水平</h3>
-<p style="font-size:13px;color:#666;">股价数据：2026年7月14日收盘价 A$147.28</p>
+<h3>4.1 当前估值</h3>
 <table>
-  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
-  <tr><td>股价</td><td><strong>A$147.28</strong></td><td>52周区间 $131.07 - $265.98，接近年内低点</td></tr>
-  <tr><td>总市值</td><td><strong>~$194 亿</strong></td><td>基于132M流通股</td></tr>
-  <tr><td>PE（核心TTM）</td><td><strong>~34.5x</strong></td><td>基于核心EPS $4.27</td></tr>
-  <tr><td>PE（报告TTM）</td><td><strong>~28.7x</strong></td><td>基于报告EPS $5.13（含PropertyGuru收益）</td></tr>
-  <tr><td>PE（FY26E）</td><td><strong>~29.5x</strong></td><td>基于H1 FY26 EPS $2.58估算全年~$5.00</td></tr>
-  <tr><td>PB</td><td><strong>~10.2x</strong></td><td>基于每股净资产 $14.50</td></tr>
-  <tr><td>PS（TTM，核心营收）</td><td><strong>~11.6x</strong></td><td>市销率偏高但平台公司可接受</td></tr>
-  <tr><td>EV/EBITDA</td><td><strong>~19.7x</strong></td><td>基于EBITDA $9.69亿</td></tr>
-  <tr><td>股息率</td><td><strong>~1.68%</strong></td><td>基于FY25全年股息 $2.48，100% franked</td></tr>
-  <tr><td>FCF Yield</td><td><strong>~2.8%</strong></td><td>基于FCF $5.38亿</td></tr>
+  <tr><th>指标</th><th>当前值</th><th>历史分位 / 对比</th><th>行业均值</th></tr>
+  <tr><td>股价（2026-10-14）</td><td>A$156.90（当日 0.00%）</td><td>52 周区间 A$131.07 ~ A$226.00；距高点 <strong>-30.6%</strong>，距低点 <strong>+19.7%</strong></td><td>—</td></tr>
+  <tr><td>总市值</td><td>A$205.1 亿（130.71M 股）</td><td class="bad">同比 <strong>-29.2%</strong></td><td>数据待补充</td></tr>
+  <tr><td>PE（报表 EPS A$4.18）</td><td class="neutral"><strong>37.5x</strong></td><td>历史 PE 分位数据待补充</td><td>数据待补充</td></tr>
+  <tr><td>PE（核心 EPS A$4.935）</td><td class="neutral"><strong>31.8x</strong></td><td>历史 PE 分位数据待补充</td><td>数据待补充</td></tr>
+  <tr><td>PE（第三方口径）</td><td>30.76x</td><td>stockanalysis.com / S&amp;P Global</td><td>—</td></tr>
+  <tr><td>PE（前瞻 / 2026E）</td><td class="good">27.19x</td><td class="good"><strong>已落入合理区间 20-30x</strong>；由 156.90 反推隐含 EPS ≈ A$5.77（本报告测算）</td><td>数据待补充</td></tr>
+  <tr><td>PB</td><td class="bad">10.8x（156.90 / BVPS 14.52）</td><td>有形每股 A$7.19</td><td>数据待补充</td></tr>
+  <tr><td>PS</td><td class="neutral">11.4x（20,510 / 1,792.6 核心）</td><td>报表口径 11.9x（20,510 / 1,730.4）</td><td>Zillow 2.25x（见 L5）</td></tr>
+  <tr><td>PCF</td><td class="neutral">26.6x（20,510 / 771.4）</td><td>CFO 口径</td><td>数据待补充</td></tr>
+  <tr><td>股息率</td><td>1.89%（DPS 2.97 / 156.90）</td><td>派息率 60%（2.97 / 4.935 核心 EPS）</td><td>—</td></tr>
+  <tr><td>FCF 收益率</td><td class="good">3.73%（765.1 / 20,510）</td><td class="good">FCF 利润率 38.7%</td><td>—</td></tr>
 </table>
 
-<h3>4.2 PE Band估值区间</h3>
-<p style="font-size:13px;color:#666;">ROE 30% → 合理PE参考区间：20-30x | FY26E一致预期EPS ≈ $5.00</p>
+<h3>4.2 估值区间（PE Band — 非周期股适用）</h3>
+<p style="font-size:12px;color:#666;">合理 PE 区间取值：ROE 28.6% &gt; 20% → <strong>20-30x</strong>。以下 Band 以<strong>核心 EPS A$4.935</strong>为主轴，同时给出报表 EPS A$4.18 口径的对照。</p>
 <table>
-  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs现价$147.28</th></tr>
-  <tr><td>悲观（增长失速+房市衰退）</td><td>18x</td><td>$90.0</td><td class="bad">-39%</td></tr>
-  <tr><td>保守（历史低位）</td><td>22x</td><td>$110.0</td><td class="bad">-25%</td></tr>
-  <tr><td>中性（合理中枢）</td><td>28x</td><td>$140.0</td><td class="neutral">-5%</td></tr>
-  <tr><td>当前价</td><td>~29.5x</td><td>$147.28</td><td>—</td></tr>
-  <tr><td>券商目标均价</td><td>~33x</td><td>~$165</td><td>+12%</td></tr>
-  <tr><td>历史均值</td><td>~35x</td><td>$175.0</td><td>+19%</td></tr>
-  <tr><td>历史高位</td><td>~50x</td><td>$250.0</td><td>+70%</td></tr>
-</table>
-
-<h3>4.3 历史PE区间</h3>
-<table>
-  <tr><th>指标</th><th>数值</th></tr>
-  <tr><td>PE（TTM核心）最大值（近5年）</td><td>~86x（FY2024，利润低谷）</td></tr>
-  <tr><td>PE（TTM核心）80%分位</td><td>~50x</td></tr>
-  <tr><td>PE（TTM核心）50%分位（中位数）</td><td>~42x</td></tr>
-  <tr><td>PE（TTM核心）20%分位</td><td>~30x</td></tr>
-  <tr><td>PE（TTM核心）最小值（近5年）</td><td>~22x（2020年3月COVID暴跌）</td></tr>
-  <tr><td>当前PE（核心TTM）</td><td class="good">~34.5x（略高于20%分位，远低于中位数）</td></tr>
+  <tr><th>情景</th><th>估值（价格）</th><th>隐含 PE / 对应说明</th></tr>
+  <tr><td>悲观</td><td class="bad"><strong>A$98.70</strong>（-37.1%）</td><td>核心 EPS 4.935 × 合理区间下沿 20x。触发条件：ACCC 承诺落地后澳洲经营 EBITDA 利润率从 66% 回落至 55-58%，且再计提商誉减值</td></tr>
+  <tr><td>保守</td><td class="neutral"><strong>A$123.38</strong>（-21.4%）</td><td>核心 EPS 4.935 × 25x（区间中值）。评级下调至"持有"、但盈利未变的估值压缩情形。<strong>报表 EPS 4.18 × 25x = A$104.50</strong>，即悲观情景下报表口径更低</td></tr>
+  <tr><td>中性</td><td class="neutral"><strong>A$148.05</strong>（-5.6%）</td><td>核心 EPS 4.935 × 合理区间上沿 30x。对应"ACCC 影响有限、利润率维持 60%+ 常态"的稳态。<strong>报表 EPS 4.18 × 30x = A$125.40</strong></td></tr>
+  <tr><td>券商目标价</td><td class="good"><strong>A$191.34</strong>（+21.95%）</td><td>15 家覆盖一致评级 <strong>Buy</strong>，一致目标价 A$191.34。隐含核心 PE 38.8x / 报表 PE 45.8x，<strong>已超出合理区间上沿</strong>——卖方模型尚未完全消化 ACCC 承诺的影响</td></tr>
+  <tr><td>当前价</td><td><strong>A$156.90</strong>（0%）</td><td>核心 PE <strong>31.8x</strong> / 报表 PE <strong>37.5x</strong> / 前瞻 PE 27.19x / PB 10.8x / PS 11.4x。处于合理区间上沿之上、52 周区间中下部（距高点 -30.6%）</td></tr>
+  <tr><td>历史高位</td><td class="bad"><strong>A$226.00</strong>（+44.0%）</td><td>52 周高点，隐含核心 PE <strong>45.8x</strong> / 报表 PE 54.1x。该价位对应的是 ACCC 承诺之前、66% 利润率可以持续扩张的假设——<strong>这个假设已被打破，不应作为锚</strong></td></tr>
 </table>
 
 <div class="highlight-box">
-  <strong>估值总结：</strong>REA Group当前PE ~34.5x（核心），处于近5年历史偏低分位（略高于20%分位30x），远低于历史中位数42x和80%分位50x。考虑到ROE 30%+、净现金状态、FCF强劲，34.5x PE对于这样一家高质量平台公司并不算贵——PEG约1.7x（PE 34.5x / 增长20%）。中性情景下（28x FY26E PE）对应股价~$140，与当前价基本持平。关键变量是增长能否维持——若H2 FY26恢复双位数增长，PE有望向历史均值修复；若持续放缓至低个位数，则存在估值下修风险。
+  <strong>PE Band 读法（关键）：</strong>当前 A$156.90 对应核心 PE 31.8x，<strong>仅比合理区间上沿（30x）高 6%</strong>，距离中性情景（A$148.05）只有 -5.6%；但对报表 EPS 口径则是 37.5x，比上沿高 25%。两个口径的差距就是那 1.153 亿减值。真正的分水岭在<strong>前瞻 PE 27.19x</strong>——市场若相信 FY27 核心 EPS 能到 A$5.77（+17%），当前价就是合理的；若 ACCC 影响兑现到 FY27-28 的盈利里，前瞻 PE 会被动抬高到 32-35x。<br>
+  <strong>历史 PE 分位（最大值/80%/50%/20%/最小值）数据待补充</strong>，本 Band 依据 ROE 反推的合理区间构建，不依赖历史分位。
+</div>
+
+<h3>4.3 估值总结</h3>
+<div class="danger-box">
+  <strong>估值判断：偏贵，但已进入"贵得不离谱"区间。</strong><br>
+  ① <strong>绝对水平偏高</strong>：报表 PE 37.5x 高于 ROE 28.6% 对应的合理区间上沿 30x 约 25%；PB 10.8x、PS 11.4x 同样不便宜。对比 Zillow 的 PS 2.25x（见 L5），11.4x PS 是 5 倍溢价——这个溢价靠 30% 净利率和 19% ROA 撑着，但也只有 28.6% 的报表 ROE 在扛。<br>
+  ② <strong>但已非高位</strong>：市值同比 -29.2%、距 52 周高点 -30.6%，估值压缩已走过一半；前瞻 PE 27.19x 已落入合理区间内。<br>
+  ③ <strong>卖方目标价 A$191.34（+22%）隐含 PE 38.8x，超出合理区间上沿</strong>——目标价隐含的假设是"ACCC 影响可控"。若 2026 年 10 月 Investor Day 或 FY27 Q1（2026-11-06）给出利润率指引下修，44% 的上行空间会快速收窄。<br>
+  <strong>操作建议：不追高，分批。</strong>以合理区间上沿 30x × 核心 EPS 4.935 = <strong>A$148</strong> 为"价值锚"，A$131.07（52 周低点）为"恐慌锚"，当前 A$156.90 位于两者之间偏上。<strong>在 ACCC 三年承诺的落地节奏被两个季度以上的实际数据验证之前，安全边际不足以支撑一次性建仓。</strong>若 2026-10 Investor Day 确认澳洲经营 EBITDA 利润率仍守在 63% 以上，可把 A$148 以下的仓位提前。
 </div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l4"><div class="tab-inner">
 
-<h2>五、杜邦分析拆解（L4框架）</h2>
-
-<h3>5.1 杜邦拆解表</h3>
-<table>
-  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
-  <tr><td>核心净利润率</td><td>~27%</td><td>~31.7%</td><td><strong>~33.7%</strong></td><td class="good">⬆ 持续提升</td></tr>
-  <tr><td>资产周转率</td><td>0.54</td><td>0.64</td><td><strong>0.69</strong></td><td class="good">⬆ 持续提升</td></tr>
-  <tr><td>权益乘数</td><td>1.79</td><td>1.72</td><td><strong>1.48</strong></td><td class="good">⬇ 杠杆降低（还债）</td></tr>
-  <tr><td><strong>ROE</strong></td><td><strong>~26%</strong></td><td><strong>~35%</strong></td><td><strong>~30%</strong></td><td class="neutral">FY25因股本增厚略有稀释</td></tr>
-  <tr><td>去杠杆ROA（净利率×周转）</td><td>14.6%</td><td>20.3%</td><td><strong>23.3%</strong></td><td class="good">⬆ 真实回报持续提升</td></tr>
-  <tr><td>杠杆贡献（ROE-ROA）</td><td>11.4pct</td><td>14.7pct</td><td><strong>6.7pct</strong></td><td class="good">⬇ 更依赖自身造血</td></tr>
-</table>
+<h2>五、杜邦分析（L4框架）</h2>
 
 <div class="highlight-box">
-  <strong>赚钱模式判断：高利润型（优秀）</strong><br>
-  REA Group是典型的高利润型平台公司——核心净利润率34%（极高），资产周转率0.69（适中），权益乘数1.48（极低杠杆）。ROE 30%主要靠高利润率驱动，而非靠杠杆堆砌。去杠杆ROA（真实资产回报率）高达23.3%，意味着每$1总资产能产生$0.23的净利润，去掉杠杆后仍极其优秀。这验证了公司"轻资产+高壁垒+强定价权"的平台经济特征。<br><br>
-  <strong>趋势亮点：</strong>净利率从27%→34%持续提升（经营杠杆释放）；周转率从0.54→0.69（资产使用效率提高）；杠杆从1.79降至1.48（还债后更健康）。三个指标均在改善，杜邦框架全面向好。
+  <strong>口径说明：</strong>本 tab 的主口径为<strong>报表口径</strong>（净利 551.6），与 L1 资产负债表净资产 1,909m、L4 权益乘数基数（平均权益 1,930m）完全一致；核心口径（净利 650.5、ROE 33.7%）并列给出。资产周转率与权益乘数用 FY26/FY25 期末平均数计算（平均总资产 2,875、平均权益 1,930），此前年度的总资产/权益数据<strong>数据待补充</strong>，故近三年趋势中只有净利率可完整回填。
 </div>
 
-<h3>5.2 去杠杆ROA分析</h3>
+<h3>5.1 杜邦拆解</h3>
 <table>
-  <tr><th>指标</th><th>REA Group</th><th>典型SaaS/平台公司</th><th>评价</th></tr>
-  <tr><td>去杠杆ROA（净利率×周转）</td><td><strong>23.3%</strong></td><td>10-20%</td><td class="good">✅ 顶尖水平</td></tr>
-  <tr><td>每$1总资产产生净利润</td><td><strong>$0.23</strong></td><td>$0.10-0.20</td><td class="good">✅ 资产回报效率极高</td></tr>
-  <tr><td>每$1净资产产生净利润</td><td><strong>$0.30</strong></td><td>$0.15-0.25</td><td class="good">✅ ASX前列</td></tr>
+  <tr><th>指标</th><th>近3年（核心口径，可回填）</th><th>判断</th></tr>
+  <tr><td>营业收入（m）</td><td>FY24 1,453 → FY25 1,673 → FY26 <strong>1,793</strong></td><td class="good">FY24 +22.8% / FY25 +15.1% / FY26 <strong>+7.2%</strong>（增速三级台阶式回落）</td></tr>
+  <tr><td>归属母公司净利润（m，核心）</td><td>FY24 461 → FY25 564 → FY26 <strong>650</strong></td><td class="good">+23.9% / +22.4% / <strong>+15.3%</strong></td></tr>
+  <tr><td><strong>净利润率</strong>（报表口径）</td><td>FY26 <strong>30.8%</strong>（551.6 / 1,792.6）</td><td class="good">远高于 10% 的好公司线</td></tr>
+  <tr><td>净利润率（核心口径）</td><td>FY24 31.7% → FY25 33.7% → FY26 <strong>36.3%</strong></td><td class="good">四年持续抬升（FY22 34.9% / FY23 31.5%）</td></tr>
+  <tr><td><strong>资产周转率</strong>（报表）</td><td>FY26 <strong>0.624</strong> = 1,792.6 / 平均总资产 2,875</td><td class="neutral">偏低（平台型常态）；FY24-FY25 数据待补充</td></tr>
+  <tr><td><strong>权益乘数</strong></td><td>FY26 <strong>1.489</strong> = 2,875 / 平均权益 1,930</td><td class="good"><strong>接近无杠杆</strong>（长期借款已清零）；FY24-FY25 数据待补充</td></tr>
+  <tr><td><strong>ROE</strong>（报表口径，打分用）</td><td>FY26 <strong>28.6%</strong> = 551.6 / 1,930</td><td class="good">≥15% 满分线远超</td></tr>
+  <tr><td>ROE（核心口径）</td><td>FY26 <strong>33.7%</strong> = 650.5 / 1,930</td><td class="good">已属全球平台型企业第一梯队</td></tr>
+  <tr><td>核心 EBITDA（m）</td><td>FY22 671 → FY23 651 → FY24 825 → FY25 969 → FY26 <strong>1,088</strong></td><td class="good">五年 +62%</td></tr>
+  <tr><td>核心 EBITDA 利润率</td><td>FY22 57.4% → FY23 55.0% → FY24 56.8% → FY25 57.9% → FY26 <strong>60.7%</strong></td><td class="good">FY26 为五年最高，+2.8pp</td></tr>
+  <tr><td>核心 EPS（A$）</td><td>FY22 3.09 → FY23 2.82 → FY24 3.49 → FY25 4.27 → FY26 <strong>4.93</strong></td><td class="good">五年 +60%</td></tr>
+  <tr><td>DPS（A$）</td><td>FY22 1.64 → FY23 1.58 → FY24 1.89 → FY25 2.48 → FY26 <strong>2.97</strong></td><td class="good">连增四年</td></tr>
+  <tr><td>派息率（核心）</td><td>FY22 53% → FY23 56% → FY24 54% → FY25 58% → FY26 <strong>60%</strong></td><td class="good">稳定且逐年抬升</td></tr>
 </table>
 
+<h3>5.2 赚钱模式判断</h3>
+<div class="highlight-box">
+  <strong>赚钱模式：典型的<span class="good">高利润型</span>，且是"三高"里最健康的那种高利润型。</strong><br>
+  ROE 28.6% 的分解：净利率 30.8% × 周转率 0.624 × 权益乘数 1.489。三个因子里，<strong>权益乘数只有 1.49——意味着 ROE 几乎全部来自"每元收入赚 0.31 元"和"资产轻到周转 0.62 次"，没有一分钱是杠杆放大的</strong>。长期借款从 201.8m 清零至 0、净现金 317.1m 后，这个结构还会更"干净"。<br>
+  这与高杠杆型（银行、地产开发商）和高周转型（零售、物流）是完全不同的生意：REA 的护城河在于 realestate.com.au 4 倍于 Domain 的流量形成的<b>"流量 → 房源 → 买家 → 更多房源</b>"正循环，广告主（中介）在这个循环里没有替代品。<strong>66% 的澳洲经营 EBITDA 利润率不是"涨价涨出来的"，是"结构护城河 + 排他合约"共同锁定的——而排他合约正是 ACCC 现在要拆的那一半。</strong>
+</div>
+
+<h3>5.3 去杠杆 ROA 与资产回报效率</h3>
+<table>
+  <tr><th>指标</th><th>数值</th><th>含义</th></tr>
+  <tr><td><strong>去杠杆 ROA</strong>（净利率 × 周转率）</td><td><strong>19.2%</strong>（报表 30.8% × 0.624；核心口径 22.6%）</td><td class="good">把杠杆完全拿掉，每 1 澳元总资产仍产生 <strong>0.19 澳元</strong>净利</td></tr>
+  <tr><td>对标：Zillow ROA</td><td>0.89%</td><td class="good"><strong>REA 是 Zillow 的 21.6 倍</strong></td></tr>
+  <tr><td>资产效率的另一面</td><td>应收合计约 10.1 亿（占总资产 35%）</td><td class="neutral">周转率被按揭经纪的循环贷款压低；若剔除该块，广告主业周转率会显著更高（精确剔除后数值数据待补充）</td></tr>
+</table>
+
+<h3>5.4 核心结论</h3>
 <div class="summary-box">
-  <strong>核心结论：</strong><br>
-  ① ROE 30%由"高利润率（34%）+ 中周转（0.69）+ 低杠杆（1.48）"驱动，是健康的盈利模式；<br>
-  ② 去杠杆ROA 23.3%是真正的亮点——去掉杠杆后仍有如此高的回报，说明商业模式极其优秀；<br>
-  ③ 三年来三个驱动因子均在改善：利润率提升、周转加快、杠杆降低——杜邦框架全面向好；<br>
-  ④ 与A股/ASX典型公司对比，REA的资本回报效率属于最顶尖梯队；<br>
-  ⑤ ROE未来提升空间：净利率已在高位（提价+产品升级），周转率有提升空间（印度资产利用率提高）。
+  <strong>杜邦结论：</strong>REA 的 ROE <strong>完全靠"高净利率"驱动，周转率是短板但被利润率补偿，杠杆贡献接近零</strong>。净利率从 FY23 的 31.5% 一路抬到 FY26 的 36.3%（核心口径），靠的是经营费用 +7% 而澳洲营收 +11% 的经营杠杆，以及 FY26 澳洲经营 EBITDA 利润率从约 62% 到 66% 的跳升。<strong>趋势健康，但可持续性的答案不在财务里，在监管里</strong>——66% 这个数字的定价权基础（全量/多数房源挂牌排他 + 与 listing 层级绑定的赞助条款）已被 ACCC 三年承诺削弱。<br>
+  另一条线索值得记下：<strong>营收增速 FY24 +22.8% → FY25 +15.1% → FY26 +7.2% 的三级台阶，与"全国 Buy 挂牌量已持平"是同一件事的两面</strong>。量价拆解显示增长已完全靠价（yield），而价的可持续性现在交到了 ACCC 手里。因此 L6 悲观情景的核心假设不是"澳洲营收下滑"，而是"同样 +12% 的营收只能换回 55-58% 的利润率"。
 </div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l5"><div class="tab-inner">
 
-<h2>六、行业分类与特征（L5框架）</h2>
+<h2>六、行业分类（L5框架）</h2>
 
 <h3>6.1 行业类型判断</h3>
 <div class="summary-box">
-  <strong>行业类型：成长型（在线房地产广告平台）——非周期股，轻度周期性</strong><br>
-  <strong>判断依据：</strong>REA Group运营澳大利亚#1房产门户realestate.com.au，属于"互联网内容与信息"行业（Communication Services）。这是一个典型的"数字平台"生意——双边市场连接房产中介（卖方）和购房者（买方），核心价值在于匹配效率和流量规模。长期增长驱动力：① 数字广告渗透率提升（房产中介从线下向线上转移）；② 每用户价值提升（Buy Yield增长+高端产品Premium Listing）；③ 业务拓展（金融服务、数据服务）；④ 印度/亚洲市场渗透。<br><br>
-  <strong>非周期属性：</strong>在线房产广告平台属于非周期股——虽受房市周期轻度影响（挂牌量波动），但结构性成长趋势（数字化渗透+集中度提升+ARPU增长）远大于周期波动。公司通过不断提升Buy Yield有效对冲量波动。采用非周期股评分体系（10维度）。<br><br>
-  <strong>成长性体现：</strong>FY2025营收+15%、核心NPAT+23%、CFO $6.75亿。长期ROE稳定在25-35%，资本回报卓越。
+  <strong>行业类型：<span class="good">非周期股（成长型，轻度周期）</span></strong>，采用<strong>非周期股评分体系</strong>，与总结论 tab 一致。<br><br>
+  <strong>判断依据：</strong>① 核心收入是<strong>广告展示费（yield / impressions，订阅 + 深度 + 赞助合约制）</strong>，属于按效果付费的信息服务，不是商品价格驱动的价差生意；② REA 已把收入结构转向"<strong>产品渗透率 + 每千次展示费率</strong>"（Audience Maximiser、Ready25、AI 产品），量的部分被产品渗透替代；③ 澳洲<strong>强制养老金（superannuation）制度与人口增长</strong>提供长期购房需求底座，住房自有率已高但换房/首购需求持续；④ 需求不由商品价格驱动，因此不适用周期股体系。<br>
+  <strong>为什么标注"轻度周期"：</strong>广告展示费的上限最终由<strong>房产成交量</strong>决定，成交量有地产周期属性；FY26 全国 Buy 挂牌量已持平，正是这一点的直接体现。这不改变"非周期"的分类，但要求在敏感性分析中给周期变量留权重（见 L6 §7.3d）。<br>
+  <strong>为何不用周期股体系：</strong>周期股体系的核心是"穿越周期的生存能力 + 周期位置 + 成本优势 + PB 分位"，而 REA 长期借款为 0、净现金 3.171 亿、ROE 连续五年 28-34%，不存在生存问题；周期位置对一门广告平台也不构成 PB 择时依据。故按混合判断取<strong>非周期股体系 + PE Band</strong>。
 </div>
 
-<h3>6.2 行业集中度与壁垒</h3>
+<h3>6.2 集中度与壁垒</h3>
 <table>
-  <tr><th>维度</th><th>判断</th></tr>
-  <tr><td>行业集中度</td><td><strong>高度集中（双寡头格局）</strong>——REA Group（realestate.com.au）和Domain（domain.com.au）合计占据澳洲在线房产广告市场~90%。REA流量约为Domain的4倍，优势显著。</td></tr>
-  <tr><td>网络效应壁垒</td><td><strong>极强（核心护城河）</strong>——更多房源→吸引更多买家→为中介创造更大价值→吸引更多中介挂牌→更多房源。REA占据流量制高点，形成正向飞轮。</td></tr>
-  <tr><td>品牌壁垒</td><td><strong>强</strong>——realestate.com.au是澳洲最受信赖的房产平台，月活1,210万（澳洲总人口~2,700万），品牌认知度极高。</td></tr>
-  <tr><td>规模/数据壁垒</td><td><strong>强</strong>——拥有海量房产交易数据（PropTrack），为中介和购房者提供Data-driven服务，数据积累难以复制。</td></tr>
-  <tr><td>平台转换成本</td><td><strong>中等偏强</strong>——中介已深度嵌入REA的生态系统（CRM、广告管理、数据分析），切换平台成本高。</td></tr>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>市场格局</td><td class="good"><strong>事实双寡头</strong></td><td>realestate.com.au 流量约为第二名 Domain Group 的 <strong>4 倍</strong>；其余门户份额极小。具体 CR2/CR3 数值数据待补充</td></tr>
+  <tr><td>壁垒 ①：网络效应</td><td class="good">最强</td><td>"流量 → 中介必挂房源 → 买家聚集 → 中介更想挂"的自强化循环；4 倍流量差意味着 Domain 短期内无法复制</td></tr>
+  <tr><td>壁垒 ②：品牌与搜索心智</td><td class="good">强</td><td>"realestate.com.au" 在澳洲已是"找房"的默认入口，搜索与直接访问并存</td></tr>
+  <tr><td>壁垒 ③：规模与数据</td><td class="good">强</td><td>PropTrack 提供澳洲最细颗粒度房价/成交数据，是数据资产的护城河，并已变现为独立数据合约（金融服务 +11% 的驱动之一）</td></tr>
+  <tr><td>壁垒 ④：牌照与金融资质</td><td class="good">中强</td><td>Mortgage Choice 房贷经纪、Simplicity Loans & Advisory 商业贷款经纪、CampaignAgent 房产营销融资——金融牌照 + 银行合作关系构成新业务的准入壁垒</td></tr>
+  <tr><td>壁垒 ⑤：合约锁定（正在被拆）</td><td class="bad"><strong>正在被削弱</strong></td><td>FY26 前，订阅/深度/赞助合约中的"全部或大部分房源必须挂牌"与 listing 层级绑定条款是关键的准壁垒；ACCC 三年承诺禁止这两类条款，并允许至少 25% 合资格出售房源降级——<strong>这是六年来第一次有约束力地削减这个壁垒</strong></td></tr>
+  <tr><td>壁垒 ⑥：产品与 AI</td><td class="neutral">中，仍在建立</td><td>Audience Maximiser（FY26 成本上升项）、Ready25 客户活动、澳网赞助（上年无）、AI 技术投入；Planitar（iGUIDE 3D 看房，2025-10-01 并表，贡献营收 18m）补齐商业地产可视化</td></tr>
 </table>
 
-<h3>6.3 生命周期阶段</h3>
+<h3>6.3 生命周期与周期位置</h3>
 <div class="highlight-box">
-  <strong>阶段：成熟期（澳洲核心）+ 成长期（印度/金融服务）</strong><br>
-  澳大利亚业务已进入成熟期——市场渗透率高（realestate.com.au已是行业标准），增长主要靠提价（Yield增长）和产品升级。但这不等于没有增长空间——数字广告占房产中介营销预算的比例仍在提升，Premium Listing等高附加值产品持续渗透。印度业务（Housing.com, PropTiger.com）处于成长期早期——营收增长25%但尚未盈利。金融服务（Mortgage Choice, Athena Home Loans）处于成长期——营收增长10%，正在构建"搜索→交易→融资"全链条。<br><br>
-  <strong>投资策略重点：</strong>关注Buy Yield增长趋势（定价权）、澳洲房产挂牌量恢复情况、印度业务减亏进展、金融服务的协同效应。
+  <strong>生命周期：<span class="good">成熟期（主业）+ 成长期（增量业务）</span>的双层结构。</strong>澳洲房产中介广告的渗透率已接近天花板（FY26 经营费用持平而 EBITDA +12%，说明已进入收割期）；但金融服务（+11%）、商业与新房（+9%）、AI 产品线仍在成长期，是 FY27-28 增长的主要来源。投资策略重点应放在<strong>"成熟主业的现金流"能否持续喂养成长期业务</strong>，而非主业本身的量增。<br><br>
+  <strong>周期位置（本框架的"轻度周期"附注，非周期股体系评分项）：</strong>澳洲地产成交周期处于<strong>温和走平 / 后周期早段</strong>——全国 Buy 挂牌量已持平，增长完全靠 yield 与产品渗透。这既意味着<strong>下行缓冲好于纯周期股</strong>（广告位不会被立刻撤掉，合约有延续性），也意味着<strong>没有量的弹性可用</strong>，一旦费率端被 ACCC 压制，利润率的下行没有对冲工具</strong>。这是本报告全部风险的核心来源。
 </div>
 
-<h3>6.4 成长股成色检验（四步法——参考性，非高估值成长股）</h3>
-<p style="font-size:13px;color:#666;">REA PS ~11.6x接近10x预警线，进行四步验证</p>
+<h3>6.4 同行对比</h3>
 <table>
-  <tr><th>步骤</th><th>检验内容</th><th>数据</th><th>判定</th></tr>
-  <tr><td>① 营收</td><td>有没有实在的生意？</td><td>营收$16.73亿（+15%），规模大且增长稳健</td><td class="good">✅ 明显过关</td></tr>
-  <tr><td>② 毛利率</td><td>产品竞争力如何？</td><td>毛利率62.19%（稳中有升），平台型商业模式</td><td class="good">✅ 明显过关</td></tr>
-  <tr><td>③ CFO</td><td>能不能自己造血？</td><td>CFO $6.75亿（净利润1.2倍），FCF $5.38亿</td><td class="good">✅ 明显过关</td></tr>
-  <tr><td>④ PS</td><td>梦想溢价多少？</td><td>PS ~11.6x，略高于10x但合理（高毛利+高ROE）</td><td class="neutral">⚠ 略高但可接受</td></tr>
+  <tr><th>指标</th><th>REA Group</th><th>Zillow Group (NASDAQ:Z)<br><span style="font-size:11px;color:#666">美国房产门户，商业模式最接近</span></th><th>Domain Group (ASX:DOM)<br><span style="font-size:11px;color:#666">澳洲第二名</span></th><th>行业中位</th><th>评价</th></tr>
+  <tr><td>ROE</td><td class="good"><strong>28.6%</strong>（核心 33.7%）</td><td class="bad">1.21%</td><td>数据待补充</td><td>数据待补充</td><td class="good"><strong>REA 压倒性领先</strong>（Zillow 的 23.6 倍）</td></tr>
+  <tr><td>ROA</td><td class="good"><strong>19.2%</strong></td><td class="bad">0.89%</td><td>数据待补充</td><td>数据待补充</td><td class="good"><strong>REA 压倒性领先</strong>（21.6 倍）</td></tr>
+  <tr><td>PS</td><td class="good">11.4x</td><td>2.25x</td><td>数据待补充</td><td>数据待补充</td><td class="good"><strong>REA 溢价 5 倍</strong>，由 30%+ 净利率与 19% ROA 支撑</td></tr>
+  <tr><td>PE</td><td class="neutral">37.5x（核心 31.8x）</td><td class="good">124.56x</td><td>数据待补充</td><td>数据待补充</td><td class="good"><strong>REA 显著更便宜</strong>——Zillow 的 PE 反映其 ROE 仅 1.2% 的低质量</td></tr>
+  <tr><td>PB</td><td class="bad">10.8x</td><td class="good">1.47x</td><td>数据待补充</td><td>数据待补充</td><td class="neutral">REA 溢价 7.3x，但 ROE 高 27 个百分点，PB 溢价合理</td></tr>
+  <tr><td>PB / PS（质量调整后）</td><td class="good">0.95</td><td class="neutral">0.65</td><td>数据待补充</td><td>数据待补充</td><td class="good">REA 单位销售额对应的账面价值更高</td></tr>
+  <tr><td>市值同比</td><td class="neutral">-29.2%</td><td class="bad"><strong>-62.5%</strong>（165.1 亿 → 63.3 亿美元）</td><td>数据待补充</td><td>数据待补充</td><td class="bad"><strong>板块性杀估值</strong>，REA 跌幅约为 Zillow 的一半</td></tr>
+  <tr><td>杠杆</td><td class="good">净现金 3.171 亿，长期借款 0</td><td class="neutral">净现金，Debt/EBITDA 2.89x</td><td>数据待补充</td><td>数据待补充</td><td class="good"><strong>均低杠杆</strong>，REA 更干净（Zillow 有 2.89x 债务/EBITDA）</td></tr>
+  <tr><td>毛利率 / EBITDA 利润率</td><td class="good">核心 EBITDA 利润率 60.7%；澳洲经营 66%</td><td class="neutral">数据待补充</td><td>数据待补充</td><td>数据待补充</td><td>Zillow 口径不可比（其收入以 IMT 与 Prime Agent 交易佣金为主），缺失</td></tr>
 </table>
 
-<div class="summary-box">
-  <strong>四步法结论：</strong>REA Group营收、毛利率、CFO三项均明显过关——这是"真成长股"而非"烧钱故事"。PS 11.6x虽高于10x预警线，但考虑到62%的毛利率和30%+的ROE，平台型公司通常享受PS溢价。整体来看，REA的成长成色极好——生意真实、盈利强、造血能力优秀。
+<div class="highlight-box">
+  <strong>核心结论（L5 必读）：</strong>整个房产门户板块正在被杀估值——<strong>Zillow 市值同比 -62.5%、REA -29.2%</strong>——但两者的财务质量天壤之别：<strong>REA 有 30%+ 的净利率（报表 30.8%、核心 36.3%）和 19.2% 的 ROA 支撑 11.4x 的 PS，而 Zillow 的 ROE 仅 1.21%、ROA 0.89%</strong>。这意味着 Zillow 1.2% 的 ROE 是靠 2.25x PS 撑着的高质量叙事（几乎全靠增长预期定价），而 REA 的 11.4x PS 是有 33.7% 核心 ROE 和 38.7% FCF 利润率做安全垫的。<strong>买 REA 本质是买"能自己造现金的龙头"，而不是买"板块反弹"。</strong>如果美国/澳洲地产周期真的回暖，Zillow 的弹性会大得多（因为它现在几乎没定价任何盈利）；但如果你要的是"睡得着觉的现金流"，那个标的只能是 REA。<br>
+  <span style="color:#666;font-size:12px;">注：Domain Group 为澳洲本地直接竞争对手（第二名），因流量约为 REA 的 1/4、且本次未核实其财务数据，全部指标标注"数据待补充"，未参与评分。</span>
 </div>
 
 <h3>6.5 估值方法匹配</h3>
-<table>
-  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
-  <tr><td>成长型（互联网平台）</td><td>PE + EV/EBITDA</td><td>PS（参考）、营收增速、毛利率趋势</td><td class="good">✅ 匹配——PE 34.5x合理偏低，EV/EBITDA 20x对平台公司合理</td></tr>
-</table>
-
 <div class="summary-box">
-  <strong>估值方法总结：</strong>REA Group作为盈利的互联网平台公司，PE和EV/EBITDA是最适用的估值方法。当前PE 34.5x（核心）处于历史偏低分位，EV/EBITDA ~20x对于60%+毛利率的平台公司来说合理。PEG约1.7x（基于15-20%增长），与高质量成长股匹配。PS 11.6x偏高但可接受——对比全球同类房产平台（Rightmove PE ~25x, Zillow PS ~5x但未盈利），REA的估值处于合理区间。
+  <strong>估值方法：平台型成长股 → 首选 <span class="good">PE（辅以 PS / PEG）</span>，并加 <span class="good">EV/EBITDA 与 FCF 收益率</span>作为交叉验证。当前市场用 PE 为主（报表 37.5x / 核心 31.8x / 前瞻 27.19x），方法上<strong>匹配</strong>。<br><br>
+  但有一处必须调整：<strong>FY26 的报表 EPS（4.18）被 1.153 亿减值污染，与核心 EPS（4.935）差 18%</strong>，直接用报表 PE 会系统性高估估值水平。因此本报告的处理是：<strong>打分用报表口径（保守、可审计），定价用核心口径（反映可持续盈利），两者并列披露</strong>。<br><br>
+  对比参照：同属信息平台的 Zillow 更适合用 PS 观察（因其盈利尚未正常化），而 REA 因为 EBITDA 利润率已达 60.7%、FCF 利润率 38.7%，<strong>用 PE + FCF 收益率（当前 3.73%）比单用 PS 更能反映真实性价比</strong>——11.4x PS 看似贵，但配 60.7% 的利润率就等于约 18.8x EV/Sales×利润的性价比，落在合理区间内。
+</div>
+
+<h3>6.6 成长股成色检验（PS 11.4x &gt; 10，触发）</h3>
+<table>
+  <tr><th>检验步骤</th><th>REA 数据</th><th>判断</th></tr>
+  <tr><td>① 营收——有没有实在的生意</td><td>营收 17.93 亿澳元（≈24 亿美元），增速 +7%~12%</td><td class="good">✓ 营收规模大且持续正增长，不是"小营收+大市值"型</td></tr>
+  <tr><td>② 毛利率——产品竞争力（REA 替代口径）</td><td>核心 EBITDA 利润率 60.7%（FY25 57.9%），澳洲经营 66%</td><td class="good">✓ 远超 30% 且仍在提升</td></tr>
+  <tr><td>③ 经营现金流——能否自己造血</td><td>CFO 7.714 亿 / 报表净利 5.516 亿 = <strong>1.40</strong></td><td class="good">✓ CFO 为正且改善（FY25 比率仅 1.00）</td></tr>
+  <tr><td>④ PS——梦想溢价</td><td>PS 11.4x（报表口径 11.9x）</td><td class="neutral">⚠ 落在"<strong>10-20 需高增长支撑</strong>"区间上沿。当前营收增速已降至 +7%（核心），<strong>增速支撑正在变薄</strong>——这是估值最需要盯的一环；PE 前瞻 27.19x 落入合理区间，是比 PS 更可靠的安全感来源</td></tr>
+</table>
+<div class="summary-box" style="border-left-color:#27ae60;">
+  <strong>成色检验总结：</strong>四步全部通过，第④步为黄灯。<strong>REA 是"有真实现金流的平台型成长股"，不是靠故事定价的题材股</strong>——CFO 大于净利、EBITDA 利润率 60% 且在升、负债率为零杠杆。真正的问题不在"成色"，在"增速能否支撑 11.4x PS"，而答案要看 ACCC 承诺落地后 FY27-28 的 yield 走势。
 </div>
 
 </div></div>
@@ -381,99 +465,137 @@
 
 <h3>7.1 六步法总结</h3>
 <div class="summary-box">
-  <strong>Step 1 - 行业定位：</strong>成长型（在线房产广告），非周期股；双寡头格局高度集中，核心护城河为网络效应+品牌+规模。<br>
-  <strong>Step 2 - 财务体检：</strong>ROE 30%卓越，高利润型杜邦（净利率34%），CFO/净利1.20，FCF $5.38亿，财务极其健康。<br>
-  <strong>Step 3 - 估值判断：</strong>PE ~34.5x（核心），低于历史中位数42x，略高于20%分位30x，处于历史偏低区间。<br>
-  <strong>Step 4 - 风险排查：</strong>增长放缓（H1 FY26 +5%）、澳洲房市集中度风险、印度业务亏损、CEO交接。<br>
-  <strong>Step 5 - 结论：</strong>好行业（网络效应护城河深）+ 好公司（ROE 30%+，FCF强劲）+ 好价格（PE历史偏低分位）——三要素共振！<br>
-  <strong>Step 6 - 跟踪：</strong>关注澳洲挂牌量变化、Buy Yield增速、印度业务减亏进展、H2 FY26增长能否恢复。
+  Step 1 - 行业定位：<strong>非周期（成长型，轻度周期）</strong>——澳洲房产广告事实双寡头，realestate.com.au 流量约为 Domain 的 4 倍；壁垒=网络效应 > 品牌 > 数据（PropTrack）> 金融牌照 > 合约锁定（正被 ACCC 削弱）<br>
+  Step 2 - 财务体检：<strong>报表 ROE 28.6%（核心 33.7%）</strong>，杜邦为纯<strong>高利润型</strong>（净利率 30.8% × 周转 0.624 × 权益乘数 1.489，零杠杆贡献）；<strong>CFO/净利 1.40</strong>，FCF 7.651 亿；长期借款清零、净现金 3.171 亿；唯一污点是报表利润因减值 -19%<br>
+  Step 3 - 估值判断：报表 PE <strong>37.5x</strong>、核心 31.8x、前瞻 <strong>27.19x</strong>、PB 10.8x、PS 11.4x、股息率 1.89%；ROE 28.6% 对应合理 PE 20-30x，<strong>报表口径高出上沿 25%、核心口径高出 6%</strong>；距 52 周高点 -30.6%、市值同比 -29.2%；同行对比 Zillow（ROE 1.21%、PE 124.56x、市值 -62.5%）显示这是板块性杀估值而非公司独有<br>
+  Step 4 - 风险排查：<strong>ACCC 三年可执行承诺是压倒性第一风险</strong>——禁止全量/多数房源挂牌排他、禁止与 listing 层级绑定的赞助条款、允许至少 25% 合资格房源降级，直接侵蚀 66% 澳洲经营利润率的地基，结构性且三年内不可逆；其次是地产成交周期（全国 Buy 挂牌量已持平）、News Corp 控股 61.9%、长期应收 4.831 亿的国际 EBITDA -37m 亏损、€2.48 亿 Distilled 参股（非控股）<br>
+  Step 5 - 结论：<strong>好公司（确定性高），价格偏贵（安全边际不足）</strong>。84/100 品质优秀，但 84 分里利润增长 0 分、估值只拿 7 分，正是"会计风险 + 监管风险 + 估值溢价"三项对冲后的结果。适合分批、不适合追高；价值锚 A$148（30x × 核心 EPS），恐慌锚 A$131（52 周低点）<br>
+  Step 6 - 跟踪：① <strong>2026-10 Investor Day</strong> 的澳洲经营 EBITDA 利润率指引；② <strong>2026-11-06 Q1 FY27 财报</strong>的 Australia Residential yield 与全国 Buy 挂牌量；③ ACCC 24 个月重新接触前的执行进展与中介降级房源比例；④ 印度 Housing.com 出售给 Aurum PropTech 的股东批准与 FY27 Q1 完成；⑤ 季度回购节奏与净现金变化。卖出信号：<strong>澳洲经营 EBITDA 利润率跌破 60% 且挂牌量同比转负</strong>，或 Distilled/印度交易出现商誉与投资减值
 </div>
 
 <h3>7.2 好公司三要素检查</h3>
 <table>
   <tr><th>要素</th><th>判断</th><th>依据</th></tr>
-  <tr><td>① 好行业</td><td class="good">✓</td><td>在线房产广告双寡头格局，网络效应+品牌护城河深，长期受益于数字化趋势</td></tr>
-  <tr><td>② 好公司</td><td class="good">✓</td><td>ROE 30%+远超15%标准，毛利率62%稳定提升，CFO/净利1.20达标，FCF持续强劲</td></tr>
-  <tr><td>③ 好价格</td><td class="good">✓</td><td>PE ~34.5x处于历史偏低分位，PEG ~1.7x合理，股价接近年内低点</td></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>需求底座是澳洲强制养老金制度 + 人口增长 + 极高的住房自有率下的换房需求，需求不由商品价格驱动；供给端是事实双寡头（4 倍流量差），新进入者无法复制流量循环。扣分项：行业增速已降至 +7%（核心口径），且监管正在主动削弱核心壁垒</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓</td><td>ROE 28.6%（核心 33.7%）远超 15%；核心 EBITDA 利润率 60.7%（FY25 57.9%，+2.8pp）在提升；CFO 7.714 亿 &gt; 报表净利 5.516 亿（含金量 1.40）；经营费用仅 +7% 而澳洲营收 +11%，经营杠杆仍在。扣分项：报表净利 -19%、长期应收占总资产 35% 的重资产化特征、国际业务仍亏损</td></tr>
+  <tr><td>③ 好价格</td><td class="neutral">△ 部分满足</td><td>不满足的一面：报表 PE 37.5x / PB 10.8x / PS 11.4x 均高于合理区间；PE Band 中性情景 A$148.05 比现价低 5.6%。满足的一面：市值同比 -29.2%、距 52 周高点 -30.6%，前瞻 PE <strong>27.19x 已落入 20-30x 合理区间</strong>，PEG（前瞻 PE 27.19 / 营收增速假设）处于可接受区间。结论：<strong>不是便宜的好价格，但也不再是贵的价格</strong>，属"合理偏贵、等催化"</td></tr>
 </table>
 
 <h3>7.3 风险评估</h3>
 
-<h4>a. 三个陷阱排查</h4>
 <div class="danger-box">
-  <strong>☐ 价值陷阱：</strong>❌ 未命中——高ROE+高增长+强现金流，与价值陷阱（低PE+低增长+高负债）完全相反。<br>
-  <strong>☐ 周期陷阱：</strong>⚠ 部分关注——PE ~34.5x在利率上升期不算低，但REA轻度周期属性+提价能力可对冲量波动风险。非周期股评分体系下，关注澳洲房市走势即可。<br>
-  <strong>☐ 烧钱陷阱：</strong>❌ 未命中——FCF $5.38亿强劲，净利润含金量120%，完全不烧钱。
+  ☐ <strong>价值陷阱（低PE + 低增长 + 高负债）</strong> → <strong>未命中</strong>。三项全不成立：PE 不低（报表 37.5x / 核心 31.8x）；负债率 34.6%、长期借款 0、净现金 3.171 亿；FCF 7.651 亿持续为正且利润率 38.7%。唯一接近的是"增长降至 +7%"，但这是量（挂牌量持平）的问题而非能力问题。<br><br>
+  ☐ <strong>周期陷阱（低PE + 周期顶点）</strong> → <strong>不适用</strong>。本报告按<strong>非周期股体系</strong>打分（澳洲强制养老金 + 人口结构提供需求底座），体系内不使用 PB 分位与周期位置维度。但作为附注：地产成交周期确实处于温和走平段（全国 Buy 挂牌量已持平），且公司 66% 的澳洲经营利润率正处于<strong>历史高位</strong>——若采用周期股视角，"利润率处于周期高位"这一项本身就是一个警示信号。<strong>本报告把这个警示纳入了悲观情景（利润率回落至 55-58%）与估值判断，而非通过周期股评分体系单独计分。</strong><br><br>
+  ☐ <strong>烧钱陷阱（高PE + 高增速 + 负现金流）</strong> → <strong>未命中</strong>。CFO +7.714 亿、FCF +7.651 亿，均为正且同比 +14%；资本开支仅 630 万澳元。虽 PE 偏高且 PB 10.8x（账面净资产被 958.1m 商誉与无形资产撑起），但现金创造能力完全不匹配"烧钱"标签。
 </div>
 
-<h4>b. 管理层与治理风险</h4>
+<h4>7.3b 管理层与治理风险</h4>
 <table>
   <tr><th>事项</th><th>判断</th><th>依据</th></tr>
-  <tr><td>管理层能力与履历</td><td class="good">好</td><td>新CEO Cameron McIntyre为内部晋升，曾任COO，熟悉业务。前任CEO Owen Wilson任职6年业绩优异（营收CAGR~15%，股价翻倍）</td></tr>
-  <tr><td>股权结构与利益一致性</td><td class="good">强</td><td>News Corp控股61.9%，长期持有意愿强。管理层持股虽不高但News Corp作为大股东战略稳定</td></tr>
-  <tr><td>关联交易/暴雷历史</td><td class="good">无</td><td>无重大违规、无监管处罚、无诉讼历史</td></tr>
-  <tr><td>资本配置记录</td><td class="good">合理</td><td>分红率57%稳定且连续增长（+31% YoY）；回购适度（$0.23亿）；并购质量好（PropertyGuru高位退出获利$1.45亿）；同时保留了$4亿未提取额度用于未来并购</td></tr>
-  <tr><td>CEO交接风险</td><td class="neutral">需关注</td><td>2025年8月Owen Wilson退休，Cameron McIntyre接任。新CEO背景扎实但尚无独立掌舵记录，H1 FY26增速放缓+房市下行是其首个考验</td></tr>
+  <tr><td>管理层能力与履历</td><td class="good">好</td><td>FY26 在营收 +7%（核心）/ +12%（持续经营）的情况下做到经营费用 <strong>持平（-703.6 → -704.9，0%）</strong>、澳洲经营 EBITDA 利润率从约 62% 提升至 <strong>66%</strong>（管理层称 "jaws open 4%"），澳洲经营费用 586m（+7%）符合指引。成本控制与经营杠杆运用均属优秀</td></tr>
+  <tr><td>股权结构与利益一致性</td><td class="neutral">一般</td><td><strong>News Corp 控股 61.9%</strong>，公众股东无控制权、无董事会多数；且 News Corp 自身拥有澳洲房产新闻业务，与 REA 存在潜在关联关系。REA 本身不设管理层大规模持股的公开数据（数据待补充），利益绑定主要靠 News Corp 的分红/回购记录</td></tr>
+  <tr><td>关联交易 / 暴雷历史</td><td class="neutral">有但可控</td><td>ACCC 于 <strong>2025-05-27</strong>曾在 REA 的 ASX 公告中提出反竞争关切，2026-09-11 接受三年可执行承诺、09-14 公告。<strong>关键区分：ACCC 未提起法律程序、REA 未被认定存在违法行为</strong>，属承诺结案（enforceable undertaking）而非处罚。但 REA 已承认关切"可能违反竞争法"，且承诺期 3 年、24 个月后需重新接触</td></tr>
+  <tr><td>资本配置记录</td><td class="neutral">合理但偏进取</td><td>正面：派息 3.461 亿（派息率 60%、DPS +20%、连增四年）+ 回购 2.224 亿（同比 +871%），合计 5.685 亿占 FCF 的 74.3%；清零 201.8m 长期借款。进取处：在高分红高回购的同时，用 0.901 亿现金完成 Planitar + Simplicity 收购，并投入 €2.48 亿买入 Distilled <strong>35% 少数股权（非控股，不并表）</strong>，同时推进印度 Housing.com 出售。<strong>三条战线同时加码，是需要两个完整财年验证的资本配置风格</strong></td></tr>
+  <tr><td>管理层增减持记录</td><td class="neutral">数据待补充</td><td>News Corp 及 REA 董事近一年增减持公告本次未核实，标注数据待补充，未参与评分</td></tr>
+  <tr><td>CEO 交接 / 关键人员变动</td><td class="neutral">数据待补充</td><td>本次未核实 CEO 交接计划或关键高管变动，标注数据待补充。<strong>但需留意：新闻集团体系内人事变动通常伴随 REA 战略调整，这是 News Corp 系 ASX 公司的固有观察点</strong></td></tr>
 </table>
 
-<h4>c. 盈利可持续性</h4>
+<h4>7.3c 盈利可持续性</h4>
 <table>
   <tr><th>维度</th><th>判断</th><th>依据</th></tr>
-  <tr><td>增长靠量还是靠价？</td><td class="neutral">价驱动为主</td><td>H1 FY26 Buy Yield +14%，但澳洲挂牌量-6%。增长主要靠提价（Deep Yield + Premium Product渗透），量在下降</td></tr>
-  <tr><td>涨价能否持续？</td><td class="neutral">需观察</td><td>历史提价能力极强（Yield CAGR~10%），但中介对广告预算敏感度在上升。Domain以更低价格策略追赶可能形成价格天花板</td></tr>
-  <tr><td>非经常性利润占比</td><td class="good">低（核心运营）</td><td>FY25核心NPAT $5.64亿 vs 报告$6.78亿，非经常项主要来自PropertyGuru出售，已剔除。核心业务利润干净</td></tr>
-  <tr><td>大客户/大项目集中度</td><td class="good">分散</td><td>客户为数千家房产中介，无单一客户占比>5%。依赖于中介整体广告预算而非个别大客户</td></tr>
-  <tr><td>政策/监管依赖度</td><td class="good">低</td><td>无牌照管制、无补贴依赖。仅受房产交易相关法规影响（公平交易法、隐私法等），属正常合规成本</td></tr>
+  <tr><td>增长靠量还是靠价？</td><td class="neutral"><strong>纯价驱动</strong></td><td>FY26 澳洲住宅 +12% 的增长由 Buy 与 Rent 的 <strong>yield（每千次展示费率）</strong>驱动，而<strong>全国 Buy 挂牌量持平</strong>。量的杠杆已用完，未来 2-3 年增长必须靠费率与产品渗透率</td></tr>
+  <tr><td>涨价能否持续？</td><td class="bad"><strong>需重点观察，已被监管削弱</strong></td><td>定价权的历史基础是"全量/多数房源必须挂牌"（不排他就拿不到买家）+ "赞助条款与 listing 层级绑定"（想多曝光必须升层）。ACCC 三年承诺<b>同时禁掉这两类条款</b>，并允许至少 25% 合资格出售房源降级。这意味着 FY26 的 yield 增速（+12%）<strong>在 FY27-28 面临制度性减速</strong>；FY27 Q1（2026-11-06）的 yield 数据是第一个实测信号</td></tr>
+  <tr><td>非经常性利润占比</td><td class="neutral">中等（FY26 偏高）</td><td>FY26 报表 EBITDA 944.0m 中，非经常性项目净影响 <strong>-122.7m</strong>（减值 -115.3m + 重组 -7.8m + 并购相关 -0.9m + 金融资产重估 +1.2m），占报表 EBITDA 的 <strong>13.0%</strong>。报表净利 551.6 与核心净利 650.5 的差额 <strong>9,890 万</strong>——注意该差额并不全是非经常性项目，还包含 REA India 终止经营的重分类与少数股东口径差异。FY25 为相反方向（减值转回 +111.8m），两年合计形成 <strong>2.271 亿</strong>的同比逆风</td></tr>
+  <tr><td>大客户 / 大项目集中度</td><td class="neutral">分散（收入侧）/ 集中（平台侧）</td><td>收入端为数千家中介的订阅合约，分散；但<strong>平台侧极度集中</strong>——全部澳洲住宅收入（1,290m，占 72%）来自单一平台 realestate.com.au，一旦该平台份额受损无替代。前 5 大中介客户占比数据待补充</td></tr>
+  <tr><td>政策 / 监管依赖度</td><td class="bad">高</td><td><strong>ACCC 三年可执行承诺</strong>（2026-09-11 接受，24 个月后需重新接触，建立合规项目）已直接改写核心商业条款；广告展示费与成交量的关系还叠加 RBA 利率路径的间接影响。本公司同时需遵守美国 surcharging 禁令并对商户加收供应商手续费（成本端新变量）</td></tr>
 </table>
 
-<h4>d. 关键变量敏感性</h4>
-<div class="summary-box">
-  <strong>变量1: 澳洲房产挂牌量</strong><br>
-  乐观情景: 利率下行+移民流入 → 挂牌量恢复+5% → EPS ~$5.30（+6%）<br>
-  中性情景: 挂牌量持平（公司指引"broadly flat"）→ EPS ~$5.00（当前预期）<br>
-  悲观情景: 利率维持高位+经济放缓 → 挂牌量-10% → EPS ~$4.50（-10%）<br><br>
-  <strong>变量2: Buy Yield增速</strong><br>
-  乐观情景: Deep Yield继续+14% → 对冲量下跌，营收+8%<br>
-  中性情景: Yield +10%（历史均值）→ 营收+5%<br>
-  悲观情景: 中介议价能力增强+Yield降至+5% → 营收低增长或持平
+<h4>7.3d 关键变量敏感性</h4>
+<div class="danger-box">
+  <strong>变量 1：澳洲经营 EBITDA 利润率（当前 66%，和解前还能扩张）</strong>——<span style="color:#666;font-size:12px;">这是全报告第一敏感变量，收入端增长已被 +12% 锁定，利润率才是变量</span><br>
+  　乐观：ACCC 承诺落地温和，中介不显著流失，<strong>FY27 维持 63-66%</strong> → 澳洲经营 EBITDA 基本持平至小幅增长，利润可支撑核心 EPS +15% 以上<br>
+  　中性：至少 25% 合资格房源降级开始影响层级收入，<strong>FY27-28 回落至 60-62%</strong> → 按 FY26 澳洲营收 1,711.9m 静态测算，减少的 EBITDA 约 68-103m，税后约对应核心 EPS 下修 <strong>8-12%（约 -0.39 至 -0.59 澳元）</strong><br>
+  　悲观：房源与层级同时流失，<strong>跌破 55%</strong> → 澳洲经营 EBITDA 减少约 188m，税后约对应核心 EPS 下修 <strong>20%+</strong>，且会触发 PB 10.8x 的估值重估<br>
+  <span style="font-size:11px;color:#666;">以上为本报告基于 FY26 静态营收的敏感性测算，非公司指引。</span>
+</div>
+<div class="danger-box">
+  <strong>变量 2：全国 Buy 挂牌量（FY26 已持平）与 Memory（求购登记）转化率</strong><br>
+  　乐观：成交量回升带动展示量，<strong>Buy 挂牌量同比转正 +3%~5%</strong> → 与 yield 增长叠加，澳洲住宅营收可达 +15%<br>
+  　中性：<strong>挂牌量持平（0%）</strong>，增长完全由 yield 贡献（+8%~10%）→ 澳洲住宅营收 +8%~10%<br>
+  　悲观：<strong>挂牌量同比 -5%</strong>（信贷收紧或利率路径上行的滞后效应）→ 展示量与费率同时受压，澳洲住宅营收降至 0%~3%，利润率与营收双杀<br>
+  　<span style="font-size:11px;color:#666;">Memory 与 listing 的转化率具体数值数据待补充，为 FY27 最需补齐的领先指标。</span>
+</div>
+<div class="danger-box">
+  <strong>变量 3：减值与商誉（商誉 610.7m + 其他无形 347.4m = 958.1m，占总资产 32.9%）</strong><br>
+  　乐观：印度资产按计划出售给 Aurum PropTech（持股升至 24.9%，需 Aurum 股东批准，预计 FY27 Q1 完成），<strong>FY27 无新增减值</strong> → 报表 EPS 与核心 EPS 重新合拢<br>
+  　中性：印度出售延后或折价，<strong>FY27 继续计提 0.5-1.0 亿减值</strong> → 报表净利维持负增长或持平，报表 PE 被动抬高<br>
+  　悲观：<strong>FY27 再计提 1.5 亿以上减值</strong>（澳洲主业 goodwill impairment 测试触发 或 Distilled 投资减值）→ 报表净利再次大幅下滑，PB 10.8x 的估值支撑会被质疑
 </div>
 
 <h3>7.4 前景展望</h3>
 
-<h4>a. 未来1-3年核心驱动</h4>
+<h4>7.4a 未来 1-3 年核心驱动</h4>
 <div class="summary-box">
   <strong>正向驱动：</strong><br>
-  1. Premium产品渗透率提升 — Deep Yield + 高端广告产品持续推高ARPU，即使挂牌量持平也能实现营收增长<br>
-  2. 金融服务业放量 — Mortgage Choice + Athena Home Loans 构建"搜索→交易→融资"闭环，营收增速10%且利润率在提升<br>
-  3. AI产品赋能 — OpenAI合作推出对话式搜索，有望提升用户粘性和广告转化率<br><br>
+  1. <strong>经营杠杆仍有空间</strong> — FY26 经营费用持平（704.9 vs 703.6）而核心 EBITDA +12%，澳洲经营 EBITDA 利润率 66%。即使增速回落到个位数，费用端的刚性较低仍可维持利润率（历史上 FY22 57.4% → FY26 60.7% 四年持续抬升）<br>
+  2. <strong>金融服务与数据业务继续高增</strong> — 金融服务 +11%（按揭结算量 + PropTrack 数据合约）；商业与新房 +9% 仍有渗透空间；Planitar（iGUIDE 3D，2025-10-01 并表，贡献营收 18m）打开商业地产可视化；金融服务占比仅 6.4%，每提升 1pp 都是增量<br>
+  3. <strong>现金回报持续加码</strong> — 派息率 60%、DPS +20%、回购同比 +871%（FY26 已花 5.685 亿），FCF 7.651 亿持续为正；2026-10 Investor Day 可能给出新的资本回报框架<br>
+  4. <strong>国际资产出清</strong> — Housing.com 出售给 Aurum PropTech（持股升至 24.9%）完成后，拖累集团增速的 -38% 国际板块（EBITDA -37m）将大幅收缩，集团口径增速会更"干净"<br><br>
   <strong>负向拖累：</strong><br>
-  1. 澳洲房市周期性下行 — 利率维持高位或经济放缓→挂牌量下降→广告收入承压<br>
-  2. 印度业务持续失血 — 营收$1.29亿但EBITDA -$0.29亿，何时减亏不明<br>
-  3. 竞争压力加大 — Domain在产品和价格上持续追赶，虽无法撼动REA地位但可能压缩提价空间
+  1. <strong>ACCC 三年承诺压制 yield 增速</strong> — 禁止全量/多数房源挂牌排他 + 禁止与 listing 层级绑定的赞助条款 + 允许至少 25% 合资格房源降级，直接削弱"不升层就没曝光"这一变现机制；24 个月后需重新接触意味着前两年是约束期<br>
+  2. <strong>量端已无弹性</strong> — 全国 Buy 挂牌量持平，增长只能来自价（费率）+ 产品渗透率，而价端正被监管收紧，形成"上不着天、下没有底"的夹击<br>
+  3. <strong>资本配置三线并进 + 减值余波</strong> — €2.48 亿买入 Distilled 35%（非控股、不并表）、Planitar + Simplicity 已付现 0.901 亿、印度出售待批；商誉与无形 958.1m 的减值压力在 FY27-28 未解除（FY27 Distilled 与印度均可能触发重估）<br>
+  4. <strong>成本端新变量</strong> — 美国 surcharging 禁令导致 REA 对商户加收供应商手续费（2026-10 上旬起），FY26 成本端已有 Audience Maximiser COGS、Ready25 客户活动、澳网赞助（上年无）、AI 技术投入四项上行，FY27 需确认费用纪律能否维持
 </div>
 
-<h4>b. 三情景简表</h4>
+<h4>7.4b 三情景简表（FY2027）</h4>
+<p style="font-size:12px;color:#666;"><strong>两个 EPS 口径说明：</strong>① <strong>核心 EPS</strong>（4.935 澳元基数）是经营实质，剔除一次性减值/重组；② <strong>报表 EPS</strong>（4.18 澳元基数）是审计底线，包含所有已确认的非经常性项目。两者在 FY27 的差异<strong>完全取决于是否再计提减值</strong>——不减值则两者基本相等，再减值则报表口径低于核心口径 15-20%。<strong>参考锚</strong>：市场一致预期前瞻 PE 27.19x，以现价 A$156.90 反推的 FY27 隐含 EPS ≈ <strong>A$5.77</strong>（本报告测算，非公司指引），相当于核心 EPS 同比 +17%。</p>
 <table>
-  <tr><th>情景</th><th>假设条件</th><th>EPS预估（FY27E）</th><th>PE区间</th><th>预期回报（vs $147.28）</th></tr>
-  <tr><td>乐观（概率25%）</td><td>挂牌量回升+Yield+12%+印度减亏</td><td>$5.80</td><td>35-40x</td><td>+38%~+58%</td></tr>
-  <tr><td>中性（概率50%）</td><td>挂牌量持平+Yield+10%+印度持平</td><td>$5.20</td><td>28-33x</td><td>-1%~+17%</td></tr>
-  <tr><td>悲观（概率25%）</td><td>挂牌量-10%+Yield+5%+房市衰退</td><td>$4.50</td><td>22-26x</td><td>-33%~-21%</td></tr>
+  <tr><th>情景</th><th>假设条件</th><th>FY27 EPS（核心口径）</th><th>FY27 EPS（报表口径）</th><th>PE 区间</th><th>预期价格</th><th>预期回报</th></tr>
+  <tr><td class="good"><strong>乐观</strong></td><td>ACCC 影响温和（澳洲经营 EBITDA 利润率维持 63-66%）；全国 Buy 挂牌量同比转正 +3~5%；金融服务维持双位数；印度出售 FY27 Q1 完成、无新增减值；Distilled 贡献投资收益</td><td><strong>A$6.40</strong><br>（+30%）</td><td><strong>A$6.40</strong><br>（无新增减值，两口径合拢）</td><td>28-32x</td><td>A$179 ~ 205<br>中值 192</td><td class="good"><strong>+22%</strong>（中值）</td></tr>
+  <tr><td class="neutral"><strong>中性</strong></td><td>ACCC 承诺逐步落地，澳洲经营 EBITDA 利润率回落至 60-62%；Buy 挂牌量持平（0%），增长全由 yield +8~10% 贡献；商业与新房维持 +9%；印度出售延后或小幅折价、无大额减值</td><td><strong>A$5.80 ~ 6.00</strong><br>（+12% ~ +18%）<br><span style="font-size:11px">与前瞻 PE 27.19x 隐含的 5.77 一致</span></td><td><strong>A$5.70 ~ 5.90</strong><br>（小幅重组费用）</td><td>24-28x</td><td>A$142 ~ 165<br>中值 153</td><td class="neutral"><strong>-2%</strong>（中值）</td></tr>
+  <tr><td class="bad"><strong>悲观</strong></td><td>ACCC 约束与地产周期叠加：澳洲经营 EBITDA 利润率跌破 55%、全国 Buy 挂牌量同比 -5%；FY27 再计提 1.5 亿以上减值（澳洲主业 goodwill 测试触发 或 Distilled 投资减值）；印度出售失败或大幅折价</td><td><strong>A$4.93</strong><br>（同比持平，0%）</td><td class="bad"><strong>A$4.00 附近</strong><br>（因减值下修约 -19%）</td><td>20-24x</td><td>核心：A$99 ~ 118<br>（中值 108）<br>报表：A$80 ~ 96<br>（中值 88）</td><td class="bad"><strong>核心 -31%<br>报表 -44%</strong></td></tr>
 </table>
 
-<h3>7.5 讨论问题</h3>
+<p style="font-size:12px;color:#666;"><strong>概率判断（本报告主观判断，非市场共识）：</strong>中性 50%、乐观 25%、悲观 25%。按核心口径中值加权，期望价 ≈ <strong>A$151</strong>，较现价 A$156.90 低 <strong>3.4%</strong>——<strong>结论是当前价格已大致反映中性情景，向上空间依赖"乐观"被验证，向下风险则由 ACCC 承诺的三年不可逆性提供</strong>。这正是本报告给出"品质优秀但价格偏贵、不追高分批"结论的算术依据。</p>
+
+<h3>7.5 资金面信号（ASX 口径：北向/两融 N/A）</h3>
+<div class="danger-box">
+  <strong>本节适用范围：ASX 上市公司，不适用 A 股资金面框架。</strong>ASX <strong>无陆股通/北向资金机制、无两融（融资余额）制度</strong>，因此下表中"北向资金持股变动""融资余额变动""大宗交易溢价折价"三项统一标注 <strong>N/A</strong>，改用澳洲本地可得的替代指标：控股股东态度、卖方评级、股东会动向、分析师一致预期与事件催化剂。
+</div>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>北向资金持股变动</td><td class="neutral">N/A</td><td>ASX 无陆股通机制，不存在北向资金数据</td></tr>
+  <tr><td>融资余额 / 两融</td><td class="neutral">N/A</td><td>ASX 无两融制度</td></tr>
+  <tr><td>大宗交易溢价 / 折价</td><td class="neutral">数据待补充</td><td>澳洲市场大宗交易数据本次未核实</td></tr>
+  <tr><td><strong>控股股东态度</strong>（替代指标）</td><td class="good">中性偏正面</td><td><strong>News Corp 持股 61.9%</strong>，作为绝对控股股东有充分动机维护股价与其市场价值。FY26 REA 以 FCF 7.651 亿中的 <strong>5.685 亿（74.3%）</strong>用于派息 3.461 亿（派息率 60%、DPS +20%）+ 回购 2.224 亿（同比 +871%），是控股股东"用现金投票"的实质行为。<strong>但注意：新闻集团体系内的战略调整（尤其是对 REA 门户业务的排他性合约态度）本身就是 ACCC 事件的根源，指望大股东主动削藩以换取监管安全是不现实的</strong></td></tr>
+  <tr><td><strong>卖方评级与目标价</strong>（替代指标）</td><td class="good">正面</td><td><strong>15 家覆盖一致评级 Buy，一致目标价 A$191.34（+21.95%）</strong>。但隐含核心 PE 38.8x / 报表 PE 45.8x，<strong>已超出 ROE 28.6% 对应的 20-30x 合理区间上沿</strong>——卖方模型对 ACCC 承诺的影响消化不足，存在下修风险（关键检验点：2026-10 Investor Day）</td></tr>
+  <tr><td>股东会</td><td class="neutral">已召开</td><td><strong>年度股东大会已于 2026-10 上旬召开</strong>（早于本报告分析日 2026-10-14）。具体表决结果与议案明细数据待补充</td></tr>
+  <tr><td>机构持仓变动</td><td class="neutral">数据待补充</td><td>澳洲市场无公开的季度机构持仓强制披露口径，本次未核实</td></tr>
+  <tr><td>董事增减持公告</td><td class="neutral">数据待补充</td><td>News Corp 及 REA 董事近一年增减持公告未核实</td></tr>
+  <tr><td><strong>催化剂日历</strong>（本地替代指标）</td><td class="good">正面</td><td>① <strong>2026 年 10 月 Investor Day</strong>（管理层已宣布计划举行）——首个对 ACCC 承诺后利润率路径的官方口径，是最近的验证窗口<br>② <strong>2026-11-06 Q1 FY27 财报</strong>——Australia Residential yield 与全国 Buy 挂牌量的第一个实测数据<br>③ <strong>FY27 Q1 印度交易完成</strong>——Housing.com 出售给 Aurum PropTech（REA 持股升至 24.9%），需 Aurum 股东批准<br>④ <strong>ACCC 承诺 24 个月后重新接触</strong>（约 2028-09）——下一个明确的监管里程碑<br>⑤ Distilled Ltd 35% 股权（€2.48 亿）的交割与首个业绩贡献披露</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>资金面整体判断：中性偏正面，但"看多理由"不在资金面本身。</strong>本地替代指标全部指向正面——控股股东 61.9% 且真金白银回报 5.685 亿、15 家一致 Buy + 目标价 +21.95%、股东会已召开、10 月 Investor Day 与 11-06 Q1 财报两个近端催化剂。<strong>唯一需要打折的是：一致目标价 A$191.34 隐含 PE 38.8x，超出合理区间上沿 30%，说明卖方的乐观并非来自资金面，而是来自尚未更新的 ACCC 影响假设。</strong>真正决定 REA 未来 12 个月股价的不是资金流，而是 2026-10 Investor Day 公布的澳洲经营 EBITDA 利润率路径。
+</div>
+
+<h3>7.6 讨论问题</h3>
 <div class="summary-box">
   <strong>讨论问题（阅读后可以聊这些）：</strong><br>
-  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——REA通过realestate.com.au平台连接房产中介和购房者，向中介收取广告费和订阅费，赚流量的钱（双边市场平台经济）。<br>
-  2. 你最大的担忧是什么？哪个数据让你睡不着？——H1 FY26营收增速从+15%骤降至+5%，如果澳洲房市持续低迷导致挂牌量进一步下跌，增长可能失速。另：PE 34.5x在利率上升环境中能否维持？<br>
-  3. 如果现在买入，期待的回报来源是什么？——估值修复（PE从34.5x回到历史均值42x+带来22%+回报）+ 业绩增长（双位数EPS增长）+ 股息（~1.7%）。核心假设是澳洲房市企稳、挂牌量恢复。<br>
-  4. 什么情况下你会坚决卖出？——连续两季营收增速<5% / 挂牌量持续大幅下降 / Buy Yield增长停滞（丧失定价权）/ 印度业务亏损持续扩大。
+  1. <strong>这笔生意你看懂了吗？</strong>用一句话说清：REA 靠 realestate.com.au 的流量垄断收中介的广告展示费（yield = 每千次展示费率 × 展示量），而"流量必须挂上我的房源"这个规则刚刚被 ACCC 禁止了 3 年。<br>
+  2. <strong>你最大的担忧是什么？哪个数据让你睡不着？</strong>如果是澳洲经营 EBITDA 利润率从 66% 掉到 55%（对应核心 EPS -20%+、PB 10.8x 重估），你会怎么定价？注意"全国 Buy 挂牌量已经持平"——量的支撑没有了。<br>
+  3. <strong>如果现在买入，期待的回报来源是什么？</strong>拆开看：股息 1.89% + 回购（不产生 EPS 增厚之外的回报）+ 估值修复（-30.6% 距高点）。三者中哪一个是主？本报告的答案是"中性情景下几乎没有超额回报，价值锚在 A$148"。<br>
+  4. <strong>什么情况下你会坚决卖出？</strong>① 澳洲经营 EBITDA 利润率跌破 60% 且全国 Buy 挂牌量同比转负；② FY27 再计提 1.5 亿以上减值；③ Distilled 或印度交易出现重大折价/失败；④ ACCC 24 个月复评后追加更严承诺。
 </div>
 
 </div></div>
 
 <div class="footer">
-   免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
-   数据来源：REA Group FY2025 年报、H1 FY26 半年报、ASX公告、StockAnalysis、Intelligent Investor
+  免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+  数据来源：REA Group FY26 年度报告与 Appendix 4E（2026-08-06）、FY26 Results Presentation &amp; Analyst Briefing、ASX 公告 2026-09-14（ACCC 可执行承诺）、stockanalysis.com（S&amp;P Global，截至 2026-10-14）。货币单位：澳元（AUD），财年截至每年 6 月 30 日。<br>
+  口径说明：本报告除特别标注外采用报表口径（statutory / 4E）打分，核心经营口径（含 REA India）与持续经营口径并列披露。<br>
+  缺失项：Zillow 与 Domain Group 的部分财务指标、各业务板块 EBITDA 利润率（澳洲经营除外）、历史 PE/PB 分位、管理层增减持与机构持仓数据均标注"数据待补充"，未参与评分。
 </div>
 
 </div>
@@ -494,4 +616,4 @@
 })();
 </script>
 </body>
-</html>
+</html></

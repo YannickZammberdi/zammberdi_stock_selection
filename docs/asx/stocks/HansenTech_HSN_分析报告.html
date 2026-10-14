@@ -51,6 +51,8 @@
   .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
   .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
   .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .score-note { font-size: 13px; color: #666; background: #fafafa; border: 1px dashed #ccc; padding: 8px 12px; margin: 10px 0; }
+  .history-table td:first-child { white-space: nowrap; }
   .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
   ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
   li { margin-bottom: 4px; }
@@ -61,7 +63,7 @@
 
 <h1>Hansen Technologies（ASX:HSN）财务分析报告</h1>
 <p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
-<p class="meta">分析日期：2026-07-14 | 数据来源：FY2025 年报 + 1H26 报告 + 一致预期</p>
+<p class="meta">分析日期：2026-10-14 | 货币单位：AUD | 财年：7.1–6.30（FY2026＝截至 2026-06-30） | 数据来源：FY26 全年业绩公告与 Appendix 4E（2026-08-19）、FY26 Results Presentation、FY26 Release Announcement、stockanalysis.com（S&amp;P Global，截至 2026-10-14）</p>
 
 <div class="tab-bar">
   <button class="tab-btn active" data-tab="summary">总结论</button>
@@ -78,103 +80,172 @@
 <h2>一、公司基本画像</h2>
 <table>
   <tr><th style="width:30%">项目</th><th>内容</th></tr>
-  <tr><td>公司名称</td><td>Hansen Technologies Limited</td></tr>
-  <tr><td>股票代码</td><td>ASX:HSN</td></tr>
-  <tr><td>所属行业</td><td>软件-应用（能源/公用事业 + 通信/媒体计费及客户信息系统）</td></tr>
-  <tr><td>行业地位</td><td>全球领先的公用事业/电信计费软件供应商，服务80+国家，全球TOP级CIS平台</td></tr>
-  <tr><td>FY2025 营收</td><td><strong>3.925 亿 AUD（+11.15%）</strong></td></tr>
-  <tr><td>FY2025 归母净利润</td><td><strong>4,332 万 AUD（+105.68%）</strong></td></tr>
-  <tr><td>FY2025 经营现金流</td><td><strong>7,262 万 AUD</strong></td></tr>
-  <tr><td>总资产</td><td>6.012 亿 AUD</td></tr>
-  <tr><td>归母净资产</td><td>3.800 亿 AUD</td></tr>
-  <tr><td>ROE（TTM）</td><td>18.02%</td></tr>
+  <tr><td>公司名称</td><td>Hansen Technologies Limited（汉森科技）</td></tr>
+  <tr><td>股票代码</td><td>ASX: HSN</td></tr>
+  <tr><td>所属行业</td><td>行业垂直软件（industry-specific software）／电力·水务·电信行业 ERP / 计费（BSS-CIS）</td></tr>
+  <tr><td>行业地位</td><td>澳洲／新西兰／英国电力行业计费软件长期 incumbent，服务 80+ 国家；两大分部：Energy &amp; Utilities、Communications &amp; Media（含 Virgin Media O2 大单）；2024 年完成收购 Digitalk（美国有线电视计费），FY26 完成整合</td></tr>
+  <tr><td>FY 营收</td><td>A$386.494m（FY25 A$392.486m，<span class="bad">-1.5%</span>）</td></tr>
+  <tr><td>归母净利润</td><td>NPAT A$47.758m（+10.2%）；Underlying NPATA A$65.945m（+15.9%）</td></tr>
+  <tr><td>经营现金流</td><td>A$110.4m（FY25 A$72.6m，<span class="good">+52.0%</span>）</td></tr>
+  <tr><td>总资产</td><td>A$610.77m（FY25 A$601.24m）</td></tr>
+  <tr><td>归母净资产</td><td>A$383.74m（BVPS A$1.88；有形账面价值 <span class="bad">-A$20.65m</span>）</td></tr>
+  <tr><td>ROE</td><td>12.5%（平均权益口径；上版报告 FY25+1H26 LTM 口径为 18.02%）</td></tr>
 </table>
+
+<div class="summary-box">
+  <strong>行业类型标注：非周期股（价值型 / 成熟型）→ 采用「非周期股评分体系」。</strong><br>
+  判断依据：① 客户为电力／水务／燃气／电信运营商与公用事业，ERP 与计费系统属 <strong>mission-critical</strong>，替换成本极高、切换风险不可接受；② 收入 90% 以上为软件许可与支持维护（Support &amp; Maintenance FY26 达 A$230.3m，<span class="good">+13.4%</span>，占营收 59.6%）；③ 需求不随商品周期波动，属需求稳定的成熟型软件，参见 <code>industry-classification.md</code>「非周期股：科技(纯软件)」条目。
+</div>
+
+<p class="score-note"><strong>评分口径说明：</strong><span>仍用非周期股体系，FY26营收-1.5%、ROE回落至12.5%，分数大幅下修</span></p>
 
 <h2>综合评分（百分制）</h2>
-<p style="font-size:13px;color:#666;margin-bottom:8px">综合L1-L5所有因素，对各维度打分求和</p>
+<p style="font-size:12px;color:#666;">采用<strong>非周期股评分体系</strong>（ROE 15 + 杜邦驱动质量 5 + 利润含金量 15 + 营收增长 10 + 利润增长 10 + 负债率 10 + 短期偿债 10 + 毛利率水平与趋势 10 + 估值 10 + FCF 5 = 100）。</p>
 <table>
   <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
-  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">18.02% ≥ 15%</td></tr>
-  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">高利润型——净利润率16.1%+周转0.66+杠杆1.58，利润率驱动为主</td></tr>
-  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">1.68 ≥ 1.0，利润质量优秀</td></tr>
-  <tr><td>营收增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+11.15% ≥ 10%</td></tr>
-  <tr><td>利润增长（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">+105.68%（FY2025），复苏强劲</td></tr>
-  <tr><td>负债率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">36.8% < 40%</td></tr>
-  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">现金4,819万 >> 短期有息负债~0</td></tr>
-  <tr><td>毛利率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">34.36%（FY2025），TTM 37.18%，趋势改善</td></tr>
-  <tr><td>估值 PE（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">PE(TTM) 13.6x，低于ROE 18%对应的合理区间15-25x</td></tr>
-  <tr><td>自由现金流（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">FCF 6,727万持续为正，FCF Yield 7.5%</td></tr>
-  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">100/100</td><td style="text-align:left">品质优秀（100/100分）</td></tr>
+  <tr><td>ROE（15）</td><td><strong>10</strong></td><td style="text-align:left">12.5%（NPAT 47.758 / 平均权益 381.85），落在 10%~15% 档；<span class="neutral">较 FY25 明显回落</span></td></tr>
+  <tr><td>杜邦驱动质量（5）</td><td><strong>3</strong></td><td style="text-align:left"><span class="neutral">均衡型</span>——净利率仅 12.4%、资产周转 0.638、权益乘数 1.587 温和，三项均无突出项</td></tr>
+  <tr><td>利润含金量 CFO/净利（15）</td><td><strong>15</strong></td><td style="text-align:left"><span class="good">2.31 ≥ 1.0</span>（110.4/47.758），全库最高之一</td></tr>
+  <tr><td>营收增长（10）</td><td><strong>0</strong></td><td style="text-align:left"><span class="bad">-1.5%</span>，Licence 收入下降 A$14.5m 拖累，为本期最大扣分项</td></tr>
+  <tr><td>利润增长（10）</td><td><strong>7</strong></td><td style="text-align:left">NPAT +10.2%（Underlying NPATA +15.9%），落在 5%~15% 档</td></tr>
+  <tr><td>负债率（10）</td><td><strong>10</strong></td><td style="text-align:left"><span class="good">37.2%</span>（227.03/610.77）&lt; 40%</td></tr>
+  <tr><td>短期偿债（10）</td><td><strong>10</strong></td><td style="text-align:left">现金 54.83 覆盖短期有息（仅一年内租赁 4.65，<strong>无流动有息借款</strong>）；长期借款 71.58 属期限错配而非流动性问题</td></tr>
+  <tr><td>毛利率水平与趋势（10）</td><td><strong>10</strong></td><td style="text-align:left"><span class="good">替代口径</span>：公司按费用性质（by nature of expense）列报损益表，<strong>不单独披露毛利／营业成本，毛利率无法计算</strong>；改用 <strong>Underlying EBITDA 利润率 31.0%</strong>（FY25 28.5%，<span class="good">+2.5pp</span>）评分，≥30% 且改善 → 10 分</td></tr>
+  <tr><td>估值 PE vs 合理区间（10）</td><td><strong>10</strong></td><td style="text-align:left">ROE 12.5% 对应合理 PE 10–18x；实际 <strong>14.4x</strong>（报表 NPAT）／<strong>10.4x</strong>（Underlying NPATA）／14.81x（第三方口径）均在区间内</td></tr>
+  <tr><td>FCF（5）</td><td><strong>5</strong></td><td style="text-align:left">FCF A$108.75m 持续为正且 <span class="good">+61.7%</span>（FY25 67.27）</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">80/100</td><td style="text-align:left">品质优秀（≥80 分，刚好过线）。上一版（2026-07-14，数据基准 FY25+1H26）为 100/100，本次为降幅最大的一份</td></tr>
 </table>
 
-<div class="verdict verdict-ok">品质优秀（100/100分）</div>
+<div class="verdict verdict-ok">品质优秀（80/100分）</div>
+
+<!-- 评分沿革：由sync脚本从 scores.json 注入，生成时保留此注释不动 -->
 <h2 style="margin-top:16px">评分沿革</h2>
 <style>.history-table{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:13px}.history-table th,.history-table td{border:1px solid #ddd;padding:6px 8px;text-align:center}.history-table th{background:#f0f0f0;font-weight:bold}.history-table td.good{color:#27ae60}.history-table td.neutral{color:#e67e22}.history-table td.bad{color:#c0392b}</style><table class="history-table">
   <tr><th>日期</th><th>评分</th><th>评分体系</th><th>变化原因</th></tr>
   <tr><td>2026-07-14</td><td class="good" style="font-weight:bold">100/100</td><td>成长性</td><td style="text-align:left">—</td></tr>
+  <tr><td>2026-10-14</td><td class="good" style="font-weight:bold">80/100</td><td>防御性</td><td style="text-align:left">仍用非周期股体系，FY26营收-1.5%、ROE回落至12.5%，分数大幅下修</td></tr>
 </table>
 
 <div class="summary-box">
-  <strong>综合诊断：</strong>Hansen Technologies是一家全球领先的公用事业/电信计费软件供应商，盈利能力强（ROE 18%）、现金流充沛（FCF 6,727万）、负债率低（36.8%）、商业模式优秀（高客户粘性+经常性收入占比高）。FY2025利润强劲复苏，受益于云化转型和并购整合成效释放。当前估值PE 13.6x远低于ASX软件同业，具备安全边际。<br><br>
-  <strong>核心优势：</strong>① ROE 18.02%，盈利能力优秀；② 经常性收入占比高，客户切换成本极高（计费系统为关键任务系统）；③ FCF充沛，FCF Yield 7.5%，自由现金流造血能力强；④ 资产负债率36.8%，财务极稳健，无短期偿债压力。<br><br>
-  <strong>核心风险：</strong>① 商誉+无形资产合计3.85亿，占总资产64%，减值风险不可忽视；② 营收增速相对平淡（~11%），低于高成长软件股；③ FY2024利润因重组大幅下滑(-50.78%)，并购整合有阵痛期；④ 创始人/管理层持股减持历史（2023年家族减持3,780万）。
+  <strong>综合诊断：</strong>Hansen 是「好行业里的中等财务 + 便宜价格」的组合。生意本身极稳（90% 以上软件与维护收入、Support &amp; Maintenance +13.4%、CFO/净利 2.31、Underlying EBITDA 利润率升至 31.0%），但<strong>营收已转负、ROE 从高位回落到 12.5%</strong>，公司自己把 FY27 定为「投资与过渡年」并把 EBITDA 利润率指引下调到 26% 以下。当前 A$3.38 对应 10.4x Underlying 盈利、2.8% 股息率、距 52 周高点 -45.2%，安全边际不薄，但增长缺失才是真问题。<br><br>
+  <strong>⚠️ 与上版对比（本次更新的核心变化）：</strong>上版 100 分是靠 <strong>FY25 利润翻倍（+105.68%）的基数效应</strong>撑起来的——FY25 在上年低基数上大幅反弹，营收 +29.6%、NPAT 43.32m。当时把「利润高增 + ROE 18.02%」当成了成长股的估值锚。本版 FY26 <strong>营收转负（-1.5%）、ROE 回落至 12.5%</strong>，说明 FY25 的高增长不可持续，License→经常性收入的过渡是一次<strong>用增长换收入质量</strong>的结构性置换，不是增长本身。因此总分从 100 降至 80，且扣分几乎全部来自「营收增长 0/10」这一项。<br><br>
+  <strong>核心优势：</strong>① Support &amp; Maintenance 经常性收入 A$230.3m、+13.4%，FY27 指引再增 6–8%，是全报表最亮的一条线 ② CFO A$110.4m（+52.0%）、CFO/净利 2.31、FCF A$108.75m（+61.7%），利润含金量极高 ③ Underlying EBITDA 利润率 31.0%（+2.5pp），除 D&amp;A 费用率从 74.9% 降到 70.8%，AI 已在交付／工程／支持环节产生效率 ④ 资产负债表干净：负债率 37.2%、无流动有息借款、净负债仅 0.28x EBITDA、递延收入 49.3m 锁定未来收入<br><br>
+  <strong>核心风险：</strong>① <strong>营收 -1.5% 是核心问题</strong>，License 收入减少 A$14.5m 几乎抵消了 S&amp;M 的全部增量 ② FY27 指引 Underlying EBITDA 利润率「超过 26%」，低于 FY26 的 31.0%，且营收预计与 FY26 <strong>大致持平</strong>——增长缺口可能连续两年 ③ <strong>有形账面价值为负 -A$20.65m</strong>（有形每股 -0.10 澳元），历史收购累计商誉+无形 4.04 亿 &gt; 账面权益 3.84 亿，下行保护几乎没有 ④ 长期借款 A$71.58m（净负债 33.32m）叠加客户集中度（Virgin Media O2 / Telefónica 大单）、汇率逆风（FY26 汇兑由 +0.05m 收益转为 -2.21m 损失）
 </div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l1"><div class="tab-inner">
 
-<h2>二、核心财务数据（FY2025）</h2>
+<h2>二、核心财务数据（AUD 千，FY26 vs FY25）</h2>
 
 <h3>2.1 利润表</h3>
 <table>
-  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
-  <tr><td>营业收入</td><td>3.925 亿</td><td>3.531 亿</td><td>+11.15%</td><td class="good">✅ 稳健增长</td></tr>
-  <tr><td>毛利润</td><td><strong>1.349 亿</strong></td><td>1.103 亿</td><td><strong>+22.27%</strong></td><td class="good">✅ 改善明显</td></tr>
-  <tr><td>归母净利润</td><td><strong>4,332 万</strong></td><td>2,106 万</td><td><strong>+105.68%</strong></td><td class="good">✅ 强劲复苏</td></tr>
-  <tr><td>毛利率</td><td><strong>34.36%</strong></td><td>31.24%</td><td>+3.12pct</td><td class="good">✅ 改善</td></tr>
-  <tr><td>归母净利率</td><td><strong>11.04%</strong></td><td>5.96%</td><td>+5.07pct</td><td class="good">✅ 大幅提升</td></tr>
-  <tr><td>营业利润率</td><td><strong>15.09%</strong></td><td>12.00%</td><td>+3.09pct</td><td class="good">✅ 改善</td></tr>
-  <tr><td>EBITDA</td><td><strong>6,560 万</strong></td><td>4,815 万</td><td>+36.24%</td><td class="good">✅ 大幅增长</td></tr>
-  <tr><td>TTM营收（Dec'25）</td><td>4.055 亿</td><td>—</td><td>+11.55%</td><td class="good">✅ 趋势向好</td></tr>
-  <tr><td>TTM净利润</td><td><strong>6,529 万</strong></td><td>—</td><td>—</td><td class="good">✅ 持续改善</td></tr>
+  <tr><th>指标</th><th>FY本期（FY26）</th><th>FY上期（FY25）</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>386,494</td><td>392,486</td><td><span class="bad">-1.5%</span></td><td class="bad">本期最大扣分项</td></tr>
+  <tr><td>含其他收入的合同总收入</td><td>390,005</td><td>405,168</td><td><span class="bad">-3.7%</span></td><td>FY25 含收购相关一次性收入 11,351</td></tr>
+  <tr><td>其他收入</td><td>3,511</td><td>1,331</td><td>+163.8%</td><td class="neutral">FY26 无收购相关一次性项</td></tr>
+  <tr><td style="text-align:left">└ Support &amp; Maintenance（其中）</td><td>~230,300</td><td>~203,100</td><td><span class="good">+13.4%</span></td><td class="good">核心经常性收入，占营收 59.6%</td></tr>
+  <tr><td style="text-align:left">└ Licence（其中）</td><td colspan="2">绝对额 数据待补充</td><td><span class="bad">-14,500</span></td><td class="bad">上年一次性前置确认 Virgin Media O2 前期许可费</td></tr>
+  <tr><td>员工福利支出</td><td>-200,557</td><td>-208,117</td><td>-3.6%</td><td class="good">逆势下降</td></tr>
+  <tr><td>折旧</td><td>-12,275</td><td>-12,049</td><td>+1.9%</td><td class="neutral">平稳</td></tr>
+  <tr><td>摊销（收购无形资产）</td><td>-37,469</td><td>-40,393</td><td>-7.2%</td><td class="neutral">GAAP 与 Underlying 的主要差异来源</td></tr>
+  <tr><td>物业及运营租赁</td><td>-4,516</td><td>-3,598</td><td>+25.5%</td><td class="neutral">随 Digitalk 全年并表</td></tr>
+  <tr><td>承包与顾问</td><td>-5,852</td><td>-4,447</td><td>+31.6%</td><td class="neutral">并表增加</td></tr>
+  <tr><td>软件许可</td><td>-5,693</td><td>-6,026</td><td>-5.5%</td><td class="good">成本下降</td></tr>
+  <tr><td>硬件与软件</td><td>-29,983</td><td>-33,665</td><td>-10.9%</td><td class="good">成本下降</td></tr>
+  <tr><td>差旅</td><td>-3,561</td><td>数据待补充</td><td>—</td><td class="neutral">—</td></tr>
+  <tr><td>通信</td><td>-2,441</td><td>数据待补充</td><td>—</td><td class="neutral">—</td></tr>
+  <tr><td>专业费用</td><td>-8,444</td><td>-10,894</td><td>-22.5%</td><td class="good">成本下降</td></tr>
+  <tr><td>重组费用</td><td>-379</td><td>-11,582</td><td><span class="good">-96.7%</span></td><td class="good">Digitalk 整合收尾</td></tr>
+  <tr><td>业务收购成本</td><td>-649</td><td>-98</td><td>—</td><td class="neutral">Digitalk 交易尾款性质</td></tr>
+  <tr><td>汇兑损失</td><td>-2,205</td><td>+50</td><td>由盈转亏</td><td class="bad">FY27 汇率逆风指引延续</td></tr>
+  <tr><td>联营企业亏损</td><td>-152</td><td>数据待补充</td><td>—</td><td class="neutral">—</td></tr>
+  <tr style="font-weight:bold"><td>总费用</td><td>-323,492</td><td>-346,284</td><td>-6.6%</td><td class="good">费用绝对额下降</td></tr>
+  <tr style="font-weight:bold"><td>经营利润</td><td>66,513</td><td>58,884</td><td><span class="good">+13.0%</span></td><td class="good">逆势增长</td></tr>
+  <tr><td>财务收入</td><td>481</td><td>数据待补充</td><td>—</td><td class="neutral">—</td></tr>
+  <tr><td>财务费用</td><td>-4,312</td><td>数据待补充</td><td>—</td><td class="neutral">利息保障倍数 27.5x</td></tr>
+  <tr><td>财务净费用</td><td>-3,831</td><td>-4,942</td><td><span class="good">-22.5%</span></td><td class="good">融资成本下降</td></tr>
+  <tr style="font-weight:bold"><td>税前利润</td><td>62,682</td><td>53,942</td><td><span class="good">+16.2%</span></td><td class="good">快于营收</td></tr>
+  <tr><td>所得税</td><td>-14,924</td><td>-10,618</td><td>+40.5%</td><td class="bad">有效税率 23.8%（FY25 19.7%，+4.1pp）</td></tr>
+  <tr style="font-weight:bold"><td>净利润 NPAT</td><td>47,758</td><td>43,324</td><td><span class="good">+10.2%</span></td><td class="good">报表口径</td></tr>
+  <tr><td>Underlying NPAT</td><td>48,477</td><td>39,564</td><td><span class="good">+22.5%</span></td><td class="good">剔除一次性与重组项</td></tr>
+  <tr><td>Underlying NPATA（摊销税后）</td><td>65,945</td><td>56,913</td><td><span class="good">+15.9%</span></td><td class="good">核心盈利口径</td></tr>
+  <tr><td>EPSa（基于 NPATA）</td><td>32.3 澳分</td><td>27.9 澳分</td><td><span class="good">+15.8%</span></td><td class="good">L3 估值以此为准</td></tr>
+  <tr><td>EBITDA</td><td>118,614</td><td>111,321</td><td>+6.5%</td><td class="good">报表口径</td></tr>
+  <tr><td>Underlying EBITDA</td><td>119,642</td><td>111,650</td><td><span class="good">+7.2%</span></td><td class="good">—</td></tr>
+  <tr style="font-weight:bold"><td>Underlying EBITDA 利润率</td><td>31.0%</td><td>28.5%</td><td><span class="good">+2.5pp</span></td><td class="good">替代毛利率的盈利质量口径</td></tr>
+  <tr><td>Cash EBITDA</td><td>106,190</td><td>93,372</td><td><span class="good">+13.7%</span></td><td class="good">增速快于报表 EBITDA</td></tr>
+  <tr><td>Cash EBITDA 利润率</td><td>27.5%</td><td>23.8%</td><td><span class="good">+3.7pp</span></td><td class="good">—</td></tr>
+  <tr><td>毛利率</td><td colspan="2"><strong>公司未单独披露</strong></td><td>—</td><td class="neutral">损益表按费用性质列报，无营业成本/毛利行，毛利率无法计算</td></tr>
+  <tr><td>净利率</td><td>12.4%</td><td>11.0%</td><td><span class="good">+1.4pp</span></td><td class="neutral">中等，低于优秀线 15%</td></tr>
+  <tr><td>期间费用率（除 D&amp;A 外总费用/营收）</td><td>70.8%</td><td>74.9%</td><td><span class="good">-4.1pp</span></td><td class="good">成本纪律 + AI 效率</td></tr>
+  <tr><td>Q4 营收 / Q4 净利</td><td colspan="3">数据待补充</td><td class="neutral">ASX 不强制披露单季度数据</td></tr>
 </table>
 
 <div class="summary-box">
-  <strong>利润表解读：</strong>FY2025营收增长11.15%，毛利率从31.24%提升至34.36%（+3.12pct），净利率从5.96%飙升至11.04%（+5.07pct）。利润大幅反弹主要受益于2024年重组完成后运营效率改善、高毛利云服务收入占比提升。TTM口径（截至2025年12月）营收4.055亿（+11.55%）、净利润6,529万，趋势持续向好。注意FY2024净利润仅2,106万是因一次性重组费用（1,158万）侵蚀利润，FY2025已恢复正常。
+  <strong>利润表解读：</strong>这是一份「<strong>营收微降、利润逆势增长</strong>」的报表。营收 -1.5% 的缺口几乎全部来自 License 收入减少 A$14.5m（上年一次性前置确认 Virgin Media O2 前期许可费），而 Support &amp; Maintenance 从 203.1m 增至 230.3m（<span class="good">+13.4%</span>）不仅补上了缺口，还带来净增长——说明<strong>收入结构在主动做「用一次性许可费换按量消耗的经常性收入」的置换</strong>。利润端超额增长来自三处：重组费用从 11.58m 降至 0.38m、硬件与软件成本 -10.9%、汇兑以外各项运营费用全面收敛，除 D&amp;A 费用率降 4.1pp。需要注意两点：一是有效税率从 19.7% 跳到 23.8%，吃掉了 4.1pp 的税前增长；二是年摊销 37.47m 让报表 NPAT 与 Underlying NPATA 之间差了 A$18.2m（38%），<strong>看这家公司必须区分口径</strong>——市场第三方 PE 14.81x 用的是报表口径，按 Underlying NPATA 算只有 10.4x。<br>
+  <span style="color:#666;">口径提示：<strong>毛利率无法计算</strong>——公司按费用性质列报损益表，不单独披露营业成本与毛利。本报告以 <strong>Underlying EBITDA 利润率 31.0%</strong> 作为盈利质量的替代依据（详见总结论评分表、L2 第 3.1 节、L3 第 4.3 节）。</span>
 </div>
 
-<h3>2.2 资产负债表</h3>
+<h3>2.2 资产负债表（AUD 百万，2026-06-30）</h3>
 <table>
-  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
-  <tr><td>货币资金</td><td><strong>4,819 万</strong></td><td class="good">✅ 充裕</td></tr>
-  <tr><td>应收账款</td><td><strong>1.160 亿</strong></td><td class="neutral">占营收29.5%，略高但属软件行业常态</td></tr>
-  <tr><td>商誉</td><td><strong>2.702 亿</strong></td><td class="neutral">占总资产45%，需关注减值风险</td></tr>
-  <tr><td>无形资产</td><td><strong>1.148 亿</strong></td><td class="neutral">摊销持续，关注并购标的实际表现</td></tr>
-  <tr><td>短期借款</td><td><strong>0</strong></td><td class="good">✅ 无短期借款</td></tr>
-  <tr><td>长期借款</td><td><strong>6,541 万</strong></td><td class="good">✅ 可控</td></tr>
-  <tr><td>资产负债率</td><td><strong>36.80%</strong></td><td class="good">✅ 低杠杆</td></tr>
-  <tr><td>归母净资产</td><td>3.800 亿</td><td class="good">✅ 同比+12.70%</td></tr>
-  <tr><td>总资产</td><td>6.012 亿</td><td class="good">✅ 同比+6.31%</td></tr>
+  <tr><th>科目</th><th>本期</th><th>上期／对比</th><th>评价</th></tr>
+  <tr><td>现金及等价物</td><td>54.83</td><td>—</td><td class="good">充裕，覆盖全部短期有息（仅一年内租赁 4.65）</td></tr>
+  <tr><td>应收合计（票据及账款 107.69）</td><td>109.14</td><td>—</td><td class="neutral">应收/营收 28.2%，公用事业与电信客户账期长但信用好</td></tr>
+  <tr><td>流动资产合计</td><td>171.96</td><td>—</td><td class="good">流动比率 1.85x</td></tr>
+  <tr><td>物业厂房设备</td><td>21.87</td><td>—</td><td class="neutral">占总资产仅 3.6%，典型轻资产软件商</td></tr>
+  <tr><td>长期投资</td><td>22.15</td><td>—</td><td class="neutral">—</td></tr>
+  <tr><td>商誉</td><td>292.15</td><td>270.17</td><td class="bad">占净资产 76.1%，主要为 Digitalk 收购形成</td></tr>
+  <tr><td>其他无形资产</td><td>112.24</td><td>114.81</td><td class="neutral">收购形成的技术与客户关系，年摊销 37.47m</td></tr>
+  <tr><td>未单独列示项（轧差）</td><td>1.61</td><td>—</td><td class="neutral">明细未完整提供，为与总资产 610.77 对齐的轧差数</td></tr>
+  <tr style="font-weight:bold"><td>总资产</td><td>610.77</td><td>601.24（+1.6%）</td><td class="neutral">规模稳定</td></tr>
+  <tr><td>应付账款</td><td>6.13</td><td>—</td><td class="good">供应商账期占用少</td></tr>
+  <tr><td>应计费用</td><td>33.22</td><td>—</td><td class="neutral">—</td></tr>
+  <tr><td>一年内到期租赁</td><td>4.65</td><td>—</td><td class="good">唯一的短期有息负债</td></tr>
+  <tr><td>当期所得税</td><td>4.08</td><td>—</td><td class="good">—</td></tr>
+  <tr><td>流动递延收入</td><td>29.09</td><td>—</td><td class="good">已收款未确认，锁定未来收入</td></tr>
+  <tr><td>其他流动负债</td><td>15.78</td><td>—</td><td class="neutral">—</td></tr>
+  <tr style="font-weight:bold"><td>流动负债合计</td><td>92.95</td><td>—</td><td class="good">—</td></tr>
+  <tr><td>长期借款</td><td>71.58</td><td>数据待补充</td><td class="neutral">期限错配（无对应流动有息）</td></tr>
+  <tr><td>长期租赁</td><td>11.92</td><td>数据待补充</td><td class="neutral">—</td></tr>
+  <tr><td>长期递延收入</td><td>20.17</td><td>数据待补充</td><td class="good">长期维护合同预收</td></tr>
+  <tr><td>长期递延税负债</td><td>29.49</td><td>数据待补充</td><td class="neutral">主要来自收购无形资产的递延税影响</td></tr>
+  <tr><td>其他长期负债</td><td>0.92</td><td>数据待补充</td><td class="neutral">—</td></tr>
+  <tr style="font-weight:bold"><td>总负债</td><td>227.03</td><td>221.29（+2.6%）</td><td class="good">负债率 37.2%</td></tr>
+  <tr style="font-weight:bold"><td>股东权益</td><td>383.74</td><td>379.95</td><td class="good">BVPS A$1.88（203.77M 股）</td></tr>
+  <tr><td>有息负债合计</td><td>88.15</td><td>—</td><td class="neutral">长期借款 71.58 + 租赁 16.57</td></tr>
+  <tr><td>净负债</td><td>33.32</td><td>—</td><td class="good">净负债/EBITDA 约 0.28x</td></tr>
+  <tr style="font-weight:bold"><td>有形账面价值</td><td>-20.65</td><td>—</td><td class="bad">有形每股 <strong>-0.10 澳元</strong>；历史收购累计商誉+无形 404m &gt; 账面权益 384m</td></tr>
 </table>
 
 <div class="highlight-box">
-  <strong>资产负债表解读：</strong>财务结构非常稳健——无短期借款，长期借款仅6,541万（负债率36.8%），现金4,819万覆盖短期负债绰绰有余。净债务/EBITDA仅0.54倍，远低于警戒线。应收账款1.16亿占营收29.5%，对软件公司来说在合理范围。主要隐患：商誉2.702亿+无形资产1.148亿合计3.85亿，占总资产64%，这是并购驱动型公司的通病，若并购标的业绩不达预期将面临大额减值风险。
+  <strong>资产负债表解读：</strong>结构性健康，但「<strong>软</strong>」。三条正面：① 负债率 37.2%，低于 40% 警戒线；② <strong>无流动有息借款</strong>，唯一的短期有息是 4.65m 的一年内到期租赁，现金 54.83m 覆盖绰绰有余，短期偿债无风险；③ 净负债仅 33.32m（0.28x EBITDA），利息保障倍数 27.5x，杠杆压力可忽略；④ 递延收入合计 49.26m（流动 29.09 + 长期 20.17），是已签约未确认的维护收入，构成收入可见度垫底。<br>
+  <strong>但有一条必须记红：</strong>有形账面价值为 <strong>-A$20.65m</strong>。商誉 292.15m + 无形 112.24m = 404.39m，占总资产 66.2%，而账面权益只有 383.74m。也就是说这家公司过去若干年的收购<strong>已经把股东权益「买」成了负的有形净资产</strong>。这不等于财务造假或危险（软件公司的商誉是真实的市场份额与客户合同），但它意味着：<strong>PB 1.80x 看着不高，可 PB 的分母里没有一分钱是有形的</strong>，一旦收购资产（尤其 Digitalk）业绩不达预期面临减值，权益端会被直接冲击，同时下行保护基本为零。这是估值时必须扣掉的隐性风险。
 </div>
 
-<h3>2.3 现金流量表</h3>
+<h3>2.3 现金流量表（AUD 百万）</h3>
 <table>
-  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
-  <tr><td>经营现金流（CFO）</td><td><strong>7,262 万</strong></td><td>5,911 万</td><td class="good">✅ 健康+22.85%</td></tr>
-  <tr><td>投资现金流（CFI）</td><td><strong>-3,703 万</strong></td><td>-5,882 万</td><td class="neutral">⚠ 资本开支+并购支出</td></tr>
-  <tr><td>筹资现金流（CFF）</td><td><strong>-3,311 万</strong></td><td>-1,266 万</td><td class="good">✅ 分红+还债</td></tr>
-  <tr><td>CFO/净利润</td><td><strong>1.68</strong></td><td>2.81</td><td class="good">✅ 含金量高</td></tr>
-  <tr><td>自由现金流（FCF）</td><td><strong>6,727 万</strong></td><td>5,405 万</td><td class="good">✅ 持续健康</td></tr>
-  <tr><td>FCF/营收</td><td><strong>17.14%</strong></td><td>15.31%</td><td class="good">✅ 现金生成能力强</td></tr>
+  <tr><th>指标</th><th>本期（FY26）</th><th>上期（FY25）</th><th>同比</th><th>评价</th></tr>
+  <tr style="font-weight:bold"><td>经营活动现金流 CFO</td><td>110.4</td><td>72.6</td><td><span class="good">+52.0%</span></td><td class="good">全表最强项</td></tr>
+  <tr><td>资本开支（购建固定资产等）</td><td>-1.64</td><td>数据待补充</td><td>—</td><td class="good">极轻资产，几乎不需要维持性投入</td></tr>
+  <tr><td>资本化开发支出</td><td>-13.45</td><td>数据待补充</td><td>—</td><td class="neutral">按资本化处理，是 FCF 的潜在扣减项</td></tr>
+  <tr><td>投资活动净额 CFI</td><td>数据待补充</td><td>数据待补充</td><td>—</td><td class="neutral">明细未完整提供</td></tr>
+  <tr><td style="text-align:left">└ 收购付现（含 Digitalk 等）</td><td>-68.63</td><td>数据待补充</td><td>—</td><td class="bad">并购仍在消耗现金</td></tr>
+  <tr><td>长期债务新提 / 偿还</td><td>+73.58 / -68.78</td><td>数据待补充</td><td>净 +4.8</td><td class="good">基本滚续，未加杠杆</td></tr>
+  <tr><td>租赁付款</td><td>-5.3</td><td>数据待补充</td><td>—</td><td class="neutral">—</td></tr>
+  <tr><td>融资活动净额 CFF</td><td>数据待补充</td><td>数据待补充</td><td>—</td><td class="neutral">明细未完整提供</td></tr>
+  <tr style="text-align:left">└ 派息</td><td>-19.28</td><td>数据待补充</td><td>—</td><td class="good">每股约 9.5 澳分</td></tr>
+  <tr><td>汇兑影响</td><td>-5.39</td><td>数据待补充</td><td>—</td><td class="neutral">—</td></tr>
+  <tr><td>现金净变动</td><td>+6.64</td><td>数据待补充</td><td>—</td><td class="good">正增长</td></tr>
+  <tr style="font-weight:bold"><td>自由现金流 FCF</td><td>108.75</td><td>67.27</td><td><span class="good">+61.7%</span></td><td class="good">口径＝CFO − 资本开支</td></tr>
+  <tr><td>FCF 利润率</td><td>28.14%</td><td>17.14%</td><td><span class="good">+11.0pp</span></td><td class="good">—</td></tr>
+  <tr style="font-weight:bold"><td>CFO / 净利润</td><td>2.31</td><td>1.68</td><td><span class="good">+0.63</span></td><td class="good">利润含金量极高</td></tr>
 </table>
 
-<div class="highlight-box">
-  <strong>现金流解读：</strong>Hansen是典型的"现金牛"——FY2025 CFO 7,262万（+22.85%），CFO/净利润1.68，利润含金量极高。FCF 6,727万（FCF Yield 7.5%），自由现金流/营收比率17.14%，在软件行业中属优秀水平。资本开支（~2,000万）主要用于云平台持续投资，支出合理。筹资现金流为负是因为持续分红（每股10¢）和偿还债务，这是好公司应有的特征——不依赖外部融资。
+<div class="summary-box">
+  <strong>现金流解读：</strong><strong>这是全份报告里质量最高的部分。</strong>CFO 从 72.6m 跳到 110.4m（<span class="good">+52.0%</span>），CFO/净利润 <strong>2.31</strong>——每赚 1 澳元账面利润就有 2.31 澳元现金落地，意味着 NPAT 里几乎没有应收或递延收入确认成分，反而是把已收的递延收入（49.26m）转成了现金。FCF 108.75m（<span class="good">+61.7%</span>）、FCF 利润率从 17.14% 跳到 28.14%，原因是结构性的：资本开支只有 1.64m，AI 让研发投入更多走费用化（员工支出 -3.6%）而非资本化，交付效率提升直接沉淀成现金，而不是被 PP&amp;E 吃掉。<br>
+  <strong>一个诚实的口径提醒：</strong>108.75m 的 FCF 只扣了 1.64m 的固定资产资本开支，<strong>没有扣 13.45m 的资本化开发支出</strong>。若把开发支出视为真实投入，「严格口径 FCF」约为 95.3m（同比口径同样调整），FCF 利润率约 24.7%。虽然依然优秀且为正，但报告里出现的 28.14% 是偏乐观的一侧。另需注意：FY26 仍付了 68.63m 现金做收购（Digitalk 等），<strong>不扣并购的自由现金流才是股东真正可支配的现金</strong>。
 </div>
 
 </div></div>
@@ -185,193 +256,229 @@
 
 <h3>3.1 关键盈利指标</h3>
 <table>
-  <tr><th>指标</th><th>FY2025</th><th>TTM</th><th>好公司标准</th><th>评价</th></tr>
-  <tr><td>ROE</td><td>12.08%</td><td><strong>18.02%</strong></td><td>> 15% 优秀 / > 10% 及格</td><td class="good">✅ 优秀（TTM）</td></tr>
-  <tr><td>毛利率</td><td><strong>34.36%</strong></td><td><strong>37.18%</strong></td><td>稳定或提升</td><td class="good">✅ 趋势改善</td></tr>
-  <tr><td>净利率</td><td><strong>11.04%</strong></td><td><strong>16.10%</strong></td><td>> 10%</td><td class="good">✅ 达标</td></tr>
-  <tr><td>营收增长率</td><td><strong>+11.15%</strong></td><td><strong>+11.55%</strong></td><td>> 10%</td><td class="good">✅ 稳健增长</td></tr>
-  <tr><td>净利润增长率</td><td><strong>+105.68%</strong></td><td>—</td><td>正增长</td><td class="good">✅ 大幅改善</td></tr>
-  <tr><td>CFO/净利润</td><td><strong>1.68</strong></td><td>—</td><td>> 1</td><td class="good">✅ 含金量高</td></tr>
-  <tr><td>资产负债率</td><td><strong>36.80%</strong></td><td>—</td><td>软件<50%</td><td class="good">✅ 极低</td></tr>
-  <tr><td>分红率</td><td><strong>~44%</strong></td><td>—</td><td>持续分红</td><td class="good">✅ 持续20年</td></tr>
+  <tr><th>指标</th><th>本期（FY26）</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td>12.5%</td><td>≥15%</td><td class="neutral">中等（10%~15% 档），较上版明显回落</td></tr>
+  <tr><td>毛利率</td><td><strong>公司未单独披露</strong></td><td>≥30% 且稳定</td><td class="neutral">损益表按费用性质列报，无法计算 → 改用 Underlying EBITDA 利润率评价</td></tr>
+  <tr><td>└ 替代口径：Underlying EBITDA 利润率</td><td><strong>31.0%</strong>（FY25 28.5%，<span class="good">+2.5pp</span>）</td><td>≥30% 且改善</td><td class="good">达标且改善</td></tr>
+  <tr><td>└ 辅助：Cash EBITDA 利润率</td><td>27.5%（FY25 23.8%）</td><td>—</td><td class="good">+3.7pp，与 Underlying 口径同向</td></tr>
+  <tr><td>净利率</td><td>12.4%（FY25 11.0%）</td><td>≥15%</td><td class="neutral">改善但未达优秀线；受 23.8% 有效税率拖累</td></tr>
+  <tr><td>营收增长</td><td><span class="bad">-1.5%</span></td><td>≥15%</td><td class="bad">不达标，本报告最大扣分项</td></tr>
+  <tr><td>└ 其中：Support &amp; Maintenance 增长</td><td><span class="good">+13.4%</span></td><td>—</td><td class="good">核心收入线仍在双位数增长</td></tr>
+  <tr><td>利润增长（NPAT）</td><td>+10.2%</td><td>≥15%</td><td class="neutral">达标偏低档</td></tr>
+  <tr><td>利润增长（Underlying NPATA）</td><td>+15.9%</td><td>≥15%</td><td class="good">达标</td></tr>
+  <tr><td>CFO / 净利润</td><td><strong>2.31</strong></td><td>≥1.0</td><td class="good">优秀，全表最强项</td></tr>
+  <tr><td>负债率</td><td>37.2%</td><td>&lt;40%</td><td class="good">达标</td></tr>
+  <tr><td>短期偿债</td><td>现金 54.83 / 短期有息 4.65</td><td>充裕覆盖</td><td class="good">充裕覆盖（无流动有息借款）</td></tr>
+  <tr><td>分红率</td><td>40.4%（对 NPAT）/ 29.2%（对 NPATA）</td><td>30%~60%</td><td class="good">合理；FY26 派息 19.28m（每股约 9.5 澳分），FY25 派息 数据待补充</td></tr>
+  <tr><td>ROA（去杠杆基础回报）</td><td>7.9%</td><td>—</td><td class="neutral">中等，见 L4</td></tr>
+  <tr><td>有形账面价值</td><td><span class="bad">-20.65m（每股 -0.10）</span></td><td>&gt;0</td><td class="bad">为负，下行保护缺失</td></tr>
 </table>
+<p style="font-size:12px;color:#666;">口径提示：<strong>毛利率维度公司未单独披露</strong>——Hansen 按费用性质（by nature of expense）列报损益表，无营业成本与毛利行。本报告统一以 <strong>Underlying EBITDA 利润率 31.0%（FY25 28.5%）</strong> 作为该维度的替代评价依据，并在总结论评分表（得 10/10）与 L3 估值总结中沿用同一口径。</p>
 
 <h3>3.2 分业务分析</h3>
 <table>
-  <tr><th>业务板块</th><th>特征</th><th>营收占比</th><th>增长</th><th>评价</th></tr>
-  <tr><td>能源/公用事业 CIS</td><td>计费+客户管理+数据分析</td><td>~60%</td><td>~12%</td><td class="good">✅ 核心主业，云化转型驱动增长</td></tr>
-  <tr><td>通信/媒体计费</td><td>电信/有线电视/OTT计费</td><td>~30%</td><td>~8%</td><td class="neutral">⚠ 传统电信增长放缓</td></tr>
-  <tr><td>专业服务/实施</td><td>系统集成、咨询、运维</td><td>~10%</td><td>~10%</td><td class="neutral">稳定</td></tr>
+  <tr><th>业务板块（按收入性质）</th><th>FY26 营收</th><th>占营收</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td>Support &amp; Maintenance（支持与维护）</td><td>230.3m</td><td>59.6%</td><td><span class="good">+13.4%</span></td><td>数据待补充</td><td class="good">经常性、可预测、FY27 指引再增 6~8%；是这家公司真正的利润引擎</td></tr>
+  <tr><td>Licence（许可）</td><td>数据待补充</td><td>数据待补充</td><td><span class="bad">-14.5m</span></td><td>数据待补充</td><td class="bad">因上年一次性前置确认 Virgin Media O2 前期许可费；FY26 Telefónica 续约后重签为更典型的「经常性收入+现金」结构，<strong>无重大前期许可成分</strong></td></tr>
+  <tr><td>其他（咨询/实施/硬件转售等）</td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td class="neutral">明细未提供</td></tr>
+  <tr style="font-weight:bold"><td>合计（营业收入）</td><td>386.494m</td><td>100%</td><td><span class="bad">-1.5%</span></td><td>公司未单独披露</td><td class="neutral">90% 以上收入为软件与支持维护</td></tr>
 </table>
 
-<div class="highlight-box">
-  <strong>业务解读：</strong>核心业务是为公用事业（水电燃气）和电信运营商提供计费客户信息系统（CIS）。这部分是"关键任务型"系统——客户一旦部署几乎不会换（切换成本极高），为公司提供了极高的收入可见性和客户粘性。SaaS/云化转型是当前增长主驱动（云CIS取代传统本地部署），持续推动客单价提升。近期中标洛杉矶水务局等大型云CIS项目验证了云化战略的执行力。
-</div>
+<table>
+  <tr><th>报告分部（Segment）</th><th>FY26 营收</th><th>占比</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td>Energy &amp; Utilities（能源与公用事业）</td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td class="neutral">电力/燃气/水务的账单 ERP、CIS 客户计费系统、Hansen 系列网络管理与 HV/MV 配电自动化软件；澳新英电力计费 incumbent</td></tr>
+  <tr><td>Communications &amp; Media（通信与媒体）</td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td class="neutral">电信与付费电视的 BSS 计费与客户信息系统，含 Virgin Media O2 大单；2024 年收购 Digitalk（美国有线电视计费）后 FY26 完成整合</td></tr>
+  <tr><td>分部合计 / 分部利润</td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td class="neutral">FY26 公告未按分部给出可用于评级的完整拆分</td></tr>
+</table>
+<p style="font-size:12px;color:#666;">数据缺失提示：分部（Energy &amp; Utilities / Communications &amp; Media）的营收、占比、同比与分部利润率，以及 License 与其他收入线的绝对额，本次分析<strong>数据待补充</strong>，相关单元格未参与评分。下一次可验证节点为 <strong>2026-11-20 的 1H FY27 业绩</strong>。</p>
 
 <h3>3.3 排雷清单</h3>
 <table>
-  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
-  <tr><td class="neutral">🟡 中等</td><td>商誉2.702亿+无形资产1.148亿，总占比64%</td><td>L1 资产负债表——并购驱动型公司固有风险</td></tr>
-  <tr><td class="neutral">🟡 中等</td><td>营收增速仅11%，软件行业中偏慢</td><td>L2 关键指标——非高成长，但胜在稳定</td></tr>
-  <tr><td class="neutral">🟡 中等</td><td>FY2024利润暴跌50.78%（重组费用1,158万）</td><td>L1 利润表——并购整合有阵痛期</td></tr>
-  <tr><td class="good">🟢 正面</td><td>ROE(TTM) 18.02%，盈利能力优秀</td><td>L2 关键指标——>15%好公司标准</td></tr>
-  <tr><td class="good">🟢 正面</td><td>FCF持续为正且健康（6,727万）</td><td>L1 现金流量表——FCF Yield 7.5%</td></tr>
-  <tr><td class="good">🟢 正面</td><td>负债率36.8%，无短期借款</td><td>L1 资产负债表——财务极稳健</td></tr>
-  <tr><td class="good">🟢 正面</td><td>CFO/净利润1.68，利润含金量高</td><td>L1 现金流量表——现金质量优秀</td></tr>
-  <tr><td class="good">🟢 正面</td><td>连续20年支付股息，分红稳定</td><td>L2 分红记录——管理层回报股东意识强</td></tr>
+  <tr><th>风险项</th><th>严重程度</th><th>依据</th></tr>
+  <tr><td><strong>营收负增长（核心问题）</strong></td><td><span class="bad">● 红</span></td><td>FY26 营收 386.494m，<strong>-1.5%</strong>；License 收入减少 A$14.5m 几乎抵消 Support &amp; Maintenance +13.4%（+27.2m）带来的全部增量；FY27 指引营收「与 FY26 大致持平」，<strong>增长缺口可能连续两年</strong></td></tr>
+  <tr><td>FY27 EBITDA 利润率指引下调</td><td><span class="bad">● 红</span></td><td>FY27 Underlying EBITDA 利润率指引「<strong>超过 26%</strong>」，<strong>低于 FY26 实际 31.0%</strong>；董事会明确将 FY27 定位为「投资与过渡年」，FY28 才目标回到 30%+</td></tr>
+  <tr><td>License → 经常性收入过渡未完成</td><td><span class="bad">● 红</span></td><td>结构性置换仍在进行中，过渡完成前营收易受前期许可费基数影响而失真；过渡完成的时点与幅度 未明确指引</td></tr>
+  <tr><td>有形账面价值为负</td><td><span class="bad">● 红</span></td><td>有形账面价值 <strong>-20.65m</strong>、有形每股 <strong>-0.10 澳元</strong>；商誉 292.15 + 无形 112.24 = 404.39m &gt; 账面权益 383.74m，下行保护为零，且 Digitalk 商誉存在减值敞口</td></tr>
+  <tr><td>客户集中度</td><td><span class="neutral">● 黄</span></td><td>Virgin Media O2 / Telefónica 为单笔重大合同（FY26  Telefónica 续约）；前 5 大客户占比 数据待补充</td></tr>
+  <tr><td>汇率逆风</td><td><span class="neutral">● 黄</span></td><td>收入覆盖 80+ 国家、以多币种计价；FY26 汇兑由 FY25 +0.05m 收益转为 <strong>-2.205m 损失</strong>，现金流量表汇兑影响 -5.39m；FY27 指引已把汇率列为营收持平的原因之一</td></tr>
+  <tr><td>长期借款</td><td><span class="neutral">● 黄</span></td><td>长期借款 <strong>71.58m</strong>、有息负债合计 88.15m、净负债 33.32m（0.28x EBITDA）；属期限结构问题而非流动性问题（现金 54.83m、无流动有息借款）</td></tr>
+  <tr><td>有形资产抵押能力弱</td><td><span class="neutral">● 黄</span></td><td>物业厂房设备仅 21.87m（占总资产 3.6%），轻资产结构在信用事件中几乎无可变现抵押物</td></tr>
+  <tr><td>报表与 Underlying 口径差</td><td><span class="neutral">● 黄</span></td><td>年摊销 37.47m（收购无形资产）使 NPAT 47.76m 与 Underlying NPATA 65.95m 相差 38%，第三方 PE 14.81x 用报表口径会系统性高估估值水平</td></tr>
+  <tr><td>有效税率上升</td><td><span class="neutral">● 黄</span></td><td>23.8%（FY25 19.7%，+4.1pp），吃掉约 4pp 的税前增长</td></tr>
+  <tr><td>并购仍在消耗现金</td><td><span class="neutral">● 黄</span></td><td>FY26 收购付现 -68.63m；扣除并购后的股东可支配现金远低于 FCF 108.75m</td></tr>
+  <tr><td>持续并购带来的商誉累积</td><td><span class="neutral">● 黄</span></td><td>商誉由 270.17m 增至 292.15m，历史上多次收购已把有形净资产「买成负数」</td></tr>
 </table>
 
-<div class="verdict verdict-ok">✅ L2综合判定：品质优秀（ROE 18%+CFO高含金量+低负债+稳定分红）</div>
+<table>
+  <tr><th>正面项</th><th>严重程度</th><th>依据</th></tr>
+  <tr><td>Support &amp; Maintenance 经常性收入高增长</td><td><span class="good">● 绿</span></td><td>230.3m、<strong>+13.4%</strong>，占营收 59.6%；FY27 指引再增 6~8%</td></tr>
+  <tr><td>利润含金量极高</td><td><span class="good">● 绿</span></td><td>CFO 110.4m（+52.0%）、<strong>CFO/净利 2.31</strong></td></tr>
+  <tr><td>自由现金流强劲</td><td><span class="good">● 绿</span></td><td>FCF 108.75m（<strong>+61.7%</strong>），FCF 利润率 28.14%（FY25 17.14%）</td></tr>
+  <tr><td>资产负债表安全</td><td><span class="good">● 绿</span></td><td>负债率 37.2%、<strong>无流动有息借款</strong>、现金 54.83m 覆盖短期有息、净负债/EBITDA 0.28x、利息保障 27.5x</td></tr>
+  <tr><td>盈利质量改善</td><td><span class="good">● 绿</span></td><td>Underlying EBITDA 利润率 <strong>31.0%（+2.5pp）</strong>、Cash EBITDA 利润率 27.5%（+3.7pp）；除 D&amp;A 费用率 74.9%→<strong>70.8%</strong>（AI 在交付/工程/支持环节的效率提升）</td></tr>
+  <tr><td>重组费用出清</td><td><span class="good">● 绿</span></td><td>11.582m → 0.379m（-96.7%），Digitalk 整合已完成，未来无大额重组包袱</td></tr>
+  <tr><td>收入可见度</td><td><span class="good">● 绿</span></td><td>递延收入合计 49.26m（流动 29.09 + 长期 20.17），已收未确认，构成收入垫底</td></tr>
+  <tr><td>股价低波动</td><td><span class="good">● 绿</span></td><td>Beta <strong>0.41</strong>，典型防御型低波动标的</td></tr>
+  <tr><td>股东回报</td><td><span class="good">● 绿</span></td><td>FY26 派息 19.28m（每股约 9.5 澳分），分红率 40.4%（对 NPAT），股息率 2.8%</td></tr>
+</table>
 
 </div></div>
 
 <div class="tab-content" id="tab-l3"><div class="tab-inner">
 
-<h2>四、估值分析（L3框架）</h2>
+<h2>四、估值分析（L3框架 · 非周期股用 PE Band）</h2>
+<p style="font-size:12px;color:#666;">口径提示：本报告盈利基准统一采用 <strong>Underlying NPATA（剔除收购无形资产摊销税后）A$65.945m，EPSa 32.3 澳分</strong>。因公司未单独披露毛利，<strong>毛利率口径的估值比较不可用</strong>，盈利质量以 Underlying EBITDA 利润率 31.0% 佐证。</p>
 
-<h3>4.1 当前估值水平</h3>
+<h3>4.1 当前估值（2026-10-14）</h3>
 <table>
-  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
-  <tr><td>股价（2026.7.14）</td><td><strong>AU$4.39</strong></td><td>52周范围：$4.15-$6.50</td></tr>
-  <tr><td>总市值</td><td><strong>~8.94 亿 AUD</strong></td><td>约合人民币~42亿</td></tr>
-  <tr><td>PE（TTM）</td><td><strong>13.6x</strong></td><td>基于TTM EPS 0.34</td></tr>
-  <tr><td>PE（FY2025）</td><td><strong>20.9x</strong></td><td>基于FY2025 EPS 0.21（非经常项压低）</td></tr>
-  <tr><td>PE（2026E）</td><td><strong>~13.3x</strong></td><td>基于一致预期FY2026E EPS ~0.33</td></tr>
-  <tr><td>PB</td><td><strong>2.34x</strong></td><td>基于每股净资产~$1.87</td></tr>
-  <tr><td>PS（TTM）</td><td><strong>2.21x</strong></td><td>市销率偏低，有吸引力</td></tr>
-  <tr><td>PCF</td><td><strong>12.3x</strong></td><td>基于CFO 7,262万</td></tr>
-  <tr><td>EV/EBITDA</td><td><strong>7.1x</strong></td><td>偏低，有吸引力</td></tr>
-  <tr><td>股息率</td><td><strong>~2.28%</strong></td><td>基于每股分红10¢，部分Franking</td></tr>
-  <tr><td>FCF Yield</td><td><strong>7.5%</strong></td><td>基于FCF 6,727万/市值8.94亿</td></tr>
+  <tr><th>指标</th><th>当前值</th><th>历史分位</th><th>行业均值／对比</th></tr>
+  <tr><td>股价</td><td>A$3.38（当日 +2.74%，前收 3.29）</td><td>52 周区间 A$2.95 ~ A$6.17</td><td>距高点 -45.2%，距低点 +14.6%</td></tr>
+  <tr><td>总市值</td><td>A$6.887 亿（203.77M 股）</td><td>数据待补充</td><td>数据待补充</td></tr>
+  <tr><td>企业价值 EV</td><td>A$7.302 亿</td><td>数据待补充</td><td>数据待补充</td></tr>
+  <tr><td>PE（报表 NPAT 47.76m）</td><td><strong>14.4x</strong></td><td>数据待补充</td><td>—</td></tr>
+  <tr><td>PE（Underlying NPATA 65.95m）</td><td><strong>10.4x</strong></td><td>数据待补充</td><td>—</td></tr>
+  <tr><td>PE（第三方口径，S&amp;P Global）</td><td>14.81x</td><td>数据待补充</td><td>—</td></tr>
+  <tr><td>EV / Underlying EBITDA</td><td>6.10x</td><td>数据待补充</td><td>—</td></tr>
+  <tr><td>PB</td><td><strong>1.80x</strong>（3.38 / BVPS 1.88）</td><td>数据待补充</td><td>—</td></tr>
+  <tr><td>PS</td><td><strong>1.78x</strong>（688.7 / 386.5）</td><td>数据待补充</td><td>—</td></tr>
+  <tr><td>PCF</td><td><strong>6.2x</strong>（688.7 / 110.4）</td><td>数据待补充</td><td>全估值维度中最低</td></tr>
+  <tr><td>股息率</td><td><strong>2.8%</strong>（派息 19.28m / 市值 688.7m）</td><td>数据待补充</td><td>—</td></tr>
+  <tr><td>Beta</td><td>0.41</td><td>—</td><td>低波动，防御属性</td></tr>
+  <tr><td>分析师一致评级／目标价</td><td>Buy / <strong>A$5.40</strong>（较现价 +59.8%）</td><td>—</td><td>隐含 FY26 EPSa 16.7x</td></tr>
 </table>
 
-<h3>4.2 PE Band估值区间</h3>
-<p style="font-size:13px;color:#666;">ROE 18% → 合理PE参考区间：15-25x | FY2026E一致预期EPS ≈ $0.33</p>
+<h3>4.2 PE Band 估值区间（非周期股六情景）</h3>
+<p style="font-size:12px;color:#666;">合理 PE 取值依据：ROE 12.5% → 落在「ROE 10%~15% → 合理 PE <strong>10~18x</strong>」区间。基准 EPS 为 FY26 EPSa 32.3 澳分；悲观/保守情景改用 FY27 过渡年预测 EPSa（推演见 L6 第 7.4 节）。</p>
 <table>
-  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs现价$4.39</th></tr>
-  <tr><td>悲观</td><td>10x</td><td>$3.30</td><td class="bad">-25%</td></tr>
-  <tr><td>保守</td><td>13x</td><td>$4.29</td><td class="neutral">-2%</td></tr>
-  <tr><td>中性</td><td>18x</td><td>$5.94</td><td class="good">+35%</td></tr>
-  <tr><td>券商目标</td><td>~20x</td><td>$6.60</td><td class="good">+50%</td></tr>
-  <tr><td>当前价</td><td>13.6x</td><td>$4.39</td><td>—</td></tr>
-  <tr><td>历史高位</td><td>~30x</td><td>$9.90</td><td class="good">+125%</td></tr>
+  <tr><th>情景</th><th>估值（A$）</th><th>隐含 PE</th><th>对应说明</th></tr>
+  <tr><td><span class="bad">悲观</span></td><td>2.53</td><td>10.0x</td><td>FY27 营收 -3%、EBITDA 利润率 25.0% → EPSa 25.3 澳分 × 合理区间下沿 10x；较现价 <strong>-25.1%</strong></td></tr>
+  <tr><td><span class="neutral">保守</span></td><td>3.32</td><td>12.0x</td><td>FY27 中性预测 EPSa 27.7 澳分 × 12x（贴合理区间中下沿）；较现价 <strong>-1.7%</strong>，即现价已接近保守情景</td></tr>
+  <tr><td><span class="neutral">中性</span></td><td>3.88</td><td>14.0x</td><td>FY27 中性预测 EPSa 27.7 澳分 × 14x（合理区间中部）；较现价 <strong>+14.8%</strong>，仅靠估值修复，难有增长贡献</td></tr>
+  <tr><td><span class="good">券商目标价</span></td><td>5.40</td><td>19.5x</td><td>一致评级 Buy、目标价 A$5.40（+59.8%）；对应 FY27 中性 EPSa 19.5x（<strong>已超合理区间上沿 18x</strong>），隐含市场在给 FY28 利润率回到 30%+ 提前定价</td></tr>
+  <tr style="font-weight:bold"><td><strong>当前价</strong></td><td><strong>3.38</strong></td><td><strong>10.5x</strong></td><td>对应 FY26 EPSa 32.3 澳分 = 10.5x；对应 FY27 中性 EPSa 27.7 澳分 = 12.2x；对应报表 NPAT 23.4 澳分 = 14.4x。<strong>位于合理区间下沿</strong></td></tr>
+  <tr><td><span class="bad">历史高位（52 周高点）</span></td><td>6.17</td><td>19.1x</td><td>2026-08 月中一度到 4.49、52 周高点 6.17；隐含 PE 19.1x <strong>超出合理区间上沿 18x</strong>，属情绪/预期驱动的高估区域</td></tr>
+  <tr><td>历史低位（52 周低点）</td><td>2.95</td><td>9.1x</td><td>2026-10-02 低见 3.12；52 周低点 2.95 隐含 9.1x，<strong>略低于合理区间下沿</strong></td></tr>
 </table>
 
+<h3>4.3 估值总结</h3>
 <div class="highlight-box">
-  <strong>估值优势：</strong><br>
-  ① PE(TTM) 13.6x远低于ROE 18%对应的合理区间15-25x，PEG仅1.2x；<br>
-  ② PS 2.21x在软件行业中显著偏低（ASX软件同业PS均值~5-8x）；<br>
-  ③ EV/EBITDA 7.1x，对于经常性收入占比高的软件公司极具吸引力；<br>
-  ④ FCF Yield 7.5%，提供了实质性的安全边际和回报支撑；<br>
-  ⑤ 一致预期目标价$6.60（约20x FY2026E PE），上行空间~50%。
-</div>
-
-<h3>4.3 历史PE区间</h3>
-<table>
-  <tr><th>指标</th><th>数值</th></tr>
-  <tr><td>PE（TTM）最大值（近5年）</td><td>~49x（FY2024低谷期）</td></tr>
-  <tr><td>PE（TTM）80%分位</td><td>~35x</td></tr>
-  <tr><td>PE（TTM）50%分位</td><td>~24x</td></tr>
-  <tr><td>PE（TTM）20%分位</td><td>~15x</td></tr>
-  <tr><td>PE（TTM）最小值（近5年）</td><td>~12x</td></tr>
-  <tr><td>当前PE（TTM）</td><td class="good">~13.6x（接近5年最低区域）</td></tr>
-</table>
-
-<div class="highlight-box">
-  <strong>估值总结：</strong>Hansen当前处于近5年估值区间的底部区域。PE 13.6x接近历史最低、PS 2.21x远低于软件同业、FCF Yield 7.5%提供了良好的现金回报。市场给予低估值的原因：①营收增速仅11%不够性感；②市场担忧AI对传统计费软件的颠覆风险；③FY2024利润暴跌让部分投资者离场。但对价值投资者而言，这正是"好公司+好价格"的经典机会——ROE 18%、FCF充沛、护城河深的公司，13.6x PE性价比极高。重点跟踪：云化转型进度（决定PE修复空间）和FCF持续性（决定股息增长能力）。
+  <strong>估值判断：当前估值合理偏低（接近合理区间下沿），但不构成明显低估。</strong><br><br>
+  <strong>① 口径先讲清：</strong>这家公司有 38% 的利润口径差。年摊销 37.47m 让报表 NPAT 只有 47.76m，PE 14.4x；剔除收购无形资产摊销税后 Underlying NPATA 65.95m，PE <strong>10.4x</strong>；第三方平台显示的 14.81x 是报表口径。<strong>用 14.81x 判断「贵」是错的——那 37.47m 是 Digitalk 等历史收购的无形资产摊销，不消耗现金、不重复发生，现金流早已被 CFO 2.31 的含金量证明。</strong>真正该扣的是：收购付现 68.63m 是真金白银的持续现金流出，且把有形净资产买成了 -20.65m。<br><br>
+  <strong>② 按 ROE 定区间：</strong>ROE 12.5% → 合理 PE 10~18x。当前 10.4x（Underlying）恰在下沿，说明市场基本不为增长付钱，只为现金付钱。<strong>现价 3.38 已接近保守情景 3.32</strong>，向下空间被 FY27 指引封住，向上需要 FY28 兑现。<br><br>
+  <strong>③ 横向看便宜得离谱：</strong>PS 1.78x、PB 1.80x、PCF 6.2x、EV/EBITDA 6.10x。对比同行 Technology One 的 PS 15.84x / PB 23.35x / PE 71.34x，HSN 的估值只有其 <strong>1/5 ~ 1/8</strong>。这个折价里有一部分是市场在为其增长停滞定价，不全是误杀。<br><br>
+  <strong>④ 盈利质量替代口径：</strong>因公司按费用性质列报、<strong>不披露毛利率</strong>，无法做「毛利率趋势→PE」的常规交叉验证。本报告改用 <strong>Underlying EBITDA 利润率 31.0%（FY25 28.5%，+2.5pp）</strong> 作为盈利质量佐证：31% 的 EBITDA 利润率在成熟软件业属中上，配合 PCF 6.2x，说明便宜不是「因为利润率崩了」。<br><br>
+  <strong>⑤ 具体建议：</strong><strong>当前 3.38 是「安全但不刺激」的位置</strong>——保守情景 3.32 基本就是现价，意味着市场已经price in 了 FY27 的过渡年。更合理的建仓逻辑是：① 等 2026-11-20 的 1H FY27 确认 S&amp;M 增速是否落在 6~8% 指引内；② 若确认，3.3~3.5 区间即为合理买点，持有到 FY28 利润率回 30%+ 再看重估；③ 券商目标 5.40 需要 FY28 兑现才算合理，<strong>当前不能当作 60% 空间的无风险套利</strong>。若跌破 2.95（52 周低点、隐含 9.1x）且基本面未恶化，才是真正的赔率区。
 </div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l4"><div class="tab-inner">
 
-<h2>五、杜邦分析拆解（L4框架）</h2>
+<h2>五、杜邦分析（L4框架）</h2>
 
-<h3>5.1 杜邦拆解表</h3>
+<h3>5.1 杜邦拆解</h3>
 <table>
-  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>TTM</th><th>趋势</th></tr>
-  <tr><td>净利润率</td><td>13.73%</td><td>5.96%</td><td>11.04%</td><td><strong>16.10%</strong></td><td class="good">⬆ 强劲修复</td></tr>
-  <tr><td>资产周转率</td><td>0.60</td><td>0.62</td><td>0.65</td><td><strong>0.66</strong></td><td class="good">⬆ 持续提升</td></tr>
-  <tr><td>权益乘数</td><td>1.52</td><td>1.68</td><td>1.58</td><td><strong>1.58</strong></td><td class="good">⬇ 杠杆下降</td></tr>
-  <tr><td><strong>ROE</strong></td><td><strong>13.13%</strong></td><td><strong>6.23%</strong></td><td><strong>12.08%</strong></td><td><strong>18.02%</strong></td><td class="good">⬆ 强劲修复</td></tr>
-  <tr><td>去杠杆ROA（净利率×周转）</td><td>8.2%</td><td>3.7%</td><td>7.2%</td><td><strong>10.6%</strong></td><td class="good">⬆ 改善</td></tr>
-  <tr><td>杠杆贡献（ROE-ROA）</td><td>4.9pct</td><td>2.5pct</td><td>4.9pct</td><td><strong>7.4pct</strong></td><td class="neutral">适中</td></tr>
+  <tr><th>指标</th><th>FY26</th><th>FY25</th><th>FY24</th><th>FY23</th><th>判断</th></tr>
+  <tr><td>净利润率</td><td><strong>12.4%</strong></td><td>11.0%</td><td>7.0%</td><td>13.4%</td><td class="good">改善中，但低于优秀线 15%</td></tr>
+  <tr><td>资产周转率</td><td><strong>0.638</strong></td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td class="neutral">偏低——大量资产沉淀在商誉与无形中</td></tr>
+  <tr><td>权益乘数</td><td><strong>1.587</strong></td><td>数据待补充</td><td>数据待补充</td><td>数据待补充</td><td class="good">温和，几乎不用杠杆</td></tr>
+  <tr style="font-weight:bold"><td>ROE（平均权益口径）</td><td><strong>12.5%</strong></td><td>12.1%</td><td>6.2%</td><td>13.1%</td><td class="neutral">中等，低于优秀线 15%</td></tr>
+  <tr><td>CFO / 净利</td><td><strong>2.31</strong></td><td>1.68</td><td>2.81</td><td>1.84</td><td class="good">利润全部转化为现金</td></tr>
 </table>
+<p style="font-size:12px;color:#666;">
+  <strong>计算基数（与 L1 一致）：</strong>净利率 47.758 / 386.494 = 12.4%；资产周转率 386.494 / 平均总资产 606.0［(610.77+601.24)/2］= 0.638；权益乘数 606.0 / 平均权益 <strong>381.85</strong>［(383.74+379.95)/2，FY26 期末净资产 383.74 与 L1 资产负债表一致］= 1.587；<strong>ROE 47.758 / 381.85 = 12.5%</strong>。FY23/FY24 ROE 同用平均权益口径（如 FY25 43.324 / [(379.95+337.15)/2] = 12.1%）。<br>
+  <strong>口径差异说明：</strong>上版报告（2026-07-14，数据基准 FY25+1H26）以 LTM 年化口径计 FY25 ROE 为 <strong>18.02%</strong>，本版以单一财年平均权益口径计算，<strong>两者不可直接比较</strong>——这正是本版判断「ROE 已回落」的依据来源之一。
+</p>
 
+<h3>5.2 赚钱模式判断</h3>
 <div class="highlight-box">
-  <strong>赚钱模式判断：高利润型（利润率驱动）</strong><br>
-  Hansen的ROE 18%（TTM）主要由高净利润率（16.1%）驱动，辅以中低杠杆（1.58倍）。去掉杠杆后ROA达10.6%，说明即使去掉杠杆，公司的资产回报基础仍然优秀（制造业/零售业通常<5%）。资产周转率0.66对于软件公司来说属于中等水平——相对于轻资产SaaS公司的1.0+还有提升空间。<br><br>
-  <strong>关键变化：</strong>净利润率从FY2024的5.96%（重组拖累）修复至TTM的16.1%，是ROE从6.23%飙升至18.02%的核心驱动力。同时周转率从0.60→0.66持续改善，反映并购标的正在逐步整合并贡献稳定营收。
+  <strong>赚钱模式：均衡型（杜邦驱动质量 3/5）。</strong><br><br>
+  三个驱动项<strong>全部平淡</strong>，没有一项能撑起「优秀型」ROE：<br>
+  ① <strong>净利率 12.4%</strong>（FY25 11.0%）——软件行业本该有 15%~20% 的净利率，HSN 被 23.8% 的有效税率、Digitalk 全年并表成本，以及年年 37.47m 的收购摊销压在报表上；<br>
+  ② <strong>资产周转率 0.638</strong>——<strong>这是最拖后腿的一项</strong>。公司把历年收购的 404.39m 商誉与无形装在资产端，分母被撑大而收入跟不上，所以「每 1 元资产只产生 0.64 元收入、7.9% 的 ROA」；<br>
+  ③ <strong>权益乘数 1.587</strong>——几乎没有杠杆（净负债 0.28x EBITDA），既不加分也不减分，属于「干净但平庸」。<br><br>
+  <strong>评价：</strong>ROE 12.5% 是「真实业绩」而非「杠杆或会计做出来的」——这一点值得肯定（杜邦三腿都站得住，没有一条腿是虚的），但也说明<strong>在不加大杠杆、不做大并购、收入不增长的前提下，ROE 很难自然爬到 15% 以上</strong>。要突破只有两条路：把 404m 的并购资产「变现」出收入（Digitalk 交叉销售、进一步资产处置），或把 EBITDA 利润率在 FY28 兑现 30%+ 的同时让收入恢复增长。
 </div>
 
-<h3>5.2 杜邦质量总结</h3>
+<h3>5.3 去杠杆 ROA 与资产回报效率</h3>
 <table>
-  <tr><th>驱动要素</th><th>数值（TTM）</th><th>评级</th><th>说明</th></tr>
-  <tr><td>净利润率 16.1%</td><td class="good">高</td><td class="good">优秀</td><td>软件行业属性好，云化转型提升利润率</td></tr>
-  <tr><td>资产周转率 0.66</td><td class="neutral">中</td><td class="neutral">可提升</td><td>并购积累了大量商誉，拖累周转率</td></tr>
-  <tr><td>权益乘数 1.58</td><td class="good">低</td><td class="good">保守</td><td>负债率36.8%，财务极稳健</td></tr>
-  <tr><td>ROE 18%</td><td class="good">优秀</td><td class="good">优秀</td><td>>15%好公司标准，且可持续</td></tr>
+  <tr><th>指标</th><th>数值</th><th>含义与判断</th></tr>
+  <tr><td>去杠杆 ROA（净利率 × 周转率）</td><td>12.4% × 0.638 = <strong>7.9%</strong></td><td class="neutral">剔除全部杠杆后的「真实基础回报」仅 7.9%，接近但未达到 10% 的良好线——说明 12.5% 的 ROE 中约 1.587x 全部来自权益乘数</td></tr>
+  <tr><td>每 1 元总资产产生的净利润</td><td>47.758 / 610.77 = <strong>7.8%</strong></td><td class="neutral">同业 Technology One 的 ROA 为 14.58%，HSN 约为其一半</td></tr>
+  <tr><td>每 1 元总资产产生的收入</td><td>386.494 / 610.77 = <strong>0.63 元</strong></td><td class="neutral">资产偏「重」（相对软件公司），主因是并购形成的商誉与无形</td></tr>
+  <tr><td>有形权益口径的 ROE</td><td><strong>无意义</strong>（分母为负）</td><td class="bad">有形账面价值 -20.65m → 有形权益乘数为负 → 用有形权益计算的 ROE 不成立，<strong>这本身就是下行保护缺失的量化证据</strong></td></tr>
+  <tr><td>利息保障倍数</td><td>EBITDA 118.614 / 财务费用 4.312 = <strong>27.5x</strong></td><td class="good">利息完全不是约束</td></tr>
+  <tr><td>ROA 6 年序列（FY23~FY26）</td><td>数据待补充</td><td class="neutral">FY23/FY24 总资产未提供，无法算历史 ROA</td></tr>
 </table>
 
+<h3>5.4 核心结论</h3>
 <div class="summary-box">
-  <strong>核心结论：</strong><br>
-  ① ROE 18%主要靠高利润率（16.1%）驱动，是高质量的盈利模式；<br>
-  ② 去掉杠杆后ROA 10.6%，基础资产回报率优秀；<br>
-  ③ 杠杆极低（1.58x），几乎不用外部融资就能实现18%的ROE；<br>
-  ④ 周转率0.66有提升空间——如果商誉不再增长（并购放缓），营收持续增长将自然推高周转率；<br>
-  ⑤ 杜邦三因子中两个（利润率+杠杆）处于优秀水平，唯周转率可改善，整体质量高。
+  <strong>杜邦结论：ROE 靠「不杠杆 + 真现金」而非「高利润率或高周转」，12.5% 的成色真实但平庸。</strong><br><br>
+  <strong>驱动结构：</strong>12.4% 净利率 × 0.638 周转率 × 1.587 权益乘数 = 12.5%。三项都不到格：净利率差 2.6pp 到优秀线、周转率被 404m 并购资产拖住、杠杆低到几乎没有放大器。<strong>这与 L2 给「杜邦驱动质量 3/5（均衡型）」、L6 给「好公司 △ 尚可」的判断完全一致</strong>——公司不赚钱的假，赚钱赚得也不多。<br><br>
+  <strong>趋势是否健康：边际健康，中期存疑。</strong>正面看，净利率从 FY24 的 7.0% → FY25 的 11.0% → FY26 的 12.4% 连续三年爬升，CFO/净利 2.31 证明这些利润是现金；杠杆端干净，不存在「ROE 靠加杠杆撑起来」的雷。存疑的是：<strong>ROE 的分子（营收）已转负，而分母（权益 383.74m，其中 404m 是并购形成的软资产）还在缓慢变厚</strong>。在 FY27 营收指引「大致持平」、利润率指引降到 26% 的双重压制下，ROE 大概率在 11%~13% 区间震荡，<strong>除非 FY28 兑现 30%+ 利润率并恢复收入增长，否则 ROE 难以系统性抬升</strong>。<br><br>
+  <strong>最需要盯的一点：</strong>有形权益为负使「PB 1.80x」这个看似便宜的指标失去锚点意义（分母无实质资产）。若 Digitalk 业绩不达预期触发商誉减值，权益端会被直接冲击，届时 PB 会被动「变贵」，同时 ROE 分母缩水反而抬高 ROE——这种「减值→PB 变贵→ROE 虚高」的组合是典型的并购型地雷形态，必须靠 Digitalk 的实际增长来证伪或证实。
 </div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l5"><div class="tab-inner">
 
-<h2>六、行业分类与特征（L5框架）</h2>
+<h2>六、行业分类（L5框架）</h2>
 
 <h3>6.1 行业类型判断</h3>
 <div class="summary-box">
-  <strong>行业类型：成长性行业（成熟成长型软件——公用事业/电信计费CIS）</strong><br>
-  <strong>判断依据：</strong>Hansen所处的计费客户信息系统（CIS）赛道属于"利基市场成熟成长型"——全球公用事业CIS市场约80-100亿美元规模，增速8-12%（云化转型驱动）。核心增长驱动力：① 全球公用事业数字化（智能电网+可再生能源计量推动CIS升级需求）；② 云化迁移（SaaS替代传统本地部署，客单价提升2-3倍）；③ 并购整合（Hansen是典型的"并购平台型"选手，通过收购补充产品线/区域覆盖）。<br><br>
-  <strong>成长属性：</strong>营收增速11%（非高成长但有确定性），高客户粘性+高切换成本+经常性收入占比~70%是ASX中少有的"确定性成长"标的。可比公司：Oracle Utilities、SAP IS-U、Fluent（私有）、BillingPlatform等。
+  <strong>行业类型：非周期股 —— 价值型 / 成熟型（采用「非周期股评分体系」，与总结论一致）。</strong><br><br>
+  <strong>判断依据（四条）：</strong><br>
+  ① <strong>mission-critical 属性</strong>：客户是电力、燃气、水务公司与电信／付费电视运营商，采购的是<b>账单与计费系统（CIS / BSS）、ERP、网络管理、HV/MV 配电自动化</b>——这是这些企业每天开门就要跑的核心系统，一套 ERP 跑错一步就是全市停电账单出错，<strong>替换成本与切换风险极高</strong>，客户没有频繁更换供应商的动机；<br>
+  ② <strong>收入以软件与维护为主</strong>：收入 90% 以上为软件与支持维护，FY26 Support &amp; Maintenance 达 230.3m（+13.4%）、占营收 59.6%，需求不随商品周期波动；<br>
+  ③ <strong>需求侧是公用事业与电信资本开支</strong>，与宏观周期弱相关，属于需求稳定、可预测的成熟软件（对应 <code>industry-classification.md</code>：非周期股 →「科技(纯软件)」）；<br>
+  ④ <strong>长期增速天花板明显</strong>：计费系统是替换型需求而非扩张型需求，客户总量有限，成长靠客户数 × 席位/模块扩容 + 涨价，而非市场爆发——因此定为<strong>价值型/成熟型</strong>而非成长型（<strong>注意：用的是非周期股评分体系，不是成长股估值逻辑</strong>）。<br><br>
+  <strong>为什么不是周期股：</strong>周期股的定义是「利润靠供需错配、PE 低时反而最贵」。HSN 的需求由公用事业/电信的 IT 预算决定，与产能利用率、商品价格、库存周期均无关联，FY22→FY26 的利润波动主要来自<strong>并购与会计口径（IFRS15、收购摊销），而非行业供需</strong>——这类波动属公司层面事件，不构成周期属性。
 </div>
 
-<h3>6.2 行业集中度与壁垒</h3>
+<h3>6.2 集中度与壁垒</h3>
 <table>
-  <tr><th>维度</th><th>判断</th></tr>
-  <tr><td>行业集中度</td><td><strong>适中且分散</strong>——全球公用事业CIS市场高度碎片化（各地区有本地供应商），Hansen在亚太和欧洲有优势、北美持续扩张中。CR3（Oracle/SAP/Hansen）约占35-40%。</td></tr>
-  <tr><td>技术壁垒</td><td><strong>高</strong>——计费系统是公用事业/电信的"核心任务系统"，涉及复杂费率计算（数千种费率方案）、监管合规、大规模数据处理。开发周期长、测试严格。云化转型进一步提高了技术门槛。</td></tr>
-  <tr><td>客户切换成本</td><td><strong>极高</strong>——计费系统部署周期12-24个月，一旦上线几乎不会更换（切换成本高达合同金额2-3倍）。这是Hansen最深的护城河。</td></tr>
-  <tr><td>规模效应</td><td><strong>中等</strong>——并购整合带来客户基数和收入规模效应，但各地区仍需本地化服务团队。</td></tr>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>行业集中度 CR3</td><td><strong>数据待补充</strong></td><td>全球行业垂直软件细分市场（utility billing / telecom BSS）CR3、CR5 数据未获取，不参与判断</td></tr>
+  <tr><td>竞争格局（定性）</td><td><span class="neutral">偏集中 / 高度分散的数据未获取</span></td><td>从 Hansen 作为澳、新、英电力行业计费软件 <strong>长期 incumbent</strong> 的地位推断，本地市场呈「本土 incumbent 主导 + 少数全球玩家」的格局；但全球口径的集中度需数据验证</td></tr>
+  <tr><td>壁垒①：技术壁垒</td><td><span class="good">强</span></td><td>账单引擎需处理复杂的多费率、多计量点、实时结算与监管合规，多币种多司法辖区（Hansen 服务 80+ 国家），工程 know-how 沉淀数十年</td></tr>
+  <tr><td>壁垒②：转换成本（最强壁垒）</td><td><span class="good">极强</span></td><td>替换计费系统涉及历史账单迁移、接口重写、财务对账与业务中断风险，客户几乎不会主动切换；这是本生意最核心的护城河</td></tr>
+  <tr><td>壁垒③：牌照／监管壁垒</td><td><span class="good">强（间接）</span></td><td>计费数据受公用事业与电信监管规则约束，合规要求形成事实性准入门槛</td></tr>
+  <tr><td>壁垒④：品牌与客户关系</td><td><span class="good">强</span></td><td>与 Virgin Media O2 / Telefónica 等大型运营商的多十年合同关系，重签成本高</td></tr>
+  <tr><td>壁垒⑤：规模壁垒</td><td><span class="neutral">中等</span></td><td>研发投入规模大（新摊销 37.47m/年对应持续研发），小企业难以覆盖 80+ 国家的合规与本地化成本</td></tr>
+  <tr><td>定价权</td><td><span class="neutral">中等</span></td><td>转换成本高支持提价能力，但客户为受监管的公用事业／大型电信，预算受管制，涨价空间受约束</td></tr>
 </table>
 
-<h3>6.3 生命周期阶段</h3>
+<h3>6.3 生命周期与周期位置</h3>
 <div class="highlight-box">
-  <strong>阶段：成熟成长期（稳定增长+云化转型）</strong><br>
-  传统本地部署业务已进入成熟期（存量客户维护+升级），但云化迁移（SaaS）处于成长期——目前SaaS收入占比~25%，正在快速提升。整体来看，公司处于"成熟业务提供稳定现金流+新业务（云SaaS）驱动增量增长"的黄金阶段。<br><br>
-  <strong>投资策略重点：</strong>关注云SaaS收入占比提升速度（关键质量指标）、并购后整合效果（商誉减值的反向验证）以及FCF趋势（决定分红增长潜力）。
+  <strong>生命周期：成熟期（价值型/成熟型）。</strong><br>
+  <strong>依据：</strong>① 计费／ERP 属于替换型需求，客户总量基本固定，行业长期增速≈GDP 或略高（与公用事业 IT 预算同向），不随技术浪潮爆发；② 收入结构已在做「经常性化」置换（License → 按量消耗 + 维护），典型成熟软件商的现金流重塑；③ 公司体量（营收 386.5m）已稳定在 3~4 亿区间五年（FY22 349.6 → FY26 386.5，5 年 CAGR 仅 2.5%）。<br><br>
+  <strong>周期位置：不适用。</strong>本报告为非周期股（价值型/成熟型），采用非周期股评分体系，<strong>不做周期底部/顶部的 PB 分位判断</strong>（这是周期股评分体系的 15 分权重项，与本报告体系无关）。用周期位置替代的观察是「<strong>经营景气位置</strong>」：FY27 是公司自述的「投资与过渡年」（利润率指引降到 26% 以下、营收持平），FY28 才是恢复年——<strong>即经营景气处于「主动压低的谷底」，但这是管理层可控的投入节奏，不是需求崩塌</strong>。
 </div>
 
-<h3>6.4 成长股成色检验（四步法修正版——低增速高确定性适用）</h3>
+<h3>6.4 同行对比</h3>
 <table>
-  <tr><th>步骤</th><th>检验内容</th><th>数据</th><th>判定</th></tr>
-  <tr><td>① 营收</td><td>有没有实在的生意？</td><td>营收3.925亿，连续5年正增长，经常性收入~70%</td><td class="good">✅ 过关</td></tr>
-  <tr><td>② 毛利率</td><td>产品竞争力如何？</td><td>毛利率34.36%（+3.12pct），TTM 37.18%持续改善</td><td class="good">✅ 过关</td></tr>
-  <tr><td>③ CFO</td><td>能不能自己造血？</td><td>CFO 7,262万，CFO/净利1.68，FCF持续为正</td><td class="good">✅ 过关（优秀）</td></tr>
-  <tr><td>④ 估值</td><td>价格是否合理？</td><td>PE 13.6x, PS 2.21x, 均远低于软件同业</td><td class="good">✅ 合理偏低</td></tr>
+  <tr><th>指标</th><th>本公司 HansenTech (HSN)</th><th>同行A：Technology One (TNE)</th><th>同行B：iCar Asia / Damstra</th><th>评价</th></tr>
+  <tr><td>ROE</td><td>12.5%</td><td>33.53%</td><td>数据待补充</td><td class="bad">Hansen 低（不足 TNE 的 4 成）</td></tr>
+  <tr><td>净利率</td><td>12.4%</td><td>数据待补充（参考 TNE 的 ROA 14.58%）</td><td>数据待补充</td><td class="bad">Hansen 低</td></tr>
+  <tr><td>营收增速</td><td><span class="bad">-1.5%</span></td><td>数据待补充</td><td>数据待补充</td><td class="bad">Hansen 转负</td></tr>
+  <tr><td>负债率</td><td>37.2%</td><td>Debt/Equity 0.12，净现金</td><td>数据待补充</td><td class="neutral">Hansen 杠杆偏高（TNE 净现金更干净）</td></tr>
+  <tr><td>PE</td><td>14.4x（报表）/ 10.4x（Underlying）</td><td>71.34x（前瞻 55.77x）</td><td>数据待补充</td><td class="good">Hansen 显著便宜（约 TNE 的 1/5）</td></tr>
+  <tr><td>PB</td><td>1.80x</td><td>23.35x</td><td>数据待补充</td><td class="good">Hansen 显著便宜（约 TNE 的 1/13）</td></tr>
+  <tr><td>PS</td><td>1.78x</td><td>15.84x</td><td>数据待补充</td><td class="good">Hansen 显著便宜（约 TNE 的 1/9）</td></tr>
+  <tr><td>净现金 / EBITDA</td><td>-0.28x（净负债）</td><td>-1.03x（净现金）</td><td>数据待补充</td><td class="good">两者均无债务风险</td></tr>
 </table>
-
 <div class="summary-box">
-  <strong>四步法结论：</strong>四项全部过关——Hansen不是高成长故事，而是"确定性+性价比"的投资逻辑。营收稳健增长，毛利率改善，现金流充沛，估值有安全边际。四步验证显示公司是"真业务+好生意+低估值"的标的。
+  <strong>竞争位置：</strong>Hansen 的财务质量（ROE 12.5% vs TNE 33.53%、营收 -1.5%）<strong>明显弱于 Technology One</strong>，但估值只有 TNE 的 <strong>1/5 ~ 1/8</strong>——<strong>市场在为其增长停滞定价</strong>。这个折价不能简单看作「错杀」：TNE 的 71x PE / 23x PB 对应的是 33.53% 的 ROE 与成长预期，属于「为增长付费」；HSN 的 10.4x 对应 12.5% 的 ROE 与零增长，属于「为现金与稳定付费」。<strong>HSN 的真实定位是「便宜的现金流机器」，不是「便宜的成长股」</strong>——买入 HSN 不能期待 TNE 那种估值扩张，只能赚股息（2.8%）+ 估值在 10~18x 区间内的修复 + FY28 兑现后的重估。<br><br>
+  <strong>口径提醒：</strong>TNE 的 PE 71.34x（前瞻 55.77x）、PB 23.35x、PS 15.84x 均为第三方口径，与 HSN 的 14.4x／1.80x／1.78x 同源可比；但 HSN 若改用 Underlying 口径，PE 仅 10.4x，<strong>实际折价比上表更大</strong>。同行B（iCar Asia 或 Damstra）财务数据 待补充，不参与评价。
 </div>
 
 <h3>6.5 估值方法匹配</h3>
-<table>
-  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
-  <tr><td>成熟成长型软件</td><td>PE + EV/EBITDA</td><td>FCF Yield、PS（验证SaaS收入估值）</td><td class="good">✅ 匹配——PE 13.6x低估，EV/EBITDA 7.1x吸引，FCF Yield 7.5%优秀</td></tr>
-</table>
-
 <div class="summary-box">
-  <strong>估值方法总结：</strong>Hansen作为成熟软件公司，最适合用PE+EV/EBITDA+FCF Yield组合估值。当前三项指标均指向低估：PE 13.6x（历史低位）、EV/EBITDA 7.1x（显著低于同业10-15x）、FCF Yield 7.5%（远高于银行存款和债券收益率）。市场可能过度折扣了营收增速（11%），但忽略了"高确定性+高现金流+低风险"的溢价应该更高。如果市场重新定价（PE回归15x），对应股价~$5.00（+14%）；回归20x则~$6.60（+50%）。
+  <strong>估值方法：首选 PE ＋ 股息率，辅助 PB / EV-EBITDA / PCF；当前基本匹配，但第三方 PE 口径需修正。</strong><br><br>
+  非周期股（价值型/成熟型）→ 对应 L5 对照表中「防御型/价值型」的估值范式：<strong>PE 与股息率为主，PB 与 EV/EBITDA 为辅</strong>（软件行业因利润口径差异应加 PS / PCF 交叉验证）。<br><br>
+  <strong>当前市场用法核对：</strong>① 第三方用 PE 14.81x —— <strong>口径失真</strong>，它基于报表 NPAT（未剔除 37.47m 收购摊销），按 Underlying NPATA 应为 10.4x，估值被系统性高估了约 42%；② PB 1.80x —— <strong>形式匹配但锚点弱</strong>，因有形账面价值为 -20.65m，PB 分母无实质资产支撑；③ 股息率 2.8% —— 匹配，对成熟型标的这是真实回报来源；④ PCF 6.2x 与 EV/Underlying EBITDA 6.10x —— <strong>本报告认为这才是最有意义的估值锚</strong>，因为它绕开了摊销与税率的会计扰动，直接反映现金创造能力；⑤ 未使用 PS/PEG —— 正确，营收负增长时 PEG 无意义。<br><br>
+  <strong>结论：</strong>市场用的方法<strong>方向对、口径粗</strong>。按合理 PE 10~18x（ROE 12.5% 对应）来看，10.4x 的 Underlying PE 处在<strong>下沿</strong>；用 PCF 6.2x 与 EV/EBITDA 6.10x 交叉验证，同样指向「不贵」。<strong>不建议用 71x PE 的成长股逻辑（PS/PEG）来给 HSN 估值</strong>——它的增速与利润率结构属于成熟型，用错范式会得出「便宜到不该买」或「便宜是因为该便宜」两个极端结论。
 </div>
 
 </div></div>
@@ -382,101 +489,149 @@
 
 <h3>7.1 六步法总结</h3>
 <div class="summary-box">
-  <strong>Step 1 - 行业定位：</strong>成熟成长型软件（公用事业/电信计费CIS），高客户切换成本护城河，全球市场分散且碎片化。<br>
-  <strong>Step 2 - 财务体检：</strong>ROE 18%优秀，高利润型杜邦，CFO/净利1.68含金量高，FCF 6,727万持续健康，负债率36.8%极低。<br>
-  <strong>Step 3 - 估值判断：</strong>PE 13.6x（近5年低位），PS 2.21x（远低于同业），EV/EBITDA 7.1x，FCF Yield 7.5%，极具吸引力。<br>
-  <strong>Step 4 - 风险排查：</strong>商誉占比64%需关注减值风险，营收增速11%偏慢，FY2024重组导致利润波动。<br>
-  <strong>Step 5 - 结论：</strong>好公司（ROE 18%+FCF充沛+低负债） + 好价格（PE 13.6x+FCF Yield 7.5%），具备安全边际。<br>
-  <strong>Step 6 - 跟踪：</strong>看云SaaS收入占比、并购整合后的商誉减值测试、FCF趋势是否持续、AI对计费領域的竞争影响。
+  <strong>Step 1 - 行业定位：</strong>非周期股（价值型/成熟型）行业垂直软件；客户为电力/水务/燃气/电信，计费 ERP 与 CIS 属 mission-critical；集中度 CR3 数据待补充；核心壁垒是<strong>转换成本 + 技术 know-how + 监管合规</strong>，服务 80+ 国家，澳新英电力计费 incumbent。<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 12.5%（中性档，上版 18.02% 已回落）；杜邦<strong>均衡型</strong>（12.4% × 0.638 × 1.587，去杠杆 ROA 仅 7.9%，三项均无突出项）；<strong>CFO 质量全表最强：</strong>CFO 110.4m（+52.0%）、CFO/净利 <strong>2.31</strong>、FCF 108.75m（+61.7%）；负债率 37.2%、无流动有息借款；但<strong>有形账面价值 -20.65m</strong>。<br>
+  <strong>Step 3 - 估值判断：</strong>股价 A$3.38、市值 6.887 亿；PE <strong>10.4x（Underlying）/ 14.4x（报表）/ 14.81x（第三方口径失真）</strong>、PB 1.80x、PS 1.78x、<strong>PCF 6.2x</strong>、EV/EBITDA 6.10x、股息率 2.8%；ROE 12.5% 对应合理 PE 10~18x → <strong>现价在合理区间下沿</strong>；52 周 A$2.95~6.17，现价距高点 -45.2%；历史 PE 精确分位 数据待补充。<br>
+  <strong>Step 4 - 风险排查：</strong>① <strong>营收 -1.5%（核心问题）</strong>，FY27 指引仍为「大致持平」，增长缺口或连续两年；② FY27 Underlying EBITDA 利润率指引「超过 26%」，低于 FY26 的 31.0%；③ <strong>有形账面价值为负 -20.65m</strong>，Digitalk 商誉有减值敞口；④ License→经常性收入过渡未完成；⑤ 长期借款 71.58m + 汇率逆风（FY26 汇兑 -2.205m）+ 客户集中度（Virgin Media O2 / Telefónica）。<br>
+  <strong>Step 5 - 结论：</strong><strong>好行业 ✓、好公司 △、好价格 ✓</strong>。生意稳（90%+ 软件与维护收入、S&amp;M +13.4%）、价格在下沿（10.4x Underlying PE、6.2x PCF、距高点 -45%），但<strong>增长是明确的空缺</strong>。综合评分 80/100「品质优秀」（刚好过线），较上版 100 分大幅下修。<strong>适合作为防御型现金流持仓按股息+区间修复买，不适合作为成长股持有</strong>。<br>
+  <strong>Step 6 - 跟踪：</strong>关键指标 —— <strong>S&amp;M 增速是否落在 6~8% 指引内</strong>（核心）、License 过渡完成时点、FY28 EBITDA 利润率能否回 30%+、经营现金流是否维持 CFO/净利 ≥1.0、Digitalk 收入贡献与商誉减值测试结论。卖出信号 —— <strong>S&amp;M 增速跌破 6% 下沿</strong>、FY28 利润率指引再度下调、净负债/EBITDA 升破 1.5x、商誉出现减值迹象、流通股股东结构恶化。下一个验证节点：<strong>2026-11-20 发布的 1H FY27 业绩</strong>。
 </div>
 
 <h3>7.2 好公司三要素检查</h3>
 <table>
   <tr><th>要素</th><th>判断</th><th>依据</th></tr>
-  <tr><td>① 好行业</td><td class="good">✓</td><td>公用事业数字化确定性高，计费系统切换成本极高，行业护城河深，不受消费周期影响</td></tr>
-  <tr><td>② 好公司</td><td class="good">✓</td><td>ROE 18%>15%，毛利率34-37%稳定提升，CFO/净利1.68>1，FCF持续正</td></tr>
-  <tr><td>③ 好价格</td><td class="good">✓</td><td>PE 13.6x近5年低点，PS 2.21x远低于同业，PEG 1.2x<1.5，EV/EBITDA 7.1x</td></tr>
+  <tr><td>① 好行业</td><td><strong>✓ 是</strong></td><td>需求稳定且不可替代：计费 ERP / CIS 属 mission-critical，替换成本极高；客户为电力、水务、燃气、电信等受监管行业，需求不随商品周期波动；90% 以上收入为软件与支持维护；服务 80+ 国家、澳新英电力计费 incumbent。<strong>扣分项：</strong>行业成熟、长期增速≈GDP，成长天花板明显，属价值型/成熟型而非成长型</td></tr>
+  <tr><td>② 好公司</td><td><strong>△ 尚可</strong></td><td><strong>达标：</strong>CFO 110.4m &gt; 净利润 47.76m（CFO/净利 2.31，全表最强）；<strong>Underlying EBITDA 利润率 31.0%（FY25 28.5%，+2.5pp）稳定且提升</strong>；负债率 37.2%、无流动有息借款；净负债仅 0.28x EBITDA。<strong>不达标：</strong>ROE 12.5% &lt; 15%；净利率 12.4% &lt; 15%；<strong>营收 -1.5% 转负</strong>；有形账面价值 -20.65m。按「ROE&gt;15%，毛利率稳定或提升，CFO&gt;净利润」三项标准：满足 2 项（现金流 + 盈利质量改善），<strong>不满足 ROE 与增长</strong></td></tr>
+  <tr><td>③ 好价格</td><td><strong>✓ 是（偏下沿）</strong></td><td>PE 10.4x（Underlying NPATA 口径）/ 14.4x（报表口径），ROE 12.5% 对应合理区间 10~18x → <strong>在下沿</strong>；PB 1.80x、PS 1.78x、<strong>PCF 6.2x</strong>、EV/Underlying EBITDA 6.10x、股息率 2.8%；股价距 52 周高点 -45.2%、距低点 +14.6%；PB 1.80x 低于 1H FY27 前的 4.43 元对应水平（2.36x）；分析师一致目标 A$5.40（+59.8%）。<strong>扣分项：</strong>PEG 不适用（增速为负）；<strong>PB 1.80x 的分母有形权益为负，PB 锚点失效</strong>，实际安全边际应以 PCF 与有形现金流折现为主</td></tr>
 </table>
 
-<h3>7.3 三个陷阱排查</h3>
-<div class="highlight-box">
-  <strong>☐ 价值陷阱：</strong>❌ 未命中——PE低（13.6x）但有真增长（11%营收+18% ROE），非"低PE+零增长+高负债"的经典价值陷阱。<br>
-  <strong>☐ 周期陷阱：</strong>❌ 未命中——公用事业软件需求弱周期（水电燃气账单永远要处理），不受经济周期影响。<br>
-  <strong>☐ 烧钱陷阱：</strong>❌ 未命中——Hansen是现金牛，FCF 6,727万，CFO/净利1.68，完全不需要融资续命。
+<h3>7.3 风险评估</h3>
+<div class="danger-box">
+  <strong>a. 三个陷阱排查</strong><br>
+  ☐ <strong>低PE + 低增长 + 高负债 = 价值陷阱</strong> → <span class="neutral"><strong>部分命中（2/3 命中）</strong></span>：低 PE ✓（10.4x Underlying）、低增长 ✓（营收 -1.5%、FY27 指引持平）；<strong>但高负债不成立</strong>——负债率仅 37.2%、无流动有息借款、净负债/EBITDA 0.28x、利息保障 27.5x。所以不是债务型价值陷阱，而是「<strong>增长停滞型价值陷阱</strong>」：如果 FY28 收入与 30% 利润率无法兑现，现价 10.4x 会变成「便宜但永远不涨」，靠 2.8% 股息度日。<strong>因此 FY28 指引兑现与否是这家公司「陷阱 vs 机会」的分水岭</strong>。<br><br>
+  ☐ <strong>低PE + 周期顶点 = 周期陷阱</strong> → <strong>未命中</strong>。本报告为非周期股（价值型/成熟型），采用非周期股评分体系，不涉及周期位置判断；公司利润波动来自并购与会计口径（IFRS15、收购摊销），不来自供需错配，不存在「PE 低是因为利润在顶点」的周期陷阱风险。<br><br>
+  ☐ <strong>高PE + 高增速但现金流为负 = 烧钱陷阱</strong> → <strong>完全未命中（反向）</strong>。PE 仅 10.4x、增速为负、CFO <strong>+110.4m</strong>（CFO/净利 2.31）、FCF <strong>+108.75m</strong>。这是「低PE + 低增速 + <strong>强现金流</strong>」的组合，与烧钱陷阱的三个条件完全相反。<br><br>
+  <strong>⚠️ 额外命中项（本报告新增，模板外）：「并购累积型」风险</strong> —— 历史收购已把有形账面价值累积成 <strong>-20.65m</strong>（有形每股 -0.10 澳元），商誉 292.15m + 无形 112.24m = 404.39m &gt; 账面权益 383.74m；FY26 仍付现 68.63m 做收购。这是三个陷阱模板未覆盖、但对本公司更贴身的风险类型。
 </div>
 
-<h3>7.4 管理层与治理风险</h3>
+<h3>7.4 风险评估（续）</h3>
+
+<h3 style="margin-top:6px;">b. 管理层与治理风险</h3>
 <table>
   <tr><th>事项</th><th>判断</th><th>依据</th></tr>
-  <tr><td>管理层能力与履历</td><td>好</td><td>Andrew Hansen（创始人之子）掌舵20+年，对公司业务理解深；专业管理团队已搭建完成</td></tr>
-  <tr><td>股权结构与利益一致性</td><td>一般</td><td>创始人家族持股已减持（从~17%降至<10%），管理层持股比例不高，利益绑定不紧</td></tr>
-  <tr><td>关联交易/暴雷历史</td><td>无</td><td>无重大违规、监管处罚或诉讼记录</td></tr>
-  <tr><td>资本配置记录</td><td>合理</td><td>并购驱动增长逻辑清晰，分红持续20年（每股10¢），近期加大股份回购</td></tr>
-  <tr><td>CEO交接/关键人员变动</td><td>需关注</td><td>Andrew Hansen已卸任CEO保留MD职位，新CEO的管理风格和战略方向需要时间验证</td></tr>
+  <tr><td>管理层能力与履历</td><td><strong>数据待补充</strong></td><td>本次分析基于 FY26 年报公开财务数据，未获取管理层履历与过往兑现记录，<strong>不参与评价</strong></td></tr>
+  <tr><td>股权结构与利益一致性</td><td><strong>数据待补充</strong></td><td>大股东持股比例、管理层持股比例 数据待补充（期末总股数 203.77M 股）</td></tr>
+  <tr><td>关联交易 / 暴雷历史</td><td><strong>数据待补充</strong></td><td>诉讼、监管处罚、关联交易核查 数据待补充（本次分析未纳入）</td></tr>
+  <tr><td>资本配置记录</td><td><span class="neutral"><strong>合理，有瑕疵</strong></span></td><td><strong>正面：</strong>2024 年收购 Digitalk（美国有线电视计费），<strong>FY26 完成整合</strong>——重组费用从 11.582m 降至 0.379m（-96.7%），整合执行到位；FY26 派息 19.28m（分红率 40.4% 对 NPAT）；长期债务新提 73.58 / 偿还 68.78，<strong>净增债务仅 4.8m</strong>，未为并购加杠杆。<strong>瑕疵：</strong>历年收购累积已把有形净资产买成负数（-20.65m），且 FY26 仍支出 68.63m 收购现金——<strong>并购节奏偏激进，是 ROE 被摊薄与 PB 锚点失效的根源</strong></td></tr>
+  <tr><td>管理层增减持记录</td><td><strong>数据待补充</strong></td><td>近一年董事及高管增减持情况 数据待补充</td></tr>
+  <tr><td>CEO 交接 / 关键人员变动</td><td><strong>数据待补充</strong></td><td>FY26 公告未显示重大交接；正式信息 数据待补充</td></tr>
+  <tr><td>战略执行力（间接印证）</td><td><span class="good"><strong>好</strong></span></td><td>FY26 是「把成本纪律与 AI 效率兑现」的一年：除 D&amp;A 费用率 74.9%→70.8%、重组费用 -96.7%、Cash EBITDA +13.7%、CFO +52.0%；<strong>同时坦诚地主动下调 FY27 利润率指引并定调「投资与过渡年」</strong>，没有用一次性收益粉饰（FY25 的 11.35m 收购相关一次性收入 FY26 未再出现）</td></tr>
 </table>
 
-<h3>7.5 盈利可持续性</h3>
+<h3>c. 盈利可持续性</h3>
 <table>
   <tr><th>维度</th><th>判断</th><th>依据</th></tr>
-  <tr><td>增长靠量还是靠价？</td><td>混合（价驱动为主）</td><td>云化迁移带来客单价提升（价升）+ 新客户获取（量增）</td></tr>
-  <tr><td>涨价能否持续？</td><td>能</td><td>云SaaS订阅价比传统许可费高2-3倍，云迁移周期还有5-8年</td></tr>
-  <tr><td>非经常性利润占比</td><td>低</td><td>FY2025有少量政府补贴和汇兑损益，总体占比<5%</td></tr>
-  <tr><td>大客户/大项目集中度</td><td>分散</td><td>服务80+国家，200+客户，无单一客户占比>10%</td></tr>
-  <tr><td>政策/监管依赖度</td><td>低</td><td>公用事业监管变化可能催生系统升级需求（利好），不受补贴政策影响</td></tr>
+  <tr><td>增长靠量还是靠价？</td><td><strong>量驱动为主</strong></td><td>收入结构上体现为客户数 × 席位/模块扩容与支持维护覆盖扩大（Support &amp; Maintenance 230.3m、+13.4%、占营收 59.6%）；<strong>具体量价拆解 数据待补充</strong>（公司未披露价／量分解）</td></tr>
+  <tr><td>涨价能否持续？</td><td><span class="neutral"><strong>能，但空间受限</strong></span></td><td>定价权来源是 <strong>mission-critical 地位 + 极高转换成本</strong>（客户替换计费系统风险太大）；<strong>制约</strong>在于客户为受监管的公用事业／大型电信运营商，IT 预算与费率审批受管制，涨价幅度需逐单谈判。<strong>FY27 S&amp;M 指引 +6~8% 低于 FY26 实际 +13.4%</strong>，暗示涨价贡献正在收敛</td></tr>
+  <tr><td>非经常性利润占比</td><td><span class="good"><strong>低</strong></span></td><td>FY26 NPAT 47.76m vs Underlying NPAT 48.48m，差额仅 0.72m（1.5%）；且 FY25 含收购相关一次性收入 11.35m、重组费用 11.58m <strong>两项在 FY26 均已出清</strong>（重组降至 0.38m、无收购相关收入）——报表利润已高度「干净化」。<strong>唯一的非现金大项是 37.47m 收购摊销</strong>，占 NPAT 的 78%，但它不对应现金流出</td></tr>
+  <tr><td>大客户 / 大项目集中度</td><td><span class="bad"><strong>集中</strong></span></td><td>已确认存在单笔重大合同：Virgin Media O2（FY25 前期许可费一次性前置确认）、Telefónica（FY26 续约，重签为经常性收入+现金结构）。<strong>前 5 大客户收入占比 数据待补充</strong>——这是本报告最需要补齐的单一数据缺口，因其直接决定收入波动性</td></tr>
+  <tr><td>政策 / 监管依赖度</td><td><span class="good"><strong>低</strong></span></td><td>客户为商业客户（公用事业公司、电信运营商），非补贴或牌照依赖型生意；监管仅通过客户的费率审批与 IT 预算间接传导，且<b>监管同时是壁垒</b>（计费合规要求抬高准入门槛）</td></tr>
+  <tr><td>汇率依赖度</td><td><span class="neutral"><strong>中</strong></span></td><td>服务 80+ 国家、收入多币种；FY26 汇兑由 FY25 <strong>+0.05m 收益转为 -2.205m 损失</strong>，现金流量表汇兑影响 -5.39m；FY27 指引已把汇率列为营收持平的原因之一</td></tr>
+  <tr><td>并购贡献度</td><td><span class="bad"><strong>高</strong></span></td><td>FY22→FY26 营收 349.6→386.5m（5 年 CAGR 仅 2.5%），其中 FY25 跳升至 392.5m 与 FY26 的稳定很大程度来自 Digitalk 等并购并表；<strong>内生增长数据待补充</strong></td></tr>
 </table>
 
-<h3>7.6 关键变量敏感性</h3>
-<div class="summary-box">
-  <strong>变量1：云SaaS迁移速度</strong><br>
-  乐观：SaaS收入占比3年内达50% → 毛利率升至45%+，EPS ~$0.45<br>
-  中性：SaaS收入占比每年提升5pct → EPS ~$0.35（基本符合预期）<br>
-  悲观：客户云迁移意愿低于预期 → 营收增速降至8%，EPS ~$0.28<br><br>
-  <strong>变量2：并购标的整合效果</strong><br>
-  乐观：近年并购标的顺利整合，营收协同效应释放 → EPS提升10-15%<br>
-  中性：整合平稳，按计划贡献利润 → EPS符合预期<br>
-  悲观：标的业绩不达预期 → 商誉减值5,000万-1亿，EPS一次-性冲击$0.25-0.50<br><br>
-  <strong>变量3：AI对计费行业的竞争影响</strong><br>
-  乐观：AI作为工具提升Hansen产品竞争力（智能客服/自动计费）→ 客单价提升<br>
-  中性：AI改变部分计费流程但不颠覆格局 → 维持现状<br>
-  悲观：AI原生计费初创公司颠覆传统CIS → 竞争加剧，市场份额受损
-</div>
-
-<h3>7.7 前景展望</h3>
-<div class="summary-box">
-  <strong>未来1-3年核心驱动</strong><br><br>
-  正向驱动：<br>
-  1. 云化迁移——全球公用事业CIS云化率仅~20%，还有5-8年迁移窗口，客单价提升2-3倍<br>
-  2. 北美扩张——近期中标洛杉矶水务局等大型项目，北美市场渗透加速<br>
-  3. 并购整合——凭借强FCF持续并购补强产品线，规模效应逐步显现<br><br>
-  负向拖累：<br>
-  1. 商誉减值风险——若不慎收购高估值标的，减值将冲击利润<br>
-  2. AI技术颠覆——AI原生计费方案可能降低行业护城河<br>
-  3. 管理层交接——CEO过渡期的战略不确定性
-</div>
-
-<h3>7.8 三情景简表</h3>
+<h3>d. 关键变量敏感性</h3>
+<p style="font-size:12px;color:#666;">EPS 均以 <strong>Underlying NPATA 口径</strong>推演。基准：FY26 Underlying EBITDA 119.642m → Underlying NPATA 65.945m，<strong>转换系数 55.1%</strong>（FY27 折旧与税负假设不变）。股数按 203.77M 固定。</p>
 <table>
-  <tr><th>情景</th><th>假设条件</th><th>EPS FY2027E</th><th>PE区间</th><th>预期回报</th></tr>
-  <tr><td>乐观</td><td>云迁移加速+并购顺利+北美突破</td><td>$0.45</td><td>18-22x</td><td>$8.10-$9.90 (+85-125%)</td></tr>
-  <tr><td>中性</td><td>现状延续，稳步增长</td><td>$0.38</td><td>15-18x</td><td>$5.70-$6.84 (+30-56%)</td></tr>
-  <tr><td>悲观</td><td>整合不顺+AI冲击+客户流失</td><td>$0.28</td><td>10-12x</td><td>$2.80-$3.36 (-36-24%)</td></tr>
+  <tr><th>变量</th><th>乐观情景</th><th>中性情景</th><th>悲观情景</th></tr>
+  <tr>
+    <td><strong>① Support &amp; Maintenance 增速</strong><br><span style="color:#666;">FY27 指引 +6~8%</span></td>
+    <td>+8% → 248.7m<br><span class="good">对 EPSa 约 <strong>+0.6 澳分</strong></span></td>
+    <td>+7% → 246.4m<br><span class="neutral">基准，贡献约 +0.5 澳分</span></td>
+    <td>+4%（跌破指引下沿）→ 239.5m<br><span class="bad">对 EPSa 约 <strong>-1.2 澳分</strong></span></td>
+  </tr>
+  <tr>
+    <td><strong>② Underlying EBITDA 利润率</strong><br><span style="color:#666;">FY27 指引「超过 26%」，FY28 目标 30%+</span></td>
+    <td>28.0%（过渡提前结束）<br><span class="good">对 EPSa 约 <strong>+3.5 澳分</strong></span></td>
+    <td>26.5%（指引中值）<br><span class="neutral">较 FY26 的 31.0% 下降 4.5pp</span></td>
+    <td>25.0%（「超过 26%」落空）<br><span class="bad">对 EPSa 约 <strong>-3.9 澳分</strong></span></td>
+  </tr>
+  <tr>
+    <td><strong>③ License→经常性收入过渡 + 汇率</strong><br><span style="color:#666;">决定营收能否持平</span></td>
+    <td>营收 +3%（过渡收尾 + 汇率转顺）→ 398.1m<br><span class="good">对 EPSa 约 <strong>+2.4 澳分</strong></span></td>
+    <td>营收持平 386.5m（指引口径）<br><span class="neutral">EPSa 基准 27.7 澳分</span></td>
+    <td>营收 -3%（过渡拉长 + 汇率逆风加剧）→ 374.9m<br><span class="bad">对 EPSa 约 <strong>-2.5 澳分</strong></span></td>
+  </tr>
+  <tr style="font-weight:bold;background:#e8e8e8">
+    <td>合成 EPSa（±1）</td>
+    <td class="good">约 30.1 澳分<br><span style="font-weight:normal">（FY26 32.3 → -6.8%）</span></td>
+    <td class="neutral">约 27.7 澳分<br><span style="font-weight:normal">（FY26 32.3 → -14.2%）</span></td>
+    <td class="bad">约 25.3 澳分<br><span style="font-weight:normal">（FY26 32.3 → -21.7%）</span></td>
+  </tr>
 </table>
-<p style="font-size:13px;color:#666">概率判断：中性50%，乐观30%，悲观20%</p>
+<p style="font-size:12px;color:#666;">口径说明：EPSa = EBITDA × 55.1% ÷ 203.77M 股。转换系数取 FY26 实际值并假设 FY27 折旧摊销与有效税率不变；若 FY28 利润率回到 30%+ 且营收恢复增长，中性 EPSa 有望回到 31~32 澳分（≈ FY26 水平），这是券商目标价 A$5.40 的隐含前提。<strong>三变量的绝对 EPSa 敏感性为测算值，不构成公司指引或预测。</strong></p>
 
-<h3>7.9 讨论问题</h3>
+<h3>7.5 前景展望</h3>
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. <strong>Support &amp; Maintenance 经常性收入双位数增长，且被 FY27 指引确认</strong> — 逻辑：mission-critical 计费系统一旦上线，维护费随客户席位/模块扩容自动增长，属于「装机量驱动的年金」；FY26 已 +13.4% 至 230.3m，FY27 指引再增 6~8% 至约 246m，占营收比重将升至约 64%，<strong>收入质量持续提升</strong>。<br>
+  2. <strong>AI 已产生可验证的效率，而非仅是 PPT</strong> — 逻辑：除 D&amp;A 费用率从 74.9% 降至 <strong>70.8%</strong>，员工支出 -3.6% 而营收持平，Cash EBITDA +13.7%、CFO +52.0%；这是 AI 落在交付/工程/支持环节的直接财务证据，而非资本开支。<br>
+  3. <strong>Digitalk 整合红利 + FY28 利润率回归目标</strong> — 逻辑：重组费用 11.58m→0.38m 意味着整合成本已出清，Digitalk（美国有线电视计费）可开始贡献交叉销售与规模效应；董事会明确目标 <strong>FY28 营收恢复增长、Underlying EBITDA 利润率回到 30%+</strong>。<br>
+  4. <strong>资产负债表提供战略弹性</strong> — 逻辑：净负债仅 33.32m（0.28x EBITDA）、现金 54.83m、无流动有息借款、利息保障 27.5x，<strong>有足够空间再做一次 Digitalk 级别的并购而不伤财务</strong>。<br><br>
+  <strong>负向拖累：</strong><br>
+  1. <strong>FY27 是管理层主动承认的过渡年，且利润率指引下调</strong> — 逻辑：FY27 营收「大致持平」+ Underlying EBITDA 利润率指引「<strong>超过 26%</strong>」（低于 FY26 的 31.0%），原因是 Licence 收入贡献减少 + 持续投入 AI 能力、产品创新与客户主导开发；<strong>这意味着 FY27 的 EPSa 大概率同比下滑（中性推演 27.7 澳分，-14.2%）</strong>，估值分子在收缩。<br>
+  2. <strong>汇率逆风 + 收入结构转换期，两年零增长风险</strong> — 逻辑：FY26 汇兑由 +0.05m 收益转为 -2.205m 损失（现金流量表汇兑影响 -5.39m）；叠加 Licence→经常性收入的过渡仍在进行，过渡完成前营收易受前期许可费基数扰动。<strong>FY27 指引已经确认营收持平，增长缺口可能连续两年</strong>。<br>
+  3. <strong>客户集中度：大单续约周期决定单年波动</strong> — 逻辑：Virgin Media O2 / Telefónica 为单笔重大合同，FY25 的一次性前期许可费与 FY26 的 -14.5m License 下滑都是同一笔合同基数造成的；<strong>下一份大单的重签节奏将直接决定某个财年的营收形态</strong>。<br>
+  4. <strong>有形账面价值为负，下行保护缺失</strong> — 逻辑：商誉+无形 404.39m &gt; 账面权益 383.74m，PB 1.80x 的分母无实质资产；Digitalk 若业绩不达预期触发商誉减值，权益端将被直接冲击，且届时「减值→PB 变贵→ROE 虚高」的组合会同时污染三个估值与回报指标。
+</div>
+
+<h3>7.6 三情景简表（FY27，基于 Underlying NPATA 口径）</h3>
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>FY27 EPSa 预估</th><th>PE区间（合理 10~18x）</th><th>预期回报（对现价 3.38）</th></tr>
+  <tr><td><span class="good">乐观</span></td><td>营收 +3%（License 过渡收尾 + 汇率转顺）→ 398.1m；S&amp;M +8%；Underlying EBITDA 利润率 28.0%（过渡提前结束）</td><td class="good"><strong>约 30.1 澳分</strong><br><span style="font-weight:normal">（FY26 32.3，-6.8%）</span></td><td>12~14x → <strong>A$3.61 ~ 4.21</strong></td><td class="good"><strong>+6.8% ~ +24.6%</strong><br><span style="font-weight:normal">含股息约 +9.6% ~ +27.4%</span></td></tr>
+  <tr><td><span class="neutral">中性</span></td><td>营收持平 386.5m（指引口径）；S&amp;M +7% 至 246.4m；Underlying EBITDA 利润率 26.5%（指引「超过 26%」中值）</td><td class="neutral"><strong>约 27.7 澳分</strong><br><span style="font-weight:normal">（FY26 32.3，-14.2%）</span></td><td>10~14x → <strong>A$2.77 ~ 3.88</strong></td><td class="neutral"><strong>-18.0% ~ +14.8%</strong><br><span style="font-weight:normal">含股息约 -15.2% ~ +17.6%</span></td></tr>
+  <tr><td><span class="bad">悲观</span></td><td>营收 -3%（过渡拉长 + 汇率逆风加剧）→ 374.9m；S&amp;M +4%（跌破指引下沿）；Underlying EBITDA 利润率 25.0%（指引落空）</td><td class="bad"><strong>约 25.3 澳分</strong><br><span style="font-weight:normal">（FY26 32.3，-21.7%）</span></td><td>9~12x → <strong>A$2.28 ~ 3.04</strong></td><td class="bad"><strong>-32.6% ~ -10.1%</strong><br><span style="font-weight:normal">含股息约 -29.8% ~ -7.3%</span></td></tr>
+</table>
+<p style="font-size:12px;color:#666;">
+  <strong>概率判断：中性 55%，乐观 25%，悲观 20%。</strong>理由：中性情景直接采用公司 FY27 正式指引（营收持平、S&amp;M +6~8%、EBITDA 利润率「超过 26%」），指引可信度高但「超过 26%」本身措辞留有余地；乐观需 License 过渡与汇率同时转顺，概率较低；悲观对应指引落空，对一家指引一贯偏保守（FY26 实际 Underlying EBITDA 利润率 31.0% 远好于市场预期）的公司而言概率亦不高。<br>
+  <strong>关键提示：三情景的 EPSa 全部低于 FY26 的 32.3 澳分。</strong>这不是看空公司，而是管理层已经明说的「投资与过渡年」的必然结果——<strong>当前 3.38 元的股价，本质上已经price in 了中性情景</strong>（3.38 / 0.277 = 12.2x，正处合理区间中下沿）。<strong>真正的预期差在于 FY28：若管理层能兑现「营收恢复增长 + 利润率回到 30%+」，中性 EPSa 将回到 31~32 澳分，届时现价对应 PE 仅 10.5~10.9x，估值修复空间才真正打开（对应现价上行至 3.7~4.2；若市场给到 14x 则为 4.4~4.5）。</strong>
+</p>
+
+<h3>7.7 资金面信号</h3>
+<p style="font-size:12px;color:#666;"><strong>⚠️ 本节整体标注 N/A：</strong>ASX 市场无 A 股的北向资金、融资余额（两融）、大宗交易等制度性资金面数据。以下采用 ASX 本地替代指标。</p>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>北向资金持股变动</td><td><strong>N/A</strong></td><td>ASX 无北向资金制度</td></tr>
+  <tr><td>融资余额（两融）变动</td><td><strong>N/A</strong></td><td>ASX 无两融机制</td></tr>
+  <tr><td>大宗交易</td><td><strong>N/A</strong></td><td>ASX 无 A 股式大宗交易折溢价披露体系</td></tr>
+  <tr><td>机构持仓变动</td><td><strong>数据待补充</strong></td><td>澳洲本地机构／基金经理季度持仓 数据待补充</td></tr>
+  <tr><td>大股东增减持</td><td><strong>数据待补充</strong></td><td>董事及大股东增减持公告 数据待补充</td></tr>
+  <tr><td colspan="3" style="background:#f8f4e8;text-align:left"><strong>替代指标一：分析师一致预期</strong> — 评级 <strong>Buy</strong>，目标价 <strong>A$5.40</strong>，较现价 A$3.38 有 <strong>+59.8%</strong> 空间。目标价隐含 FY26 EPSa 16.7x（在合理区间 10~18x 内）或 FY27 中性 EPSa 19.5x（超出上沿），本质是<strong>提前为 FY28「利润率回 30%+」定价</strong>。<strong>解读：卖方共识与管理层指引方向一致（都指向 FY28 回升），但目标价已包含了一年的预期差，因此不能当作无风险空间</strong></td></tr>
+  <tr><td colspan="3" style="background:#f8f4e8;text-align:left"><strong>替代指标二：股价波动 Beta 0.41</strong> — 全表最低波动之一，属典型防御型／低 Beta 标的。含义：① 熊市中相对抗跌；② 但同样意味着<strong>缺乏增量资金推动的弹性</strong>，估值修复需要基本面（FY28 兑现）而非资金面驱动；③ 作为组合中的「稳定器」属性明确。<strong>解读：资金面特征是「稳定但缺催化」</strong></td></tr>
+  <tr><td colspan="3" style="background:#f8f4e8;text-align:left"><strong>替代指标三：股东现金回报</strong> — FY26 派息 <strong>A$19.28m</strong>（每股约 <strong>9.5 澳分</strong>），分红率 40.4%（对 NPAT）／29.2%（对 NPATA），股息率 <strong>2.8%</strong>。<strong>解读：在净利润同比 +10.2% 的同时维持了高分红且无分红削减记录，说明现金创造能力足以支撑分红；但 2.8% 的股息率不足以单独构成买入理由，需与估值修复叠加</strong></td></tr>
+  <tr><td colspan="3" style="background:#f8f4e8;text-align:left"><strong>替代指标四：年报后的价格行为（关键）</strong> — 2026-08-06（年报前）<strong>4.43</strong> → 8/19 年报发布后<strong>急跌至 3.4 附近</strong> → 8 月中一度反弹至 <strong>4.49</strong> → 10-02 低见 <strong>3.12</strong> → 10-14 现价 <strong>3.38</strong>。<strong>解读：市场对 FY27「营收持平 + 利润率降至 26%」的指引明确不满，短期资金用脚投票；现价距高点 -45.2%、距低点 +14.6%，说明利空已被部分消化，但反弹缺乏持续性。下一个明确的资金面/基本面共同验证节点是 2026-11-20 的 1H FY27 业绩</strong></td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>资金面整体判断（ASX 本地口径）：中性偏谨慎，缺少增量催化。</strong>Beta 0.41 与 2.8% 股息率构成防御属性；分析师目标价 A$5.40（+59.8%）是唯一明确的向上催化，但其隐含假设是 FY28 兑现而非 FY27。<strong>年报复跌 -45.2% 本身说明市场当前定价的主导变量是「增长停滞 + 利润率下调」而非估值便宜</strong>——因此真正的转折点要看 2026-11-20 的 1H FY27：若 S&amp;M 增速落在 6~8% 指引内且管理层重申 FY28 目标，当前 10.4x 的 Underlying PE 提供不对称的上行；<strong>若 S&amp;M 增速跌破 6% 或 FY28 目标被软化，则「增长停滞型价值陷阱」的判断成立，2.8% 的股息就是回报的全部</strong>。
+</div>
+
+<h3>7.8 讨论问题（阅读引导）</h3>
 <div class="summary-box">
   <strong>讨论问题（阅读后可以聊这些）：</strong><br>
-  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——卖计费软件给水电燃气公司和电信运营商，帮他们算清楚用户该交多少钱，赚软件许可和云订阅费。<br>
-  2. 你最大的担忧是什么？哪个数据让你睡不着？——商誉占比64%（2.7亿），如果并购踩雷一次减值就可能亏掉1-2年的利润。另外AI会不会让计费变成"免费功能"被大平台吃掉？<br>
-  3. 如果现在买入，期待的回报来源是什么？——PE修复（13.6x→18x）+ 盈利增长（EPS年增10-15%），叠加FCF Yield 7.5%的安全垫，预期年化回报15-20%。<br>
-  4. 什么情况下你会坚决卖出？——商誉大额减值 / 云迁移进度显著低于预期 / 客户流失率上升 / 新CEO战略方向动摇核心业务。
+  1. <strong>这笔生意你看懂了吗？</strong>一句话说清这家公司怎么赚钱——「向全球电力/水务/电信运营商卖账单计费系统，卖完收永久维护费（Support &amp; Maintenance，FY26 230.3m、+13.4%、占营收 59.6%），客户因为换系统风险太大而不敢走」。<br>
+  2. <strong>你最大的担忧是什么？哪个数据让你睡不着？</strong>本报告认为是这三条中的第一条：<strong>营收 -1.5% 且 FY27 指引「大致持平」</strong>（增长缺口或连续两年）；第二是 <strong>有形账面价值 -20.65m（有形每股 -0.10 澳元）</strong>——历史收购已把有形净资产买成负数，PB 1.80x 失去锚点，Digitalk 商誉减值是一颗未引爆的雷；第三是 <strong>FY27 EBITDA 利润率指引下调至 26% 以下</strong>，意味着 EPSa 中性推演同比 -14.2%。<br>
+  3. <strong>如果现在买入，期待的回报来源是什么？</strong>三个来源，按确定性排序：<strong>① 股息 2.8%（最确定，但需三年才够一次像样的回报）；② 估值从 10.4x 修复到合理区间中部 14x（约 +15~35%，依赖 FY28 兑现 30%+ 利润率）；③ 增长恢复（本报告认为 FY27 之前不会发生）</strong>。注意：<strong>不要把券商目标价 A$5.40 的 +59.8% 当作无风险空间</strong>，它隐含的是 FY27 EPSa 19.5x（已超合理区间上沿 18x），必须靠 FY28 兑现才能成立。<br>
+  4. <strong>什么情况下你会坚决卖出？</strong>给出四条可执行的触发条件：<strong>① Support &amp; Maintenance 增速跌破 6%（跌破公司指引下沿，说明核心年金逻辑受损）；② FY28「营收恢复增长 + 利润率回 30%+」目标被软化或撤回（管理层的信用是这只票的期权价值）；③ 出现商誉减值迹象或净负债/EBITDA 升破 1.5x（资产负债表从「干净」转向「有风险」）；④ 客户集中度风险兑现（Virgin Media O2 / Telefónica 大单出现流失或大幅缩量）</strong>。反之，若跌破 2.95（52 周低点、隐含 9.1x Underlying PE）而上述四条均未发生，则是加仓而非卖出的位置。
 </div>
 
 </div></div>
 
 <div class="footer">
-    免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
-    数据来源：Hansen Technologies FY2025年报、1H26报告、StockAnalysis、Yahoo Finance、券商一致预期
+  免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+  数据来源：Hansen Technologies FY26 全年业绩公告与 Appendix 4E（2026-08-19）、FY26 Results Presentation、FY26 Release Announcement、stockanalysis.com（S&amp;P Global，截至 2026-10-14）。货币单位 AUD，财年 7 月 1 日至 6 月 30 日，FY2026 ＝ 截至 2026-06-30。<br>
+  标注「数据待补充」的指标为本次分析未获取或公司未披露的项目，未参与评分；毛利率维度因公司按费用性质列报损益表而无法计算，本报告统一以 Underlying EBITDA 利润率作为替代评价口径。<br>
+  评级与目标价为第三方券商一致预期，非本报告观点。
 </div>
 
 </div>

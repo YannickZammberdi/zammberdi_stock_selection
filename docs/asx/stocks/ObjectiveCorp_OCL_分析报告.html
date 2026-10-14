@@ -51,6 +51,8 @@
   .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
   .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
   .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .score-note { font-size: 13px; color: #666; background: #fafafa; border: 1px dashed #ccc; padding: 8px 12px; margin: 10px 0; }
+  .history-table td:first-child { white-space: nowrap; }
   .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
   ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
   li { margin-bottom: 4px; }
@@ -61,7 +63,8 @@
 
 <h1>Objective Corporation（OCL）财务分析报告</h1>
 <p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
-<p class="meta">分析日期：2026-07-14 | 数据来源：FY2025 年报 + 1HY2026 半年报 + 券商研报</p>
+<p class="meta">分析日期：2026-10-14 | 数据来源：Objective Corporation FY2026 全年业绩公告与 Appendix 4E（2026-08-27）、FY26 Investor Presentation、FY2026 CEO 年度股东信、FY26 业绩电话会记录、stockanalysis.com（S&amp;P Global，截至 2026-10-14）| 货币单位：澳元（AUD）| 财年：7月1日–6月30日（FY2026 = 截至 2026-06-30）</p>
+<p class="meta">数据来源：FY2026 全年业绩公告与 Appendix 4E（2026-08-27）、FY26 Investor Presentation、FY2026 CEO 年度股东信（Julia Neill）、FY26 业绩电话会记录、stockanalysis.com（S&amp;P Global，截至 2026-10-14）</p>
 
 <div class="tab-bar">
   <button class="tab-btn active" data-tab="summary">总结论</button>
@@ -78,105 +81,174 @@
 <h2>一、公司基本画像</h2>
 <table>
   <tr><th style="width:30%">项目</th><th>内容</th></tr>
-  <tr><td>公司名称</td><td>Objective Corporation Limited</td></tr>
+  <tr><td>公司名称</td><td>Objective Corporation Limited（1987 年成立，1996 年 ASX 上市，员工约 400 人）</td></tr>
   <tr><td>股票代码</td><td>OCL.AX（ASX）</td></tr>
-  <tr><td>所属行业</td><td>GovTech / RegTech 软件（政府数字化转型 + 监管科技）</td></tr>
-  <tr><td>行业地位</td><td>澳大利亚政府内容管理软件龙头，全球政府客户2000+，25年ASX上市历史</td></tr>
-  <tr><td>FY2025 营收</td><td><strong>1.235 亿澳元（+5%）</strong></td></tr>
-  <tr><td>FY2025 归母净利润</td><td><strong>3,544 万澳元（+13%）</strong></td></tr>
-  <tr><td>FY2025 经营现金流</td><td><strong>4,626 万澳元</strong></td></tr>
-  <tr><td>总资产</td><td>1.940 亿澳元</td></tr>
-  <tr><td>归母净资产</td><td>1.062 亿澳元</td></tr>
-  <tr><td>ROE</td><td><strong>33.4%</strong></td></tr>
+  <tr><td>所属行业</td><td>GovTech / RegTech 纯软件（100% 软件收入，100% 订阅模式）</td></tr>
+  <tr><td>行业地位</td><td>澳新政府软件龙头；新西兰 BCA 装机覆盖率超半数；被联邦 DCCEEW 选为覆盖其 18 个机构的<strong>首选平台</strong></td></tr>
+  <tr><td>FY2026 营收</td><td><strong>1.347 亿澳元（+9.1%，不变汇率 +11%）</strong></td></tr>
+  <tr><td>FY2026 归母净利润</td><td><strong>3,719 万澳元（+4.9%）</strong>；Adjusted EBITDA 5,154 万（+10.8%）</td></tr>
+  <tr><td>FY2026 经营现金流</td><td><strong>4,930 万澳元（CFO/净利 1.33）</strong></td></tr>
+  <tr><td>总资产</td><td>1.9496 亿澳元</td></tr>
+  <tr><td>归母净资产</td><td>1.0947 亿澳元（109,472 千澳元）；BVPS 1.15 澳元，有形每股 0.30 澳元</td></tr>
+  <tr><td>ROE</td><td><strong>34.5%</strong>（净利 3,719 万 ÷ 平均权益 1.0784 亿）</td></tr>
+  <tr><td>ARR（年度经常性收入）</td><td><strong>1.173 亿澳元，<span class="bad">-2%</span></strong>（调整后口径 1.14 亿，期初 1.20 亿）</td></tr>
+  <tr><td>FY2027 指引</td><td><strong>Adjusted EBITDA 至少 4,000 万澳元（较 FY26 的 5,154 万至少下滑 22%）</strong></td></tr>
 </table>
+
+<p style="font-size:13px;color:#666;margin:10px 0 4px"><strong>行业类型：非周期股（细分：成长型）</strong> —— 采用<strong>非周期股评分体系</strong>。判断依据：客户为各级政府部门与监管机构，预算由立法周期而非商品供需周期驱动；收入 100% 软件、86% 经常性，现金流可预测性高。对照《industry-classification.md》：「科技（纯软件）」明确归入非周期股，须用非周期股评分体系。</p>
+
+<p class="score-note"><strong>评分口径说明：</strong><span>仍用非周期股体系；ARR转负、FY27EBITDA降22%，评分小降至91分</span></p>
 
 <h2>综合评分（百分制）</h2>
-<p style="font-size:13px;color:#666;margin-bottom:8px">综合L1-L5所有因素（财务健康度、关键指标、估值、杜邦分析、行业分类），对各维度打分求和</p>
+<p style="font-size:13px;color:#666;margin-bottom:8px">采用<strong>非周期股评分体系</strong>（ROE 15 / 杜邦驱动 5 / 利润含金量 15 / 营收增长 10 / 利润增长 10 / 负债率 10 / 短期偿债 10 / 毛利率 10 / 估值 10 / FCF 5）</p>
 <table>
   <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
-  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">33.4%，远超15%标准</td></tr>
-  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">高利润型——净利率28.7%，轻资产SaaS模式</td></tr>
-  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">1.31 ≥ 1.0，现金转化优秀</td></tr>
-  <tr><td>营收增长（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">+5%，≥5%但低于10%。ARR增速15%更代表真实增长</td></tr>
-  <tr><td>利润增长（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">+13%，≥5%但低于15%</td></tr>
-  <tr><td>负债率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">45.3%，无有息负债，净现金8,491万</td></tr>
-  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">货币资金9,916万 >> 短期负债（仅租赁306万）</td></tr>
-  <tr><td>毛利率（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">94.2%，SaaS极致高毛利且稳定</td></tr>
-  <tr><td>估值 PE（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">TTM PE ~27x，在ROE 33%对应的合理区间（20-30x）内</td></tr>
-  <tr><td>自由现金流（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">FCF ~2,700万澳元持续为正，FCF/净利 76%</td></tr>
-  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">94/100</td><td style="text-align:left">品质优秀（94/100分）</td></tr>
+  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">34.5%（≥15% 满分档）。轻资产 SaaS 的顶级资本回报；净现金 8,307 万、集团无任何对外借款。</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">高利润型 —— 净利率 27.6%，权益乘数仅 1.804，ROE 几乎全部由利润率和轻资产结构驱动，不靠杠杆。</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">49.3 / 37.19 = <strong>1.33 ≥ 1.0</strong>，利润几乎全额转化为经营现金。</td></tr>
+  <tr><td>营收增长（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">+9.1%（不变汇率 +11%），落在 5%~10% 档；但 ARR -2% 显示当期收入增长<b>不可持续</b>，不给更高分。</td></tr>
+  <tr><td>利润增长（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">NPAT +4.9%（≈5% 档）；Adjusted EBITDA +10.8% 略好。FY27 指引 EBITDA 至少 -22%，增长动能已反向。</td></tr>
+  <tr><td>负债率（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">43.8%，落在 &lt;55% 档。负债主要来自 4,551 万递延收入（客户预付），剔除后真实负债率仅 20.5%；无有息借款。</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">现金 9,270 万，短期有息仅租赁 291 万，总债务 962 万全部为租赁，充裕覆盖，零对外借款。</td></tr>
+  <tr><td>毛利率水平与趋势（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">94.3%（≥30% 满分档）且同比微升（FY25 94.2%）—— 100% 软件、100% 订阅的纯软件模式。</td></tr>
+  <tr><td>估值 PE vs 合理区间（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">ROE 34.5% 对应合理 PE 20–30x，实际 14.9x <b>低于区间下沿</b>，账面低估。但须并列提示：按 FY27E 盈利的前瞻 PE 已回到 <b>20.3x</b>（因 FY27 盈利下滑），已站在合理区间下沿。</td></tr>
+  <tr><td>FCF（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">持续为正。由 CFO 减小额资本开支估算约 <b>4,600~4,900 万澳元</b>，无资本开支负担、无偿债压力。（注：该口径未扣资本化研发约 1,743 万，详见 L1 说明）</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">91/100</td><td style="text-align:left">品质优秀（≥80 分）—— 但该分数完全建立在 FY2026 <b>已实现的向后看数据</b>上</td></tr>
 </table>
 
-<div class="verdict verdict-ok">品质优秀（94/100分）</div>
+<div class="verdict verdict-ok">品质优秀（91/100分）</div>
+
+<!-- 评分沿革：由sync脚本从 scores.json 注入，生成时保留此注释不动 -->
 <h2 style="margin-top:16px">评分沿革</h2>
 <style>.history-table{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:13px}.history-table th,.history-table td{border:1px solid #ddd;padding:6px 8px;text-align:center}.history-table th{background:#f0f0f0;font-weight:bold}.history-table td.good{color:#27ae60}.history-table td.neutral{color:#e67e22}.history-table td.bad{color:#c0392b}</style><table class="history-table">
   <tr><th>日期</th><th>评分</th><th>评分体系</th><th>变化原因</th></tr>
   <tr><td>2026-07-14</td><td class="good" style="font-weight:bold">94/100</td><td>成长性</td><td style="text-align:left">—</td></tr>
+  <tr><td>2026-10-14</td><td class="good" style="font-weight:bold">91/100</td><td>成长性</td><td style="text-align:left">仍用非周期股体系；ARR转负、FY27EBITDA降22%，评分小降至91分</td></tr>
 </table>
 
 <div class="summary-box">
-  <strong>综合诊断：</strong>Objective Corporation 是一家高质量的澳大利亚 GovTech SaaS 公司，25年专注为政府及受监管行业提供内容管理、监管合规和规划审批软件。FY2025营收1.235亿澳元（+5%），NPAT 3,544万（+13%），ARR达1.202亿（+15%）。84%收入来自订阅模式，客户续约率高、粘性极强。公司零有息负债，净现金8,491万澳元，资产负债表极其稳健。<br><br>
-  <strong>核心优势：</strong>① ROE 33.4%，资本回报率远超同行；② 毛利率94.2%，SaaS商业模式优秀；③ CFO/净利1.31，利润含金量极高；④ 零负债+净现金，财务极其安全；⑤ 创始人Tony Walls领导25年，管理团队稳定。<br><br>
-  <strong>核心风险：</strong>① 营收增速仅+5%（但ARR +15%预示未来加速）；② 市值小（~$9.8亿）流动性有限；③ 客户集中在政府/公共部门，预算受政策周期影响；④ 国际化进展较慢，仍以澳新为主；⑤ 近期股价从$19.16（FY2025末）大幅回落至~$10，需判断是错杀还是基本面恶化。
+  <strong>⚠️ 必须先讲清的核心矛盾（静态评分 vs 股价 vs 动能）：</strong><br>
+  本报告的机械评分给出 <strong>91 分「品质优秀」（上一版 94 分）</strong>，而股价距 52 周高点 <strong>已 -71.3%</strong>（19.16 → 5.79），财报当日单日暴跌 <strong>20.11%</strong>（7.46 → 5.96），市值一年内从约 18.8 亿缩水至 5.54 亿（<strong>-70.6%</strong>）。这个反差不是评分体系算错了，而是<strong>评分体系完全基于 FY2026 已经实现的向后看财务数据，而公司最重要的两项前瞻指标正在恶化</strong>：① <strong class="bad">ARR -2%（调整后口径 -5%）</strong>——SaaS 公司最核心的领先指标转负；② <strong class="bad">FY27 Adjusted EBITDA 指引至少 4,000 万，即至少 -22%</strong>。<br>
+  <strong>一句话：静态财务优秀 ≠ 动能优秀。</strong>市场正在给 OCL 的<b>未来</b>定价，而不是它的过去。<br><br>
+
+  <strong>综合诊断：</strong>Objective 是一家商业模式极其干净的 GovTech/RegTech 订阅软件公司——100% 软件收入、86% 经常性收入、94.3% 毛利率、27.6% 净利率、34.5% ROE、零有息负债、净现金 8,307 万。但 FY2026 发生了两件性质严重的事：<strong>与国防数字集团（DDG）长达 26 年的国防部合作关系突然中止</strong>（对 FY26 营收与盈利无影响，但导致 ARR 未达公司自设目标），以及另一份长期定制服务合同终止。CEO 在年度股东信中直言「在 FY2026 我们远未达到自己的业绩预期」。结果是 ARR 转负、FY27 利润指引大幅下调。<br><br>
+
+  <strong>核心优势：</strong>① ROE 34.5%，靠 27.6% 净利率而非杠杆驱动（权益乘数仅 1.80）；② 毛利率 94.3%、经常性收入占客户总收入 86%、100% 订阅，收入可预测性极高；③ CFO 4,930 万、FCF 持续为正、零有息负债、净现金 8,307 万，资产负债表极干净；④ 净现金 + 连续 7 年提高分红（FY26 分红 26.0 澳分，+18%，股息率 4.49%）+ FY26 首次回购 710 万，股东回报诚意明确。<br><br>
+
+  <strong>核心风险：</strong>① <strong class="bad">国防部 DDG 26 年合作关系终止</strong>——ARR 未达自设目标，客户集中度风险的直接证据（单一大客户即可改变公司方向）；② <strong class="bad">ARR 转负 -2%（调整后 -5%），其中占 ARR 69% 的 Information Intelligence -5%</strong>，且流动递延收入同比 <strong class="bad">-14.0%</strong>，前瞻指标同步转弱；③ <strong class="bad">FY27 Adjusted EBITDA 指引至少 -22%</strong>——本报告 91 分所依据的高 ROE / 高增长<b>不可直接外推</b>；④ 🟡 派息率已从 59.1% 升至 <strong>67%</strong>，若 FY27 盈利按指引下滑，「连续第 7 年提高分红」的记录面临中断压力；⑤ 🟡 规模天花板——营收仅 1.35 亿、市值 5.54 亿，澳洲 Build 市场仅 North Sydney 一个客户，维州/昆州/西澳仍在开发，投入期长。
 </div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l1"><div class="tab-inner">
 
-<h2>二、核心财务数据（FY2025）</h2>
+<h2>二、核心财务数据（FY2026，截至 2026-06-30）</h2>
+<p style="font-size:13px;color:#666;margin-bottom:4px">单位：千澳元（除非另注）。OCL 仅披露年度与半年度数据，<b>无季度数据（Q4 单季）</b>，相关行标「数据待补充」。</p>
 
 <h3>2.1 利润表</h3>
 <table>
-  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
-  <tr><td>营业收入</td><td>1.235 亿</td><td>1.175 亿</td><td>+5.1%</td><td class="neutral">⚠ 增速偏低，SaaS转型期</td></tr>
-  <tr><td>毛利润</td><td><strong>1.163 亿</strong></td><td>1.099 亿</td><td><strong>+5.8%</strong></td><td class="good">✅ 高毛利稳健</td></tr>
-  <tr><td>毛利率</td><td><strong>94.2%</strong></td><td>93.5%</td><td>+0.7pct</td><td class="good">✅ 极致高毛利</td></tr>
-  <tr><td>净利润（NPAT）</td><td><strong>3,544 万</strong></td><td>3,133 万</td><td><strong>+13.1%</strong></td><td class="good">✅ 利润增速高于营收</td></tr>
-  <tr><td>净利率</td><td><strong>28.7%</strong></td><td>26.7%</td><td>+2.0pct</td><td class="good">✅ 持续提升</td></tr>
-  <tr><td>调整后EBITDA</td><td><strong>4,650 万</strong></td><td>4,433 万</td><td>+4.9%</td><td class="good">✅ 39%利润率</td></tr>
-  <tr><td>分销费用（S&M）</td><td>4,338 万</td><td>4,200 万</td><td>+3.3%</td><td class="neutral">占收入35%较高</td></tr>
-  <tr><td>研发费用（费用化）</td><td>1,555 万</td><td>1,565 万</td><td>-0.6%</td><td class="good">总R&D投入3,123万=30%软件收入</td></tr>
-  <tr><td>基本 EPS</td><td><strong>37.2c</strong></td><td>32.9c</td><td><strong>+13.1%</strong></td><td class="good">✅ 每股收益创新高</td></tr>
-  <tr><td>稀释 EPS</td><td><strong>36.6c</strong></td><td>32.4c</td><td><strong>+13.0%</strong></td><td class="good">✅ 稀释影响有限</td></tr>
-  <tr><td>每股分红</td><td><strong>22.0c</strong></td><td>17.0c</td><td><strong>+29.4%</strong></td><td class="good">✅ 分红增长远超利润</td></tr>
+  <tr><th>指标</th><th>FY2026</th><th>FY2025</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td><strong>134,711</strong></td><td>123,500</td><td><strong>+9.1%</strong></td><td class="good">✅ 不变汇率 +11%；但 ARR -2% 说明增长不可持续</td></tr>
+  <tr><td>营业成本</td><td>-7,669</td><td>-7,195</td><td>+6.6%</td><td class="good">成本增速低于收入增速</td></tr>
+  <tr><td>毛利</td><td><strong>127,042</strong></td><td>116,305</td><td>+9.2%</td><td class="good">✅ 毛利增速≈收入增速</td></tr>
+  <tr><td><strong>毛利率</strong></td><td><strong>94.3%</strong></td><td>94.2%</td><td>+0.1pct</td><td class="good">✅ 纯软件极致高毛利且仍在微升</td></tr>
+  <tr><td>分销费用</td><td>-47,574</td><td>-43,376</td><td>+9.7%</td><td class="neutral">⚠ 占收入 35.3%（FY25 35.1%），最大费用项</td></tr>
+  <tr><td>研发费用（费用化）</td><td>-16,350</td><td>-15,552</td><td>+5.1%</td><td class="good">✅ 占收入 12.1%（FY25 12.6%）</td></tr>
+  <tr><td>研发总投入（含资本化）</td><td><strong>33,780</strong></td><td>约 31,300*</td><td>+8%</td><td class="good">✅ 占软件收入 <strong>30%</strong>（FY25 约 31,300 为按 +8% 倒算）</td></tr>
+  <tr><td>管理及其他经营费用</td><td>-9,396</td><td>-9,312</td><td>+0.9%</td><td class="good">✅ 费用管控优异，占收入降至 7.0%</td></tr>
+  <tr><td>折旧摊销</td><td>-8,686</td><td>-7,234</td><td><strong>+20.1%</strong></td><td class="neutral">⚠ Isovist 收购推高无形资产（2,681万→3,956万），摊销上升将持续压制 FY27 净利</td></tr>
+  <tr><td>财务费用</td><td>-516</td><td>-582</td><td>-11.3%</td><td class="good">✅ 几乎为零——集团无任何对外借款</td></tr>
+  <tr><td>其他损益</td><td>-134</td><td>+935</td><td>由正转负</td><td class="neutral">⚠ 1,069 万澳元的负向摆动</td></tr>
+  <tr><td>其他收入</td><td>70</td><td>189</td><td>-63.0%</td><td class="neutral">⚠ 体量极小</td></tr>
+  <tr><td><strong>税前利润</strong></td><td><strong>44,456</strong></td><td>41,373</td><td>+7.5%</td><td class="good">✅ 增速高于收入</td></tr>
+  <tr><td>所得税</td><td>-7,265</td><td>-5,933</td><td>+22.4%</td><td class="neutral">⚠ 有效税率由 14.3% 升至 <strong>16.3%</strong></td></tr>
+  <tr><td><strong>净利润 NPAT</strong></td><td><strong>37,191</strong></td><td>35,440</td><td><strong>+4.9%</strong></td><td class="neutral">⚠ 落在 5% 档边缘，低于 EBITDA 增速（税率+摊销拖累）</td></tr>
+  <tr><td><strong>净利率</strong></td><td><strong>27.6%</strong></td><td>28.7%</td><td>-1.1pct</td><td class="neutral">⚠ 仍属顶级，但 FY26 出现首次回落</td></tr>
+  <tr><td>Adjusted EBITDA</td><td><strong>51,535</strong></td><td>46,496</td><td><strong>+10.8%</strong></td><td class="good">✅ 增速优于 NPAT</td></tr>
+  <tr><td>Adjusted EBITDA 利润率</td><td>38.3%（公司口径约 39%）</td><td>37.6%</td><td>+0.6pct</td><td class="good">✅ 经营杠杆仍在释放</td></tr>
+  <tr><td>基本 EPS（澳分）</td><td><strong>38.9</strong></td><td>37.2</td><td>+4.6%</td><td class="good">✅ 连续第 5 年创新高</td></tr>
+  <tr><td>摊薄 EPS（澳分）</td><td>38.4</td><td>36.6</td><td>+4.9%</td><td class="good">稀释影响 1.3%，有限</td></tr>
+  <tr><td>加权平均股数（基本）</td><td>95,636,217</td><td>数据待补充</td><td>—</td><td class="neutral">FY26 首次回购 710 万，股数开始下降</td></tr>
+  <tr><td>加权平均股数（摊薄）</td><td>96,924,285</td><td>数据待补充</td><td>—</td><td class="neutral">—</td></tr>
+  <tr><td>每股分红（澳分）</td><td><strong>26.0</strong></td><td>22.0</td><td><strong>+18.2%</strong></td><td class="neutral">⚠ 连续第 7 年提高，但派息率同步升至 67%</td></tr>
+</table>
+
+<h4>五年历史趋势（营收 / NPAT / EPS / DPS）</h4>
+<table>
+  <tr><th>财年（截至 6/30）</th><th>FY2022</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>FY2026</th><th>FY22→FY26 CAGR</th></tr>
+  <tr><td>营收（百万澳元）</td><td>106.5</td><td>110.4</td><td>117.5</td><td>123.5</td><td><strong>134.7</strong></td><td><strong>+6.1%</strong></td></tr>
+  <tr><td>净利润 NPAT（百万澳元）</td><td>19.563</td><td>21.087</td><td>31.330</td><td>35.440</td><td><strong>37.191</strong></td><td><strong>+17.4%</strong></td></tr>
+  <tr><td>基本 EPS（澳分）</td><td>20.7</td><td>22.2</td><td>32.7</td><td>37.2</td><td><strong>38.9</strong></td><td>+17.1%</td></tr>
+  <tr><td>每股分红 DPS（澳分）</td><td>12.0</td><td>13.5</td><td>17.0</td><td>22.0</td><td><strong>26.0</strong></td><td><strong>+21.3%</strong></td></tr>
+  <tr><td>派息率（DPS/EPS）</td><td>58.0%</td><td>60.8%</td><td>52.0%</td><td>59.1%</td><td><strong>66.8%</strong></td><td>—</td></tr>
 </table>
 
 <div class="summary-box">
-  <strong>利润表解读：</strong>FY2025营收增长仅5.1%，表面增速不高，但最关键的领先指标——年度经常性收入（ARR）增长15%至1.202亿澳元，84%收入来自订阅模式。这意味着当前营收增速被有意压低（公司主动减少低毛利服务收入），未来将逐步转化为更高增长的确认收入。净利润增长13%，净利率从26.7%提升至28.7%，经营杠杆持续释放。EPS 37.2c创新高，分红22c/+29%。
+  <strong>利润表解读：</strong>FY2026 是一份「<strong>当期漂亮、前瞻转弱</strong>」的利润表。收入 1.347 亿（+9.1%，不变汇率 +11%）、Adjusted EBITDA 5,154 万（+10.8%，利润率 38.3%）、EPS 38.9 澳分——三项均创历史新高，商业模式（94.3% 毛利率、27.6% 净利率、100% 订阅）依然无可挑剔。<br><br>
+  但有三条裂缝：① <strong>净利润只增 4.9%</strong>，明显慢于 EBITDA 的 +10.8%，原因是有效税率从 14.3% 抬升到 16.3%、折旧摊销因 Isovist 收购增长 20.1%、其他损益由 +93.5 万转为 -13.4 万；② <strong>收入 +9% 与 ARR -2% 相互矛盾</strong>——收入靠的是已签约合同的履约确认，ARR 代表的是未来 12 个月的合同基础，会计上「好看」但商业上「转弱」；③ 净利率在连续 4 年提升后<b>首次回落 1.1 个百分点</b>。<br><br>
+  五年维度看，公司保持了「利润增速（+17.4% CAGR）远快于收入增速（+6.1% CAGR）」的复利记录，NPAT 五年增长 90%；分红五年 CAGR +21.3%，跑赢利润。但 FY26 的派息率跳升到 66.8%（五年最高），这是 FY27 盈利下滑背景下的隐患。
 </div>
 
 <h3>2.2 资产负债表</h3>
+<p style="font-size:13px;color:#666;margin-bottom:4px">单位：千澳元（2026-06-30）。注：明细项加总与披露合计存在约 1 万澳元以内的四舍五入差异，以披露合计为准。</p>
 <table>
-  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
-  <tr><td>货币资金</td><td><strong>9,916 万</strong></td><td class="good">✅ 极其充裕</td></tr>
-  <tr><td>应收账款</td><td><strong>1,009 万</strong></td><td class="good">✅ 仅占收入8%，回款好</td></tr>
-  <tr><td>合约资产/其他流动资产</td><td><strong>632 万</strong></td><td class="good">正常</td></tr>
-  <tr><td>商誉及无形资产</td><td><strong>6,689 万</strong></td><td class="neutral">占总资产34%，并购积累</td></tr>
-  <tr><td>总资产</td><td><strong>1.940 亿</strong></td><td class="good">✅ 轻资产模式</td></tr>
-  <tr><td>合约负债（递延收入）</td><td><strong>5,292 万</strong></td><td class="good">✅ 正向指标——未来收入蓄水池</td></tr>
-  <tr><td>租赁负债（短+长）</td><td><strong>1,144 万</strong></td><td class="good">✅ 几乎无有息负债</td></tr>
-  <tr><td>总负债</td><td><strong>8,777 万</strong></td><td class="neutral">合约负债5,292万为主，非金融性</td></tr>
-  <tr><td>资产负债率</td><td><strong>45.3%</strong></td><td class="good">✅ 调整后（剔除合约负债）仅18%</td></tr>
-  <tr><td>归母净资产</td><td><strong>1.062 亿</strong></td><td class="good">✅ 同比+15%</td></tr>
+  <tr><th>科目</th><th>FY2026</th><th>FY2025</th><th>同比</th><th>评价</th></tr>
+  <tr><td>现金及等价物</td><td><strong>92,696</strong></td><td>99,157</td><td>-7%</td><td class="good">✅ 分红 2,490万 + 回购 710万 + 收购 Isovist NZ$400万后的余额，仍极充裕</td></tr>
+  <tr><td>应收账款</td><td>7,690</td><td>10,095</td><td><strong>-23.8%</strong></td><td class="good">✅ 仅占收入 5.7%，回款优于上年</td></tr>
+  <tr><td>其他应收款</td><td>641</td><td>数据待补充</td><td>—</td><td class="neutral">体量小</td></tr>
+  <tr><td>流动资产合计</td><td><strong>104,750</strong></td><td>115,571</td><td>-9.4%</td><td class="neutral">主要因现金被用于股东回报</td></tr>
+  <tr><td>物业厂房设备</td><td>9,631</td><td>11,511</td><td>-16.3%</td><td class="good">✅ 极轻固定资产，资本开支负担小</td></tr>
+  <tr><td>商誉</td><td>41,024</td><td>40,082</td><td>+2.4%</td><td class="neutral">⚠ 占总资产 21.0%，需关注减值风险</td></tr>
+  <tr><td>其他无形资产</td><td>39,563</td><td>26,814</td><td><strong>+47.5%</strong></td><td class="neutral">⚠ <strong>Isovist 收购所致</strong>；是 FY27 折旧摊销上升的主因</td></tr>
+  <tr><td>总资产</td><td><strong>194,963</strong></td><td>193,958</td><td>+0.5%</td><td class="good">✅ 轻资产结构，总资产≈净资产</td></tr>
+  <tr><td>应付账款及应计费用</td><td>9,748 + 10,309</td><td>数据待补充</td><td>—</td><td class="neutral">正常</td></tr>
+  <tr><td>一年内到期租赁</td><td>2,911</td><td>数据待补充</td><td>—</td><td class="good">短期有息负债仅此 291 万</td></tr>
+  <tr><td>流动所得税</td><td>1,411</td><td>数据待补充</td><td>—</td><td class="neutral">正常</td></tr>
+  <tr><td><strong>流动递延收入</strong></td><td><strong>45,510</strong></td><td>52,924</td><td><strong class="bad">-14.0%</strong></td><td class="bad">🔴 <strong>未来收入的「蓄水池」在缩小</strong>——SaaS 公司最重要的前瞻指标之一，与 ARR -2% 相互印证</td></tr>
+  <tr><td>流动负债合计</td><td>70,221</td><td>74,326</td><td>-5.5%</td><td class="neutral">其中 4,551 万为递延收入（非金融负债）</td></tr>
+  <tr><td>长期租赁负债</td><td>6,715</td><td>数据待补充</td><td>—</td><td class="good">集团无任何对外借款</td></tr>
+  <tr><td>养老金负债</td><td>640</td><td>数据待补充</td><td>—</td><td class="neutral">体量小</td></tr>
+  <tr><td>递延税负债</td><td>7,463</td><td>数据待补充</td><td>—</td><td class="neutral">无形资产摊销产生</td></tr>
+  <tr><td>其他长期负债</td><td>470</td><td>数据待补充</td><td>—</td><td class="neutral">—</td></tr>
+  <tr><td><strong>总负债</strong></td><td><strong>85,499</strong></td><td>87,778</td><td>-2.6%</td><td class="good">✅ 无有息借款</td></tr>
+  <tr><td><strong>股东权益</strong>（含库存股 -23,800）</td><td><strong>109,472</strong></td><td>106,199</td><td>+3.1%</td><td class="good">✅ = 109.5 百万澳元（L4 权益乘数基数口径一致）</td></tr>
+  <tr><td>总债务（全部为租赁）</td><td>9,622</td><td>数据待补充</td><td>—</td><td class="good">✅ 集团无任何对外借款</td></tr>
+  <tr><td><strong>净现金</strong></td><td><strong>83,074</strong></td><td>87,718</td><td>-5.3%</td><td class="good">✅ = 市值的 <strong>15.0%</strong>，每股 0.87 澳元</td></tr>
+</table>
+
+<h4>衍生比率</h4>
+<table>
+  <tr><th>比率</th><th>FY2026</th><th>计算</th><th>评价</th></tr>
+  <tr><td>资产负债率</td><td><strong>43.8%</strong></td><td>85,499 ÷ 194,963</td><td class="neutral">落在 &lt;55% 档</td></tr>
+  <tr><td><strong>剔除递延收入后的真实负债率</strong></td><td><strong>20.5%</strong></td><td>(85,499 − 45,510) ÷ 194,963</td><td class="good">✅ 这才是有财务意义的负债率</td></tr>
+  <tr><td>流动比率</td><td>1.49</td><td>104,750 ÷ 70,221</td><td class="good">✅ 充裕</td></tr>
+  <tr><td>有息负债率</td><td><strong>≈ 0</strong></td><td>总债务 9,622 全为租赁</td><td class="good">✅ 无偿债风险</td></tr>
+  <tr><td>BVPS</td><td>1.15 澳元</td><td>109,472 ÷ 95.61M 股</td><td class="good">对应 PB 5.03x</td></tr>
+  <tr><td>有形每股</td><td>0.30 澳元</td><td>(109,472 − 41,024 − 39,563) ÷ 95.61M</td><td class="neutral">⚠ 商誉+无形 = 总资产的 41.3%，有形资产薄弱（软件公司常态）</td></tr>
 </table>
 
 <div class="highlight-box">
-  <strong>资产负债表解读：</strong>Objective拥有一张极高质量的资产负债表。现金9,916万澳元远超所有负债，公司零有息银行借款（仅有1,144万租赁负债）。值得注意的是5,292万的合同负债（递延收入）——这是客户预付款，是未来收入的"蓄水池"，也是SaaS商业模式健康度的核心指标。剔除合约负债后的"真实负债率"仅约18%。商誉及无形资产6,689万占总资产34%，来自历史并购（如Isovist），金额合理可控。
+  <strong>资产负债表解读：</strong>这是一张「教科书级干净」的资产负债表：<strong>净现金 8,307 万、零有息借款、流动比率 1.49</strong>，总负债 8,550 万中有 4,551 万是客户预付的递延收入、962 万是租赁，剔除后真实负债率仅 20.5%。公司完全有能力自筹资金支撑研发、并购与股东回报，不依赖资本市场。<br><br>
+  <strong>但必须盯住两个数字：</strong>① <strong class="bad">流动递延收入同比 -14.0%（5,292万 → 4,551万）</strong>——递延收入是订阅制公司「已收钱未确认收入」的蓄水池，它跌 14% 与 ARR -2% 相互印证，说明 FY2027 可确认的收入基数在缩小。这是本报告认为最值得警惕的资产负债表信号；② <strong class="neutral">商誉 4,102万 + 其他无形 3,956万 = 总资产的 41.3%</strong>（有形每股仅 0.30 澳元）。无形资产一年增长 47.5% 全部来自 Isovist 收购（付现 NZ$400万），属于合理的小额并购，但 FY27 起这部分摊销将持续压制净利率，需关注是否存在减值触发。
 </div>
 
 <h3>2.3 现金流量表</h3>
 <table>
-  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
-  <tr><td>经营现金流（CFO）</td><td><strong>4,626 万</strong></td><td>3,800 万（估）</td><td class="good">✅ 强劲，EBITDA的100%转化</td></tr>
-  <tr><td>投资现金流（CFI）</td><td><strong>-1,635 万</strong></td><td>-2,000 万（估）</td><td class="neutral">资本化R&D + 并购Isovist</td></tr>
-  <tr><td>筹资现金流（CFF）</td><td><strong>-2,631 万</strong></td><td>-2,200 万（估）</td><td class="neutral">分红+租赁偿还</td></tr>
-  <tr><td>CFO/净利润</td><td><strong>1.31</strong></td><td>~1.21</td><td class="good">✅ 现金含量优秀</td></tr>
-  <tr><td>自由现金流（FCF）</td><td><strong>~2,700 万</strong></td><td>~1,700 万</td><td class="good">✅ 持续为正且增长，FCF/净利76%</td></tr>
+  <tr><th>指标</th><th>FY2026</th><th>FY2025</th><th>同比</th><th>评价</th></tr>
+  <tr><td><strong>经营活动现金流 CFO</strong></td><td><strong>49.3 百万</strong></td><td>46.3 百万</td><td>+6.5%</td><td class="good">✅ 强劲，且在 ARR 转负的年份仍增长——存量合同现金回收能力极强</td></tr>
+  <tr><td>投资活动现金流 CFI</td><td>数据待补充</td><td>数据待补充</td><td>—</td><td class="neutral">已知含 Isovist 收购付现 NZ$4.0m、资本化研发约 1,743万（= 研发投入 3,378万 − 费用化 1,635万）</td></tr>
+  <tr><td>筹资活动现金流 CFF</td><td>数据待补充</td><td>数据待补充</td><td>—</td><td class="neutral">已知含实付分红 24.9m、股份回购 7.1m、租赁偿付</td></tr>
+  <tr><td><strong>CFO / 净利润</strong></td><td><strong>1.33</strong></td><td>1.31</td><td>+0.02</td><td class="good">✅ ≥1.0，利润含金量满分档</td></tr>
+  <tr><td>固定资产净额变动</td><td>11,511 → 9,631</td><td>—</td><td><strong>净减 1,880</strong></td><td class="good">✅ 资本开支极轻（净额在下降）；含折旧回加后实际资本开支需待现金流量表披露</td></tr>
+  <tr><td><strong>FCF（CFO 减资本开支，估算）</strong></td><td><strong>约 4,600~4,900 万</strong></td><td>数据待补充</td><td>—</td><td class="good">✅ 持续为正；<b>本口径为估算值</b>（CFO − 固定资产资本开支），未扣资本化研发</td></tr>
+  <tr><td>实付分红</td><td>24.9 百万</td><td>24.8 百万</td><td>+0.4%</td><td class="neutral">⚠ 分红金额上升但现金流几乎持平</td></tr>
+  <tr><td>股份回购</td><td><strong>7.1 百万</strong></td><td><strong>0</strong></td><td>首次</td><td class="good">✅ FY26 首次启动回购；董事会将在静默期结束后（一个月内）复核回购计划</td></tr>
 </table>
 
 <div class="summary-box">
-  <strong>现金流解读：</strong>CFO 4,626万澳元极其强劲，相当于调整后EBITDA的100%转化率——这在SaaS行业属于顶级水平。FCF约2,700万，FCF/净利比率76%，资本化R&D和并购支出是主要现金用途。公司无需外部融资即可自给自足地支持增长，是典型的"现金牛"型SaaS公司。
+  <strong>现金流解读：</strong>CFO 4,930 万澳元、<strong>CFO/净利 1.33</strong>，利润几乎全额转化为经营现金，且在 ARR 转负的困难年份仍实现 +6.5% 增长——这印证了 OCL 存量订阅合同的现金回收能力极强，「收入可见度」即使在动能指标恶化时依然很高。<br><br>
+  <strong>FCF 口径说明（重要）：</strong>本报告的 FCF 约 <strong>4,600~4,900 万澳元</strong> 是「<strong>CFO 减小额资本开支</strong>」的<b>估算值</b>，因为 OCL 把相当部分研发资本化（CFI 中约 1,743 万）。若从 CFO 中扣除资本化研发，「更严格口径」的 FCF 约为 <strong>2,900~3,200 万</strong>。两个口径都持续为正，因此 L2 评分的 FCF 维度仍给满分，但读者在做 DCF 时应使用后者。<br><br>
+  FY26 的现金去向非常清晰：分红 2,490 万（占 CFO 的 50%）、<strong>回购 710 万（FY25 为零）</strong>、收购 Isovist NZ$400 万。集团无对外借款、无还本付息压力，剩余现金用于支撑 FY27 的 RegWorks V8 投入与澳洲 Build 市场开拓。
 </div>
 
 </div></div>
@@ -187,187 +259,278 @@
 
 <h3>3.1 关键盈利指标</h3>
 <table>
-  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
-  <tr><td>ROE</td><td><strong>33.4%</strong></td><td>> 15% 优秀</td><td class="good">✅ 远超标准</td></tr>
-  <tr><td>毛利率</td><td><strong>94.2%</strong></td><td>稳定或提升</td><td class="good">✅ SaaS顶级水平</td></tr>
-  <tr><td>净利率</td><td><strong>28.7%</strong></td><td>> 10%</td><td class="good">✅ 优秀</td></tr>
-  <tr><td>营收增长率</td><td><strong>+5.1%</strong></td><td>> 10%（关注ARR +15%）</td><td class="neutral">⚠ 名义增速低，ARR预示好转</td></tr>
-  <tr><td>利润增长率</td><td><strong>+13.1%</strong></td><td>> 15%</td><td class="neutral">⚠ 接近门槛</td></tr>
-  <tr><td>CFO/净利润</td><td><strong>1.31</strong></td><td>> 1</td><td class="good">✅ 优秀</td></tr>
-  <tr><td>资产负债率</td><td><strong>45.3%</strong></td><td>软件<60%</td><td class="good">✅ 剔除合约负债仅18%</td></tr>
-  <tr><td>分红率</td><td><strong>59.1%</strong></td><td>持续分红+增长</td><td class="good">✅ 22c/+29%，连续5年提升</td></tr>
+  <tr><th>指标</th><th>FY2026</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>34.5%</strong></td><td>&gt; 15% 优秀</td><td class="good">✅ 远超标准；靠 27.6% 净利率驱动而非杠杆</td></tr>
+  <tr><td>毛利率</td><td><strong>94.3%</strong></td><td>≥30% 且稳定</td><td class="good">✅ 纯软件顶级水平，同比 +0.1pct</td></tr>
+  <tr><td>净利率</td><td>27.6%</td><td>&gt; 10%</td><td class="good">✅ 优秀（但同比 -1.1pct，四连升后首次回落）</td></tr>
+  <tr><td>营收增长率</td><td>+9.1%（不变汇率 +11%）</td><td>&gt; 10%</td><td class="neutral">⚠ 落在 5%~10% 档</td></tr>
+  <tr><td>利润增长率</td><td>NPAT +4.9% / EBITDA +10.8%</td><td>&gt; 15%</td><td class="neutral">⚠ NPAT 接近 5% 档边缘</td></tr>
+  <tr><td>CFO / 净利润</td><td><strong>1.33</strong></td><td>&gt; 1.0</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>资产负债率</td><td>43.8%（真实 20.5%）</td><td>软件 &lt; 55%</td><td class="good">✅ 安全，无有息负债</td></tr>
+  <tr><td>派息率</td><td><strong>67%</strong>（FY25 59.1%）</td><td>持续分红 + 增长</td><td class="neutral">⚠ 五年最高；FY27 盈利下滑下可持续性需重估</td></tr>
+  <tr><td><strong>ARR 增长（SaaS 核心领先指标）</strong></td><td><strong class="bad">-2%（调整后 -5%）</strong></td><td>&gt; 0</td><td class="bad">🔴 <strong>红灯——转负。这是全篇最重要的单一指标</strong></td></tr>
+  <tr><td><strong>流动递延收入</strong></td><td><strong class="bad">-14.0%</strong></td><td>&gt; 0</td><td class="bad">🔴 未来收入蓄水池缩小，与 ARR 相互印证</td></tr>
+  <tr><td>经常性收入占比</td><td>86%</td><td>越高越好</td><td class="good">✅ 收入质量高</td></tr>
+  <tr><td>SaaS 收入增长</td><td>+22%（7 年 CAGR 27%）</td><td>&gt; 10%</td><td class="good">✅ SaaS 主线仍高增，但未完全转化为集团收入增速</td></tr>
 </table>
 
-<h3>3.2 分业务分析（FY2025）</h3>
+<h3>3.2 分业务分析（按 ARR 口径）</h3>
+<p style="font-size:13px;color:#666;margin-bottom:4px">公司未披露分业务线的收入金额与毛利率，故分业务表以 ARR 为口径构建。<b>分业务收入金额、占比、毛利率：数据待补充。</b></p>
 <table>
-  <tr><th>业务板块</th><th>营收（万）</th><th>占比</th><th>同比</th><th>ARR增长</th><th>评价</th></tr>
-  <tr><td>Content Solutions（信息智能）</td><td>8,339</td><td>67.5%</td><td>+4%</td><td>+12%</td><td class="good">✅ 基石业务，粘性极强</td></tr>
-  <tr><td>Planning & Building（规划审批）</td><td>1,306</td><td>10.6%</td><td>+6%</td><td>+31%</td><td class="good">✅ 高增长新引擎</td></tr>
-  <tr><td>Regulatory Solutions（监管合规）</td><td>2,362</td><td>19.1%</td><td>+6%</td><td>+17%</td><td class="good">✅ 稳健增长</td></tr>
+  <tr><th>业务板块</th><th>产品</th><th>FY26 ARR（百万）</th><th>ARR 占比</th><th>ARR 同比</th><th>SaaS 收入同比</th><th>评价</th></tr>
+  <tr><td><strong>Information Intelligence</strong>（信息智能）</td><td>Objective Nexus（政府记录合规 / 流程自动化 / 信息治理）、3Sixty（跨源信息发现与治理）</td><td><strong>81.0</strong></td><td>69.1%</td><td class="bad"><strong>-5%</strong></td><td>+21%</td><td class="bad">🔴 占 ARR 近七成的基石业务 ARR 转负——全公司最大预警点；<b>DDG 合同终止主要冲击此线</b></td></tr>
+  <tr><td><strong>Planning & Building</strong>（规划与建设）</td><td>Objective Build（建筑规范合规平台，与 Trapeze 合计主导新西兰）、Isoplan（战略规划）</td><td><strong>18.7</strong></td><td>15.9%</td><td class="neutral">+3%</td><td><strong>+38%</strong></td><td class="neutral">🟡 SaaS 收入增速全公司最高，但 ARR 仅 +3% 且基数小；澳洲尚未破局</td></tr>
+  <tr><td><strong>Regulatory Solutions</strong>（监管科技）</td><td>Objective RegWorks（"regulator-in-a-box"）、Objective Connect（安全协作/文件传输）</td><td><strong>17.6</strong></td><td>15.0%</td><td class="good">+4%</td><td>+14%</td><td class="good">🟢 唯一保持正增长的板块；V8 是 FY27 最确定的增量来源</td></tr>
+  <tr><td><strong>合计</strong></td><td>—</td><td><strong>117.3</strong>（FY25 120.2）</td><td>100%</td><td class="bad"><strong>-2%</strong></td><td><strong>+22%</strong>（SaaS 收入，7 年 CAGR 27%）</td><td class="bad">🔴 不变汇率下 ARR 为 121.3m（约 +1%）；<b>调整后 ARR（剔除汇率与终止业务）仅 114m，对期初 120m 为 -5%</b></td></tr>
 </table>
 
 <div class="highlight-box">
-  <strong>业务解读：</strong>Content Solutions是核心基石（67.5%收入），提供企业内容管理/信息治理软件，ARR增长12%表明订阅转型顺利。Planning & Building是最大亮点——ARR增长31%，得益于Isovist收购和e-planning数字化浪潮。Regulatory Solutions ARR增长17%，受益于全球政府对监管科技（RegTech）投入增加。三个业务线合计ARR增长15.1%，远高于报表收入增速5%，说明公司主动控制低利润服务业务，聚焦高利润订阅模式。
+  <strong>业务解读：</strong>三条线的分化非常清楚。<br><br>
+  ① <strong>Information Intelligence 是问题所在</strong>：占 ARR 的 69.1%，ARR 从 8,510 万降至 8,100 万（<strong>-5%</strong>）。SaaS 收入仍 +21%，但 ARR 与收入背离——<b>说明既有合同在缩小（DDG 等大客户流失），新增合同不足以完全抵消</b>。这是本报告最需要盯住的一条线。<br><br>
+  ② <strong>Planning & Building 是弹性所在</strong>：SaaS 收入 +38%（全公司最快），新西兰已有 <strong>35 个客户、覆盖新西兰超过一半的 BCAs</strong>，另有 <strong>43 个 BCA 正在迁移至 Build 平台</strong>（迁移完成后将集中体现为 ARR），Isoplan 覆盖新大西定东南部绝大多数市议会。但澳洲仅 North Sydney 一个客户，维州/昆州/西澳开发中——这解释了为何收入高增而 ARR 只 +3%：<b>新西兰的存量在放量，澳洲的增量还没来</b>。<br><br>
+  ③ <strong>Regulatory Solutions 是最确定的期权</strong>：ARR +4%，RegWorks V8 是 5 年积累的集大成产品（融合 Agentic AI，定位"regulator-in-a-box"），FY27 渐进交付；RegWorks Accelerate 降低部署成本；已被联邦 DCCEEW 选为覆盖其 18 个机构的<strong>首选平台</strong>；正拓展英国、加拿大。UPS（美国养老金监管机构）案例已验证 <strong>uplift 系数在 1.5x~2.5x 之间</strong>，且 <strong>FY27 还有 2,400 万澳元的 USP 收入可转化为 uplift 案例</strong>——这是 FY27 最实的一个增长杠杆。<br><br>
+  <strong>⚠️ 口径提示：</strong>ARR 从 1.202 亿降至 1.173 亿（-2%）看着温和，但剔除汇率与终止业务后的「调整后 ARR」只有 1.14 亿，对期初 1.20 亿是 <strong>-5%</strong>——真实动能比表面数字差。
 </div>
 
 <h3>3.3 排雷清单</h3>
 <table>
-  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
-  <tr><td class="neutral">🟡 中等</td><td>营收增速仅5%，表面增长缓慢</td><td>L1 利润表，但ARR +15%预示好转</td></tr>
-  <tr><td class="neutral">🟡 中等</td><td>商誉及无形资产6,689万，占总资产34%</td><td>L1 资产负债表，并购积累需持续关注减值风险</td></tr>
-  <tr><td class="neutral">🟡 中等</td><td>客户高度集中于政府/公共部门</td><td>L5 行业分析，预算周期影响收入稳定性</td></tr>
-  <tr><td class="neutral">🟡 中等</td><td>股价从$19.16高位回落至~$10，跌幅47%</td><td>L3 估值，需判断是否为基本面变化或市场情绪</td></tr>
-  <tr><td class="good">🟢 正面</td><td>ROE 33.4%，资本回报率极高</td><td>L2 关键指标，5年稳定在28-34%</td></tr>
-  <tr><td class="good">🟢 正面</td><td>零有息负债，净现金8,491万</td><td>L1 资产负债表，财务极其安全</td></tr>
-  <tr><td class="good">🟢 正面</td><td>CFO/净利1.31，现金含量极高</td><td>L1 现金流量表</td></tr>
-  <tr><td class="good">🟢 正面</td><td>ARR增长15% > 收入增长5%，未来增长能见度高</td><td>L2 分业务分析</td></tr>
-  <tr><td class="good">🟢 正面</td><td>毛利率94.2%，净利率28.7%，盈利质量顶级</td><td>L1 利润表</td></tr>
+  <tr><th style="width:10%">严重程度</th><th style="width:32%">风险项</th><th>依据</th></tr>
+  <tr><td class="bad"><strong>🔴 红色</strong></td><td><strong>国防部 DDG 26 年合作关系终止</strong></td><td>在 FY2026 年末，Objective 与国防数字集团（Defence Digital Group）的商业关系突然中止，<strong>长达 26 年的国防部合作关系终结</strong>。对 FY2026 营收与盈利<b>无影响</b>（合同已在年内履约完毕），但<b>直接导致 FY2026 ARR 未达公司自设的增长目标</b>。CEO 在年度股东信中直言「在 FY2026 我们远未达到自己的业绩预期」，并称这「在国家防务语境下也令人担忧」。另有 RegWorks 之外的一份长期定制服务合同终止。<b>这是理解 FY27 指引下滑的起点，也是全篇排雷第一位。</b></td></tr>
+  <tr><td class="bad"><strong>🔴 红色</strong></td><td><strong>ARR 转负是核心预警</strong></td><td>ARR 1.173 亿（-2%），调整后口径 1.14 亿（<strong>-5%</strong>）。其中 <strong>Information Intelligence ARR -5%</strong>，而这条线占 ARR 的 69.1%。SaaS 公司的 ARR 就是未来的收入，本项转负意味着 FY27 收入增长缺乏基础。</td></tr>
+  <tr><td class="neutral">🟡 黄色</td><td>FY27 利润指引下滑 22%</td><td>FY2027 指引 Adjusted EBITDA <strong>至少 4,000 万澳元</strong>（FY26: 5,154 万），即<strong>至少 -22%</strong>。原因是在支撑投入的同时 ARR 短期下降。管理层称机构投资者要求「别只谈 ARR，回到盈利」。<b>意味着本报告 91 分所依据的高 ROE / 高增长不可直接外推。</b></td></tr>
+  <tr><td class="neutral">🟡 黄色</td><td>澳大利亚 Build 市场仅 1 个客户</td><td>澳洲 Build 仅落地 <strong>North Sydney 一个客户</strong>，维州、昆州、西澳仍在开发，投入期长。NZ 模式（政府主导 BCA 数字化）能否复制到澳洲存在不确定性。</td></tr>
+  <tr><td class="neutral">🟡 黄色</td><td>规模天花板</td><td>营收仅 <strong>1.35 亿澳元</strong>、市值 <strong>5.54 亿</strong>。客户高度集中在政府机构，而 DXC、Opus 及全球巨头（Guidewire、Salesforce）均具备切入能力。单一客户（DDG）流失即导致 ARR 不达标，集中度风险已被实证。</td></tr>
+  <tr><td class="neutral">🟡 黄色</td><td>派息率已达 67%</td><td>派息率由 59.1% 升至 <strong>66.8%</strong>。若 FY27 盈利按指引下滑（悲观情景 EPS 约 25.7 澳分），要维持 26.0 澳分 DPS 需派息率超 100%，「连续第 7 年提高分红」的记录面临中断压力（现金层面仍付得起，但增长逻辑难维持）。</td></tr>
+  <tr><td class="neutral">🟡 黄色</td><td>商誉 + 无形资产占总资产 41.3%</td><td>商誉 4,102万 + 其他无形 3,956万；有形每股仅 0.30 澳元。无形资产一年 +47.5% 全部来自 Isovist（付现 NZ$400万）。减值测试假设若不及，将直接冲击利润。</td></tr>
+  <tr><td class="neutral">🟡 黄色</td><td>流动递延收入 -14.0%</td><td>从 5,292 万降至 4,551 万。这是「已收钱未确认收入」的蓄水池，缩小 14% 与 ARR -2% 相互印证，指向 FY27 收入确认基数下降。</td></tr>
+  <tr><td class="good">🟢 正面</td><td>净现金 8,307 万、集团无任何对外借款</td><td>总债务 962 万全部为租赁；净现金占市值 15.0%。完全无偿债风险，可自筹资金支撑研发与并购。</td></tr>
+  <tr><td class="good">🟢 正面</td><td>100% 软件收入、100% 订阅模式、经常性收入占比 86%</td><td>毛利率 94.3%，收入可预测性极高，SaaS 收入 7 年 CAGR 27%。</td></tr>
+  <tr><td class="good">🟢 正面</td><td>连续 7 年提高分红，FY26 首次启动回购</td><td>DPS 26.0 澳分（+18.2%）；FY26 回购 710 万澳元（FY25 为零）；董事会将在静默期结束后（一个月内）复核回购计划；末期股息已于 2026-09 派付。</td></tr>
+  <tr><td class="good">🟢 正面</td><td>CFO 4,930 万、CFO/净利 1.33、FCF 持续为正</td><td>利润含金量满分档；且在 ARR 转负的年份 CFO 仍 +6.5%。</td></tr>
+  <tr><td class="good">🟢 正面</td><td>管理层对未达预期态度坦诚</td><td>CEO 年度股东信主动承认「远未达到自己的业绩预期」，并在国家防务语境下直言其担忧——披露透明度为正面信号。</td></tr>
 </table>
-
-<div class="verdict verdict-ok">✅ L2综合判定：品质优秀（ROE 33.4%，高毛利高现金流，财务极安全）</div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l3"><div class="tab-inner">
 
-<h2>四、估值分析（L3框架）</h2>
+<h2>四、估值分析（L3框架，非周期股 → PE Band）</h2>
 
-<h3>4.1 当前估值水平</h3>
+<h3>4.1 当前估值水平（2026-10-14 收盘）</h3>
 <table>
-  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
-  <tr><td>股价（2026.7.14）</td><td><strong>~$10.00</strong></td><td>从FY2025末$19.16回落47%</td></tr>
-  <tr><td>总市值</td><td><strong>~$9.55 亿</strong></td><td>基于9,550万股估算</td></tr>
-  <tr><td>企业价值（EV）</td><td><strong>~$8.70 亿</strong></td><td>市值 - 净现金8,491万</td></tr>
-  <tr><td>PE（TTM）</td><td><strong>~27x</strong></td><td>基于FY2025 EPS 37.2c</td></tr>
-  <tr><td>PE（TTM扣非）</td><td><strong>~27x</strong></td><td>非经常性项目极少</td></tr>
-  <tr><td>PE（2026E）</td><td><strong>~25x</strong></td><td>基于一致预期EPS ~40c</td></tr>
-  <tr><td>PB</td><td><strong>~9x</strong></td><td>基于每股净资产$1.11</td></tr>
-  <tr><td>PS（TTM）</td><td><strong>~7.7x</strong></td><td>基于营收1.235亿</td></tr>
-  <tr><td>PCF</td><td><strong>~20.6x</strong></td><td>基于CFO 4,626万</td></tr>
-  <tr><td>P/FCF</td><td><strong>~35x</strong></td><td>基于FCF 2,700万</td></tr>
-  <tr><td>股息率</td><td><strong>~2.2%</strong></td><td>基于22c全额抵扣股息</td></tr>
+  <tr><th>指标</th><th>当前值</th><th>历史分位 / 参照</th><th>同行（Technology One, TNE）</th></tr>
+  <tr><td>股价</td><td><strong>A$5.79</strong>（当日 +4.32%，前收 5.55；区间 5.41–5.81）</td><td>52 周区间 <strong>4.75 ~ 20.20</strong>，距高点 <strong class="bad">-71.3%</strong></td><td>—</td></tr>
+  <tr><td>总市值</td><td><strong>5.536 亿澳元</strong></td><td>同比 <strong class="bad">-70.6%</strong>（一年前约 18.8 亿）</td><td>—</td></tr>
+  <tr><td>净现金</td><td>8,307 万澳元（每股 0.87）</td><td>占市值 15.0%</td><td>净现金</td></tr>
+  <tr><td>企业价值 EV</td><td>4.705 亿澳元</td><td>= 553.6 − 83.1</td><td>—</td></tr>
+  <tr><td><strong>PE（报表 EPS 0.389）</strong></td><td><strong>14.9x</strong></td><td>第三方口径 14.45x；<b>为财年末 PE 序列最低点</b></td><td class="good"><strong>71.34x</strong>（前瞻 55.77x）</td></tr>
+  <tr><td><strong>前瞻 PE</strong></td><td><strong class="neutral">20.30x</strong></td><td>反映 FY27 EBITDA 至少 -22%；隐含前瞻 EPS 约 0.285</td><td>55.77x</td></tr>
+  <tr><td>PB</td><td><strong>5.03x</strong></td><td>BVPS 1.15 澳元（有形每股仅 0.30）</td><td class="good">23.35x</td></tr>
+  <tr><td>PS</td><td><strong>4.11x</strong></td><td>&lt; 10x，成长股无梦想溢价</td><td class="good">15.84x</td></tr>
+  <tr><td>PCF（CFO 4,930万）</td><td><strong>11.2x</strong></td><td>—</td><td>数据待补充</td></tr>
+  <tr><td>EV / Adjusted EBITDA</td><td><strong>9.1x</strong></td><td>按 FY26 EBITDA 5,154万；<b>按 FY27 指引下限 4,000万则约为 11.8x</b></td><td>数据待补充</td></tr>
+  <tr><td>股息率</td><td><strong>4.49%</strong></td><td>DPS 0.26 ÷ 5.79</td><td class="good">0.85%</td></tr>
+  <tr><td>派息率</td><td><strong>67%</strong></td><td>FY25 59.1%</td><td>61.41%</td></tr>
+  <tr><td>PEG</td><td class="neutral">3.0x（14.9 ÷ 4.9%）</td><td>⚠ 远超 1.5 的健康线——低 PE 并非来自高增长</td><td>数据待补充</td></tr>
+  <tr><td>Beta</td><td>0.71</td><td>低波动，防御属性</td><td>数据待补充</td></tr>
 </table>
 
-<h3>4.2 PE Band估值区间</h3>
-<p style="font-size:13px;color:#666;">ROE 33.4% → 合理PE参考区间：20-30x | FY2025 EPS 37.2c | FY2026E EPS ~40c</p>
+<h3>4.2 PE Band 估值区间（ROE 34.5% → 合理 PE 20–30x）</h3>
+<p style="font-size:13px;color:#666;margin-bottom:6px">合理 PE 取值依据：ROE &gt; 20% → <b>20–30x</b>（OCL ROE 34.5%，处于该档）。下表同时给出<b>两套 EPS 口径</b>——FY2026 实际 EPS 0.389（静态）与 FY2027E 保守 EPS 0.288（动态），两套必须对照看。</p>
+
+<h4>口径 A：FY2026 实际 EPS = 0.389 澳元（静态）</h4>
 <table>
-  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs现价$10.0</th></tr>
-  <tr><td>悲观（增长停滞）</td><td>15x</td><td>$5.58</td><td class="bad">-44%</td></tr>
-  <tr><td>保守</td><td>20x</td><td>$7.44</td><td class="neutral">-26%</td></tr>
-  <tr><td>中性（合理估值）</td><td>25x</td><td>$9.30</td><td class="neutral">-7%</td></tr>
-  <tr><td>券商目标价均值</td><td>~30x</td><td>$15.93</td><td class="good">+59%</td></tr>
-  <tr><td>当前价</td><td>~27x</td><td>$10.00</td><td>—</td></tr>
-  <tr><td>历史高位（FY2025末）</td><td>52x</td><td>$19.16</td><td class="good">+92%</td></tr>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs 现价 5.79</th><th>对应说明</th></tr>
+  <tr><td class="bad">悲观（ARR 持续负增长、FY27 低于指引下限）</td><td>12x</td><td>4.67</td><td class="bad">-19.4%</td><td>跌破合理区间，市场按「增长失速」重新定价</td></tr>
+  <tr><td>保守</td><td>15x</td><td>5.84</td><td>+0.8%</td><td>估值不再修复，横盘消化指引</td></tr>
+  <tr><td><strong>中性（合理区间下沿）</strong></td><td><strong>20x</strong></td><td><strong>7.78</strong></td><td class="good"><strong>+34.4%</strong></td><td>ROE 30%+ 对应的合理下沿</td></tr>
+  <tr><td>合理中枢</td><td>25x</td><td>9.73</td><td class="good">+68.0%</td><td>ARR 恢复正增长情形下的重估目标</td></tr>
+  <tr><td>券商一致目标价</td><td>22.5x（隐含）</td><td><strong>8.77</strong></td><td class="good">+51.5%</td><td>7 家覆盖、一致评级 Buy</td></tr>
+  <tr style="background:#eef3f8"><td><strong>当前价</strong></td><td><strong>14.9x</strong></td><td><strong>5.79</strong></td><td>—</td><td><b>低于合理区间下沿 20x —— 账面低估</b></td></tr>
+  <tr><td>历史高位（52 周高点 20.20）</td><td>51.9x</td><td>20.19</td><td class="good">+248.7%</td><td>一年内曾给出的估值水平</td></tr>
 </table>
 
-<div class="highlight-box">
-  <strong>PE Band分析：</strong>当前PE 27x处于ROE 33.4%对应的合理区间（20-30x）内，估值合理偏低。从$19.16（FY2025末PE 52x）回落至$10.00（PE 27x）主要是估值回归而非基本面恶化——FY2025末52x PE明显过高，当前估值更为健康。券商平均目标价$15.93对应~40x PE，仍有一定溢价空间。1HY26 NPAT $1,870万（同比+10%），若2H26延续趋势，FY2026E NPAT约$3,740万，前瞻PE约25x更具吸引力。
+<h4>口径 B：FY2027E 保守 EPS = 0.288 澳元（动态）</h4>
+<p style="font-size:13px;color:#666;margin-bottom:6px">推演路径：FY27E NPAT = (Adjusted EBITDA 4,300万 − 折旧摊销约 950万 − 净财务费用约 50万) × (1 − 有效税率 16.3%) ≈ <b>2,762 万</b>；÷ 摊薄股数约 9,600 万股 ≈ <b>0.288 澳元</b>。<br>交叉验证：第三方前瞻 PE 20.30x × 95.61M 股 → 隐含前瞻净利约 2,727 万、前瞻 EPS 约 0.285，与本推演基本一致，说明中性情景假设贴近市场共识。</p>
+<table>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>vs 现价 5.79</th><th>对应说明</th></tr>
+  <tr><td class="bad">悲观（EBITDA 约 3,950万，略低于指引下限）</td><td>12x</td><td>3.46</td><td class="bad">-40.3%</td><td>盈利下滑被确认为趋势而非一次性</td></tr>
+  <tr><td>保守</td><td>15x</td><td>4.32</td><td class="bad">-25.4%</td><td>市场对 FY27 指引打折</td></tr>
+  <tr><td><strong>中性（合理区间下沿）</strong></td><td><strong>20x</strong></td><td><strong>5.76</strong></td><td><strong>-0.5%</strong></td><td><b>现价几乎正好等于合理下沿 —— 不便宜</b></td></tr>
+  <tr><td>合理中枢</td><td>25x</td><td>7.20</td><td class="good">+24.4%</td><td>需 ARR 转正才配得上</td></tr>
+  <tr><td>券商一致目标价</td><td>30.5x（隐含）</td><td><strong>8.77</strong></td><td class="good">+51.5%</td><td>卖方假设更乐观的盈利修复</td></tr>
+  <tr style="background:#eef3f8"><td><strong>当前价</strong></td><td><strong>20.1x</strong>（第三方口径 20.30x）</td><td><strong>5.79</strong></td><td>—</td><td><b>已站在合理区间下沿，不再有折价</b></td></tr>
+  <tr><td>历史高位</td><td>50x</td><td>14.40</td><td class="good">+148.7%</td><td>—</td></tr>
+</table>
+
+<div class="danger-box">
+  <strong>⚠️ PE Band 最关键结论：静态便宜，动态不便宜。</strong><br>
+  · <strong>静态口径（FY2026 实际 EPS 0.389）：</strong>14.9x <b>低于</b> ROE 34.5% 对应的合理区间下沿 20x，表面上有 34%~68% 的修复空间，PEG 却高达 3.0 —— 说明这个低 PE 不是「高成长换来的便宜」，而是市场对未来贴现的<b>打折</b>。<br>
+  · <strong>动态口径（FY2027E 保守 EPS 0.288）：</strong>20.1x <b>正好落在</b>合理区间下沿，谈不上任何折价；只有到 25x 以上才有像样的上行，而 25x 需要 ARR 恢复正增长来支撑。<br>
+  · <strong>因此「OCL 是不是低估了」这个问题没有单一答案</strong>——答案完全取决于 ARR 能否在 FY27 止跌回升。市场当前定价（约 20x 前瞻 PE）已经隐含了对 FY27 盈利下滑的充分认知，所谓「便宜」是在赌 ARR 的拐点，而不是赚已实现的历史财务。
 </div>
 
-<h3>4.3 历史PE区间</h3>
+<h3>4.3 历史估值参照（财年末 PE 序列）</h3>
 <table>
-  <tr><th>指标</th><th>数值</th></tr>
-  <tr><td>PE（TTM）历史最大值</td><td>102x（FY2021）</td></tr>
-  <tr><td>PE（TTM）5年均值</td><td>~45x</td></tr>
-  <tr><td>PE（TTM）5年中位数</td><td>~40x</td></tr>
-  <tr><td>PE（TTM）5年最低值</td><td>~27x（当前）</td></tr>
-  <tr><td>当前PE（TTM）</td><td class="good">~27x（接近5年最低）</td></tr>
+  <tr><th>时点</th><th>股价（澳元）</th><th>对应 EPS（澳元）</th><th>PE</th><th>说明</th></tr>
+  <tr><td>FY2022 财年末</td><td>13.73</td><td>0.207</td><td>66.3x</td><td class="neutral">—</td></tr>
+  <tr><td>FY2023 财年末</td><td>13.77</td><td>0.222</td><td>62.0x</td><td class="neutral">—</td></tr>
+  <tr><td>FY2024 财年末</td><td>12.03</td><td>0.327</td><td>36.8x</td><td class="neutral">—</td></tr>
+  <tr><td>FY2025 财年末</td><td><strong>19.16</strong></td><td>0.372</td><td>51.5x</td><td class="bad">历史高位区</td></tr>
+  <tr><td>FY2026 财年末</td><td>10.30</td><td>0.389</td><td>26.5x</td><td class="neutral">财报日暴跌后已回落 46%</td></tr>
+  <tr style="background:#eef3f8"><td><strong>当前（2026-10-14）</strong></td><td><strong>5.79</strong></td><td><strong>0.389</strong></td><td><strong>14.9x</strong></td><td class="good"><b>该序列最低点，约为 FY25 财年末的 1/3.5</b></td></tr>
 </table>
+<p style="font-size:13px;color:#666;margin:4px 0 8px">52 周区间 4.75 ~ 20.20，对应 PE 约 12.2x ~ 51.9x；现价 5.79 仅高于 52 周低点 22%。<br><b>关键事件：FY2026 财报日单日暴跌 20.11%（7.46 → 5.96），收盘接近 52 周区间下沿</b>——这是对 DDG 合同终止 + FY27 EBITDA 指引下滑的直接定价。<br><span style="color:#999">注：完整历史 PE 分位数（最大值/80%/50%/20%/最小值）数据待补充，本表以财年末实际价格与已实现 EPS 逐点计算，可追溯、不依赖第三方统计。</span></p>
 
-<div class="summary-box">
-  <strong>估值总结：</strong>Objective Corp当前PE 27x处于5年历史最低水平，相较于FY2025末52x已大幅回归。对于一家ROE 33%、毛利率94%、零负债、FCF为正的高质量SaaS公司，27x PE（PEG ~1.8x）估值合理偏低。股价从$19.16跌至~$10并非基本面恶化——ARR增长15%、利润增13%、资产负债表持续改善。市场情绪（ASX小盘科技股抛售）可能是主要拖累。对于价值投资者，当前估值提供了较好的安全边际；对于成长投资者，需关注营收增速何时从5%回升至10%+（ARR 15%增长预示着这一拐点正在接近）。
+<h3>4.4 估值总结</h3>
+<div class="highlight-box">
+  <strong>估值判断：偏低但需附条件，不能简单按「深度低估」处理。</strong><br><br>
+  <strong>支持低估的三条硬证据：</strong>① PE 14.9x 为财年末序列最低，显著低于 ROE 34.5% 对应的 20–30x 合理区间；② PS 4.11x、EV/Adjusted EBITDA 9.1x，对一家毛利率 94.3%、净利率 27.6%、零有息负债的软件公司属于折价定价；③ 股息率 4.49% + FY26 首次回购 710 万 + 净现金占市值 15%，下行有实质保护。<br><br>
+  <strong>必须同时承认的三条反证：</strong>① 前瞻 PE 已回到 20.30x = 合理区间下沿，<b>「便宜」的窗口主要在静态 EPS 上</b>；② PEG 3.0，低 PE 不是成长换来的，是动能换来的<b>打折</b>；③ <b>价值陷阱的「增长失速端」已部分命中</b>——ARR -2%（调整后 -5%）、FY27 EBITDA 指引至少 -22%，且与同行的巨大估值差（对比 TNE：ROE 相近但 PE 71.3x、PS 15.8x）说明市场给 OCL 的折价是<b>对增长失速与规模天花板的定价</b>，而不是对财务质量的否定。<br><br>
+  <strong>操作含义：</strong>当前价属于「<b>好公司 + 等待验证的价格</b>」，不是「无脑抄底」。它便宜的前提是 FY27 末期 ARR 止跌回升；若 FY27 中报 ARR 继续负增长，20x 前瞻 PE 会被动下修至 15x 附近（对应约 4.3 澳元，接近 52 周低点）。反之，若 RegWorks V8 + 澳洲 Build + USP uplift 三件事在 FY27 兑现、ARR 回到正增长，则 25x 中枢（动态口径 7.20 澳元 / 静态口径 9.73 澳元）是合理目标区，7 家券商一致目标价 8.77 澳元（+51.5%）位于两者之间、偏乐观端。
 </div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l4"><div class="tab-inner">
 
-<h2>五、杜邦分析拆解（L4框架）</h2>
+<h2>五、杜邦分析（L4框架）</h2>
 
-<h3>5.1 杜邦拆解表</h3>
+<h3>5.1 杜邦拆解（FY2026）</h3>
 <table>
-  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
-  <tr><td>净利润率</td><td>19.1%</td><td>26.7%</td><td><strong>28.7%</strong></td><td class="good">⬆ 持续大幅提升</td></tr>
-  <tr><td>资产周转率</td><td>0.69</td><td>0.67</td><td><strong>0.64</strong></td><td class="neutral">⬇ 略降（M&A增加资产）</td></tr>
-  <tr><td>权益乘数</td><td>2.17</td><td>1.90</td><td><strong>1.83</strong></td><td class="good">⬇ 杠杆持续降低</td></tr>
-  <tr><td><strong>ROE</strong></td><td><strong>28.7%</strong></td><td><strong>33.9%</strong></td><td><strong>33.4%</strong></td><td class="good">➡ 维持高位</td></tr>
-  <tr><td>去杠杆ROA（净利率×周转）</td><td>13.2%</td><td>17.9%</td><td><strong>18.3%</strong></td><td class="good">⬆ 真实回报持续提升</td></tr>
-  <tr><td>杠杆贡献（ROE-ROA）</td><td>15.5pct</td><td>16.0pct</td><td><strong>15.1pct</strong></td><td class="neutral">➡ 杠杆贡献稳定</td></tr>
+  <tr><th>指标</th><th>FY2026</th><th>计算过程</th><th>判断</th></tr>
+  <tr><td><strong>净利润率</strong></td><td><strong>27.6%</strong></td><td>NPAT 37,191 ÷ 营收 134,711</td><td class="good">✅ 纯软件顶级水平（同比 -1.1pct）</td></tr>
+  <tr><td><strong>资产周转率</strong></td><td><strong>0.693</strong></td><td>营收 134,711 ÷ 平均总资产 194,461（(194,963+193,958)÷2）</td><td class="good">✅ 轻资产：每 1 澳元资产一年转出 0.69 澳元收入</td></tr>
+  <tr><td><strong>权益乘数</strong></td><td><strong>1.804</strong></td><td>平均总资产 194,461 ÷ 平均权益 107,836（(109,472+106,199)÷2）</td><td class="good">✅ 极低杠杆——总资产仅为净资产的 1.8 倍</td></tr>
+  <tr style="font-weight:bold;background:#e8f4f8"><td><strong>ROE</strong></td><td><strong>34.5%</strong></td><td>27.6% × 0.693 × 1.804；NPAT 37,191 ÷ 平均权益 107,836</td><td class="good"><strong>✅ 三项因子校验一致</strong></td></tr>
+  <tr><td>去杠杆 ROA（净利率 × 周转率）</td><td><strong>19.1%</strong></td><td>27.6% × 0.693</td><td class="good">✅ <b>每 1 澳元总资产产生 0.19 澳元净利</b>——真实经营回报，不含杠杆加成</td></tr>
+  <tr><td>杠杆贡献（ROE − ROA）</td><td>15.4pct</td><td>34.5% − 19.1%</td><td class="neutral">⚠ 这 15.4pct <b>并非来自有息负债</b>，而是来自经营负债（递延收入 4,551万 + 应付/应计）形成的 1.8 倍权益乘数，性质温和</td></tr>
+  <tr><td>CFO / 净利润</td><td>1.33</td><td>49.3 ÷ 37.19</td><td class="good">✅ 利润含金量验证，ROE 不是纸面利润</td></tr>
 </table>
+<p style="font-size:13px;color:#666;margin:4px 0 8px">单位口径统一：净资产 <b>109,472 千澳元 = 109.5 百万澳元</b>（与 L1 资产负债表一致）；权益乘数使用的平均权益 107,836 千澳元 = 107.8 百万澳元。</p>
 
+<h3>5.2 五年趋势（净利率 / EPS / DPS）</h3>
+<table>
+  <tr><th>财年</th><th>净利率</th><th>基本 EPS（澳分）</th><th>DPS（澳分）</th><th>派息率</th><th>ROE</th></tr>
+  <tr><td>FY2022</td><td>18.4%</td><td>20.7</td><td>12.0</td><td>58.0%</td><td class="neutral">数据待补充</td></tr>
+  <tr><td>FY2023</td><td>19.1%</td><td>22.2</td><td>13.5</td><td>60.8%</td><td class="neutral">数据待补充</td></tr>
+  <tr><td>FY2024</td><td>26.7%</td><td>32.7</td><td>17.0</td><td>52.0%</td><td class="neutral">数据待补充</td></tr>
+  <tr><td>FY2025</td><td>28.7%</td><td>37.2</td><td>22.0</td><td>59.1%</td><td class="neutral">数据待补充</td></tr>
+  <tr style="background:#eef3f8"><td><strong>FY2026</strong></td><td><strong>27.6%</strong></td><td><strong>38.9</strong></td><td><strong>26.0</strong></td><td><strong>66.8%</strong></td><td class="good"><strong>34.5%</strong></td></tr>
+</table>
+<p style="font-size:13px;color:#666;margin:4px 0 8px"><span style="color:#999">数据待补充范围：FY2022–FY2025 的 ROE、资产周转率、权益乘数无法计算——需各年期末总资产与股东权益（OCL 未在本报告数据源中提供 FY22–FY24 资产负债表）。净利率、EPS、DPS 五年序列可由已提供的损益与分红数据完整推导。</span></p>
+
+<h3>5.3 赚钱模式判断</h3>
 <div class="highlight-box">
-  <strong>赚钱模式判断：高利润型（Premium Profit Model）</strong><br>
-  Objective Corp是典型的高利润型商业模式：净利率28.7%且持续提升（FY2023仅19.1%→FY2025 28.7%），资产周转率0.64（轻资产SaaS），权益乘数1.83（几乎无杠杆）。<br><br>
-  <strong>关键解读：</strong>① ROE 33.4%主要由高利润率驱动（贡献85%以上），这是最健康的ROE来源；② 去杠杆ROA从13.2%提升至18.3%——去掉杠杆后真实资产回报率极高，说明公司靠经营优势而非财务杠杆赚钱；③ 权益乘数从2.17持续降至1.83，杠杆持续优化——公司用更少的资本撬动了更高的回报。
+  <strong>赚钱模式：高利润型（Premium Profit Model）—— 杜邦分析中最理想的组合</strong><br><br>
+  三项因子的组合是教科书式的健康结构：<strong>净利率 27.6%（行业顶级） × 资产周转率 0.693（轻资产） × 权益乘数 1.804（几乎无杠杆）</strong>。<br><br>
+  <strong>关键解读：</strong><br>
+  ① <strong>ROE 34.5% 的来源是纯经营性的。</strong>权益乘数只有 1.80，说明公司没有用杠杆放大回报——它靠的是 94.3% 毛利率 + 86% 经常性收入 + 27.6% 净利率赚出来的。这比「靠加杠杆做高 ROE」高出一个档次。<br>
+  ② <strong>去杠杆 ROA 19.1%</strong>——把杠杆完全剥掉后，每 1 澳元总资产仍产生 0.19 澳元净利。作为对照，绝大多数软件公司 ROA 在 5%~15%，制造业普遍 &lt; 5%。这是真实经营效率的证明。<br>
+  ③ <strong>杠杆贡献 15.4pct 性质温和。</strong>它并非来自银行借款（集团零对外借款，总债务 962 万全部为租赁），而是来自经营负债——主要是客户预付的递延收入 4,551 万。换句话说，这 15.4pct 是<b>客户先付钱、公司后交付</b>的结果，是商业模式红利的会计体现，而非财务风险。<br>
+  ④ <strong>CFO/净利 1.33 为上述结论背书</strong>：ROE 对应的利润是能收到现金的，不是会计口径的幻觉。
 </div>
 
-<h3>5.2 资产回报效率分析</h3>
+<h3>5.4 资产回报效率（横向对照）</h3>
 <table>
-  <tr><th>指标</th><th>Objective Corp</th><th>典型SaaS公司</th><th>评价</th></tr>
-  <tr><td>每$1总资产产生净利润</td><td><strong>18.3c</strong></td><td>5-15c</td><td class="good">✅ 远超同行</td></tr>
-  <tr><td>每$1净资产产生净利润</td><td><strong>33.4c</strong></td><td>15-25c</td><td class="good">✅ 优秀</td></tr>
-  <tr><td>每$1营收投入的营运资本</td><td><strong>-31c</strong></td><td>负值（SaaS正向）</td><td class="good">✅ 客户预付模式</td></tr>
+  <tr><th>指标</th><th>Objective (OCL)</th><th>Technology One (TNE)</th><th>评价</th></tr>
+  <tr><td>每 1 澳元总资产产生的净利（ROA）</td><td><strong>0.19 澳元（19.1%）</strong></td><td>14.58%</td><td class="good">✅ OCL 略优</td></tr>
+  <tr><td>每 1 澳元净资产产生的净利（ROE）</td><td><strong>0.345 澳元（34.5%）</strong></td><td>33.53%</td><td class="good">✅ 基本持平</td></tr>
+  <tr><td>权益乘数</td><td><strong>1.804</strong></td><td>2.30（由 ROE÷ROA 推算）</td><td class="good">✅ OCL 杠杆更低、更保守</td></tr>
+  <tr><td>毛利率</td><td><strong>94.3%</strong></td><td>数据待补充</td><td class="good">OCL 为纯软件，结构上更高</td></tr>
 </table>
 
+<h3>5.5 核心结论</h3>
 <div class="summary-box">
-  <strong>核心结论：</strong><br>
-  ① ROE 33.4%靠"极高净利润率+轻资产周转+低杠杆"实现，ROE质量极高，属于杜邦分析中最理想的"高利润型"模式。<br>
-  ② 去杠杆ROA 18.3%且持续提升——这是公司真实经营能力的体现，对比大多数制造业公司（ROA < 5%）和金融公司（依赖杠杆），Objective的资产回报效率极其出色。<br>
-  ③ 趋势健康——利润率在提升、杠杆在降低、ROE维持高位，三者同时向好，说明公司的竞争优势在持续增强而非减弱。<br>
-  ④ 每$1营收对应-31c营运资本（客户预付>应收+存货），商业模式天生具有负营运资本周期，这是SaaS公司最理想的财务特征。
+  <strong>杜邦结论：ROE 34.5% 靠「利润率 + 轻资产」驱动，质量极高；但 FY26 已出现第一个趋势拐点信号。</strong><br><br>
+  ① <strong>质量</strong>：ROE 34.5% 中，几乎全部来自 27.6% 的净利率与 0.693 的轻资产周转，杠杆贡献仅 1.8 倍且来自客户预付款——这是杜邦分析中「高利润型」的满分答案。CFO/净利 1.33 进一步证明利润的真实性。<br>
+  ② <strong>趋势</strong>：净利率从 FY22 的 18.4% 连续提升至 FY25 的 28.7%，<strong>FY26 首次回落至 27.6%</strong>（税率 14.3%→16.3%、Isovist 摊销 +20.1%、其他损益转负）。同时派息率跳升至 66.8%（五年最高），压低了权益的内生积累速度（股东权益仅 +3.1%）。<br>
+  ③ <strong>⚠️ 关键限定</strong>：本节所有 ROE / ROA 计算均基于 <b>FY2026 已实现的数据</b>。由于 FY27 Adjusted EBITDA 指引至少 -22%、折旧摊销仍将上升，<b>若 NPAT 落到悲观情景（约 2,470 万，EPS 25.7 澳分），在权益不变的前提下 ROE 将降至约 22%~23%</b>——仍属优秀，但已脱离「34.5% 顶级」档位。评分表的 ROE 满分需要以 FY27 中报的 ROE 重新校验。
 </div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l5"><div class="tab-inner">
 
-<h2>六、行业分类与特征（L5框架）</h2>
+<h2>六、行业分类（L5框架）</h2>
 
 <h3>6.1 行业类型判断</h3>
 <div class="summary-box">
-  <strong>行业类型：成长型行业（GovTech / RegTech 软件）</strong><br>
-  <strong>判断依据：</strong>Objective Corp所在的是政府科技（GovTech）和监管科技（RegTech）赛道。这是一个受益于全球政府数字化转型的结构性增长市场。核心驱动力：① 世界各国政府加速数字化以提升效率、降低开支；② 对信息治理、数据主权和合规的要求持续提高；③ AI时代的政府数据治理需求爆发（Objective已在其产品中融入AI功能）；④ 政府客户的SaaS化趋势不可逆（从买License到订阅）。<br><br>
-  <strong>成长属性：</strong>虽然报表营收增速仅5%（受SaaS转型主动收缩低利润服务的影响），但ARR增速15%充分说明了潜在增长动能。全球GovTech市场预计以10-15% CAGR增长，公司在澳新地区占据领先地位，正逐步向英国、欧洲和北美扩张。
+  <strong>行业类型：非周期股（成长型）—— 采用非周期股评分体系</strong><br><br>
+  <strong>判断依据（三条）：</strong><br>
+  ① <strong>需求由立法与预算周期驱动，而非商品周期。</strong>Objective 的客户是各级政府部门与监管机构（DCCEEW、州级监管局、BCA、市议会）。政府 IT 支出具有刚性、周期以立法与预算年度为单位，不随大宗商品价格或供需错配波动。这是典型的非周期特征。<br>
+  ② <strong>收入 100% 软件、100% 订阅，经常性收入占客户总收入 86%。</strong>预付订阅 + 极高续约黏性 → 现金流可预测性高，符合《industry-classification.md》对非周期股「需求稳定，利润可预测」的界定。<br>
+  ③ <strong>行业归属明确。</strong>对照分类表：「科技（纯软件）」直接列入非周期股，须用非周期股评分体系。<br><br>
+  <strong>细分为成长型的原因：</strong>公司仍在地理与产品双向扩张（新西兰 → 澳洲；澳新 → 英国、加拿大），RegWorks V8、Isoplan Professional、Agentic AI 均为新增量。但需注意：<strong>「非周期」保证的是收入的可预测性，不保证增长——FY26 的 ARR -2% 恰恰说明非周期只防周期风险，防不住客户流失与合同终止风险。</strong>
 </div>
 
-<h3>6.2 行业集中度与壁垒</h3>
+<h3>6.2 集中度与壁垒</h3>
 <table>
-  <tr><th>维度</th><th>判断</th></tr>
-  <tr><td>行业集中度</td><td><strong>细分领域高度集中</strong>——在澳大利亚政府内容管理市场，Objective是最主要的供应商。全球GovTech市场分散（各国都有自己的供应商），但在每个细分市场（政府内容管理、规划审批、监管合规）中，各主要玩家均有较强区域优势。</td></tr>
-  <tr><td>技术壁垒</td><td><strong>极高</strong>——政府软件涉及国家安全和数据主权，认证和准入门槛极高。Objective投资1.12亿澳元研发积累的技术架构，竞争对手难以复制。尤其AI+合规的产品能力是未来差异化核心。</td></tr>
-  <tr><td>客户壁垒</td><td><strong>极高（锁定效应极强）</strong>——政府客户的更换成本极高。一旦部署，涉及数万用户培训和数十年数据迁移。Objective客户续约率极高（合同负债持续增长验证），很多客户合作超10年甚至20年。</td></tr>
-  <tr><td>品牌/信任壁垒</td><td><strong>极强</strong>——25年政府软件服务历史，持有澳大利亚政府安全认证，为国防部（13万+用户）、苏格兰政府等提供关键任务系统。信任一旦建立，新进入者几乎无法撼动。</td></tr>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>细分市场集中度</td><td><strong>澳新高度集中，全球分散</strong></td><td>新西兰：Objective Build 已上线 <strong>35 个客户、覆盖新西兰超过一半的 BCAs</strong>，与 Trapeze 合计为当地主导供应商；另有 <strong>43 个 BCA 正在迁移</strong>至 Build 平台。这是事实上的区域双寡头格局。<br>全球：GovTech 市场按国别分割，本地龙头各有优势；竞品包含 DXC、Opus 及全球巨头 Guidewire、Salesforce 等，格局分散。</td></tr>
+  <tr><td>技术壁垒</td><td class="good">强</td><td>FY26 研发总投入 <strong>3,378 万澳元，占软件收入 30%</strong>（含资本化）。政府软件涉及国家安全与数据主权，认证与准入门槛极高；Objectic Nexus / RegWorks V8 / Build 三套产品的合规能力难以快速复制。</td></tr>
+  <tr><td>客户壁垒（锁定效应）</td><td class="good">极强</td><td>政府客户更换成本极高：涉及全量历史记录迁移、合规审计重新认证、员工再培训。Objective 与国防部的合作曾长达 <strong>26 年</strong>，与大量客户的合作亦超过十年。<br><strong>⚠️ 但反向证据同样重要：</strong>26 年的合作关系仍能被单方面终止（DDG 事件），说明在政府预算与政治周期面前，锁定效应并非绝对——这是本行最需要修正的认知。</td></tr>
+  <tr><td>牌照/准入壁垒</td><td class="good">极强</td><td>政府安全认证、合规资质、既有系统的关键任务地位，构成了 DXC、Salesforce 等巨头难以短期切入的门槛。</td></tr>
+  <tr><td>品牌/信任壁垒</td><td class="good">强</td><td>1987 年成立、1996 年上市、约 400 名员工；被联邦 DCCEEW 选为覆盖其 18 个机构的<strong>首选平台</strong>；Isoplan 覆盖新大西定东南部绝大多数市议会。信任一旦建立，新进入者几乎无法撼动。</td></tr>
 </table>
 
 <h3>6.3 生命周期阶段</h3>
 <div class="highlight-box">
-  <strong>阶段：成长期——细分市场领导者，全球扩张初期</strong><br>
-  Objective在澳新GovTech市场处于"成熟领导者"地位（市场地位稳固、盈利能力优秀），但从全球扩张和SaaS化转型角度看仍处于"成长期"。三大增长引擎：① Content Solutions（ARR +12%）——存量客户向云迁移；② Planning & Building（ARR +31%）——数字化规划审批需求爆发；③ Regulatory Solutions（ARR +17%）——全球RegTech投入增加。<br><br>
-  <strong>投资策略重点：</strong>关注ARR增速能否维持15%+、英国/北美市场扩张进展、AI功能商业化落地、并购整合效果。
+  <strong>阶段：成长期——区域成熟龙头，全球扩张初期</strong><br><br>
+  Objective 在澳新 GovTech 属于「成熟领导者」（新西兰 BCA 装机过半、联邦 DCCEEW 首选平台），但从产品与地理扩张看仍处成长期。三条增长线：① <strong>Regulatory Solutions</strong>（RegWorks V8 FY27 渐进交付、融合 Agentic AI、DCCEEW 覆盖 18 机构、英加扩张、UPS uplift 系数 1.5x~2.5x）；② <strong>Planning & Building</strong>（SaaS 收入 +38%，43 个 BCA 迁移在途，澳洲 North Sydney 起步）；③ <strong>Information Intelligence</strong>（SaaS 收入 +21%，但 ARR -5% 是最大拖累）。<br><br>
+  <strong>投资策略重点：</strong>ARR 能否止跌回升（最关键）、RegWorks V8 的 FY27 收入转化率、澳洲 Build 从 1 个客户到多少个、USP uplift 案例落地节奏、回购计划是否加码。<br><br>
+  <strong>⚠️ 成长期公司最怕什么？</strong>最怕的不是宏观周期，而是<strong>领先指标掉头</strong>。OCL 的收入增速（+9%）与领先指标（ARR -2%）首次出现反向剪刀差，这是成长期公司最典型的危险信号。
 </div>
 
-<h3>6.4 成长股成色检验（四步法）</h3>
-<p style="font-size:13px;color:#666;margin-bottom:4px">虽PS 7.7x < 10x预警线，作为高质量SaaS适用成长股验证</p>
+<h3>6.4 同行对比</h3>
+<p style="font-size:13px;color:#666;margin-bottom:4px">同行 A 采用澳洲中型政府/企业软件 <strong>Technology One（ASX:TNE）</strong>，为直接可比的真实同行；同行 B 采用澳洲中型软件 <strong>MYOB Group（ASX:MYB）</strong>作定性对比，财务数据待补充。行业中位列因缺数据未列。</p>
 <table>
-  <tr><th>步骤</th><th>检验内容</th><th>数据</th><th>判定</th></tr>
-  <tr><td>① 营收</td><td>有没有实在的生意？</td><td>营收1.235亿，ARR 1.202亿，客户2,000+</td><td class="good">✅ 过关</td></tr>
-  <tr><td>② 毛利率</td><td>产品竞争力如何？</td><td>毛利率94.2%极高水平，行业领先</td><td class="good">✅ 优异</td></tr>
-  <tr><td>③ CFO</td><td>能不能自己造血？</td><td>CFO 4,626万，CFO/净利1.31，极其健康</td><td class="good">✅ 优异</td></tr>
-  <tr><td>④ PS</td><td>梦想溢价多少？</td><td>PS 7.7x，低于10x预警线，合理水平</td><td class="good">✅ 合理</td></tr>
+  <tr><th>指标</th><th>Objective (OCL)</th><th>Technology One (TNE)</th><th>MYOB Group (MYB)</th><th>评价</th></tr>
+  <tr><td>ROE</td><td><strong>34.5%</strong></td><td>33.53%</td><td class="neutral">数据待补充</td><td class="good">✅ 基本持平</td></tr>
+  <tr><td>ROA</td><td><strong>19.1%</strong></td><td>14.58%</td><td class="neutral">数据待补充</td><td class="good">✅ OCL 略优</td></tr>
+  <tr><td>毛利率</td><td><strong>94.3%</strong></td><td class="neutral">数据待补充</td><td class="neutral">数据待补充</td><td class="good">✅ OCL 纯软件极高</td></tr>
+  <tr><td><strong>PE</strong></td><td><strong>14.9x</strong>（前瞻 20.30x）</td><td><strong>71.34x</strong>（前瞻 55.77x）</td><td class="neutral">数据待补充</td><td class="good"><b>✅ OCL 便宜约 4–5 倍</b></td></tr>
+  <tr><td><strong>PS</strong></td><td><strong>4.11x</strong></td><td><strong>15.84x</strong></td><td class="neutral">数据待补充</td><td class="good"><b>✅ OCL 便宜约 4 倍</b></td></tr>
+  <tr><td>PB</td><td><strong>5.03x</strong></td><td>23.35x</td><td class="neutral">数据待补充</td><td class="good">✅ OCL 显著便宜</td></tr>
+  <tr><td>营收增速</td><td>+9%（<strong>但 ARR -2%</strong>）</td><td class="neutral">数据待补充</td><td class="neutral">数据待补充</td><td class="neutral">⚠ OCL 动能存疑</td></tr>
+  <tr><td>杠杆</td><td>净现金 8,307 万，Debt/Equity 近 0</td><td>Debt/Equity 0.12，净现金</td><td class="neutral">数据待补充</td><td class="good">✅ 均无债务风险</td></tr>
+  <tr><td><strong>股息率</strong></td><td><strong>4.49%</strong></td><td>0.85%</td><td class="neutral">数据待补充</td><td class="good"><b>✅ OCL 股息回报显著更高</b></td></tr>
+  <tr><td>派息率</td><td>67%</td><td>61.41%</td><td class="neutral">数据待补充</td><td class="neutral">➡ 相当</td></tr>
 </table>
 
-<div class="summary-box">
-  <strong>四步法结论：</strong>Objective Corp四步法全部过关（对比许多高估值成长股往往在CFO和PS环节暴露问题）。营收真实、毛利率顶级、现金流优秀、PS合理——这是"真成长股"的典型特征。公司不是靠烧钱讲故事，而是靠优质产品和强客户粘性实现健康增长。
+<div class="highlight-box">
+  <strong>核心结论（同行为何给出 4–5 倍估值差）：</strong><br><br>
+  OCL 与 TNE 的 <strong>ROE 几乎一样（34.5% vs 33.5%）</strong>，但估值差 <strong>4–5 倍</strong>——PE 14.9x vs 71.3x、PS 4.11x vs 15.84x，且 <strong>OCL 股息率（4.49%）是 TNE（0.85%）的 5 倍</strong>。两家都是净现金、零债务风险的澳洲中型软件公司。<br><br>
+  <strong>市场给这个折价的理由是 ARR 转负 + 国防合同损失 + 规模天花板，不是财务质量。</strong>具体拆解：<br>
+  ① <strong>动能折价</strong>：OCL 的 ARR -2%（调整后 -5%）、FY27 EBITDA 指引至少 -22%；TNE 虽增速未提供，但市场显然愿意为其增长付溢价。<br>
+  ② <strong>事件折价</strong>：DDG 26 年合作突然终止 + 另一份长期定制合同终止，暴露了客户集中度与政府预算风险。<br>
+  ③ <strong>规模折价</strong>：OCL 营收仅 1.35 亿、市值 5.54 亿，PS 天然低于大市值同行；小盘股流动性与关注度也折价。<br>
+  ④ <strong>质量是 OCL 占优的一面</strong>：毛利率 94.3%（纯软件）、ROA 19.1% 更高、杠杆更低、股息率 5 倍、且 CFO/净利 1.33 的利润含金量。<br><br>
+  <strong>因此，这个折价究竟是「错误定价」还是「合理定价」，本质上是在赌：ARR 会不会在 FY27 止跌。</strong>若止跌，折价缺乏基本面支撑；不止跌，折价只是刚刚开始反映问题。<b>这就是 L6 需要回答的核心问题。</b>
 </div>
 
 <h3>6.5 估值方法匹配</h3>
 <table>
-  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
-  <tr><td>成长型（SaaS/GovTech）</td><td>PS / PEG + 关注ARR</td><td>PE（盈利后）、毛利率、净留存率</td><td class="good">✅ 匹配——PS 7.7x合理，PE 27x合理，ARR+15%健康</td></tr>
+  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>OCL 当前是否匹配</th></tr>
+  <tr><td>成长型（GovTech/RegTech SaaS）</td><td>PS / PEG</td><td>PE（盈利后）、毛利率、ARR 增速</td><td class="neutral">⚠ <b>部分匹配</b>：OCL 已是高利润成熟型公司，PS 4.11x 与 PE 14.9x 均合理；但对一家 ARR 转负的 SaaS，<b>单看 PS/PE 都会失真，必须叠加 ARR 作为定价锚</b>。当前市场实际采用的是「前瞻 PE 20.30x + EV/EBITDA」的盈利端定价，说明投资者已从「买增长」切换为「买盈利」。</td></tr>
 </table>
-
 <div class="summary-box">
-  <strong>估值方法总结：</strong>Objective作为高质量盈利型SaaS公司，PE和PS均可作为有效的估值手段。当前PE 27x处于5年低位，PS 7.7x对于毛利率94%/净利率29%的SaaS公司来说处于合理偏低水平。对比全球对标公司（如Tyler Technologies PE ~35x、Constellation Software PE ~30x），Objective的估值有吸引力。需要密切关注ARR增速是否能维持15%+以及营收增速拐点的到来。
+  <strong>估值方法：成长型首选 PS/PEG，OCL 实际用 PE + EV/EBITDA + 股息率——在动能恶化时这是正确的切换。</strong><br><br>
+  PS/PEG 的适用前提是「高增长持续」。ARR 转负后，PEG 变成 3.0（无意义），PS 也会忽略盈利下滑。此时切到 PE / EV/EBITDA / 股息率是对的：EV/EBITDA 9.1x（FY27 指引口径 11.8x）剔除了资本结构与折旧摊销差异，股息率 4.49% 提供了价格锚。<br><br>
+  <strong>但无论用哪种方法，都必须先回答同一个问题：</strong>用哪一年的盈利？本报告 L3 的 PE Band 已用两套 EPS（静态 0.389 / 动态 0.288）分别测算，结论是<strong>「静态便宜、动态不便宜」</strong>——这正是估值方法与前瞻指标必须联动使用的原因。
+</div>
+
+<h3>6.6 成长股成色检验（四步法）</h3>
+<p style="font-size:13px;color:#666;margin-bottom:4px">PS 4.11x &lt; 10x 预警线，作为高质量 SaaS 仍适用成长股验证</p>
+<table>
+  <tr><th>步骤</th><th>检验内容</th><th>数据</th><th>判定</th></tr>
+  <tr><td>① 营收</td><td>有没有实在的生意？</td><td>营收 1.347 亿澳元，ARR 1.173 亿，客户为各级政府/监管机构（非「10 亿营收以下 + 100 亿市值」式的纯故事）</td><td class="good">✅ 过关</td></tr>
+  <tr><td>② 毛利率</td><td>产品竞争力如何？</td><td>毛利率 94.3%，同业顶级且同比微升；100% 订阅、86% 经常性</td><td class="good">✅ 优异</td></tr>
+  <tr><td>③ CFO</td><td>能不能自己造血？</td><td>CFO 4,930 万，CFO/净利 1.33，FCF 持续为正，且在 ARR 转负年份仍 +6.5%</td><td class="good">✅ 优异</td></tr>
+  <tr><td>④ PS</td><td>梦想溢价多少？</td><td>PS 4.11x，远低于 10x 合理线</td><td class="good">✅ 合理（无溢价）</td></tr>
+</table>
+<div class="summary-box">
+  <strong>四步法结论：</strong>OCL 四步全部过关——营收真实、毛利率顶级、现金流优秀、PS 无溢价。它<strong>不是</strong>靠烧钱讲故事的公司，而是一家有真实现金流的订阅软件企业。<strong>但四步法检验的是「过去的质地」，无法发现 ARR 转负——这是本报告必须把 DDG 事件与 ARR 放在排雷第一位的原因：质地检验通过 ≠ 动能安全。</strong>
 </div>
 
 </div></div>
@@ -378,122 +541,153 @@
 
 <h3>7.1 六步法总结</h3>
 <div class="summary-box">
-  <strong>Step 1 - 行业定位：</strong>成长型（GovTech/RegTech），澳大利亚政府软件领导者，极高客户粘性和准入壁垒。<br>
-  <strong>Step 2 - 财务体检：</strong>ROE 33.4%顶级，高利润型杜邦，CFO/净利1.31现金含量极高，零有息负债。<br>
-  <strong>Step 3 - 估值判断：</strong>PE 27x处于5年历史低位，PS 7.7x合理，从$19.16高位回调后估值回归健康水平。<br>
-  <strong>Step 4 - 风险排查：</strong>营收增速表面偏慢（但ARR +15%预示好转），客户集中于政府，国际化进展仍慢。<br>
-  <strong>Step 5 - 结论：</strong>好公司（ROE 33%/毛利94%/零负债）+ 好价格（PE 27x历史低位）——品质优秀+估值合理。<br>
-  <strong>Step 6 - 跟踪：</strong>看ARR增速能否维持15%+、营收拐点出现、英国/北美市场扩张、AI商业化进度。
+  <strong>Step 1 - 行业定位：</strong>非周期（成长型）GovTech/RegTech 纯软件。澳新细分高度集中（新西兰 BCA 装机过半、DCCEEW 首选平台），全球分散。壁垒类型：技术 + 客户锁定 + 政府准入牌照 + 品牌信任。<br>
+  <strong>Step 2 - 财务体检：</strong>ROE 34.5%（高利润型杜邦：净利率 27.6% × 周转 0.693 × 乘数 1.804），CFO/净利 1.33，零有息负债、净现金 8,307 万。<b>财务质地顶级</b>。<br>
+  <strong>Step 3 - 估值判断：</strong>PE 14.9x（静态）低于 ROE 对应的 20–30x 合理区间下沿；但前瞻 PE 20.30x 已回到下沿。PE Band 双口径结论：<b>静态便宜、动态不便宜</b>。同行业 TNE 的 ROE 相近而 PE 71.3x、PS 15.8x——折价来自 ARR 转负 + DDG 合同损失 + 规模天花板，不是财务质量。<br>
+  <strong>Step 4 - 风险排查：</strong>① 🔴 国防部 DDG 26 年合作关系终止，ARR 未达自设目标；② 🔴 ARR -2%（调整后 -5%），占 69% 的 Information Intelligence -5%，流动递延收入同步 -14.0%；③ 🟡 FY27 Adjusted EBITDA 指引至少 -22%；④ 🟡 派息率 67% 的可持续性；⑤ 🟡 澳洲 Build 仅 1 个客户。<br>
+  <strong>Step 5 - 结论：</strong><b>好公司（历史与当期质地均成立）+ 价格处于「等待验证」状态（静态便宜、动态不贵）</b>。91 分是向后看的静态评分，不能当作动能评分。<br>
+  <strong>Step 6 - 跟踪：</strong>① FY27 中报 <b>ARR 是否止跌回升</b>（最关键，卖出信号的核心）；② FY27 Adjusted EBITDA 是否守住 4,000 万指引下限；③ Information Intelligence ARR 能否回正；④ 澳洲 Build 客户数能否从 1 个扩到 5+；⑤ 递延收入能否止跌；⑥ 回购计划是否加码。
+</div>
+
+<div class="danger-box">
+  <strong>⚠️ 必须再次强调的核心矛盾（91 分 vs 股价 -71% vs ARR 转负）：</strong><br>
+  本报告机械评分 <strong>91/100「品质优秀」</strong>，股价自 52 周高点 <strong>-71.3%</strong>、财报日单日 <strong>-20.11%</strong>、市值一年 <strong>-70.6%</strong>。这个反差<strong>不是评分体系算错</strong>——评分体系只用 FY2026 已实现的向后看数据，而公司的两项前瞻指标（ARR -2%、FY27 EBITDA 至少 -22%）正在恶化。<strong>静态财务优秀 ≠ 动能优秀。</strong>91 分应当被理解为「历史财务质量的评分」，而非「当前买入吸引力的评分」。
 </div>
 
 <h3>7.2 好公司三要素检查</h3>
 <table>
   <tr><th>要素</th><th>判断</th><th>依据</th></tr>
-  <tr><td>① 好行业</td><td class="good">✓</td><td>GovTech数字政府建设确定性强，政府SaaS化刚起步，AI驱动新需求</td></tr>
-  <tr><td>② 好公司</td><td class="good">✓</td><td>ROE 33.4%>15%，毛利率94.2%稳定，CFO/净利1.31>1.0</td></tr>
-  <tr><td>③ 好价格</td><td class="good">✓</td><td>PE 27x接近5年历史最低，PEG ~1.8x<2.0，合理偏低</td></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>GovTech/RegTech 需求由立法与政府预算驱动（非周期），100% 软件 + 86% 经常性收入，收入可预测性极高；政府 SaaS 化与 AI 治理需求是长期结构性驱动。行业层面无疑是好行业。</td></tr>
+  <tr><td>② 好公司</td><td class="neutral">⚠ 财务层面 ✓ / 动能层面存疑</td><td><b>财务：</b>ROE 34.5% &gt; 15%、毛利率 94.3% 稳定且微升、CFO/净利 1.33 &gt; 1.0、零有息负债——全部达标。<br><b>但动能：</b>ARR -2%（调整后 -5%）打破了 SaaS 公司的核心前提；DDG 26 年合作终止暴露客户集中度风险；FY27 EBITDA 指引至少 -22%。<b>「好公司」的财务门槛过了，但成长前提正在动摇，需观察 FY27 中报。</b></td></tr>
+  <tr><td>③ 好价格</td><td class="neutral">◐ 部分满足</td><td>PE 14.9x 为财年末序列最低、低于 20–30x 合理区间下沿，PS 4.11x，股息率 4.49%，净现金占市值 15%——<b>静态维度满足</b>。但前瞻 PE 20.30x 已回到下沿、PEG 3.0、EV/EBITDA（FY27 口径）11.8x——<b>动态维度只是合理，谈不上便宜</b>。</td></tr>
 </table>
 
 <h3>7.3 风险评估</h3>
 
 <h4>a. 三个陷阱排查</h4>
 <div class="danger-box">
-  <strong>☐ 低PE + 低增长 + 高负债 = 价值陷阱 → ❌ 未命中。</strong>PE 27x不是低PE，ARR+15%增长健康，零负债。<br>
-  <strong>☐ 低PE + 周期顶点 = 周期陷阱 → ❌ 未命中。</strong>GovTech弱周期，政府预算是刚性支出。<br>
-  <strong>☐ 高PE + 高增速但现金流为负 = 烧钱陷阱 → ❌ 未命中。</strong>PE 27x合理，CFO强劲，FCF为正。
+  <strong>☐ 价值陷阱（低 PE + 低增长 + 高负债）→ ⚠ <b>部分命中（增长失速端命中，高负债端不命中）</b></strong><br>
+  · 高负债端：<b>未命中</b>——负债率 43.8%（真实 20.5%）、零有息借款、净现金 8,307 万，不存在债务风险。<br>
+  · 低增长端：<b>已部分命中</b>——PE 14.9x 确实低，但 ARR -2%（调整后 -5%）+ FY27 EBITDA 指引至少 -22%，增长已实质失速。<br>
+  · <b>结论：不是经典价值陷阱（有强资产负债表保护），但已命中「低 PE + 增长失速」的组合，需要靠 ARR 止跌来解除。若 FY27 中报 ARR 继续为负，估值会从 20x 前瞻继续下修，陷阱属性会加强。</b><br><br>
+  <strong>☐ 周期陷阱（低 PE + 周期顶点）→ ❌ 未命中</strong><br>
+  OCL 为非周期股（GovTech/RegTech 纯软件），政府预算按立法周期而非商品周期运行，不存在周期顶点问题。本报告也相应使用 PE Band 而非 PB Band。<br><br>
+  <strong>☐ 烧钱陷阱（高 PE + 高增速 + 负现金流）→ ❌ 未命中</strong><br>
+  PE 14.9x（非高 PE），CFO 4,930 万为正且增长 6.5%，FCF 持续为正，零融资需求。<br><br>
+  <strong>⚠️ 第四类陷阱（本报告新增，针对 SaaS 公司）：领先指标背离陷阱 → 🔴 <b>已命中</b></strong><br>
+  收入 +9% 但 ARR -2%、递延收入 -14.0%——报表增速与领先指标方向相反，是 SaaS 公司最典型的估值陷阱前兆。历史证明：财报发布后单日 -20.11%。<b>这是本报告认为当前最值得警惕的陷阱类型。</b>
 </div>
 
 <h4>b. 管理层与治理风险</h4>
 <table>
   <tr><th>事项</th><th>判断</th><th>依据</th></tr>
-  <tr><td>管理层能力与履历</td><td class="good">好</td><td>创始人Tony Walls（1987年创立，现任CEO），25年ASX上市管理经验，领导公司从0到2,000+客户</td></tr>
-  <tr><td>股权结构与利益一致性</td><td class="good">强</td><td>创始人及管理层持股，长期利益与股东一致</td></tr>
-  <tr><td>关联交易/暴雷历史</td><td class="good">无</td><td>无重大违规、监管处罚或诉讼记录</td></tr>
-  <tr><td>资本配置记录</td><td class="good">合理</td><td>持续分红（连续5年提升）、有纪律的M&A（如Isovist）、保持零负债</td></tr>
-  <tr><td>CEO交接/关键人员变动</td><td class="neutral">需关注</td><td>Tony Walls已任职近40年，CEO交接计划是长期需关注事项</td></tr>
+  <tr><td>管理层能力与履历</td><td class="good">好</td><td>1987 年成立、1996 年上市、约 400 人，30+ 年专注 GovTech/RegTech。FY26 业绩电话会与股东信均给出清晰的指引口径（EBITDA 至少 4,000 万）。</td></tr>
+  <tr><td>信息披露透明度</td><td class="good">好</td><td>CEO 年度股东信（Julia Neill）主动承认「在 FY2026 我们远未达到自己的业绩预期」，并指出国防合同终止「在国家防务语境下也令人担忧」——<b>不粉饰、不回避，是重要的正面信号</b>。</td></tr>
+  <tr><td>股东沟通姿态</td><td class="good">好</td><td>面对机构投资者要求「别只谈 ARR，回到盈利」，管理层调整了沟通重心（FY27 改以 EBITDA 指引为主），说明在按股东要求修正披露重点。</td></tr>
+  <tr><td>资本配置记录</td><td class="good">合理</td><td>连续 7 年提高分红（FY26 26.0 澳分，+18%）；FY26 首次回购 710 万（FY25 为零），董事会将在静默期结束后复核回购计划；Isovist 收购仅 NZ$400 万，小额且与战略主线（Planning & Building）契合；全程保持零有息负债。</td></tr>
+  <tr><td>股权结构与利益一致性</td><td class="neutral">数据待补充</td><td>大股东与管理层持股比例、库存股 -23,800 的形成机制，本报告数据源未披露，待补充。</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td class="neutral">数据待补充</td><td>本报告数据源未提供历史违规、监管处罚或诉讼记录，待补充。</td></tr>
+  <tr><td>管理层增减持记录</td><td class="neutral">数据待补充</td><td>近一年董监高及大股东增减持情况，本报告数据源未提供，待补充。</td></tr>
+  <tr><td>CEO 交接/关键人员变动</td><td class="neutral">需关注</td><td>FY2026 年度股东信由 CEO <b>Julia Neill</b> 署名（创始人 Tony Walls 为 1987 年创立者）。创始人主导的 GovTech 公司发生 CEO 更替本身是需要跟踪的治理变量，但新任 CEO 的首个完整年度以「坦承未达预期 + 下调指引」开场，<b>沟通姿态诚实，长期需观察执行结果</b>。</td></tr>
 </table>
 
 <h4>c. 盈利可持续性</h4>
 <table>
   <tr><th>维度</th><th>判断</th><th>依据</th></tr>
-  <tr><td>增长靠量还是靠价？</td><td class="good">量驱动</td><td>ARR增长15%主要来自客户数扩大+现有客户扩容（upsell）</td></tr>
-  <tr><td>涨价能否持续？</td><td class="good">能</td><td>SaaS订阅模式天然有涨价能力（每年调价+增值功能收费）</td></tr>
-  <tr><td>非经常性利润占比</td><td class="good">低</td><td>利润几乎全部来自经常性订阅收入，极少非经常性项目</td></tr>
-  <tr><td>大客户/大项目集中度</td><td class="good">分散</td><td>2,000+政府客户，最大客户占比合理</td></tr>
-  <tr><td>政策/监管依赖度</td><td class="neutral">中</td><td>政府数字政策是正面驱动，但政府预算削减可能影响短期采购节奏</td></tr>
+  <tr><td>增长靠量还是靠价？</td><td class="neutral">量驱动，但量在收缩</td><td>100% 订阅模式，增长主要来自客户扩容与新增席位（SaaS 收入 +22%）。但 ARR -2% 表明<b>新的「量」不足以抵消流失</b>。</td></tr>
+  <tr><td>涨价能否持续？</td><td class="good">有实证支撑</td><td>政府合同存在 uplift（续约涨价）机制，UPS 案例已验证 <strong>uplift 系数在 1.5x~2.5x 之间</strong>，且 <strong>FY27 还有 2,400 万澳元的 USP 收入可转化为 uplift 案例</strong>——不是空谈，有已验证案例与明确金额。</td></tr>
+  <tr><td>非经常性利润占比</td><td class="good">低（但 FY27 或上升）</td><td>FY26 利润几乎全部来自经常性订阅收入（经常性占客户总收入 86%）。<b>但 FY27 可能出现一次性重组/减值/合同终止相关费用</b>，届时需区分「经营盈利」与「报表盈利」。</td></tr>
+  <tr><td><strong>大客户/大项目集中度</strong></td><td class="bad"><strong>集中（已被证实）</strong></td><td>DDG 一个客户的流失即导致全年 ARR 未达自设目标，并连带 FY27 EBITDA 指引下调 22%——<b>这是硬证据，不是推测</b>。客户高度集中于政府机构，另有第二份长期定制服务合同在同期终止。</td></tr>
+  <tr><td>政策/监管依赖度</td><td class="bad">高</td><td>客户 100% 为政府/监管机构，收入直接依赖立法进程与政府预算周期；同时公司业务本身受益于合规监管的加强（DCCEEW 覆盖 18 机构即为例）。<b>依赖度高是双刃剑：监管趋严利好需求，但预算削减/政策转向可直接砍掉收入。</b></td></tr>
+  <tr><td>汇率依赖度</td><td class="neutral">中</td><td>FY26 不变汇率营收 +11% vs 名义 +9.1%，汇率是负面影响项；ARR 不变汇率口径 121.3m vs 名义 117.3m。国际化（英国、加拿大）将提升汇兑敞口。</td></tr>
 </table>
 
 <h4>d. 关键变量敏感性</h4>
-
 <div class="summary-box">
-  <strong>变量1: ARR增速（核心增长引擎）</strong><br>
-  乐观：ARR增速加速至18-20%（AI功能拉动） → FY2026E NPAT 4,000-4,200万，EPS 42-44c<br>
-  中性：ARR维持15%增速 → FY2026E NPAT ~3,740万，EPS ~39c（1H26: 1,870万+10%）<br>
-  悲观：ARR增速放缓至10-12%（政府IT预算削减） → FY2026E NPAT 3,400-3,500万，EPS 36c<br><br>
-  <strong>变量2: 营收增速拐点时间</strong><br>
-  乐观：FY2026营收增速回升至10%+（服务收入企稳+订阅加速） → PE有望重估至30-35x<br>
-  中性：FY2026营收增速8-9% → 当前PE 27x维持，等待更明确信号<br>
-  悲观：FY2026营收增速仍<5% → 市场失望，PE可能压缩至20-22x<br><br>
-  <strong>变量3: 国际化进展</strong><br>
-  乐观：英国/北美市场出现规模性突破（如美国政府客户） → 长期成长空间重新定价<br>
-  中性：国际化稳步推进但短期量小 → 对估值影响中性<br>
-  悲观：国际化进展停滞，退回澳新市场 → 成长天花板受限
+  <strong>变量 1：ARR 走势（SaaS 公司的生死线，最关键）</strong><br>
+  乐观：FY27 ARR 恢复正增长（≥ +3%），RegWorks V8 交付 + NZ 43 个 BCA 迁移完成 + USP uplift 案例落地 → ARR 回升带动 FY28 EBITDA 回到 4,600 万以上 → <b>EPS 约 31–33 澳分</b>，估值重回 25x 中枢<br>
+  中性：ARR 持平至小幅转正（0 ~ +2%），EBITDA 落在 4,200–4,400 万（指引中段） → <b>EPS 约 28–29 澳分</b>，估值维持 20x 合理下沿<br>
+  悲观：ARR 继续负增长（-2% ~ -4%），EBITDA 至指引下限 4,000 万甚至略低 → <b>EPS 约 25–26 澳分</b>，估值下修至 15x（约 4.3 澳元，接近 52 周低点 4.75）<br><br>
+  <strong>变量 2：FY27 Adjusted EBITDA 指引兑现度</strong><br>
+  乐观：ARR 恢复正增长，EBITDA ≥ 4,600 万（-11% 而非 -22%） → 指引被证明过于保守，市场上修 → <b>PE 弹性最大的一档</b><br>
+  中性：EBITDA 4,200–4,400 万（-15% ~ -18%） → 符合指引，股价横盘修复 EPS<br>
+  悲观：EBITDA 4,000 万甚至 3,950 万（-22% ~ -23%） → 确认「利润下滑是趋势」，估值体系从「成长股」切换为「价值股/收息股」，以股息率 4.49% 为锚<br><br>
+  <strong>变量 3：澳洲 Build 市场 + RegWorks V8 交付节奏</strong><br>
+  乐观：澳洲 Build 从 North Sydney 1 个客户扩至维州/昆州/西澳多点开花（+5 个以上），RegWorks V8 在 FY27 完成主要收入转化 → Planning & Building ARR 从 +3% 跳升至 +10% 以上<br>
+  中性：澳洲客户数缓慢增加至 2–3 个，RegWorks V8 按渐进交付节奏贡献 → 该线 ARR 维持 +3%~+5%<br>
+  悲观：澳洲开拓继续延后（投入期长、销售周期长），V8 交付延迟 → 集团 ARR 缺乏新增量，FY28 指引再度承压
 </div>
 
 <h3>7.4 前景展望</h3>
 
-<h4>a. 未来1-3年核心驱动</h4>
+<h4>a. 未来 1–3 年核心驱动</h4>
 <div class="summary-box">
   <strong>正向驱动：</strong><br>
-  1. ARR领先指标强劲（+15%）— 未来收入能见度高，预计6-12个月内将转化为报表营收加速<br>
-  2. AI功能商业化（Objective已在产品中集成AI）— 提升ARPU和竞争力，拉开与竞争对手差距<br>
-  3. Planning & Building爆发（ARR +31%）— 数字化规划审批需求强劲，Isovist并购持续贡献<br><br>
+  1. <strong>RegWorks V8 的 FY27 渐进交付</strong> — 5 年积累的集大成产品，融合 Agentic AI，定位 "regulator-in-a-box"；已被联邦 DCCEEW 选为覆盖其 18 个机构的<strong>首选平台</strong>，是唯一 ARR 正增长的板块（+4%），交付节奏直接决定 FY27 增量。<br>
+  2. <strong>USP uplift 变现</strong> — UPS（美国养老金监管机构）案例已验证 <strong>uplift 系数 1.5x~2.5x</strong>，且 <strong>FY27 还有 2,400 万澳元的 USP 收入可转化为 uplift 案例</strong>；政府合同涨价机制是 SaaS 涨价能力的实证，金额明确、非概念。<br>
+  3. <strong>Planning & Building 的转化队列</strong> — 新西兰 43 个 BCA 正在迁移至 Build 平台（迁移完成后集中体现为 ARR）、35 个客户已覆盖新西兰过半 BCAs、Isoplan 覆盖新大西定东南部绝大多数市议会；该线 SaaS 收入已 +38%，转化只是时间问题。<br>
+  4. <strong>净现金 + 回购 + 分红的下行保护</strong> — 净现金 8,307 万（占市值 15%）、FY26 首次回购 710 万、董事会将在静默期后（一个月内）复核回购计划、股息率 4.49%，为估值提供实质底部支撑。<br><br>
   <strong>负向拖累：</strong><br>
-  1. 政府IT预算可能受宏观压力影响 — 但相比消费/企业软件，政府IT支出韧性更强<br>
-  2. 国际化进展偏慢 — 英国/北美市场突破需要更长时间，短期难以贡献显著增量<br>
-  3. 小盘ASX科技股流动性问题 — 市场情绪波动可能带来股价非理性波动
+  1. <strong>ARR 转负的滞后效应</strong> — ARR 1.173 亿（-2%，调整后 -5%）+ 流动递延收入 -14.0%，两项前瞻指标同步转弱，会在 FY27 逐步传导为收入增速放缓，FY28 可能进一步承压。<br>
+  2. <strong>DDG 流失的续费基数效应</strong> — 26 年合作终止意味着这块 ARR 基数永久消失，且需在其他客户身上补回；占 ARR 69% 的 Information Intelligence ARR -5% 说明替代尚未开始。<br>
+  3. <strong>澳洲市场开拓的投入期</strong> — Build 仅落地 1 个客户，维州/昆州/西澳仍在开发，政府销售周期长；在 NZ 高光的同时澳洲尚未接棒。<br>
+  4. <strong>FY27 折旧摊销继续上行</strong> — 无形资产从 2,681 万增至 3,956 万，摊销已 +20.1%，FY27 将进一步压制净利率（有效税率同时从 14.3% 升至 16.3%）。<br>
+  5. <strong>规模天花板与竞争</strong> — 营收 1.35 亿、市值 5.54 亿，客户集中于政府机构，竞品包含 Guidewire、Salesforce、DXC、Opus 等全球巨头；一旦 ARR 不再增长，估值将难以维持成长溢价。
 </div>
 
-<h4>b. 三情景简表</h4>
+<h4>b. 三情景简表（基于 ARR 走势与 FY27 EBITDA 指引推演）</h4>
+<p style="font-size:13px;color:#666;margin-bottom:4px">EPS 推演方法：NPAT = (Adjusted EBITDA − 折旧摊销约 950万 − 净财务费用约 50万) × (1 − 有效税率 16.3%)，÷ 摊薄股数约 9,600 万股。折旧摊销上调假设源于 Isovist 无形资产（无形资产 2,681万→3,956万，FY26 摊销已 +20.1%）。</p>
 <table>
-  <tr><th>情景</th><th>假设条件</th><th>EPS预估</th><th>PE区间</th><th>预期回报</th></tr>
-  <tr><td>乐观</td><td>ARR增速18%+，营收增速10%+，AI商业化落地</td><td>~44c</td><td>30-35x</td><td>$13.2-15.4 (+32-54%)</td></tr>
-  <tr><td>中性</td><td>ARR增速15%，营收增速8%，国际缓慢推进</td><td>~39c</td><td>25-28x</td><td>$9.8-10.9 (0-+9%)</td></tr>
-  <tr><td>悲观</td><td>ARR增速<12%，营收增速<5%，政府预算收缩</td><td>~35c</td><td>18-22x</td><td>$6.3-7.7 (-23- -37%)</td></tr>
+  <tr><th>情景</th><th>假设条件</th><th>FY27 EBITDA</th><th>EPS 预估</th><th>对应 PE 区间</th><th>预期回报</th></tr>
+  <tr><td class="good">乐观</td><td>ARR 恢复正增长（≥+3%）；RegWorks V8 交付 + NZ BCA 迁移完成 + USP uplift 落地；澳洲 Build 新增客户</td><td><strong>≥ 4,600 万</strong>（-11%，指引偏保守）</td><td><strong>约 31–33 澳分</strong>（NPAT 约 2,980–3,170 万）</td><td>25–30x</td><td class="good">7.8 ~ 9.9 澳元（+34% ~ +71%）</td></tr>
+  <tr class="neutral"><td class="neutral">中性</td><td>ARR 持平至小幅转正（0 ~ +2%）；EBITDA 落在指引中段</td><td><strong>4,200–4,400 万</strong>（-15% ~ -18%）</td><td><strong>约 28–29 澳分</strong>（NPAT 约 2,700–2,790 万）</td><td>20–25x</td><td class="neutral">5.7 ~ 7.3 澳元（-2% ~ +26%）</td></tr>
+  <tr><td class="bad">悲观</td><td>ARR 继续负增长（-2% ~ -4%）；EBITDA 至指引下限 4,000 万甚至略低；派息率被迫下调</td><td><strong>3,950–4,000 万</strong>（-22% ~ -23%）</td><td><strong>约 25–26 澳分</strong>（NPAT 约 2,420–2,510 万）</td><td>12–15x</td><td class="bad">3.1 ~ 3.9 澳元（-33% ~ -46%）</td></tr>
 </table>
-<p style="font-size:13px;color:#666;margin:4px 0 8px">概率判断：中性 50%，乐观 30%，悲观 20%。预期回报（按概率加权）：~+12%</p>
+<p style="font-size:13px;color:#666;margin:4px 0 8px">概率判断：<b>中性 45%，乐观 25%，悲观 30%</b>。<b>悲观权重刻意高于乐观</b>——理由：ARR 已经转负、DDG 流失尚未被任何新增合同填补、递延收入同步 -14.0%、FY27 EBITDA 指引是公司自己给出的下限（"at least"）而非中值指引。<br>按概率加权的 EPS ≈ 0.25×0.32 + 0.45×0.285 + 0.30×0.255 ≈ <b>0.279 澳元（27.9 澳分）</b>；以中性 PE 20x 计，期望价格约 <b>5.58 澳元</b>，相对现价 5.79 的<b>期望回报约为 -4%</b>。<br><b>结论：在 FY27 中报 ARR 数据出来之前，风险收益大致对称、略偏负面；这正是股价已在 52 周低位附近下跌 -71% 的原因，也是「便宜」与「不便宜」同时成立的原因。</b><br><span style="color:#999">注：券商一致目标价 8.77 澳元（+51.5%，7 家 Buy）接近本表乐观情景的中下沿（隐含 FY27E PE 30.5x），属卖方偏乐观定价。</span></p>
 
+<h3>7.5 资金面信号</h3>
+<div class="summary-box">
+  <strong>⚠️ 本节对 A 股分析框架不适用（N/A）——改用澳洲本地市场指标。</strong><br>
+  ASX 市场无「北向资金」「融资余额（两融）」「大宗交易折溢价」等 A 股特有的资金面数据，故上述三个维度一律标注 <b>N/A</b>。以下改用澳洲市场可观测的替代指标。
+</div>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>北向资金持股变动</td><td class="neutral"><b>N/A</b></td><td>ASX 无北向资金机制，不适用。</td></tr>
+  <tr><td>融资余额变动（两融）</td><td class="neutral"><b>N/A</b></td><td>ASX 无融资融券余额披露，不适用。</td></tr>
+  <tr><td>大宗交易折溢价</td><td class="neutral"><b>N/A</b></td><td>澳洲无公开的大宗交易折溢价统计，不适用。</td></tr>
+  <tr><td><strong>分析师一致评级与目标价</strong></td><td class="good">Buy（7 家覆盖），目标价 <strong>A$8.77（+51.5%）</strong></td><td>7 家一致 Buy，目标价显著高于现价。<b>但需注意：财报日后目标价与股价的落差仍高达 51.5%，说明卖方模型尚未完全消化 DDG 与 FY27 指引下调，存在进一步下修风险。</b></td></tr>
+  <tr><td><strong>市值同比变化（板块/个股级杀估值）</strong></td><td class="bad"><strong>-70.6%</strong>（约 18.8 亿 → 5.54 亿）</td><td>一年内市值缩水七成，<b>这是典型的个股级估值杀跌</b>，而非温和回调。财报日单日 -20.11%（7.46 → 5.96）是集中宣泄点。</td></tr>
+  <tr><td>股价分位</td><td class="bad">52 周区间 4.75–20.20 的最低 4.75 附近（现价 5.79，高于低点 22%），距高点 <strong>-71.3%</strong></td><td>PE 14.9x 为财年末序列最低。<b>卖压已在很大程度上释放，但尚未见到资金面反转信号。</b></td></tr>
+  <tr><td>Beta</td><td class="good">0.71</td><td>低波动、防御属性；小盘股中属波动较小者，说明杀估值并非流动性踩踏型。</td></tr>
+  <tr><td><strong>公司回购（自身资金面信号）</strong></td><td class="good">FY26 回购 <strong>710 万澳元</strong>（FY25 为零）</td><td>在 ARR 转负、股价腰斩的当口启动回购，<b>是最实质的内部人信号</b>。董事会将在静默期结束后（一个月内）复核回购计划，加码与否是关键观察点。</td></tr>
+  <tr><td>股息支付</td><td class="good">末期全额免税股息登记日 2026-09-03、支付日 2026-09-14；末期无免税支付日 2026-09-15</td><td>末期股息已于 2026-09 完成派付，股东实际到手；全年 DPS 26.0 澳分，股息率 4.49%，为正股提供持有期回报。<b>但派息率已达 67%，FY27 若盈利下滑，「连续第 7 年提高分红」的可持续性存疑。</b></td></tr>
+  <tr><td>股息再投资计划（DRP）</td><td class="neutral">当前暂停</td><td>DRP 暂停状态待后续公告确认；若在股价低位恢复 DRP，将是管理层对估值态度的信号。</td></tr>
+  <tr><td>机构持仓变动</td><td class="neutral">数据待补充</td><td>本报告数据源未提供 ASX 持股披露（Substantial Holder Notice）变动，待补充。</td></tr>
+</table>
+<div class="summary-box">
+  <strong>资金面整体判断：偏防御性，无明确反转信号。</strong><br>
+  可观测的澳洲本地资金面信号是混合的：<b>正面</b>——公司自身在低位启动 710 万回购、末期股息已如期派付、Beta 仅 0.71、股息率 4.49% 提供收益垫；<b>负面</b>——市值一年 -70.6%、财报日单日 -20.11%、股价贴近 52 周低位，说明<b>卖压已释放但尚未见增量资金进场</b>；<b>矛盾</b>——7 家券商一致 Buy 且目标价 8.77 澳元（+51.5%），与股价 -71% 形成极端背离，这种背离通常以<b>卖方目标价继续下修</b>而非股价快速回归的方式收敛。<br><br>
+  <strong>⚠️ 再次回到核心矛盾：91 分（静态评分）vs 股价 -71% vs ARR 转负。</strong>资金面之所以没有立刻反转，是因为市场与 7 家分析师在用不同的锚：<b>分析师锚定 FY26 已实现盈利与长期 GovTech 故事（91 分的逻辑），市场锚定 ARR 与 FY27 指引（动能逻辑）。</b>当 FY27 中报 ARR 出来之前，这两套逻辑会持续冲突——<b>在 ARR 止跌之前，静态评分再高也无法说服资金。</b>
+</div>
+
+<h3>7.6 讨论问题</h3>
 <div class="summary-box">
   <strong>讨论问题（阅读后可以聊这些）：</strong><br>
-  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——为政府提供关键任务软件订阅服务，赚高续约率（粘性极强）和高毛利率（SaaS模式）的钱。<br>
-  2. 你最大的担忧是什么？哪个数据让你睡不着？——营收增速仅5%何时才能跟上ARR 15%的节奏？政府预算周期若收紧是否会影响新客户获取节奏？Tony Walls的交接计划是什么？<br>
-  3. 如果现在买入，期待的回报来源是什么？——ARR持续增长→营收加速→PE重估（从27x到30-35x）+ EPS增长（+10-15%/年），双轮驱动。<br>
-  4. 什么情况下你会坚决卖出？——ARR增速跌破10% / 毛利率跌破90% / 大客户流失 / 管理层出现重大变动 / 发现内控或财务问题。
+  1. <strong>这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？</strong>—— 为政府与监管机构提供合规与信息治理的关键任务软件，卖订阅而非许可证；100% 软件收入、94.3% 毛利率、86% 经常性收入，客户先付钱、公司后交付（递延收入 4,551 万）。<br>
+  2. <strong>你最大的担忧是什么？哪个数据让你睡不着？</strong>—— ARR -2%（调整后 -5%）与流动递延收入 -14.0%。这两个是收入的前置指标：ARR 是未来 12 个月的合同基础，递延收入是已收的钱。它们同时下滑，意味着 FY27/FY28 的收入基数在缩小，而 FY27 EBITDA 指引已下调至少 22%。<br>
+  3. <strong>DDG 终止是「一次性意外」还是「结构性问题」？</strong>—— 这是本案最关键的判断题。一次性：ARR 止跌、RegWorks V8 + USP uplift 补上缺口；结构性：政府大客户的续约天然带有政策/预算风险，26 年关系仍能被终止，下一个可能只是时间问题。<b>这决定了你是在抄底还是在接刀。</b><br>
+  4. <strong>如果现在买入，期待的回报来源是什么？</strong>—— 不是 FY26 的 EPS（那个已经在 PE 里了），而是：① 股息率 4.49% 的持有期回报；② ARR 止跌后 20x 前瞻 PE 向 25x 中枢的重估（+25%）；③ 回购计划加码带来的供给收缩。这三条中<strong>没有一条能单独支撑 51.5% 的券商目标价</strong>——那条路必须靠 ARR 恢复正增长。<br>
+  5. <strong>什么情况下你会坚决卖出？</strong>—— ① FY27 中报 ARR 继续为负（连续两期转负）；② FY27 Adjusted EBITDA 跌破 4,000 万指引下限；③ Information Intelligence ARR 未在 FY27 回正；④ 分红被下调（派息率 67% 已无缓冲）；⑤ 回购计划未能加码或被取消；⑥ 出现新的大客户流失或减值计提。
 </div>
 
 </div></div>
 
 <div class="footer">
-    免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
-    数据来源：Objective Corp FY2025年报、1HY2026半年报、Appendix 4E、券商研报（Shaw and Partners/Morgans/UBS等）、StockAnalysis、Simply Wall St
+  免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+  数据来源：Objective Corporation FY2026 全年业绩公告与 Appendix 4E（2026-08-27）、FY26 Investor Presentation、FY2026 CEO 年度股东信（Julia Neill）、FY26 业绩电话会记录、stockanalysis.com（S&amp;P Global，截至 2026-10-14）、Technology One (ASX:TNE) 公开财务数据
 </div>
 
-</div>
 
-<script>
-(function() {
-  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
-  var contents = document.querySelectorAll('.tab-content');
-  btns.forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      btns.forEach(function(b) { b.classList.remove('active'); });
-      contents.forEach(function(c) { c.classList.remove('active'); });
-      btn.classList.add('active');
-      var tab = btn.getAttribute('data-tab');
-      document.getElementById('tab-' + tab).classList.add('active');
-    });
-  });
-})();
-</script>
+</div>
 </body>
 </html>
