@@ -159,7 +159,7 @@ jobs:
           fi
           tar -xzf /tmp/report/report.tar.gz -C .
 
-- name: 刷新评分沿革 + 重建各级 index.html
+      - name: 刷新评分沿革 + 重建各级 index.html
         run: python scripts/sync_ghpages.py
 
       - name: 提交并推送
