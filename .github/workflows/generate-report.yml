@@ -28,15 +28,16 @@ on:
         default: ''
         type: string
       model:
-        description: '模型（opencode zen 免费）'
+        description: '模型（opencode zen 免费 / deepseek 官方 API）'
         required: false
-        default: 'opencode/space-bunny-free'
+        default: 'opencode/deepseek-v4.1-flash-free'
         type: choice
         options:
-          - opencode/space-bunny-free
           - opencode/deepseek-v4.1-flash-free
+          - opencode/space-bunny-free
           - opencode/glm-5.3-flash-free
           - opencode/muse-spark-1.3-contributor-free
+          - deepseek/deepseek-flash
 
 permissions:
   contents: write
@@ -88,6 +89,7 @@ jobs:
       - name: 运行 opencode 生成报告
         env:
           ZEN_API_KEY: ${{ secrets.ZEN_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
         run: |
           echo ">> PROMPT: $PROMPT"
           opencode run --model "${{ github.event.inputs.model }}" --auto "$PROMPT"
