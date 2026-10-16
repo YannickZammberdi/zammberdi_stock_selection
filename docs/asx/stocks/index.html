@@ -51,11 +51,12 @@
       <option value="成长性">成长性</option>
       <option value="混合周期">混合周期</option>
       <option value="周期性">周期性</option>
+      <option value="防御性">防御性</option>
       <option value="特殊行业">特殊行业</option>
     </select>
   </div>
 
-  <div class="count-bar" id="count">共 18 份</div>
+  <div class="count-bar" id="count">共 26 份</div>
 
   <table>
     <thead>
@@ -74,32 +75,32 @@
 
 <script>
 const data = [
-  {"name": "ResMed", "code": "RMD", "type": "stocks", "score": 97, "date": "2026-10-14", "file": "ResMed_RMD_分析报告.html"},
-  {"name": "Hub24", "code": "HUB", "type": "stocks", "score": 94, "date": "2026-10-14", "file": "Hub24_HUB_ASX_分析报告.html"},
-  {"name": "Objective Corp", "code": "OCL", "type": "stocks", "score": 91, "date": "2026-10-14", "file": "ObjectiveCorp_OCL_分析报告.html"},
-  {"name": "IAG", "code": "IAG", "type": "stocks", "score": 88, "date": "2026-08-25", "file": "IAG_IAG_分析报告.html"},
-  {"name": "CSL Limited", "code": "CSL", "type": "stocks", "score": 88, "date": "2026-07-14", "file": "CSL_CSL_分析报告.html"},
-  {"name": "PolyNovo", "code": "PNV", "type": "stocks", "score": 87, "date": "2026-07-14", "file": "PolyNovo_PNV_ASX_分析报告.html"},
-  {"name": "JB Hi-Fi", "code": "JBH", "type": "stocks", "score": 87, "date": "2026-08-25", "file": "JB Hi-Fi_JBH_分析报告.html"},
-  {"name": "QBE", "code": "QBE", "type": "stocks", "score": 86, "date": "2026-08-25", "file": "QBE_QBE_ASX_分析报告.html"},
-  {"name": "Pro Medicus", "code": "PME", "type": "stocks", "score": 85, "date": "2026-07-14", "file": "Pro Medicus_PME_分析报告.html"},
-  {"name": "Suncorp", "code": "SUN", "type": "stocks", "score": 84, "date": "2026-08-25", "file": "Suncorp_SUN_分析报告.html"},
-  {"name": "REA Group", "code": "REA", "type": "stocks", "score": 84, "date": "2026-10-14", "file": "REA Group_REA_分析报告.html"},
-  {"name": "Nanosonics", "code": "NAN", "type": "stocks", "score": 80, "date": "2026-07-14", "file": "Nanosonics_NAN_分析报告.html"},
-  {"name": "HansenTech", "code": "HSN", "type": "stocks", "score": 80, "date": "2026-10-14", "file": "HansenTech_HSN_分析报告.html"},
-  {"name": "IPH Limited", "code": "IPH", "type": "stocks", "score": 79, "date": "2026-08-25", "file": "IPH_IPH_分析报告.html"},
-  {"name": "BHP Group Limited", "code": "BHP", "type": "stocks", "score": 78, "date": "2026-08-17", "file": "BHP_BHP_ASX_分析报告.html"},
-  {"name": "Cochlear", "code": "COH", "type": "stocks", "score": 76, "date": "2026-07-14", "file": "Cochlear_COH_分析报告.html"},
-  {"name": "Brambles", "code": "BXB", "type": "stocks", "score": 73, "date": "2026-08-25", "file": "Brambles_BXB_分析报告.html"},
-  {"name": "Macquarie Group", "code": "MQG", "type": "stocks", "score": 70, "date": "2026-07-14", "file": "Macquarie_MQG_分析报告.html"},
-  {"name": "Woodside Energy Group Ltd", "code": "WDS", "type": "stocks", "score": 69, "date": "2026-07-09", "file": "Woodside_WDS_ASX_分析报告.html"},
-  {"name": "Lovisa", "code": "LOV", "type": "stocks", "score": 67, "date": "2026-08-25", "file": "Lovisa_LOV_分析报告.html"},
-  {"name": "PWR Holdings", "code": "PWH", "type": "stocks", "score": 62, "date": "2026-07-14", "file": "PWR_PWH_ASX_分析报告.html"},
-  {"name": "Sandfire Resources", "code": "SFR", "type": "stocks", "score": 61, "date": "2026-07-13", "file": "Sandfire_SFR_ASX_分析报告.html"},
-  {"name": "Coles", "code": "COL", "type": "stocks", "score": 61, "date": "2026-08-25", "file": "Coles_COL_分析报告.html"},
-  {"name": "Cleanaway", "code": "CWY", "type": "stocks", "score": 57, "date": "2026-08-25", "file": "Cleanaway_CWY_分析报告.html"},
-  {"name": "Lincoln Minerals", "code": "LML", "type": "stocks", "score": 49, "date": "2026-07-14", "file": "Lincoln_Minerals_LML_ASX_分析报告.html"},
-  {"name": "Transurban", "code": "TCL", "type": "stocks", "score": 45, "date": "2026-08-25", "file": "Transurban_TCL_分析报告.html"}];
+  {"name": "ResMed", "code": "RMD", "type": "防御性", "score": 97, "date": "2026-10-14", "file": "ResMed_RMD_分析报告.html"},
+  {"name": "Hub24", "code": "HUB", "type": "成长性", "score": 94, "date": "2026-10-14", "file": "Hub24_HUB_ASX_分析报告.html"},
+  {"name": "Objective Corp", "code": "OCL", "type": "成长性", "score": 91, "date": "2026-10-14", "file": "ObjectiveCorp_OCL_分析报告.html"},
+  {"name": "IAG", "code": "IAG", "type": "防御性", "score": 88, "date": "2026-08-25", "file": "IAG_IAG_分析报告.html"},
+  {"name": "CSL Limited", "code": "CSL", "type": "成长性", "score": 88, "date": "2026-07-14", "file": "CSL_CSL_分析报告.html"},
+  {"name": "PolyNovo", "code": "PNV", "type": "成长性", "score": 87, "date": "2026-07-14", "file": "PolyNovo_PNV_ASX_分析报告.html"},
+  {"name": "JB Hi-Fi", "code": "JBH", "type": "防御性", "score": 87, "date": "2026-08-25", "file": "JB Hi-Fi_JBH_分析报告.html"},
+  {"name": "QBE", "code": "QBE", "type": "防御性", "score": 86, "date": "2026-08-25", "file": "QBE_QBE_ASX_分析报告.html"},
+  {"name": "Pro Medicus", "code": "PME", "type": "周期性", "score": 85, "date": "2026-07-14", "file": "Pro Medicus_PME_分析报告.html"},
+  {"name": "Suncorp", "code": "SUN", "type": "防御性", "score": 84, "date": "2026-08-25", "file": "Suncorp_SUN_分析报告.html"},
+  {"name": "REA Group", "code": "REA", "type": "周期性", "score": 84, "date": "2026-10-14", "file": "REA Group_REA_分析报告.html"},
+  {"name": "Nanosonics", "code": "NAN", "type": "成长性", "score": 80, "date": "2026-07-14", "file": "Nanosonics_NAN_分析报告.html"},
+  {"name": "HansenTech", "code": "HSN", "type": "防御性", "score": 80, "date": "2026-10-14", "file": "HansenTech_HSN_分析报告.html"},
+  {"name": "IPH Limited", "code": "IPH", "type": "防御性", "score": 79, "date": "2026-08-25", "file": "IPH_IPH_分析报告.html"},
+  {"name": "BHP Group Limited", "code": "BHP", "type": "周期性", "score": 78, "date": "2026-08-17", "file": "BHP_BHP_ASX_分析报告.html"},
+  {"name": "Cochlear", "code": "COH", "type": "成长性", "score": 76, "date": "2026-07-14", "file": "Cochlear_COH_分析报告.html"},
+  {"name": "Brambles", "code": "BXB", "type": "防御性", "score": 73, "date": "2026-08-25", "file": "Brambles_BXB_分析报告.html"},
+  {"name": "Macquarie Group", "code": "MQG", "type": "防御性", "score": 70, "date": "2026-07-14", "file": "Macquarie_MQG_分析报告.html"},
+  {"name": "Woodside Energy Group Ltd", "code": "WDS", "type": "周期性", "score": 69, "date": "2026-07-09", "file": "Woodside_WDS_ASX_分析报告.html"},
+  {"name": "Lovisa", "code": "LOV", "type": "成长性", "score": 67, "date": "2026-08-25", "file": "Lovisa_LOV_分析报告.html"},
+  {"name": "PWR Holdings", "code": "PWH", "type": "成长性", "score": 62, "date": "2026-07-14", "file": "PWR_PWH_ASX_分析报告.html"},
+  {"name": "Sandfire Resources", "code": "SFR", "type": "周期性", "score": 61, "date": "2026-07-13", "file": "Sandfire_SFR_ASX_分析报告.html"},
+  {"name": "Coles", "code": "COL", "type": "防御性", "score": 61, "date": "2026-08-25", "file": "Coles_COL_分析报告.html"},
+  {"name": "Cleanaway", "code": "CWY", "type": "防御性", "score": 57, "date": "2026-08-25", "file": "Cleanaway_CWY_分析报告.html"},
+  {"name": "Lincoln Minerals", "code": "LML", "type": "成长性", "score": 49, "date": "2026-07-14", "file": "Lincoln_Minerals_LML_ASX_分析报告.html"},
+  {"name": "Transurban", "code": "TCL", "type": "防御性", "score": 45, "date": "2026-08-25", "file": "Transurban_TCL_分析报告.html"}];
 
 let sortKey='score', sortDir=-1;
 

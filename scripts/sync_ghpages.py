@@ -490,7 +490,11 @@ def build_stocks_index(market):
         rows.append({
             "name": name,
             "code": code,
-            "type": normalize_type(f.parent.name),
+            # L5 分类必须从报告正文推断，取的是行业分类而非目录名。
+            # 旧实现用 normalize_type(f.parent.name)，docs 单层结构下目录名恒为
+            # "stocks"，导致 index 的 L5分类 列恒显示 stocks、筛选器全部失配。
+            # 与评分沿革共用 guess_type_from_html，保证两处口径一致。
+            "type": guess_type_from_html(html, market),
             "score": parse_score(html),
             "date": parse_date(html),
             "file": f.name,
