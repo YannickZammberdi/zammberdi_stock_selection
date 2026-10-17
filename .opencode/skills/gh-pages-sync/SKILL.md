@@ -62,7 +62,7 @@ index.html → 更新首页计数。
 除 `docs/macro/index.html` 为静态卡片外，其余 index.html 的表格数据都是内联 JS 数组
 `const data = [ {..}, {..} ]`，由脚本生成。字段：
 
-- `stocks` / `asx.stocks`：`name, code, date, score, status, file`
+- `stocks` / `asx.stocks`：`name, code, type, score, fwd, rating, node, date, file`（`fwd`/`rating`/`node` 取自报告内的 `<!-- TRACK ... -->` 标记，无标记则空串，前端显示"—"）
 - `industry` / `asx.industry`：`name, file`
 - `plans` / `asx.plans`：`name, code, date, status, file`
 - `verify` / `asx.verify`：`name, code, date, file`
@@ -90,6 +90,8 @@ index.html → 更新首页计数。
 <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">89/100</td>...</tr>
 <!-- 评分口径说明，≤40字，用于解释与上一版的差异 -->
 <p class="score-note"><strong>评分口径说明：</strong><span>维持非周期股体系。ROE 按年化口径重估，因 H 股募资致净资产翻倍。</span></p>
+<!-- 三轨标记（个股报告）：fwd=前瞻档 S/A/B/C/D，rating=Buy/Outperform/Neutral/Underperform/Sell，node=≤12字 -->
+<!-- TRACK fwd=B rating=Neutral node=Q4存货去化 -->
 ```
 
 ## 排错

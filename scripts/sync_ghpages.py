@@ -248,6 +248,9 @@ SCORE_RE = re.compile(r"总分.{0,160}?(\d+)/100", re.S)
 SCORE_RE2 = re.compile(r'<span class="score">(\d+)</span>')
 SCORE_RE3 = re.compile(r"(\d+)/100")
 TITLE_STOCK_RE = re.compile(r"^\s*(.*?)[(（]([^)）:：]*)[)）]")
+# 三轨标记：<!-- TRACK fwd=S|A|B|C|D rating=Buy|Outperform|... node=≤12字 -->
+TRACK_RE = re.compile(r"TRACK\s+fwd=([SABCD])\s+rating=([A-Za-z]+)\s+node=([^\s>]*)")
+VALID_RATINGS = {"Buy", "Outperform", "Neutral", "Underperform", "Sell"}
 
 
 def read_utf8(path):
@@ -265,6 +268,25 @@ def parse_score(html):
         if m:
             return int(m.group(1))
     return 0
+
+
+def parse_track(html):
+    """Extract 三轨标记 from a report: <!-- TRACK fwd=.. rating=.. node=.. -->.
+
+    Returns (fwd, rating, node); any missing/invalid piece -> "".
+    Template placeholders (fwd={S|A|B|C|D}, node={≤12字}) never match fwd=([SABCD]).
+    """
+    m = TRACK_RE.search(html)
+    if not m:
+        return "", "", ""
+    fwd = m.group(1).strip()
+    rating = m.group(2).strip()
+    if rating not in VALID_RATINGS:
+        rating = ""
+    node = m.group(3).strip()
+    if node and (node.startswith("{") or node.startswith("≤")):
+        node = ""
+    return fwd, rating, node
 
 
 def parse_stock_name_code(html, filename):
@@ -487,6 +509,7 @@ def build_stocks_index(market):
             continue
         html = read_utf8(f)
         name, code = parse_stock_name_code(html, f.name)
+        fwd, rating, node = parse_track(html)
         rows.append({
             "name": name,
             "code": code,
@@ -496,10 +519,22 @@ def build_stocks_index(market):
             # 与评分沿革共用 guess_type_from_html，保证两处口径一致。
             "type": guess_type_from_html(html, market),
             "score": parse_score(html),
+            # 三轨（财务分 = score）：fwd/rating/node 取自报告内的 <!-- TRACK --> 标记，
+            # 旧报告无标记则为空串，前端显示"—"，不参与排序语义。
+            "fwd": fwd,
+            "rating": rating,
+            "node": node,
             "date": parse_date(html),
             "file": f.name,
         })
-    replace_data_array(target / "index.html", render_data(rows, ["name", "code", "type", "score", "date", "file"], ["score", "name"]))
+    replace_data_array(
+        target / "index.html",
+        render_data(
+            rows,
+            ["name", "code", "type", "score", "fwd", "rating", "node", "date", "file"],
+            ["score", "name"],
+        ),
+    )
     log(f"[index] {market} stocks: {len(rows)} 份 -> {target}/index.html")
 
 
