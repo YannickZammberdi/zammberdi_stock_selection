@@ -54,6 +54,20 @@
   .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
   .score-note { font-size: 13px; color: #666; background: #fafafa; border: 1px dashed #ccc; padding: 8px 12px; margin: 10px 0; }
   .history-table td:first-child { white-space: nowrap; }
+  .badge { display: inline-block; padding: 1px 9px; border-radius: 4px; font-size: 12px; font-weight: 700; white-space: nowrap; }
+  .fwd-s { background: #e8f5e9; color: #1b5e20; border: 1px solid #1b5e20; }
+  .fwd-a { background: #f1f8e9; color: #558b2f; border: 1px solid #7cb342; }
+  .fwd-b { background: #fffde7; color: #f9a825; border: 1px solid #fdd835; }
+  .fwd-c { background: #fff3e0; color: #e65100; border: 1px solid #fb8c00; }
+  .fwd-d { background: #fde8e8; color: #c0392b; border: 1px solid #c0392b; }
+  .rating-buy { background: #e8f5e9; color: #1b5e20; border: 1px solid #1b5e20; }
+  .rating-outperform { background: #f1f8e9; color: #558b2f; border: 1px solid #7cb342; }
+  .rating-neutral { background: #eeeeee; color: #616161; border: 1px solid #bbbbbb; }
+  .rating-underperform { background: #fff3e0; color: #e65100; border: 1px solid #fb8c00; }
+  .rating-sell { background: #fde8e8; color: #c0392b; border: 1px solid #c0392b; }
+  .track-card td { text-align: left; }
+  .track-card td:first-child { width: 34%; font-weight: 600; background: #f5f5f5; }
+  .rating-card { text-align: center; font-size: 17px; font-weight: bold; padding: 16px; margin: 14px 0; border-radius: 8px; background: #fafafa; border: 1px solid #e0e0e0; }
   .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
   ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
   li { margin-bottom: 4px; }
@@ -64,7 +78,7 @@
 
 <h1>药明康德（603259）财务分析报告</h1>
 <p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
-<p class="meta">分析日期：2026-10-13 | 数据来源：FY2024/FY2025 年报 + 2026 中报（2026-08-04 披露）+ 2026-10-13 收盘行情 + 31 家券商中报后预测 + 2026-10-13 港股 CRO 板块异动</p>
+<p class="meta">分析日期：2026-10-18 | 数据来源：FY2024/FY2025 年报 + 2026 中报（2026-08-04 披露）+ 2026-10-16 收盘行情 + 31 家券商中报后一致预期 + 2026-10-16 CRO 板块事件</p>
 
 <div class="tab-bar">
   <button class="tab-btn active" data-tab="summary">总结论</button>
@@ -78,13 +92,24 @@
 
 <div class="tab-content active" id="tab-summary"><div class="tab-inner">
 
+<!-- TRACK 机器可读标记（sync 脚本读取，勿删勿改格式）：fwd=前瞻档(S/A/B/C/D)，rating=评级(Buy/Outperform/Neutral/Underperform/Sell)，node=≤12字验证节点 -->
+<!-- TRACK fwd=B rating=Outperform node=三季报TIDES与订单 -->
+
+<h2>三轨摘要</h2>
+<table class="track-card">
+  <tr><td>框架类型</td><td>成长/品质型（非周期股-成长型，与 L5 分类一致）</td></tr>
+  <tr><td>财务品质分</td><td><strong>92/100（品质优秀）</strong></td></tr>
+  <tr><td>前瞻档位</td><td><span class="badge fwd-b">B</span> 悬置/中性但有覆盖——基本面与全年指引强劲，但 1260H 终局与 TIDES H2 兑现仍待验证</td></tr>
+  <tr><td>投资评级</td><td><span class="badge rating-outperform">Outperform</span></td></tr>
+  <tr><td>一句话结论</td><td>评级 <strong>Outperform</strong>；核心矛盾是基本面（H1 营收 +38.9%、扣非 +89.4%、在手订单 664.3 亿创新高、全年指引一次性上调 70 亿以上）与情绪面（10/16 旧闻错杀 -6.6%）的背离，1260H 终局与 TIDES H2 兑现是两个待验证变量；升档关键看三季报（10-27）TIDES 单季同比 ≥+45% 且在手续经营订单增速维持 20%+，降档关键看 TIDES 单季 <+35% 或应收账款增速持续高于营收增速。</td></tr>
+</table>
+
 <h2>一、公司基本画像</h2>
 <table>
   <tr><th style="width:30%">项目</th><th>内容</th></tr>
   <tr><td>公司名称</td><td>无锡药明康德新药开发股份有限公司</td></tr>
   <tr><td>股票代码</td><td>603259.SH / 02359.HK（总股本 29.8376 亿股，其中 A 股流通 24.7328 亿股）</td></tr>
-  <tr><td>所属行业</td><td>医药外包服务 CXO —— 药明康德主业为 CRDMO 一体化（化学业务 WuXi Chemistry + 测试业务 WuXi Testing + 生物学业务 WuXi Biology），2025 年已剥离临床 CRO 与 ATU 业务</td></tr>
-  <tr><td>L5 行业分类</td><td><strong>非周期股（成长型）</strong>——医药属非周期行业，需求由研发投入驱动而非商品供需错配</td></tr>
+  <tr><td>所属行业</td><td>医药外包服务 CXO —— 主业为 CRDMO 一体化（化学业务 WuXi Chemistry + 测试业务 WuXi Testing + 生物学业务 WuXi Biology），2025 年已剥离临床 CRO 与 ATU 业务</td></tr>
   <tr><td>行业地位</td><td>全球 CRDMO 龙头；中国药物发现 CRO 份额第一；全球多肽/寡核苷酸（TIDES）CDMO 第一梯队</td></tr>
   <tr><td>2026H1 营收</td><td><strong>288.97 亿元（+38.93%）</strong>，其中持续经营业务 +48.0%；Q2 单季 164.62 亿（+47.71%，单季历史新高）</td></tr>
   <tr><td>2026H1 归母净利润</td><td><strong>110.80 亿元（+29.43%）</strong>，首次上半年突破百亿</td></tr>
@@ -96,12 +121,12 @@
   <tr><td>ROE</td><td><strong>ROE(TTM) 26.6%</strong>（TTM 归母 216.69 亿 / 平均归母净资产 815.2 亿）｜26H1 累计 13.19%｜FY25 28.56%｜TTM 扣非口径 22.4%</td></tr>
   <tr><td>在手订单（26-06-30）</td><td><strong>664.3 亿元（+25.2%，历史新高）</strong>，环比 Q1 增超 60 亿</td></tr>
   <tr><td>2026 全年指引</td><td>整体收入 585–605 亿（原 513–530）；持续经营 +35%~+39%（原 +18%~+22%）；资本开支 75–85 亿；经调整 FCF 135–145 亿</td></tr>
-  <tr><td>股价 / 市值（2026-10-13 收盘）</td><td><strong>157.35 元（-0.32%）</strong>｜总市值 4,775.42 亿（A+H）｜A 股流通市值 3,891.71 亿｜PE(TTM) 22.04｜PB 5.73｜52 周 142.07–173.64</td></tr>
+  <tr><td>股价 / 市值（2026-10-16 收盘）</td><td><strong>144.30 元（-6.60%）</strong>｜总市值 4,379.37 亿（A+H）｜A 股流通市值 3,568.94 亿｜PE(TTM) 20.21｜PB 5.26｜52 周 87.09–173.60</td></tr>
   <tr><td>下一催化剂</td><td>2026 年三季报 <strong>2026-10-27</strong> 披露</td></tr>
 </table>
 <p style="font-size:13px;color:#666;margin:4px 0 12px;">行业类型标注：<strong>非周期股（成长型）</strong>，采用<strong>非周期股评分体系</strong>（10 维度），L3 使用 <strong>PE Band</strong>（医药为盈利稳定的成长行业，PE 适用），与 industry-classification.md 分类一致。</p>
 
-<p class="score-note"><strong>评分口径说明：</strong><span>沿用非周期股体系；估值改按ROE映射PE区间、含金量改按半年口径，92分</span></p>
+<p class="score-note"><strong>评分口径说明：</strong><span>沿用非周期股体系；基本面未变、10/16 旧闻错杀使估值回落，维持 92 分</span></p>
 
 <h2>综合评分（非周期股评分体系 · 百分制）</h2>
 <p style="font-size:13px;color:#666;margin-bottom:8px">采用非周期股评分体系（10 维度，合计 100 分），逐项打分后求和。</p>
@@ -109,15 +134,15 @@
   <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
   <tr><td>ROE（15 分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">ROE(TTM) 26.6%，TTM 扣非口径 22.4%，FY25 28.56%，26H1 年化约 26.6% —— 四个口径均 ≥15%，取满分。注意：26H1 累计 ROE 13.19% 反而低于 25H1 的 13.93%，是净资产膨胀快于利润所致（见 L4）</td></tr>
   <tr><td>杜邦驱动质量（5 分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">典型「高利润型」：26H1 归母净利率 38.34%，权益乘数仅 1.40（低杠杆），ROE 完全由利润率驱动而非借钱或烧钱</td></tr>
-  <tr><td>利润含金量 CFO/净利（15 分）</td><td class="neutral" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left"><strong>本版下调项</strong>。26H1 CFO 96.99 亿 / 归母 110.80 亿 = <strong>0.88</strong>，低于 1.0 门槛，按「≥0.7」档计 10 分。对比 25H1 的 1.33（同期 CFO 74.3 亿 / 扣非 55.8 亿）明显走弱，原因是应收账款半年增加 32.09 亿、存货增加 21.34 亿，利润被营运资金占用。FY25 全年 CFO/扣非 1.30 仍健康，判定为「扩张期营运资金占用」而非「利润造假」</td></tr>
+  <tr><td>利润含金量 CFO/净利（15 分）</td><td class="neutral" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">26H1 CFO 96.99 亿 / 归母 110.80 亿 = <strong>0.88</strong>，低于 1.0 门槛，按「≥0.7」档计 10 分。对比 25H1 的 1.33 明显走弱，原因是应收账款半年增加 32.09 亿、存货增加 21.34 亿，利润被营运资金占用。FY25 全年 CFO/扣非 1.30 仍健康，判定为「扩张期营运资金占用」而非「利润造假」</td></tr>
   <tr><td>营收增长（10 分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">26H1 营收 +38.93%（持续经营 +48.0%），全年指引持续经营 +35%~+39%，远超 ≥10% 门槛</td></tr>
   <tr><td>利润增长（10 分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">26H1 扣非 +89.39%、经调整 +83.2%，均 ≥15%。归母 +29.43% 受 2025H1 出售 WuXi XDC 的高基数压制，扣非口径更真实</td></tr>
-  <tr><td>负债率（10 分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">26H1 资产负债率 <strong>27.85%</strong>（负债 323.79 亿 / 总资产 1162.63 亿），&lt;40%。（注：上版写「约 21%」有误，2025 年末为 22.18%、2024 年末 26.44%，本版已按报表核实）</td></tr>
+  <tr><td>负债率（10 分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">26H1 资产负债率 <strong>27.85%</strong>（负债 323.79 亿 / 总资产 1162.63 亿），&lt;40%</td></tr>
   <tr><td>短期偿债（10 分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">货币资金 357.26 亿 + 交易性金融资产 109.14 亿 = 466.40 亿，覆盖短期有息负债（短借 61.82 + 短期债券 65.86 + 一年内到期 1.55 = 129.23 亿）约 3.6 倍；全口径有息负债 151.13 亿，净现金约 315 亿，充裕</td></tr>
-  <tr><td>毛利率水平与趋势（10 分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">26H1 毛利率 <strong>53.91%</strong>，2024→2025→26H1 为 41.47%→47.64%→53.91%，三年连续上行且 ≥30%。剔除已处置的临床 CRO 后核心化学业务报表毛利率 56.55%（vs 25H1 49.07%，+7.48pct），改善是结构性的</td></tr>
-  <tr><td>估值 PE vs 合理区间（10 分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left"><strong>本版重估项</strong>。ROE(TTM) 26.6% &gt; 20% → 合理 PE 区间 <strong>20–30x</strong>。PE(TTM) 22.04x、PE(2026E) 21.00x 落在区间内，PEG(2026E) 1.25 / PEG(2027E) 0.76 均 &lt;1.5。但相对近 3 年 PE 中位 18.49x 偏高 19%，且 <strong>PB 5.73x 处近 3 年 96.8% 分位、近 5 年 77.9% 分位</strong>，估值修复空间基本兑现，按「区间内偏高 &lt;30%」档计 7 分</td></tr>
+  <tr><td>毛利率水平与趋势（10 分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">26H1 毛利率 <strong>53.91%</strong>，2024→2025→26H1 为 41.47%→47.64%→53.91%，三年连续上行且 ≥30%。剔除已处置的临床 CRO 后核心化学业务报表毛利率 56.55%，改善是结构性的</td></tr>
+  <tr><td>估值 PE vs 合理区间（10 分）</td><td class="neutral" style="font-weight:bold;font-size:15px">7</td><td style="text-align:left">ROE(TTM) 26.6% &gt; 20% → 合理 PE 区间 <strong>20–30x</strong>。10/16 股价回落至 144.30 元后，PE(TTM) 20.21x、PE(2026E) 19.25x 已回落至合理区间下沿（甚至略低于下沿），PEG(2026E) 1.15 / PEG(2027E) 0.70，较 10/13 明显改善。但 PB 5.26x 仍处近 3 年约 88% 分位、近 5 年约 72% 分位，估值修复的绝对水平不低，按「区间内偏高 &lt;30%」档计 7 分</td></tr>
   <tr><td>FCF（5 分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">26H1 FCF（CFO − 购建长期资产）= 96.99 − 29.62 = <strong>+67.37 亿</strong>；全年经调整 FCF 指引由 105–115 亿上调至 135–145 亿，持续为正</td></tr>
-  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">92/100</td><td style="text-align:left">品质优秀（92/100 分）。较上版 94 分：估值维度按「ROE 映射合理 PE 区间」方法重估 +3，利润含金量改用半年实际口径 −5，净 −2</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">92/100</td><td style="text-align:left">品质优秀（92/100 分）。基本面（H1 报表）较上版 10/13 无变化，故总分维持 92；估值维度随 10/16 股价回落而边际改善，但 PB 绝对分位仍偏高，故本版未上调估值得分</td></tr>
 </table>
 
 <div class="verdict verdict-ok">品质优秀（92/100分）</div>
@@ -126,12 +151,15 @@
   <tr><th>日期</th><th>评分</th><th>评分体系</th><th>变化原因</th></tr>
   <tr><td>2026-08-20</td><td class="good" style="font-weight:bold">94/100</td><td>成长性</td><td style="text-align:left">—</td></tr>
   <tr><td>2026-10-13</td><td class="good" style="font-weight:bold">92/100</td><td>成长性</td><td style="text-align:left">沿用非周期股体系；估值改按ROE映射PE区间、含金量改按半年口径，92分</td></tr>
+  <tr><td>2026-10-18</td><td class="good" style="font-weight:bold">92/100</td><td>成长性</td><td style="text-align:left">沿用非周期股体系；基本面未变、10/16 旧闻错杀使估值回落，维持 92 分</td></tr>
 </table>
 
+<!-- 评分沿革：由sync脚本从 scores.json 注入，生成时保留此注释不动 -->
+
 <div class="summary-box">
-  <strong>综合诊断：</strong>药明康德是 A 股质地最扎实的成长股之一。2026 中报是「利润表、资产负债表、现金流三条线同时改善」的一季：营收 288.97 亿（+38.93%）、扣非归母 105.72 亿（+89.39%）、毛利率 53.91%（三年连升 12.4pct）、经调整净利率 40% 创新高、全年指引一次性上调 70 亿以上（持续经营增速由 +18%~22% 直接提到 +35%~39%）、在手订单 664.3 亿创历史新高。1260H 初步禁令（2026-08-07 获批）阶段性解除了压制估值的最大地缘变量，股价从 6/9 低点 88.32 元最高涨到 8/17 的 168.38 元（A+H 市值破 5000 亿）。但本版同时挖出三处旧版遗漏的瑕疵：① <strong>半年 CFO/归母净利仅 0.88</strong>，应收 +48.9%、存货 +55.6% 双双跑赢营收 +38.9%，利润转化为现金的效率在下降；② 短期债务从 2024 年末几乎为零暴增到 <strong>65.86 亿应付短期债券</strong>，有息负债合计约 151 亿，与账上 466 亿现金同时存在，财务费用率 0.74% 说明是「左手理财、右手借钱」；③ 实控人 2022 年以来累计减持套现近 200 亿元，是 A 股龙头中罕见的治理瑕疵。估值上，PE(2026E) 21x 仍在合理区间，但 PB 5.73x 已站在近 3 年 96.8% 分位——市场已经把 ROE 改善全部定价，边际回报要靠业绩兑现而非估值扩张。<br><br>
+  <strong>综合诊断：</strong>药明康德仍是 A 股质地最扎实的成长股之一。2026 中报是「利润表、资产负债表、现金流三条线同时改善」的一季：营收 288.97 亿（+38.93%）、扣非归母 105.72 亿（+89.39%）、毛利率 53.91%（三年连升 12.4pct）、经调整净利率 40% 创新高、全年指引一次性上调 70 亿以上、在手订单 664.3 亿创历史新高。1260H 初步禁令（2026-08-07 获批）阶段性解除了压制估值的最大地缘变量，股价一度从 6/9 低点 88.32 元涨到 8/17 的 168.38 元（A+H 市值破 5000 亿）。<strong>本版核心变化是价格而非基本面：10/16 市场因一则「BIO 剔除药明康德会员资格」的 2024 年 3 月旧闻重发而恐慌抛售，A 股盘中触及跌停、收跌 6.60% 至 144.30 元，市值单日缩水约 400 亿。</strong>该下跌被上海证券报等多家媒体当日证伪，属情绪冲击而非基本面事件，反而把 PE(2026E) 从 21.0x 打回 19.25x、回到合理区间下沿。仍需正视的三处瑕疵未变：① 半年 CFO/归母净利仅 0.88，应收 +44.2%、存货 +55.6% 双双跑赢营收；② 应付短期债券 65.86 亿从零起步，有息负债两年放大 3.6 倍，与账上 466 亿现金并存；③ 实控人 2022 年以来累计减持套现近 200 亿元，治理瑕疵压制估值上限。<br><br>
   <strong>核心优势：</strong>① CRDMO 全链条一体化能力不可复制，26H1 化学业务 249.86 亿（+53.3%）、占营收 86.5%，小分子 D&amp;M 149.9 亿（+72.7%），管线总数 3,731 个、商业化+III 期项目上半年新增 15 个，订单已锁到 2 年后；② 盈利质量处于历史最优：毛利率 53.91%、经调整净利率 40.0%（Q2 单季 42.3%）、FY25 CFO/扣非 1.30、净现金约 315 亿、资产负债率仅 27.85%；③ 两大新引擎同时放量——TIDES（多肽/寡核苷酸）26H1 收入 72.6 亿（+44.3%），<strong>仅 Q2 就 48.8 亿（+74.9%、环比 +105.0%）</strong>，全年指引上调至 +45%，客户数 +39%、服务分子数 +68%，卡位 GLP-1 口服多肽黄金赛道；④ 现金创造力与股东回报双升，经调整 FCF 指引 135–145 亿，中期分红 10 派 5.1 元（15.06 亿），2025 年度分红 47.54 亿。<br><br>
-  <strong>核心风险：</strong>① <strong>1260H 是阶段性而非终局</strong>——2026-08-07 批准的是初步禁令（临时救济），法院首席法官明确指出国防部仍可补证重新列名，且已有客户与供应商因列名终止合同或转向竞争对手；终局实体判决时间表未定（案件号 1:26-cv-02069）；② <strong>治理瑕疵</strong>：实控人李革/张朝晖/刘晓钟 2025/11/20–2026/01/05 减持 5,967.51 万股（占总股本 2%），价格区间 84.66–95.07 元，套现约 54 亿元，持股由 18.211% 降至 16.211%；自 2022 年起累计套现近 200 亿元。上一轮（2023 年，套现 42.76 亿）后股价曾从 81 元腰斩至 37.63 元；③ <strong>TIDES 增速能否兑现是全年最关键变量</strong>：H1 +44.3% 低于全年 +45% 指引，意味着 H2 需加速到 +45%以上，产能爬坡与 GLP-1 客户订单节奏都存在不确定性；④ 营运资金与债务结构双压：应收 104.72 亿（首破百亿）增速超营收 5.26pct、存货 111.27 亿，短期债券 65.86 亿从零起步，若 H2 回款不改善会同时压制现金流与净利率。
+  <strong>核心风险：</strong>① <strong>1260H 是阶段性而非终局</strong>——2026-08-07 批准的是初步禁令（临时救济），法院明确指出国防部仍可补证重新列名，且已有客户与供应商因列名终止合同或转向竞争对手；终局实体判决时间表未定（案件号 1:26-cv-02069）；② <strong>治理瑕疵</strong>：实控人李革/张朝晖/刘晓钟 2025/11/20–2026/01/05 减持 5,967.51 万股（占总股本 2%），价格区间 84.66–95.07 元，套现约 54 亿元，自 2022 年起累计套现近 200 亿元；③ <strong>TIDES 增速能否兑现是全年最关键变量</strong>：H1 +44.3% 低于全年 +45% 指引，意味着 H2 需加速到 +45% 以上；④ 情绪面脆弱——CRO 板块自 8/3 至 9/23 累计涨约 41% 后获利盘丰厚，10/16 一根阴线（成交 123.4 亿）即暴露筹码松动，任何「生物安全」类传闻都会引发剧烈波动。
 </div>
 
 </div></div>
@@ -139,7 +167,7 @@
 <div class="tab-content" id="tab-l1"><div class="tab-inner">
 
 <h2>二、核心财务数据（L1 三张报表）</h2>
-<p style="font-size:12px;color:#888;margin:0 0 10px;">口径说明：2024/2025 为年报合并报表原值；2026H1 为 2026 年半年报（2026-08-04 披露）。「持续经营」为公司在剥离临床 CRO / ATU / XDC 后的重述口径。</p>
+<p style="font-size:12px;color:#888;margin:0 0 10px;">口径说明：2024/2025 为年报合并报表原值；2026H1 为 2026 年半年报（2026-08-04 披露）。「持续经营」为公司在剥离临床 CRO / ATU / XDC 后的重述口径。三张报表数据未受 10/16 股价波动影响。</p>
 
 <h3>2.1 利润表</h3>
 <table>
@@ -158,7 +186,7 @@
   <tr><td>归母净利润</td><td>94.50 亿</td><td>191.51 亿</td><td class="good">+102.7%</td><td><strong>110.80 亿</strong></td><td class="good">+29.43%</td><td class="neutral">受 25H1 出售 XDC 高基数压制</td></tr>
   <tr><td>扣非归母净利润</td><td>99.88 亿</td><td>132.41 亿</td><td class="good">+32.6%</td><td><strong>105.72 亿</strong></td><td class="good">+89.39%</td><td class="good">主业真实增速</td></tr>
   <tr><td>经调整 non-IFRS 归母</td><td>—</td><td>—</td><td>—</td><td><strong>115.7 亿</strong></td><td class="good">+83.2%</td><td class="good">净利率 40.0% 历史新高</td></tr>
-  <tr><td>归母净利率</td><td>24.08%</td><td>42.13%</td><td class="good">+18.05pct</td><td>38.34%</td><td class="good">—</td><td class="good">2025 含 XDC 一次性收益</td></tr>
+  <tr><td>归母净利率</td><td>24.08%</td><td>42.13%</td><td class="good">+18.05pct</td><td>38.34%</td><td>—</td><td class="good">2025 含 XDC 一次性收益</td></tr>
   <tr><td>扣非净利率</td><td>25.45%</td><td>29.13%</td><td class="good">+3.68pct</td><td><strong>36.59%</strong></td><td class="good">+9.75pct</td><td class="good">更能反映主业</td></tr>
   <tr><td>基本 EPS</td><td>3.28 元</td><td>6.70 元</td><td class="good">+104%</td><td><strong>3.80 元</strong></td><td class="good">+26.2%</td><td class="good">H1 已达 FY25 全年 57%</td></tr>
 </table>
@@ -179,8 +207,8 @@
 <p style="font-size:12px;color:#888;">Q1 拆分与 Q2 环比口径为「H1 累计减 Q2」推算，已在表内标注「推算」；Q1 营收/归母/扣非为公司一季报披露值。</p>
 
 <div class="highlight-box">
-  <strong>利润表解读：</strong>2026H1 是典型的「收入提速 + 毛利率跳升 + 费用率下降」三重共振。<strong>最关键的变化是毛利率从 2024 年 41.47% → 2025 年 47.64% → 26H1 53.91%，两年累计提升 12.4pct</strong>，这不是靠提价，而是靠三件事：① CRDMO 模式下临床 III 期与商业化项目占比提升（体量大、工艺成熟、产能效率高）；② 2025 年新增产能逐季释放，产能利用率上台阶；③ 2024–2025 年剥离的临床 CRO（康德弘翼/津石，2025-10 出售）与 ATU 均为低毛利业务，出表后结构性抬升整体毛利率。与此同时期间费用率降至 9.34%（销售 1.35% + 管理 5.16% + 研发 2.09% + 财务 0.74%），全球 CXO 中属最低一档。<br><br>
-  需要提醒的是：<strong>归母 +29.43% 显著低于扣非 +89.39%</strong>，原因是 2025H1 出售 WuXi XDC 联营股权产生了大额非经常性损益，抬高了去年同期基数（25H1 归母 85.61 亿 vs 扣非仅 55.82 亿，非经常性占比 34.8%）。因此 <strong>2026H1 扣非/归母 = 95.4%，利润含金量反而是近三年最干净的一期</strong>——这一点与现金流指标（见 L1 现金流）形成鲜明对比，是本报告认为最需要跟踪的裂缝。
+  <strong>利润表解读：</strong>2026H1 是典型的「收入提速 + 毛利率跳升 + 费用率下降」三重共振。<strong>最关键的变化是毛利率从 2024 年 41.47% → 2025 年 47.64% → 26H1 53.91%，两年累计提升 12.4pct</strong>，这不是靠提价，而是靠三件事：① CRDMO 模式下临床 III 期与商业化项目占比提升（体量大、工艺成熟、产能效率高）；② 2025 年新增产能逐季释放，产能利用率上台阶；③ 2024–2025 年剥离的临床 CRO（康德弘翼/津石，2025-10 出售）与 ATU 均为低毛利业务，出表后结构性抬升整体毛利率。与此同时期间费用率降至 9.34%，全球 CXO 中属最低一档。<br><br>
+  需要提醒的是：<strong>归母 +29.43% 显著低于扣非 +89.39%</strong>，原因是 2025H1 出售 WuXi XDC 联营股权产生了大额非经常性损益（25H1 归母 85.61 亿 vs 扣非仅 55.82 亿，非经常性占比 34.8%）。因此 <strong>2026H1 扣非/归母 = 95.4%，利润含金量反而是近三年最干净的一期</strong>——这一点与现金流指标（见 2.3）形成鲜明对比，是本报告认为最需要跟踪的裂缝。
 </div>
 
 <h3>2.2 资产负债表（2026-06-30）</h3>
@@ -215,8 +243,8 @@
 <div class="highlight-box">
   <strong>资产负债表解读：</strong>整体结构依然健康——<strong>资产负债率 27.85%、流动比率 2.54、货币资金+交易性金融资产 466.40 亿覆盖全部有息负债（约 151 亿）后仍净现金约 315 亿</strong>，商誉仅 8.63 亿（占总资产 0.74%），无减值地雷，净资产 833.34 亿中未分配利润 525.17 亿，主体是内生利润积累而非外部融资。<br><br>
   但有三点必须单独标出：<br>
-  ① <strong>应收与存货同步跑赢营收</strong>。应收账款半年增加 32.09 亿至 104.72 亿（+44.19%，增速比营收 +38.93% 高 5.26pct），存货增加 21.34 亿至 111.27 亿。两者合计占用现金约 53 亿，直接解释了「CFO 增速 30.52% 明显慢于营收 38.93%」。公司口径解释为「业务规模扩大带动应收增加」，但在 CRO/CDMO 语境下，<strong>应收增速持续超营收增速通常指向客户账期拉长或议价能力下降</strong>（美媒已在 2026-08-08 就此专门质疑）。这是本报告认定的第一号跟踪指标。<br>
-  ② <strong>「左手理财、右手借钱」的资金结构</strong>。有息负债从 2024 年末约 42 亿膨胀到 26H1 约 151 亿（其中<strong>应付短期债券 65.86 亿为从零起步</strong>，占总资产 5.66%），同期账上货币资金 357 亿、交易性金融资产 109 亿。表面看是无风险的「存贷双高」，但它拉高了财务费用（26H1 财务费用 2.13 亿，费用率 0.74%），且在美元利率高位环境下是纯粹的成本损耗。这一现象在半年报中被媒体点名讨论，公司未作公开回应。<br>
+  ① <strong>应收与存货同步跑赢营收</strong>。应收账款半年增加 32.09 亿至 104.72 亿（+44.19%，增速比营收 +38.93% 高 5.26pct），存货增加 21.34 亿至 111.27 亿。两者合计占用现金约 53 亿，直接解释了「CFO 增速 30.52% 明显慢于营收 38.93%」。在 CRO/CDMO 语境下，<strong>应收增速持续超营收增速通常指向客户账期拉长或议价能力下降</strong>。这是本报告认定的第一号跟踪指标。<br>
+  ② <strong>「左手理财、右手借钱」的资金结构</strong>。有息负债从 2024 年末约 42 亿膨胀到 26H1 约 151 亿（其中<strong>应付短期债券 65.86 亿为从零起步</strong>，占总资产 5.66%），同期账上货币资金 357 亿、交易性金融资产 109 亿。表面看是无风险的「存贷双高」，但它拉高了财务费用（26H1 财务费用 2.13 亿，费用率 0.74%），且在美元利率高位环境下是纯粹的成本损耗。<br>
   ③ <strong>净资产的快速膨胀反过来稀释了 ROE</strong>。归母净资产一年半从 586.33 亿 → 797.12 亿 → 833.34 亿，26H1 同比 +39.1%，与营收增速 +38.93% 基本同步。这导致 26H1 累计 ROE 13.19% 反而<strong>低于</strong> 25H1 的 13.93%（详见 L4）。
 </div>
 
@@ -241,7 +269,7 @@
 
 <div class="summary-box">
   <strong>现金流解读：</strong>公司<strong>不缺钱</strong>——26H1 CFO 96.99 亿（+30.52%）、FCF +67.37 亿、期末现金及等价物 269.54 亿，全年经调整 FCF 指引 135–145 亿且刚上调。收现比 97.6% 说明收入不是纸面收入。<strong>但利润转化效率在下降</strong>：CFO/扣非归母从 25H1 的 1.33 降到 26H1 的 0.92，缺口约 13.8 亿，来源清晰可查——应收账款 +32.09 亿、存货 +21.34 亿，两者合计 53.4 亿的营运资金增量吸收了大部分经营现金流。<br><br>
-  CFI 从 FY25 的 -19.45 亿骤增至 26H1 的 -108.56 亿，看上去「钱在流出」，但拆开看性质完全不同：<strong>购建长期资产只有 29.62 亿（真正的产能投资），其余约 79 亿是理财净买入（投资支付 217.03 亿 − 收回投资 131.77 亿）</strong>，属于闲置资金理财而非资本消耗。所以不能用「CFI 大幅为负 = 烧钱」的模板去解读这家公司。CFF -8.99 亿则是「发债 69.44 亿 + 借款 57.71 亿 − 分红 47.54 亿 + 利息/其他 32.41 亿」的结果。<br><br>
+  CFI 从 FY25 的 -19.45 亿骤增至 26H1 的 -108.56 亿，看上去「钱在流出」，但拆开看性质完全不同：<strong>购建长期资产只有 29.62 亿（真正的产能投资），其余约 79 亿是理财净买入</strong>，属于闲置资金理财而非资本消耗。所以不能用「CFI 大幅为负 = 烧钱」的模板去解读这家公司。CFF -8.99 亿则是「发债 69.44 亿 + 借款 57.71 亿 − 分红 47.54 亿 + 利息/其他 32.41 亿」的结果。<br><br>
   <strong>本报告对现金流的态度：定性为「扩张期的营运资金占用」而非「利润造假」。</strong>依据有三：① 收现比 97.6% 极高；② 合同负债从年初 27 亿增至 37.5 亿，说明客户还在预付；③ 在手订单 664.3 亿同比 +25.2% 且环比 Q1 增超 60 亿，未来回款有支撑。但若 26H2 应收账款继续以高于营收的增速膨胀，就会从「扩张占用」变成「回款质量恶化」，届时 CFO/扣非跌破 0.8 需要重新评估盈利质量。
 </div>
 
@@ -270,7 +298,7 @@
   <tr><td>FCF</td><td>+67.37 亿（全年指引 135–145 亿）</td><td>持续为正</td><td class="good">优秀</td></tr>
   <tr><td>在手订单</td><td><strong>664.3 亿（+25.2%）</strong></td><td>持续增长</td><td class="good">历史新高，环比 Q1 增超 60 亿</td></tr>
   <tr><td>分红率</td><td>2025 年度 24.8%（47.54/191.51）<br>近 12 个月累计约 28.9%</td><td>持续分红且提升</td><td class="good">连续三年分红并首次半年度分红</td></tr>
-  <tr><td>股息率</td><td>约 1.34%（近 12 个月每股 2.103 元）</td><td>—</td><td class="neutral">成长股常态，不构成买入理由</td></tr>
+  <tr><td>股息率</td><td>约 1.46%（近 12 个月每股 2.103 元 / 144.30 元）</td><td>—</td><td class="neutral">成长股常态，不构成买入理由</td></tr>
   <tr><td>商誉 / 总资产</td><td>0.74%</td><td>&lt; 10%</td><td class="good">无减值地雷</td></tr>
 </table>
 
@@ -291,25 +319,25 @@
 
 <div class="highlight-box">
   <strong>业务解读：</strong>增长结构非常清晰——<strong>化学业务一枝独秀贡献了全部增量</strong>：收入 249.86 亿（+53.3%），占比从 25H1 的 78.4% 抬升到 86.5%，毛利率 56.55%。其中小分子 D&amp;M +72.7%（管线总数 3,731 个，商业化与 III 期项目上半年净增 15 个，说明结构在向后期迁移，是毛利率跳升的根本原因）；TIDES +44.3%（Q2 单季 +74.9%、环比翻倍）。<br><br>
-  <strong>TIDES 是本报告认定的「全年胜负手」</strong>，也是用户关注的增速验证点：H1 +44.3% < 全年指引 +45%，<strong>意味着 H2 必须加速到 +45% 以上才能达标</strong>。支撑证据是 Q2 单季 48.8 亿、同比 +74.9%、环比 +105.0%，即 H2 起跑线很高；服务分子数 +68%、客户数 +39% 说明项目池仍在扩张；公司卡位 GLP-1 注射多肽 + 口服多肽 + 寡核苷酸三条赛道。风险在于：Q2 的环比翻倍部分来自产能爬坡与订单集中交付的时点效应，若下半年 GLP-1 客户订单节奏放缓或新产能投产延迟，+45% 指引存在下调风险。<strong>这是 26H2 最需要盯的单一变量。</strong><br><br>
+  <strong>TIDES 是本报告认定的「全年胜负手」</strong>：H1 +44.3% < 全年指引 +45%，<strong>意味着 H2 必须加速到 +45% 以上才能达标</strong>。支撑证据是 Q2 单季 48.8 亿、同比 +74.9%、环比 +105.0%，即 H2 起跑线很高；服务分子数 +68%、客户数 +39% 说明项目池仍在扩张；公司卡位 GLP-1 注射多肽 + 口服多肽 + 寡核苷酸三条赛道。风险在于：Q2 的环比翻倍部分来自产能爬坡与订单集中交付的时点效应，若下半年 GLP-1 客户订单节奏放缓或新产能投产延迟，+45% 指引存在下调风险。<strong>这是三季报（10-27）最需要盯的单一变量。</strong><br><br>
   测试业务 +31.5%（持续经营口径）稳健但体量已小（占比 8.58%）；生物学业务 +11.2% 是三块中最慢的，虽稳健但短期不贡献增量。
 </div>
 
 <h3>3.3 排雷清单</h3>
 <table>
   <tr><th style="width:14%">等级</th><th style="width:26%">风险 / 正面项</th><th>依据</th></tr>
-  <tr><td class="bad">🔴 重点</td><td>1260H 是阶段性胜利而非终局</td><td>2026-08-07 哥伦比亚特区联邦地区法院（案号 1:26-cv-02069，首席法官 Bosberg）批准的仅是<strong>初步禁令（临时救济）</strong>，明确「并非永久移出清单，国防部仍可依更充分证据重新认定」；法院同时指出国防部三项列名理由均存在证据解读偏差（5.32% 实为基金资产配置占比而非持股比例；药明康德在人类遗传资源审批中身份为第三方实验室而非申请人）。<strong>更值得关注的是法官在 35 页意见书中写明：认定公布后已有客户与供应商据此终止合同、结束长期合作或将业务转向竞争对手</strong>——即损害已经发生且不可逆。终局实体判决时间表未定。</td></tr>
-  <tr><td class="bad">🔴 重点</td><td>实控人累计减持近 200 亿元的治理瑕疵</td><td>李革/张朝晖/刘晓钟控制的 18 家一致行动主体于 2025/11/20–2026/01/05 累计减持 5,967.51 万股（占总股本 2%），价格区间 84.66–95.07 元，套现约 54 亿元，持股由 18.211% 降至 16.211%（减持前持有 543,364,675 股）。<strong>自 2022 年起累计套现近 200 亿元</strong>，主体为 4 家境外公司（G&amp;C IV/V/VI/VII Hong Kong Limited）与 14 家境内合伙企业，基本是 2015 年美股私有化时的财务投资机构。<strong>历史阴影：上一轮 2023 年大额减持（套现 42.76 亿）后，前复权股价从 81.04 元最低跌至 37.63 元，跌幅超 53%。</strong>公司回应为「股东自身资金需求」，受让方均为知名国际投资者。</td></tr>
+  <tr><td class="bad">🔴 重点</td><td>1260H 是阶段性胜利而非终局</td><td>2026-08-07 哥伦比亚特区联邦地区法院（案号 1:26-cv-02069）批准的仅是<strong>初步禁令（临时救济）</strong>，明确「并非永久移出清单，国防部仍可依更充分证据重新认定」；法院同时指出国防部三项列名理由均存在证据解读偏差（5.32% 实为基金资产配置占比而非持股比例；公司人类遗传资源审批身份为第三方实验室；涉解放军总医院研究申请方为诺和诺德、药明子公司仅提供检测）。<strong>法官在意见书中写明：认定公布后已有客户与供应商据此终止合同、结束长期合作或将业务转向竞争对手</strong>——损害已发生且不可逆。终局实体判决时间表未定。</td></tr>
+  <tr><td class="bad">🔴 重点</td><td>实控人累计减持近 200 亿元的治理瑕疵</td><td>李革/张朝晖/刘晓钟控制的 18 家一致行动主体于 2025/11/20–2026/01/05 累计减持 5,967.51 万股（占总股本 2%），价格区间 84.66–95.07 元，套现约 54 亿元，持股由 18.211% 降至 16.211%。<strong>自 2022 年起累计套现近 200 亿元</strong>。<strong>历史阴影：上一轮 2023 年大额减持（套现 42.76 亿）后，前复权股价从 81.04 元最低跌至 37.63 元，跌幅超 53%。</strong>公司回应为「股东自身资金需求」，受让方均为知名国际投资者。</td></tr>
   <tr><td class="bad">🔴 重点</td><td>利润现金转化率下降</td><td>26H1 CFO/扣非归母 0.92，较 25H1 的 1.33 明显走弱；应收账款 104.72 亿（+44.19% YoY，增速超营收 5.26pct，首次破百亿）、存货 111.27 亿（+55.6% YoY），合计占用现金 53.4 亿。CFO 增速 30.52% 明显慢于营收 38.93%。</td></tr>
+  <tr><td class="neutral">🟡 关注</td><td>情绪面脆弱，旧闻可触发闪崩</td><td>2026-10-16 一则「BIO 支持《生物安全法案》并剔除药明康德会员资格」的 2024 年 3 月旧闻重发，即令 A 股盘中触及跌停、收跌 6.60%（成交 123.4 亿、换手 3.38%），H 股一度跌近 8%。当日经上海证券报、华尔街见闻等多方核验为旧闻，无新实质利空。板块自 8/3 至 9/23 累计涨约 41%，获利盘丰厚，任何「生物安全」类传闻都会引发剧烈波动。</td></tr>
   <tr><td class="neutral">🟡 关注</td><td>应付短期债券从零暴增，有息负债两年放大 3.6 倍</td><td>其他流动负债 65.86 亿（应付短期债券，占总资产 5.66%），2024/2025 年末均为零；叠加短借 61.82 亿、长借 17.99 亿、租赁负债 3.91 亿，有息负债合计约 151 亿（2024 年末约 42 亿）。与账上 466 亿现金/理财并存，26H1 财务费用 2.13 亿（费用率 0.74%）。</td></tr>
   <tr><td class="neutral">🟡 关注</td><td>TIDES 全年 +45% 指引的 H2 兑现压力</td><td>H1 实际 +44.3%，H2 需加速至 +45% 以上。Q2 单季 48.8 亿（+74.9%、环比 +105.0%）起跑线高，但产能爬坡与 GLP-1 客户订单节奏存在不确定性。</td></tr>
-  <tr><td class="neutral">🟡 关注</td><td>估值已修复至历史高位区间</td><td>PB 5.73x 处近 3 年 96.8% 分位、近 5 年 77.9% 分位；PE(TTM) 22.04x 处近 3 年 81.4% 分位。8/17 盘中高 168.38 元创历史新高、A+H 市值破 5000 亿后回落至今 157.35 元。</td></tr>
   <tr><td class="neutral">🟡 关注</td><td>ROE 被净资产膨胀稀释</td><td>26H1 累计 ROE 13.19% 同比<strong>下降</strong> 0.74pct（25H1 为 13.93%），因归母净资产同比 +39.1% 与利润增速 +29.4% 相当甚至更快。</td></tr>
-  <tr><td class="neutral">🟡 关注</td><td>美国收入敞口未量化</td><td>2025 年美国客户贡献收入 312.5 亿（+34%），占总收入约 72%（含境外整体口径更高）。<strong>2026H1 分地区收入与毛利率数据本报告未取得</strong>，无法量化 1260H 的直接收入风险敞口。</td></tr>
+  <tr><td class="neutral">🟡 关注</td><td>美国收入敞口未量化 + 贝莱德减持 H 股</td><td>2025 年美国客户贡献收入 312.5 亿（+34%），占总收入约 72%；2026H1 分地区数据本报告未取得，无法量化 1260H 直接收入敞口。港交所披露贝莱德（BlackRock）在药明康德 H 股的持股比例于 10/13 由 6.43% 降至 5.10%（同日亦减持恒瑞医药、蒙牛乳业 H 股，或为组合调仓）。</td></tr>
   <tr><td class="good">🟢 正面</td><td>在手订单 664.3 亿创历史新高</td><td>+25.2% YoY，环比 Q1 增超 60 亿，覆盖未来 2–3 年收入，确定性极强；合同负债同步从年初 27 亿增至 37.5 亿。</td></tr>
   <tr><td class="good">🟢 正面</td><td>盈利质量处于历史最优</td><td>毛利率 53.91%（三年 +12.4pct）、经调整净利率 40.0%（Q2 42.3%）、扣非/归母 95.4%（近三年最干净）、期间费用率仅 9.34%。</td></tr>
   <tr><td class="good">🟢 正面</td><td>财务安全垫极厚</td><td>资产负债率 27.85%、流动比率 2.54、货币资金+理财 466.40 亿、有息负债约 151 亿、净现金约 315 亿、商誉仅占 0.74%。</td></tr>
-  <tr><td class="good">🟢 正面</td><td>连续上调指引 + 加大回购分红</td><td>2026 全年收入指引一次性上调超 70 亿（持续经营增速由 +18%~22% 提到 +35%~39%），FCF 指引由 105–115 亿上调至 135–145 亿；2025 年度分红 47.54 亿（24.8% 分红率）+ 2026 中期分红 15.06 亿（10 派 5.1 元，除息 09-04）；回购仍在进行（库存股 69.60 亿）。</td></tr>
+  <tr><td class="good">🟢 正面</td><td>连续上调指引 + 加大回购分红</td><td>2026 全年收入指引一次性上调超 70 亿，FCF 指引由 105–115 亿上调至 135–145 亿；2025 年度分红 47.54 亿（24.8% 分红率）+ 2026 中期分红 15.06 亿（10 派 5.1 元，除息 09-04）；回购仍在进行（库存股 69.60 亿）。</td></tr>
   <tr><td class="good">🟢 正面</td><td>1260H 司法反制取得实质性进展</td><td>初步禁令获批期间国防部不得执行列名认定；法院认定国防部三项理由均存在严重解读错误；参照小米（2021 年，4 个月内移出名单）与中微公司（2024 年 12 月撤销认定）先例，终局胜诉概率不低。</td></tr>
 </table>
 
@@ -321,56 +349,56 @@
 
 <h2>四、估值分析（L3框架 · 非周期股用 PE Band）</h2>
 
-<h3>4.1 当前估值水平（2026-10-13 收盘）</h3>
+<h3>4.1 当前估值水平（2026-10-16 收盘）</h3>
 <table>
   <tr><th style="width:22%">指标</th><th>当前值</th><th>计算口径 / 备注</th><th style="width:24%">评价</th></tr>
-  <tr><td>股价</td><td>157.35 元（-0.32%）</td><td>当日 158.56 开 / 152.08 低 / 振幅 4.11%</td><td class="neutral">盘中一度跌超 4%，尾盘收复</td></tr>
-  <tr><td>总市值</td><td>4,775.42 亿元</td><td>A+H 合计（A 股流通市值 3,891.71 亿）</td><td class="neutral">8/17 盘中高点曾破 5000 亿</td></tr>
-  <tr><td><strong>PE(TTM)</strong></td><td><strong>22.04x</strong></td><td>TTM 归母净利 = 26H1 110.80 + 25H2 105.90 = <strong>216.69 亿</strong>（25H1 由 +29.43% 反推为 85.61 亿）</td><td class="good">低于近 5 年中位 21.52x 之上的常态区</td></tr>
-  <tr><td>PE(2026E)</td><td><strong class="good">21.00x</strong></td><td>中报后 31 家券商一致预期归母 223.62 亿 → EPS 7.495 元</td><td class="good">PEG(2026E) = 1.25</td></tr>
-  <tr><td>PE(2027E)</td><td class="good">17.14x</td><td>一致预期归母 273.84 亿 → EPS 9.178 元</td><td class="good">PEG(2027E) = 0.76 &lt; 1</td></tr>
-  <tr><td>PE(静，FY2025)</td><td>24.94x</td><td>4,775.42 / 191.51</td><td class="neutral">含 XDC 一次性收益</td></tr>
-  <tr><td><strong>PB(MRQ)</strong></td><td><strong class="bad">5.73x</strong></td><td>4,775.42 亿 / 26H1 归母净资产 833.34 亿。BVPS 27.9291 元，A 股价/BVPS = 5.63x</td><td class="bad"><strong>近 3 年 96.8% 分位、近 5 年 77.9% 分位</strong></td></tr>
-  <tr><td>PS(TTM)</td><td>8.92x</td><td>TTM 营收 535.54 亿</td><td class="neutral">CXO 属高毛利服务业，PS 参考意义有限</td></tr>
+  <tr><td>股价</td><td>144.30 元（-6.60%）</td><td>当日 156.94 开 / 159.92 高 / 139.05 低（触及跌停）/ 振幅 13.5%</td><td class="bad">旧闻错杀，单日市值缩水约 400 亿</td></tr>
+  <tr><td>总市值</td><td>4,379.37 亿元</td><td>A+H 合计（A 股流通市值 3,568.94 亿）</td><td class="neutral">距 8/17 盘中高点（破 5000 亿）回落约 12%</td></tr>
+  <tr><td><strong>PE(TTM)</strong></td><td><strong>20.21x</strong></td><td>TTM 归母净利 = 26H1 110.80 + 25H2 105.90 = <strong>216.69 亿</strong></td><td class="good">较 10/13 的 22.04x 回落，接近近 5 年中枢</td></tr>
+  <tr><td>PE(2026E)</td><td><strong class="good">19.25x</strong></td><td>中报后 31 家券商一致预期归母 223.62 亿 → EPS 7.495 元</td><td class="good">已回到合理区间 20–30x 下沿之下（更便宜）</td></tr>
+  <tr><td>PE(2027E)</td><td class="good">15.72x</td><td>一致预期归母 273.84 亿 → EPS 9.178 元</td><td class="good">PEG(2027E) = 0.70 &lt; 1</td></tr>
+  <tr><td>PE(静，FY2025)</td><td>22.87x</td><td>4,379.37 / 191.51</td><td class="neutral">含 XDC 一次性收益</td></tr>
+  <tr><td><strong>PB(MRQ)</strong></td><td><strong class="bad">5.26x</strong></td><td>4,379.37 亿 / 26H1 归母净资产 833.34 亿。BVPS 27.9291 元，A 股价/BVPS = 5.17x</td><td class="bad"><strong>近 3 年约 88% 分位、近 5 年约 72% 分位</strong></td></tr>
+  <tr><td>PS(TTM)</td><td>8.18x</td><td>TTM 营收 535.54 亿</td><td class="neutral">CXO 属高毛利服务业，PS 参考意义有限</td></tr>
   <tr><td>PCF(TTM)</td><td><span class="nd">待补充</span></td><td>缺 TTM CFO 完整口径</td><td class="nd">—</td></tr>
-  <tr><td>股息率</td><td>约 1.34%</td><td>近 12 个月每股派息 2.103 元（2025 年度约 1.593 + 2026 中期 0.51）</td><td class="neutral">成长股常态</td></tr>
-  <tr><td>52 周区间</td><td>142.07 – 173.64 元</td><td>当前位于区间 36% 位置</td><td class="neutral">距 8/17 高点 168.38 回撤 6.5%</td></tr>
+  <tr><td>股息率</td><td>约 1.46%</td><td>近 12 个月每股派息 2.103 元（2025 年度约 1.593 + 2026 中期 0.51）/ 144.30</td><td class="neutral">成长股常态</td></tr>
+  <tr><td>52 周区间</td><td>87.09 – 173.60 元</td><td>当前位于区间约 66% 位置</td><td class="neutral">距 8/17 盘中高点 168.38 回撤约 14%</td></tr>
 </table>
-<p style="font-size:12px;color:#888;">口径说明：总市值 4,775.42 亿、PE(TTM) 22.04 来自腾讯行情；PB 采用东财口径 5.73（= 总市值 / 26H1 归母净资产），腾讯行情显示 5.84 略高，本报告以可复算的 5.73 为准并在 L1/L4 中统一使用归母净资产 833.34 亿。</p>
+<p style="font-size:12px;color:#888;">口径说明：总市值 4,379.37 亿、PE(TTM) 20.21 由 A+H 市值与 TTM 归母净利直接计算；PB 采用「总市值 / 归母净资产」口径并统一使用 833.34 亿。因 10/16 股价单日下跌 6.60%，所有估值指标较 10/13 版本整体下移。</p>
 
 <h3>4.2 PE Band 估值区间（非周期股专用）</h3>
 <p style="font-size:13px;color:#666;">合理 PE 映射规则（SKILL 规定）：<strong>ROE &gt; 20% → 20–30x</strong>。药明康德 ROE(TTM) 26.6%、TTM 扣非口径 22.4%、FY25 28.56%，四个口径均 &gt;20%，故取<strong>合理 PE 区间 20–30x</strong>，中枢约 24–25x。<br>
 估值基准采用 <strong>2026E EPS 7.495 元</strong>（= 中报后 31 家券商一致预期归母 223.62 亿 ÷ 29.8376 亿股）。</p>
 <table>
-  <tr><th style="width:22%">情景</th><th>PE 取值</th><th>对应股价</th><th>vs 现价 157.35</th><th>触发条件</th></tr>
-  <tr><td class="bad">悲观（历史低位）</td><td>16x</td><td>119.9 元</td><td class="bad">-23.8%</td><td>1260H 终局不利 + 新签订单增速转负 + TIDES 失速；参照近 3 年 PE 20% 分位 15.05x 与近 5 年 20% 分位 16.71x</td></tr>
-  <tr><td class="neutral">保守（近 3 年中枢）</td><td>18.5x</td><td>138.7 元</td><td class="bad">-11.9%</td><td>指引如期兑现但估值向历史中枢回归；近 3 年 PE 中位 18.49x</td></tr>
-  <tr><td class="good"><strong>中性（合理区间中枢）</strong></td><td><strong>24x</strong></td><td><strong>179.9 元</strong></td><td class="good">+14.3%</td><td>指引兑现、1260H 维持现状，ROE 稳在 25% 上下</td></tr>
-  <tr><td class="good">乐观（券商目标）</td><td>26–30x</td><td>194.9 – 224.9 元</td><td class="good">+24% ~ +43%</td><td>华创证券 221.74 元（A 股 2026 年 30 倍目标 PE）、天风证券 194.22 元（2027 年 22 倍 PE）、东方证券 246.51 元（2026 年 33 倍 PE）</td></tr>
-  <tr><td><strong>当前价</strong></td><td><strong>21.00x（2026E）<br>22.04x（TTM）</strong></td><td><strong>157.35 元</strong></td><td>—</td><td>处于合理区间 <strong>20–30x 的下沿偏内侧</strong></td></tr>
-  <tr><td class="bad">历史高位</td><td>28.36x（近 3 年 PE 实际最大值）</td><td>212.6 元</td><td>+35.2%</td><td>近 3 年 PE 最高仅 28.36x（vs 近 5 年最高 112.39x、近 8 年最高 184.10x，2020–21 年利润塌陷期失真）</td></tr>
+  <tr><th style="width:22%">情景</th><th>PE 取值</th><th>对应股价</th><th>vs 现价 144.30</th><th>触发条件</th></tr>
+  <tr><td class="bad">悲观（历史低位）</td><td>16x</td><td>119.9 元</td><td class="bad">-16.9%</td><td>1260H 终局不利 + 新签订单增速转负 + TIDES 失速；参照近 3 年 PE 20% 分位 15.05x 与近 5 年 20% 分位 16.71x</td></tr>
+  <tr><td class="neutral">保守（近 3 年中枢）</td><td>18.5x</td><td>138.7 元</td><td class="neutral">-3.9%</td><td>指引如期兑现但估值向历史中枢回归；近 3 年 PE 中位 18.49x</td></tr>
+  <tr><td class="good"><strong>中性（合理区间中枢）</strong></td><td><strong>24x</strong></td><td><strong>179.9 元</strong></td><td class="good">+24.7%</td><td>指引兑现、1260H 维持现状，ROE 稳在 25% 上下</td></tr>
+  <tr><td class="good">乐观（券商目标）</td><td>26–30x</td><td>194.9 – 224.9 元</td><td class="good">+35% ~ +56%</td><td>华创证券 221.74 元（A 股 2026 年 30 倍目标 PE）、天风证券 194.22 元（2027 年 22 倍 PE）、东方证券 246.51 元（2026 年 33 倍 PE）</td></tr>
+  <tr><td><strong>当前价</strong></td><td><strong>19.25x（2026E）<br>20.21x（TTM）</strong></td><td><strong>144.30 元</strong></td><td>—</td><td>处于合理区间 <strong>20–30x 的下沿 / 略低于下沿</strong></td></tr>
+  <tr><td class="bad">历史高位</td><td>28.36x（近 3 年 PE 实际最大值）</td><td>212.6 元</td><td>+47.3%</td><td>近 3 年 PE 最高仅 28.36x（vs 近 5 年最高 112.39x、近 8 年最高 184.10x，2020–21 年利润塌陷期失真）</td></tr>
 </table>
 
-<h3>4.3 历史估值分位（2018-05 至 2026-10-13，共 2,046 个交易日实测）</h3>
+<h3>4.3 历史估值分位（2018-05 至 2026-10-16 实测）</h3>
 <table>
   <tr><th>区间</th><th>最小值</th><th>20% 分位</th><th>50% 分位</th><th>80% 分位</th><th>最大值</th><th>当前</th><th>当前分位</th></tr>
-  <tr><td>PE(TTM) 近 3 年（n=726）</td><td>11.44</td><td>15.05</td><td>18.49</td><td>21.88</td><td>28.36</td><td class="neutral">22.04</td><td class="bad">81.4%</td></tr>
-  <tr><td>PE(TTM) 近 5 年（n=1,212）</td><td>11.44</td><td>16.71</td><td>21.52</td><td>31.18</td><td>112.39</td><td class="good">22.04</td><td class="neutral">53.8%</td></tr>
-  <tr><td>PE(TTM) 全区间 8.4 年（n=2,046）</td><td>11.44</td><td>18.96</td><td>39.23</td><td>90.59</td><td>184.10</td><td class="good">22.04</td><td class="good">31.9%</td></tr>
-  <tr><td>PB(MRQ) 近 3 年</td><td>1.96</td><td>—</td><td>3.45</td><td>4.45</td><td>6.12</td><td class="bad">5.73</td><td class="bad">96.8%</td></tr>
-  <tr><td>PB(MRQ) 近 5 年</td><td>1.96</td><td>—</td><td>4.19</td><td>5.90</td><td>11.78</td><td class="bad">5.73</td><td class="neutral">77.9%</td></tr>
+  <tr><td>PE(TTM) 近 3 年（n=726）</td><td>11.44</td><td>15.05</td><td>18.49</td><td>21.88</td><td>28.36</td><td class="neutral">20.21</td><td class="neutral">约 66%</td></tr>
+  <tr><td>PE(TTM) 近 5 年（n=1,212）</td><td>11.44</td><td>16.71</td><td>21.52</td><td>31.18</td><td>112.39</td><td class="good">20.21</td><td class="neutral">约 44%</td></tr>
+  <tr><td>PE(TTM) 全区间 8.4 年</td><td>11.44</td><td>18.96</td><td>39.23</td><td>90.59</td><td>184.10</td><td class="good">20.21</td><td class="good">约 28%</td></tr>
+  <tr><td>PB(MRQ) 近 3 年</td><td>1.96</td><td>—</td><td>3.45</td><td>4.45</td><td>6.12</td><td class="bad">5.26</td><td class="bad">约 88%</td></tr>
+  <tr><td>PB(MRQ) 近 5 年</td><td>1.96</td><td>—</td><td>4.19</td><td>5.90</td><td>11.78</td><td class="neutral">5.26</td><td class="neutral">约 72%</td></tr>
 </table>
-<p style="font-size:12px;color:#888;">分位 = 历史上 PE(TTM) ≤ 当前值的交易日占比。8 年区间的中位数（39.23x）被 2020–2021 年利润塌陷期严重扭曲，参考价值低，故以 3 年与 5 年窗口为主。</p>
+<p style="font-size:12px;color:#888;">分位 = 历史上 PE(TTM) ≤ 当前值的交易日占比（10/16 当前值 20.21 相较 10/13 的 22.04 整体下移，分位同步回落）。8 年区间的中位数（39.23x）被 2020–2021 年利润塌陷期严重扭曲，参考价值低，故以 3 年与 5 年窗口为主。</p>
 
 <div class="highlight-box">
-  <strong>估值判断：合理区间内、偏下沿，但相对历史已不便宜；PB 是最刺眼的红灯。</strong><br><br>
-  <strong>支持「不贵」的三条证据：</strong>① ROE(TTM) 26.6% 落在「ROE&gt;20% → 合理 PE 20–30x」区间内，当前 PE(TTM) 22.04x / PE(2026E) 21.00x 位于该区间下沿；② PEG 极健康——PEG(2026E) = 21.00 / 16.77 = <strong>1.25</strong>，PEG(2027E) = 17.14 / 22.46 = <strong>0.76</strong>，均低于 1.5 的经验阈值；③ 近 5 年 PE 分位仅 53.8%、全区间分位 31.9%，并非历史最贵。<br><br>
-  <strong>警示「已不便宜」的两条证据：</strong>① <strong>PB 5.73x 处近 3 年 96.8% 分位</strong>——这是本报告认为最需要正视的数字。PB/PE = ROE，所以 PB 分位高本质是 ROE 分位高（市场把 ROE 改善全部定价了），一旦 ROE 因净资产膨胀（26H1 +39.1%）或增速回落而均值回归，PB 收缩会同时压低 PE；② PE(TTM) 处近 3 年 <strong>81.4%</strong> 分位，8 月因中报+禁令的估值修复已从 7 月的 19.0x 走到 9 月 30 日的 23.4x。<br><br>
-  <strong>结论与操作含义：</strong>当前 157.35 元对应 2026E PE 21x，距中性情景 179.9 元有 14% 空间，但距保守情景 138.7 元有 12% 下行。<strong>这不是一个「显著低估」的价格，而是一个「合理偏贵、需要业绩兑现来消化」的价格。</strong>赚估值扩张的钱已经很薄（PE 从 21x 扩到近 3 年最高的 28.4x 才对应 +35%），后续回报必须主要来自 EPS 兑现（2027E 273.84 亿，中信建投最乐观 321.57 亿）。<br><br>
+  <strong>估值判断：旧闻错杀把价格打回合理区间下沿，估值性价比较一周前明显改善；但 PB 仍是唯一的红灯。</strong><br><br>
+  <strong>支持「不贵」的三条证据：</strong>① ROE(TTM) 26.6% 落在「ROE&gt;20% → 合理 PE 20–30x」区间内，当前 PE(TTM) 20.21x / PE(2026E) 19.25x 已位于该区间下沿甚至略低于下沿；② PEG 极健康——PEG(2026E) = 19.25 / 16.77 = <strong>1.15</strong>，PEG(2027E) = 15.72 / 22.46 = <strong>0.70</strong>，均低于 1.5 的经验阈值；③ 近 5 年 PE 分位仅约 44%、全区间分位约 28%，明显低于 10/13 版本（53.8% / 31.9%）。<br><br>
+  <strong>警示「仍不算便宜」的两条证据：</strong>① <strong>PB 5.26x 仍处近 3 年约 88% 分位</strong>——PB/PE = ROE，PB 分位高本质是 ROE 分位高（市场把 ROE 改善定价了），一旦 ROE 因净资产膨胀（26H1 +39.1%）或增速回落而均值回归，PB 收缩会同时压低 PE；② 8 月的估值修复已把 PE 从 7 月的 19.0x 推到 9 月 30 日的 23.4x，10/16 才回落到 20.2x——这一轮回撤属于「估值消化」而非「错杀到低估」。<br><br>
+  <strong>结论与操作含义：</strong>当前 144.30 元对应 2026E PE 19.25x，距中性情景 179.9 元有约 25% 空间，距保守情景 138.7 元仅约 4% 下行。<strong>相较一周前（157.35 元）的安全边际明显增厚，是「合理偏下沿、业绩兑现即可赚业绩钱」的价格。</strong>赚估值扩张的钱依旧偏薄（PE 从 19x 扩到近 3 年最高的 28.4x 对应约 +47%），后续回报仍主要来自 EPS 兑现（2027E 273.84 亿，中信建投最乐观 321.57 亿）。<br><br>
   <strong>全球可比对照（定性）：</strong>相对 Lonza、LabCorp 等海外 CRO/CDMO 约 25–35x 的估值，药明康德仍有折价；但这个折价对应的是 1260H 地缘风险溢价，若终局败诉，折价会重新扩大。
 </div>
 
-<p style="font-size:12px;color:#999;">本 tab 数据缺失说明：PCF(TTM) 因缺 TTM 完整 CFO 口径未能计算；2026H1 分地区收入缺失导致无法做「美国收入敞口 × 估值折价」的敏感性测算。</p>
+<p style="font-size:12px;color:#999;">本 tab 数据缺失说明：PCF(TTM) 因缺 TTM 完整 CFO 口径未能计算；2026H1 分地区收入缺失导致无法做「美国收入敞口 × 估值折价」的敏感性测算。历史分位为基于既往分位结构的近似估算（10/16 当前值下移后重新定位）。</p>
 
 </div></div>
 
@@ -392,8 +420,8 @@
 <h3>5.2 赚钱模式判断</h3>
 <div class="highlight-box">
   <strong>赚钱模式：高利润型（最优质的赚钱模式）</strong><br><br>
-  三个因子的结构非常干净：<strong>净利率极高（38–40%）+ 周转率中等偏低（年化 0.50x，1 元资产年做 0.5 元生意，符合 CDMO 重资产属性）+ 杠杆极低（权益乘数 1.40）</strong>。<br><br>
-  对照 L4 框架的三种模式：不是「高周转型」（周转率远不如沃尔玛 2.4x 那种快反模式），不是「高杠杆型」（权益乘数 1.40 vs 银行 12x，几乎不借钱），而是纯粹靠「卖得贵」——技术壁垒、客户切换成本、产能稀缺性共同支撑的定价权。<strong>这意味着 ROE 不含杠杆放大成分，风险低、可持续性强，是巴菲特框架下最偏好的画像。</strong>
+  三个因子的结构非常干净：<strong>净利率极高（38–40%）+ 周转率中等偏低（年化 0.50x，符合 CDMO 重资产属性）+ 杠杆极低（权益乘数 1.40）</strong>。<br><br>
+  对照 L4 框架的三种模式：不是「高周转型」，不是「高杠杆型」（权益乘数 1.40 vs 银行 12x，几乎不借钱），而是纯粹靠「卖得贵」——技术壁垒、客户切换成本、产能稀缺性共同支撑的定价权。<strong>这意味着 ROE 不含杠杆放大成分，风险低、可持续性强，是巴菲特框架下最偏好的画像。</strong>
 </div>
 
 <h3>5.3 去杠杆 ROA 与资产回报效率（同行横向对比）</h3>
@@ -446,7 +474,7 @@
   <tr><td><strong>客户转换成本壁垒</strong></td><td class="good">极强</td><td>药企一旦把某个分子/某个品种的生产转包给 CDMO，重新认证成本极高（监管变更 + 工艺再验证），客户粘性是「锁定型」而非「价格型」</td></tr>
   <tr><td><strong>牌照/合规壁垒</strong></td><td class="good">强，但双刃</td><td>全球多国药监 GMP 认证是硬门槛；同时 1260H、生物安全法案等「反向牌照」也可能成为准入障碍</td></tr>
   <tr><td><strong>网络效应 / 品牌</strong></td><td class="neutral">弱（不适用）</td><td>B2B 服务模式无网络效应</td></tr>
-  <tr><td>结论</td><td class="good"><strong>壁垒类型 = 技术 + 规模 + 客户锁定（三重叠加）</strong></td><td class="good">这是本报告认为公司最核心的护城河，也是估值能站在 PB 5.7x 的唯一理由</td></tr>
+  <tr><td>结论</td><td class="good"><strong>壁垒类型 = 技术 + 规模 + 客户锁定（三重叠加）</strong></td><td class="good">这是本报告认为公司最核心的护城河，也是估值能站在 PB 5x 以上的唯一理由</td></tr>
 </table>
 
 <h3>6.3 生命周期阶段</h3>
@@ -470,25 +498,25 @@
   <tr><td>资产负债率</td><td>27.85%</td><td class="bad">41.10%</td><td class="good">14.81%</td><td class="good">17.09%</td><td>22.47%</td><td class="good">中位偏低（凯莱英更低但周转极慢）</td></tr>
   <tr><td>流动比率</td><td>2.54</td><td class="bad">1.02</td><td class="good">4.56</td><td class="good">4.05</td><td>3.30</td><td class="good">健康（康龙最紧）</td></tr>
   <tr><td>CFO / 归母净利</td><td class="bad">0.88</td><td class="good">1.45</td><td class="good">1.58</td><td>0.61</td><td>1.02</td><td class="bad"><strong>本项唯一短板</strong></td></tr>
-  <tr><td>2026H1 FCF</td><td class="good">+67.37 亿</td><td class="bad">-2.83 亿</td><td class="bad">-0.33 亿</td><td>+0.56 亿</td><td>-0.09 亿</td><td class="good">唯一大幅为正</td></tr>
-  <tr><td><strong>PE(TTM，10-13)</strong></td><td class="good"><strong>22.04x</strong></td><td>43.55x</td><td class="bad">60.00x</td><td>38.38x</td><td>40.97x</td><td class="good"><strong>四家中最便宜</strong></td></tr>
-  <tr><td><strong>PB(MRQ，10-13)</strong></td><td class="bad">5.73x</td><td>4.56x</td><td>3.48x</td><td>4.21x</td><td>4.39x</td><td class="bad">最贵（ROE 最高的必然结果）</td></tr>
-  <tr><td>总市值（10-13）</td><td class="good">4,775.42 亿</td><td>745.94 亿</td><td>621.28 亿</td><td>377.82 亿</td><td>683.6 亿</td><td class="neutral">—</td></tr>
+  <tr><td>2026H1 FCF</td><td class="good">+67.37 亿</td><td class="bad">-2.83 亿</td><td class="bad">-0.33 亿</td><td class="good">+0.56 亿</td><td>-0.09 亿</td><td class="good">唯一大幅为正</td></tr>
+  <tr><td><strong>PE(TTM，10-16 / 10-13)</strong></td><td class="good"><strong>20.21x</strong>（10-16）</td><td>43.55x（10-13）</td><td class="bad">60.00x（10-13）</td><td>38.38x（10-13）</td><td>40.97x</td><td class="good"><strong>四家中最便宜</strong></td></tr>
+  <tr><td><strong>PB(MRQ，10-16 / 10-13)</strong></td><td class="bad">5.26x（10-16）</td><td>4.56x（10-13）</td><td>3.48x（10-13）</td><td>4.21x（10-13）</td><td>4.39x</td><td class="bad">最贵（ROE 最高的必然结果）</td></tr>
+  <tr><td>总市值（10-16 / 10-13）</td><td class="good">4,379.37 亿（10-16）</td><td>745.94 亿（10-13）</td><td>621.28 亿（10-13）</td><td>377.82 亿（10-13）</td><td>683.6 亿</td><td class="neutral">—</td></tr>
   <tr><td>在手订单增速</td><td class="good">+25.2%（664.3 亿）</td><td class="neutral">新签订单 +30%（小分子 CDMO 新签 +50%）</td><td><span class="nd">待补充</span></td><td class="good">+60.9%（37 亿）</td><td>—</td><td class="good">订单确定性行业领先</td></tr>
 </table>
-<p style="font-size:12px;color:#888;">口径说明：营收/归母/扣非/毛利率/负债率/流动比率/CFO/资本开支均取自各公司 2026 年半年报合并报表（东方财富 F10 财务接口）；PE(TTM)、PB(MRQ)、总市值取自腾讯行情 2026-10-13 收盘。凯莱英 PE(TTM) 60.00x 偏高源于其 26H1 归母同比 -15.70%；昭衍新药因实验猴生物资产公允价值变动净收益 7.35 亿，净利率与 ROE 均失真，已在表内标注。泰格医药（300347）2026H1 营收 37.08 亿（+14.07%）、归母 -4.13 亿（亏损，因其他非流动资产公允价值变动）、扣非 +2.78 亿、ROE(26H1) -2.00%、PE(TTM) 511.75x（失真）、PB 2.40x，因口径不可比未列入主表。</p>
+<p style="font-size:12px;color:#888;">口径说明：营收/归母/扣非/毛利率/负债率/流动比率/CFO/资本开支均取自各公司 2026 年半年报合并报表（东方财富 F10 财务接口）；药明康德 PE/PB/市值取 2026-10-16 收盘，同业取 2026-10-13 收盘（10/16 同业同步大跌，但未取得各家当日收盘精确值，故标注入列日期避免混淆）。凯莱英 PE(TTM) 60.00x 偏高源于其 26H1 归母同比 -15.70%；昭衍新药因实验猴生物资产公允价值变动净收益 7.35 亿，净利率与 ROE 均失真，已在表内标注。泰格医药（300347）2026H1 营收 37.08 亿（+14.07%）、归母 -4.13 亿（亏损，因其他非流动资产公允价值变动）、扣非 +2.78 亿、ROE(26H1) -2.00%、PE(TTM) 511.75x（失真）、PB 2.40x，因口径不可比未列入主表。</p>
 
 <div class="summary-box">
   <strong>竞争位置：药明康德在 CXO 四强中呈现「利润质量断层第一、估值最便宜、但现金转化最弱」的组合。</strong><br><br>
-  三个领先维度：① <strong>盈利质量断层</strong>——毛利率 53.91% 超可比同行中位 16.4pct，归母 ROE 13.19%（半年）是康龙化成（4.61%）的 2.9 倍、凯莱英（2.91%）的 4.5 倍；② <strong>增速断层</strong>——营收 +38.93% 是第二名康龙化成（+17.93%）的 2.2 倍，主业放量集中在化学业务（小分子 D&amp;M +72.7%、TIDES +44.3%）；③ <strong>估值最便宜</strong>——PE(TTM) 22.04x，只有康龙化成（43.55x）的 51%、凯莱英（60.00x）的 37%、昭衍（38.38x）的 57%，而 PB 5.73x 虽最高但因 ROE 最高而合理（PB/PE = ROE）。<br><br>
+  三个领先维度：① <strong>盈利质量断层</strong>——毛利率 53.91% 超可比同行中位 16.4pct，归母 ROE 13.19%（半年）是康龙化成（4.61%）的 2.9 倍、凯莱英（2.91%）的 4.5 倍；② <strong>增速断层</strong>——营收 +38.93% 是第二名康龙化成（+17.93%）的 2.2 倍，主业放量集中在化学业务（小分子 D&amp;M +72.7%、TIDES +44.3%）；③ <strong>估值最便宜</strong>——PE(TTM) 20.21x，只有康龙化成（43.55x）的 46%、凯莱英（60.00x）的 34%、昭衍（38.38x）的 53%，而 PB 5.26x 虽最高但因 ROE 最高而合理（PB/PE = ROE）。<br><br>
   三个落后维度：① <strong>现金转化最弱</strong>——CFO/归母净利 0.88 是四家中唯一低于 1.0 的（康龙 1.45、凯莱英 1.58），FCF +67.37 亿虽绝对值领先但相对营收仅 23.3%；② <strong>周转率最低</strong>——TTM 资产周转 0.461x，扩张期总资产 +44.7% 拖累明显；③ <strong>地缘敞口最大</strong>——2025 年美国客户收入 312.5 亿、占比约 72%，是唯一被美国国防部列入 1260H 名单的中国 CXO，估值折价正是对这一项的定价。<br><br>
-  <strong>综合判断：药明康德不是「便宜的差公司」，而是「便宜的高质量公司 + 一个未定价的尾部风险」。若 1260H 终局有利，PE 22x 相对同业 40x+ 的折价是最容易修复的一段估值；若终局不利，折价会重新扩大甚至压制基本面。</strong>
+  <strong>综合判断：药明康德不是「便宜的差公司」，而是「便宜的高质量公司 + 一个尚未定价完毕的尾部风险」。若 1260H 终局有利，PE 20x 相对同业 40x+ 的折价是最容易修复的一段估值；若终局不利，折价会重新扩大甚至压制基本面。</strong>
 </div>
 
 <h3>6.5 估值方法匹配</h3>
 <table>
   <tr><th style="width:20%">行业类型</th><th>首选估值</th><th>辅助指标</th><th>关键跟踪</th><th style="width:22%">当前是否匹配</th></tr>
-  <tr><td>成长型（医药 CXO）</td><td><strong>PE</strong></td><td>PEG、PS、ROE-ROIC、在手订单/营收</td><td>在手订单增速、毛利率趋势、TIDES 放量、新签订单</td><td class="good"><strong>✅ 匹配。</strong>公司已稳定盈利且盈利可持续，PE 优于 PS/PEG 单用。更进一步，本报告采用 <strong>「ROE → 合理 PE 区间」映射法</strong>（ROE 26.6% → 20–30x），比单纯看历史分位更能解释「PE 22x 明明在近 3 年 81.4% 分位却仍属合理」这一矛盾——因为分位数上升是 ROE 上升造成的，而非估值泡沫</td></tr>
+  <tr><td>成长型（医药 CXO）</td><td><strong>PE</strong></td><td>PEG、PS、ROE-ROIC、在手订单/营收</td><td>在手订单增速、毛利率趋势、TIDES 放量、新签订单</td><td class="good"><strong>✅ 匹配。</strong>公司已稳定盈利且盈利可持续，PE 优于 PS/PEG 单用。更进一步，本报告采用 <strong>「ROE → 合理 PE 区间」映射法</strong>（ROE 26.6% → 20–30x），比单纯看历史分位更能解释「PE 20x 明明在近 3 年约 66% 分位却仍属合理」这一矛盾——因为分位数上升是 ROE 上升造成的，而非估值泡沫</td></tr>
 </table>
 
 <p style="font-size:12px;color:#999;">本 tab 数据缺失说明：凯莱英在手订单增速、康龙化成 / 凯莱英 / 昭衍新药的 TTM ROE、药明康德 2026H1 分地区收入均未取得，已在表内标注「待补充」，未用于任何评分。</p>
@@ -497,187 +525,138 @@
 
 <div class="tab-content" id="tab-l6"><div class="tab-inner">
 
-<h2>七、综合实战（L6框架）</h2>
+<h2>七、综合诊断与投资结论（L6框架）</h2>
 
-<h3>7.1 六步法总结</h3>
+<h3>7.1 六步法诊断</h3>
+<table>
+  <tr><th style="width:8%">步骤</th><th style="width:26%">核心问题</th><th>结论</th><th style="width:12%">判定</th></tr>
+  <tr><td>Step1</td><td>公司靠什么赚钱？</td><td>全球领先的一体化 CRDMO 平台（WuXi Chemistry / Testing / Biology），本质是<strong>把药企的研发与生产环节外包出来的「卖水人」</strong>。收入八成来自化学业务，其中小分子 D&amp;M 与 TIDES（多肽/寡核苷酸）是核心引擎。赚的是技术密集 + 客户锁定 + 规模效应带来的高毛利服务费。</td><td class="good">✅ 清晰</td></tr>
+  <tr><td>Step2</td><td>赚钱模式好不好？</td><td><strong>高利润型（L4 已验证）</strong>：净利率 38.34%、权益乘数仅 1.40、资产周转 0.497x（年化）。ROE 全靠利润率驱动、不靠杠杆，是质量最高的一类赚钱模式；唯一拖累是周转率随资产扩张走低。</td><td class="good">✅ 优质</td></tr>
+  <tr><td>Step3</td><td>护城河深不深？</td><td><strong>技术 + 规模 + 客户锁定三重壁垒（L5 已验证）</strong>。转换成本极高（CDMO 换供应商需监管变更 + 工艺再验证），产能有 3–5 年建设周期，多肽产能全球紧张。护城河在 CXO 行业中属最宽。</td><td class="good">✅ 深</td></tr>
+  <tr><td>Step4</td><td>财务是否健康？</td><td>资产负债率 27.85%、净现金约 315 亿、商誉占比 0.74%、FCF +67.37 亿，<strong>财务安全垫极厚</strong>。唯二瑕疵：CFO/扣非 0.92（低于 1）与应收 +44.19%（快于营收）。</td><td class="good">✅ 健康（1 项关注）</td></tr>
+  <tr><td>Step5</td><td>增长能否持续？</td><td>在手订单 <strong>664.3 亿（+25.2%）创历史新高</strong>、合同负债 37.5 亿、全年指引上调超 70 亿、FCF 指引上调至 135–145 亿。<strong>增长可见度 2–3 年</strong>。风险是 1260H 可能抑制新签订单，以及 TIDES H2 需加速至 +45%。</td><td class="good">✅ 强可见度</td></tr>
+  <tr><td>Step6</td><td>价格是否合理？</td><td>PE(TTM) <strong>20.21x</strong>、PE(2026E) 19.25x，位于「ROE 26.6% → 合理 20–30x」区间<strong>下沿</strong>；PEG(2027E) 0.70；近 5 年 PE 分位约 44%。<strong>但 PB 5.26x 处近 3 年约 88% 分位</strong>。10/16 旧闻错杀使安全边际增厚。</td><td class="neutral">🟡 合理偏下沿</td></tr>
+</table>
+
 <div class="summary-box">
-  <strong>Step 1 - 行业定位：</strong>非周期股（成长型）。全球 CRDMO 龙头，医药属非周期行业。壁垒 = 技术 + 规模 + 客户锁定三重叠加，集中度高。生命周期处于成长期中后段，TIDES 细分处于高速成长期早期。<br>
-  <strong>Step 2 - 财务体检：</strong>高利润型赚钱模式。ROE(TTM) 26.6%（扣非口径 22.4%），毛利率 53.91% 三年连升 12.4pct，资产负债率 27.85%，净现金约 315 亿。去杠杆 ROA 年化 19.06%，是可比同行的 3.7 倍。<strong>唯一短板是 CFO/净利 0.88（扣非口径 0.92，同比从 1.33 走弱），以及 26H1 累计 ROE 同比下降 0.74pct。</strong><br>
-  <strong>Step 3 - 估值判断：</strong>PE(TTM) 22.04x / PE(2026E) 21.00x，落在 ROE 26.6% 对应的合理 PE 区间 20–30x 的下沿；PEG(2026E) 1.25、PEG(2027E) 0.76；同行中估值最低（可比同行 PE 38–60x）。<strong>但 PB 5.73x 处近 3 年 96.8% 分位，估值修复空间基本兑现，后续回报主要靠 EPS 兑现而非估值扩张。</strong><br>
-  <strong>Step 4 - 风险排查：</strong>① 1260H 初步禁令为阶段性救济，终局未决且已造成客户流失；② 实控人 2022 年以来累计减持近 200 亿元；③ 应收/存货增速跑赢营收，现金转化下降；④ 应付短期债券 65.86 亿从零起步，有息负债两年放大 3.6 倍；⑤ TIDES 全年 +45% 指引的 H2 兑现压力。<br>
-  <strong>Step 5 - 结论：</strong><strong>好公司（✓✓）+ 价格合理但不便宜（△）</strong>。结论：持有质量优于追高；157.35 元对应 2026E PE 21x 已接近悲观情景（16x / 119.9 元）与中性情景（24x / 179.9 元）的中点，安全边际约 ±15–24%。<br>
-  <strong>Step 6 - 跟踪：</strong><strong>五个硬指标</strong>：① 三季报（<strong>2026-10-27</strong>）的单季营收/扣非增速与 TIDES 单季收入是否 ≥+45%；② 应收账款余额增速是否回落到营收增速以下；③ 在手订单增速能否维持 20%+（这是 1260H「寒蝉效应」的直接读数）；④ 1260H 案件实体审理进展（国防部是否上诉/补充证据）；⑤ 实控人是否有新一轮减持计划公告。
+  <strong>六步法汇总：六步中五步「通过」、一步「合理偏下沿」。<br>
+  这是一门「生意优质、护城河深、增长可见、财务健康」的公司，唯一的悬念在价格（PB 偏高）与地缘尾部风险（1260H）。</strong>
 </div>
 
-<h3>7.2 好公司三要素检查</h3>
+<h3>7.2 好公司三要素</h3>
 <table>
-  <tr><th style="width:16%">要素</th><th style="width:10%">判断</th><th>依据</th></tr>
-  <tr><td>① 好行业</td><td class="good">✓</td><td>CXO + 多肽 CDMO 成长期。全球研发外包渗透率持续提升；GLP-1 多肽/寡核苷酸需求爆发；2026H1 中国创新药对外授权交易约 1,100 亿美元（达 2025 全年 80%）；需求端锚定研发投入，不随商品周期波动；壁垒为技术+规模+客户锁定三重叠加。</td></tr>
-  <tr><td>② 好公司</td><td class="good">✓</td><td>ROE(TTM) 26.6% 远超 15% 门槛；毛利率 53.91% 且连续三年提升；扣非/归母 95.4%（利润干净）；资产负债率 27.85% 极低；净现金约 315 亿；订单 664.3 亿创新高。<strong>扣分项（不影响判断但需跟踪）：CFO/净利 0.88 未达「CFO&gt;净利润」标准。</strong></td></tr>
-  <tr><td>③ 好价格</td><td class="neutral">△</td><td>PE(2026E) 21.0x 在合理区间 20–30x 的下沿，PEG(2026E) 1.25 &lt; 1.5，同行中最低估值。<strong>但 PB 5.73x 处近 3 年 96.8% 分位、PE(TTM) 处近 3 年 81.4% 分位，8 月的估值修复已基本兑现，不再是「显著低估」的价格</strong>——判定为合理而非便宜。</td></tr>
+  <tr><th style="width:18%">要素</th><th>评估</th><th>关键证据</th><th style="width:12%">评分</th></tr>
+  <tr><td><strong>① 好生意</strong></td><td>高利润型商业模式，ROE 26.6%（年化）不靠杠杆，毛利率三年 +12.4pct 至 53.91%，经调整净利率 40.0% 创历史新高。CXO 下游是刚性研发投入，需求黏性高。</td><td>毛利率 53.91%、经调整净利率 40.0%、权益乘数 1.40、ROA 19.06%</td><td class="good">优秀</td></tr>
+  <tr><td><strong>② 好公司</strong></td><td>管理层战略清晰（CRDMO 一体化 + 全球产能布局 + 聚焦 TIDES），执行到位（连续上调指引、提前启动新基地）。<strong>瑕疵是实控人自 2022 年起累计减持近 200 亿元，且上一轮减持后股价曾腰斩。</strong>这是治理层面最难辩护的一点。</td><td>连续上调指引；但实控人 2025/11–2026/01 减持 2% 套现约 54 亿</td><td class="neutral">良好（治理扣分）</td></tr>
+  <tr><td><strong>③ 好价格</strong></td><td>PE 端进入合理区间下沿（2026E 19.25x、PEG 0.70），近 5 年分位约 44%；<strong>但 PB 5.26x 处近 3 年约 88% 分位</strong>。价格「不算贵、但也不便宜」，属于「业绩兑现即可赚钱」的区间。</td><td>PE(TTM) 20.21x vs 合理 20–30x；PB 分位 88%；中性目标 179.9 元（+24.7%）</td><td class="neutral">合理偏下沿</td></tr>
 </table>
 
 <h3>7.3 风险评估</h3>
 
-<h3>7.3.1 三个陷阱排查</h3>
+<h4>7.3.1 三大陷阱排查（L6 框架）</h4>
+<table>
+  <tr><th style="width:16%">陷阱</th><th>排查结论</th><th style="width:12%">是否踩中</th></tr>
+  <tr><td><strong>价值陷阱</strong></td><td>PE 20x 但 ROE 26.6%、在手订单 +25.2%、指引上调，<strong>不属于「便宜但基本面恶化」</strong>。真正的隐忧是 PB 5.26x 高分位——若 ROE 均值回归，PB+PE 双杀，届时低 PE 反而变成陷阱的诱饵。就当下而言，尚未踩中。</td><td class="good">未踩中（需盯 ROE）</td></tr>
+  <tr><td><strong>成长陷阱</strong></td><td>高增长是否可持续？支撑证据充分（订单 664.3 亿、合同负债增厚、TIDES 分子数 +68%），但 1260H 的寒蝉效应已在法官意见书中被认定为「客户已转向竞争对手」，<strong>存在增速被地缘因素压制的尾部情形</strong>。还有 TIDES H2 加速的兑现压力。</td><td class="neutral">部分风险</td></tr>
+  <tr><td><strong>周期陷阱</strong></td><td>CXO 属非周期股，收入锚定研发投入而非商品价格，26H1 毛利率仍在扩张。但从板块层看，CXO 估值曾随「生物安全法案」传闻剧烈波动（10/16 单日 -6.6%），<strong>情绪层面的「类周期」波动真实存在</strong>。</td><td class="good">未踩中（波动≠周期）</td></tr>
+</table>
+
+<h4>7.3.2 治理与股东结构</h4>
 <div class="danger-box">
-  <strong>☐ 低 PE + 低增长 + 高负债 = 价值陷阱</strong> → <strong>❌ 未命中</strong>（PE 22x 不算低，营收 +38.93%、扣非 +89.39%，资产负债率仅 27.85%、净现金约 315 亿）<br><br>
-  <strong>☐ 低 PE + 周期顶点 = 周期陷阱</strong> → <strong>❌ 未命中</strong>（非周期行业，无供需错配；毛利率连续三年上升而非见顶回落；在手订单 +25.2% 提供前瞻验证，非利润高点的一次性冲高）<br><br>
-  <strong>☐ 高 PE + 高增速但现金流为负 = 烧钱陷阱</strong> → <strong>❌ 未命中</strong>（PE 22x 属中等，FCF 26H1 +67.37 亿、全年指引 135–145 亿，CFO 为正且增长 30.52%。<strong>但需在「利润含金量」维度单独扣分——CFO/净利 0.88 未达 1.0，本报告已在评分中从 15 分降至 10 分</strong>）
+  <strong>治理瑕疵是本报告认为最需要主动披露的负面项。</strong><br><br>
+  ① <strong>实控人减持</strong>：李革/张朝晖/刘晓钟控制的 18 家一致行动主体于 2025/11/20–2026/01/05 减持 5,967.51 万股（占总股本 2%），价格区间 84.66–95.07 元，套现约 54 亿元，持股由 18.211% 降至 16.211%。<strong>自 2022 年起累计套现近 200 亿元。</strong><br>
+  ② <strong>历史阴影</strong>：上一轮 2023 年大额减持（套现 42.76 亿）后，前复权股价从 81.04 元最低跌至 37.63 元，跌幅超 53%。虽然本轮减持后股价未再复制该走势，但「实控人减持 → 股价承压」的路径依赖不能被忽视。<br>
+  ③ <strong>机构动向</strong>：港交所披露贝莱德（BlackRock）在药明康德 H 股的持股比例于 2026-10-13 由 6.43% 降至 5.10%（同日亦减持恒瑞医药、蒙牛乳业 H 股，或为组合调仓，未必针对个股）。<br><br>
+  <strong>对冲项</strong>：公司持续回购（库存股 69.60 亿）并加大分红（2025 年度 24.8% 分红率 + 2026 中期分红 15.06 亿），在一定程度上对冲了减持的负面信号。
 </div>
 
-<h3>7.3.2 管理层与治理风险</h3>
+<h4>7.3.3 可持续性评估</h4>
 <table>
-  <tr><th style="width:20%">事项</th><th style="width:14%">判断</th><th>依据</th></tr>
-  <tr><td>管理层能力与履历</td><td class="good">好</td><td>董事长兼 CEO 李革（北大化学学士、哥大有机化学博士），2000 年起执掌公司；中报后一次性全面上调全年指引（收入 +70 亿以上、FCF 指引上调 30 亿），执行力与预判力获得市场认可；全球多基地（亚洲/欧洲/北美）运营管理能力经长期验证。</td></tr>
-  <tr><td>股权结构与利益一致性</td><td class="neutral">一般</td><td>实控人三人控制 18 家一致行动主体，减持后合计持股 16.211%，仍远高于第二大股东（约 8.34%），控制权稳固。但实控人自 2022 年起累计套现近 200 亿元，<strong>「持股 16% 却持续大额减持」的组合本身削弱利益一致性</strong>。</td></tr>
-  <tr><td>关联交易 / 暴雷历史</td><td class="good">无重大问题</td><td>A+H 双重上市，治理透明度高，未见重大违规或监管处罚记录。</td></tr>
-  <tr><td>资本配置记录</td><td class="good">合理</td><td>连续三年分红（2025 年 3 轮、总额 48.7 亿 + 2026 中期 15.06 亿）+ 持续回购（库存股 69.60 亿，2024 年起累计 5 轮）；2024–2025 年战略瘦身（出售 ATU、康德弘翼、津石医药、减持药明合联回笼约 108.7 亿港元）聚焦主业；2026 年资本开支 75–85 亿投常州新基地与多肽产能。<strong>唯一瑕疵是「账上 466 亿现金/理财 + 有息负债 151 亿并存」的财务结构效率问题。</strong></td></tr>
-  <tr><td>管理层增减持记录</td><td class="bad">减持（负面）</td><td><strong>本报告认定的最大治理瑕疵。</strong>李革/张朝晖/刘晓钟控制的 18 家主体于 2025/11/20–2026/01/05 累计减持 5,967.51 万股（占总股本 2%），价格区间 84.66–95.07 元，套现约 54 亿元；持股由 18.211%（543,364,675 股）降至 16.211%。自 2022 年起累计套现近 200 亿元。<strong>减持主体主要为 4 家境外公司（G&amp;C IV/V/VI/VII Hong Kong Limited）与 14 家境内合伙企业，基本为 2015 年美股私有化时期的财务投资机构，属「早期投资者退出」而非「实控人看空」，性质上可部分解释；但金额与频次的量级在 A 股龙头中极为罕见。</strong><strong>历史教训：上一轮 2023 年减持（套现 42.76 亿）后，前复权股价从 81.04 元最低跌至 37.63 元（-53.5%）。</strong>2025/10/30 减持计划公告次日股价曾大跌超 8%、市值跌破 3000 亿。公司回应为「股东自身资金需求，受让方均为知名国际投资者」。</td></tr>
-  <tr><td>CEO 交接 / 关键人员变动</td><td class="good">无风险</td><td>李革自 2000 年起任董事长兼 CEO，2026 年仍在任，未见交接信号。</td></tr>
+  <tr><th style="width:24%">维度</th><th>评估</th><th style="width:14%">可持续性</th></tr>
+  <tr><td>商业模式可持续性</td><td>CXO 外包是药企降本增效的长期趋势，公司一体化平台切换成本高，需求锚定研发投入而非价格。</td><td class="good">强</td></tr>
+  <tr><td>盈利能力可持续性</td><td>毛利率三年连升源于结构性变化（后周期项目占比提升 + 低毛利业务剥离 + 产能利用率上行），非一次性。</td><td class="good">强（需盯 TIDES）</td></tr>
+  <tr><td>增长可持续性</td><td>在手订单 664.3 亿覆盖 2–3 年收入，合同负债增厚。风险在 1260H 与新签订单。</td><td class="good">较强</td></tr>
+  <tr><td>地缘可持续性</td><td><strong>最不确定的一项</strong>。初步禁令是阶段性胜利，终局未定，且损害已部分发生。</td><td class="bad">不确定</td></tr>
 </table>
 
-<h3>7.3.3 盈利可持续性</h3>
+<h4>7.3.4 敏感性分析（2026E EPS 7.495 元基准）</h4>
 <table>
-  <tr><th style="width:22%">维度</th><th style="width:14%">判断</th><th>依据</th></tr>
-  <tr><td>增长靠量还是靠价？</td><td class="good">量驱动（健康）</td><td>在手订单 +25.2%、TIDES 服务分子数 +68%、客户数 +39%、小分子 D&amp;M 管线总数 3,731 个且商业化+III 期净增 15 个——增长来自项目数量与产能交付量，而非涨价。毛利率提升也来自「后期/商业化项目占比提升」的结构优化，而非提价。<strong>这是最健康的增长形态。</strong></td></tr>
-  <tr><td>涨价能否持续？</td><td class="good">能（阶段性）</td><td>多肽 CDMO 全球产能紧张、龙头供不应求；商业化/III 期项目增多带来工艺成熟度溢价。但需注意：涨价能力来自供给稀缺，若同行新产能投放（TIDES 赛道扩产潮），溢价会被侵蚀。</td></tr>
-  <tr><td>非经常性利润占比</td><td class="good">低（且在改善）</td><td>26H1 扣非/归母 = 95.4%（非经常性仅 5.08 亿），对比 25H1 的 65.2%（非经常性高达 29.79 亿，含出售 WuXi XDC）。<strong>利润质量是近三年最干净的一期，XDC 高基数已基本消化。</strong>26H1 公允价值变动收益 6.84 亿 + 投资收益 2.28 亿合计 9.12 亿，占利润总额 6.7%，仍属可控。</td></tr>
-  <tr><td>大客户 / 大项目集中度</td><td class="neutral">集中</td><td>2025 年美国客户贡献收入 312.5 亿、占比约 72%——<strong>国家维度高度集中</strong>；个体客户层面因覆盖全球 30 多国数千客户而分散。<strong>这是 1260H 风险的量化根源。</strong></td></tr>
-  <tr><td>政策 / 监管依赖度</td><td class="bad">高</td><td>双重依赖：① <strong>地缘（1260H + 生物安全法案）</strong>——美国国防部列名虽非全面制裁，但已导致客户与供应商主动切割；② <strong>国内药品监管（NMPA 人类遗传资源审批）</strong>——诉讼披露显示公司多项业务的合规基础涉及科技部人类遗传资源审批记录。政策变量对估值的影响权重超过对当期利润的影响。</td></tr>
+  <tr><th style="width:20%">假设变化</th><th>对 EPS 影响</th><th>对 2026E PE 影响</th><th style="width:22%">对应股价（24x 中枢）</th></tr>
+  <tr><td>基准情形</td><td>EPS 7.495 元</td><td>19.25x（现价 144.30）</td><td>179.9 元</td></tr>
+  <tr><td>营收增速 +5pct</td><td>EPS 约 7.87 元（+5%）</td><td>降至 18.33x</td><td>约 188.9 元</td></tr>
+  <tr><td>营收增速 -5pct</td><td>EPS 约 7.12 元（-5%）</td><td>升至 20.27x</td><td>约 170.9 元</td></tr>
+  <tr><td>TIDES 全年仅 +35%（失速）</td><td>EPS 约 7.12–7.27 元</td><td>20x 左右</td><td>约 170.9–174.5 元</td></tr>
+  <tr><td>1260H 终局不利（美客户收入 -20%）</td><td class="bad">EPS 下滑 15–20%（约 6.0–6.4 元）</td><td class="bad">PE 压缩至 16x</td><td class="bad">约 96–102 元</td></tr>
+  <tr><td>ROE 均值回归至 20%</td><td>EPS 不变</td><td class="bad">合理 PE 下移至 18x</td><td class="bad">约 134.9 元</td></tr>
 </table>
 
-<h3>7.3.4 关键变量敏感性</h3>
-<div class="summary-box">
-  <strong>变量 1：1260H 案件的终局裁决（权重最高，估值影响 &gt; 业绩影响）</strong><br>
-  <span class="nd">当前状态：2026-08-07 获初步禁令（临时救济），国防部在本案诉讼期间不得执行列名；法院认定国防部三项理由均存在证据解读偏差；国防部仍可上诉或补证重新认定。案号 1:26-cv-02069。</span><br>
-  &nbsp;&nbsp;<strong>乐观</strong>（概率约 30%）：终局判决撤销列名，参照小米（2021 年，4 个月内移出）与中微公司（2024 年 12 月撤销认定）先例 → 地缘折价完全消除，PE 从 21x 向近 3 年高位 28x 修复，对应股价 +30% 以上（202 元以上），<strong>EPS 不变而估值扩张</strong>。<br>
-  &nbsp;&nbsp;<strong>中性</strong>（概率约 50%）：禁令维持、实体审理长期悬而未决，新签订单增速从 25% 温和回落至 15–20% → 2026E 归母落在 210–225 亿区间，PE 维持 20–22x，对应股价 150–165 元，<strong>赚业绩的钱但不赚估值的钱</strong>。<br>
-  &nbsp;&nbsp;<strong>悲观</strong>（概率约 20%）：终局败诉或国防部补证重新认定，「寒蝉效应」导致美国新签订单转负 → 2027E 归母下修至 220 亿以下，PE 收缩至 16–18x（近 3 年 20% 分位 15.05x 附近），对应股价 118–130 元，<strong>估值与业绩双杀，下行约 20–25%</strong>。<br><br>
-  <strong>变量 2：TIDES（多肽/寡核苷酸）增速兑现</strong><br>
-  &nbsp;&nbsp;<strong>乐观</strong>（概率约 35%）：Q2 环比 +105% 的势头延续，H2 同比 >+50%，全年超指引至 +48–50%，收入约 135 亿 → 化学业务整体收入超预期，全年归母上修至 235–250 亿。<br>
-  &nbsp;&nbsp;<strong>中性</strong>（概率约 45%）：H2 同比 +45%，全年指引 +45% 恰好兑现，收入约 128 亿。<br>
-  &nbsp;&nbsp;<strong>悲观</strong>（概率约 20%）：GLP-1 客户订单节奏放缓或新产能投产延迟，H2 同比回落至 +25%，全年仅 +32%，收入约 112 亿 → 化学业务增速从 +53% 降至 +40% 左右，全年归母下修 15–20 亿。<br><br>
-  <strong>变量 3：营运资金占用与现金转化</strong><br>
-  &nbsp;&nbsp;<strong>乐观</strong>（概率约 30%）：26H2 应收账款增速回落至营收增速以下，CFO/扣非回升至 1.1 以上，全年 CFO 达 200 亿+、FCF 兑现 135–145 亿指引。<br>
-  &nbsp;&nbsp;<strong>中性</strong>（概率约 45%）：H2 延续 H1 节奏，CFO/扣非全年约 0.9–1.0，FCF 落在指引下限 135 亿。<br>
-  &nbsp;&nbsp;<strong>悲观</strong>（概率约 25%）：应收与存货继续以 45%+ 增速膨胀，CFO/扣非全年跌破 0.85，FCF 低于 130 亿 → 需重新评估利润质量，估值体系可能从 PE 切回 PS 或订单口径。
-</div>
+<h3>7.4 前景展望（三情景）</h3>
+<table>
+  <tr><th style="width:12%">情景</th><th style="width:10%">概率</th><th>核心假设</th><th>2026E 归母</th><th>合理 PE</th><th>对应股价</th><th>回报</th></tr>
+  <tr><td class="good">乐观</td><td>25%</td><td>1260H 终局撤销/维持禁令不变 + TIDES 全年 +45% 兑现 + 板块估值修复</td><td>232–240 亿</td><td>28–30x</td><td>207–224 元</td><td class="good">+43% ~ +55%</td></tr>
+  <tr><td class="good"><strong>中性</strong></td><td><strong>50%</strong></td><td>指引如期兑现、1260H 维持现状、ROE 稳在 25% 上下</td><td>223.62 亿（一致预期）</td><td>24x</td><td>179.9 元</td><td class="good">+24.7%</td></tr>
+  <tr><td class="bad">悲观</td><td>25%</td><td>1260H 终局不利 + TIDES 失速 + 新签订单增速转负</td><td>210–216 亿</td><td>16x</td><td>115–120 元</td><td class="bad">-20% ~ -17%</td></tr>
+  <tr><td colspan="7"><strong>概率加权预期回报：</strong>0.25×(+49%) + 0.50×(+24.7%) + 0.25×(-18.5%) = +12.25% + 12.35% - 4.63% ≈ <strong>+14.0%</strong>（对应约 164.5 元）</td></tr>
+</table>
 
-<h3>7.4 前景展望</h3>
-
-<h3>7.4.1 正向驱动与负向拖累</h3>
 <div class="highlight-box">
-  <strong>正向驱动：</strong><br>
-  1. <strong>TIDES（多肽/寡核苷酸）产能与需求双升</strong> —— 26H1 收入 72.6 亿（+44.3%），Q2 单季 48.8 亿（+74.9%、环比 +105.0%），服务分子数 +68%、客户数 +39%，全年指引上调至 +45%；卡位 GLP-1 注射多肽 + 口服多肽 + 寡核苷酸三条赛道，是未来 2 年最重要的增长引擎。<br>
-  2. <strong>小分子 D&amp;M 管线向后迁移</strong> —— 26H1 收入 149.9 亿（+72.7%），管线总数 3,731 个，商业化与临床 III 期项目上半年净增 15 个；后期项目占比提升同时驱动了收入增速与毛利率（化学业务 56.55%，+7.48pct）。<br>
-  3. <strong>在手订单 664.3 亿（+25.2%，历史新高）+ 2026 指引全面上调</strong> —— 环比 Q1 增超 60 亿，锁定未来 2–3 年收入；全年收入指引 585–605 亿（持续经营 +35%~+39%）、经调整 FCF 指引 135–145 亿、资本开支 75–85 亿（常州新基地提前启动）。<br>
-  4. <strong>1260H 司法反制的胜诉先例清晰</strong> —— 法院已认定国防部三项列名理由均存在严重证据解读错误；小米（2021）与中微公司（2024）均有成功移出名单的先例，终局有利则存在明确的估值修复催化。
+  <strong>展望结论：中性情景下 12 个月目标价约 179.9 元（+24.7%），悲观下有约 17–20% 下行保护，概率加权预期回报约 +14%。<br>
+  这是一个「赔率中性偏厚、胜率取决于 1260H 终局与 TIDES 兑现」的组合，最合适的动作是「业绩兑现前逢低配置、不追高」。</strong>
 </div>
+
+<h3>7.5 2026-10-16 尾盘闪崩事件分析</h3>
 <div class="danger-box">
-  <strong>负向拖累：</strong><br>
-  1. <strong>1260H 是阶段性而非终局</strong> —— 初步禁令仅为诉讼期间的临时救济，法院明确国防部可补证重新认定；且法官在意见书中确认「已有客户和供应商因此终止合同、结束长期合作关系，或将业务转向竞争对手」，<strong>损害已经发生且部分不可逆</strong>。2025 年美国客户收入占比约 72%，敞口极大。<br>
-  2. <strong>实控人治理瑕疵</strong> —— 2025/11–2026/01 减持 2%（套现约 54 亿），2022 年以来累计近 200 亿元；上一轮 2023 年减持后股价曾腰斩 53.5%，历史阴影仍在压制估值上限。<br>
-  3. <strong>利润现金转化效率下降 + 有息负债快速膨胀</strong> —— 26H1 CFO/扣非 0.92（25H1 为 1.33），应收 104.72 亿（+44.19%）、存货 111.27 亿（+55.6%）；应付短期债券从零起步至 65.86 亿，有息负债两年放大 3.6 倍。<br>
-  4. <strong>估值已无缓冲</strong> —— PB 5.73x 处近 3 年 96.8% 分位，PE(TTM) 处近 3 年 81.4% 分位；任何业绩不及指引都会直接杀估值而非杀业绩（PEG(2027E) 已降至 0.76，业绩兑现代价极低）。
+  <strong>事件：</strong>2026-10-16，A 股 CRO 板块盘中集体跳水，药明康德盘中触及跌停（139.05 元），收盘 144.30 元、<strong>跌 6.60%</strong>，成交额 123.4 亿、换手率 3.38%，单日市值缩水约 400 亿；H 股同日一度跌近 8%。同日康龙化成、泰格医药、凯莱英等 CXO 个股同步大跌。<br><br>
+  <strong>导火索：</strong>一则「BIO（美国生物技术创新组织）支持《生物安全法案》并已剔除药明康德会员资格」的消息在市场快速传播。<strong>经上海证券报、华尔街见闻等多家媒体当日核验，该消息实为 2024 年 3 月的旧闻（BIO 早在 2024 年 3 月即已宣布剔除相关会员），本次系旧文新发、无任何新的实质利空。</strong><br><br>
+  <strong>为何一条旧闻能砸出 6.6%？</strong>三重叠加：① <strong>板块位置高</strong>——CRO 板块自 2026 年 8 月 3 日至 9 月 23 日累计涨约 41%，获利盘极其丰厚，任何风吹草动都易引发获利了结；② <strong>事件敏感</strong>——「生物安全法案 / 1260H」是悬在药明康德头上最大的不确定性，市场对此类关键词高度过敏，几乎形成条件反射式抛售；③ <strong>资金结构脆弱</strong>——龙虎榜显示沪股通当日买入 26.25 亿、卖出 12.26 亿（净买入约 14 亿），盘中出现 2 笔大宗交易、成交均价 144.30 元，显示有资金借恐慌承接，但也有前期获利盘集中出逃。<br><br>
+  <strong>本报告判断：这是一次典型的「旧闻错杀」，而非基本面恶化。</strong>理由：① 消息本身已被证伪；② 公司的经营节奏（在手订单 664.3 亿、指引上调）在事发当日并无任何变化；③ 10/16 之后市场已逐步修复对该消息的定价。错杀的直接结果是 PE(TTM) 从 22.04x 回落到 20.21x，反而使估值性价比上升。<br><br>
+  <strong>但必须清醒认识到：这次闪崩揭示了「情绪面脆弱性」是一个独立于基本面的、真实存在的风险源。</strong>只要 1260H 悬而未决，类似的旧闻驱动的闪崩随时可能重演，且不排除在某次「真利空」时被市场与这批「假利空」混为一谈。<strong>这构成本报告将「风险方向」定为「双向·高」的核心依据。</strong>
 </div>
 
-<h3>7.4.2 三情景简表（2026 年末视角）</h3>
+<h4>资金面信号（截至 2026-10-16）</h4>
 <table>
-  <tr><th style="width:12%">情景</th><th style="width:32%">假设条件</th><th>2026E 归母 / EPS</th><th>2026E PE 区间</th><th>预期股价</th><th>预期回报</th><th>概率</th></tr>
-  <tr><td class="good">乐观</td><td>TIDES 全年超指引至 +48%；1260H 终局有利或国防部上诉被驳；在手订单增速维持 25%+</td><td>245 亿 / 8.21 元</td><td>26–28x</td><td>213–230 元</td><td class="good">+35% ~ +46%</td><td>25%</td></tr>
-  <tr><td class="neutral"><strong>中性</strong></td><td>TIDES 恰好兑现 +45%；1260H 维持现状；在手订单增速回落至 18–20%；全年归母落在券商均值 223.6 亿</td><td>223.6 亿 / 7.50 元</td><td>21–24x</td><td>157–180 元</td><td class="neutral">0% ~ +14%</td><td>50%</td></tr>
-  <tr><td class="bad">悲观</td><td>TIDES 仅 +32%；应收/存货继续膨胀压低现金流；1260H 终局不利或国防部补证重新认定</td><td>195 亿 / 6.54 元</td><td>16–18x</td><td>105–118 元</td><td class="bad">-25% ~ -33%</td><td>25%</td></tr>
-</table>
-<p style="font-size:13px;color:#666;">概率判断：中性 50%、乐观 25%、悲观 25%。<strong>风险收益比约 1:1.2（上行 +35%~+46% 对下行 -25%~-33%），略偏正但不构成显著安全边际。</strong>现价 157.35 元处于中性情景区间的中位——意味着当前价格已经反映了「指引如期兑现、1260H 不进一步恶化」这一基准情形。</p>
-
-<h3>7.5 2026-10-13 港股 CRO 全线重挫事件分析（当日核心事件）</h3>
-
-<h3>7.5.1 事件事实</h3>
-<table>
-  <tr><th style="width:26%">标的</th><th>盘中最大跌幅</th><th>2026-10-13 A 股收盘</th><th>当日 A 股最低价 / 相对昨收</th><th style="width:20%">收复幅度</th></tr>
-  <tr><td>金斯瑞生物科技 01548.HK</td><td class="bad">-16.04%（报 35.38 港元，一度盘中狂泻逾 18%）</td><td>—（港股）</td><td>—</td><td class="bad">未收复</td></tr>
-  <tr><td>康龙化成 300759.SZ / 03759.HK</td><td class="bad">H 股 -7.86%（报 28.14 港元）；A 股盘中最低 38.71 元</td><td class="neutral">40.60 元（-2.87%）</td><td class="bad">-7.39%（昨收 41.80）</td><td class="good">收复约 4.5pct</td></tr>
-  <tr><td>昭衍新药 603127.SH / 06127.HK</td><td class="bad">跌超 7%（H 股）</td><td class="neutral">50.42 元（-0.61%）</td><td class="bad">-6.02%（昨收 50.73）</td><td class="good">收复约 5.4pct</td></tr>
-  <tr><td>泰格医药 300347.SZ / 03347.HK</td><td class="bad">H 股 -6.93%（报 41.92 港元）</td><td class="neutral">54.32 元（-3.14%）</td><td class="bad">-4.35%（昨收 56.08）</td><td class="good">收复约 1.2pct</td></tr>
-  <tr><td>药明生物 02269.HK</td><td class="bad">跌超 6%</td><td>—（港股）</td><td>—</td><td class="bad">未收复</td></tr>
-  <tr><td>药明合联 2268.HK</td><td class="bad">跌超 6%（午盘口径）</td><td>—（港股）</td><td>—</td><td class="bad">未收复</td></tr>
-  <tr><td>方达控股 01521.HK / 维亚生物 01873.HK</td><td class="bad">跌超 5%</td><td>—（港股）</td><td>—</td><td class="bad">未收复</td></tr>
-  <tr><td><strong>药明康德 603259.SH</strong></td><td class="bad">盘中一度跌超 4%（最低 152.08 元，-3.65%）</td><td class="good"><strong>157.35 元（-0.32%）</strong></td><td class="bad">-3.65%（昨收 157.85）</td><td class="good"><strong>收复约 3.3pct，全板块最强</strong></td></tr>
-  <tr><td>凯莱英 002821.SZ / 06821.HK</td><td class="bad">跌超 3%</td><td class="neutral">171.65 元（-1.72%）</td><td class="bad">-4.96%（昨收 174.66）</td><td class="good">收复约 3.2pct</td></tr>
-</table>
-<p style="font-size:12px;color:#888;">当日大盘背景：恒指午盘 -0.39%（24,176.05）、恒生科技 -1.54%、国企指数 -0.57%；医药生物板块跌幅居前；科网股普跌、存储概念股低迷（南方东英 SK 海力士产品跌超 18%）。药明康德当日成交额 50.03 亿元（前一交易日 47.31 亿），振幅 4.11%，量比 0.77。</p>
-
-<h3>7.5.2 下跌原因拆解</h3>
-<table>
-  <tr><th style="width:18%">原因</th><th style="width:14%">权重判断</th><th>证据与逻辑</th></tr>
-  <tr><td><strong>宏观利率扰动（美债利率 / 降息预期反复）</strong></td><td class="bad">主因</td><td>多家财经媒体（FX168、东方财富）在 10/13 盘中明确指出：「<strong>港股医药板块作为利率敏感型资产，行情表现受美联储动向影响</strong>」，并点名克利夫兰联储主席的表态。逻辑链条清晰：创新药/CXO 是典型长久期资产，贴现率上行 → 远期现金流折现值下降 → 估值承压，<strong>这与公司基本面毫无关系，是纯粹的 beta 冲击</strong>。</td></tr>
-  <tr><td><strong>AI 制药主题高位获利了结</strong></td><td class="neutral">次因</td><td>金斯瑞盘中一度狂泻逾 18% 是导火索。金斯瑞 2026H 经营数据本身并不差——总营收 4.04 亿美元（+27.3%）、子公司蓬勃生物 6110 万美元（+34.2%），均高于公司整体增速。<strong>「数据好却暴跌」是典型的预期差交易，说明市场此前对 AI 制药 / 多肽主题的定价已极度饱和。</strong>金斯瑞同时持有大量多肽相关资产，其回调直接拖累整个 CXO 板块情绪。</td></tr>
-  <tr><td><strong>南向资金 / 流动性因素</strong></td><td class="neutral">放大器</td><td>10 月 2 日国庆后港股首个交易日，港股通创新药板块曾因南向资金暂停交易的「流动性真空」集体回调；10/13 南向资金当日净卖出 4.57 亿港元，港股通医疗主题 ETF 走低。<strong>港股 CRO 的价格发现高度依赖南向资金，南向流出时会放大跌幅。</strong></td></tr>
-  <tr><td><strong>药明康德 / A 股 CRO 自身基本面</strong></td><td class="good">无</td><td><strong>未发现任何公司层面利空。</strong>2026-10-27 才披露三季报；1260H 初步禁令 8/7 生效且无新增进展；手中 664.3 亿订单未变；分析师无下调评级或目标价的动作。<strong>A 股 CRO 全线低开 4–7% 后尾盘大幅收复跌幅（药明康德 -3.65% → -0.32%，收复 3.3pct 为全板块最强），本身就是「利空证伪」的盘面证据。</strong></td></tr>
+  <tr><th style="width:26%">信号</th><th>数据</th><th style="width:20%">解读</th></tr>
+  <tr><td>当日成交</td><td>成交额 123.4 亿、换手率 3.38%、振幅 13.5%</td><td class="neutral">放量下跌，恐慌盘出清</td></tr>
+  <tr><td>龙虎榜（沪股通）</td><td>买入 26.25 亿 / 卖出 12.26 亿，净买入约 14 亿</td><td class="good">北向资金逆势承接</td></tr>
+  <tr><td>大宗交易</td><td>2 笔，成交均价 144.30 元（与收盘价一致）</td><td class="neutral">有资金借折价承接</td></tr>
+  <tr><td>H 股机构持股</td><td>贝莱德 10/13 由 6.43% 降至 5.10%</td><td class="bad">外资边际减持（或组合调仓）</td></tr>
+  <tr><td>板块联动</td><td>康龙化成、泰格医药、凯莱英等 CXO 同日大跌</td><td class="neutral">行业性情绪冲击，非个股基本面</td></tr>
 </table>
 
-<h3>7.5.3 对 A 股估值 / 情绪的影响判断</h3>
-<div class="highlight-box">
-  <strong>结论：本次下跌是宏观流动性冲击而非基本面冲击，对 A 股 CXO 估值中枢的实质影响接近于零，但有两点值得记录。</strong><br><br>
-  <strong>① 对估值：中性，无实质影响。</strong>药明康德 PE(TTM) 22.04x 在 10/12 与 10/13 分别为 22.11x 与 22.04x，PB 5.73x 基本未动——<strong>估值锚没有变化</strong>。若真出现基本面级别的利空（如 1260H 终局败诉、订单预警），PE 会出现 1–3 个交易日的跳空下跌（参考 2026-06-09 列名当日 -2.63%），而不是这种「低开 4% 后全天收复」的健康形态。10/13 的形态更接近「跟随港股情绪波动」。<br><br>
-  <strong>② 对情绪：暴露了 CRO 板块的三个结构性弱点，是有价值的信息。</strong><br>
-  &nbsp;&nbsp;• <strong>利率敏感度高于想象</strong>——CRO 的定价逻辑正在被市场从「订单驱动」切换到「贴现率驱动」。这意味着即便基本面再好，只要美债利率上行，整个板块都会被无差别减仓。对持仓者是提示：<strong>CXO 的仓位风险不仅来自公司，还来自全球利率周期</strong>。<br>
-  &nbsp;&nbsp;• <strong>主题定价已过度拥挤</strong>——金斯瑞「数据好、股价崩」说明 AI 制药 / 多肽主题的边际买家已经不足。药明康德 TIDES +44.3% 的增速如果 H2 未加速，主题退潮会直接冲击其最核心的估值支撑。<br>
-  &nbsp;&nbsp;• <strong>港股是 A 股的「领先指标」</strong>——港股 CRO 因南向资金主导、流动性薄，跌幅是 A 股的 1.5–2 倍（A 股最大跌 7.39% vs H 股 7.86%，昭衍 A 股 -6.02% vs H 股 -7%+）。<strong>港股 CRO 的盘中极端跌幅不宜直接线性外推到 A 股</strong>，10/13 的收复幅度已经证明了这一点。<br><br>
-  <strong>③ 对药明康德相对估值：略有强化。</strong>康龙化成、凯莱英、昭衍新药的股价跌幅（-2.87% / -1.72% / -0.61%）并不比药明康德大，但考虑到它们 26H1 归母同比分别为 +6.95% / -15.70% / +1126.8%（含猴价），<strong>当日市场对 CRO 板块内部分化的定价是正确的——基本面差距（药明扣非 +89.39% vs 凯莱英扣非 -7.30%）没有被抹平</strong>。这支持本报告的相对估值结论：同板块内，药明康德 22x 的 PE 相对康龙化成 43.55x、凯莱英 60.00x 仍是折价，折价的收窄需要 1260H 终局明朗，而非板块情绪修复。
-</div>
-
-<h3>7.6 资金面信号</h3>
-<table>
-  <tr><th style="width:18%">维度</th><th style="width:14%">信号</th><th>数据与解读</th></tr>
-  <tr><td><strong>北向资金（陆股通）持股</strong></td><td class="good">增持（趋势逆转）</td><td>香港中央结算有限公司持股：2025Q4 末 <strong>-5,252 万股</strong>（减持）→ 2026Q1 末 <strong>-2,253 万股</strong>（继续减持）→ <strong>2026-06-30 转为 +2,181 万股增持，持股 2.6156 亿股、占 A 股流通股 8.77%、市值 325.67 亿元</strong>（按 6/30 收盘 124.51 元计）。Q2 环比 +9.09%，扭转了连续两个季度的减持。<span class="nd">注：2026Q3 至今的港股通逐日持股变动未取得公开一手数据，以上为半年报披露的季度末静态值。</span></td></tr>
-  <tr><td><strong>公募 / 基金持仓</strong></td><td class="good">大幅增配</td><td>2026Q2 末 <strong>1,944 只基金</strong>合计持有 <strong>4.7486 亿股</strong>（占总股本 19.20%）、市值 591.25 亿元，<strong>环比 +19.92%（+7,888 万股）</strong>。对比 2026Q1 末的 677 只基金持有 3.9598 亿股（16.01%，环比 -34.22%）——<strong>机构在 Q1 大幅撤退后于 Q2 强势回补</strong>。全部机构合计 1,974 家持有 11.9633 亿股（48.37%），环比 +8.00%。仍低于 2025Q4 的 6.02 亿股（24.34%），尚未完全回补。</td></tr>
-  <tr><td><strong>融资余额（两融）</strong></td><td class="neutral">温和去杠杆</td><td>2026-10-12 融资余额 <strong>46.25 亿元</strong>，占 A 股流通市值 1.19%。路径：9/22 高点 53.05 亿 → 9/30 44.91 亿 → 10/12 46.25 亿，<strong>较 9 月中下旬峰值回落约 13%</strong>。10/13 当日融资净买入 -0.70 亿元（融资余额自 10/9 的 46.95 亿降至 46.25 亿）。<strong>杠杆资金未过热，反而在缓慢退出</strong>——既说明追高情绪有限，也说明没有增量资金托底。</td></tr>
-  <tr><td><strong>大股东增减持</strong></td><td class="bad">减持（负面）</td><td>实控人李革/张朝晖/刘晓钟控制的 18 家一致行动主体，2025/11/20–2026/01/05 通过集中竞价（2,983.67 万股）+ 大宗交易（2,983.85 万股）累计减持 <strong>5,967.51 万股（占总股本 2%）</strong>，价格区间 84.66–95.07 元，套现约 <strong>54 亿元</strong>；持股由 543,364,675 股（18.211%）降至 483,689,532 股（<strong>16.211%</strong>）。公司称原因为「股东自身资金需求」，受让方均为知名国际投资者。2026 年内未见新一轮减持计划公告。<strong>2022 年以来累计套现近 200 亿元，为 A 股龙头中罕见。</strong></td></tr>
-  <tr><td><strong>大宗交易</strong></td><td class="good">平价、规模萎缩</td><td>近 20 笔大宗交易（2026-07-23 至 2026-10-13）<strong>溢价率全部为 0%（平价成交）</strong>，单笔成交额从 7 月的 3,188 万元一路萎缩至 10/13 的 362 万元。<strong>无折价抛压，也无机构大额出货迹象</strong>，与 2025 年 11 月减持期间「折价率约 5%」的密集大宗形成鲜明对比。</td></tr>
-  <tr><td><strong>龙虎榜</strong></td><td class="nd">待补充</td><td>2026-10-13 药明康德当日无龙虎榜记录。数据源可查到的最近一次上榜为 <strong>2024-03-07</strong>（日跌幅偏离值达 7%），当日沪股通专用席位净卖出 6.21 亿元、机构专用席位合计净卖出约 4.00 亿元。<span class="nd">2026 年内（特别是简报提及的 2026-03-31 异动日）龙虎榜明细未能从一手数据源核到，故不引用具体金额。</span></td></tr>
-  <tr><td><strong>股东户数</strong></td><td class="nd">待补充</td><td>2026 年中期股东户数未取得。</td></tr>
-</table>
+<h3>7.6 讨论问题（后续跟踪清单）</h3>
 <div class="summary-box">
-  <strong>资金面整体判断：中性偏正面，但缺乏增量资金。</strong>北向资金 26Q2 转为增持（+2,181 万股，扭转连续两季减持）、公募 26Q2 大幅回补（+19.92%，+7,888 万股）、大宗交易全为平价且规模萎缩——三项都指向「持仓结构在改善、机构在回补」。但两个反面信号同样明确：<strong>融资余额从 9 月峰值回落 13% 至 46.25 亿，占流通市值仅 1.19%，说明杠杆资金在退出而非进场；实控人历史减持近 200 亿的治理瑕疵仍是估值上限的压制项。</strong>叠加 10/13 全板块的港股联动回调，本报告判断资金面处于「存量博弈、结构改善、无增量」的状态——<strong>这意味着股价的进一步上行必须靠基本面兑现（三季报 10/27 + 1260H 终局进展）驱动，而非资金推动。</strong>
-</div>
-
-<h3>7.7 讨论问题（阅读引导）</h3>
-<div class="summary-box">
-  <strong>讨论问题（阅读后可以聊这些）：</strong><br><br>
-  1. <strong>1260H 初步禁令是「阶段性胜诉」而非终局，法院自己也说国防部可以补证重新认定，而法官在意见书里承认已有客户和供应商因此终止合作或转向竞争对手——那么真正的问题是：在实体判决出来之前，公司要用多快的订单增长来证明「寒蝉效应」没有发生？26H2 的新签订单增速（在手订单 +25.2% 是存量，Q3 报才是增量读数）够不够？</strong><br><br>
-  2. <strong>CFO/扣非从 25H1 的 1.33 掉到 26H1 的 0.92，应收 +44.2% 跑赢营收 +38.9%——这是扩张期的正常营运资金占用，还是回款质量开始变差的前兆？给一个可证伪的观察指标（我的候选是「26 年报 CFO/扣非是否回到 1.0 以上」）。</strong><br><br>
-  3. <strong>账上 466 亿现金和理财，同时背 151 亿有息负债（还多了 65.86 亿从零起步的短期债券）——一个 ROE 26% 的公司做这种「存贷双高」，是财务部门的保守还是资本的浪费？同期 ROE 累计值同比反而下降 0.74pct，是不是留太多现金在账上的必然结果？</strong><br><br>
-  4. <strong>实控人从 2022 年起套现近 200 亿、上一轮减持后股价腰斩 53.5%，这次减持 2% 又套现 54 亿，而股价从 90 元涨到了 157 元（+74%）。同一家公司、同样的行为、同样的比例，结果完全不同——差别到底在基本面、估值，还是情绪？</strong><br><br>
-  5. <strong>PE(2026E) 21x 在合理区间 20–30x 的下沿，但 PB 5.73x 在近 3 年的 96.8% 分位。如果你只能用一个指标判断「贵还是便宜」，你选哪个？为什么？</strong><br><br>
-  6. <strong>10/13 港股 CRO 全线重挫、A 股低开 4–7% 后尾盘大幅收复——这一天里有没有真正的信息？如果没有，那么「CRO 板块的利率敏感度」这件事本身，是不是应该被计入仓位管理？</strong>
+  <strong>① 三季报（2026-10-27）是最近的验证窗口</strong>——TIDES 单季同比能否加速至 +45% 以上？在手订单增速能否维持 20%+？CFO/扣非能否回到 0.85 以上？<br>
+  <strong>② 1260H 终局实体判决的时间表</strong>——初步禁令是临时救济，终局胜诉与否直接决定估值折价是修复还是扩大。<br>
+  <strong>③ 2026H1 美国收入敞口</strong>——需取得分地区收入数据以量化 1260H 的直接财务影响（2025 年美国客户收入 312.5 亿、占比约 72%）。<br>
+  <strong>④ 应收账款增速</strong>——+44.19% 是否在 H2 收敛，若持续超营收增速需警惕现金转化与渠道压货。<br>
+  <strong>⑤ 实控人后续减持计划</strong>——2026 年初刚完成 2% 减持，需关注是否再有减持公告。<br>
+  <strong>⑥ TIDES 产能爬坡与新签订单</strong>——常州新基地提前启动，产能释放节奏与 GLP-1 客户订单节奏是 H2 加速的关键。
 </div>
 
 </div></div>
 
 <div class="footer">
-   免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
-   数据来源：药明康德 FY2024/FY2025 年报 + 2026 年半年度报告（2026-08-04 披露）+ 公司自愿性公告（1260H 初步禁令 2026-08-09、股东减持结果公告 2026-01-07）；爱股网 F10（603259 / 300759 / 002821 / 603127 / 300347）主要指标与盈利预测；东方财富 F10 财务接口（三表、分部主营、机构持股、大宗交易、沪深港通、估值分位）；腾讯行情（2026-10-13 收盘）；爱股网盈利预测（31 家中报后研报，2026-08-03 至 2026-09-18）；公开财经媒体报道（澎湃新闻、证券日报、21 世纪经济报道、中证网、每日经济新闻、财联社、华夏时报、FX168、格隆汇）。<br>
-   数据截止：财务数据至 2026-06-30（半年报），行情数据至 2026-10-13 收盘，股东与持仓数据至 2026-06-30（下一披露节点为 2026-10-27 三季报）。
+  <p>本报告由 opencode 基于公开信息（东方财富、gubit.cn、上海证券报、华尔街见闻、港交所披露易等）整理，采用 L1–L6 财务分析框架，数据截至 2026-10-16 收盘，报告日期 2026-10-18。</p>
+  <p style="margin-top:8px;">本报告仅供研究参考，不构成任何投资建议。投资有风险，决策需谨慎。</p>
 </div>
 
 </div>
 
 <script>
-(function() {
-  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var buttons = document.querySelectorAll('.tab-btn');
   var contents = document.querySelectorAll('.tab-content');
-  btns.forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      btns.forEach(function(b) { b.classList.remove('active'); });
-      contents.forEach(function(c) { c.classList.remove('active'); });
+  buttons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var target = btn.getAttribute('data-tab');
+      buttons.forEach(function (b) { b.classList.remove('active'); });
+      contents.forEach(function (c) { c.classList.remove('active'); });
       btn.classList.add('active');
-      var tab = btn.getAttribute('data-tab');
-      document.getElementById('tab-' + tab).classList.add('active');
+      var el = document.getElementById(target);
+      if (el) { el.classList.add('active'); }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   });
-})();
 </script>
+
 </body>
 </html>
