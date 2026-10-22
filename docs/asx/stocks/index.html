@@ -88,6 +88,7 @@
         <th style="text-align:center">背离</th>
         <th>验证节点</th>
         <th onclick="sort('type')">L5分类 <span class="arrow" id="a-type"></span></th>
+        <th onclick="sort('date')">更新日期 <span class="arrow" id="a-date"></span></th>
       </tr>
     </thead>
     <tbody id="tbody"></tbody>
@@ -184,19 +185,20 @@ function render(){
       +'<td style="text-align:center">'+rating+'</td>'
       +'<td style="text-align:center">'+dvc+'</td>'
       +'<td>'+node+'</td>'
-      +'<td><span class="tag '+typeClass(d.type)+'">'+d.type+'</span></td></tr>';
+      +'<td><span class="tag '+typeClass(d.type)+'">'+d.type+'</span></td>'
+      +'<td style="color:#888;white-space:nowrap">'+d.date+'</td></tr>';
   }).join('');
-  if(!rows.length) tbody.innerHTML='<tr><td colspan="7" class="empty">没有匹配的报告</td></tr>';
+  if(!rows.length) tbody.innerHTML='<tr><td colspan="8" class="empty">没有匹配的报告</td></tr>';
 }
 
 function sort(k){
-  if(sortKey===k){sortDir*=-1;}else{sortKey=k;sortDir=(k==='score')?-1:1;}
+  if(sortKey===k){sortDir*=-1;}else{sortKey=k;sortDir=(k==='score'||k==='date')?-1:1;}
   updateArrows();
   render();
 }
 
 function updateArrows(){
-  ['name','score','fwd','rating','type'].forEach(k=>{
+  ['name','score','fwd','rating','type','date'].forEach(k=>{
     const el=document.getElementById('a-'+k);
     if(el) el.textContent=(k===sortKey)?(sortDir<0?'▼':'▲'):'';
   });
