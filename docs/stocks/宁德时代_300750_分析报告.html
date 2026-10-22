@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>宁德时代(300750) 分析报告</title>
+<title>宁德时代(300750) 财务分析报告</title>
 <style>
   @page { margin: 2cm; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -12,7 +12,7 @@
     color: #1a1a1a; line-height: 1.8; padding: 0;
     background: #f5f5f5;
   }
-  .report-wrap { max-width: 840px; margin: 0 auto; background: #fff; }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
   h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
   .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
   .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
@@ -37,7 +37,6 @@
     border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
   }
   h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
-  h4 { font-size: 14px; margin: 14px 0 6px; color: #444; }
   .bad { color: #c0392b; }
   .good { color: #27ae60; }
   .neutral { color: #f39c12; }
@@ -52,197 +51,173 @@
   .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
   .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
   .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .score-note { font-size: 13px; color: #666; background: #fafafa; border: 1px dashed #ccc; padding: 8px 12px; margin: 10px 0; }
+  .history-table td:first-child { white-space: nowrap; }
+  .badge { display: inline-block; padding: 1px 9px; border-radius: 4px; font-size: 12px; font-weight: 700; white-space: nowrap; }
+  .fwd-s { background: #e8f5e9; color: #1b5e20; border: 1px solid #1b5e20; }
+  .fwd-a { background: #f1f8e9; color: #558b2f; border: 1px solid #7cb342; }
+  .fwd-b { background: #fffde7; color: #f9a825; border: 1px solid #fdd835; }
+  .fwd-c { background: #fff3e0; color: #e65100; border: 1px solid #fb8c00; }
+  .fwd-d { background: #fde8e8; color: #c0392b; border: 1px solid #c0392b; }
+  .rating-buy { background: #e8f5e9; color: #1b5e20; border: 1px solid #1b5e20; }
+  .rating-outperform { background: #f1f8e9; color: #558b2f; border: 1px solid #7cb342; }
+  .rating-neutral { background: #eeeeee; color: #616161; border: 1px solid #bbbbbb; }
+  .rating-underperform { background: #fff3e0; color: #e65100; border: 1px solid #fb8c00; }
+  .rating-sell { background: #fde8e8; color: #c0392b; border: 1px solid #c0392b; }
+  .track-card td { text-align: left; }
+  .track-card td:first-child { width: 34%; font-weight: 600; background: #f5f5f5; }
+  .rating-card { text-align: center; font-size: 17px; font-weight: bold; padding: 16px; margin: 14px 0; border-radius: 8px; background: #fafafa; border: 1px solid #e0e0e0; }
   .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
   ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
   li { margin-bottom: 4px; }
-  .score-bar { display: flex; align-items: center; margin: 4px 0; }
-  .score-label { width: 160px; font-size: 13px; text-align: right; padding-right: 10px; }
-  .score-track { flex: 1; height: 18px; background: #eee; border-radius: 9px; position: relative; overflow: hidden; }
-  .score-fill { height: 100%; border-radius: 9px; transition: width 0.5s; }
-  .score-val { min-width: 40px; font-size: 12px; font-weight: bold; padding-left: 6px; }
-  .score-high { background: #27ae60; }
-  .score-mid { background: #f39c12; }
-  .score-low { background: #e74c3c; }
 </style>
 </head>
 <body>
 <div class="report-wrap">
 
-<h1>宁德时代（300750）分析报告</h1>
-<p class="subtitle">非周期股评分体系 · 成长性行业（新能源动力电池） · 含L1-L6全框架</p>
-<p class="meta">分析日期：2026-07-14 | 数据来源：FY2025 年报 + 2026Q1 季报</p>
+<h1>宁德时代（300750）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026-10-22 | 数据来源：FY2025 年报 + 2026Q3 季报 + 券商研报 + 同花顺/东方财富/Investing</p>
 
 <div class="tab-bar">
   <button class="tab-btn active" data-tab="summary">总结论</button>
   <button class="tab-btn" data-tab="l1">L1 三张报表</button>
   <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
-  <button class="tab-btn" data-tab="l3">L3 估值+PE Band</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
   <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
-  <button class="tab-btn" data-tab="l5">L5 行业定位</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
   <button class="tab-btn" data-tab="l6">L6 综合实战</button>
 </div>
 
 <div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<!-- TRACK 机器可读标记（sync 脚本读取，勿删勿改格式）：fwd=前瞻档(S/A/B/C/D)，rating=评级(Buy/Outperform/Neutral/Underperform/Sell)，node=≤12字验证节点 -->
+<!-- TRACK fwd=B rating=Outperform node=Q4毛利率止跌 -->
+
+<h2>三轨摘要</h2>
+<table class="track-card">
+  <tr><td>框架类型</td><td>成长/品质型（新能源电池，与 L5 分类一致）</td></tr>
+  <tr><td>财务品质分</td><td>81/100（品质优秀）</td></tr>
+  <tr><td>前瞻档位</td><td><span class="badge fwd-b">B</span> 出货量增确定，但单位盈利与毛利率连续三季下行，方向未明</td></tr>
+  <tr><td>投资评级</td><td><span class="badge rating-outperform">Outperform</span></td></tr>
+  <tr><td>一句话结论</td><td>Outperform：全球双料龙头的量增逻辑仍在，但 2026Q3 毛利率跌至 20.7%、单位盈利被价格战侵蚀，估值已杀到历史最低；Q4 单季毛利率止跌且单位盈利企稳可上调至 Buy，跌破 20% 或 CFO/净利 &lt;0.8 则下调至 Neutral。</td></tr>
+</table>
 
 <h2>一、公司基本画像</h2>
 <table>
   <tr><th style="width:30%">项目</th><th>内容</th></tr>
   <tr><td>公司名称</td><td>宁德时代新能源科技股份有限公司（CATL）</td></tr>
   <tr><td>股票代码</td><td>300750.SZ</td></tr>
-  <tr><td>所属行业</td><td>锂电池制造（动力电池+储能电池）— 成长性行业</td></tr>
-  <tr><td>行业地位</td><td>动力电池全球第一（连续8年），储能全球第一（连续5年），全球市占率~37%</td></tr>
-  <tr><td>FY2025 营收</td><td><strong>4,237 亿（+17.04%）</strong></td></tr>
-  <tr><td>FY2025 归母净利润</td><td><strong>722 亿（+42.28%）</strong></td></tr>
-  <tr><td>FY2025 经营现金流</td><td><strong>1,332 亿（+37.35%）</strong></td></tr>
-  <tr><td>总资产</td><td>9,748 亿</td></tr>
-  <tr><td>归母净资产</td><td>3,371 亿</td></tr>
-  <tr><td>ROE</td><td>24.91%</td></tr>
+  <tr><td>所属行业</td><td>锂电池制造（动力电池+储能电池）— 成长性行业（非周期）</td></tr>
+  <tr><td>行业地位</td><td>动力电池全球第一（连续 8 年，份额约 37%），储能全球第一（约 40%）</td></tr>
+  <tr><td>FY2025 营收</td><td>4,237.02 亿（+17.04%）</td></tr>
+  <tr><td>FY2025 归母净利润</td><td>722.01 亿（+42.28%）</td></tr>
+  <tr><td>FY2025 经营现金流</td><td>1,332 亿（+37.35%）</td></tr>
+  <tr><td>2026 前三季营收</td><td><strong>4,421.37 亿（+56.19%）</strong></td></tr>
+  <tr><td>2026 前三季归母净利</td><td><strong>645.30 亿（+31.60%）</strong></td></tr>
+  <tr><td>总资产（2026-09-30）</td><td>11,831.74 亿（较年初 +21.37%）</td></tr>
+  <tr><td>归母净资产</td><td>3,868 亿（BPS 83.61 元）</td></tr>
+  <tr><td>ROE</td><td>2026 前三季加权 17.64%；FY2025 24.91%</td></tr>
+  <tr><td>当前股价 / 总市值</td><td>220.41 元 / 1.02 万亿（2026-10-22 收盘）</td></tr>
 </table>
 
-<h2>非周期股评分体系（10维度 · 满分100）</h2>
-<p style="font-size:13px;color:#666;margin-bottom:8px">行业定位为成长性行业（新能源动力电池），适用非周期股评分体系。各维度独立评分，满分100。</p>
+<p class="score-note"><strong>评分口径说明：</strong><span>沿用非周期股体系；9M 现金流与毛利率走弱，总分由 93 降至 81</span></p>
 
-<div style="margin:6px 0">
-  <div class="score-bar">
-    <span class="score-label">① ROE（10分）</span>
-    <div class="score-track"><div class="score-fill score-high" style="width:100%"></div></div>
-    <span class="score-val good">10/10</span>
-    <span style="font-size:12px;color:#666;padding-left:6px">24.91% ≥ 20%</span>
-  </div>
-  <div class="score-bar">
-    <span class="score-label">② CFO/净利润（10分）</span>
-    <div class="score-track"><div class="score-fill score-high" style="width:100%"></div></div>
-    <span class="score-val good">10/10</span>
-    <span style="font-size:12px;color:#666;padding-left:6px">1.84 ≥ 1.2</span>
-  </div>
-  <div class="score-bar">
-    <span class="score-label">③ 营收增长率（10分）</span>
-    <div class="score-track"><div class="score-fill score-high" style="width:80%"></div></div>
-    <span class="score-val good">8/10</span>
-    <span style="font-size:12px;color:#666;padding-left:6px">+17.04% ≥ 10%</span>
-  </div>
-  <div class="score-bar">
-    <span class="score-label">④ 净利率水平（10分）</span>
-    <div class="score-track"><div class="score-fill score-high" style="width:100%"></div></div>
-    <span class="score-val good">10/10</span>
-    <span style="font-size:12px;color:#666;padding-left:6px">17.04% ≥ 15%</span>
-  </div>
-  <div class="score-bar">
-    <span class="score-label">⑤ 毛利率趋势（10分）</span>
-    <div class="score-track"><div class="score-fill score-high" style="width:100%"></div></div>
-    <span class="score-val good">10/10</span>
-    <span style="font-size:12px;color:#666;padding-left:6px">24.50% 稳定，同比+0.06pct</span>
-  </div>
-  <div class="score-bar">
-    <span class="score-label">⑥ 资产负债率（10分）</span>
-    <div class="score-track"><div class="score-fill score-mid" style="width:50%"></div></div>
-    <span class="score-val neutral">5/10</span>
-    <span style="font-size:12px;color:#666;padding-left:6px">65.4%，60-70%区间</span>
-  </div>
-  <div class="score-bar">
-    <span class="score-label">⑦ 短期偿债能力（10分）</span>
-    <div class="score-track"><div class="score-fill score-high" style="width:100%"></div></div>
-    <span class="score-val good">10/10</span>
-    <span style="font-size:12px;color:#666;padding-left:6px">货币资金~1,900亿 >> 短期借款122亿</span>
-  </div>
-  <div class="score-bar">
-    <span class="score-label">⑧ 自由现金流（10分）</span>
-    <div class="score-track"><div class="score-fill score-high" style="width:100%"></div></div>
-    <span class="score-val good">10/10</span>
-    <span style="font-size:12px;color:#666;padding-left:6px">FCF ~1,032亿，持续为正巨量</span>
-  </div>
-  <div class="score-bar">
-    <span class="score-label">⑨ 研发投入强度（10分）</span>
-    <div class="score-track"><div class="score-fill score-high" style="width:100%"></div></div>
-    <span class="score-val good">10/10</span>
-    <span style="font-size:12px;color:#666;padding-left:6px">研发222亿，占营收5.2%</span>
-  </div>
-  <div class="score-bar">
-    <span class="score-label">⑩ 行业竞争地位（10分）</span>
-    <div class="score-track"><div class="score-fill score-high" style="width:100%"></div></div>
-    <span class="score-val good">10/10</span>
-    <span style="font-size:12px;color:#666;padding-left:6px">全球动力电池/储能双料冠军</span>
-  </div>
-</div>
-
+<h2>综合评分（百分制）</h2>
 <table>
-  <tr style="font-weight:bold;background:#e8e8e8">
-    <td style="width:28%">总分</td>
-    <td style="font-size:16px">93 / 100</td>
-    <td style="text-align:left">品质优秀（93/100分）</td>
-  </tr>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE（15分）</td><td class="good" style="font-weight:bold">15</td><td style="text-align:left">9M 加权 17.64%（年化约 23.5%），FY2025 24.91%，≥15%</td></tr>
+  <tr><td>杜邦驱动质量（5分）</td><td class="good">3</td><td style="text-align:left">均衡型：高净利率叠加高杠杆（权益乘数 2.98），非纯利润驱动</td></tr>
+  <tr><td>利润含金量 CFO/净利（15分）</td><td class="neutral">10</td><td style="text-align:left">616.25/645.30=0.95，低于 1.0（年初营运资本大幅占用）</td></tr>
+  <tr><td>营收增长（10分）</td><td class="good" style="font-weight:bold">10</td><td style="text-align:left">9M +56.19%，Q3 单季 +58.58%，≥10%</td></tr>
+  <tr><td>利润增长（10分）</td><td class="good" style="font-weight:bold">10</td><td style="text-align:left">归母 9M +31.60%，Q3 单季 +14.54%，≥15%</td></tr>
+  <tr><td>负债率（10分）</td><td class="neutral">4</td><td style="text-align:left">64.23%（年初 61.94%），处 60–70% 区间</td></tr>
+  <tr><td>短期偿债（10分）</td><td class="good" style="font-weight:bold">10</td><td style="text-align:left">货币资金 3,698 亿 + 交易性金融资产 628 亿，远超短期有息 568 亿</td></tr>
+  <tr><td>毛利率水平与趋势（10分）</td><td class="bad">4</td><td style="text-align:left">9M 22.72%（-2.59pct），Q3 单季约 20.7%，连续三季下行</td></tr>
+  <tr><td>估值 PE vs 合理区间（10分）</td><td class="good" style="font-weight:bold">10</td><td style="text-align:left">PE TTM 11.6x，低于 ROE&gt;20% 对应的 20–30x 合理区间</td></tr>
+  <tr><td>FCF（5分）</td><td class="good" style="font-weight:bold">5</td><td style="text-align:left">CFO 616.25 亿 − 资本开支 421.67 亿 = 194.58 亿，持续为正</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">81/100</td><td style="text-align:left">品质优秀（≥80）—— 规模与估值优秀，被毛利率与现金流质量拖累</td></tr>
 </table>
 
-<div class="verdict verdict-ok">品质优秀（93/100分）</div>
+<div class="verdict verdict-ok">品质优秀（81/100分）</div>
 <h2 style="margin-top:16px">评分沿革</h2>
 <style>.history-table{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:13px}.history-table th,.history-table td{border:1px solid #ddd;padding:6px 8px;text-align:center}.history-table th{background:#f0f0f0;font-weight:bold}.history-table td.good{color:#27ae60}.history-table td.neutral{color:#e67e22}.history-table td.bad{color:#c0392b}</style><table class="history-table">
   <tr><th>日期</th><th>评分</th><th>评分体系</th><th>变化原因</th></tr>
   <tr><td>2026-07-14</td><td class="good" style="font-weight:bold">93/100</td><td>成长性</td><td style="text-align:left">—</td></tr>
+  <tr><td>2026-10-22</td><td class="good" style="font-weight:bold">81/100</td><td>成长性</td><td style="text-align:left">沿用非周期股体系；9M 现金流与毛利率走弱，总分由 93 降至 81</td></tr>
 </table>
 
+<!-- 评分沿革：由sync脚本从 scores.json 注入，生成时保留此注释不动 -->
+
 <div class="summary-box">
-  <strong>综合诊断：</strong>宁德时代是全球动力电池和储能电池双料冠军，连续8年动力电池全球第一、连续5年储能全球第一。FY2025营收4,237亿（+17%）稳中有进，归母净利润722亿（+42%），利润增速远超营收，规模效应显著。ROE 24.91%处于顶级水平，毛利率24.5%稳定，CFO 1,332亿极其充沛。2026Q1营收增速进一步加速至+52%，景气度持续上行。非周期股10维度评分93/100，属于顶级品质。<br><br>
-  <strong>核心优势：</strong>① ROE 24.91%顶级，盈利能力卓越；② 全球动力电池市占率~37%，行业绝对龙头；③ CFO 1,332亿极其充沛，CFO/净利润1.84倍；④ 2026Q1营收+52%、净利+49%加速增长；⑤ 研发投入222亿（5.2%），技术壁垒持续加深。<br><br>
-  <strong>核心风险：</strong>① 资产负债率65.4%偏高，固定资产1,500亿+在建349亿资产偏重；② 预计负债942亿（质保计提）金额巨大，但非实际债务；③ H股上市带来~3.5%稀释效应；④ PE TTM ~21x处于历史低位，但绝对估值仍中等偏高。
+  <strong>综合诊断：</strong>宁德时代仍是全球动力电池与储能双料冠军，2026 前三季营收 4,421 亿（+56.19%）显示需求端极强，规模优势与客户壁垒未被撼动；但归母仅 +31.60%，毛利率从 25.31% 降至 22.72%（Q3 单季 20.7%），单位盈利被价格战与产品结构变化持续侵蚀。估值已杀至 PE TTM 11.6x、PB 2.64x 的历史最低区，赔率变厚，但盈利质量尚未见底。<br><br>
+  <strong>核心优势：</strong>① 全球动力电池份额约 37%、储能约 40%，CR3&gt;70% 格局下的绝对龙头；② 净现金约 2,410 亿，短偿能力顶级（10/10）；③ 营收连续加速（Q1 +52% → Q3 +58.58%），储能与海外是第二增长曲线；④ PE 11.6x 已跌破历史最低 15x，PB 2.64x，估值提供厚安全垫。<br><br>
+  <strong>核心风险：</strong>① 毛利率连续三季下滑，Q3 单季 20.7%，价格战与单位盈利下行尚未止住；② CFO 同比 -23.60%，CFO/净利 0.95，应收 +47.78%、存货 +53.15% 占用大量营运资本；③ 短期借款 +208.43%、应付债券 527 亿，有息负债扩张较快；④ 合同负债 -17.40%，预收款下降需观察订单节奏。
 </div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l1"><div class="tab-inner">
 
-<h2>二、核心财务数据（FY2025）</h2>
+<h2>二、核心财务数据</h2>
 
 <h3>2.1 利润表</h3>
 <table>
-  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
-  <tr><td>营业收入</td><td>4,237 亿</td><td>3,620 亿</td><td>+17.04%</td><td class="good">✅ 稳健增长</td></tr>
-  <tr><td>归母净利润</td><td><strong>722 亿</strong></td><td>507 亿</td><td><strong>+42.28%</strong></td><td class="good">✅ 高速增长</td></tr>
-  <tr><td>扣非净利润</td><td><strong>645 亿</strong></td><td>450 亿</td><td><strong>+43.37%</strong></td><td class="good">✅ 高速增长</td></tr>
-  <tr><td>毛利率</td><td><strong>24.50%</strong></td><td>24.44%</td><td>+0.06pct</td><td class="good">✅ 稳定</td></tr>
-  <tr><td>归母净利率</td><td><strong>17.04%</strong></td><td>14.00%</td><td>+3.04pct</td><td class="good">✅ 大幅提升</td></tr>
-  <tr><td>研发费用</td><td><strong>222 亿</strong></td><td>—</td><td>占营收5.2%</td><td class="good">✅ 高研发投入</td></tr>
-  <tr><td>销售费用</td><td>116 亿</td><td>—</td><td>—</td><td class="neutral">费率2.7%</td></tr>
-  <tr><td>管理费用</td><td>260 亿</td><td>—</td><td>—</td><td class="neutral">费率6.1%</td></tr>
-  <tr><td>财务费用</td><td><strong>-65 亿</strong></td><td>—</td><td>负（利息收入）</td><td class="good">✅ 利息净收入</td></tr>
-  <tr><td>2026Q1 营收</td><td><strong>1,291 亿</strong></td><td>849 亿</td><td><strong>+52%</strong></td><td class="good">✅ 加速增长</td></tr>
-  <tr><td>2026Q1 净利</td><td><strong>207 亿</strong></td><td>139 亿</td><td><strong>+49%</strong></td><td class="good">✅ 加速增长</td></tr>
+  <tr><th>指标</th><th>2026 前三季</th><th>2025 前三季</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>4,421.37 亿</td><td>2,830.75 亿</td><td class="good">+56.19%</td><td class="good">✅ 高速增长</td></tr>
+  <tr><td>归母净利润</td><td><strong>645.30 亿</strong></td><td>490.35 亿</td><td class="good">+31.60%</td><td class="good">✅ 增长但慢于营收</td></tr>
+  <tr><td>扣非净利润</td><td>578.76 亿</td><td>436.20 亿</td><td class="good">+32.68%</td><td class="good">✅ 与归母同步</td></tr>
+  <tr><td>毛利率</td><td><strong>22.72%</strong></td><td>25.31%</td><td class="bad">-2.59pct</td><td class="bad">⚠ 连续下滑</td></tr>
+  <tr><td>归母净利率</td><td><strong>14.59%</strong></td><td>17.32%</td><td class="bad">-2.73pct</td><td class="bad">⚠ 盈利质量回落</td></tr>
+  <tr><td>研发费用</td><td>185.17 亿</td><td>数据待补充</td><td>占营收 4.19%</td><td class="good">✅ 投入维持高位</td></tr>
+  <tr><td>财务费用</td><td>-14.47 亿</td><td>-70.16 亿</td><td class="bad">少贡献 55.69 亿</td><td class="bad">⚠ 汇兑与利息拖累</td></tr>
+  <tr><td>投资收益</td><td>90.66 亿</td><td>52.36 亿</td><td class="good">+73.11%</td><td class="neutral">含联营合营 84.36 亿</td></tr>
+  <tr><td>Q3 单季营收</td><td>1,652.21 亿</td><td>1,041.86 亿</td><td class="good">+58.58%</td><td class="good">✅ 继续加速</td></tr>
+  <tr><td>Q3 单季归母</td><td><strong>212.46 亿</strong></td><td>185.49 亿</td><td class="neutral">+14.54%</td><td class="bad">⚠ 增速大幅放缓</td></tr>
+  <tr><td>Q3 单季扣非</td><td>188.62 亿</td><td>164.22 亿</td><td class="neutral">+14.86%</td><td class="bad">⚠ 非经常性占 11.2%</td></tr>
+  <tr><td>Q3 单季毛利率</td><td><strong>20.7%</strong></td><td>数据待补充</td><td>环比 -2.5pct</td><td class="bad">⚠ 三季连降</td></tr>
 </table>
 
 <div class="summary-box">
-  <strong>利润表解读：</strong>营收+17%稳健增长，归母净利+42%高速增长，利润增速显著高于营收，体现规模效应和经营杠杆。毛利率24.50%稳定，净利率从14%提升至17%（+3pct），盈利能力持续提升。2026Q1营收增速飙升至+52%，净利+49%，景气度加速上行。研发投入222亿（5.2%）为长期技术领先奠定基础。财务费用-65亿为利息净收入，现金管理能力出色。
+  <strong>利润表解读：</strong>收入端是标准的加速曲线——Q1 +52%、Q3 单季 +58.58%，说明动力与储能出货量仍在强劲扩张。问题全部集中在利润端：营收 +56.19% 而归母仅 +31.60%，毛利率从 25.31% 掉到 22.72%（Q3 单季约 20.7%），净利率同步从 17.32% 降至 14.59%。此外财务费用从 -70.16 亿收窄到 -14.47 亿（少贡献 55.69 亿税前），汇兑与利息是利润增速放缓的重要一次性因素。剔除该因素，经营层面的毛利率下滑仍是主要矛盾。<strong>量增价减</strong>是本季最准确的概括。
 </div>
 
 <h3>2.2 资产负债表</h3>
 <table>
-  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
-  <tr><td>货币资金</td><td><strong>~1,900 亿</strong></td><td class="good">✅ 极其充裕</td></tr>
-  <tr><td>应收账款</td><td><strong>~850 亿</strong></td><td class="neutral">占营收20%，合理</td></tr>
-  <tr><td>存货</td><td><strong>~550 亿</strong></td><td class="neutral">占资产5.6%，适中</td></tr>
-  <tr><td>固定资产</td><td><strong>1,500 亿</strong></td><td class="neutral">重资产模式</td></tr>
-  <tr><td>在建工程</td><td><strong>349 亿</strong></td><td class="neutral">持续扩产</td></tr>
-  <tr><td>商誉</td><td><strong>8.3 亿</strong></td><td class="good">✅ 仅0.08%，极低</td></tr>
-  <tr><td>短期借款</td><td><strong>122 亿</strong></td><td class="good">✅ 占比极低</td></tr>
-  <tr><td>长期借款</td><td><strong>762 亿</strong></td><td class="neutral">有息负债主体</td></tr>
-  <tr><td>合同负债</td><td><strong>456 亿</strong></td><td class="good">✅ 客户预付款，显示需求</td></tr>
-  <tr><td>预计负债</td><td><strong>942 亿</strong></td><td class="neutral">质保计提，非债务</td></tr>
-  <tr><td>资产负债率</td><td><strong>65.4%</strong></td><td class="neutral">⚠ 偏高但有息占比低</td></tr>
+  <tr><th>科目</th><th>2026-09-30</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td><strong>3,698.14 亿</strong></td><td class="good">✅ 极其充裕</td></tr>
+  <tr><td>交易性金融资产</td><td>627.80 亿</td><td class="good">✅ 流动性储备</td></tr>
+  <tr><td>应收账款</td><td>1,129.12 亿（+47.78%）</td><td class="neutral">增速略慢于营收，尚可控</td></tr>
+  <tr><td>应收款项融资</td><td>257.84 亿（-40.32%）</td><td class="good">✅ 票据结构优化</td></tr>
+  <tr><td>存货</td><td><strong>1,447.70 亿（+53.15%）</strong></td><td class="neutral">⚠ 绝对额高，与扩产匹配</td></tr>
+  <tr><td>在建工程</td><td>430.32 亿（+44.73%）</td><td class="neutral">持续扩产</td></tr>
+  <tr><td>短期借款</td><td><strong>398.98 亿（+208.43%）</strong></td><td class="neutral">⚠ 短期有息快速上升</td></tr>
+  <tr><td>长期借款</td><td>763.55 亿</td><td class="neutral">有息负债主体</td></tr>
+  <tr><td>应付债券</td><td>527.38 亿（+1,431.55%）</td><td class="neutral">新发债，拉长久期</td></tr>
+  <tr><td>应付票据</td><td>1,529.30 亿（+48.08%）</td><td class="good">✅ 对上游占款能力强</td></tr>
+  <tr><td>合同负债</td><td>406.69 亿（-17.40%）</td><td class="bad">⚠ 预收款下降</td></tr>
+  <tr><td>总资产</td><td>11,831.74 亿（+21.37%）</td><td class="neutral">扩张中</td></tr>
+  <tr><td>归母净资产</td><td>3,868 亿（BPS 83.61 元）</td><td class="good">✅ 内生积累</td></tr>
+  <tr><td>资产负债率</td><td><strong>64.23%</strong>（年初 61.94%）</td><td class="neutral">⚠ 抬升 2.29pct</td></tr>
 </table>
 
 <div class="highlight-box">
-  <strong>资产负债表解读：</strong>资产负债率65.4%表面偏高，但结构健康——货币资金~1,900亿极其充裕，有息负债（短期122亿+长期762亿）合计884亿远低于货币资金，净现金状态。预计负债942亿为产品质量保证金计提，并非实际债务。合同负债456亿为下游客户预付款，反映订单需求旺盛。商誉仅8.3亿（0.08%），无大规模商誉减值风险。固定资产1,500亿+在建349亿表明公司处于重资产扩张期。
+  <strong>资产负债表解读：</strong>表面负债率 64.23% 偏高，但结构依然是净现金——货币资金 3,698 亿 + 交易性金融资产 628 亿 = 4,326 亿，有息负债合计约 1,916 亿（短借 399 + 一年内到期 169 + 长借 764 + 应付债券 527 + 租赁等 57），<strong>净现金约 2,410 亿</strong>。真正的变化在结构：短期借款 +208%、应付债券从 34 亿膨胀到 527 亿，说明公司在用低成本债替换其他融资并拉长久期；应付票据 +48% 体现对上游的强势占款。需盯的是合同负债 -17.40%——预收款下降往往领先于订单节奏变化，单季数据不足以定性，但值得连续跟踪。
 </div>
 
 <h3>2.3 现金流量表</h3>
 <table>
-  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
-  <tr><td>经营现金流（CFO）</td><td><strong>1,332 亿</strong></td><td>970 亿</td><td class="good">✅ 极其充沛+37%</td></tr>
-  <tr><td>投资现金流（CFI）</td><td><strong>~-300 亿</strong></td><td>—</td><td class="neutral">⚠ 资本开支较大</td></tr>
-  <tr><td>CFO/净利润</td><td><strong>1.84</strong></td><td>1.91</td><td class="good">✅ 现金质量顶级</td></tr>
-  <tr><td>自由现金流（FCF）</td><td><strong>~1,032 亿</strong></td><td>—</td><td class="good">✅ 极其充裕</td></tr>
+  <tr><th>指标</th><th>2026 前三季</th><th>2025 前三季</th><th>评价</th></tr>
+  <tr><td>经营现金流（CFO）</td><td><strong>616.25 亿</strong></td><td>806.6 亿</td><td class="bad">⚠ -23.60%</td></tr>
+  <tr><td>资本开支（购建长期资产）</td><td>421.67 亿</td><td>数据待补充</td><td class="neutral">扩产投入大</td></tr>
+  <tr><td>自由现金流（FCF）</td><td><strong>194.58 亿</strong></td><td>数据待补充</td><td class="neutral">仍为正但大幅收窄</td></tr>
+  <tr><td>CFO/归母净利</td><td>0.95</td><td>1.64</td><td class="bad">⚠ 跌破 1.0</td></tr>
+  <tr><td>投资现金流（CFI）</td><td>数据待补充</td><td>数据待补充</td><td>—</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td>数据待补充（短借+208%、发债 527 亿）</td><td>—</td><td class="neutral">净融资流入</td></tr>
 </table>
 
 <div class="summary-box">
-  <strong>现金流解读：</strong>CFO 1,332亿同比+37%，绝对额和增速均极其优秀。CFO/净利润1.84倍，盈利现金含量顶级。FCF约1,032亿（CFO - CFI），即使扣除资本开支仍有超千亿自由现金流，造血能力极强。充沛的现金流使公司具备持续高分红（2025分红304亿，分红率50%）和再投资的能力。
+  <strong>现金流解读：</strong>CFO 616.25 亿仍是绝对巨量，但同比 -23.60%，CFO/净利从 1.64 掉到 0.95，这是本季最值得警惕的一处——利润的现金含量下降。原因清晰：应收账款 +47.78%（多占约 365 亿）、存货 +53.15%（多占约 502 亿），营运资本扩张吃掉了现金流。资本开支 421.67 亿后 FCF 仍有 194.58 亿，说明造血能力未失，只是从"极充裕"降为"充裕"。若 Q4 应收与存货增速回落，CFO 有回补空间；若继续快于营收，则需下调利润质量评分。
 </div>
 
 </div></div>
@@ -253,32 +228,44 @@
 
 <h3>3.1 关键盈利指标</h3>
 <table>
-  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
-  <tr><td>ROE</td><td><strong>24.91%</strong></td><td>> 15% 优秀 / > 10% 及格</td><td class="good">✅ 顶级</td></tr>
-  <tr><td>毛利率</td><td><strong>24.50%</strong></td><td>稳定或提升</td><td class="good">✅ 稳定</td></tr>
-  <tr><td>净利率</td><td><strong>17.04%</strong></td><td>> 10%</td><td class="good">✅ 优秀且提升中</td></tr>
-  <tr><td>营收增长率</td><td><strong>+17.04%</strong></td><td>> 10%</td><td class="good">✅ 稳增</td></tr>
-  <tr><td>扣非增长率</td><td><strong>+43.37%</strong></td><td>正增长</td><td class="good">✅ 高速增长</td></tr>
-  <tr><td>CFO/净利润</td><td><strong>1.84</strong></td><td>> 1</td><td class="good">✅ 顶级</td></tr>
-  <tr><td>资产负债率</td><td><strong>65.4%</strong></td><td>制造业<60%</td><td class="neutral">⚠ 略高但有息占比低</td></tr>
-  <tr><td>分红率</td><td><strong>50%</strong></td><td>> 30%</td><td class="good">✅ 慷慨</td></tr>
+  <tr><th>指标</th><th>本期</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE（加权）</td><td><strong>17.64%（9M）</strong></td><td>&gt;15% 优秀</td><td class="good">✅ 优秀</td></tr>
+  <tr><td>毛利率</td><td><strong>22.72%</strong></td><td>稳定或提升</td><td class="bad">⚠ 连续下滑</td></tr>
+  <tr><td>净利率</td><td><strong>14.59%</strong></td><td>&gt;10%</td><td class="good">✅ 仍高但回落</td></tr>
+  <tr><td>营收增长率</td><td><strong>+56.19%</strong></td><td>&gt;10%</td><td class="good">✅ 顶级</td></tr>
+  <tr><td>利润增长率</td><td><strong>+31.60%</strong></td><td>&gt;10%</td><td class="good">✅ 高增</td></tr>
+  <tr><td>CFO/净利润</td><td><strong>0.95</strong></td><td>&gt;1</td><td class="neutral">⚠ 略低于 1</td></tr>
+  <tr><td>资产负债率</td><td><strong>64.23%</strong></td><td>制造业 &lt;60%</td><td class="neutral">⚠ 偏高但净现金</td></tr>
+  <tr><td>分红率</td><td><strong>约 50%</strong></td><td>&gt;30%</td><td class="good">✅ 慷慨</td></tr>
 </table>
 
-<h3>3.2 排雷清单</h3>
+<h3>3.2 量价与单位盈利（2026Q2 → Q3）</h3>
 <table>
-  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
-  <tr><td class="neutral">🟡 中等</td><td>资产负债率65.4%偏高，固定资产1,500亿资产偏重</td><td>L1 资产负债表</td></tr>
-  <tr><td class="neutral">🟡 中等</td><td>预计负债942亿金额巨大（但为质保计提非实际债务）</td><td>L1 资产负债表</td></tr>
-  <tr><td class="neutral">🟡 中等</td><td>H股上市带来约3.5%稀释效应</td><td>L2 股权结构</td></tr>
-  <tr><td class="good">🟢 正面</td><td>ROE 24.91%顶级，盈利能力卓越</td><td>L2 盈利指标</td></tr>
-  <tr><td class="good">🟢 正面</td><td>CFO 1,332亿极其充沛，FCF超千亿</td><td>L1 现金流量表</td></tr>
-  <tr><td class="good">🟢 正面</td><td>净利率从14%提升至17%，盈利能力持续改善</td><td>L1 利润表</td></tr>
-  <tr><td class="good">🟢 正面</td><td>2026Q1营收+52%加速增长，订单需求旺盛</td><td>L1 利润表</td></tr>
-  <tr><td class="good">🟢 正面</td><td>商誉仅8.3亿（0.08%），无减值风险</td><td>L1 资产负债表</td></tr>
-  <tr><td class="good">🟢 正面</td><td>研发投入222亿（5.2%），技术壁垒持续加深</td><td>L1 利润表</td></tr>
+  <tr><th>指标</th><th>数值</th><th>同比 / 环比</th><th>解读</th></tr>
+  <tr><td>电池出货量（Q2）</td><td>约 232GWh</td><td class="good">+55% yoy</td><td>量增强劲，储能贡献提升</td></tr>
+  <tr><td>单位盈利（Q2）</td><td>约 0.097 元/Wh</td><td class="bad">-12% yoy</td><td>价格战与结构下移侵蚀单 Wh 利润</td></tr>
+  <tr><td>毛利率（Q2 → Q3）</td><td>23.2% → 20.7%</td><td class="bad">-2.5pct qoq</td><td>连续三季下行，尚未见底</td></tr>
+  <tr><td>营收增速（Q3）</td><td>+58.58%</td><td class="good">环比再加速</td><td>以价换量特征明显</td></tr>
+  <tr><td>归母增速（Q3）</td><td>+14.54%</td><td class="bad">大幅低于营收</td><td>量增未能转化为等速利润</td></tr>
 </table>
+<div class="summary-box">
+  <strong>量价拆解结论：</strong>这是典型的"以价换量"——出货量 +55%，但单位盈利 -12%、毛利率环比 -2.5pct。营收增速（+58.58%）显著高于利润增速（+14.54%），说明增量主要来自价格更低的储能与中低端车型订单。该模式在抢份额阶段有效，但若持续两个季度以上，2027 年利润预期需下修。
+</div>
 
-<div class="verdict verdict-ok">✓ L2综合判定：优秀（ROE 24.91%顶级，盈利能力和现金流均为顶级水平）</div>
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险项</th><th>严重程度</th><th>依据</th></tr>
+  <tr><td>毛利率连续三季下滑（Q1 约 24.7% → Q2 23.2% → Q3 20.7%）</td><td class="bad">🔴 高</td><td>L1 利润表 / 季报</td></tr>
+  <tr><td>CFO 同比 -23.60%，CFO/净利 0.95</td><td class="bad">🔴 高</td><td>L1 现金流量表</td></tr>
+  <tr><td>存货 1,447.70 亿（+53.15%），绝对额创高</td><td class="neutral">🟡 中</td><td>L1 资产负债表</td></tr>
+  <tr><td>短期借款 +208.43%、应付债券 527 亿，有息负债扩张快</td><td class="neutral">🟡 中</td><td>L1 资产负债表</td></tr>
+  <tr><td>合同负债 -17.40%，预收款下降</td><td class="neutral">🟡 中</td><td>L1 资产负债表</td></tr>
+  <tr><td>财务费用由 -70.16 亿收窄至 -14.47 亿，汇兑扰动</td><td class="neutral">🟡 中</td><td>L1 利润表</td></tr>
+  <tr><td>净现金约 2,410 亿，短期偿债无压力</td><td class="good">🟢 正面</td><td>L1 资产负债表</td></tr>
+  <tr><td>商誉极低，无大规模减值风险</td><td class="good">🟢 正面</td><td>L1 资产负债表</td></tr>
+  <tr><td>应付票据 +48%，对上游占款能力增强</td><td class="good">🟢 正面</td><td>L1 资产负债表</td></tr>
+  <tr><td>营收连续加速，海外与储能放量</td><td class="good">🟢 正面</td><td>L1 利润表</td></tr>
+</table>
 
 </div></div>
 
@@ -286,163 +273,120 @@
 
 <h2>四、估值分析（L3框架）</h2>
 
-<h3>4.1 当前估值水平</h3>
+<h3>4.1 当前估值</h3>
 <table>
-  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
-  <tr><td>PE（TTM）</td><td><strong>~21x</strong></td><td>历史低位（最高曾168x，中位数~45x）</td></tr>
-  <tr><td>PEG</td><td><strong>&lt; 0.5</strong></td><td>基于2026E增速</td></tr>
-  <tr><td>PB</td><td><strong>~4.5x</strong></td><td>基于每股净资产</td></tr>
-  <tr><td>PS（TTM）</td><td><strong>~3.6x</strong></td><td>市销率</td></tr>
-  <tr><td>股息率</td><td><strong>~2.4%</strong></td><td>基于50%分红率</td></tr>
-  <tr><td>EV/EBITDA</td><td><strong>~12x</strong></td><td>企业价值倍数</td></tr>
+  <tr><th>指标</th><th>当前值</th><th>历史分位</th><th>行业均值</th></tr>
+  <tr><td>股价</td><td><strong>220.41 元</strong></td><td>近三月 -45%</td><td>—</td></tr>
+  <tr><td>总市值</td><td><strong>1.02 万亿</strong></td><td>—</td><td>—</td></tr>
+  <tr><td>PE（TTM）</td><td><strong>11.6x</strong></td><td>历史 0–5% 分位（低于历史最低 15x）</td><td>数据待补充</td></tr>
+  <tr><td>PE（TTM 扣非）</td><td>12.9x</td><td>历史低位</td><td>数据待补充</td></tr>
+  <tr><td>PE（2026E）</td><td>11.2x</td><td>—</td><td>数据待补充</td></tr>
+  <tr><td>PB</td><td><strong>2.64x</strong></td><td>历史低位（BPS 83.61）</td><td>数据待补充</td></tr>
+  <tr><td>PS（TTM）</td><td>1.75x</td><td>历史低位</td><td>数据待补充</td></tr>
+  <tr><td>PCF（TTM）</td><td>8.9x</td><td>—</td><td>—</td></tr>
+  <tr><td>股息率</td><td>约 3.0%</td><td>—</td><td>—</td></tr>
 </table>
+<p style="font-size:12px;color:#999;">注：TTM 归母净利 = 722.01（FY2025）− 490.35（2025 前三季）+ 645.30（2026 前三季）= 876.96 亿；股息率按 FY2025 分红 304 亿 / 总市值测算。</p>
 
 <h3>4.2 PE Band 估值区间</h3>
-<div class="highlight-box">
-  <strong>ROE法估值参考：</strong>ROE 24.91% → 合理PE参考区间 20-30x<br>
-  <strong>2026E一致预期：</strong>EPS ≈ 13元 | 2026Q1年化EPS ≈ 14.4元（207亿×4/57.6亿股）
-</div>
 <table>
-  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>市值（万亿）</th><th>相对当前涨幅</th></tr>
-  <tr><td>极端低估</td><td>15x</td><td>195 元</td><td>~0.86</td><td class="bad">-28%</td></tr>
-  <tr><td>合理保守</td><td>20x</td><td>260 元</td><td>~1.14</td><td>-4%</td></tr>
-  <tr><td><strong>当前</strong></td><td><strong>~21x</strong></td><td><strong>~270 元</strong></td><td><strong>~1.19</strong></td><td><strong>—</strong></td></tr>
-  <tr><td>中性</td><td>25x</td><td>325 元</td><td>~1.43</td><td class="good">+20%</td></tr>
-  <tr><td>乐观</td><td>30x</td><td>390 元</td><td>~1.71</td><td class="good">+44%</td></tr>
-  <tr><td>历史中位</td><td>45x</td><td>585 元</td><td>~2.57</td><td class="good">+117%</td></tr>
-  <tr><td>历史高位</td><td>60x</td><td>780 元</td><td>~3.43</td><td class="good">+189%</td></tr>
+  <tr><th>情景</th><th>PE</th><th>对应股价</th><th>相对当前</th></tr>
+  <tr><td>悲观（2026E EPS 19.8）</td><td>10x</td><td>198 元</td><td class="bad">-10%</td></tr>
+  <tr><td>保守</td><td>12x</td><td>238 元</td><td class="neutral">+8%</td></tr>
+  <tr><td><strong>当前</strong></td><td><strong>11.2x</strong></td><td><strong>220.41 元</strong></td><td><strong>—</strong></td></tr>
+  <tr><td>中性</td><td>15x</td><td>297 元</td><td class="good">+35%</td></tr>
+  <tr><td>乐观</td><td>18x</td><td>356 元</td><td class="good">+62%</td></tr>
+  <tr><td>券商目标（交银国际 2026-07-27，已过期）</td><td>—</td><td>512 元</td><td class="good">+132%</td></tr>
+  <tr><td>历史中位（2021 泡沫期口径）</td><td>45x</td><td>891 元</td><td>不具参考性</td></tr>
 </table>
 
-<h3>4.3 历史PE区间</h3>
+<h3>4.3 历史 PE 区间</h3>
 <table>
   <tr><th>指标</th><th>数值</th></tr>
-  <tr><td>PE（TTM）历史最大值</td><td>168x（2021年高点）</td></tr>
-  <tr><td>PE（TTM）历史中位数</td><td>~45x</td></tr>
-  <tr><td>PE（TTM）历史最小值</td><td>~15x</td></tr>
-  <tr><td>当前PE（TTM）</td><td>~21x（历史15%分位以下）</td></tr>
-  <tr><td>2026E PE（一致预期）</td><td>~18x</td></tr>
+  <tr><td>PE（TTM）历史最大值</td><td>168x（2021 年高点）</td></tr>
+  <tr><td>PE（TTM）历史中位数</td><td>约 45x</td></tr>
+  <tr><td>PE（TTM）历史最小值</td><td>约 15x</td></tr>
+  <tr><td>当前 PE（TTM）</td><td><strong>11.6x（已跌破历史最小值）</strong></td></tr>
 </table>
 
-<h3>4.4 PEG & 成长性估值</h3>
-<table>
-  <tr><th>指标</th><th>数值</th><th>评价</th></tr>
-  <tr><td>PE（TTM）</td><td>~21x</td><td rowspan="3" class="good">✅ PEG < 0.5，明显低估<br>合理PEG应为1.0-1.5<br>当前严重折价</td></tr>
-  <tr><td>近3年净利润CAGR</td><td>~45%</td></tr>
-  <tr><td>PEG（PE/净利润增速）</td><td><strong>&lt; 0.5</strong></td></tr>
-</table>
-
+<h3>4.4 估值总结</h3>
 <div class="highlight-box">
-  <strong>估值总结：</strong>宁德时代当前PE ~21x处于历史最低区间（历史15%分位以下），PEG &lt; 0.5极具性价比。以ROE 24.91%对应的合理PE 20-30x匡算，当前估值处于合理偏低水平。2026Q1营收增速+52%表明公司仍处高景气周期，净利率持续提升趋势有望延续。作为全球动力电池和储能双料龙头，技术壁垒深厚、现金流极其充沛、2026H2有望受益于欧洲电动化加速，当前估值具备吸引力。主要关注点为H股稀释和行业产能过剩格局下的价格竞争。
-</div>
-
-<div class="summary-box">
-  <strong>关键估值结论：</strong><br>
-  ① PE 21x = 历史15%分位以下，安全边际充足；<br>
-  ② PEG < 0.5，成长性远未被定价；<br>
-  ③ PS 3.6x < 10x预警线，无泡沫化风险；<br>
-  ④ 合理估值中枢25-30x，对应325-390元，潜在上行空间20-44%；<br>
-  ⑤ 向下风险支撑15x（195元），极限跌幅~28%。
+  <strong>估值判断：</strong>PE TTM 11.6x、PB 2.64x 均已跌破历史最低区间，对一家 ROE 23%（年化）、营收 +56% 的全球龙头而言，估值处于<strong>明显偏低</strong>位置。但低估值是对"毛利率下行 + 单位盈利下滑"的合理定价，不是无条件的安全垫。赔率（预期总回报）在中性情景约 +35%，属"厚"；能否兑现取决于 Q4 毛利率能否止跌。若毛利率继续下行至 20% 以下，11x 也可能变成"合理"而非"便宜"。
 </div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l4"><div class="tab-inner">
 
-<h2>五、杜邦分析拆解（L4框架）</h2>
+<h2>五、杜邦分析（L4框架）</h2>
 
-<h3>5.1 杜邦拆解表</h3>
+<h3>5.1 杜邦拆解</h3>
 <table>
-  <tr><th>指标</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
-  <tr><td>净利润率</td><td>14.00%</td><td><strong>17.04%</strong></td><td class="good">⬆ 提升3.04pct</td></tr>
-  <tr><td>资产周转率</td><td>0.37</td><td><strong>0.43</strong></td><td class="good">⬆ 提升16%</td></tr>
-  <tr><td>权益乘数</td><td>—</td><td><strong>2.89</strong></td><td class="neutral">较高（负债率65.4%）</td></tr>
-  <tr><td><strong>ROE</strong></td><td><strong>~19.7%</strong></td><td><strong>24.9%</strong></td><td class="good">⬆ 大幅提升</td></tr>
-  <tr><td>去杠杆ROA（净利率×周转）</td><td>5.2%</td><td><strong>7.3%</strong></td><td class="good">⬆ 提升2.1pct</td></tr>
-  <tr><td>杠杆贡献（ROE-ROA）</td><td>14.5pct</td><td><strong>17.6pct</strong></td><td class="neutral">杠杆放大效应显著</td></tr>
+  <tr><th>指标</th><th>FY2024</th><th>FY2025</th><th>2026 前三季</th><th>判断</th></tr>
+  <tr><td>净利润率</td><td>14.00%</td><td><strong>17.04%</strong></td><td>14.59%</td><td class="bad">⬇ 回落</td></tr>
+  <tr><td>资产周转率</td><td>0.37</td><td><strong>0.43</strong></td><td>0.41（9M）</td><td class="good">高位维持</td></tr>
+  <tr><td>权益乘数</td><td>2.65</td><td>2.89</td><td>2.98</td><td class="neutral">⬆ 杠杆抬升</td></tr>
+  <tr><td><strong>ROE</strong></td><td>约 19.7%</td><td><strong>24.91%</strong></td><td>17.64%（9M 加权）</td><td class="bad">⬇ 回落</td></tr>
+  <tr><td>去杠杆 ROA</td><td>5.2%</td><td>7.3%</td><td>5.98%（9M）</td><td class="bad">⬇ 回落</td></tr>
+  <tr><td>杠杆贡献（ROE−ROA）</td><td>14.5pct</td><td>17.6pct</td><td>11.7pct</td><td class="neutral">仍高</td></tr>
 </table>
 
-<h3>5.2 杜邦五因素分解</h3>
-<table>
-  <tr><th>因素</th><th>FY2024</th><th>FY2025</th><th>变动</th><th>对ROE贡献</th></tr>
-  <tr><td>① 净利率 (a)</td><td>14.00%</td><td>17.04%</td><td class="good">+3.04pct</td><td class="good">+4.3pct</td></tr>
-  <tr><td>② 资产周转率 (b)</td><td>0.37</td><td>0.43</td><td class="good">+0.06</td><td class="good">+3.7pct</td></tr>
-  <tr><td>③ 权益乘数 (c)</td><td>~2.65</td><td>2.89</td><td class="neutral">+0.24</td><td class="neutral">+1.8pct</td></tr>
-  <tr><td>④ 营业利润率 (d)</td><td>—</td><td>~20%</td><td>—</td><td>—</td></tr>
-  <tr><td>⑤ 税收负担 (e)</td><td>—</td><td>~85%</td><td>—</td><td>—</td></tr>
-  <tr><td colspan="5" style="font-size:12px;text-align:left;color:#666">公式：ROE = d × e × b × c （营业利润率 × 税收负担 × 周转 × 杠杆）</td></tr>
-</table>
-
+<h3>5.2 赚钱模式判断</h3>
 <div class="highlight-box">
-  <strong>赚钱模式判断：高利润偏杠杆型</strong><br>
-  宁德时代净利润率17.04%优秀（行业领先），但周转率0.43偏低（重资产），权益乘数2.89偏高。去掉杠杆后ROA 7.3%，杠杆贡献了17.6pct。公司本质上是"高利润率+高杠杆"的组合——利润率高靠技术和规模优势，杠杆高是因为持续扩产。好在货币资金极度充裕，偿债无忧。<br><br>
-  <strong>值得注意的变化：</strong>净利润率从14%升至17%，周转率从0.37升至0.43，去杠杆ROA从5.2%升至7.3%——三个指标全面改善，是"增利又增效"的健康增长。
+  <strong>赚钱模式：均衡偏杠杆型。</strong>净利率 14.59%（行业领先）是主要来源，但资产周转率仅 0.41（重资产），权益乘数 2.98 偏高。去掉杠杆后 ROA 仅 5.98%（9M），ROE 17.64% 中有约 11.7pct 来自杠杆放大。本质是"高利润率 × 高周转 × 高杠杆"的制造龙头模型——利润率靠技术与规模，杠杆来自持续扩产与产业链占款。净现金 2,410 亿使其杠杆风险可控，但 ROE 对净利率高度敏感：净利率每降 1pct，ROE 约降 1.2pct。
 </div>
 
+<h3>5.3 核心结论</h3>
 <div class="summary-box">
-  <strong>核心结论：</strong><br>
-  ① ROE从~19.7%升至24.9%，净利率提升和周转率改善双轮驱动，质量高；<br>
-  ② 去掉杠杆后ROA从5.2%→7.3%，真实回报在提升，不是虚胖；<br>
-  ③ 杠杆2.89较高但货币资金远覆盖有息负债，短期风险可控；<br>
-  ④ 优秀ROE不依赖单一因子，三因子全面改善，趋势健康；<br>
-  ⑤ 关注点：资产偏重（固定资产1,500亿+在建349亿），若需求放缓可能导致周转率再次下降。
+  <strong>杜邦结论：</strong>ROE 从 FY2025 的 24.91% 回落至 9M 的 17.64%（年化约 23.5%，仍优秀），驱动力由"净利率提升 + 周转改善"双轮，转为"周转维持 + 杠杆抬升"支撑，净利率成为拖累项。趋势不健康但未恶化：周转率仍在高位（0.41），说明产能利用充分；风险在于毛利率继续下行会同时打击净利率与 ROA。跟踪净利率能否守住 14%，是判断 ROE 是否见底的核心。
 </div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l5"><div class="tab-inner">
 
-<h2>六、行业定位与特征（L5框架）</h2>
-
-<div class="summary-box">
-  <strong>行业定位：成长性行业（新能源动力电池+储能电池）</strong><br>
-  适用评分体系：<strong>非周期股评分体系</strong>（10维度·满分100）<br>
-  判定理由：行业处于渗透率快速提升阶段，宁德时代作为龙头营收持续高速增长，具备典型成长股特征。
-</div>
+<h2>六、行业分类（L5框架）</h2>
 
 <h3>6.1 行业类型判断</h3>
 <div class="summary-box">
-  <strong>行业类型：成长性行业（新能源电池-动力电池+储能）</strong><br>
-  <strong>判断依据：</strong>全球新能源汽车渗透率仍在提升（中国~40%，海外仍<20%），储能市场处于爆发初期（全球储能装机CAGR>50%）。宁德时代连续8年动力电池全球第一（市占率~37%），连续5年储能全球第一。行业核心增长驱动力：① 电动化趋势不可逆转（各国禁燃时间表）；② 储能需求爆发（风电光伏配套+电网调峰）；③ 电池成本持续下降刺激终端需求。<br><br>
-  <strong>成长属性：</strong>营收从FY2020~500亿增长到FY2025 4,237亿（5年8.5倍），ROE长期>20%，属于典型的"万亿赛道+龙头公司"组合。
+  <strong>行业类型：非周期（成长型）—— 新能源电池（动力 + 储能）。</strong>判断依据：全球新能源汽车渗透率仍在提升（中国约 40%，海外仍 &lt;20%），储能处于爆发初期；公司营收 5 年从约 500 亿增至 4,237 亿（FY2025），2026 前三季再 +56.19%，具备典型成长股特征。虽有锂价与产能周期扰动，但需求端长期向上、龙头份额稳定，按 <code>industry-classification.md</code> 归入非周期—成长型，使用非周期股评分体系。
 </div>
 
-<h3>6.2 行业集中度与壁垒</h3>
+<h3>6.2 集中度与壁垒</h3>
 <table>
-  <tr><th>维度</th><th>判断</th></tr>
-  <tr><td>行业集中度</td><td><strong>高度集中且持续提升</strong>——动力电池CR3（宁德+比亚迪+中创新航）>70%，宁德时代市占率~37%稳居第一。储能电池CR3>60%。行业正从"群雄逐鹿"进入"寡头竞争"阶段，中小厂商加速出清。</td></tr>
-  <tr><td>技术壁垒</td><td><strong>极高</strong>——宁德时代研发投入222亿（5.2%），钠离子电池、凝聚态电池、换电等前瞻技术储备深厚。专利数量行业领先，CTP/CTC等结构创新持续领先对手1-2年。</td></tr>
-  <tr><td>规模壁垒</td><td><strong>极强</strong>——全球最大电池制造商，产能规模效应带来成本优势（毛利率24.5%>行业平均）。对上游材料的议价能力极强，碳酸锂等原材料锁价能力强。</td></tr>
-  <tr><td>客户壁垒</td><td><strong>强</strong>——与宝马、奔驰、特斯拉、蔚来、理想等主流车企深度绑定，认证周期12-24个月，客户粘性高。麒麟电池等差异化产品增强不可替代性。</td></tr>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>行业集中度</td><td><strong>高度集中</strong>，动力电池 CR3（宁德+比亚迪+中创新航）&gt;70%</td><td>宁德全球份额约 37%，储能约 40%</td></tr>
+  <tr><td>技术壁垒</td><td><strong>极高</strong></td><td>研发 9M 185 亿（占营收 4.19%），麒麟/神行/钠电/凝聚态多路线领先</td></tr>
+  <tr><td>规模壁垒</td><td><strong>极强</strong></td><td>全球最大产能，单位成本领先；对上游锂/正极议价力强</td></tr>
+  <tr><td>客户壁垒</td><td><strong>强</strong></td><td>宝马/奔驰/特斯拉/蔚来/理想等深度绑定，认证周期 12–24 个月</td></tr>
+  <tr><td>渠道壁垒</td><td><strong>中</strong></td><td>以直销绑定车企为主，换电与储能 EPC 渠道在建</td></tr>
 </table>
 
-<h3>6.3 生命周期阶段</h3>
+<h3>6.3 生命周期与周期位置</h3>
 <div class="highlight-box">
-  <strong>阶段：成长期中段</strong><br>
-  动力电池行业处于"渗透率从30%向60%迈进"的成长期中段。储能行业处于"渗透率从3%向20%迈进"的成长期早期。宁德时代作为双料龙头，同时受益于两个万亿级市场的增长。<br><br>
-  <strong>投资策略重点：</strong>关注全球电动化渗透率趋势、储能业务增速（目前占比~20%且高速增长）、新技术量产进度（钠电、固态电池）、海外市场拓展（欧洲/美国建厂进度）。
+  <strong>生命周期：成长期中后段。</strong>动力电池渗透率从 30% 向 60% 迈进，储能从个位数向 20% 迈进，总量仍在增长；但行业已进入"产能充裕 + 价格竞争"阶段，增速红利正在从"量价齐升"转为"以价换量"。这不是周期顶部，而是成长股的<strong>成长斜率放缓期</strong>——估值中枢下移是结构性的，不宜简单套用 2021 年的高 PE 中枢。
 </div>
 
-<h3>6.4 成长股成色检验（四步法）</h3>
+<h3>6.4 同行对比</h3>
 <table>
-  <tr><th>步骤</th><th>检验内容</th><th>数据</th><th>判定</th></tr>
-  <tr><td>① 营收</td><td>有没有实在的生意？</td><td>营收4,237亿+17.04%，绝对额和增速均为顶级</td><td class="good">✅ 过关</td></tr>
-  <tr><td>② 毛利率</td><td>产品竞争力如何？</td><td>毛利率24.5%稳定（同比+0.06pct），行业领先</td><td class="good">✅ 过关</td></tr>
-  <tr><td>③ CFO</td><td>能不能自己造血？</td><td>CFO 1,332亿+37%，CFO/净利1.84，极其充沛</td><td class="good">✅ 过关</td></tr>
-  <tr><td>④ PS</td><td>梦想溢价多少？</td><td>PS 3.6x远低于成长股预警线10x，估值合理</td><td class="good">✅ 过关</td></tr>
+  <tr><th>指标</th><th>宁德时代</th><th>亿纬锂能</th><th>国轩高科</th><th>行业中位</th><th>评价</th></tr>
+  <tr><td>ROE（2026H1）</td><td><strong>12.08%</strong></td><td>7.24%</td><td>4.68%</td><td>7.24%</td><td class="good">高</td></tr>
+  <tr><td>毛利率（2026H1）</td><td><strong>23.93%</strong></td><td>14.31%</td><td>15.60%</td><td>15.60%</td><td class="good">高</td></tr>
+  <tr><td>净利率（2026H1）</td><td><strong>15.63%</strong></td><td>7.22%</td><td>4.99%</td><td>7.22%</td><td class="good">高</td></tr>
+  <tr><td>负债率</td><td>64.2%（9M）</td><td>63.60%</td><td>71.73%</td><td>63.60%</td><td class="neutral">中</td></tr>
+  <tr><td>营收增速（2026H1）</td><td>+54.80%</td><td><strong>+62.20%</strong></td><td>+43.22%</td><td>+54.80%</td><td class="neutral">中</td></tr>
+  <tr><td>PB</td><td>2.64x</td><td>数据待补充</td><td>数据待补充</td><td>—</td><td>—</td></tr>
+  <tr><td>PE（TTM）</td><td>11.6x</td><td>数据待补充</td><td>数据待补充</td><td>—</td><td>—</td></tr>
 </table>
+<p style="font-size:12px;color:#999;">口径提示：宁德为 2026 前三季/9M 数据，亿纬与国轩为 2026H1；国轩归母 13.86 亿中含公允价值变动等非经常性收益约 12.8 亿，扣非仅 1.07 亿，净利率可比性弱。</p>
 
 <div class="summary-box">
-  <strong>四步法结论：</strong>宁德时代全部过关——营收体量巨大且持续增长、毛利率稳定、现金流极其充沛、PS仅3.6x远低于预警线。这是"真成长股"而非"情绪成长股"的典型特征。
+  <strong>竞争位置：</strong>宁德在盈利质量上断层领先——毛利率 23.93% vs 同业 14–16%，净利率 15.63% vs 5–7%，ROE 12.08% 接近国轩的 2.6 倍。代价是增速不再是最高（亿纬 +62.20% 略快），且规模基数大、单位盈利下滑更受关注。结论：<strong>盈利能力行业第一，成长弹性排第二，属于"高质量但不再高弹性"的龙头。</strong>
 </div>
 
 <h3>6.5 估值方法匹配</h3>
-<table>
-  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
-  <tr><td>成长型（新能源电池）</td><td>PE + PEG</td><td>PS（成长阶段）、营收增速、毛利率趋势</td><td class="good">✅ 匹配——PE 21x合理偏低，PEG<0.5</td></tr>
-</table>
-
 <div class="summary-box">
-  <strong>估值方法总结：</strong>宁德时代作为高成长龙头，PE 21x+PEG<0.5的组合极具性价比。PS 3.6x验证了估值并未泡沫化。毛利率24.5%稳定+CFO/净利1.84顶级+ROE 24.91%优秀——这三个核心指标均表明公司的成长是"高质量成长"。当前估值处于历史最低区间（历史PE中位数~45x），安全边际充足。
+  <strong>估值方法：</strong>成长型 → 首选 PE + PEG，辅助 PS、营收增速与毛利率趋势。当前 PE 11.6x、PEG 约 0.4（PE / 净利增速 31.6%），PS 1.75x 远低于成长股 10x 预警线，估值方法匹配且结果偏低。需注意：当毛利率下行时，PEG 的分母（增速）会失真，应以"稳态单位盈利 × 出货量"复核利润中枢。
 </div>
 
 </div></div>
@@ -453,144 +397,141 @@
 
 <h3>7.1 六步法总结</h3>
 <div class="summary-box">
-  <strong>Step 1 - 行业定位：</strong>成长性（新能源电池），动力电池+储能双料全球第一，技术+规模壁垒极高。适用非周期股评分体系。<br>
-  <strong>Step 2 - 财务体检：</strong>ROE 24.91%优秀，高利润偏杠杆型杜邦，CFO/净利1.84现金质量顶级。非周期股评分93/100。<br>
-  <strong>Step 3 - 估值判断：</strong>PE 21x处于历史最低区间（15%分位），PEG<0.5极具性价比，PS 3.6x合理。<br>
-  <strong>Step 4 - 风险排查：</strong>负债率65.4%偏高但净现金状态，固定资产1,500亿资产偏重，H股稀释~3.5%。<br>
-  <strong>Step 5 - 结论：</strong>好公司（全球龙头+顶级现金+高ROE）+好价格（PE历史低位+PEG<0.5），强烈可买入。<br>
-  <strong>Step 6 - 跟踪：</strong>看全球电动化渗透率、储能增速、海外建厂进度、毛利率趋势、锂价走势。
+  Step 1 - 行业定位：成长型（新能源电池），CR3&gt;70%，技术+规模+客户三重壁垒。<br>
+  Step 2 - 财务体检：ROE 9M 17.64%（年化约 23.5%），均衡偏杠杆型杜邦，CFO/净利 0.95 边际走弱。<br>
+  Step 3 - 估值判断：PE TTM 11.6x、PB 2.64x，均跌破历史最低区间。<br>
+  Step 4 - 风险排查：毛利率连续三季下滑（Q3 20.7%）、单位盈利 -12%、CFO -23.60%。<br>
+  Step 5 - 结论：好公司（龙头+净现金+高 ROE），价格明显偏低但盈利质量未见底。<br>
+  Step 6 - 跟踪：Q4 单季毛利率、单位盈利、CFO/净利、储能出货占比、存货与应收增速。
+</div>
+
+<h3>前瞻状态（三轨：前瞻档，定性不打分）</h3>
+<table>
+  <tr><th style="width:26%">字段</th><th>内容</th></tr>
+  <tr><td>前瞻档位</td><td><span class="badge fwd-b">B</span> 悬置/中性但有覆盖：量增确定，单位盈利下行未止</td></tr>
+  <tr><td>风险方向与量级</td><td>双向 · 中（出货量正向 / 价格与单位盈利负向）</td></tr>
+  <tr><td>正向变量</td><td>储能出货高增、匈牙利/德国产能爬坡、钠电与凝聚态量产、海外份额提升</td></tr>
+  <tr><td>覆盖程度</td><td>中（净现金与龙头地位提供下行覆盖，但毛利率下滑侵蚀盈利覆盖）</td></tr>
+  <tr><td>验证节点</td><td>Q4 单季毛利率能否止跌于 21%（2027-01 业绩预告 / 2026 年报）</td></tr>
+  <tr><td>升档条件</td><td>Q4 单季毛利率环比回升 ≥1pct 且单位盈利同比转正；或全年 CFO/净利回补至 ≥1.1</td></tr>
+  <tr><td>降档条件</td><td>Q4 单季毛利率 &lt;20%；或 2027Q1 营收增速 &lt;30%；或全球动力电池份额跌破 34%</td></tr>
+</table>
+<div class="highlight-box">
+  <strong>档位定义：</strong>S=前瞻有利且已被验证；A=前瞻有利、方向确定；B=悬置/中性但有覆盖；C=方向确定不利但未完全定价；D=风险已实质化、覆盖被突破。
+</div>
+
+<h3>投资评级（三轨：评级）</h3>
+<div class="rating-card">
+  <span class="badge rating-outperform">Outperform</span>
+  　矩阵落点：财务高（81）× 前瞻 B × 赔率厚（中性 +35%）
+</div>
+<div class="summary-box">
+  <strong>为什么不是更高一档：</strong>Buy 要求前瞻 S/A，而当前单位盈利仍在下行（Q2 约 0.097 元/Wh，-12%），毛利率连续三季下滑且 Q3 未见拐点，方向尚未确认。赔率虽厚，但"便宜"来自盈利预期下修，不是来自市场忽略。<br><br>
+  <strong>上调条件：</strong>Q4 单季毛利率环比 +1pct 以上且 2027Q1 单位盈利同比转正 → 前瞻升至 A → Buy；或股价回落至 190 元以下而毛利率止跌（赔率进一步走厚）。<br><br>
+  <strong>下调条件：</strong>Q4 单季毛利率 &lt;20%，或 2026 全年 CFO/净利 &lt;0.8 → 前瞻降至 C → Neutral；若同时 2027Q1 营收增速 &lt;20%，则降至 Underperform。
 </div>
 
 <h3>7.2 好公司三要素检查</h3>
 <table>
   <tr><th>要素</th><th>判断</th><th>依据</th></tr>
-  <tr><td>① 好行业</td><td class="good">✓</td><td>新能源+储能双万亿赛道，渗透率仍有翻倍空间，格局清晰龙头稳固</td></tr>
-  <tr><td>② 好公司</td><td class="good">✓</td><td>ROE 24.91%>15%，毛利率24.5%稳定，CFO/净利1.84>1，全球市占率37%</td></tr>
-  <tr><td>③ 好价格</td><td class="good">✓</td><td>PE 21x在历史底部（中位45x），PEG<0.5<1.5，PS 3.6x合理</td></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>动力+储能双万亿赛道，CR3&gt;70%，渗透率仍有空间</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓</td><td>ROE 17.64%（9M）、毛利率 22.72% 行业第一、净现金 2,410 亿</td></tr>
+  <tr><td>③ 好价格</td><td class="good">✓</td><td>PE 11.6x 跌破历史最低 15x，PB 2.64x，PEG 约 0.4</td></tr>
 </table>
 
-<h3>7.3 三个陷阱排查</h3>
-<div class="highlight-box">
-  <strong>☐ 价值陷阱：</strong>❌ 未命中——低PE（21x）但高ROE（24.9%）+高增长（+17%营收/+42%净利），非价值陷阱。<br>
-  <strong>☐ 周期陷阱：</strong>❌ 未命中——锂电池虽受原材料价格周期影响，但宁德作为龙头可通过技术和规模优势平滑周期。按非周期股评分体系评估。<br>
-  <strong>☐ 烧钱陷阱：</strong>❌ 未命中——CFO 1,332亿>>净利722亿，FCF超千亿，完全不烧钱。
+<h3>7.3 风险评估</h3>
+<div class="danger-box">
+  ☐ 价值陷阱（低PE+低增长+高负债）→ <strong>未命中</strong>：PE 低但营收 +56%、净利 +32%，负债率虽 64% 但净现金 2,410 亿<br>
+  ☐ 周期陷阱（低PE+周期顶点）→ <strong>未命中</strong>：非周期成长框架，且当前是毛利率下行而非盈利顶点<br>
+  ☐ 烧钱陷阱（高PE+高增速+负现金流）→ <strong>未命中</strong>：CFO 616 亿、FCF +194.58 亿，自我造血
 </div>
 
-<h3>7.4 管理层评估 — 曾毓群团队</h3>
+<h4>管理层与治理</h4>
 <table>
-  <tr><th style="width:22%">评估维度</th><th>评价</th></tr>
-  <tr><td>创始人背景</td><td>曾毓群（Robin Zeng），中科院物理所博士，全球电池行业领军人物。2025年福布斯中国最佳CEO之一。技术出身+商业嗅觉兼具，主导公司从ATL到CATL的战略转型。</td></tr>
-  <tr><td>管理团队稳定性</td><td><strong>高度稳定。</strong>核心高管团队（曾毓群/董事长、周佳/副董事长、李平/副董事长、蒋理/董秘等）共事超过10年，战略执行力极强。公司在全球动力电池领域连续8年第一，证明管理层战略判断和执行能力。</td></tr>
-  <tr><td>股权激励</td><td>公司持续实施股权激励计划，覆盖核心技术和管理人员。2025年分红304亿（分红率50%），股东回报意识强。曾毓群持股~23%，利益深度绑定。</td></tr>
-  <tr><td>战略眼光</td><td><strong>前瞻性强。</strong>① 2011年率先布局动力电池，精准卡位新能源风口；② 2018年上市后迅速扩产，构建规模壁垒；③ 2020年切入储能赛道，如今储能已成为第二增长曲线（营收占比~20%）；④ 钠离子电池、凝聚态电池、换电等前瞻技术布局领先行业1-2年；⑤ 海外建厂（德国/匈牙利）推进全球化战略。</td></tr>
-  <tr><td>治理风险</td><td>① 曾毓群持股~23%，股权相对集中，但不存在一股独大问题；② H股上市后信息披露标准提升，治理透明度增强；③ 关联交易（与ATL等）金额有限，风险可控。</td></tr>
-  <tr><td>综合评估</td><td class="good"><strong>A级管理层</strong>——技术背景深厚、战略方向正确、执行力强、利益绑定良好。是中国制造业少有的世界级管理团队。</td></tr>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力与履历</td><td class="good">好</td><td>曾毓群技术出身，连续 8 年动力电池全球第一</td></tr>
+  <tr><td>股权结构与利益一致性</td><td class="good">强</td><td>创始人持股约 23%（含间接，历史参考），核心团队稳定 10 年+</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td class="good">无</td><td>无重大监管处罚与诉讼暴雷</td></tr>
+  <tr><td>资本配置记录</td><td class="good">合理</td><td>分红率约 50%，累计派现 991.24 亿，近三年 900.19 亿</td></tr>
+  <tr><td>管理层增减持记录</td><td class="neutral">需关注</td><td>近一年无大额集中减持公告，数据待补充完整</td></tr>
+  <tr><td>CEO 交接/关键人员变动</td><td class="good">无风险</td><td>核心高管团队稳定</td></tr>
 </table>
 
-<h3>7.5 盈利可持续性分析</h3>
-
-<h4>7.5.1 锂价影响</h4>
+<h4>盈利可持续性</h4>
 <table>
-  <tr><th>场景</th><th>碳酸锂价格</th><th>对宁德的影响</th><th>历史参考</th></tr>
-  <tr><td>2022年高峰</td><td>~60万/吨</td><td>毛利率承压（最低~20%），但公司通过长协锁价和向下游传导成本</td><td>净利仍增长</td></tr>
-  <tr><td>2025年均价</td><td>~8-10万/吨</td><td class="good">利好——锂价低位稳定，毛利率从22%修复至24.5%</td><td>净利率从14%升至17%</td></tr>
-  <tr><td>2026E预期</td><td>~7-9万/吨</td><td class="good">维持低位稳定，成本端压力持续缓解</td><td>毛利率有望维持或小幅改善</td></tr>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是靠价？</td><td class="good">量驱动</td><td>Q2 出货 +55%，单位盈利 -12%，营收 +58.58%</td></tr>
+  <tr><td>涨价能否持续？</td><td class="bad">不能</td><td>行业产能充裕，价格战下只能以价换量</td></tr>
+  <tr><td>非经常性利润占比</td><td class="neutral">中</td><td>9M 非经常性 66.54 亿，占归母 10.3%；Q3 单季 11.2%</td></tr>
+  <tr><td>大客户/大项目集中度</td><td class="neutral">集中</td><td>头部车企与储能大客户占比高，数据待补充</td></tr>
+  <tr><td>政策/监管依赖度</td><td class="neutral">中</td><td>依赖新能源补贴与海外准入政策，欧洲本地化对冲</td></tr>
+</table>
+
+<h4>关键变量敏感性</h4>
+<table>
+  <tr><th>变量</th><th>乐观</th><th>中性</th><th>悲观</th></tr>
+  <tr><td>Q4 单季毛利率</td><td>环比 +1.5pct → 22% → EPS 上修约 5%</td><td>环比持平 20.7% → EPS 持平</td><td>环比 -1.5pct → 19.2% → EPS 下修约 6%</td></tr>
+  <tr><td>储能出货占比</td><td>&gt;25% 且毛利率企稳 → 结构改善</td><td>约 20% → 中性</td><td>&lt;18% 且继续降价 → 毛利再压 1pct</td></tr>
+  <tr><td>碳酸锂价格</td><td>&lt;7 万/吨 → 成本红利</td><td>7–9 万/吨 → 中性</td><td>&gt;15 万/吨 → 毛利率 -2pct</td></tr>
+</table>
+
+<h3>7.4 前景展望</h3>
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. 储能与海外放量 — 全球储能装机高增，匈牙利/德国产能爬坡，海外毛利率高于国内；<br>
+  2. 估值极低 — PE 11.6x 跌破历史最低，任何毛利率企稳信号都会带来估值修复；<br>
+  3. 技术与成本领先 — 钠电、凝聚态、神行多路线储备，单位成本低于同业。<br><br>
+  <strong>负向拖累：</strong><br>
+  1. 价格战 — 行业产能充裕，单位盈利从 0.11 元/Wh 降至 0.097 元/Wh，仍未见底；<br>
+  2. 营运资本扩张 — 应收 +47.78%、存货 +53.15%，CFO/净利跌破 1.0；<br>
+  3. 高基数 — 2027 年营收增速大概率回落至 20–30%，估值中枢难回 2021 年水平。
+</div>
+
+<h4>三情景简表</h4>
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>EPS 预估</th><th>PE 区间</th><th>预期回报</th></tr>
+  <tr><td class="good">乐观（25%）</td><td>Q4 毛利率止跌回升，2027 储能+海外超预期</td><td>23.5 元（2027E）</td><td>18x</td><td class="good">+92%</td></tr>
+  <tr><td class="neutral">中性（50%）</td><td>毛利率在 20–21% 企稳，量增延续</td><td>19.8 元（2026E）</td><td>15x</td><td class="good">+35%</td></tr>
+  <tr><td class="bad">悲观（25%）</td><td>价格战延续，毛利率跌破 20%</td><td>18.5 元（2026E）</td><td>11x</td><td class="bad">-7%</td></tr>
+</table>
+<p style="font-size:12px;color:#999;">概率加权预期总回报约 +39%（0.25×92% + 0.50×35% + 0.25×(-7%)），对应赔率"厚"。</p>
+
+<h3>7.5 资金面信号</h3>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>北向资金持股变动</td><td class="good">增持</td><td>香港中央结算持股 8.94 亿股（6/30），较上期 +1.33 亿股</td></tr>
+  <tr><td>机构持仓变动</td><td class="neutral">稳定/部分退出</td><td>易方达创业板 ETF 退出十大流通股东；9/30 其他机构持股 49.89%</td></tr>
+  <tr><td>融资余额变动</td><td class="neutral">高位</td><td>221.32 亿（10/21），占流通市值 2.28%，超近一年 50% 分位</td></tr>
+  <tr><td>融券余额</td><td class="bad">高位</td><td>4.01 亿（10/19），超近一年 90% 分位，多空分歧大</td></tr>
+  <tr><td>大股东增减持</td><td class="neutral">无重大公告</td><td>数据待补充完整</td></tr>
+  <tr><td>大宗交易</td><td class="neutral">零溢价</td><td>10/21 227.90 元成交 3 万股，买卖方均为机构专用</td></tr>
+  <tr><td>股东户数</td><td class="bad">分散</td><td>27.00 万户（6/30），较上期 +32.04%，筹码分散</td></tr>
 </table>
 <div class="summary-box">
-  <strong>锂价影响结论：</strong>宁德时代作为全球最大电池制造商，对上游议价能力极强。锂价从60万/吨高点回落至8万/吨区间大幅改善了公司盈利质量。当前锂价处于合理低位，若锂价进一步下行，宁德毛利率仍有上行空间。但若锂价大幅反弹（>20万/吨），会阶段性压缩毛利。整体看锂价影响已趋于弱化——公司通过以下方式对冲：① 长协锁价（覆盖~60%需求）；② 布局上游锂矿（参股/包销）；③ 向下游客户传导成本（议价权强）。
+  <strong>资金面判断：</strong>分歧明显——北向在增持，融资余额处高位且 10/21 逆势净买入 0.33 亿，但融券余额处 90% 分位、股东户数 +32% 显示散户化与做空力量同步上升。10/21 单日 -12.03%、10/22 再 -3.29%，两日 -15%，是业绩预期下修的资金投票。资金面偏中性，尚不构成趋势性支撑。
 </div>
 
-<h4>7.5.2 技术路线风险</h4>
-<table>
-  <tr><th>技术路线</th><th>对宁德的影响</th><th>应对措施</th></tr>
-  <tr><td>磷酸铁锂（LFP）</td><td class="good">✅ 主力技术，全球市占率~40%。成本优势显著，续航突破（麒麟电池CLTC 1000km+）</td><td>持续优化CTP 3.0/4.0技术，保持LFP领先地位</td></tr>
-  <tr><td>三元锂（NCM/NCA）</td><td class="good">✅ 宁德在高端三元领域技术领先（NCM 9系），高镍方向储备深厚</td><td>配合高端车型需求，提供差异化方案</td></tr>
-  <tr><td>钠离子电池</td><td class="good">✅ 宁德2023年率先量产，能量密度160Wh/kg持续提升。用于储能+低端电动车，成本比LFP低30%</td><td>已量产并导入储能/低速车市场，技术储备领先</td></tr>
-  <tr><td>凝聚态电池</td><td class="good">✅ 半固态路线，能量密度500Wh/kg。2024年已小批量供货航空场景</td><td>航空级应用率先落地，逐步向高端车渗透</td></tr>
-  <tr><td>全固态电池</td><td class="neutral">⚠ 长期颠覆性风险。预计2030年前难以大规模量产</td><td>宁德已布局硫化物/氧化物/聚合物三条路线，研发投入持续加大。预计2027-2028年小批量量产</td></tr>
-</table>
-<div class="highlight-box">
-  <strong>技术路线结论：</strong>宁德时代在LFP、三元、钠离子、凝聚态四条路线均处行业领先地位。全固态电池是长期（2030+）潜在颠覆性风险，但公司已全面布局。中短期内（3-5年），钠离子+凝聚态将构成新的增长极，技术路线被颠覆风险较低。
-</div>
-
-<h4>7.5.3 市占率趋势</h4>
-<table>
-  <tr><th>市场</th><th>2023</th><th>2024</th><th>2025</th><th>趋势</th></tr>
-  <tr><td>全球动力电池</td><td>36.8%</td><td>~37%</td><td>~37%</td><td class="good">✅ 稳中有升</td></tr>
-  <tr><td>中国动力电池</td><td>43.1%</td><td>~45%</td><td>~45%</td><td class="good">✅ 稳居第一</td></tr>
-  <tr><td>全球储能电池</td><td>~35%</td><td>~38%</td><td>~40%</td><td class="good">✅ 持续提升</td></tr>
-  <tr><td>海外动力电池（不含中国）</td><td>~27%</td><td>~30%</td><td>~32%</td><td class="good">✅ 持续提升</td></tr>
-</table>
-<div class="summary-box">
-  <strong>市占率结论：</strong>宁德时代全球市占率保持~37%且稳中有升，并未因行业产能过剩而丢失份额。相反，行业洗牌加速出清中小厂商，龙头地位进一步巩固。海外市场（欧洲/美国）市占率持续提升，海外建厂（匈牙利100GWh+德国14GWh）将支撑海外份额继续增长。储能市占率从35%提升至40%，第二增长曲线强劲。
-</div>
-
-<h3>7.6 变量敏感性分析</h3>
-
-<h4>7.6.1 碳酸锂价格敏感性</h4>
-<table>
-  <tr><th>情境</th><th>锂价假设</th><th>毛利率影响</th><th>净利影响</th><th>概率</th></tr>
-  <tr><td class="good">基准（当前）</td><td>7-9万/吨</td><td>24-25%</td><td>720-750亿</td><td class="good">高</td></tr>
-  <tr><td class="neutral">锂价温和回升</td><td>12-15万/吨</td><td>22-23%（-2pct）</td><td>650-700亿（-5~10%）</td><td class="neutral">中</td></tr>
-  <tr><td class="bad">锂价飙升</td><td>>25万/吨</td><td><20%（-4pct+）</td><td>550-600亿（-15~20%）</td><td class="bad">低</td></tr>
-  <tr><td class="good">锂价继续下行</td><td><7万/吨</td><td>25-26%（+1pct）</td><td>750-800亿（+5~10%）</td><td class="neutral">中</td></tr>
-</table>
-
-<h4>7.6.2 固态电池颠覆风险敏感性</h4>
-<table>
-  <tr><th>情境</th><th>时间线</th><th>对宁德影响</th><th>概率</th></tr>
-  <tr><td class="good">宁德主导固态路线</td><td>2027-2028小批量</td><td>技术领先延续，估值重塑（龙头溢价）</td><td class="good">高</td></tr>
-  <tr><td class="neutral">技术并行发展</td><td>2028-2030</td><td>多条技术路线共存，宁德份额小幅下滑但绝对规模仍大</td><td class="neutral">中</td></tr>
-  <tr><td class="bad">竞争对手（如丰田/QuantumScape）率先量产</td><td>2027前</td><td class="bad">技术路线颠覆，宁德面临产能转型压力，估值受冲击</td><td class="bad">低</td></tr>
-  <tr><td class="good">全固态量产慢于预期</td><td>>2032</td><td>宁德LFP/钠电优势期延长（最有利情景）</td><td class="neutral">中高</td></tr>
-</table>
-
-<h4>7.6.3 海外政策风险敏感性</h4>
-<table>
-  <tr><th>情境</th><th>影响机制</th><th>对宁德影响</th><th>概率</th></tr>
-  <tr><td class="neutral">美国对华电池关税维持</td><td>宁德需通过技术授权（如福特模式）进入美国市场</td><td>利润分成减少，但仍有渠道。美国市场中期占比~5-10%</td><td class="good">高（已定价）</td></tr>
-  <tr><td class="bad">美国全面禁止中国电池</td><td>宁德彻底失去美国市场</td><td class="bad">营收影响~10%，但储能+欧洲可部分对冲</td><td class="bad">低</td></tr>
-  <tr><td class="good">欧洲电动化加速（2026-2027碳排放新规）</td><td>欧洲需求爆发，宁德匈牙利工厂直接受益</td><td class="good">利好最大——欧洲占全球~25%市场，宁德市占率有望从32%提升至40%+</td><td class="good">中高</td></tr>
-  <tr><td class="neutral">欧盟对中国电池加征关税</td><td>宁德需加速欧洲本地化生产</td><td>匈牙利/德国工厂可规避关税，但需要时间和资本投入</td><td class="neutral">中</td></tr>
-</table>
-
-<h4>7.6.4 综合敏感性评分</h4>
-<table>
-  <tr><th>变量</th><th>方向</th><th>影响程度</th><th>概率</th><th>综合关注度</th></tr>
-  <tr><td>锂价走势</td><td class="good">利好方向（低位稳定）</td><td class="neutral">中等</td><td class="good">高</td><td class="neutral">⭐⭐⭐ 持续跟踪</td></tr>
-  <tr><td>固态电池技术路线</td><td class="neutral">中性偏利好</td><td class="bad">大（长期）</td><td class="bad">低</td><td class="neutral">⭐⭐⭐ 长期关注</td></tr>
-  <tr><td>海外政策（美国/欧盟）</td><td class="neutral">中性偏空</td><td class="neutral">中</td><td class="neutral">中</td><td class="neutral">⭐⭐⭐⭐ 重点跟踪</td></tr>
-  <tr><td>全球电动化渗透率</td><td class="good">利好</td><td class="bad">大</td><td class="good">高</td><td class="good">⭐⭐⭐⭐⭐ 最核心变量</td></tr>
-  <tr><td>储能业务增速</td><td class="good">利好</td><td class="neutral">中</td><td class="good">高</td><td class="good">⭐⭐⭐⭐ 第二增长曲线</td></tr>
-</table>
-
-<h3>7.7 讨论问题</h3>
+<h3>7.6 讨论问题</h3>
 <div class="summary-box">
   <strong>讨论问题（阅读后可以聊这些）：</strong><br>
-  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——挖锂做电池卖给车企和储能电站——全球动力电池37%市占率，靠规模优势（成本比对手低10-20%）+技术领先（CTP/钠离子/凝聚态）赚钱。<br>
-  2. 你最大的担忧是什么？哪个数据让你睡不着？——全球电动化渗透率能不能继续提升？储能增速会不会放缓？海外建厂（匈牙利/美国）的政治风险？固态电池会不会颠覆现有技术路线？<br>
-  3. 如果现在买入，期待的回报来源是什么？——全球电动化渗透率从~40%到70%+的长期趋势 + 储能第二增长曲线爆发 + PE从21x（历史底部）修复到35x（中值）的估值回归。<br>
-  4. 什么情况下你会坚决卖出？——全球电动化趋势逆转 / 市占率跌破30% / 毛利率连续下滑跌破20% / 应收账款坏账大规模爆发。
-</div>
-
-<h3>7.8 L6 核心结论</h3>
-<div class="verdict verdict-ok">宁德时代（300750）— 品质优秀（93/100）— 好公司+好价格</div>
-<div class="highlight-box">
-  <strong>最终结论：</strong>宁德时代作为全球动力电池和储能双料冠军，ROE 24.91%、CFO 1,332亿、营收增长17%、净利率持续提升至17%，在非周期股10维度评分中获93/100（顶级）。当前PE 21x处于历史15%分位以下，PEG<0.5，具备极佳性价比。核心关注点是全球电动化渗透率趋势能否持续、储能第二曲线增速、海外政策风险以及固态电池技术路线演变。整体而言，公司基本面极其扎实，估值安全边际充足，是A股市场中稀有的"高品质+低估值"标的。
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？—— 造电池卖给车企与储能电站，靠 37% 全球份额的规模成本优势 + 技术领先赚制造利润。<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？—— 毛利率连续三季下滑、Q3 单季只剩 20.7%，以价换量还能撑多久？单位盈利何时见底？<br>
+  3. 如果现在买入，期待的回报来源是什么？—— 估值从 11.6x 修复到 15x 的均值回归 + 储能/海外放量的量增，而非毛利率扩张。<br>
+  4. 什么情况下你会坚决卖出？—— Q4 毛利率跌破 20%、CFO/净利跌破 0.8、全球份额跌破 34%、或 2027 营收增速跌破 20%。
 </div>
 
 </div></div>
 
 <div class="footer">
   免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
-  数据来源：宁德时代2025年年报、2026Q1季报、券商研报、理杏仁 | 分析日期：2026-07-14
+  数据来源：宁德时代 2025 年报、2026 年三季报、交银国际/国金证券研报、同花顺、东方财富、Investing.com、金融界 | 分析日期：2026-10-22
 </div>
 
 </div>
 
 <script>
 (function() {
-  var btns = document.querySelectorAll('.tab-btn');
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
   var contents = document.querySelectorAll('.tab-content');
   btns.forEach(function(btn) {
     btn.addEventListener('click', function() {
