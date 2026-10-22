@@ -51,6 +51,22 @@
   .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
   .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
   .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .score-note { font-size: 13px; color: #666; background: #fafafa; border: 1px dashed #ccc; padding: 8px 12px; margin: 10px 0; }
+  .history-table td:first-child { white-space: nowrap; }
+  .badge { display: inline-block; padding: 1px 9px; border-radius: 4px; font-size: 12px; font-weight: 700; white-space: nowrap; }
+  .fwd-s { background: #e8f5e9; color: #1b5e20; border: 1px solid #1b5e20; }
+  .fwd-a { background: #f1f8e9; color: #558b2f; border: 1px solid #7cb342; }
+  .fwd-b { background: #fffde7; color: #f9a825; border: 1px solid #fdd835; }
+  .fwd-c { background: #fff3e0; color: #e65100; border: 1px solid #fb8c00; }
+  .fwd-d { background: #fde8e8; color: #c0392b; border: 1px solid #c0392b; }
+  .rating-buy { background: #e8f5e9; color: #1b5e20; border: 1px solid #1b5e20; }
+  .rating-outperform { background: #f1f8e9; color: #558b2f; border: 1px solid #7cb342; }
+  .rating-neutral { background: #eeeeee; color: #616161; border: 1px solid #bbbbbb; }
+  .rating-underperform { background: #fff3e0; color: #e65100; border: 1px solid #fb8c00; }
+  .rating-sell { background: #fde8e8; color: #c0392b; border: 1px solid #c0392b; }
+  .track-card td { text-align: left; }
+  .track-card td:first-child { width: 34%; font-weight: 600; background: #f5f5f5; }
+  .rating-card { text-align: center; font-size: 17px; font-weight: bold; padding: 16px; margin: 14px 0; border-radius: 8px; background: #fafafa; border: 1px solid #e0e0e0; }
   .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
   ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
   li { margin-bottom: 4px; }
@@ -61,7 +77,7 @@
 
 <h1>北京文化（000802）财务分析报告</h1>
 <p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
-<p class="meta">分析日期：2026-07-14 | 数据来源：FY2025 年报 + 2026Q1 季报 | 行业定位：<strong>特殊行业（影视传媒，项目制+情绪驱动）</strong> — 采用非周期股评分体系</p>
+<p class="meta">分析日期：2026-10-22 | 数据来源：2025年报 + 2026半年报 + 2026一季报 + 同花顺/淘股吧/界面新闻（股价截至 2026-10-21 收盘）</p>
 
 <div class="tab-bar">
   <button class="tab-btn active" data-tab="summary">总结论</button>
@@ -75,105 +91,128 @@
 
 <div class="tab-content active" id="tab-summary"><div class="tab-inner">
 
+<!-- TRACK fwd=C rating=Underperform node=2026营收守3亿 -->
+
+<h2>三轨摘要</h2>
+<table class="track-card">
+  <tr><td>框架类型</td><td>成长/品质型（特殊行业·项目制影视，非周期；与 L5 分类一致）</td></tr>
+  <tr><td>财务品质分</td><td>14/100（不及格）</td></tr>
+  <tr><td>前瞻档位</td><td><span class="badge fwd-c">C</span> 方向确定不利：2026 营收恐跌破 3 亿触发 *ST，但《封神3》期权尚未完全定价</td></tr>
+  <tr><td>投资评级</td><td><span class="badge rating-underperform">Underperform</span></td></tr>
+  <tr><td>一句话结论</td><td>Underperform：主业已空心化（2026H1 电影收入仅 21 万元、演艺毛利 2.5%），叠加 2026 全年营收恐跌破 3 亿元触发退市风险警示；当前 4.65x PB 本质是在为 2027 春节档《封神3》期权付费。2026 年报营收守住 3 亿且亏损收窄至 2 亿内可升 Neutral，确认 *ST 则降 Sell。</td></tr>
+</table>
+
 <h2>一、公司基本画像</h2>
 <table>
   <tr><th style="width:30%">项目</th><th>内容</th></tr>
   <tr><td>公司名称</td><td>北京京西文化旅游股份有限公司</td></tr>
-  <tr><td>股票代码</td><td>000802.SZ</td></tr>
-  <tr><td>所属行业</td><td>影视院线（电影+电视剧+艺人经纪）</td></tr>
-  <tr><td>行业定位</td><td>特殊行业（影视传媒——项目制+情绪驱动），选用非周期股评分体系但需做行业特殊说明</td></tr>
-  <tr><td>行业地位</td><td>国内知名影视制作公司，曾出品《战狼2》《流浪地球》《我不是药神》《你好李焕英》《封神》系列</td></tr>
-  <tr><td>FY2025 营收</td><td><strong>3.32 亿（+4.81%）</strong></td></tr>
-  <tr><td>FY2025 归母净利润</td><td class="bad"><strong>-4.07 亿（亏损扩大161.65%）</strong></td></tr>
-  <tr><td>FY2025 经营现金流</td><td><strong>1.21 亿</strong></td></tr>
-  <tr><td>总资产</td><td>17.75 亿（同比-33.3%持续缩水）</td></tr>
-  <tr><td>归母净资产</td><td>6.02 亿（同比-43.4%）</td></tr>
-  <tr><td>ROE</td><td class="bad">-64.53%</td></tr>
+  <tr><td>股票代码</td><td>000802.SZ（深交所主板）</td></tr>
+  <tr><td>所属行业</td><td>广播、电视、电影和录音制作业（影视传媒）</td></tr>
+  <tr><td>行业地位</td><td>中小型项目制影视公司；《封神》系列主投主控方，无实际控制人</td></tr>
+  <tr><td>FY 营收（2025）</td><td>3.32 亿元（+4.81%）</td></tr>
+  <tr><td>归母净利润（2025）</td><td>-4.07 亿元（亏损扩大 161.65%）</td></tr>
+  <tr><td>经营现金流（2025）</td><td>+1.21 亿元（+154.96%）</td></tr>
+  <tr><td>总资产（2026-06-30）</td><td>16.31 亿元（较年初 -8.11%）</td></tr>
+  <tr><td>归母净资产（2026-06-30）</td><td>5.92 亿元（较年初 -6.21%），每股净资产 0.83 元</td></tr>
+  <tr><td>ROE（2026H1）</td><td>-6.41%（2025 全年 -46.21%）</td></tr>
 </table>
 
-<h2>综合评分（非周期股评分体系·10维度·100分）</h2>
-<p style="font-size:13px;color:#666;margin-bottom:8px"><strong>评分体系说明：</strong>北京文化属于特殊行业（影视传媒，项目制+情绪驱动），标准非周期股评分体系对亏损的影视公司评分偏低属正常现象。影视公司业绩波动大（项目制），标准评分可能不理想，需结合L5行业特殊说明综合判断。以下评分严格按非周期股10维度框架执行。</p>
+<p class="score-note"><strong>评分口径说明：</strong><span>沿用非周期体系；口径更新至2026H1，营收-38%但减亏，8→14</span></p>
+
+<h2>综合评分（百分制）</h2>
 <table>
   <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
-  <tr><td>ROE（15分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">-64.53%，严重亏损</td></tr>
-  <tr><td>杜邦驱动质量（5分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">亏损状态，全靠杠杆且利润差，杜邦拆解无意义</td></tr>
-  <tr><td>利润含金量 CFO/净利（15分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">CFO为正但净利润为负，亏损状态下指标失效</td></tr>
-  <tr><td>营收增长（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">+4.81% ≥ 0%但<5%，低增长</td></tr>
-  <tr><td>利润增长（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">从-1.56亿扩大至-4.07亿，亏损加深</td></tr>
-  <tr><td>负债率（10分）</td><td class="neutral" style="font-weight:bold;font-size:15px">4</td><td style="text-align:left">66.08% < 70%，偏高但有息负债结构尚可</td></tr>
-  <tr><td>短期偿债（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">货币资金1.25亿 vs 短期借款~3亿，缺口极大</td></tr>
-  <tr><td>毛利率水平与趋势（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">~-10%持续为负，无定价权</td></tr>
-  <tr><td>估值 PE vs 合理区间（10分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">PE为负无意义；PB 4.5x对净资产持续缩水的影视公司严重偏高</td></tr>
-  <tr><td>自由现金流 FCF（5分）</td><td class="bad" style="font-weight:bold;font-size:15px">0</td><td style="text-align:left">持续为负（FY2025 CFO虽转正但整体历史为负）</td></tr>
-  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px" class="bad">8/100</td><td style="text-align:left">不及格（8/100分）</td></tr>
+  <tr><td>ROE</td><td class="bad">0</td><td>2026H1 加权 ROE -6.41%，2025 全年 -46.21%，远低于 5% 门槛</td></tr>
+  <tr><td>杜邦驱动质量</td><td class="bad">0</td><td>净利率 -40.2%，2.79 倍权益乘数只放大亏损，属"全靠杠杆且利润差"</td></tr>
+  <tr><td>利润含金量（CFO/净利）</td><td class="bad">0</td><td>CFO -0.28 亿、净利 -0.39 亿，双负比率无意义；销售回款同比大幅减少</td></tr>
+  <tr><td>营收增长</td><td class="bad">0</td><td>2026H1 营收 0.97 亿，同比 -38.22%（上年同期有电影收入高基数）</td></tr>
+  <tr><td>利润增长</td><td class="good">10</td><td>归母 -0.39 亿 vs 上年 -2.33 亿，同比减亏 83.15%（按增速口径给满，绝对额仍亏损）</td></tr>
+  <tr><td>负债率</td><td class="neutral">4</td><td>资产负债率 65.49%，较年初 +1.0pct，落在 55%-70% 区间</td></tr>
+  <tr><td>短期偿债</td><td class="bad">0</td><td>货币资金 0.25 亿 vs 短期借款 1.95 亿，缺口 1.71 亿（缺口率 87%）</td></tr>
+  <tr><td>毛利率水平与趋势</td><td class="bad">0</td><td>2026H1 毛利率仅 1.47%（上年同期 -126.14%），电影业务毛利率 -410.68%</td></tr>
+  <tr><td>估值（PE vs 合理区间）</td><td class="bad">0</td><td>亏损无 PE；PB 4.65x、PS 10.1x，对一个净资产 5.9 亿、连续亏损的公司严重偏高</td></tr>
+  <tr><td>FCF</td><td class="bad">0</td><td>2026H1 CFO -0.28 亿，资本开支虽小但自由现金流为负，靠消耗现金与举债维持</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">14/100</td><td style="text-align:left">不及格：仅"减亏"与"负债率未破 70%"两项得分，盈利、现金流、偿债、估值全线失分</td></tr>
 </table>
 
-<div class="verdict verdict-bad">不及格（8/100分）——严重亏损，基本面极差</div>
+<div class="verdict verdict-bad">不及格（14/100分）</div>
 <h2 style="margin-top:16px">评分沿革</h2>
 <style>.history-table{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:13px}.history-table th,.history-table td{border:1px solid #ddd;padding:6px 8px;text-align:center}.history-table th{background:#f0f0f0;font-weight:bold}.history-table td.good{color:#27ae60}.history-table td.neutral{color:#e67e22}.history-table td.bad{color:#c0392b}</style><table class="history-table">
   <tr><th>日期</th><th>评分</th><th>评分体系</th><th>变化原因</th></tr>
   <tr><td>2026-07-14</td><td class="bad" style="font-weight:bold">8/100</td><td>特殊行业</td><td style="text-align:left">—</td></tr>
+  <tr><td>2026-10-22</td><td class="bad" style="font-weight:bold">14/100</td><td>特殊行业</td><td style="text-align:left">沿用非周期体系；口径更新至2026H1，营收-38%但减亏，8→14</td></tr>
 </table>
 
 <div class="summary-box">
-  <strong>综合诊断：</strong>北京文化是一家以电影投资制作为核心的影视文化公司，历史上曾出品多部爆款影片（《战狼2》《流浪地球》《你好李焕英》），但公司经营极不稳定，FY2025年度亏损-4.07亿，连续多年亏损。核心问题在于"项目制"商业模式——每部电影独立核算，爆款可遇不可求，公司已连续遭遇《封神第二部》票房不及预期等重大失利。总资产从26.61亿缩水至17.75亿，净资产从10.64亿降至6.02亿，偿债能力恶化。<br><br>
-  <strong>核心优势：</strong>① 历史上具备爆款制作能力，品牌知名度和行业资源仍在；② 影视IP储备丰富（封神系列等），若内容质量提升有望扭亏；③ FY2026Q1亏损大幅收窄（-2061万 vs -2.18亿），边际改善；④ 股东青岛海发、富德生命人寿提供一定资本支撑。<br><br>
-  <strong>核心风险：</strong>① 连续亏损导致净资产持续缩水，存在ST和退市风险；② 资产负债率66%且持续上升，短期偿债能力极差（货币资金仅1.25亿）；③ 项目制模式高度不确定，单片失利即导致巨亏；④ FY2026Q1营收同比-49.34%，经营恶化趋势未扭转。
+  <strong>综合诊断：</strong>这是一张"壳价值 + 单片期权"的报表，而不是一家能持续赚钱的公司。2026H1 营收 9,747 万元中演艺演出占 93%、电影收入只剩 21 万元，主营电影业务实质停摆；净资产 5.92 亿元、货币资金仅 2,459 万元，而短期借款 1.95 亿元，流动性与保壳压力同时逼近。<br><br>
+  <strong>核心优势：</strong>① 2026H1 同比减亏 1.93 亿元，亏损收窄 83.15%；② 2025 年 CFO 转正至 +1.21 亿元，影视项目分账款有回笼；③ 存货 4.92 亿元中《封神3》已进入后期，2027 春节档若定档具备极大票房弹性；④ 股东户数由 5.67 万降至 4.63 万（-18.3%），筹码有所集中。<br><br>
+  <strong>核心风险：</strong>① 2026 全年营收若低于 3 亿元且继续亏损，2026 年报后将被实施退市风险警示（*ST）；② 货币资金 0.25 亿元对短债 1.95 亿元，缺口率 87%，再融资能力存疑；③ 2023-2025 连续三年亏损（-2.80/-1.56/-4.07 亿元），净资产从 10.85 亿元降至 5.92 亿元；④ 无实际控制人、历史诉讼赔偿（2025 年营业外支出 7,319 万元）与治理折价长期存在。
 </div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l1"><div class="tab-inner">
 
-<h2>二、核心财务数据（FY2025）</h2>
+<h2>二、核心财务数据</h2>
 
 <h3>2.1 利润表</h3>
 <table>
-  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
-  <tr><td>营业收入</td><td>3.32 亿</td><td>3.17 亿</td><td>+4.81%</td><td class="neutral">⚠ 低增长</td></tr>
-  <tr><td>归母净利润</td><td class="bad"><strong>-4.07 亿</strong></td><td>-1.56 亿</td><td class="bad"><strong>亏损扩大161.65%</strong></td><td class="bad">❌ 严重恶化</td></tr>
-  <tr><td>扣非净利润</td><td class="bad"><strong>-4.16 亿</strong></td><td>-1.52 亿</td><td class="bad">亏损扩大</td><td class="bad">❌ 主业亏损加深</td></tr>
-  <tr><td>毛利率</td><td class="bad"><strong>~-10%</strong></td><td>-10.00%</td><td>基本持平</td><td class="bad">❌ 负毛利</td></tr>
-  <tr><td>归母净利率</td><td class="bad"><strong>-122.59%</strong></td><td>-49.31%</td><td>恶化</td><td class="bad">❌ 每收1元亏1.23元</td></tr>
-  <tr><td>期间费用率</td><td><strong>~31.7%</strong></td><td>31.73%</td><td>持平</td><td class="bad">❌ 费用率极高</td></tr>
-  <tr><td>2026Q1 营收</td><td>0.50 亿</td><td>0.98 亿</td><td>-49.34%</td><td class="bad">❌ 营收大幅下滑</td></tr>
-  <tr><td>2026Q1 净利</td><td>-0.21 亿</td><td>-2.18 亿</td><td>+90.54%</td><td class="neutral">⚠ 亏损收窄（基数效应）</td></tr>
+  <tr><th>指标</th><th>2026H1</th><th>2025H1</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>0.97 亿元</td><td>1.58 亿元</td><td class="bad">-38.22%</td><td>电影收入几乎归零，靠演艺撑量</td></tr>
+  <tr><td>营业成本</td><td>0.96 亿元</td><td>3.57 亿元</td><td>-73.08%</td><td>成本降幅大于收入，毛利率转正</td></tr>
+  <tr><td>毛利率</td><td>1.47%</td><td>-126.14%</td><td class="good">+127.61pct</td><td>绝对值仍极低，演艺业务仅 2.54%</td></tr>
+  <tr><td>归母净利润</td><td class="bad">-0.39 亿元</td><td>-2.33 亿元</td><td class="good">减亏 83.15%</td><td>亏损收窄，但仍未摆脱亏损</td></tr>
+  <tr><td>扣非净利润</td><td class="bad">-0.42 亿元</td><td>-2.44 亿元</td><td class="good">减亏 82.85%</td><td>非经常性损益仅 +263 万元，利润质量无水分</td></tr>
+  <tr><td>归母净利率</td><td class="bad">-40.23%</td><td>-147.45%</td><td class="good">+107.2pct</td><td>每 1 元收入仍亏 0.40 元</td></tr>
+  <tr><td>期间费用率</td><td class="bad">49.7%</td><td>数据待补充</td><td>—</td><td>管理 3,695 万 + 财务 1,145 万，收入基数过小</td></tr>
+  <tr><td>基本每股收益</td><td>-0.0548 元</td><td>-0.3250 元</td><td class="good">+83.14%</td><td>减亏对应 EPS 改善</td></tr>
 </table>
 
-<div class="danger-box">
-  <strong>利润表解读：</strong>FY2025营收3.32亿同比仅增4.81%，归母净利润-4.07亿亏损大幅扩大。毛利率持续为负（约-10%），意味着电影项目收入无法覆盖制作成本。净利率-122.59%，运营效率极低。期间费用率31.7%对3.32亿营收而言极高，固定成本压力巨大。FY2026Q1营收0.50亿同比-49.34%，显示经营仍在恶化，但亏损收窄至-0.21亿（主因2025Q1有《封神第二部》大额减值）。
+<table>
+  <tr><th>年度趋势</th><th>2023</th><th>2024</th><th>2025</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>5.89 亿元</td><td>3.17 亿元</td><td>3.32 亿元</td><td>三年腰斩后横盘</td></tr>
+  <tr><td>归母净利润</td><td class="bad">-2.80 亿元</td><td class="bad">-1.56 亿元</td><td class="bad">-4.07 亿元</td><td>连续三年亏损，2025 因《封神2》成本集中确认而恶化</td></tr>
+  <tr><td>毛利率</td><td>数据待补充</td><td>数据待补充</td><td class="bad">-58.90%</td><td>2025 营业成本 5.28 亿元高于营收</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>2026H1 的"减亏"主要来自上年同期《封神2》高成本基数，而非经营改善——收入端 -38%，电影板块收入仅 21 万元、毛利率 -410.68%；真正贡献 93% 收入的演艺业务毛利率只有 2.54%，几乎不赚钱。公司已从"影视内容公司"退化为"演唱会承办 + 项目存货等待变现"的资产负债表故事。
 </div>
 
 <h3>2.2 资产负债表</h3>
 <table>
-  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
-  <tr><td>货币资金</td><td><strong>1.25 亿</strong></td><td class="bad">❌ 极度紧张</td></tr>
-  <tr><td>应收账款</td><td><strong>~2 亿（估）</strong></td><td class="neutral">占营收60%，偏高</td></tr>
-  <tr><td>存货</td><td><strong>~4.96 亿（估，存货/营收149%）</strong></td><td class="bad">❌ 存货/营收极高，减值风险大</td></tr>
-  <tr><td>短期借款</td><td><strong>~3 亿（估）</strong></td><td class="bad">❌ 短期偿债压力大</td></tr>
-  <tr><td>资产负债率</td><td class="bad"><strong>66.08%</strong></td><td class="bad">⬆ 持续上升</td></tr>
-  <tr><td>流动比率</td><td><strong>0.68</strong></td><td class="bad">❌ <1，短期偿债能力不足</td></tr>
-  <tr><td>速动比率</td><td><strong>0.25</strong></td><td class="bad">❌ 极低</td></tr>
-  <tr><td>归母净资产</td><td>6.02 亿</td><td class="bad">⬇ 同比-43.4%</td></tr>
-  <tr><td>总资产</td><td>17.75 亿</td><td class="bad">⬇ 同比-33.3%，持续缩水</td></tr>
+  <tr><th>科目</th><th>2026-06-30</th><th>2025-12-31</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td class="bad">0.25 亿元</td><td>1.25 亿元</td><td>半年消耗 1.00 亿元，仅占总资产 1.51%</td></tr>
+  <tr><td>应收账款</td><td>0.49 亿元</td><td>0.62 亿元</td><td>占营收 50%，回款偏慢</td></tr>
+  <tr><td>存货</td><td class="neutral">4.92 亿元</td><td>4.89 亿元</td><td>占总资产 30.2%，主要为影视项目，减值风险集中</td></tr>
+  <tr><td>短期借款</td><td class="bad">1.95 亿元</td><td>2.50 亿元</td><td>为货币资金的 7.9 倍</td></tr>
+  <tr><td>应付账款</td><td>1.30 亿元</td><td>数据待补充</td><td>对上游占款，但规模有限</td></tr>
+  <tr><td>预收账款</td><td>2.39 亿元</td><td>数据待补充</td><td>项目预收款，需关注后续确认节奏</td></tr>
+  <tr><td>总资产</td><td>16.31 亿元</td><td>17.75 亿元</td><td>同比 -20.20%，持续收缩</td></tr>
+  <tr><td>总负债</td><td>10.68 亿元</td><td>数据待补充</td><td>同比 -11.90%</td></tr>
+  <tr><td>资产负债率</td><td class="neutral">65.49%</td><td>约 64.5%</td><td>未破 70%，但短期结构失衡</td></tr>
+  <tr><td>归母净资产</td><td>5.92 亿元</td><td>6.31 亿元</td><td>半年减少 0.39 亿元，按此速度 2027 年逼近 5 亿</td></tr>
+  <tr><td>少数股东权益</td><td class="bad">-0.29 亿元</td><td>数据待补充</td><td>子公司已资不抵债</td></tr>
 </table>
 
-<div class="danger-box">
-  <strong>资产负债表解读：</strong>公司财务状况持续恶化。总资产从26.61亿缩水至17.75亿（-33.3%），净资产从10.64亿降至6.02亿（-43.4%）。资产负债率从38.9%升至66.08%，杠杆快速攀升。货币资金仅1.25亿，而短期债务压力大，流动比率0.68<1，短期偿债能力堪忧。存货/营收达149%，表明大量已投入的影视项目尚未确认收入，减值风险高。若继续亏损，净资产将进一步缩水，可能触发ST风险警示。
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>典型的"短债长投"错配：2.11 亿元有息负债（短借 1.95 亿 + 租赁 0.15 亿）对应 0.25 亿元现金，净负债约 1.86 亿元；4.92 亿元存货是唯一可腾挪的资产，但变现依赖《封神3》等项目的上映进度，时间与折价均不可控。受限资产 5,808 万元已用于借款抵押，进一步压缩融资空间。
 </div>
 
 <h3>2.3 现金流量表</h3>
 <table>
-  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
-  <tr><td>经营现金流（CFO）</td><td><strong>1.21 亿</strong></td><td>-2.20 亿</td><td class="neutral">⚠ 转正但不可持续（回款）</td></tr>
-  <tr><td>投资现金流（CFI）</td><td><strong>-4 万</strong></td><td>466 万</td><td class="neutral">投资活动近乎停滞</td></tr>
-  <tr><td>筹资现金流（CFF）</td><td class="bad"><strong>-0.57 亿</strong></td><td>1.86 亿</td><td class="bad">❌ 筹资转为净流出</td></tr>
-  <tr><td>CFO/净利润</td><td>N/A</td><td>N/A</td><td class="bad">❌ 亏损状态下无意义</td></tr>
-  <tr><td>自由现金流（FCF）</td><td>~1.21 亿</td><td>-2.20 亿</td><td class="neutral">⚠ CFO为正但CFI极低</td></tr>
+  <tr><th>指标</th><th>2026H1</th><th>2025H1</th><th>评价</th></tr>
+  <tr><td>经营活动现金流（CFO）</td><td class="bad">-0.28 亿元</td><td>+0.66 亿元</td><td>同比 -141.60%，分账款与投资制片款回笼减少</td></tr>
+  <tr><td>投资活动现金流（CFI）</td><td>+0.004 亿元</td><td>-0.0004 亿元</td><td>仅收到资产处置尾款，无新增投资</td></tr>
+  <tr><td>筹资活动现金流（CFF）</td><td class="bad">-0.73 亿元</td><td>-0.11 亿元</td><td>银行贷款净流入减少，偿债为主</td></tr>
+  <tr><td>现金净增加额</td><td class="bad">-1.00 亿元</td><td>+0.55 亿元</td><td>现金池快速消耗</td></tr>
+  <tr><td>CFO/净利润</td><td>0.70（双负无意义）</td><td>—</td><td>不能据此判断含金量</td></tr>
+  <tr><td>自由现金流（FCF）</td><td class="bad">约 -0.28 亿元</td><td>约 +0.66 亿元</td><td>资本开支极小，FCF 基本等于 CFO</td></tr>
+  <tr><td>2025 全年 CFO</td><td colspan="2">+1.21 亿元（+154.96%）</td><td>年度转正，但 2026H1 再度转负</td></tr>
 </table>
 
 <div class="summary-box">
-  <strong>现金流解读：</strong>FY2025经营现金流1.21亿转正，较FY2024的-2.20亿明显改善，主因销售回款及存货去化。但投资现金流近乎为零，显示公司已无力进行新项目投资扩张。筹资现金流-0.57亿（净偿还），外部融资环境收紧。整体看，公司现金流状况边际改善但仍脆弱，一旦经营现金流再度转负，资金链可能断裂。
+  <strong>现金流解读：</strong>2025 年 CFO 转正靠的是存量项目分账回款，2026H1 即被打回原形（-0.28 亿元），同时现金净减少 1.00 亿元。公司没有稳定的经营性造血能力，现金余额已降至 2,459 万元，任何一笔到期借款或项目超支都可能触发流动性事件。
 </div>
 
 </div></div>
@@ -184,297 +223,307 @@
 
 <h3>3.1 关键盈利指标</h3>
 <table>
-  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
-  <tr><td>ROE</td><td class="bad"><strong>-64.53%</strong></td><td>> 15% 优秀</td><td class="bad">❌ 严重亏损</td></tr>
-  <tr><td>毛利率</td><td class="bad"><strong>~-10%</strong></td><td>稳定或提升</td><td class="bad">❌ 持续为负</td></tr>
-  <tr><td>净利率</td><td class="bad"><strong>-122.59%</strong></td><td>> 10%</td><td class="bad">❌ 巨亏</td></tr>
-  <tr><td>营收增长率</td><td><strong>+4.81%</strong></td><td>> 10%</td><td class="bad">❌ 低增长</td></tr>
-  <tr><td>扣非增长率</td><td class="bad"><strong>亏损扩大</strong></td><td>正增长</td><td class="bad">❌ 主业恶化</td></tr>
-  <tr><td>CFO/净利润</td><td>N/A</td><td>> 1</td><td class="bad">❌ 亏损，指标失效</td></tr>
-  <tr><td>资产负债率</td><td class="bad"><strong>66.08%</strong></td><td>影视<50%</td><td class="bad">❌ 偏高且持续上升</td></tr>
-  <tr><td>分红率</td><td><strong>0%</strong></td><td>持续分红</td><td class="bad">❌ 连续亏损不分红</td></tr>
+  <tr><th>指标</th><th>2026H1</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE（加权）</td><td class="bad">-6.41%</td><td>&gt;15%</td><td>负值，且 2025 全年 -46.21%</td></tr>
+  <tr><td>毛利率</td><td class="bad">1.47%</td><td>&gt;30% 且稳定</td><td>远低于门槛，演艺业务仅 2.54%</td></tr>
+  <tr><td>净利率</td><td class="bad">-40.23%</td><td>&gt;10%</td><td>收入无法覆盖成本与费用</td></tr>
+  <tr><td>营收增长</td><td class="bad">-38.22%</td><td>&gt;10%</td><td>电影收入 -99.81%</td></tr>
+  <tr><td>利润增长</td><td class="good">+83.15%</td><td>&gt;15%</td><td>减亏，但绝对额仍为 -0.39 亿元</td></tr>
+  <tr><td>CFO/净利润</td><td class="bad">0.70（双负）</td><td>&gt;1.0</td><td>分子分母均为负，比率失真；实际为现金净流出</td></tr>
+  <tr><td>资产负债率</td><td class="neutral">65.49%</td><td>&lt;55%</td><td>偏高，且短债覆盖严重不足</td></tr>
+  <tr><td>分红率</td><td class="bad">0%</td><td>&gt;30%</td><td>连续亏损，不派现、不转增</td></tr>
 </table>
 
-<h3>3.2 分业务分析（FY2025）</h3>
+<h3>3.2 分业务分析</h3>
 <table>
-  <tr><th>业务板块</th><th>营收（亿）</th><th>占比</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
-  <tr><td>电影</td><td>~3.06</td><td>92.22%</td><td>略有增长</td><td class="bad">负毛利率</td><td class="bad">❌ 项目亏损</td></tr>
-  <tr><td>电视剧/网剧</td><td>~0.26</td><td>7.78%</td><td>基本持平</td><td>—</td><td class="neutral">规模极小</td></tr>
+  <tr><th>业务板块</th><th>营收</th><th>占比</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td>演艺演出</td><td>0.91 亿元</td><td>93.00%</td><td class="good">+292.07%</td><td class="bad">2.54%</td><td>规模撑住收入，但几乎不贡献利润</td></tr>
+  <tr><td>电视剧网剧</td><td>660 万元</td><td>6.78%</td><td class="bad">-66.57%</td><td>0.17%</td><td>项目确认节奏波动，H2 有五部剧待播</td></tr>
+  <tr><td>电影</td><td class="bad">21 万元</td><td>0.22%</td><td class="bad">-99.81%</td><td class="bad">-410.68%</td><td>主投主控项目空窗，收入实质归零</td></tr>
+  <tr><td>合计</td><td>0.97 亿元</td><td>100%</td><td>-38.22%</td><td>1.47%</td><td>收入结构已从电影切换为演艺</td></tr>
 </table>
-
-<div class="danger-box">
-  <strong>业务解读：</strong>北京文化极度依赖电影单片收入（营收占比92%）。FY2025主要影片《封神第二部：战火西岐》票房未达预期，导致大额亏损。公司历史上爆款频出（《战狼2》56亿票房、《流浪地球》46亿、《你好李焕英》54亿），但爆款不可持续——FY2025已连续第二年大额亏损。电视剧/网剧业务占比仅7.78%，未能形成稳定的收入来源。单一电影项目成败直接决定公司盈亏，商业模式极度脆弱。
-</div>
+<p style="font-size:12px;color:#999">对比 FY2025：电影 1.35 亿元（40.63%）、演艺 1.71 亿元（51.44%）、电视剧网剧 0.26 亿元（7.72%）、艺人经纪 70 万元（0.21%）。一年之内电影收入从 1.35 亿元降至 21 万元。</p>
 
 <h3>3.3 排雷清单</h3>
 <table>
-  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
-  <tr><td class="bad">🔴 极高</td><td>连续两年大额亏损，净资产大幅缩水</td><td>FY2024亏1.56亿，FY2025亏4.07亿</td></tr>
-  <tr><td class="bad">🔴 极高</td><td>短期偿债能力极差，货币资金仅1.25亿</td><td>货币资金/流动负债=1.72%</td></tr>
-  <tr><td class="bad">🔴 极高</td><td>项目制商业模式，爆款不可持续</td><td>FY2025仅1部主控影片且失利</td></tr>
-  <tr><td class="bad">🔴 极高</td><td>营收高度集中（电影占92%），无多元化</td><td>电视剧/网剧仅7.78%</td></tr>
-  <tr><td class="bad">🔴 极高</td><td>资产负债率66.08%持续攀升</td><td>净资产从10.64亿降至6.02亿</td></tr>
-  <tr><td class="neutral">🟡 中等</td><td>存货/营收149%，减值风险高</td><td>大量影视项目未确认收入</td></tr>
-  <tr><td class="neutral">🟡 中等</td><td>FY2026Q1营收-49.34%，经营持续恶化</td><td>Q1营收0.50亿</td></tr>
-  <tr><td class="neutral">🟡 中等</td><td>2026年6月股东青岛海发拟减持不超3%</td><td>重要股东减持信号</td></tr>
-  <tr><td class="good">🟢 正面</td><td>FY2025经营现金流1.21亿转正</td><td>较FY2024的-2.20亿改善</td></tr>
-  <tr><td class="good">🟢 正面</td><td>FY2026Q1亏损大幅收窄至-0.21亿</td><td>基数效应+成本控制</td></tr>
+  <tr><th>风险项</th><th>严重程度</th><th>依据</th></tr>
+  <tr><td>退市风险警示（*ST）</td><td class="bad">红</td><td>2026H1 营收仅 0.97 亿元；若全年 &lt;3 亿元且净利润为负，2026 年报后触发主板 *ST 标准（2025 营收 3.32 亿元刚过线）</td></tr>
+  <tr><td>短期偿债缺口</td><td class="bad">红</td><td>货币资金 0.25 亿元 vs 短期借款 1.95 亿元，缺口 1.71 亿元（87%）</td></tr>
+  <tr><td>连续亏损/净资产缩水</td><td class="bad">红</td><td>2023-2025 归母 -2.80/-1.56/-4.07 亿元；净资产 10.85→6.31→5.92 亿元</td></tr>
+  <tr><td>存货减值</td><td class="neutral">黄</td><td>存货 4.92 亿元（总资产 30.2%），《封神3》未上映，2025 年已计提资产减值 3,810 万元</td></tr>
+  <tr><td>主业空心化</td><td class="neutral">黄</td><td>电影收入占比 0.22%，演艺毛利率 2.54%，缺乏可持续的高毛利内容</td></tr>
+  <tr><td>治理与诉讼</td><td class="neutral">黄</td><td>无实际控制人；2025 年营业外支出 7,319 万元为诉讼赔偿金；2026H1 另有 165 万元</td></tr>
+  <tr><td>审计/内控</td><td class="neutral">黄</td><td>历史子公司世纪伙伴财务造假被处罚，市场对报表信任度低</td></tr>
+  <tr><td>正面：减亏</td><td class="good">绿</td><td>2026H1 归母 -0.39 亿元，同比减亏 1.93 亿元</td></tr>
+  <tr><td>正面：筹码集中</td><td class="good">绿</td><td>股东户数 4.63 万（2026-10-20），较上期 5.67 万下降 18.3%</td></tr>
+  <tr><td>正面：项目储备</td><td class="good">绿</td><td>《封神3》后期制作中；《球状闪电》《暗夜之光》等五部剧集已取证，计划 H2 播出</td></tr>
 </table>
-
-<div class="verdict verdict-bad">L2综合判定：风险极高（ROE -64.53%，亏损严重，财务恶化）</div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l3"><div class="tab-inner">
 
 <h2>四、估值分析（L3框架）</h2>
-<p style="font-size:13px;color:#666;margin-bottom:8px"><strong>注：</strong>北京文化连续亏损，PE完全失效。非周期股标准以PE Band为主，但此处因利润为负，改用PS Band（市销率）辅助估值，同时保留PB Band作为净资产参考。</p>
 
-<h3>4.1 当前估值水平</h3>
+<h3>4.1 当前估值</h3>
 <table>
-  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
-  <tr><td>股价（2026.7）</td><td><strong>~4.01 元</strong></td><td>52周区间3.76-6.22元</td></tr>
-  <tr><td>总市值</td><td><strong>~28.8 亿</strong></td><td>流通股本7.159亿</td></tr>
-  <tr><td>PE（TTM）</td><td class="bad"><strong>N/A（亏损）</strong></td><td>连续亏损PE无意义</td></tr>
-  <tr><td>PB</td><td class="bad"><strong>~4.5-4.8x</strong></td><td>每股净资产~0.85-0.88元</td></tr>
-  <tr><td>PS（TTM）</td><td class="bad"><strong>~8.7x</strong></td><td>基于营收3.32亿</td></tr>
-  <tr><td>PCF</td><td>~24x</td><td>基于CFO 1.21亿</td></tr>
-  <tr><td>股息率</td><td><strong>0%</strong></td><td>连续亏损，不派息</td></tr>
+  <tr><th>指标</th><th>当前值</th><th>历史分位</th><th>行业均值</th></tr>
+  <tr><td>股价</td><td>3.84 元（2026-10-21）</td><td>52 周区间 3.37-6.49 元，处于中下部</td><td>—</td></tr>
+  <tr><td>总市值</td><td>27.49 亿元</td><td>—</td><td>—</td></tr>
+  <tr><td>PE（TTM）</td><td class="bad">亏损（-12.9x）</td><td>无意义</td><td>101.69x（行业亏损股多，严重失真）</td></tr>
+  <tr><td>PE（TTM 扣非）</td><td class="bad">亏损</td><td>无意义</td><td>—</td></tr>
+  <tr><td>PE（2026E）</td><td class="bad">亏损（数据待补充）</td><td>—</td><td>—</td></tr>
+  <tr><td>PB</td><td class="bad">4.65x</td><td>数据待补充</td><td>数据待补充</td></tr>
+  <tr><td>PS（TTM）</td><td class="bad">10.1x</td><td>—</td><td>—</td></tr>
+  <tr><td>PCF（TTM）</td><td class="bad">102x</td><td>—</td><td>—</td></tr>
+  <tr><td>股息率</td><td>0%</td><td>—</td><td>—</td></tr>
 </table>
+<p style="font-size:12px;color:#999">TTM 口径：营收 2.72 亿元、归母 -2.14 亿元、CFO 0.27 亿元（2025 全年 + 2026H1 - 2025H1）。</p>
 
-<h3>4.2 PS Band（替代PE——亏损股适用）</h3>
-<p style="font-size:13px;color:#666;">公司持续亏损，PE失效。改用PS（市销率）估值框架。营收以FY2025的3.32亿为基准。</p>
+<h3>4.2 估值区间（PB 情景，因亏损 PE 失效）</h3>
 <table>
-  <tr><th>情景</th><th>PS</th><th>对应市值</th><th>对应股价</th><th>vs现价4.01元</th></tr>
-  <tr><td>破产清算</td><td>1.0x</td><td>3.3 亿</td><td>0.46 元</td><td class="bad">-89%</td></tr>
-  <tr><td>行业亏损股低位</td><td>2.0x</td><td>6.6 亿</td><td>0.92 元</td><td class="bad">-77%</td></tr>
-  <tr><td>影视行业中位（正常经营）</td><td>3.5x</td><td>11.6 亿</td><td>1.62 元</td><td class="bad">-60%</td></tr>
-  <tr><td>当前价</td><td>8.7x</td><td>28.8 亿</td><td>4.01 元</td><td>—</td></tr>
-  <tr><td>历史高位（2023年炒作）</td><td>~30x</td><td>~100 亿</td><td>~14 元</td><td>+249%</td></tr>
+  <tr><th>情景</th><th>PB</th><th>对应股价</th><th>对应市值</th><th>说明</th></tr>
+  <tr><td>悲观（*ST）</td><td>2.0x</td><td>1.65 元</td><td>11.8 亿元</td><td>2026 年报触发退市风险警示，壳价值折价</td></tr>
+  <tr><td>保守（保壳但续亏）</td><td>3.0x</td><td>2.48 元</td><td>17.8 亿元</td><td>营收勉强过 3 亿，市场仅给壳+存货价值</td></tr>
+  <tr><td>中性（保壳+封神3 定档）</td><td>4.0x</td><td>3.31 元</td><td>23.7 亿元</td><td>期权价值部分兑现，但未上映</td></tr>
+  <tr><td>当前</td><td>4.65x</td><td>3.84 元</td><td>27.5 亿元</td><td>已计入较强保壳与定档预期</td></tr>
+  <tr><td>乐观（封神3 预售强）</td><td>6.0x</td><td>4.96 元</td><td>35.5 亿元</td><td>定档 2027 春节且预售/想看数据超预期</td></tr>
+  <tr><td>历史高位（2026-08 四连板）</td><td>7.85x</td><td>6.49 元</td><td>46.5 亿元</td><td>游资情绪顶，换手率曾超 45%</td></tr>
 </table>
+<p style="font-size:12px;color:#999">PB 以 2026-06-30 每股净资产 0.8267 元计算。历史 PB 分位因公司长期亏损、净资产波动大，数据待补充。</p>
 
-<h3>4.3 PB Band（净资产估值参考）</h3>
-<table>
-  <tr><th>情景</th><th>PB</th><th>对应股价</th><th>vs现价4.01元</th></tr>
-  <tr><td>破产清算价值</td><td>0.5x</td><td>0.44 元</td><td class="bad">-89%</td></tr>
-  <tr><td>行业极端低位（亏损影视股）</td><td>1.0x</td><td>0.88 元</td><td class="bad">-78%</td></tr>
-  <tr><td>行业中位（正常经营）</td><td>2.0x</td><td>1.76 元</td><td class="bad">-56%</td></tr>
-  <tr><td>当前价</td><td>~4.5-4.8x</td><td>4.01 元</td><td>—</td></tr>
-  <tr><td>历史高位（2023年）</td><td>~20x</td><td>~17.6 元</td><td>+339%</td></tr>
-</table>
-
-<h3>4.4 历史PB区间</h3>
-<table>
-  <tr><th>指标</th><th>数值</th></tr>
-  <tr><td>PB最大值</td><td>~20x（2023年）</td></tr>
-  <tr><td>PB 80%分位</td><td>~8x</td></tr>
-  <tr><td>PB 50%分位</td><td>~5x</td></tr>
-  <tr><td>PB 20%分位</td><td>~3x</td></tr>
-  <tr><td>PB最小值</td><td>~1.5x</td></tr>
-  <tr><td>当前PB</td><td class="neutral">~4.5-4.8x（接近50%分位）</td></tr>
-</table>
-
+<h3>4.3 估值总结</h3>
 <div class="danger-box">
-  <strong>估值总结：</strong>北京文化处于"亏损+净资产缩水"的恶性循环中。三种估值方法均指向显著高估：<br>
-  ① <strong>PS 8.7x</strong>——对应3.32亿营收，对于一个连续亏损且营收停滞的公司，合理PS应在1-3.5x，当前溢价主要来自"题材炒作+壳价值"；<br>
-  ② <strong>PB 4.5-4.8x</strong>——在历史50%分位附近，但净资产从~15亿缩水至6.02亿，"底"在下移。若按行业亏损股通常PB 1-2x计算，合理股价在0.88-1.76元，下行空间>50%；<br>
-  ③ <strong>非周期股PE框架完全失效</strong>——ROE -64.53%无法对应任何合理PE区间。当前股价主要由情绪/题材驱动，缺乏基本面基础。若《封神第三部》不能大卖，估值将面临大幅下修。
+  <strong>估值判断：</strong>严重偏高。4.65x PB 对应的是 -6.41% 的半年度 ROE 和 2.5% 的演艺毛利率，既没有盈利支撑，也没有清算价值支撑（净负债 1.86 亿元）。当前市值 27.5 亿元中，约 18 亿元可视为对《封神3》2027 春节档的期权定价；若 2026 年报触发 *ST，PB 有向 2-3x 回归的风险（对应股价 1.65-2.48 元）。
 </div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l4"><div class="tab-inner">
 
-<h2>五、杜邦分析拆解（L4框架）</h2>
+<h2>五、杜邦分析（L4框架）</h2>
 
-<h3>5.1 杜邦拆解表</h3>
+<h3>5.1 杜邦拆解</h3>
 <table>
-  <tr><th>指标</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
-  <tr><td>净利润率</td><td>-49.31%</td><td class="bad"><strong>-122.59%</strong></td><td class="bad">⬇ 大幅恶化</td></tr>
-  <tr><td>资产周转率</td><td>0.12</td><td><strong>0.19</strong></td><td class="neutral">⬆ 提升（资产缩水被动提升）</td></tr>
-  <tr><td>权益乘数</td><td>2.50</td><td><strong>2.95</strong></td><td class="bad">⬆ 杠杆上升</td></tr>
-  <tr><td><strong>ROE</strong></td><td class="bad"><strong>-13.32%</strong></td><td class="bad"><strong>-64.53%</strong></td><td class="bad">⬇ 严重恶化</td></tr>
-  <tr><td>去杠杆ROA</td><td>-5.9%</td><td class="bad"><strong>-23.3%</strong></td><td class="bad">⬇ 大幅恶化</td></tr>
-  <tr><td>杠杆贡献</td><td>-7.4pct</td><td class="bad"><strong>-41.2pct</strong></td><td class="bad">⬇ 杠杆放大亏损</td></tr>
+  <tr><th>指标</th><th>2026H1</th><th>2025</th><th>2024</th><th>判断</th></tr>
+  <tr><td>归母净利率</td><td class="bad">-40.23%</td><td class="bad">-122.6%</td><td class="bad">-49.2%</td><td>三年均为负，2025 因《封神2》成本集中确认最差</td></tr>
+  <tr><td>总资产周转率</td><td>0.057（半年）</td><td>0.150</td><td>约 0.11</td><td>资产周转极慢，存货沉淀严重</td></tr>
+  <tr><td>权益乘数</td><td>2.79</td><td>2.59</td><td>约 2.6</td><td>杠杆温和，但在亏损下放大损失</td></tr>
+  <tr><td>ROE</td><td class="bad">-6.41%</td><td class="bad">-46.21%</td><td class="bad">-13.32%</td><td>连续为负，无股东回报</td></tr>
 </table>
+<p style="font-size:12px;color:#999">2026H1 为半年数据，未年化；2024/2025 周转率与权益乘数按平均总资产、平均归母权益估算，与年报披露 ROE 存在小幅口径差异。</p>
 
-<div class="danger-box">
-  <strong>赚钱模式判断：完全失控——高杠杆型（亏损放大）</strong><br>
-  杜邦分析揭示了公司的财务崩溃路径：净利润率从-49.31%恶化至-122.59%（每赚1元营收倒亏1.23元），权益乘数从2.50升至2.95（杠杆在上升但并未带来正收益，反而放大了亏损）。资产周转率从0.12升至0.19，但这是被动提升——分母（总资产）缩水的速度快于分子（营收）的下降速度，并非经营效率真正改善。三道杠杆全部失效：利润率崩塌、杠杆变成"绞索"、周转改善是假象。
+<h3>5.2 赚钱模式判断</h3>
+<div class="highlight-box">
+  <strong>赚钱模式：</strong>高杠杆型（且利润为负）。净利率 -40%、周转率 0.06（半年）、权益乘数 2.79——三项拆解中没有任何一项能创造正回报，杠杆只是在放大亏损。更准确地说，公司当前不靠经营赚钱，而靠"项目存货变现 + 资产负债表腾挪"维持，属于商业模式失效状态。
 </div>
 
-<h3>5.2 分业务杜邦贡献</h3>
+<h3>5.3 去杠杆 ROA 与资产效率</h3>
 <table>
-  <tr><th>业务板块</th><th>FY2025表现</th><th>对ROE影响</th></tr>
-  <tr><td>电影（92%）</td><td class="bad">毛利率为负，《封神第二部》票房未达预期</td><td class="bad">核心拖累</td></tr>
-  <tr><td>电视剧/网剧（8%）</td><td class="neutral">规模极小，无明显贡献</td><td class="neutral">中性</td></tr>
+  <tr><th>指标</th><th>2026H1</th><th>2025</th><th>说明</th></tr>
+  <tr><td>去杠杆 ROA（净利率×周转率）</td><td class="bad">-2.30%</td><td class="bad">-18.4%</td><td>每 1 元总资产半年亏 2.3 分，全年口径更差</td></tr>
+  <tr><td>每元总资产产生营收</td><td>0.057 元</td><td>0.150 元</td><td>资产效率不足行业平均的三分之一</td></tr>
+  <tr><td>每元净资产产生营收</td><td>0.165 元（半年）</td><td>0.526 元</td><td>收入规模相对净资产偏小</td></tr>
 </table>
 
+<h3>5.4 核心结论</h3>
 <div class="summary-box">
-  <strong>核心结论：</strong><br>
-  ① FY2025 ROE -64.53%，是FY2024的5倍亏损深度，公司的盈利能力在加速恶化；<br>
-  ② 去杠杆后ROA -23.3%，每1元总资产产生-0.23元净亏损，资产创造价值的能力为负；<br>
-  ③ 权益乘数2.95说明公司在用近3倍杠杆运营，但加杠杆加速了亏损（杠杆贡献-41.2pct）；<br>
-  ④ 从非周期股评分视角，高杠杆型是最大扣分项——公司处于"亏损-净资产缩水-杠杆被动上升-亏损进一步放大"的恶性循环；<br>
-  ⑤ 唯一的扭转路径：一部高票房电影带来巨额利润，一次性修复资产负债表——但这点无法预测，也无法依赖。
+  <strong>杜邦结论：</strong>ROE 为负的根源是净利率，而非周转或杠杆——2025 年 -122.6% 的净利率把 2.6 倍杠杆放大成 -46.21% 的 ROE；2026H1 净利率收窄至 -40.2%，ROE 随之回到 -6.41%（半年）。趋势上"亏损在收窄"是真的，但资产周转率从 0.150 降至 0.057（半年），说明收入端在萎缩而非修复。只要净利率不能转正，任何杠杆调整都无意义。
 </div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l5"><div class="tab-inner">
 
-<h2>六、行业分类与特征（L5框架）</h2>
+<h2>六、行业分类（L5框架）</h2>
 
 <h3>6.1 行业类型判断</h3>
 <div class="summary-box">
-  <strong>行业类型：特殊行业（影视传媒——项目制+情绪驱动）</strong><br>
-  <strong>评分体系选用说明：</strong>影视公司业绩波动大（项目制），标准非周期股评分可能不理想——本报告采用非周期股评分体系但需做此特殊说明。影视行业具有典型的"项目型周期"特征：公司业绩完全取决于每年上映影片的票房表现，好的年份利润丰厚，差的年份巨亏。与钢铁/化工等纯周期股不同，影视行业的周期不是由宏观供需驱动，而是由"内容爆款"的不可预测性驱动（项目制），叠加市场情绪对股价的放大效应（情绪驱动）。<br><br>
-  <strong>分类定位：</strong>特殊行业（项目制+情绪驱动）→ 采用非周期股评分体系，但评分结果需结合行业特殊性解读：① 标准评分对亏损影视公司天然偏低；② 投资影视股本质是"押注项目成功率"，而非评估稳态盈利；③ 估值需关注项目Pipeline和资金储备，而非PE/PB。
+  <strong>行业类型：特殊行业（影视传媒——项目制 + 情绪驱动）</strong>，属非周期；框架按成长/品质型处理。影视内容公司的利润不随宏观周期波动，而随单片票房、档期与项目确认节奏剧烈波动；收入与成本错配、现金流大起大落是常态，因此不适用周期股评分体系，也不能用 PE 估值（亏损年份多）。2026H1 全国电影票房 173.5 亿元、同比 -40.6%，行业处于结构性调整期而非周期底部。
 </div>
 
-<h3>6.2 行业集中度与壁垒</h3>
+<h3>6.2 集中度与壁垒</h3>
 <table>
-  <tr><th>维度</th><th>判断</th></tr>
-  <tr><td>行业集中度</td><td><strong>高度分散</strong>——中国电影制作公司数千家，前十大公司市场占有率不足30%。头部公司（中影、光线、博纳、北京文化等）在资源获取、发行渠道上有一定优势，但每部电影仍是独立"项目"，无法形成稳定市占率。</td></tr>
-  <tr><td>技术/人才壁垒</td><td><strong>低</strong>——电影制作没有真正的技术壁垒，核心壁垒是"人才+IP"。著名导演、编剧、演员资源稀缺但流动性高，无法被单一公司锁定。</td></tr>
-  <tr><td>品牌/渠道壁垒</td><td><strong>中等</strong>——头部发行公司有更强的院线谈判能力，但品牌效应有限。北京文化历史上出过多部爆款，品牌有一定认知度但不足以确保项目成功。</td></tr>
-  <tr><td>资金壁垒</td><td><strong>低</strong>——电影项目可从外部融资，单片成本可高可低。北京文化目前资金紧张，反而构成了负向壁垒（没钱投好项目）。</td></tr>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>市场集中度</td><td>中等偏高（票房向头部内容集中）</td><td>2026H1 光线传媒一家参投/发行影片票房 58.21 亿元，占全国 173.56 亿元的 33.5%；北京文化电影收入仅 21 万元，已边缘化</td></tr>
+  <tr><td>进入壁垒</td><td>牌照 + 资本 + 创作者资源</td><td>电影发行经营许可证、单项目数亿元级资金占用、头部导演/演员绑定</td></tr>
+  <tr><td>议价能力</td><td>弱</td><td>票房分账比例固定，院线/平台强势；公司无自有渠道</td></tr>
+  <tr><td>规模效应</td><td>弱</td><td>项目制、非标准化，无法像制造业摊薄成本</td></tr>
 </table>
 
-<h3>6.3 生命周期阶段</h3>
+<h3>6.3 生命周期与周期位置</h3>
 <div class="highlight-box">
-  <strong>阶段：成熟期（行业整体） + 困境期（公司个体）</strong><br>
-  中国电影票房市场已进入成熟期（2019年票房642亿见顶后，2023-2025年徘徊在400-550亿区间），增速放缓，面临短视频、流媒体等替代娱乐形式的竞争。北京文化作为个体公司，正处于"困境期"——连续亏损、资金链紧张、项目储备不足，急需一部爆款来"续命"。<br><br>
-  <strong>投资策略重点：</strong>对影视行业整体保持谨慎，关注院线电影市场的结构性变化。对于北京文化个体，核心跟踪变量：① 待上映影片的体量和质量（如封神系列后续、新开项目）；② 资金链能否支撑到下一部主控影片上映；③ 是否有资产重组或战略投资注入。
+  <strong>生命周期 / 周期位置：</strong>行业整体处于<b>成熟期后的结构性收缩</b>：2025 年全国票房 518.32 亿元（+21.95%），但 2026H1 骤降 40.6%，观影人次 -34.2%，新建影院同比减少 99 家。公司自身处于<b>项目空窗 + 资产负债表收缩</b>阶段，唯一的重磅存货是《封神3》，其上映时点（市场预期 2027 春节档）决定下一轮现金流，而 2026 年报的 3 亿元营收线决定能否保住上市地位。
 </div>
 
-<h3>6.4 当前周期位置</h3>
+<h3>6.4 同行对比</h3>
+<table>
+  <tr><th>指标（2026H1）</th><th>北京文化</th><th>光线传媒</th><th>中国电影</th><th>行业中位</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td class="bad">0.97 亿元</td><td>3.24 亿元</td><td>15.12 亿元</td><td>—</td><td>规模最小，且 -38.22% 降幅居中</td></tr>
+  <tr><td>营收增速</td><td>-38.22%</td><td>-90.00%</td><td>-11.93%</td><td>—</td><td>行业普遍下滑，光线因高基数降幅最大</td></tr>
+  <tr><td>归母净利润</td><td class="bad">-0.39 亿元</td><td>+0.33 亿元</td><td class="bad">-1.10 亿元</td><td>—</td><td>仅光线盈利，且靠经纪/投资</td></tr>
+  <tr><td>毛利率</td><td class="bad">1.47%</td><td>39.6%</td><td>7.2%</td><td>—</td><td>显著低于两家同行</td></tr>
+  <tr><td>净利率</td><td class="bad">-40.23%</td><td>10.18%</td><td>-7.28%</td><td>—</td><td>最差</td></tr>
+  <tr><td>ROE（半年）</td><td class="bad">-6.41%</td><td>0.33%</td><td>-1.01%</td><td>—</td><td>最差</td></tr>
+  <tr><td>资产负债率</td><td class="bad">65.49%</td><td>6.73%</td><td>约 40.8%</td><td>—</td><td>杠杆最高</td></tr>
+  <tr><td>PB</td><td class="bad">4.65x</td><td>数据待补充</td><td>数据待补充</td><td>—</td><td>资产质量最差却给最高 PB</td></tr>
+  <tr><td>PE（TTM）</td><td>亏损</td><td>数据待补充</td><td>亏损</td><td>—</td><td>行业亏损面大，PE 失效</td></tr>
+</table>
+<p style="font-size:12px;color:#999">光线传媒、中国电影数据取自各自 2026 年半年报；PB/PE 因缺少同期股价未取，标注"数据待补充"。行业中位因样本仅两家不计算。</p>
+
 <div class="summary-box">
-  <strong>周期位置判断：行业底部区域，但个体困境加剧</strong><br>
-  中国电影票房市场2025年有所恢复但距历史高点仍有差距。北京文化FY2025亏损4.07亿，连续两年大额亏损，处于"公司层面的周期底部"。但不同于钢铁/化工等纯周期股底部可以"熬过去"，影视公司的周期底部风险更高——因为底部持续期间可能耗尽现金，导致公司无法参与下一轮优质项目竞争的"死亡螺旋"。<br><br>
-  影视行业的"供给侧出清"正在进行，有资金实力的头部公司（中影、光线）可能受益于行业整合，但资金链紧张的公司（如北京文化）可能被淘汰。这个"底部"对北京文化而言可能是"机会"也可能是"陷阱"，取决于公司能否撑到下一部爆款上映。
+  <strong>竞争位置：</strong>北京文化在三家可比公司中规模最小、毛利率最低、杠杆最高、唯一净资产收益率垫底；光线的盈利来自经纪与 IP 运营，中国电影的亏损来自放映与创作，而北京文化连"内容主业"都已让位给毛利率 2.5% 的演艺承办——竞争位置处于行业边缘。
 </div>
 
 <h3>6.5 估值方法匹配</h3>
-<table>
-  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
-  <tr><td>特殊行业/项目制（影视）</td><td>PS / PB + 项目Pipeline</td><td>PE（盈利年份）、待上映影片体量、资金储备</td><td class="bad">❌ 不匹配——PS 8.7x偏高，PB 4.5x偏高，项目Pipeline不清晰</td></tr>
-</table>
-
-<h3>6.6 行业特殊说明（影视传媒适用）</h3>
-<div class="highlight-box">
-  <strong>影视传媒行业特殊性说明：</strong><br>
-  ① <strong>项目制特征：</strong>每部电影是一个独立项目，前期投入大（制作成本+宣发），收入集中在上映后2-4周确认。项目周期6-24个月不等，导致业绩在季度/年度间剧烈波动，标准财务分析（尤其是杜邦分析和趋势分析）指导意义有限。<br>
-  ② <strong>情绪驱动特征：</strong>影视股股价与当期票房高度相关，市场情绪波动极大。一部爆款可推动股价翻倍，一部失利可导致腰斩。估值体系常脱离基本面，转为"题材炒作"模式。<br>
-  ③ <strong>非周期股评分体系的局限性：</strong>标准评分对亏损的影视公司天然打出低分（如ROE为负、PE无意义），但评分低并不代表公司完全没有投资价值——一部爆款就可扭转乾坤。建议投资者在评分基础上叠加"项目Pipeline质量评估"和"资金链压力测试"，综合判断投资价值。<br>
-  ④ <strong>投资影视股的核心关注点：</strong>不是ROE也不是PE，而是① 待上映影片的体量和市场预期（爆款潜力）；② 公司现金流能支撑多久（现金跑道）；③ 单片票房能否覆盖制作成本（项目风控能力）。
+<div class="summary-box">
+  <strong>估值方法：</strong>影视项目制公司首选 <b>PB + 项目净现值（RNAV）</b>，辅助看单部影片票房弹性与存货质量；PE 在亏损年份失真，PS 对项目制公司也缺乏意义。当前市场用 4.65x PB 给《封神3》期权定价，方法上可以理解，但忽略了 2026 年报 *ST 这一近端约束——属于"用远期期权覆盖近端退市风险"的错配。
 </div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l6"><div class="tab-inner">
 
-<h2>七、综合实战（L6全内容）</h2>
+<h2>七、综合实战（L6框架）</h2>
 
 <h3>7.1 六步法总结</h3>
 <div class="summary-box">
-  <strong>Step 1 - 行业定位：</strong>特殊行业（影视传媒/项目制+情绪驱动），行业高度分散，无真正壁垒，成熟期且面临短视频替代压力。选用非周期股评分体系但需做行业特殊说明。<br>
-  <strong>Step 2 - 财务体检：</strong>ROE -64.53%严重亏损，杜邦拆解完全失控（利润率-122.59%，权益乘数2.95放大亏损），CFO转正但不可持续。<br>
-  <strong>Step 3 - 估值判断：</strong>PE无意义，PS 8.7x对营收仅3.32亿的亏损股严重偏高，PB 4.5x对净资产持续缩水的亏损股偏高。<br>
-  <strong>Step 4 - 风险排查：</strong>连续两年巨亏、短期偿债能力极差（货币资金仅1.25亿）、项目制模式高度不确定、重要股东减持。<br>
-  <strong>Step 5 - 结论：</strong>不是好公司（ROE -64.53%），没有好价格（PS 8.7x/PB 4.5x），行业吸引力不足。全面回避。<br>
-  <strong>Step 6 - 跟踪：</strong>看封神后续项目进展、资金链变化、是否引入战略投资者、Q2-Q3票房能否反转。
+  Step 1 - 行业定位：影视传媒，项目制、中等集中度，壁垒为牌照+资本+创作者资源<br>
+  Step 2 - 财务体检：ROE -6.41%（半年），高杠杆放亏型，CFO 转负、现金仅 0.25 亿元<br>
+  Step 3 - 估值判断：亏损无 PE，PB 4.65x 显著偏高，市值主要为《封神3》期权<br>
+  Step 4 - 风险排查：2026 营收跌破 3 亿元触发 *ST、短债缺口 1.71 亿元、存货减值、无实控人<br>
+  Step 5 - 结论：不是好公司，价格也不便宜；唯一买点是事件驱动，不是价值投资<br>
+  Step 6 - 跟踪：2026 年报营收是否 ≥3 亿元、Q3 单季营收、货币资金/短借、封神3 定档与预售
+</div>
+
+<h3>前瞻状态（三轨：前瞻档，定性不打分）</h3>
+<table>
+  <tr><th style="width:26%">字段</th><th>内容</th></tr>
+  <tr><td>前瞻档位</td><td><span class="badge fwd-c">C</span> 方向确定不利但未完全定价：营收跌破 3 亿元的路径清晰，市场仍在为封神3 付期权费</td></tr>
+  <tr><td>风险方向与量级</td><td class="bad">负向 · 高</td></tr>
+  <tr><td>正向变量</td><td>《封神3：封神天下》后期制作中，市场预期 2027 春节档；《球状闪电》《暗夜之光》《大梦想家》等五部剧集已取证、计划 2026H2 播出；演艺演出收入同比 +292%</td></tr>
+  <tr><td>覆盖程度</td><td class="bad">弱：货币资金仅覆盖短债的 12.6%，4.92 亿元存货变现时点不可控</td></tr>
+  <tr><td>验证节点</td><td>2026 年报营收是否 ≥3 亿元（2027-04）；2026Q3 单季营收（2026-10 下旬披露）</td></tr>
+  <tr><td>升档条件</td><td>2026 全年营收 ≥3 亿元且归母亏损收窄至 2 亿元以内；或《封神3》正式定档 2027 春节且预售/想看指数超《封神2》同期</td></tr>
+  <tr><td>降档条件</td><td>2026 前三季营收 &lt;2.2 亿元；或 2026 年报被出具非标意见/触发 *ST；或货币资金跌破 1 亿元而短期借款仍 &gt;1.5 亿元</td></tr>
+</table>
+<div class="highlight-box">
+  <strong>档位定义：</strong>S=前瞻有利且已被验证；A=前瞻有利、方向确定；B=悬置/中性但有覆盖；C=方向确定不利但未完全定价；D=风险已实质化、覆盖被突破。
+</div>
+
+<h3>投资评级（三轨：评级）</h3>
+<div class="rating-card">
+  <span class="badge rating-underperform">Underperform</span>
+  　矩阵落点：财务低 × 前瞻 C × 赔率薄
+</div>
+<div class="summary-box">
+  <strong>为什么不是更高一档：</strong>财务分 14 分落在"&lt;60"区间，前瞻 C 直接对应 Underperform/Sell；虽有大额减亏，但收入 -38%、毛利 1.47%、短债缺口 87%，不满足 Neutral 所需的"预期总回报 -5%~+10%"稳定性。三情景概率加权（乐观 25%、中性 45%、悲观 30%）的 12 个月预期回报约 -16%，赔率为薄。<br><br>
+  <strong>上调条件：</strong>2026 年报营收 ≥3 亿元（消除 *ST）且归母亏损 ≤2 亿元；同时货币资金回升至 1 亿元以上，评级升至 Neutral。<br><br>
+  <strong>下调条件：</strong>2026 三季报营收 &lt;2.2 亿元或年报确认 *ST，评级降至 Sell；若《封神3》撤档/延期至 2028 年，同样降至 Sell。
 </div>
 
 <h3>7.2 好公司三要素检查</h3>
 <table>
   <tr><th>要素</th><th>判断</th><th>依据</th></tr>
-  <tr><td>① 好行业</td><td class="bad">✗</td><td>电影行业成熟期，增速放缓，短视频替代威胁大，集中度低</td></tr>
-  <tr><td>② 好公司</td><td class="bad">✗</td><td>ROE -64.53%，毛利率-10%，连续两年亏损，净现金流为负</td></tr>
-  <tr><td>③ 好价格</td><td class="bad">✗</td><td>PS 8.7x/PB 4.5x严重偏高，PE无意义，净资产持续缩水</td></tr>
+  <tr><td>① 好行业</td><td class="neutral">✗（中性偏负）</td><td>2026H1 全国票房 -40.6%、观影人次 -34.2%，行业结构性收缩；项目制现金流不稳定</td></tr>
+  <tr><td>② 好公司</td><td class="bad">✗</td><td>ROE -6.41%、毛利率 1.47%、CFO -0.28 亿元，三项核心标准全部不达标</td></tr>
+  <tr><td>③ 好价格</td><td class="bad">✗</td><td>PB 4.65x、PS 10.1x，亏损无 PE；相对净资产与盈利能力均无安全边际</td></tr>
 </table>
 
 <h3>7.3 风险评估</h3>
-
-<h4>a. 三个陷阱排查</h4>
 <div class="danger-box">
-  <strong>☐ 价值陷阱：</strong>🔴 高度命中——低PE（实际上为负）+ 亏损 + 高负债（66%）+ 营收低增长。低价背后是基本面持续恶化，不是"价值"而是"陷阱"。<br>
-  <strong>☐ 周期陷阱：</strong>🔴 部分命中——当前处于公司层面的"周期底部"，但不同于钢铁/化工纯周期股可以"熬过低谷"，影视公司的底部可能意味着资金链断裂。底部买入的假设依赖"爆款反转"——但爆款无法预测。<br>
-  <strong>☐ 烧钱陷阱：</strong>🟡 中等命中——虽然FY2025 CFO转正，但这是回款驱动的偶发性改善。公司整体仍处于"投入-损失-再投入"的循环中，融资渠道在收紧（CFF净流出）。
+  ☐ 价值陷阱（低PE+低增长+高负债）→ <b>未命中</b>（亏损无低 PE）<br>
+  ☐ 周期陷阱（低PE+周期顶点）→ <b>未命中</b>（非周期行业）<br>
+  ☑ 烧钱陷阱（高估值+低增长+负现金流）→ <b>部分命中</b>：PS 10.1x、营收 -38%、CFO -0.28 亿元、现金半年减少 1.00 亿元；虽非"高增速"，但"靠消耗现金维持"的特征成立
 </div>
 
-<h4>b. 管理层与治理风险</h4>
+<h3>7.3.1 管理层与治理风险</h3>
 <table>
   <tr><th>事项</th><th>判断</th><th>依据</th></tr>
-  <tr><td>管理层能力与履历</td><td class="neutral">一般</td><td>历史上出品过多部爆款（战狼2、流浪地球、你好李焕英），但近年连续亏损，项目判断能力存疑</td></tr>
-  <tr><td>股权结构与利益一致性</td><td class="neutral">一般</td><td>第一大股东青岛海发持股~7.5%（2026年6月拟减持），无控股股东，股权结构分散，管理层激励不清晰</td></tr>
-  <tr><td>关联交易/暴雷历史</td><td class="bad">有历史问题</td><td>2021年曾因财务信息披露违规被证监会立案调查，前高管被采取市场禁入措施</td></tr>
-  <tr><td>资本配置记录</td><td class="bad">混乱</td><td>历史上多次并购（世纪伙伴、浙江星河等），后陆续剥离/暴雷，商誉减值严重。资本配置能力差</td></tr>
-  <tr><td>CEO交接/关键人员变动</td><td class="neutral">需关注</td><td>2023年董事长变更，新任管理层团队尚无成功项目证明</td></tr>
+  <tr><td>管理层能力与履历</td><td class="neutral">一般</td><td>核心团队深耕影视多年，但《封神》系列成本失控、连续三年亏损</td></tr>
+  <tr><td>股权结构与利益一致性</td><td class="bad">弱</td><td>无实际控制人，股权分散，缺乏主导型股东</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td class="bad">严重</td><td>原子公司世纪伙伴财务造假被处罚；2025 年诉讼赔偿支出 7,319 万元</td></tr>
+  <tr><td>资本配置记录</td><td class="bad">混乱</td><td>《封神》三部曲连拍导致巨额资金沉淀，存货 4.92 亿元；无分红</td></tr>
+  <tr><td>管理层增减持记录</td><td class="neutral">数据待补充</td><td>近一年董监高增减持公告未检索到完整记录</td></tr>
+  <tr><td>CEO 交接/关键人员变动</td><td class="neutral">需关注</td><td>董事长李雳、财务负责人严雪峰；无实控人背景下管理层稳定性偏弱</td></tr>
 </table>
 
-<h4>c. 盈利可持续性</h4>
+<h3>7.3.2 盈利可持续性</h3>
 <table>
   <tr><th>维度</th><th>判断</th><th>依据</th></tr>
-  <tr><td>增长靠量还是靠价？</td><td class="bad">量驱（但不可持续）</td><td>营收增长靠单片票房，FY2025 +4.81%靠《封神第二部》拉动，但票价无提价能力</td></tr>
-  <tr><td>涨价能否持续？</td><td class="bad">不能</td><td>电影票价由市场供需决定，单片无定价权，观众对票价敏感</td></tr>
-  <tr><td>非经常性利润占比</td><td class="neutral">高</td><td>影视公司利润主要来自项目确认，非经常性（资产减值、政府补贴）占比不稳定</td></tr>
-  <tr><td>大客户/大项目集中度</td><td class="bad">极度集中</td><td>电影业务占营收92%，一部电影成败决定全年业绩</td></tr>
-  <tr><td>政策/监管依赖度</td><td class="neutral">中等</td><td>受内容审查、行业监管政策影响大，但非持续经营风险</td></tr>
+  <tr><td>增长靠量还是靠价？</td><td>量驱动（且萎缩）</td><td>演艺演出收入 +292% 靠场次增加，但毛利率仅 2.54%</td></tr>
+  <tr><td>涨价能否持续？</td><td class="bad">不能</td><td>演唱会/演出市场竞争激烈，公司无定价权</td></tr>
+  <tr><td>非经常性利润占比</td><td>低</td><td>2026H1 非经常性损益仅 263 万元，扣非亏损 0.42 亿元</td></tr>
+  <tr><td>大客户/大项目集中度</td><td class="bad">极度集中</td><td>收入依赖演艺项目；利润弹性几乎全部押注《封神3》</td></tr>
+  <tr><td>政策/监管依赖度</td><td>中</td><td>电影发行/放映牌照、内容审查、档期政策均影响项目节奏</td></tr>
 </table>
 
-<h4>d. 关键变量敏感性</h4>
-<div class="summary-box">
-  <strong>变量1：封神系列后续票房</strong><br>
-  &nbsp;&nbsp;乐观：《封神第三部》票房25亿+，确认收入6亿+，公司扭亏为盈，股价翻倍至8-10元<br>
-  &nbsp;&nbsp;中性：《封神第三部》票房15-20亿，确认收入3-4亿，亏损收窄或微利，股价维持3-5元<br>
-  &nbsp;&nbsp;悲观：《封神第三部》票房<10亿，确认收入<2亿，继续巨亏1-2亿，股价跌至2-3元<br><br>
-  <strong>变量2：资金链与融资能力</strong><br>
-  &nbsp;&nbsp;乐观：引入战略投资者/获得银行贷款，现金储备恢复至3亿+，可投资新项目<br>
-  &nbsp;&nbsp;中性：维持现有资金水平，靠经营回款+存量项目滚动，勉强维持运营<br>
-  &nbsp;&nbsp;悲观：融资渠道断裂，无法投资新项目，经营持续萎缩，面临ST风险<br><br>
-  <strong>变量3：行业票房大盘走势</strong><br>
-  &nbsp;&nbsp;乐观：2026年全年票房重回600亿+，行业整体回暖，带动公司项目收益提升<br>
-  &nbsp;&nbsp;中性：2026年票房500-550亿，行业平稳但竞争加剧<br>
-  &nbsp;&nbsp;悲观：2026年票房<450亿，行业进一步萎缩，公司项目更难盈利
+<h3>7.3.3 关键变量敏感性</h3>
+<div class="highlight-box">
+  <strong>变量 1：《封神3》票房（2027 春节档）</strong><br>
+  乐观：35 亿元 → 主投主控分成+衍生，2027 年归母有望转正 3-5 亿元 → 每股 0.42-0.70 元<br>
+  中性：20 亿元 → 覆盖成本后微利 0.5-1.0 亿元 → 每股 0.07-0.14 元<br>
+  悲观：10 亿元 → 再度计提存货减值，2027 年继续亏损 → 每股 -0.20 元以下<br><br>
+  <strong>变量 2：2026 全年营收（*ST 判定线 3 亿元）</strong><br>
+  乐观：3.2 亿元（H2 剧集+演艺放量）→ 消除 *ST，PB 可维持 4-5x<br>
+  中性：2.7 亿元 → 触发 *ST，PB 回落至 3x 附近<br>
+  悲观：2.2 亿元 → *ST + 流动性折价，PB 向 2x 靠拢<br><br>
+  <strong>变量 3：短期融资续作</strong><br>
+  乐观：银行续贷 1.95 亿元 → 流动性风险后移<br>
+  中性：部分续作、以存货/应收抵质押 → 财务费用维持 1,100 万元/半年<br>
+  悲观：抽贷或逾期 → 直接触发债务违约与ST叠加
 </div>
 
 <h3>7.4 前景展望</h3>
-
-<h4>a. 未来1-3年核心驱动</h4>
 <div class="summary-box">
   <strong>正向驱动：</strong><br>
-  1. 《封神第三部》票房大卖——公司最重要的项目储备，若成功可一次性修复资产负债表<br>
-  2. 行业回暖+集中度提升——若电影市场整体复苏，资金链紧张的小公司出清，北京文化作为老牌公司可能受益<br>
-  3. 战略投资/资产重组——引入有实力的战略投资者，解决资金瓶颈<br><br>
+  1. 《封神3：封神天下》后期制作中，若定档 2027 春节档并兑现 25 亿元以上票房，将带来一次性利润与现金流修复 — 这是唯一能改变公司命运的单变量。<br>
+  2. 五部已取证剧集（《球状闪电》《暗夜之光》《大梦想家》等）计划 2026H2 播出，若确认收入可帮助全年营收守住 3 亿元 — 直接决定是否 *ST。<br>
+  3. 演艺演出收入同比 +292%，虽毛利薄，但能提供持续的现金流入口与收入规模。<br><br>
   <strong>负向拖累：</strong><br>
-  1. 连续亏损导致净资产持续缩水——FY2025净资产6.02亿，若继续亏损将触及净资产为负的退市红线<br>
-  2. 资金链断裂风险——货币资金仅1.25亿，每年刚性支出~1亿，若6-12个月内无新项目回款将出现支付困难<br>
-  3. 项目Pipeline断层——连续亏损导致公司无力投资新项目，未来2-3年可上映主控影片严重不足
+  1. 电影主业空窗：2026H1 电影收入仅 21 万元，主投主控项目断档，内容能力受到实质性质疑。<br>
+  2. 财务结构脆弱：货币资金 0.25 亿元对短债 1.95 亿元，存货 4.92 亿元变现依赖上映时点，任何延期都会放大流动性压力。<br>
+  3. 治理折价与历史包袱：无实控人、诉讼赔偿、子公司造假历史，使机构资金长期回避，股价易被游资主导（2026-08 四连板后单日换手超 45%）。
 </div>
 
-<h4>b. 三情景简表</h4>
+<h3>7.4.1 三情景简表（12 个月）</h3>
 <table>
-  <tr><th>情景</th><th>假设条件</th><th>净利润预估</th><th>合理PS区间</th><th>预期回报</th></tr>
-  <tr><td>乐观（概率20%）</td><td>封神第三部票房25亿+，融资改善，行业回暖</td><td>1~2亿</td><td>3-5x</td><td>2.8~8元（-30%~+100%）</td></tr>
-  <tr><td>中性（概率50%）</td><td>封神第三部15-20亿，维持运营，盈亏平衡附近</td><td>-0.5~0.5亿</td><td>2-4x</td><td>1.4~4.0元（-65%~0%）</td></tr>
-  <tr><td>悲观（概率30%）</td><td>封神第三部<10亿，资金链恶化</td><td>-1~-3亿</td><td>1-2x</td><td>0.5~1.5元（-63%~-88%）</td></tr>
+  <tr><th>情景</th><th>假设条件</th><th>EPS 预估</th><th>PB 区间</th><th>预期回报</th></tr>
+  <tr><td>乐观（25%）</td><td>2026 营收 ≥3 亿元保壳成功；《封神3》定档 2027 春节且预售强劲</td><td>2026 年 -0.15 元</td><td>6.0x</td><td class="good">+29%</td></tr>
+  <tr><td>中性（45%）</td><td>营收 2.7-3.0 亿元边缘；封神3 定档但市场观望</td><td>2026 年 -0.20 元</td><td>4.0x</td><td class="neutral">-14%</td></tr>
+  <tr><td>悲观（30%）</td><td>营收 &lt;3 亿元触发 *ST；短债续作受阻</td><td>2026 年 -0.28 元</td><td>2.0x</td><td class="bad">-57%</td></tr>
 </table>
+<p style="font-size:12px;color:#999">概率加权预期回报约 -16.0%（0.25×29% + 0.45×(-14%) + 0.30×(-57%)），赔率为薄。EPS 为情景假设，非券商一致预期。</p>
 
-<h3>7.5 讨论问题</h3>
+<h3>7.5 资金面信号</h3>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>股东户数</td><td class="good">下降</td><td>4.63 万户（2026-10-20），较上期 5.67 万户减少 1.04 万户（-18.3%），筹码集中</td></tr>
+  <tr><td>主力资金</td><td class="bad">净流出</td><td>近 30 日净流出约 1.56 亿元，反弹缺乏增量资金</td></tr>
+  <tr><td>成交/换手</td><td class="neutral">极端放大后回落</td><td>2026-08-14 成交近 20 亿元、换手超 45%（上市新高）；2026-10-21 成交 2.21 亿元、换手 7.93%</td></tr>
+  <tr><td>北向资金</td><td>数据待补充</td><td>小市值亏损股，北向持仓极低或未纳入</td></tr>
+  <tr><td>融资余额</td><td>数据待补充</td><td>未检索到最新两融明细</td></tr>
+  <tr><td>大股东增减持</td><td>数据待补充</td><td>无实控人，暂无最新增减持公告</td></tr>
+  <tr><td>大宗交易</td><td>数据待补充</td><td>—</td></tr>
+</table>
+<div class="summary-box">
+  <strong>资金面判断：</strong>筹码在集中（户数 -18.3%），但资金在流出（30 日 -1.56 亿元），且 8 月的四连板已证明当前股价由游资情绪主导而非机构配置。这种结构下，利好（定档/预售）会带来脉冲式上涨，利空（营收不及 3 亿）也会带来连续跌停，波动率极高。
+</div>
+
+<h3>7.6 讨论问题</h3>
 <div class="summary-box">
   <strong>讨论问题（阅读后可以聊这些）：</strong><br>
-  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——投资拍电影，票房如果爆了就大赚，拍砸了就巨亏。商业模式本质是"押注"，不是"经营"。<br>
-  2. 你最大的担忧是什么？哪个数据让你睡不着？——货币资金1.25亿，而公司一年需要刚性支出（管理费+财务费+员工薪酬）约1亿，若Q2/Q3无新项目回款，现金流可能断裂。<br>
-  3. 如果现在买入，期待的回报来源是什么？——赌封神第三部大卖 + 行业反转。但赌单片能救公司，跟去澳门押大小的区别不大。<br>
-  4. 什么情况下你会坚决卖出？——根本不应该买入。若已持有，任何一次因题材炒作带来的反弹都是卖出的机会。
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？<br>
+  3. 如果现在买入，期待的回报来源是什么？<br>
+  4. 什么情况下你会坚决卖出？
 </div>
 
 </div></div>
 
 <div class="footer">
-    免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
-    数据来源：北京文化2025年年报、2026Q1季报、券商研报、理杏仁 | 分析日期：2026-07-14
+  免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+  数据来源：北京文化 2025 年年度报告、2026 年半年度报告、2026 年一季报；同花顺、淘股吧、界面新闻、上海证券报、21 世纪经济报道；股价截至 2026-10-21 收盘。
 </div>
 
 </div>
