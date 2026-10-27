@@ -51,6 +51,22 @@
   .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
   .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
   .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .score-note { font-size: 13px; color: #666; background: #fafafa; border: 1px dashed #ccc; padding: 8px 12px; margin: 10px 0; }
+  .history-table td:first-child { white-space: nowrap; }
+  .badge { display: inline-block; padding: 1px 9px; border-radius: 4px; font-size: 12px; font-weight: 700; white-space: nowrap; }
+  .fwd-s { background: #e8f5e9; color: #1b5e20; border: 1px solid #1b5e20; }
+  .fwd-a { background: #f1f8e9; color: #558b2f; border: 1px solid #7cb342; }
+  .fwd-b { background: #fffde7; color: #f9a825; border: 1px solid #fdd835; }
+  .fwd-c { background: #fff3e0; color: #e65100; border: 1px solid #fb8c00; }
+  .fwd-d { background: #fde8e8; color: #c0392b; border: 1px solid #c0392b; }
+  .rating-buy { background: #e8f5e9; color: #1b5e20; border: 1px solid #1b5e20; }
+  .rating-outperform { background: #f1f8e9; color: #558b2f; border: 1px solid #7cb342; }
+  .rating-neutral { background: #eeeeee; color: #616161; border: 1px solid #bbbbbb; }
+  .rating-underperform { background: #fff3e0; color: #e65100; border: 1px solid #fb8c00; }
+  .rating-sell { background: #fde8e8; color: #c0392b; border: 1px solid #c0392b; }
+  .track-card td { text-align: left; }
+  .track-card td:first-child { width: 34%; font-weight: 600; background: #f5f5f5; }
+  .rating-card { text-align: center; font-size: 17px; font-weight: bold; padding: 16px; margin: 14px 0; border-radius: 8px; background: #fafafa; border: 1px solid #e0e0e0; }
   .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
   ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
   li { margin-bottom: 4px; }
@@ -58,11 +74,9 @@
 </head>
 <body>
 <div class="report-wrap">
-
 <h1>万华化学（600309）财务分析报告</h1>
-<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
-<p class="meta">分析日期：2026-07-09 | 数据来源：FY2025 年报 + 2026Q1 季报</p>
-
+<p class="subtitle">L1–L6 · 周期股框架 · 中报正式数据与三季报交叉验证</p>
+<p class="meta">分析日期：2026-10-27 | 财报截至：2026-09-30 | 2025年报 + 2026H1中报 + 2026Q3季报</p>
 <div class="tab-bar">
   <button class="tab-btn active" data-tab="summary">总结论</button>
   <button class="tab-btn" data-tab="l1">L1 三张报表</button>
@@ -74,403 +88,322 @@
 </div>
 
 <div class="tab-content active" id="tab-summary"><div class="tab-inner">
-
+<!-- TRACK fwd=B rating=Neutral node=Q4现金与价差 -->
+<h2>三轨摘要</h2>
+<table class="track-card">
+  <tr><td>框架类型</td><td>周期型：基础化工，采用周期股评分与PB历史分位。</td></tr>
+  <tr><td>财务品质分</td><td>73/100（一般关注）；不是上涨概率或预期收益率。</td></tr>
+  <tr><td>前瞻档位</td><td><span class="badge fwd-b">B</span> 盈利修复已发生，持续性悬置；正FCF与低PB分位提供一定覆盖。</td></tr>
+  <tr><td>投资评级</td><td><span class="badge rating-neutral">Neutral</span> 中财务品质 × B前瞻 × 厚赔率。</td></tr>
+  <tr><td>一句话结论</td><td>Neutral：盈利同比修复、PB偏低，但Q3环比回落与短债缺口限制上调；Q4利润、现金转化共同改善才考虑升级，FCF转负且杠杆上升则降级。</td></tr>
+</table>
+<div class="highlight-box"><strong>本次实质更新：</strong>2026H1归母净利100.63亿元，同比增长64.35%；前三季156.58亿元，同比增长70.99%。Q3单季55.95亿元，较Q2下降11.82%，不能把同比高增长等同于逐季加速。三季报于分析日披露，已纳入而非仅停留在中报。金额除特别说明外均为人民币亿元。</div>
 <h2>一、公司基本画像</h2>
 <table>
   <tr><th style="width:30%">项目</th><th>内容</th></tr>
-  <tr><td>公司名称</td><td>万华化学集团股份有限公司</td></tr>
-  <tr><td>股票代码</td><td>600309.SH</td></tr>
-  <tr><td>所属行业</td><td>基础化工（聚氨酯 MDI/TDI、石化、精细化学品及新材料）</td></tr>
-  <tr><td>行业地位</td><td>全球MDI产能第一（全球约25%份额），国内化工行业龙头</td></tr>
-  <tr><td>FY2025 营收</td><td><strong>2,032.35 亿（+11.62%）</strong></td></tr>
-  <tr><td>FY2025 归母净利润</td><td><strong>125.27 亿（-3.88%）</strong></td></tr>
-  <tr><td>FY2025 经营现金流</td><td><strong>331.05 亿（+10.15%）</strong></td></tr>
-  <tr><td>总资产</td><td>3,230.09 亿</td></tr>
-  <tr><td>归母净资产</td><td>1,083.05 亿</td></tr>
-  <tr><td>ROE（加权）</td><td>12.44%</td></tr>
+  <tr><td>公司名称 / 股票代码</td><td>万华化学集团股份有限公司 / 600309.SH</td></tr>
+  <tr><td>行业及地位</td><td>聚氨酯、石化、精细化学品及新材料；全球领先的MDI/TDI供应商。2025年末MDI产能380万吨/年、TDI 147万吨/年。[S1]</td></tr>
+  <tr><td>FY2025营收 / 归母净利</td><td>2,032.35 / 125.27；同比+11.62% / -3.88%</td></tr>
+  <tr><td>2026H1营收 / 归母净利</td><td>1,193.16 / 100.63；同比+31.26% / +64.35%</td></tr>
+  <tr><td>2026前三季营收 / 归母净利</td><td>1,858.67 / 156.58；同比+28.87% / +70.99%</td></tr>
+  <tr><td>经营现金流</td><td>FY2025 331.05；2026H1 117.84；2026前三季209.20</td></tr>
+  <tr><td>总资产 / 总权益（2026Q3末）</td><td>3,539.71 / 1,296.32</td></tr>
+  <tr><td>归母净资产（2026Q3末）</td><td>1,163.06；每股归母净资产37.153元</td></tr>
+  <tr><td>加权平均归母ROE</td><td>FY2025 12.44%；2026H1 8.96%；前三季13.76%（期间值，未年化）</td></tr>
 </table>
-
-<p style="font-size:13px;font-weight:bold;margin-top:12px;">行业类型：纯周期股（基础化工） — 采用周期股评分体系</p>
-
+<div class="summary-box"><strong>行业类型：纯周期股（基础化工）。</strong>新材料业务有成长性，但集团盈利仍明显受产品价差、原料成本与装置负荷影响，不据此切换为成长股PE估值。</div>
+<p class="score-note"><strong>评分口径说明：</strong><span>沿用周期股体系，补入中报及Q3，纠正旧版ROE与FCF。</span></p>
 <h2>综合评分（周期股评分体系）</h2>
-<p style="font-size:13px;color:#666;margin-bottom:8px">采用周期股评分体系——核心逻辑：穿越周期的生存能力 + 当前周期位置 + 成本优势</p>
-<table>
+<table id="financial-score">
   <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
-  <tr><td>穿越周期ROE（15分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">近5年ROE均值约15%（2021:33%→2022:17%→2023:18%→2024:13%→2025:12%），≥8%但<12%</td></tr>
-  <tr><td>成本位置/行业成本曲线（15分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">MDI全球成本Top quartile——烟台/宁波基地一体化优势+乙烷裂解制乙烯较石脑油路线持续降本</td></tr>
-  <tr><td>负债安全垫（15分）</td><td class="neutral" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">净负债/EBITDA约3.2x偏高，资产负债率62.8%，但货币资金277亿可覆盖短期借款278亿（基本持平），CFO 331亿极为强劲</td></tr>
-  <tr><td>行业格局与产能周期（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">全球MDI CR3（万华/巴斯夫/科思创）>80%，极度集中；未来两年MDI暂无大规模新增供给</td></tr>
-  <tr><td>周期位置（15分）</td><td class="good" style="font-weight:bold;font-size:15px">12</td><td style="text-align:left">2025年化工品价格处于下行周期底部区域，2026Q1盈利显著修复（归母净利+20.6%），底部已过复苏初期</td></tr>
-  <tr><td>估值PB vs历史区间（15分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">PB 2.5x，5年分位约27%（底部30%以内），估值处于历史偏低区间</td></tr>
-  <tr><td>现金生成能力FCF（10分）</td><td class="good" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">低谷期CFO 331亿极其强劲，FCF = CFO 331 - 资本开支251 ≈ 80亿，低谷期仍维持正FCF</td></tr>
-  <tr><td>分红/回购历史（5分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">连续多年高分红，2025年每10股派12.50元，分红率~30%，历史从未在周期底部取消分红</td></tr>
-  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">77/100</td><td style="text-align:left">一般关注（77/100分）</td></tr>
+  <tr data-score="15"><td>穿越周期ROE（15分）</td><td class="good">15</td><td>2021–2025年加权ROE为42.53%、22.75%、20.42%、14.29%、12.44%，简单均值20.49%，满足≥12%。高点权重大，不能外推为未来正常ROE。[S4]</td></tr>
+  <tr data-score="10"><td>成本位置（15分）</td><td class="neutral">10</td><td>一体化供应链、乙烷进料改造与MDI技术壁垒支持中上成本位置；缺独立行业单位成本曲线，不声称已证实全球前四分之一，故不取15分。[S1–S2]</td></tr>
+  <tr data-score="0"><td>负债安全垫（15分）</td><td class="bad">0</td><td>Q3现金464.38，短借596.73加一年内到期非流动负债129.02，广义短债现金缺口261.36；按“短期有缺口”规则取0。续贷支持不等于自有现金覆盖。[S3–S4]</td></tr>
+  <tr data-score="6"><td>行业格局与产能周期（10分）</td><td class="neutral">6</td><td>集团横跨集中度较高的聚氨酯和竞争更分散的石化/新材料，综合按中等格局；未核实全行业未来两年净新增产能，不能因MDI壁垒高直接给10分。</td></tr>
+  <tr data-score="12"><td>周期位置（15分）</td><td class="good">12</td><td>2025盈利承压后修复；H1毛利率回升、前三季净利增长。Q3环比下滑，仍按复苏阶段12分，不给底部15分，更不认定已进入持续景气上行。</td></tr>
+  <tr data-score="15"><td>PB历史分位（15分）</td><td class="good">15</td><td>2026-10-27 PB 1.893倍，近五年1212个有效交易日约8.91%分位，低于30%阈值。[S5]</td></tr>
+  <tr data-score="10"><td>现金生成能力FCF（10分）</td><td class="good">10</td><td>2025低谷FCF仍+23.94；2026H1 +10.44、前三季+70.62。2023/2024扩张期分别-163.02/-57.77，不宣称多年持续正FCF。[S1–S4]</td></tr>
+  <tr data-score="5"><td>分红/回购历史（5分）</td><td class="good">5</td><td>下行期仍维持现金分红，2025年度方案1.25元/股；2026H1预案0.81元/股。预案不视为已到账。[S1–S2]</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">73/100</td><td style="text-align:left">15+10+0+6+12+15+10+5=73；成本/行业格局含定性判断，不是精确风险模型。</td></tr>
 </table>
-
-<div class="verdict verdict-caution">一般关注（77/100分）</div>
-<h2 style="margin-top:16px">评分沿革</h2>
-<style>.history-table{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:13px}.history-table th,.history-table td{border:1px solid #ddd;padding:6px 8px;text-align:center}.history-table th{background:#f0f0f0;font-weight:bold}.history-table td.good{color:#27ae60}.history-table td.neutral{color:#e67e22}.history-table td.bad{color:#c0392b}</style><table class="history-table">
-  <tr><th>日期</th><th>评分</th><th>评分体系</th><th>变化原因</th></tr>
-  <tr><td>2026-07-09</td><td class="neutral" style="font-weight:bold">77/100</td><td>周期性</td><td style="text-align:left">—</td></tr>
-</table>
-
-<div class="summary-box">
-  <strong>综合诊断：</strong>万华化学是全球MDI绝对龙头，拥有全球成本最优的生产基地和极致的一体化产业链。周期底部展现出超强的现金生成能力（CFO 331亿/净利125亿=2.64倍），行业格局极好（MDI CR3>80%）。2026Q1业绩拐点已现（归母净利同比+20.6%），PB处历史低位（5年27%分位），周期向上趋势明确。<br><br>
-  <strong>核心优势：</strong>① 全球MDI绝对龙头，成本曲线Top quartile；② 经营现金流极其强悍（CFO 331亿，净现比2.64），看利润会被误导；③ 行业格局高度集中，新增供给有限；④ 2026Q1业绩已确认修复拐点。<br><br>
-  <strong>核心风险：</strong>① 周期品仍处于复苏初期，价格弹性的持续性和幅度不确定；② 资产负债率62.8%略偏高，资本开支每年~250亿压力大；③ 石化板块毛利率仅约5%，对整体盈利拖累大；④ PE 21x处于历史88%分位，修复预期已部分反映在股价中。
-</div>
-
+<div class="verdict verdict-caution">一般关注（73/100分）</div>
+<!-- 评分沿革：由sync脚本从 scores.json 注入，生成时保留此注释不动 -->
+<!-- HISTORY-TABLE -->
+<div class="summary-box"><strong>综合诊断：</strong>低PB与主业修复值得跟踪，但不能忽略融资依赖。<br><br><strong>核心优势：</strong>① 聚氨酯技术和工业化壁垒；② 原料多元化与园区协同；③ 低谷期现金流仍有韧性。<br><br><strong>核心风险：</strong>① 短债超过现金；② 原料/产品价差与海外供给恢复；③ 重资产扩张回报；④ 现金转化慢于利润增长。</div>
+<div class="danger-box"><strong>为什么与旧版77分不可机械比较：</strong>旧版写“ROE均值约15%”却按低于12%给10分，且PB分位约27%却只给10分；旧版2025年资本开支约251亿元也与财报307.11亿元不符。本次纠错与新信息同时影响得分，下降4分不代表基本面同比恶化。</div>
 </div></div>
 
 <div class="tab-content" id="tab-l1"><div class="tab-inner">
-
-<h2>二、核心财务数据（FY2025）</h2>
-
-<h3>2.1 利润表</h3>
+<h2>二、核心财务数据</h2>
+<h3>2.1 利润表：H1改善，Q3保持高同比但非环比加速</h3>
 <table>
-  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
-  <tr><td>营业收入</td><td>2,032.35 亿</td><td>1,820.69 亿</td><td>+11.62%</td><td class="good">✅ 稳健增长</td></tr>
-  <tr><td>归母净利润</td><td><strong>125.27 亿</strong></td><td>130.33 亿</td><td><strong>-3.88%</strong></td><td class="neutral">⚠ 价格下行致微降</td></tr>
-  <tr><td>扣非净利润</td><td><strong>121.44 亿</strong></td><td>133.59 亿</td><td><strong>-9.10%</strong></td><td class="neutral">⚠ 主业利润承压更大</td></tr>
-  <tr><td>毛利率</td><td><strong>13.61%</strong></td><td>16.16%</td><td>-2.55pct</td><td class="bad">❌ 产品价格下行</td></tr>
-  <tr><td>归母净利率</td><td><strong>6.91%</strong></td><td>8.12%</td><td>-1.21pct</td><td class="bad">❌ 下滑</td></tr>
-  <tr><td>期间费用率</td><td><strong>~5.6%</strong></td><td>~5.7%</td><td>-0.1pct</td><td class="good">✅ 费用控制良好</td></tr>
-  <tr><td>2025Q1 营收</td><td>430.68 亿</td><td>461.82 亿</td><td>-6.75%</td><td class="bad">❌ 同比下滑</td></tr>
-  <tr><td>2025Q2 营收</td><td>478.33 亿</td><td>463.65 亿</td><td>+3.17%</td><td class="neutral">➡ 企稳</td></tr>
-  <tr><td>2025Q3 营收</td><td>533.24 亿</td><td>430.29 亿</td><td>+23.93%</td><td class="good">✅ 加速</td></tr>
-  <tr><td>2025Q4 营收</td><td>590.09 亿</td><td>344.49 亿</td><td>+71.21%</td><td class="good">✅ 高增长（新产能放量）</td></tr>
-  <tr><td>2025Q4 净利润</td><td><strong>33.70 亿</strong></td><td>19.40 亿</td><td><strong>+73.73%</strong></td><td class="good">✅ 显著改善</td></tr>
+  <tr><th>指标</th><th>FY2025</th><th>2025H1</th><th>2026H1</th><th>H1同比 / 评价</th></tr>
+  <tr><td>营业收入</td><td>2,032.35</td><td>909.01</td><td>1,193.16</td><td class="good">+31.26%</td></tr>
+  <tr><td>归母净利润</td><td>125.27</td><td>61.23</td><td>100.63</td><td class="good">+64.35%</td></tr>
+  <tr><td>扣非归母净利润</td><td>121.44</td><td>62.44</td><td>96.76</td><td class="good">+54.96%，并非靠一次性收益翻转</td></tr>
+  <tr><td>毛利率</td><td>13.61%</td><td>13.84%</td><td>17.08%</td><td>+3.24个百分点</td></tr>
+  <tr><td>归母净利率</td><td>6.16%</td><td>6.74%</td><td>8.43%</td><td>+1.70个百分点；与含少数股东净利率区分</td></tr>
+  <tr><td>合并净利率</td><td>6.91%</td><td>7.39%</td><td>9.69%</td><td>用于L4合并权益杜邦拆解</td></tr>
+  <tr><td>期间费用率（销管研财）</td><td>5.60%</td><td>5.33%</td><td>5.00%</td><td>规模摊薄；财务费用14.25，同比增长138.30%</td></tr>
 </table>
-
-<div class="summary-box">
-  <strong>利润表解读：</strong>2025年呈现"增收不增利"——营收+11.6%但净利-3.9%。全年化工品价格持续下行（超九成品类均价下跌），毛利率从16.16%降至13.61%。但Q4出现明确拐点：营收590亿（+71%）、净利33.7亿（+73.7%），主要受益于乙烷裂解改造等项目放量，以及MDI价格触底回升。2026Q1继续验证趋势：营收540.5亿（+25.5%），净利37.2亿（+20.6%）。
-</div>
-
-<h3>2.2 资产负债表</h3>
 <table>
-  <tr><th>科目</th><th>FY2025</th><th>评价</th></tr>
-  <tr><td>货币资金</td><td><strong>276.62 亿</strong></td><td class="good">✅ 充裕</td></tr>
-  <tr><td>应收账款</td><td><strong>158.73 亿</strong></td><td class="neutral">占营收7.8%，合理</td></tr>
-  <tr><td>存货</td><td><strong>260.14 亿</strong></td><td class="neutral">占资产8.1%，仓位正常</td></tr>
-  <tr><td>短期借款</td><td><strong>277.89 亿</strong></td><td class="neutral">有息负债偏高</td></tr>
-  <tr><td>长期借款</td><td><strong>533.29 亿</strong></td><td class="neutral">资本开支扩张期</td></tr>
-  <tr><td>资产负债率</td><td><strong>62.81%</strong></td><td class="neutral">⚠ 化工行业偏高</td></tr>
-  <tr><td>归母净资产</td><td>1,083.05 亿</td><td class="good">✅ 同比+14.46%</td></tr>
-  <tr><td>总资产</td><td>3,230.09 亿</td><td class="good">✅ 同比+10.12%</td></tr>
-  <tr><td>固定资产</td><td>1,569.06 亿</td><td class="neutral">重资产运营</td></tr>
-  <tr><td>在建工程</td><td>311.12 亿</td><td class="neutral">仍在大规模投入</td></tr>
+  <tr><th>指标</th><th>2026Q1</th><th>2026Q2（H1减Q1）</th><th>2026Q3单季</th><th>2026前三季</th></tr>
+  <tr><td>营收</td><td>540.52</td><td>652.64</td><td>665.51</td><td>1,858.67</td></tr>
+  <tr><td>归母净利</td><td>37.18</td><td>63.45</td><td>55.95</td><td>156.58</td></tr>
+  <tr><td>扣非归母净利</td><td>35.94</td><td>60.82</td><td>56.46</td><td>153.22</td></tr>
+  <tr><td>毛利率（计算）</td><td>14.73%</td><td>19.04%</td><td>15.40%</td><td>16.48%</td></tr>
+  <tr><td>归母净利同比</td><td>+20.62%</td><td>+108.68%</td><td>+84.38%</td><td>+70.99%</td></tr>
+  <tr><td>归母净利环比</td><td>不据此判断全年</td><td>+70.68%</td><td class="neutral">-11.82%</td><td>累计值不做季度环比</td></tr>
 </table>
-
-<div class="highlight-box">
-  <strong>资产负债表解读：</strong>万华是典型的重资产化工龙头，总资产3,230亿中固定资产+在建工程占58%。资产负债率62.81%在化工行业属中等偏高，但考虑其CFO 331亿的强悍造血能力，偿债风险可控。货币资金277亿vs短期借款278亿，短期流动性基本匹配。需要注意的是，在建工程311亿仍在高位，意味着未来2-3年折旧和资本开支压力不减。
-</div>
-
-<h3>2.3 现金流量表</h3>
+<div class="summary-box"><strong>利润表解读：</strong>公司中报将营收增长归因为价格与销量共同增长，乙烯原料改造也带来降本；Q3说明将利润增长主要归因为产品涨价、毛利增加。[S2第8–10页；S3第3页] 因此不能把全部增长当作新材料销量驱动。Q2毛利率19.04%回落至Q3的15.40%，需要跟踪价差能否守住。Q4尚未发生完整报告期，不预测为已实现。</div>
+<h3>2.2 资产负债表：现金增加，短债缺口仍在</h3>
 <table>
-  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
-  <tr><td>经营现金流（CFO）</td><td><strong>331.05 亿</strong></td><td>300.53 亿</td><td class="good">✅ +10.15%极其强劲</td></tr>
-  <tr><td>投资现金流（CFI）</td><td><strong>-327.83 亿</strong></td><td>-370.78 亿</td><td class="neutral">⚠ 资本开支251亿</td></tr>
-  <tr><td>筹资现金流（CFF）</td><td><strong>21.44 亿</strong></td><td>61.86 亿</td><td class="neutral">融资需求下降</td></tr>
-  <tr><td>CFO/净利润</td><td><strong>2.64</strong></td><td>2.31</td><td class="good">✅ 极其优秀</td></tr>
-  <tr><td>自由现金流（FCF）</td><td><strong>~80 亿</strong></td><td>~54 亿</td><td class="good">✅ 低谷仍为正</td></tr>
+  <tr><th>科目</th><th>2025年末</th><th>2026H1末</th><th>2026Q3末</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td>276.62</td><td>444.06</td><td>464.38</td><td>含可能受限资金，不能全部视为自由现金</td></tr>
+  <tr><td>应收账款</td><td>158.73</td><td>196.05</td><td>182.87</td><td>Q3较H1下降，仍高于年末</td></tr>
+  <tr><td>存货</td><td>260.14</td><td>329.36</td><td>335.28</td><td>较年末+28.88%；未出现明显绝对额去库存</td></tr>
+  <tr><td>短期借款</td><td>277.89</td><td>604.87</td><td>596.73</td><td class="bad">超过货币资金</td></tr>
+  <tr><td>一年内到期非流动负债</td><td>168.16</td><td>143.73</td><td>129.02</td><td>全部纳入广义短债压力测试，不与短借重复</td></tr>
+  <tr><td>长期借款 / 应付债券</td><td>458.29 / 75.00</td><td>432.08 / 99.50</td><td>416.30 / 99.50</td><td>有息融资依赖仍高</td></tr>
+  <tr><td>总资产 / 总负债</td><td>3,230.09 / 2,028.80</td><td>3,541.52 / 2,276.23</td><td>3,539.71 / 2,243.39</td><td>Q3负债比H1有所回落</td></tr>
+  <tr><td>总权益 / 归母权益</td><td>1,201.29 / 1,083.05</td><td>1,265.29 / 1,135.96</td><td>1,296.32 / 1,163.06</td><td>PB用归母权益；L4合并拆解用总权益</td></tr>
+  <tr><td>资产负债率</td><td>62.81%</td><td>64.27%</td><td>63.38%</td><td>改善但不低</td></tr>
+  <tr><td>流动比率</td><td>0.616</td><td>0.723</td><td>0.721</td><td>低于1，依靠滚动融资与经营回款</td></tr>
+  <tr><td>现金减广义短债</td><td>-169.43</td><td>-304.54</td><td>-261.36</td><td>与流动资产减流动负债不是同一个口径</td></tr>
 </table>
-
-<div class="highlight-box">
-  <strong>现金流解读：</strong>这是万华化学最亮眼的数据——CFO 331亿/净利125亿=净现比2.64倍，说明账面利润因高折旧被大幅压低，真实现金创造能力远超报表利润。即使减去251亿资本开支后，FCF仍有约80亿元。周期底部仍能维持正FCF，充分展现了穿越周期的现金生成能力。2025Q4单季CFO高达160.84亿，占全年近半。
-</div>
-
+<div class="highlight-box"><strong>资产负债表解读：</strong>中报第53页明确披露流动负债超流动资产439.70亿元，并称未使用债务融资额度能够覆盖。这里既不能写成“现金充裕覆盖短债”，也不能据此直接断言债务危机：公司有融资支持，但需要持续续贷。未取得一致口径EBITDA与受限现金明细，本版不编造净负债/EBITDA。</div>
+<h3>2.3 现金流量表：FCF由负转正，比现金余额更重要</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>2025H1</th><th>2026H1</th><th>2026前三季</th></tr>
+  <tr><td>经营现金流CFO</td><td>331.05</td><td>105.28</td><td>117.84</td><td>209.20</td></tr>
+  <tr><td>投资现金流CFI</td><td>-327.83</td><td>-177.95</td><td>-118.69</td><td>-134.75</td></tr>
+  <tr><td>筹资现金流CFF</td><td>21.44</td><td>157.15</td><td>153.78</td><td>110.67</td></tr>
+  <tr><td>购建长期资产现金支出</td><td>307.11</td><td>170.30</td><td>107.40</td><td>138.58</td></tr>
+  <tr><td>FCF=CFO−购建长期资产现金</td><td class="good">23.94</td><td class="bad">-65.02</td><td class="good">10.44</td><td class="good">70.62</td></tr>
+  <tr><td>CFO/归母净利</td><td>2.64倍</td><td>1.72倍</td><td>1.17倍</td><td>1.34倍</td></tr>
+  <tr><td>CFO/合并净利（同范围）</td><td>2.36倍</td><td>1.57倍</td><td>1.02倍</td><td>1.18倍</td></tr>
+</table>
+<div class="summary-box"><strong>现金流解读：</strong>H1净利+64.35%，CFO仅+11.93%，现金转化弱于利润增幅；前三季CFO同比+22.90%，亦低于净利增速。改善重点在资本开支下降：Q3单季CFO91.36、资本开支31.18、FCF60.18亿元。H1现金增长仍主要伴随153.78亿元筹资净流入，不可全归功于主业。FCF是简化指标，未扣并购、分红或租赁本金，不等于可全部分给股东的现金。</div>
 </div></div>
 
 <div class="tab-content" id="tab-l2"><div class="tab-inner">
-
 <h2>三、关键指标与排雷（L2框架）</h2>
-
 <h3>3.1 关键盈利指标</h3>
 <table>
-  <tr><th>指标</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
-  <tr><td>ROE（加权）</td><td><strong>12.44%</strong></td><td>> 15% 优秀 / > 10% 及格</td><td class="neutral">⚠ 中等（周期下行期）</td></tr>
-  <tr><td>毛利率</td><td><strong>13.61%</strong></td><td>周期底部企稳</td><td class="bad">❌ 下降2.55pct</td></tr>
-  <tr><td>净利率</td><td><strong>6.91%</strong></td><td>周期底部>5%</td><td class="neutral">⚠ 边缘水平</td></tr>
-  <tr><td>营收增长率</td><td><strong>+11.62%</strong></td><td>> 10%</td><td class="good">✅ 量驱动增长</td></tr>
-  <tr><td>扣非增长率</td><td><strong>-9.10%</strong></td><td>周期底部可接受</td><td class="neutral">⚠ 价格下行拖累</td></tr>
-  <tr><td>CFO/净利润</td><td><strong>2.64</strong></td><td>> 1.5 优秀</td><td class="good">✅ 极其优秀</td></tr>
-  <tr><td>资产负债率</td><td><strong>62.81%</strong></td><td>化工<65%</td><td class="neutral">⚠ 偏高但可控</td></tr>
-  <tr><td>分红率</td><td><strong>~31%</strong></td><td>持续分红</td><td class="good">✅ 周期底部维持分红</td></tr>
+  <tr><th>指标</th><th>2026H1 / 前三季</th><th>观察标准</th><th>评价</th></tr>
+  <tr><td>加权ROE</td><td>8.96% / 13.76%</td><td>周期股看5–10年均值</td><td>本期未年化，不能直接与年度15%比较</td></tr>
+  <tr><td>毛利率</td><td>17.08% / 16.48%</td><td>价差与成本优势</td><td>高于2025，Q3环比降温</td></tr>
+  <tr><td>归母净利率</td><td>8.43% / 8.42%</td><td>与现金转化同步</td><td>高于2025的6.16%</td></tr>
+  <tr><td>营收同比</td><td>+31.26% / +28.87%</td><td>拆开价格和销量</td><td>公司称H1量价齐增，非单纯放量</td></tr>
+  <tr><td>归母净利同比</td><td>+64.35% / +70.99%</td><td>扣非同步</td><td>扣非+54.96% / +68.36%</td></tr>
+  <tr><td>CFO/合并净利</td><td>1.02 / 1.18倍</td><td>≥1且不持续恶化</td><td>覆盖尚可，增长慢于净利</td></tr>
+  <tr><td>资产负债率</td><td>64.27% / 63.38%</td><td>不超过自身融资承受力</td><td>高于可比化工公司，安全垫偏薄</td></tr>
+  <tr><td>分红率</td><td>H1拟25.20%；2025年度方案31.24%</td><td>用归属期利润匹配方案</td><td>不将不同年度分红拼成固定股息承诺</td></tr>
 </table>
-
-<h3>3.2 分业务分析（2025年度）</h3>
+<h3>3.2 分业务分析（2026H1，财报第127页）</h3>
 <table>
-  <tr><th>业务板块</th><th>营收（亿）</th><th>占比</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
-  <tr><td>聚氨酯系列（MDI/TDI）</td><td>750.58</td><td>36.9%</td><td>-1.04%</td><td><strong>26.88%</strong></td><td class="good">✅ 核心利润来源</td></tr>
-  <tr><td>石化系列</td><td>842.04</td><td>41.4%</td><td>+16.11%</td><td><strong>~5%</strong></td><td class="bad">❌ 低毛利跑量</td></tr>
-  <tr><td>精细化学品及新材料</td><td>331.89</td><td>16.3%</td><td>+17.39%</td><td><strong>~15%</strong></td><td class="good">✅ 第二增长曲线</td></tr>
-  <tr><td>其他业务</td><td>262.18</td><td>12.9%</td><td>+12.30%</td><td>—</td><td class="neutral">含贸易收入</td></tr>
-  <tr><td>抵销</td><td>-162.87</td><td>-8.0%</td><td>—</td><td>—</td><td>内部抵销</td></tr>
+  <tr><th>业务板块</th><th>营收</th><th>占合并营收</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td>聚氨酯系列</td><td>449.57</td><td>37.68%</td><td>+21.87%</td><td>27.05%</td><td>毛利121.61，仍是核心盈利支柱</td></tr>
+  <tr><td>石化系列</td><td>477.38</td><td>40.01%</td><td>+36.65%</td><td>6.80%</td><td>较同期-0.37%转正，原料改造与价格共同贡献</td></tr>
+  <tr><td>精细化学品及新材料</td><td>225.48</td><td>18.90%</td><td>+44.28%</td><td>16.28%</td><td>毛利36.70，成长性需以回报率检验</td></tr>
+  <tr><td>其他（产品分类）</td><td>130.47</td><td>10.94%</td><td>+15.16%</td><td>7.98%</td><td>不可忽略抵销而直接加总</td></tr>
+  <tr><td>产品间抵销</td><td>-98.40</td><td>-8.25%</td><td>不适用</td><td>不适用</td><td>主营合计1,184.49</td></tr>
+  <tr><td>其他业务（非主营）</td><td>8.67</td><td>0.73%</td><td>+138.06%</td><td>28.68%</td><td>与产品分类“其他”不是同一行</td></tr>
+  <tr><td>合并口径</td><td>1,193.16</td><td>100%</td><td>+31.26%</td><td>17.08%</td><td>包括抵销；各板块占比单独相加会超过100%</td></tr>
 </table>
-
-<div class="highlight-box">
-  <strong>业务解读：</strong>石化板块营收首次超过聚氨酯成为第一大收入来源（41.4%），但毛利率极低（约5%），本质是"跑量不赚钱"——通过扩大石化板块规模来降低聚氨酯原料成本。真正的利润奶牛仍是聚氨酯系列（26.88%毛利率贡献了大部分毛利）。精细化学品及新材料是第二增长曲线（+17.39%），毛利率~15%，正在逐步贡献增量利润。整体看，万华的"聚氨酯+石化+新材料"产业链一体化战略在兑现，但石化板块盈利改善是关键观察点。
-</div>
-
+<div class="highlight-box"><strong>关键变化：</strong>不是只有MDI赚钱。石化H1毛利32.48亿元、较同期约-1.30亿元明显修复；但6.80%的毛利率仍薄，不能用石化收入占比推算其利润贡献。境外主营收入570.00亿元，占主营48.12%，海外供应链、能源与汇率风险有实质权重。</div>
 <h3>3.3 排雷清单</h3>
 <table>
-  <tr><th>风险等级</th><th>风险项</th><th>依据</th></tr>
-  <tr><td class="neutral">🟡 中等</td><td>毛利率从16.16%降至13.61%，化工品价格持续承压</td><td>L1 利润表，2025年超九成化工品均价同比下跌</td></tr>
-  <tr><td class="neutral">🟡 中等</td><td>扣非净利润-9.10%，主业盈利能力弱化</td><td>L1 利润表，非经常损益支撑了净利润</td></tr>
-  <tr><td class="neutral">🟡 中等</td><td>资产负债率62.81%偏高</td><td>L1 资产负债表，总负债2,029亿</td></tr>
-  <tr><td class="neutral">🟡 中等</td><td>在建工程311亿，未来折旧持续高压</td><td>L1 资产负债表，折旧从100亿增至134亿</td></tr>
-  <tr><td class="neutral">🟡 中等</td><td>石化毛利率~5%，缺乏盈利能力</td><td>L2 分业务分析，营收占比41%但几乎不赚钱</td></tr>
-  <tr><td class="good">🟢 正面</td><td>CFO 331亿，净现比2.64，现金质量极其优秀</td><td>L1 现金流量表</td></tr>
-  <tr><td class="good">🟢 正面</td><td>2025Q4+2026Q1连续两季净利环比增长，拐点确认</td><td>L1 利润表 Q4净利33.7亿→Q1净利37.2亿</td></tr>
-  <tr><td class="good">🟢 正面</td><td>全球MDI CR3>80%，行业格局极其稳固</td><td>L5 行业定位</td></tr>
-  <tr><td class="good">🟢 正面</td><td>PB 2.5x处于5年27%分位，估值偏低</td><td>L3 估值</td></tr>
+  <tr><th>风险项</th><th>严重程度</th><th>依据</th></tr>
+  <tr><td>短期再融资依赖</td><td class="bad">红</td><td>现金低于短借，且流动比率0.72；未使用融资额度是支持，不是消除风险</td></tr>
+  <tr><td>库存与价差反转</td><td class="neutral">黄</td><td>Q3存货335.28亿元；油价、海外复产和产品降价可触发跌价压力</td></tr>
+  <tr><td>利润现金转化</td><td class="neutral">黄</td><td>H1 CFO/合并净利约1.02，远弱于净利润同比增幅</td></tr>
+  <tr><td>汇率与财务费用</td><td class="neutral">黄</td><td>H1财务费用同比+138.30%；公司解释主要为汇兑收益减少，不能全解释为利息翻倍</td></tr>
+  <tr><td>资本开支回升</td><td class="neutral">黄</td><td>现金回报依靠资本开支放缓；后续再加码可能重新吞噬FCF</td></tr>
+  <tr><td>非经常性收益主导</td><td class="good">绿（正面）</td><td>H1非经常性损益占归母3.84%；前三季2.14%，扣非增长同步</td></tr>
+  <tr><td>商誉压力</td><td class="good">绿（相对）</td><td>Q3商誉22.09亿元，占总资产0.62%；并非当前最主要资产风险</td></tr>
+  <tr><td>造血与资本开支</td><td class="good">绿（正面）</td><td>2025及2026累计FCF为正，但不代表所有扩张项目回报达标</td></tr>
 </table>
-
-<div class="verdict verdict-caution">⚠ L2综合判定：谨慎看好（现金流极其强悍+周期拐点已现，但盈利能力尚未完全恢复）</div>
-
 </div></div>
 
 <div class="tab-content" id="tab-l3"><div class="tab-inner">
-
-<h2>四、估值分析（L3框架 — 周期股专用PB法）</h2>
-
-<h3>4.1 当前估值水平</h3>
+<h2>四、估值分析（L3框架）</h2>
+<h3>4.1 当前估值：统一分子、分母和日期</h3>
 <table>
-  <tr><th>指标</th><th>当前值</th><th>备注</th></tr>
-  <tr><td>股价（2026.7附近）</td><td><strong>~87 元</strong></td><td>近半年区间78-93元</td></tr>
-  <tr><td>总市值</td><td><strong>~2,720 亿</strong></td><td>总股本31.30亿股</td></tr>
-  <tr><td>PE（TTM）</td><td><strong>~21x</strong></td><td>基于TTM净利~130亿（2025全年125亿+Q1增量）</td></tr>
-  <tr><td>PE（TTM扣非）</td><td><strong>~23x</strong></td><td>基于扣非TTM净利~120亿</td></tr>
-  <tr><td>PE（2026E）</td><td><strong>~15x</strong></td><td>基于券商一致预期EPS 5.87元</td></tr>
-  <tr><td>PB</td><td><strong>~2.5x</strong></td><td>基于每股净资产34.60元</td></tr>
-  <tr><td>PS（TTM）</td><td><strong>~1.3x</strong></td><td>市销率偏低</td></tr>
-  <tr><td>PCF</td><td><strong>~8.2x</strong></td><td>基于CFO 331亿，非常低</td></tr>
-  <tr><td>股息率</td><td><strong>~1.4%</strong></td><td>基于2025年每股分红1.25元</td></tr>
+  <tr><th>指标</th><th>2026-10-27</th><th>计算口径</th><th>判断</th></tr>
+  <tr><td>股价 / 总市值</td><td>70.33元 / 2,201.66亿元</td><td>日度估值数据；总股本31.3047亿股</td><td>非投资目标价</td></tr>
+  <tr><td>PB（MRQ）</td><td>1.893倍</td><td>2,201.66 ÷ Q3归母净资产1,163.06</td><td class="good">五年约8.91%分位</td></tr>
+  <tr><td>PE（TTM）</td><td>11.57倍</td><td>归母TTM=125.27+156.58−91.57=190.28亿元</td><td>仅披露，不用于周期股评分和定价</td></tr>
+  <tr><td>PE（TTM扣非）</td><td>11.99倍</td><td>扣非TTM=121.44+153.22−91.01=183.65亿元</td><td>与日行情动态PE不混用</td></tr>
+  <tr><td>PE（2026E）</td><td style="color:#999">数据待补充</td><td>未取得同日一致预期</td><td>不以前三季乘4/3冒充预测</td></tr>
+  <tr><td>PS / PCF（TTM）</td><td>0.899倍 / 5.95倍</td><td>TTM收入2,448.75；TTM CFO370.03亿元</td><td>PCF不含资本开支负担</td></tr>
+  <tr><td>股息率参考</td><td>1.78%</td><td>仅2025年度1.25元/股 ÷ 70.33</td><td>非严格最近12个月已付股息率；H1预案不叠加年化</td></tr>
 </table>
-
-<h3>4.2 PB Band区间（周期股专用）</h3>
-<p style="font-size:13px;color:#666;">周期股PE失真，以PB为估值基准。每股净资产34.60元（2025末）</p>
+<h3>4.2 PB Band（近五年日频MRQ，非目标价承诺）</h3>
 <table>
-  <tr><th>分位</th><th>PB</th><th>对应股价</th><th>vs现价87元</th></tr>
-  <tr><td>历史最大值</td><td>8.1x</td><td>280 元</td><td class="good">+222%</td></tr>
-  <tr><td>历史80%分位</td><td>5.3x</td><td>183 元</td><td class="good">+111%</td></tr>
-  <tr><td>历史50%分位</td><td>3.5x</td><td>121 元</td><td class="good">+39%</td></tr>
-  <tr><td>历史20%分位</td><td>2.2x</td><td>76 元</td><td class="bad">-13%</td></tr>
-  <tr><td>历史最小值</td><td>1.7x</td><td>59 元</td><td class="bad">-32%</td></tr>
-  <tr><td><strong>当前PB 2.5x</strong></td><td>2.5x</td><td>87 元</td><td>—</td></tr>
+  <tr><th>历史位置</th><th>PB</th><th>映射当前每股净资产的价格</th><th>说明</th></tr>
+  <tr><td>最大值</td><td>5.240倍</td><td>194.67元</td><td>历史极值，不作为基准目标</td></tr>
+  <tr><td>80%分位</td><td>3.783倍</td><td>140.56元</td><td>包含过去高ROE阶段，未必重现</td></tr>
+  <tr><td>50%分位</td><td>2.801倍</td><td>104.05元</td><td>机械历史中位映射，不能等同合理价值</td></tr>
+  <tr><td>20%分位</td><td>2.090倍</td><td>77.66元</td><td>相对当前约+10.43%，不含股息</td></tr>
+  <tr><td>当前</td><td>1.893倍</td><td>70.33元</td><td>约8.91%分位，赔率按规则为“厚”</td></tr>
+  <tr><td>最小值</td><td>1.678倍</td><td>62.33元</td><td>相对当前约-11.38%；不是止跌保证</td></tr>
 </table>
-<p style="font-size:13px;color:#666;">当前PB 2.5x处于5年约27%分位 — <strong>处于底部区间（<30%分位）</strong>，是潜在的机会区域</p>
-
-<h3>4.3 历史PE区间（参考，周期股PE失真）</h3>
-<table>
-  <tr><th>指标</th><th>数值</th><th>备注</th></tr>
-  <tr><td>PE（TTM）最大值</td><td>26.6x</td><td>2023年高点</td></tr>
-  <tr><td>PE（TTM）80%分位</td><td>19.4x</td><td></td></tr>
-  <tr><td>PE（TTM）50%分位</td><td>16.3x</td><td></td></tr>
-  <tr><td>PE（TTM）20%分位</td><td>14.5x</td><td></td></tr>
-  <tr><td>PE（TTM）最小值</td><td>12.2x</td><td>2022年周期底部</td></tr>
-  <tr><td>当前PE（TTM）</td><td class="bad">~21x</td><td>5年88%分位 — 但周期股PE失真！利润仍在低位修复中，PE高是正常现象</td></tr>
-</table>
-
-<div class="highlight-box">
-  <strong>估值总结：</strong>万华化学作为纯周期股，当前PB 2.5x处于5年27%分位，属于底部区域。<br><br>
-  <strong>核心观点：</strong>① PB是周期股最可靠的估值工具——当前PB处于20%-50%分位之间，距历史底部20%分位（PB 2.2x）仅13%下行空间，距中位PB 3.5x有39%上行空间，赔率有利；② 周期股PE高是利润低位的正常现象（2025年净利比2021年高峰期跌了63%），当前PE高不意味着贵，反而说明利润已见底；③ 2026E PE仅15x，基于盈利修复预期，与PB的27%分位形成共振，指向合理的左侧布局区间；④ 现金流估值法（P/CF=8.2x）显示市场对万华极强的现金创造能力定价不足。当前属于<strong>周期底部+PB低位+拐点确认</strong>的三重叠加，但股价已有一定涨幅（从2026年1月78元涨至当前87元+12%），安全边际仍在但不如底部区间丰厚。
-</div>
-
+<div class="highlight-box"><strong>样本方法：</strong>东方财富RPT_VALUEANALYSIS_DET日频PB_MRQ，筛选2021-10-27至2026-10-27，1212个有效交易日；分位=样本中PB≤当前PB的天数/有效天数，结果8.91%。分位点用排序后最近秩近似。采用数据商逐日MRQ序列，不以当前净资产回填所有历史股价。[S5] 日期频率、复权与财报更新处理会影响其他平台分位，不能与其无说明混比。</div>
+<h3>4.3 估值总结</h3>
+<div class="summary-box"><strong>低PB是真，低估程度仍取决于未来回报。</strong>五年均值包含2021年42.53%的高ROE；2025已降至12.44%。若正常化ROE长期下台阶，历史PB中枢也应下移。当前PB可提供逆周期观察价值，但缺乏价差稳定和再融资风险改善，评级不因低分位直接上调。周期股PE失真，本版不做PE Band，也不拿11.57倍PE证明“便宜”。</div>
 </div></div>
 
 <div class="tab-content" id="tab-l4"><div class="tab-inner">
-
-<h2>五、杜邦分析拆解（L4框架）</h2>
-
-<h3>5.1 杜邦拆解表</h3>
+<h2>五、杜邦分析（L4框架）</h2>
+<h3>5.1 杜邦拆解：先统一利润与权益范围</h3>
 <table>
-  <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
-  <tr><td>净利润率</td><td>9.59%</td><td>8.12%</td><td><strong>6.91%</strong></td><td class="bad">⬇ 连续三年下滑</td></tr>
-  <tr><td>资产周转率</td><td>0.64</td><td>0.64</td><td><strong>0.63</strong></td><td class="neutral">➡ 基本持平</td></tr>
-  <tr><td>权益乘数</td><td>2.93</td><td>3.10</td><td><strong>2.98</strong></td><td class="neutral">➡ 基本持平</td></tr>
-  <tr><td><strong>ROE</strong></td><td><strong>~18%</strong></td><td><strong>~13%</strong></td><td><strong>12.44%</strong></td><td class="bad">⬇ 下行趋势</td></tr>
-  <tr><td>去杠杆ROA（净利率×周转）</td><td>6.1%</td><td>5.2%</td><td><strong>4.4%</strong></td><td class="bad">⬇ 下滑</td></tr>
-  <tr><td>杠杆贡献（ROE-ROA）</td><td>11.9pct</td><td>7.8pct</td><td><strong>8.0pct</strong></td><td class="neutral">杠杆贡献大但风险也大</td></tr>
+  <tr><th>指标</th><th>2023</th><th>2024</th><th>2025</th><th>2026H1</th><th>2026前三季</th></tr>
+  <tr><td>合并净利率</td><td>10.44%</td><td>8.12%</td><td>6.91%</td><td>9.69%</td><td>9.53%</td></tr>
+  <tr><td>资产周转率</td><td>0.773</td><td>0.666</td><td>0.659</td><td>0.352</td><td>0.549</td></tr>
+  <tr><td>平均权益乘数</td><td>2.582</td><td>2.760</td><td>2.756</td><td>2.745</td><td>2.711</td></tr>
+  <tr><td>三因子积：合并ROE</td><td>20.82%</td><td>14.94%</td><td>12.56%</td><td>9.37%</td><td>14.18%</td></tr>
+  <tr><td>去杠杆ROA</td><td>8.06%</td><td>5.41%</td><td>4.56%</td><td>3.41%</td><td>5.23%</td></tr>
+  <tr><td>披露的加权归母ROE</td><td>20.42%</td><td>14.29%</td><td>12.44%</td><td>8.96%</td><td>13.76%</td></tr>
 </table>
-
-<div class="highlight-box">
-  <strong>赚钱模式判断：高杠杆+低利润型（典型重资产周期股）</strong><br>
-  万华化学的杜邦特征非常典型：净利率6.91%偏低但稳定（周期底部），周转率0.63（重资产正常水平），权益乘数2.98（偏高风险）。去掉杠杆后的基础回报（去杠杆ROA）仅4.4%，杠杆贡献了8.0个百分点才得到12.44%的ROE。<br><br>
-  <strong>周期股vs非周期股的本质区别：</strong>周期股在底部区域的利润率是最低的（ROE也最低），此时反而是最好的买入时机；而在顶部区域利润率最高（ROE也最高），此时反而是风险最大的时候。万华当前ROE 12.44%已从高峰33%（2021年）大幅回落，而非经营恶化——这在周期股中是正常甚至健康的底部特征。
-</div>
-
-<h3>5.2 历史周期ROE追踪</h3>
-<table>
-  <tr><th>年份</th><th>ROE</th><th>周期位置</th></tr>
-  <tr><td>2021年</td><td>~33%</td><td class="bad">顶部（盈利暴利期）</td></tr>
-  <tr><td>2022年</td><td>~17%</td><td class="neutral">下行</td></tr>
-  <tr><td>2023年</td><td>~18%</td><td class="neutral">中周期</td></tr>
-  <tr><td>2024年</td><td>~13%</td><td class="neutral">接近底部</td></tr>
-  <tr><td>2025年</td><td>12.44%</td><td class="good">底部区域（2026年拐点向上）</td></tr>
-</table>
-
-<div class="summary-box">
-  <strong>核心结论：</strong><br>
-  ① 万华化学是"高杠杆+低利润+低周转"的典型重资产化工周期股模式；<br>
-  ② ROE从2021年33%回落到2025年12.44%，是周期性的利润回归而非竞争力丧失——公司销量一直在增长（近5年营收增长近一倍）；<br>
-  ③ 去杠杆ROA 4.4%偏低，杠杆倍数3.0意味着ROE对利润率的敏感度极高——利润率每变化1%，ROE变化约3%；<br>
-  ④ 积极的信号是净利润率在2025年已经触底（Q4毛利率14.03%环比Q1-3的13.61%明显改善），2026Q1净利率回升至8.07%，周期修复正在发生；<br>
-  ⑤ ROE提升的关键，不是资产周转率（重资产已定），也不是降杠杆（需支持扩张），而是利润率回升——这取决于化工品价格修复。2026Q1已经出现拐点。
-</div>
-
+<div class="highlight-box"><strong>计算说明：</strong>资产周转=期间营收/期初期末平均总资产；权益乘数=平均总资产/平均总权益；合并净利率使用包含少数股东的合并净利。三因子乘积得到“合并净利/平均总权益”，不是法定加权归母ROE，两者差异不可强行抹平。H1与前三季均未年化，不能直接和全年周转率、ROA比高低。</div>
+<h3>5.2 赚钱模式判断</h3>
+<div class="highlight-box"><strong>赚钱模式：</strong>技术/规模成本优势支撑的重资产经营，叠加约2.7倍权益乘数，不是轻资产高净利率公司。2023–2025利润率下行、周转放慢共同拖累ROE，未靠大幅加杠杆遮掩；2026修复主要来自盈利能力和资产利用改善，仍须验证原料与产品价格正常化后的回报。</div>
+<h3>5.3 核心结论</h3>
+<div class="summary-box"><strong>杜邦结论：</strong>2025每1元平均资产创造约0.0456元合并净利；2026前三季累计约0.0523元，显示修复，但也意味着重资产需要持续赚取超过资本成本的回报。同行华鲁恒升、巨化业务结构不同，未取得完全一致平均资产口径，不编造同行ROA排名。</div>
 </div></div>
 
 <div class="tab-content" id="tab-l5"><div class="tab-inner">
-
-<h2>六、行业分类与特征（L5框架）</h2>
-
+<h2>六、行业分类（L5框架）</h2>
 <h3>6.1 行业类型判断</h3>
-<div class="summary-box">
-  <strong>行业类型：纯周期股（基础化工—聚氨酯/石化）</strong><br>
-  <strong>判断依据：</strong>万华化学主营MDI/TDI（聚氨酯原料）和石化产品，均为典型的大宗化工品。MDI行业高度成熟，需求增速约GDP+1~2%（约3-4%/年），长期不具高成长性，但利润波动极大——2021年MDI价差高峰时万华年净利246亿，到2025年价差低迷时净利125亿，波动幅度近50%。纯周期行业属性：供需错配驱动的价格周期才是利润波动的核心变量，而非量的增长。<br><br>
-  <strong>周期特征确认：</strong>万华过去5年ROE在12%-33%之间剧烈波动，完全符合周期股特征。本次周期触底（2024-2025）后，2026Q1已出现明确修复信号。
-</div>
-
-<h3>6.2 行业集中度与壁垒</h3>
+<div class="summary-box"><strong>纯周期：基础化工。</strong>按项目行业分类唯一规则使用周期股体系。新材料、电子及电池应用是增长来源，但不能抵消聚氨酯与石化供需错配；集团增长必须拆成销量、价格和成本三部分，不能以“科技新材料”标签豁免周期风险。</div>
+<h3>6.2 集中度与壁垒</h3>
 <table>
-  <tr><th>维度</th><th>判断</th></tr>
-  <tr><td>行业集中度</td><td><strong>极度集中</strong>——全球MDI CR3（万华/巴斯夫/科思创）>80%，万华中国市占率>50%。全球有效产能约1,000万吨/年，万华约310万吨，且拥有全球最低成本。</td></tr>
-  <tr><td>技术壁垒</td><td><strong>极高</strong>——MDI生产涉及光气化反应，工艺极其复杂，全球仅4家（万华+巴斯夫+科思创+亨斯迈）拥有大规模量产技术。新进入者几乎不可能10年内建成有竞争力的装置。</td></tr>
-  <tr><td>规模壁垒</td><td><strong>极高</strong>——单套MDI装置投资超100亿元，且必须配套氯碱、苯胺等上下游，整个一体化基地投资超500亿元。规模门槛足以阻止绝大多数新进入者。</td></tr>
-  <tr><td>成本壁垒</td><td><strong>极强</strong>——万华已做到全球成本最低（烟台/宁波基地的原料自供+能源配套一体化+循环经济），竞争对手（巴斯夫/科思创）在高成本欧洲的装置正在缩产。</td></tr>
+  <tr><th>维度</th><th>判断</th><th>依据及边界</th></tr>
+  <tr><td>聚氨酯</td><td>技术、规模和安全工艺壁垒较高</td><td>2025末MDI 380万吨/年、TDI 147万吨/年；不填未经核验的全球CR3精确值</td></tr>
+  <tr><td>石化</td><td>成本与原料保障竞争，不能当作寡头定价</td><td>乙烯一期改造、二期投产提升规模；油价与路线价差决定盈利</td></tr>
+  <tr><td>新材料</td><td>产品分化，研发和客户认证有价值</td><td>H1收入+44.28%，仍需看毛利和投入资本回报，不以新品数量替代盈利兑现</td></tr>
+  <tr><td>集团壁垒</td><td>技术 + 一体化 + 工业化运营</td><td>中报披露乙烷进料改造完成、MDI降能耗等，属于公司披露；独立单位成本排名待补充</td></tr>
 </table>
-
-<h3>6.3 生命周期阶段</h3>
-<div class="highlight-box">
-  <strong>阶段：成熟期（MDI）+ 成长期（新材料）</strong><br>
-  聚氨酯（MDI）是成熟行业——全球需求平稳增长3-4%/年，行业格局已定，CR3>80%。万华在这一阶段要做的是"以量换利"——通过扩产和降本挤出高成本竞争对手。精细化学品及新材料处于成长期（+17.39%），是万华的第二增长曲线，正在从~15%毛利率向更高附加值方向演进。<br><br>
-  <strong>投资策略重点：</strong>MDI看的是产能出清节奏和价差修复（边际产能退出的速度决定利润率修复的幅度）；新材料看的是技术突破和客户导入进度（电池材料/ADI/尼龙12等）。
-</div>
-
-<h3>6.4 当前周期位置与判断</h3>
-<div class="highlight-box">
-  <strong>当前周期位置：底部已过 → 复苏初期（2026Q1已经确认）</strong><br>
-  判断依据：① 2025年全年化工品价格持续下行（超90%品类均价同比下跌），2025利润125亿已较2021年峰值246亿腰斩有余；② 2025Q4营收+71%、净利+33.7亿（同比+73.7%）——新装置放量+MDI价格触底回升；③ 2026Q1净利37.2亿（同比+20.6%、环比+10.3%）进一步确认盈利修复趋势；④ 从行业整体看，聚氨酯价差在2025年底开始走阔，石脑油-PX-PTA链条也有改善。<br><br>
-  <strong>判断对评分的影响：</strong>周期位置维度（15分权重）可得12分（底部已过复苏初期）——高于底部纯左侧时但低于中周期的确定性，是目前评分体系中最核心的加分项。
-</div>
-
+<h3>6.3 生命周期与周期位置</h3>
+<div class="highlight-box"><strong>生命周期：</strong>成熟聚氨酯/石化 + 成长中的精细材料组合。<strong>周期位置：</strong>由2025盈利下行转为2026修复，尚不能认定处于可持续高景气。中报指出海外装置受地缘与原料约束，供应偏紧；这既是当前利好，也是海外恢复后价差回落的风险。Q3毛利率环比回落进一步限制“底部已过一路向上”的叙事。</div>
+<h3>6.4 同行对比（统一2026H1）</h3>
+<table>
+  <tr><th>指标</th><th>万华化学</th><th>华鲁恒升600426</th><th>巨化股份600160</th><th>行业中位</th><th>评价</th></tr>
+  <tr><td>加权归母ROE</td><td>8.96%</td><td>6.87%</td><td>12.15%</td><td style="color:#999">数据待补充</td><td>万华居两家之间，非全行业排序</td></tr>
+  <tr><td>毛利率</td><td>17.08%</td><td>24.10%</td><td>34.03%</td><td style="color:#999">数据待补充</td><td>石化低毛利收入拉低集团毛利率</td></tr>
+  <tr><td>归母净利率（计算）</td><td>8.43%</td><td>13.71%</td><td>19.87%</td><td style="color:#999">数据待补充</td><td>同为归母口径，但产品结构显著不同</td></tr>
+  <tr><td>资产负债率</td><td>64.27%</td><td>27.47%</td><td>38.67%</td><td style="color:#999">数据待补充</td><td>万华融资风险明显更高</td></tr>
+  <tr><td>营收同比</td><td>+31.26%</td><td>+8.87%</td><td>+0.07%</td><td style="color:#999">数据待补充</td><td>万华规模增长更快，但不是利润率更高</td></tr>
+  <tr><td>同日PB / PE</td><td>1.893 / 11.57倍</td><td style="color:#999">数据待补充</td><td style="color:#999">数据待补充</td><td style="color:#999">数据待补充</td><td>本次未核验同行同日估值，不拿旧报告价格比较</td></tr>
+</table>
+<div class="summary-box"><strong>竞争位置：</strong>万华的聚氨酯壁垒和收入增长有优势，但集团毛利率并不领先、负债负担明显高于这两家国内化工对照公司。华鲁为煤化工、巨化偏氟化工，仅作经营与融资结构参照，不能直接替代MDI直接竞争对手。巴斯夫/科思创未取得统一口径数据，未参与定量排名。行业中位数和同行同日估值缺失不参与评分。[S6]</div>
 <h3>6.5 估值方法匹配</h3>
-<table>
-  <tr><th>行业类型</th><th>首选估值</th><th>辅助指标</th><th>当前是否匹配</th></tr>
-  <tr><td>周期型（基础化工）</td><td>PB（周期性底部）</td><td>PE（顶部参考）、产能利用率、产品价差</td><td class="good">✅ 匹配——PB 2.5x处于27%分位，估值偏低</td></tr>
-</table>
-
-<div class="summary-box">
-  <strong>估值方法总结：</strong>对于万华化学这类纯周期股，使用PB估值是唯一正确的框架。当前PB 2.5x处于5年27%分位，属于底部区域。PE 21x看似"偏贵"（5年88%分位），但这是利润已跌至底部的正常现象——2025年利润较峰值下降63%才得到这个"高PE"。当利润修复到市场中性的2026年18,307亿预测时，对应PE仅15x。周期股投资是"PB在底部买入、PE在低位时等待、PE升高时卖出（利润已反映）"的逆向逻辑。当前阶段，PB底部+拐点已现=左侧布局窗口。
-</div>
-
+<div class="summary-box"><strong>首选PB + 穿越周期ROE + 资产质量；辅助FCF和资本开支。</strong>本版以PB分位确定赔率厚薄，情景估值采用PB×未来每股净资产，不用PE扩张证明周期股价值。固定资产减值、再融资成本抬升均可令低PB失去保护，账面净资产不等于清算价值。</div>
 </div></div>
 
 <div class="tab-content" id="tab-l6"><div class="tab-inner">
-
 <h2>七、综合实战（L6框架）</h2>
-
 <h3>7.1 六步法总结</h3>
 <div class="summary-box">
-  <strong>Step 1 - 行业定位：</strong>纯周期（基础化工），全球MDI CR3>80%极度集中，技术+规模壁垒极高，行业成熟。<br>
-  <strong>Step 2 - 财务体检：</strong>ROE 12.44%（周期底部偏低），杜邦为高杠杆低利润型，CFO/净利2.64极其优秀，FCF 80亿（周期底部仍为正）。<br>
-  <strong>Step 3 - 估值判断：</strong>PB 2.5x（5年27%分位）处于底部区间，PE 21x因利润触底偏高属正常，用PB定价合理。<br>
-  <strong>Step 4 - 风险排查：</strong>毛利率下滑（-2.55pct），石化板块不赚钱，资产负债率62.8%偏高，但在周期底部可控。<br>
-  <strong>Step 5 - 结论：</strong>好公司（全球MDI绝对龙头+极强现金流+行业格局最佳）+ 底部价格（PB低位+拐点初现）= 左侧布局窗口。<br>
-  <strong>Step 6 - 跟踪：</strong>看MDI价差走势/2026H1毛利率改善/石化板块能否扭亏/新材料业务毛利率提升。
+  Step 1 - 行业定位：基础化工纯周期，聚氨酯壁垒高，石化竞争更充分。<br>
+  Step 2 - 财务体检：H1/前三季盈利修复，短债缺口仍大；CFO覆盖合并净利但增速落后。<br>
+  Step 3 - 估值判断：PB 1.893倍、五年约8.91%分位，赔率厚但非自动买入。<br>
+  Step 4 - 风险排查：价差回落、海外复产、现金转化、短债与资本开支。<br>
+  Step 5 - 结论：有技术和成本竞争力的周期龙头，当前Neutral，不把低估值等同低风险。<br>
+  Step 6 - 跟踪：Q4单季利润、全年CFO/净利、FCF、库存与广义短债缺口。
 </div>
-
+<h3>前瞻状态（三轨：前瞻档，定性不打分）</h3>
+<table>
+  <tr><th style="width:26%">字段</th><th>内容</th></tr>
+  <tr><td>前瞻档位</td><td><span class="badge fwd-b">B</span> 同比复苏有证据，下一阶段方向未足够确定；不把评级降档理解为已出现经营危机。</td></tr>
+  <tr><td>风险方向与量级</td><td>双向 · 高；供应扰动与产品/原料价差可快速改变利润</td></tr>
+  <tr><td>正向变量</td><td>乙烯原料改造降本、聚氨酯供应偏紧、资本开支回落与新材料销量增长</td></tr>
+  <tr><td>覆盖程度</td><td>中：五年低PB分位 + 累计正FCF；短债与库存侵蚀部分安全垫</td></tr>
+  <tr><td>验证节点</td><td>2026年报披露事件：检查Q4价差、单季扣非利润与全年现金转化；披露日待公司公告</td></tr>
+  <tr><td>升档条件</td><td>Q4单季扣非归母净利≥56.46亿元、单季毛利率≥16%，全年CFO/合并净利≥1.2、FCF≥80亿元，且广义短债缺口不扩大；需共同验证</td></tr>
+  <tr><td>降档条件</td><td>Q4毛利率&lt;13%且扣非利润环比降幅&gt;20%，或全年FCF转负且资产负债率≥65%；核验持续性后考虑C，出现流动性事件才考虑D</td></tr>
+</table>
+<div class="highlight-box"><strong>档位定义：</strong>S=前瞻有利且已被验证；A=前瞻有利、方向确定；B=悬置/中性但有覆盖；C=方向确定不利但未完全定价；D=风险已实质化、覆盖被突破。以上监测阈值为本报告分析假设，不是公司业绩指引。</div>
+<h3>投资评级（三轨：评级）</h3>
+<div class="rating-card"><span class="badge rating-neutral">Neutral</span>　矩阵落点：财务中（73） × 前瞻B × 赔率厚（PB&lt;30%分位）</div>
+<div class="summary-box"><strong>为什么不是更高一档：</strong>中财务品质+B前瞻对应Neutral；低PB不能越过前瞻条件直接给Buy。H1与Q3修复已计入，Q3环比回落和融资缺口阻止升级。<br><br><strong>上调条件：</strong>满足上表升档条件、前瞻升为A，且PB仍在历史30%分位以内，可评估Outperform；73分不满足Buy所需高财务品质条件。<br><br><strong>下调条件：</strong>前瞻降为C则评估Underperform；出现融资支持中断、逾期或覆盖被突破等实质风险才进一步考虑Sell。单纯股价波动不是基本面降档条件。</div>
 <h3>7.2 好公司三要素检查</h3>
 <table>
   <tr><th>要素</th><th>判断</th><th>依据</th></tr>
-  <tr><td>① 好行业</td><td class="good">✓</td><td>MDI行业极度集中CR3>80%，进入壁垒极高，盈利周期性波动但不影响龙头生存</td></tr>
-  <tr><td>② 好公司</td><td class="good">✓</td><td>全球成本最优+净现比2.64+FCF周期底部为正+33年从未亏损+连续分红</td></tr>
-  <tr><td>③ 好价格</td><td class="good">✓</td><td>PB 2.5x处于5年27%分位（底部区间），PCF 8.2x低估，2026E PE 15x合理</td></tr>
+  <tr><td>① 好行业</td><td>部分满足</td><td>聚氨酯壁垒与集中格局较好；大宗石化不能享受同样结论</td></tr>
+  <tr><td>② 好公司</td><td>有竞争优势，非无瑕疵</td><td>穿越周期ROE与现金韧性较好，但现金安全垫不足、资本密集</td></tr>
+  <tr><td>③ 好价格</td><td>历史相对偏低</td><td>PB约8.91%分位；若未来ROE中枢下降，历史分位不足以证明绝对低估</td></tr>
 </table>
-
-<h3>7.3 三个陷阱排查</h3>
-<div class="danger-box">
-  <strong>☐ 价值陷阱：</strong>❌ 未命中——低PE（看似低）+低增长（周期底部）+高负债（62.8%）的组合恰恰是周期股底部的典型特征。价值陷阱的精髓是"低PE+利润不可持续"，万华的利润周期属性决定了需要用PB而非PE来判断。<br>
-  <strong>☐ 周期陷阱：</strong>⚠ 注意但不命中——周期陷阱发生在"低PE+周期顶部"，即利润暴利期PE极低时买入。当前处于周期底部（利润下跌63%后企稳回升），底部买入是正确操作而非陷阱。但需注意复苏可能慢于预期。<br>
-  <strong>☐ 烧钱陷阱：</strong>❌ 未命中——高PE + 高增速但CFO为负才是烧钱陷阱。万华CFO 331亿极其强劲，FCF 80亿为正，完全不涉及烧钱问题。
-</div>
-
-<h3>7.4 管理层与治理风险</h3>
+<h3>7.3 风险评估</h3>
+<div class="danger-box">☐ 价值陷阱（低PE+低增长+高负债）→ 当前增长不低，未完整命中；高负债与ROE中枢下移仍需防范。<br>☐ 周期陷阱（低PE+周期顶点）→ 顶部证据不足，暂不确认命中；海外供给受限带来的盈利不可永续化。<br>☐ 烧钱陷阱（高PE+高增速+负现金流）→ 当前累计CFO/FCF为正，未命中；过去扩张期FCF为负不能忽略。</div>
 <table>
-  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
-  <tr><td>管理层能力与履历</td><td>好</td><td>创始人丁建生已退休，现任董事长廖增太（化工背景，公司内部培养），管理层稳定且行业经验丰富</td></tr>
-  <tr><td>股权结构与利益一致性</td><td>强</td><td>烟台市国资委为实控人（国丰投资控股），管理层薪酬与业绩挂钩，但民企化激励不足</td></tr>
-  <tr><td>关联交易/暴雷历史</td><td>无</td><td>上市25年无重大违规、监管处罚、诉讼记录，治理规范</td></tr>
-  <tr><td>资本配置记录</td><td>合理</td><td>聚焦主业持续扩产，分红率30%+合理，无大规模并购（以自建为主），资本配置纪律良好</td></tr>
-  <tr><td>CEO交接/关键人员变动</td><td>无风险</td><td>创始人已平稳退休，公司核心管理团队稳定，无变动风险</td></tr>
+  <tr><th>治理事项</th><th>判断</th><th>依据 / 不确定性</th></tr>
+  <tr><td>管理层与运营能力</td><td>有工业化执行记录</td><td>廖增太为公司负责人；乙烯改造与多园区协同已披露，不等于所有投资均成功</td></tr>
+  <tr><td>股权与利益一致性</td><td>国资与多方股东结构</td><td>Q3国丰持21.65%、中诚10.55%、中凯信9.64%；后两者部分股份质押，不能直接等同管理层持股。[S3]</td></tr>
+  <tr><td>关联交易与违规</td><td>披露范围内无资金占用/违规担保</td><td>中报重要提示为“否”；未完成外部处罚、诉讼全量核验，不能写成历史零违规</td></tr>
+  <tr><td>资本配置</td><td>扩张放缓、需验证回报</td><td>2023至2025资本开支430.98→358.30→307.11；2026前三季138.58</td></tr>
+  <tr><td>近一年董监高增减持</td><td style="color:#999">数据待补充</td><td>未逐条核验公告，不用“无减持”填补空白</td></tr>
+  <tr><td>CEO交接/关键人员变动</td><td style="color:#999">数据待补充</td><td>本次未完成近一年全部人事公告核验，不作“无风险”断言</td></tr>
 </table>
-
-<h3>7.5 盈利可持续性</h3>
 <table>
-  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
-  <tr><td>增长靠量还是靠价？</td><td>量驱动</td><td>2025年营收+11.62%主要靠量增长（MDI产量+石化产量增长），价格全年同比承压</td></tr>
-  <tr><td>涨价能否持续？</td><td>需观察</td><td>MDI供需格局偏紧（全球无大规模新增产能），但宏观需求恢复节奏不确定</td></tr>
-  <tr><td>非经常性利润占比</td><td>低</td><td>2025年非经常利润3.84亿/净利润125亿=3%，占比极低，利润质量高</td></tr>
-  <tr><td>大客户/大项目集中度</td><td>分散</td><td>化工大宗品客户极度分散，下游覆盖建筑/家电/汽车/电子等多个行业</td></tr>
-  <tr><td>政策/监管依赖度</td><td>低</td><td>无补贴依赖，但受环保政策影响，不过万华环保水平行业领先</td></tr>
+  <tr><th>盈利持续性</th><th>判断</th><th>依据</th></tr>
+  <tr><td>量还是价</td><td>混合；价格弹性重要</td><td>H1公司称量价齐增，Q3利润增长解释主要为涨价</td></tr>
+  <tr><td>涨价能否持续</td><td>需观察</td><td>海外供给受限支持价格，但下游地产家居需求偏弱</td></tr>
+  <tr><td>非经常性损益</td><td>占比较低</td><td>H1 3.84%，前三季2.14%</td></tr>
+  <tr><td>客户集中度</td><td style="color:#999">数据待补充</td><td>未核实H1前五客户同口径占比，不以产品广泛推断风险为零</td></tr>
+  <tr><td>政策与地缘依赖</td><td>中等至较高</td><td>能源、贸易、环保与海外装置共同影响供需；不是单一补贴驱动</td></tr>
 </table>
-
-<h3>7.6 关键变量敏感性</h3>
-<div class="summary-box">
-  <strong>变量1: MDI价差（核心盈利变量）</strong><br>
-  乐观: 海外高成本产能加速退出+需求复苏 → 价差扩大20% → EPS增加~1.5元<br>
-  中性: 价差温和修复至历史均值 (已体现在券商2026E中) → EPS 5.87元<br>
-  悲观: 全球经济衰退 + 新增产能冲击 → 价差维持2025年水平 → EPS 3.5-4.0元<br><br>
-  <strong>变量2: 新材料板块（第二曲线）</strong><br>
-  乐观: 电池材料+ADI+尼龙12等高毛利产品放量 → 精细化学品毛利率提升至20%+<br>
-  中性: 维持~15%毛利率，营收稳定增长 → 对EPS贡献边际改善<br>
-  悲观: 竞争加剧/导入不及预期 → 毛利率压缩至10% → 拖累整体盈利<br><br>
-  <strong>变量3: 石化板块盈利</strong><br>
-  乐观: 乙烷裂解成本优势持续兑现 + 石化品价格修复 → 毛利率提升至8-10%<br>
-  中性: 维持~5%毛利率，靠量增长 → 不贡献利润但也不亏<br>
-  悲观: 原油反弹 + 化工品过剩继续 → 石化持续微利或亏损 → 拖累EPS 0.5-1元
-</div>
-
-<h3>7.7 前景展望</h3>
-<div class="summary-box">
-  <strong>正向驱动：</strong><br>
-  1. MDI价差修复 — 全球高成本产能收缩（欧洲能源成本高企）+ 万华持续扩产抢占份额，价差有望持续修复<br>
-  2. 乙烷裂解成本优势兑现 — 蓬莱POCHP装置开车成功，相较于石脑油裂解持续降低成本，石化板块盈利改善<br>
-  3. 新材料放量 — 精细化学品+17.39%增长，电池材料（磷酸铁锂/钠电）和多款ADI/尼龙12产品放量驱动第二曲线<br><br>
-  <strong>负向拖累：</strong><br>
-  1. 全球化工需求恢复不确定 — 房地产、汽车等下游修复节奏仍有变数，若复苏低于预期则P上涨乏力<br>
-  2. 折旧和资本开支压力 — 每年~250亿资本开支+折旧134亿，若利润率修复不及预期则FCF将收缩<br>
-  3. 贸易摩擦 — 美国关税升级和地缘政治风险可能影响海外业务（海外营收占比47%）
-</div>
-
-<h3>7.8 三情景简表</h3>
+<h3>关键变量敏感性（分析假设，非盈利预测）</h3>
 <table>
-  <tr><th>情景</th><th>假设条件</th><th>EPS预估</th><th>PE区间</th><th>预期回报</th></tr>
-  <tr><td>乐观</td><td>MDI价差快速修复+新材料放量超预期</td><td>~7.5元</td><td>15-18x</td><td>112-135元（+29-55%）</td></tr>
-  <tr><td>中性</td><td>价差温和修复，与券商一致预期一致</td><td>~5.87元</td><td>13-16x</td><td>76-94元（-13%~+8%）</td></tr>
-  <tr><td>悲观</td><td>需求弱+价格低位持续</td><td>~3.8元</td><td>16-20x</td><td>61-76元（-30%~-13%）</td></tr>
+  <tr><th>变量</th><th>乐观</th><th>中性</th><th>悲观</th></tr>
+  <tr><td>聚氨酯毛利率</td><td>H1基础+3个百分点</td><td>维持H1</td><td>H1基础-3个百分点</td></tr>
+  <tr><td>机械影响</td><td>半年毛利约+13.49亿元</td><td>不变</td><td>半年毛利约-13.49亿元</td></tr>
+  <tr><td>石化毛利率</td><td>H1基础+2个百分点</td><td>维持H1</td><td>H1基础-2个百分点</td></tr>
+  <tr><td>机械影响</td><td>半年毛利约+9.55亿元</td><td>不变</td><td>半年毛利约-9.55亿元</td></tr>
+  <tr><td>全年资本开支</td><td>180亿元</td><td>220亿元</td><td>280亿元</td></tr>
+  <tr><td>若CFO固定300亿元</td><td>FCF 120亿元</td><td>FCF 80亿元</td><td>FCF 20亿元</td></tr>
 </table>
-<p style="font-size:13px;color:#666;margin-top:4px;">概率判断：中性45%，乐观30%，悲观25%。基于PB 2.5x处于底部区间和Q1拐点确认，下行风险有限，上行空间乐观。</p>
-
-<h3>7.9 讨论问题</h3>
-<div class="summary-box">
-  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
-  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？——用全球最低成本做MDI/TDI和石化品，赚产品价格从底部修复到中位的价差钱。本质上是一个"低成本+高壁垒+周期性"的赚钱机器。<br>
-  2. 你最大的担忧是什么？哪个数据让你睡不着？——毛利率从16.16%降到13.61%且仍在低位，如果2026年下半年MDI价差修复不达预期，复苏逻辑会延缓。资产负债率62.8%+资本开支250亿/年，利率持续偏高的情况下，利息负担会侵蚀利润。<br>
-  3. 如果现在买入，期待的回报来源是什么？——① 周期修复赚价差的钱（从PB 2.5x修复到中位3.5x，涨幅39%）；② 新材料第二曲线成长的钱（精细化学品17%增长估值重塑）；③ 分红+回购的稳定收益（股息率1.4%，持续增长）。核心假设是周期正在向上修复。<br>
-  4. 什么情况下你会坚决卖出？——① 化工品价格再次加速下行（景气二次探底）；② PB反弹至4x以上（中位以上，周期已充分反映）；③ 毛利率持续滑落至10%以下且无修复迹象；④ 重大环保/安全事故/巨额资本开支失控。
-</div>
-
+<div class="summary-box">敏感性固定H1各分部收入，不预测销量；前两组为税前毛利冲击，未考虑费用、所得税与少数股东归属，<strong>不能直接除股本称为EPS变化</strong>。资本开支例子仅展示现金敏感度，CFO300亿元是测试参数，不是管理层指引。</div>
+<h3>7.4 前景展望</h3>
+<div class="summary-box"><strong>正向驱动：</strong><br>1. 原料多元化与一体化降本，使供给紧张期的利润修复更有弹性。<br>2. 精细材料销量与应用扩展，有机会改善产品结构。<br>3. 扩张放缓若持续，可将经营利润更多转化为自由现金。<br><br><strong>负向拖累：</strong><br>1. 海外装置复产、原油与产品价格回落可能压缩价差。<br>2. 资本密集与短债滚动融资限制现金安全垫。<br>3. 新材料竞争、海外需求偏弱与库存减值风险。</div>
+<table>
+  <tr><th>未来12–24个月情景</th><th>条件假设</th><th>期末BVPS假设</th><th>PB假设 / 映射价格</th><th>相对70.33元价格回报</th></tr>
+  <tr><td>乐观</td><td>价差稳住、FCF改善、短债缺口下降</td><td>40元</td><td>2.4倍 / 96元</td><td>+36.50%</td></tr>
+  <tr><td>中性</td><td>盈利回归常态、净资产温和积累</td><td>39元</td><td>1.9倍 / 74.10元</td><td>+5.36%</td></tr>
+  <tr><td>悲观</td><td>价差收缩、资本回报下降及减值压力</td><td>35元</td><td>1.5倍 / 52.50元</td><td>-25.35%</td></tr>
+</table>
+<div class="highlight-box"><strong>情景边界：</strong>BVPS与PB均为自主压力测试参数，非一致预期、非目标价；只列价格回报，不假设未来股息，因此不是预期总回报。没有可校准概率模型，不编造30%/50%/20%概率或加权目标价。周期型赔率和评级仍按PB分位规则，不以情景中性回报机械映射评级。</div>
+<h3>7.5 资金面信号（仅作辅助）</h3>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>北向持股变化</td><td>Q3香港中央结算持5.40%</td><td>持股快照不等于近期资金净流入；未核验连续可比持股序列</td></tr>
+  <tr><td>机构持仓变动</td><td style="color:#999">数据待补充</td><td>未比对全部基金、险资季度变化</td></tr>
+  <tr><td>融资余额变动</td><td style="color:#999">数据待补充</td><td>未获取同日期连续两融序列</td></tr>
+  <tr><td>大股东增减持</td><td style="color:#999">数据待补充</td><td>未完成区间公告核验，不写“无”</td></tr>
+  <tr><td>大宗交易</td><td style="color:#999">数据待补充</td><td>缺少同区间交易折溢价数据</td></tr>
+</table>
+<div class="summary-box"><strong>资金面结论：</strong>证据不足，不给“机构加仓”或“外资看好”方向性判断。上述缺项不参与评分，也不以单日股价上涨补充资金流证据。</div>
+<h3>7.6 讨论问题</h3>
+<div class="summary-box"><strong>阅读后可以聊这些：</strong><br>1. 你买的是MDI壁垒，还是行业价格修复？两者估值应否一样？<br>2. 低PB与261亿元广义短债现金缺口，哪个更影响你的判断？<br>3. 若海外复产后价差回落，资本开支下降能否保住FCF？<br>4. 哪个Q4数据会让你改变当前判断？</div>
+<h3>数据来源与可复核口径</h3>
+<ol>
+  <li id="s1">[S1] <a href="https://pdf.dfcfw.com/pdf/H2_AN202604201821348358_1.pdf" target="_blank" rel="noopener noreferrer">万华化学2025年年度报告</a>，公告2026-04-21；经营、产能、分红方案及年度三表。年报为标准无保留审计意见。</li>
+  <li id="s2">[S2] <a href="https://pdf.dfcfw.com/pdf/H2_AN202608241828365962_1.pdf" target="_blank" rel="noopener noreferrer">2026年半年度报告原文</a>，公告2026-08-25，未经审计。第6页主要指标，第8–10页经营分析，第53页流动性缺口，第127页分产品收入成本；非仅引用业绩预告。</li>
+  <li id="s3">[S3] <a href="https://pdf.dfcfw.com/pdf/H2_AN202610261830921640_1.pdf" target="_blank" rel="noopener noreferrer">2026年第三季度报告原文</a>，公告2026-10-27，未经审计；第1–3页主要指标及解释，后附合并财务报表。已于分析日取得并使用。</li>
+  <li id="s4">[S4] 东方财富数据中心：<a href="https://datacenter-web.eastmoney.com/api/data/v1/get?reportName=RPT_F10_FINANCE_MAINFINADATA&amp;columns=ALL&amp;filter=(SECUCODE%3D%22600309.SH%22)&amp;pageSize=40&amp;sortColumns=REPORT_DATE&amp;sortTypes=-1" target="_blank" rel="noopener noreferrer">主要财务指标序列</a>；三表接口RPT_F10_FINANCE_GINCOME、RPT_F10_FINANCE_GBALANCE、RPT_DMSK_FN_CASHFLOW。2026-10-27获取；主要H1、Q3数据与上述PDF核对。派生毛利率、TTM、FCF与杜邦为自行计算。</li>
+  <li id="s5">[S5] <a href="https://datacenter-web.eastmoney.com/api/data/v1/get?reportName=RPT_VALUEANALYSIS_DET&amp;columns=ALL&amp;filter=(SECURITY_CODE%3D%22600309%22)&amp;pageSize=500&amp;pageNumber=1&amp;sortColumns=TRADE_DATE&amp;sortTypes=-1" target="_blank" rel="noopener noreferrer">东方财富日度估值序列（第一页，完整样本需分页）</a>；获取5页后筛选五年有效PB序列。采用日度估值接口70.33元与TTM分母，不混用实时行情接口的动态PE。</li>
+  <li id="s6">[S6] 同行数据：东方财富RPT_F10_FINANCE_MAINFINADATA，SECUCODE分别为600426.SH、600160.SH，报告期固定2026-06-30；2026-10-27获取。为数据商口径，未逐项下载同行中报审计核验。</li>
+</ol>
+<div class="highlight-box"><strong>缺失范围：</strong>独立行业成本曲线、全行业新增产能和CR3、同日券商一致预期、净负债/EBITDA、同行同日估值/行业中位、近一年全部治理公告及资金流连续序列待补。缺项不生成虚构数值或额外加分；成本与行业格局采用有说明的定性档位。评级为学习框架下的条件判断，不是确定收益承诺。</div>
 </div></div>
 
 <div class="footer">
-   免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
-   数据来源：万华化学2025年年报、2026Q1季报、券商研报（中泰证券/国泰海通）、理杏仁
+  免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+  数据来源：公司2025年报、2026H1中报、2026Q3季报及东方财富数据中心；获取日期2026-10-27。<br>
+  公司披露、数据商数据、报告计算与分析假设已分别说明；未修改交易计划或宏观报告。
 </div>
-
 </div>
-
 <script>
 (function() {
   var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
