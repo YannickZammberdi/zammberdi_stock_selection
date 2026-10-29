@@ -25,13 +25,13 @@ class EmailTests(unittest.TestCase):
     def test_no_success_no_smtp(self):
         with patch.dict(os.environ, {"UPDATED_REPORTS": "[]"}, clear=True):
             with patch("send_update_email.smtplib.SMTP") as smtp:
-                main()
+                main([])
                 smtp.assert_not_called()
 
     def test_missing_credentials_explicit_failure(self):
         with patch.dict(os.environ, {"UPDATED_REPORTS": '[{"name":"test"}]'}, clear=True):
             with self.assertRaisesRegex(RuntimeError, "SMTP_USERNAME"):
-                main()
+                main([])
 
     def test_success_output_is_single_line_json(self):
         with tempfile.TemporaryDirectory() as temp:

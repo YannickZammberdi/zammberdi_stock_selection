@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """Send a single summary email containing only successfully pushed stock reports."""
 from email.message import EmailMessage
+import argparse
 from html import escape
 import json
 import os
+from pathlib import Path
 import smtplib
 import ssl
 from urllib.parse import quote
@@ -40,8 +42,17 @@ def build_message(reports, sender, recipient, repository, run_id):
     return message
 
 
-def main():
+def main(argv=None):
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--test', action='store_true', help='Send a labeled test using a real report link')
+    args = parser.parse_args(argv)
     reports = json.loads(os.environ.get("UPDATED_REPORTS", "[]"))
+    if args.test:
+        root = Path(__file__).resolve().parents[1]
+        stock = json.loads((root / "watchlist.json").read_text(encoding="utf-8"))["stocks"][0]
+        reports = [{"name": stock["name"], "code": stock["code"], "period": stock["covered_period"],
+                    "file": f'docs/stocks/{stock["name"]}_{stock["code"]}_分析报告.html',
+                    "commit": os.environ["GITHUB_SHA"]}]
     if not reports:
         return
     username = os.environ.get("SMTP_USERNAME", "")
@@ -50,6 +61,8 @@ def main():
         raise RuntimeError("Configure GitHub secrets SMTP_USERNAME and SMTP_PASSWORD to enable email")
     message = build_message(reports, username, os.environ["MAIL_TO"],
                             os.environ["GITHUB_REPOSITORY"], os.environ["GITHUB_RUN_ID"])
+    if args.test:
+        message.replace_header("Subject", "【测试邮件·未触发报告更新】报告链接通知")
     host = os.environ.get("SMTP_HOST", "smtp.gmail.com")
     port = int(os.environ.get("SMTP_PORT", "587"))
     context = ssl.create_default_context()
