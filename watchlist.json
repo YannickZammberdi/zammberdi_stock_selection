@@ -1,0 +1,10 @@
+{
+  "model": "opencode/deepseek-v4.1-flash-free",
+  "fallback_model": "deepseek/deepseek-flash",
+  "daily_limit": 5,
+  "stocks": [
+    {"code": "603259", "name": "药明康德", "covered_period": "2026-06-30"},
+    {"code": "603806", "name": "福斯特", "covered_period": "2026-06-30"},
+    {"code": "300750", "name": "宁德时代", "covered_period": "2026-09-30"}
+  ]
+}
