@@ -36,6 +36,7 @@ stock-learning/ ← 只放学习资料（materials / notes / quizzes），不含
 
 钩子行为：
 
+- 新克隆首次使用需执行一次：`git config core.hooksPath .githooks`
 - 只执行 `git add -u -- docs`，**不会**把未跟踪的新文件带进提交；新报告需作者显式 `git add`
 - 若检测到 `docs/` 下有未跟踪的 `.html` 报告，会打印提醒（索引已收录但文件未提交 → 链接 404）
 - rebase / merge / cherry-pick 过程中自动跳过
