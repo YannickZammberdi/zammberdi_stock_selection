@@ -123,6 +123,12 @@ def save_state(state):
     path.write_text(json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
+def record_updates(updates):
+    if os.environ.get("GITHUB_OUTPUT"):
+        with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
+            output.write("updated=" + json.dumps(updates, ensure_ascii=True) + "\n")
+
+
 def validate(text, period, old):
     if text == old:
         raise ValueError("Model did not change the report")
@@ -206,6 +212,7 @@ def main():
     if not args.run:
         return
     failures = []
+    updates = []
     for stock in queue:
         day = dt.datetime.now(TZ).date().isoformat()
         state = read_json(ROOT / STATE, state)
@@ -231,6 +238,11 @@ def main():
         save_state(state)
         subprocess.run([sys.executable, "scripts/sync_ghpages.py"], cwd=ROOT, check=True)
         publish(["docs"], f'auto-update: {stock["name"]} {stock["period"]}')
+        commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
+        updates.append({"name": stock["name"], "code": stock["code"],
+                        "period": stock["period"], "file": report_path(stock).as_posix(), "commit": commit})
+        # Emit after every successful push, so a later stock failure still permits notification.
+        record_updates(updates)
         # Refresh state after a possible rebase.
         state = read_json(ROOT / STATE)
     if failures:

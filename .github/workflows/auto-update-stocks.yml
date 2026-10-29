@@ -42,6 +42,7 @@ jobs:
         if: steps.check.outputs.count != '0'
         run: npm install -g opencode-ai
       - name: 自动更新并同步 Pages 索引
+        id: generate
         if: steps.check.outputs.count != '0'
         env:
           ZEN_API_KEY: ${{ secrets.ZEN_API_KEY }}
@@ -50,3 +51,13 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           python scripts/auto_update_stocks.py --run
+      - name: 邮件通知成功更新的报告
+        if: always() && steps.generate.outputs.updated != ''
+        env:
+          UPDATED_REPORTS: ${{ steps.generate.outputs.updated }}
+          MAIL_TO: xuexccc@gmail.com
+          SMTP_HOST: ${{ vars.SMTP_HOST || 'smtp.gmail.com' }}
+          SMTP_PORT: ${{ vars.SMTP_PORT || '587' }}
+          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+        run: python scripts/send_update_email.py
