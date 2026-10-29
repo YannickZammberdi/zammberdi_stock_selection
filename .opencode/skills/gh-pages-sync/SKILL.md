@@ -30,10 +30,21 @@ stock-learning/ ← 只放学习资料（materials / notes / quizzes），不含
 
 ## 执行
 
-直接跑脚本，不要手工改 index.html：
+**默认已自动化，不需要手动跑。** 仓库启用了 `core.hooksPath=.githooks`，`pre-commit` 钩子会在每次
+`git commit` 前自动执行 `scripts/sync_ghpages.py`，并把派生文件（`docs/history/scores.json`、各级
+`index.html`、报告内的评分沿革表）`git add` 进同一个提交。写报告的人只要 `git add` 报告本体再提交即可。
+
+钩子行为：
+
+- 只执行 `git add -u -- docs`，**不会**把未跟踪的新文件带进提交；新报告需作者显式 `git add`
+- 若检测到 `docs/` 下有未跟踪的 `.html` 报告，会打印提醒（索引已收录但文件未提交 → 链接 404）
+- rebase / merge / cherry-pick 过程中自动跳过
+- `git commit --no-verify` 可跳过；钩子失败时提交中止并打印日志
+
+仅在排错或手动补齐历史时，才直接跑脚本（不要手工改 index.html）：
 
 ```bash
-python scripts/sync_ghpages.py
+python scripts/sync_ghpages.py     # Windows 用 .venv\Scripts\python.exe
 ```
 
 脚本会依次完成：扫描 `docs/` → 刷新评分沿革 → 回写 `scores.json` → 重建
@@ -42,6 +53,8 @@ index.html → 更新首页计数。
 
 脚本**不会**删除任何文件。输出中出现 `[skip] copy_files 已停用` 与
 `[skip] prune_stale 已停用` 是正常的。
+
+GitHub Actions 的 `generate-report.yml` 里 sync 仍是独立步骤，与本地钩子互不影响。
 
 ## 目录约定
 

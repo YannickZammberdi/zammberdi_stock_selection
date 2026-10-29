@@ -1,0 +1,43 @@
+#!/bin/sh
+# 提交前自动刷新 docs/ 索引与评分沿革（gh-pages-sync 的自动化版本）
+# 由 core.hooksPath=.githooks 启用；跳过：git commit --no-verify
+# 脚本只改写派生产物（scores.json / 各级 index.html / 报告内评分沿革表），不碰报告正文。
+
+# rebase / merge / cherry-pick 过程中的中间提交不刷新，避免干扰
+if [ -d .git/rebase-merge ] || [ -d .git/rebase-apply ] \
+   || [ -f .git/MERGE_HEAD ] || [ -f .git/CHERRY_PICK_HEAD ]; then
+  exit 0
+fi
+
+PY=""
+for c in .venv/Scripts/python.exe .venv/bin/python python3 python py; do
+  if [ -x "$c" ] || command -v "$c" >/dev/null 2>&1; then
+    PY="$c"
+    break
+  fi
+done
+
+if [ -z "$PY" ]; then
+  echo "[pre-commit] 未找到 python，跳过 sync_ghpages.py —— 索引可能滞后" >&2
+  exit 0
+fi
+
+if ! "$PY" scripts/sync_ghpages.py >/tmp/sync_ghpages.log 2>&1; then
+  echo "[pre-commit] sync_ghpages.py 执行失败，提交已中止：" >&2
+  cat /tmp/sync_ghpages.log >&2
+  echo "[pre-commit] 修复后重试，或 git commit --no-verify 跳过" >&2
+  exit 1
+fi
+
+# 只暂存已有文件的改动：新增报告由作者自己 git add，避免把写了一半的文件带进提交
+git add -u -- docs
+
+untracked=$(git ls-files --others --exclude-standard -- docs | grep -i '\.html$' | grep -v '/index\.html$')
+if [ -n "$untracked" ]; then
+  echo "[pre-commit] 注意：以下新报告尚未纳入版本控制，索引里的链接会 404：" >&2
+  echo "$untracked" | sed 's/^/           /' >&2
+  echo "[pre-commit] 如确认完成，请 git add 后再提交" >&2
+fi
+
+echo "[pre-commit] 已刷新评分沿革与各级 index，并暂存 docs 派生文件"
+exit 0
