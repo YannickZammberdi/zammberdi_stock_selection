@@ -7,18 +7,13 @@ on:
     - cron: '30 21 * * *'
     - cron: '30 22 * * *'
   workflow_dispatch:
-    inputs:
-      test_email:
-        description: '仅发送测试邮件，不检查或生成报告'
-        type: boolean
-        default: false
 
 permissions:
   contents: write
 
 jobs:
   update:
-    if: github.repository == 'YannickZammberdi/zammberdi_stock_selection' && inputs.test_email != true
+    if: github.repository == 'YannickZammberdi/zammberdi_stock_selection'
     runs-on: ubuntu-latest
     timeout-minutes: 330
     # 与已有生成流程的 sync job 共用锁，避免覆盖并发更新。
@@ -47,7 +42,6 @@ jobs:
         if: steps.check.outputs.count != '0'
         run: npm install -g opencode-ai
       - name: 自动更新并同步 Pages 索引
-        id: generate
         if: steps.check.outputs.count != '0'
         env:
           ZEN_API_KEY: ${{ secrets.ZEN_API_KEY }}
@@ -56,31 +50,3 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           python scripts/auto_update_stocks.py --run
-      - name: 邮件通知成功更新的报告
-        if: always() && steps.generate.outputs.updated != ''
-        env:
-          UPDATED_REPORTS: ${{ steps.generate.outputs.updated }}
-          MAIL_TO: xuexccc@gmail.com
-          SMTP_HOST: ${{ vars.SMTP_HOST || 'smtp.gmail.com' }}
-          SMTP_PORT: ${{ vars.SMTP_PORT || '587' }}
-          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
-          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
-        run: python scripts/send_update_email.py
-
-  test-email:
-    if: github.repository == 'YannickZammberdi/zammberdi_stock_selection' && inputs.test_email == true
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - name: 发送带真实报告链接的测试邮件
-        env:
-          MAIL_TO: xuexccc@gmail.com
-          SMTP_HOST: ${{ vars.SMTP_HOST || 'smtp.gmail.com' }}
-          SMTP_PORT: ${{ vars.SMTP_PORT || '587' }}
-          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
-          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
-        run: python scripts/send_update_email.py --test

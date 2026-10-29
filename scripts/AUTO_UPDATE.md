@@ -23,14 +23,6 @@ python -m unittest discover -s scripts -p 'test_auto_update_stocks.py'
 
 `--run` 会调用模型、提交并推送，仅用于有Git写权限的CI环境。
 
-## 成功邮件
+## 邮件通知（暂时暂停）
 
-每次运行有报告成功提交推送后，汇总发一封邮件到 `xuexccc@gmail.com`，带 Pages 报告链接、精确提交版本链接和 Actions 运行链接。无更新不发；部分失败也通知已经成功的报告。邮件失败不会回滚报告。
-
-在仓库 Settings → Secrets and variables → Actions 设置：
-
-- Secrets `SMTP_USERNAME`：发件邮箱（不是收件人）。
-- Secrets `SMTP_PASSWORD`：SMTP 授权码；Gmail 需开启两步验证后生成应用专用密码，不要使用登录密码。
-- 可选 Variables `SMTP_HOST` / `SMTP_PORT`，默认 `smtp.gmail.com` / `587`，也支持465端口TLS。
-
-这是邮件服务凭据，与现有 DeepSeek API key 无关。未配置时通知步骤会明确失败；不要把凭据写进仓库或聊天。
+邮件发送功能暂时停用，不影响定时检查、模型生成、同步索引或推送。相关脚本保留，之后可恢复。
