@@ -1,6 +1,7 @@
 {
   "model": "opencode/deepseek-v4.1-flash-free",
-  "fallback_model": "",
+  "fallback_model": "deepseek/deepseek-flash",
+  "fallback_daily_limit": 1,
   "daily_limit": 5,
   "stocks": [
     {"code": "603259", "name": "药明康德", "covered_period": "2026-09-30"},

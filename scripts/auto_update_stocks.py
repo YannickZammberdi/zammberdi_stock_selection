@@ -85,7 +85,7 @@ def covered_period(stock, state):
     return max(values)
 
 
-def plan(config, state, rows, today, manual=False):
+def latest_disclosures(rows, today):
     latest = {}
     for row in rows:
         period = (row.get("REPORT_DATE") or "")[:10]
@@ -98,6 +98,11 @@ def plan(config, state, rows, today, manual=False):
         code = row["SECURITY_CODE"]
         if code not in latest or period > latest[code]["period"]:
             latest[code] = {"period": period, "published": published}
+    return latest
+
+
+def plan(config, state, rows, today, manual=False):
+    latest = latest_disclosures(rows, today)
     queue = []
     for stock in config["stocks"]:
         event = latest.get(stock["code"])
@@ -106,9 +111,22 @@ def plan(config, state, rows, today, manual=False):
     # Oldest uncovered disclosure first. Only the newest period per stock is generated.
     queue.sort(key=lambda s: (s["published"], s["code"]))
     # A manual run is user-initiated; the daily budget only throttles scheduled runs.
-    used = 0 if manual else sum(a["day"] == today.isoformat() for a in state.get("attempts", []))
+    used = 0 if manual else sum(
+        a["day"] == today.isoformat() and a.get("status") != "paid-reservation"
+        for a in state.get("attempts", []))
     limit = max(0, min(5, int(config.get("daily_limit", 5))) - used)
     return queue[:limit]
+
+
+def forced_plan(config, rows, today, code):
+    """Regenerate one stock on demand, ignoring the coverage record."""
+    stock = next((s for s in config["stocks"] if s["code"] == code), None)
+    if stock is None:
+        raise SystemExit(f"{code} is not in watchlist.json")
+    event = latest_disclosures(rows, today).get(code)
+    if not event:
+        raise SystemExit(f"No disclosed report found for {code}")
+    return [{**stock, **event}]
 
 
 def publish(paths, message):
@@ -210,25 +228,46 @@ def generate(stock, model):
         old_path.write_text(text, encoding="utf-8")
 
 
-def generate_with_fallback(stock, config):
-    """Primary model first; a configured fallback is used only when it is explicitly set."""
+def paid_fallback_used(state, day):
+    return sum(1 for a in state.get("attempts", []) if a.get("day") == day and a.get("paid_fallback"))
+
+
+def reserve_paid_fallback(stock, day):
+    """Book the paid call on the remote before spending, so parallel jobs cannot overspend."""
+    state = read_json(ROOT / STATE, {"coverage": {}, "attempts": []})
+    state["attempts"].append({"day": day, "code": stock["code"], "period": stock["period"],
+                              "status": "paid-reservation", "paid_fallback": True})
+    save_state(state)
+    publish([STATE], f'auto-update: paid fallback {stock["code"]}')
+
+
+def generate_with_fallback(stock, config, allow_paid=True, reserve=None):
+    """Free primary model first; the paid fallback is capped (default: once per day).
+
+    Returns (model_used, used_paid_fallback).
+    """
     primary = config["model"]
     try:
         generate(stock, primary)
-        return primary
+        return primary, False
     except Exception as exc:
         fallback = (config.get("fallback_model") or "").strip()
-        if fallback and fallback != primary:
+        if fallback and fallback != primary and allow_paid:
             if not os.environ.get("DEEPSEEK_API_KEY"):
                 raise RuntimeError("Primary failed; DEEPSEEK_API_KEY is missing for the configured fallback") from exc
-            print(f'Primary failed ({type(exc).__name__}); retrying {stock["code"]} with {fallback}', flush=True)
+            if reserve:
+                reserve()
+            print(f'Primary failed ({type(exc).__name__}); retrying {stock["code"]} with {fallback} (paid)', flush=True)
             # generate() starts with a fresh clone; never reuse partial model edits.
             generate(stock, fallback)
-            return fallback
-        # Default: never spend money on a paid API, just give the free model one more chance.
-        print(f'Primary failed ({type(exc).__name__}); retrying {stock["code"]} once with {primary}', flush=True)
+            return fallback, True
+        if fallback and fallback != primary:
+            print(f'Primary failed ({type(exc).__name__}); paid fallback already used today, '
+                  f'retrying {stock["code"]} once with {primary}', flush=True)
+        else:
+            print(f'Primary failed ({type(exc).__name__}); retrying {stock["code"]} once with {primary}', flush=True)
         generate(stock, primary)
-        return primary
+        return primary, False
 
 
 def generate_one(code, outdir):
@@ -242,8 +281,17 @@ def generate_one(code, outdir):
     out.mkdir(parents=True, exist_ok=True)
     result = {"code": code, "name": stock["name"], "period": stock["period"],
               "published": stock["published"], "status": "failed"}
+    state = read_json(ROOT / STATE, {"coverage": {}, "attempts": []})
+    day = dt.datetime.now(TZ).date().isoformat()
+    limit = int(config.get("fallback_daily_limit", 1))
+    allow_paid = paid_fallback_used(state, day) < limit
+    if not allow_paid:
+        print(f"Paid fallback already used {limit} time(s) on {day}; free model only", flush=True)
     try:
-        result["model"] = generate_with_fallback(stock, config)
+        model, paid = generate_with_fallback(
+            stock, config, allow_paid, reserve=lambda: reserve_paid_fallback(stock, day))
+        result["model"] = model
+        result["paid_fallback"] = paid
         (out / "report.html").write_text((ROOT / report_path(stock)).read_text(encoding="utf-8"), encoding="utf-8")
         result["status"] = "success"
     except Exception as exc:
@@ -275,6 +323,8 @@ def publish_results(results_dir):
                  "status": "failed"}
         if result.get("model"):
             entry["model"] = result["model"]
+        if result.get("paid_fallback"):
+            entry["paid_fallback"] = True
         try:
             if result["status"] != "success":
                 raise ValueError(result.get("error", "generation failed"))
@@ -347,7 +397,12 @@ def main():
     else:
         state = read_json(ROOT / STATE, {"coverage": {}, "attempts": []})
         manual = args.manual or os.environ.get("GITHUB_EVENT_NAME") == "workflow_dispatch"
-        queue = plan(config, state, calendar(config["stocks"], now.date()), now.date(), manual)
+        rows = calendar(config["stocks"], now.date())
+        force = os.environ.get("FORCE_CODE", "").strip()
+        if force and manual:
+            queue = forced_plan(config, rows, now.date(), force)
+        else:
+            queue = plan(config, state, rows, now.date(), manual)
     print(json.dumps(queue, ensure_ascii=False, indent=2), flush=True)
     if args.queue_out:
         Path(args.queue_out).write_text(json.dumps(queue, ensure_ascii=False), encoding="utf-8")
