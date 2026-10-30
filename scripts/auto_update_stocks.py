@@ -18,6 +18,12 @@ ROOT = Path(__file__).resolve().parents[1]
 STATE = Path("docs/history/auto_updates.json")
 TZ = ZoneInfo("Australia/Sydney")
 
+# Models sometimes type the marker with full-width or non-breaking spaces; \s covers those.
+COVERAGE_RE = re.compile(r"<!--\s*COVERAGE\s+period\s*=\s*(\d{4}-\d{2}-\d{2})\s*-->")
+# A report may state the covered period in prose instead of the marker ("数据截止：2026 年三季报（2026-09-30…）").
+PERIOD_LABEL_RE = re.compile(
+    r"(?:数据截至|数据截止|财报截至|财报截止|报告期|财报期)[^<\n]{0,40}?(\d{4}-\d{2}-\d{2})")
+
 
 def expected_schedule(now):
     local = now.astimezone(TZ)
@@ -74,7 +80,7 @@ def covered_period(stock, state):
     if report.exists():
         text = report.read_text(encoding="utf-8")
         # Only explicit coverage dates count. The report's analysis date is NOT coverage.
-        values.extend(re.findall(r'<!-- COVERAGE period=(\d{4}-\d{2}-\d{2}) -->', text))
+        values.extend(COVERAGE_RE.findall(text))
         values.extend(re.findall(r'财报截至[：:]\s*(\d{4}-\d{2}-\d{2})', text))
     return max(values)
 
@@ -129,6 +135,29 @@ def record_updates(updates):
             output.write("updated=" + json.dumps(updates, ensure_ascii=True) + "\n")
 
 
+def ensure_coverage(text, period):
+    """Return text with exactly one canonical COVERAGE marker for period.
+
+    Tolerates models writing the marker with odd whitespace, and injects it when the
+    report body already states the same covered period.
+    """
+    marker = f"<!-- COVERAGE period={period} -->"
+    found = COVERAGE_RE.findall(text)
+    if found and set(found) == {period}:
+        return COVERAGE_RE.sub(marker, text)
+    if found:
+        raise ValueError(f"Coverage marker {sorted(set(found))} does not match {period}")
+    if period not in PERIOD_LABEL_RE.findall(text):
+        raise ValueError("Missing target earnings coverage marker")
+    # Append at the very end: sync_ghpages parses the first date in the file, so an extra
+    # date must never precede the report's own analysis date.
+    for anchor in ("</body>", "</html>"):
+        index = text.rfind(anchor)
+        if index != -1:
+            return text[:index] + marker + "\n" + text[index:]
+    return text + "\n" + marker + "\n"
+
+
 def validate(text, period, old):
     if text == old:
         raise ValueError("Model did not change the report")
@@ -137,10 +166,10 @@ def validate(text, period, old):
             raise ValueError(f"Missing tab {tab}")
     if not re.search(r"\b\d{1,3}/100\b", text) or "<!-- TRACK " not in text:
         raise ValueError("Missing score / TRACK marker")
-    if f"<!-- COVERAGE period={period} -->" not in text:
-        raise ValueError("Missing target earnings coverage marker")
+    text = ensure_coverage(text, period)
     if "HISTORY-TABLE" not in text or "</html>" not in text.lower():
         raise ValueError("Incomplete HTML report")
+    return text
 
 
 def generate(stock, model):
@@ -156,13 +185,14 @@ def generate(stock, model):
             f'只覆盖 {target.as_posix()}。必须核验并纳入截至 {stock["period"]} 的正式财报原文，'
             f'实际披露日期 {stock["published"]}；保留必要年报和中报历史对比。'
             '不得仅改日期或沿用旧数冒充更新。查不到新财报则停止，不得标记成功。'
-            f'核验完成后在HTML中加入 <!-- COVERAGE period={stock["period"]} -->。'
+            f'核验完成后在HTML中加入 <!-- COVERAGE period={stock["period"]} -->（标记内只用半角空格）。'
             '保留7个Tab、总分、TRACK及HISTORY-TABLE标记。不要运行sync、git提交或修改其他文件。'
+            'HTML较大，请分段编辑（例如用python脚本写入），避免单次写入超长内容失败。'
         )
         subprocess.run(["opencode", "run", "--model", model, "--auto", prompt], cwd=workspace,
                        check=True, timeout=30 * 60)
         text = (workspace / target).read_text(encoding="utf-8")
-        validate(text, stock["period"], old)
+        text = validate(text, stock["period"], old)
         old_path.parent.mkdir(parents=True, exist_ok=True)
         old_path.write_text(text, encoding="utf-8")
 

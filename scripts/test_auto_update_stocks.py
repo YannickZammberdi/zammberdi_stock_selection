@@ -1,5 +1,6 @@
 import datetime as dt
 from pathlib import Path
+import re
 import tempfile
 import subprocess
 import unittest
@@ -72,6 +73,41 @@ class PlanTests(unittest.TestCase):
     def test_invalid_generated_html_is_rejected(self):
         with self.assertRaises(ValueError):
             updater.validate("<html>nothing</html>", "2026-09-30", "old")
+
+    def report(self, coverage="", meta="分析日期：2026-10-30"):
+        tabs = "".join(f'<div id="tab-{t}"></div>' for t in
+                       ("summary", "l1", "l2", "l3", "l4", "l5", "l6"))
+        return (f'<html><head></head><body><p class="meta">{meta}</p>{coverage}{tabs}'
+                '94/100<!-- TRACK fwd=A rating=Buy node=x --><!-- HISTORY-TABLE -->'
+                '<table></table></body></html>')
+
+    def test_marker_with_unusual_whitespace_is_accepted(self):
+        coverage = '<!--\u3000COVERAGE\u00a0period=2026-09-30\u3000-->'
+        result = updater.validate(self.report(coverage), "2026-09-30", "old")
+        self.assertIn("<!-- COVERAGE period=2026-09-30 -->", result)
+
+    def test_marker_injected_when_meta_states_the_period(self):
+        meta = "分析日期：2026-10-30 | 数据截止：2026 年三季报（2026-09-30，2026-10-27 披露）"
+        result = updater.validate(self.report(meta=meta), "2026-09-30", "old")
+        self.assertIn("<!-- COVERAGE period=2026-09-30 -->", result)
+        # The analysis date must stay the first date sync_ghpages sees.
+        self.assertEqual(updater.dt.date.fromisoformat("2026-10-30").isoformat(),
+                         re.search(r"(\d{4}-\d{2}-\d{2})", result).group(1))
+
+    def test_marker_not_injected_without_period_evidence(self):
+        with self.assertRaisesRegex(ValueError, "coverage marker"):
+            updater.validate(self.report(), "2026-09-30", "old")
+
+    def test_marker_for_another_period_is_rejected(self):
+        coverage = "<!-- COVERAGE period=2026-06-30 -->"
+        with self.assertRaisesRegex(ValueError, "does not match"):
+            updater.validate(self.report(coverage), "2026-09-30", "old")
+
+    def test_fullwidth_marker_prevents_regeneration(self):
+        path = updater.ROOT / updater.report_path(self.stock)
+        path.parent.mkdir(parents=True)
+        path.write_text('<!--\u3000COVERAGE period=2026-09-30 -->', encoding="utf-8")
+        self.assertFalse(self.plan([self.row()]))
 
     def test_sydney_dst_schedule(self):
         for month, hour in [(1, 21), (7, 22), (10, 21)]:
