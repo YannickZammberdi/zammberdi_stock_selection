@@ -25,8 +25,8 @@ class PlanTests(unittest.TestCase):
         return {"SECURITY_CODE": "603259", "REPORT_DATE": period,
                 "ACTUAL_PUBLISH_DATE": published, "IS_PUBLISH": flag}
 
-    def plan(self, rows):
-        return updater.plan(self.config, self.state, rows, self.today)
+    def plan(self, rows, manual=False):
+        return updater.plan(self.config, self.state, rows, self.today, manual)
 
     def test_catches_old_disclosure_not_only_yesterday(self):
         self.assertEqual(len(self.plan([self.row()])), 1)
@@ -108,6 +108,15 @@ class PlanTests(unittest.TestCase):
         path.parent.mkdir(parents=True)
         path.write_text('<!--\u3000COVERAGE period=2026-09-30 -->', encoding="utf-8")
         self.assertFalse(self.plan([self.row()]))
+
+    def test_manual_run_ignores_daily_budget(self):
+        self.state["attempts"] = [{"day": "2026-10-29", "status": "failed"}] * 5
+        self.assertFalse(self.plan([self.row()]))
+        self.assertEqual(len(self.plan([self.row()], manual=True)), 1)
+
+    def test_opencode_workspace_env_overrides_pwd(self):
+        env = updater.workspace_env(r"/tmp/clone")
+        self.assertEqual(env["PWD"], "/tmp/clone")
 
     def test_sydney_dst_schedule(self):
         for month, hour in [(1, 21), (7, 22), (10, 21)]:

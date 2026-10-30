@@ -85,7 +85,7 @@ def covered_period(stock, state):
     return max(values)
 
 
-def plan(config, state, rows, today):
+def plan(config, state, rows, today, manual=False):
     latest = {}
     for row in rows:
         period = (row.get("REPORT_DATE") or "")[:10]
@@ -105,7 +105,8 @@ def plan(config, state, rows, today):
             queue.append({**stock, **event})
     # Oldest uncovered disclosure first. Only the newest period per stock is generated.
     queue.sort(key=lambda s: (s["published"], s["code"]))
-    used = sum(a["day"] == today.isoformat() for a in state.get("attempts", []))
+    # A manual run is user-initiated; the daily budget only throttles scheduled runs.
+    used = 0 if manual else sum(a["day"] == today.isoformat() for a in state.get("attempts", []))
     limit = max(0, min(5, int(config.get("daily_limit", 5))) - used)
     return queue[:limit]
 
@@ -172,6 +173,11 @@ def validate(text, period, old):
     return text
 
 
+def workspace_env(workspace):
+    """opencode derives its project directory from $PWD, not from the process cwd."""
+    return dict(os.environ, PWD=str(workspace), OLDPWD=str(ROOT))
+
+
 def generate(stock, model):
     target = report_path(stock)
     old_path = ROOT / target
@@ -189,9 +195,15 @@ def generate(stock, model):
             '保留7个Tab、总分、TRACK及HISTORY-TABLE标记。不要运行sync、git提交或修改其他文件。'
             'HTML较大，请分段编辑（例如用python脚本写入），避免单次写入超长内容失败。'
         )
+        # opencode resolves its workspace from $PWD, not from the process cwd: without this the
+        # model edits ROOT instead of the throwaway clone (and the clone stays untouched).
         subprocess.run(["opencode", "run", "--model", model, "--auto", prompt], cwd=workspace,
-                       check=True, timeout=30 * 60)
+                       env=workspace_env(workspace), check=True, timeout=30 * 60)
         text = (workspace / target).read_text(encoding="utf-8")
+        if old_path.exists() and old_path.read_text(encoding="utf-8") != old:
+            # Never commit edits the model made against the wrong checkout.
+            git("checkout", "--", target.as_posix())
+            raise RuntimeError("Model wrote to the real checkout instead of the isolated clone")
         text = validate(text, stock["period"], old)
         old_path.parent.mkdir(parents=True, exist_ok=True)
         old_path.write_text(text, encoding="utf-8")
@@ -219,6 +231,7 @@ def main():
         sys.stdout.reconfigure(encoding="utf-8")
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--run", action="store_true", help="Generate and push, not just check")
+    parser.add_argument("--manual", action="store_true", help="Ignore the daily attempt budget")
     args = parser.parse_args()
     now = dt.datetime.now(TZ)
     today = now.date()
@@ -234,7 +247,8 @@ def main():
         print("Watchlist empty")
         return
     state = read_json(ROOT / STATE, {"coverage": {}, "attempts": []})
-    queue = plan(config, state, calendar(config["stocks"], today), today)
+    manual = args.manual or os.environ.get("GITHUB_EVENT_NAME") == "workflow_dispatch"
+    queue = plan(config, state, calendar(config["stocks"], today), today, manual)
     print(json.dumps(queue, ensure_ascii=False, indent=2), flush=True)
     if os.environ.get("GITHUB_OUTPUT"):
         with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
@@ -247,7 +261,7 @@ def main():
         day = dt.datetime.now(TZ).date().isoformat()
         state = read_json(ROOT / STATE, state)
         used = sum(a["day"] == day for a in state["attempts"])
-        if used >= min(5, int(config.get("daily_limit", 5))):
+        if not manual and used >= min(5, int(config.get("daily_limit", 5))):
             break
         # Reserve budget BEFORE invoking the model. A crash or manual rerun cannot exceed 5/day.
         entry = {"day": day, "code": stock["code"], "period": stock["period"], "status": "started"}
