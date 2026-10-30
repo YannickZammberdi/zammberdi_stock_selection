@@ -198,7 +198,8 @@ def generate(stock, model):
         # opencode resolves its workspace from $PWD, not from the process cwd: without this the
         # model edits ROOT instead of the throwaway clone (and the clone stays untouched).
         subprocess.run(["opencode", "run", "--model", model, "--auto", prompt], cwd=workspace,
-                       env=workspace_env(workspace), check=True, timeout=30 * 60)
+                       env=workspace_env(workspace), check=True,
+                       timeout=int(os.environ.get("MODEL_TIMEOUT_SECONDS", 600)))
         text = (workspace / target).read_text(encoding="utf-8")
         if old_path.exists() and old_path.read_text(encoding="utf-8") != old:
             # Never commit edits the model made against the wrong checkout.
@@ -210,87 +211,150 @@ def generate(stock, model):
 
 
 def generate_with_fallback(stock, config):
+    """Primary model first; a configured fallback is used only when it is explicitly set."""
     primary = config["model"]
     try:
         generate(stock, primary)
         return primary
     except Exception as exc:
-        fallback = config.get("fallback_model")
-        if not fallback or fallback == primary:
-            raise
-        if not os.environ.get("DEEPSEEK_API_KEY"):
-            raise RuntimeError("Primary failed; DEEPSEEK_API_KEY is missing for official fallback") from exc
-        print(f'Primary failed ({type(exc).__name__}); retrying {stock["code"]} with {fallback}', flush=True)
-        # generate() starts with a fresh clone; never reuse partial model edits.
-        generate(stock, fallback)
-        return fallback
+        fallback = (config.get("fallback_model") or "").strip()
+        if fallback and fallback != primary:
+            if not os.environ.get("DEEPSEEK_API_KEY"):
+                raise RuntimeError("Primary failed; DEEPSEEK_API_KEY is missing for the configured fallback") from exc
+            print(f'Primary failed ({type(exc).__name__}); retrying {stock["code"]} with {fallback}', flush=True)
+            # generate() starts with a fresh clone; never reuse partial model edits.
+            generate(stock, fallback)
+            return fallback
+        # Default: never spend money on a paid API, just give the free model one more chance.
+        print(f'Primary failed ({type(exc).__name__}); retrying {stock["code"]} once with {primary}', flush=True)
+        generate(stock, primary)
+        return primary
+
+
+def generate_one(code, outdir):
+    """Generate one report in an isolated clone and hand the HTML to the publish job."""
+    config = read_json(ROOT / "watchlist.json")
+    stock = next((s for s in config["stocks"] if s["code"] == code), None)
+    if stock is None:
+        raise SystemExit(f"{code} is not in watchlist.json")
+    stock = {**stock, "period": os.environ["REPORT_PERIOD"], "published": os.environ["REPORT_PUBLISHED"]}
+    out = Path(outdir)
+    out.mkdir(parents=True, exist_ok=True)
+    result = {"code": code, "name": stock["name"], "period": stock["period"],
+              "published": stock["published"], "status": "failed"}
+    try:
+        result["model"] = generate_with_fallback(stock, config)
+        (out / "report.html").write_text((ROOT / report_path(stock)).read_text(encoding="utf-8"), encoding="utf-8")
+        result["status"] = "success"
+    except Exception as exc:
+        result["error"] = f"{type(exc).__name__}: {exc}"[:300]
+        print(f'FAILED {code}: {exc}', flush=True)
+        raise
+    finally:
+        (out / "result.json").write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def publish_results(results_dir):
+    """Write validated reports and push each one immediately, then refresh Pages indexes.
+
+    Pushing per report keeps finished work durable: if the index sync or a later push fails,
+    the report and its COVERAGE marker are already on master and the next check will not
+    regenerate it. Re-running the failed publish job reuses the uploaded artifacts instead.
+    """
+    state = read_json(ROOT / STATE, {"coverage": {}, "attempts": []})
+    day = dt.datetime.now(TZ).date().isoformat()
+    done, failed = [], []
+    results = sorted(Path(results_dir).glob("*/result.json"))
+    if not results:
+        print("No results to publish")
+        return
+    for path in results:
+        result = json.loads(path.read_text(encoding="utf-8"))
+        stock = {"code": result["code"], "name": result["name"], "period": result["period"]}
+        entry = {"day": day, "code": stock["code"], "period": stock["period"],
+                 "status": "failed"}
+        if result.get("model"):
+            entry["model"] = result["model"]
+        try:
+            if result["status"] != "success":
+                raise ValueError(result.get("error", "generation failed"))
+            report = ROOT / report_path(stock)
+            old = report.read_text(encoding="utf-8") if report.exists() else ""
+            if stock["period"] in COVERAGE_RE.findall(old):
+                # A previous publish already landed this report; re-running must not fail.
+                print(f'{stock["code"]} already published for {stock["period"]}; skipping', flush=True)
+                already = True
+            else:
+                text = validate((path.parent / "report.html").read_text(encoding="utf-8"), stock["period"], old)
+                report.parent.mkdir(parents=True, exist_ok=True)
+                report.write_text(text, encoding="utf-8")
+                already = False
+        except Exception as exc:
+            print(f'FAILED {stock["code"]}: {exc}', flush=True)
+            entry["error"] = f"{type(exc).__name__}: {exc}"[:300]
+            failed.append(stock["code"])
+            state["attempts"].append(entry)
+            save_state(state)
+            continue
+        state["coverage"][stock["code"]] = stock["period"]
+        entry["status"] = "success"
+        state["attempts"].append(entry)
+        save_state(state)
+        if already:
+            publish([STATE], f'auto-update: recheck {stock["code"]}')
+            continue
+        publish([report_path(stock), STATE], f'auto-update: {stock["name"]} {stock["period"]}')
+        done.append(stock)
+    if done:
+        subprocess.run([sys.executable, "scripts/sync_ghpages.py"], cwd=ROOT, check=True)
+        publish(["docs", STATE], "auto-update: refresh Pages indexes")
+        commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
+        record_updates([{"name": s["name"], "code": s["code"], "period": s["period"],
+                         "file": report_path(s).as_posix(), "commit": commit} for s in done])
+    if failed:
+        if not done:
+            publish([STATE], f'auto-update: failed {"/".join(failed)}')
+        raise RuntimeError(f"Failed reports (will retry on a later check): {failed}")
 
 
 def main():
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--run", action="store_true", help="Generate and push, not just check")
+    parser.add_argument("--plan", action="store_true", help="Only check for uncovered reports (default)")
+    parser.add_argument("--generate-only", action="store_true", help="Generate one report into --outdir")
+    parser.add_argument("--publish", metavar="DIR", help="Publish reports from a results directory")
+    parser.add_argument("--code", help="Stock code for --generate-only")
+    parser.add_argument("--outdir", default="results", help="Output directory for --generate-only")
+    parser.add_argument("--queue-out", help="Write the plan queue as JSON to this file")
     parser.add_argument("--manual", action="store_true", help="Ignore the daily attempt budget")
     args = parser.parse_args()
-    now = dt.datetime.now(TZ)
-    today = now.date()
-    schedule = os.environ.get("SCHEDULE_CRON")
-    if schedule and schedule != expected_schedule(now):
-        print("Inactive Sydney daylight-saving schedule; skipping")
-        if os.environ.get("GITHUB_OUTPUT"):
-            with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
-                output.write("count=0\n")
+    if args.publish:
+        publish_results(args.publish)
         return
+    if args.generate_only:
+        generate_one(args.code, args.outdir)
+        return
+    now = dt.datetime.now(TZ)
     config = read_json(ROOT / "watchlist.json")
     if not config["stocks"]:
         print("Watchlist empty")
         return
-    state = read_json(ROOT / STATE, {"coverage": {}, "attempts": []})
-    manual = args.manual or os.environ.get("GITHUB_EVENT_NAME") == "workflow_dispatch"
-    queue = plan(config, state, calendar(config["stocks"], today), today, manual)
+    schedule = os.environ.get("SCHEDULE_CRON")
+    if schedule and schedule != expected_schedule(now):
+        print("Inactive Sydney daylight-saving schedule; skipping")
+        queue = []
+    else:
+        state = read_json(ROOT / STATE, {"coverage": {}, "attempts": []})
+        manual = args.manual or os.environ.get("GITHUB_EVENT_NAME") == "workflow_dispatch"
+        queue = plan(config, state, calendar(config["stocks"], now.date()), now.date(), manual)
     print(json.dumps(queue, ensure_ascii=False, indent=2), flush=True)
+    if args.queue_out:
+        Path(args.queue_out).write_text(json.dumps(queue, ensure_ascii=False), encoding="utf-8")
     if os.environ.get("GITHUB_OUTPUT"):
         with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
             output.write(f"count={len(queue)}\n")
-    if not args.run:
-        return
-    failures = []
-    updates = []
-    for stock in queue:
-        day = dt.datetime.now(TZ).date().isoformat()
-        state = read_json(ROOT / STATE, state)
-        used = sum(a["day"] == day for a in state["attempts"])
-        if not manual and used >= min(5, int(config.get("daily_limit", 5))):
-            break
-        # Reserve budget BEFORE invoking the model. A crash or manual rerun cannot exceed 5/day.
-        entry = {"day": day, "code": stock["code"], "period": stock["period"], "status": "started"}
-        state["attempts"].append(entry)
-        save_state(state)
-        publish([STATE], f'auto-update: reserve {stock["code"]} {stock["period"]}')
-        try:
-            entry["model"] = generate_with_fallback(stock, config)
-        except Exception as exc:
-            print(f'FAILED {stock["code"]}: {exc}', flush=True)
-            entry["status"] = "failed"
-            save_state(state)
-            publish([STATE], f'auto-update: failed {stock["code"]}')
-            failures.append(stock["code"])
-            continue
-        state["coverage"][stock["code"]] = stock["period"]
-        entry["status"] = "success"
-        save_state(state)
-        subprocess.run([sys.executable, "scripts/sync_ghpages.py"], cwd=ROOT, check=True)
-        publish(["docs"], f'auto-update: {stock["name"]} {stock["period"]}')
-        commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
-        updates.append({"name": stock["name"], "code": stock["code"],
-                        "period": stock["period"], "file": report_path(stock).as_posix(), "commit": commit})
-        # Emit after every successful push, so a later stock failure still permits notification.
-        record_updates(updates)
-        # Refresh state after a possible rebase.
-        state = read_json(ROOT / STATE)
-    if failures:
-        raise RuntimeError(f"Failed reports (will retry on a later check): {failures}")
+            output.write("queue=" + json.dumps(queue, ensure_ascii=True) + "\n")
 
 
 if __name__ == "__main__":

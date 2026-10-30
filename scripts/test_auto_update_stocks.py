@@ -150,6 +150,13 @@ class PlanTests(unittest.TestCase):
                     updater.generate_with_fallback(self.stock, config)
                 self.assertEqual(generate.call_count, 1)
 
+    def test_no_fallback_retries_free_model_instead_of_paying(self):
+        config = {"model": "opencode/free"}
+        with patch.object(updater, "generate", side_effect=[ValueError("bad HTML"), None]) as generate:
+            with patch.dict(updater.os.environ, {}, clear=True):
+                self.assertEqual(updater.generate_with_fallback(self.stock, config), "opencode/free")
+                self.assertEqual([c.args[1] for c in generate.call_args_list], ["opencode/free", "opencode/free"])
+
 
 if __name__ == "__main__":
     unittest.main()
