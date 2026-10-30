@@ -9,6 +9,7 @@ import re
 import subprocess
 import sys
 import tempfile
+import threading
 import time
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
@@ -23,6 +24,14 @@ COVERAGE_RE = re.compile(r"<!--\s*COVERAGE\s+period\s*=\s*(\d{4}-\d{2}-\d{2})\s*
 # A report may state the covered period in prose instead of the marker ("数据截止：2026 年三季报（2026-09-30…）").
 PERIOD_LABEL_RE = re.compile(
     r"(?:数据截至|数据截止|财报截至|财报截止|报告期|财报期)[^<\n]{0,40}?(\d{4}-\d{2}-\d{2})")
+# Only a real quota / rate-limit stop justifies spending money on the paid model.
+QUOTA_RE = re.compile(
+    r"rate.?limit|quota|insufficient|too many requests|no credits?|out of credits|"
+    r"payment required|exceeded|429|402|余额|额度|用量上限", re.I)
+
+
+class ModelUnavailable(RuntimeError):
+    """The free model refused to work (quota / rate limit)."""
 
 
 def expected_schedule(now):
@@ -196,6 +205,36 @@ def workspace_env(workspace):
     return dict(os.environ, PWD=str(workspace), OLDPWD=str(ROOT))
 
 
+def run_model(command, workspace, timeout):
+    """Run opencode, streaming output to the log, without hanging past `timeout`."""
+    proc = subprocess.Popen(command, cwd=workspace, env=workspace_env(workspace),
+                            stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True,
+                            encoding="utf-8", errors="replace", bufsize=1)
+    output = []
+
+    def pump():
+        for line in proc.stdout:
+            print(line, end="", flush=True)
+            output.append(line)
+
+    reader = threading.Thread(target=pump, daemon=True)
+    reader.start()
+    try:
+        code = proc.wait(timeout=timeout)
+    except subprocess.TimeoutExpired:
+        proc.kill()
+        proc.wait()
+        raise
+    reader.join(timeout=10)
+    text = "".join(output)
+    if code != 0:
+        tail = " / ".join(text.strip().splitlines()[-3:])[:300]
+        if QUOTA_RE.search(text):
+            raise ModelUnavailable(f"free model quota/rate limit hit: {tail}")
+        raise RuntimeError(f"opencode exited with {code}: {tail}")
+    return text
+
+
 def generate(stock, model):
     target = report_path(stock)
     old_path = ROOT / target
@@ -215,9 +254,8 @@ def generate(stock, model):
         )
         # opencode resolves its workspace from $PWD, not from the process cwd: without this the
         # model edits ROOT instead of the throwaway clone (and the clone stays untouched).
-        subprocess.run(["opencode", "run", "--model", model, "--auto", prompt], cwd=workspace,
-                       env=workspace_env(workspace), check=True,
-                       timeout=int(os.environ.get("MODEL_TIMEOUT_SECONDS", 600)))
+        run_model(["opencode", "run", "--model", model, "--auto", prompt], workspace,
+                  int(os.environ.get("MODEL_TIMEOUT_SECONDS", 600)))
         text = (workspace / target).read_text(encoding="utf-8")
         if old_path.exists() and old_path.read_text(encoding="utf-8") != old:
             # Never commit edits the model made against the wrong checkout.
@@ -242,27 +280,33 @@ def reserve_paid_fallback(stock, day):
 
 
 def generate_with_fallback(stock, config, allow_paid=True, reserve=None):
-    """Free primary model first; the paid fallback is capped (default: once per day).
+    """Free primary model first; the paid fallback is used only for a quota/rate-limit stop.
 
+    A timeout or a bad report is retried once on the free model and never billed.
     Returns (model_used, used_paid_fallback).
     """
     primary = config["model"]
     try:
         generate(stock, primary)
         return primary, False
+    except subprocess.TimeoutExpired:
+        print(f'{stock["code"]} timed out after {os.environ.get("MODEL_TIMEOUT_SECONDS", 600)}s; '
+              'not switching to the paid model', flush=True)
+        raise
     except Exception as exc:
         fallback = (config.get("fallback_model") or "").strip()
-        if fallback and fallback != primary and allow_paid:
+        available = isinstance(exc, ModelUnavailable)
+        if fallback and fallback != primary and available and allow_paid:
             if not os.environ.get("DEEPSEEK_API_KEY"):
-                raise RuntimeError("Primary failed; DEEPSEEK_API_KEY is missing for the configured fallback") from exc
+                raise RuntimeError("Free model is out of quota; DEEPSEEK_API_KEY is missing for the fallback") from exc
             if reserve:
                 reserve()
-            print(f'Primary failed ({type(exc).__name__}); retrying {stock["code"]} with {fallback} (paid)', flush=True)
+            print(f'Free model unavailable ({exc}); retrying {stock["code"]} with {fallback} (paid)', flush=True)
             # generate() starts with a fresh clone; never reuse partial model edits.
             generate(stock, fallback)
             return fallback, True
-        if fallback and fallback != primary:
-            print(f'Primary failed ({type(exc).__name__}); paid fallback already used today, '
+        if fallback and fallback != primary and available:
+            print(f'Free model unavailable but the paid fallback was already used today; '
                   f'retrying {stock["code"]} once with {primary}', flush=True)
         else:
             print(f'Primary failed ({type(exc).__name__}); retrying {stock["code"]} once with {primary}', flush=True)

@@ -28,6 +28,9 @@ class PlanTests(unittest.TestCase):
     def plan(self, rows, manual=False):
         return updater.plan(self.config, self.state, rows, self.today, manual)
 
+    def fail_reserve(self):
+        raise AssertionError("paid fallback must not be reserved")
+
     def test_catches_old_disclosure_not_only_yesterday(self):
         self.assertEqual(len(self.plan([self.row()])), 1)
 
@@ -141,17 +144,42 @@ class PlanTests(unittest.TestCase):
             self.assertEqual(updater.generate_with_fallback(self.stock, config), ("free", False))
             generate.assert_called_once_with(self.stock, "free")
 
-    def test_fallback_on_error_timeout_or_bad_html(self):
+    def test_timeout_never_switches_to_paid(self):
         config = {"model": "free", "fallback_model": "deepseek/official"}
-        for exc in [RuntimeError("unavailable"), subprocess.TimeoutExpired("opencode", 600), ValueError("bad HTML")]:
-            with patch.object(updater, "generate", side_effect=[exc, None]) as generate:
-                with patch.dict(updater.os.environ, {"DEEPSEEK_API_KEY": "test"}):
-                    self.assertEqual(updater.generate_with_fallback(self.stock, config), ("deepseek/official", True))
-                    self.assertEqual([c.args[1] for c in generate.call_args_list], ["free", "deepseek/official"])
+        with patch.object(updater, "generate",
+                          side_effect=subprocess.TimeoutExpired("opencode", 600)) as generate:
+            with patch.dict(updater.os.environ, {"DEEPSEEK_API_KEY": "test"}):
+                with self.assertRaises(subprocess.TimeoutExpired):
+                    updater.generate_with_fallback(self.stock, config, reserve=self.fail_reserve)
+        self.assertEqual(generate.call_count, 1)
+
+    def test_bad_report_retries_free_model_without_paying(self):
+        config = {"model": "free", "fallback_model": "deepseek/official"}
+        with patch.object(updater, "generate", side_effect=[ValueError("bad HTML"), None]) as generate:
+            with patch.dict(updater.os.environ, {"DEEPSEEK_API_KEY": "test"}):
+                result = updater.generate_with_fallback(self.stock, config, reserve=self.fail_reserve)
+        self.assertEqual(result, ("free", False))
+        self.assertEqual([c.args[1] for c in generate.call_args_list], ["free", "free"])
+
+    def test_quota_error_switches_to_paid(self):
+        config = {"model": "free", "fallback_model": "deepseek/official"}
+        with patch.object(updater, "generate",
+                          side_effect=[updater.ModelUnavailable("429 rate limit"), None]) as generate:
+            with patch.dict(updater.os.environ, {"DEEPSEEK_API_KEY": "test"}):
+                result = updater.generate_with_fallback(self.stock, config)
+        self.assertEqual(result, ("deepseek/official", True))
+        self.assertEqual([c.args[1] for c in generate.call_args_list], ["free", "deepseek/official"])
+
+    def test_quota_detection_patterns(self):
+        for text in ("429 Too Many Requests", "daily quota exceeded", "余额不足", "rate_limit_exceeded",
+                     "insufficient credits", "用量上限已达"):
+            self.assertTrue(updater.QUOTA_RE.search(text), text)
+        for text in ("model returned invalid JSON", "opencode exited with 1: timeout"):
+            self.assertFalse(updater.QUOTA_RE.search(text), text)
 
     def test_fallback_requires_secret(self):
         config = {"model": "free", "fallback_model": "deepseek/official"}
-        with patch.object(updater, "generate", side_effect=ValueError("bad HTML")) as generate:
+        with patch.object(updater, "generate", side_effect=updater.ModelUnavailable("quota")) as generate:
             with patch.dict(updater.os.environ, {}, clear=True):
                 with self.assertRaisesRegex(RuntimeError, "DEEPSEEK_API_KEY"):
                     updater.generate_with_fallback(self.stock, config)
@@ -159,7 +187,7 @@ class PlanTests(unittest.TestCase):
 
     def test_paid_fallback_skipped_after_daily_limit(self):
         config = {"model": "free", "fallback_model": "deepseek/official", "fallback_daily_limit": 1}
-        with patch.object(updater, "generate", side_effect=[ValueError("bad HTML"), None]) as generate:
+        with patch.object(updater, "generate", side_effect=[updater.ModelUnavailable("quota"), None]) as generate:
             with patch.dict(updater.os.environ, {"DEEPSEEK_API_KEY": "test"}):
                 self.assertEqual(updater.generate_with_fallback(self.stock, config, allow_paid=False), ("free", False))
                 self.assertEqual([c.args[1] for c in generate.call_args_list], ["free", "free"])
@@ -176,7 +204,8 @@ class PlanTests(unittest.TestCase):
     def test_paid_fallback_reserves_before_spending(self):
         config = {"model": "free", "fallback_model": "deepseek/official"}
         calls = []
-        with patch.object(updater, "generate", side_effect=[ValueError("bad HTML"), None]) as generate:
+        with patch.object(updater, "generate",
+                          side_effect=[updater.ModelUnavailable("quota"), None]) as generate:
             with patch.dict(updater.os.environ, {"DEEPSEEK_API_KEY": "test"}):
                 result = updater.generate_with_fallback(self.stock, config, reserve=lambda: calls.append("reserved"))
         self.assertEqual(result, ("deepseek/official", True))

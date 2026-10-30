@@ -4,7 +4,12 @@
 - 每天悉尼时间 08:30 检查（自动适配 AEST/AEDT），另可手动运行 Actions「自动检查财报并更新个股」。GitHub 可能延迟定时任务。两个UTC定时入口中，仅当前时区对应的入口会继续检查。
 - 仅在实际披露日早于今天、且最新财报期超过已覆盖期时调用模型；覆盖年报、中报、Q1、Q3四类正式财报。
 - 不只检查昨天：漏跑后会补查，但同一家公司只更新到最新一期，不逐期补写。
-- 默认 `opencode/deepseek-v4.1-flash-free`（用已有 `ZEN_API_KEY`）。单份最多运行10分钟（`MODEL_TIMEOUT_SECONDS`）。免费模型超时/报错/产物未过校验时：当天还没用过付费备用就用 `deepseek/deepseek-flash` 重跑一次（记录 `paid_fallback`），否则只用免费模型再重试一次。付费备用每天最多 `fallback_daily_limit` 次（默认1），用完就等下次检查。无更新时不安装模型、不产生提交。
+- 默认 `opencode/deepseek-v4.1-flash-free`（用已有 `ZEN_API_KEY`）。单份最多运行10分钟（`MODEL_TIMEOUT_SECONDS`）。
+- 免费模型的失败分三类处理：
+  - **额度/限流**（输出里出现 429、quota、余额/额度不足等）：当天付费额度还没用完 → 用 `deepseek/deepseek-flash` 重跑一次（先提交 `paid-reservation` 预留，再调用，记录 `paid_fallback`）；额度已用完 → 只免费再试一次。
+  - **超时**：直接判失败，不重试、不切付费（避免一次卡住就花钱）。
+  - **其他**（产物未过校验等）：免费模型重试一次，仍失败留到下次检查。
+- 付费备用每天最多 `fallback_daily_limit` 次（默认1），按悉尼自然日计算；这条预留记录不计入每天5份的更新额度。无更新时不安装模型、不产生提交。
 - 每个悉尼自然日最多尝试5份（失败也计数），通过 `docs/history/auto_updates.json` 持久记录；剩余任务下次检查继续。手动运行（Actions 里点 Run workflow，可填 `force_code` 强制重跑某只）不受每日上限约束，单次仍最多5份。
 
 ## 三段式流水线
