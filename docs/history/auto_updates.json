@@ -1,6 +1,7 @@
 {
   "coverage": {
-    "603259": "2026-09-30"
+    "603259": "2026-09-30",
+    "603806": "2026-09-30"
   },
   "attempts": [
     {
@@ -38,7 +39,8 @@
       "day": "2026-10-30",
       "code": "603806",
       "period": "2026-09-30",
-      "status": "started"
+      "status": "success",
+      "model": "deepseek/deepseek-flash"
     }
   ]
 }

@@ -78,7 +78,7 @@
 
 <h1>福斯特（603806）财务分析报告</h1>
 <p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
-<p class="meta">分析日期：2026-10-18 | 数据截止：2026 年半年报（2026-08-20 披露），行情/两融/股东数据截至 2026-10-13 | 数据来源：福斯特 2026 半年报、2025 年报、腾讯行情 qt.gtimg.cn、东方财富 F10、爱股网 F10、InfoLink/Prismark/CRU/联合资信研报、中邮·华泰·东吴·长城·国联民生券商研报</p>
+<p class="meta">分析日期：2026-10-30 | 数据截止：2026 年三季报（报告期 2026-09-30，实际披露 2026-10-27） | 行情数据：2026-10-30 收盘 | 数据来源：福斯特 2026 三季报原文、2026 半年报、2025 年报、东方财富 F10（财务报表/主要指标）、腾讯行情 qt.gtimg.cn、InfoLink/CRU/联合资信及券商研报</p>
 
 <div class="tab-bar">
   <button class="tab-btn active" data-tab="summary">总结论</button>
@@ -93,15 +93,16 @@
 <div class="tab-content active" id="tab-summary"><div class="tab-inner">
 
 <!-- TRACK 机器可读标记（sync 脚本读取，勿删勿改格式）：fwd=前瞻档(S/A/B/C/D)，rating=评级(Buy/Outperform/Neutral/Underperform/Sell)，node=≤12字验证节点 -->
-<!-- TRACK fwd=B rating=Outperform node=Q3胶膜量增 -->
+<!-- TRACK fwd=C rating=Neutral node=Q4毛利率现金流 -->
+<!-- COVERAGE period=2026-09-30 -->
 
 <h2>三轨摘要</h2>
 <table class="track-card">
   <tr><td>框架类型</td><td>周期型（混合周期——光伏胶膜，选用周期股评分体系，与 L5 分类一致）</td></tr>
-  <tr><td>财务品质分</td><td><strong>88/100（品质优秀）</strong></td></tr>
-  <tr><td>前瞻档位</td><td><span class="badge fwd-b">B</span> 悬置/中性但有覆盖——周期底部右侧、利润修复方向已由 26H1 确认，但「量增」这一收入端拐点悬置待三季报验证</td></tr>
-  <tr><td>投资评级</td><td><span class="badge rating-outperform">Outperform</span></td></tr>
-  <tr><td>一句话结论</td><td>评级 <strong>Outperform</strong>；核心矛盾是「营收 -12.20% 而归母 +69.89%」的剪刀差 100% 由单位盈利改善造成、收入端尚未拐点；升档关键看 10-27 三季报胶膜出货能否环增 20-30% 且毛利率守住 15%+（PB 向 2.86x 修复），降档关键看单季毛利率跌破 12% 或已停产产能大规模复产。</td></tr>
+  <tr><td>财务品质分</td><td><strong>85/100（品质优秀）</strong></td></tr>
+  <tr><td>前瞻档位</td><td><span class="badge fwd-c">C</span> 方向确定不利但未完全定价——三季报证伪「量增」，单季毛利率由 20.07% 回落至 15.07%，Q3 经营现金流转负</td></tr>
+  <tr><td>投资评级</td><td><span class="badge rating-neutral">Neutral</span></td></tr>
+  <tr><td>一句话结论</td><td>评级 <strong>Neutral</strong>；核心矛盾已从「营收跌而利润涨」升级为「量未起来、单季毛利率回落、Q3 现金流转负」——成本推动型修复正在回吐；升档看 Q4 毛利率回到 17%+ 且单季 CFO 转正，降档看毛利率跌破 13% 或树脂成本继续上行。</td></tr>
 </table>
 
 <h2>一、公司基本画像</h2>
@@ -109,160 +110,167 @@
   <tr><th style="width:30%">项目</th><th>内容</th></tr>
   <tr><td>公司名称</td><td>杭州福斯特应用材料股份有限公司</td></tr>
   <tr><td>股票代码</td><td>603806.SH（沪市主板，2014-09-05 上市）</td></tr>
-  <tr><td>所属行业</td><td>光伏封装材料（光伏胶膜全球龙头，占营收 87.8%）+ 电子材料（感光干膜）+ 功能膜材料（铝塑膜）+ 光伏发电</td></tr>
-  <tr><td>行业地位</td><td><span class="good">全球光伏胶膜绝对龙头，全球市占率约 50%</span>（公司半年报口径：长期稳定在 50% 左右，远超第二至第四名份额总和）；InfoLink 2025 全球胶膜出货 TOP3（福斯特/斯威克/百佳年代）合计超 65%</td></tr>
-  <tr><td>26H1 营收</td><td class="bad"><strong>69.88 亿（-12.20%）</strong></td></tr>
-  <tr><td>26H1 归母净利润</td><td class="good"><strong>8.42 亿（+69.89%）</strong>｜扣非 7.30 亿（+62.57%）</td></tr>
-  <tr><td>26Q2 单季归母</td><td class="good"><strong>5.30 亿（+460.54%，环比 +70.12%）</strong>｜单季毛利率 20.07%（同比 +8.71pct）</td></tr>
-  <tr><td>26H1 经营现金流</td><td class="good"><strong>12.81 亿（去年同期 -8.89 亿，由负转正）</strong>｜CFO/归母 1.52</td></tr>
-  <tr><td>总资产（26H1 末）</td><td>213.86 亿｜负债合计 42.75 亿｜<span class="good">资产负债率 19.99%</span></td></tr>
-  <tr><td>归母净资产（26H1 末）</td><td>167.57 亿（含少数股东权益 3.54 亿）｜BVPS 6.2418 元（扣可转债权益成分口径）</td></tr>
-  <tr><td>现金类资产（26H1 末）</td><td class="good">货币资金 31.01 亿 + 交易性金融资产 55.13 亿 = <strong>86.14 亿</strong>｜有息负债 28.96 亿（全部为应付债券）→ <strong>净现金 57.18 亿</strong></td></tr>
-  <tr><td>ROE（26H1 累计加权）</td><td class="neutral">5.04%（去年同期 3.02%，<strong>+2.02pct</strong>）｜简单年化约 10.1%</td></tr>
+  <tr><td>所属行业</td><td>光伏封装材料（光伏胶膜全球龙头，占 26H1 营收 87.8%）+ 电子材料（感光干膜）+ 功能膜材料（铝塑膜）+ 光伏发电</td></tr>
+  <tr><td>行业地位</td><td><span class="good">全球光伏胶膜绝对龙头，全球市占率约 50%</span>；InfoLink 2025 全球胶膜出货 TOP3（福斯特/斯威克/百佳年代）合计超 65%</td></tr>
+  <tr><td>26Q3（9M）营收</td><td class="bad"><strong>106.38 亿（-9.76%）</strong></td></tr>
+  <tr><td>26Q3（9M）归母净利润</td><td class="good"><strong>11.31 亿（+64.50%）</strong>｜扣非 9.82 亿（+55.84%）</td></tr>
+  <tr><td>26Q3 单季归母</td><td class="neutral"><strong>2.89 亿（同比 +50.57%，环比 -45.54%）</strong>｜单季毛利率约 15.07%（环比 -5.00pct）</td></tr>
+  <tr><td>26Q3（9M）经营现金流</td><td class="neutral"><strong>6.76 亿（去年同期 0.14 亿）</strong>｜但 Q3 单季 CFO 为 <span class="bad">-6.05 亿</span></td></tr>
+  <tr><td>总资产（26Q3 末）</td><td>217.46 亿｜负债合计 42.65 亿｜<span class="good">资产负债率 19.61%</span></td></tr>
+  <tr><td>归母净资产（26Q3 末）</td><td>170.66 亿（少数股东权益 4.16 亿）｜BVPS 6.3601 元（扣可转债权益成分口径）</td></tr>
+  <tr><td>现金类资产（26Q3 末）</td><td class="good">货币资金 34.51 亿 + 交易性金融资产 46.08 亿 = <strong>80.59 亿</strong>｜有息负债 29.20 亿（全部为应付债券）→ <strong>净现金 51.39 亿</strong></td></tr>
+  <tr><td>ROE（26Q3 累计加权）</td><td class="neutral">6.74%（去年同期 4.20%，+2.54pct）｜简单年化约 8.99%</td></tr>
 </table>
 
 <h2>行业类型与评分体系选择</h2>
 <div class="summary-box">
   <strong>行业类型：混合周期（光伏封装材料——光伏胶膜）</strong><br>
-  按 <strong>industry-classification.md</strong>，光伏属「混合周期股」清单（半导体/光伏/锂电/面板/汽车/消费电子）——长期有成长趋势（全球能源转型）叠加阶段性剧烈供需波动（2023-2025 产能过剩价格战、FY2025 为周期底部）。混合周期允许自行判断选用哪套评分体系。<br><br>
+  按 <strong>industry-classification.md</strong>，光伏属「混合周期股」清单——长期有成长趋势（能源转型）叠加阶段性剧烈供需波动（2023-2025 产能过剩价格战）。混合周期允许自行判断选用哪套评分体系。<br><br>
   <strong>本版选用：周期股评分体系（8 维度）+ L3 用 PB Band。</strong><br>
-  <strong>选用理由（详见 L5 §6.7）：</strong>① <strong>利润由供需错配与产能出清节奏决定</strong>——胶膜无品牌溢价，毛利率完全由「上游树脂成本 × 下游组件排产 × 行业有效产能」三者错配决定，是教科书式周期品；② <strong>当期利润是周期的结果而非公司能力的度量</strong>——FY2025 ROE 仅 4.68%，但公司仍实现归母 7.70 亿，是全球唯一双位数毛利率的胶膜厂，用单期 ROE 打分会系统性低估穿越周期能力；③ <strong>当前处周期底部复苏初期</strong>——26H1 归母 +69.89%、26Q2 单季毛利率 20.07%、二三线同行普遍亏损，周期位置维度（15 分）是本股最重要的输入，非周期体系无此维度；④ <strong>估值锚必须是 PB</strong>——周期底部 PE 失真（PE(TTM) 32.28x 反高于景气期），PB 2.21x 处上市以来 3.2% 分位才是有效锚。
+  <strong>选用理由（详见 L5 §6.7）：</strong>① 胶膜无品牌溢价，毛利率由「上游树脂成本 × 下游组件排产 × 行业有效产能」错配决定，是典型周期品；② 当期利润是周期结果而非能力度量——FY2025 ROE 仅 4.68%，公司仍保持双位数毛利率，单期 ROE 会系统性低估穿越周期能力；③ 当前处周期底部区域的二次探底，周期位置维度（15 分）是最重要输入；④ 周期底部 PE 失真，估值锚必须是 PB。
 </div>
 
-<p class="score-note"><strong>评分口径说明：</strong><span>周期股体系；数据同 26H1，维持 88 分，本次补三轨输出</span></p>
+<p class="score-note"><strong>评分口径说明：</strong><span>周期股体系；纳入26Q3，较上版88降至85，周期位置与FCF各下调</span></p>
 
 <h2>综合评分（百分制）</h2>
 <p style="font-size:13px;color:#666;margin-bottom:8px">采用<b>周期股评分体系</b>（穿越周期ROE 15 + 成本位置 15 + 负债安全垫 15 + 行业格局与产能周期 10 + 周期位置 15 + 估值PB 15 + 现金生成能力 10 + 分红/回购 5 = 100 分）</p>
 <table>
   <tr><th style="width:26%">维度</th><th style="width:10%">得分</th><th>说明（数据与判断依据）</th></tr>
-  <tr><td>穿越周期 ROE<br>（15 分）</td><td class="neutral" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">5 年（2021-2025）加权 ROE 均值 <strong>10.77%</strong>（18.04 / 11.29 / 11.87 / 7.97 / 4.68），≥8% 档 10 分；26H1 年化约 10.1% 与该中枢一致。周期股规则要求取多周期均值，单看 FY2025 的 4.68% 或 26H1 年化 10.1% 都会误判。</td></tr>
-  <tr><td>成本位置<br>（15 分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">行业成本曲线最左端（Top quartile）。26H1 综合毛利率 <strong>17.06%</strong> vs 海优新材 6.67% / 赛伍技术 10.34% / 明冠新材 10.47% / 双星新材 10.21%——四家可比公司中唯一毛利率领先第二名 6.6pct；支撑：50% 全球市占率带来的粒子集采议价权、设备自研、产线多已折旧完毕、长期 90% 以上开工率。</td></tr>
-  <tr><td>负债安全垫<br>（15 分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">两项均满足。① 净负债/EBITDA 为负：现金类 86.14 亿 − 有息负债 28.96 亿 = <strong>净现金 57.18 亿</strong>；26H1 EBITDA ≈ 12.17 亿，年化 24.3 亿，净负债/EBITDA ≈ -2.35x。② 货币资金可覆盖 1 年固定支出。资产负债率 19.99%、流动比率 12.81、利息保障倍数 23.2x。</td></tr>
-  <tr><td>行业格局与产能周期<br>（10 分）</td><td class="neutral" style="font-weight:bold;font-size:15px">8</td><td style="text-align:left">CR3 达标但供给端未收尾。InfoLink：2025 全球胶膜出货 TOP3（福斯特/斯威克/百佳年代）合计超 65%，较 2024 回升；绿康生化剥离、福莱蒽特关停、鹿山新材削减。扣 2 分：InfoLink 同时指出 2025 胶膜<b>产能仍在缓慢出清但依旧相当充裕</b>，尾部产能尚未完全退出。</td></tr>
-  <tr><td>周期位置<br>（15 分）</td><td class="neutral" style="font-weight:bold;font-size:15px">11</td><td style="text-align:left">底部已过、复苏初期，但修复由「成本推动 + 顺价」而非「需求扩张」驱动。二三线 26H1 仍亏损（海优 -0.48、赛伍 -0.04、明冠 -0.17 亿）；CRU 预测 2026 全球装机 590GW（-12%），需求侧尚未见底。修复信号：26Q2 单季毛利率 20.07%、东吴 8 月调研显示 8 月价格重新上涨、Q3 出货预计环增 20-30%。较 12 分扣 1，因修复质量存疑（详见 L2 §3.3）。</td></tr>
-  <tr><td>估值（PB vs 历史区间）<br>（15 分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">PB <strong>2.21x</strong>，处上市以来（2014-09-05 至今，619 个周频观测）<strong>3.2% 分位</strong>，落在「历史底部 30% 分位以内」最高档。分位自算：周收盘价（不复权）÷ 当期已披露 BVPS（已剔除福22转债权益成分），与行情口径一致并可复现。近 5 年 6.2% 分位、近 3 年 10.3% 分位。</td></tr>
-  <tr><td>现金生成能力（FCF）<br>（10 分）</td><td class="neutral" style="font-weight:bold;font-size:15px">9</td><td style="text-align:left">低谷期 FCF 稳健为正：FY2025 CFO 14.62 − Capex 4.36 = <strong>+10.27 亿</strong>；26H1 CFO 12.81 − Capex 1.41 = <strong>+11.40 亿</strong>。扣 1 分：2021-2023 三年 FCF 连续为负（累计 -20.0 亿），2022 年靠 CFF +39.81 亿外部融资补足，规模扩张期现金创造确有缺口。</td></tr>
-  <tr><td>分红/回购历史<br>（5 分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">完整穿越 2021 高点 → 2025 低谷的下行周期且未中断分红：连续 12 个年度现金分红；FY2025 低谷仍派 10 派 1.5 元（分红率 50.8%）；2026 年首次中期分红 10 派 1.2 元（占 26H1 归母 37.2%，10-14 除息）。无回购记录。</td></tr>
-  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td class="good" style="font-size:16px">88/100</td><td style="text-align:left"><b>品质优秀</b>——周期底部右侧的全球胶膜绝对龙头，穿越周期能力、成本曲线最左位置、净现金 57 亿资产负债表三项硬指标均为行业顶级；主要扣分来自收入端尚未拐点、行业产能出清未收尾、扩张期现金创造有缺口。</td></tr>
+  <tr><td>穿越周期 ROE<br>（15 分）</td><td class="neutral" style="font-weight:bold;font-size:15px">10</td><td style="text-align:left">5 年（2021-2025）加权 ROE 均值 <strong>10.77%</strong>（18.04 / 11.29 / 11.87 / 7.97 / 4.68），≥8% 档 10 分；26Q3 累计加权 6.74%，年化约 8.99%，仍落在该中枢下方。</td></tr>
+  <tr><td>成本位置<br>（15 分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">行业成本曲线最左端。26Q3 累计毛利率 <strong>16.37%</strong>（同比 +5.28pct），仍显著高于海优新材 6.67% / 赛伍技术 10.34% / 明冠新材 10.47% / 双星新材 10.21%（26H1 口径）；单季毛利率虽回落至 15.07%，仍是可比同行中唯一稳定在 15% 附近的公司。</td></tr>
+  <tr><td>负债安全垫<br>（15 分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">两项均满足。① 净负债/EBITDA 为负：现金类 80.59 亿 − 有息负债 29.20 亿 = <strong>净现金 51.39 亿</strong>；② 货币资金 34.51 亿可覆盖 1 年固定支出。资产负债率 19.61%、流动比率 13.54、零短借零长借。</td></tr>
+  <tr><td>行业格局与产能周期<br>（10 分）</td><td class="neutral" style="font-weight:bold;font-size:15px">8</td><td style="text-align:left">CR3 达标但供给端未收尾。InfoLink：2025 全球胶膜出货 TOP3 合计超 65%，较 2024 回升；但 2025 胶膜产能「仍在缓慢出清但依旧相当充裕」，尾部产能尚未完全退出，扣 2 分。</td></tr>
+  <tr><td>周期位置<br>（15 分）</td><td class="neutral" style="font-weight:bold;font-size:15px">9</td><td style="text-align:left">由「底部已过、复苏初期」下修为「底部区域的二次探底」。26Q3 单季毛利率 15.07%（环比 -5.00pct）、单季归母 2.89 亿（环比 -45.54%）、单季 CFO -6.05 亿；收入端未起量（单季营收环比仅 +0.96%）。较上版 11 分再降 2 分。</td></tr>
+  <tr><td>估值（PB vs 历史区间）<br>（15 分）</td><td class="good" style="font-weight:bold;font-size:15px">15</td><td style="text-align:left">PB <strong>1.85x</strong>（11.78 ÷ 26Q3 BVPS 6.3601），已跌破 2025-04 的 1.92x 历史低点，处上市以来最低区间（约 0-2% 分位），落在最高档。</td></tr>
+  <tr><td>现金生成能力（FCF）<br>（10 分）</td><td class="neutral" style="font-weight:bold;font-size:15px">8</td><td style="text-align:left">9M FCF = CFO 6.76 − Capex 1.66 = <strong>+5.10 亿</strong>，仍为正；但 Q3 单季 CFO -6.05 亿、单季 FCF 约 -6.30 亿，较 26H1 的 +11.40 亿显著恶化。存货环比 +2.18 亿、预付款环比 +4.14 亿，营运资本占用上升。较上版 9 分降 1 分。</td></tr>
+  <tr><td>分红/回购历史<br>（5 分）</td><td class="good" style="font-weight:bold;font-size:15px">5</td><td style="text-align:left">完整穿越 2021 高点 → 2025 低谷且未中断分红：连续 12 个年度现金分红；FY2025 低谷仍派 10 派 1.5 元（分红率 50.8%）；2026 年首次中期分红 10 派 1.2 元（已于 10-14 除息）。无回购记录。</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td class="good" style="font-size:16px">85/100</td><td style="text-align:left"><b>品质优秀</b>——周期底部区域的全球胶膜龙头，成本优势、净现金 51 亿资产负债表、穿越周期分红三项仍为行业顶级；扣分集中在周期位置二次探底、Q3 现金流转负、收入端未起量。</td></tr>
 </table>
 
-<div class="verdict verdict-ok">品质优秀（88/100 分）——周期股评分体系下，底部右侧的全球胶膜绝对龙头</div>
+<div class="verdict verdict-ok">品质优秀（85/100 分）——周期股评分体系下，底部区域但修复受挫的全球胶膜龙头</div>
+
+<!-- 评分沿革：由sync脚本从 scores.json 注入，生成时保留此注释不动 -->
 <h2 style="margin-top:16px">评分沿革</h2>
 <style>.history-table{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:13px}.history-table th,.history-table td{border:1px solid #ddd;padding:6px 8px;text-align:center}.history-table th{background:#f0f0f0;font-weight:bold}.history-table td.good{color:#27ae60}.history-table td.neutral{color:#e67e22}.history-table td.bad{color:#c0392b}</style><table class="history-table">
   <tr><th>日期</th><th>评分</th><th>评分体系</th><th>变化原因</th></tr>
   <tr><td>2026-08-19</td><td class="good" style="font-weight:bold">92/100</td><td>混合周期</td><td style="text-align:left">—</td></tr>
   <tr><td>2026-10-13</td><td class="good" style="font-weight:bold">88/100</td><td>混合周期</td><td style="text-align:left">周期股体系；2026H1数据更新，92→88分，格局/FCF各扣2、1分</td></tr>
   <tr><td>2026-10-18</td><td class="good" style="font-weight:bold">88/100</td><td>混合周期</td><td style="text-align:left">周期股体系；数据同 26H1，维持 88 分，本次补三轨输出</td></tr>
+  <tr><td>2026-10-30</td><td class="good" style="font-weight:bold">85/100</td><td>混合周期</td><td style="text-align:left">周期股体系；纳入26Q3，较上版88降至85，周期位置与FCF各下调</td></tr>
 </table>
 
-<!-- 评分沿革：由sync脚本从 scores.json 注入，生成时保留此注释不动 -->
-
 <div class="summary-box">
-  <strong>综合诊断：</strong>福斯特是全球光伏胶膜无可争议的绝对龙头（全球市占率约 50%，公司自述远超第 2-4 名之和）。2023-2025 行业产能过剩价格战把 FY2025 打到周期底部（营收 -19.10%、归母 -41.14%、ROE 4.68%），但公司在最差的一年仍赚 7.70 亿、仍保持 10.96% 双位数毛利率，是全球唯一没有陷入亏损的胶膜厂。<strong>2026H1 是这轮周期的拐点：归母 8.42 亿（+69.89%）、扣非 7.30 亿（+62.57%）、26Q2 单季 5.30 亿（+460.54%）、CFO 由 -8.89 亿转正至 +12.81 亿。</strong><br><br>
-  <strong>本期最重要的判断（详见 L2 §3.3）：</strong>利润修复的来源不是量，是「上游树脂涨价 → 顺价 + 低价库存红利 + 二三线亏损出清后竞争缓和」。26H1 胶膜销量 -11.97%、单价 -3.5%、收入 -15%，同期单平毛利从 0.59 元升到 0.85 元（+43.7%）——<strong>营收 -12.20% 与归母 +69.89% 的剪刀差，100% 由单位盈利改善造成，收入端尚未出现任何拐点信号。</strong>这是一次「质量控制型」而非「规模扩张型」的改善：可持续性通常好于需求爆发式回暖，但若地缘缓和导致树脂回落、或已停产产能复产，毛利率会快速回吐。<br><br>
-  <strong>核心优势：</strong>① 成本曲线最左端——26H1 毛利率 17.06%，四家可比同行全部在 6.7-10.5% 区间，是行业里唯一能把成本涨价顺出去的玩家；② 资产负债表 A 股制造业顶级——资产负债率 19.99%、零短借零长借、有息负债仅 28.89 亿应付债券、净现金 57.18 亿、流动比率 12.81；③ 低谷期自我造血——FY2025 CFO/归母 1.90，26H1 CFO/归母 1.52；④ 全球化对冲——26H1 海外收入占比升至 33.2%，海外毛利率 23.00% vs 境内 13.75%，泰国、越南基地 26H1 分别贡献净利 1.65 亿、1.27 亿；⑤ 第二曲线成型——感光干膜 26H1 收入 3.89 亿（+19.69%）、销量 +21.92%、毛利率 29.10%，10μm 级产品已切入 AI 服务器高多层板供应链。<br><br>
-  <strong>核心风险：</strong>① <b>收入端未拐点</b>——胶膜销量 -11.97%，2026 全球装机预测 493-590GW（同比 -11% ~ -13%）；② <b>毛利率回吐风险</b>——本轮毛利率跳升由树脂成本推动而非需求驱动，低价库存红利已消耗大半（存货降至 16.50 亿）；③ <b>应收账款 45.16 亿</b>——占 TTM 归母 405%、占 26H1 归母 537%，周转约 115 天；④ <b>产能出清反复</b>——胶膜价格回升后已停产产能存在复产可能；⑤ <b>福22转债 28.89 亿</b>存续，股价上行后存在转股摊薄；⑥ 海外贸易壁垒（印度 2025-09 已对多国 POE/EPE 发起反倾销调查）。
+  <strong>综合诊断：</strong>福斯特仍是全球光伏胶膜无可争议的绝对龙头（全球市占率约 50%），2026 年前三季度归母 11.31 亿（+64.50%）、扣非 9.82 亿（+55.84%），绝对利润水平不差。但 <strong>10-27 披露的三季报证伪了「量增」这一关键假设</strong>：Q3 单季营收 36.50 亿，环比仅 +0.96%、同比 -4.69%；单季毛利率 15.07%，较 Q2 的 20.07% 回落 5.00pct；单季归母 2.89 亿，环比 -45.54%；单季经营现金流 -6.05 亿，而 H1 为 +12.81 亿。<br><br>
+  <strong>本期最重要的判断：</strong>26H1 的利润修复是「树脂涨价 → 顺价 + 低价库存红利」，我们上版把它定性为「质量控制型」改善、并给出「Q3 量增 20-30% + 毛利率守住 15%」的验证条件。三季报的答案是：<b>毛利率勉强守住 15%（15.07%），但量没有起来（营收环比基本持平），且现金流明显恶化</b>。存货环比增加 2.18 亿、预付款环比增加 4.14 亿，指向高价树脂正在入库——这意味着 Q2 的低价库存红利已基本用完，Q4 毛利率面临真实成本压力。修复的故事尚未破产（同比仍 +50.57%），但<strong>方向已由「向上验证」转为「向下承压」，故前瞻档位由 B 下调至 C</strong>。<br><br>
+  <strong>核心优势：</strong>① 成本曲线最左端——9M 毛利率 16.37%，四家可比同行仍在 6.7-10.5% 区间；② 资产负债表 A 股制造业顶级——资产负债率 19.61%、零短借零长借、净现金 51.39 亿、流动比率 13.54；③ 穿越周期分红未断——连续 12 年分红 + 2026 年首次中期分红；④ 全球化对冲——26H1 海外收入占比 33.2%、海外毛利率 23.00%，泰国/越南基地盈利强劲；⑤ 第二曲线——感光干膜 26H1 收入 4.75 亿（+22.86%）、毛利率 23.94%。<br><br>
+  <strong>核心风险：</strong>① <b>量未起来</b>——Q3 单季营收环比 +0.96%，2026 全球装机预测同比 -11% ~ -13%；② <b>毛利率回吐</b>——单季毛利率由 20.07% 降至 15.07%，低价库存红利耗尽，预付款/存货同步上升指向高价树脂入库；③ <b>现金流转负</b>——Q3 单季 CFO -6.05 亿、FCF 约 -6.30 亿；④ <b>应收账款 48.90 亿</b>——占 TTM 归母约 403%，周转 116.65 天；⑤ 福22转债 29.20 亿存续，转股摊薄；⑥ 海外贸易壁垒（印度 2025-09 对多国 POE/EPE 发起反倾销调查）。
 </div>
 
 </div></div>
 
 <div class="tab-content" id="tab-l1"><div class="tab-inner">
 
-<h2>二、核心财务数据（2026 年半年报）</h2>
+<h2>二、核心财务数据（2026 年三季报）</h2>
 
-<h3>2.1 利润表</h3>
+<h3>2.1 利润表（年初至报告期末）</h3>
 <table>
-  <tr><th>指标</th><th>26H1</th><th>25H1</th><th>同比</th><th>FY2025</th><th>评价</th></tr>
-  <tr><td>营业收入</td><td><strong>69.88 亿</strong></td><td>79.59 亿</td><td class="bad"><strong>-12.20%</strong></td><td>154.91 亿</td><td class="bad">❌ 连续第三年下滑，量价齐降</td></tr>
-  <tr><td>营业成本</td><td>57.96 亿</td><td>69.91 亿</td><td>-17.10%</td><td>137.93 亿</td><td class="good">✅ 降幅大于收入（树脂降价滞后结转）</td></tr>
-  <tr><td>毛利率</td><td class="good"><strong>17.06%</strong></td><td>12.15%</td><td class="good"><strong>+4.91pct</strong></td><td>10.96%</td><td class="good">✅ 触底大幅修复</td></tr>
-  <tr><td>销售费用</td><td>0.58 亿（0.83%）</td><td>0.40 亿（0.50%）</td><td>+46.7%</td><td>0.97 亿（0.62%）</td><td class="neutral">⚠ 费用率上升但绝对额可控</td></tr>
-  <tr><td>管理费用</td><td>1.35 亿（1.93%）</td><td>1.34 亿（1.69%）</td><td>+0.6%</td><td>2.52 亿（1.63%）</td><td class="good">✅ 刚性费用，无明显失控</td></tr>
-  <tr><td>研发费用</td><td>2.10 亿（3.00%）</td><td>2.43 亿（3.06%）</td><td class="good">-13.7%</td><td>4.68 亿（3.02%）</td><td class="neutral">⚠ 研发绝对额同比收缩（FY2025 亦 -28.85%），需跟踪是否影响高端化节奏</td></tr>
-  <tr><td>财务费用</td><td>0.05 亿（0.07%）</td><td>0.08 亿（0.10%）</td><td>-35.1%</td><td>0.24 亿（0.16%）</td><td class="good">✅ 利息收入 + 汇兑基本对冲</td></tr>
-  <tr><td>期间费用率合计</td><td>5.84%</td><td>5.34%</td><td>+0.50pct</td><td>5.42%</td><td class="neutral">⚠ 分母（收入）收缩导致费用率被动抬升</td></tr>
-  <tr><td>投资收益</td><td>0.61 亿</td><td>0.15 亿</td><td class="good">+307%</td><td>0.18 亿</td><td class="good">✅ 理财收益（交易性金融资产 55.13 亿）</td></tr>
-  <tr><td>其他收益（政府补助等）</td><td>0.40 亿</td><td>0.65 亿</td><td>-39.2%</td><td>1.16 亿</td><td class="neutral">⚠ 非经营性，FY2025 曾占利润总额 13%</td></tr>
-  <tr><td>营业利润</td><td><strong>9.71 亿</strong></td><td>5.44 亿</td><td class="good"><strong>+78.6%</strong></td><td>8.93 亿</td><td class="good">✅ 26H1 单半年已超 FY2025 全年</td></tr>
-  <tr><td>营业利润率</td><td class="good">13.90%</td><td>6.83%</td><td>+7.07pct</td><td>5.76%</td><td class="good">✅</td></tr>
-  <tr><td>利润总额</td><td>9.70 亿</td><td>5.38 亿</td><td>+80.3%</td><td>8.73 亿</td><td class="good">✅</td></tr>
-  <tr><td>实际所得税率</td><td>13.36%</td><td>10.06%</td><td>+3.30pct</td><td>14.83%</td><td class="neutral">⚠ 税率波动正常（高新技术企业 15% 优惠 + 海外税率）</td></tr>
-  <tr><td><strong>归母净利润</strong></td><td class="good"><strong>8.42 亿</strong></td><td>4.96 亿</td><td class="good"><strong>+69.89%</strong></td><td>7.70 亿</td><td class="good">✅ 26H1 已超 FY2025 全年 9.4%</td></tr>
-  <tr><td>扣非归母净利润</td><td><strong>7.30 亿</strong></td><td>4.49 亿</td><td class="good"><strong>+62.57%</strong></td><td>6.71 亿</td><td class="good">✅ 主业驱动，非一次性</td></tr>
-  <tr><td>非经常性损益</td><td>1.13 亿（占归母 13.4%）</td><td>0.47 亿（9.5%）</td><td>+141%</td><td>0.98 亿（12.8%）</td><td class="neutral">⚠ 理财收益 + 前期应收账款单项计提减值转回；占比可控但需持续监控</td></tr>
-  <tr><td>归母净利率</td><td class="good"><strong>12.05%</strong></td><td>6.23%</td><td>+5.82pct</td><td>4.97%</td><td class="good">✅ 已回到 2022 年水平</td></tr>
+  <tr><th>指标</th><th>26Q3（9M）</th><th>25Q3（9M）</th><th>同比</th><th>FY2025</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td><strong>106.38 亿</strong></td><td>117.88 亿</td><td class="bad"><strong>-9.76%</strong></td><td>154.91 亿</td><td class="bad">❌ 连续第三年下滑，但降幅较 H1 的 -12.20% 收窄</td></tr>
+  <tr><td>营业成本</td><td>88.96 亿</td><td>104.80 亿</td><td>-15.12%</td><td>137.93 亿</td><td class="good">✅ 降幅大于收入，毛利率抬升</td></tr>
+  <tr><td>毛利率</td><td class="good"><strong>16.37%</strong></td><td>11.09%</td><td class="good"><strong>+5.28pct</strong></td><td>10.96%</td><td class="good">✅ 累计仍大幅修复，但单季已回落</td></tr>
+  <tr><td>销售费用</td><td>0.85 亿（0.80%）</td><td>0.67 亿（0.57%）</td><td>+26.4%</td><td>0.97 亿（0.62%）</td><td class="neutral">⚠ 费用率上升但绝对额可控</td></tr>
+  <tr><td>管理费用</td><td>1.97 亿（1.86%）</td><td>2.02 亿（1.72%）</td><td>-2.4%</td><td>2.52 亿（1.63%）</td><td class="good">✅ 刚性费用，无明显失控</td></tr>
+  <tr><td>研发费用</td><td>3.21 亿（3.01%）</td><td>3.64 亿（3.09%）</td><td class="neutral">-11.9%</td><td>4.68 亿（3.02%）</td><td class="neutral">⚠ 研发绝对额继续收缩，需跟踪高端化节奏</td></tr>
+  <tr><td>财务费用</td><td>0.27 亿（0.26%）</td><td>-0.004 亿（0.00%）</td><td>—</td><td>0.24 亿（0.16%）</td><td class="neutral">⚠ 利息收入与汇兑对冲后仍为正</td></tr>
+  <tr><td>期间费用率合计</td><td>5.93%</td><td>5.37%</td><td>+0.56pct</td><td>5.42%</td><td class="neutral">⚠ 收入收缩导致费用率被动抬升</td></tr>
+  <tr><td>投资收益</td><td>0.82 亿</td><td>0.17 亿</td><td class="good">+398%</td><td>0.18 亿</td><td class="good">✅ 理财收益（交易性金融资产 46.08 亿）</td></tr>
+  <tr><td>公允价值变动收益</td><td>0.32 亿</td><td>—</td><td>—</td><td>0.25 亿</td><td class="neutral">⚠ 非经营性波动</td></tr>
+  <tr><td>其他收益（政府补助等）</td><td>0.67 亿</td><td>0.95 亿</td><td>-29.7%</td><td>1.16 亿</td><td class="neutral">⚠ 非经营性，同比收缩</td></tr>
+  <tr><td>营业利润</td><td><strong>13.01 亿</strong></td><td>7.73 亿</td><td class="good"><strong>+68.23%</strong></td><td>8.93 亿</td><td class="good">✅ 9M 已远超 FY2025 全年</td></tr>
+  <tr><td>营业利润率</td><td class="good">12.23%</td><td>6.56%</td><td>+5.67pct</td><td>5.76%</td><td class="good">✅</td></tr>
+  <tr><td>利润总额</td><td>12.98 亿</td><td>7.58 亿</td><td>+71.2%</td><td>8.73 亿</td><td class="good">✅</td></tr>
+  <tr><td>实际所得税率</td><td>12.80%</td><td>11.89%</td><td>+0.91pct</td><td>14.83%</td><td class="neutral">⚠ 税率波动正常（高新技术 15% 优惠 + 海外税率）</td></tr>
+  <tr><td><strong>归母净利润</strong></td><td class="good"><strong>11.31 亿</strong></td><td>6.88 亿</td><td class="good"><strong>+64.50%</strong></td><td>7.70 亿</td><td class="good">✅ 9M 已超 FY2025 全年 47%</td></tr>
+  <tr><td>扣非归母净利润</td><td><strong>9.82 亿</strong></td><td>6.30 亿</td><td class="good"><strong>+55.84%</strong></td><td>6.71 亿</td><td class="good">✅ 主业驱动，非一次性</td></tr>
+  <tr><td>非经常性损益</td><td>1.49 亿（占归母 13.2%）</td><td>0.58 亿（8.4%）</td><td>+159%</td><td>0.98 亿（12.8%）</td><td class="neutral">⚠ 理财收益 + 公允价值变动 + 减值转回；占比可控但需监控</td></tr>
+  <tr><td>归母净利率</td><td class="good"><strong>10.64%</strong></td><td>5.83%</td><td>+4.81pct</td><td>4.97%</td><td class="good">✅ 累计回到 2022 年水平</td></tr>
 </table>
 
-<h3>2.1b 单季度节奏（周期拐点的证据链）</h3>
+<h3>2.1b 单季度节奏（三季报的关键证据）</h3>
 <table>
-  <tr><th>单季指标</th><th>26Q2</th><th>26Q1</th><th>25Q4</th><th>25Q3</th><th>25Q2</th></tr>
-  <tr><td>营业收入（亿）</td><td>36.15</td><td>33.73</td><td>37.03</td><td>38.29</td><td>43.35</td></tr>
-  <tr><td>营收同比</td><td class="bad">-16.59%</td><td>-6.95%</td><td>-6.80%</td><td>-13.17%</td><td class="bad">-20.36%</td></tr>
-  <tr><td>归母净利润（亿）</td><td class="good"><strong>5.30</strong></td><td>3.12</td><td>0.76</td><td>1.84</td><td>0.95</td></tr>
-  <tr><td>归母同比</td><td class="good"><strong>+460.54%</strong></td><td>-22.27%</td><td>+137.50%</td><td>-44.07%</td><td>-78.13%</td></tr>
-  <tr><td>归母环比</td><td class="good"><strong>+70.12%</strong></td><td>+311%</td><td>-59%</td><td>+142%</td><td>—</td></tr>
-  <tr><td>扣非归母（亿）</td><td class="good">4.70（+559.67%）</td><td>2.60</td><td>—</td><td>—</td><td>—</td></tr>
-  <tr><td><strong>单季毛利率</strong></td><td class="good"><strong>20.07%</strong></td><td>13.83%</td><td>3.24%*</td><td>5.98%*</td><td class="bad">11.36%</td></tr>
-  <tr><td>单季 ROE（累计口径）</td><td>3.16%</td><td>1.87%</td><td>0.49%</td><td>1.14%</td><td>0.66%</td></tr>
+  <tr><th>单季指标</th><th>26Q3</th><th>26Q2</th><th>26Q1</th><th>25Q4</th><th>25Q3</th></tr>
+  <tr><td>营业收入（亿）</td><td>36.50</td><td>36.15</td><td>33.73</td><td>37.03</td><td>38.29</td></tr>
+  <tr><td>营收同比</td><td class="bad">-4.69%</td><td class="bad">-16.59%</td><td>-6.95%</td><td>-6.80%</td><td class="bad">-13.17%</td></tr>
+  <tr><td>营收环比</td><td class="neutral"><strong>+0.96%</strong></td><td>+7.2%</td><td>—</td><td>—</td><td>—</td></tr>
+  <tr><td>归母净利润（亿）</td><td class="neutral"><strong>2.89</strong></td><td class="good"><strong>5.30</strong></td><td>3.12</td><td>0.82</td><td>1.92</td></tr>
+  <tr><td>归母同比</td><td class="good"><strong>+50.57%</strong></td><td class="good">+460.54%</td><td>-22.27%</td><td>+65.5%</td><td>-41.8%</td></tr>
+  <tr><td>归母环比</td><td class="bad"><strong>-45.54%</strong></td><td class="good"><strong>+70.12%</strong></td><td>+311%</td><td>—</td><td>—</td></tr>
+  <tr><td>扣非归母（亿）</td><td>2.52（推算）</td><td>4.70（+559.67%）</td><td>2.60</td><td>—</td><td>—</td></tr>
+  <tr><td><strong>单季毛利率</strong></td><td class="neutral"><strong>15.07%</strong></td><td class="good"><strong>20.07%</strong></td><td>13.83%</td><td>10.53%</td><td class="bad">8.87%</td></tr>
+  <tr><td>单季经营现金流（亿）</td><td class="bad"><strong>-6.05</strong></td><td class="good">+13.98</td><td>-1.18</td><td>+14.49</td><td>+9.02</td></tr>
 </table>
-<p style="font-size:12px;color:#666;">注 1：25Q2 毛利率 11.36% = 26Q2 的 20.07% 减去券商披露的同比变动 8.71pct。注 2：25Q4/25Q3 单季毛利率 3.24%/5.98% 取自爱股网单季「毛利率」字段，经交叉验证该字段实为<b>营业利润率</b>（25Q2：0.95/43.35=2.19%，与字段值完全一致），非毛利率；故不作为毛利率使用，仅作盈利趋势参考。</p>
+<p style="font-size:12px;color:#666;">口径说明：单季数据由「本报告期累计数 − 上一报告期累计数」计算，全部取自东方财富 F10 三季报/中报/一季报报表原文。26Q3 扣非 = 9M 扣非 9.8188 − H1 扣非 7.2966 = 2.52 亿；单季毛利率 =（累计毛利额差 ÷ 单季营收）。25Q4 单季经营现金流 +14.49 亿 = FY2025 14.62 − 9M2025 0.14。</p>
 
 <div class="summary-box">
-  <strong>利润表解读：</strong>这是典型的「<b>量缩、价平、毛利大涨</b>」的周期底部修复形态，而非景气扩张。26H1 营收 -12.20%，但营业成本 -17.10% 降幅更大，毛利率从 12.15% 抬到 17.06%；26Q2 单季毛利率进一步冲到 20.07%（同比 +8.71pct），单季归母 5.30 亿（+460.54%），单季利润已超过 FY2025 全年的 69%。<br><br>
-  需要留意两个「不完美」：① <b>26Q1 归母 3.12 亿同比 -22.27%</b>——拐点并非从 Q1 就启动，而是 Q2 才集中体现；② <b>研发费用同比 -13.7%</b>（FY2025 亦 -28.85%），在靠技术代际迭代拉开差距的光伏行业里，研发收缩是需盯的中期信号。公司业绩预增公告（2026-07-14）预告归母 8.69 亿、扣非 7.52 亿，实际 8.42 / 7.30 亿，<b>实际值低于预告下限约 3.1%</b>，属正常审计调整，但提示不要把预告数当既成事实。
+  <strong>利润表解读：</strong>累计看仍是「营收跌、利润涨」：9M 营收 -9.76%，营业成本 -15.12% 降幅更大，毛利率 11.09% → 16.37%（+5.28pct），归母 11.31 亿（+64.50%）。<br><br>
+  <strong>但单季看，修复已经失速：</strong>① Q3 营收 36.50 亿，环比仅 +0.96%，<b>并未出现此前预期的「环比 +20-30%」</b>，说明量增假设落空；② Q3 单季毛利率 15.07%，较 Q2 的 20.07% <b>回落 5.00pct</b>，虽同比仍 +6.20pct，但环比动能已转负；③ Q3 单季归母 2.89 亿，<b>环比 -45.54%</b>，同比 +50.57% 主要靠低基数；④ Q3 单季经营现金流 <b>-6.05 亿</b>（H1 为 +12.81 亿），与利润方向背离。<br><br>
+  <strong>结论：</strong>26H1 的利润高增是一次「低价库存 + 顺价」叠加的阶段性红利，Q3 已开始回吐。当前 9M 业绩仍然漂亮，但边际方向已经向下，这是本次评级下调的核心依据。
 </div>
 
-<h3>2.2 资产负债表（2026-06-30）</h3>
+<h3>2.2 资产负债表（2026-09-30）</h3>
 <table>
-  <tr><th>科目</th><th>26H1 末</th><th>26Q1 末</th><th>25 年末</th><th>25H1 末</th><th>评价</th></tr>
-  <tr><td>货币资金</td><td><strong>31.01 亿</strong></td><td>37.17 亿</td><td>23.95 亿</td><td>35.53 亿</td><td class="neutral">⚠ Q2 环比减少 6.16 亿，钱转去买了理财</td></tr>
-  <tr><td>交易性金融资产</td><td><strong>55.13 亿</strong></td><td>37.07 亿</td><td>52.70 亿</td><td>23.77 亿</td><td class="good">✅ Q2 环比 +18.06 亿，现金大规模转入理财</td></tr>
-  <tr><td>现金类资产合计</td><td class="good"><strong>86.14 亿</strong></td><td>74.24 亿</td><td>76.65 亿</td><td>59.30 亿</td><td class="good">✅ 占总资产 40.3%，占总市值 23.9%</td></tr>
-  <tr><td>应收票据及应收账款</td><td class="neutral"><strong>45.25 亿</strong></td><td>44.78 亿</td><td>43.16 亿</td><td>44.83 亿</td><td class="neutral">⚠ 其中应收账款 45.16 亿、应收票据 0.09 亿；另有应收款项融资 8.09 亿</td></tr>
-  <tr><td>存货</td><td>16.50 亿</td><td>17.81 亿</td><td>16.04 亿</td><td>19.59 亿</td><td class="good">✅ 同比 -15.8%，低价库存红利已消耗大半</td></tr>
-  <tr><td>预付款项</td><td>2.52 亿</td><td>—</td><td>3.21 亿</td><td>—</td><td class="good">✅ 同比大幅下降</td></tr>
-  <tr><td>流动资产合计</td><td>160.68 亿</td><td>156.35 亿</td><td>151.82 亿</td><td>154.86 亿</td><td class="good">✅</td></tr>
-  <tr><td>固定资产</td><td>40.54 亿</td><td>—</td><td>42.35 亿</td><td>40.39 亿</td><td class="neutral">⚠ 同比微增，产能扩张已基本停止</td></tr>
-  <tr><td>在建工程</td><td>3.99 亿</td><td>—</td><td>3.44 亿</td><td>4.35 亿</td><td class="good">✅ 较 26Q1 +16.0%，江门/海外项目推进</td></tr>
-  <tr><td>总资产</td><td><strong>213.86 亿</strong></td><td>210.04 亿</td><td>206.19 亿</td><td>207.99 亿</td><td class="good">✅ 同比 +2.82%</td></tr>
+  <tr><th>科目</th><th>26Q3 末</th><th>26H1 末</th><th>25 年末</th><th>25Q3 末</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td><strong>34.51 亿</strong></td><td>31.01 亿</td><td>23.95 亿</td><td>23.97 亿</td><td class="good">✅ 环比 +3.50 亿</td></tr>
+  <tr><td>交易性金融资产</td><td><strong>46.08 亿</strong></td><td>55.13 亿</td><td>52.70 亿</td><td>39.10 亿</td><td class="neutral">⚠ 环比 -9.05 亿，部分转为货币资金</td></tr>
+  <tr><td>现金类资产合计</td><td class="good"><strong>80.59 亿</strong></td><td>86.14 亿</td><td>76.65 亿</td><td>63.07 亿</td><td class="good">✅ 占总资产 37.1%</td></tr>
+  <tr><td>应收票据及应收账款</td><td class="neutral"><strong>48.94 亿</strong></td><td>45.25 亿</td><td>43.16 亿</td><td>44.27 亿</td><td class="neutral">⚠ 环比 +3.69 亿；其中应收账款 48.90 亿</td></tr>
+  <tr><td>应收款项融资</td><td>7.79 亿</td><td>8.09 亿</td><td>10.85 亿</td><td>16.62 亿</td><td class="good">✅ 同比大幅下降</td></tr>
+  <tr><td>存货</td><td class="bad"><strong>18.68 亿</strong></td><td>16.50 亿</td><td>16.04 亿</td><td>19.64 亿</td><td class="bad">❌ 环比 +2.18 亿（+13.2%），指向高价树脂入库</td></tr>
+  <tr><td>预付款项</td><td class="bad"><strong>6.66 亿</strong></td><td>2.52 亿</td><td>3.21 亿</td><td>6.41 亿</td><td class="bad">❌ 环比 +4.14 亿（+164%），采购前置/锁价迹象</td></tr>
+  <tr><td>流动资产合计</td><td>164.92 亿</td><td>160.68 亿</td><td>151.82 亿</td><td>152.81 亿</td><td class="good">✅</td></tr>
+  <tr><td>固定资产</td><td>40.79 亿</td><td>40.54 亿</td><td>42.35 亿</td><td>41.77 亿</td><td class="neutral">⚠ 基本停止扩张</td></tr>
+  <tr><td>在建工程</td><td>3.25 亿</td><td>3.99 亿</td><td>3.44 亿</td><td>4.14 亿</td><td class="neutral">⚠ 环比下降，资本开支收缩</td></tr>
+  <tr><td>总资产</td><td><strong>217.46 亿</strong></td><td>213.86 亿</td><td>206.19 亿</td><td>206.84 亿</td><td class="good">✅ 同比 +5.13%</td></tr>
   <tr><td>短期借款</td><td class="good"><strong>0</strong></td><td>0</td><td>0</td><td>0</td><td class="good">✅ 零短期借款</td></tr>
-  <tr><td>应付票据及应付账款</td><td>8.69 亿</td><td>—</td><td>6.59 亿</td><td>8.14 亿</td><td class="neutral">⚠ 应付票据 2.65 亿（同比 +2550%，用于树脂采购结算）</td></tr>
-  <tr><td>合同负债</td><td>0.58 亿</td><td>—</td><td>0.75 亿</td><td>0.87 亿</td><td class="bad">❌ 同比 -34.1%，预收款收缩指向订单能见度下降</td></tr>
-  <tr><td>长期借款</td><td class="good"><strong>0</strong></td><td>0</td><td>0</td><td>2.92 亿</td><td class="good">✅ 25H1 的 2.92 亿长借已全部偿还</td></tr>
-  <tr><td>应付债券</td><td class="neutral"><strong>28.89 亿</strong></td><td>28.58 亿</td><td>28.28 亿</td><td>27.81 亿</td><td class="neutral">⚠ 福22转债存续，摊薄风险随股价上行而增大</td></tr>
-  <tr><td>负债合计</td><td>42.75 亿</td><td>41.96 亿</td><td>40.25 亿</td><td>43.68 亿</td><td class="good">✅ 同比 -2.13%</td></tr>
-  <tr><td>资产负债率</td><td class="good"><strong>19.99%</strong></td><td>19.98%</td><td>19.52%</td><td>21.00%</td><td class="good">✅ A 股制造业最低一档</td></tr>
-  <tr><td>流动比率</td><td class="good"><strong>12.81</strong></td><td>13.04</td><td>14.40</td><td>13.08</td><td class="good">✅ 每 1 元流动负债对应 12.81 元流动资产</td></tr>
-  <tr><td>少数股东权益</td><td class="neutral">3.54 亿</td><td>—</td><td>1.54 亿</td><td>1.93 亿</td><td class="neutral">⚠ 同比 +83.6%，系子公司引入员工持股平台</td></tr>
-  <tr><td>归母净资产</td><td><strong>167.57 亿</strong></td><td>166.57 亿</td><td>164.41 亿</td><td>162.38 亿</td><td class="good">✅ 同比 +3.19%</td></tr>
-  <tr><td>每股净资产（行情口径）</td><td class="good"><strong>6.2418 元</strong></td><td>6.2033 元</td><td>6.1205 元</td><td>6.0250 元</td><td class="good">✅ 已扣除福22转债权益成分 4.74 亿</td></tr>
+  <tr><td>应付票据及应付账款</td><td>8.31 亿</td><td>8.69 亿</td><td>6.59 亿</td><td>8.10 亿</td><td class="neutral">⚠ 应付票据 1.88 亿</td></tr>
+  <tr><td>合同负债</td><td class="bad">0.58 亿</td><td>0.58 亿</td><td>0.75 亿</td><td>1.03 亿</td><td class="bad">❌ 同比 -43.3%，订单能见度继续下降</td></tr>
+  <tr><td>长期借款</td><td class="good"><strong>0</strong></td><td>0</td><td>0</td><td>0</td><td class="good">✅ 无长期借款</td></tr>
+  <tr><td>应付债券</td><td class="neutral"><strong>29.20 亿</strong></td><td>28.89 亿</td><td>28.28 亿</td><td>28.11 亿</td><td class="neutral">⚠ 福22转债存续，摊薄风险随股价上行而增大</td></tr>
+  <tr><td>负债合计</td><td>42.65 亿</td><td>42.75 亿</td><td>40.25 亿</td><td>40.83 亿</td><td class="good">✅ 同比 +4.4%，主要来自应付债券</td></tr>
+  <tr><td>资产负债率</td><td class="good"><strong>19.61%</strong></td><td>19.99%</td><td>19.52%</td><td>19.74%</td><td class="good">✅ A 股制造业最低一档</td></tr>
+  <tr><td>流动比率</td><td class="good"><strong>13.54</strong></td><td>12.81</td><td>14.40</td><td>—</td><td class="good">✅ 每 1 元流动负债对应 13.54 元流动资产</td></tr>
+  <tr><td>少数股东权益</td><td class="neutral">4.16 亿</td><td>3.54 亿</td><td>1.54 亿</td><td>1.84 亿</td><td class="neutral">⚠ 同比 +126%，子公司引入员工持股平台</td></tr>
+  <tr><td>归母净资产</td><td><strong>170.66 亿</strong></td><td>167.57 亿</td><td>164.41 亿</td><td>164.17 亿</td><td class="good">✅ 同比 +3.95%</td></tr>
+  <tr><td>每股净资产（行情口径）</td><td class="good"><strong>6.3601 元</strong></td><td>6.2418 元</td><td>6.1205 元</td><td>6.094 元</td><td class="good">✅ 已扣除福22转债权益成分 4.74 亿</td></tr>
 </table>
 
 <div class="highlight-box">
-  <strong>资产负债表解读：</strong>这是 A 股制造业最干净的一张表之一。<strong>净现金 57.18 亿</strong>（现金类 86.14 − 有息负债 28.96），占总市值的 15.9%——剔除后市场对经营性资产的定价只有 303 亿，对应 2026E 一致预期归母 16.70 亿约 18.2 倍 PE。零短借、零长借、有息负债仅剩 28.89 亿应付债券；利息保障倍数 23.2x；资产负债率 19.99%。<br><br>
-  两个需要盯的点：① <b>应收账款 45.16 亿</b>——占 TTM 归母 405%、占 26H1 归母 537%，周转约 115 天，客户为晶科、隆基、天合等头部组件厂，违约概率低但资金占用真实存在（这也解释了公司大量使用银行承兑汇票结算、应付票据同比激增 2550%）。② <b>合同负债 0.58 亿、同比 -34.1%</b>——预收款收缩是订单能见度下降的边际信号，与收入端未拐点互相印证。
+  <strong>资产负债表解读：</strong>这张表依然干净：<strong>净现金 51.39 亿</strong>（现金类 80.59 − 有息负债 29.20），占总市值的 16.7%；零短借、零长借；资产负债率 19.61%；流动比率 13.54。<br><br>
+  但本期出现两个值得警惕的边际变化：① <b>存货环比 +13.2% 至 18.68 亿、预付款环比 +164% 至 6.66 亿</b>——在收入环比基本持平的情况下，采购端明显前置，最合理的解释是为高价树脂锁价/备货，这对 Q4 毛利率是压力而非利好；② <b>应收账款增至 48.90 亿</b>，占 TTM 归母约 403%，周转 116.65 天，资金占用进一步上升。合同负债 0.58 亿、同比 -43.3%，订单能见度仍在恶化。<br><br>
+  换句话说：<b>资产质量没有变差，但营运资本正在变重、现金正在被存货和应收吃掉</b>——这正是 Q3 单季 CFO 转负的直接原因。
 </div>
 
 <h3>2.3 现金流量表</h3>
 <table>
-  <tr><th>指标</th><th>26H1</th><th>25H1</th><th>FY2025</th><th>FY2024</th><th>FY2023</th><th>FY2022</th><th>FY2021</th></tr>
-  <tr><td>经营现金流（CFO）</td><td class="good"><strong>+12.81 亿</strong></td><td class="bad">-8.89 亿</td><td>+14.62 亿</td><td>+43.89 亿</td><td>-0.26 亿</td><td>+0.26 亿</td><td>-1.48 亿</td></tr>
-  <tr><td>投资现金流（CFI）</td><td>-4.27 亿</td><td>-4.60 亿</td><td>-29.38 亿</td><td>-34.39 亿</td><td>-4.57 亿</td><td>-3.07 亿</td><td>+15.17 亿</td></tr>
-  <tr><td>筹资现金流（CFF）</td><td>-1.75 亿</td><td>-7.42 亿</td><td>-11.12 亿</td><td>-12.31 亿</td><td>-4.61 亿</td><td class="neutral">+39.81 亿</td><td>-3.46 亿</td></tr>
-  <tr><td>净现金流</td><td class="good">+6.07 亿</td><td class="bad">-20.61 亿</td><td>-25.88 亿</td><td>-2.81 亿</td><td>-9.45 亿</td><td>+36.99 亿</td><td>+10.23 亿</td></tr>
-  <tr><td>资本开支（购建长期资产）</td><td>1.41 亿</td><td>1.82 亿</td><td>4.36 亿</td><td>6.43 亿</td><td>7.43 亿</td><td>5.77 亿</td><td>5.36 亿</td></tr>
-  <tr><td>折旧摊销</td><td>2.46 亿</td><td>2.26 亿</td><td>4.84 亿</td><td>3.95 亿</td><td>3.10 亿</td><td>2.33 亿</td><td>1.83 亿</td></tr>
-  <tr><td><strong>自由现金流 FCF</strong></td><td class="good"><strong>+11.40 亿</strong></td><td class="bad">-10.70 亿</td><td class="good">+10.27 亿</td><td class="good">+37.46 亿</td><td class="bad">-7.69 亿</td><td class="bad">-5.51 亿</td><td class="bad">-6.84 亿</td></tr>
-  <tr><td>CFO / 归母净利润</td><td class="good"><strong>1.52</strong></td><td class="bad">-1.79</td><td class="good">1.90</td><td class="good">3.41</td><td>-1.05</td><td>1.31</td><td>-0.67</td></tr>
-  <tr><td>资本开支 / CFO</td><td class="good">11.0%</td><td>—</td><td>29.8%</td><td>14.6%</td><td>—</td><td>—</td><td>—</td></tr>
+  <tr><th>指标</th><th>26Q3（9M）</th><th>25Q3（9M）</th><th>FY2025</th><th>FY2024</th><th>FY2023</th><th>FY2022</th><th>FY2021</th></tr>
+  <tr><td>经营现金流（CFO）</td><td class="neutral"><strong>+6.76 亿</strong></td><td>+0.14 亿</td><td>+14.62 亿</td><td>+43.89 亿</td><td>-0.26 亿</td><td>+0.26 亿</td><td>-1.48 亿</td></tr>
+  <tr><td>投资现金流（CFI）</td><td class="good">+2.12 亿</td><td>-16.27 亿</td><td>-29.38 亿</td><td>-34.39 亿</td><td>-4.57 亿</td><td>-3.07 亿</td><td>+15.17 亿</td></tr>
+  <tr><td>筹资现金流（CFF）</td><td>-1.15 亿</td><td>-10.52 亿</td><td>-11.12 亿</td><td>-12.31 亿</td><td>-4.61 亿</td><td class="neutral">+39.81 亿</td><td>-3.46 亿</td></tr>
+  <tr><td>净现金流</td><td class="good">+6.85 亿</td><td class="bad">-26.65 亿</td><td>-26.11 亿</td><td>-2.81 亿</td><td>-9.45 亿</td><td>+36.99 亿</td><td>+10.23 亿</td></tr>
+  <tr><td>资本开支（购建长期资产）</td><td>1.66 亿</td><td>3.15 亿</td><td>4.36 亿</td><td>6.43 亿</td><td>7.43 亿</td><td>5.77 亿</td><td>5.36 亿</td></tr>
+  <tr><td>折旧摊销</td><td class="nd">季报未披露</td><td class="nd">季报未披露</td><td>4.84 亿</td><td>3.95 亿</td><td>3.10 亿</td><td>2.33 亿</td><td>1.83 亿</td></tr>
+  <tr><td><strong>自由现金流 FCF</strong></td><td class="good"><strong>+5.10 亿</strong></td><td class="bad">-3.01 亿</td><td class="good">+10.27 亿</td><td class="good">+37.46 亿</td><td class="bad">-7.69 亿</td><td class="bad">-5.51 亿</td><td class="bad">-6.84 亿</td></tr>
+  <tr><td>CFO / 归母净利润</td><td class="neutral"><strong>0.60</strong></td><td class="bad">0.02</td><td class="good">1.90</td><td class="good">3.41</td><td>-1.05</td><td>1.31</td><td>-0.67</td></tr>
+  <tr><td>资本开支 / CFO</td><td class="good">24.5%</td><td>—</td><td>29.8%</td><td>14.6%</td><td>—</td><td>—</td><td>—</td></tr>
 </table>
 
 <div class="summary-box">
-  <strong>现金流解读：</strong>26H1 现金流是本期最亮眼的改善：<b>CFO 由去年同期 -8.89 亿转正至 +12.81 亿，CFO/归母 1.52</b>，意味着本轮利润修复有真金白银支撑。FCF 11.40 亿半年即超 FY2025 全年的 10.27 亿。资本开支同步收缩——26H1 仅 1.41 亿（占 CFO 11.0%），FY2023 曾高达 7.43 亿。<br><br>
-  但要记住一条历史：<b>2021-2023 连续三年 FCF 为负（累计 -20.0 亿）</b>，2022 年靠 CFF +39.81 亿外部融资才把窟窿补上。那三年是行业需求最好、公司拼命扩产的阶段；账上 55 亿理财就是那轮融资留下的。这说明福斯特的「造血能力」在行业高景气期反而是弱项（利润被扩产吃掉），在周期低谷期才是强项。因此周期股评分里「现金生成能力」给 9 分而非满分。另外注意 CFI 口径：FY2025 的 -29.38 亿主要是净买入理财（非产能开支）。
+  <strong>现金流解读：</strong>累计口径看似不错：9M CFO 6.76 亿（去年同期仅 0.14 亿），FCF +5.10 亿，资本开支仅 1.66 亿。<b>但拆到单季，问题是明确的</b>：Q3 单季 CFO <b>-6.05 亿</b>，而 Q2 为 +15.16 亿、H1 合计 +12.81 亿。也就是说，<b>前三季度累计的 6.76 亿经营现金流，几乎全部由 Q2 一个季度贡献，Q3 已经转为净流出。</b><br><br>
+  原因在资产负债表上写得很清楚：存货环比 +2.18 亿、预付款环比 +4.14 亿、应收账款环比 +3.69 亿，三项合计占用约 10 亿营运资本。这不像「景气回升备货」，更像「在成本上行前锁定树脂」——若 Q4 胶膜价格不能同步上涨，这批高价原料会直接压缩毛利率。<br><br>
+  历史规律仍要记住：2021-2023 连续三年 FCF 为负（累计 -20.0 亿），高景气期利润被扩产吃掉；低谷期反而是现金创造强项。本次 Q3 现金流转负，是「低谷期强项」这一判断第一次出现裂缝，需要 Q4 验证是否为季节性。
 </div>
 
-<p style="font-size:12px;color:#666;">本 tab 数据缺失范围：26Q2 单季各项费用的绝对额拆分（半年报未披露单季费用明细）、2026Q2 末分季度股东户数（见 L6 资金面）。以上均不影响上述结论。</p>
+<p style="font-size:12px;color:#666;">本 tab 数据缺失范围：26Q3 单季各项费用绝对额（季报未披露单季费用明细）、9M 折旧摊销（季报现金流量表补充资料未披露）。以上标注为<span class="nd">待补充</span>，不影响结论。26Q3 扣非单季为累计差额推算，若与公司披露口径有差异以原文为准。</p>
 
 </div></div>
 
@@ -272,25 +280,26 @@
 
 <h3>3.1 关键盈利指标</h3>
 <table>
-  <tr><th>指标</th><th>26H1</th><th>25H1</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
-  <tr><td>ROE（累计加权）</td><td class="good"><strong>5.04%</strong></td><td>3.02%</td><td class="bad">4.72%</td><td>&gt;15% 优秀</td><td class="neutral">⚠ 半年年化约 10.1%；周期股评分以 5 年均值 10.77% 为准</td></tr>
+  <tr><th>指标</th><th>26Q3（9M）</th><th>25Q3（9M）</th><th>FY2025</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE（累计加权）</td><td class="good"><strong>6.74%</strong></td><td>4.20%</td><td class="bad">4.68%</td><td>&gt;15% 优秀</td><td class="neutral">⚠ 年化约 8.99%；周期股以 5 年均值 10.77% 为准</td></tr>
   <tr><td>ROE（5 年均值 21-25）</td><td colspan="3" class="good"><strong>10.77%</strong>（18.04/11.29/11.87/7.97/4.68）</td><td>&gt;15% 优秀</td><td class="neutral">⚠ 一般，但明显高于纯周期同行</td></tr>
-  <tr><td>毛利率</td><td class="good"><strong>17.06%</strong></td><td>12.15%</td><td>10.96%</td><td>稳定或提升</td><td class="good">✅ 由降转升，连续两季改善</td></tr>
-  <tr><td>营业利润率</td><td class="good">13.90%</td><td>6.83%</td><td>5.76%</td><td>&gt;10%</td><td class="good">✅</td></tr>
-  <tr><td>归母净利率</td><td class="good">12.05%</td><td>6.23%</td><td>4.97%</td><td>&gt;10%</td><td class="good">✅</td></tr>
-  <tr><td>营收增长率</td><td class="bad"><strong>-12.20%</strong></td><td>-26.06%</td><td class="bad">-19.10%</td><td>&gt;10%</td><td class="bad">❌ 连续三年下滑，降幅收窄但未转正</td></tr>
-  <tr><td>利润增长率</td><td class="good"><strong>+69.89%</strong></td><td>-47.84%</td><td class="bad">-41.14%</td><td>正增长</td><td class="good">✅ 强劲，但与营收反向（见 §3.3）</td></tr>
-  <tr><td>CFO / 归母净利</td><td class="good"><strong>1.52</strong></td><td class="bad">-1.79</td><td class="good">1.90</td><td>&gt;1</td><td class="good">✅ 利润含金量优秀</td></tr>
-  <tr><td>自由现金流（半年）</td><td class="good">+11.40 亿</td><td class="bad">-10.70 亿</td><td>+10.27 亿（全年）</td><td>持续为正</td><td class="good">✅</td></tr>
-  <tr><td>资产负债率</td><td class="good"><strong>19.99%</strong></td><td>21.00%</td><td>19.52%</td><td>&lt;40%</td><td class="good">✅ 极低</td></tr>
-  <tr><td>应收账款 / TTM 归母</td><td class="neutral">405%</td><td>—</td><td class="bad">559%（旧口径）</td><td>&lt;200%</td><td class="neutral">⚠ 偏高但属组件供应链共性，见 §2.2 口径说明</td></tr>
-  <tr><td>应收账款周转天数</td><td class="neutral">约 115 天</td><td>—</td><td>约 101 天</td><td>&lt;90 天</td><td class="neutral">⚠ 偏慢，随景气回升有望改善</td></tr>
-  <tr><td>存货周转天数</td><td class="good">约 51 天</td><td>—</td><td>约 42 天</td><td>越短越好</td><td class="good">✅</td></tr>
-  <tr><td>利息保障倍数</td><td class="good">23.2 倍</td><td>—</td><td>20.2 倍</td><td>&gt;3 倍</td><td class="good">✅</td></tr>
-  <tr><td>分红率（TTM 口径）</td><td class="good">63.1%</td><td>—</td><td>50.8%</td><td>持续分红</td><td class="good">✅ 连续 12 年；26 年首次中期分红</td></tr>
+  <tr><td>毛利率</td><td class="good"><strong>16.37%</strong></td><td>11.09%</td><td>10.96%</td><td>稳定或提升</td><td class="neutral">⚠ 累计 +5.28pct，但单季由 20.07% 回落至 15.07%</td></tr>
+  <tr><td>营业利润率</td><td class="good">12.23%</td><td>6.56%</td><td>5.76%</td><td>&gt;10%</td><td class="good">✅</td></tr>
+  <tr><td>归母净利率</td><td class="good">10.64%</td><td>5.83%</td><td>4.97%</td><td>&gt;10%</td><td class="good">✅</td></tr>
+  <tr><td>营收增长率</td><td class="bad"><strong>-9.76%</strong></td><td>-22.3%</td><td class="bad">-19.10%</td><td>&gt;10%</td><td class="bad">❌ 连续三年下滑，降幅收窄但未转正</td></tr>
+  <tr><td>利润增长率</td><td class="good"><strong>+64.50%</strong></td><td>-45.3%</td><td class="bad">-41.14%</td><td>正增长</td><td class="neutral">⚠ 累计强劲，但单季环比 -45.54%，动能转弱</td></tr>
+  <tr><td>CFO / 归母净利</td><td class="neutral"><strong>0.60</strong></td><td>0.02</td><td class="good">1.90</td><td>&gt;1</td><td class="neutral">⚠ 累计低于 1；Q3 单季 CFO 为负</td></tr>
+  <tr><td>自由现金流</td><td class="good">+5.10 亿（9M）</td><td>-3.01 亿</td><td>+10.27 亿（全年）</td><td>持续为正</td><td class="neutral">⚠ 累计为正，Q3 单季约 -6.30 亿</td></tr>
+  <tr><td>资产负债率</td><td class="good"><strong>19.61%</strong></td><td>19.74%</td><td>19.52%</td><td>&lt;40%</td><td class="good">✅ 极低</td></tr>
+  <tr><td>应收账款 / TTM 归母</td><td class="neutral">约 403%</td><td>—</td><td class="bad">约 559%（旧口径）</td><td>&lt;200%</td><td class="neutral">⚠ 偏高但属组件供应链共性</td></tr>
+  <tr><td>应收账款周转天数</td><td class="neutral">116.65 天</td><td>—</td><td>约 101 天</td><td>&lt;90 天</td><td class="neutral">⚠ 环比继续拉长</td></tr>
+  <tr><td>存货周转天数</td><td class="good">52.84 天</td><td>—</td><td>约 42 天</td><td>越短越好</td><td class="good">✅ 仍健康，但存货绝对额在上升</td></tr>
+  <tr><td>流动比率</td><td class="good">13.54</td><td>—</td><td>14.40</td><td>&gt;2</td><td class="good">✅</td></tr>
+  <tr><td>分红率（TTM 口径）</td><td class="good">约 58%</td><td>—</td><td>50.8%</td><td>持续分红</td><td class="good">✅ 连续 12 年；26 年首次中期分红</td></tr>
 </table>
 
-<h3>3.2 分业务分析（2026H1 完整拆分）</h3>
+<h3>3.2 分业务分析（26H1 完整拆分，三季报未披露分部数据）</h3>
+<p style="font-size:12px;color:#666;">说明：A 股三季报仅披露合并财务报表，不披露分行业/分产品/分地区数据。下表沿用 2026 半年报拆分，作为业务结构的最近完整快照；三季报的边际变化通过合并毛利率与存货/预付款推断。</p>
 <table>
   <tr><th>分行业</th><th>26H1 收入</th><th>占比</th><th>同比</th><th>毛利率</th><th>25H1 毛利率</th><th>评价</th></tr>
   <tr><td>光伏封装材料</td><td>62.78 亿</td><td>89.85%</td><td class="bad">-15.06%</td><td class="good"><strong>16.77%</strong></td><td>11.27%</td><td class="good">✅ 基本盘，毛利率 +5.50pct，是利润修复的唯一来源</td></tr>
@@ -306,199 +315,197 @@
   <tr><td><b>光伏胶膜</b></td><td><strong>61.33 亿</strong></td><td><strong>87.76%</strong></td><td>12.20 亿㎡</td><td class="bad"><strong>-11.97%</strong></td><td>5.03 元/㎡<br>（同比 -3.5%）</td><td class="good"><strong>16.95%</strong></td><td class="good"><strong>+5.55pct</strong></td><td class="neutral">⚠ 量缩价跌但毛利率大涨——全部矛盾集中在此</td></tr>
   <tr><td>感光干膜</td><td>3.89 亿</td><td>5.56%</td><td>1.09 亿㎡</td><td class="good">+21.92%</td><td>3.56 元/㎡（同比 -1.8%）</td><td class="good"><strong>29.10%</strong></td><td class="good">+4.32pct</td><td class="good">✅ 量价齐升，单平毛利约 1.04 元（+15.3%）</td></tr>
   <tr><td>光伏背板</td><td>1.45 亿</td><td>2.08%</td><td>—</td><td>—</td><td>—</td><td>9.08%</td><td class="good">+3.09pct</td><td class="bad">❌ 收入 -16.9%，主动收缩低毛利业务</td></tr>
-  <tr><td>铝塑膜</td><td>0.83 亿</td><td>1.19%</td><td>861 万㎡</td><td class="good">+29.38%</td><td>9.69 元/㎡</td><td>13.50%</td><td class="good">+1.94pct</td><td class="good">✅ 国产替代提速，进入多家头部电池厂供应链</td></tr>
+  <tr><td>铝塑膜</td><td>0.83 亿</td><td>1.19%</td><td>861 万㎡</td><td class="good">+29.38%</td><td>9.69 元/㎡</td><td>13.50%</td><td class="good">+1.94pct</td><td class="good">✅ 国产替代提速</td></tr>
   <tr><td>其他</td><td>1.57 亿</td><td>2.24%</td><td>—</td><td>—</td><td>—</td><td class="bad">-12.34%</td><td class="bad">-8.52pct</td><td class="bad">❌ 亏损（毛利额 -0.19 亿）</td></tr>
 </table>
 
 <table>
   <tr><th>分地区</th><th>26H1 收入</th><th>占比</th><th>毛利率</th><th>25H1 收入</th><th>25H1 毛利率</th><th>评价</th></tr>
-  <tr><td>国外</td><td>23.22 亿</td><td class="good"><strong>33.22%</strong></td><td class="good"><strong>23.00%</strong></td><td>20.28 亿（25.5%）</td><td>18.08%</td><td class="good">✅ 收入 +14.5%、毛利率 +4.92pct；海外基地盈利强劲（泰国净利 1.65 亿、越南净利 1.27 亿）</td></tr>
-  <tr><td>境内<span class="nd">（推算）</span></td><td>46.17 亿</td><td>66.08%</td><td class="neutral">13.75%</td><td>58.74 亿</td><td>9.56%</td><td class="neutral">⚠ 收入 -21.4%、毛利率 +4.19pct；境内是量价承压的主战场</td></tr>
+  <tr><td>国外</td><td>23.22 亿</td><td class="good"><strong>33.22%</strong></td><td class="good"><strong>23.00%</strong></td><td>20.28 亿（25.5%）</td><td>18.08%</td><td class="good">✅ 收入 +14.5%、毛利率 +4.92pct；泰国净利 1.65 亿、越南净利 1.27 亿</td></tr>
+  <tr><td>境内<span class="nd">（推算）</span></td><td>46.17 亿</td><td>66.08%</td><td class="neutral">13.75%</td><td>58.74 亿</td><td>9.56%</td><td class="neutral">⚠ 收入 -21.4%、毛利率 +4.19pct；境内是量价承压主战场</td></tr>
 </table>
-<p style="font-size:12px;color:#666;">境内收入与毛利率为推算值：境内收入 = 总收入 69.88 − 国外 23.22 − 其他业务 0.49 = 46.17 亿；境内毛利额 = 全口径毛利 11.92 − 国外毛利 5.34 − 其他业务毛利 0.23 = 6.35 亿，毛利率 13.75%。</p>
 
 <div class="highlight-box">
-  <strong>业务解读：</strong>公司已从「单一光伏胶膜龙头」转型为「<b>高分子薄膜平台型新材料企业</b>」，四大事业部（光伏材料 / 电子材料 / 功能膜材料 / 涂布材料）共用树脂合成、配方、精密涂布的技术底座。但从财务贡献看，26H1 仍是<b>胶膜一条腿走路</b>：胶膜收入占 87.76%，其余业务合计仅 10.48% 收入。<br><br>
-  三条值得跟踪的线：① <b>差异化封装材料</b>——转光胶膜（HJT）、皮肤膜（BC 0BB）、丁基胶（TOPCon 减银）带动价值量上行；② <b>感光干膜高端化</b>——10μm 级产品稳定量产并适配 mSAP，切入 AI 服务器高多层板供应链，26Q2 日本材料涨价 + 客户担忧断供客观加速国产高端干膜导入；③ <b>海外产能</b>——泰国、越南基地稳步爬坡，海外毛利率比境内高 9.25pct，是当前最有效的对冲。
+  <strong>业务解读：</strong>公司仍是<b>胶膜一条腿走路</b>：26H1 胶膜收入占 87.76%，其余业务合计仅 10.48%。第二曲线里最值得跟踪的是感光干膜——26H1 收入 4.75 亿（+22.86%）、毛利率 23.94%，10μm 级产品已切入 AI 服务器高多层板供应链；但体量太小，尚不足以对冲胶膜的价格周期。<br><br>
+  三季报没有分部数据，因此无法直接验证 Q3 胶膜销量。但从合并口径反推：Q3 营收环比 +0.96%、毛利率环比 -5.00pct，<b>最可能的组合是「销量小幅回升、单价与毛利率同步回落」</b>——即公司用价格换量，这与「量增 20-30%」的乐观预期仍有明显差距。
 </div>
 
-<h3>3.3 核心矛盾：营收 -12.20% 而归母 +69.89%，钱从哪来？</h3>
+<h3>3.3 核心矛盾的演化：从「量未起」到「量未起 + 毛利回落 + 现金流转负」</h3>
 <div class="danger-box">
-  <strong>这是本期报告最重要的判断，其他所有结论都从这里派生。</strong><br><br>
-  <strong>一句话：利润修复 100% 来自「单位盈利」，0% 来自「规模」。收入端至今没有任何拐点信号。</strong><br><br>
-  <strong>证据链（全部取自 2026 半年报与券商测算，可复现）：</strong><br>
-  ① <b>量在缩</b>：胶膜销量 12.20 亿㎡，同比 <b>-11.97%</b>；<br>
-  ② <b>价在跌</b>：胶膜单价 5.03 元/㎡，同比 <b>-3.5%</b>（25H1 为 5.21 元/㎡）；<br>
-  ③ <b>所以收入在跌</b>：胶膜收入 61.33 亿，同比 <b>-15.00%</b>；<br>
-  ④ <b>但单平毛利在暴涨</b>：胶膜毛利率 16.95%（25H1 为 11.40%，+5.55pct），单平毛利 <b>0.59 元 → 0.85 元（+43.7%）</b>；<br>
-  ⑤ <b>传导到全口径</b>：综合毛利率 12.15% → <b>17.06%（+4.91pct）</b>，营业成本降幅（-17.10%）大于收入降幅（-12.20%）；<br>
-  ⑥ <b>放大到单季</b>：26Q2 单季毛利率 <b>20.07%</b>（同比 +8.71pct），单季归母 5.30 亿（同比 <b>+460.54%</b>、环比 +70.12%）；<br>
-  ⑦ <b>毛利额验证</b>：胶膜毛利额 25H1 8.22 亿 → 26H1 <b>10.40 亿（+26.5%）</b>，而收入降 15%——毛利额的增长 100% 由毛利率贡献。
+  <strong>上版报告给出的唯一验证节点是：10-27 三季报「胶膜出货环增 20-30% 且毛利率守住 15%+」。三季报的答案是：只兑现了一半，且另一半正在恶化。</strong><br><br>
+  <table style="margin:8px 0 0">
+    <tr><th>验证项</th><th>上版预期</th><th>26Q3 实际</th><th>结论</th></tr>
+    <tr><td>量（出货/营收）</td><td>环比 +20-30%</td><td>单季营收 36.50 亿，环比 <b>+0.96%</b></td><td class="bad">❌ 证伪</td></tr>
+    <tr><td>毛利率</td><td>守住 15%+</td><td>单季 15.07%</td><td class="neutral">⚠ 勉强守住，但环比 -5.00pct</td></tr>
+    <tr><td>单季归母</td><td>环比继续改善</td><td>2.89 亿，环比 <b>-45.54%</b></td><td class="bad">❌ 明显回落</td></tr>
+    <tr><td>经营现金流</td><td>维持为正</td><td>单季 <b>-6.05 亿</b></td><td class="bad">❌ 转负</td></tr>
+  </table>
 </div>
 
 <table>
-  <tr><th>核心矛盾的三个来源</th><th>证据</th><th>可持续性判断</th></tr>
-  <tr><td><b>① 上游树脂涨价 → 顺价</b><br>（外部冲击型）</td><td>公司口径：<b>原材料光伏树脂受中东地缘冲突影响上升</b>，公司主要产品光伏胶膜销售单价提升；胶膜 3 月三次提价，4 月价格处于较高水平，5、6 月有所回落；华泰测算 26H1 胶膜均价环比 25H2 +6.1%。</td><td class="bad">脆弱。这是「成本推动型」而非「需求拉动型」涨价：<b>成本涨本身不是利好，能在成本涨时完成顺价才是行业地位的证明</b>。若中东局势缓和、树脂回落，胶膜价格与毛利率会同向回落。</td></tr>
-  <tr><td><b>② 低价库存红利</b><br>（一次性）</td><td>存货从 25H1 的 19.59 亿降至 26H1 的 16.50 亿（同比 -15.8%）。低成本库存与高价销售在 26H1-26Q2 集中兑现。</td><td class="bad">已消耗大半。存货已降到近年低位，Q3 起高价树脂入库后，库存红利将转为逆风。</td></tr>
-  <tr><td><b>③ 二三线亏损出清 → 竞争缓和</b><br>（结构性，最值钱）</td><td>26H1 同行归母：海优新材 -0.48 亿（毛利率 6.67%）、赛伍技术 -0.04 亿（10.34%）、明冠新材 -0.17 亿（10.47%）、双星新材 +0.46 亿（10.21%）。InfoLink：2025 胶膜 CR3 超 65%，较 2024 回升。公司自述「中小胶膜厂商逐步退出，行业市场竞争得到缓解」。</td><td class="good">相对最持久。产能出清是慢变量，但有两个反证风险：胶膜价格回升后<b>已停产产能存在复产可能</b>；InfoLink 同时指出 2025 年胶膜产能「依旧相当充裕」，尾部尚未出清完毕。</td></tr>
+  <tr><th>矛盾来源</th><th>26Q3 新证据</th><th>可持续性判断</th></tr>
+  <tr><td><b>① 树脂涨价 → 顺价</b></td><td>Q3 毛利率环比 -5.00pct，说明顺价速度跟不上成本；预付款环比 +164%、存货环比 +13.2%，指向高价树脂入库。</td><td class="bad">正在逆转。Q2 是「低价库存 + 高价售价」，Q3 起转为「高价库存 + 回落售价」，方向相反。</td></tr>
+  <tr><td><b>② 低价库存红利</b></td><td>存货从 26H1 的 16.50 亿升至 26Q3 的 18.68 亿，低成本库存已被替换为高价库存。</td><td class="bad">红利基本用完。Q4 起库存成本抬升将直接压制毛利率。</td></tr>
+  <tr><td><b>③ 二三线亏损出清 → 竞争缓和</b></td><td>行业格局未变（CR3 超 65%），但价格回升后尾部产能复产的担忧上升；Q3 营收未放量说明需求端仍弱。</td><td class="neutral">结构性利好仍在，但不足以对抗需求下滑与成本上行。</td></tr>
 </table>
 
 <div class="summary-box">
-  <strong>怎么定性这次改善？</strong>这是「<b>质量控制型</b>」改善，不是「规模扩张型」改善。对处于周期底部的制造企业而言，前者的可持续性通常更好（不依赖需求爆发，且伴随供给侧永久性收缩），但它有明确边界——<b>它改善的是「每一平赚多少」，没有改善「卖了多少平」</b>。而估值要再上一个台阶（PB 从 2.21x 走向 2.86x 的 30% 分位），需要的是量也回来。<br><br>
-  <strong>第一个可能的拐点信号已经出现但尚未验证</strong>：东吴证券 8 月调研显示「8 月胶膜价格重新上涨，Q3 出货量预计环增 20-30%，全年出货预计 28 亿㎡ 同比持平」。如果 10 月 27 日的三季报验证「量增 + 毛利率守住 15%+」，则收入端拐点成立、本报告核心矛盾解除，估值中枢有上修空间；<b>如果 Q3 出现「价格回落 + 量未起」，则本期的利润修复将被重新定性为一次性的成本红利</b>。<br><br>
-  <strong>对估值的直接含义</strong>：不要用 PE(TTM) 32.28x 判断「贵」——那是分母（TTM 归母 11.16 亿）仍含 2025 年下半年周期底部利润造成的。正确做法是 PB（2.21x，上市以来 3.2% 分位）+ 剔除净现金后的经营资产 PE（303 亿 / 16.70 亿 = 18.2x）。
+  <strong>怎么定性这次下修？</strong>不是「公司变差了」，而是「<b>周期修复的斜率被证伪</b>」。26H1 我们判断这是「质量控制型」改善，可持续性应好于需求爆发型；三季报证明它同样受制于「成本推动」的天花板——一旦树脂成本上行而胶膜价格不能同步传导，毛利率就会回落。<br><br>
+  <strong>对估值的直接含义：</strong>不要用 9M 归母 11.31 亿简单年化（约 15.1 亿）来给 PE，因为 Q3 单季只有 2.89 亿；若 Q4 维持 Q3 水平，全年归母约 14.2 亿，对应当前市值 307.31 亿的 PE 约 21.6x，处周期股「不便宜也不贵」的中间地带。真正的估值锚仍是 PB 1.85x（上市以来最低区间），但低 PB 只提供下行保护，不提供上行催化——上行需要毛利率重新回升。
 </div>
 
 <h3>3.4 排雷清单</h3>
 <table>
   <tr><th>风险项</th><th>严重程度</th><th>依据</th></tr>
-  <tr><td>收入端连续三年下滑，量价均未企稳</td><td class="bad">🔴 高</td><td>26H1 营收 -12.20%、胶膜销量 -11.97%、单价 -3.5%；CRU 预测 2026 全球装机 590GW（-12%）；合同负债 0.58 亿同比 -34.1%</td></tr>
-  <tr><td>毛利率修复可能回吐（成本推动型）</td><td class="bad">🔴 高</td><td>毛利率跳升源于树脂涨价传导 + 低价库存；存货已降至 16.50 亿低位；5-6 月胶膜价格已有回落；已停产产能存在复产可能</td></tr>
-  <tr><td>应收账款 45.16 亿，资金占用大</td><td class="neutral">🟡 中</td><td>占 TTM 归母 405%、占 26H1 归母 537%；周转约 115 天；客户为头部组件厂，违约风险低，但需大量使用银行承兑汇票结算</td></tr>
-  <tr><td>研发费用同比 -13.7%（FY2025 -28.85%）</td><td class="neutral">🟡 中</td><td>在靠技术代际迭代（N 型、少银化、钙钛矿）拉开差距的行业，研发收缩会影响高端化节奏；26H1 研发强度 3.00%，低于海优 FY2025 的 6.01%</td></tr>
-  <tr><td>福22转债 28.89 亿存续，转股摊薄</td><td class="neutral">🟡 中</td><td>应付债券占总负债 67.6%；股价上行后转股摊薄；募投项目「年产 2.5 亿㎡ 高效电池封装胶膜」投入进度 63.43%、「年产 2.5 亿㎡ 光伏胶膜」77.28%</td></tr>
-  <tr><td>海外贸易壁垒与反倾销</td><td class="neutral">🟡 中</td><td>印度 2025-09 对中国、韩国、泰国、越南的 POE/EPE 发起反倾销调查；出口退税政策调整；泰国、越南基地是主要对冲手段</td></tr>
-  <tr><td>非经常性损益占比 13.4%</td><td class="neutral">🟡 中</td><td>26H1 非经常性 1.13 亿，含理财投资收益增加 + 前期应收账款单项计提减值准备转回；虽扣非仍 +62.57%，但需持续监控</td></tr>
-  <tr><td class="good">🟢 正面：全球胶膜绝对龙头</td><td class="good">正面</td><td>全球市占率约 50%，远超第 2-4 名之和；InfoLink 2025 出货第一；26H1 毛利率 17.06% vs 同行 6.67-10.47%</td></tr>
-  <tr><td class="good">🟢 正面：资产负债表顶级</td><td class="good">正面</td><td>资产负债率 19.99%、零短借零长借、净现金 57.18 亿、流动比率 12.81、利息保障 23.2x</td></tr>
-  <tr><td class="good">🟢 正面：CFO 强劲转正</td><td class="good">正面</td><td>26H1 CFO 12.81 亿（去年 -8.89 亿）、CFO/归母 1.52、FCF 11.40 亿，资本开支仅 1.41 亿</td></tr>
-  <tr><td class="good">🟢 正面：分红穿越完整周期未中断</td><td class="good">正面</td><td>连续 12 年现金分红；FY2025 低谷仍派 0.15 元/股；2026 年首开中期分红 10 派 1.2 元</td></tr>
-  <tr><td class="good">🟢 正面：北向 Q2 大举增持 + 社保新进</td><td class="good">正面</td><td>香港中央结算 26Q2 增持 5,586.73 万股至 13,711.12 万股（3.11% → 5.26%，单季 +68.7%）；社保 502/110/107 三个组合同时新进前十大股东</td></tr>
+  <tr><td>Q3 单季毛利率环比 -5.00pct，修复失速</td><td class="bad">🔴 高</td><td>单季毛利率由 20.07% 降至 15.07%；预付款环比 +164%、存货环比 +13.2%，高价树脂入库</td></tr>
+  <tr><td>Q3 单季经营现金流转负</td><td class="bad">🔴 高</td><td>Q3 CFO -6.05 亿（H1 +12.81 亿），单季 FCF 约 -6.30 亿；应收 +3.69 亿、存货 +2.18 亿、预付 +4.14 亿</td></tr>
+  <tr><td>收入端连续三年下滑，量增证伪</td><td class="bad">🔴 高</td><td>9M 营收 -9.76%；Q3 单季营收环比 +0.96%；CRU 预测 2026 全球装机 590GW（-12%）；合同负债同比 -43.3%</td></tr>
+  <tr><td>应收账款 48.90 亿，资金占用大</td><td class="neutral">🟡 中</td><td>占 TTM 归母约 403%；周转 116.65 天；客户为头部组件厂，违约风险低但占用真实</td></tr>
+  <tr><td>研发费用 9M 同比 -11.9%</td><td class="neutral">🟡 中</td><td>研发强度 3.01%；在 N 型、少银化、钙钛矿迭代期，研发收缩影响高端化节奏</td></tr>
+  <tr><td>福22转债 29.20 亿存续，转股摊薄</td><td class="neutral">🟡 中</td><td>应付债券占总负债 68.5%；股价上行后转股摊薄</td></tr>
+  <tr><td>海外贸易壁垒与反倾销</td><td class="neutral">🟡 中</td><td>印度 2025-09 对中、韩、泰、越 POE/EPE 发起反倾销调查；泰国/越南基地部分对冲</td></tr>
+  <tr><td>非经常性损益占比 13.2%</td><td class="neutral">🟡 中</td><td>9M 非经常性 1.49 亿，含理财收益、公允价值变动、减值转回；扣非仍 +55.84%，但需监控</td></tr>
+  <tr><td class="good">🟢 正面：全球胶膜绝对龙头</td><td class="good">正面</td><td>全球市占率约 50%；InfoLink 2025 出货第一；9M 毛利率 16.37% vs 同行 6.67-10.47%</td></tr>
+  <tr><td class="good">🟢 正面：资产负债表顶级</td><td class="good">正面</td><td>资产负债率 19.61%、零短借零长借、净现金 51.39 亿、流动比率 13.54</td></tr>
+  <tr><td class="good">🟢 正面：穿越周期分红未断</td><td class="good">正面</td><td>连续 12 年现金分红；FY2025 低谷仍派 0.15 元/股；2026 年首开中期分红 10 派 1.2 元</td></tr>
+  <tr><td class="good">🟢 正面：估值处历史最低区间</td><td class="good">正面</td><td>PB 1.85x，跌破 2025-04 的 1.92x 历史低点；净现金占市值 16.7%</td></tr>
 </table>
 
-<div class="verdict verdict-ok">L2 综合判定：成本曲线最左端 + 净现金 57 亿 + CFO 转正 + 分红未断 + 机构 Q2 增持，质地无可挑剔；唯一但关键的风险是「利润修复由涨价传导而非量增驱动，收入端尚未拐点」——这是三季报必须验证的第一件事</div>
+<div class="verdict verdict-caution">L2 综合判定：资产负债表与成本优势仍是行业顶级，但三季报显示「利润修复的斜率」已被证伪——量未起、单季毛利率回落、Q3 现金流转负，质地优秀不等于短期安全</div>
 
-<p style="font-size:12px;color:#666;">本 tab 数据缺失范围：26H1 分行业/分产品的<b>境外收入分产品拆分</b>、<b>前五大客户集中度</b>、<b>胶膜产能与产能利用率具体数值</b>（公司仅定性表述）——均标为<span class="nd">待补充</span>，不参与评分。</p>
+<p style="font-size:12px;color:#666;">本 tab 数据缺失范围：26Q3 分行业/分产品拆分、前五大客户集中度、胶膜产能与产能利用率、Q3 股东户数——均标为<span class="nd">待补充</span>，不参与评分。</p>
 
 </div></div>
 
 <div class="tab-content" id="tab-l3"><div class="tab-inner">
 
 <h2>四、估值分析（L3框架）</h2>
-<p style="font-size:13px;color:#666;margin-bottom:8px;">周期股专用口径：<b>估值锚为 PB Band，不用 PE Band</b>（周期底部 PE 失真，详见 §4.3）。行情数据取自腾讯行情 qt.gtimg.cn（2026-10-13 收盘）。</p>
+<p style="font-size:13px;color:#666;margin-bottom:8px;">周期股专用口径：<b>估值锚为 PB Band，不用 PE Band</b>（周期底部 PE 失真）。行情数据取自腾讯行情 qt.gtimg.cn（2026-10-30 收盘）。</p>
 
-<h3>4.1 当前估值（2026-10-13 收盘）</h3>
+<h3>4.1 当前估值（2026-10-30 收盘）</h3>
 <table>
   <tr><th>指标</th><th>当前值</th><th>计算口径 / 备注</th><th>历史分位参考</th></tr>
-  <tr><td>股价</td><td><strong>13.81 元</strong></td><td>2026-10-13 收盘，当日 -2.20%</td><td>—</td></tr>
-  <tr><td>总市值</td><td><strong>360.27 亿元</strong></td><td>总股本 26.0875 亿股 × 13.81 元</td><td>—</td></tr>
-  <tr><td>PE（TTM）</td><td class="neutral">32.28x</td><td>TTM 归母 11.16 亿 = 26H1 8.42 + 25H2 2.74。<b>周期底部失真，不可直接用于判断贵贱</b></td><td>—</td></tr>
-  <tr><td>PE（TTM 扣非）</td><td class="neutral">37.83x</td><td>TTM 扣非 9.52 亿 = 26H1 7.30 + 25H2 2.23</td><td>—</td></tr>
-  <tr><td>PE（2026E，一致预期）</td><td class="good"><strong>21.6x</strong></td><td>爱股网 2026E 一致预期归母 <b>16.70 亿</b>（12 家机构均值）。区间：东吴 18.14 亿（19.9x）～ 中银 14.58 亿（24.7x）</td><td>—</td></tr>
-  <tr><td>PE（2027E）</td><td>16.6x</td><td>一致预期归母 21.67 亿</td><td>—</td></tr>
-  <tr><td><strong>PB</strong></td><td class="good"><strong>2.21x</strong></td><td>13.81 ÷ BVPS 6.2418 元。<b>已扣除福22转债权益成分</b>，与腾讯行情、爱股网口径一致</td><td class="good"><strong>上市以来 3.2% 分位</strong></td></tr>
-  <tr><td>PS（TTM）</td><td>2.48x</td><td>TTM 营收 145.20 亿 = 26H1 69.88 + 25H2 75.32</td><td>—</td></tr>
-  <tr><td>EV/EBITDA（2026E 近似）</td><td class="good">约 12.5x</td><td>EV = 360.27 − 净现金 57.18 = 303.09 亿；26H1 EBITDA 年化 24.34 亿</td><td>—</td></tr>
-  <tr><td>股息率（TTM）</td><td>1.96%</td><td>TTM 每股派息 0.27 元 = FY2025 年度 0.15 元 + 2026 中期 0.12 元（10-14 除息）</td><td>—</td></tr>
-  <tr><td>剔除净现金后的经营资产 PE（2026E）</td><td class="good"><strong>18.2x</strong></td><td>(360.27 − 57.18) ÷ 16.70。<b>净现金占市值 15.9%</b></td><td>—</td></tr>
+  <tr><td>股价</td><td><strong>11.78 元</strong></td><td>2026-10-30 收盘，当日 -1.83%</td><td>较 10-13 的 13.81 元回落 14.7%</td></tr>
+  <tr><td>总市值</td><td><strong>307.31 亿元</strong></td><td>总股本 26.0875 亿股 × 11.78 元</td><td>—</td></tr>
+  <tr><td>PE（TTM）</td><td class="neutral">25.33x</td><td>TTM 归母 12.13 亿 = 9M26 11.31 + Q4'25 0.82。<b>周期股 PE 失真，仅作参考</b></td><td>—</td></tr>
+  <tr><td>PE（TTM 扣非）</td><td class="neutral">30.03x</td><td>TTM 扣非 10.23 亿 = 9M26 9.82 + Q4'25 0.41</td><td>—</td></tr>
+  <tr><td>PE（2026E，本报告）</td><td class="neutral"><strong>21.2x</strong></td><td>按 FY2026E 归母约 <b>14.5 亿</b>（9M 11.31 + Q4 约 3.2）估算；Q3 后卖方一致预期尚未完整更新</td><td>—</td></tr>
+  <tr><td>PE（2027E）</td><td class="nd">待补充</td><td>三季报后一致预期尚未更新，不沿用三季报前的 21.67 亿旧值</td><td>—</td></tr>
+  <tr><td><strong>PB</strong></td><td class="good"><strong>1.85x</strong></td><td>11.78 ÷ BVPS 6.3601 元（26Q3，已扣除福22转债权益成分）。腾讯行情显示 1.89x，系其 BPS 尚未切换至三季报口径</td><td class="good"><strong>上市以来最低区间（约 0-2% 分位）</strong></td></tr>
+  <tr><td>PS（TTM）</td><td>2.14x</td><td>TTM 营收 143.40 亿 = 9M26 106.38 + Q4'25 37.03</td><td>—</td></tr>
+  <tr><td>PCF（TTM）</td><td>14.5x</td><td>TTM CFO 21.24 亿 = 9M26 6.76 + Q4'25 14.49</td><td>—</td></tr>
+  <tr><td>EV/EBITDA（2026E 近似）</td><td class="neutral">约 12x</td><td>EV = 307.31 − 净现金 51.39 = 255.92 亿；FY2026E EBITDA 约 21 亿（估算）</td><td>—</td></tr>
+  <tr><td>股息率（TTM）</td><td class="good">2.29%</td><td>TTM 每股派息 0.27 元 = FY2025 年度 0.15 + 2026 中期 0.12</td><td>—</td></tr>
+  <tr><td>剔除净现金后的经营资产 PE（2026E）</td><td class="good"><strong>17.7x</strong></td><td>(307.31 − 51.39) ÷ 14.5。<b>净现金占市值 16.7%</b></td><td>—</td></tr>
 </table>
 
 <h3>4.2 PB Band 区间（周期股专用，本期核心估值方法）</h3>
-<p style="font-size:13px;color:#666;margin-bottom:6px;"><b>自算口径（可复现）：</b>取 2014-09-05 上市首日至 2026-10-13 的<b>周收盘价（不复权）</b>共 619 个观测，除以「当日已披露的最近一期 BVPS」（滞后 60 天取报告期）。2026-10-13 复算值 6.2418 元 / PB 2.212x，与行情软件完全吻合。</p>
+<p style="font-size:13px;color:#666;margin-bottom:6px;"><b>口径说明：</b>分位水平沿用本报告上版（2014-09-05 至 2026-10-13 周收盘价、滞后取当期 BVPS，N=619）自算结果，仅将价格坐标按 26Q3 BVPS 6.3601 元重新折算。当前 PB 1.85x 已低于上版记录的历史极值 1.92x（2025-04-18），因此当前处于上市以来最低区间。</p>
 <table>
-  <tr><th>PB 分位（上市以来，N=619 周）</th><th>PB</th><th>对应股价（× BVPS 6.2418 元）</th><th>vs 现价 13.81 元</th><th>出现时间参考</th></tr>
-  <tr><td>历史最大值</td><td class="bad">13.03x</td><td>81.3 元</td><td>+489%</td><td>2021-07-30（胶膜单季净利率峰值期）</td></tr>
-  <tr><td>80% 分位</td><td>6.30x</td><td>39.3 元</td><td>+185%</td><td>2020-2022 景气期</td></tr>
-  <tr><td>50% 分位（中位）</td><td>3.72x</td><td>23.2 元</td><td>+68%</td><td>—</td></tr>
-  <tr><td>30% 分位</td><td>2.86x</td><td>17.9 元</td><td>+29%</td><td>—</td></tr>
-  <tr><td>20% 分位</td><td>2.61x</td><td>16.3 元</td><td>+18%</td><td>—</td></tr>
-  <tr><td>10% 分位</td><td>2.33x</td><td>14.5 元</td><td>+5%</td><td>—</td></tr>
-  <tr style="background:#e8f4f8"><td><b>当前（2026-10-13）</b></td><td class="good"><b>2.21x</b></td><td class="good"><b>13.81 元</b></td><td>—</td><td class="good"><b>上市以来 3.2% 分位</b></td></tr>
-  <tr><td>历史最小值</td><td>1.92x</td><td>12.0 元</td><td class="bad">-13%</td><td>2025-04-18（周期最底部）</td></tr>
+  <tr><th>PB 分位（上市以来）</th><th>PB</th><th>对应股价（× BVPS 6.3601 元）</th><th>vs 现价 11.78 元</th><th>出现时间参考</th></tr>
+  <tr><td>历史最大值</td><td class="bad">13.03x</td><td>82.9 元</td><td>+604%</td><td>2021-07-30（胶膜单季净利率峰值期）</td></tr>
+  <tr><td>80% 分位</td><td>6.30x</td><td>40.1 元</td><td>+240%</td><td>2020-2022 景气期</td></tr>
+  <tr><td>50% 分位（中位）</td><td>3.72x</td><td>23.7 元</td><td>+101%</td><td>—</td></tr>
+  <tr><td>30% 分位</td><td>2.86x</td><td>18.2 元</td><td>+54%</td><td>—</td></tr>
+  <tr><td>20% 分位</td><td>2.61x</td><td>16.6 元</td><td>+41%</td><td>—</td></tr>
+  <tr><td>10% 分位</td><td>2.33x</td><td>14.8 元</td><td>+26%</td><td>—</td></tr>
+  <tr><td>前历史最小值</td><td>1.92x</td><td>12.2 元</td><td>+4%</td><td>2025-04-18（上轮周期最底部）</td></tr>
+  <tr style="background:#e8f4f8"><td><b>当前（2026-10-30）</b></td><td class="good"><b>1.85x</b></td><td class="good"><b>11.78 元</b></td><td>—</td><td class="good"><b>跌破前低，上市以来最低区间</b></td></tr>
 </table>
 <table>
   <tr><th>分位区间（交叉验证）</th><th>当前分位</th><th>判断</th></tr>
-  <tr><td>上市以来（2014-09 至今，N=619）</td><td class="good"><strong>3.2%</strong></td><td class="good">✅ 深度底部区间（&lt;10% 分位）</td></tr>
-  <tr><td>近 5 年（2021-10 至今，N=256）</td><td class="good">6.2%</td><td class="good">✅ 底部区间</td></tr>
-  <tr><td>近 3 年（2023-10 至今，N=156）</td><td class="good">10.3%</td><td class="good">✅ 底部区间（当前周期自身区间内偏低）</td></tr>
-  <tr><td>年度 PB 低点轨迹</td><td>—</td><td>2021 低 6.29x → 2022 低 5.30x → 2023 低 2.68x → 2024 低 2.29x → 2025 低 <b>1.92x</b> → 2026 低 <b>2.20x</b>（07-24）</td></tr>
+  <tr><td>上市以来（2014-09 至今）</td><td class="good"><strong>约 0-2%</strong></td><td class="good">✅ 深度底部区间，已跌破 2025-04 的 1.92x</td></tr>
+  <tr><td>近 5 年（2021-10 至今）</td><td class="good">约 1%</td><td class="good">✅ 底部区间</td></tr>
+  <tr><td>近 3 年（2023-10 至今）</td><td class="good">约 3%</td><td class="good">✅ 底部区间</td></tr>
+  <tr><td>年度 PB 低点轨迹</td><td>—</td><td>2021 低 6.29x → 2022 低 5.30x → 2023 低 2.68x → 2024 低 2.29x → 2025 低 <b>1.92x</b> → 2026 低 <b>1.85x</b>（10-30）</td></tr>
 </table>
 
 <div class="highlight-box">
-  <strong>PB Band 判断：当前 PB 2.21x ≈ 上市以来 3.2% 分位，处深度底部区间。</strong><br>
-  PB 已跌破 10% 分位线（2.33x），距历史极值底部 1.92x（2025-04-18）仅 15% 空间；但距 20% 分位线（2.61x）有 18%、距历史中位（3.72x）有 68% 的修复空间。<br><br>
-  <b>为什么 PB 在这个位置是合理的、而不是「价值陷阱」？</b> 三个支撑：① <b>分母质量高</b>——BVPS 6.2418 元背后，现金类资产 86.14 亿占归母净资产的 52.9%、净现金 57.18 亿占 35.1%，资产负债率 19.99%、零有息短长借；商誉为 0、无形资产仅 4.39 亿，不存在「账面净资产随时可能被洗掉」的情形。<b>诚实提示</b>：剔除 57.18 亿净现金后，市场对经营性资产给的 PB 是 <b>2.87x</b>（303.09 / 105.65），高于表观的 2.21x——说明现金几乎没被计入任何溢价。所以「PB 3.2% 分位」提供的是<b>下行保护</b>（历史低位参照 + 15.9% 的净现金垫），<b>不是上行空间的独立保证</b>；上行必须靠 ROE 修复来兑现。② <b>分子端在改善</b>——TTM 归母已从 FY2025 的 7.70 亿回到 11.16 亿，2026E 16.70 亿。<br><br>
-  <b>为什么不能反过来说「PB 3% 分位就无脑买」？</b> 因为 PB 分位低恰恰是市场对「ROE 能否维持」的投票——历史中位 3.72x 对应约 12% 的 ROE，若 ROE 停在周期底部无法回升，PB 就只能在 2x 一线横盘。当前 5 年均值 ROE 10.77%、26H1 年化 10.1%、2026E 摊薄 ROE 9.40%，都指向「ROE 会回来但未必回到 15%+」——这正是 PB 修复的天花板可能在 3x 左右而非 4x+ 的原因。
+  <strong>PB Band 判断：PB 1.85x 已跌破上轮周期底部，处上市以来最低区间。</strong><br>
+  横向看，距 10% 分位线（2.33x）有 26%、距 20% 分位（2.61x）有 41%、距历史中位（3.72x）有 101% 的修复空间。但必须强调：<b>这次跌破前低，是基本面边际转弱（Q3 毛利率回落 + 现金流转负）与股价下跌共同造成的，不是单纯的情绪杀跌</b>。<br><br>
+  <b>为什么 PB 低位仍有实质支撑？</b>① 分母质量高——BVPS 6.3601 元背后，现金类资产 80.59 亿占归母净资产 47.2%、净现金 51.39 亿占 30.1%，资产负债率 19.61%、零有息短长借，商誉为 0、无形资产仅 4.37 亿；② 剔除净现金后，市场对经营性资产给的 PB 约 <b>2.15x</b>（255.92 / 119.27），高于表观 1.85x——现金几乎未被计入溢价。<br><br>
+  <b>但低 PB 不等于买点。</b>历史中位 3.72x 对应约 12% 的 ROE；当前 5 年均值 ROE 10.77%、9M 年化 8.99%、FY2026E 约 8.7%，对应合理 PB 可能只有 2.0-2.5x。若 Q4 毛利率继续下滑、ROE 往 8% 以下走，PB 中枢还会下移。<b>PB 1.85x 提供的是下行保护，不是上行催化。</b>
 </div>
 
 <h3>4.3 历史 PE 区间（周期股 PE 失真，仅作参考）</h3>
 <table>
   <tr><th>PE 分位</th><th>PE（TTM）</th><th>说明</th></tr>
-  <tr><td>当前 PE（TTM）</td><td class="neutral">32.28x</td><td>周期股 PE 悖论的典型表现：<b>利润最差时 PE 最高</b>。FY2025 归母仅 7.70 亿（周期底），TTM 仍在修复中，故 PE 偏高</td></tr>
-  <tr><td>PE（静，FY2025）</td><td class="neutral">46.81x</td><td>360.27 ÷ 7.70。若回到 FY2021 峰值盈利，静态 PE 约 16x</td></tr>
-  <tr><td>PE（动态，2026E）</td><td class="good">21.6x</td><td>随盈利修复快速回落——这正是周期股 PE 悖论在化解的过程</td></tr>
+  <tr><td>当前 PE（TTM）</td><td class="neutral">25.33x</td><td>较上版 10-13 的 32.28x 明显下降，一半来自股价下跌（-14.7%），一半来自 TTM 利润抬升</td></tr>
+  <tr><td>PE（静，FY2025）</td><td class="neutral">39.9x</td><td>307.31 ÷ 7.70。若回到 FY2021 峰值盈利，静态 PE 约 16x</td></tr>
+  <tr><td>PE（2026E）</td><td class="good">21.2x</td><td>按本报告 FY2026E 14.5 亿估算；若按三季报前一致预期 16.70 亿则约 18.4x，但该预期已滞后</td></tr>
 </table>
 <p style="font-size:12px;color:#666;">⚠ <b>周期股 PE 失真，以 PB 为准。</b>本表不用于判断贵贱，仅记录 PE 随盈利周期的反向运动，作为「周期位置」维度的辅助证据。</p>
 
 <h3>4.4 三情景估值（以 2026E 为基准）</h3>
 <table>
-  <tr><th>情景</th><th>假设条件</th><th>2026E 归母</th><th>EPS</th><th>PE</th><th>对应股价</th><th>隐含 PB</th><th>vs 现价</th><th>概率</th></tr>
-  <tr><td class="bad"><b>悲观</b></td><td>树脂回落 + 已停产产能复产 → 毛利率回到 12% 以下；装机继续下滑，量无法补回</td><td>13.0 亿</td><td>0.50 元</td><td>20x</td><td>10.0 元</td><td>1.60x</td><td class="bad"><b>-28%</b></td><td>20%</td></tr>
-  <tr><td class="neutral"><b>中性</b></td><td>毛利率维持 15-17%，2026 全球装机 -11%，量大致持平，出货 28 亿㎡</td><td><b>16.70 亿</b></td><td>0.64 元</td><td>21.6x</td><td class="neutral"><b>13.81 元</b></td><td class="neutral"><b>2.21x</b></td><td>0%</td><td>50%</td></tr>
-  <tr><td class="good"><b>乐观</b></td><td>Q3/Q4 量价齐升（8 月价格已涨、Q3 出货环增 20-30%），毛利率站稳 18%+，2027 年量增兑现</td><td>19.5 亿</td><td>0.75 元</td><td>25x</td><td class="good">18.7 元</td><td class="good">2.85x</td><td class="good"><b>+35%</b></td><td>30%</td></tr>
-  <tr><td class="good">券商目标价</td><td>华泰证券 2026-08-20：维持 40 倍 26E PE，<b>目标价 25.16 元</b></td><td>16.42 亿</td><td>0.63 元</td><td>40x</td><td class="good">25.16 元</td><td>3.05x</td><td class="good">+82%</td><td>—</td></tr>
-  <tr><td class="good">券商目标价</td><td>东吴证券 2026-08-20：给予 27 年 25 倍 PE，<b>目标价 21.8 元</b></td><td>18.14 亿</td><td>0.70 元</td><td>31x</td><td class="good">21.8 元</td><td>2.72x</td><td class="good">+58%</td><td>—</td></tr>
+  <tr><th>情景</th><th>假设条件</th><th>2026E 归母</th><th>EPS</th><th>目标 PB</th><th>对应股价</th><th>vs 现价</th><th>概率</th></tr>
+  <tr><td class="bad"><b>悲观</b></td><td>树脂继续上涨、胶膜价格回落，Q4 单季毛利率跌破 13%；装机继续下滑</td><td>12.5 亿</td><td>0.479 元</td><td>1.60x</td><td>10.2 元</td><td class="bad"><b>-13.6%</b></td><td>30%</td></tr>
+  <tr><td class="neutral"><b>中性</b></td><td>Q4 毛利率在 15% 附近企稳，量大致持平，全年出货同比小幅下滑</td><td><b>14.5 亿</b></td><td>0.556 元</td><td>2.00x</td><td class="neutral"><b>12.7 元</b></td><td>+8.0%</td><td>50%</td></tr>
+  <tr><td class="good"><b>乐观</b></td><td>Q4 树脂企稳、胶膜顺价恢复，单季毛利率回到 17%+，2027 年量增兑现</td><td>15.5 亿</td><td>0.594 元</td><td>2.50x</td><td class="good">15.9 元</td><td class="good"><b>+35.0%</b></td><td>20%</td></tr>
 </table>
-<p style="font-size:12px;color:#666;">概率判断：中性 50%、乐观 30%、悲观 20%。目标价为券商视角（含 40x 26E PE 的成长溢价），与本报告自建情景（25x 上限）口径不同，不可直接作为卖出参考。</p>
+<p style="font-size:12px;color:#666;">概率加权预期总回报 = 30%×(-13.6%) + 50%×8.0% + 20%×35.0% ≈ <b>+6.9%</b>，落在 Neutral 区间（-5% ~ +10%）。三季报前的券商目标价（华泰 25.16 元、东吴 21.8 元）基于旧盈利预测，已明显滞后，本报告不作为估值依据。</p>
 
 <div class="highlight-box">
   <strong>估值总结：</strong><br>
-  ① <b>估值锚是 PB 2.21x（上市以来 3.2% 分位），不是 PE 32.28x。</b>周期股在利润底部 PE 必然虚高，用 PE 判断周期股贵贱是框架错误；<br>
-  ② <b>PB 分位低有实质支撑，但要读对</b>：净现金 57.18 亿占市值 15.9%、占归母净资产 35.1%；商誉为 0、无形资产仅 4.39 亿，账面净资产无减值雷。<b>但</b>剔除净现金后市场对经营性资产给的 PB 是 2.87x 而非 2.21x——现金未被计入任何溢价。因此 PB 3.2% 分位提供的是<b>下行保护</b>，上行仍要靠 ROE 从 9.4% 往 12%+ 走；<br>
-  ③ <b>往上看到 3x 而非 4x+</b>：5 年均值 ROE 10.77%、2026E 摊薄 ROE 9.40%，对应合理 PB 应在 2.5-3.2x；历史中位 3.72x 对应 2021 年 ROE 18%+ 的景气期，不宜作为回归目标；<br>
-  ④ <b>最大的变量不是估值而是利润质量</b>：若三季报确认「量增 + 毛利率守住 15%+」，则 PB 向 2.86x（30% 分位）修复的空间被打开（+29%）；若 Q3 价格回落 + 量未起，PB 有回落至 1.92x 历史底部的风险（-13%）；<br>
-  ⑤ <b>安全边际来源明确</b>：悲观情景 10.0 元对应 PS 仍达 1.9x、剔除净现金 PE 约 12x，向下有实质保护。
+  ① <b>估值锚是 PB 1.85x（上市以来最低区间），不是 PE 25.33x。</b>周期股在利润底部 PE 必然失真；<br>
+  ② <b>低 PB 有实质支撑，但方向不对：</b>净现金 51.39 亿占市值 16.7%、商誉为 0，下行有底；但 Q3 毛利率回落 + 现金流转负，说明 ROE 修复正在失速，PB 中枢可能继续下移；<br>
+  ③ <b>往上看到 2.0-2.5x 而非 3x+：</b>9M 年化 ROE 8.99%、FY2026E 约 8.7%，对应合理 PB 可能只有 2.0-2.5x；历史中位 3.72x 是 2021 年 ROE 18% 时的定价，不可机械回归；<br>
+  ④ <b>概率加权回报约 +6.9%，落在 Neutral 区间：</b>上行需要 Q4 毛利率回到 17%+，下行风险是毛利率跌破 13%；<br>
+  ⑤ <b>安全边际存在但不厚：</b>悲观情景 10.2 元对应剔除净现金 PE 约 17x、PB 1.60x，向下约 -14%，比 10-13 时（悲观 -28%）已收窄。
 </div>
 
-<p style="font-size:12px;color:#666;">本 tab 数据缺失范围：理杏仁/万得等终端的<b>逐日 PB 历史序列</b>（本报告 PB Band 为自算，口径已说明并通过 2026-10-13 复算校验）、<b>券商一致预期的 EPS 分布直方图</b>——均标为<span class="nd">待补充</span>，不参与评分。</p>
+<p style="font-size:12px;color:#666;">本 tab 数据缺失范围：三季报后完整卖方一致预期（EPS 分布）、逐日 PB 历史序列——均标为<span class="nd">待补充</span>，PB 分位沿用上版自算口径并已注明。</p>
 
 </div></div>
 
 <div class="tab-content" id="tab-l4"><div class="tab-inner">
 
 <h2>五、杜邦分解（L4框架）</h2>
-<p style="font-size:13px;color:#666;margin-bottom:8px;">ROE = 净利率 × 总资产周转率 × 权益乘数。半年度口径，未年化。</p>
+<p style="font-size:13px;color:#666;margin-bottom:8px;">ROE = 净利率 × 总资产周转率 × 权益乘数。26Q3 为前三季度累计口径，未年化；年度数据为全年口径。</p>
 
 <h3>5.1 三因子分解</h3>
 <table>
   <tr><th>期间</th><th>归母净利率</th><th>总资产周转率</th><th>权益乘数</th><th>ROE</th></tr>
-  <tr><td>26H1</td><td class="good"><strong>12.05%</strong></td><td>0.333</td><td>1.265</td><td class="good"><strong>5.04%</strong></td></tr>
-  <tr><td>25H1</td><td>6.23%</td><td class="neutral">0.391</td><td>1.272</td><td>3.02%</td></tr>
+  <tr><td>26Q3（9M 累计）</td><td class="good"><strong>10.64%</strong></td><td>0.502</td><td>1.264</td><td class="good"><strong>6.74%</strong></td></tr>
+  <tr><td>26H1（半年度）</td><td class="good"><strong>12.05%</strong></td><td>0.333</td><td>1.265</td><td class="good"><strong>5.04%</strong></td></tr>
   <tr><td>FY2025</td><td class="bad">4.97%</td><td>0.765</td><td>1.253</td><td class="bad">4.68%</td></tr>
   <tr><td>FY2024</td><td>6.83%</td><td>0.940</td><td>1.276</td><td>7.97%</td></tr>
   <tr><td>FY2023</td><td>9.05%</td><td>1.036</td><td>1.283</td><td>11.87%</td></tr>
   <tr><td>FY2022</td><td>8.37%</td><td>1.021</td><td>1.325</td><td>11.29%</td></tr>
   <tr><td>FY2021</td><td class="good">17.09%</td><td>0.887</td><td>1.297</td><td class="good">18.04%</td></tr>
 </table>
-<p style="font-size:12px;color:#666;">注：26H1/25H1 的周转率与权益乘数为半年度口径，非年化，不可与其他年度直接横比；净利率与 ROE 取自报告披露口径（26H1 累计加权 ROE 5.04%）。</p>
+<p style="font-size:12px;color:#666;">注：26Q3 的周转率与权益乘数为前三季度累计口径，不可与全年数据直接横比；26Q3 归母净利率 = 11.311 ÷ 106.375，ROE 取报告披露的累计加权 6.74%（与三因子乘积 6.75% 基本一致）。</p>
 
-<h3>5.2 归因：这一轮 ROE 是怎么掉下去的、又是怎么回来的</h3>
+<h3>5.2 归因：ROE 为什么掉下去、又为什么修不回来</h3>
 <table>
   <tr><th>阶段</th><th>主导因子</th><th>机制</th></tr>
-  <tr><td class="bad"><b>2021 → 2025 下滑</b><br>（ROE 18.04% → 4.68%）</td><td class="bad"><b>净利率崩塌</b>（17.09% → 4.97%）</td><td>行业产能过剩价格战，胶膜毛利率从 25.06%（FY2021）跌到 10.96%（FY2025）。<b>周转率与权益乘数几乎未变</b>——公司没有加杠杆、也没有大幅损失资产周转，纯粹是「每一平赚的钱少了」。这是最典型的周期股 ROE 下滑形态。</td></tr>
-  <tr><td class="good"><b>25H1 → 26H1 回升</b><br>（3.02% → 5.04%）</td><td class="good"><b>净利率修复</b>（6.23% → 12.05%）</td><td>净利率接近翻倍，是 ROE 回升的<b>唯一驱动力</b>。同期周转率反而从 0.391 降到 0.333（收入 -12.20%），权益乘数基本持平（1.272 → 1.265，公司甚至还在压降负债）。</td></tr>
+  <tr><td class="bad"><b>2021 → 2025 下滑</b><br>（ROE 18.04% → 4.68%）</td><td class="bad"><b>净利率崩塌</b>（17.09% → 4.97%）</td><td>行业产能过剩价格战，胶膜毛利率从 25.06%（FY2021）跌到 10.96%（FY2025）。<b>周转率与权益乘数几乎未变</b>——公司没有加杠杆、也没有大幅损失资产周转，纯粹是「每一平赚的钱少了」。典型的周期股 ROE 下滑形态。</td></tr>
+  <tr><td class="good"><b>25H1 → 26H1 回升</b><br>（3.02% → 5.04%）</td><td class="good"><b>净利率修复</b>（6.23% → 12.05%）</td><td>净利率接近翻倍，是 ROE 回升的<b>唯一驱动力</b>。同期周转率反而从 0.391 降到 0.333（收入 -12.20%），权益乘数基本持平。</td></tr>
+  <tr><td class="bad"><b>26Q2 → 26Q3 失速</b><br>（单季 ROE 3.16% → 约 1.71%）</td><td class="bad"><b>净利率再度回落</b>（14.67% → 7.92%）</td><td>Q3 单季归母净利率 7.92%（2.889 ÷ 36.498），较 Q2 的 14.67% 腰斩；单季毛利率由 20.07% 降至 15.07%。周转率与杠杆仍基本稳定。<b>ROE 的「唯一引擎」再次熄火。</b></td></tr>
 </table>
 
 <div class="summary-box">
-  <strong>杜邦解读：</strong>福斯特的 ROE 波动<b>100% 由净利率（约等于毛利率）驱动</b>，杠杆与周转几乎是常量。这有两层含义：<br><br>
-  ① <b>好消息——ROE 的弹性完全押在毛利率上，而毛利率的行业地位正在增强</b>。公司没用杠杆去博 ROE，所以当毛利率回到 17%+ 时，ROE 会「干净地」修复，不存在杠杆反噬风险（对比那些靠加杠杆维持 ROE 的同行：赛伍技术资产负债率 40.27%，但 ROE 仍为负）。<br><br>
-  ② <b>坏消息——公司无法靠「经营效率」自救</b>。周转率长期在 0.9-1.0（FY2025 只有 0.765），说明资产规模（尤其 55 亿理财 + 40 亿固定资产）产生收入的能力有限。ROE 若想回到 15%+，毛利率必须站上 20%+ 并维持——这在产能依旧充裕的胶膜行业里，门槛很高。
+  <strong>杜邦解读：</strong>福斯特的 ROE 波动<b>几乎 100% 由净利率（约等于毛利率）驱动</b>，杠杆与周转长期是常量。这有两层含义：<br><br>
+  ① <b>好消息——ROE 的弹性完全押在毛利率上，而毛利率的行业地位仍在</b>。公司没用杠杆去博 ROE，所以不存在杠杆反噬风险；9M 毛利率 16.37% 仍远高于同行。当毛利率回到 17%+ 时，ROE 会「干净地」修复。<br><br>
+  ② <b>坏消息——公司无法靠经营效率自救，而毛利率正在回落</b>。周转率长期在 0.5-1.0（FY2025 仅 0.765；26Q3 累计 0.502），55 亿理财 + 41 亿固定资产产生收入的能力有限。9M 年化 ROE 仅 8.99%，较 26H1 年化 10.1% 下修；若 Q4 毛利率继续走低，全年 ROE 可能落在 8-9%。<b>ROE 若想回到 15%+，毛利率必须站上 20% 并维持——在产能依旧充裕的胶膜行业里，短期看不到这个条件。</b>
 </div>
 
-<h3>5.3 一个关键修正：现金拖累效应</h3>
+<h3>5.3 现金拖累效应（本期略有缓解，但方向反转）</h3>
 <table>
   <tr><th>口径</th><th>计算</th><th>结果</th></tr>
-  <tr><td>表观 ROE（26H1 年化）</td><td>8.42 × 2 ÷ 165.99（平均归母净资产）</td><td class="neutral"><b>10.1%</b></td></tr>
-  <tr><td>剔除净现金后的经营 ROI 初始口径（26H1 年化）</td><td>8.42 × 2 ÷ (167.57 − 57.18) = 16.84 ÷ 110.39</td><td class="good"><b>15.3%</b></td></tr>
-  <tr><td>占用净现金规模</td><td>净现金 57.18 亿，占归母净资产 34.1%</td><td class="neutral">约 34% 的股东权益躺在低收益的现金/理财上（理财年化收益约 2%）</td></tr>
+  <tr><td>表观 ROE（9M 年化）</td><td>11.311 × 4/3 ÷ 167.53（平均归母净资产）</td><td class="neutral"><b>约 9.0%</b></td></tr>
+  <tr><td>剔除净现金后的经营 ROI（9M 年化）</td><td>15.08 ÷ (167.53 − 51.39) = 15.08 ÷ 116.14</td><td class="good"><b>约 13.0%</b></td></tr>
+  <tr><td>占用净现金规模</td><td>净现金 51.39 亿，占期末归母净资产 30.1%</td><td class="neutral">约 30% 的股东权益躺在低收益现金/理财上（理财年化约 2%）</td></tr>
+  <tr><td>现金拖累幅度</td><td>13.0% − 9.0%</td><td class="neutral"><b>约 4.0pct</b>（上版为 5.2pct）</td></tr>
 </table>
 
 <div class="highlight-box">
-  <strong>现金拖累拆解：</strong>公司账上 86.14 亿现金类资产（其中 55.13 亿交易性金融资产/理财）只产生约 2% 的收益率，而经营性资产（约 110 亿净资产）创造了 15.3% 的年化回报。换算下来，<b>超额现金把表观 ROE 从 15.3% 稀释到 10.1%，约 5.2 个百分点</b>。<br><br>
-  <b>这对投资判断意味着什么？</b>① 表观 ROE 低估了公司主营业务的真实盈利能力；② 但也提示<b>资本配置效率有待提升</b>——手握 86 亿现金却找不到高回报的再投资出口（这正是光伏行业「产能已足够、不敢再扩产」的写照）；③ 反过来，若公司未来提升分红比例或加大回购（目前无回购记录），对 ROE 与股价都是正向催化。当前 TTM 分红率已从 50.8% 升至 63.1%，是积极方向，需持续跟踪。
+  <strong>现金拖累拆解：</strong>公司账上 80.59 亿现金类资产（其中 46.08 亿交易性金融资产/理财）只产生约 2% 的收益率，而经营性资产（约 116 亿净资产）创造了约 13.0% 的年化回报。换算下来，<b>超额现金把表观 ROE 从 13.0% 稀释到 9.0%，约 4.0 个百分点</b>。<br><br>
+  <b>本期变化：</b>净现金由 26H1 的 57.18 亿降至 51.39 亿，现金拖累从 5.2pct 收窄到 4.0pct——但这不是好消息，因为减少的现金主要变成了存货（+2.18 亿）和预付款（+4.14 亿），即从「低收益现金」转为「可能贬值的原料库存」。<b>如果这批高价树脂最终压低毛利率，现金拖累的缓解会被存货减值/毛利下滑抵消。</b><br><br>
+  对投资判断的含义不变：① 表观 ROE 低估了主营真实盈利能力；② 手握 80 亿现金却找不到高回报再投资出口，是光伏「产能已足够、不敢再扩产」的写照；③ 提升分红比例或回购仍是改善 ROE 与股价的正向催化——当前 TTM 分红率约 58%，需持续跟踪。
 </div>
 
-<p style="font-size:12px;color:#666;">本 tab 数据缺失范围：26H1 的<b>税后经营利润（NOPAT）与投入资本（IC）口径 ROIC</b>（公司未披露分部资本，无法精确拆分）、<b>逐季利息负担拆分</b>——均标为<span class="nd">待补充</span>，不参与评分。</p>
+<p style="font-size:12px;color:#666;">本 tab 数据缺失范围：26Q3 的 NOPAT/IC 口径 ROIC（公司未披露分部资本）、逐季利息负担拆分——均标为<span class="nd">待补充</span>，不参与评分。</p>
 
 </div></div>
 
@@ -511,47 +518,53 @@
   <tr><th>分类维度</th><th>判定</th><th>依据</th></tr>
   <tr><td>一级行业</td><td>电力设备（申万）/ 光伏设备</td><td>—</td></tr>
   <tr><td>产业链定位</td><td>光伏辅材（封装材料）——中游</td><td>上游为石化树脂（EVA/POE 粒子），下游为光伏组件封装</td></tr>
-  <tr><td>周期属性判定</td><td class="neutral"><b>混合周期股</b></td><td>长期有成长趋势（能源转型）+ 阶段性剧烈供需波动（2023-2025 产能过剩）。落在 industry-classification.md 的「混合周期股」清单（半导体/光伏/锂电/面板/汽车/消费电子）</td></tr>
-  <tr><td>采用的评分体系</td><td><b>周期股评分体系（8 维度）+ PB Band</b></td><td>混合周期允许自选；本股利润由供需错配与产能出清节奏决定，且处周期底部复苏初期，选周期体系（理由见 L5 §6.7）</td></tr>
-  <tr><td>估值方法</td><td><b>PB Band 为主，PE 仅作参考</b></td><td>周期底部 PE(TTM) 32.28x 严重失真</td></tr>
+  <tr><td>周期属性判定</td><td class="neutral"><b>混合周期股</b></td><td>长期有成长趋势（能源转型）+ 阶段性剧烈供需波动（2023-2025 产能过剩）。落在 industry-classification.md 的「混合周期股」清单</td></tr>
+  <tr><td>采用的评分体系</td><td><b>周期股评分体系（8 维度）+ PB Band</b></td><td>混合周期允许自选；本股利润由供需错配与产能出清节奏决定，选周期体系（理由见 §6.7）</td></tr>
+  <tr><td>估值方法</td><td><b>PB Band 为主，PE 仅作参考</b></td><td>周期底部 PE(TTM) 25.33x 仍偏高且不稳定</td></tr>
 </table>
 
 <h3>6.2 光伏行业供需格局</h3>
 <table>
   <tr><th>环节</th><th>现状</th><th>数据</th></tr>
-  <tr><td>全球装机（需求）</td><td class="bad">增速转负</td><td>CRU 预测 2026 年全球新增装机 590GW（同比 <b>-12%</b>）；InfoLink 口径 2026 年中性预期 493GW（-11%）；中国 2025 年新增装机高基数 + 136 号文抢装透支，2026 年回落</td></tr>
-  <tr><td>组件排产（直接需求）</td><td class="neutral">弱企稳</td><td>26H1 组件端排产偏弱，胶膜需求随之承压（对应公司销量 -11.97%）；8 月后随旺季临近价格与排产边际改善</td></tr>
-  <tr><td>胶膜产能（供给）</td><td class="bad">依旧充裕</td><td>InfoLink：2025 年胶膜「产能仍在缓慢出清但依旧相当充裕」；胶膜价格回升后已停产产能存在复产可能</td></tr>
-  <tr><td>竞争格局</td><td class="good">龙头集中度回升</td><td>InfoLink：2025 全球胶膜出货 TOP3（福斯特/斯威克/百佳年代）合计超 65%（较 2024 回升）；绿康生化剥离光伏胶膜业务、福莱蒽特关停、鹿山新材削减份额</td></tr>
-  <tr><td>价格</td><td class="good">2026 年企稳回升</td><td>胶膜 3 月三次提价，4 月处高位，5-6 月回落；东吴调研：<b>8 月价格重新上涨</b>，8 月 EVA 胶膜价格环比涨幅明显</td></tr>
+  <tr><td>全球装机（需求）</td><td class="bad">增速转负</td><td>CRU 预测 2026 年全球新增装机 590GW（同比 <b>-12%</b>）；InfoLink 口径 2026 年中性预期 493GW（-11%）；中国 2025 年抢装透支，2026 年回落</td></tr>
+  <tr><td>组件排产（直接需求）</td><td class="bad">仍偏弱</td><td>26Q3 公司营收环比仅 +0.96%，未见旺季放量；8 月价格曾上涨但未能延续到季度层面</td></tr>
+  <tr><td>胶膜产能（供给）</td><td class="bad">依旧充裕</td><td>InfoLink：2025 年胶膜「产能仍在缓慢出清但依旧相当充裕」；价格回升后已停产产能存在复产可能</td></tr>
+  <tr><td>竞争格局</td><td class="good">龙头集中度回升</td><td>InfoLink：2025 全球胶膜出货 TOP3（福斯特/斯威克/百佳年代）合计超 65%；绿康生化剥离、福莱蒽特关停、鹿山新材削减</td></tr>
+  <tr><td>价格</td><td class="neutral">回升后回落</td><td>胶膜 3 月三次提价、4 月高位、5-6 月回落；8 月短暂重新上涨；Q3 综合毛利率环比 -5.00pct，说明价格/成本剪刀差再次收窄</td></tr>
   <tr><td>技术迭代</td><td class="neutral">N 型化、少银化、0BB</td><td>转光胶膜（HJT）、皮肤膜（BC 0BB）、丁基胶（TOPCon 减银）带动封装材料价值量提升</td></tr>
 </table>
 
-<h3>6.3 竞争格局对比（26H1）</h3>
+<h3>6.3 竞争格局对比（26Q3 / 9M2026）</h3>
 <table>
-  <tr><th>公司</th><th>26H1 营收</th><th>营收同比</th><th>26H1 毛利率</th><th>归母净利</th><th>资产负债率</th><th>定位</th></tr>
-  <tr style="background:#e8f4f8"><td><b>福斯特</b></td><td><b>69.88 亿</b></td><td class="bad">-12.20%</td><td class="good"><b>17.06%</b></td><td class="good"><b>+8.42 亿</b></td><td class="good"><b>19.99%</b></td><td>全球胶膜绝对龙头（市占率约 50%）</td></tr>
-  <tr><td>海优新材</td><td>约 9-10 亿</td><td>—</td><td class="bad">6.67%</td><td class="bad">-0.48 亿</td><td>—</td><td>胶膜第二梯队，研发强度高（FY2025 6.01%）</td></tr>
-  <tr><td>赛伍技术</td><td>—</td><td>—</td><td class="bad">10.34%</td><td class="bad">-0.04 亿</td><td>40.27%</td><td>背板起家，多品类光伏材料</td></tr>
-  <tr><td>明冠新材</td><td>—</td><td>—</td><td class="bad">10.47%</td><td class="bad">-0.17 亿</td><td>—</td><td>背板 + 胶膜</td></tr>
-  <tr><td>双星新材</td><td>—</td><td>—</td><td class="bad">10.21%</td><td class="good">+0.46 亿</td><td>—</td><td>BOPET 基膜龙头，兼营光伏材料</td></tr>
-  <tr><td>斯威克（未上市）</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>东方日升子公司，胶膜出货全球第二</td></tr>
-  <tr><td>百佳年代</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>胶膜出货全球第三</td></tr>
+  <tr><th>指标</th><th>福斯特</th><th>海优新材</th><th>赛伍技术</th><th>明冠新材</th><th>评价</th></tr>
+  <tr style="background:#e8f4f8"><td><b>营收（9M）</b></td><td><b>106.38 亿</b></td><td>9.60 亿</td><td>19.20 亿</td><td>6.08 亿</td><td class="good">规模绝对领先</td></tr>
+  <tr><td>营收同比</td><td class="bad">-9.76%</td><td class="good">+10.32%</td><td>-5.86%</td><td class="good">+13.18%</td><td class="neutral">中（同行低基数反弹，福斯特体量大更难增长）</td></tr>
+  <tr><td>毛利率</td><td class="good"><b>16.37%</b></td><td>7.10%</td><td>9.60%</td><td>7.45%</td><td class="good">高（唯一 &gt;15%）</td></tr>
+  <tr><td>归母净利</td><td class="good"><b>+11.31 亿</b></td><td class="bad">-0.60 亿</td><td class="bad">-0.19 亿</td><td class="bad">-0.41 亿</td><td class="good">唯一盈利</td></tr>
+  <tr><td>ROE（9M 加权）</td><td class="good"><b>6.74%</b></td><td class="bad">-3.78%</td><td class="bad">-0.78%</td><td class="bad">-1.59%</td><td class="good">高</td></tr>
+  <tr><td>净利率</td><td class="good"><b>10.64%</b></td><td class="bad">-6.27%</td><td class="bad">-0.97%</td><td class="bad">-6.69%</td><td class="good">高</td></tr>
+  <tr><td>资产负债率</td><td class="good"><b>19.61%</b></td><td>30.22%</td><td>41.20%</td><td class="good">8.89%</td><td class="good">低（明冠更低但持续亏损）</td></tr>
+  <tr><td>PB</td><td>1.85x</td><td>1.85x</td><td>1.74x</td><td>0.83x</td><td class="neutral">中（并不比亏损同行便宜）</td></tr>
+  <tr><td>PE（TTM）</td><td>25.33x</td><td class="nd">负</td><td class="nd">负</td><td class="nd">负</td><td class="neutral">不可比（同行亏损）</td></tr>
 </table>
 
 <div class="highlight-box">
-  <strong>竞争格局解读：</strong>福斯特的护城河不是「规模大」，而是<b>「成本曲线最左端」这一财务事实</b>——26H1 毛利率 17.06%，是四家可比同行（6.67%-10.47%）中<b>唯一突破 15% 的公司</b>，领先第二名 6.6 个百分点。在胶膜这种「无品牌溢价、产品高度同质、客户极度集中」的行业里，唯一可持续的竞争优势就是成本，而福斯特做到了全球成本最低。<br><br>
-  <b>但要注意：毛利率优势是「本轮的」，不是「永久的」。</b> 25H1 福斯特胶膜毛利率 11.40% 与海优等的差距远小于 26H1——本轮毛利率跳升有一部分是「福斯特拿货价与报价更同步」带来的阶段性优势。真正的结构性优势是 50% 市占率带来的粒子集采议价权、设备自研、以及产线多已折旧完毕的固定成本优势。
+  <strong>竞争格局解读：</strong>福斯特的护城河不是「规模大」，而是<b>「成本曲线最左端」这一财务事实</b>——9M 毛利率 16.37%，是四家中<b>唯一突破 15% 的公司</b>，领先第二名赛伍技术 6.77pct；在全行业需求下滑、三家同行全部亏损的情况下，福斯特仍盈利 11.31 亿。<br><br>
+  <b>但要读对两点：</b>① 同行营收增速转正（海优 +10.32%、明冠 +13.18%）是低基数反弹，且仍在亏损，不构成对福斯特的份额威胁；② <b>福斯特 PB 1.85x 与海优相同、高于明冠 0.83x</b>——市场已经给福斯特的「唯一盈利」支付了溢价。因此「PB 历史最低」是相对自身历史的低位，不是相对同行的折价。<br><br>
+  真正的结构性优势仍是 50% 市占率带来的粒子集采议价权、设备自研、产线多已折旧完毕的固定成本优势；这些不会因一个季度的毛利率回落而消失。
 </div>
 
-<h3>6.4 产能周期与出清进度</h3>
+<h3>6.4 产能周期与周期位置（本期下修）</h3>
 <table>
   <tr><th>维度</th><th>状态</th><th>判断</th></tr>
-  <tr><td>行业扩产</td><td>基本停止</td><td>福斯特 26H1 资本开支仅 1.41 亿（FY2023 为 7.43 亿），在建工程 3.99 亿；全行业无大规模新增产能公告</td></tr>
+  <tr><td>行业扩产</td><td>基本停止</td><td>福斯特 9M 资本开支仅 1.66 亿（FY2023 为 7.43 亿），在建工程降至 3.25 亿；全行业无大规模新增产能公告</td></tr>
   <tr><td>落后产能退出</td><td class="good">进行中</td><td>绿康生化剥离、福莱蒽特关停胶膜、鹿山新材削减、二三线普遍亏损</td></tr>
-  <tr><td>出清彻底度</td><td class="bad">未完成</td><td>InfoLink：产能「依旧相当充裕」；价格回升后已停产产能存在复产可能——这是本轮周期最大的不确定性</td></tr>
-  <tr><td>周期位置判断</td><td class="neutral"><b>底部已过、复苏初期</b></td><td>利润端已确认拐点（26H1 +69.89%），收入端尚未拐点（-12.20%）；属「业绩底已过、估值底已现、需求底待验」的三阶段后期</td></tr>
+  <tr><td>出清彻底度</td><td class="bad">未完成</td><td>InfoLink：产能「依旧相当充裕」；价格回升后已停产产能存在复产可能</td></tr>
+  <tr><td>周期位置判断</td><td class="bad"><b>底部区域的二次探底</b></td><td>上版判断「底部已过、复苏初期」；三季报显示 Q3 单季毛利率环比 -5.00pct、归母环比 -45.54%、CFO 转负，<b>复苏被打断</b>。当前是「业绩底已现、但复苏斜率被证伪」</td></tr>
 </table>
+<div class="danger-box">
+  <strong>周期位置提示：</strong>低 PB（1.85x）确实处在历史底部，但底部可以「横很久」甚至「再下一层」。本轮的教训是：<b>胶膜的价格回升依赖上游成本推动，而非需求扩张；一旦树脂涨不动或下游拒绝顺价，毛利率就会回落。</b>在需求侧（2026 全球装机 -11%~-13%）没有改善前，不宜把「PB 历史最低」直接等同于「周期反转」。
+</div>
 
 <h3>6.5 成长性来源（穿越周期的三条第二曲线）</h3>
 <table>
@@ -564,19 +577,19 @@
 <h3>6.6 行业风险</h3>
 <table>
   <tr><th>风险</th><th>说明</th></tr>
-  <tr><td class="bad">需求下滑超预期</td><td>2026 全球装机预测 -11% ~ -13%，中国抢装退潮后需求真空，量增假设可能落空</td></tr>
+  <tr><td class="bad">需求下滑超预期</td><td>2026 全球装机预测 -11% ~ -13%，中国抢装退潮后需求真空；Q3 营收环比持平已验证需求疲弱</td></tr>
   <tr><td class="bad">供给侧出清反复</td><td>胶膜价格回升后，已停产/闲置产能可能复产，重新压制价格与毛利率</td></tr>
-  <tr><td class="neutral">上游树脂价格波动</td><td>EVA/POE 粒子价格受原油、地缘政治影响；树脂涨价本身中性，能否顺价才是关键</td></tr>
-  <tr><td class="neutral">海外贸易壁垒</td><td>印度 2025-09 对中、韩、泰、越 POE/EPE 发起反倾销调查；各国贸易政策不确定性上升（公司靠泰国/越南基地部分对冲）</td></tr>
-  <tr><td class="neutral">技术路线变化</td><td>钙钛矿/叠层电池若加速商业化，封装材料体系可能发生变化；0BB、少银化改变胶膜用量结构</td></tr>
+  <tr><td class="bad">上游树脂价格上行</td><td>EVA/POE 粒子受原油、地缘政治影响；Q3 预付款/存货同步上升，若树脂继续涨而胶膜不能顺价，毛利率将进一步压缩</td></tr>
+  <tr><td class="neutral">海外贸易壁垒</td><td>印度 2025-09 对中、韩、泰、越 POE/EPE 发起反倾销调查；公司靠泰国/越南基地部分对冲</td></tr>
+  <tr><td class="neutral">技术路线变化</td><td>钙钛矿/叠层电池若加速商业化，封装材料体系可能变化；0BB、少银化改变胶膜用量结构</td></tr>
 </table>
 
 <h3>6.7 为什么选周期股评分体系（而非非周期体系）</h3>
 <div class="summary-box">
-  <strong>① 利润由供需错配决定，而非品牌/技术壁垒。</strong>胶膜产品高度同质（EVA/POE 配方），无品牌溢价，毛利率完全由「上游树脂成本 × 下游组件排产 × 行业有效产能」三者错配决定——教科书式周期品。非周期体系里「定价权/品牌」等维度在此几乎无意义。<br><br>
-  <strong>② 当期利润是周期的结果，不是公司能力的度量。</strong>FY2025 ROE 仅 4.68%，但公司仍是全球唯一维持双位数毛利率的胶膜厂——若用单期 ROE 打分，会系统性低估其穿越周期能力。周期体系用「多周期均值 ROE（10.77%）」与「成本位置」两个维度更公允。<br><br>
-  <strong>③ 当前处周期底部复苏初期，周期位置维度（15 分）是本股最重要的输入。</strong>非周期体系没有「周期位置」「行业产能周期」这两个维度，而它们恰恰是判断福斯特当前价值的核心变量。<br><br>
-  <strong>④ 估值锚必须是 PB。</strong>周期底部 PE(TTM) 32.28x 反高于景气期（FY2021 峰值期静态 PE 约 16x），属典型「利润越差 PE 越高」的周期悖论；PB 2.21x（上市以来 3.2% 分位）才是有效锚。
+  <strong>① 利润由供需错配决定，而非品牌/技术壁垒。</strong>胶膜产品高度同质（EVA/POE 配方），无品牌溢价，毛利率完全由「上游树脂成本 × 下游组件排产 × 行业有效产能」三者错配决定——教科书式周期品。<br><br>
+  <strong>② 当期利润是周期的结果，不是公司能力的度量。</strong>FY2025 ROE 仅 4.68%，但公司仍是全球唯一维持双位数毛利率的胶膜厂；周期体系用「多周期均值 ROE（10.77%）」与「成本位置」两个维度更公允。<br><br>
+  <strong>③ 当前处周期底部区域的二次探底，周期位置维度（15 分）是最重要输入。</strong>三季报再次证明：单季利润可以因为库存成本与顺价节奏在一个季度内腰斩（Q2 5.30 亿 → Q3 2.89 亿），这正是周期股的典型特征。<br><br>
+  <strong>④ 估值锚必须是 PB。</strong>周期底部 PE(TTM) 25.33x 仍高于景气期（FY2021 峰值期静态 PE 约 16x），属「利润越差 PE 越高」的周期悖论；PB 1.85x（上市以来最低区间）才是有效锚。
 </div>
 
 </div></div>
@@ -585,88 +598,149 @@
 
 <h2>七、综合实战（L6框架）</h2>
 
-<h3>7.1 资金面与筹码</h3>
-<table>
-  <tr><th>维度</th><th>数据</th><th>判断</th></tr>
-  <tr><td>香港中央结算（北向）</td><td>26Q2 增持 5,586.73 万股至 13,711.12 万股（3.11% → <b>5.26%</b>，单季 +68.7%）</td><td class="good">✅ 外资在 Q2 大幅加仓，与利润拐点同步</td></tr>
-  <tr><td>社保基金</td><td>社保 502 组合、110 组合、107 组合 26Q2 <b>同时新进前十大股东</b></td><td class="good">✅ 长线资金进场信号</td></tr>
-  <tr><td>股东户数</td><td>2026-06-30 为 43,073 户</td><td class="neutral">⚠ 需对比 26Q1 与 25H1 判断筹码集中/分散（待补充）</td></tr>
-  <tr><td>福22转债</td><td>存续 28.89 亿，占总负债 67.6%</td><td class="neutral">⚠ 股价上行后转股摊薄</td></tr>
-  <tr><td>近期股价（2026-10-13）</td><td>13.81 元，当日 -2.20%；总市值 360.27 亿</td><td class="neutral">⚠ 处 PB 3.2% 分位的深度底部区间</td></tr>
-</table>
-
-<h3>7.2 一致预期与分歧</h3>
-<table>
-  <tr><th>机构</th><th>日期</th><th>评级</th><th>目标价</th><th>盈利预测</th></tr>
-  <tr><td>爱股网一致预期（12 家均值）</td><td>—</td><td>—</td><td>—</td><td>2026E 归母 <b>16.70 亿</b>；2027E 21.67 亿；2028E 26.76 亿</td></tr>
-  <tr><td>华泰证券</td><td>2026-08-20</td><td>—</td><td class="good">25.16 元</td><td>2026E 归母 16.42 亿（40x 26E PE）</td></tr>
-  <tr><td>东吴证券</td><td>2026-08-20</td><td>—</td><td class="good">21.8 元</td><td>2026E 归母 18.14 亿（27 年 25x PE，最乐观）</td></tr>
-  <tr><td>中银证券</td><td>2026-08</td><td>—</td><td>—</td><td>2026E 归母 14.58 亿（最保守）</td></tr>
-</table>
+<h3>7.1 六步法总结</h3>
 <div class="summary-box">
-  <strong>市场分歧点：</strong>一致预期 2026E 归母 16.70 亿的分布区间是 14.58 亿（中银）～18.14 亿（东吴），<b>分歧约 24%</b>。分歧核心不在「26H1 盈利」（已披露，共识充分），而在<b>「Q3/Q4 量增与毛利率的可持续性」</b>——乐观者（东吴）认为 Q3 出货环增 20-30%、全年出货 28 亿㎡；保守者（中银）担心需求下滑与毛利率回吐。
+  Step 1 - 行业定位：混合周期（光伏胶膜），CR3 超 65%、壁垒是成本与规模，非品牌/技术。<br>
+  Step 2 - 财务体检：9M 加权 ROE 6.74%（年化约 9.0%），杜邦为「净利率驱动型」，9M CFO/归母 0.60、Q3 单季 CFO 转负。<br>
+  Step 3 - 估值判断：PB 1.85x（上市以来最低区间），PE(TTM) 25.33x、2026E 约 21.2x；PB 低但缺上行催化。<br>
+  Step 4 - 风险排查：量未起、单季毛利率回落、Q3 现金流转负、树脂成本上行、应收 48.90 亿。<br>
+  Step 5 - 结论：好公司（成本与资产负债表顶级），但当前不是好时点（修复斜率被证伪）；价格有下行保护、缺上行空间。<br>
+  Step 6 - 跟踪：Q4/年报单季毛利率能否回到 17%+、单季 CFO 能否转正、存货与预付款是否继续上升。
 </div>
 
-<h3>7.3 前瞻状态表（前瞻档位 B 的定义）</h3>
+<h3>前瞻状态（三轨：前瞻档，定性不打分）</h3>
 <table>
-  <tr><th>前瞻档位</th><th>含义</th><th>触发条件</th></tr>
-  <tr><td class="good"><b>S 上修</b></td><td>基本面明确向好、确定性高</td><td>Q3 量价齐升且毛利率站稳 18%+，订单能见度回升</td></tr>
-  <tr><td class="good"><b>A 偏上</b></td><td>方向向好、确定性中等偏上</td><td>Q3 出货环增 + 毛利率守住 15%+，收入端拐点确认</td></tr>
-  <tr style="background:#fffde7"><td class="neutral"><b>B 悬置/中性 (当前)</b></td><td>方向已有线索但未被验证，悬置待数据</td><td>利润端拐点已确认（26H1 +69.89%）；<b>但收入端（量）尚未拐点，Q3 出货环增 20-30% 的指引待三季报验证</b></td></tr>
-  <tr><td class="neutral"><b>C 偏下</b></td><td>方向转弱、确定性中等偏下</td><td>Q3 价格回落 + 量未起，毛利率跌破 12%</td></tr>
-  <tr><td class="bad"><b>D 下修</b></td><td>基本面明确转差</td><td>已停产产能大规模复产，行业重回价格战，毛利率跌破 10%</td></tr>
+  <tr><th style="width:26%">字段</th><th>内容</th></tr>
+  <tr><td>前瞻档位</td><td><span class="badge fwd-c">C</span> 方向确定不利但未完全定价——三季报证伪「量增」，毛利率与现金流同步转弱</td></tr>
+  <tr><td>风险方向与量级</td><td><b>负向 · 中高</b></td></tr>
+  <tr><td>正向变量</td><td>感光干膜（AI 服务器高多层板）26H1 +22.86%；泰国/越南海外基地毛利率 23.00%；2026 年首次中期分红；PB 处历史最低区间</td></tr>
+  <tr><td>覆盖程度</td><td><b>覆盖被侵蚀</b>——上版「毛利率守住 15%+、量增 20-30%」的核心假设，量增已被证伪，毛利率仅勉强守住</td></tr>
+  <tr><td>验证节点</td><td>2026 年报（预计 2027-03~04）单季毛利率与 CFO；以及 Q4 存货/预付款是否继续上升</td></tr>
+  <tr><td>升档条件</td><td>① Q4 单季毛利率 ≥17%；② 单季 CFO 转正且存货绝对额下降；③ 单季营收环比 ≥10%（量增重启）。三者至少满足两项 → 前瞻 B/A</td></tr>
+  <tr><td>降档条件</td><td>① Q4 单季毛利率 &lt;13%；② 连续两个季度 CFO 为负；③ 存货+预付款继续环比上升且收入未增。任一触发 → 前瞻 D</td></tr>
 </table>
-
 <div class="highlight-box">
-  <strong>为什么是 B 档？</strong>① <b>已有确认的部分</b>：26H1 归母 +69.89%、26Q2 单季毛利率 20.07%、CFO 转正 +12.81 亿、Q2 北向增持 68.7%——利润端与资金端拐点明确；② <b>仍悬置的部分</b>：胶膜销量 -11.97%、单价 -3.5%、合同负债 -34.1%、2026 装机预测 -11%~-13%——收入端（量）尚无明显拐点信号。利润改善 100% 来自单位盈利而非规模，其可持续性取决于 Q3 能否兑现「量增」。<b>方向有线索、未被验证，故 B 档而非 A 档。</b>
+  <strong>档位定义：</strong>S=前瞻有利且已被验证；A=前瞻有利、方向确定；B=悬置/中性但有覆盖；C=方向确定不利但未完全定价；D=风险已实质化、覆盖被突破。<br><br>
+  <strong>为什么是 C 而不是 B：</strong>B 的前提是「方向有线索但未被验证」。三季报已经把关键变量验证掉了——量没起来、毛利率环比 -5pct、现金流转负。<b>方向已经不是「悬置」，而是「确定向下」</b>；之所以不是 D，是因为 9M 同比仍 +64.50%、公司仍盈利、资产负债表没有任何裂缝，风险尚未实质化到「覆盖被突破」的程度。
 </div>
 
-<h3>7.4 催化剂与风险时间表</h3>
-<table>
-  <tr><th>时间</th><th>事件</th><th>方向</th></tr>
-  <tr><td>2026-10-14</td><td>首次中期分红 10 派 1.2 元除息</td><td class="good">✅ 已发生</td></tr>
-  <tr><td><b>2026-10-27（预计）</b></td><td><b>2026 三季报披露</b>——验证胶膜出货是否环增 20-30%、Q3 毛利率能否守住 15%+</td><td class="neutral">⚠ 本报告最重要的验证节点</td></tr>
-  <tr><td>2026Q4</td><td>8 月胶膜涨价落地传导至 Q3/Q4 报表；旺季组件排产数据</td><td class="good">✅ 潜在催化</td></tr>
-  <tr><td>持续</td><td>已停产产能是否复产；树脂（EVA/POE 粒子）价格走势</td><td class="bad">❌ 潜在风险</td></tr>
-  <tr><td>持续</td><td>感光干膜高端化（AI 服务器高多层板）放量节奏</td><td class="good">✅ 第二曲线</td></tr>
-  <tr><td>持续</td><td>福22转债转股进度与摊薄</td><td class="neutral">⚠ 中性偏负</td></tr>
-</table>
-
-<h3>7.5 投资评级</h3>
+<h3>投资评级（三轨：评级）</h3>
 <div class="rating-card">
-  投资评级：<span class="badge rating-outperform">Outperform</span>（优于大盘）
+  <span class="badge rating-neutral">Neutral</span>
+  　矩阵落点：财务<b>高</b>（85/100）× 前瞻<b>C</b> × 赔率<b>厚</b>（PB 1.85x 历史最低区间）
 </div>
+<div class="summary-box">
+  <strong>为什么不是更高一档：</strong>财务分 85 属「高」，但评级矩阵中 ≥80 分要拿到 Outperform，需要前瞻 S/A 或 B；当前前瞻为 C（方向确定不利），只能落在 Neutral / Underperform。<b>之所以选 Neutral 而非 Underperform，是因为赔率厚</b>：PB 1.85x 已跌破上轮周期底部、净现金 51.39 亿占市值 16.7%、9M 仍盈利 11.31 亿，向下的空间被资产负债表部分封住；概率加权预期总回报约 +6.9%，落在 Neutral 区间。<br><br>
+  <strong>上调条件（可观测）：</strong>Q4 单季毛利率回到 <b>17% 以上</b>，且单季 CFO 转正至 <b>+3 亿以上</b>，同时营收环比 ≥10% → 前瞻升至 B/A，评级上调至 Outperform。<br><br>
+  <strong>下调条件（可观测）：</strong>Q4 单季毛利率跌破 <b>13%</b>，或连续两个季度 CFO 为负，或存货+预付款合计再增加 <b>5 亿以上</b>而收入未增 → 前瞻降至 D，评级下调至 Underperform。
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
 <table>
-  <tr><th>评级要素</th><th>判断</th></tr>
-  <tr><td>财务品质分</td><td><b>88/100</b>（品质优秀，周期股体系）</td></tr>
-  <tr><td>前瞻档位</td><td><b>B</b>（悬置/中性但有覆盖）</td></tr>
-  <tr><td>投资评级</td><td><b>Outperform</b>——品质优秀（88 分）+ 前瞻 B 档，按评级矩阵给予「优于大盘」</td></tr>
-  <tr><td>赔率</td><td class="good"><b>厚</b>——PB 2.21x 处上市以来 3.2% 分位；悲观 10.0 元（-28%）/ 中性 13.81 元 / 乐观 18.7 元（+35%），下行有净现金 57.18 亿 + 账面净资产质量保护</td></tr>
-  <tr><td>验证节点</td><td><b>Q3胶膜量增</b>（2026-10-27 三季报）</td></tr>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="neutral">△ 中性</td><td>需求 2026 年 -11%~-13%，产能依旧充裕、出清未完成；行业壁垒是成本而非品牌，龙头能活但难享高估值</td></tr>
+  <tr><td>② 好公司</td><td class="good">✓</td><td>5 年均值 ROE 10.77%、9M 6.74%；毛利率 16.37% 领先同行 6.8pct；唯一盈利；但 9M CFO/归母 0.60 &lt;1，Q3 单季为负，含金量本期下降</td></tr>
+  <tr><td>③ 好价格</td><td class="good">✓（有保留）</td><td>PB 1.85x 处上市以来最低区间，净现金占市值 16.7%；但 PE 2026E 约 21.2x 不算极低，且 ROE 仅 9% 附近，PEG 不适用。低 PB 提供保护、不提供催化</td></tr>
 </table>
 
-<div class="verdict verdict-ok">综合结论：品质优秀（88/100）的全球胶膜绝对龙头，评级 Outperform；核心矛盾是「营收 -12.20% 而归母 +69.89%」的剪刀差 100% 由单位盈利改善造成、收入端尚未拐点</div>
+<h3>7.3 风险评估</h3>
 
-<div class="highlight-box">
-  <strong>升档条件（股价上行逻辑)：</strong>① <b>核心</b>：10-27 三季报胶膜出货环增 20-30% 且毛利率守住 15%+，收入端拐点确认 → 前瞻上调至 A，PB 向 2.86x（30% 分位，对应 17.9 元）修复，空间约 +29%；② 8 月胶膜涨价传导至 Q3/Q4 报表；③ 感光干膜切入 AI 服务器供应链放量；④ 提升分红/启动回购，改善 ROE 与资本配置效率。
-</div>
+<h4 style="font-size:14px;margin:12px 0 6px">a. 三个陷阱排查</h4>
 <div class="danger-box">
-  <strong>降档条件（股价下行风险）：</strong>① <b>核心</b>：Q3 单季毛利率跌破 12%（成本推动型修复回吐），或已停产产能大规模复产导致行业重回价格战 → 前瞻下调至 C/D，PB 有回落至 1.92x 历史底部（12.0 元，-13%）的风险；② 2026 全球装机下滑超预期、合同负债继续收缩；③ 应收账款 45.16 亿出现减值；④ 福22转债集中转股摊薄。
+  ☑ <b>价值陷阱（低PE + 低增长 + 高负债）→ 未命中。</b>负债率 19.61%、零有息短长借，不符合「高负债」；PE(TTM) 25.33x 也不算低。但「低增长」这一项命中（营收 -9.76%），需警惕低 PB 长期横盘。<br>
+  ☑ <b>周期陷阱（低PE + 周期顶点）→ 未命中。</b>当前不是周期顶点，而是底部区域的二次探底；PB 1.85x 处历史最低，PE 因利润未恢复而偏高，与「周期顶点低 PE」相反。<br>
+  ☑ <b>烧钱陷阱（高PE + 高增速 + 负现金流）→ 未命中，但出现早期信号。</b>PE 25x 不算高、9M 增速 +64.5% 但现金流累计仍为正；<b>需盯 Q3 单季 CFO -6.05 亿是否延续</b>。
 </div>
 
-<h3>7.6 一句话总结</h3>
+<h4 style="font-size:14px;margin:12px 0 6px">b. 管理层与治理风险</h4>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力与履历</td><td class="good">好</td><td>创始团队长期专注光伏封装材料，把公司做成全球市占率约 50% 的绝对龙头；穿越多轮周期仍保持盈利与分红</td></tr>
+  <tr><td>股权结构与利益一致性</td><td class="good">强</td><td>实控人持股稳定；子公司引入员工持股平台（少数股东权益增至 4.16 亿），绑定核心团队</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td class="good">无</td><td>未见重大违规、监管处罚或大额诉讼；商誉为 0，无并购暴雷风险</td></tr>
+  <tr><td>资本配置记录</td><td class="neutral">合理偏保守</td><td>连续 12 年分红、2026 年首次中期分红；但 80 亿现金类资产收益率仅约 2%，资本配置效率有提升空间</td></tr>
+  <tr><td>管理层增减持记录</td><td class="nd">待补充</td><td>26Q2 北向增持 5,586.73 万股、社保三组合新进；董监高近一年增减持明细未取得</td></tr>
+  <tr><td>CEO交接/关键人员变动</td><td class="good">无风险</td><td>创始人长期掌舵，无交接期不确定性</td></tr>
+</table>
+
+<h4 style="font-size:14px;margin:12px 0 6px">c. 盈利可持续性</h4>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是靠价？</td><td class="neutral">26H1 靠价/毛利，26Q3 量价均弱</td><td>26H1 胶膜销量 -11.97%、单价 -3.5%，利润靠单平毛利 +43.7%；26Q3 营收环比 +0.96%，量未起、毛利率回落</td></tr>
+  <tr><td>涨价能否持续？</td><td class="bad">需观察，倾向不能</td><td>本轮是成本推动型顺价，Q3 毛利率环比 -5.00pct 已说明传导不畅；预付款/存货上升指向高价树脂入库</td></tr>
+  <tr><td>非经常性利润占比</td><td class="neutral">中（13.2%）</td><td>9M 非经常性 1.49 亿，主要来自理财收益、公允价值变动、减值转回；扣非仍 +55.84%</td></tr>
+  <tr><td>大客户/大项目集中度</td><td class="neutral">集中</td><td>客户为晶科、隆基、天合等头部组件厂；前五大客户占比待补充，但组件环节本身高度集中</td></tr>
+  <tr><td>政策/监管依赖度</td><td class="neutral">中</td><td>光伏补贴退坡、出口退税调整、印度反倾销调查；公司靠海外基地部分对冲</td></tr>
+</table>
+
+<h4 style="font-size:14px;margin:12px 0 6px">d. 关键变量敏感性</h4>
+<div class="highlight-box">
+  <strong>变量 1：胶膜单季毛利率</strong><br>
+  乐观：Q4 回到 17%+（树脂企稳 + 顺价恢复）→ FY2026 EPS 约 0.59 元，PB 可看 2.5x（15.9 元，+35%）<br>
+  中性：维持 15% 附近 → EPS 约 0.56 元，PB 2.0x（12.7 元，+8%）<br>
+  悲观：跌破 13%（树脂继续涨、胶膜跌价）→ EPS 约 0.48 元，PB 1.6x（10.2 元，-14%）<br><br>
+  <strong>变量 2：EVA/POE 树脂价格</strong><br>
+  乐观：地缘缓和、树脂回落 → 成本压力缓解，毛利率修复<br>
+  中性：高位震荡 → 毛利率维持 15% 附近<br>
+  悲观：继续上涨且无法顺价 → 毛利率每降 1pct，按 9M 营收年化约 142 亿测算，影响毛利约 1.4 亿、税后归母约 1.2 亿（EPS 约 0.046 元）<br><br>
+  <strong>变量 3：全球装机/胶膜出货量</strong><br>
+  乐观：2027 年装机回暖、公司出货恢复增长 → 量增重启，PB 修复至 2.5x+<br>
+  中性：2026 年 -11%~-13%，公司出货持平 → 估值横盘<br>
+  悲观：装机下滑超预期 + 尾部产能复产 → 价格战重启，PB 回落至 1.6x 以下
+</div>
+
+<h3>7.4 前景展望</h3>
 <div class="summary-box">
-  <strong>福斯特是全球光伏胶膜绝对龙头（市占率约 50%、成本曲线最左端、毛利率 17.06% 领先同行 6.6pct），资产负债表 A 股制造业顶级（净现金 57.18 亿、资产负债率 19.99%、零有息短长借），26H1 利润端已确认周期拐点（归母 +69.89%、CFO 由负转正）。但这是「质量控制型」而非「规模扩张型」改善——营收 -12.20%、胶膜销量 -11.97%，收入端尚未拐点，利润修复 100% 来自单位盈利。估值 PB 2.21x 处上市以来 3.2% 分位，赔率厚、下行有净现金保护，PB 修复空间明确；但上行空间的兑现，取决于 10-27 三季报能否验证「量增 + 毛利率守 15%+」这一唯一关键变量。</strong> 财务品质 88 分、前瞻 B 档、评级 <b>Outperform</b>。
+  <strong>正向驱动：</strong><br>
+  1. 成本曲线最左端 + 50% 市占率 — 行业越差，尾部越先退出，龙头份额与议价权反而增强。<br>
+  2. 第二曲线（感光干膜/铝塑膜）— 26H1 电子材料 +22.86%、毛利率 23.94%，AI 服务器高多层板是长期增量。<br>
+  3. 资产负债表与分红 — 净现金 51.39 亿、连续 12 年分红，提供下行保护与股东回报。<br><br>
+  <strong>负向拖累：</strong><br>
+  1. 需求下滑 + 量增证伪 — 2026 全球装机 -11%~-13%，Q3 营收环比仅 +0.96%。<br>
+  2. 毛利率回吐 + 现金流转负 — Q3 单季毛利率 15.07%（环比 -5.00pct）、CFO -6.05 亿，低价库存红利耗尽。<br>
+  3. 树脂成本上行 — 预付款环比 +164%、存货环比 +13.2%，高价原料将在 Q4 体现。
 </div>
 
-<p style="font-size:12px;color:#666;">本 tab 数据缺失范围：26Q1 与 25H1 的<b>股东户数对比</b>、<b>前十大股东完整名单及变动明细</b>（仅取得北向与社保持仓部分信息）、<b>龙虎榜/大宗交易</b>——均标为<span class="nd">待补充</span>，不参与评分。</p>
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>EPS 预估</th><th>目标 PB</th><th>对应股价</th><th>预期回报</th><th>概率</th></tr>
+  <tr><td class="bad"><b>悲观</b></td><td>Q4 毛利率 &lt;13%，树脂继续涨，装机下滑超预期</td><td>0.479 元</td><td>1.60x</td><td>10.2 元</td><td class="bad">-13.6%</td><td>30%</td></tr>
+  <tr><td class="neutral"><b>中性</b></td><td>Q4 毛利率 15% 附近企稳，出货同比小幅下滑</td><td>0.556 元</td><td>2.00x</td><td>12.7 元</td><td>+8.0%</td><td>50%</td></tr>
+  <tr><td class="good"><b>乐观</b></td><td>Q4 毛利率回到 17%+，2027 年量增兑现</td><td>0.594 元</td><td>2.50x</td><td>15.9 元</td><td class="good">+35.0%</td><td>20%</td></tr>
+</table>
+<p style="font-size:12px;color:#666;">概率判断：中性 50%、悲观 30%、乐观 20%；概率加权预期总回报约 +6.9%。EPS 按总股本 26.0875 亿股、FY2026E 归母 12.5/14.5/15.5 亿测算。</p>
+
+<h3>7.5 资金面信号</h3>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>香港中央结算（北向）</td><td>26Q2 增持 5,586.73 万股至 13,711.12 万股（3.11% → <b>5.26%</b>，单季 +68.7%）</td><td class="good">✅ 外资在 Q2 大幅加仓；Q3 变动待三季报股东数据补充</td></tr>
+  <tr><td>社保基金</td><td>社保 502/110/107 三个组合 26Q2 <b>同时新进前十大股东</b></td><td class="good">✅ 长线资金进场信号</td></tr>
+  <tr><td>股东户数</td><td>2026-06-30 为 43,073 户</td><td class="neutral">⚠ 26Q3 股东户数待补充</td></tr>
+  <tr><td>融资余额</td><td class="nd">待补充</td><td class="nd">两融数据未取得</td></tr>
+  <tr><td>大股东/董监高增减持</td><td class="nd">待补充</td><td class="nd">近一年公告明细未取得</td></tr>
+  <tr><td>大宗交易</td><td class="nd">待补充</td><td class="nd">未取得</td></tr>
+  <tr><td>近期股价</td><td>11.78 元（2026-10-30），较 10-13 的 13.81 元 <b>-14.7%</b>；总市值 307.31 亿</td><td class="bad">❌ 三季报后股价明显下跌，市场正在定价「修复失速」</td></tr>
+</table>
+<div class="summary-box">
+  <strong>资金面整体判断：</strong>26Q2 的资金面是偏正面的（北向大幅增持 + 社保三组合新进），但那是建立在「H1 利润高增」的预期上。<b>三季报披露后股价从 13.81 元跌到 11.78 元（-14.7%），说明这部分乐观资金正在被重新定价。</b>在 Q3 股东数据（北向是否减持、社保是否退出）公布前，资金面判断应偏谨慎，不宜把 26Q2 的增持当作当前的安全垫。
+</div>
+
+<h3>7.6 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？（提示：Q3 单季 CFO -6.05 亿）<br>
+  3. 如果现在买入，期待的回报来源是什么？是 PB 修复，还是 Q4 毛利率反弹？<br>
+  4. 什么情况下你会坚决卖出？（提示：单季毛利率跌破 13% 或连续两季 CFO 为负）
+</div>
+
+<p style="font-size:12px;color:#666;">本 tab 数据缺失范围：26Q3 股东户数、北向/社保持仓变动、融资余额、大宗交易、董监高增减持——均标为<span class="nd">待补充</span>，不参与评分。</p>
 
 </div></div>
 
 
 <div class="footer">
   免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
-  数据来源：福斯特 2026 年半年度报告（2026-08-20）、福斯特 2025 年年度报告、腾讯行情 qt.gtimg.cn（2026-10-13 收盘）、东方财富 F10 财务与股本接口、爱股网 F10（经营分析/股东研究/分红扩股/盈利预测）、InfoLink Consulting（2025 全球胶膜出货排名）、Prismark（PCB 市场）、CRU/Exawatt（2026 装机预测）、联合资信《2026 年光伏行业分析》、华泰证券/东吴证券/中邮证券/长城证券/国联民生证券/国金证券研报（2026-08 至 2026-09）
+  数据来源：福斯特 2026 年第三季度报告（报告期 2026-09-30，实际披露 2026-10-27，经东方财富 F10 财务报表/主要指标双口径核验）、福斯特 2026 年半年度报告（2026-08-20）、福斯特 2025 年年度报告、腾讯行情 qt.gtimg.cn（2026-10-30 收盘）、东方财富 F10（财务/股本/股东接口）、InfoLink Consulting（2025 全球胶膜出货排名）、CRU/Exawatt（2026 装机预测）、联合资信《2026 年光伏行业分析》、券商研报（2026-08 至 2026-09）。三季报后卖方一致预期尚未完整更新，相关项已标注待补充。
 </div>
 
 </div>
