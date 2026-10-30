@@ -713,7 +713,7 @@
       buttons.forEach(function (b) { b.classList.remove('active'); });
       contents.forEach(function (c) { c.classList.remove('active'); });
       btn.classList.add('active');
-      var el = document.getElementById(target);
+      var el = document.getElementById('tab-' + target);
       if (el) { el.classList.add('active'); }
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });

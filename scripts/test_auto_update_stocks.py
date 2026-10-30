@@ -77,12 +77,21 @@ class PlanTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             updater.validate("<html>nothing</html>", "2026-09-30", "old")
 
-    def report(self, coverage="", meta="分析日期：2026-10-30"):
-        tabs = "".join(f'<div id="tab-{t}"></div>' for t in
-                       ("summary", "l1", "l2", "l3", "l4", "l5", "l6"))
-        return (f'<html><head></head><body><p class="meta">{meta}</p>{coverage}{tabs}'
+    def report(self, coverage="", meta="分析日期：2026-10-30", tab_id="'tab-' + target"):
+        names = ("summary", "l1", "l2", "l3", "l4", "l5", "l6")
+        buttons = "".join(f'<button data-tab="{t}"></button>' for t in names)
+        tabs = "".join(f'<div id="tab-{t}"></div>' for t in names)
+        script = f'<script>document.getElementById({tab_id});</script>'
+        return (f'<html><head></head><body><p class="meta">{meta}</p>{coverage}{buttons}{tabs}{script}'
                 '94/100<!-- TRACK fwd=A rating=Buy node=x --><!-- HISTORY-TABLE -->'
                 '<table></table></body></html>')
+
+    def test_tab_script_must_target_tab_ids(self):
+        with self.assertRaisesRegex(ValueError, "data-tab to tab-\\* ids"):
+            updater.validate(self.report(tab_id="target"), "2026-09-30", "old")
+        self.assertIn("<!-- COVERAGE period=2026-09-30 -->",
+                      updater.validate(self.report(
+                          meta="数据截止：2026-09-30"), "2026-09-30", "old"))
 
     def test_marker_with_unusual_whitespace_is_accepted(self):
         coverage = '<!--\u3000COVERAGE\u00a0period=2026-09-30\u3000-->'

@@ -192,6 +192,12 @@ def validate(text, period, old):
     for tab in ("summary", "l1", "l2", "l3", "l4", "l5", "l6"):
         if f'id="tab-{tab}"' not in text:
             raise ValueError(f"Missing tab {tab}")
+        if f'data-tab="{tab}"' not in text:
+            raise ValueError(f"Missing tab button for {tab}")
+    # The buttons carry data-tab="l1" while the panels are id="tab-l1"; a handler that looks up
+    # the bare value silently does nothing, leaving the report stuck on the first tab.
+    if not re.search(r"getElementById\(\s*['\"]tab-['\"]\s*\+", text):
+        raise ValueError("Tab switching script does not map data-tab to tab-* ids")
     if not re.search(r"\b\d{1,3}/100\b", text) or "<!-- TRACK " not in text:
         raise ValueError("Missing score / TRACK marker")
     text = ensure_coverage(text, period)
