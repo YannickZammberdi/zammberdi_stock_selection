@@ -17,10 +17,12 @@
 
 import datetime
 import json
+import os
 import re
 import shutil
 import sys
 from pathlib import Path
+from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parent.parent
 DOCS = ROOT / "docs"
@@ -324,6 +326,35 @@ def code_key(filename):
     return parts[-1]
 
 
+def stock_preview_path(report_path):
+    """Return the newest matching homepage preview, if one exists.
+
+    Reports named ``NAME_CODE_分析报告.html`` pair with
+    ``docs/preview/NAME_CODE_研究首页_vN.html``. A non-versioned
+    ``_研究首页.html`` is accepted as a fallback for manually-authored previews.
+    """
+    base = re.sub(r"_分析报告\.html$", "", report_path.name)
+    preview_dir = DOCS / "preview"
+    versioned = []
+    for candidate in preview_dir.glob(f"{base}_研究首页_v*.html") if preview_dir.exists() else []:
+        match = re.search(r"_研究首页_v(\d+)\.html$", candidate.name)
+        if match:
+            versioned.append((int(match.group(1)), candidate))
+    if versioned:
+        return max(versioned, key=lambda item: item[0])[1]
+    unversioned = preview_dir / f"{base}_研究首页.html"
+    return unversioned if unversioned.is_file() else None
+
+
+def stock_index_href(report_path, index_dir):
+    """Use a homepage preview when available; otherwise link to the full report."""
+    destination = stock_preview_path(report_path)
+    if destination is None:
+        return report_path.name
+    relative = Path(os.path.relpath(destination, index_dir)).as_posix()
+    return quote(relative, safe="/-_.")
+
+
 def normalize_type(dirname):
     return "防御性" if dirname == "防御型" else dirname
 
@@ -525,7 +556,8 @@ def build_stocks_index(market):
             "rating": rating,
             "node": node,
             "date": parse_date(html),
-            "file": f.name,
+            # 首选同名研究首页预览；无预览时仍直达完整报告。
+            "file": stock_index_href(f, target),
         })
     replace_data_array(
         target / "index.html",

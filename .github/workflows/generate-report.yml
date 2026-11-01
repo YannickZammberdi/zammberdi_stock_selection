@@ -76,7 +76,7 @@ jobs:
           RNAME: ${{ github.event.inputs.name }}
         run: |
           case "$RTYPE" in
-            stock)     P="使用 stock-report-tab skill，为 $RMARKET 股票 $RNAME 生成财务分析报告，保存到 docs/ 下对应目录" ;;
+            stock)     P="使用 stock-report-tab skill，为 $RMARKET 股票 $RNAME 生成或更新完整 L1-L6 财务分析报告，并同步生成独立研究首页预览 docs/preview/{股票简称}_{股票代码}_研究首页_v8.html；预览必须复用 docs/preview/research-dashboard-v8.css、与完整报告数据和评级一致，并链接回完整报告。保存到 docs/ 下对应目录。" ;;
             industry)  P="使用 l7-screening skill，筛一下 $RMARKET $RNAME 行业，生成行业分析报告，保存到 docs/ 下对应目录" ;;
             macro)     P="使用 macro-report skill，生成 $RMARKET 大盘宏观环境分析报告，保存到 docs/macro/ 下" ;;
             plan)      P="使用 stock-trade-plan skill，为 $RMARKET 股票 $RNAME 生成交易计划，保存到 docs/ 下对应目录" ;;
@@ -148,6 +148,42 @@ jobs:
             exit 0
           fi
           tar -xzf /tmp/report/report.tar.gz -C .
+
+      - name: 校验个股首页预览
+        if: ${{ github.event.inputs.type == 'stock' }}
+        env:
+          RNAME: ${{ github.event.inputs.name }}
+          RMARKET: ${{ github.event.inputs.market }}
+        run: |
+          python - "$RNAME" "$RMARKET" <<'PY'
+          import subprocess
+          import sys
+
+          sys.path.insert(0, "scripts")
+          import sync_ghpages as sync
+
+          requested_name, market = sys.argv[1:]
+          target = sync.DOCS / "stocks" if market == "A股" else sync.DOCS / "asx" / "stocks"
+          normalize = lambda value: "".join(value.casefold().split())
+          matches = []
+          for report in target.glob("*_分析报告.html"):
+              report_name, _ = sync.parse_stock_name_code(sync.read_utf8(report), report.name)
+              if normalize(report_name) == normalize(requested_name):
+                  matches.append(report)
+
+          if len(matches) != 1:
+              raise SystemExit(f"期望找到一份 {market} 个股报告，实际找到 {len(matches)} 份：{requested_name}")
+          preview = sync.stock_preview_path(matches[0])
+          if preview is None:
+              raise SystemExit(f"缺少个股首页预览：{matches[0].name}；请按 stock-report-tab skill 生成 _研究首页_v8.html")
+          report_rel = matches[0].relative_to(sync.ROOT).as_posix()
+          preview_rel = preview.relative_to(sync.ROOT).as_posix()
+          report_changed = subprocess.run(["git", "status", "--porcelain", "--", report_rel], check=True, capture_output=True, text=True).stdout.strip()
+          preview_changed = subprocess.run(["git", "status", "--porcelain", "--", preview_rel], check=True, capture_output=True, text=True).stdout.strip()
+          if report_changed and not preview_changed:
+              raise SystemExit(f"个股报告有更新但预览没有同步更新：{preview_rel}")
+          print(f"首页预览校验通过：{preview.relative_to(sync.DOCS)}")
+          PY
 
       - name: 刷新评分沿革 + 重建各级 index.html
         run: python scripts/sync_ghpages.py
