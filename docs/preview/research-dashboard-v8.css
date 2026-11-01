@@ -955,7 +955,7 @@
   .evidence-label{color:#70756D}
   #valuation-detail .qa-item:first-child,#valuation-detail .qa-item:nth-child(2),#valuation-detail .qa-item:nth-child(3){background:transparent;border:0;border-bottom:1px solid #E3DED4;padding:14px 0}
   #valuation-detail .qa-item:first-child .qa-q{color:#166534}
-  #valuation-detail .qa-item:nth-child(2) .qa-q{background:#FFF0B3;color:#854D0E;border-radius:7px;padding:4px 8px}
+  #valuation-detail .qa-item:nth-child(2) .qa-q{background:transparent;color:#854D0E;border-radius:0;padding:0}
   #valuation-detail .qa-item:nth-child(3) .qa-q{color:#991B1B}
   .scenario-list{border:0;display:grid;gap:9px}
   .scenario-head{border:0;color:#70756D;padding:0 8px 6px}
