@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>福斯特 603806 · 研究首页 V8</title>
+<link rel="stylesheet" href="research-dashboard-v8.css">
+<style>
+  /* Per-company semantic assignment, based on the current report rather than card order alone. */
+  .metric:nth-child(2),.metric:nth-child(5),.metric:nth-child(6){background:#FFF0B3;color:#854D0E}
+  .metric:nth-child(2) .metric-label,.metric:nth-child(2) .metric-value,.metric:nth-child(2) .metric-value .unit,.metric:nth-child(2) .metric-delta,.metric:nth-child(2) .metric-note,
+  .metric:nth-child(5) .metric-label,.metric:nth-child(5) .metric-value,.metric:nth-child(5) .metric-value .unit,.metric:nth-child(5) .metric-delta,.metric:nth-child(5) .metric-note,
+  .metric:nth-child(6) .metric-label,.metric:nth-child(6) .metric-value,.metric:nth-child(6) .metric-value .unit,.metric:nth-child(6) .metric-delta,.metric:nth-child(6) .metric-note{color:#854D0E}
+  .logic-item:nth-child(2) .logic-claim{background:#FFF0B3;color:#854D0E}
+  @media(max-width:720px){.metric:nth-child(2),.metric:nth-child(5),.metric:nth-child(6){border-radius:12px}}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="topbar-inner">
+  <a class="brand" href="../index.html"><span class="brand-mark"></span>股票研究笔记 <span class="brand-sub">/ 个股摘要</span></a>
+  <nav class="top-nav" aria-label="页内导航">
+    <a href="#quality">财务质量</a><a href="#logic">投资逻辑</a><a href="#valuation-detail">估值</a><a href="#risk">风险</a><a href="#tracking">跟踪</a>
+    <span class="preview-tag">福斯特首页 V8</span>
+    <a class="full" href="../stocks/福斯特_603806_分析报告.html">完整报告 L1–L6 ↗</a>
+  </nav>
+</div></header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-main">
+      <div class="eyebrow">光伏辅材 · 胶膜 ｜ 2026 三季报</div>
+      <div class="title-row"><h1>福斯特</h1><span class="code">603806.SH</span></div>
+      <p class="thesis">全球胶膜龙头，<span class="accent">周期修复斜率再度承压。</span></p>
+      <div class="signal-caution"><span class="signal-tag">观察节点</span><span>Q4 毛利率、单季经营现金流与存货/预付款</span></div>
+      <p class="dek">全球胶膜市占率约 50%，成本曲线与资产负债表优势仍在；但三季报显示收入未起量、Q3 毛利率由 20.07% 回落至 15.07%，单季经营现金流转负。PB 1.85x 已处上市以来低位，却只有下行保护，尚缺基本面反转催化。</p>
+      <div class="verdict">
+        <div class="verdict-item"><span class="verdict-label">投资评级</span><span class="verdict-value buy">Neutral <span class="cn">中性</span></span></div>
+        <div class="verdict-item"><span class="verdict-label">财务品质</span><span class="verdict-value">85<span class="unit">/100</span></span></div>
+        <div class="verdict-item"><span class="verdict-label">前瞻档位</span><span class="verdict-value">C<span class="unit">负向未完全定价</span></span></div>
+      </div>
+      <p class="verdict-note">矩阵落点：周期股体系 85/100 × 前瞻 C × 概率加权预期回报 +6.9% → <strong>Neutral</strong></p>
+    </div>
+    <aside class="valuation" aria-label="估值快照">
+      <div class="val-head"><span class="val-label">估值快照</span><span class="val-badge">2026-10-30 收盘</span></div>
+      <div class="price num">11.78<span class="cur">CNY</span></div>
+      <div class="price-sub">总市值 307.31 亿元 · BVPS 6.3601 元</div>
+      <div class="target"><div><div class="target-label">12 个月中性情景</div><div class="target-value num">12.70<span class="cur">元</span></div></div><div class="upside">+8.0%</div></div>
+      <div class="scale"><div class="scale-track"><span class="scale-zone"></span><span class="scale-mark" style="left:12%"></span><span class="scale-mark current" style="left:34%"></span><span class="scale-mark base" style="left:55%"></span><span class="scale-mark" style="left:88%"></span></div>
+        <div class="scale-labels"><span style="left:12%">10.20</span><span class="now" style="left:34%">11.78</span><span style="left:55%">12.70</span><span style="left:88%">15.90</span></div>
+        <div class="scale-legend"><span class="lg"><i class="lg-dot"></i>现价</span><span class="lg"><i class="lg-dot hollow"></i>中性情景</span><span class="weighted">概率加权 +6.9%</span></div>
+        <div class="val-meta">PB 1.85x · 上市以来约 0–2% 分位（周期股以 PB 为主）</div>
+      </div>
+    </aside>
+  </section>
+
+  <section class="metrics" aria-label="核心指标">
+    <div class="metric"><div class="metric-label">全球胶膜市占</div><div class="metric-value num">≈50<span class="unit">%</span></div><div class="metric-delta">全球龙头</div><div class="metric-note">2025 年出货领先</div></div>
+    <div class="metric"><div class="metric-label">Q3 单季毛利率</div><div class="metric-value num">15.07<span class="unit">%</span></div><div class="metric-delta flag">环比 -5.00pct</div><div class="metric-note">Q2 为 20.07%</div></div>
+    <div class="metric"><div class="metric-label">净现金</div><div class="metric-value num">51.39<span class="unit">亿</span></div><div class="metric-delta">现金安全垫充足</div><div class="metric-note">资产负债率 19.61%</div></div>
+    <div class="metric"><div class="metric-label">9M 归母净利</div><div class="metric-value num">11.31<span class="unit">亿</span></div><div class="metric-delta">+64.50% 同比</div><div class="metric-note">9M 已超 2025 全年</div></div>
+    <div class="metric"><div class="metric-label">Q3 单季经营现金流</div><div class="metric-value num">-6.05<span class="unit">亿</span></div><div class="metric-delta flag">由正转负</div><div class="metric-note">H1 累计 +12.81 亿</div></div>
+    <div class="metric"><div class="metric-label">PB（26Q3 BVPS）</div><div class="metric-value num">1.85<span class="unit">x</span></div><div class="metric-delta">历史低位</div><div class="metric-note">低位不等于反转确认</div></div>
+  </section>
+
+  <section class="section" id="quality"><div class="section-head"><div class="section-num">01</div><div><div class="section-kicker">Financial Quality</div><h2 class="section-title">财务质量：85 分，优势仍在，边际动能转弱。</h2><p class="section-dek">成本位置、负债安全垫与历史 PB 分位得分突出；周期位置和现金生成能力因 Q3 转弱而扣分。</p></div></div>
+    <div class="section-body"><div class="quality-grid">
+      <div class="score-panel"><div class="score-label">财务品质分 / 周期股体系</div><div class="score-number num">85<span class="denom">/100</span></div><div class="score-verdict">品质优秀</div><p class="score-copy">较上版 88 分下调 3 分。全球成本优势与净现金仍构成底部缓冲，但量增未兑现、单季毛利率与现金流同步回落。</p><div class="score-bar" aria-hidden="true"><span style="width:85%"></span><i style="left:85%"></i></div><div class="score-scale"><span>0</span><span>周期股八维度评分</span><span>100</span></div><div class="history"><span>评分沿革</span><span>08-19 <b>92</b></span><span>10-13 <b>88</b></span><span>10-18 <b>88</b></span><span class="now">10-30 85</span></div></div>
+      <div><div class="quality-table">
+        <div class="q-row"><div class="q-name">成本位置</div><div class="q-read">9M 毛利率 16.37%，可比同行领先</div><div class="q-score">15/15</div><div class="q-bar"><span style="width:100%"></span></div></div>
+        <div class="q-row"><div class="q-name">负债安全垫</div><div class="q-read">净现金 51.39 亿 · 负债率 19.61%</div><div class="q-score">15/15</div><div class="q-bar"><span style="width:100%"></span></div></div>
+        <div class="q-row"><div class="q-name">周期位置</div><div class="q-read">底部区域二次探底，Q3 毛利率回落</div><div class="q-score">9/15</div><div class="q-bar"><span class="warn" style="width:60%"></span></div></div>
+        <div class="q-row"><div class="q-name">PB 历史分位</div><div class="q-read">PB 1.85x，上市以来约 0–2% 分位</div><div class="q-score">15/15</div><div class="q-bar"><span style="width:100%"></span></div></div>
+        <div class="q-row"><div class="q-name">现金生成能力</div><div class="q-read">9M FCF +5.10 亿；Q3 单季 CFO -6.05 亿</div><div class="q-score">8/10</div><div class="q-bar"><span class="warn" style="width:80%"></span></div></div>
+      </div><p class="note"><strong>本期下修：</strong>周期位置 11→9，FCF 9→8。9M 经营现金流仍为正，但 Q3 单季 CFO 转负，存货与预付款同步上升，需看年报能否回补。</p></div>
+    </div></div>
+  </section>
+
+  <section class="section" id="logic"><div class="section-head"><div class="section-num">02</div><div><div class="section-kicker">Investment Thesis</div><h2 class="section-title">核心逻辑：龙头有底，但修复尚待验证。</h2><p class="section-dek">成本优势和资产负债表支撑穿越周期；短期评级取决于需求、毛利率与现金流能否重新同步改善。</p></div></div>
+    <div class="section-body"><div class="logic-grid">
+      <article class="logic-item"><div class="logic-num">01</div><h3 class="logic-title">成本曲线仍处前列</h3><p class="logic-claim">全球市占约 50%，9M 毛利率 16.37%，同行可比公司均未超过 11%。</p><p class="logic-copy">胶膜行业仍供给充裕、需求承压，但福斯特依靠规模集采、自研设备与较成熟产线，维持行业领先毛利率。Q3 单季回落至 15.07%，优势仍在，趋势却需重新确认。</p><div class="logic-evidence"><div class="evidence-row"><span class="evidence-value num">≈50%</span><span class="evidence-label">全球胶膜市占</span></div><div class="evidence-row"><span class="evidence-value num">16.37%</span><span class="evidence-label">9M 毛利率</span></div></div></article>
+      <article class="logic-item"><div class="logic-num">02</div><h3 class="logic-title">Q3 验证了修复失速</h3><p class="logic-claim">营收环比仅 +0.96%，毛利率回落 5pct，单季 CFO 转负。</p><p class="logic-copy">H1 利润修复受益于树脂涨价传导与低价库存红利；Q3 高价树脂入库后，成本压力重新显现。量没有明显起来，归母净利环比 -45.54%，原先的“修复加速”假设暂不成立。</p><div class="logic-evidence"><div class="evidence-row"><span class="evidence-value num">-5.00pct</span><span class="evidence-label">Q3 毛利率环比</span></div><div class="evidence-row"><span class="evidence-value num">-6.05亿</span><span class="evidence-label">Q3 单季 CFO</span></div></div></article>
+      <article class="logic-item"><div class="logic-num">03</div><h3 class="logic-title">低 PB 是缓冲，不是催化</h3><p class="logic-claim">PB 1.85x 创上市以来低位；中性情景回报 +8%，等待盈利兑现。</p><p class="logic-copy">净现金 51.39 亿、低负债率与持续分红提供资产端缓冲。周期估值以 PB 为锚；若 Q4 毛利率继续下行、ROE 向 8% 以下回落，合理 PB 中枢也可能下移，因此历史低位不能单独作为反转信号。</p><div class="logic-evidence"><div class="evidence-row"><span class="evidence-value num">1.85x</span><span class="evidence-label">PB · 历史约 0–2% 分位</span></div><div class="evidence-row"><span class="evidence-value num">+6.9%</span><span class="evidence-label">概率加权预期回报</span></div></div></article>
+    </div></div>
+  </section>
+
+  <section class="section" id="valuation-detail"><div class="section-head"><div class="section-num">03</div><div><div class="section-kicker">Valuation</div><h2 class="section-title">估值：历史低位，但安全边际取决于盈利底。</h2><p class="section-dek">周期股以 PB Band 为核心；当前 PB 跌破前历史低点，同时 Q3 边际基本面转弱，需避免把低分位等同于反转。</p></div></div>
+    <div class="section-body"><div class="valuation-grid"><div class="qa">
+      <div class="qa-item"><div class="qa-q">便宜吗？</div><div class="qa-a">PB <strong>1.85x</strong>，约处上市以来 <strong>0–2% 分位</strong>；低于 2025-04 前低 1.92x。周期股不以 PE 作为主要锚。</div></div>
+      <div class="qa-item"><div class="qa-q">为什么要谨慎？</div><div class="qa-a">Q3 单季毛利率回落至 15.07%，CFO -6.05 亿，收入环比仅 +0.96%。如果 Q4 继续下滑，ROE 与合理 PB 可能同步下移。</div></div>
+      <div class="qa-item"><div class="qa-q">有什么支撑？</div><div class="qa-a">现金类资产 80.59 亿、净现金 51.39 亿，资产负债率 19.61%；PB 低位提供资产缓冲，但不能替代盈利改善。</div></div>
+    </div><div><div class="scenario-list"><div class="scenario-head"><span>情景</span><span>核心假设</span><span>目标价</span><span>回报</span></div>
+      <div class="scenario-row"><div class="scenario-name mid">乐观 <em>20%</em></div><div class="scenario-assumption">Q4 树脂企稳、毛利率回到 17%+，2027 年量增兑现</div><div class="scenario-target num">15.90</div><div class="scenario-return">+35.0%</div></div>
+      <div class="scenario-row"><div class="scenario-name mid">中性 <em>50%</em></div><div class="scenario-assumption">Q4 毛利率约 15% 企稳，量大致持平、全年出货小幅下滑</div><div class="scenario-target num">12.70</div><div class="scenario-return">+8.0%</div></div>
+      <div class="scenario-row"><div class="scenario-name bear">悲观 <em>30%</em></div><div class="scenario-assumption">树脂继续上涨、Q4 毛利率跌破 13%，装机需求继续下滑</div><div class="scenario-target num">10.20</div><div class="scenario-return neg">-13.6%</div></div>
+    </div><div class="scenario-foot"><span>概率加权预期回报 <strong>+6.9%</strong></span><span>周期股口径：PB Band · Neutral 区间</span></div><p class="note">目标价与概率沿用 2026-10-30 分析报告的三情景测算；券商三季报前目标价未作为本次估值依据。</p></div></div></div>
+  </section>
+
+  <section class="section" id="risk"><div class="section-head"><div class="section-num">04</div><div><div class="section-kicker">Key Risk</div><h2 class="section-title">最大风险：周期修复再度承压。</h2><p class="section-dek">Q3 的量、价、现金流信号同时转弱；低 PB 可能在盈利预期下修时继续横盘或探底。</p></div></div>
+    <div class="section-body"><div class="risk-panel"><div>
+      <div class="risk-kicker">经营边际转弱 <span class="risk-tag">负向 · 中高</span></div>
+      <div class="risk-alert"><h3 class="risk-title">“毛利率守住、需求放量”的验证只完成一半，现金流也已转负。</h3></div>
+      <p class="risk-copy">Q3 营收 36.50 亿，环比仅 +0.96%；单季毛利率从 Q2 的 20.07% 降至 15.07%，归母净利环比 -45.54%，经营现金流 -6.05 亿。存货环比增加 2.18 亿、预付款增加 4.14 亿，显示高价树脂入库可能继续挤压 Q4 毛利。</p>
+      <div class="risk-stats"><div class="risk-stat"><strong class="num">15.07%</strong><span>Q3 单季毛利率</span></div><div class="risk-stat"><strong class="num">-6.05亿</strong><span>Q3 单季 CFO</span></div><div class="risk-stat"><strong class="num neg">-13.6%</strong><span>悲观情景回报</span></div></div>
+    </div><div class="risk-side"><div class="risk-side-title">其他需持续跟踪的风险</div><ul class="risk-list"><li><span>需求与出货</span>2026 年全球新增装机预测同比下降约 11%–13%；Q3 尚未出现明显旺季放量。</li><li><span>应收占用</span>应收账款 48.90 亿，周转约 116.65 天；客户质量较好，但资金占用不可忽略。</li><li><span>树脂与库存</span>EVA/POE 成本上行而下游拒绝顺价，会继续压缩毛利；关注存货、预付款变化。</li></ul></div>
+    </div></div></div>
+  </section>
+
+  <section class="section" id="tracking"><div class="section-head"><div class="section-num">05</div><div><div class="section-kicker">What Changes The Call</div><h2 class="section-title">接下来，盯住三个可验证信号。</h2><p class="section-dek">评级不是静态结论；Q4/年报将检验毛利率修复、经营现金流和需求是否重新形成合力。</p></div></div>
+    <div class="section-body"><div class="track-grid"><div class="timeline">
+      <div class="tl-item"><div class="tl-date">Q4 / 年报</div><div class="tl-body"><h4>单季毛利率</h4><p>≥17% 且量增重启：修复斜率改善；继续下行：周期底部可能延长。</p></div></div>
+      <div class="tl-item"><div class="tl-date">Q4 / 年报</div><div class="tl-body"><h4>经营现金流与营运资本</h4><p>单季 CFO 转正、存货绝对额下降：回款与库存压力缓解；持续为负：前瞻继续承压。</p></div></div>
+      <div class="tl-item"><div class="tl-date">2027-03~04</div><div class="tl-body"><h4>全年收入与出货</h4><p>单季营收环比 ≥10% 才能支持量增重启判断；仅靠提价带来毛利回升，确认力度有限。</p></div></div>
+    </div><div><div class="trigger-block"><div class="trigger-title up">升档观察</div><ul class="trigger-list"><li>Q4 单季毛利率 ≥17%。</li><li>单季 CFO 转正，且存货绝对额下降。</li><li>单季营收环比 ≥10%；至少满足两项，重新评估前瞻档位。</li></ul></div><div class="trigger-block"><div class="trigger-title down">降档观察</div><ul class="trigger-list down"><li>Q4 毛利率跌破 13%，或树脂成本继续上行且无法顺价。</li><li>单季 CFO 持续为负，存货/预付款继续明显增加。</li><li>收入继续恶化或核心胶膜市占率下滑，重新评估 Neutral 评级。</li></ul></div></div></div></div>
+  </section>
+
+  <div class="read-more"><div><div class="label">Continue Reading</div><h3>L1–L6 完整研究</h3><p>完整财务三表、周期股评分、PB Band、杜邦拆解、同行对比与前瞻状态。</p></div><a class="btn" href="../stocks/福斯特_603806_分析报告.html">阅读完整报告 <span class="arrow">→</span></a></div>
+  <footer class="footer"><p>数据来源：福斯特 2026 年三季报（2026-10-27 披露）、2026 半年报、2025 年报及 2026-10-30 收盘行情。分析日期 2026-10-30。本页为首页摘要预览。</p><div class="stamp">仅供研究参考，不构成投资建议<br><a href="../stocks/index.html">全部个股报告</a></div></footer>
+</main>
+</body>
+</html>
