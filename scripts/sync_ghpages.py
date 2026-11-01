@@ -329,12 +329,15 @@ def code_key(filename):
 def stock_preview_path(report_path):
     """Return the newest matching homepage preview, if one exists.
 
-    Reports named ``NAME_CODE_分析报告.html`` pair with
-    ``docs/preview/NAME_CODE_研究首页_vN.html``. A non-versioned
-    ``_研究首页.html`` is accepted as a fallback for manually-authored previews.
+    Reports named ``NAME_CODE_分析报告.html`` pair with the canonical
+    ``docs/preview/NAME_CODE_研究首页.html``. For backward compatibility, if
+    there is no canonical preview, use the highest-versioned ``_研究首页_vN.html``.
     """
     base = re.sub(r"_分析报告\.html$", "", report_path.name)
     preview_dir = DOCS / "preview"
+    unversioned = preview_dir / f"{base}_研究首页.html"
+    if unversioned.is_file():
+        return unversioned
     versioned = []
     for candidate in preview_dir.glob(f"{base}_研究首页_v*.html") if preview_dir.exists() else []:
         match = re.search(r"_研究首页_v(\d+)\.html$", candidate.name)
@@ -342,8 +345,7 @@ def stock_preview_path(report_path):
             versioned.append((int(match.group(1)), candidate))
     if versioned:
         return max(versioned, key=lambda item: item[0])[1]
-    unversioned = preview_dir / f"{base}_研究首页.html"
-    return unversioned if unversioned.is_file() else None
+    return None
 
 
 def stock_index_href(report_path, index_dir):

@@ -5,7 +5,7 @@ Reusable visual system extracted from the approved 药明康德 V8 homepage. Thi
 ## Files
 
 - `research-dashboard-v8.css` — complete stylesheet (layout foundation plus V8 visual layer) for the V7/V8-style semantic hooks.
-- `药明康德_603259_研究首页_v8.html` — reference implementation.
+- `药明康德_603259_研究首页.html` — reference implementation.
 
 ## Apply it
 
