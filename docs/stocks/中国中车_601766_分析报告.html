@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中国中车(601766) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .score-note { font-size: 13px; color: #666; background: #fafafa; border: 1px dashed #ccc; padding: 8px 12px; margin: 10px 0; }
+  .history-table td:first-child { white-space: nowrap; }
+  .badge { display: inline-block; padding: 1px 9px; border-radius: 4px; font-size: 12px; font-weight: 700; white-space: nowrap; }
+  .fwd-s { background: #e8f5e9; color: #1b5e20; border: 1px solid #1b5e20; }
+  .fwd-a { background: #f1f8e9; color: #558b2f; border: 1px solid #7cb342; }
+  .fwd-b { background: #fffde7; color: #f9a825; border: 1px solid #fdd835; }
+  .fwd-c { background: #fff3e0; color: #e65100; border: 1px solid #fb8c00; }
+  .fwd-d { background: #fde8e8; color: #c0392b; border: 1px solid #c0392b; }
+  .rating-buy { background: #e8f5e9; color: #1b5e20; border: 1px solid #1b5e20; }
+  .rating-outperform { background: #f1f8e9; color: #558b2f; border: 1px solid #7cb342; }
+  .rating-neutral { background: #eeeeee; color: #616161; border: 1px solid #bbbbbb; }
+  .rating-underperform { background: #fff3e0; color: #e65100; border: 1px solid #fb8c00; }
+  .rating-sell { background: #fde8e8; color: #c0392b; border: 1px solid #c0392b; }
+  .track-card td { text-align: left; }
+  .track-card td:first-child { width: 34%; font-weight: 600; background: #f5f5f5; }
+  .rating-card { text-align: center; font-size: 17px; font-weight: bold; padding: 16px; margin: 14px 0; border-radius: 8px; background: #fafafa; border: 1px solid #e0e0e0; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>中国中车（601766）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026-11-26 | 数据来源：2025年年度报告 + 2026年第三季度报告 + 东吴证券/财信证券研报 + 公开行情</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<!-- TRACK 机器可读标记（sync 脚本读取，勿删勿改格式） -->
+<!-- TRACK fwd=B rating=Neutral node=Q4现金流与毛利率 -->
+
+<h2>三轨摘要</h2>
+<table class="track-card">
+  <tr><td>框架类型</td><td>混合周期偏价值型（采用非周期股评分体系，与 L5 分类一致）</td></tr>
+  <tr><td>财务品质分</td><td>70/100（一般关注）</td></tr>
+  <tr><td>前瞻档位</td><td><span class="badge fwd-b">B</span> 需求方向有利、订单有覆盖，但盈利与现金流兑现尚未验证</td></tr>
+  <tr><td>投资评级</td><td><span class="badge rating-neutral">Neutral</span></td></tr>
+  <tr><td>一句话结论</td><td>当前 Neutral；核心矛盾是订单与需求可见性强，但低 ROE、Q3 单季利润下滑与经营现金流净流出使赔率不足；全年 CFO 转正且 Q4 毛利率≥21% 可上调，Q4 毛利率&lt;19% 或 CFO 继续为负则下调。</td></tr>
+</table>
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>中国中车股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>601766（上交所）／1766.HK（港交所）</td></tr>
+  <tr><td>所属行业</td><td>机械设备—轨交设备（铁路、船舶、航空航天和其他运输设备制造业）</td></tr>
+  <tr><td>行业地位</td><td>全球轨道交通装备规模第一，国内动车组、机车、货车、城轨车辆龙头，国务院国资委实际控制</td></tr>
+  <tr><td>FY 营收</td><td>2,730.63 亿元（同比 +10.79%）</td></tr>
+  <tr><td>归母净利润</td><td>131.81 亿元（同比 +6.40%）</td></tr>
+  <tr><td>经营现金流</td><td>241.86 亿元（同比 -10.61%）</td></tr>
+  <tr><td>总资产</td><td>5,486.62 亿元（2026-09-30）</td></tr>
+  <tr><td>归母净资产</td><td>1,757.60 亿元（2026-09-30）</td></tr>
+  <tr><td>ROE</td><td>7.70%（FY2025 加权）；9M2026 加权 5.87%</td></tr>
+</table>
+
+<p class="score-note"><strong>评分口径说明：</strong><span>采用非周期股评分体系（混合周期偏价值，ROE稳定）；首次分析，无历史版本</span></p>
+
+<h2>综合评分（百分制）</h2>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE</td><td class="neutral">5</td><td style="text-align:left">7.70%（FY2025），处 5%–10% 区间；9M2026 年化约 7.8%</td></tr>
+  <tr><td>杜邦驱动质量</td><td class="neutral">3</td><td style="text-align:left">低净利率 + 中周转 + 权益乘数升至 3.20，ROE 对杠杆依赖上升</td></tr>
+  <tr><td>利润含金量</td><td class="good">15</td><td style="text-align:left">CFO/归母净利 1.83（CFO/总净利 1.43），全年现金含量优秀</td></tr>
+  <tr><td>营收增长</td><td class="good">10</td><td style="text-align:left">FY2025 +10.79%，9M2026 +5.88%</td></tr>
+  <tr><td>利润增长</td><td class="neutral">7</td><td style="text-align:left">FY2025 归母 +6.40%，9M2026 +3.70%</td></tr>
+  <tr><td>负债率</td><td class="bad">4</td><td style="text-align:left">60.77%（FY2025）／59.96%（9M2026），高于 55% 但低于 70%</td></tr>
+  <tr><td>短期偿债</td><td class="good">10</td><td style="text-align:left">货币资金 + 交易性金融资产约 545 亿元，覆盖短期有息负债约 119 亿元约 4.6 倍</td></tr>
+  <tr><td>毛利率水平与趋势</td><td class="neutral">7</td><td style="text-align:left">21.38%，近三年稳定在 21%–22%，但绝对水平偏低</td></tr>
+  <tr><td>估值（PE vs 合理区间）</td><td class="bad">4</td><td style="text-align:left">PE(TTM) 14.2x，高于 ROE 对应的理论合理 PE，处历史中位</td></tr>
+  <tr><td>FCF</td><td class="good">5</td><td style="text-align:left">FY2025 FCF 约 157 亿元，持续为正</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">70/100</td><td style="text-align:left">一般关注：现金与订单强，盈利质量与估值弹性一般</td></tr>
+</table>
+
+<div class="verdict verdict-caution">一般关注（70/100分）</div>
+<h2 style="margin-top:16px">评分沿革</h2>
+<style>.history-table{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:13px}.history-table th,.history-table td{border:1px solid #ddd;padding:6px 8px;text-align:center}.history-table th{background:#f0f0f0;font-weight:bold}.history-table td.good{color:#27ae60}.history-table td.neutral{color:#e67e22}.history-table td.bad{color:#c0392b}</style><table class="history-table">
+  <tr><th>日期</th><th>评分</th><th>评分体系</th><th>变化原因</th></tr>
+  <tr><td>2026-11-26</td><td class="neutral" style="font-weight:bold">70/100</td><td>混合周期</td><td style="text-align:left">采用非周期股评分体系（混合周期偏价值，ROE稳定）；首次分析，无历史版本</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>中国中车是全球轨交装备龙头，订单与现金流底盘扎实、分红率高，但 ROE 仅 7.7%、毛利率约 21%，盈利质量中等；2026Q3 单季利润下滑、前三季经营现金流净流出，短期兑现节奏是主要矛盾。<br><br>
+  <strong>核心优势：</strong>① 全球规模第一，2025 年末在手订单约 3,571 亿元，覆盖约 1.3 年营收 ② 全年 CFO/归母净利 1.83，现金含量优秀 ③ 2025 年度分红率 50.08%、连续 18 年分红，股息率约 5% ④ 中车集团 2026 年 7 月增持，央企背景与订单可见性强<br><br>
+  <strong>核心风险：</strong>① 应收账款 1,194.94 亿元，占归母净利约 906%、占净资产约 68% ② 9M2026 经营现金流净流出 107.64 亿元，回款与交付节奏波动 ③ 新产业毛利率仅 16.46%，风电价格竞争压制盈利 ④ 汇率波动使财务费用由 -1.27 亿元转为 +10.68 亿元
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>2,730.63 亿</td><td>2,464.74 亿</td><td class="good">+10.79%</td><td>良好，铁路装备与新产业双驱动</td></tr>
+  <tr><td>归母净利润</td><td>131.81 亿</td><td>123.88 亿</td><td class="good">+6.40%</td><td>稳健，增速低于营收</td></tr>
+  <tr><td>扣非归母净利润</td><td>109.75 亿</td><td>101.43 亿</td><td class="good">+8.20%</td><td>主业盈利改善</td></tr>
+  <tr><td>毛利率</td><td>21.38%</td><td>21.38%</td><td>持平</td><td>偏低但稳定</td></tr>
+  <tr><td>归母净利率</td><td>4.83%</td><td>5.03%</td><td class="bad">-0.20pct</td><td>偏低，费用与减值侵蚀</td></tr>
+  <tr><td>期间费用率</td><td>14.47%</td><td>15.03%</td><td class="good">-0.56pct</td><td>费用管控改善</td></tr>
+  <tr><td>Q4 营收</td><td>891.98 亿</td><td>938.82 亿</td><td class="bad">-5.0%</td><td>交付节奏承压</td></tr>
+  <tr><td>Q4 归母净利</td><td>32.35 亿</td><td>51.42 亿</td><td class="bad">-37.1%</td><td>单季明显承压</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>2025 年营收增长 10.79%，但归母净利仅增 6.40%，净利率下滑 0.20pct；Q4 单季营收与净利双降，显示交付与确收节奏对利润影响较大。2026 年前三季度营收 +5.88%、归母净利 +3.70%，Q3 单季归母净利 -13.97%，增长动能边际放缓。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>2026-09-30</th><th>2025-12-31</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td>453.45 亿</td><td>678.35 亿</td><td class="neutral">较年初 -33.15%，需关注</td></tr>
+  <tr><td>应收账款</td><td>1,194.94 亿</td><td>1,165.02 亿</td><td class="bad">规模大，占净资产约 68%</td></tr>
+  <tr><td>存货</td><td>1,065.26 亿</td><td>951.43 亿</td><td class="neutral">较年初 +11.96%，快于营收</td></tr>
+  <tr><td>合同负债</td><td>356.81 亿</td><td>342.85 亿</td><td class="good">订单蓄水池，+4.07%</td></tr>
+  <tr><td>短期借款</td><td>72.77 亿</td><td>73.30 亿</td><td class="good">有息负债低</td></tr>
+  <tr><td>长期借款</td><td>72.77 亿</td><td>75.59 亿</td><td class="good">有息负债低</td></tr>
+  <tr><td>资产负债率</td><td>59.96%</td><td>60.77%</td><td class="neutral">偏高但稳定，主要为经营性负债</td></tr>
+  <tr><td>归母净资产</td><td>1,757.60 亿</td><td>1,721.21 亿</td><td class="good">+2.11%</td></tr>
+  <tr><td>总资产</td><td>5,486.62 亿</td><td>5,507.74 亿</td><td>基本稳定</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>资产负债率约 60%，但短期借款与长期借款合计仅约 146 亿元，负债主体是应付账款（1,689 亿元）与合同负债，属于经营性占款而非有息杠杆，财务风险可控。真正的压力在资产端：应收账款近 1,195 亿元、存货 1,065 亿元，两者合计占总资产约 41%，回款与去库存决定现金流质量。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>经营活动现金流（CFO）</td><td>241.86 亿</td><td>270.57 亿</td><td class="good">-10.61%，仍强</td></tr>
+  <tr><td>投资活动现金流（CFI）</td><td>-148.65 亿</td><td>-170.18 亿</td><td>流出收窄</td></tr>
+  <tr><td>筹资活动现金流（CFF）</td><td>-127.37 亿</td><td>-94.35 亿</td><td>分红与偿债流出扩大</td></tr>
+  <tr><td>CFO / 归母净利</td><td>1.83</td><td>2.18</td><td class="good">优秀但下降</td></tr>
+  <tr><td>FCF（CFO − 资本开支）</td><td>157.10 亿</td><td>约 185.8 亿*</td><td class="good">持续为正</td></tr>
+</table>
+<p style="font-size:12px;color:#999;margin:-6px 0 10px">* FY2024 FCF 按资本开支约 84.8 亿元同口径估算；FY2025 资本开支取自券商模型。</p>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>全年造血能力仍强，FY2025 CFO 241.86 亿元、FCF 约 157 亿元。但 2026 年前三季度 CFO 为 -107.64 亿元（上年同期 -115.45 亿元），属轨交行业 Q4 集中回款的季节性特征；Q3 单季 CFO 已转正 53.75 亿元，边际改善。全年能否回补至 200 亿元以上，是验证盈利质量的关键。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>本期</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE（加权）</td><td>7.70%</td><td>&gt;15%</td><td class="bad">不达标</td></tr>
+  <tr><td>毛利率</td><td>21.38%</td><td>&gt;30% 或稳定</td><td class="neutral">偏低但稳定</td></tr>
+  <tr><td>净利率（归母）</td><td>4.83%</td><td>&gt;10%</td><td class="bad">偏低</td></tr>
+  <tr><td>营收增长</td><td>+10.79%</td><td>&gt;10%</td><td class="good">达标</td></tr>
+  <tr><td>利润增长</td><td>+6.40%</td><td>&gt;15%</td><td class="neutral">一般</td></tr>
+  <tr><td>CFO / 净利润</td><td>1.83</td><td>&gt;1.0</td><td class="good">优秀</td></tr>
+  <tr><td>负债率</td><td>60.77%</td><td>&lt;55%</td><td class="neutral">偏高</td></tr>
+  <tr><td>分红率</td><td>50.08%</td><td>&gt;30%</td><td class="good">优秀</td></tr>
+</table>
+
+<h3>3.2 分业务分析</h3>
+<table>
+  <tr><th>业务板块</th><th>营收</th><th>占比</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td>铁路装备</td><td>1,236.08 亿</td><td>45.27%</td><td class="good">+11.90%</td><td>25.69%</td><td>核心引擎，毛利提升 0.97pct</td></tr>
+  <tr><td>新产业</td><td>1,031.21 亿</td><td>37.76%</td><td class="good">+19.39%</td><td class="bad">16.46%</td><td>高增长但毛利低，风电竞争激烈</td></tr>
+  <tr><td>城轨与城市基础设施</td><td>420.90 亿</td><td>15.41%</td><td class="bad">约 -7.2%</td><td>数据待补充</td><td>2026 年 9M 增速转正 +5.68%</td></tr>
+  <tr><td>现代服务</td><td>42.45 亿</td><td>1.55%</td><td>约 -1.3%</td><td>数据待补充</td><td>占比小，影响有限</td></tr>
+</table>
+<p style="font-size:12px;color:#999;margin:-6px 0 10px">注：分业务为 FY2025 口径；2026 年 1–9 月铁路装备／城轨／新产业／现代服务分别同比 +7.33%／+5.68%／+4.75%／-10.96%。城轨与现服毛利率未单独披露。</p>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险项</th><th>严重程度</th><th>依据</th></tr>
+  <tr><td>应收账款规模大</td><td class="bad">红</td><td>1,194.94 亿元，占归母净利约 906%，占净资产约 68%</td></tr>
+  <tr><td>经营现金流阶段性净流出</td><td class="neutral">黄</td><td>9M2026 CFO -107.64 亿元，同比收窄 7.81 亿元，Q3 单季转正</td></tr>
+  <tr><td>存货增长快于营收</td><td class="neutral">黄</td><td>存货较年初 +11.96%，营收 +5.88%</td></tr>
+  <tr><td>货币资金下降</td><td class="neutral">黄</td><td>较年初 -33.15% 至 453.45 亿元</td></tr>
+  <tr><td>资产负债率偏高</td><td class="neutral">黄</td><td>59.96%，应付账款 1,689 亿元</td></tr>
+  <tr><td>汇率波动</td><td class="neutral">黄</td><td>财务费用由 -1.27 亿元转为 +10.68 亿元</td></tr>
+  <tr><td>新产业毛利低、竞争加剧</td><td class="neutral">黄</td><td>新产业毛利率 16.46%，风电整机价格竞争</td></tr>
+  <tr><td>城轨需求承压</td><td class="neutral">黄</td><td>FY2025 城轨收入约 -7.2%，2026 年 9M 转正</td></tr>
+  <tr><td>在手订单充足</td><td class="good">绿</td><td>2025 年末在手订单约 3,571 亿元，新签 3,461 亿元</td></tr>
+  <tr><td>分红稳定</td><td class="good">绿</td><td>2025 年度分红率 50.08%，连续 18 年分红</td></tr>
+  <tr><td>大股东增持</td><td class="good">绿</td><td>中车集团 2026 年 7 月增持 473 万股，约 2,818 万元</td></tr>
+</table>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>历史分位</th><th>行业均值</th></tr>
+  <tr><td>股价</td><td>6.68 元</td><td>—</td><td>—</td></tr>
+  <tr><td>总市值</td><td>1,917 亿元</td><td>—</td><td>—</td></tr>
+  <tr><td>PE(TTM)</td><td>14.2x</td><td>近5年约 45%</td><td>约 15.4x</td></tr>
+  <tr><td>PE(TTM扣非)</td><td>16.9x</td><td>—</td><td>—</td></tr>
+  <tr><td>PE(2026E)</td><td>13.4x</td><td>—</td><td>—</td></tr>
+  <tr><td>PB</td><td>1.09x</td><td>近5年偏高、历史低位</td><td>约 1.0x</td></tr>
+  <tr><td>PS</td><td>0.70x</td><td>—</td><td>—</td></tr>
+  <tr><td>PCF</td><td>7.9x</td><td>—</td><td>—</td></tr>
+  <tr><td>股息率(TTM)</td><td>5.1%</td><td>近5年约 80%</td><td>约 2.8%</td></tr>
+</table>
+<p style="font-size:12px;color:#999;margin:-6px 0 10px">估值快照日期 2026-11-26；PB 按归母净资产 1,757.60 亿元计算；行业均值取中国通号、时代电气近似值。</p>
+
+<h3>4.2 估值区间（PE Band）</h3>
+<table>
+  <tr><th>情景</th><th>估值</th><th>对应说明</th></tr>
+  <tr><td>悲观</td><td>5.06 元</td><td>2026E EPS 0.46 × 11x，交付延迟 + 毛利下滑</td></tr>
+  <tr><td>保守</td><td>5.76 元</td><td>EPS 0.48 × 12x</td></tr>
+  <tr><td>中性</td><td>7.00 元</td><td>EPS 0.50 × 14x</td></tr>
+  <tr><td>券商目标</td><td>7.70 元</td><td>EPS 0.50 × 15.4x，机构目标均价 7.69 元</td></tr>
+  <tr><td>当前价</td><td>6.68 元</td><td>对应 2026E PE 13.4x</td></tr>
+  <tr><td>历史高位</td><td>8.50 元</td><td>EPS 0.50 × 17x</td></tr>
+</table>
+
+<h3>历史 PE 区间</h3>
+<table>
+  <tr><th>最大值</th><th>80% 分位</th><th>50% 分位</th><th>20% 分位</th><th>最小值</th><th>当前</th></tr>
+  <tr><td>19.82x</td><td>16.90x</td><td>14.54x</td><td>12.87x</td><td>11.05x</td><td class="neutral">14.2x（约45%）</td></tr>
+</table>
+<p style="font-size:12px;color:#999;margin:-6px 0 10px">近5年口径。公司盈利稳定、非典型周期股，PE 参考意义强于 PB；PB 1.09x 仅作底部交叉验证。</p>
+
+<h3>4.3 估值总结</h3>
+<div class="highlight-box">
+  <strong>估值判断：</strong>估值中性，不贵也不便宜。PE 14.2x 处历史中位，5.1% 的股息率提供下限保护；但 ROE 仅 7.7%，按 ROE-PE 框架理论合理 PE 约 10–12x，当前存在一定溢价。PB 1.09x 处于近5年区间偏高位置，无明显安全边际。合理区间 6.0–7.5 元，当前 6.68 元位于中枢附近，建议等待 Q4 现金流与毛利率验证后再决定是否加仓。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析（L4框架）</h2>
+
+<h3>5.1 杜邦拆解</h3>
+<table>
+  <tr><th>指标</th><th>2023</th><th>2024</th><th>2025</th><th>判断</th></tr>
+  <tr><td>归母净利率</td><td>5.00%</td><td>5.03%</td><td>4.83%</td><td class="neutral">低位略降</td></tr>
+  <tr><td>总资产周转率</td><td>0.497</td><td>0.481</td><td>0.496</td><td>约 0.5，重资产</td></tr>
+  <tr><td>权益乘数</td><td>2.93</td><td>3.04</td><td>3.20</td><td class="neutral">上升</td></tr>
+  <tr><td>ROE</td><td>7.40%</td><td>7.51%</td><td>7.70%</td><td>低但稳定</td></tr>
+</table>
+
+<h3>5.2 赚钱模式判断</h3>
+<div class="highlight-box">
+  <strong>赚钱模式：</strong>低利润率、中周转、较高杠杆的均衡偏杠杆型。ROE 从 7.40% 升至 7.70%，主要靠权益乘数由 2.93 升至 3.20，而非净利率或周转改善。负债中大部分为应付账款、合同负债等经营性占款，有息负债低，杠杆质量尚可；但 ROE 对营运资本扩张较敏感。
+</div>
+
+<h3>5.3 去杠杆 ROA 与资产回报效率</h3>
+<table>
+  <tr><th>指标</th><th>2023</th><th>2024</th><th>2025</th><th>说明</th></tr>
+  <tr><td>去杠杆 ROA（净利率×周转）</td><td>2.49%</td><td>2.42%</td><td>2.40%</td><td>每 1 元总资产约产生 2.4 分净利润</td></tr>
+</table>
+
+<h3>5.4 核心结论</h3>
+<div class="summary-box">
+  <strong>杜邦结论：</strong>ROE 靠规模周转与经营性杠杆驱动，净利率是明显短板。趋势上利润率微降、权益乘数上升，ROE 的"含杠杆量"在提高，质量边际走弱。未来 ROE 能否站稳 8% 以上，取决于铁路装备毛利率提升（高级修占比）与新产业扭亏，而非继续加杠杆。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：</strong>混合周期偏价值型（轨交装备）。需求受铁路固定资产投资、招标与更新周期驱动，具有周期性；但公司为全球规模第一，ROE 连续多年稳定在 7.4%–7.7%，订单可见性强，因此选用非周期股评分体系，估值以 PE + 股息率为主、PB 辅助。
+</div>
+
+<h3>6.2 集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>市场格局</td><td>高度集中</td><td>国内 CR3 &gt;70%（中国中车、中国通号、时代电气）；中车全球轨交装备收入第一</td></tr>
+  <tr><td>进入壁垒</td><td>高</td><td>技术、资质认证、规模、客户关系、央企牌照多重壁垒</td></tr>
+  <tr><td>议价能力</td><td>偏弱</td><td>下游为国铁集团等强势客户，招标定价、回款周期长</td></tr>
+</table>
+
+<h3>6.3 生命周期与周期位置</h3>
+<div class="highlight-box">
+  <strong>生命周期 / 周期位置：</strong>国内新造业务处成熟期，海外与高级修、新产业处成长期。铁路装备正处更新周期上行初期——2007–2010 年投运的和谐号动车组逐步进入设计寿命尾声，换新与高级修需求释放；城轨经历 2023–2025 三年下滑后 2026 年增速转正，处底部复苏；新产业（风电）仍处价格竞争阶段。
+</div>
+
+<h3>6.4 同行对比</h3>
+<table>
+  <tr><th>指标</th><th>中国中车</th><th>中国通号</th><th>时代电气</th><th>行业中位</th><th>评价</th></tr>
+  <tr><td>ROE</td><td>7.70%</td><td>7.53%</td><td>9.81%</td><td>7.70%</td><td class="neutral">中</td></tr>
+  <tr><td>毛利率</td><td>21.38%</td><td>28.88%</td><td>33.43%</td><td>28.88%</td><td class="bad">低</td></tr>
+  <tr><td>净利率</td><td>6.19%</td><td>12.29%</td><td>15.01%</td><td>12.29%</td><td class="bad">低</td></tr>
+  <tr><td>负债率</td><td>60.77%</td><td>55.65%</td><td>36.29%</td><td>55.65%</td><td class="bad">高</td></tr>
+  <tr><td>营收增速</td><td>+10.79%</td><td>+6.23%</td><td>+15.23%</td><td>+10.79%</td><td class="good">高</td></tr>
+  <tr><td>PB</td><td>1.09x</td><td>约 0.9x</td><td>约 1.1x</td><td>约 1.0x</td><td class="neutral">中</td></tr>
+  <tr><td>PE</td><td>14.2x</td><td>15.9x</td><td>15.4x</td><td>15.4x</td><td class="good">中低</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>竞争位置：</strong>规模与营收增速领先，但毛利率、净利率显著低于同行，ROE 靠杠杆与周转维持，是"规模龙头、盈利中等"的典型。估值上 PE 略低于同行，反映市场对其低盈利质量的折价。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<div class="summary-box">
+  <strong>估值方法：</strong>周期/价值型 → 首选 PE + 股息率，辅助 PB 与 EV/EBITDA；当前 PE 14.2x、股息率 5.1%，方法匹配。PB 1.09x 仅作底部参考，不单独作为买卖依据。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  Step 1 - 行业定位：轨交装备，混合周期偏价值，CR3&gt;70%，技术/资质/规模壁垒高<br>
+  Step 2 - 财务体检：ROE 7.70%，均衡偏杠杆型，CFO/归母净利 1.83，现金含量优秀<br>
+  Step 3 - 估值判断：PE 14.2x（历史约45%分位），PB 1.09x，股息率 5.1%，估值中性<br>
+  Step 4 - 风险排查：应收账款高、Q3 利润下滑、经营现金流阶段性净流出、汇率与风电竞争<br>
+  Step 5 - 结论：好公司（龙头+现金流+分红），但价格仅合理，赔率不足<br>
+  Step 6 - 跟踪：Q4 毛利率、全年 CFO、铁路招标与高级修订单、新产业毛利率
+</div>
+
+<h3>前瞻状态（三轨：前瞻档，定性不打分）</h3>
+<table>
+  <tr><th style="width:26%">字段</th><th>内容</th></tr>
+  <tr><td>前瞻档位</td><td><span class="badge fwd-b">B</span> 需求方向有利、订单有覆盖，但盈利与现金流兑现尚未验证</td></tr>
+  <tr><td>风险方向与量级</td><td>双向 · 中</td></tr>
+  <tr><td>正向变量</td><td>铁路装备更新/高级修需求释放；城轨 2026 年增速转正；在手订单约 3,571 亿元；海外订单创新高</td></tr>
+  <tr><td>覆盖程度</td><td>中（订单覆盖营收约 1.3 年，但利润与回款覆盖待验证）</td></tr>
+  <tr><td>验证节点</td><td>2026Q4 毛利率与全年经营现金流；2027 年铁路招标与高级修订单</td></tr>
+  <tr><td>升档条件</td><td>Q4 单季毛利率 ≥21%，且全年 CFO ≥200 亿元；或 2027 年高级修订单显著放量</td></tr>
+  <tr><td>降档条件</td><td>Q4 单季毛利率 &lt;19%，或全年 CFO &lt;150 亿元，或应收账款增速持续高于营收</td></tr>
+</table>
+<div class="highlight-box">
+  <strong>档位定义：</strong>S=前瞻有利且已被验证；A=前瞻有利、方向确定；B=悬置/中性但有覆盖；C=方向确定不利但未完全定价；D=风险已实质化、覆盖被突破。
+</div>
+
+<h3>投资评级（三轨：评级）</h3>
+<div class="rating-card">
+  <span class="badge rating-neutral">Neutral</span>
+  　矩阵落点：财务中 × 前瞻 B × 赔率中（中性情景预期总回报约 +5%，含股息约 +8%）
+</div>
+<div class="summary-box">
+  <strong>为什么不是更高一档：</strong>财务分 70 处中等，前瞻 B 尚未达到 A 的"方向确定且盈利兑现"标准；中性情景 7.00 元仅较现价 +4.8%，加回约 3.4% 股息后总回报约 +8%，落在 Neutral 区间（-5%~+10%），未达到 Outperform 所需的 ≥+10%~+20% 赔率。<br><br>
+  <strong>上调条件：</strong>全年 CFO 回补至 200 亿元以上，且 Q4 单季毛利率 ≥21%；或 2027 年铁路装备收入增速 ≥10% 且新产业毛利率回升至 18% 以上。<br><br>
+  <strong>下调条件：</strong>Q4 单季毛利率 &lt;19%，或全年 CFO &lt;150 亿元，或应收账款同比增速连续两季高于营收增速 10pct 以上。
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="neutral">△</td><td>需求稳定、壁垒高、格局集中；但增速低、政策与铁路投资依赖强</td></tr>
+  <tr><td>② 好公司</td><td class="neutral">△</td><td>ROE 7.7% &lt;15%，毛利率偏低；但 CFO&gt;净利、分红率 50%、全球龙头</td></tr>
+  <tr><td>③ 好价格</td><td class="neutral">△</td><td>PE 14.2x 处历史中位，股息率 5.1%，PB 1.09x 无显著折价</td></tr>
+</table>
+
+<h3>7.3 风险评估</h3>
+<div class="danger-box">
+  ☑ 价值陷阱（低PE+低增长+高负债）→ 部分命中：增长 6%、负债率 60.77%，但 PE 14x 并非极低，股息与订单提供缓冲<br>
+  ☐ 周期陷阱（低PE+周期顶点）→ 未命中：当前非行业顶点，铁路装备处更新周期上行初期<br>
+  ☐ 烧钱陷阱（高PE+高增速+负现金流）→ 未命中：全年 CFO 为正，FCF 约 157 亿元
+</div>
+
+<h4>管理层与治理风险</h4>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力与履历</td><td>一般</td><td>央企管理团队稳定，但 ROE 长期偏低、资本回报一般</td></tr>
+  <tr><td>股权结构与利益一致性</td><td>强</td><td>中车集团持股 50.87%，国务院国资委实控</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td>有但可控</td><td>同一控制下并购（中车智程、北京中车装备），已重述</td></tr>
+  <tr><td>资本配置记录</td><td>合理</td><td>分红率 50%，研发投入强度 6.65%，无大额激进并购</td></tr>
+  <tr><td>管理层增减持记录</td><td>增持（正面）</td><td>中车集团 2026 年 7 月增持 473 万股，约 2,818 万元，计划期内</td></tr>
+  <tr><td>CEO 交接/关键人员变动</td><td>无风险</td><td>董事长孙永才在任，管理层稳定</td></tr>
+</table>
+
+<h4>盈利可持续性</h4>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是靠价？</td><td>量驱动</td><td>铁路装备交付增加、新产业放量，价格整体平稳</td></tr>
+  <tr><td>涨价能否持续？</td><td>需观察</td><td>招标定价为主，成本上涨传导能力有限</td></tr>
+  <tr><td>非经常性利润占比</td><td>中</td><td>扣非/归母 = 83.3%，非经常性约 16.7%</td></tr>
+  <tr><td>大客户/大项目集中度</td><td>集中</td><td>国铁集团为核心客户，订单集中度高</td></tr>
+  <tr><td>政策/监管依赖度</td><td>高</td><td>铁路固定资产投资、招标节奏直接影响业绩</td></tr>
+</table>
+
+<h4>关键变量敏感性</h4>
+<div class="summary-box">
+  <strong>变量1：铁路装备交付节奏</strong><br>
+  乐观：动车组/机车交付超预期 → 2026E EPS +5%<br>
+  中性：按订单平稳交付 → EPS 0.50 元<br>
+  悲观：交付延迟一个季度 → EPS -8%<br><br>
+  <strong>变量2：汇率（财务费用）</strong><br>
+  乐观：人民币贬值带来汇兑收益 → 财务费用转负，EPS +3%<br>
+  中性：汇率基本稳定 → 财务费用约 10 亿元<br>
+  悲观：人民币升值产生汇兑损失 → EPS -4%<br><br>
+  <strong>变量3：新产业毛利率</strong><br>
+  乐观：风电价格企稳、高端零部件放量 → 新产业毛利率升至 18%，EPS +4%<br>
+  中性：维持 16.5% → EPS 0.50 元<br>
+  悲观：价格战延续、毛利率降至 14% → EPS -6%
+</div>
+
+<h3>7.4 前景展望</h3>
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. 铁路装备更新周期 — 2007–2010 年和谐号进入寿命尾声，换新与高级修需求释放，毛利率高于新造<br>
+  2. 城轨底部复苏 — 2026 年前三季度城轨收入 +5.68%，结束三年下滑<br>
+  3. 海外与新产业 — 2025 年国际业务收入 +22.88%，新签订单约 650 亿元创新高<br><br>
+  <strong>负向拖累：</strong><br>
+  1. 新产业价格竞争 — 风电整机毛利率仅 16.46%，规模增长难转化为利润<br>
+  2. 回款与现金流 — 应收账款近 1,195 亿元，Q4 回款决定全年 CFO 成色<br>
+  3. 汇率与地方财政 — 汇兑波动加大财务费用，城轨需求受地方财政约束
+</div>
+
+<h4>三情景简表</h4>
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>EPS 预估</th><th>PE 区间</th><th>预期回报</th></tr>
+  <tr><td>乐观</td><td>铁路交付超预期 + 新产业毛利修复</td><td>0.52 元</td><td>16x</td><td class="good">+24.5%</td></tr>
+  <tr><td>中性</td><td>交付平稳 + 毛利率稳定</td><td>0.50 元</td><td>14x</td><td>+4.8%</td></tr>
+  <tr><td>悲观</td><td>交付延迟 + 毛利率下滑</td><td>0.46 元</td><td>11x</td><td class="bad">-24.3%</td></tr>
+</table>
+<p style="font-size:12px;color:#999;margin:-6px 0 10px">概率判断：中性 50%、乐观 25%、悲观 25%；概率加权价格回报约 +2.4%，加回股息约 +5.8%。</p>
+
+<h3>7.5 资金面信号</h3>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>北向资金持股变动</td><td>持平/待补充</td><td>沪股通持股占流通A股约 1.26%（2026-06-30），近期变动数据待补充</td></tr>
+  <tr><td>机构持仓变动</td><td>数据待补充</td><td>基金/险资季度持仓变动未获取</td></tr>
+  <tr><td>融资余额变动</td><td>稳定</td><td>融资余额约 31.04 亿元，占流通市值约 2.14%（2026-07-23）</td></tr>
+  <tr><td>大股东增减持</td><td>增持</td><td>中车集团 2026 年 7 月增持 473 万股，约 2,818 万元，计划实施期内</td></tr>
+  <tr><td>大宗交易</td><td>数据待补充</td><td>近期无公开显著折溢价记录</td></tr>
+</table>
+<div class="summary-box">
+  <strong>资金面判断：</strong>大股东增持、融资余额稳定，资金面中性偏正面；北向与机构持仓数据待补充，暂不作为主要判断依据。
+</div>
+
+<h3>7.6 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？<br>
+  3. 如果现在买入，期待的回报来源是什么？<br>
+  4. 什么情况下你会坚决卖出？
+</div>
+
+</div></div>
+
+<div class="footer">
+  免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+  数据来源：中国中车 2025 年年度报告、2026 年第三季度报告、东吴证券与财信证券研报、公开行情数据
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>
