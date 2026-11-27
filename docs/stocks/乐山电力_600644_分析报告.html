@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>乐山电力(600644) 财务分析报告</title>
+<style>
+  @page { margin: 2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.8; padding: 0;
+    background: #f5f5f5;
+  }
+  .report-wrap { max-width: 800px; margin: 0 auto; background: #fff; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 4px; padding-top: 30px; color: #1a1a1a; }
+  .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 6px; }
+  .meta { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  .tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; background: #fff; border-bottom: 2px solid #ddd;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: #f5f5f5; color: #666;
+    border-right: 1px solid #ddd; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: #e8e8e8; }
+  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: bold; border-bottom: 2px solid #1a1a1a; margin-bottom: -2px; }
+  .tab-btn.disabled { color: #ccc; cursor: not-allowed; background: #fafafa; }
+  .tab-content { display: none; padding: 0; }
+  .tab-content.active { display: block; }
+  .tab-inner { padding: 0 12px; }
+  h2 {
+    font-size: 18px; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid #1a1a1a; color: #1a1a1a;
+  }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: #333; }
+  .bad { color: #c0392b; }
+  .good { color: #27ae60; }
+  .neutral { color: #f39c12; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  th { background: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .summary-box { background: #f8f4e8; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .danger-box { background: #fde8e8; border-left: 4px solid #c0392b; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .highlight-box { background: #e8f4f8; border-left: 4px solid #2980b9; padding: 12px 16px; margin: 14px 0; font-size: 13px; }
+  .verdict { text-align: center; font-size: 20px; font-weight: bold; padding: 20px; margin: 20px 0; border-radius: 8px; }
+  .verdict-ok { background: #f0f8f0; color: #27ae60; border: 2px solid #27ae60; }
+  .verdict-caution { background: #fef8e8; color: #e67e22; border: 2px solid #e67e22; }
+  .verdict-bad { background: #fde8e8; color: #c0392b; border: 2px solid #c0392b; }
+  .score-note { font-size: 13px; color: #666; background: #fafafa; border: 1px dashed #ccc; padding: 8px 12px; margin: 10px 0; }
+  .history-table td:first-child { white-space: nowrap; }
+  .badge { display: inline-block; padding: 1px 9px; border-radius: 4px; font-size: 12px; font-weight: 700; white-space: nowrap; }
+  .fwd-s { background: #e8f5e9; color: #1b5e20; border: 1px solid #1b5e20; }
+  .fwd-a { background: #f1f8e9; color: #558b2f; border: 1px solid #7cb342; }
+  .fwd-b { background: #fffde7; color: #f9a825; border: 1px solid #fdd835; }
+  .fwd-c { background: #fff3e0; color: #e65100; border: 1px solid #fb8c00; }
+  .fwd-d { background: #fde8e8; color: #c0392b; border: 1px solid #c0392b; }
+  .rating-buy { background: #e8f5e9; color: #1b5e20; border: 1px solid #1b5e20; }
+  .rating-outperform { background: #f1f8e9; color: #558b2f; border: 1px solid #7cb342; }
+  .rating-neutral { background: #eeeeee; color: #616161; border: 1px solid #bbbbbb; }
+  .rating-underperform { background: #fff3e0; color: #e65100; border: 1px solid #fb8c00; }
+  .rating-sell { background: #fde8e8; color: #c0392b; border: 1px solid #c0392b; }
+  .track-card td { text-align: left; }
+  .track-card td:first-child { width: 34%; font-weight: 600; background: #f5f5f5; }
+  .rating-card { text-align: center; font-size: 17px; font-weight: bold; padding: 16px; margin: 14px 0; border-radius: 8px; background: #fafafa; border: 1px solid #e0e0e0; }
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; }
+  ul, ol { padding-left: 20px; margin: 8px 0; font-size: 13px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="report-wrap">
+
+<h1>乐山电力（600644）财务分析报告</h1>
+<p class="subtitle">基于 L1（财务三表）+ L2（关键指标+排雷）+ L3（估值）+ L4（杜邦分析）+ L5（行业分类）+ L6（综合实战）框架</p>
+<p class="meta">分析日期：2026-11-27 | 数据来源：2025 年报 + 2026 三季报 + 公开行情数据</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="summary">总结论</button>
+  <button class="tab-btn" data-tab="l1">L1 三张报表</button>
+  <button class="tab-btn" data-tab="l2">L2 关键指标+排雷</button>
+  <button class="tab-btn" data-tab="l3">L3 估值</button>
+  <button class="tab-btn" data-tab="l4">L4 杜邦分析</button>
+  <button class="tab-btn" data-tab="l5">L5 行业分类</button>
+  <button class="tab-btn" data-tab="l6">L6 综合实战</button>
+</div>
+
+<div class="tab-content active" id="tab-summary"><div class="tab-inner">
+
+<!-- TRACK fwd=C rating=Underperform node=2026年报扣非 -->
+
+<h2>三轨摘要</h2>
+<table class="track-card">
+  <tr><td>框架类型</td><td>非周期型（防御型公用事业，与 L5 分类一致）</td></tr>
+  <tr><td>财务品质分</td><td>43/100（不及格）</td></tr>
+  <tr><td>前瞻档位</td><td><span class="badge fwd-c">C</span> 方向确定不利，但股价已部分反映</td></tr>
+  <tr><td>投资评级</td><td><span class="badge rating-underperform">Underperform</span></td></tr>
+  <tr><td>一句话结论</td><td>Underperform（减持）：区域电水气特许经营现金流稳定，但 ROE 仅 1.15%、2026 年前三季度扣非腰斩，静态 PE 173x 缺乏盈利支撑；若 2026 年报扣非保持正值且毛利率≥17% 可上调，若全年扣非亏损则下调至 Sell。</td></tr>
+</table>
+
+<h2>一、公司基本画像</h2>
+<table>
+  <tr><th style="width:30%">项目</th><th>内容</th></tr>
+  <tr><td>公司名称</td><td>乐山电力股份有限公司</td></tr>
+  <tr><td>股票代码</td><td>600644.SH</td></tr>
+  <tr><td>所属行业</td><td>公用事业 — 电力、热力、燃气及水生产和供应业</td></tr>
+  <tr><td>行业地位</td><td>乐山区域电、气、水综合供应商；2025 年售电份额 17.08%、售水份额 38.79%、售气份额 10.42%</td></tr>
+  <tr><td>FY2025 营收</td><td>33.95 亿元（+6.24%）</td></tr>
+  <tr><td>归母净利润</td><td>0.233 亿元（+3.30%）</td></tr>
+  <tr><td>经营现金流</td><td>3.11 亿元（+81.65%）</td></tr>
+  <tr><td>总资产</td><td>47.78 亿元</td></tr>
+  <tr><td>归母净资产</td><td>20.69 亿元</td></tr>
+  <tr><td>ROE（加权）</td><td>1.15%（扣非 ROE 0.17%）</td></tr>
+</table>
+
+<p><strong>行业类型：</strong>非周期股（防御型），采用非周期股评分体系。</p>
+
+<p class="score-note"><strong>评分口径说明：</strong>首次分析，无历史版本；采用非周期股体系，盈利薄估值从严。</p>
+
+<h2>综合评分（百分制，非周期股体系）</h2>
+<table>
+  <tr><th style="width:28%">维度</th><th style="width:10%">得分</th><th>说明</th></tr>
+  <tr><td>ROE</td><td class="bad">0/15</td><td style="text-align:left">FY2025 加权 ROE 1.15%，扣非 ROE 0.17%，远低于 5% 最低档</td></tr>
+  <tr><td>杜邦驱动质量</td><td class="neutral">3/5</td><td style="text-align:left">净利率 0.69%、周转率 0.74、权益乘数 2.35，均衡但利润极薄</td></tr>
+  <tr><td>利润含金量（CFO/净利）</td><td class="good">15/15</td><td style="text-align:left">CFO 3.11 亿 / 净利 0.23 亿 = 13.3x，回款正常，但利润基数过低</td></tr>
+  <tr><td>营收增长</td><td class="neutral">4/10</td><td style="text-align:left">FY2025 +6.24%，2026 前三季度 -4.59%，增长转负</td></tr>
+  <tr><td>利润增长</td><td class="neutral">4/10</td><td style="text-align:left">FY2025 +3.30%，2026 前三季度 -48.84%，扣非 -52.15%</td></tr>
+  <tr><td>负债率</td><td class="neutral">7/10</td><td style="text-align:left">资产负债率 51.17%，处于 40%–55% 区间</td></tr>
+  <tr><td>短期偿债</td><td class="bad">0/10</td><td style="text-align:left">货币资金 4.70 亿，短借+一年内到期约 6.89 亿，缺口约 32%，超过 30% 阈值</td></tr>
+  <tr><td>毛利率水平与趋势</td><td class="neutral">7/10</td><td style="text-align:left">FY2025 15.53%，2026 前三季度 15.94%，15% 附近但趋势承压</td></tr>
+  <tr><td>估值（PE vs 合理区间）</td><td class="bad">0/10</td><td style="text-align:left">静态 PE 172.9x，TTM 亏损，PB 1.92x 处近 5 年中位，无安全边际</td></tr>
+  <tr><td>FCF</td><td class="neutral">3/5</td><td style="text-align:left">FY2025 FCF -0.10 亿，FY2024 -0.39 亿，资本开支略高于 CFO</td></tr>
+  <tr style="font-weight:bold;background:#e8e8e8"><td>总分</td><td style="font-size:16px">43/100</td><td style="text-align:left">不及格：盈利极薄、估值偏高，现金流是唯一亮点</td></tr>
+</table>
+
+<div class="verdict verdict-bad">不及格（43/100分）</div>
+
+<h2 style="margin-top:16px">评分沿革</h2>
+<style>.history-table{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:13px}.history-table th,.history-table td{border:1px solid #ddd;padding:6px 8px;text-align:center}.history-table th{background:#f0f0f0;font-weight:bold}.history-table td.good{color:#27ae60}.history-table td.neutral{color:#e67e22}.history-table td.bad{color:#c0392b}</style><table class="history-table">
+  <tr><th>日期</th><th>评分</th><th>评分体系</th><th>变化原因</th></tr>
+  <tr><td>2026-11-27</td><td class="bad" style="font-weight:bold">43/100</td><td>周期性</td><td style="text-align:left">首次分析，无历史版本；采用非周期股体系，盈利薄估值从严。</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>综合诊断：</strong>乐山电力是乐山区域电、气、水一体化公用事业公司，特许经营与区域管网带来稳定现金流，但盈利效率极低、利润高度依赖非经常性收益，2026 年电价与购气成本压力使扣非利润接近盈亏平衡。当前估值更多反映储能/虚拟电厂主题，而非防御型公用事业应有的股息与盈利定价。<br><br>
+  <strong>核心优势：</strong>① 区域电水气特许经营，需求刚性、现金流稳定 ② 2026 前三季度 CFO 3.14 亿，同比 +352.74% ③ 资产负债率 51.17%，定增后净资产增厚至 20.69 亿 ④ 新兴业务 2025 年营收 +79.94%，虚拟电厂/储能运维提供增量<br><br>
+  <strong>核心风险：</strong>① ROE 仅 1.15%、净利率 0.69%，主业接近盈亏平衡 ② 2026 前三季度归母 -48.84%、扣非 -52.15%，全年扣非可能亏损 ③ 静态 PE 172.9x、股息率仅 0.22%，估值缺乏盈利与分红支撑 ④ 流动比率 0.51，短期偿债偏紧；青白江储能项目已取消
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l1"><div class="tab-inner">
+
+<h2>二、核心财务数据</h2>
+
+<h3>2.1 利润表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比</th><th>评价</th></tr>
+  <tr><td>营业收入</td><td>33.95 亿</td><td>31.96 亿</td><td class="good">+6.24%</td><td>售电量 +1.18% 驱动，增速温和</td></tr>
+  <tr><td>归母净利润</td><td>0.233 亿</td><td>0.226 亿</td><td class="good">+3.30%</td><td>含非经常性收益 0.198 亿，扣非仅 0.035 亿</td></tr>
+  <tr><td>扣非净利润</td><td>0.035 亿</td><td>0.068 亿</td><td class="bad">-48.43%</td><td>主业盈利大幅下滑</td></tr>
+  <tr><td>毛利率</td><td>15.53%</td><td>15.81%</td><td class="bad">-0.28pct</td><td>购气成本上升、居民低谷电价拖累</td></tr>
+  <tr><td>归母净利率</td><td>0.69%</td><td>0.71%</td><td class="bad">-0.02pct</td><td>极薄，抗风险能力弱</td></tr>
+  <tr><td>期间费用率</td><td>14.67%</td><td>约 14.5%</td><td class="neutral">+0.2pct</td><td>管理费用 3.69 亿，占营收 10.9%</td></tr>
+  <tr><td>Q4 营收</td><td>9.96 亿</td><td>8.72 亿</td><td class="good">+14.2%</td><td>年末确认较多</td></tr>
+  <tr><td>Q4 归母净利</td><td>-0.495 亿</td><td>-0.460 亿</td><td class="bad">亏损扩大</td><td>季节性亏损，全年利润靠前三季度</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>利润表解读：</strong>营收增长来自售电量小幅提升与新兴业务放量，但毛利率被购气成本与居民低谷电价挤压。归母净利润中非经常性收益占 85%，扣非利润仅 0.035 亿，主业实际处于盈亏平衡附近；2025 Q4 扣非约 -0.63 亿，四季度季节性亏损是全年扣非偏低的主因。2026 年前三季度扣非同比 -52.15%，若 Q4 亏损延续，全年扣非可能转负。
+</div>
+
+<h3>2.2 资产负债表</h3>
+<table>
+  <tr><th>科目</th><th>2025 年末</th><th>评价</th></tr>
+  <tr><td>货币资金</td><td>4.70 亿</td><td class="neutral">定增募资到账，但仅覆盖短借+一年内到期约 68%</td></tr>
+  <tr><td>应收账款</td><td>2.36 亿</td><td class="good">占营收 7%，回款质量尚可</td></tr>
+  <tr><td>存货</td><td>0.49 亿</td><td class="good">轻存货，主要为燃气与工程履约成本</td></tr>
+  <tr><td>短期借款</td><td>3.75 亿</td><td class="neutral">有息负债上升</td></tr>
+  <tr><td>长期借款</td><td>1.75 亿</td><td class="good">较 2024 年末 5.26 亿明显下降</td></tr>
+  <tr><td>一年内到期非流动负债</td><td>3.14 亿</td><td class="bad">短期偿债压力集中</td></tr>
+  <tr><td>归母净资产</td><td>20.69 亿</td><td class="good">定增后增厚 12.33%</td></tr>
+  <tr><td>总资产</td><td>47.78 亿</td><td class="neutral">重资产公用事业</td></tr>
+  <tr><td>资产负债率</td><td>51.17%</td><td class="neutral">中等，较 2024 年下降 0.99pct</td></tr>
+  <tr><td>流动比率</td><td>0.51</td><td class="bad">流动资产不足以覆盖流动负债，短期流动性偏紧</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>资产负债表解读：</strong>定增使货币资金与净资产同步改善，长期借款大幅下降，负债率降至 51.17%，整体杠杆可控。但短期借款 3.75 亿叠加一年内到期 3.14 亿，货币资金覆盖率仅约 68%，流动比率 0.51，短期偿债仍需依赖经营现金流与再融资滚续。
+</div>
+
+<h3>2.3 现金流量表</h3>
+<table>
+  <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>评价</th></tr>
+  <tr><td>CFO</td><td>3.11 亿</td><td>1.71 亿</td><td class="good">+81.65%，保函保证金支出减少</td></tr>
+  <tr><td>CFI</td><td>-2.98 亿</td><td>-1.63 亿</td><td class="neutral">资本开支 3.21 亿，同比增加</td></tr>
+  <tr><td>CFF</td><td>+1.54 亿</td><td>-0.41 亿</td><td class="good">定增募资 1.98 亿</td></tr>
+  <tr><td>CFO/净利润</td><td>13.3x</td><td>7.6x</td><td class="good">回款正常，但利润基数过低导致比值失真</td></tr>
+  <tr><td>FCF</td><td>-0.10 亿</td><td>-0.39 亿</td><td class="neutral">连续小幅为负，资本开支吞噬现金流</td></tr>
+</table>
+
+<div class="summary-box">
+  <strong>现金流解读：</strong>CFO 表现是财报最大亮点，2025 年 3.11 亿、2026 前三季度 3.14 亿（+352.74%），说明电水气收费与回款稳定。但资本开支常年高于折旧，FCF 连续为负，分红能力受制于资本开支与少数股东权益；现金流稳定不等于股东回报充足。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l2"><div class="tab-inner">
+
+<h2>三、关键指标与排雷（L2框架）</h2>
+
+<h3>3.1 关键盈利指标</h3>
+<table>
+  <tr><th>指标</th><th>本期</th><th>好公司标准</th><th>评价</th></tr>
+  <tr><td>ROE</td><td>1.15%</td><td>&gt;15%</td><td class="bad">远低于标准</td></tr>
+  <tr><td>毛利率</td><td>15.53%</td><td>≥30% 且稳定</td><td class="bad">偏低且承压</td></tr>
+  <tr><td>净利率</td><td>0.69%</td><td>&gt;10%</td><td class="bad">极低</td></tr>
+  <tr><td>营收增长</td><td>+6.24%</td><td>≥10%</td><td class="neutral">未达标，2026 转负</td></tr>
+  <tr><td>利润增长</td><td>+3.30%</td><td>≥15%</td><td class="bad">未达标，2026 前三季度 -48.84%</td></tr>
+  <tr><td>CFO/净利润</td><td>13.3x</td><td>&gt;1.0</td><td class="good">表面优秀，因利润基数过低</td></tr>
+  <tr><td>负债率</td><td>51.17%</td><td>&lt;55%</td><td class="neutral">达标</td></tr>
+  <tr><td>分红率</td><td>37.2%</td><td>稳定</td><td class="neutral">恢复分红，但股息率仅 0.22%</td></tr>
+</table>
+
+<h3>3.2 分业务分析</h3>
+<table>
+  <tr><th>业务板块</th><th>营收</th><th>占比</th><th>同比</th><th>毛利率</th><th>评价</th></tr>
+  <tr><td>电力业务</td><td>21.97 亿</td><td>64.7%</td><td class="bad">-2.38%</td><td>13.80%</td><td>核心业务，量增价减，毛利率微升 0.93pct</td></tr>
+  <tr><td>天然气业务</td><td>4.53 亿</td><td>13.3%</td><td class="bad">-4.68%</td><td>6.93%</td><td>毛利率下降 5.07pct，购气成本压力最大</td></tr>
+  <tr><td>自来水业务</td><td>1.62 亿</td><td>4.8%</td><td class="bad">-8.04%</td><td>31.73%</td><td>毛利率最高，但售水量下滑</td></tr>
+  <tr><td>新兴业务</td><td>2.18 亿</td><td>6.4%</td><td class="good">+79.94%</td><td>24.13%</td><td>储能、虚拟电厂、运维放量，增量亮点</td></tr>
+  <tr><td>服务及其他</td><td>3.65 亿</td><td>10.7%</td><td class="neutral">—</td><td>—</td><td>酒店、检测、工程等，利润贡献有限</td></tr>
+</table>
+
+<h3>3.3 排雷清单</h3>
+<table>
+  <tr><th>风险项</th><th>严重程度</th><th>依据</th></tr>
+  <tr><td>主业盈利接近盈亏平衡</td><td class="bad">红</td><td>2025 扣非 0.035 亿，2026 前三季度扣非 0.317 亿但同比 -52.15%</td></tr>
+  <tr><td>非经常性损益占比高</td><td class="bad">红</td><td>2025 非经常性收益 0.198 亿，占归母净利 85%</td></tr>
+  <tr><td>电价政策下行</td><td class="bad">红</td><td>居民低谷电价、新阶梯电价减少售电收入</td></tr>
+  <tr><td>购气成本上升</td><td class="neutral">黄</td><td>中石油调整购气结构计价结算规则，燃气毛利率降至 6.93%</td></tr>
+  <tr><td>短期偿债偏紧</td><td class="neutral">黄</td><td>流动比率 0.51，货币资金 4.70 亿 &lt; 短借+一年内到期 6.89 亿</td></tr>
+  <tr><td>储能项目不及预期</td><td class="neutral">黄</td><td>青白江 100MW/200MWh 项目因收益不及预期已取消（2026-04-24 公告）</td></tr>
+  <tr><td>应收账款与合同资产</td><td class="good">绿</td><td>应收账款 2.36 亿，占营收 7%，合同资产 0.78 亿，可控</td></tr>
+  <tr><td>经营现金流</td><td class="good">绿</td><td>2025 CFO 3.11 亿，2026 前三季度 3.14 亿（+352.74%）</td></tr>
+</table>
+
+</div></div>
+
+<div class="tab-content" id="tab-l3"><div class="tab-inner">
+
+<h2>四、估值分析（L3框架）</h2>
+
+<h3>4.1 当前估值</h3>
+<table>
+  <tr><th>指标</th><th>当前值</th><th>历史分位</th><th>行业均值</th></tr>
+  <tr><td>股价</td><td>6.97 元（2026-11-23）</td><td>—</td><td>—</td></tr>
+  <tr><td>总市值</td><td>40.31 亿元</td><td>—</td><td>—</td></tr>
+  <tr><td>PE（TTM）</td><td class="bad">亏损 / 不适用</td><td>—</td><td>约 25x</td></tr>
+  <tr><td>PE（静态 2025）</td><td class="bad">172.9x</td><td>近 5 年高位</td><td>约 25x</td></tr>
+  <tr><td>PE（2026E）</td><td class="bad">不适用（盈利接近零/可能亏损）</td><td>—</td><td>—</td></tr>
+  <tr><td>PB（2026Q3 BVPS）</td><td class="neutral">1.92x</td><td>近 5 年末约 38% 分位</td><td>约 1.5–2.5x</td></tr>
+  <tr><td>PS</td><td>1.19x</td><td>中位</td><td>—</td></tr>
+  <tr><td>PCF</td><td>12.95x</td><td>—</td><td>—</td></tr>
+  <tr><td>股息率</td><td class="bad">0.22%</td><td>低位</td><td>约 2.9%</td></tr>
+</table>
+
+<h3>4.2 估值区间（PE Band 为主，PB 区间为辅）</h3>
+<p style="font-size:12px;color:#888;margin:4px 0 8px;">非周期股按框架以 PE Band 为主口径；本公司盈利接近盈亏平衡，PE 严重失真，因此同时保留 PB 区间作为交叉验证。</p>
+<h4 style="font-size:13px;margin:14px 0 4px;">PE Band（主口径，本期失真，仅作参考）</h4>
+<table>
+  <tr><th>PE 区间</th><th>数值</th><th>说明</th></tr>
+  <tr><td>历史最大</td><td>241.8x</td><td>2025 年末，利润接近零导致 PE 极高</td></tr>
+  <tr><td>80% 分位</td><td>约 180x</td><td>近 5 年高位区间</td></tr>
+  <tr><td>50% 分位</td><td>约 154x</td><td>近 5 年中位</td></tr>
+  <tr><td>20% 分位</td><td>约 146x</td><td>近 5 年低位区间</td></tr>
+  <tr><td>历史最小</td><td>36x</td><td>2021 年，利润正常年份</td></tr>
+  <tr><td>当前（静态）</td><td class="bad">172.9x</td><td>盈利接近零，PE 不具可比性，仅作方向参考</td></tr>
+</table>
+<h4 style="font-size:13px;margin:14px 0 4px;">PB 区间（辅助口径）</h4>
+<table>
+  <tr><th>情景</th><th>估值</th><th>对应说明</th></tr>
+  <tr><td>历史最大（52 周高）</td><td>PB 3.85x</td><td>2026 年股价 13.99 元对应，主题交易高点</td></tr>
+  <tr><td>80% 分位</td><td>PB 2.42x</td><td>2025 年末</td></tr>
+  <tr><td>50% 分位</td><td>PB 2.07x</td><td>近 5 年末中位</td></tr>
+  <tr><td>20% 分位</td><td>PB 1.68x</td><td>近 5 年末低位</td></tr>
+  <tr><td>历史最小</td><td>PB 1.57x</td><td>2024 年末</td></tr>
+  <tr><td>当前</td><td class="neutral">PB 1.92x</td><td>约 38% 分位，中低位，但盈利下滑削弱支撑</td></tr>
+</table>
+
+<h3>4.3 估值总结</h3>
+<div class="danger-box">
+  <strong>估值判断：</strong>PB 1.92x 处于近 5 年中位附近，看似不贵；但 ROE 仅 1.15%、净利率 0.69%，按 1%–2% 的可持续 ROE 测算，合理 PB 约 1.2–1.6x，当前仍有 20%–60% 溢价。静态 PE 172.9x、股息率 0.22%，防御型公用事业应有的低估值与高股息特征均不具备。当前价格更多计入储能、虚拟电厂主题，而非盈利与分红，估值偏高，缺乏安全边际。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l4"><div class="tab-inner">
+
+<h2>五、杜邦分析（L4框架）</h2>
+
+<h3>5.1 杜邦拆解</h3>
+<table>
+  <tr><th>指标</th><th>2023</th><th>2024</th><th>2025</th><th>判断</th></tr>
+  <tr><td>净利润率</td><td>0.81%</td><td>0.71%</td><td>0.69%</td><td class="bad">持续下行，极薄</td></tr>
+  <tr><td>资产周转率</td><td>0.73</td><td>0.75</td><td>0.74</td><td class="neutral">稳定，重资产特征</td></tr>
+  <tr><td>权益乘数</td><td>2.14</td><td>2.33</td><td>2.35</td><td class="neutral">杠杆温和上升</td></tr>
+  <tr><td>ROE</td><td>1.35%</td><td>1.23%</td><td>1.15%</td><td class="bad">持续下行</td></tr>
+</table>
+<p style="font-size:12px;color:#888;">注：权益乘数=平均总资产/平均归母净资产；2025 年期末口径为 47.78/20.69=2.31x，平均口径 2.35x，差异主要来自定增。三项乘积约 1.20%，与加权 ROE 1.15% 的差异来自平均净资产与加权口径。</p>
+
+<h3>5.2 赚钱模式判断</h3>
+<div class="highlight-box">
+  <strong>赚钱模式：</strong>低利润 + 中等周转 + 中等杠杆的公用事业型。ROE 对净利率最敏感，电价、购气成本或售电量的小幅波动即可显著改变利润；杠杆并非主要驱动，去杠杆后的真实回报更低。
+</div>
+
+<h3>5.3 去杠杆 ROA 与资产回报效率</h3>
+<table>
+  <tr><th>指标</th><th>2023</th><th>2024</th><th>2025</th><th>说明</th></tr>
+  <tr><td>去杠杆 ROA（净利率×周转率）</td><td>0.59%</td><td>0.53%</td><td>0.51%</td><td>每 1 元总资产仅产生约 0.005 元净利润</td></tr>
+  <tr><td>同行涪陵电力 ROA（参考）</td><td>约 7.9%</td><td>约 7.9%</td><td>约 6.1%</td><td>资产回报效率显著高于乐山电力</td></tr>
+</table>
+
+<h3>5.4 核心结论</h3>
+<div class="summary-box">
+  <strong>杜邦结论：</strong>ROE 长期在 1%–1.4% 徘徊，主要拖累是净利率（0.69%），而非周转或杠杆。公司资产规模 47.78 亿、净资产 20.69 亿，但每年仅赚 0.23 亿，资产回报效率远低于同行。除非电价机制理顺、购气成本回落或高毛利新兴业务占比大幅提升，否则 ROE 难以回到 5% 以上，杜邦结构不支持高 PB。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l5"><div class="tab-inner">
+
+<h2>六、行业分类（L5框架）</h2>
+
+<h3>6.1 行业类型判断</h3>
+<div class="summary-box">
+  <strong>行业类型：</strong>非周期（防御型）— 公用事业。判断依据：电、气、水均为特许经营，需求刚性、价格受政府监管；利润随电价/气价政策与成本波动，但不属于供需错配型周期品。与总结论一致，采用<strong>非周期股评分体系</strong>。
+</div>
+
+<h3>6.2 集中度与壁垒</h3>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>市场格局</td><td>区域垄断、全国分散</td><td>2025 年乐山售电份额 17.08%、售水 38.79%、售气 10.42%</td></tr>
+  <tr><td>CR3</td><td>区域较高</td><td>乐山国资 17.92%、国网四川 13.51%、天津中环 12.74%</td></tr>
+  <tr><td>进入壁垒</td><td>高</td><td>特许经营、电网/管网资产、牌照、供电营业区划分</td></tr>
+</table>
+
+<h3>6.3 生命周期与周期位置</h3>
+<div class="highlight-box">
+  <strong>生命周期 / 周期位置：</strong>电力、燃气、水务主业处于成熟期，需求稳定、增长依赖区域经济与存量提效；储能、虚拟电厂、光伏运维等新兴业务处于导入期，收入占比仍低（2025 年 6.4%）。非周期行业，不适用周期位置评分。
+</div>
+
+<h3>6.4 同行对比</h3>
+<table>
+  <tr><th>指标</th><th>乐山电力</th><th>三峡水利</th><th>涪陵电力</th><th>西昌电力</th><th>行业中位</th><th>评价</th></tr>
+  <tr><td>ROE</td><td>1.15%</td><td>3.86%</td><td>7.20%</td><td>0.98%</td><td>3.86%</td><td class="bad">低</td></tr>
+  <tr><td>毛利率</td><td>15.53%</td><td>约 16%</td><td>19.65%</td><td><span style="color:#999">数据待补充</span></td><td>约 17.6%</td><td class="neutral">中低</td></tr>
+  <tr><td>净利率</td><td>0.69%</td><td>4.29%</td><td>13.13%</td><td>7.90%</td><td>7.90%</td><td class="bad">低</td></tr>
+  <tr><td>负债率</td><td>51.17%</td><td>54.43%</td><td>12.22%</td><td>约 69%</td><td>54.43%</td><td class="neutral">中</td></tr>
+  <tr><td>营收增速</td><td>+6.24%</td><td>-1.44%</td><td>-3.86%</td><td>+3.94%</td><td>-1.44%</td><td class="good">高（但 2026 转负）</td></tr>
+  <tr><td>PB</td><td>1.92x</td><td><span style="color:#999">数据待补充</span></td><td>约 2.26x</td><td><span style="color:#999">数据待补充</span></td><td>约 2.1x</td><td class="neutral">中</td></tr>
+  <tr><td>PE</td><td>172.9x</td><td><span style="color:#999">数据待补充</span></td><td>约 32.3x</td><td><span style="color:#999">数据待补充</span></td><td>约 32.3x</td><td class="bad">极高</td></tr>
+</table>
+<p style="font-size:12px;color:#888;">注：同业 PB/PE 部分数据未获取，已标注“数据待补充”，不参与中位数计算。</p>
+
+<div class="summary-box">
+  <strong>竞争位置：</strong>区域特许经营带来稳定份额与现金流，但盈利效率显著落后同行——净利率最低、ROE 仅高于西昌电力、PE 却最高。公司不是靠成本或效率竞争，而是靠区域牌照与管网资产；这类优势能守住现金流，却不足以支撑高估值。
+</div>
+
+<h3>6.5 估值方法匹配</h3>
+<div class="summary-box">
+  <strong>估值方法：</strong>防御型公用事业首选 PE / 股息率，辅助 EV/EBITDA，看现金流稳定性与分红能力。当前市场按储能、虚拟电厂主题定价，PE 172.9x、股息率 0.22%，与防御型估值框架明显不匹配；PB 1.92x 虽处中位，但 ROE 仅 1% 无法支撑。
+</div>
+
+</div></div>
+
+<div class="tab-content" id="tab-l6"><div class="tab-inner">
+
+<h2>七、综合实战（L6框架）</h2>
+
+<h3>7.1 六步法总结</h3>
+<div class="summary-box">
+  Step 1 - 行业定位：非周期防御型公用事业，区域特许经营、壁垒高但全国格局分散<br>
+  Step 2 - 财务体检：ROE 1.15%、净利率 0.69%，低利润型杜邦；CFO/净利 13.3x，现金流是唯一亮点<br>
+  Step 3 - 估值判断：静态 PE 172.9x、PB 1.92x 近 5 年中位，股息率 0.22%，估值偏高<br>
+  Step 4 - 风险排查：电价政策、购气成本、主业盈亏平衡、短期偿债、储能项目不及预期<br>
+  Step 5 - 结论：不是好公司（ROE/净利率远低于标准），价格也不便宜<br>
+  Step 6 - 跟踪：2026 年报扣非、2027Q1 毛利率、经营现金流、负债率与分红率
+</div>
+
+<h3>前瞻状态（三轨：前瞻档，定性不打分）</h3>
+<table>
+  <tr><th style="width:26%">字段</th><th>内容</th></tr>
+  <tr><td>前瞻档位</td><td><span class="badge fwd-c">C</span> 方向确定不利，但股价已部分反映</td></tr>
+  <tr><td>风险方向与量级</td><td>负向 · 中高</td></tr>
+  <tr><td>正向变量</td><td>电价机制理顺、购气成本回落、新兴业务高增</td></tr>
+  <tr><td>覆盖程度</td><td>中：现金流覆盖较强，盈利覆盖弱</td></tr>
+  <tr><td>验证节点</td><td>2026 年报扣非能否保持正值、2027Q1 毛利率</td></tr>
+  <tr><td>升档条件</td><td>2026 年报扣非 ≥3000 万且 2027Q1 毛利率 ≥17%</td></tr>
+  <tr><td>降档条件</td><td>2026 年报扣非亏损，或 2027Q1 毛利率 &lt;14%</td></tr>
+</table>
+<div class="highlight-box">
+  <strong>档位定义：</strong>S=前瞻有利且已被验证；A=前瞻有利、方向确定；B=悬置/中性但有覆盖；C=方向确定不利但未完全定价；D=风险已实质化、覆盖被突破。
+</div>
+
+<h3>投资评级（三轨：评级）</h3>
+<div class="rating-card">
+  <span class="badge rating-underperform">Underperform</span>
+  　矩阵落点：财务低（43/100） × 前瞻 C × 赔率薄
+</div>
+<div class="summary-box">
+  <strong>为什么不是更高一档：</strong>2026 前三季度归母 -48.84%、扣非 -52.15%，全年扣非可能亏损；静态 PE 172.9x、股息率 0.22%，PB 处近 5 年中位，赔率不足。现金流稳定只能提供下限，不能支撑更高评级。<br><br>
+  <strong>上调条件：</strong>2026 年报扣非 ≥3000 万、2027Q1 毛利率 ≥17%、分红率 ≥50% 且股息率 ≥1.5%，三项至少满足两项。<br><br>
+  <strong>下调条件：</strong>2026 年报扣非亏损、资产负债率 &gt;55%、流动比率 &lt;0.4，任一触发即下调至 Sell。
+</div>
+
+<h3>7.2 好公司三要素检查</h3>
+<table>
+  <tr><th>要素</th><th>判断</th><th>依据</th></tr>
+  <tr><td>① 好行业</td><td class="good">✓</td><td>防御型公用事业，需求刚性、区域特许经营、现金流稳定</td></tr>
+  <tr><td>② 好公司</td><td class="bad">✗</td><td>ROE 1.15%、净利率 0.69%，远低于 15%/10% 标准；利润靠非经常性收益</td></tr>
+  <tr><td>③ 好价格</td><td class="bad">✗</td><td>静态 PE 172.9x、PB 中位、股息率 0.22%，无安全边际</td></tr>
+</table>
+
+<h3>7.3 风险评估</h3>
+<div class="danger-box">
+  ☐ 价值陷阱（低 PE + 低增长 + 高负债）→ 未命中（PE 高，非低 PE）<br>
+  ☐ 周期陷阱（低 PE + 周期顶点）→ 未命中（非周期行业）<br>
+  ☐ 烧钱陷阱（高 PE + 高增速 + 负现金流）→ 未命中（CFO 为正，增速已转负）<br>
+  <strong>真实风险：低 ROE + 高估值 + 盈利下滑</strong>，不属于三陷阱，但赔率同样不佳。
+</div>
+
+<h3>7.3.1 管理层与治理风险</h3>
+<table>
+  <tr><th>事项</th><th>判断</th><th>依据</th></tr>
+  <tr><td>管理层能力与履历</td><td class="neutral">一般</td><td>国企背景，经营稳健但盈利效率长期偏低</td></tr>
+  <tr><td>股权结构与利益一致性</td><td class="neutral">一般</td><td>无实际控制人；乐山国资 17.92%、国网四川 13.51%、天津中环 12.74%</td></tr>
+  <tr><td>关联交易/暴雷历史</td><td class="good">无</td><td>无重大违规、监管处罚或诉讼记录</td></tr>
+  <tr><td>资本配置记录</td><td class="neutral">一般</td><td>2025 年定增募资 1.98 亿；恢复分红但股息率仅 0.22%</td></tr>
+  <tr><td>管理层增减持记录</td><td class="neutral">无</td><td>近一年无董监高增减持公告</td></tr>
+  <tr><td>CEO 交接/关键人员变动</td><td class="bad">需关注</td><td>2026-11-19 董事兼总经理离任</td></tr>
+</table>
+
+<h3>7.3.2 盈利可持续性</h3>
+<table>
+  <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+  <tr><td>增长靠量还是靠价？</td><td>量驱动</td><td>售电量 +1.18%，售气量 -2.98%，售水量 -4.37%</td></tr>
+  <tr><td>涨价能否持续？</td><td>不能</td><td>电价受管制，居民低谷电价与阶梯电价压制售电收入</td></tr>
+  <tr><td>非经常性利润占比</td><td class="bad">高</td><td>2025 非经常性收益 0.198 亿，占归母净利 85%</td></tr>
+  <tr><td>大客户/大项目集中度</td><td class="good">分散</td><td>零售用户为主，前五大客户占比不高</td></tr>
+  <tr><td>政策/监管依赖度</td><td class="bad">高</td><td>电价、气价、水务特许经营均受政府监管</td></tr>
+</table>
+
+<h3>7.3.3 关键变量敏感性</h3>
+<table>
+  <tr><th>变量</th><th>乐观</th><th>中性</th><th>悲观</th></tr>
+  <tr><td>电价政策</td><td>输配电价理顺、低谷电价影响减弱 → EPS +0.02</td><td>政策维持 → EPS 0.00</td><td>电价进一步下调 → EPS -0.03</td></tr>
+  <tr><td>购气成本</td><td>气价回落/顺价到位 → EPS +0.02</td><td>维持 → EPS 0.00</td><td>购气成本再涨 → EPS -0.02</td></tr>
+  <tr><td>来水与售电量</td><td>来水偏丰、售电量 +3% → EPS +0.01</td><td>持平 → EPS 0.00</td><td>来水偏枯、售电量 -2% → EPS -0.01</td></tr>
+</table>
+
+<h3>7.4 前景展望</h3>
+<div class="summary-box">
+  <strong>正向驱动：</strong><br>
+  1. 电价机制理顺与燃气顺价 — 输配电成本监审、燃气首轮顺价若落地，可修复电力与燃气毛利<br>
+  2. 新兴业务高增 — 2025 年营收 +79.94%，虚拟电厂聚合容量 56.4 万千伏安，储能运维规模超 30 万千瓦<br><br>
+  <strong>负向拖累：</strong><br>
+  1. 居民低谷电价与新阶梯电价 — 直接减少售电收入，2026 前三季度已体现<br>
+  2. 购气成本上升 — 中石油调整计价结算规则，燃气毛利率降至 6.93%<br>
+  3. 青白江储能项目已取消 — 主题预期受挫，新业务扩张节奏放缓
+</div>
+
+<h3>7.4.1 三情景简表</h3>
+<table>
+  <tr><th>情景</th><th>假设条件</th><th>EPS 预估</th><th>PB 区间</th><th>预期回报</th></tr>
+  <tr><td>乐观</td><td>电价机制理顺、购气成本回落，2027 扣非恢复至 0.05 元</td><td>0.05 元</td><td>2.5x</td><td class="good">+33%</td></tr>
+  <tr><td>中性</td><td>盈利低位徘徊，ROE 维持 1%–2%</td><td>0.03 元</td><td>2.0x</td><td class="neutral">+5%</td></tr>
+  <tr><td>悲观</td><td>2026 全年扣非亏损，电价/气价压力延续</td><td>-0.02 元</td><td>1.5x</td><td class="bad">-23%</td></tr>
+</table>
+<p style="font-size:12px;color:#888;">概率判断：中性 50%，乐观 20%，悲观 30%；概率加权预期回报约 +2.1%。以 PB 情景为主，PE 因盈利接近零而失真。</p>
+
+<h3>7.5 资金面信号</h3>
+<table>
+  <tr><th>维度</th><th>信号</th><th>解读</th></tr>
+  <tr><td>北向资金持股变动</td><td class="neutral">低配/净流出</td><td>沪股通持股比例低，近月资金整体流出</td></tr>
+  <tr><td>机构持仓变动</td><td class="neutral">低配</td><td>机构持股约 6.3%，主要为被动电力 ETF</td></tr>
+  <tr><td>融资余额变动</td><td class="bad">减少</td><td>融资余额约 1.32 亿，近 3 个月净流出 3116 万</td></tr>
+  <tr><td>大股东增减持</td><td class="neutral">无</td><td>前三大股东持股不变</td></tr>
+  <tr><td>大宗交易</td><td class="neutral">无</td><td>近期无显著大宗交易</td></tr>
+</table>
+<div class="summary-box">
+  <strong>资金面整体判断：</strong>资金面偏弱。股价 52 周下跌约 31%，融资余额下降、机构低配，股东户数由 8.13 万升至 8.47 万，散户占比上升；缺乏增量机构资金，主题交易退潮后估值消化压力较大。
+</div>
+
+<h3>7.6 讨论问题</h3>
+<div class="summary-box">
+  <strong>讨论问题（阅读后可以聊这些）：</strong><br>
+  1. 这笔生意你看懂了吗？一句话说清这家公司怎么赚钱？<br>
+  2. 你最大的担忧是什么？哪个数据让你睡不着？<br>
+  3. 如果现在买入，期待的回报来源是什么？<br>
+  4. 什么情况下你会坚决卖出？
+</div>
+
+</div></div>
+
+<div class="footer">
+  免责声明：本报告仅为个人学习分析，不构成任何投资建议。<br>
+  数据来源：乐山电力 2025 年年度报告、2026 年第三季度报告、公开行情与同业年报；行情截至 2026-11-23。
+</div>
+
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn:not(.disabled)');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.getAttribute('data-tab');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>
